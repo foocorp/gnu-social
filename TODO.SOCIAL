@@ -1,0 +1,12 @@
+Things to be done
+=================
+
+* Create a theme for GNU social
+
+* Create a set of plugins to give StatusNet a more social-network UI
+
+* Work on improvements for annoying things in StatusNet (ie. no
+  redirect to login page when you need to be logged in, etc)
+
+* Work on adding further Activities, such as sharing photos/video,
+  events, UI for managing relationships.
