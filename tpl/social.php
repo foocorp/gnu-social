@@ -3,12 +3,8 @@
 		<title><?php echo section('title'); ?> &mdash; GNU social</title>
 
 
-   <link rel="stylesheet" href="/theme/gnusocial/combo.css" type="text/css">
-   <link rel="stylesheet" href="/theme/gnusocial/social.css" type="text/css">
-
-
-
-
+   <link rel="stylesheet" href="/theme/gnusocial/css/combo.css" type="text/css">
+   <link rel="stylesheet" href="/theme/gnusocial/css/social.css" type="text/css">
 		<?php echo section('scripts'); ?>
 		<?php echo section('search'); ?>
 		<?php echo section('feeds'); ?>
