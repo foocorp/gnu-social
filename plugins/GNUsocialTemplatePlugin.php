@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin to render old skool templates
+ * Plugin to render GNU social
  *
- * Captures rendered parts from the output buffer, passes them through a template file: tpl/index.html
+ * Captures rendered parts from the output buffer, passes them through a template file: tpl/social.php
  * Adds an API method at index.php/template/update which lets you overwrite the template file
  * Requires username/password and a single POST parameter called "template"
  * The method is disabled unless the user is #1, the first user of the system
@@ -10,7 +10,9 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Brian Hendrickson <brian@megapump.com>
+ * @author    Matt Lee <mattl@cnuk.org>
  * @copyright 2009 Megapump, Inc.
+ * @copyright 2010 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://megapump.com/
  */
