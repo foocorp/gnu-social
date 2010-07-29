@@ -29,7 +29,7 @@ dl, dd { margin: 0 !important; padding: 0 !important;}
   
    html, body{padding: 0; margin: 0;}
 
-   body {background-image: url(/theme/gnusocial/bg.png) !important; background-repeat: repeat-x !important; background-color: white;}
+   body {background-image: url(/theme/gnusocial/images/bg.png) !important; background-repeat: repeat-x !important; background-color: white;}
 
    #hd h1 {margin: 0; line-height: 40px; font-size: 24px; font-weight: bold;}
 
