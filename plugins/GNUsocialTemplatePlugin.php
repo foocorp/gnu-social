@@ -46,7 +46,7 @@ class TemplatePlugin extends Plugin {
   // <%feeds%>
   // <%description%>
   // <%head%>
-  function onStartShowHead( &$act ) {
+  function onStartShowHead( $act ) {
     $this->clear_xmlWriter($act);
     $act->extraHead();
     $this->blocks['head'] = $act->xw->flush();
@@ -64,29 +64,29 @@ class TemplatePlugin extends Plugin {
   }
 
   // <%bodytext%>
-  function onStartShowContentBlock( &$act ) {
+  function onStartShowContentBlock( $act ) {
     $this->clear_xmlWriter($act);
     return true;
   }
-  function onEndShowContentBlock( &$act ) {
+  function onEndShowContentBlock( $act ) {
     $this->blocks['bodytext'] = $act->xw->flush();
   }
 
   // <%localnav%>
-  function onStartShowLocalNavBlock( &$act ) {
+  function onStartShowLocalNavBlock( $act ) {
     $this->clear_xmlWriter($act);
     return true;
   }
-  function onEndShowLocalNavBlock( &$act ) {
+  function onEndShowLocalNavBlock( $act ) {
     $this->blocks['localnav'] = $act->xw->flush();
   }
 
   // <%export%>
-  function onStartShowExportData( &$act ) {
+  function onStartShowExportData( $act ) {
     $this->clear_xmlWriter($act);
     return true;
   }
-  function onEndShowExportData( &$act ) {
+  function onEndShowExportData( $act ) {
     $this->blocks['export'] = $act->xw->flush();
   }
 
@@ -102,7 +102,7 @@ class TemplatePlugin extends Plugin {
   // <%groupsbyposts%>
   // <%featuredusers%>
   // <%groupsbymembers%>
-  function onStartShowSections( &$act ) {
+  function onStartShowSections( $act ) {
     global $action;
     $this->clear_xmlWriter($act);
     switch ($action) {
@@ -155,7 +155,7 @@ class TemplatePlugin extends Plugin {
   // <%nav%>
   // <%notice%>
   // <%noticeform%>
-  function onStartShowHeader( &$act ) {
+  function onStartShowHeader( $act ) {
     $this->clear_xmlWriter($act);
     $act->showLogo();
     $this->blocks['logo'] = $act->xw->flush();
@@ -174,7 +174,7 @@ class TemplatePlugin extends Plugin {
 
   // <%secondarynav%>
   // <%licenses%>
-  function onStartShowFooter( &$act ) {
+  function onStartShowFooter( $act ) {
     $this->clear_xmlWriter($act);
     $act->showSecondaryNav();
     $this->blocks['secondarynav'] = $act->xw->flush();
@@ -242,13 +242,13 @@ class TemplatePlugin extends Plugin {
   }
 
   // catching the StartShowHTML event to halt the rendering
-  function onStartShowHTML( &$act ) {
+  function onStartShowHTML( $act ) {
     $this->clear_xmlWriter($act);
     return true;
   }
 
   // clear the xmlWriter
-  function clear_xmlWriter( &$act ) {
+  function clear_xmlWriter( $act ) {
     $act->xw->openMemory();
     $act->xw->setIndent(true);
   }
