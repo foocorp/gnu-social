@@ -265,6 +265,10 @@ class MailHandler
             if (preg_match('/^\s*Begin\s+forward/', $line)) {
                 break;
             }
+            // skip everything after a blank line if we already have content
+            if ($output !== '' && $line === '') {
+                break;
+            }
 
             $output .= ' ' . $line;
         }

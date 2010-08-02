@@ -22,6 +22,7 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Craig Andrews <candrews@integralblue.com>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -67,7 +68,7 @@ abstract class AuthorizationPlugin extends Plugin
 
     //------------Below are the methods that connect StatusNet to the implementing Auth plugin------------\\
 
-    function onStartSetUser(&$user) {
+    function onStartSetUser($user) {
         $loginAllowed = $this->loginAllowed($user);
         if($loginAllowed === true){
             return;
@@ -84,7 +85,7 @@ abstract class AuthorizationPlugin extends Plugin
         }
     }
 
-    function onStartSetApiUser(&$user) {
+    function onStartSetApiUser($user) {
         return $this->onStartSetUser($user);
     }
 

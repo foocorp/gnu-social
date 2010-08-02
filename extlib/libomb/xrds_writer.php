@@ -1,10 +1,6 @@
 <?php
 /**
- * Write OMB-specific XRDS
- *
- * This interface specifies classes which write the XRDS file announcing
- * the OMB server. An instance of an implementing class should be passed to
- * OMB_Service_Provider->writeXRDS.
+ * This file is part of libomb
  *
  * PHP version 5
  *
@@ -21,13 +17,30 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @package   OMB
- * @author    Adrian Lang <mail@adrianlang.de>
- * @copyright 2009 Adrian Lang
- * @license   http://www.gnu.org/licenses/agpl.html GNU AGPL 3.0
- **/
+ * @package OMB
+ * @author  Adrian Lang <mail@adrianlang.de>
+ * @license http://www.gnu.org/licenses/agpl.html GNU AGPL 3.0
+ * @version 0.1a-20090828
+ * @link    http://adrianlang.de/libomb
+ */
 
-interface OMB_XRDS_Writer {
-  public function writeXRDS($user, $mapper);
+/**
+ * Write OMB-specific XRDS
+ *
+ * This interface specifies classes which write the XRDS file announcing
+ * the OMB server. An instance of an implementing class should be passed to
+ * OMB_Service_Provider->writeXRDS.
+ */
+interface OMB_XRDS_Writer
+{
+    /**
+     * Write XRDS
+     *
+     * Outputs a XRDS document specifying an OMB service.
+     *
+     * @param OMB_profile     $user   The target user for the OMB service
+     * @param OMB_XRDS_Mapper $mapper An OMB_XRDS_Mapper providing endpoint URLs
+     */
+    public function writeXRDS($user, $mapper);
 }
 ?>

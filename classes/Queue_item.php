@@ -64,4 +64,17 @@ class Queue_item extends Memcached_DataObject
         $qi = null;
         return null;
     }
+
+    /**
+     * Release a claimed item.
+     */
+    function releaseCLaim()
+    {
+        // DB_DataObject doesn't let us save nulls right now
+        $sql = sprintf("UPDATE queue_item SET claimed=NULL WHERE id=%d", $this->id);
+        $this->query($sql);
+
+        $this->claimed = null;
+        $this->encache();
+    }
 }

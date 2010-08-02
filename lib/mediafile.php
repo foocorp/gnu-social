@@ -171,7 +171,7 @@ class MediaFile
             return;
         }
 
-        if (!MediaFile::respectsQuota($user, $_FILES['attach']['size'])) {
+        if (!MediaFile::respectsQuota($user, $_FILES[$param]['size'])) {
 
             // Should never actually get here
 
@@ -180,7 +180,8 @@ class MediaFile
             return;
         }
 
-        $mimetype = MediaFile::getUploadedFileType($_FILES[$param]['tmp_name']);
+        $mimetype = MediaFile::getUploadedFileType($_FILES[$param]['tmp_name'],
+                                                   $_FILES[$param]['name']);
 
         $filename = null;
 
@@ -241,19 +242,41 @@ class MediaFile
         return new MediaFile($user, $filename, $mimetype);
     }
 
-    static function getUploadedFileType($f) {
+    /**
+     * Attempt to identify the content type of a given file.
+     * 
+     * @param mixed $f file handle resource, or filesystem path as string
+     * @param string $originalFilename (optional) for extension-based detection
+     * @return string
+     * 
+     * @fixme is this an internal or public method? It's called from GetFileAction
+     * @fixme this seems to tie a front-end error message in, kinda confusing
+     * @fixme this looks like it could return a PEAR_Error in some cases, if
+     *        type can't be identified and $config['attachments']['supported'] is true
+     * 
+     * @throws ClientException if type is known, but not supported for local uploads
+     */
+    static function getUploadedFileType($f, $originalFilename=false) {
         require_once 'MIME/Type.php';
+        require_once 'MIME/Type/Extension.php';
+        $mte = new MIME_Type_Extension();
 
         $cmd = &PEAR::getStaticProperty('MIME_Type', 'fileCmd');
         $cmd = common_config('attachments', 'filecommand');
 
         $filetype = null;
 
+        // If we couldn't get a clear type from the file extension,
+        // we'll go ahead and try checking the content. Content checks
+        // are unambiguous for most image files, but nearly useless
+        // for office document formats.
+
         if (is_string($f)) {
 
             // assuming a filename
 
             $filetype = MIME_Type::autoDetect($f);
+
         } else {
 
             // assuming a filehandle
@@ -262,7 +285,32 @@ class MediaFile
             $filetype = MIME_Type::autoDetect($stream['uri']);
         }
 
-        if (common_config('attachments', 'supported') === true || in_array($filetype, common_config('attachments', 'supported'))) {
+        // The content-based sources for MIME_Type::autoDetect()
+        // are wildly unreliable for office-type documents. If we've
+        // gotten an unclear reponse back or just couldn't identify it,
+        // we'll try detecting a type from its extension...
+        $unclearTypes = array('application/octet-stream',
+                              'application/vnd.ms-office',
+                              'application/zip');
+
+        if ($originalFilename && (!$filetype || in_array($filetype, $unclearTypes))) {
+            $type = $mte->getMIMEType($originalFilename);
+            if (is_string($type)) {
+                $filetype = $type;
+            }
+        }
+
+        $supported = common_config('attachments', 'supported');
+        if (is_array($supported)) {
+            // Normalize extensions to mime types
+            foreach ($supported as $i => $entry) {
+                if (strpos($entry, '/') === false) {
+                    common_log(LOG_INFO, "sample.$entry");
+                    $supported[$i] = $mte->getMIMEType("sample.$entry");
+                }
+            }
+        }
+        if ($supported === true || in_array($filetype, $supported)) {
             return $filetype;
         }
         $media = MIME_Type::getMedia($filetype);

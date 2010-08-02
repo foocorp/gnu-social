@@ -31,6 +31,7 @@
  * @author   Sarven Capadisli <csarven@status.net>
  * @author   Tom Adams <tom@holizz.com>
  * @author   Zach Copley <zach@status.net>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  GNU Affero General Public License http://www.gnu.org/licenses/
  * @version  0.9.x
  * @link     http://status.net

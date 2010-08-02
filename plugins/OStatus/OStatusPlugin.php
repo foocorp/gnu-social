@@ -87,6 +87,8 @@ class OStatusPlugin extends Plugin
 
         // Outgoing from our internal PuSH hub
         $qm->connect('hubconf', 'HubConfQueueHandler');
+        $qm->connect('hubprep', 'HubPrepQueueHandler');
+
         $qm->connect('hubout', 'HubOutQueueHandler');
 
         // Outgoing Salmon replies (when we don't need a return value)
@@ -102,8 +104,10 @@ class OStatusPlugin extends Plugin
      */
     function onStartEnqueueNotice($notice, &$transports)
     {
-        // put our transport first, in case there's any conflict (like OMB)
-        array_unshift($transports, 'ostatus');
+        if ($notice->isLocal()) {
+            // put our transport first, in case there's any conflict (like OMB)
+            array_unshift($transports, 'ostatus');
+        }
         return true;
     }
 

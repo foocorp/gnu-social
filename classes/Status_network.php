@@ -144,26 +144,49 @@ class Status_network extends Safe_DataObject
         return parent::update($orig);
     }
 
+    /**
+     * DB_DataObject doesn't allow updating keys (even non-primary)
+     */
+    function updateKeys(&$orig)
+    {
+        $this->_connect();
+        foreach (array('hostname', 'pathname') as $k) {
+            if (strcmp($this->$k, $orig->$k) != 0) {
+                $parts[] = $k . ' = ' . $this->_quote($this->$k);
+            }
+        }
+        if (count($parts) == 0) {
+            // No changes
+            return true;
+        }
+
+        $toupdate = implode(', ', $parts);
+
+        $table = common_database_tablename($this->tableName());
+        $qry = 'UPDATE ' . $table . ' SET ' . $toupdate .
+            ' WHERE nickname = ' . $this->_quote($this->nickname);
+        $orig->decache();
+        $result = $this->query($qry);
+        if ($result) {
+            $this->encache();
+        }
+        return $result;
+    }
+    
     function delete()
     {
         $this->decache(); # while we still have the values!
         return parent::delete();
     }
-
+    
     /**
      * @param string $servername hostname
-     * @param string $pathname URL base path
      * @param string $wildcard hostname suffix to match wildcard config
+     * @return mixed Status_network or null
      */
-    static function setupSite($servername, $pathname, $wildcard)
+    static function getFromHostname($servername, $wildcard)
     {
-        global $config;
-
         $sn = null;
-
-        // XXX I18N, probably not crucial for hostnames
-        // XXX This probably needs a tune up
-
         if (0 == strncasecmp(strrev($wildcard), strrev($servername), strlen($wildcard))) {
             // special case for exact match
             if (0 == strcasecmp($servername, $wildcard)) {
@@ -182,6 +205,23 @@ class Status_network extends Safe_DataObject
                 }
             }
         }
+        return $sn;
+    }
+
+    /**
+     * @param string $servername hostname
+     * @param string $pathname URL base path
+     * @param string $wildcard hostname suffix to match wildcard config
+     */
+    static function setupSite($servername, $pathname, $wildcard)
+    {
+        global $config;
+
+        $sn = null;
+
+        // XXX I18N, probably not crucial for hostnames
+        // XXX This probably needs a tune up
+        $sn = self::getFromHostname($servername, $wildcard);
 
         if (!empty($sn)) {
 

@@ -29,9 +29,101 @@
  * @author    Robin Millette <robin@millette.info>
  * @author    Zach Copley <zach@status.net>
  * @copyright 2009-2010 StatusNet, Inc.
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
+
+/* External API usage documentation. Please update when you change how this method works. */
+
+/*! @page statusesupdate statuses/update
+
+    @section Description
+    Updates the authenticating user's status. Requires the status parameter specified below.
+    Request must be a POST.
+
+    @par URL pattern
+    /api/statuses/update.:format
+
+    @par Formats (:format)
+    xml, json
+
+    @par HTTP Method(s)
+    POST
+
+    @par Requires Authentication
+    Yes
+
+    @param status (Required) The URL-encoded text of the status update.
+    @param source (Optional) The source of the status.
+    @param in_reply_to_status_id (Optional) The ID of an existing status that the update is in reply to.
+    @param lat (Optional) The latitude the status refers to.
+    @param long (Optional) The longitude the status refers to.
+    @param media (Optional) a media upload, such as an image or movie file.
+
+    @sa @ref authentication
+    @sa @ref apiroot
+
+    @subsection usagenotes Usage notes
+
+    @li The URL pattern is relative to the @ref apiroot.
+    @li If the @e source parameter is not supplied the source of the status will default to 'api'.
+    @li The XML response uses <a href="http://georss.org/Main_Page">GeoRSS</a>
+    to encode the latitude and longitude (see example response below <georss:point>).
+    @li Data uploaded via the @e media parameter should be multipart/form-data encoded.
+
+    @subsection exampleusage Example usage
+
+    @verbatim
+    curl -u username:password http://example.com/api/statuses/update.xml -d status='Howdy!' -d lat='30.468' -d long='-94.743'
+    @endverbatim
+
+    @subsection exampleresponse Example response
+
+    @verbatim
+    <?xml version="1.0" encoding="UTF-8"?>
+    <status>
+      <text>Howdy!</text>
+      <truncated>false</truncated>
+      <created_at>Tue Mar 30 23:28:05 +0000 2010</created_at>
+      <in_reply_to_status_id/>
+      <source>api</source>
+      <id>26668724</id>
+      <in_reply_to_user_id/>
+      <in_reply_to_screen_name/>
+      <geo xmlns:georss="http://www.georss.org/georss">
+        <georss:point>30.468 -94.743</georss:point>
+      </geo>
+      <favorited>false</favorited>
+      <user>
+        <id>25803</id>
+        <name>Jed Sanders</name>
+        <screen_name>jedsanders</screen_name>
+        <location>Hoop and Holler, Texas</location>
+        <description>I like to think of myself as America's Favorite.</description>
+        <profile_image_url>http://avatar.example.com/25803-48-20080924200604.png</profile_image_url>
+        <url>http://jedsanders.net</url>
+        <protected>false</protected>
+        <followers_count>5</followers_count>
+        <profile_background_color/>
+        <profile_text_color/>
+        <profile_link_color/>
+        <profile_sidebar_fill_color/>
+        <profile_sidebar_border_color/>
+        <friends_count>2</friends_count>
+        <created_at>Wed Sep 24 20:04:00 +0000 2008</created_at>
+        <favourites_count>0</favourites_count>
+        <utc_offset>0</utc_offset>
+        <time_zone>UTC</time_zone>
+        <profile_background_image_url/>
+        <profile_background_tile>false</profile_background_tile>
+        <statuses_count>70</statuses_count>
+        <following>true</following>
+        <notifications>true</notifications>
+      </user>
+    </status>
+    @endverbatim
+*/
 
 if (!defined('STATUSNET')) {
     exit(1);
@@ -104,7 +196,8 @@ class ApiStatusesUpdateAction extends ApiAuthAction
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
                 _('This method requires a POST.'),
-                400, $this->format
+                400,
+                $this->format
             );
             return;
         }
@@ -125,7 +218,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
 
         if (empty($this->status)) {
             $this->clientError(
-                'Client must provide a \'status\' parameter with a value.',
+                _('Client must provide a \'status\' parameter with a value.'),
                 400,
                 $this->format
             );
@@ -199,8 +292,8 @@ class ApiStatusesUpdateAction extends ApiAuthAction
 
             try {
                 $upload = MediaFile::fromUpload('media', $this->auth_user);
-            } catch (ClientException $ce) {
-                $this->clientError($ce->getMessage());
+            } catch (Exception $e) {
+                $this->clientError($e->getMessage(), $e->getCode(), $this->format);
                 return;
             }
 
@@ -213,7 +306,11 @@ class ApiStatusesUpdateAction extends ApiAuthAction
                         'Max notice size is %d chars, ' .
                         'including attachment URL.'
                     );
-                    $this->clientError(sprintf($msg, Notice::maxContent()));
+                    $this->clientError(
+                        sprintf($msg, Notice::maxContent()),
+                        400,
+                        $this->format
+                    );
                 }
             }
 
@@ -240,7 +337,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
                     $options
                 );
             } catch (Exception $e) {
-                $this->clientError($e->getMessage());
+                $this->clientError($e->getMessage(), $e->getCode(), $this->format);
                 return;
             }
 

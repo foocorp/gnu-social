@@ -1,0 +1,39 @@
+StatusNet AutoSandbox plugin 0.1 03/16/10
+=========================================
+Automatically sandboxes newly registered users as a spam-management technique.
+Only really suits small sites where all users can be hand-moderated. A moderator
+will then have to unbox legimate users, using the following built-in script:
+
+./scripts/userrole.php -n username -r moderator
+
+(replace 'username' with the nickname of the user you wish to make a moderator).
+
+The following note will be added to the top of the Registration form:
+
+"Note you will initially be "sandboxed" so your posts will not appear in the
+public timeline."
+
+This can be followed by the following extra information if a contact user (denoted
+here by XXX) is specified:
+
+"Send a message to @XXX to speed up the unsandboxing process."
+
+If no contact user is specified, it will default to the "Default subscription" user
+who automatically subscribes to new users (set in Admin -> User).
+
+Use:
+1. Add plugin:
+
+Default usage:
+addPlugin('AutoSandbox');
+
+Specify a contact user (replace 'someuser' with appropriate username):
+addPlugin('AutoSandbox', array('contact' => 'someuser'));
+
+Stop contact user from defaulting to the Defaul subscription:
+addPlugin('AutoSandbox', array('contact' => ''));
+
+Changelog
+=========
+0.1 initial release
+

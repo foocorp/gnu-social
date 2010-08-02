@@ -20,7 +20,9 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @author   Craig Andrews <candrews@integralblue.com>
+ * @copyright 2009-2010 StatusNet, Inc.
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -38,6 +40,8 @@ if (!defined('STATUSNET')) {
  * @category Plugin
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
+ * @author   Craig Andrews <candrews@integralblue.com>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  * @link     http://openid.net/
@@ -45,7 +49,19 @@ if (!defined('STATUSNET')) {
 
 class OpenIDPlugin extends Plugin
 {
-    public $openidOnly = false;
+    // Plugin parameter: set true to disallow non-OpenID logins
+    // If set, overrides the setting in database or $config['site']['openidonly']
+    public $openidOnly = null;
+
+    function initialize()
+    {
+        parent::initialize();
+        if ($this->openidOnly !== null) {
+            global $config;
+            $config['site']['openidonly'] = (bool)$this->openidOnly;
+        }
+
+    }
 
     /**
      * Add OpenID-related paths to the router table
@@ -67,6 +83,7 @@ class OpenIDPlugin extends Plugin
         $m->connect('index.php?action=finishaddopenid',
                     array('action' => 'finishaddopenid'));
         $m->connect('main/openidserver', array('action' => 'openidserver'));
+        $m->connect('admin/openid', array('action' => 'openidadminpanel'));
 
         return true;
     }
@@ -84,7 +101,7 @@ class OpenIDPlugin extends Plugin
 
     function onStartConnectPath(&$path, &$defaults, &$rules, &$result)
     {
-        if ($this->openidOnly) {
+        if (common_config('site', 'openidonly')) {
             static $block = array('main/login',
                                   'main/register',
                                   'main/recoverpassword',
@@ -108,7 +125,7 @@ class OpenIDPlugin extends Plugin
 
     function onArgsInitialize($args)
     {
-        if ($this->openidOnly) {
+        if (common_config('site', 'openidonly')) {
             if (array_key_exists('action', $args)) {
                 $action = trim($args['action']);
                 if (in_array($action, array('login', 'register'))) {
@@ -199,19 +216,19 @@ class OpenIDPlugin extends Plugin
 
     function onStartPrimaryNav($action)
     {
-        if ($this->openidOnly && !common_logged_in()) {
+        if (common_config('site', 'openidonly') && !common_logged_in()) {
             // TRANS: Tooltip for main menu option "Login"
             $tooltip = _m('TOOLTIP', 'Login to the site');
-            // TRANS: Main menu option when not logged in to log in
             $action->menuItem(common_local_url('openidlogin'),
+                              // TRANS: Main menu option when not logged in to log in
                               _m('MENU', 'Login'),
                               $tooltip,
                               false,
                               'nav_login');
             // TRANS: Tooltip for main menu option "Help"
             $tooltip = _m('TOOLTIP', 'Help me!');
-            // TRANS: Main menu option for help on the StatusNet site
             $action->menuItem(common_local_url('doc', array('title' => 'help')),
+                              // TRANS: Main menu option for help on the StatusNet site
                               _m('MENU', 'Help'),
                               $tooltip,
                               false,
@@ -219,8 +236,8 @@ class OpenIDPlugin extends Plugin
             if (!common_config('site', 'private')) {
                 // TRANS: Tooltip for main menu option "Search"
                 $tooltip = _m('TOOLTIP', 'Search for people or text');
-                // TRANS: Main menu option when logged in or when the StatusNet instance is not private
                 $action->menuItem(common_local_url('peoplesearch'),
+                                  // TRANS: Main menu option when logged in or when the StatusNet instance is not private
                                   _m('MENU', 'Search'), $tooltip, false, 'nav_search');
             }
             Event::handle('EndPrimaryNav', array($action));
@@ -241,7 +258,7 @@ class OpenIDPlugin extends Plugin
 
     function onStartLoginGroupNav(&$action)
     {
-        if ($this->openidOnly) {
+        if (common_config('site', 'openidonly')) {
             $this->showOpenIDLoginTab($action);
             // Even though we replace this code, we
             // DON'T run the End* hook, to keep others from
@@ -280,7 +297,9 @@ class OpenIDPlugin extends Plugin
         $action_name = $action->trimmed('action');
 
         $action->menuItem(common_local_url('openidlogin'),
-                          _m('OpenID'),
+                          // TRANS: OpenID plugin menu item on site logon page.
+                          _m('MENU', 'OpenID'),
+                          // TRANS: OpenID plugin tooltip for logon menu item.
                           _m('Login or register with OpenID'),
                           $action_name === 'openidlogin');
     }
@@ -297,7 +316,7 @@ class OpenIDPlugin extends Plugin
      */
 
     function onStartAccountSettingsPasswordMenuItem($menu, &$unused) {
-        if ($this->openidOnly) {
+        if (common_config('site', 'openidonly')) {
             return false;
         }
         return true;
@@ -316,7 +335,9 @@ class OpenIDPlugin extends Plugin
         $action_name = $action->trimmed('action');
 
         $action->menuItem(common_local_url('openidsettings'),
-                          _m('OpenID'),
+                          // TRANS: OpenID plugin menu item on user settings page.
+                          _m('MENU', 'OpenID'),
+                          // TRANS: OpenID plugin tooltip for user settings menu item.
                           _m('Add or remove OpenIDs'),
                           $action_name === 'openidsettings');
 
@@ -345,13 +366,19 @@ class OpenIDPlugin extends Plugin
         case 'OpenidsettingsAction':
         case 'OpenidserverAction':
         case 'OpenidtrustAction':
-            require_once INSTALLDIR.'/plugins/OpenID/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+        case 'OpenidadminpanelAction':
+            require_once dirname(__FILE__) . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
         case 'User_openid':
-            require_once INSTALLDIR.'/plugins/OpenID/User_openid.php';
+            require_once dirname(__FILE__) . '/User_openid.php';
             return false;
         case 'User_openid_trustroot':
-            require_once INSTALLDIR.'/plugins/OpenID/User_openid_trustroot.php';
+            require_once dirname(__FILE__) . '/User_openid_trustroot.php';
+            return false;
+        case 'Auth_OpenID_TeamsExtension':
+        case 'Auth_OpenID_TeamsRequest':
+        case 'Auth_OpenID_TeamsResponse':
+            require_once dirname(__FILE__) . '/extlib/teams-extension.php';
             return false;
         default:
             return true;
@@ -442,7 +469,7 @@ class OpenIDPlugin extends Plugin
 
     function onRedirectToLogin($action, $user)
     {
-        if ($this->openidOnly || (!empty($user) && User_openid::hasOpenID($user->id))) {
+        if (common_config('site', 'openid_only') || (!empty($user) && User_openid::hasOpenID($user->id))) {
             common_redirect(common_local_url('openidlogin'), 303);
             return false;
         }
@@ -578,6 +605,32 @@ class OpenIDPlugin extends Plugin
     }
 
     /**
+     * Add an OpenID tab to the admin panel
+     *
+     * @param Widget $nav Admin panel nav
+     *
+     * @return boolean hook value
+     */
+
+    function onEndAdminPanelNav($nav)
+    {
+        if (AdminPanelAction::canAdmin('openid')) {
+
+            $action_name = $nav->action->trimmed('action');
+
+            $nav->out->menuItem(
+                common_local_url('openidadminpanel'),
+                _m('OpenID'),
+                _m('OpenID configuration'),
+                $action_name == 'openidadminpanel',
+                'nav_openid_admin_panel'
+            );
+        }
+
+        return true;
+    }
+
+    /**
      * Add our version information to output
      *
      * @param array &$versions Array of version-data arrays
@@ -592,6 +645,7 @@ class OpenIDPlugin extends Plugin
                             'author' => 'Evan Prodromou, Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:OpenID',
                             'rawdescription' =>
+                            // TRANS: OpenID plugin description.
                             _m('Use <a href="http://openid.net/">OpenID</a> to login to the site.'));
         return true;
     }

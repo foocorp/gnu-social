@@ -122,6 +122,8 @@ class Command
         }
         Event::handle('EndCommandGetProfile', array($this, $arg, &$profile));
         if (!$profile) {
+            // TRANS: Message given requesting a profile for a non-existing user.
+            // TRANS: %s is the nickname of the user for which the profile could not be found.
             throw new CommandException(sprintf(_('Could not find a user with nickname %s'), $arg));
         }
         return $profile;
@@ -140,6 +142,8 @@ class Command
         }
         Event::handle('EndCommandGetUser', array($this, $arg, &$user));
         if (!$user){
+            // TRANS: Message given getting a non-existing user.
+            // TRANS: %s is the nickname of the user that could not be found.
             throw new CommandException(sprintf(_('Could not find a local user with nickname %s'),
                                $arg));
         }
@@ -225,6 +229,8 @@ class NudgeCommand extends Command
             }
             // XXX: notify by IM
             // XXX: notify by SMS
+            // TRANS: Message given having nudged another user.
+            // TRANS: %s is the nickname of the user that was nudged.
             $channel->output($this->user, sprintf(_('Nudge sent to %s'),
                            $recipient->nickname));
         }
@@ -328,12 +334,16 @@ class JoinCommand extends Command
                 Event::handle('EndJoinGroup', array($group, $cur));
             }
         } catch (Exception $e) {
-            $channel->error($cur, sprintf(_('Could not join user %s to group %s'),
+            // TRANS: Message given having failed to add a user to a group.
+            // TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
+            $channel->error($cur, sprintf(_('Could not join user %1$s to group %2$s'),
                                           $cur->nickname, $group->nickname));
             return;
         }
 
-        $channel->output($cur, sprintf(_('%s joined group %s'),
+        // TRANS: Message given having added a user to a group.
+        // TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
+        $channel->output($cur, sprintf(_('%1$s joined group %2$s'),
                                               $cur->nickname,
                                               $group->nickname));
     }
@@ -370,12 +380,16 @@ class DropCommand extends Command
                 Event::handle('EndLeaveGroup', array($group, $cur));
             }
         } catch (Exception $e) {
-            $channel->error($cur, sprintf(_('Could not remove user %s to group %s'),
+            // TRANS: Message given having failed to remove a user from a group.
+            // TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
+            $channel->error($cur, sprintf(_('Could not remove user %1$s from group %2$s'),
                                           $cur->nickname, $group->nickname));
             return;
         }
 
-        $channel->output($cur, sprintf(_('%s left group %s'),
+        // TRANS: Message given having removed a user from a group.
+        // TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
+        $channel->output($cur, sprintf(_('%1$s left group %2$s'),
                                               $cur->nickname,
                                               $group->nickname));
     }
@@ -395,18 +409,24 @@ class WhoisCommand extends Command
     {
         $recipient = $this->getProfile($this->other);
 
+        // TRANS: Whois output.
+        // TRANS: %1$s nickname of the queried user, %2$s is their profile URL.
         $whois = sprintf(_("%1\$s (%2\$s)"), $recipient->nickname,
                          $recipient->profileurl);
         if ($recipient->fullname) {
+            // TRANS: Whois output. %s is the full name of the queried user.
             $whois .= "\n" . sprintf(_('Fullname: %s'), $recipient->fullname);
         }
         if ($recipient->location) {
+            // TRANS: Whois output. %s is the location of the queried user.
             $whois .= "\n" . sprintf(_('Location: %s'), $recipient->location);
         }
         if ($recipient->homepage) {
+            // TRANS: Whois output. %s is the homepage of the queried user.
             $whois .= "\n" . sprintf(_('Homepage: %s'), $recipient->homepage);
         }
         if ($recipient->bio) {
+            // TRANS: Whois output. %s is the bio information of the queried user.
             $whois .= "\n" . sprintf(_('About: %s'), $recipient->bio);
         }
         $channel->output($this->user, $whois);
@@ -447,7 +467,9 @@ class MessageCommand extends Command
         $this->text = common_shorten_links($this->text);
 
         if (Message::contentTooLong($this->text)) {
-            $channel->error($this->user, sprintf(_('Message too long - maximum is %d characters, you sent %d'),
+            // TRANS: Message given if content is too long.
+            // TRANS: %1$d is the maximum number of characters, %2$d is the number of submitted characters.
+            $channel->error($this->user, sprintf(_('Message too long - maximum is %1$d characters, you sent %2$d'),
                                                  Message::maxContent(), mb_strlen($this->text)));
             return;
         }
@@ -465,6 +487,8 @@ class MessageCommand extends Command
         $message = Message::saveNew($this->user->id, $other->id, $this->text, $channel->source());
         if ($message) {
             $message->notify();
+            // TRANS: Message given have sent a direct message to another user.
+            // TRANS: %s is the name of the other user.
             $channel->output($this->user, sprintf(_('Direct message to %s sent'), $this->other));
         } else {
             $channel->error($this->user, _('Error sending direct message.'));
@@ -500,6 +524,8 @@ class RepeatCommand extends Command
 
         if ($repeat) {
 
+            // TRANS: Message given having repeated a notice from another user.
+            // TRANS: %s is the name of the user for which the notice was repeated.
             $channel->output($this->user, sprintf(_('Notice from %s repeated'), $recipient->nickname));
         } else {
             $channel->error($this->user, _('Error repeating notice.'));

@@ -212,8 +212,8 @@ class NoticeForm extends Form
                 $this->out->checkbox('notice_data-geo', _('Share my location'), true);
                 $this->out->elementEnd('div');
                 $this->out->inlineScript(' var NoticeDataGeo_text = {'.
-                    'ShareDisable: "'._('Do not share my location').'",'.
-                    'ErrorTimeout: "'._('Sorry, retrieving your geo location is taking longer than expected, please try again later').'"'.
+                    'ShareDisable: ' .json_encode(_('Do not share my location')).','.
+                    'ErrorTimeout: ' .json_encode(_('Sorry, retrieving your geo location is taking longer than expected, please try again later')).
                     '}');
             }
 

@@ -128,12 +128,13 @@ class Memcached_DataObject extends Safe_DataObject
     }
 
     static function cacheKey($cls, $k, $v) {
-        if (is_object($cls) || is_object($k) || is_object($v)) {
+        if (is_object($cls) || is_object($k) || (is_object($v) && !($v instanceof DB_DataObject_Cast))) {
             $e = new Exception();
             common_log(LOG_ERR, __METHOD__ . ' object in param: ' .
                 str_replace("\n", " ", $e->getTraceAsString()));
         }
-        return common_cache_key(strtolower($cls).':'.$k.':'.$v);
+        $vstr = self::valueString($v);
+        return common_cache_key(strtolower($cls).':'.$k.':'.$vstr);
     }
 
     static function getcached($cls, $k, $v) {
@@ -229,10 +230,10 @@ class Memcached_DataObject extends Safe_DataObject
                 if (empty($this->$key)) {
                     continue;
                 }
-                $ckeys[] = $this->cacheKey($this->tableName(), $key, $this->$key);
+                $ckeys[] = $this->cacheKey($this->tableName(), $key, self::valueString($this->$key));
             } else if ($type == 'K' || $type == 'N') {
                 $pkey[] = $key;
-                $pval[] = $this->$key;
+                $pval[] = self::valueString($this->$key);
             } else {
                 throw new Exception("Unknown key type $key => $type for " . $this->tableName());
             }
@@ -351,7 +352,7 @@ class Memcached_DataObject extends Safe_DataObject
      * low-level database function and add a comment to the
      * query string. This should then be visible in process lists
      * and slow query logs, to help identify problem areas.
-     * 
+     *
      * Also marks whether this was a web GET/POST or which daemon
      * was running it.
      *
@@ -592,7 +593,7 @@ class Memcached_DataObject extends Safe_DataObject
         return $c->get($cacheKey);
     }
 
-    static function cacheSet($keyPart, $value)
+    static function cacheSet($keyPart, $value, $flag=null, $expiry=null)
     {
         $c = self::memcache();
 
@@ -602,7 +603,32 @@ class Memcached_DataObject extends Safe_DataObject
 
         $cacheKey = common_cache_key($keyPart);
 
-        return $c->set($cacheKey, $value);
+        return $c->set($cacheKey, $value, $flag, $expiry);
+    }
+
+    static function valueString($v)
+    {
+        $vstr = null;
+        if (is_object($v) && $v instanceof DB_DataObject_Cast) {
+            switch ($v->type) {
+            case 'date':
+                $vstr = $v->year . '-' . $v->month . '-' . $v->day;
+                break;
+            case 'blob':
+            case 'string':
+            case 'sql':
+            case 'datetime':
+            case 'time':
+                throw new ServerException("Unhandled DB_DataObject_Cast type passed as cacheKey value: '$v->type'");
+                break;
+            default:
+                throw new ServerException("Unknown DB_DataObject_Cast type passed as cacheKey value: '$v->type'");
+                break;
+            }
+        } else {
+            $vstr = strval($v);
+        }
+        return $vstr;
     }
 }
 

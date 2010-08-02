@@ -142,8 +142,20 @@ class DeletenoticeAction extends Action
         $this->hidden('token', common_session_token());
         $this->hidden('notice', $this->trimmed('notice'));
         $this->element('p', null, _('Are you sure you want to delete this notice?'));
-        $this->submit('form_action-no', _('No'), 'submit form_action-primary', 'no', _("Do not delete this notice"));
-        $this->submit('form_action-yes', _('Yes'), 'submit form_action-secondary', 'yes', _('Delete this notice'));
+        $this->submit('form_action-no',
+                      // TRANS: Button label on the delete notice form.
+                      _m('BUTTON','No'),
+                      'submit form_action-primary',
+                      'no',
+                      // TRANS: Submit button title for 'No' when deleting a notice.
+                      _("Do not delete this notice"));
+        $this->submit('form_action-yes',
+                      // TRANS: Button label on the delete notice form.
+                      _m('BUTTON','Yes'),
+                      'submit form_action-secondary',
+                      'yes',
+                      // TRANS: Submit button title for 'Yes' when deleting a notice.
+                      _('Delete this notice'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }

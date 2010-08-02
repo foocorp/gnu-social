@@ -192,22 +192,10 @@ class RSSCloudPlugin extends Plugin
 
     function onStartEnqueueNotice($notice, &$transports)
     {
-        array_push($transports, 'rsscloud');
+        if ($notice->isLocal()) {
+            array_push($transports, 'rsscloud');
+        }
         return true;
-    }
-
-    /**
-     * Determine whether the notice was locally created
-     *
-     * @param Notice $notice the notice in question
-     *
-     * @return boolean locality
-     */
-
-    function _isLocal($notice)
-    {
-        return ($notice->is_local == Notice::LOCAL_PUBLIC ||
-                $notice->is_local == Notice::LOCAL_NONPUBLIC);
     }
 
     /**

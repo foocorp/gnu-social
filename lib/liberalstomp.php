@@ -147,5 +147,30 @@ class LiberalStomp extends Stomp
         }
         return $frame;
     }
-}
+
+    /**
+     * Write frame to server
+     *
+     * @param StompFrame $stompFrame
+     */
+    protected function _writeFrame (StompFrame $stompFrame)
+    {
+        if (!is_resource($this->_socket)) {
+            require_once 'Stomp/Exception.php';
+            throw new StompException('Socket connection hasn\'t been established');
+        }
+
+        $data = $stompFrame->__toString();
+
+        // Make sure the socket's in a writable state; if not, wait a bit.
+        stream_set_blocking($this->_socket, 1);
+
+        $r = fwrite($this->_socket, $data, strlen($data));
+        stream_set_blocking($this->_socket, 0);
+        if ($r === false || $r == 0) {
+            $this->_reconnect();
+            $this->_writeFrame($stompFrame);
+        }
+    }
+ }
 

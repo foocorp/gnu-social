@@ -69,7 +69,7 @@ class AdminPanelAction extends Action
         // User must be logged in.
 
         if (!common_logged_in()) {
-            // TRANS: Client error message
+            // TRANS: Client error message thrown when trying to access the admin panel while not logged in.
             $this->clientError(_('Not logged in.'));
             return false;
         }
@@ -94,7 +94,7 @@ class AdminPanelAction extends Action
         // User must have the right to change admin settings
 
         if (!$user->hasRight(Right::CONFIGURESITE)) {
-            // TRANS: Client error message
+            // TRANS: Client error message thrown when a user tries to change admin settings but has no access rights.
             $this->clientError(_('You cannot make changes to this site.'));
             return false;
         }
@@ -106,7 +106,7 @@ class AdminPanelAction extends Action
         $name = mb_substr($name, 0, -10);
 
         if (!self::canAdmin($name)) {
-            // TRANS: Client error message
+            // TRANS: Client error message throw when a certain panel's settings cannot be changed.
             $this->clientError(_('Changes to that panel are not allowed.'), 403);
             return false;
         }
@@ -225,7 +225,7 @@ class AdminPanelAction extends Action
 
     function showForm()
     {
-        // TRANS: Client error message
+        // TRANS: Client error message.
         $this->clientError(_('showForm() not implemented.'));
         return;
     }
@@ -279,13 +279,15 @@ class AdminPanelAction extends Action
             $result = $config->delete();
             if (!$result) {
                 common_log_db_error($config, 'DELETE', __FILE__);
-                // TRANS: Client error message
+                // TRANS: Client error message thrown if design settings could not be deleted in
+                // TRANS: the admin panel Design.
                 $this->clientError(_("Unable to delete design setting."));
                 return null;
             }
+            return $result;
         }
 
-        return $result;
+        return null;
     }
 
     function canAdmin($name)

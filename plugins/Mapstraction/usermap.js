@@ -104,7 +104,7 @@ function showMapstraction(element, notices) {
           pt = new mxn.LatLonPoint(lat, lon);
           mkr = new mxn.Marker(pt);
 
-          mkr.setIcon(n['user']['profile_image_url']);
+          mkr.setIcon(n['user']['profile_image_url'], [24, 24]);
           mkr.setInfoBubble('<a href="'+ n['user']['profile_url'] + '">' + n['user']['screen_name'] + '</a>' + ' ' + n['html'] +
                             '<br/><a href="'+ n['url'] + '">'+ n['created_at'] + '</a>');
 

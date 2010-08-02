@@ -72,7 +72,7 @@ class PopularNoticeSection extends NoticeSection
         $qry .= ' GROUP BY notice.id,notice.profile_id,notice.content,notice.uri,' .
                 'notice.rendered,notice.url,notice.created,notice.modified,' .
                 'notice.reply_to,notice.is_local,notice.source,notice.conversation, ' .
-                'notice.lat,notice.lon,location_id,location_ns' .
+                'notice.lat,notice.lon,location_id,location_ns,notice.repeat_of' .
                 ' ORDER BY weight DESC';
 
         $offset = 0;

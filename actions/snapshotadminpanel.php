@@ -197,7 +197,7 @@ class SnapshotAdminPanelForm extends AdminForm
         $this->out->elementStart('ul', 'form_data');
         $this->li();
         $snapshot = array(
-            'web' => _('Randomly during Web hit'),
+            'web' => _('Randomly during web hit'),
             'cron'  => _('In a scheduled job'),
             'never' => _('Never')
         );

@@ -174,6 +174,12 @@ class ProfileAction extends OwnerDesignAction
         $subbed_count = $this->profile->subscriberCount();
         $notice_count = $this->profile->noticeCount();
         $group_count  = $this->user->getGroups()->N;
+        $age_days     = (time() - strtotime($this->profile->created)) / 86400;
+        if ($age_days < 1) {
+            // Rather than extrapolating out to a bajillion...
+            $age_days = 1;
+        }
+        $daily_count = round($notice_count / $age_days);
 
         $this->elementStart('div', array('id' => 'entity_statistics',
                                          'class' => 'section'));
@@ -222,6 +228,12 @@ class ProfileAction extends OwnerDesignAction
         $this->elementStart('dl', 'entity_notices');
         $this->element('dt', null, _('Notices'));
         $this->element('dd', null, $notice_count);
+        $this->elementEnd('dl');
+
+        $this->elementStart('dl', 'entity_daily_notices');
+        // TRANS: Average count of posts made per day since account registration
+        $this->element('dt', null, _('Daily average'));
+        $this->element('dd', null, $daily_count);
         $this->elementEnd('dl');
 
         $this->elementEnd('div');

@@ -125,8 +125,8 @@ class MapstractionPlugin extends Plugin
             $action->script('http://tile.cloudmade.com/wml/0.2/web-maps-lite.js');
             break;
         case 'google':
-            $action->script(sprintf('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=%s',
-                                    $this->apikey));
+            $action->script(sprintf('http://maps.google.com/maps?file=api&v=2&sensor=false&key=%s',
+                                    urlencode($this->apikey)));
             break;
         case 'microsoft':
             $action->script('http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6');
@@ -137,7 +137,7 @@ class MapstractionPlugin extends Plugin
             break;
         case 'yahoo':
             $action->script(sprintf('http://api.maps.yahoo.com/ajaxymap?v=3.8&appid=%s',
-                                    $this->apikey));
+                                    urlencode($this->apikey)));
             break;
         case 'geocommons': // don't support this yet
         default:

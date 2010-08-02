@@ -62,12 +62,32 @@ class RecaptchaPlugin extends Plugin
     {
         $action->elementStart('li');
         $action->raw('<label for="recaptcha">Captcha</label>');
-        if($this->checkssl() === true) {
-            $action->raw(recaptcha_get_html($this->public_key), null, true);
-        } else { 
-            $action->raw(recaptcha_get_html($this->public_key));
-        }
+
+        // AJAX API will fill this div out.
+        // We're calling that instead of the regular one so we stay compatible
+        // with application/xml+xhtml output as for mobile.
+        $action->element('div', array('id' => 'recaptcha'));
         $action->elementEnd('li');
+        
+        $action->recaptchaPluginNeedsOutput = true;
+        return true;
+    }
+
+    function onEndShowScripts($action)
+    {
+        if (isset($action->recaptchaPluginNeedsOutput) && $action->recaptchaPluginNeedsOutput) {
+            // Load the AJAX API
+            if ($this->checkssl()) {
+                $url = "https://api-secure.recaptcha.net/js/recaptcha_ajax.js";
+            } else {
+                $url = "http://api.recaptcha.net/js/recaptcha_ajax.js";
+            }
+            $action->script($url);
+            
+            // And when we're ready, fill out the captcha!
+            $key = json_encode($this->public_key);
+            $action->inlinescript("\$(function(){Recaptcha.create($key, 'recaptcha');});");
+        }
         return true;
     }
 

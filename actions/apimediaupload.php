@@ -88,15 +88,15 @@ class ApiMediaUploadAction extends ApiAuthAction
 
         try {
             $upload = MediaFile::fromUpload('media', $this->auth_user);
-        } catch (ClientException $ce) {
-            $this->clientError($ce->getMessage());
+        } catch (Exception $e) {
+            $this->clientError($e->getMessage(), $e->getCode());
             return;
         }
 
         if (isset($upload)) {
             $this->showResponse($upload);
         } else {
-            $this->clientError('Upload failed.');
+            $this->clientError(_('Upload failed.'));
             return;
         }
     }

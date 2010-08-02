@@ -24,7 +24,7 @@
  * @author    Dan Moore <dan@moore.cx>
  * @author    Evan Prodromou <evan@status.net>
  * @author    Zach Copley <zach@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @copyright 2009-2010 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -50,8 +50,8 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
 
 class ApiFriendshipsExistsAction extends ApiPrivateAuthAction
 {
-    var $user_a = null;
-    var $user_b = null;
+    var $profile_a = null;
+    var $profile_b = null;
 
     /**
      * Take arguments for running
@@ -66,11 +66,8 @@ class ApiFriendshipsExistsAction extends ApiPrivateAuthAction
     {
         parent::prepare($args);
 
-        $user_a_id = $this->trimmed('user_a');
-        $user_b_id = $this->trimmed('user_b');
-
-        $this->user_a = $this->getTargetUser($user_a_id);
-        $this->user_b = $this->getTargetUser($user_b_id);
+        $this->profile_a = $this->getTargetProfile($this->trimmed('user_a'));
+        $this->profile_b = $this->getTargetProfile($this->trimmed('user_b'));
 
         return true;
     }
@@ -89,16 +86,16 @@ class ApiFriendshipsExistsAction extends ApiPrivateAuthAction
     {
         parent::handle($args);
 
-        if (empty($this->user_a) || empty($this->user_b)) {
+        if (empty($this->profile_a) || empty($this->profile_b)) {
             $this->clientError(
-                _('Two user ids or screen_names must be supplied.'),
+                _('Two valid IDs or screen_names must be supplied.'),
                 400,
                 $this->format
             );
             return;
         }
 
-        $result = $this->user_a->isSubscribed($this->user_b);
+        $result = Subscription::exists($this->profile_a, $this->profile_b);
 
         switch ($this->format) {
         case 'xml':

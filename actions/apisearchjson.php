@@ -22,7 +22,7 @@
  * @category  Search
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2010 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -31,6 +31,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
+require_once INSTALLDIR.'/lib/apiprivateauth.php';
 require_once INSTALLDIR.'/lib/jsonsearchresultslist.php';
 
 /**
@@ -44,7 +45,7 @@ require_once INSTALLDIR.'/lib/jsonsearchresultslist.php';
  * @see      ApiAction
  */
 
-class TwitapisearchjsonAction extends ApiAction
+class ApiSearchJSONAction extends ApiPrivateAuthAction
 {
     var $query;
     var $lang;
@@ -64,6 +65,8 @@ class TwitapisearchjsonAction extends ApiAction
 
     function prepare($args)
     {
+        common_debug("apisearchjson prepare()");
+
         parent::prepare($args);
 
         $this->query = $this->trimmed('q');

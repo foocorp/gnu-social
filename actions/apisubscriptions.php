@@ -206,7 +206,8 @@ class ApiSubscriptionsAction extends ApiBareAuthAction
     {
         switch ($this->format) {
         case 'xml':
-            $this->elementStart('users', array('type' => 'array'));
+            $this->elementStart('users', array('type' => 'array',
+                                               'xmlns:statusnet' => 'http://status.net/schema/api/1/'));
             foreach ($this->profiles as $profile) {
                 $this->showProfile(
                     $profile,

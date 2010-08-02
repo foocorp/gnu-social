@@ -119,7 +119,7 @@ class ShowfavoritesAction extends OwnerDesignAction
         if (!empty($cur) && $cur->id == $this->user->id) {
 
             // Show imported/gateway notices as well as local if
-            // the user is looking at his own favorites
+            // the user is looking at their own favorites
 
             $this->notice = $this->user->favoriteNotices(true, ($this->page-1)*NOTICES_PER_PAGE,
                                                    NOTICES_PER_PAGE + 1);
@@ -205,11 +205,11 @@ class ShowfavoritesAction extends OwnerDesignAction
             if ($this->user->id === $current_user->id) {
                 $message = _('You haven\'t chosen any favorite notices yet. Click the fave button on notices you like to bookmark them for later or shed a spotlight on them.');
             } else {
-                $message = sprintf(_('%s hasn\'t added any notices to his favorites yet. Post something interesting they would add to their favorites :)'), $this->user->nickname);
+                $message = sprintf(_('%s hasn\'t added any favorite notices yet. Post something interesting they would add to their favorites :)'), $this->user->nickname);
             }
         }
         else {
-            $message = sprintf(_('%s hasn\'t added any notices to his favorites yet. Why not [register an account](%%%%action.register%%%%) and then post something interesting they would add to their favorites :)'), $this->user->nickname);
+            $message = sprintf(_('%s hasn\'t added any favorite notices yet. Why not [register an account](%%%%action.register%%%%) and then post something interesting they would add to their favorites :)'), $this->user->nickname);
         }
 
         $this->elementStart('div', 'guide');

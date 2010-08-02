@@ -88,7 +88,6 @@ class ApplicationList extends Widget
 
     function showApplication()
     {
-
         $user = common_current_user();
 
         $this->out->elementStart('li', array('class' => 'application',
@@ -133,11 +132,16 @@ class ApplicationList extends Widget
 
             $this->out->elementStart('li');
 
-            $access = ($this->application->access_type & Oauth_application::$writeAccess)
-              ? 'read-write' : 'read-only';
+            // TRANS: Application access type
+            $readWriteText = _('read-write');
+            // TRANS: Application access type
+            $readOnlyText = _('read-only');
 
-            $txt = 'Approved ' . common_date_string($appUser->modified) .
-              " - $access access.";
+            $access = ($this->application->access_type & Oauth_application::$writeAccess)
+              ? $readWriteText : $readOnlyText;
+            $modifiedDate = common_date_string($appUser->modified);
+            // TRANS: Used in application list. %1$s is a modified date, %2$s is access type (read-write or read-only)
+            $txt = sprintf(_('Approved %1$s - "%2$s" access.'),$modifiedDate,$access);
 
             $this->out->raw($txt);
             $this->out->elementEnd('li');
@@ -151,7 +155,8 @@ class ApplicationList extends Widget
             $this->out->elementStart('fieldset');
             $this->out->hidden('id', $this->application->id);
             $this->out->hidden('token', common_session_token());
-            $this->out->submit('revoke', _('Revoke'));
+            // TRANS: Button label
+            $this->out->submit('revoke', _m('BUTTON','Revoke'));
             $this->out->elementEnd('fieldset');
             $this->out->elementEnd('form');
             $this->out->elementEnd('li');

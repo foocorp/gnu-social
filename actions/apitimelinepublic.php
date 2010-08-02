@@ -29,6 +29,7 @@
  * @author    Robin Millette <robin@millette.info>
  * @author    Zach Copley <zach@status.net>
  * @copyright 2009 StatusNet, Inc.
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -54,6 +55,95 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
+
+/* External API usage documentation. Please update when you change how this method works. */
+
+/*! @page publictimeline statuses/public_timeline
+
+    @section Description
+    Returns the 20 most recent notices from users throughout the system who have
+    uploaded their own avatars. Depending on configuration, it may or may not
+    not include notices from automatic posting services.
+
+    @par URL patterns
+    @li /api/statuses/public_timeline.:format
+
+    @par Formats (:format)
+    xml, json, rss, atom
+
+    @par HTTP Method(s)
+    GET
+
+    @par Requires Authentication
+    No
+
+    @param since_id (Optional) Returns only statuses with an ID greater
+    than (that is, more recent than) the specified ID.
+    @param max_id (Optional) Returns only statuses with an ID less than
+    (that is, older than) or equal to the specified ID.
+    @param count (Optional) Specifies the number of statuses to retrieve.
+    @param page (Optional) Specifies the page of results to retrieve.
+
+    @sa @ref apiroot
+
+    @subsection usagenotes Usage notes
+    @li The URL pattern is relative to the @ref apiroot.
+    @li The XML response uses <a href="http://georss.org/Main_Page">GeoRSS</a>
+    to encode the latitude and longitude (see example response below <georss:point>).
+
+    @subsection exampleusage Example usage
+
+    @verbatim
+    curl http://identi.ca/api/statuses/friends_timeline/evan.xml?count=1&page=2
+    @endverbatim
+
+    @subsection exampleresponse Example response
+
+    @verbatim
+    <?xml version="1.0" encoding="UTF-8"?>
+    <statuses type="array">
+     <status>
+      <text>@skwashd oh, commbank reenabled me super quick both times. but disconcerting when you don't expect it though</text>
+      <truncated>false</truncated>
+      <created_at>Sat Apr 17 00:49:12 +0000 2010</created_at>
+      <in_reply_to_status_id>28838393</in_reply_to_status_id>
+      <source>xmpp</source>
+      <id>28838456</id>
+      <in_reply_to_user_id>39303</in_reply_to_user_id>
+      <in_reply_to_screen_name>skwashd</in_reply_to_screen_name>
+      <geo></geo>
+      <favorited>false</favorited>
+      <user>
+       <id>44517</id>
+       <name>joshua may</name>
+       <screen_name>notjosh</screen_name>
+       <location></location>
+       <description></description>
+       <profile_image_url>http://avatar.identi.ca/44517-48-20090321004106.jpeg</profile_image_url>
+       <url></url>
+       <protected>false</protected>
+       <followers_count>17</followers_count>
+       <profile_background_color></profile_background_color>
+       <profile_text_color></profile_text_color>
+       <profile_link_color></profile_link_color>
+       <profile_sidebar_fill_color></profile_sidebar_fill_color>
+       <profile_sidebar_border_color></profile_sidebar_border_color>
+       <friends_count>20</friends_count>
+       <created_at>Sat Mar 21 00:40:25 +0000 2009</created_at>
+       <favourites_count>0</favourites_count>
+       <utc_offset>0</utc_offset>
+       <time_zone>UTC</time_zone>
+       <profile_background_image_url></profile_background_image_url>
+       <profile_background_tile>false</profile_background_tile>
+       <statuses_count>100</statuses_count>
+       <following>false</following>
+       <notifications>false</notifications>
+    </user>
+    </status>
+    [....]
+    </statuses>
+@endverbatim
+*/
 
 class ApiTimelinePublicAction extends ApiPrivateAuthAction
 {

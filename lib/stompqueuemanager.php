@@ -115,11 +115,12 @@ class StompQueueManager extends QueueManager
      *
      * @param mixed $object
      * @param string $queue
+     * @param string $siteNickname optional override to drop into another site's queue
      *
      * @return boolean true on success
      * @throws StompException on connection or send error
      */
-    public function enqueue($object, $queue)
+    public function enqueue($object, $queue, $siteNickname=null)
     {
         $this->_connect();
         if (common_config('queue', 'stomp_enqueue_on')) {
@@ -134,7 +135,7 @@ class StompQueueManager extends QueueManager
         } else {
             $idx = $this->defaultIdx;
         }
-        return $this->_doEnqueue($object, $queue, $idx);
+        return $this->_doEnqueue($object, $queue, $idx, $siteNickname);
     }
 
     /**
@@ -144,10 +145,10 @@ class StompQueueManager extends QueueManager
      * @return boolean true on success
      * @throws StompException on connection or send error
      */
-    protected function _doEnqueue($object, $queue, $idx)
+    protected function _doEnqueue($object, $queue, $idx, $siteNickname=null)
     {
         $rep = $this->logrep($object);
-        $envelope = array('site' => common_config('site', 'nickname'),
+        $envelope = array('site' => $siteNickname ? $siteNickname : common_config('site', 'nickname'),
                           'handler' => $queue,
                           'payload' => $this->encode($object));
         $msg = serialize($envelope);

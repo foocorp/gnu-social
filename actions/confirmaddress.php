@@ -87,10 +87,12 @@ class ConfirmaddressAction extends Action
         }
         $type = $confirm->address_type;
         if (!in_array($type, array('email', 'jabber', 'sms'))) {
+            // TRANS: Server error for an unknow address type, which can be 'email', 'jabber', or 'sms'.
             $this->serverError(sprintf(_('Unrecognized address type %s.'), $type));
             return;
         }
         if ($cur->$type == $confirm->address) {
+            // TRANS: Client error for an already confirmed email/jabbel/sms address.
             $this->clientError(_('That address has already been confirmed.'));
             return;
         }

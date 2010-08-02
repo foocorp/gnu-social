@@ -302,7 +302,10 @@ class File extends Memcached_DataObject
 
         if(! isset($this->filename)){
             $notEnclosureMimeTypes = array(null,'text/html','application/xhtml+xml');
-            $mimetype = strtolower($this->mimetype);
+            $mimetype = $this->mimetype;
+            if($mimetype != null){
+                $mimetype = strtolower($this->mimetype);
+            }
             $semicolon = strpos($mimetype,';');
             if($semicolon){
                 $mimetype = substr($mimetype,0,$semicolon);

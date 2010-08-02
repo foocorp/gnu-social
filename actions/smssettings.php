@@ -55,6 +55,7 @@ class SmssettingsAction extends ConnectSettingsAction
 
     function title()
     {
+        // TRANS: Title for SMS settings.
         return _('SMS settings');
     }
 
@@ -66,6 +67,10 @@ class SmssettingsAction extends ConnectSettingsAction
 
     function getInstructions()
     {
+        // XXX: For consistency of parameters in messages, this should be a
+        //      regular parameters, replaced with sprintf().
+        // TRANS: SMS settings page instructions.
+        // TRANS: %%site.name%% is the name of the site.
         return _('You can receive SMS messages through email from %%site.name%%.');
     }
 
@@ -88,6 +93,7 @@ class SmssettingsAction extends ConnectSettingsAction
     {
         if (!common_config('sms', 'enabled')) {
             $this->element('div', array('class' => 'error'),
+                           // TRANS: Message given in the SMS settings if SMS is not enabled on the site.
                            _('SMS is not available.'));
             return;
         }
@@ -101,7 +107,8 @@ class SmssettingsAction extends ConnectSettingsAction
                                           common_local_url('smssettings')));
 
         $this->elementStart('fieldset', array('id' => 'settings_sms_address'));
-        $this->element('legend', null, _('Address'));
+        // TRANS: Form legend for SMS settings form.
+        $this->element('legend', null, _('SMS address'));
         $this->hidden('token', common_session_token());
 
         if ($user->sms) {
@@ -109,10 +116,12 @@ class SmssettingsAction extends ConnectSettingsAction
             $this->element('p', 'form_confirmed',
                            $user->sms . ' (' . $carrier->name . ')');
             $this->element('p', 'form_guide',
+                           // TRANS: Form guide in SMS settings form.
                            _('Current confirmed SMS-enabled phone number.'));
             $this->hidden('sms', $user->sms);
             $this->hidden('carrier', $user->carrier);
-            $this->submit('remove', _('Remove'));
+            // TRANS: Button label to remove a confirmed SMS address.
+            $this->submit('remove', _m('BUTTON','Remove'));
         } else {
             $confirm = $this->getConfirmation();
             if ($confirm) {
@@ -120,57 +129,75 @@ class SmssettingsAction extends ConnectSettingsAction
                 $this->element('p', 'form_unconfirmed',
                                $confirm->address . ' (' . $carrier->name . ')');
                 $this->element('p', 'form_guide',
+                               // TRANS: Form guide in IM settings form.
                                _('Awaiting confirmation on this phone number.'));
                 $this->hidden('sms', $confirm->address);
                 $this->hidden('carrier', $confirm->address_extra);
-                $this->submit('cancel', _('Cancel'));
+                // TRANS: Button label to cancel a SMS address confirmation procedure.
+                $this->submit('cancel', _m('BUTTON','Cancel'));
 
                 $this->elementStart('ul', 'form_data');
                 $this->elementStart('li');
+                // TRANS: Field label for SMS address input in SMS settings form.
                 $this->input('code', _('Confirmation code'), null,
+                             // TRANS: Form field instructions in SMS settings form.
                              _('Enter the code you received on your phone.'));
                 $this->elementEnd('li');
                 $this->elementEnd('ul');
-                $this->submit('confirm', _('Confirm'));
+                // TRANS: Button label to confirm SMS confirmation code in SMS settings.
+                $this->submit('confirm', _m('BUTTON','Confirm'));
             } else {
                 $this->elementStart('ul', 'form_data');
                 $this->elementStart('li');
+                // TRANS: Field label for SMS phone number input in SMS settings form.
                 $this->input('sms', _('SMS phone number'),
                              ($this->arg('sms')) ? $this->arg('sms') : null,
+                             // TRANS: SMS phone number input field instructions in SMS settings form.
                              _('Phone number, no punctuation or spaces, '.
                                'with area code'));
                 $this->elementEnd('li');
                 $this->elementEnd('ul');
                 $this->carrierSelect();
-                $this->submit('add', _('Add'));
+                // TRANS: Button label for adding a SMS phone number in SMS settings form.
+                $this->submit('add', _m('BUTTON','Add'));
             }
         }
         $this->elementEnd('fieldset');
 
         if ($user->sms) {
         $this->elementStart('fieldset', array('id' => 'settings_sms_incoming_email'));
+            // XXX: Confused! This is about SMS. Should this message be updated?
+            // TRANS: Form legend for incoming SMS settings form.
             $this->element('legend', null, _('Incoming email'));
 
             if ($user->incomingemail) {
                 $this->element('p', 'form_unconfirmed', $user->incomingemail);
                 $this->element('p', 'form_note',
+                               // XXX: Confused! This is about SMS. Should this message be updated?
+                               // TRANS: Form instructions for incoming SMS e-mail address form in SMS settings.
                                _('Send email to this address to post new notices.'));
-                $this->submit('removeincoming', _('Remove'));
+                // TRANS: Button label for removing a set sender SMS e-mail address to post notices from.
+                $this->submit('removeincoming', _m('BUTTON','Remove'));
             }
 
             $this->element('p', 'form_guide',
+                           // XXX: Confused! This is about SMS. Should this message be updated?
+                           // TRANS: Instructions for incoming SMS e-mail address input form.
                            _('Make a new email address for posting to; '.
                              'cancels the old one.'));
-            $this->submit('newincoming', _('New'));
+            // TRANS: Button label for adding an SMS e-mail address to send notices from.
+            $this->submit('newincoming', _m('BUTTON','New'));
             $this->elementEnd('fieldset');
         }
 
         $this->elementStart('fieldset', array('id' => 'settings_sms_preferences'));
-        $this->element('legend', null, _('Preferences'));
+        // TRANS: Form legend for SMS preferences form.
+        $this->element('legend', null, _('SMS preferences'));
 
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
         $this->checkbox('smsnotify',
+                        // TRANS: Checkbox label in SMS preferences form.
                         _('Send me notices through SMS; '.
                           'I understand I may incur '.
                           'exorbitant charges from my carrier.'),
@@ -178,7 +205,8 @@ class SmssettingsAction extends ConnectSettingsAction
         $this->elementEnd('li');
         $this->elementEnd('ul');
 
-        $this->submit('save', _('Save'));
+        // TRANS: Button label to save SMS preferences.
+        $this->submit('save', _m('BUTTON','Save'));
 
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
@@ -245,6 +273,7 @@ class SmssettingsAction extends ConnectSettingsAction
         } else if ($this->arg('confirm')) {
             $this->confirmCode();
         } else {
+            // TRANS: Message given submitting a form with an unknown action in SMS settings.
             $this->showForm(_('Unexpected form submission.'));
         }
     }
@@ -275,13 +304,15 @@ class SmssettingsAction extends ConnectSettingsAction
 
         if ($result === false) {
             common_log_db_error($user, 'UPDATE', __FILE__);
+            // TRANS: Server error thrown on database error updating SMS preferences.
             $this->serverError(_('Couldn\'t update user.'));
             return;
         }
 
         $user->query('COMMIT');
 
-        $this->showForm(_('Preferences saved.'), true);
+        // TRANS: Confirmation message for successful SMS preferences save.
+        $this->showForm(_('SMS preferences saved.'), true);
     }
 
     /**
@@ -303,11 +334,13 @@ class SmssettingsAction extends ConnectSettingsAction
         // Some validation
 
         if (!$sms) {
+            // TRANS: Message given saving SMS phone number without having provided one.
             $this->showForm(_('No phone number.'));
             return;
         }
 
         if (!$carrier_id) {
+            // TRANS: Message given saving SMS phone number without having selected a carrier.
             $this->showForm(_('No carrier selected.'));
             return;
         }
@@ -315,9 +348,11 @@ class SmssettingsAction extends ConnectSettingsAction
         $sms = common_canonical_sms($sms);
 
         if ($user->sms == $sms) {
+            // TRANS: Message given saving SMS phone number that is already set.
             $this->showForm(_('That is already your phone number.'));
             return;
         } else if ($this->smsExists($sms)) {
+            // TRANS: Message given saving SMS phone number that is already set for another user.
             $this->showForm(_('That phone number already belongs to another user.'));
             return;
         }
@@ -334,6 +369,7 @@ class SmssettingsAction extends ConnectSettingsAction
 
         if ($result === false) {
             common_log_db_error($confirm, 'INSERT', __FILE__);
+            // TRANS: Server error thrown on database error adding SMS confirmation code.
             $this->serverError(_('Couldn\'t insert confirmation code.'));
             return;
         }
@@ -344,6 +380,7 @@ class SmssettingsAction extends ConnectSettingsAction
                          $user->nickname,
                          $carrier->toEmailAddress($sms));
 
+        // TRANS: Message given saving valid SMS phone number that is to be confirmed.
         $msg = _('A confirmation code was sent to the phone number you added. '.
                  'Check your phone for the code and instructions '.
                  'on how to use it.');
@@ -367,10 +404,12 @@ class SmssettingsAction extends ConnectSettingsAction
         $confirm = $this->getConfirmation();
 
         if (!$confirm) {
+            // TRANS: Message given canceling SMS phone number confirmation that is not pending.
             $this->showForm(_('No pending confirmation to cancel.'));
             return;
         }
         if ($confirm->address != $sms) {
+            // TRANS: Message given canceling SMS phone number confirmation for the wrong phone number.
             $this->showForm(_('That is the wrong confirmation number.'));
             return;
         }
@@ -379,11 +418,13 @@ class SmssettingsAction extends ConnectSettingsAction
 
         if (!$result) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
+            // TRANS: Server error thrown on database error canceling SMS phone number confirmation.
             $this->serverError(_('Couldn\'t delete email confirmation.'));
             return;
         }
 
-        $this->showForm(_('Confirmation cancelled.'), true);
+        // TRANS: Message given after successfully canceling SMS phone number confirmation.
+        $this->showForm(_('SMS confirmation cancelled.'), true);
     }
 
     /**
@@ -402,6 +443,8 @@ class SmssettingsAction extends ConnectSettingsAction
         // Maybe an old tab open...?
 
         if ($user->sms != $sms) {
+            // TRANS: Message given trying to remove an SMS phone number that is not
+            // TRANS: registered for the active user.
             $this->showForm(_('That is not your phone number.'));
             return;
         }
@@ -417,12 +460,14 @@ class SmssettingsAction extends ConnectSettingsAction
         $result = $user->updateKeys($original);
         if (!$result) {
             common_log_db_error($user, 'UPDATE', __FILE__);
+            // TRANS: Server error thrown on database error removing a registered SMS phone number.
             $this->serverError(_('Couldn\'t update user.'));
             return;
         }
         $user->query('COMMIT');
 
-        $this->showForm(_('The address was removed.'), true);
+        // TRANS: Message given after successfully removing a registered SMS phone number.
+        $this->showForm(_('The SMS phone number was removed.'), true);
     }
 
     /**
@@ -462,10 +507,12 @@ class SmssettingsAction extends ConnectSettingsAction
 
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
+        // TRANS: Label for mobile carrier dropdown menu in SMS settings.
         $this->element('label', array('for' => 'carrier'), _('Mobile carrier'));
         $this->elementStart('select', array('name' => 'carrier',
                                             'id' => 'carrier'));
         $this->element('option', array('value' => 0),
+                       // TRANS: Default option for mobile carrier dropdown menu in SMS settings.
                        _('Select a carrier'));
         while ($carrier->fetch()) {
             $this->element('option', array('value' => $carrier->id),
@@ -473,6 +520,8 @@ class SmssettingsAction extends ConnectSettingsAction
         }
         $this->elementEnd('select');
         $this->element('p', 'form_guide',
+                       // TRANS: Form instructions for mobile carrier dropdown menu in SMS settings.
+                       // TRANS: %s is an administrative contact's e-mail address.
                        sprintf(_('Mobile carrier for your phone. '.
                                  'If you know a carrier that accepts ' .
                                  'SMS over email but isn\'t listed here, ' .
@@ -495,6 +544,7 @@ class SmssettingsAction extends ConnectSettingsAction
         $code = $this->trimmed('code');
 
         if (!$code) {
+            // TRANS: Message given saving SMS phone number confirmation code without having provided one.
             $this->showForm(_('No code entered'));
             return;
         }

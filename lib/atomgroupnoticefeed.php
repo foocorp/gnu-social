@@ -59,11 +59,14 @@ class AtomGroupNoticeFeed extends AtomNoticeFeed
         parent::__construct($cur, $indent);
         $this->group = $group;
 
+        // TRANS: Title in atom group notice feed. %s is a group name.
         $title      = sprintf(_("%s timeline"), $group->nickname);
         $this->setTitle($title);
 
         $sitename   = common_config('site', 'name');
         $subtitle   = sprintf(
+            // TRANS: Message is used as a subtitle in atom group notice feed.
+            // TRANS: %1$s is a group name, %2$s is a site name.
             _('Updates from %1$s on %2$s!'),
             $group->nickname,
             $sitename
@@ -93,4 +96,23 @@ class AtomGroupNoticeFeed extends AtomNoticeFeed
         return $this->group;
     }
 
+    function initFeed()
+    {
+        parent::initFeed();
+
+        $attrs = array();
+
+        if (!empty($this->cur)) {
+            $attrs['member'] = $this->cur->isMember($this->group)
+                ? 'true' : 'false';
+            $attrs['blocked'] = Group_block::isBlocked(
+                $this->group,
+                $this->cur->getProfile()
+            ) ? 'true' : 'false';
+        }
+
+        $attrs['member_count'] = $this->group->getMemberCount();
+
+        $this->element('statusnet:group_info', $attrs, null);
+    }
 }

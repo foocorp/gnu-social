@@ -178,7 +178,13 @@ class Rss10Action extends Action
 
         if (count($this->notices)) {
             foreach ($this->notices as $n) {
-                $this->showItem($n);
+                try {
+                    $this->showItem($n);
+                } catch (Exception $e) {
+                    // log exceptions and continue
+                    common_log(LOG_ERR, $e->getMessage());
+                    continue;
+                }
             }
         }
 
@@ -232,7 +238,7 @@ class Rss10Action extends Action
 
     function showItem($notice)
     {
-        $profile = Profile::staticGet($notice->profile_id);
+        $profile = $notice->getProfile();
         $nurl = common_local_url('shownotice', array('notice' => $notice->id));
         $creator_uri = common_profile_uri($profile);
         $this->elementStart('item', array('rdf:about' => $notice->uri,

@@ -37,6 +37,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @category Action
  * @package  StatusNet
  * @author   Craig Andrews <candrews@integralblue.com>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */

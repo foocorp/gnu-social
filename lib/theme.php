@@ -38,6 +38,9 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * Themes are directories with some expected sub-directories and files
  * in them. They're found in either local/theme (for locally-installed themes)
  * or theme/ subdir of installation dir.
+ * 
+ * Note that the 'local' directory can be overridden as $config['local']['path']
+ * and $config['local']['dir'] etc.
  *
  * This used to be a couple of functions, but for various reasons it's nice
  * to have a class instead.
@@ -76,7 +79,7 @@ class Theme
 
         if (file_exists($fulldir) && is_dir($fulldir)) {
             $this->dir  = $fulldir;
-            $this->path = common_path('local/theme/'.$name.'/');
+            $this->path = $this->relativeThemePath('local', 'local', 'theme/' . $name);
             return;
         }
 
@@ -89,42 +92,63 @@ class Theme
         if (file_exists($fulldir) && is_dir($fulldir)) {
 
             $this->dir = $fulldir;
-
-            $path = common_config('theme', 'path');
-
-            if (empty($path)) {
-                $path = common_config('site', 'path') . '/theme/';
-            }
-
-            if ($path[strlen($path)-1] != '/') {
-                $path .= '/';
-            }
-
-            if ($path[0] != '/') {
-                $path = '/'.$path;
-            }
-
-            $server = common_config('theme', 'server');
-
-            if (empty($server)) {
-                $server = common_config('site', 'server');
-            }
-
-            $ssl = common_config('theme', 'ssl');
-
-            if (is_null($ssl)) { // null -> guess
-                if (common_config('site', 'ssl') == 'always' &&
-                    !common_config('theme', 'server')) {
-                    $ssl = true;
-                } else {
-                    $ssl = false;
-                }
-            }
-
-            $protocol = ($ssl) ? 'https' : 'http';
-
-            $this->path = $protocol . '://'.$server.$path.$name;
+            $this->path = $this->relativeThemePath('theme', 'theme', $name);
         }
+    }
+
+    /**
+     * Build a full URL to the given theme's base directory, possibly
+     * using an offsite theme server path.
+     * 
+     * @param string $group configuration section name to pull paths from
+     * @param string $fallbackSubdir default subdirectory under INSTALLDIR
+     * @param string $name theme name
+     * 
+     * @return string URL
+     * 
+     * @todo consolidate code with that for other customizable paths
+     */
+
+    protected function relativeThemePath($group, $fallbackSubdir, $name)
+    {
+        $path = common_config($group, 'path');
+
+        if (empty($path)) {
+            $path = common_config('site', 'path') . '/';
+            if ($fallbackSubdir) {
+                $path .= $fallbackSubdir . '/';
+            }
+        }
+
+        if ($path[strlen($path)-1] != '/') {
+            $path .= '/';
+        }
+
+        if ($path[0] != '/') {
+            $path = '/'.$path;
+        }
+
+        $server = common_config($group, 'server');
+
+        if (empty($server)) {
+            $server = common_config('site', 'server');
+        }
+
+        $ssl = common_config($group, 'ssl');
+
+        if (is_null($ssl)) { // null -> guess
+            if (common_config('site', 'ssl') == 'always' &&
+                !common_config($group, 'server')) {
+                $ssl = true;
+            } else {
+                $ssl = false;
+            }
+        }
+
+        $protocol = ($ssl) ? 'https' : 'http';
+
+        $path = $protocol . '://'.$server.$path.$name;
+        return $path;
     }
 
     /**
@@ -236,7 +260,13 @@ class Theme
 
     protected static function localRoot()
     {
-        return INSTALLDIR.'/local/theme';
+        $basedir = common_config('local', 'dir');
+
+        if (empty($basedir)) {
+            $basedir = INSTALLDIR . '/local';
+        }
+
+        return $basedir . '/theme';
     }
 
     /**

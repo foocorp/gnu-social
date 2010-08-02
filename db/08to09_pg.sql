@@ -81,3 +81,42 @@ ALTER TABLE profile ADD COLUMN lon decimal(10,7) /*comment 'longitude'*/;
 ALTER TABLE profile ADD COLUMN location_id integer /* comment 'location id if possible'*/;
 ALTER TABLE profile ADD COLUMN location_ns integer /* comment 'namespace for location'*/;
 
+ALTER TABLE consumer add COLUMN consumer_secret varchar(255) not null ; /*comment 'secret value'*/
+
+ALTER TABLE token ADD COLUMN verifier varchar(255); /* comment 'verifier string for OAuth 1.0a',*/
+ALTER TABLE token ADD COLUMN verified_callback varchar(255); /* comment 'verified callback URL for OAuth 1.0a',*/
+
+create table queue_item_new (
+     id serial /* comment 'unique identifier'*/,
+     frame bytea not null /* comment 'data: object reference or opaque string'*/,
+     transport varchar(8) not null /*comment 'queue for what? "email", "jabber", "sms", "irc", ...'*/,
+     created timestamp not null default CURRENT_TIMESTAMP /*comment 'date this record was created'*/,
+     claimed timestamp /*comment 'date this item was claimed'*/,
+     PRIMARY KEY (id)
+);
+ 
+insert into queue_item_new (frame,transport,created,claimed)
+    select ('0x' || notice_id::text)::bytea,transport,created,claimed from queue_item;
+alter table queue_item rename to queue_item_old;
+alter table queue_item_new rename to queue_item;
+
+ALTER TABLE confirm_address ALTER column sent set default CURRENT_TIMESTAMP;
+
+create table user_location_prefs (
+    user_id integer not null /*comment 'user who has the preference'*/ references "user" (id),
+    share_location int default 1 /* comment 'Whether to share location data'*/,
+    created timestamp not null /*comment 'date this record was created'*/,
+    modified timestamp /* comment 'date this record was modified'*/,
+
+    primary key (user_id)
+);
+ 
+create table inbox (
+
+    user_id integer not null /* comment 'user receiving the notice' */ references "user" (id),
+    notice_ids bytea /* comment 'packed list of notice ids' */,
+
+    primary key (user_id)
+
+);
+

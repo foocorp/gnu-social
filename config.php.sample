@@ -45,7 +45,7 @@ $config['site']['path'] = 'statusnet';
 // lighttpd, nginx), you can enable X-Sendfile support for better
 // performance. Presently, only attachment serving when the site is
 // in private mode will use X-Sendfile.
-// $config['site']['X-Sendfile'] = false;
+// $config['site']['use_x_sendfile'] = false;
 // You may also need to enable X-Sendfile support for your web server and
 // allow it to access files outside of the web root. For Apache with
 // mod_xsendfile, you can add these to your .htaccess or server config:

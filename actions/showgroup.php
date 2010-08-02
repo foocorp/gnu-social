@@ -430,14 +430,6 @@ class ShowgroupAction extends GroupDesignAction
 
     function showStatistics()
     {
-        // XXX: WORM cache this
-        $members = $this->group->getMembers();
-        $members_count = 0;
-        /** $member->count() doesn't work. */
-        while ($members->fetch()) {
-            $members_count++;
-        }
-
         $this->elementStart('div', array('id' => 'entity_statistics',
                                          'class' => 'section'));
 
@@ -451,7 +443,7 @@ class ShowgroupAction extends GroupDesignAction
 
         $this->elementStart('dl', 'entity_members');
         $this->element('dt', null, _('Members'));
-        $this->element('dd', null, (is_int($members_count)) ? $members_count : '0');
+        $this->element('dd', null, $this->group->getMemberCount());
         $this->elementEnd('dl');
 
         $this->elementEnd('div');

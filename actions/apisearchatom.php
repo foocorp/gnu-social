@@ -22,7 +22,7 @@
  * @category  Search
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2010 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -30,6 +30,8 @@
 if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
+
+require_once INSTALLDIR.'/lib/apiprivateauth.php';
 
 /**
  * Action for outputting search results in Twitter compatible Atom
@@ -44,10 +46,10 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  *
- * @see      ApiAction
+ * @see      ApiPrivateAuthAction
  */
 
-class TwitapisearchatomAction extends ApiAction
+class ApiSearchAtomAction extends ApiPrivateAuthAction
 {
 
     var $cnt;
@@ -96,7 +98,10 @@ class TwitapisearchatomAction extends ApiAction
 
     function prepare($args)
     {
+        common_debug("in apisearchatom prepare()");
+
         parent::prepare($args);
+
 
         $this->query = $this->trimmed('q');
         $this->lang  = $this->trimmed('lang');
@@ -138,6 +143,7 @@ class TwitapisearchatomAction extends ApiAction
     function handle($args)
     {
         parent::handle($args);
+        common_debug("In apisearchatom handle()");
         $this->showAtom();
     }
 

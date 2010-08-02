@@ -104,7 +104,7 @@ class OStatusGroupAction extends OStatusSubAction
         }
 
         $this->showEntity($group,
-                          $group->getProfileUrl(),
+                          $group->homeUrl(),
                           $group->homepage_logo,
                           $group->description);
         return $ok;

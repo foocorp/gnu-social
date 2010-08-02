@@ -263,7 +263,7 @@ class Router
             $m->connect('tag', array('action' => 'publictagcloud'));
             $m->connect('tag/:tag/rss',
                         array('action' => 'tagrss'),
-                        array('tag' => '[a-zA-Z0-9]+'));
+                        array('tag' => '[\pL\pN_\-\.]{1,64}'));
             $m->connect('tag/:tag',
                         array('action' => 'tag'),
                         array('tag' => '[\pL\pN_\-\.]{1,64}'));
@@ -540,7 +540,7 @@ class Router
             $m->connect('api/favorites/:id.:format',
                         array('action' => 'ApiTimelineFavorites',
                               'id' => '[a-zA-Z0-9]+',
-                              'format' => '(xmljson|rss|atom)'));
+                              'format' => '(xml|json|rss|atom)'));
 
             $m->connect('api/favorites/create/:id.:format',
                         array('action' => 'ApiFavoriteCreate',
@@ -597,7 +597,7 @@ class Router
             $m->connect('api/statusnet/groups/timeline/:id.:format',
                         array('action' => 'ApiTimelineGroup',
                               'id' => '[a-zA-Z0-9]+',
-                              'format' => '(xmljson|rss|atom)'));
+                              'format' => '(xml|json|rss|atom)'));
 
             $m->connect('api/statusnet/groups/show.:format',
                         array('action' => 'ApiGroupShow',
@@ -658,7 +658,7 @@ class Router
             // Tags
             $m->connect('api/statusnet/tags/timeline/:tag.:format',
                         array('action' => 'ApiTimelineTag',
-                              'format' => '(xmljson|rss|atom)'));
+                              'format' => '(xml|json|rss|atom)'));
 
             // media related
             $m->connect(
@@ -667,9 +667,9 @@ class Router
             );
 
             // search
-            $m->connect('api/search.atom', array('action' => 'twitapisearchatom'));
-            $m->connect('api/search.json', array('action' => 'twitapisearchjson'));
-            $m->connect('api/trends.json', array('action' => 'twitapitrends'));
+            $m->connect('api/search.atom', array('action' => 'ApiSearchAtom'));
+            $m->connect('api/search.json', array('action' => 'ApiSearchJSON'));
+            $m->connect('api/trends.json', array('action' => 'ApiTrends'));
 
             $m->connect('api/oauth/request_token',
                         array('action' => 'apioauthrequesttoken'));
@@ -749,12 +749,12 @@ class Router
                 $m->connect('tag/:tag/rss',
                             array('action' => 'userrss',
                                   'nickname' => $nickname),
-                            array('tag' => '[a-zA-Z0-9]+'));
+                            array('tag' => '[\pL\pN_\-\.]{1,64}'));
 
                 $m->connect('tag/:tag',
                             array('action' => 'showstream',
                                   'nickname' => $nickname),
-                            array('tag' => '[a-zA-Z0-9]+'));
+                            array('tag' => '[\pL\pN_\-\.]{1,64}'));
 
                 $m->connect('rsd.xml',
                             array('action' => 'rsd',
@@ -815,12 +815,12 @@ class Router
                 $m->connect(':nickname/tag/:tag/rss',
                             array('action' => 'userrss'),
                             array('nickname' => '[a-zA-Z0-9]{1,64}'),
-                            array('tag' => '[a-zA-Z0-9]+'));
+                            array('tag' => '[\pL\pN_\-\.]{1,64}'));
 
                 $m->connect(':nickname/tag/:tag',
                             array('action' => 'showstream'),
                             array('nickname' => '[a-zA-Z0-9]{1,64}'),
-                            array('tag' => '[a-zA-Z0-9]+'));
+                            array('tag' => '[\pL\pN_\-\.]{1,64}'));
 
                 $m->connect(':nickname/rsd.xml',
                             array('action' => 'rsd'),

@@ -232,7 +232,8 @@ class ApiDirectMessageAction extends ApiAuthAction
     function showXmlDirectMessages()
     {
         $this->initDocument('xml');
-        $this->elementStart('direct-messages', array('type' => 'array'));
+        $this->elementStart('direct-messages', array('type' => 'array',
+                                                     'xmlns:statusnet' => 'http://status.net/schema/api/1/'));
 
         foreach ($this->messages as $m) {
             $dm_array = $this->directMessageArray($m);

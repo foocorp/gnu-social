@@ -59,8 +59,10 @@ class UsergroupsAction extends OwnerDesignAction
     function title()
     {
         if ($this->page == 1) {
+            // TRANS: Message is used as a page title. %s is a nick name.
             return sprintf(_('%s groups'), $this->user->nickname);
         } else {
+            // TRANS: Message is used as a page title. %1$s is a nick name, %2$d is a page number.
             return sprintf(_('%1$s groups, page %2$d'),
                            $this->user->nickname,
                            $this->page);

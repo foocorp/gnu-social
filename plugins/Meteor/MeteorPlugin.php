@@ -50,6 +50,7 @@ class MeteorPlugin extends RealtimePlugin
     public $controlport   = null;
     public $controlserver = null;
     public $channelbase   = null;
+    public $persistent    = true;
     protected $_socket    = null;
 
     function __construct($webserver=null, $webport=4670, $controlport=4671, $controlserver=null, $channelbase='')
@@ -102,8 +103,14 @@ class MeteorPlugin extends RealtimePlugin
     function _connect()
     {
         $controlserver = (empty($this->controlserver)) ? $this->webserver : $this->controlserver;
+
+        $errno = $errstr = null;
+        $timeout = 5;
+        $flags = STREAM_CLIENT_CONNECT;
+        if ($this->persistent) $flags |= STREAM_CLIENT_PERSISTENT;
+
         // May throw an exception.
-        $this->_socket = stream_socket_client("tcp://{$controlserver}:{$this->controlport}");
+        $this->_socket = stream_socket_client("tcp://{$controlserver}:{$this->controlport}", $errno, $errstr, $timeout, $flags);
         if (!$this->_socket) {
             throw new Exception("Couldn't connect to {$controlserver} on {$this->controlport}");
         }
@@ -124,8 +131,10 @@ class MeteorPlugin extends RealtimePlugin
 
     function _disconnect()
     {
-        $cnt = fwrite($this->_socket, "QUIT\n");
-        @fclose($this->_socket);
+        if (!$this->persistent) {
+            $cnt = fwrite($this->_socket, "QUIT\n");
+            @fclose($this->_socket);
+        }
     }
 
     // Meteord flips out with default '/' separator

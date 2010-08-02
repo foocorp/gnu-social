@@ -32,6 +32,7 @@
  * @author   Sarven Capadisli <csarven@status.net>
  * @author   Tom Adams <tom@holizz.com>
  * @author   Zach Copley <zach@status.net>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  GNU Affero General Public License http://www.gnu.org/licenses/
  * @version  0.9.x
  * @link     http://status.net
@@ -81,9 +82,12 @@ abstract class Installer
     {
         $pass = true;
 
-        if (file_exists(INSTALLDIR.'/config.php')) {
-            $this->warning('Config file "config.php" already exists.');
-            $pass = false;
+        $config = INSTALLDIR.'/config.php';
+        if (file_exists($config)) {
+            if (!is_writable($config) || filesize($config) > 0) {
+                $this->warning('Config file "config.php" already exists.');
+                $pass = false;
+            }
         }
 
         if (version_compare(PHP_VERSION, '5.2.3', '<')) {
@@ -443,7 +447,7 @@ abstract class Installer
             case 'mysqli':
                 $res = $conn->query($stmt);
                 if ($res === false) {
-                    $error = $conn->error();
+                    $error = $conn->error;
                 }
                 break;
             case 'pgsql':

@@ -37,7 +37,7 @@ require_once INSTALLDIR.'/lib/omb.php';
  * Handler for remote subscription finish callback
  *
  * When a remote user subscribes a local user, a redirect to this action is
- * issued after the remote user authorized his service to subscribe.
+ * issued after the remote user authorized their service to subscribe.
  *
  * @category Action
  * @package  Laconica

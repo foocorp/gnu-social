@@ -133,6 +133,7 @@ class ApplicationEditForm extends Form
 
     function formLegend()
     {
+        // TRANS: Form legend.
         $this->out->element('legend', null, _('Edit application'));
     }
 
@@ -177,10 +178,12 @@ class ApplicationEditForm extends Form
         }
 
         $this->out->element('label', array('for' => 'app_icon'),
+                            // TRANS: Form input field label for application icon.
                             _('Icon'));
         $this->out->element('input', array('name' => 'app_icon',
                                            'type' => 'file',
                                            'id' => 'app_icon'));
+        // TRANS: Form guide.
         $this->out->element('p', 'form_guide', _('Icon for this application'));
         $this->out->element('input', array('name' => 'MAX_FILE_SIZE',
                                            'type' => 'hidden',
@@ -192,6 +195,7 @@ class ApplicationEditForm extends Form
 
         $this->out->hidden('application_id', $id);
 
+        // TRANS: Form input field label for application name.
         $this->out->input('name', _('Name'),
                           ($this->out->arg('name')) ? $this->out->arg('name') : $name);
 
@@ -201,11 +205,14 @@ class ApplicationEditForm extends Form
 
         $maxDesc = Oauth_application::maxDesc();
         if ($maxDesc > 0) {
+            // TRANS: Form input field instructions.
             $descInstr = sprintf(_('Describe your application in %d characters'),
                                  $maxDesc);
         } else {
+            // TRANS: Form input field instructions.
             $descInstr = _('Describe your application');
         }
+        // TRANS: Form input field label.
         $this->out->textarea('description', _('Description'),
                         ($this->out->arg('description')) ? $this->out->arg('description') : $description,
                              $descInstr);
@@ -213,27 +220,39 @@ class ApplicationEditForm extends Form
         $this->out->elementEnd('li');
 
         $this->out->elementStart('li');
+        // TRANS: Form input field instructions.
+        $instruction = _('URL of the homepage of this application');
+        // TRANS: Form input field label.
         $this->out->input('source_url', _('Source URL'),
                           ($this->out->arg('source_url')) ? $this->out->arg('source_url') : $source_url,
-                          _('URL of the homepage of this application'));
+                          $instruction);
         $this->out->elementEnd('li');
 
         $this->out->elementStart('li');
+        // TRANS: Form input field instructions.
+        $instruction = _('Organization responsible for this application');
+        // TRANS: Form input field label.
         $this->out->input('organization', _('Organization'),
                           ($this->out->arg('organization')) ? $this->out->arg('organization') : $organization,
-                          _('Organization responsible for this application'));
+                          $instruction);
         $this->out->elementEnd('li');
 
         $this->out->elementStart('li');
+        // TRANS: Form input field instructions.
+        $instruction = _('URL for the homepage of the organization');
+        // TRANS: Form input field label.
         $this->out->input('homepage', _('Homepage'),
                           ($this->out->arg('homepage')) ? $this->out->arg('homepage') : $homepage,
-                          _('URL for the homepage of the organization'));
+                          $instruction);
         $this->out->elementEnd('li');
 
         $this->out->elementStart('li');
+        // TRANS: Form input field instructions.
+        $instruction = _('URL to redirect to after authentication');
+        // TRANS: Form input field label.
         $this->out->input('callback_url', ('Callback URL'),
                           ($this->out->arg('callback_url')) ? $this->out->arg('callback_url') : $callback_url,
-                          _('URL to redirect to after authentication'));
+                          $instruction);
         $this->out->elementEnd('li');
 
         $this->out->elementStart('li', array('id' => 'application_types'));
@@ -255,6 +274,7 @@ class ApplicationEditForm extends Form
 
         $this->out->element('label', array('for' => 'app_type-browser',
                                            'class' => 'radio'),
+                            // TRANS: Radio button label for application type
                             _('Browser'));
 
         $attrs = array('name' => 'app_type',
@@ -271,7 +291,9 @@ class ApplicationEditForm extends Form
 
         $this->out->element('label', array('for' => 'app_type-desktop',
                                            'class' => 'radio'),
+                            // TRANS: Radio button label for application type
                             _('Desktop'));
+        // TRANS: Form guide.
         $this->out->element('p', 'form_guide', _('Type of application, browser or desktop'));
         $this->out->elementEnd('li');
 
@@ -294,6 +316,7 @@ class ApplicationEditForm extends Form
 
         $this->out->element('label', array('for' => 'default_access_type-ro',
                                            'class' => 'radio'),
+                            // TRANS: Radio button label for access type.
                             _('Read-only'));
 
         $attrs = array('name' => 'default_access_type',
@@ -312,7 +335,9 @@ class ApplicationEditForm extends Form
 
         $this->out->element('label', array('for' => 'default_access_type-rw',
                                            'class' => 'radio'),
+                            // TRANS: Radio button label for access type.
                             _('Read-write'));
+        // TRANS: Form guide.
         $this->out->element('p', 'form_guide', _('Default access for this application: read-only, or read-write'));
 
         $this->out->elementEnd('li');
@@ -328,9 +353,13 @@ class ApplicationEditForm extends Form
 
     function formActions()
     {
-        $this->out->submit('cancel', _('Cancel'), 'submit form_action-primary',
+        // TRANS: Button label
+        $this->out->submit('cancel', _m('BUTTON','Cancel'), 'submit form_action-primary',
+                           // TRANS: Submit button title
                            'cancel', _('Cancel'));
-        $this->out->submit('save', _('Save'), 'submit form_action-secondary',
+        // TRANS: Button label
+        $this->out->submit('save', _m('BUTTON','Save'), 'submit form_action-secondary',
+                           // TRANS: Submit button title
                            'save', _('Save'));
     }
 }

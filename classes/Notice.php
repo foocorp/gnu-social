@@ -29,6 +29,7 @@
  * @author   Robin Millette <millette@controlyourself.ca>
  * @author   Sarven Capadisli <csarven@controlyourself.ca>
  * @author   Tom Adams <tom@holizz.com>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  GNU Affero General Public License http://www.gnu.org/licenses/
  */
 
@@ -41,10 +42,10 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-/* We keep the first three 20-notice pages, plus one for pagination check,
+/* We keep 200 notices, the max number of notices available per API request,
  * in the memcached cache. */
 
-define('NOTICE_CACHE_WINDOW', 61);
+define('NOTICE_CACHE_WINDOW', 200);
 
 define('MAX_BOXCARS', 128);
 
@@ -89,7 +90,13 @@ class Notice extends Memcached_DataObject
 
     function getProfile()
     {
-        return Profile::staticGet('id', $this->profile_id);
+        $profile = Profile::staticGet('id', $this->profile_id);
+
+        if (empty($profile)) {
+            throw new ServerException(sprintf(_('No such profile (%d) for notice (%d)'), $this->profile_id, $this->id));
+        }
+
+        return $profile;
     }
 
     function delete()
@@ -177,7 +184,8 @@ class Notice extends Memcached_DataObject
         $id = $tag->insert();
 
         if (!$id) {
-            throw new ServerException(sprintf(_('DB error inserting hashtag: %s'),
+            // TRANS: Server exception. %s are the error details.
+            throw new ServerException(sprintf(_('Database error inserting hashtag: %s'),
                                               $last_error->message));
             return;
         }
@@ -267,7 +275,7 @@ class Notice extends Memcached_DataObject
 
         if (!$profile->hasRight(Right::NEWNOTICE)) {
             common_log(LOG_WARNING, "Attempted post from user disallowed to post: " . $profile->nickname);
-            throw new ClientException(_('You are banned from posting notices on this site.'));
+            throw new ClientException(_('You are banned from posting notices on this site.'), 403);
         }
 
         $notice = new Notice();
@@ -1190,7 +1198,7 @@ class Notice extends Memcached_DataObject
                            'xmlns:media' => 'http://purl.org/syndication/atommedia',
                            'xmlns:poco' => 'http://portablecontacts.net/spec/1.0',
                            'xmlns:ostatus' => 'http://ostatus.org/schema/1.0',
-                           'xmlns:statusnet' => 'http://status.net/ont/');
+                           'xmlns:statusnet' => 'http://status.net/schema/api/1/');
         } else {
             $attrs = array();
         }
@@ -1225,7 +1233,7 @@ class Notice extends Memcached_DataObject
         $xs->element('title', null, common_xml_safe_str($this->content));
 
         if ($author) {
-            $xs->raw($profile->asAtomAuthor());
+            $xs->raw($profile->asAtomAuthor($cur));
             $xs->raw($profile->asActivityActor());
         }
 
@@ -1238,9 +1246,25 @@ class Notice extends Memcached_DataObject
         $xs->element('published', null, common_date_w3dtf($this->created));
         $xs->element('updated', null, common_date_w3dtf($this->created));
 
+        $source = null;
+
+        $ns = $this->getSource();
+
+        if ($ns) {
+            if (!empty($ns->name) && !empty($ns->url)) {
+                $source = '<a href="'
+                  . htmlspecialchars($ns->url)
+                  . '" rel="nofollow">'
+                  . htmlspecialchars($ns->name)
+                   . '</a>';
+            } else {
+                $source = $ns->code;
+            }
+        }
+
         $noticeInfoAttr = array(
-            'local_id'   => $this->id,    // local notice ID (useful to clients for ordering)
-            'source'     => $this->source, // the client name (source attribution)
+            'local_id'   => $this->id, // local notice ID (useful to clients for ordering)
+            'source'     => $source,   // the client name (source attribution)
         );
 
         $ns = $this->getSource();
@@ -1252,6 +1276,8 @@ class Notice extends Memcached_DataObject
 
         if (!empty($cur)) {
             $noticeInfoAttr['favorite'] = ($cur->hasFave($this)) ? "true" : "false";
+            $profile = $cur->getProfile();
+            $noticeInfoAttr['repeated'] = ($profile->hasRepeated($this->id)) ? "true" : "false";
         }
 
         if (!empty($this->repeat_of)) {
@@ -1555,6 +1581,8 @@ class Notice extends Memcached_DataObject
     {
         $author = Profile::staticGet('id', $this->profile_id);
 
+        // TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
+        // TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
         $content = sprintf(_('RT @%1$s %2$s'),
                            $author->nickname,
                            $this->content);
@@ -1859,6 +1887,18 @@ class Notice extends Memcached_DataObject
             }
         }
         return $ns;
+    }
+
+    /**
+     * Determine whether the notice was locally created
+     *
+     * @return boolean locality
+     */
+
+    public function isLocal()
+    {
+        return ($this->is_local == Notice::LOCAL_PUBLIC ||
+                $this->is_local == Notice::LOCAL_NONPUBLIC);
     }
 
 }

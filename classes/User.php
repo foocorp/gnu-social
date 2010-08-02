@@ -524,7 +524,7 @@ class User extends Memcached_DataObject
         if ($this->id == $other->id) {
             common_log(LOG_WARNING,
                 sprintf(
-                    "Profile ID %d (%s) tried to block his or herself.",
+                    "Profile ID %d (%s) tried to block themself.",
                     $this->id,
                     $this->nickname
                 )

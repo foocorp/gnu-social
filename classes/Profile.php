@@ -849,15 +849,23 @@ class Profile extends Memcached_DataObject
      *
      * Assumes that Atom has been previously set up as the base namespace.
      *
+     * @param Profile $cur the current authenticated user
+     *
      * @return string
      */
-    function asAtomAuthor()
+    function asAtomAuthor($cur = null)
     {
         $xs = new XMLStringer(true);
 
         $xs->elementStart('author');
         $xs->element('name', null, $this->nickname);
         $xs->element('uri', null, $this->getUri());
+        if ($cur != null) {
+            $attrs = Array();
+            $attrs['following'] = $cur->isSubscribed($this) ? 'true' : 'false';
+            $attrs['blocking']  = $cur->hasBlocked($this) ? 'true' : 'false';
+            $xs->element('statusnet:profile_info', $attrs, null);
+        }
         $xs->elementEnd('author');
 
         return $xs->getString();

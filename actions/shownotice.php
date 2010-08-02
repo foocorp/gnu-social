@@ -167,7 +167,7 @@ class ShownoticeAction extends OwnerDesignAction
     function title()
     {
         if (!empty($this->profile->fullname)) {
-            $base = $this->profile->fullname . ' (' . $this->profile->nickname . ') ';
+            $base = $this->profile->fullname . ' (' . $this->profile->nickname . ')';
         } else {
             $base = $this->profile->nickname;
         }

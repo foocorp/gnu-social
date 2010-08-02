@@ -96,8 +96,14 @@ class NoticeList extends Widget
                 break;
             }
 
-            $item = $this->newListItem($this->notice);
-            $item->show();
+            try {
+                $item = $this->newListItem($this->notice);
+                $item->show();
+            } catch (Exception $e) {
+                // we log exceptions and continue
+                common_log(LOG_ERR, $e->getMessage());
+                continue;
+            }
         }
 
         $this->out->elementEnd('ol');
@@ -426,10 +432,18 @@ class NoticeListItem extends Widget
         if (empty($name)) {
             $latdms = $this->decimalDegreesToDMS(abs($lat));
             $londms = $this->decimalDegreesToDMS(abs($lon));
+            // TRANS: Used in coordinates as abbreviation of north
+            $north = _('N');
+            // TRANS: Used in coordinates as abbreviation of south
+            $south = _('S');
+            // TRANS: Used in coordinates as abbreviation of east
+            $east = _('E');
+            // TRANS: Used in coordinates as abbreviation of west
+            $west = _('W');
             $name = sprintf(
                 _('%1$u°%2$u\'%3$u"%4$s %5$u°%6$u\'%7$u"%8$s'),
-                $latdms['deg'],$latdms['min'], $latdms['sec'],($lat>0?_('N'):_('S')),
-                $londms['deg'],$londms['min'], $londms['sec'],($lon>0?_('E'):_('W')));
+                $latdms['deg'],$latdms['min'], $latdms['sec'],($lat>0? $north:$south),
+                $londms['deg'],$londms['min'], $londms['sec'],($lon>0? $east:$west));
         }
 
         $url  = $location->getUrl();
@@ -455,12 +469,14 @@ class NoticeListItem extends Widget
         $this->out->elementEnd('span');
     }
 
+    /**
+     * @param number $dec decimal degrees
+     * @return array split into 'deg', 'min', and 'sec'
+     */
     function decimalDegreesToDMS($dec)
     {
-
-        $vars = explode(".",$dec);
-        $deg = $vars[0];
-        $tempma = "0.".$vars[1];
+        $deg = intval($dec);
+        $tempma = abs($dec) - abs($deg);
 
         $tempma = $tempma * 3600;
         $min = floor($tempma / 60);

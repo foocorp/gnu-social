@@ -90,34 +90,36 @@ class OpenidsettingsAction extends AccountSettingsAction
     {
         $user = common_current_user();
 
-        $this->elementStart('form', array('method' => 'post',
-                                          'id' => 'form_settings_openid_add',
-                                          'class' => 'form_settings',
-                                          'action' =>
-                                          common_local_url('openidsettings')));
-        $this->elementStart('fieldset', array('id' => 'settings_openid_add'));
-        $this->element('legend', null, _m('Add OpenID'));
-        $this->hidden('token', common_session_token());
-        $this->element('p', 'form_guide',
-                       _m('If you want to add an OpenID to your account, ' .
-                         'enter it in the box below and click "Add".'));
-        $this->elementStart('ul', 'form_data');
-        $this->elementStart('li');
-        $this->element('label', array('for' => 'openid_url'),
-                       _m('OpenID URL'));
-        $this->element('input', array('name' => 'openid_url',
-                                      'type' => 'text',
-                                      'id' => 'openid_url'));
-        $this->elementEnd('li');
-        $this->elementEnd('ul');
-        $this->element('input', array('type' => 'submit',
-                                      'id' => 'settings_openid_add_action-submit',
-                                      'name' => 'add',
-                                      'class' => 'submit',
-                                      'value' => _m('Add')));
-        $this->elementEnd('fieldset');
-        $this->elementEnd('form');
-
+        if (!common_config('openid', 'trusted_provider')) {
+            $this->elementStart('form', array('method' => 'post',
+                                              'id' => 'form_settings_openid_add',
+                                              'class' => 'form_settings',
+                                              'action' =>
+                                              common_local_url('openidsettings')));
+            $this->elementStart('fieldset', array('id' => 'settings_openid_add'));
+    
+            $this->element('legend', null, _m('Add OpenID'));
+            $this->hidden('token', common_session_token());
+            $this->element('p', 'form_guide',
+                           _m('If you want to add an OpenID to your account, ' .
+                             'enter it in the box below and click "Add".'));
+            $this->elementStart('ul', 'form_data');
+            $this->elementStart('li');
+            $this->element('label', array('for' => 'openid_url'),
+                           _m('OpenID URL'));
+            $this->element('input', array('name' => 'openid_url',
+                                          'type' => 'text',
+                                          'id' => 'openid_url'));
+            $this->elementEnd('li');
+            $this->elementEnd('ul');
+            $this->element('input', array('type' => 'submit',
+                                          'id' => 'settings_openid_add_action-submit',
+                                          'name' => 'add',
+                                          'class' => 'submit',
+                                          'value' => _m('Add')));
+            $this->elementEnd('fieldset');
+            $this->elementEnd('form');
+        }
         $oid = new User_openid();
 
         $oid->user_id = $user->id;
@@ -234,10 +236,14 @@ class OpenidsettingsAction extends AccountSettingsAction
         }
 
         if ($this->arg('add')) {
-            $result = oid_authenticate($this->trimmed('openid_url'),
-                                       'finishaddopenid');
-            if (is_string($result)) { // error message
-                $this->showForm($result);
+            if (common_config('openid', 'trusted_provider')) {
+                $this->showForm(_m("Can't add new providers."));
+            } else {
+                $result = oid_authenticate($this->trimmed('openid_url'),
+                                           'finishaddopenid');
+                if (is_string($result)) { // error message
+                    $this->showForm($result);
+                }
             }
         } else if ($this->arg('remove')) {
             $this->removeOpenid();

@@ -376,7 +376,7 @@ class GeonamesPlugin extends Plugin
             return true;
         }
 
-        $url = 'http://sw.geonames.org/' . $location->location_id . '/';
+        $url = 'http://sws.geonames.org/' . $location->location_id . '/';
 
         // it's been filled, so don't process further.
         return false;

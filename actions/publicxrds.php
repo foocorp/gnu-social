@@ -8,7 +8,9 @@
  * @category Action
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
+ * @author   Craig Andrews <candrews@integralblue.com>
  * @author   Robin Millette <millette@status.net>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  *
@@ -44,6 +46,7 @@ require_once INSTALLDIR.'/lib/xrdsoutputter.php';
  * @author   Evan Prodromou <evan@status.net>
  * @author   Robin Millette <millette@status.net>
  * @author   Craig Andrews <candrews@integralblue.com>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  *

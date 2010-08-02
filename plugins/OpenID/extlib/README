@@ -1,0 +1,6 @@
+team-extension.php
+    Support for Launchpad's OpenID Teams extension
+    Maintainer: Canonical
+    Source: https://code.edge.launchpad.net/wordpress-teams-integration
+            r27 2010-04-27
+    License: AGPLv3

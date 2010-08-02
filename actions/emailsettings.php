@@ -57,6 +57,7 @@ class EmailsettingsAction extends AccountSettingsAction
 
     function title()
     {
+        // TRANS: Title for e-mail settings.
         return _('Email settings');
     }
 
@@ -68,6 +69,10 @@ class EmailsettingsAction extends AccountSettingsAction
 
     function getInstructions()
     {
+        // XXX: For consistency of parameters in messages, this should be a
+        //      regular parameters, replaced with sprintf().
+        // TRANS: E-mail settings page instructions.
+        // TRANS: %%site.name%% is the name of the site.
         return _('Manage how you get email from %%site.name%%.');
     }
 
@@ -97,102 +102,126 @@ class EmailsettingsAction extends AccountSettingsAction
                                           common_local_url('emailsettings')));
         $this->elementStart('fieldset');
         $this->elementStart('fieldset', array('id' => 'settings_email_address'));
-        $this->element('legend', null, _('Address'));
+        // TRANS: Form legend for e-mail settings form.
+        $this->element('legend', null, _('Email address'));
         $this->hidden('token', common_session_token());
 
         if ($user->email) {
             $this->element('p', array('id' => 'form_confirmed'), $user->email);
+            // TRANS: Form note in e-mail settings form.
             $this->element('p', array('class' => 'form_note'), _('Current confirmed email address.'));
             $this->hidden('email', $user->email);
-            $this->submit('remove', _('Remove'));
+            // TRANS: Button label to remove a confirmed e-mail address.
+            $this->submit('remove', _m('BUTTON','Remove'));
         } else {
             $confirm = $this->getConfirmation();
             if ($confirm) {
                 $this->element('p', array('id' => 'form_unconfirmed'), $confirm->address);
+                // TRANS: Form note in e-mail settings form.
                 $this->element('p', array('class' => 'form_note'),
                                         _('Awaiting confirmation on this address. '.
                                         'Check your inbox (and spam box!) for a message '.
                                         'with further instructions.'));
                 $this->hidden('email', $confirm->address);
-                $this->submit('cancel', _('Cancel'));
+                // TRANS: Button label to cancel an e-mail address confirmation procedure.
+                $this->submit('cancel', _m('BUTTON','Cancel'));
             } else {
                 $this->elementStart('ul', 'form_data');
                 $this->elementStart('li');
+                // TRANS: Field label for e-mail address input in e-mail settings form.
                 $this->input('email', _('Email address'),
                              ($this->arg('email')) ? $this->arg('email') : null,
+                             // TRANS: Instructions for e-mail address input form.
                              _('Email address, like "UserName@example.org"'));
                 $this->elementEnd('li');
                 $this->elementEnd('ul');
-                $this->submit('add', _('Add'));
+                // TRANS: Button label for adding an e-mail address in e-mail settings form.
+                $this->submit('add', _m('BUTTON','Add'));
             }
         }
         $this->elementEnd('fieldset');
 
        if (common_config('emailpost', 'enabled') && $user->email) {
             $this->elementStart('fieldset', array('id' => 'settings_email_incoming'));
+            // TRANS: Form legend for incoming e-mail settings form.
             $this->element('legend', null, _('Incoming email'));
             if ($user->incomingemail) {
                 $this->elementStart('p');
                 $this->element('span', 'address', $user->incomingemail);
+                // XXX: Looks a little awkward in the UI.
+                //      Something like "xxxx@identi.ca  Send email ..". Needs improvement.
                 $this->element('span', 'input_instructions',
+                               // TRANS: Form instructions for incoming e-mail form in e-mail settings.
                                _('Send email to this address to post new notices.'));
                 $this->elementEnd('p');
-                $this->submit('removeincoming', _('Remove'));
+                // TRANS: Button label for removing a set sender e-mail address to post notices from.
+                $this->submit('removeincoming', _m('BUTTON','Remove'));
             }
 
             $this->elementStart('p');
             $this->element('span', 'input_instructions',
+                           // TRANS: Instructions for incoming e-mail address input form.
                            _('Make a new email address for posting to; '.
                              'cancels the old one.'));
             $this->elementEnd('p');
-            $this->submit('newincoming', _('New'));
+            // TRANS: Button label for adding an e-mail address to send notices from.
+            $this->submit('newincoming', _m('BUTTON','New'));
             $this->elementEnd('fieldset');
         }
 
         $this->elementStart('fieldset', array('id' => 'settings_email_preferences'));
-        $this->element('legend', null, _('Preferences'));
+        // TRANS: Form legend for e-mail preferences form.
+        $this->element('legend', null, _('Email preferences'));
 
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
         $this->checkbox('emailnotifysub',
+                        // TRANS: Checkbox label in e-mail preferences form.
                         _('Send me notices of new subscriptions through email.'),
                         $user->emailnotifysub);
         $this->elementEnd('li');
         $this->elementStart('li');
         $this->checkbox('emailnotifyfav',
+                        // TRANS: Checkbox label in e-mail preferences form.
                         _('Send me email when someone '.
                           'adds my notice as a favorite.'),
                         $user->emailnotifyfav);
         $this->elementEnd('li');
         $this->elementStart('li');
         $this->checkbox('emailnotifymsg',
+                        // TRANS: Checkbox label in e-mail preferences form.
                         _('Send me email when someone sends me a private message.'),
                         $user->emailnotifymsg);
         $this->elementEnd('li');
         $this->elementStart('li');
         $this->checkbox('emailnotifyattn',
+                        // TRANS: Checkbox label in e-mail preferences form.
                         _('Send me email when someone sends me an "@-reply".'),
                         $user->emailnotifyattn);
         $this->elementEnd('li');
         $this->elementStart('li');
         $this->checkbox('emailnotifynudge',
+                        // TRANS: Checkbox label in e-mail preferences form.
                         _('Allow friends to nudge me and send me an email.'),
                         $user->emailnotifynudge);
         $this->elementEnd('li');
         if (common_config('emailpost', 'enabled')) {
             $this->elementStart('li');
             $this->checkbox('emailpost',
+                            // TRANS: Checkbox label in e-mail preferences form.
                             _('I want to post notices by email.'),
                             $user->emailpost);
             $this->elementEnd('li');
         }
         $this->elementStart('li');
         $this->checkbox('emailmicroid',
+                        // TRANS: Checkbox label in e-mail preferences form.
                         _('Publish a MicroID for my email address.'),
                         $user->emailmicroid);
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('save', _('Save'));
+        // TRANS: Button label to save e-mail preferences.
+        $this->submit('save', _m('BUTTON','Save'));
         $this->elementEnd('fieldset');
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
@@ -253,6 +282,7 @@ class EmailsettingsAction extends AccountSettingsAction
         } else if ($this->arg('newincoming')) {
             $this->newIncoming();
         } else {
+            // TRANS: Message given submitting a form with an unknown action in e-mail settings.
             $this->showForm(_('Unexpected form submission.'));
         }
     }
@@ -293,13 +323,15 @@ class EmailsettingsAction extends AccountSettingsAction
 
         if ($result === false) {
             common_log_db_error($user, 'UPDATE', __FILE__);
+            // TRANS: Server error thrown on database error updating e-mail preferences.
             $this->serverError(_('Couldn\'t update user.'));
             return;
         }
 
         $user->query('COMMIT');
 
-        $this->showForm(_('Preferences saved.'), true);
+        // TRANS: Confirmation message for successful e-mail preferences save.
+        $this->showForm(_('Email preferences saved.'), true);
     }
 
     /**
@@ -317,6 +349,7 @@ class EmailsettingsAction extends AccountSettingsAction
         // Some validation
 
         if (!$email) {
+            // TRANS: Message given saving e-mail address without having provided one.
             $this->showForm(_('No email address.'));
             return;
         }
@@ -324,16 +357,20 @@ class EmailsettingsAction extends AccountSettingsAction
         $email = common_canonical_email($email);
 
         if (!$email) {
+            // TRANS: Message given saving e-mail address that cannot be normalised.
             $this->showForm(_('Cannot normalize that email address'));
             return;
         }
         if (!Validate::email($email, common_config('email', 'check_domain'))) {
+            // TRANS: Message given saving e-mail address that not valid.
             $this->showForm(_('Not a valid email address.'));
             return;
         } else if ($user->email == $email) {
+            // TRANS: Message given saving e-mail address that is already set.
             $this->showForm(_('That is already your email address.'));
             return;
         } else if ($this->emailExists($email)) {
+            // TRANS: Message given saving e-mail address that is already set for another user.
             $this->showForm(_('That email address already belongs '.
                               'to another user.'));
             return;
@@ -350,12 +387,14 @@ class EmailsettingsAction extends AccountSettingsAction
 
         if ($result === false) {
             common_log_db_error($confirm, 'INSERT', __FILE__);
+            // TRANS: Server error thrown on database error adding e-mail confirmation code.
             $this->serverError(_('Couldn\'t insert confirmation code.'));
             return;
         }
 
         mail_confirm_address($user, $confirm->code, $user->nickname, $email);
 
+        // TRANS: Message given saving valid e-mail address that is to be confirmed.
         $msg = _('A confirmation code was sent to the email address you added. '.
                  'Check your inbox (and spam box!) for the code and instructions '.
                  'on how to use it.');
@@ -376,11 +415,13 @@ class EmailsettingsAction extends AccountSettingsAction
         $confirm = $this->getConfirmation();
 
         if (!$confirm) {
+            // TRANS: Message given canceling e-mail address confirmation that is not pending.
             $this->showForm(_('No pending confirmation to cancel.'));
             return;
         }
         if ($confirm->address != $email) {
-            $this->showForm(_('That is the wrong IM address.'));
+            // TRANS: Message given canceling e-mail address confirmation for the wrong e-mail address.
+            $this->showForm(_('That is the wrong email address.'));
             return;
         }
 
@@ -388,11 +429,13 @@ class EmailsettingsAction extends AccountSettingsAction
 
         if (!$result) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
+            // TRANS: Server error thrown on database error canceling e-mail address confirmation.
             $this->serverError(_('Couldn\'t delete email confirmation.'));
             return;
         }
 
-        $this->showForm(_('Confirmation cancelled.'), true);
+        // TRANS: Message given after successfully canceling e-mail address confirmation.
+        $this->showForm(_('Email confirmation cancelled.'), true);
     }
 
     /**
@@ -410,6 +453,8 @@ class EmailsettingsAction extends AccountSettingsAction
         // Maybe an old tab open...?
 
         if ($user->email != $email) {
+            // TRANS: Message given trying to remove an e-mail address that is not
+            // TRANS: registered for the active user.
             $this->showForm(_('That is not your email address.'));
             return;
         }
@@ -424,12 +469,14 @@ class EmailsettingsAction extends AccountSettingsAction
 
         if (!$result) {
             common_log_db_error($user, 'UPDATE', __FILE__);
+            // TRANS: Server error thrown on database error removing a registered e-mail address.
             $this->serverError(_('Couldn\'t update user.'));
             return;
         }
         $user->query('COMMIT');
 
-        $this->showForm(_('The address was removed.'), true);
+        // TRANS: Message given after successfully removing a registered e-mail address.
+        $this->showForm(_('The email address was removed.'), true);
     }
 
     /**
@@ -453,9 +500,11 @@ class EmailsettingsAction extends AccountSettingsAction
 
         if (!$user->updateKeys($orig)) {
             common_log_db_error($user, 'UPDATE', __FILE__);
+            // TRANS: Server error thrown on database error removing incoming e-mail address.
             $this->serverError(_("Couldn't update user record."));
         }
 
+        // TRANS: Message given after successfully removing an incoming e-mail address.
         $this->showForm(_('Incoming email address removed.'), true);
     }
 
@@ -475,9 +524,11 @@ class EmailsettingsAction extends AccountSettingsAction
 
         if (!$user->updateKeys($orig)) {
             common_log_db_error($user, 'UPDATE', __FILE__);
+            // TRANS: Server error thrown on database error adding incoming e-mail address.
             $this->serverError(_("Couldn't update user record."));
         }
 
+        // TRANS: Message given after successfully adding an incoming e-mail address.
         $this->showForm(_('New incoming email address added.'), true);
     }
 

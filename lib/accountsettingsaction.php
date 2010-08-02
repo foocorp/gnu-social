@@ -105,27 +105,45 @@ class AccountSettingsNav extends Widget
             $user = common_current_user();
 
             if(Event::handle('StartAccountSettingsProfileMenuItem', array($this, &$menu))){
-                $this->showMenuItem('profilesettings',_('Profile'),_('Change your profile settings'));
+                // TRANS: Link title attribute in user account settings menu.
+                $title = _('Change your profile settings');
+                // TRANS: Link description in user account settings menu.
+                $this->showMenuItem('profilesettings',_('Profile'),$title);
                 Event::handle('EndAccountSettingsProfileMenuItem', array($this, &$menu));
             }
             if(Event::handle('StartAccountSettingsAvatarMenuItem', array($this, &$menu))){
-                $this->showMenuItem('avatarsettings',_('Avatar'),_('Upload an avatar'));
+                // TRANS: Link title attribute in user account settings menu.
+                $title = _('Upload an avatar');
+                // TRANS: Link description in user account settings menu.
+                $this->showMenuItem('avatarsettings',_('Avatar'),$title);
                 Event::handle('EndAccountSettingsAvatarMenuItem', array($this, &$menu));
             }
             if(Event::handle('StartAccountSettingsPasswordMenuItem', array($this, &$menu))){
-                $this->showMenuItem('passwordsettings',_('Password'),_('Change your password'));
+                // TRANS: Link title attribute in user account settings menu.
+                $title = _('Change your password');
+                // TRANS: Link description in user account settings menu.
+                $this->showMenuItem('passwordsettings',_('Password'),$title);
                 Event::handle('EndAccountSettingsPasswordMenuItem', array($this, &$menu));
             }
             if(Event::handle('StartAccountSettingsEmailMenuItem', array($this, &$menu))){
-                $this->showMenuItem('emailsettings',_('Email'),_('Change email handling'));
+                // TRANS: Link title attribute in user account settings menu.
+                $title = _('Change email handling');
+                // TRANS: Link description in user account settings menu.
+                $this->showMenuItem('emailsettings',_('Email'),$title);
                 Event::handle('EndAccountSettingsEmailMenuItem', array($this, &$menu));
             }
             if(Event::handle('StartAccountSettingsDesignMenuItem', array($this, &$menu))){
-                $this->showMenuItem('userdesignsettings',_('Design'),_('Design your profile'));
+                // TRANS: Link title attribute in user account settings menu.
+                $title = _('Design your profile');
+                // TRANS: Link description in user account settings menu.
+                $this->showMenuItem('userdesignsettings',_('Design'),$title);
                 Event::handle('EndAccountSettingsDesignMenuItem', array($this, &$menu));
             }
             if(Event::handle('StartAccountSettingsOtherMenuItem', array($this, &$menu))){
-                $this->showMenuItem('othersettings',_('Other'),_('Other options'));
+                // TRANS: Link title attribute in user account settings menu.
+                $title = _('Other options');
+                // TRANS: Link description in user account settings menu.
+                $this->showMenuItem('othersettings',_('Other'),$title);
                 Event::handle('EndAccountSettingsOtherMenuItem', array($this, &$menu));
             }
 

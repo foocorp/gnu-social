@@ -112,10 +112,12 @@ class AllrssAction extends Rss10Action
         $c    = array('url' => common_local_url('allrss',
                                              array('nickname' =>
                                                    $user->nickname)),
+                   // TRANS: Message is used as link title. %s is a user nickname.
                    'title' => sprintf(_('%s and friends'), $user->nickname),
                    'link' => common_local_url('all',
                                              array('nickname' =>
                                                    $user->nickname)),
+                   // TRANS: Message is used as link description. %1$s is a username, %2$s is a site name.
                    'description' => sprintf(_('Updates from %1$s and friends on %2$s!'),
                                             $user->nickname, common_config('site', 'name')));
         return $c;

@@ -585,7 +585,7 @@ class FacebookPlugin extends Plugin
 
     function onStartEnqueueNotice($notice, &$transports)
     {
-        if (self::hasKeys()) {
+        if (self::hasKeys() && $notice->isLocal()) {
             array_push($transports, 'facebook');
         }
         return true;

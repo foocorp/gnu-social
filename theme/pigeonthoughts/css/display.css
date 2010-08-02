@@ -7,7 +7,7 @@
  * @link      http://status.net/
  */
 
-@import url(base.css) screen, projection, tv, print;
+@import url(base.css);
 
 @media screen, projection, tv {
 html {

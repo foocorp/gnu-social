@@ -29,6 +29,7 @@ Author URI: http://candrews.integralblue.com/
 /**
  * @package MinifyPlugin
  * @maintainer Craig Andrews <candrews@integralblue.com>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  */
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }

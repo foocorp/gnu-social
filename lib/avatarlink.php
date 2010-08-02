@@ -76,8 +76,8 @@ class AvatarLink
         $alink = new AvatarLink();
         $alink->url    = $filename;
         $alink->height = $size;
+        $alink->width  = $size;
         if (!empty($filename)) {
-            $alink->width  = $size;
             $alink->type   = self::mediatype($filename);
         } else {
             $alink->url    = User_group::defaultLogo($size);

@@ -104,7 +104,7 @@ class FavorAction extends Action
     }
 
     /**
-     * Notifies a user when his notice is favorited.
+     * Notifies a user when their notice is favorited.
      *
      * @param class $notice favorited notice
      * @param class $user   user declaring a favorite

@@ -25,7 +25,8 @@
  * @author    Evan Prodromou <evan@status.net>
  * @author    Jeffery To <jeffery.to@gmail.com>
  * @author    Zach Copley <zach@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @copyright 2009-2010 StatusNet, Inc.
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -137,7 +138,9 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
                 $this->raw($atom->getString());
             } catch (Atom10FeedException $e) {
                 $this->serverError(
-                    'Could not generate feed for group - ' . $e->getMessage()
+                    'Could not generate feed for group - ' . $e->getMessage(),
+		    400,
+		    $this->format
                 );
                 return;
             }

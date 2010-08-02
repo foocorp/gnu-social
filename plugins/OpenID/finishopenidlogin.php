@@ -31,15 +31,18 @@ class FinishopenidloginAction extends Action
     {
         parent::handle($args);
         if (common_is_real_login()) {
+            // TRANS: Client error message trying to log on with OpenID while already logged on.
             $this->clientError(_m('Already logged in.'));
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $token = $this->trimmed('token');
             if (!$token || $token != common_session_token()) {
+                // TRANS: Message given when there is a problem with the user's session token.
                 $this->showForm(_m('There was a problem with your session token. Try again, please.'));
                 return;
             }
             if ($this->arg('create')) {
                 if (!$this->boolean('license')) {
+                    // TRANS: Message given if user does not agree with the site's license.
                     $this->showForm(_m('You can\'t register if you don\'t agree to the license.'),
                                     $this->trimmed('newname'));
                     return;
@@ -48,7 +51,8 @@ class FinishopenidloginAction extends Action
             } else if ($this->arg('connect')) {
                 $this->connectUser();
             } else {
-                $this->showForm(_m('Something weird happened.'),
+                // TRANS: Messag given on an unknown error.
+                $this->showForm(_m('An unknown error has occured.'),
                                 $this->trimmed('newname'));
             }
         } else {
@@ -62,12 +66,15 @@ class FinishopenidloginAction extends Action
             $this->element('div', array('class' => 'error'), $this->error);
         } else {
             $this->element('div', 'instructions',
+                           // TRANS: Instructions given after a first successful logon using OpenID.
+                           // TRANS: %s is the site name.
                            sprintf(_m('This is the first time you\'ve logged into %s so we must connect your OpenID to a local account. You can either create a new account, or connect with your existing account, if you have one.'), common_config('site', 'name')));
         }
     }
 
     function title()
     {
+        // TRANS: Title
         return _m('OpenID Account Setup');
     }
 
@@ -115,6 +122,8 @@ class FinishopenidloginAction extends Action
                                       'value' => 'true'));
         $this->elementStart('label', array('for' => 'license',
                                           'class' => 'checkbox'));
+        // TRANS: OpenID plugin link text.
+        // TRANS: %s is a link to a licese with the license name as link text.
         $message = _('My text and files are available under %s ' .
                      'except this private data: password, ' .
                      'email address, IM address, and phone number.');
@@ -127,23 +136,29 @@ class FinishopenidloginAction extends Action
         $this->elementEnd('label');
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('create', _m('Create'));
+        // TRANS: Button label in form in which to create a new user on the site for an OpenID.
+        $this->submit('create', _m('BUTTON', 'Create'));
         $this->elementEnd('fieldset');
 
         $this->elementStart('fieldset', array('id' => 'form_openid_createaccount'));
         $this->element('legend', null,
+                       // TRANS: Used as form legend for form in which to connect an OpenID to an existing user on the site.
                        _m('Connect existing account'));
         $this->element('p', null,
+                       // TRANS: User instructions for form in which to connect an OpenID to an existing user on the site.
                        _m('If you already have an account, login with your username and password to connect it to your OpenID.'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
+        // TRANS: Field label in form in which to connect an OpenID to an existing user on the site.
         $this->input('nickname', _m('Existing nickname'));
         $this->elementEnd('li');
         $this->elementStart('li');
+        // TRANS: Field label in form in which to connect an OpenID to an existing user on the site.
         $this->password('password', _m('Password'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('connect', _m('Connect'));
+        // TRANS: Button label in form in which to connect an OpenID to an existing user on the site.
+        $this->submit('connect', _m('BUTTON', 'Connect'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }
@@ -155,10 +170,11 @@ class FinishopenidloginAction extends Action
         $response = $consumer->complete(common_local_url('finishopenidlogin'));
 
         if ($response->status == Auth_OpenID_CANCEL) {
+            // TRANS: Status message in case the response from the OpenID provider is that the logon attempt was cancelled.
             $this->message(_m('OpenID authentication cancelled.'));
             return;
         } else if ($response->status == Auth_OpenID_FAILURE) {
-            // Authentication failed; display the error message.
+            // TRANS: OpenID authentication failed; display the error message. %s is the error message.
             $this->message(sprintf(_m('OpenID authentication failed: %s'), $response->message));
         } else if ($response->status == Auth_OpenID_SUCCESS) {
             // This means the authentication succeeded; extract the
@@ -175,6 +191,12 @@ class FinishopenidloginAction extends Action
 
             if ($sreg_resp) {
                 $sreg = $sreg_resp->contents();
+            }
+
+            // Launchpad teams extension
+            if (!oid_check_teams($response)) {
+                $this->message(_m('OpenID authentication aborted: you are not allowed to login to this site.'));
+                return;
             }
 
             $user = oid_get_user($canonical);
@@ -224,6 +246,7 @@ class FinishopenidloginAction extends Action
         # FIXME: save invite code before redirect, and check here
 
         if (common_config('site', 'closed')) {
+            // TRANS: OpenID plugin message. No new user registration is allowed on the site.
             $this->clientError(_m('Registration not allowed.'));
             return;
         }
@@ -233,6 +256,7 @@ class FinishopenidloginAction extends Action
         if (common_config('site', 'inviteonly')) {
             $code = $_SESSION['invitecode'];
             if (empty($code)) {
+                // TRANS: OpenID plugin message. No new user registration is allowed on the site without an invitation code, and none was provided.
                 $this->clientError(_m('Registration not allowed.'));
                 return;
             }
@@ -240,6 +264,7 @@ class FinishopenidloginAction extends Action
             $invite = Invitation::staticGet($code);
 
             if (empty($invite)) {
+                // TRANS: OpenID plugin message. No new user registration is allowed on the site without an invitation code, and the one provided was not valid.
                 $this->clientError(_m('Not a valid invitation code.'));
                 return;
             }
@@ -250,16 +275,19 @@ class FinishopenidloginAction extends Action
         if (!Validate::string($nickname, array('min_length' => 1,
                                                'max_length' => 64,
                                                'format' => NICKNAME_FMT))) {
+            // TRANS: OpenID plugin message. The entered new user name did not conform to the requirements.
             $this->showForm(_m('Nickname must have only lowercase letters and numbers and no spaces.'));
             return;
         }
 
         if (!User::allowed_nickname($nickname)) {
+            // TRANS: OpenID plugin message. The entered new user name is blacklisted.
             $this->showForm(_m('Nickname not allowed.'));
             return;
         }
 
         if (User::staticGet('nickname', $nickname)) {
+            // TRANS: OpenID plugin message. The entered new user name is already used.
             $this->showForm(_m('Nickname already in use. Try another one.'));
             return;
         }
@@ -267,6 +295,7 @@ class FinishopenidloginAction extends Action
         list($display, $canonical, $sreg) = $this->getSavedValues();
 
         if (!$display || !$canonical) {
+            // TRANS: OpenID plugin server error. A stored OpenID cannot be retrieved.
             $this->serverError(_m('Stored OpenID not found.'));
             return;
         }
@@ -276,6 +305,7 @@ class FinishopenidloginAction extends Action
         $other = oid_get_user($canonical);
 
         if ($other) {
+            // TRANS: OpenID plugin server error.
             $this->serverError(_m('Creating new account for OpenID that already has a user.'));
             return;
         }
@@ -340,6 +370,7 @@ class FinishopenidloginAction extends Action
         $password = $this->trimmed('password');
 
         if (!common_check_user($nickname, $password)) {
+            // TRANS: OpenID plugin message.
             $this->showForm(_m('Invalid username or password.'));
             return;
         }
@@ -351,6 +382,7 @@ class FinishopenidloginAction extends Action
         list($display, $canonical, $sreg) = $this->getSavedValues();
 
         if (!$display || !$canonical) {
+            // TRANS: OpenID plugin server error. A stored OpenID cannot be found.
             $this->serverError(_m('Stored OpenID not found.'));
             return;
         }
@@ -358,6 +390,7 @@ class FinishopenidloginAction extends Action
         $result = oid_link_user($user->id, $canonical, $display);
 
         if (!$result) {
+            // TRANS: OpenID plugin server error. The user or user profile could not be saved.
             $this->serverError(_m('Error connecting user to OpenID.'));
             return;
         }

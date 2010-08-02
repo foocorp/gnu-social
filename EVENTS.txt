@@ -141,7 +141,7 @@ StartLogout: Before logging out
 EndLogout: After logging out
 - $action: the logout action
 
-ArgsInitialized: After the argument array has been initialized
+ArgsInitialize: After the argument array has been initialized
 - $args: associative array of arguments, can be modified
 
 StartAddressData: Allows the site owner to provide additional information about themselves for contact (e.g., tagline, email, location)

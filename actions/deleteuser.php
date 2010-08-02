@@ -147,8 +147,20 @@ class DeleteuserAction extends ProfileFormAction
             }
             Event::handle('EndDeleteUserForm', array($this, $this->user));
         }
-        $this->submit('form_action-no', _('No'), 'submit form_action-primary', 'no', _("Do not block this user"));
-        $this->submit('form_action-yes', _('Yes'), 'submit form_action-secondary', 'yes', _('Delete this user'));
+        $this->submit('form_action-no',
+                      // TRANS: Button label on the delete user form.
+                      _m('BUTTON','No'),
+                      'submit form_action-primary',
+                      'no',
+                      // TRANS: Submit button title for 'No' when deleting a user.
+                      _('Do not block this user'));
+        $this->submit('form_action-yes',
+                      // TRANS: Button label on the delete user form.
+                      _m('BUTTON','Yes'),
+                      'submit form_action-secondary',
+                      'yes',
+                      // TRANS: Submit button title for 'Yes' when deleting a user.
+                      _('Delete this user'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }

@@ -84,6 +84,7 @@ class AttachmentList extends Widget
         if (empty($att)) return 0;
         $this->out->elementStart('dl', array('id' =>'attachments',
                                              'class' => 'entry-content'));
+        // TRANS: DT element label in attachment list.
         $this->out->element('dt', null, _('Attachments'));
         $this->out->elementStart('dd');
         $this->out->elementStart('ol', array('class' => 'attachments'));
@@ -260,6 +261,7 @@ class Attachment extends AttachmentListItem
                                                   'class' => 'entry-content'));
             if (!empty($this->oembed->author_name)) {
                 $this->out->elementStart('dl', 'vcard author');
+                // TRANS: DT element label in attachment list item.
                 $this->out->element('dt', null, _('Author'));
                 $this->out->elementStart('dd', 'fn');
                 if (empty($this->oembed->author_url)) {
@@ -273,6 +275,7 @@ class Attachment extends AttachmentListItem
             }
             if (!empty($this->oembed->provider)) {
                 $this->out->elementStart('dl', 'vcard');
+                // TRANS: DT element label in attachment list item.
                 $this->out->element('dt', null, _('Provider'));
                 $this->out->elementStart('dd', 'fn');
                 if (empty($this->oembed->provider_url)) {

@@ -88,8 +88,8 @@ class Subscription extends Memcached_DataObject
 
             self::blow('user:notices_with_friends:%d', $subscriber->id);
 
-            $subscriber->blowSubscriptionsCount();
-            $other->blowSubscribersCount();
+            $subscriber->blowSubscriptionCount();
+            $other->blowSubscriberCount();
 
             $otherUser = User::staticGet('id', $other->id);
 
@@ -213,8 +213,8 @@ class Subscription extends Memcached_DataObject
 
             self::blow('user:notices_with_friends:%d', $subscriber->id);
 
-            $subscriber->blowSubscriptionsCount();
-            $other->blowSubscribersCount();
+            $subscriber->blowSubscriptionCount();
+            $other->blowSubscriberCount();
 
             Event::handle('EndUnsubscribe', array($subscriber, $other));
         }

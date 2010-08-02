@@ -24,11 +24,13 @@ Author URI: http://candrews.integralblue.com/
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-/**
+ * @category  Plugin
  * @package MinifyPlugin
  * @maintainer Craig Andrews <candrews@integralblue.com>
+ * @author    Craig Andrews <candrews@integralblue.com>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
+ * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
+ * @link      http://status.net/
  */
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
@@ -52,8 +54,8 @@ class FirePHPPlugin extends Plugin
     {
         static $firephp_priorities = array(FirePHP::ERROR, FirePHP::ERROR, FirePHP::ERROR, FirePHP::ERROR,
                                       FirePHP::WARN, FirePHP::LOG, FirePHP::LOG, FirePHP::INFO);
-        $priority = $firephp_priorities[$priority];
-        $this->firephp->fb($msg, $priority);
+        $fp_priority = $firephp_priorities[$priority];
+        $this->firephp->fb($msg, $fp_priority);
     }
 
     function onPluginVersion(&$versions)

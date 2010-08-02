@@ -849,7 +849,7 @@ function common_linkify($url) {
     }
 
     if (!empty($f)) {
-        if ($f->getEnclosure()) {
+        if ($f->getEnclosure() || File_oembed::staticGet('file_id',$f->id)) {
             $is_attachment = true;
             $attachment_id = $f->id;
 
@@ -872,10 +872,10 @@ function common_linkify($url) {
     return XMLStringer::estring('a', $attrs, $url);
 }
 
-function common_shorten_links($text)
+function common_shorten_links($text, $always = false)
 {
     $maxLength = Notice::maxContent();
-    if ($maxLength == 0 || mb_strlen($text) <= $maxLength) return $text;
+    if (!$always && ($maxLength == 0 || mb_strlen($text) <= $maxLength)) return $text;
     return common_replace_urls_callback($text, array('File_redirection', 'makeShort'));
 }
 
@@ -1096,24 +1096,38 @@ function common_date_string($dt)
     if ($now < $t) { // that shouldn't happen!
         return common_exact_date($dt);
     } else if ($diff < 60) {
+        // TRANS: Used in notices to indicate when the notice was made compared to now.
         return _('a few seconds ago');
     } else if ($diff < 92) {
+        // TRANS: Used in notices to indicate when the notice was made compared to now.
         return _('about a minute ago');
     } else if ($diff < 3300) {
+        // XXX: should support plural.
+        // TRANS: Used in notices to indicate when the notice was made compared to now.
         return sprintf(_('about %d minutes ago'), round($diff/60));
     } else if ($diff < 5400) {
+        // TRANS: Used in notices to indicate when the notice was made compared to now.
         return _('about an hour ago');
     } else if ($diff < 22 * 3600) {
+        // XXX: should support plural.
+        // TRANS: Used in notices to indicate when the notice was made compared to now.
         return sprintf(_('about %d hours ago'), round($diff/3600));
     } else if ($diff < 37 * 3600) {
+        // TRANS: Used in notices to indicate when the notice was made compared to now.
         return _('about a day ago');
     } else if ($diff < 24 * 24 * 3600) {
+        // XXX: should support plural.
+        // TRANS: Used in notices to indicate when the notice was made compared to now.
         return sprintf(_('about %d days ago'), round($diff/(24*3600)));
     } else if ($diff < 46 * 24 * 3600) {
+        // TRANS: Used in notices to indicate when the notice was made compared to now.
         return _('about a month ago');
     } else if ($diff < 330 * 24 * 3600) {
+        // XXX: should support plural.
+        // TRANS: Used in notices to indicate when the notice was made compared to now.
         return sprintf(_('about %d months ago'), round($diff/(30*24*3600)));
     } else if ($diff < 480 * 24 * 3600) {
+        // TRANS: Used in notices to indicate when the notice was made compared to now.
         return _('about a year ago');
     } else {
         return common_exact_date($dt);
@@ -1235,9 +1249,8 @@ function common_enqueue_notice($notice)
         $transports[] = 'jabber';
     }
 
-    // @fixme move these checks into QueueManager and/or individual handlers
-    if ($notice->is_local == Notice::LOCAL_PUBLIC ||
-        $notice->is_local == Notice::LOCAL_NONPUBLIC) {
+    // We can skip these for gatewayed notices.
+    if ($notice->isLocal()) {
         $transports = array_merge($transports, $localTransports);
         if ($xmpp) {
             $transports[] = 'public';

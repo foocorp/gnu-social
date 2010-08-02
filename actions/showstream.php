@@ -204,11 +204,11 @@ class ShowstreamAction extends ProfileAction
             if ($this->user->id === $current_user->id) {
                 $message .= _('Seen anything interesting recently? You haven\'t posted any notices yet, now would be a good time to start :)');
             } else {
-                $message .= sprintf(_('You can try to nudge %1$s or [post something to his or her attention](%%%%action.newnotice%%%%?status_textarea=%2$s).'), $this->user->nickname, '@' . $this->user->nickname);
+                $message .= sprintf(_('You can try to nudge %1$s or [post something to their attention](%%%%action.newnotice%%%%?status_textarea=%2$s).'), $this->user->nickname, '@' . $this->user->nickname);
             }
         }
         else {
-            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to his or her attention.'), $this->user->nickname);
+            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to their attention.'), $this->user->nickname);
         }
 
         $this->elementStart('div', 'guide');

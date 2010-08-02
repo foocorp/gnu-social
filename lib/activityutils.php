@@ -257,6 +257,12 @@ class ActivityUtils
      */
     static function validateUri($uri)
     {
+        // Check mailto: URIs first
+
+        if (preg_match('/^mailto:(.*)$/', $uri, $match)) {
+            return Validate::email($match[1], common_config('email', 'check_domain'));
+        }
+
         if (Validate::uri($uri)) {
             return true;
         }

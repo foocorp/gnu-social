@@ -118,7 +118,8 @@ class Activity
         // Insist on a feed's root DOMElement; don't allow a DOMDocument
         if ($feed instanceof DOMDocument) {
             throw new ClientException(
-                _("Expecting a root feed element but got a whole XML document.")
+                // TRANS: Client exception thrown when a feed instance is a DOMDocument.
+                _('Expecting a root feed element but got a whole XML document.')
             );
         }
 

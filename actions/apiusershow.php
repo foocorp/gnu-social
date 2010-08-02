@@ -113,7 +113,7 @@ class ApiUserShowAction extends ApiPrivateAuthAction
 
         if ($this->format == 'xml') {
             $this->initDocument('xml');
-            $this->showTwitterXmlUser($twitter_user);
+            $this->showTwitterXmlUser($twitter_user, 'user', true);
             $this->endDocument('xml');
         } elseif ($this->format == 'json') {
             $this->initDocument('json');

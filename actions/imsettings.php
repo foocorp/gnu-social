@@ -56,6 +56,7 @@ class ImsettingsAction extends ConnectSettingsAction
 
     function title()
     {
+        // TRANS: Title for instance messaging settings.
         return _('IM settings');
     }
 
@@ -67,6 +68,9 @@ class ImsettingsAction extends ConnectSettingsAction
 
     function getInstructions()
     {
+        // TRANS: Instant messaging settings page instructions.
+        // TRANS: [instant messages] is link text, "(%%doc.im%%)" is the link.
+        // TRANS: the order and formatting of link text and link should remain unchanged.
         return _('You can send and receive notices through '.
                  'Jabber/GTalk [instant messages](%%doc.im%%). '.
                  'Configure your address and settings below.');
@@ -86,6 +90,7 @@ class ImsettingsAction extends ConnectSettingsAction
     {
         if (!common_config('xmpp', 'enabled')) {
             $this->element('div', array('class' => 'error'),
+                           // TRANS: Message given in the IM settings if XMPP is not enabled on the site.
                            _('IM is not available.'));
             return;
         }
@@ -97,32 +102,41 @@ class ImsettingsAction extends ConnectSettingsAction
                                           'action' =>
                                           common_local_url('imsettings')));
         $this->elementStart('fieldset', array('id' => 'settings_im_address'));
-        $this->element('legend', null, _('Address'));
+        // TRANS: Form legend for IM settings form.
+        $this->element('legend', null, _('IM address'));
         $this->hidden('token', common_session_token());
 
         if ($user->jabber) {
             $this->element('p', 'form_confirmed', $user->jabber);
+            // TRANS: Form note in IM settings form.
             $this->element('p', 'form_note',
                            _('Current confirmed Jabber/GTalk address.'));
             $this->hidden('jabber', $user->jabber);
-            $this->submit('remove', _('Remove'));
+            // TRANS: Button label to remove a confirmed IM address.
+            $this->submit('remove', _m('BUTTON','Remove'));
         } else {
             $confirm = $this->getConfirmation();
             if ($confirm) {
                 $this->element('p', 'form_unconfirmed', $confirm->address);
                 $this->element('p', 'form_note',
+                               // TRANS: Form note in IM settings form.
+                               // TRANS: %s is the IM address set for the site.
                                sprintf(_('Awaiting confirmation on this address. '.
                                          'Check your Jabber/GTalk account for a '.
                                          'message with further instructions. '.
                                          '(Did you add %s to your buddy list?)'),
                                        jabber_daemon_address()));
                 $this->hidden('jabber', $confirm->address);
-                $this->submit('cancel', _('Cancel'));
+                // TRANS: Button label to cancel an IM address confirmation procedure.
+                $this->submit('cancel', _m('BUTTON','Cancel'));
             } else {
                 $this->elementStart('ul', 'form_data');
                 $this->elementStart('li');
+                // TRANS: Field label for IM address input in IM settings form.
                 $this->input('jabber', _('IM address'),
                              ($this->arg('jabber')) ? $this->arg('jabber') : null,
+                             // TRANS: IM address input field instructions in IM settings form.
+                             // TRANS: %s is the IM address set for the site.
                              sprintf(_('Jabber or GTalk address, '.
                                        'like "UserName@example.org". '.
                                        'First, make sure to add %s to your '.
@@ -130,37 +144,44 @@ class ImsettingsAction extends ConnectSettingsAction
                                      jabber_daemon_address()));
                 $this->elementEnd('li');
                 $this->elementEnd('ul');
-                $this->submit('add', _('Add'));
+                // TRANS: Button label for adding an IM address in IM settings form.
+                $this->submit('add', _m('BUTTON','Add'));
             }
         }
         $this->elementEnd('fieldset');
         
         $this->elementStart('fieldset', array('id' => 'settings_im_preferences'));
-        $this->element('legend', null, _('Preferences'));
+        // TRANS: Form legend for IM preferences form.
+        $this->element('legend', null, _('IM preferences'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
         $this->checkbox('jabbernotify',
+                        // TRANS: Checkbox label in IM preferences form.
                         _('Send me notices through Jabber/GTalk.'),
                         $user->jabbernotify);
         $this->elementEnd('li');
         $this->elementStart('li');
         $this->checkbox('updatefrompresence',
+                        // TRANS: Checkbox label in IM preferences form.
                         _('Post a notice when my Jabber/GTalk status changes.'),
                         $user->updatefrompresence);
         $this->elementEnd('li');
         $this->elementStart('li');
         $this->checkbox('jabberreplies',
+                        // TRANS: Checkbox label in IM preferences form.
                         _('Send me replies through Jabber/GTalk '.
                           'from people I\'m not subscribed to.'),
                         $user->jabberreplies);
         $this->elementEnd('li');
         $this->elementStart('li');
         $this->checkbox('jabbermicroid',
+                        // TRANS: Checkbox label in IM preferences form.
                         _('Publish a MicroID for my Jabber/GTalk address.'),
                         $user->jabbermicroid);
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('save', _('Save'));
+        // TRANS: Button label to save IM preferences.
+        $this->submit('save', _m('BUTTON','Save'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }
@@ -217,6 +238,7 @@ class ImsettingsAction extends ConnectSettingsAction
         } else if ($this->arg('remove')) {
             $this->removeAddress();
         } else {
+            // TRANS: Message given submitting a form with an unknown action in IM settings.
             $this->showForm(_('Unexpected form submission.'));
         }
     }
@@ -232,7 +254,6 @@ class ImsettingsAction extends ConnectSettingsAction
 
     function savePreferences()
     {
-
         $jabbernotify       = $this->boolean('jabbernotify');
         $updatefrompresence = $this->boolean('updatefrompresence');
         $jabberreplies      = $this->boolean('jabberreplies');
@@ -255,12 +276,14 @@ class ImsettingsAction extends ConnectSettingsAction
 
         if ($result === false) {
             common_log_db_error($user, 'UPDATE', __FILE__);
+            // TRANS: Server error thrown on database error updating IM preferences.
             $this->serverError(_('Couldn\'t update user.'));
             return;
         }
 
         $user->query('COMMIT');
 
+        // TRANS: Confirmation message for successful IM preferences save.
         $this->showForm(_('Preferences saved.'), true);
     }
 
@@ -282,6 +305,7 @@ class ImsettingsAction extends ConnectSettingsAction
         // Some validation
 
         if (!$jabber) {
+            // TRANS: Message given saving IM address without having provided one.
             $this->showForm(_('No Jabber ID.'));
             return;
         }
@@ -289,16 +313,20 @@ class ImsettingsAction extends ConnectSettingsAction
         $jabber = jabber_normalize_jid($jabber);
 
         if (!$jabber) {
+            // TRANS: Message given saving IM address that cannot be normalised.
             $this->showForm(_('Cannot normalize that Jabber ID'));
             return;
         }
         if (!jabber_valid_base_jid($jabber, common_config('email', 'domain_check'))) {
+            // TRANS: Message given saving IM address that not valid.
             $this->showForm(_('Not a valid Jabber ID'));
             return;
         } else if ($user->jabber == $jabber) {
+            // TRANS: Message given saving IM address that is already set.
             $this->showForm(_('That is already your Jabber ID.'));
             return;
         } else if ($this->jabberExists($jabber)) {
+            // TRANS: Message given saving IM address that is already set for another user.
             $this->showForm(_('Jabber ID already belongs to another user.'));
             return;
         }
@@ -316,6 +344,7 @@ class ImsettingsAction extends ConnectSettingsAction
 
         if ($result === false) {
             common_log_db_error($confirm, 'INSERT', __FILE__);
+            // TRANS: Server error thrown on database error adding IM confirmation code.
             $this->serverError(_('Couldn\'t insert confirmation code.'));
             return;
         }
@@ -324,6 +353,8 @@ class ImsettingsAction extends ConnectSettingsAction
                                $user->nickname,
                                $jabber);
 
+        // TRANS: Message given saving valid IM address that is to be confirmed.
+        // TRANS: %s is the IM address set for the site.
         $msg = sprintf(_('A confirmation code was sent '.
                          'to the IM address you added. '.
                          'You must approve %s for '.
@@ -348,10 +379,12 @@ class ImsettingsAction extends ConnectSettingsAction
         $confirm = $this->getConfirmation();
 
         if (!$confirm) {
+            // TRANS: Message given canceling IM address confirmation that is not pending.
             $this->showForm(_('No pending confirmation to cancel.'));
             return;
         }
         if ($confirm->address != $jabber) {
+            // TRANS: Message given canceling IM address confirmation for the wrong IM address.
             $this->showForm(_('That is the wrong IM address.'));
             return;
         }
@@ -360,11 +393,13 @@ class ImsettingsAction extends ConnectSettingsAction
 
         if (!$result) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
-            $this->serverError(_('Couldn\'t delete email confirmation.'));
+            // TRANS: Server error thrown on database error canceling IM address confirmation.
+            $this->serverError(_('Couldn\'t delete IM confirmation.'));
             return;
         }
 
-        $this->showForm(_('Confirmation cancelled.'), true);
+        // TRANS: Message given after successfully canceling IM address confirmation.
+        $this->showForm(_('IM confirmation cancelled.'), true);
     }
 
     /**
@@ -384,6 +419,8 @@ class ImsettingsAction extends ConnectSettingsAction
         // Maybe an old tab open...?
 
         if ($user->jabber != $jabber) {
+            // TRANS: Message given trying to remove an IM address that is not
+            // TRANS: registered for the active user.
             $this->showForm(_('That is not your Jabber ID.'));
             return;
         }
@@ -398,6 +435,7 @@ class ImsettingsAction extends ConnectSettingsAction
 
         if (!$result) {
             common_log_db_error($user, 'UPDATE', __FILE__);
+            // TRANS: Server error thrown on database error removing a registered IM address.
             $this->serverError(_('Couldn\'t update user.'));
             return;
         }
@@ -405,7 +443,8 @@ class ImsettingsAction extends ConnectSettingsAction
 
         // XXX: unsubscribe to the old address
 
-        $this->showForm(_('The address was removed.'), true);
+        // TRANS: Message given after successfully removing a registered IM address.
+        $this->showForm(_('The IM address was removed.'), true);
     }
 
     /**

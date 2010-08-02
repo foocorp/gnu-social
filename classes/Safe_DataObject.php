@@ -96,6 +96,30 @@ class Safe_DataObject extends DB_DataObject
         $this->_link_loaded = false;
     }
 
+    /**
+     * Magic function called when someone attempts to call a method
+     * that doesn't exist. DB_DataObject uses this to implement
+     * setters and getters for fields, but neglects to throw an error
+     * when you just misspell an actual method name. This leads to
+     * silent failures which can cause all kinds of havoc.
+     *
+     * @param string $method
+     * @param array $params
+     * @return mixed
+     * @throws Exception
+     */
+    function __call($method, $params)
+    {
+        $return = null;
+        // Yes, that's _call with one underscore, which does the
+        // actual implementation.
+        if ($this->_call($method, $params, $return)) {
+            return $return;
+        } else {
+            throw new Exception('Call to undefined method ' .
+                get_class($this) . '::' . $method);
+        }
+    }
 
     /**
      * Work around memory-leak bugs...

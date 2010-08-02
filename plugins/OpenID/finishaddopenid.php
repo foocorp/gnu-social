@@ -64,6 +64,7 @@ class FinishaddopenidAction extends Action
     {
         parent::handle($args);
         if (!common_logged_in()) {
+            // TRANS: Client error message
             $this->clientError(_m('Not logged in.'));
         } else {
             $this->tryLogin();
@@ -85,10 +86,12 @@ class FinishaddopenidAction extends Action
         $response = $consumer->complete(common_local_url('finishaddopenid'));
 
         if ($response->status == Auth_OpenID_CANCEL) {
+            // TRANS: Status message in case the response from the OpenID provider is that the logon attempt was cancelled.
             $this->message(_m('OpenID authentication cancelled.'));
             return;
         } else if ($response->status == Auth_OpenID_FAILURE) {
-            // Authentication failed; display the error message.
+            // TRANS: OpenID authentication failed; display the error message.
+            // TRANS: %s is the error message.
             $this->message(sprintf(_m('OpenID authentication failed: %s'),
                                    $response->message));
         } else if ($response->status == Auth_OpenID_SUCCESS) {
@@ -103,14 +106,22 @@ class FinishaddopenidAction extends Action
                 $sreg = $sreg_resp->contents();
             }
 
+            // Launchpad teams extension
+            if (!oid_check_teams($response)) {
+                $this->message(_m('OpenID authentication aborted: you are not allowed to login to this site.'));
+                return;
+            }
+
             $cur = common_current_user();
 
             $other = oid_get_user($canonical);
 
             if ($other) {
                 if ($other->id == $cur->id) {
+                    // TRANS: message in case a user tries to add an OpenID that is already connected to them.
                     $this->message(_m('You already have this OpenID!'));
                 } else {
+                    // TRANS: message in case a user tries to add an OpenID that is already used by another user.
                     $this->message(_m('Someone else already has this OpenID.'));
                 }
                 return;
@@ -123,12 +134,14 @@ class FinishaddopenidAction extends Action
             $result = oid_link_user($cur->id, $canonical, $display);
 
             if (!$result) {
+                // TRANS: message in case the OpenID object cannot be connected to the user.
                 $this->message(_m('Error connecting user.'));
                 return;
             }
             if (Event::handle('StartOpenIDUpdateUser', array($cur, $canonical, &$sreg))) {
                 if ($sreg) {
                     if (!oid_update_user($cur, $sreg)) {
+                        // TRANS: message in case the user or the user profile cannot be saved in StatusNet.
                         $this->message(_m('Error updating profile'));
                         return;
                     }
@@ -170,6 +183,7 @@ class FinishaddopenidAction extends Action
 
     function title()
     {
+        // TRANS: Title after getting the status of the OpenID authorisation request.
         return _m('OpenID Login');
     }
 

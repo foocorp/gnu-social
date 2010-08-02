@@ -94,7 +94,7 @@ class Auth_OpenID_Association {
      * @return association An {@link Auth_OpenID_Association}
      * instance.
      */
-    function fromExpiresIn($expires_in, $handle, $secret, $assoc_type)
+    static function fromExpiresIn($expires_in, $handle, $secret, $assoc_type)
     {
         $issued = time();
         $lifetime = $expires_in;
@@ -132,7 +132,7 @@ class Auth_OpenID_Association {
         $handle, $secret, $issued, $lifetime, $assoc_type)
     {
         if (!in_array($assoc_type,
-                      Auth_OpenID_getSupportedAssociationTypes())) {
+                      Auth_OpenID_getSupportedAssociationTypes(), true)) {
             $fmt = 'Unsupported association type (%s)';
             trigger_error(sprintf($fmt, $assoc_type), E_USER_ERROR);
         }
@@ -206,7 +206,7 @@ class Auth_OpenID_Association {
      * @param string $assoc_s Association as serialized by serialize()
      * @return Auth_OpenID_Association $result instance of this class
      */
-    function deserialize($class_name, $assoc_s)
+    static function deserialize($class_name, $assoc_s)
     {
         $pairs = Auth_OpenID_KVForm::toArray($assoc_s, $strict = true);
         $keys = array();
@@ -327,7 +327,7 @@ class Auth_OpenID_Association {
      *
      * @access private
      */
-    function _makePairs(&$message)
+    function _makePairs($message)
     {
         $signed = $message->getArg(Auth_OpenID_OPENID_NS, 'signed');
         if (!$signed || Auth_OpenID::isFailure($signed)) {
@@ -352,7 +352,7 @@ class Auth_OpenID_Association {
      *
      * @access private
      */
-    function getMessageSignature(&$message)
+    function getMessageSignature($message)
     {
         $pairs = $this->_makePairs($message);
         return base64_encode($this->sign($pairs));
@@ -364,7 +364,7 @@ class Auth_OpenID_Association {
      *
      * @access private
      */
-    function checkMessageSignature(&$message)
+    function checkMessageSignature($message)
     {
         $sig = $message->getArg(Auth_OpenID_OPENID_NS,
                                 'sig');
@@ -374,7 +374,42 @@ class Auth_OpenID_Association {
         }
 
         $calculated_sig = $this->getMessageSignature($message);
-        return $calculated_sig == $sig;
+
+        return $this->constantTimeCompare($calculated_sig, $sig);
+    }
+
+    /**
+     * String comparison function which will complete in a constant time
+     * for strings of any given matching length, to help prevent an attacker
+     * from distinguishing how much of a signature token they have guessed
+     * correctly.
+     *
+     * For this usage, it's assumed that the length of the string is known,
+     * so we may safely short-circuit on mismatched lengths which will be known
+     * to be invalid by the attacker.
+     *
+     * http://lists.openid.net/pipermail/openid-security/2010-July/001156.html
+     * http://rdist.root.org/2010/01/07/timing-independent-array-comparison/
+     */
+    private function constantTimeCompare($a, $b)
+    {
+        $len = strlen($a);
+        if (strlen($b) !== $len) {
+            // Short-circuit on length mismatch; attackers will already know
+            // the correct target length so this is safe.
+            return false;
+        }
+        if ($len == 0) {
+            // 0-length valid input shouldn't really happen. :)
+            return true;
+        }
+        $result = 0;
+        for ($i = 0; $i < strlen($a); $i++) {
+            // We use scary bitwise operations to avoid logical short-circuits
+            // in lower-level code.
+            $result |= ord($a{$i}) ^ ord($b{$i});
+        }
+        return ($result == 0);
     }
 }
 
@@ -469,18 +504,16 @@ function Auth_OpenID_getOnlyEncryptedOrder()
     return $result;
 }
 
-function &Auth_OpenID_getDefaultNegotiator()
+function Auth_OpenID_getDefaultNegotiator()
 {
-    $x = new Auth_OpenID_SessionNegotiator(
+    return new Auth_OpenID_SessionNegotiator(
                  Auth_OpenID_getDefaultAssociationOrder());
-    return $x;
 }
 
-function &Auth_OpenID_getEncryptedNegotiator()
+function Auth_OpenID_getEncryptedNegotiator()
 {
-    $x = new Auth_OpenID_SessionNegotiator(
+    return new Auth_OpenID_SessionNegotiator(
                  Auth_OpenID_getOnlyEncryptedOrder());
-    return $x;
 }
 
 /**
@@ -610,4 +643,3 @@ class Auth_OpenID_SessionNegotiator {
     }
 }
 
-?>

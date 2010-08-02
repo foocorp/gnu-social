@@ -1,10 +1,6 @@
 <?php
 /**
- * Map XRDS actions to URLs
- *
- * This interface specifies classes which write the XRDS file announcing
- * the OMB server. An instance of an implementing class should be passed to
- * OMB_Service_Provider->writeXRDS.
+ * This file is part of libomb
  *
  * PHP version 5
  *
@@ -21,13 +17,31 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @package   OMB
- * @author    Adrian Lang <mail@adrianlang.de>
- * @copyright 2009 Adrian Lang
- * @license   http://www.gnu.org/licenses/agpl.html GNU AGPL 3.0
- **/
+ * @package OMB
+ * @author  Adrian Lang <mail@adrianlang.de>
+ * @license http://www.gnu.org/licenses/agpl.html GNU AGPL 3.0
+ * @version 0.1a-20090828
+ * @link    http://adrianlang.de/libomb
+ */
 
-interface OMB_XRDS_Mapper {
-  public function getURL($action);
+/**
+ * Map XRDS actions to URLs
+ *
+ * This interface specifies classes which write the XRDS file announcing
+ * the OMB server. An instance of an implementing class should be passed to
+ * OMB_Service_Provider->writeXRDS.
+ */
+interface OMB_XRDS_Mapper
+{
+    /**
+     * Fetch an URL for a specified action
+     *
+     * Returns the action URL for an action specified by the endpoint URI.
+     *
+     * @param string $action The endpoint URI
+     *
+     * @return string The action URL
+     */
+    public function getURL($action);
 }
 ?>

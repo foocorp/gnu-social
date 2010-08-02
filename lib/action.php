@@ -141,6 +141,7 @@ class Action extends HTMLOutputter // lawsuit
     function showTitle()
     {
         $this->element('title', null,
+                       // TRANS: Page title. %1$s is the title, %2$s is the site name.
                        sprintf(_("%1\$s - %2\$s"),
                                $this->title(),
                                common_config('site', 'name')));
@@ -156,6 +157,7 @@ class Action extends HTMLOutputter // lawsuit
 
     function title()
     {
+        // TRANS: Page title for a page without a title set.
         return _("Untitled page");
     }
 
@@ -233,6 +235,16 @@ class Action extends HTMLOutputter // lawsuit
                 Event::handle('EndShowDesign', array($this));
             }
             Event::handle('EndShowStyles', array($this));
+            
+            if (common_config('custom_css', 'enabled')) {
+                $css = common_config('custom_css', 'css');
+                if (Event::handle('StartShowCustomCss', array($this, &$css))) {
+                    if (trim($css) != '') {
+                        $this->style($css);
+                    }
+                    Event::handle('EndShowCustomCss', array($this));
+                }
+            }
         }
     }
 
@@ -420,6 +432,7 @@ class Action extends HTMLOutputter // lawsuit
     {
         $user = common_current_user();
         $this->elementStart('dl', array('id' => 'site_nav_global_primary'));
+        // TRANS: DT element for primary navigation menu. String is hidden in default CSS.
         $this->element('dt', null, _('Primary site navigation'));
         $this->elementStart('dd');
         $this->elementStart('ul', array('class' => 'nav'));
@@ -427,31 +440,31 @@ class Action extends HTMLOutputter // lawsuit
             if ($user) {
                 // TRANS: Tooltip for main menu option "Personal"
                 $tooltip = _m('TOOLTIP', 'Personal profile and friends timeline');
-                // TRANS: Main menu option when logged in for access to personal profile and friends timeline
                 $this->menuItem(common_local_url('all', array('nickname' => $user->nickname)),
+                                // TRANS: Main menu option when logged in for access to personal profile and friends timeline
                                 _m('MENU', 'Personal'), $tooltip, false, 'nav_home');
                 // TRANS: Tooltip for main menu option "Account"
                 $tooltip = _m('TOOLTIP', 'Change your email, avatar, password, profile');
-                // TRANS: Main menu option when logged in for access to user settings
                 $this->menuItem(common_local_url('profilesettings'),
+                                // TRANS: Main menu option when logged in for access to user settings
                                 _('Account'), $tooltip, false, 'nav_account');
                 // TRANS: Tooltip for main menu option "Services"
                 $tooltip = _m('TOOLTIP', 'Connect to services');
-                // TRANS: Main menu option when logged in and connection are possible for access to options to connect to other services
                 $this->menuItem(common_local_url('oauthconnectionssettings'),
+                                // TRANS: Main menu option when logged in and connection are possible for access to options to connect to other services
                                 _('Connect'), $tooltip, false, 'nav_connect');
                 if ($user->hasRight(Right::CONFIGURESITE)) {
                     // TRANS: Tooltip for menu option "Admin"
                     $tooltip = _m('TOOLTIP', 'Change site configuration');
-                    // TRANS: Main menu option when logged in and site admin for access to site configuration
                     $this->menuItem(common_local_url('siteadminpanel'),
+                                    // TRANS: Main menu option when logged in and site admin for access to site configuration
                                     _m('MENU', 'Admin'), $tooltip, false, 'nav_admin');
                 }
                 if (common_config('invite', 'enabled')) {
                     // TRANS: Tooltip for main menu option "Invite"
                     $tooltip = _m('TOOLTIP', 'Invite friends and colleagues to join you on %s');
-                    // TRANS: Main menu option when logged in and invitations are allowed for inviting new users
                     $this->menuItem(common_local_url('invite'),
+                                    // TRANS: Main menu option when logged in and invitations are allowed for inviting new users
                                     _m('MENU', 'Invite'),
                                     sprintf($tooltip,
                                             common_config('site', 'name')),
@@ -459,16 +472,16 @@ class Action extends HTMLOutputter // lawsuit
                 }
                 // TRANS: Tooltip for main menu option "Logout"
                 $tooltip = _m('TOOLTIP', 'Logout from the site');
-                // TRANS: Main menu option when logged in to log out the current user
                 $this->menuItem(common_local_url('logout'),
+                                // TRANS: Main menu option when logged in to log out the current user
                                 _m('MENU', 'Logout'), $tooltip, false, 'nav_logout');
             }
             else {
                 if (!common_config('site', 'closed') && !common_config('site', 'inviteonly')) {
                     // TRANS: Tooltip for main menu option "Register"
                     $tooltip = _m('TOOLTIP', 'Create an account');
-                    // TRANS: Main menu option when not logged in to register a new account
                     $this->menuItem(common_local_url('register'),
+                                    // TRANS: Main menu option when not logged in to register a new account
                                     _m('MENU', 'Register'), $tooltip, false, 'nav_register');
                 }
                 // TRANS: Tooltip for main menu option "Login"
@@ -575,6 +588,7 @@ class Action extends HTMLOutputter // lawsuit
     function showLocalNavBlock()
     {
         $this->elementStart('dl', array('id' => 'site_nav_local_views'));
+        // TRANS: DT element for local views block. String is hidden in default CSS.
         $this->element('dt', null, _('Local views'));
         $this->elementStart('dd');
         $this->showLocalNav();
@@ -641,6 +655,7 @@ class Action extends HTMLOutputter // lawsuit
 
             $this->elementStart('dl', array('id' => 'page_notice',
                                             'class' => 'system_notice'));
+            // TRANS: DT element for page notice. String is hidden in default CSS.
             $this->element('dt', null, _('Page notice'));
             $this->elementStart('dd');
             if (Event::handle('StartShowPageNotice', array($this))) {
@@ -743,28 +758,37 @@ class Action extends HTMLOutputter // lawsuit
     function showSecondaryNav()
     {
         $this->elementStart('dl', array('id' => 'site_nav_global_secondary'));
+        // TRANS: DT element for secondary navigation menu. String is hidden in default CSS.
         $this->element('dt', null, _('Secondary site navigation'));
         $this->elementStart('dd', null);
         $this->elementStart('ul', array('class' => 'nav'));
         if (Event::handle('StartSecondaryNav', array($this))) {
             $this->menuItem(common_local_url('doc', array('title' => 'help')),
+                            // TRANS: Secondary navigation menu option leading to help on StatusNet.
                             _('Help'));
             $this->menuItem(common_local_url('doc', array('title' => 'about')),
+                            // TRANS: Secondary navigation menu option leading to text about StatusNet site.
                             _('About'));
             $this->menuItem(common_local_url('doc', array('title' => 'faq')),
+                            // TRANS: Secondary navigation menu option leading to Frequently Asked Questions.
                             _('FAQ'));
             $bb = common_config('site', 'broughtby');
             if (!empty($bb)) {
                 $this->menuItem(common_local_url('doc', array('title' => 'tos')),
+                                // TRANS: Secondary navigation menu option leading to Terms of Service.
                                 _('TOS'));
             }
             $this->menuItem(common_local_url('doc', array('title' => 'privacy')),
+                            // TRANS: Secondary navigation menu option leading to privacy policy.
                             _('Privacy'));
             $this->menuItem(common_local_url('doc', array('title' => 'source')),
+                            // TRANS: Secondary navigation menu option.
                             _('Source'));
             $this->menuItem(common_local_url('version'),
+                            // TRANS: Secondary navigation menu option leading to version information on the StatusNet site.
                             _('Version'));
             $this->menuItem(common_local_url('doc', array('title' => 'contact')),
+                            // TRANS: Secondary navigation menu option leading to contact information on the StatusNet site.
                             _('Contact'));
             $this->menuItem(common_local_url('doc', array('title' => 'badge')),
                             _('Badge'));
@@ -795,16 +819,18 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showStatusNetLicense()
     {
+        // TRANS: DT element for StatusNet software license.
         $this->element('dt', array('id' => 'site_statusnet_license'), _('StatusNet software license'));
         $this->elementStart('dd', null);
-        // @fixme drop the final spaces in the messages when at good spot
-        // to let translations get updated.
         if (common_config('site', 'broughtby')) {
-            $instr = _('**%%site.name%%** is a microblogging service brought to you by [%%site.broughtby%%](%%site.broughtbyurl%%). ');
+            // TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is set.
+            $instr = _('**%%site.name%%** is a microblogging service brought to you by [%%site.broughtby%%](%%site.broughtbyurl%%).');
         } else {
-            $instr = _('**%%site.name%%** is a microblogging service. ');
+            // TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is not set.
+            $instr = _('**%%site.name%%** is a microblogging service.');
         }
         $instr .= ' ';
+        // TRANS: Second sentence of the StatusNet site license. Mentions the StatusNet source code license.
         $instr .= sprintf(_('It runs the [StatusNet](http://status.net/) microblogging software, version %s, available under the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html).'), STATUSNET_VERSION);
         $output = common_markup_to_html($instr);
         $this->raw($output);
@@ -820,19 +846,25 @@ class Action extends HTMLOutputter // lawsuit
     function showContentLicense()
     {
         if (Event::handle('StartShowContentLicense', array($this))) {
+            // TRANS: DT element for StatusNet site content license.
             $this->element('dt', array('id' => 'site_content_license'), _('Site content license'));
             $this->elementStart('dd', array('id' => 'site_content_license_cc'));
 
             switch (common_config('license', 'type')) {
             case 'private':
+                // TRANS: Content license displayed when license is set to 'private'.
+                // TRANS: %1$s is the site name.
                 $this->element('p', null, sprintf(_('Content and data of %1$s are private and confidential.'),
                                                   common_config('site', 'name')));
                 // fall through
             case 'allrightsreserved':
                 if (common_config('license', 'owner')) {
+                    // TRANS: Content license displayed when license is set to 'allrightsreserved'.
+                    // TRANS: %1$s is the copyright owner.
                     $this->element('p', null, sprintf(_('Content and data copyright by %1$s. All rights reserved.'),
                                                       common_config('license', 'owner')));
                 } else {
+                    // TRANS: Content license displayed when license is set to 'allrightsreserved' and no owner is set.
                     $this->element('p', null, _('Content and data copyright by contributors. All rights reserved.'));
                 }
                 break;
@@ -1148,11 +1180,15 @@ class Action extends HTMLOutputter // lawsuit
      *
      * @return nothing
      */
+    // XXX: The messages in this pagination method only tailor to navigating
+    //      notices. In other lists, "Previous"/"Next" type navigation is
+    //      desirable, but not available.
     function pagination($have_before, $have_after, $page, $action, $args=null)
     {
         // Does a little before-after block for next/prev page
         if ($have_before || $have_after) {
             $this->elementStart('dl', 'pagination');
+            // TRANS: DT element for pagination (previous/next, etc.).
             $this->element('dt', null, _('Pagination'));
             $this->elementStart('dd', null);
             $this->elementStart('ul', array('class' => 'nav'));
@@ -1162,6 +1198,8 @@ class Action extends HTMLOutputter // lawsuit
             $this->elementStart('li', array('class' => 'nav_prev'));
             $this->element('a', array('href' => common_local_url($action, $args, $pargs),
                                       'rel' => 'prev'),
+                           // TRANS: Pagination message to go to a page displaying information more in the
+                           // TRANS: present than the currently displayed information.
                            _('After'));
             $this->elementEnd('li');
         }
@@ -1170,6 +1208,8 @@ class Action extends HTMLOutputter // lawsuit
             $this->elementStart('li', array('class' => 'nav_next'));
             $this->element('a', array('href' => common_local_url($action, $args, $pargs),
                                       'rel' => 'next'),
+                           // TRANS: Pagination message to go to a page displaying information more in the
+                           // TRANS: past than the currently displayed information.
                            _('Before'));
             $this->elementEnd('li');
         }
@@ -1213,6 +1253,8 @@ class Action extends HTMLOutputter // lawsuit
      * @return void
      */
 
+    // XXX: Finding this type of check with the same message about 50 times.
+    //      Possible to refactor?
     function checkSessionToken()
     {
         // CSRF protection

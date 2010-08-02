@@ -150,13 +150,17 @@ class DeleteapplicationAction extends Action
                          'This will clear all data about the application from the '.
                          'database, including all existing user connections.'));
         $this->submit('form_action-no',
-                      _('No'),
+                      // TRANS: Button label on the delete application form.
+                      _m('BUTTON','No'),
                       'submit form_action-primary',
                       'no',
-                      _("Do not delete this application"));
+                      // TRANS: Submit button title for 'No' when deleting an application.
+                      _('Do not delete this application'));
         $this->submit('form_action-yes',
-                      _('Yes'),
+                      // TRANS: Button label on the delete application form.
+                      _m('BUTTON','Yes'),
                       'submit form_action-secondary',
+                      // TRANS: Submit button title for 'Yes' when deleting an application.
                       'yes', _('Delete this application'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');

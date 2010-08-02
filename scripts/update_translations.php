@@ -31,7 +31,7 @@ define('LACONICA', true); // compatibility
 require_once(INSTALLDIR . '/lib/common.php');
 
 // Master StatusNet .pot file location (created by update_pot.sh)
-$statusnet_pot = INSTALLDIR . '/locale/statusnet.po';
+$statusnet_pot = INSTALLDIR . '/locale/statusnet.pot';
 
 set_time_limit(60);
 
@@ -98,7 +98,7 @@ foreach ($languages as $language) {
     $new_file = curl_get_file($file_url);
 
     if ($new_file === FALSE) {
-        echo "Couldn't retrieve .po file for $code: $file_url\n";
+        echo "Could not retrieve .po file for $code: $file_url\n";
         continue;
     }
 

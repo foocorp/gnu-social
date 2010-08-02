@@ -20,15 +20,16 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @package   OMB
- * @author    Adrian Lang <mail@adrianlang.de>
- * @copyright 2009 Adrian Lang
- * @license   http://www.gnu.org/licenses/agpl.html GNU AGPL 3.0
- **/
+ * @package OMB
+ * @author  Adrian Lang <mail@adrianlang.de>
+ * @license http://www.gnu.org/licenses/agpl.html GNU AGPL 3.0
+ * @version 0.1a-20090828
+ * @link    http://adrianlang.de/libomb
+ */
 
 /**
  * The OMB constants.
- **/
+ */
 
 define('OMB_VERSION_01', 'http://openmicroblogging.org/protocol/0.1');
 
@@ -40,7 +41,7 @@ define('OMB_ENDPOINT_POSTNOTICE', OMB_VERSION . '/postNotice');
 
 /**
  * The OAuth constants.
- **/
+ */
 
 define('OAUTH_NAMESPACE', 'http://oauth.net/core/1.0/');
 

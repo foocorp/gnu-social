@@ -18,15 +18,19 @@
  *
  * @category Actions
  * @package  Actions
- * @author   Evan Prodromou <evan@status.net>
- * @author   Mike Cochrane <mikec@mikenz.geek.nz>
- * @author   Robin Millette <millette@controlyourself.ca>
  * @author   Adrian Lang <mail@adrianlang.de>
- * @author   Meitar Moscovitz <meitarm@gmail.com>
- * @author   Sarven Capadisli <csarven@status.net>
+ * @author   Brenda Wallace <shiny@cpan.org>
+ * @author   Brion Vibber <brion@pobox.com>
  * @author   Craig Andrews <candrews@integralblue.com>
+ * @author   Evan Prodromou <evan@status.net>
  * @author   Jeffery To <jeffery.to@gmail.com>
- * @author   Zach Copley <zach@controlyourself.ca>
+ * @author   Meitar Moscovitz <meitarm@gmail.com>
+ * @author   Mike Cochrane <mikec@mikenz.geek.nz>
+ * @author   Robin Millette <millette@status.net>
+ * @author   Sarven Capadisli <csarven@status.net>
+ * @author   Siebrand Mazeland <s.mazeland@xs4all.nl>
+ * @author   Zach Copley <zach@status.net>
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license  GNU Affero General Public License http://www.gnu.org/licenses/
  * @link     http://status.net
  */
@@ -139,10 +143,10 @@ class AllAction extends ProfileAction
                 $message .= _('Try subscribing to more people, [join a group](%%action.groups%%) or post something yourself.');
             } else {
                 // TRANS: %1$s is user nickname, %2$s is user nickname, %2$s is user nickname prefixed with "@"
-                $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) from his profile or [post something to his or her attention](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->user->nickname, $this->user->nickname, '@' . $this->user->nickname);
+                $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) from their profile or [post something to their attention](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->user->nickname, $this->user->nickname, '@' . $this->user->nickname);
             }
         } else {
-            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to his or her attention.'), $this->user->nickname);
+            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to their attention.'), $this->user->nickname);
         }
 
         $this->elementStart('div', 'guide');

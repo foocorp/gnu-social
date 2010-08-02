@@ -75,8 +75,6 @@ function save_twitter_user($twitter_id, $screen_name)
 
     if (!empty($fuser)) {
 
-        $result = true;
-
         // Delete old record if Twitter user changed screen name
 
         if ($fuser->nickname != $screen_name) {
@@ -87,6 +85,25 @@ function save_twitter_user($twitter_id, $screen_name)
                                          $fuser->id,
                                          $screen_name,
                                          $oldname));
+        }
+
+    } else {
+
+        // Kill any old, invalid records for this screen name
+
+        $fuser = Foreign_user::getByNickname($screen_name, TWITTER_SERVICE);
+
+        if (!empty($fuser)) {
+            $fuser->delete();
+            common_log(
+                LOG_INFO,
+                sprintf(
+                    'Twitter bridge - deteted old record for Twitter ' .
+                    'screen name "%s" belonging to Twitter ID %d.',
+                    $screen_name,
+                    $fuser->id
+                )
+            );
         }
     }
 

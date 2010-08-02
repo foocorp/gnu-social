@@ -22,7 +22,8 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Craig Andrews <candrews@integralblue.com>
- * @copyright 2009 Craig Andrews http://candrews.integralblue.com
+ * @copyright 2010 Free Software Foundation http://fsf.org
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -31,13 +32,21 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once(INSTALLDIR.'/plugins/Autocomplete/autocomplete.php');
-
 class AutocompletePlugin extends Plugin
 {
     function __construct()
     {
         parent::__construct();
+    }
+
+    function onAutoload($cls)
+    {
+        switch ($cls)
+        {
+         case 'AutocompleteAction':
+            require_once(INSTALLDIR.'/plugins/Autocomplete/autocomplete.php');
+            return false;
+        }
     }
 
     function onEndShowScripts($action){

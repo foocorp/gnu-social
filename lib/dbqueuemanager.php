@@ -135,9 +135,7 @@ class DBQueueManager extends QueueManager
         if (empty($qi->claimed)) {
             $this->_log(LOG_WARNING, "[$queue:item $qi->id] Ignoring failure for unclaimed queue item");
         } else {
-            $orig = clone($qi);
-            $qi->claimed = null;
-            $qi->update($orig);
+            $qi->releaseClaim();
         }
 
         $this->stats('error', $queue);

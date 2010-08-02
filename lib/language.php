@@ -61,7 +61,7 @@ if (!function_exists('dpgettext')) {
      * Not currently exposed in PHP's gettext module; implemented to be compat
      * with gettext.h's macros.
      *
-     * @param string $domain domain identifier, or null for default domain
+     * @param string $domain domain identifier
      * @param string $context context identifier, should be some key like "menu|file"
      * @param string $msgid English source text
      * @return string original or translated message
@@ -106,7 +106,7 @@ if (!function_exists('dnpgettext')) {
      * Not currently exposed in PHP's gettext module; implemented to be compat
      * with gettext.h's macros.
      *
-     * @param string $domain domain identifier, or null for default domain
+     * @param string $domain domain identifier
      * @param string $context context identifier, should be some key like "menu|file"
      * @param string $msg singular English source text
      * @param string $plural plural English source text
@@ -180,7 +180,11 @@ function _m($msg/*, ...*/)
 }
 
 /**
- * Looks for which plugin we've been called from to set the gettext domain.
+ * Looks for which plugin we've been called from to set the gettext domain;
+ * if not in a plugin subdirectory, we'll use the default 'statusnet'.
+ *
+ * Note: we can't return null for default domain since most of the PHP gettext
+ * wrapper functions turn null into "" before passing to the backend library.
  *
  * @param array $backtrace debug_backtrace() output
  * @return string
@@ -202,13 +206,14 @@ function _mdomain($backtrace)
     static $cached;
     $path = $backtrace[0]['file'];
     if (!isset($cached[$path])) {
+        $final = 'statusnet'; // assume default domain
         if (DIRECTORY_SEPARATOR !== '/') {
             $path = strtr($path, DIRECTORY_SEPARATOR, '/');
         }
         $plug = strpos($path, '/plugins/');
         if ($plug === false) {
-            // We're not in a plugin; return null for the default domain.
-            return null;
+            // We're not in a plugin; return default domain.
+            return 'statusnet';
         } else {
             $cut = $plug + 9;
             $cut2 = strpos($path, '/', $cut);
@@ -217,9 +222,10 @@ function _mdomain($backtrace)
             } else {
                 // We might be running directly from the plugins dir?
                 // If so, there's no place to store locale info.
-                return null;
+                return 'statusnet';
             }
         }
+        $cached[$path] = $final;
     }
     return $cached[$path];
 }
@@ -294,6 +300,7 @@ function get_nice_language_list()
  */
 function get_all_languages() {
     return array(
+        'af'      => array('q' => 0.8, 'lang' => 'af', 'name' => 'Afrikaans', 'direction' => 'ltr'),
         'ar'      => array('q' => 0.8, 'lang' => 'ar', 'name' => 'Arabic', 'direction' => 'rtl'),
         'arz'     => array('q' => 0.8, 'lang' => 'arz', 'name' => 'Egyptian Spoken Arabic', 'direction' => 'rtl'),
         'bg'      => array('q' => 0.8, 'lang' => 'bg', 'name' => 'Bulgarian', 'direction' => 'ltr'),
@@ -309,7 +316,8 @@ function get_all_languages() {
         'fi'      => array('q' => 1, 'lang' => 'fi', 'name' => 'Finnish', 'direction' => 'ltr'),
         'fa'      => array('q' => 1, 'lang' => 'fa', 'name' => 'Persian', 'direction' => 'rtl'),
         'fr-fr'   => array('q' => 1, 'lang' => 'fr', 'name' => 'French', 'direction' => 'ltr'),
-        'ga'      => array('q' => 0.5, 'lang' => 'ga', 'name' => 'Galician', 'direction' => 'ltr'),
+        'ga'      => array('q' => 0.5, 'lang' => 'ga', 'name' => 'Irish', 'direction' => 'ltr'),
+        'gl'      => array('q' => 0.8, 'lang' => 'gl', 'name' => 'Galician', 'direction' => 'ltr'),
         'he'      => array('q' => 0.5, 'lang' => 'he', 'name' => 'Hebrew', 'direction' => 'rtl'),
         'hsb'     => array('q' => 0.8, 'lang' => 'hsb', 'name' => 'Upper Sorbian', 'direction' => 'ltr'),
         'ia'      => array('q' => 0.8, 'lang' => 'ia', 'name' => 'Interlingua', 'direction' => 'ltr'),

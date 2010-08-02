@@ -41,6 +41,7 @@ if (!defined('STATUSNET')) {
  * @category Database
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
+ * @author   Brenda Wallace <shiny@cpan.org>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
@@ -79,7 +80,6 @@ class PgsqlSchema extends Schema
         $row = array();
 
         while ($res->fetchInto($row, DB_FETCHMODE_ASSOC)) {
-//             var_dump($row);
             $cd = new ColumnDef();
 
             $cd->name = $row['field'];
@@ -143,6 +143,7 @@ class PgsqlSchema extends Schema
         $uniques = array();
         $primary = array();
         $indices = array();
+	$onupdate = array();
 
         $sql = "CREATE TABLE $name (\n";
 
@@ -155,7 +156,6 @@ class PgsqlSchema extends Schema
             }
 
             $sql .= $this->_columnSql($cd);
-
             switch ($cd->key) {
             case 'UNI':
                 $uniques[] = $cd->name;
@@ -170,13 +170,7 @@ class PgsqlSchema extends Schema
         }
 
         if (count($primary) > 0) { // it really should be...
-            $sql .= ",\n primary key (" . implode(',', $primary) . ")";
-        }
-
-
-
-        foreach ($indices as $i) {
-            $sql .= ",\nindex {$name}_{$i}_idx ($i)";
+            $sql .= ",\n PRIMARY KEY (" . implode(',', $primary) . ")";
         }
 
         $sql .= "); ";
@@ -185,10 +179,14 @@ class PgsqlSchema extends Schema
         foreach ($uniques as $u) {
             $sql .= "\n CREATE index {$name}_{$u}_idx ON {$name} ($u); ";
         }
+
+        foreach ($indices as $i) {
+            $sql .= "CREATE index {$name}_{$i}_idx ON {$name} ($i)";
+        }
         $res = $this->conn->query($sql);
 
         if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
+            throw new Exception($res->getMessage(). ' SQL was '. $sql);
         }
 
         return true;
@@ -223,7 +221,7 @@ class PgsqlSchema extends Schema
      */
     private function _columnTypeTranslation($type) {
       $map = array(
-      'datetime' => 'timestamp'
+      'datetime' => 'timestamp',
       );
       if(!empty($map[$type])) {
         return $map[$type];
@@ -324,7 +322,7 @@ class PgsqlSchema extends Schema
 
     public function modifyColumn($table, $columndef)
     {
-        $sql = "ALTER TABLE $table MODIFY COLUMN " .
+        $sql = "ALTER TABLE $table ALTER COLUMN TYPE " .
           $this->_columnSql($columndef);
 
         $res = $this->conn->query($sql);
@@ -397,16 +395,17 @@ class PgsqlSchema extends Schema
         $todrop = array_diff($cur, $new);
         $same   = array_intersect($new, $cur);
         $tomod  = array();
-
         foreach ($same as $m) {
             $curCol = $this->_byName($td->columns, $m);
             $newCol = $this->_byName($columns, $m);
+            
 
             if (!$newCol->equals($curCol)) {
-                $tomod[] = $newCol->name;
+            // BIG GIANT TODO!
+            // stop it detecting different types and trying to modify on every page request
+//                 $tomod[] = $newCol->name;
             }
         }
-
         if (count($toadd) + count($todrop) + count($tomod) == 0) {
             // nothing to do
             return true;
@@ -430,11 +429,12 @@ class PgsqlSchema extends Schema
         foreach ($tomod as $columnName) {
             $cd = $this->_byName($columns, $columnName);
 
-            $phrase[] = 'MODIFY COLUMN ' . $this->_columnSql($cd);
+	/* brute force */
+            $phrase[] = 'DROP COLUMN ' . $columnName;
+            $phrase[] = 'ADD COLUMN ' . $this->_columnSql($cd);
         }
 
         $sql = 'ALTER TABLE ' . $tableName . ' ' . implode(', ', $phrase);
-
         $res = $this->conn->query($sql);
 
         if (PEAR::isError($res)) {
@@ -496,11 +496,20 @@ class PgsqlSchema extends Schema
      *
      * @return string correct SQL for that column
      */
-
     private function _columnSql($cd)
     {
         $sql = "{$cd->name} ";
         $type = $this->_columnTypeTranslation($cd->type);
+
+        //handle those mysql enum fields that postgres doesn't support
+        if (preg_match('!^enum!', $type)) {
+          $allowed_values = preg_replace('!^enum!', '', $type);
+          $sql .= " text check ({$cd->name} in $allowed_values)";
+          return $sql;
+        }
+        if (!empty($cd->auto_increment)) {
+	    $type = "bigserial"; // FIXME: creates the wrong name for the sequence for some internal sequence-lookup function, so better fix this to do the real 'create sequence' dance.
+        }
 
         if (!empty($cd->size)) {
             $sql .= "{$type}({$cd->size}) ";
@@ -513,14 +522,10 @@ class PgsqlSchema extends Schema
         } else {
             $sql .= ($cd->nullable) ? "null " : "not null ";
         }
-        
-        if (!empty($cd->auto_increment)) {
-            $sql .= " auto_increment ";
-        }
 
-        if (!empty($cd->extra)) {
-            $sql .= "{$cd->extra} ";
-        }
+//         if (!empty($cd->extra)) {
+//             $sql .= "{$cd->extra} ";
+//         }
 
         return $sql;
     }

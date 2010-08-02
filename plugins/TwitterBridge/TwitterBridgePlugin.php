@@ -221,7 +221,7 @@ class TwitterBridgePlugin extends Plugin
      */
     function onStartEnqueueNotice($notice, &$transports)
     {
-        if (self::hasKeys()) {
+        if (self::hasKeys() && $notice->isLocal()) {
             // Avoid a possible loop
             if ($notice->source != 'twitter') {
                 array_push($transports, 'twitter');

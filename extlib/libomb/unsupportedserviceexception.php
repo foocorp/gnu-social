@@ -1,9 +1,6 @@
 <?php
 /**
- * Exception stating that a requested service is not available
- *
- * This exception is raised when OMB_Service is asked to call a service the remote
- * server does not provide.
+ * This file is part of libomb
  *
  * PHP version 5
  *
@@ -20,12 +17,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @package   OMB
- * @author    Adrian Lang <mail@adrianlang.de>
- * @copyright 2009 Adrian Lang
- * @license   http://www.gnu.org/licenses/agpl.html GNU AGPL 3.0
- **/
-class OMB_UnsupportedServiceException extends Exception {
+ * @package OMB
+ * @author  Adrian Lang <mail@adrianlang.de>
+ * @license http://www.gnu.org/licenses/agpl.html GNU AGPL 3.0
+ * @version 0.1a-20090828
+ * @link    http://adrianlang.de/libomb
+ */
 
+/**
+ * Exception stating that a requested service is not available
+ *
+ * This exception is raised when OMB_Service is asked to call a service the
+ * remote server does not provide.
+ */
+class OMB_UnsupportedServiceException extends Exception
+{
 }
 ?>

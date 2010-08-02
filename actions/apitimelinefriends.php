@@ -28,10 +28,106 @@
  * @author    Mike Cochrane <mikec@mikenz.geek.nz>
  * @author    Robin Millette <robin@millette.info>
  * @author    Zach Copley <zach@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @copyright 2009-2010 StatusNet, Inc.
+ * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
+
+/* External API usage documentation. Please update when you change how this method works. */
+
+/*! @page friendstimeline statuses/friends_timeline
+
+    @section Description
+    Returns the 20 most recent statuses posted by the authenticating
+    user and that user's friends. This is the equivalent of "You and
+    friends" page in the web interface.
+
+    @par URL patterns
+    @li /api/statuses/friends_timeline.:format
+    @li /api/statuses/friends_timeline/:id.:format
+
+    @par Formats (:format)
+    xml, json, rss, atom
+
+    @par ID (:id)
+    username, user id
+
+    @par HTTP Method(s)
+    GET
+
+    @par Requires Authentication
+    Sometimes (see: @ref authentication)
+
+    @param user_id (Optional) Specifies a user by ID
+    @param screen_name (Optional) Specifies a user by screename (nickname)
+    @param since_id (Optional) Returns only statuses with an ID greater
+    than (that is, more recent than) the specified ID.
+    @param max_id (Optional) Returns only statuses with an ID less than
+    (that is, older than) or equal to the specified ID.
+    @param count (Optional) Specifies the number of statuses to retrieve.
+    @param page (Optional) Specifies the page of results to retrieve.
+
+    @sa @ref authentication
+    @sa @ref apiroot
+
+    @subsection usagenotes Usage notes
+    @li The URL pattern is relative to the @ref apiroot.
+    @li The XML response uses <a href="http://georss.org/Main_Page">GeoRSS</a>
+    to encode the latitude and longitude (see example response below <georss:point>).
+
+    @subsection exampleusage Example usage
+
+    @verbatim
+    curl http://identi.ca/api/statuses/friends_timeline/evan.xml?count=1&page=2
+    @endverbatim
+
+    @subsection exampleresponse Example response
+
+    @verbatim
+    <?xml version="1.0"?>
+    <statuses type="array">
+      <status>
+        <text>back from the !yul !drupal meet with Evolving Web folk, @anarcat, @webchick and others, and an interesting refresher on SQL indexing</text>
+        <truncated>false</truncated>
+        <created_at>Wed Mar 31 01:33:02 +0000 2010</created_at>
+        <in_reply_to_status_id/>
+        <source>&lt;a href="http://code.google.com/p/microblog-purple/"&gt;mbpidgin&lt;/a&gt;</source>
+        <id>26674201</id>
+        <in_reply_to_user_id/>
+        <in_reply_to_screen_name/>
+        <geo/>
+        <favorited>false</favorited>
+        <user>
+          <id>246</id>
+          <name>Mark</name>
+          <screen_name>lambic</screen_name>
+          <location>Montreal, Canada</location>
+          <description>Geek</description>
+          <profile_image_url>http://avatar.identi.ca/246-48-20080702141545.png</profile_image_url>
+          <url>http://lambic.co.uk</url>
+          <protected>false</protected>
+          <followers_count>73</followers_count>
+          <profile_background_color>#F0F2F5</profile_background_color>
+          <profile_text_color/>
+          <profile_link_color>#002E6E</profile_link_color>
+          <profile_sidebar_fill_color>#CEE1E9</profile_sidebar_fill_color>
+          <profile_sidebar_border_color/>
+          <friends_count>58</friends_count>
+          <created_at>Wed Jul 02 14:12:15 +0000 2008</created_at>
+          <favourites_count>2</favourites_count>
+          <utc_offset>-14400</utc_offset>
+          <time_zone>US/Eastern</time_zone>
+          <profile_background_image_url/>
+          <profile_background_tile>false</profile_background_tile>
+          <statuses_count>933</statuses_count>
+          <following>false</following>
+          <notifications>false</notifications>
+        </user>
+      </status>
+    </statuses>
+    @endverbatim
+*/
 
 if (!defined('STATUSNET')) {
     exit(1);
@@ -116,6 +212,7 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
         $id         = "tag:$taguribase:FriendsTimeline:" . $this->user->id;
 
         $subtitle = sprintf(
+            // TRANS: Message is used as a subtitle. %1$s is a user nickname, %2$s is a site name.
             _('Updates from %1$s and friends on %2$s!'),
             $this->user->nickname,
             $sitename

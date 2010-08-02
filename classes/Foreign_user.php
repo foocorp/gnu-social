@@ -39,6 +39,22 @@ class Foreign_user extends Memcached_DataObject
         return null;
     }
 
+    static function getByNickname($nickname, $service)
+    {
+        if (empty($nickname) || empty($service)) {
+            return null;
+        } else {
+            $fuser = new Foreign_user();
+	    $fuser->service = $service;
+	    $fuser->nickname = $nickname;
+            $fuser->limit(1);
+
+            $result = $fuser->find(true);
+
+            return empty($result) ? null : $fuser;
+        }
+    }
+
     function updateKeys(&$orig)
     {
         $this->_connect();

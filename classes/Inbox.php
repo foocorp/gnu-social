@@ -115,9 +115,12 @@ class Inbox extends Memcached_DataObject
      */
     static function insertNotice($user_id, $notice_id)
     {
-        $inbox = DB_DataObject::staticGet('inbox', 'user_id', $user_id);
-
-        if (empty($inbox)) {
+		// Going straight to the DB rather than trusting our caching
+		// during an update. Note: not using DB_DataObject::staticGet,
+		// which is unsafe to use directly (in-process caching causes
+		// memory leaks, which accumulate in queue processes).
+        $inbox = new Inbox();
+        if (!$inbox->get('user_id', $user_id)) {
             $inbox = Inbox::initialize($user_id);
         }
 

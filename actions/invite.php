@@ -224,8 +224,10 @@ class InviteAction extends CurrentUserDesignAction
 
         $headers['From'] = mail_notify_from();
         $headers['To'] = trim($email);
+        // TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral singular 3rd-person pronoun in English.
         $headers['Subject'] = sprintf(_('%1$s has invited you to join them on %2$s'), $bestname, $sitename);
 
+        // TRANS: Body text for invitation email. Note that 'them' is correct as a gender-neutral singular 3rd-person pronoun in English.
         $body = sprintf(_("%1\$s has invited you to join them on %2\$s (%3\$s).\n\n".
                           "%2\$s is a micro-blogging service that lets you keep up-to-date with people you know and people who interest you.\n\n".
                           "You can also share news about yourself, your thoughts, or your life online with people who know about you. ".

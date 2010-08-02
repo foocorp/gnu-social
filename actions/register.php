@@ -348,7 +348,7 @@ class RegisterAction extends Action
         } else {
             $instr =
               common_markup_to_html(_('With this form you can create '.
-                                      ' a new account. ' .
+                                      'a new account. ' .
                                       'You can then post notices and '.
                                       'link up to friends and colleagues. '));
 
