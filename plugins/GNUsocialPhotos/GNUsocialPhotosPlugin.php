@@ -53,7 +53,7 @@ class GNUsocialPhotosPlugin extends Plugin
 
     function onRouterInitialized($m)
     {
-        $m->connect('main/photos', array('action' => 'photos'));
+        $m->connect(':nickname/photos', array('action' => 'photos'));
         common_log(LOG_INFO, "init'd!");
         return true;
     }

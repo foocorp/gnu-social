@@ -67,7 +67,38 @@ class PhotosAction extends Action
             // TODO: should just redirect to the login page.
             $this->element('p', array(), 'You are not logged in');
         } else {
-            $this->element('p', array(), common_config('site', 'path'));
+            common_log(LOG_INFO, 'fileroot : ' . $_SERVER['DOCUMENT_ROOT'] . '/file/');
+            $dir = opendir($_SERVER['DOCUMENT_ROOT'] . '/file/');
+            if ($dir === false) {
+                $err = error_get_last();
+                common_log(LOG_INFO, 'Error opening dir : ' . $err['message']);
+                return;
+            }
+            $args = $this->returnToArgs();
+            foreach (array_keys($args) as $key) {
+                common_log(LOG_INFO, $key . ' => ' . $args[$key]);
+                if (is_array($args[$key])) {
+                    foreach (array_keys($args[$key]) as $skey) {
+                        common_log(LOG_INFO, '   ' . $skey . ' => ' . $args[$key][$skey]);
+                    }
+                }
+            }
+            $pathparts = explode('/', $args[1]['nickname']);
+            $username = $pathparts[0];
+            while (false !== ($file = readdir($dir))) {
+                $fparts = explode('-', $file);
+                if ($fparts[0] == $username // uploaded by this user
+                    && ((substr($file, -4) == '.png') 
+                        || (substr($file, -4) == '.jpg') // XXX: is this needed? status.net seems to save jpgs as .jpeg
+                        || (substr($file, -5) == '.jpeg')
+                        || (substr($file, -4) == '.gif')
+                        || (substr($file, -4) == '.svg'))) { // and it's an image
+                        common_log(LOG_INFO, 'file : ' . $file);
+                        $this->elementStart('p');
+                        $this->element('a', array('href' => 'http://' . common_config('site', 'server') . '/file/' . $file), $file);
+                        $this->elementEnd('p');
+                }
+            }
         } 
     } 
 }
