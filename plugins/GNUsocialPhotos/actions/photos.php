@@ -110,8 +110,8 @@ class PhotosAction extends Action
 
     function makeThumb($filename)
     {
-        $height_dest = 96;
-        $width_dest = 128;
+        $height_dest = 192;
+        $width_dest = 256;
 
         if (substr($filename, -4) == '.jpg' || substr($filename, -5) == '.jpeg') {
             $image_src = imagecreatefromjpeg(INSTALLDIR . '/file/' . $filename);
@@ -128,8 +128,24 @@ class PhotosAction extends Action
 
         $image_dest = imagecreatetruecolor($width_dest, $height_dest);
         $size_src = getimagesize(INSTALLDIR . '/file/' . $filename);
- 
-        imagecopyresampled($image_dest, $image_src, 0, 0, 0, 0, $width_dest, $height_dest, $size_src[0], $size_src[1]);
+        $width_src = $size_src[0];
+        $height_src = $size_src[1];
+
+        // We want to make the image as big as possible without distortion.
+        $width_hmax = $width_src / ((float)$height_src / (float)$height_dest);
+        $height_wmax = $height_src / ((float)$width_src / (float)$width_dest);
+
+    
+        if ($width_hmax > $width_dest) {
+            $width_hmax = $width_dest;
+        } else {
+            $height_wmax = $height_dest;
+        } 
+        
+        common_log(LOG_INFO, 'height_wmax = ' . $height_wmax);
+        common_log(LOG_INFO, 'width_hmax = ' . $width_hmax);
+
+        imagecopyresampled($image_dest, $image_src, 0, 0, 0, 0, (int)($width_hmax), (int)($height_wmax), $width_src, $height_src);
         switch ($image_type) {
         case IMAGETYPE_JPEG:
             imagejpeg($image_dest, INSTALLDIR . '/file/' . 'thumb.' . $filename, 100);
