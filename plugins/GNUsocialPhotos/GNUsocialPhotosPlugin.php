@@ -44,6 +44,9 @@ class GNUsocialPhotosPlugin extends Plugin
         case 'PhotosAction':
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
+        case 'PhotouploadAction':
+            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+            return false;
         default:
             return true;
         }
@@ -51,9 +54,20 @@ class GNUsocialPhotosPlugin extends Plugin
         return true;
     }
 
+    function onCheckSchema()
+    {
+        $schema = Schema::get();
+        $schema->ensureTable('GNUsocialPhotos',
+                                array(new ColumnDef('object_id', 'integer', null, false, 'PRI', true, null, null, true),
+                                      new ColumnDef('path', 'varchar(150)', null, false),
+                                      new ColumnDef('thumb_path', 'varchar(156)', null, false), // 156 = 150 + strlen('thumb.')
+                                      new ColumnDef('owner_id', 'int(11)', null, false)));
+    }
+
     function onRouterInitialized($m)
     {
         $m->connect(':nickname/photos', array('action' => 'photos'));
+        $m->connect('main/uploadphoto', array('action' => 'photoupload'));
         common_log(LOG_INFO, "init'd!");
         return true;
     }
