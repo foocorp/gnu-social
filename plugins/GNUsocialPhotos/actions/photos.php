@@ -113,20 +113,23 @@ class PhotosAction extends Action
         $height_dest = 192;
         $width_dest = 256;
 
-        if (substr($filename, -4) == '.jpg' || substr($filename, -5) == '.jpeg') {
-            $image_src = imagecreatefromjpeg(INSTALLDIR . '/file/' . $filename);
-            $image_type = IMAGETYPE_JPEG;
-        } else if(substr($filename, -4) == '.png') {
-            $image_src = imagecreatefrompng(INSTALLDIR . '/file/' . $filename);
-            $image_type = IMAGETYPE_PNG;
-        } else if(substr($filename, -4) == '.gif') {
-            $image_src = imagecreatefromgif(INSTALLDIR . '/file/' . $filename);
-            $image_type = IMAGETYPE_GIF;
-        } else {
-            return false;
-        }
-
         $size_src = getimagesize(INSTALLDIR . '/file/' . $filename);
+        $image_type = $size_src[2];
+        
+        switch($image_type) {
+        case IMAGETYPE_JPEG:
+            $image_src = imagecreatefromjpeg(INSTALLDIR . '/file/' . $filename);
+            break;
+        case IMAGETYPE_PNG:
+            $image_src = imagecreatefrompng(INSTALLDIR . '/file/' . $filename);
+            break;
+        case IMAGETYPE_GIF:
+            $image_src = imagecreatefromgif(INSTALLDIR . '/file/' . $filename);
+            break;
+        default:
+            return false;
+        } 
+
         $width_src = $size_src[0];
         $height_src = $size_src[1];
 
