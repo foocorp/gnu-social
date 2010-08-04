@@ -126,26 +126,26 @@ class PhotosAction extends Action
             return false;
         }
 
-        $image_dest = imagecreatetruecolor($width_dest, $height_dest);
         $size_src = getimagesize(INSTALLDIR . '/file/' . $filename);
         $width_src = $size_src[0];
         $height_src = $size_src[1];
 
-        // We want to make the image as big as possible without distortion.
-        $width_hmax = $width_src / ((float)$height_src / (float)$height_dest);
-        $height_wmax = $height_src / ((float)$width_src / (float)$width_dest);
+        $ratio_src = (float) $width_src / (float) $height_src;
+        $ratio_dest = (float) $width_dest / (float) $height_dest;
 
-    
-        if ($width_hmax > $width_dest) {
-            $width_hmax = $width_dest;
+        if ($ratio_src > $ratio_dest) {
+            $height_crop = $height_src;
+            $width_crop = (int)($height_crop * $ratio_dest);
+            $x_crop = ($width_src - $width_crop) / 2;
         } else {
-            $height_wmax = $height_dest;
-        } 
+            $width_crop = $width_src;
+            $height_crop = (int)($width_crop / $ratio_dest);
+            $x_crop = 0;
+        }
         
-        common_log(LOG_INFO, 'height_wmax = ' . $height_wmax);
-        common_log(LOG_INFO, 'width_hmax = ' . $width_hmax);
-
-        imagecopyresampled($image_dest, $image_src, 0, 0, 0, 0, (int)($width_hmax), (int)($height_wmax), $width_src, $height_src);
+        $image_dest = imagecreatetruecolor($width_dest, $height_dest);
+        
+        imagecopyresampled($image_dest, $image_src, 0, 0, $x_crop, 0, $width_dest, $height_dest, $width_crop, $height_crop);
         switch ($image_type) {
         case IMAGETYPE_JPEG:
             imagejpeg($image_dest, INSTALLDIR . '/file/' . 'thumb.' . $filename, 100);
