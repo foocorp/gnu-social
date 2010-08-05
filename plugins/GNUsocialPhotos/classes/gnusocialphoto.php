@@ -32,7 +32,7 @@ if (!defined('STATUSNET')) {
 
 require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 
-class GNUsocialPhoto extends Memcahced_DataObject
+class GNUsocialPhoto extends Memcached_DataObject
 {
     public $object_id;   // integer
     public $path;        // varchar(150)

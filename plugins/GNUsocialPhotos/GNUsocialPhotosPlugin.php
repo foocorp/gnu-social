@@ -42,9 +42,12 @@ class GNUsocialPhotosPlugin extends Plugin
         switch ($cls)
         {
         case 'PhotosAction':
+            include_once $dir . '/lib/photolib.php';
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
         case 'PhotouploadAction':
+            include_once $dir . '/lib/photolib.php';
+            include_once $dir . '/classes/gnusocialphoto.php';
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
         default:
@@ -57,7 +60,7 @@ class GNUsocialPhotosPlugin extends Plugin
     function onCheckSchema()
     {
         $schema = Schema::get();
-        $schema->ensureTable('GNUsocialPhotos',
+        $schema->ensureTable('GNUsocialPhoto',
                                 array(new ColumnDef('object_id', 'integer', null, false, 'PRI', true, null, null, true),
                                       new ColumnDef('path', 'varchar(150)', null, false),
                                       new ColumnDef('thumb_path', 'varchar(156)', null, false), // 156 = 150 + strlen('thumb.')

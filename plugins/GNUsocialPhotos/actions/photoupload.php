@@ -44,6 +44,9 @@ class PhotouploadAction extends Action
     function handle($args)
     {
         parent::handle($args);
+        if($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->handlePost();
+        }
         $this->showPage();
     }
 
@@ -88,12 +91,12 @@ class PhotouploadAction extends Action
 
         // CSRF protection
 
-        $token = $this->trimmed('token');
+/*        $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
             $this->showForm(_('There was a problem with your session token. '.
                                'Try again, please.'));
             return;
-        }
+        } */
 
         if($this->arg('upload')) {
             $this->uploadPhoto();
