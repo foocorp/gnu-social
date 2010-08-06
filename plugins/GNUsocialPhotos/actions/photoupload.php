@@ -129,6 +129,8 @@ class PhotouploadAction extends Action
         $photo = new GNUsocialPhoto();
         $photo->path = '/file/' . $filename;
         $photo->thumb_path = '/file/thumb.' . $filename;
+        $photo->owner_id = $cur->id;
+        $photo->object_id = 'DEFAULT';
         $photo->insert();
     }
 

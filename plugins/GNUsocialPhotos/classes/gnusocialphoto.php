@@ -34,6 +34,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 
 class GNUsocialPhoto extends Memcached_DataObject
 {
+    public $__table = 'GNUsocialPhoto';
     public $object_id;   // integer
     public $path;        // varchar(150)
     public $thumb_path;  // varchar(156)
@@ -53,5 +54,13 @@ class GNUsocialPhoto extends Memcached_DataObject
             return false;
         }
         return parent::delete();
+    }
+
+    function table()
+    {
+        return array('object_id' => DB_DATAOBJECT_INT,
+                     'path' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
+                     'thumb_path' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
+                     'owner_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL);
     }
 }
