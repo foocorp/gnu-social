@@ -824,14 +824,14 @@ class Action extends HTMLOutputter // lawsuit
         $this->elementStart('dd', null);
         if (common_config('site', 'broughtby')) {
             // TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is set.
-            $instr = _('**%%site.name%%** is a microblogging service brought to you by [%%site.broughtby%%](%%site.broughtbyurl%%).');
+            $instr = _('**%%site.name%%** is a social network, courtesy of [%%site.broughtby%%](%%site.broughtbyurl%%).');
         } else {
             // TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is not set.
-            $instr = _('**%%site.name%%** is a microblogging service.');
+            $instr = _('**%%site.name%%** is a social network.');
         }
         $instr .= ' ';
         // TRANS: Second sentence of the StatusNet site license. Mentions the StatusNet source code license.
-        $instr .= sprintf(_('It runs the [StatusNet](http://status.net/) microblogging software, version %s, available under the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html).'), STATUSNET_VERSION);
+        $instr .= sprintf(_('It runs the [GNU social](http://www.gnu.org/software/social/) microblogging software, version %s, available under the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html).'), STATUSNET_VERSION);
         $output = common_markup_to_html($instr);
         $this->raw($output);
         $this->elementEnd('dd');
@@ -878,7 +878,7 @@ class Action extends HTMLOutputter // lawsuit
                                             'height' => '15'));
                 $this->text(' ');
                 // TRANS: license message in footer. %1$s is the site name, %2$s is a link to the license URL, with a licence name set in configuration.
-                $notice = _('All %1$s content and data are available under the %2$s license.');
+                $notice = _('All content and data are available under the %2$s license.');
                 $link = "<a class=\"license\" rel=\"external license\" href=\"" .
                         htmlspecialchars(common_config('license', 'url')) .
                         "\">" .
