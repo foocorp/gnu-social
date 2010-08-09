@@ -239,13 +239,11 @@ class PublicAction extends Action
     function showAnonymousMessage()
     {
         if (! (common_config('site','closed') || common_config('site','inviteonly'))) {
-            $m = _('This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
-                   'based on the Free Software [StatusNet](http://status.net/) tool. ' .
+            $m = _('This is %%site.name%%, a social networking site. ' .
                    '[Join now](%%action.register%%) to share notices about yourself with friends, family, and colleagues! ' .
                    '([Read more](%%doc.help%%))');
         } else {
-            $m = _('This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
-                   'based on the Free Software [StatusNet](http://status.net/) tool.');
+            $m = _('This is %%site.name%%, a social networking site.');
         }
         $this->elementStart('div', array('id' => 'anon_notice'));
         $this->raw(common_markup_to_html($m));
