@@ -409,6 +409,14 @@ class AdminPanelNav extends Widget
                                      $menu_title, $action_name == 'snapshotadminpanel', 'nav_snapshot_admin_panel');
             }
 
+            if (AdminPanelAction::canAdmin('plugins')) {
+                // TRANS: Menu item title/tooltip
+                $menu_title = _('Plugins configuration');
+                // TRANS: Menu item for site administration
+                $this->out->menuItem(common_local_url('pluginsadminpanel'), _('Plugins'),
+                                     $menu_title, $action_name == 'pluginsadminpanel', 'nav_design_admin_panel');
+            }
+
             Event::handle('EndAdminPanelNav', array($this));
         }
         $this->action->elementEnd('ul');

@@ -1,6 +1,7 @@
 # Translation of StatusNet to Catalan
 #
 # Author@translatewiki.net: Aleator
+# Author@translatewiki.net: McDutchie
 # Author@translatewiki.net: Paucabot
 # Author@translatewiki.net: Toniher
 # --
@@ -10,12 +11,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-16 22:18+0000\n"
-"PO-Revision-Date: 2010-06-21 18:03:01+0000\n"
+"POT-Creation-Date: 2010-08-03 13:21+0000\n"
+"PO-Revision-Date: 2010-08-03 13:21:45+0000\n"
 "Language-Team: Catalan\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.17alpha (r68367); Translate extension (2010-06-12)\n"
+"X-Generator: MediaWiki 1.17alpha (r70381); Translate extension (2010-07-21)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: out-statusnet\n"
@@ -101,7 +102,7 @@ msgstr "No existeix la pàgina."
 #: actions/apidirectmessagenew.php:74 actions/apigroupcreate.php:113
 #: actions/apigroupismember.php:91 actions/apigroupjoin.php:100
 #: actions/apigroupleave.php:100 actions/apigrouplist.php:73
-#: actions/apistatusesupdate.php:228 actions/apisubscriptions.php:87
+#: actions/apistatusesupdate.php:229 actions/apisubscriptions.php:87
 #: actions/apitimelinefavorites.php:72 actions/apitimelinefriends.php:174
 #: actions/apitimelinehome.php:80 actions/apitimelinementions.php:80
 #: actions/apitimelineuser.php:82 actions/avatarbynickname.php:75
@@ -170,20 +171,20 @@ msgstr ""
 
 #. TRANS: %1$s is user nickname, %2$s is user nickname, %2$s is user nickname prefixed with "@"
 #: actions/all.php:146
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can try to [nudge %1$s](../%2$s) from his profile or [post something to "
-"his or her attention](%%%%action.newnotice%%%%?status_textarea=%3$s)."
+"You can try to [nudge %1$s](../%2$s) from their profile or [post something "
+"to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 "Podeu provar d'[avisar %1$s](../%2$s) des del seu perfil o [publiqueu "
-"quelcom per reclamar-li l'atenció](%%%%action.newnotice%%%%?status_textarea=%"
-"3$s)."
+"quelcom per cridar-li l'atenció](%%%%action.newnotice%%%%?status_textarea=%3"
+"$s)."
 
 #: actions/all.php:149 actions/replies.php:210 actions/showstream.php:211
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
-"post a notice to his or her attention."
+"post a notice to them."
 msgstr ""
 "Per què no [registreu un compte](%%%%action.register%%%%) i aviseu %s o "
 "publiqueu un avís a la seva atenció."
@@ -218,7 +219,7 @@ msgstr "Actualitzacions de %1$s i amics a %2$s!"
 #: actions/apistatusesshow.php:109 actions/apistatusnetconfig.php:141
 #: actions/apistatusnetversion.php:93 actions/apisubscriptions.php:111
 #: actions/apitimelinefavorites.php:174 actions/apitimelinefriends.php:271
-#: actions/apitimelinegroup.php:152 actions/apitimelinehome.php:175
+#: actions/apitimelinegroup.php:154 actions/apitimelinehome.php:175
 #: actions/apitimelinementions.php:174 actions/apitimelinepublic.php:241
 #: actions/apitimelineretweetedtome.php:121
 #: actions/apitimelineretweetsofme.php:152 actions/apitimelinetag.php:161
@@ -268,7 +269,7 @@ msgstr "No s'ha pogut desar el perfil."
 
 #: actions/apiaccountupdateprofilebackgroundimage.php:108
 #: actions/apiaccountupdateprofileimage.php:97 actions/apimediaupload.php:80
-#: actions/apistatusesupdate.php:211 actions/avatarsettings.php:257
+#: actions/apistatusesupdate.php:212 actions/avatarsettings.php:257
 #: actions/designadminpanel.php:123 actions/editapplication.php:118
 #: actions/newapplication.php:101 actions/newnotice.php:94
 #: lib/designsettings.php:283
@@ -368,7 +369,8 @@ msgid "Could not delete favorite."
 msgstr "No s'ha pogut eliminar el preferit."
 
 #: actions/apifriendshipscreate.php:109
-msgid "Could not follow user: User not found."
+#, fuzzy
+msgid "Could not follow user: profile not found."
 msgstr "No s'ha pogut seguir l'usuari: l'usuari no existeix."
 
 #: actions/apifriendshipscreate.php:118
@@ -384,8 +386,9 @@ msgstr "No es pot deixar de seguir l'usuari: no s'ha trobat l'usuari."
 msgid "You cannot unfollow yourself."
 msgstr "No podeu deixar de seguir-vos a un mateix."
 
-#: actions/apifriendshipsexists.php:94
-msgid "Two user ids or screen_names must be supplied."
+#: actions/apifriendshipsexists.php:91
+#, fuzzy
+msgid "Two valid IDs or screen_names must be supplied."
 msgstr "Cal proporcionar dos ids d'usuari o screen_names."
 
 #: actions/apifriendshipsshow.php:134
@@ -514,6 +517,11 @@ msgstr "%s grups"
 #, php-format
 msgid "groups on %s"
 msgstr "grups sobre %s"
+
+#: actions/apimediaupload.php:99
+#, fuzzy
+msgid "Upload failed."
+msgstr "Puja un fitxer"
 
 #: actions/apioauthauthorize.php:101
 msgid "No oauth_token parameter provided."
@@ -660,22 +668,26 @@ msgstr "S'ha eliminat l'estat."
 msgid "No status with that ID found."
 msgstr "No s'ha trobat cap estatus amb la ID trobada."
 
-#: actions/apistatusesupdate.php:241 actions/newnotice.php:155
+#: actions/apistatusesupdate.php:221
+msgid "Client must provide a 'status' parameter with a value."
+msgstr ""
+
+#: actions/apistatusesupdate.php:242 actions/newnotice.php:155
 #: lib/mailhandler.php:60
 #, php-format
 msgid "That's too long. Max notice size is %d chars."
 msgstr "Massa llarg. La longitud màxima és de %d caràcters."
 
-#: actions/apistatusesupdate.php:282 actions/apiusershow.php:96
+#: actions/apistatusesupdate.php:283 actions/apiusershow.php:96
 msgid "Not found."
 msgstr "No s'ha trobat."
 
-#: actions/apistatusesupdate.php:305 actions/newnotice.php:178
+#: actions/apistatusesupdate.php:306 actions/newnotice.php:178
 #, php-format
 msgid "Max notice size is %d chars, including attachment URL."
 msgstr "La mida màxima de l'avís és %d caràcters, incloent l'URL de l'adjunt."
 
-#: actions/apisubscriptions.php:231 actions/apisubscriptions.php:261
+#: actions/apisubscriptions.php:232 actions/apisubscriptions.php:262
 msgid "Unsupported format."
 msgstr "El format no està implementat."
 
@@ -722,12 +734,16 @@ msgstr "Repeticions de %s"
 #: actions/apitimelinetag.php:105 actions/tag.php:67
 #, php-format
 msgid "Notices tagged with %s"
-msgstr "Aviso etiquetats amb %s"
+msgstr "Avisos etiquetats amb %s"
 
 #: actions/apitimelinetag.php:107 actions/tagrss.php:65
 #, php-format
 msgid "Updates tagged with %1$s on %2$s!"
 msgstr "Actualitzacions etiquetades amb %1$s el %2$s!"
+
+#: actions/apitrends.php:87
+msgid "API method under construction."
+msgstr "Mètode API en construcció."
 
 #: actions/attachment.php:73
 msgid "No such attachment."
@@ -782,7 +798,7 @@ msgid "Preview"
 msgstr "Vista prèvia"
 
 #: actions/avatarsettings.php:149 actions/showapplication.php:252
-#: lib/deleteuserform.php:66 lib/noticelist.php:648
+#: lib/deleteuserform.php:66 lib/noticelist.php:656
 msgid "Delete"
 msgstr "Elimina"
 
@@ -1065,7 +1081,7 @@ msgid "Do not delete this notice"
 msgstr "No eliminis aquest avís"
 
 #. TRANS: Submit button title for 'Yes' when deleting a notice.
-#: actions/deletenotice.php:158 lib/noticelist.php:648
+#: actions/deletenotice.php:158 lib/noticelist.php:656
 msgid "Delete this notice"
 msgstr "Elimina aquest avís"
 
@@ -1226,7 +1242,7 @@ msgstr "Torna a restaurar al valor per defecte"
 #: actions/useradminpanel.php:294 lib/applicationeditform.php:363
 #: lib/designsettings.php:256 lib/groupeditform.php:202
 msgid "Save"
-msgstr "Guardar"
+msgstr "Desa"
 
 #: actions/designadminpanel.php:686 lib/designsettings.php:257
 msgid "Save design"
@@ -1342,7 +1358,8 @@ msgstr "L'àlies no és vàlid «%s»"
 msgid "Could not update group."
 msgstr "No s'ha pogut actualitzar el grup."
 
-#: actions/editgroup.php:264 classes/User_group.php:496
+#. TRANS: Server exception thrown when creating group aliases failed.
+#: actions/editgroup.php:264 classes/User_group.php:514
 msgid "Could not create aliases."
 msgstr "No s'han pogut crear els àlies."
 
@@ -1471,7 +1488,8 @@ msgstr "Envia'm un correu electrònic quan algú m'enviï una resposta amb @."
 #. TRANS: Checkbox label in e-mail preferences form.
 #: actions/emailsettings.php:205
 msgid "Allow friends to nudge me and send me an email."
-msgstr "Permetre que els amics em reclamin i m'enviïn un correu electrònic."
+msgstr ""
+"Permetre que els amics em cridin l'atenció i m'enviïn un correu electrònic."
 
 #. TRANS: Checkbox label in e-mail preferences form.
 #: actions/emailsettings.php:212
@@ -2164,8 +2182,7 @@ msgstr "%1$s (%2$s)"
 #: actions/invite.php:136
 msgid ""
 "These people are already users and you were automatically subscribed to them:"
-msgstr ""
-"Aquestes persona ja són usuaris i tu estàs subscrit automàticament a ells:"
+msgstr "Aquestes persones ja són usuaris i se us ha subscrit automàticament:"
 
 #: actions/invite.php:144
 msgid "Invitation(s) sent to the following people:"
@@ -2176,8 +2193,8 @@ msgid ""
 "You will be notified when your invitees accept the invitation and register "
 "on the site. Thanks for growing the community!"
 msgstr ""
-"Seràs avisat quan les teves invitacions siguin acceptades i els teus "
-"convidats es registrin al lloc. Gràcies per fer créixer la comunitat."
+"Se us notificarà quan els vostres convidats acceptin la invitació i es "
+"registrin al lloc. Gràcies per fer créixer la comunitat!"
 
 #: actions/invite.php:162
 msgid ""
@@ -2304,7 +2321,7 @@ msgstr "%1$s ha abandonat el grup %2$s"
 
 #: actions/login.php:102 actions/otp.php:62 actions/register.php:144
 msgid "Already logged in."
-msgstr "Ja estàs connectat."
+msgstr "Ja hi heu iniciat una sessió."
 
 #: actions/login.php:148
 msgid "Incorrect username or password."
@@ -2500,19 +2517,20 @@ msgstr ""
 "Les actualitzacions que coincideixen amb el terme de cerca «%1$s» el %2$s!"
 
 #: actions/nudge.php:85
+#, fuzzy
 msgid ""
-"This user doesn't allow nudges or hasn't confirmed or set his email yet."
+"This user doesn't allow nudges or hasn't confirmed or set their email yet."
 msgstr ""
-"Aquest usuari no permet reclamacions o no ha confirmar encara cap correu "
-"electrònic."
+"Aquest usuari no permet que li cridin l'atenció o no ha confirmat encara cap "
+"correu electrònic."
 
 #: actions/nudge.php:94
 msgid "Nudge sent"
-msgstr "Reclamació enviada"
+msgstr "S'ha cridat l'atenció"
 
 #: actions/nudge.php:97
 msgid "Nudge sent!"
-msgstr "Reclamació enviada!"
+msgstr "S'ha cridat l'atenció!"
 
 #: actions/oauthappssettings.php:59
 msgid "You must be logged in to list your applications."
@@ -2580,8 +2598,8 @@ msgid "Only %s URLs over plain HTTP please."
 msgstr "Si us plau, només URL %s sobre HTTP pla."
 
 #. TRANS: Client error on an API request with an unsupported data format.
-#: actions/oembed.php:184 actions/oembed.php:203 lib/apiaction.php:1179
-#: lib/apiaction.php:1208 lib/apiaction.php:1325
+#: actions/oembed.php:184 actions/oembed.php:203 lib/apiaction.php:1204
+#: lib/apiaction.php:1232 lib/apiaction.php:1355
 msgid "Not a supported data format."
 msgstr "Format de data no suportat."
 
@@ -2689,7 +2707,7 @@ msgstr "6 o més caràcters"
 #: actions/passwordsettings.php:112 actions/recoverpassword.php:239
 #: actions/register.php:440
 msgid "Confirm"
-msgstr "Confirmar"
+msgstr "Confirma"
 
 #: actions/passwordsettings.php:113 actions/recoverpassword.php:240
 msgid "Same as password above"
@@ -2697,7 +2715,7 @@ msgstr "Igual a la contrasenya de dalt"
 
 #: actions/passwordsettings.php:117
 msgid "Change"
-msgstr "Canviar"
+msgstr "Canvia"
 
 #: actions/passwordsettings.php:154 actions/register.php:237
 msgid "Password must be 6 or more characters."
@@ -3017,11 +3035,11 @@ msgstr "La biografia és massa llarga (màx. %d caràcters)."
 
 #: actions/profilesettings.php:235 actions/siteadminpanel.php:151
 msgid "Timezone not selected."
-msgstr "Franja horària no seleccionada."
+msgstr "No s'ha seleccionat el fus horari."
 
 #: actions/profilesettings.php:241
 msgid "Language is too long (max 50 chars)."
-msgstr "L'idioma és massa llarg (màx 50 caràcters)."
+msgstr "La llengua és massa llarga (màx. 50 caràcters)."
 
 #: actions/profilesettings.php:253 actions/tagother.php:178
 #, php-format
@@ -3047,7 +3065,7 @@ msgstr "No s'han pogut desar les etiquetes."
 #. TRANS: Message after successful saving of administrative settings.
 #: actions/profilesettings.php:391 lib/adminpanelaction.php:141
 msgid "Settings saved."
-msgstr "Configuració guardada."
+msgstr "S'ha desat la configuració."
 
 #: actions/public.php:83
 #, php-format
@@ -3158,7 +3176,7 @@ msgstr "Núvol d'etiquetes"
 
 #: actions/recoverpassword.php:36
 msgid "You are already logged in!"
-msgstr "Ja t'has connectat!"
+msgstr "Ja heu iniciat una sessió!"
 
 #: actions/recoverpassword.php:62
 msgid "No such recovery code."
@@ -3207,7 +3225,7 @@ msgstr "Sobrenom o adreça electrònica"
 #: actions/recoverpassword.php:193
 msgid "Your nickname on this server, or your registered email address."
 msgstr ""
-"El teu nom d'usuari en aquest servidor, o la teva adreça de correu "
+"El vostre nom d'usuari en aquest servidor, o la vostra adreça de correu "
 "electrònic registrada."
 
 #: actions/recoverpassword.php:199 actions/recoverpassword.php:200
@@ -3236,11 +3254,11 @@ msgstr "6 o més caràcters, i no te n'oblidis!"
 
 #: actions/recoverpassword.php:243
 msgid "Reset"
-msgstr "Restablir"
+msgstr "Reinicialitza"
 
 #: actions/recoverpassword.php:252
 msgid "Enter a nickname or email address."
-msgstr "Escriu un sobrenom o una adreça de correu electrònic."
+msgstr "Escriviu un sobrenom o una adreça de correu electrònic."
 
 #: actions/recoverpassword.php:282
 msgid "No user with that email address or username."
@@ -3252,7 +3270,7 @@ msgstr "No hi ha cap adreça de correu electrònic registrada d'aquest usuari."
 
 #: actions/recoverpassword.php:313
 msgid "Error saving address confirmation."
-msgstr "Error en guardar confirmació de l'adreça."
+msgstr "S'ha produït un error en desar la confirmació de l'adreça."
 
 #: actions/recoverpassword.php:338
 msgid ""
@@ -3312,7 +3330,7 @@ msgstr "L'adreça de correu electrònic ja existeix."
 
 #: actions/register.php:250 actions/register.php:272
 msgid "Invalid username or password."
-msgstr "Nom d'usuari o contrasenya invàlids."
+msgstr "El nom d'usuari o la contrasenya no són vàlids."
 
 #: actions/register.php:350
 msgid ""
@@ -3463,7 +3481,7 @@ msgstr "URL del teu perfil en un altre servei de microblogging compatible"
 #: actions/remotesubscribe.php:137 lib/subscribeform.php:139
 #: lib/userprofile.php:406
 msgid "Subscribe"
-msgstr "Subscriure's"
+msgstr "Subscriu-m'hi"
 
 #: actions/remotesubscribe.php:159
 msgid "Invalid profile URL (bad format)"
@@ -3499,7 +3517,7 @@ msgstr "No podeu repetir el vostre propi avís."
 msgid "You already repeated that notice."
 msgstr "Ja havíeu repetit l'avís."
 
-#: actions/repeat.php:114 lib/noticelist.php:667
+#: actions/repeat.php:114 lib/noticelist.php:675
 msgid "Repeated"
 msgstr "Repetit"
 
@@ -3534,10 +3552,10 @@ msgid "Replies feed for %s (Atom)"
 msgstr "Canal de respostes de %s (Atom)"
 
 #: actions/replies.php:199
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "This is the timeline showing replies to %1$s but %2$s hasn't received a "
-"notice to his attention yet."
+"notice to them yet."
 msgstr ""
 "Aquesta és la línia temporal que mostra les respostes a %1$s, però %2$s "
 "encara no ha rebut cap avís a la seva atenció."
@@ -3552,13 +3570,13 @@ msgstr ""
 "[uniu-vos a grups](%%action.groups%%)."
 
 #: actions/replies.php:206
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can try to [nudge %1$s](../%2$s) or [post something to his or her "
-"attention](%%%%action.newnotice%%%%?status_textarea=%3$s)."
+"You can try to [nudge %1$s](../%2$s) or [post something to them](%%%%action."
+"newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
-"Podeu provar d'[avisar %1$s](../%2$s) o [enviar quelcom per reclamar la seva "
-"atenció](%%%%action.newnotice%%%%?status_textarea=%3$s)."
+"Podeu provar d'[avisar %1$s](../%2$s) o [enviar quelcom per cridar-li "
+"l'atenció](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
 #: actions/repliesrss.php:72
 #, php-format
@@ -3646,7 +3664,7 @@ msgstr "Organització"
 msgid "Description"
 msgstr "Descripció"
 
-#: actions/showapplication.php:192 actions/showgroup.php:444
+#: actions/showapplication.php:192 actions/showgroup.php:436
 #: lib/profileaction.php:187
 msgid "Statistics"
 msgstr "Estadístiques"
@@ -3734,20 +3752,20 @@ msgstr ""
 "avisos que us agraden per arxivar-los per a més endavant i fer-los conèixer."
 
 #: actions/showfavorites.php:208
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"%s hasn't added any notices to his favorites yet. Post something interesting "
-"they would add to their favorites :)"
+"%s hasn't added any favorite notices yet. Post something interesting they "
+"would add to their favorites :)"
 msgstr ""
 "%s no ha afegit cap avís als seus preferits encara. Envieu quelcom "
 "interessant que pugui afegir-hi."
 
 #: actions/showfavorites.php:212
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"%s hasn't added any notices to his favorites yet. Why not [register an "
-"account](%%%%action.register%%%%) and then post something interesting they "
-"would add to their favorites :)"
+"%s hasn't added any favorite notices yet. Why not [register an account](%%%%"
+"action.register%%%%) and then post something interesting they would add to "
+"their favorites :)"
 msgstr ""
 "%s no ha afegit cap avís als seus preferits encara. Per què no [registreu un "
 "compte](%%%%action.register%%%%) i llavors envieu quelcom interessant que "
@@ -3809,7 +3827,7 @@ msgstr "Canal d'avisos del grup %s (Atom)"
 msgid "FOAF for %s group"
 msgstr "Safata de sortida per %s"
 
-#: actions/showgroup.php:393 actions/showgroup.php:453 lib/groupnav.php:91
+#: actions/showgroup.php:393 actions/showgroup.php:445 lib/groupnav.php:91
 msgid "Members"
 msgstr "Membres"
 
@@ -3823,11 +3841,11 @@ msgstr "(Cap)"
 msgid "All members"
 msgstr "Tots els membres"
 
-#: actions/showgroup.php:447
+#: actions/showgroup.php:439
 msgid "Created"
 msgstr "S'ha creat"
 
-#: actions/showgroup.php:463
+#: actions/showgroup.php:455
 #, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
@@ -3843,7 +3861,7 @@ msgstr ""
 "%) per formar part del grup i molt més! ([Més informació...](%%%%doc.help%%%"
 "%))"
 
-#: actions/showgroup.php:469
+#: actions/showgroup.php:461
 #, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
@@ -3856,7 +3874,7 @@ msgstr ""
 "[StatusNet](http://status.net/). Els seus membre comparteixen missatges "
 "curts sobre llur vida i interessos. "
 
-#: actions/showgroup.php:497
+#: actions/showgroup.php:489
 msgid "Admins"
 msgstr "Administradors"
 
@@ -3932,13 +3950,13 @@ msgstr ""
 "podria ser un bon moment per començar :)"
 
 #: actions/showstream.php:207
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can try to nudge %1$s or [post something to his or her attention](%%%%"
-"action.newnotice%%%%?status_textarea=%2$s)."
+"You can try to nudge %1$s or [post something to them](%%%%action.newnotice%%%"
+"%?status_textarea=%2$s)."
 msgstr ""
-"Podeu provar d'avisar %1$s o [enviar quelcom per reclamar la seva atenció](%%"
-"%%action.newnotice%%%%?status_textarea=%2$s)."
+"Podeu provar d'avisar %1$s o [enviar quelcom per cridar-li l'atenció](%%%%"
+"action.newnotice%%%%?status_textarea=%2$s)."
 
 #: actions/showstream.php:243
 #, php-format
@@ -4119,8 +4137,8 @@ msgstr "Paràmetres de l'SMS"
 #, php-format
 msgid "You can receive SMS messages through email from %%site.name%%."
 msgstr ""
-"Pots rebre missatges SMS a través del teu coreu electrònic des de %%site.name"
-"%%."
+"Podeu rebre missatges SMS a través del vostre correu electrònic des de %%"
+"site.name%%."
 
 #. TRANS: Message given in the SMS settings if SMS is not enabled on the site.
 #: actions/smssettings.php:97
@@ -4179,7 +4197,7 @@ msgid ""
 "Send me notices through SMS; I understand I may incur exorbitant charges "
 "from my carrier."
 msgstr ""
-"Enviar-me avisos a través de SMS; puc entendre que això repercutirà en una "
+"Envia'm avisos a través de l'SMS; puc entendre que això repercutirà en una "
 "exorbitant càrrega del meu transport."
 
 #. TRANS: Confirmation message for successful SMS preferences save.
@@ -4200,7 +4218,7 @@ msgstr "No s'ha sel·leccionat cap transport."
 #. TRANS: Message given saving SMS phone number that is already set.
 #: actions/smssettings.php:352
 msgid "That is already your phone number."
-msgstr "Aquest ja és el teu número de telèfon."
+msgstr "Aquest ja és el vostre número de telèfon."
 
 #. TRANS: Message given saving SMS phone number that is already set for another user.
 #: actions/smssettings.php:356
@@ -4327,7 +4345,8 @@ msgstr "Desa els paràmetres de les instantànies"
 msgid "You are not subscribed to that profile."
 msgstr "No estàs subscrit a aquest perfil."
 
-#: actions/subedit.php:83 classes/Subscription.php:132
+#. TRANS: Exception thrown when a subscription could not be stored on the server.
+#: actions/subedit.php:83 classes/Subscription.php:136
 msgid "Could not save subscription."
 msgstr "No s'ha pogut guardar la subscripció."
 
@@ -4507,10 +4526,6 @@ msgstr ""
 msgid "No such tag."
 msgstr "No existeix aquesta etiqueta."
 
-#: actions/twitapitrends.php:85
-msgid "API method under construction."
-msgstr "Mètode API en construcció."
-
 #: actions/unblock.php:59
 msgid "You haven't blocked that user."
 msgstr "No heu blocat l'usuari."
@@ -4611,7 +4626,7 @@ msgstr "Si es permet als usuaris invitar-ne de nous."
 
 #: actions/userauthorization.php:105
 msgid "Authorize subscription"
-msgstr "Autoritzar subscripció"
+msgstr "Autoritza la subscripció"
 
 #: actions/userauthorization.php:110
 msgid ""
@@ -4822,83 +4837,131 @@ msgstr "Versió"
 msgid "Author(s)"
 msgstr "Autoria"
 
-#: classes/File.php:185
+#. TRANS: Server exception thrown when a URL cannot be processed.
+#: classes/File.php:143
 #, php-format
+msgid "Cannot process URL '%s'"
+msgstr ""
+
+#. TRANS: Server exception thrown when... Robin thinks something is impossible!
+#: classes/File.php:175
+msgid "Robin thinks something is impossible."
+msgstr ""
+
+#. TRANS: Message given if an upload is larger than the configured maximum.
+#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
+#: classes/File.php:190
+#, fuzzy, php-format
 msgid ""
-"No file may be larger than %d bytes and the file you sent was %d bytes. Try "
-"to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
+"Try to upload a smaller version."
 msgstr ""
 "Cap fitxer pot ser major de %d bytes i el fitxer que heu enviat era de %d "
 "bytes. Proveu de pujar una versió de mida menor."
 
-#: classes/File.php:195
+#. TRANS: Message given if an upload would exceed user quota.
+#. TRANS: %d (number) is the user quota in bytes.
+#: classes/File.php:202
 #, php-format
 msgid "A file this large would exceed your user quota of %d bytes."
 msgstr ""
 "Un fitxer d'aquesta mida excediria la vostra quota d'usuari de %d bytes."
 
-#: classes/File.php:202
+#. TRANS: Message given id an upload would exceed a user's monthly quota.
+#. TRANS: $d (number) is the monthly user quota in bytes.
+#: classes/File.php:211
 #, php-format
 msgid "A file this large would exceed your monthly quota of %d bytes."
 msgstr ""
 "Un fitxer d'aquesta mida excediria la vostra quota mensual de %d bytes."
 
-#: classes/Group_member.php:41
+#. TRANS: Client exception thrown if a file upload does not have a valid name.
+#: classes/File.php:248 classes/File.php:263
+#, fuzzy
+msgid "Invalid filename."
+msgstr "La mida no és vàlida."
+
+#. TRANS: Exception thrown when joining a group fails.
+#: classes/Group_member.php:42
 msgid "Group join failed."
 msgstr "No s'ha pogut unir al grup."
 
-#: classes/Group_member.php:53
+#. TRANS: Exception thrown when trying to leave a group the user is not a member of.
+#: classes/Group_member.php:55
 msgid "Not part of group."
 msgstr "No s'és part del grup."
 
-#: classes/Group_member.php:60
+#. TRANS: Exception thrown when trying to leave a group fails.
+#: classes/Group_member.php:63
 msgid "Group leave failed."
 msgstr "La sortida del grup ha fallat."
 
-#: classes/Local_group.php:41
+#. TRANS: Server exception thrown when updating a local group fails.
+#: classes/Local_group.php:42
 msgid "Could not update local group."
 msgstr "No s'ha pogut actualitzar el grup local."
 
-#: classes/Login_token.php:76
+#. TRANS: Exception thrown when trying creating a login token failed.
+#. TRANS: %s is the user nickname for which token creation failed.
+#: classes/Login_token.php:78
 #, php-format
 msgid "Could not create login token for %s"
 msgstr "No s'ha pogut crear un testimoni d'inici de sessió per a %s"
 
-#: classes/Message.php:45
+#. TRANS: Exception thrown when database name or Data Source Name could not be found.
+#: classes/Memcached_DataObject.php:533
+msgid "No database name or DSN found anywhere."
+msgstr ""
+
+#. TRANS: Client exception thrown when a user tries to send a direct message while being banned from sending them.
+#: classes/Message.php:46
 msgid "You are banned from sending direct messages."
 msgstr "Se us ha bandejat enviar missatges directes."
 
-#: classes/Message.php:61
+#. TRANS: Message given when a message could not be stored on the server.
+#: classes/Message.php:63
 msgid "Could not insert message."
 msgstr "No s'ha pogut inserir el missatge."
 
-#: classes/Message.php:71
+#. TRANS: Message given when a message could not be updated on the server.
+#: classes/Message.php:74
 msgid "Could not update message with new URI."
 msgstr "No s'ha pogut inserir el missatge amb la nova URI."
 
+#. TRANS: Server exception thrown when a user profile for a notice cannot be found.
+#. TRANS: %1$d is a profile ID (number), %2$d is a notice ID (number).
+#: classes/Notice.php:98
+#, php-format
+msgid "No such profile (%1$d) for notice (%2$d)."
+msgstr ""
+
 #. TRANS: Server exception. %s are the error details.
-#: classes/Notice.php:182
+#: classes/Notice.php:190
 #, php-format
 msgid "Database error inserting hashtag: %s"
 msgstr ""
 "S'ha produït un error de la base de dades en inserir una etiqueta de "
 "coixinet (%): %s"
 
-#: classes/Notice.php:251
+#. TRANS: Client exception thrown if a notice contains too many characters.
+#: classes/Notice.php:260
 msgid "Problem saving notice. Too long."
 msgstr "S'ha produït un problema en desar l'avís. És massa llarg."
 
-#: classes/Notice.php:255
+#. TRANS: Client exception thrown when trying to save a notice for an unknown user.
+#: classes/Notice.php:265
 msgid "Problem saving notice. Unknown user."
 msgstr "S'ha produït un problema en desar l'avís. Usuari desconegut."
 
-#: classes/Notice.php:260
+#. TRANS: Client exception thrown when a user tries to post too many notices in a given time frame.
+#: classes/Notice.php:271
 msgid ""
 "Too many notices too fast; take a breather and post again in a few minutes."
 msgstr ""
 "Massa avisos massa ràpid; pren un respir i publica de nou en uns minuts."
 
-#: classes/Notice.php:266
+#. TRANS: Client exception thrown when a user tries to post too many duplicate notices in a given time frame.
+#: classes/Notice.php:278
 msgid ""
 "Too many duplicate messages too quickly; take a breather and post again in a "
 "few minutes."
@@ -4906,71 +4969,122 @@ msgstr ""
 "Massa missatges duplicats en massa poc temps; preneu un respir i torneu a "
 "enviar en uns minuts."
 
-#: classes/Notice.php:272
+#. TRANS: Client exception thrown when a user tries to post while being banned.
+#: classes/Notice.php:286
 msgid "You are banned from posting notices on this site."
 msgstr "Ha estat bandejat de publicar avisos en aquest lloc."
 
-#: classes/Notice.php:338 classes/Notice.php:364
+#. TRANS: Server exception thrown when a notice cannot be saved.
+#. TRANS: Server exception thrown when a notice cannot be updated.
+#: classes/Notice.php:353 classes/Notice.php:380
 msgid "Problem saving notice."
-msgstr "Problema en guardar l'avís."
+msgstr "S'ha produït un problema en desar l'avís."
 
-#: classes/Notice.php:973
+#. TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
+#: classes/Notice.php:892
+msgid "Bad type provided to saveKnownGroups"
+msgstr ""
+
+#. TRANS: Server exception thrown when an update for a group inbox fails.
+#: classes/Notice.php:991
 msgid "Problem saving group inbox."
 msgstr "S'ha produït un problema en desar la safata d'entrada del grup."
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1564
+#: classes/Notice.php:1614
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr "RT @%1$s %2$s"
 
-#: classes/Subscription.php:74 lib/oauthstore.php:465
+#. TRANS: Exception thrown when trying to revoke an existing role for a user that does not exist.
+#. TRANS: %1$s is the role name, %2$s is the user ID (number).
+#: classes/Profile.php:740
+#, php-format
+msgid "Cannot revoke role \"%1$s\" for user #%2$d; does not exist."
+msgstr ""
+
+#. TRANS: Exception thrown when trying to revoke a role for a user with a failing database query.
+#. TRANS: %1$s is the role name, %2$s is the user ID (number).
+#: classes/Profile.php:749
+#, php-format
+msgid "Cannot revoke role \"%1$s\" for user #%2$d; database error."
+msgstr ""
+
+#. TRANS: Exception thrown when a right for a non-existing user profile is checked.
+#: classes/Remote_profile.php:54
+#, fuzzy
+msgid "Missing profile."
+msgstr "L'usuari no té perfil."
+
+#. TRANS: Exception thrown when a tag cannot be saved.
+#: classes/Status_network.php:346
+#, fuzzy
+msgid "Unable to save tag."
+msgstr "No s'ha pogut desar l'avís del lloc."
+
+#. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
+#: classes/Subscription.php:75 lib/oauthstore.php:465
 msgid "You have been banned from subscribing."
 msgstr "Se us ha banejat la subscripció."
 
-#: classes/Subscription.php:78
+#. TRANS: Exception thrown when trying to subscribe while already subscribed.
+#: classes/Subscription.php:80
 msgid "Already subscribed!"
 msgstr "Ja hi esteu subscrit!"
 
-#: classes/Subscription.php:82
+#. TRANS: Exception thrown when trying to subscribe to a user who has blocked the subscribing user.
+#: classes/Subscription.php:85
 msgid "User has blocked you."
 msgstr "Un usuari t'ha bloquejat."
 
-#: classes/Subscription.php:167
+#. TRANS: Exception thrown when trying to unsibscribe without a subscription.
+#: classes/Subscription.php:171
 msgid "Not subscribed!"
 msgstr "No hi esteu subscrit!"
 
-#: classes/Subscription.php:173
-msgid "Couldn't delete self-subscription."
+#. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
+#: classes/Subscription.php:178
+#, fuzzy
+msgid "Could not delete self-subscription."
 msgstr "No s'ha pogut eliminar l'autosubscripció."
 
-#: classes/Subscription.php:200
-msgid "Couldn't delete subscription OMB token."
+#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
+#: classes/Subscription.php:206
+#, fuzzy
+msgid "Could not delete subscription OMB token."
 msgstr "No s'ha pogut eliminar el testimoni OMB de la subscripció."
 
-#: classes/Subscription.php:211
-msgid "Couldn't delete subscription."
+#. TRANS: Exception thrown when a subscription could not be deleted on the server.
+#: classes/Subscription.php:218
+#, fuzzy
+msgid "Could not delete subscription."
 msgstr "No s'ha pogut eliminar la subscripció."
 
-#: classes/User.php:363
+#. TRANS: Notice given on user registration.
+#. TRANS: %1$s is the sitename, $2$s is the registering user's nickname.
+#: classes/User.php:365
 #, php-format
 msgid "Welcome to %1$s, @%2$s!"
 msgstr "Us donem la benvinguda a %1$s, @%2$s!"
 
-#: classes/User_group.php:480
+#. TRANS: Server exception thrown when creating a group failed.
+#: classes/User_group.php:496
 msgid "Could not create group."
 msgstr "No s'ha pogut crear el grup."
 
-#: classes/User_group.php:489
+#. TRANS: Server exception thrown when updating a group URI failed.
+#: classes/User_group.php:506
 msgid "Could not set group URI."
 msgstr "No es pot definir l'URI del grup."
 
-#: classes/User_group.php:510
+#. TRANS: Server exception thrown when setting group membership failed.
+#: classes/User_group.php:529
 msgid "Could not set group membership."
 msgstr "No s'ha pogut establir la pertinença d'aquest grup."
 
-#: classes/User_group.php:524
+#. TRANS: Server exception thrown when saving local group information failed.
+#: classes/User_group.php:544
 msgid "Could not save local group info."
 msgstr "No s'ha pogut desar la informació del grup local."
 
@@ -5572,7 +5686,7 @@ msgstr "No té massa sentit avisar-se a un mateix!"
 #: lib/command.php:234
 #, php-format
 msgid "Nudge sent to %s"
-msgstr "S'ha enviat un avís a %s"
+msgstr "S'ha cridat l'atenció a %s"
 
 #: lib/command.php:260
 #, php-format
@@ -6248,7 +6362,7 @@ msgstr "%s: confirmeu-ho si teniu aquest número de telèfon amb aquest codi:"
 #: lib/mail.php:484
 #, php-format
 msgid "You've been nudged by %s"
-msgstr "Has estat reclamat per %s"
+msgstr "%s us ha cridat l'atenció"
 
 #. TRANS: Body for 'nudge' notification email
 #: lib/mail.php:489
@@ -6405,8 +6519,8 @@ msgid ""
 "\n"
 "P.S. You can turn off these email notifications here: %8$s\n"
 msgstr ""
-"1$s (@%9$s) acaba d'enviar un avís un avís a la vostra atenció (una resposta "
-"amb @) a %2$s.\n"
+"%1$s (@%9$s) acaba d'enviar un avís un avís a la vostra atenció (una "
+"resposta amb @) a %2$s.\n"
 "\n"
 "L'avís és a continuació:\n"
 "\n"
@@ -6442,7 +6556,7 @@ msgstr ""
 "usuaris en la conversa. La gent pot enviar-vos missatges només per als "
 "vostres ulls."
 
-#: lib/mailbox.php:227 lib/noticelist.php:497
+#: lib/mailbox.php:227 lib/noticelist.php:505
 msgid "from"
 msgstr "de"
 
@@ -6503,24 +6617,24 @@ msgstr "No s'ha pogut escriure el fitxer al disc."
 msgid "File upload stopped by extension."
 msgstr "L'extensió ha aturat la càrrega del fitxer."
 
-#: lib/mediafile.php:179 lib/mediafile.php:216
+#: lib/mediafile.php:179 lib/mediafile.php:217
 msgid "File exceeds user's quota."
 msgstr "El fitxer excedeix la quota de l'usuari."
 
-#: lib/mediafile.php:196 lib/mediafile.php:233
+#: lib/mediafile.php:197 lib/mediafile.php:234
 msgid "File could not be moved to destination directory."
 msgstr "No s'ha pogut moure el fitxer al directori de destinació."
 
-#: lib/mediafile.php:201 lib/mediafile.php:237
+#: lib/mediafile.php:202 lib/mediafile.php:238
 msgid "Could not determine file's MIME type."
 msgstr "No s'ha pogut determinar el tipus MIME del fitxer."
 
-#: lib/mediafile.php:270
+#: lib/mediafile.php:318
 #, php-format
 msgid " Try using another %s format."
 msgstr "Proveu d'emprar un altre format %s."
 
-#: lib/mediafile.php:275
+#: lib/mediafile.php:323
 #, php-format
 msgid "%s is not a supported file type on this server."
 msgstr "%s no és un tipus de fitxer permès al servidor."
@@ -6576,65 +6690,65 @@ msgstr ""
 "l'esperat; torneu-ho a provar més tard"
 
 #. TRANS: Used in coordinates as abbreviation of north
-#: lib/noticelist.php:430
+#: lib/noticelist.php:436
 msgid "N"
 msgstr "N"
 
 #. TRANS: Used in coordinates as abbreviation of south
-#: lib/noticelist.php:432
+#: lib/noticelist.php:438
 msgid "S"
 msgstr "S"
 
 #. TRANS: Used in coordinates as abbreviation of east
-#: lib/noticelist.php:434
+#: lib/noticelist.php:440
 msgid "E"
 msgstr "E"
 
 #. TRANS: Used in coordinates as abbreviation of west
-#: lib/noticelist.php:436
+#: lib/noticelist.php:442
 msgid "W"
 msgstr "O"
 
-#: lib/noticelist.php:438
+#: lib/noticelist.php:444
 #, php-format
 msgid "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 msgstr "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 
-#: lib/noticelist.php:447
+#: lib/noticelist.php:453
 msgid "at"
 msgstr "a"
 
-#: lib/noticelist.php:559
+#: lib/noticelist.php:567
 msgid "in context"
 msgstr "en context"
 
-#: lib/noticelist.php:594
+#: lib/noticelist.php:602
 msgid "Repeated by"
 msgstr "Repetit per"
 
-#: lib/noticelist.php:621
+#: lib/noticelist.php:629
 msgid "Reply to this notice"
 msgstr "respondre a aquesta nota"
 
-#: lib/noticelist.php:622
+#: lib/noticelist.php:630
 msgid "Reply"
 msgstr "Respon"
 
-#: lib/noticelist.php:666
+#: lib/noticelist.php:674
 msgid "Notice repeated"
 msgstr "Avís repetit"
 
 #: lib/nudgeform.php:116
 msgid "Nudge this user"
-msgstr "Reclamar aquest usuari"
+msgstr "Crida l'atenció a l'usuari"
 
 #: lib/nudgeform.php:128
 msgid "Nudge"
-msgstr "Reclamar"
+msgstr "Crida l'atenció"
 
 #: lib/nudgeform.php:128
 msgid "Send a nudge to this user"
-msgstr "Enviar una reclamació a aquest usuari"
+msgstr "Crida l'atenció a l'usuari"
 
 #: lib/oauthstore.php:283
 msgid "Error inserting new profile"
@@ -6878,8 +6992,8 @@ msgid "This server cannot handle theme uploads without ZIP support."
 msgstr "El servidor no pot gestionar la pujada de temes si no pot tractar ZIP."
 
 #: lib/themeuploader.php:58 lib/themeuploader.php:61
-msgid "Theme upload missing or failed."
-msgstr "La pujada del tema ha fallat o no hi és."
+msgid "The theme file is missing or the upload failed."
+msgstr "Manca el fitxer del tema o la pujada ha fallat."
 
 #: lib/themeuploader.php:91 lib/themeuploader.php:102
 #: lib/themeuploader.php:253 lib/themeuploader.php:257
@@ -6899,7 +7013,7 @@ msgstr ""
 
 #: lib/themeuploader.php:178
 msgid "Invalid theme archive: missing file css/display.css"
-msgstr "L'arxiu del tema no és vàlid: manca el fitxer de css / display.css"
+msgstr "L'arxiu del tema no és vàlid: manca el fitxer css/display.css"
 
 #: lib/themeuploader.php:205
 msgid ""

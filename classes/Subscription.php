@@ -71,14 +71,17 @@ class Subscription extends Memcached_DataObject
         }
 
         if (!$subscriber->hasRight(Right::SUBSCRIBE)) {
+            // TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
             throw new Exception(_('You have been banned from subscribing.'));
         }
 
         if (self::exists($subscriber, $other)) {
+            // TRANS: Exception thrown when trying to subscribe while already subscribed.
             throw new Exception(_('Already subscribed!'));
         }
 
         if ($other->hasBlocked($subscriber)) {
+            // TRANS: Exception thrown when trying to subscribe to a user who has blocked the subscribing user.
             throw new Exception(_('User has blocked you.'));
         }
 
@@ -129,6 +132,7 @@ class Subscription extends Memcached_DataObject
 
         if (!$result) {
             common_log_db_error($sub, 'INSERT', __FILE__);
+            // TRANS: Exception thrown when a subscription could not be stored on the server.
             throw new Exception(_('Could not save subscription.'));
         }
 
@@ -160,17 +164,18 @@ class Subscription extends Memcached_DataObject
      * Cancel a subscription
      *
      */
-
     function cancel($subscriber, $other)
     {
         if (!self::exists($subscriber, $other)) {
+            // TRANS: Exception thrown when trying to unsibscribe without a subscription.
             throw new Exception(_('Not subscribed!'));
         }
 
         // Don't allow deleting self subs
 
         if ($subscriber->id == $other->id) {
-            throw new Exception(_('Couldn\'t delete self-subscription.'));
+            // TRANS: Exception thrown when trying to unsubscribe a user from themselves.
+            throw new Exception(_('Could not delete self-subscription.'));
         }
 
         if (Event::handle('StartUnsubscribe', array($subscriber, $other))) {
@@ -197,7 +202,8 @@ class Subscription extends Memcached_DataObject
 
                     if (!$result) {
                         common_log_db_error($token, 'DELETE', __FILE__);
-                        throw new Exception(_('Couldn\'t delete subscription OMB token.'));
+                        // TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
+                        throw new Exception(_('Could not delete subscription OMB token.'));
                     }
                 } else {
                     common_log(LOG_ERR, "Couldn't find credentials with token {$token->tok}");
@@ -208,7 +214,8 @@ class Subscription extends Memcached_DataObject
 
             if (!$result) {
                 common_log_db_error($sub, 'DELETE', __FILE__);
-                throw new Exception(_('Couldn\'t delete subscription.'));
+                // TRANS: Exception thrown when a subscription could not be deleted on the server.
+                throw new Exception(_('Could not delete subscription.'));
             }
 
             self::blow('user:notices_with_friends:%d', $subscriber->id);

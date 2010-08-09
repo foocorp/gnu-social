@@ -28,9 +28,11 @@
  */
 class Salmon
 {
+    const REL_SALMON = 'salmon';
+    const REL_MENTIONED = 'mentioned';
 
+    // XXX: these are deprecated 
     const NS_REPLIES = "http://salmon-protocol.org/ns/salmon-replies";
-
     const NS_MENTIONS = "http://salmon-protocol.org/ns/salmon-mention";
     
     /**

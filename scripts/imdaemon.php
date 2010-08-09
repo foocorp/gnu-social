@@ -23,21 +23,19 @@ define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
 $shortoptions = 'fi::a';
 $longoptions = array('id::', 'foreground', 'all');
 
-$helptext = <<<END_OF_XMPP_HELP
-Daemon script for receiving new notices from Jabber users.
+$helptext = <<<END_OF_IM_HELP
+Daemon script for receiving new notices from IM users.
 
     -i --id           Identity (default none)
     -a --all          Handle XMPP for all local sites
                       (requires Stomp queue handler, status_network setup)
     -f --foreground   Stay in the foreground (default background)
 
-END_OF_XMPP_HELP;
+END_OF_IM_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
-require_once INSTALLDIR . '/lib/jabber.php';
-
-class XMPPDaemon extends SpawningDaemon
+class ImDaemon extends SpawningDaemon
 {
     protected $allsites = false;
 
@@ -45,7 +43,7 @@ class XMPPDaemon extends SpawningDaemon
     {
         if ($threads != 1) {
             // This should never happen. :)
-            throw new Exception("XMPPDaemon can must run single-threaded");
+            throw new Exception("IMDaemon can must run single-threaded");
         }
         parent::__construct($id, $daemonize, $threads);
         $this->allsites = $allsites;
@@ -53,9 +51,9 @@ class XMPPDaemon extends SpawningDaemon
 
     function runThread()
     {
-        common_log(LOG_INFO, 'Waiting to listen to XMPP and queues');
+        common_log(LOG_INFO, 'Waiting to listen to IM connections and queues');
 
-        $master = new XmppMaster($this->get_id(), $this->processManager());
+        $master = new ImMaster($this->get_id(), $this->processManager());
         $master->init($this->allsites);
         $master->service();
 
@@ -66,7 +64,7 @@ class XMPPDaemon extends SpawningDaemon
 
 }
 
-class XmppMaster extends IoMaster
+class ImMaster extends IoMaster
 {
     protected $processManager;
 
@@ -82,23 +80,18 @@ class XmppMaster extends IoMaster
      */
     function initManagers()
     {
-        if (common_config('xmpp', 'enabled')) {
+        $classes = array();
+        if (Event::handle('StartImDaemonIoManagers', array(&$classes))) {
             $qm = QueueManager::get();
-            $qm->setActiveGroup('xmpp');
-            $this->instantiate($qm);
-            $this->instantiate(XmppManager::get());
-            $this->instantiate($this->processManager);
+            $qm->setActiveGroup('im');
+            $classes[] = $qm;
+            $classes[] = $this->processManager;
+        }
+        Event::handle('EndImDaemonIoManagers', array(&$classes));
+        foreach ($classes as $class) {
+            $this->instantiate($class);
         }
     }
-}
-
-// Abort immediately if xmpp is not enabled, otherwise the daemon chews up
-// lots of CPU trying to connect to unconfigured servers
-// @fixme do this check after we've run through the site list so we
-// don't have to find an XMPP site to start up when using --all mode.
-if (common_config('xmpp','enabled')==false) {
-    print "Aborting daemon - xmpp is disabled\n";
-    exit(1);
 }
 
 if (version_compare(PHP_VERSION, '5.2.6', '<')) {
@@ -120,6 +113,6 @@ if (have_option('i', 'id')) {
 $foreground = have_option('f', 'foreground');
 $all = have_option('a') || have_option('--all');
 
-$daemon = new XMPPDaemon($id, !$foreground, 1, $all);
+$daemon = new ImDaemon($id, !$foreground, 1, $all);
 
 $daemon->runOnce();

@@ -83,6 +83,21 @@ class AdsensePlugin extends UAPPlugin
     public $adScript = 'http://pagead2.googlesyndication.com/pagead/show_ads.js';
     public $client   = null;
 
+    function initialize()
+    {
+        parent::initialize();
+
+        // A little bit of chicanery so we avoid overwriting values that
+        // are passed in with the constructor
+
+        foreach (array('mediumRectangle', 'rectangle', 'leaderboard', 'wideSkyscraper', 'adScript', 'client') as $setting) {
+            $value = common_config('adsense', strtolower($setting));
+            if (!empty($value)) { // not found
+                $this->$setting = $value;
+            }
+        }
+    }
+
     /**
      * Show a medium rectangle 'ad'
      *
@@ -156,5 +171,38 @@ class AdsensePlugin extends UAPPlugin
         $action->inlineScript($code);
 
         $action->script($this->adScript);
+    }
+
+    function onRouterInitialized($m)
+    {
+        $m->connect('admin/adsense',
+                    array('action' => 'adsenseadminpanel'));
+
+        return true;
+    }
+
+    function onAutoload($cls)
+    {
+        $dir = dirname(__FILE__);
+
+        switch ($cls)
+        {
+        case 'AdsenseadminpanelAction':
+            require_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+            return false;
+        default:
+            return true;
+        }
+    }
+
+    function onEndAdminPanelNav($menu) {
+        if (AdminPanelAction::canAdmin('adsense')) {
+            // TRANS: Menu item title/tooltip
+            $menu_title = _('Adsense configuration');
+            // TRANS: Menu item for site administration
+            $menu->out->menuItem(common_local_url('adsenseadminpanel'), _('Adsense'),
+                                 $menu_title, $action_name == 'adsenseadminpanel', 'nav_adsense_admin_panel');
+        }
+        return true;
     }
 }

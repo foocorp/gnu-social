@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-16 22:18+0000\n"
-"PO-Revision-Date: 2010-06-21 18:03:35+0000\n"
+"POT-Creation-Date: 2010-08-03 13:21+0000\n"
+"PO-Revision-Date: 2010-08-03 13:21:57+0000\n"
 "Last-Translator: Ahmad Sufi Mahmudi\n"
 "Language-Team: Persian\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "X-Language-Code: fa\n"
 "X-Message-Group: out-statusnet\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: MediaWiki 1.17alpha (r68367); Translate extension (2010-06-12)\n"
+"X-Generator: MediaWiki 1.17alpha (r70381); Translate extension (2010-07-21)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 
 #. TRANS: Page title
@@ -103,7 +103,7 @@ msgstr "چنین صفحه‌ای وجود ندارد."
 #: actions/apidirectmessagenew.php:74 actions/apigroupcreate.php:113
 #: actions/apigroupismember.php:91 actions/apigroupjoin.php:100
 #: actions/apigroupleave.php:100 actions/apigrouplist.php:73
-#: actions/apistatusesupdate.php:228 actions/apisubscriptions.php:87
+#: actions/apistatusesupdate.php:229 actions/apisubscriptions.php:87
 #: actions/apitimelinefavorites.php:72 actions/apitimelinefriends.php:174
 #: actions/apitimelinehome.php:80 actions/apitimelinementions.php:80
 #: actions/apitimelineuser.php:82 actions/avatarbynickname.php:75
@@ -170,19 +170,19 @@ msgstr ""
 
 #. TRANS: %1$s is user nickname, %2$s is user nickname, %2$s is user nickname prefixed with "@"
 #: actions/all.php:146
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can try to [nudge %1$s](../%2$s) from his profile or [post something to "
-"his or her attention](%%%%action.newnotice%%%%?status_textarea=%3$s)."
+"You can try to [nudge %1$s](../%2$s) from their profile or [post something "
+"to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 "شما می‌توانید [یادآوری‌کردن %1$s](../%2$s) را از نمایه‌اش امتحان کنید یا [به "
 "توجه او چیزی بفرستید](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
 #: actions/all.php:149 actions/replies.php:210 actions/showstream.php:211
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
-"post a notice to his or her attention."
+"post a notice to them."
 msgstr ""
 "چرا [ثبت‌نام](%%%%action.register%%%%) نمی‌کنید و سپس به %s یادآوری کنید یا یک "
 "پیام به توجه‌اش بفرستید."
@@ -217,7 +217,7 @@ msgstr "به روز رسانی از %1$s و دوستان در %2$s"
 #: actions/apistatusesshow.php:109 actions/apistatusnetconfig.php:141
 #: actions/apistatusnetversion.php:93 actions/apisubscriptions.php:111
 #: actions/apitimelinefavorites.php:174 actions/apitimelinefriends.php:271
-#: actions/apitimelinegroup.php:152 actions/apitimelinehome.php:175
+#: actions/apitimelinegroup.php:154 actions/apitimelinehome.php:175
 #: actions/apitimelinementions.php:174 actions/apitimelinepublic.php:241
 #: actions/apitimelineretweetedtome.php:121
 #: actions/apitimelineretweetsofme.php:152 actions/apitimelinetag.php:161
@@ -266,7 +266,7 @@ msgstr "نمی‌توان نمایه را ذخیره کرد."
 
 #: actions/apiaccountupdateprofilebackgroundimage.php:108
 #: actions/apiaccountupdateprofileimage.php:97 actions/apimediaupload.php:80
-#: actions/apistatusesupdate.php:211 actions/avatarsettings.php:257
+#: actions/apistatusesupdate.php:212 actions/avatarsettings.php:257
 #: actions/designadminpanel.php:123 actions/editapplication.php:118
 #: actions/newapplication.php:101 actions/newnotice.php:94
 #: lib/designsettings.php:283
@@ -363,7 +363,8 @@ msgid "Could not delete favorite."
 msgstr "نمی‌توان پیام برگزیده را حذف کرد."
 
 #: actions/apifriendshipscreate.php:109
-msgid "Could not follow user: User not found."
+#, fuzzy
+msgid "Could not follow user: profile not found."
 msgstr "نمی‌توان کاربر را دنبال کرد: کاربر یافت نشد."
 
 #: actions/apifriendshipscreate.php:118
@@ -379,8 +380,9 @@ msgstr "نمی‌توان کاربر را دنبال نکرد: کاربر یاف
 msgid "You cannot unfollow yourself."
 msgstr "نمی‌توانید خودتان را دنبال کنید."
 
-#: actions/apifriendshipsexists.php:94
-msgid "Two user ids or screen_names must be supplied."
+#: actions/apifriendshipsexists.php:91
+#, fuzzy
+msgid "Two valid IDs or screen_names must be supplied."
 msgstr "باید ۲ شناسه‌ی کاربر یا نام ظاهری وارد کنید."
 
 #: actions/apifriendshipsshow.php:134
@@ -507,6 +509,11 @@ msgstr "%s گروه"
 #, php-format
 msgid "groups on %s"
 msgstr "گروه‌ها در %s"
+
+#: actions/apimediaupload.php:99
+#, fuzzy
+msgid "Upload failed."
+msgstr "بارگذاری پرونده"
 
 #: actions/apioauthauthorize.php:101
 msgid "No oauth_token parameter provided."
@@ -651,22 +658,26 @@ msgstr "وضعیت حذف شد."
 msgid "No status with that ID found."
 msgstr "هیچ وضعیتی با آن شناسه یافت نشد."
 
-#: actions/apistatusesupdate.php:241 actions/newnotice.php:155
+#: actions/apistatusesupdate.php:221
+msgid "Client must provide a 'status' parameter with a value."
+msgstr ""
+
+#: actions/apistatusesupdate.php:242 actions/newnotice.php:155
 #: lib/mailhandler.php:60
 #, php-format
 msgid "That's too long. Max notice size is %d chars."
 msgstr "این خیلی طولانی است. بیشینهٔ طول پیام %d نویسه است."
 
-#: actions/apistatusesupdate.php:282 actions/apiusershow.php:96
+#: actions/apistatusesupdate.php:283 actions/apiusershow.php:96
 msgid "Not found."
 msgstr "یافت نشد."
 
-#: actions/apistatusesupdate.php:305 actions/newnotice.php:178
+#: actions/apistatusesupdate.php:306 actions/newnotice.php:178
 #, php-format
 msgid "Max notice size is %d chars, including attachment URL."
 msgstr "بیشینهٔ طول پیام %d نویسه که شامل نشانی اینترنتی پیوست هم هست."
 
-#: actions/apisubscriptions.php:231 actions/apisubscriptions.php:261
+#: actions/apisubscriptions.php:232 actions/apisubscriptions.php:262
 msgid "Unsupported format."
 msgstr "قالب پشتیبانی نشده."
 
@@ -719,6 +730,10 @@ msgstr "پیام‌هایی که با %s نشانه گزاری شده اند."
 #, php-format
 msgid "Updates tagged with %1$s on %2$s!"
 msgstr "پیام‌های نشانه گزاری شده با %1$s در %2$s"
+
+#: actions/apitrends.php:87
+msgid "API method under construction."
+msgstr "روش API در دست ساخت."
 
 #: actions/attachment.php:73
 msgid "No such attachment."
@@ -773,7 +788,7 @@ msgid "Preview"
 msgstr "پیش‌نمایش"
 
 #: actions/avatarsettings.php:149 actions/showapplication.php:252
-#: lib/deleteuserform.php:66 lib/noticelist.php:648
+#: lib/deleteuserform.php:66 lib/noticelist.php:656
 msgid "Delete"
 msgstr "حذف"
 
@@ -1055,7 +1070,7 @@ msgid "Do not delete this notice"
 msgstr "این پیام را پاک نکن"
 
 #. TRANS: Submit button title for 'Yes' when deleting a notice.
-#: actions/deletenotice.php:158 lib/noticelist.php:648
+#: actions/deletenotice.php:158 lib/noticelist.php:656
 msgid "Delete this notice"
 msgstr "این پیام را پاک کن"
 
@@ -1334,7 +1349,8 @@ msgstr "نام‌مستعار غیر مجاز: «%s»"
 msgid "Could not update group."
 msgstr "نمی‌توان گروه را به‌هنگام‌سازی کرد."
 
-#: actions/editgroup.php:264 classes/User_group.php:496
+#. TRANS: Server exception thrown when creating group aliases failed.
+#: actions/editgroup.php:264 classes/User_group.php:514
 msgid "Could not create aliases."
 msgstr "نمی‌توان نام‌های مستعار را ساخت."
 
@@ -2476,8 +2492,9 @@ msgid "Updates matching search term \"%1$s\" on %2$s!"
 msgstr "پیام‌هایی که با جست‌و‌جوی عبارت »%1$s« در %s یافت شدند."
 
 #: actions/nudge.php:85
+#, fuzzy
 msgid ""
-"This user doesn't allow nudges or hasn't confirmed or set his email yet."
+"This user doesn't allow nudges or hasn't confirmed or set their email yet."
 msgstr ""
 "این کاربر اجازه‌ی یادآوری‌کردن را نداده است یا پست‌الکترونیک خود را تایید یا "
 "تعیین نکرده است."
@@ -2555,8 +2572,8 @@ msgid "Only %s URLs over plain HTTP please."
 msgstr "لطفا تنها از نشانی‌های اینترنتی %s از راه HTTP ساده استفاده کنید."
 
 #. TRANS: Client error on an API request with an unsupported data format.
-#: actions/oembed.php:184 actions/oembed.php:203 lib/apiaction.php:1179
-#: lib/apiaction.php:1208 lib/apiaction.php:1325
+#: actions/oembed.php:184 actions/oembed.php:203 lib/apiaction.php:1204
+#: lib/apiaction.php:1232 lib/apiaction.php:1355
 msgid "Not a supported data format."
 msgstr "یک قالب دادهٔ پشتیبانی‌شده نیست."
 
@@ -3460,7 +3477,7 @@ msgstr "شما نمی‌توانید پیام خودتان را تکرار کن�
 msgid "You already repeated that notice."
 msgstr "شما قبلا آن پیام را تکرار کرده‌اید."
 
-#: actions/repeat.php:114 lib/noticelist.php:667
+#: actions/repeat.php:114 lib/noticelist.php:675
 msgid "Repeated"
 msgstr "تکرار شده"
 
@@ -3495,10 +3512,10 @@ msgid "Replies feed for %s (Atom)"
 msgstr "خوراک پاسخ‌ها برای %s (Atom)"
 
 #: actions/replies.php:199
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "This is the timeline showing replies to %1$s but %2$s hasn't received a "
-"notice to his attention yet."
+"notice to them yet."
 msgstr ""
 "این خط‌زمانی است که پاسخ‌ها به %1$s را نشان می‌دهد، اما %2$s هنوز یک پیام به "
 "توجه‌اش دریافت نکرده است."
@@ -3513,10 +3530,10 @@ msgstr ""
 "شوید یا [به گروه‌ها بپیوندید](%%action.groups%%)."
 
 #: actions/replies.php:206
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can try to [nudge %1$s](../%2$s) or [post something to his or her "
-"attention](%%%%action.newnotice%%%%?status_textarea=%3$s)."
+"You can try to [nudge %1$s](../%2$s) or [post something to them](%%%%action."
+"newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 "شما می‌توانید [یادآوری %1$s](../%2$s) را امتحان کنید یا [به توجه او چیزی "
 "بفرستید](%%%%action.newnotice%%%%?status_textarea=%3$s)."
@@ -3608,7 +3625,7 @@ msgstr "سازمان"
 msgid "Description"
 msgstr "توصیف"
 
-#: actions/showapplication.php:192 actions/showgroup.php:444
+#: actions/showapplication.php:192 actions/showgroup.php:436
 #: lib/profileaction.php:187
 msgid "Statistics"
 msgstr "آمار"
@@ -3696,20 +3713,20 @@ msgstr ""
 "آن‌ها بگذارید."
 
 #: actions/showfavorites.php:208
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"%s hasn't added any notices to his favorites yet. Post something interesting "
-"they would add to their favorites :)"
+"%s hasn't added any favorite notices yet. Post something interesting they "
+"would add to their favorites :)"
 msgstr ""
 "%s تاکنون هیچ پیامی را به برگزیده‌هایش اضافه نکرده است. چیز جالبی بفرستید که "
 "ممکن است به برگزیده‌هایشان اضافه کنند :)"
 
 #: actions/showfavorites.php:212
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"%s hasn't added any notices to his favorites yet. Why not [register an "
-"account](%%%%action.register%%%%) and then post something interesting they "
-"would add to their favorites :)"
+"%s hasn't added any favorite notices yet. Why not [register an account](%%%%"
+"action.register%%%%) and then post something interesting they would add to "
+"their favorites :)"
 msgstr ""
 "%s تاکنون هیچ پیامی را به برگزیده‌هایش اضافه نکرده است. چرا به [ثبت کردن یک "
 "حساب](%%%%action.register%%%%) اقدام نمی‌کنید و سپس چیز جالبی را که ممکن است "
@@ -3771,7 +3788,7 @@ msgstr "خوراک پیام برای گروه %s (Atom)"
 msgid "FOAF for %s group"
 msgstr "FOAF برای گروه %s"
 
-#: actions/showgroup.php:393 actions/showgroup.php:453 lib/groupnav.php:91
+#: actions/showgroup.php:393 actions/showgroup.php:445 lib/groupnav.php:91
 msgid "Members"
 msgstr "اعضا"
 
@@ -3785,11 +3802,11 @@ msgstr "هیچ"
 msgid "All members"
 msgstr "همهٔ اعضا"
 
-#: actions/showgroup.php:447
+#: actions/showgroup.php:439
 msgid "Created"
 msgstr "ساخته شد"
 
-#: actions/showgroup.php:463
+#: actions/showgroup.php:455
 #, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
@@ -3805,7 +3822,7 @@ msgstr ""
 "می‌گذارند. [اکنون بپیوندید ](%%%%action.register%%%%) تا یکی از اعضای این "
 "گروه و بلکه بیش‌تر بشوید! ([بیش‌تر بخوانید](%%%%doc.help%%%%))"
 
-#: actions/showgroup.php:469
+#: actions/showgroup.php:461
 #, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
@@ -3819,7 +3836,7 @@ msgstr ""
 "است. کاربران آن پیام‌های کوتاهی را دربارهٔ زندگی و علاقه‌مندی‌هایشان به اشتراک "
 "می‌گذارند. "
 
-#: actions/showgroup.php:497
+#: actions/showgroup.php:489
 msgid "Admins"
 msgstr "مدیران"
 
@@ -3894,10 +3911,10 @@ msgstr ""
 "زمان خوبی برای شروع باشد :)"
 
 #: actions/showstream.php:207
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can try to nudge %1$s or [post something to his or her attention](%%%%"
-"action.newnotice%%%%?status_textarea=%2$s)."
+"You can try to nudge %1$s or [post something to them](%%%%action.newnotice%%%"
+"%?status_textarea=%2$s)."
 msgstr ""
 "شما می‌توانید یادآوری %1$s را امتحان کنید یا [به توجه او چیزی بفرستید](%%%%"
 "action.newnotice%%%%?status_textarea=%2$s)."
@@ -4283,7 +4300,8 @@ msgstr "ذخیرهٔ تنظیمات تصویر لحظه‌ای"
 msgid "You are not subscribed to that profile."
 msgstr "شما مشترک آن نمایه نیستید."
 
-#: actions/subedit.php:83 classes/Subscription.php:132
+#. TRANS: Exception thrown when a subscription could not be stored on the server.
+#: actions/subedit.php:83 classes/Subscription.php:136
 msgid "Could not save subscription."
 msgstr "نمی‌توان اشتراک را ذخیره کرد."
 
@@ -4459,10 +4477,6 @@ msgstr "از این روش برای افزودن برچسب به مشترک‌ه
 #: actions/tagrss.php:35
 msgid "No such tag."
 msgstr "چنین برچسبی وجود ندارد."
-
-#: actions/twitapitrends.php:85
-msgid "API method under construction."
-msgstr "روش API در دست ساخت."
 
 #: actions/unblock.php:59
 msgid "You haven't blocked that user."
@@ -4765,83 +4779,131 @@ msgstr "نسخه"
 msgid "Author(s)"
 msgstr "مؤلف(ها)"
 
-#: classes/File.php:185
+#. TRANS: Server exception thrown when a URL cannot be processed.
+#: classes/File.php:143
 #, php-format
+msgid "Cannot process URL '%s'"
+msgstr ""
+
+#. TRANS: Server exception thrown when... Robin thinks something is impossible!
+#: classes/File.php:175
+msgid "Robin thinks something is impossible."
+msgstr ""
+
+#. TRANS: Message given if an upload is larger than the configured maximum.
+#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
+#: classes/File.php:190
+#, fuzzy, php-format
 msgid ""
-"No file may be larger than %d bytes and the file you sent was %d bytes. Try "
-"to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
+"Try to upload a smaller version."
 msgstr ""
 "هیچ پرونده‌ای نباید بزرگ‌تر از %d بایت باشد و پرونده‌ای که شما فرستادید %d بایت "
 "بود. بارگذاری یک نسخهٔ کوچک‌تر را امتحان کنید."
 
-#: classes/File.php:195
+#. TRANS: Message given if an upload would exceed user quota.
+#. TRANS: %d (number) is the user quota in bytes.
+#: classes/File.php:202
 #, php-format
 msgid "A file this large would exceed your user quota of %d bytes."
 msgstr ""
 "یک پرونده با این حجم زیاد می‌تواند از سهمیهٔ کاربری شما از %d بایت بگذرد."
 
-#: classes/File.php:202
+#. TRANS: Message given id an upload would exceed a user's monthly quota.
+#. TRANS: $d (number) is the monthly user quota in bytes.
+#: classes/File.php:211
 #, php-format
 msgid "A file this large would exceed your monthly quota of %d bytes."
 msgstr ""
 "یک پرونده با این حجم زیاد می‌تواند از سهمیهٔ کاربری ماهانهٔ شما از %d بایت "
 "بگذرد."
 
-#: classes/Group_member.php:41
+#. TRANS: Client exception thrown if a file upload does not have a valid name.
+#: classes/File.php:248 classes/File.php:263
+#, fuzzy
+msgid "Invalid filename."
+msgstr "اندازه‌ی نادرست"
+
+#. TRANS: Exception thrown when joining a group fails.
+#: classes/Group_member.php:42
 msgid "Group join failed."
 msgstr "پیوستن به گروه شکست خورد."
 
-#: classes/Group_member.php:53
+#. TRANS: Exception thrown when trying to leave a group the user is not a member of.
+#: classes/Group_member.php:55
 msgid "Not part of group."
 msgstr "بخشی از گروه نیست."
 
-#: classes/Group_member.php:60
+#. TRANS: Exception thrown when trying to leave a group fails.
+#: classes/Group_member.php:63
 msgid "Group leave failed."
 msgstr "ترک کردن گروه شکست خورد."
 
-#: classes/Local_group.php:41
+#. TRANS: Server exception thrown when updating a local group fails.
+#: classes/Local_group.php:42
 msgid "Could not update local group."
 msgstr "نمی‌توان گروه محلی را به‌هنگام‌سازی کرد."
 
-#: classes/Login_token.php:76
+#. TRANS: Exception thrown when trying creating a login token failed.
+#. TRANS: %s is the user nickname for which token creation failed.
+#: classes/Login_token.php:78
 #, php-format
 msgid "Could not create login token for %s"
 msgstr "نمی‌توان رمز ورود را برای %s ایجاد کرد"
 
-#: classes/Message.php:45
+#. TRANS: Exception thrown when database name or Data Source Name could not be found.
+#: classes/Memcached_DataObject.php:533
+msgid "No database name or DSN found anywhere."
+msgstr ""
+
+#. TRANS: Client exception thrown when a user tries to send a direct message while being banned from sending them.
+#: classes/Message.php:46
 msgid "You are banned from sending direct messages."
 msgstr "شما از فرستادن پیام مستقیم مردود شده اید."
 
-#: classes/Message.php:61
+#. TRANS: Message given when a message could not be stored on the server.
+#: classes/Message.php:63
 msgid "Could not insert message."
 msgstr "پیغام نمی تواند درج گردد"
 
-#: classes/Message.php:71
+#. TRANS: Message given when a message could not be updated on the server.
+#: classes/Message.php:74
 msgid "Could not update message with new URI."
 msgstr ""
 
+#. TRANS: Server exception thrown when a user profile for a notice cannot be found.
+#. TRANS: %1$d is a profile ID (number), %2$d is a notice ID (number).
+#: classes/Notice.php:98
+#, php-format
+msgid "No such profile (%1$d) for notice (%2$d)."
+msgstr ""
+
 #. TRANS: Server exception. %s are the error details.
-#: classes/Notice.php:182
+#: classes/Notice.php:190
 #, php-format
 msgid "Database error inserting hashtag: %s"
 msgstr "هنگام افزودن برچسب خطا در پایگاه داده رخ داد: %s"
 
-#: classes/Notice.php:251
+#. TRANS: Client exception thrown if a notice contains too many characters.
+#: classes/Notice.php:260
 msgid "Problem saving notice. Too long."
 msgstr "مشکل در ذخیره کردن پیام. بسیار طولانی."
 
-#: classes/Notice.php:255
+#. TRANS: Client exception thrown when trying to save a notice for an unknown user.
+#: classes/Notice.php:265
 msgid "Problem saving notice. Unknown user."
 msgstr "مشکل در ذخیره کردن پیام. کاربر نا شناخته."
 
-#: classes/Notice.php:260
+#. TRANS: Client exception thrown when a user tries to post too many notices in a given time frame.
+#: classes/Notice.php:271
 msgid ""
 "Too many notices too fast; take a breather and post again in a few minutes."
 msgstr ""
 "تعداد زیادی پیام و خیلی سریع فرستاده شده‌اند؛ استراحت کنید و دقایقی دیگر "
 "دوباره بفرستید."
 
-#: classes/Notice.php:266
+#. TRANS: Client exception thrown when a user tries to post too many duplicate notices in a given time frame.
+#: classes/Notice.php:278
 msgid ""
 "Too many duplicate messages too quickly; take a breather and post again in a "
 "few minutes."
@@ -4849,72 +4911,123 @@ msgstr ""
 "تعداد زیاد پیام های دو نسخه ای و بسرعت؛ استراحت کنید و دقایقی دیگر مجددا "
 "ارسال کنید."
 
-#: classes/Notice.php:272
+#. TRANS: Client exception thrown when a user tries to post while being banned.
+#: classes/Notice.php:286
 msgid "You are banned from posting notices on this site."
 msgstr "شما از فرستادن پیام در این وب‌گاه منع شده‌اید."
 
-#: classes/Notice.php:338 classes/Notice.php:364
+#. TRANS: Server exception thrown when a notice cannot be saved.
+#. TRANS: Server exception thrown when a notice cannot be updated.
+#: classes/Notice.php:353 classes/Notice.php:380
 msgid "Problem saving notice."
 msgstr "هنگام ذخیرهٔ پیام مشکلی ایجاد شد."
 
-#: classes/Notice.php:973
+#. TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
+#: classes/Notice.php:892
+msgid "Bad type provided to saveKnownGroups"
+msgstr ""
+
+#. TRANS: Server exception thrown when an update for a group inbox fails.
+#: classes/Notice.php:991
 msgid "Problem saving group inbox."
 msgstr "هنگام ذخیرهٔ صندوق ورودی گروه مشکلی رخ داد."
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1564
+#: classes/Notice.php:1614
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr ""
 
-#: classes/Subscription.php:74 lib/oauthstore.php:465
+#. TRANS: Exception thrown when trying to revoke an existing role for a user that does not exist.
+#. TRANS: %1$s is the role name, %2$s is the user ID (number).
+#: classes/Profile.php:740
+#, php-format
+msgid "Cannot revoke role \"%1$s\" for user #%2$d; does not exist."
+msgstr ""
+
+#. TRANS: Exception thrown when trying to revoke a role for a user with a failing database query.
+#. TRANS: %1$s is the role name, %2$s is the user ID (number).
+#: classes/Profile.php:749
+#, php-format
+msgid "Cannot revoke role \"%1$s\" for user #%2$d; database error."
+msgstr ""
+
+#. TRANS: Exception thrown when a right for a non-existing user profile is checked.
+#: classes/Remote_profile.php:54
+#, fuzzy
+msgid "Missing profile."
+msgstr "کاربر هیچ نمایه‌ای ندارد."
+
+#. TRANS: Exception thrown when a tag cannot be saved.
+#: classes/Status_network.php:346
+#, fuzzy
+msgid "Unable to save tag."
+msgstr "نمی‌توان پیام وب‌گاه را ذخیره کرد."
+
+#. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
+#: classes/Subscription.php:75 lib/oauthstore.php:465
 msgid "You have been banned from subscribing."
 msgstr "شما از اشتراک منع شده‌اید."
 
-#: classes/Subscription.php:78
+#. TRANS: Exception thrown when trying to subscribe while already subscribed.
+#: classes/Subscription.php:80
 msgid "Already subscribed!"
 msgstr "قبلا اشتراک انجام شده است!"
 
-#: classes/Subscription.php:82
+#. TRANS: Exception thrown when trying to subscribe to a user who has blocked the subscribing user.
+#: classes/Subscription.php:85
 msgid "User has blocked you."
 msgstr "کاربر شما را مسدود کرده است."
 
-#: classes/Subscription.php:167
+#. TRANS: Exception thrown when trying to unsibscribe without a subscription.
+#: classes/Subscription.php:171
 msgid "Not subscribed!"
 msgstr "تایید نشده!"
 
-#: classes/Subscription.php:173
-msgid "Couldn't delete self-subscription."
+#. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
+#: classes/Subscription.php:178
+#, fuzzy
+msgid "Could not delete self-subscription."
 msgstr "نمی‌توان خود-اشتراکی را حذف کرد."
 
-#: classes/Subscription.php:200
-msgid "Couldn't delete subscription OMB token."
+#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
+#: classes/Subscription.php:206
+#, fuzzy
+msgid "Could not delete subscription OMB token."
 msgstr "نمی‌توان رمز اشتراک OMB را حذف کرد."
 
-#: classes/Subscription.php:211
-msgid "Couldn't delete subscription."
+#. TRANS: Exception thrown when a subscription could not be deleted on the server.
+#: classes/Subscription.php:218
+#, fuzzy
+msgid "Could not delete subscription."
 msgstr "نمی‌توان اشتراک را لغو کرد."
 
-#: classes/User.php:363
+#. TRANS: Notice given on user registration.
+#. TRANS: %1$s is the sitename, $2$s is the registering user's nickname.
+#: classes/User.php:365
 #, php-format
 msgid "Welcome to %1$s, @%2$s!"
 msgstr "@%2$s، به %1$s خوش آمدید!"
 
-#: classes/User_group.php:480
+#. TRANS: Server exception thrown when creating a group failed.
+#: classes/User_group.php:496
 msgid "Could not create group."
 msgstr "نمیتوان گروه را تشکیل داد"
 
-#: classes/User_group.php:489
+#. TRANS: Server exception thrown when updating a group URI failed.
+#: classes/User_group.php:506
 #, fuzzy
 msgid "Could not set group URI."
 msgstr "نمیتوان گروه را تشکیل داد"
 
-#: classes/User_group.php:510
+#. TRANS: Server exception thrown when setting group membership failed.
+#: classes/User_group.php:529
 msgid "Could not set group membership."
 msgstr "نمی‌توان عضویت گروه را تعیین کرد."
 
-#: classes/User_group.php:524
+#. TRANS: Server exception thrown when saving local group information failed.
+#: classes/User_group.php:544
 msgid "Could not save local group info."
 msgstr "نمی‌توان اطلاعات گروه محلی را ذخیره کرد."
 
@@ -6375,7 +6488,7 @@ msgid ""
 "users in conversation. People can send you messages for your eyes only."
 msgstr ""
 
-#: lib/mailbox.php:227 lib/noticelist.php:497
+#: lib/mailbox.php:227 lib/noticelist.php:505
 msgid "from"
 msgstr "از"
 
@@ -6431,24 +6544,24 @@ msgstr "شکست خوردن در نوشتن فایل روی دیسک."
 msgid "File upload stopped by extension."
 msgstr "بارگذاری پرونده توسط افزونه متوقف شد."
 
-#: lib/mediafile.php:179 lib/mediafile.php:216
+#: lib/mediafile.php:179 lib/mediafile.php:217
 msgid "File exceeds user's quota."
 msgstr "پرونده از سهمیهٔ کاربر می‌گذرد."
 
-#: lib/mediafile.php:196 lib/mediafile.php:233
+#: lib/mediafile.php:197 lib/mediafile.php:234
 msgid "File could not be moved to destination directory."
 msgstr "فایل نتوانست به دایرکتوری مقصد منتقل شود."
 
-#: lib/mediafile.php:201 lib/mediafile.php:237
+#: lib/mediafile.php:202 lib/mediafile.php:238
 msgid "Could not determine file's MIME type."
 msgstr "نمی‌توان فرمت پرونده را تعیین کرد."
 
-#: lib/mediafile.php:270
+#: lib/mediafile.php:318
 #, php-format
 msgid " Try using another %s format."
 msgstr "تلاش برای امتحان نوع دیگر %s"
 
-#: lib/mediafile.php:275
+#: lib/mediafile.php:323
 #, php-format
 msgid "%s is not a supported file type on this server."
 msgstr "%s یک گونهٔ پروندهٔ پیشتیبانی شده روی این کارگزار نیست."
@@ -6504,51 +6617,51 @@ msgstr ""
 "دوباره تلاش کنید."
 
 #. TRANS: Used in coordinates as abbreviation of north
-#: lib/noticelist.php:430
+#: lib/noticelist.php:436
 msgid "N"
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of south
-#: lib/noticelist.php:432
+#: lib/noticelist.php:438
 msgid "S"
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of east
-#: lib/noticelist.php:434
+#: lib/noticelist.php:440
 msgid "E"
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of west
-#: lib/noticelist.php:436
+#: lib/noticelist.php:442
 msgid "W"
 msgstr ""
 
-#: lib/noticelist.php:438
+#: lib/noticelist.php:444
 #, php-format
 msgid "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 msgstr ""
 
-#: lib/noticelist.php:447
+#: lib/noticelist.php:453
 msgid "at"
 msgstr "در"
 
-#: lib/noticelist.php:559
+#: lib/noticelist.php:567
 msgid "in context"
 msgstr "در زمینه"
 
-#: lib/noticelist.php:594
+#: lib/noticelist.php:602
 msgid "Repeated by"
 msgstr "تکرار از"
 
-#: lib/noticelist.php:621
+#: lib/noticelist.php:629
 msgid "Reply to this notice"
 msgstr "به این پیام پاسخ دهید"
 
-#: lib/noticelist.php:622
+#: lib/noticelist.php:630
 msgid "Reply"
 msgstr "پاسخ"
 
-#: lib/noticelist.php:666
+#: lib/noticelist.php:674
 msgid "Notice repeated"
 msgstr "پیام تکرار شد"
 
@@ -6806,9 +6919,8 @@ msgid "This server cannot handle theme uploads without ZIP support."
 msgstr ""
 
 #: lib/themeuploader.php:58 lib/themeuploader.php:61
-#, fuzzy
-msgid "Theme upload missing or failed."
-msgstr "هنگام بارگذاری پرونده خطای سیستمی رخ داد."
+msgid "The theme file is missing or the upload failed."
+msgstr ""
 
 #: lib/themeuploader.php:91 lib/themeuploader.php:102
 #: lib/themeuploader.php:253 lib/themeuploader.php:257

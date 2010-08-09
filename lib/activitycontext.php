@@ -51,6 +51,7 @@ class ActivityContext
     const POINT     = 'point';
 
     const ATTENTION    = 'ostatus:attention';
+    const MENTIONED    = 'mentioned';
     const CONVERSATION = 'ostatus:conversation';
 
     function __construct($element)
@@ -76,7 +77,11 @@ class ActivityContext
 
             $linkRel = $link->getAttribute(ActivityUtils::REL);
 
+            // XXX: Deprecate this in favour of "mentioned" from Salmon spec
+            // http://salmon-protocol.googlecode.com/svn/trunk/draft-panzer-salmon-00.html#SALR
             if ($linkRel == self::ATTENTION) {
+                $this->attention[] = $link->getAttribute(self::HREF);
+            } elseif ($linkRel == self::MENTIONED) {
                 $this->attention[] = $link->getAttribute(self::HREF);
             }
         }

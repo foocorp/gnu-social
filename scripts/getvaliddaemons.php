@@ -39,9 +39,7 @@ $daemons = array();
 
 $daemons[] = INSTALLDIR.'/scripts/queuedaemon.php';
 
-if(common_config('xmpp','enabled')) {
-    $daemons[] = INSTALLDIR.'/scripts/xmppdaemon.php';
-}
+$daemons[] = INSTALLDIR.'/scripts/imdaemon.php';
 
 if (Event::handle('GetValidDaemons', array(&$daemons))) {
     foreach ($daemons as $daemon) {

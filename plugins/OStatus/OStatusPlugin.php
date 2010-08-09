@@ -158,6 +158,9 @@ class OStatusPlugin extends Plugin
 
             // Also, we'll add in the salmon link
             $salmon = common_local_url($salmonAction, array('id' => $id));
+            $feed->addLink($salmon, array('rel' => Salmon::REL_SALMON));
+
+            // XXX: these are deprecated
             $feed->addLink($salmon, array('rel' => Salmon::NS_REPLIES));
             $feed->addLink($salmon, array('rel' => Salmon::NS_MENTIONS));
         }
@@ -951,6 +954,18 @@ class OStatusPlugin extends Plugin
         if (preg_match("/$template/", $url, $matches)) {
             return intval($matches[1]);
         }
+        return false;
+    }
+
+    public function onStartProfileGetAtomFeed($profile, &$feed)
+    {
+        $oprofile = Ostatus_profile::staticGet('profile_id', $profile->id);
+
+        if (empty($oprofile)) {
+            return true;
+        }
+
+        $feed = $oprofile->feeduri;
         return false;
     }
 }

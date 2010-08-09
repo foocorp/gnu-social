@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Class for doing OAuth calls against Twitter
+ * Class for doing HTTP basic auth calls against Twitter
  *
  * PHP version 5
  *
@@ -110,6 +110,35 @@ class TwitterBasicAuthClient
                                      $cnt = null, $page = null)
     {
         $url    = 'https://twitter.com/statuses/friends_timeline.json';
+        $params = array('since_id' => $since_id,
+                        'max_id' => $max_id,
+                        'count' => $cnt,
+                        'page' => $page);
+        $qry    = http_build_query($params);
+
+        if (!empty($qry)) {
+            $url .= "?$qry";
+        }
+
+        $response = $this->httpRequest($url);
+        $statuses = json_decode($response);
+        return $statuses;
+    }
+
+    /**
+     * Calls Twitter's /statuses/home_timeline API method
+     *
+     * @param int $since_id show statuses after this id
+     * @param int $max_id   show statuses before this id
+     * @param int $cnt      number of statuses to show
+     * @param int $page     page number
+     *
+     * @return mixed an array of statuses similar to friends timeline but including retweets
+     */
+    function statusesHomeTimeline($since_id = null, $max_id = null,
+                                     $cnt = null, $page = null)
+    {
+        $url    = 'https://twitter.com/statuses/home_timeline.json';
         $params = array('since_id' => $since_id,
                         'max_id' => $max_id,
                         'count' => $cnt,

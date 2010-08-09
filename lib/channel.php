@@ -66,63 +66,6 @@ class CLIChannel extends Channel
     }
 }
 
-class XMPPChannel extends Channel
-{
-
-    var $conn = null;
-
-    function source()
-    {
-        return 'xmpp';
-    }
-
-    function __construct($conn)
-    {
-        $this->conn = $conn;
-    }
-
-    function on($user)
-    {
-        return $this->set_notify($user, 1);
-    }
-
-    function off($user)
-    {
-        return $this->set_notify($user, 0);
-    }
-
-    function output($user, $text)
-    {
-        $text = '['.common_config('site', 'name') . '] ' . $text;
-        jabber_send_message($user->jabber, $text);
-    }
-
-    function error($user, $text)
-    {
-        $text = '['.common_config('site', 'name') . '] ' . $text;
-        jabber_send_message($user->jabber, $text);
-    }
-
-    function set_notify(&$user, $notify)
-    {
-        $orig = clone($user);
-        $user->jabbernotify = $notify;
-        $result = $user->update($orig);
-        if (!$result) {
-            $last_error = &PEAR::getStaticProperty('DB_DataObject','lastError');
-            common_log(LOG_ERR,
-                       'Could not set notify flag to ' . $notify .
-                       ' for user ' . common_log_objstring($user) .
-                       ': ' . $last_error->message);
-            return false;
-        } else {
-            common_log(LOG_INFO,
-                       'User ' . $user->nickname . ' set notify flag to ' . $notify);
-            return true;
-        }
-    }
-}
-
 class WebChannel extends Channel
 {
     var $out = null;

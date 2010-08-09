@@ -31,13 +31,17 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/jabber.php';
-
 class Queued_XMPP extends XMPPHP_XMPP
 {
+    /**
+     * Reference to the XmppPlugin object we're hooked up to.
+     */
+    public $plugin;
+
 	/**
 	 * Constructor
 	 *
+     * @param XmppPlugin $plugin
 	 * @param string  $host
 	 * @param integer $port
 	 * @param string  $user
@@ -47,8 +51,10 @@ class Queued_XMPP extends XMPPHP_XMPP
 	 * @param boolean $printlog
 	 * @param string  $loglevel
 	 */
-	public function __construct($host, $port, $user, $password, $resource, $server = null, $printlog = false, $loglevel = null)
+	public function __construct($plugin, $host, $port, $user, $password, $resource, $server = null, $printlog = false, $loglevel = null)
 	{
+        $this->plugin = $plugin;
+
         parent::__construct($host, $port, $user, $password, $resource, $server, $printlog, $loglevel);
 
         // We use $host to connect, but $server to build JIDs if specified.
@@ -73,55 +79,43 @@ class Queued_XMPP extends XMPPHP_XMPP
      */
     public function send($msg, $timeout=NULL)
     {
-        $qm = QueueManager::get('xmppout');
-        $qm->enqueue(strval($msg), 'xmppout');
-    }
-
-    /**
-     * Since we'll be getting input through a queue system's run loop,
-     * we'll process one standalone message at a time rather than our
-     * own XMPP message pump.
-     *
-     * @param string $message
-     */
-    public function processMessage($message) {
-       $frame = array_shift($this->frames);
-       xml_parse($this->parser, $frame->body, false);
+        $this->plugin->enqueue_outgoing_raw($msg);
     }
 
     //@{
     /**
-     * Stream i/o functions disabled; push input through processMessage()
+     * Stream i/o functions disabled; only do output
      */
     public function connect($timeout = 30, $persistent = false, $sendinit = true)
     {
-        throw new Exception("Can't connect to server from XMPP queue proxy.");
+        throw new Exception("Can't connect to server from fake XMPP.");
     }
 
     public function disconnect()
     {
-        throw new Exception("Can't connect to server from XMPP queue proxy.");
+        throw new Exception("Can't connect to server from fake XMPP.");
     }
 
     public function process()
     {
-        throw new Exception("Can't read stream from XMPP queue proxy.");
+        throw new Exception("Can't read stream from fake XMPP.");
     }
 
     public function processUntil($event, $timeout=-1)
     {
-        throw new Exception("Can't read stream from XMPP queue proxy.");
+        throw new Exception("Can't read stream from fake XMPP.");
     }
 
     public function read()
     {
-        throw new Exception("Can't read stream from XMPP queue proxy.");
+        throw new Exception("Can't read stream from fake XMPP.");
     }
 
     public function readyToProcess()
     {
-        throw new Exception("Can't read stream from XMPP queue proxy.");
+        throw new Exception("Can't read stream from fake XMPP.");
     }
     //@}
+
 }
 

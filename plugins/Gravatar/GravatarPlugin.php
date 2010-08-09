@@ -30,11 +30,13 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class GravatarPlugin extends Plugin
 {
-    function onInitializePlugin() {
+    function onInitializePlugin()
+    {
         return true;
     }
     
-    function onStartAvatarFormData($action) {
+    function onStartAvatarFormData($action)
+    {
         $user = common_current_user();
         $hasGravatar = $this->hasGravatar($user->id);
         
@@ -43,7 +45,8 @@ class GravatarPlugin extends Plugin
         }
     }
     
-    function onEndAvatarFormData(&$action) {
+    function onEndAvatarFormData($action)
+    {
         $user = common_current_user();
         $hasGravatar = $this->hasGravatar($user->id);
 
@@ -89,7 +92,8 @@ class GravatarPlugin extends Plugin
         }
     }
     
-    function onStartAvatarSaveForm($action) {
+    function onStartAvatarSaveForm($action)
+    {
         if ($action->arg('add')) {
             $result = $this->gravatar_save();
 
@@ -178,7 +182,8 @@ class GravatarPlugin extends Plugin
                      'success' => true);
     }
  
-    function gravatar_url($email, $size) {
+    function gravatar_url($email, $size)
+    {
         $url = "http://www.gravatar.com/avatar.php?gravatar_id=".
                 md5(strtolower($email)).
                 "&default=".urlencode(Avatar::defaultImage($size)).

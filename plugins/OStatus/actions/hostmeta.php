@@ -36,13 +36,12 @@ class HostMetaAction extends Action
         $url.= '?uri={uri}';
 
         $xrd = new XRD();
-        
-        $xrd = new XRD();
         $xrd->host = $domain;
         $xrd->links[] = array('rel' => Discovery::LRDD_REL,
                               'template' => $url,
                               'title' => array('Resource Descriptor'));
 
+        header('Content-type: application/xrd+xml');
         print $xrd->toXML();
     }
 }

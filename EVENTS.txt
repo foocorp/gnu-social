@@ -716,6 +716,24 @@ StartShowContentLicense: Showing the default license for content
 EndShowContentLicense: Showing the default license for content
 - $action: the current action
 
+GetImTransports: Get IM transports that are available
+- &$transports: append your transport to this array like so: $transports[transportName]=array('display'=>display)
+
+NormalizeImScreenname: Normalize an IM screenname
+- $transport: transport the screenname is on
+- &$screenname: screenname to be normalized
+
+ValidateImScreenname: Validate an IM screenname
+- $transport: transport the screenname is on
+- $screenname: screenname to be validated
+- $valid: is the screenname valid?
+
+SendImConfirmationCode: Send a confirmation code to confirm a user owns an IM screenname
+- $transport: transport the screenname exists on
+- $screenname: screenname being confirmed
+- $code: confirmation code for confirmation URL
+- $user: user requesting the confirmation
+
 StartUserRegister: When a new user is being registered
 - &$profile: new profile data (no ID)
 - &$user: new user account (no ID or URI)
@@ -818,3 +836,230 @@ EndDeleteUser: handling the post for deleting a user
 - $action: action being shown
 - $user: user being deleted
 
+StartActivityStart: starting the output for a notice activity <event>
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$attrs: <entry> attributes (mostly namespace declarations, if any)
+
+EndActivityStart: end the opening tag for an activity <event>
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $attrs: <entry> attributes (mostly namespace declarations, if any)
+
+StartActivitySource: before outputting the <source> element for a notice activity
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+
+EndActivitySource: after outputting the <source> element for a notice activity
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+
+StartActivityTitle: before outputting notice activity title
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$title: title of the notice, mutable
+
+EndActivityTitle: after outputting notice activity title
+- $notice: notice being output
+- &$xs: XMLStringer for output
+- $title: title of the notice
+
+StartActivityAuthor: before outputting atom author
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$atomAuthor: string for XML representing atom author
+
+EndActivityAuthor: after outputting atom author
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$atomAuthor: string for XML representing atom author
+
+StartActivityActor: before outputting activity actor element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$actor: string for XML representing activity actor
+
+EndActivityActor: after outputting activity actor element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$actor: string for XML representing activity actor
+
+StartActivityLink: before outputting activity HTML link element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$url: URL for activity HTML link element for a notice activity entry
+
+EndActivityLink: before outputting activity HTML link element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $url:  URL for activity HTML link element for a notice activity entry
+
+StartActivityId: before outputting atom:id element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$id: atom:id (notice URI by default)
+
+EndActivityId: after outputting atom:id element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $id:  atom:id (notice URI by default)
+
+StartActivityPublished: before outputting atom:published element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$published: atom:published value (notice created by default)
+
+EndActivityPublished: before outputting atom:published element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $published:  atom:published value (notice created by default)
+
+StartActivityUpdated: before outputting atom:updated element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$updated: atom:updated value (same as atom:published by default)
+
+EndActivityUpdated: after outputting atom:updated element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $updated: atom:updated value (same as atom:published by default)
+
+StartActivityContent: before outputting atom:content element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$content: atom:content value (notice rendered HTML by default)
+
+EndActivityContent: after outputting atom:content element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $content: atom:content value (notice rendered HTML by default)
+
+StartActivityVerb: before outputting activity:verb element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$verb: activity:verb URI ('http://activitystrea.ms/schema/1.0/post' by default)
+
+EndActivityVerb: after outputting activity:verb element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $verb: activity:verb URI ('http://activitystrea.ms/schema/1.0/post' by default)
+
+StartActivityDefaultObjectType: before outputting activity:object-type element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$type: activity:object-type URI for default object ('http://activitystrea.ms/schema/1.0/note' by default)
+
+EndActivityDefaultObjectType: after outputting activity:verb element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $type: activity:object-type URI for default object ('http://activitystrea.ms/schema/1.0/note' by default)
+
+StartActivityObjects: before outputting activity:object elements for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$objects: array of ActivityObject objects to output (empty by default)
+
+EndActivityObjects: after outputting activity:object elements for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $objects: array of ActivityObject objects to output (empty by default)
+
+StartActivityNoticeInfo: before outputting statusnet:notice-info element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$noticeInfoAttr: array of attributes for notice info element
+
+EndActivityNoticeInfo: after outputting statusnet:notice-info element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $noticeInfoAttr: array of attributes for notice info element
+
+StartActivityInReplyTo: before outputting thr:in-reply-to element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$replyNotice: Notice object the main notice is in-reply-to
+
+EndActivityInReplyTo: after outputting thr:in-reply-to element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $replyNotice: Notice object the main notice is in-reply-to
+
+StartActivityConversation: before outputting ostatus:conversation link element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$conv: Conversation object
+
+EndActivityConversation: after outputting ostatus:conversation link element for a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $conv: Conversation object
+
+StartActivityAttentionProfiles: before outputting ostatus:attention link element for people in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$replyProfiles: array of profiles of people being replied to
+
+EndActivityAttentionProfiles: after outputting ostatus:attention link element for people in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $replyProfiles: array of Profile object of people being replied to
+
+StartActivityAttentionGroups: before outputting ostatus:attention link element for groups in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$groups: array of Group objects of groups being addressed
+
+EndActivityAttentionGroups: after outputting ostatus:attention link element for groups in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $groups: array of Group objects of groups being addressed
+
+StartActivityForward: before outputting ostatus:forward link element in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$repeat: Notice that was repeated
+
+EndActivityForward: after outputting ostatus:forward link element in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $repeat: Notice that was repeated
+
+StartActivityCategories: before outputting atom:category elements in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$tags: array of strings for tags on the notice (used for categories)
+
+EndActivityCategories: after outputting atom:category elements in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $tags: array of strings for tags on the notice (used for categories)
+
+StartActivityEnclosures: before outputting enclosure link elements in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$enclosures: array of enclosure objects (see File::getEnclosure() for details)
+
+EndActivityEnclosures: after outputting enclosure link elements in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $enclosures: array of enclosure objects (see File::getEnclosure() for details)
+
+StartActivityGeo: before outputting geo:rss element in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- &$lat: latitude
+- &$lon: longitude
+
+EndActivityGeo: after outputting geo:rss element in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+- $lat: latitude
+- $lon: longitude
+
+StartActivityEnd: before the closing </entry> in a notice activity entry (last chance for data!)
+- &$notice: notice being output
+- &$xs: XMLStringer for output
+
+EndActivityEnd: after the closing </entry> in a notice activity entry
+- &$notice: notice being output
+- &$xs: XMLStringer for output

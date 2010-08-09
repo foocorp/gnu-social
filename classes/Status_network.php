@@ -27,7 +27,8 @@ class Status_network extends Safe_DataObject
     /* the code below is auto generated do not remove the above tag */
 
     public $__table = 'status_network';                  // table name
-    public $nickname;                        // varchar(64)  primary_key not_null
+    public $site_id;                         // int(4) primary_key not_null
+    public $nickname;                        // varchar(64)   unique_key not_null
     public $hostname;                        // varchar(255)  unique_key
     public $pathname;                        // varchar(255)  unique_key
     public $dbhost;                          // varchar(255)
@@ -39,7 +40,6 @@ class Status_network extends Safe_DataObject
     public $logo;                            // varchar(255)
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
-    public $tags;                            // text
 
     /* Static get */
     function staticGet($k,$v=NULL) {
@@ -308,9 +308,63 @@ class Status_network extends Safe_DataObject
      */
     function getTags()
     {
-        return array_filter(explode("|", strval($this->tags)));
+        $result = array();
+        
+        $tags = new Status_network_tag();
+        $tags->site_id = $this->site_id;
+        if ($tags->find()) {
+            while ($tags->fetch()) {
+                $result[] = $tags->tag;
+            }
+        }
+
+        // XXX : for backwards compatibility
+        if (empty($result)) {
+            return explode('|', $this->tags);
+        }
+        
+        return $result;
     }
 
+    /**
+     * Save a given set of tags
+     * @param array tags
+     */
+    function setTags($tags)
+    {
+        $this->clearTags();
+        foreach ($tags as $tag) {
+            if (!empty($tag)) {
+                $snt = new Status_network_tag();
+                $snt->site_id = $this->site_id;
+                $snt->tag = $tag;
+                $snt->created = common_sql_now();
+                
+                $id = $snt->insert();
+                if (!$id) {
+                    // TRANS: Exception thrown when a tag cannot be saved.
+                    throw new Exception(_("Unable to save tag."));
+                }
+            }
+        }
+
+        return true;
+    }
+
+    function clearTags()
+    {
+        $tag = new Status_network_tag();
+        $tag->site_id = $this->site_id;
+
+        if ($tag->find()) {
+            while($tag->fetch()) {
+                $tag->delete();
+            }
+        }
+
+        $tag->free();
+    }
+    
     /**
      * Check if this site record has a particular meta-info tag attached.
      * @param string $tag

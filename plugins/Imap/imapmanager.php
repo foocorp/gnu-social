@@ -59,12 +59,14 @@ class ImapManager extends IoManager
     }
 
     /**
-     * Tell the i/o master we need one instance for each supporting site
-     * being handled in this process.
+     * Tell the i/o master we need one instance globally.
+     * Since this is a plugin manager, the plugin class itself will
+     * create one instance per site. This prevents the IoMaster from
+     * making more instances.
      */
     public static function multiSite()
     {
-        return IoManager::INSTANCE_PER_SITE;
+        return IoManager::GLOBAL_SINGLE_ONLY;
     }
 
     /**

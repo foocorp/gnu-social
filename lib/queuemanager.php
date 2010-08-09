@@ -156,21 +156,14 @@ abstract class QueueManager extends IoManager
     }
 
     /**
-     * Encode an object or variable for queued storage.
-     * Notice objects are currently stored as an id reference;
-     * other items are serialized.
+     * Encode an object for queued storage.
      *
      * @param mixed $item
      * @return string
      */
     protected function encode($item)
     {
-        if ($item instanceof Notice) {
-            // Backwards compat
-            return $item->id;
-        } else {
-            return serialize($item);
-        }
+        return serialize($item);
     }
 
     /**
@@ -182,25 +175,7 @@ abstract class QueueManager extends IoManager
      */
     protected function decode($frame)
     {
-        if (is_numeric($frame)) {
-            // Back-compat for notices...
-            return Notice::staticGet(intval($frame));
-        } elseif (substr($frame, 0, 1) == '<') {
-            // Back-compat for XML source
-            return $frame;
-        } else {
-            // Deserialize!
-            #$old = error_reporting();
-            #error_reporting($old & ~E_NOTICE);
-            $out = unserialize($frame);
-            #error_reporting($old);
-
-            if ($out === false && $frame !== 'b:0;') {
-                common_log(LOG_ERR, "Couldn't unserialize queued frame: $frame");
-                return false;
-            }
-            return $out;
-        }
+        return unserialize($frame);
     }
 
     /**
@@ -269,16 +244,6 @@ abstract class QueueManager extends IoManager
 
             // Broadcasting profile updates to OMB remote subscribers
             $this->connect('profile', 'ProfileQueueHandler');
-
-            // XMPP output handlers...
-            if (common_config('xmpp', 'enabled')) {
-                // Delivery prep, read by queuedaemon.php:
-                $this->connect('jabber', 'JabberQueueHandler');
-                $this->connect('public', 'PublicQueueHandler');
-
-                // Raw output, read by xmppdaemon.php:
-                $this->connect('xmppout', 'XmppOutQueueHandler', 'xmpp');
-            }
 
             // For compat with old plugins not registering their own handlers.
             $this->connect('plugin', 'PluginQueueHandler');

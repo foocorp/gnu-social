@@ -92,9 +92,11 @@ class TwitteradminpanelAction extends AdminPanelAction
         );
 
         static $booleans = array(
-            'twitter'       => array('signin'),
-            'twitterimport' => array('enabled')
+            'twitter'       => array('signin')
         );
+        if (Event::handle('TwitterBridgeAdminImportControl')) {
+            $booleans['twitterimport'] = array('enabled');
+        }
 
         $values = array();
 
@@ -154,6 +156,13 @@ class TwitteradminpanelAction extends AdminPanelAction
                 _m("Invalid consumer secret. Max length is 255 characters.")
             );
         }
+    }
+
+    function isImportEnabled()
+    {
+        // Since daemon setup isn't automated yet...
+        // @todo: if merged into main queues, detect presence of daemon config
+        return true;
     }
 }
 
@@ -263,13 +272,15 @@ class TwitterAdminPanelForm extends AdminForm
         );
         $this->unli();
 
-        $this->li();
-        $this->out->checkbox(
-            'enabled', _m('Enable Twitter import'),
-            (bool) $this->value('enabled', 'twitterimport'),
-            _m('Allow users to import their Twitter friends\' timelines')
-        );
-        $this->unli();
+        if (Event::handle('TwitterBridgeAdminImportControl')) {
+            $this->li();
+            $this->out->checkbox(
+                'enabled', _m('Enable Twitter import'),
+                (bool) $this->value('enabled', 'twitterimport'),
+                _m('Allow users to import their Twitter friends\' timelines. Requires daemons to be manually configured.')
+            );
+            $this->unli();
+        }
 
         $this->out->elementEnd('ul');
 

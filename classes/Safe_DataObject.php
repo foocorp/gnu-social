@@ -116,6 +116,7 @@ class Safe_DataObject extends DB_DataObject
         if ($this->_call($method, $params, $return)) {
             return $return;
         } else {
+            // Low level exception. No need for i18n as discussed with Brion.
             throw new Exception('Call to undefined method ' .
                 get_class($this) . '::' . $method);
         }
@@ -125,7 +126,7 @@ class Safe_DataObject extends DB_DataObject
      * Work around memory-leak bugs...
      * Had to copy-paste the whole function in order to patch a couple lines of it.
      * Would be nice if this code was better factored.
-     *     
+     *
      * @param optional string  name of database to assign / read
      * @param optional array   structure of database, and keys
      * @param optional array  table links
@@ -136,108 +137,103 @@ class Safe_DataObject extends DB_DataObject
      */
     function databaseStructure()
     {
-
         global $_DB_DATAOBJECT;
-        
-        // Assignment code 
-        
+
+        // Assignment code
+
         if ($args = func_get_args()) {
-        
+
             if (count($args) == 1) {
-                
+
                 // this returns all the tables and their structure..
                 if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
                     $this->debug("Loading Generator as databaseStructure called with args",1);
                 }
-                
+
                 $x = new DB_DataObject;
                 $x->_database = $args[0];
                 $this->_connect();
                 $DB = &$_DB_DATAOBJECT['CONNECTIONS'][$this->_database_dsn_md5];
-       
+
                 $tables = $DB->getListOf('tables');
-                class_exists('DB_DataObject_Generator') ? '' : 
+                class_exists('DB_DataObject_Generator') ? '' :
                     require_once 'DB/DataObject/Generator.php';
-                    
+
                 foreach($tables as $table) {
                     $y = new DB_DataObject_Generator;
                     $y->fillTableSchema($x->_database,$table);
                 }
-                return $_DB_DATAOBJECT['INI'][$x->_database];            
+                return $_DB_DATAOBJECT['INI'][$x->_database];
             } else {
-        
+
                 $_DB_DATAOBJECT['INI'][$args[0]] = isset($_DB_DATAOBJECT['INI'][$args[0]]) ?
                     $_DB_DATAOBJECT['INI'][$args[0]] + $args[1] : $args[1];
-                
+
                 if (isset($args[1])) {
                     $_DB_DATAOBJECT['LINKS'][$args[0]] = isset($_DB_DATAOBJECT['LINKS'][$args[0]]) ?
                         $_DB_DATAOBJECT['LINKS'][$args[0]] + $args[2] : $args[2];
                 }
                 return true;
             }
-          
+
         }
-        
-        
-        
+
         if (!$this->_database) {
             $this->_connect();
         }
-        
+
         // loaded already?
         if (!empty($_DB_DATAOBJECT['INI'][$this->_database])) {
-            
+
             // database loaded - but this is table is not available..
             if (
-                    empty($_DB_DATAOBJECT['INI'][$this->_database][$this->__table]) 
+                    empty($_DB_DATAOBJECT['INI'][$this->_database][$this->__table])
                     && !empty($_DB_DATAOBJECT['CONFIG']['proxy'])
                 ) {
                 if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
                     $this->debug("Loading Generator to fetch Schema",1);
                 }
-                class_exists('DB_DataObject_Generator') ? '' : 
+                class_exists('DB_DataObject_Generator') ? '' :
                     require_once 'DB/DataObject/Generator.php';
-                    
-                
+
+
                 $x = new DB_DataObject_Generator;
                 $x->fillTableSchema($this->_database,$this->__table);
             }
             return true;
         }
-        
-        
+
         if (empty($_DB_DATAOBJECT['CONFIG'])) {
             DB_DataObject::_loadConfig();
         }
-        
+
         // if you supply this with arguments, then it will take those
         // as the database and links array...
-         
+
         $schemas = isset($_DB_DATAOBJECT['CONFIG']['schema_location']) ?
             array("{$_DB_DATAOBJECT['CONFIG']['schema_location']}/{$this->_database}.ini") :
             array() ;
-                 
+
         if (isset($_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"])) {
             $schemas = is_array($_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]) ?
                 $_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"] :
                 explode(PATH_SEPARATOR,$_DB_DATAOBJECT['CONFIG']["ini_{$this->_database}"]);
         }
-                    
-         
+
         /* BEGIN CHANGED FROM UPSTREAM */
         $_DB_DATAOBJECT['INI'][$this->_database] = $this->parseIniFiles($schemas);
         /* END CHANGED FROM UPSTREAM */
 
-        // now have we loaded the structure.. 
-        
+        // now have we loaded the structure..
+
         if (!empty($_DB_DATAOBJECT['INI'][$this->_database][$this->__table])) {
             return true;
         }
         // - if not try building it..
         if (!empty($_DB_DATAOBJECT['CONFIG']['proxy'])) {
-            class_exists('DB_DataObject_Generator') ? '' : 
+            class_exists('DB_DataObject_Generator') ? '' :
                 require_once 'DB/DataObject/Generator.php';
-                
+
             $x = new DB_DataObject_Generator;
             $x->fillTableSchema($this->_database,$this->__table);
             // should this fail!!!???
@@ -245,7 +241,8 @@ class Safe_DataObject extends DB_DataObject
         }
         $this->debug("Cant find database schema: {$this->_database}/{$this->__table} \n".
                     "in links file data: " . print_r($_DB_DATAOBJECT['INI'],true),"databaseStructure",5);
-        // we have to die here!! - it causes chaos if we dont (including looping forever!)
+        // we have to die here!! - it causes chaos if we don't (including looping forever!)
+        // Low level exception. No need for i18n as discussed with Brion.
         $this->raiseError( "Unable to load schema for database and table (turn debugging up to 5 for full error message)", DB_DATAOBJECT_ERROR_INVALIDARGS, PEAR_ERROR_DIE);
         return false;
     }
@@ -271,7 +268,7 @@ class Safe_DataObject extends DB_DataObject
                 if (file_exists($ini) && is_file($ini)) {
                     $data = array_merge($data, parse_ini_file($ini, true));
 
-                    if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) { 
+                    if (!empty($_DB_DATAOBJECT['CONFIG']['debug'])) {
                         if (!is_readable ($ini)) {
                             $this->debug("ini file is not readable: $ini","databaseStructure",1);
                         } else {

@@ -31,8 +31,6 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/plugins/UrlShortener/UrlShortenerPlugin.php';
-
 class BitlyUrlPlugin extends UrlShortenerPlugin
 {
     public $serviceUrl;

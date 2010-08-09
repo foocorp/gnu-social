@@ -41,7 +41,8 @@ class RecaptchaPlugin extends Plugin
     var $failed;
     var $ssl;
 
-    function onInitializePlugin(){
+    function onInitializePlugin()
+    {
         if(!isset($this->private_key)) {
             common_log(LOG_ERR, 'Recaptcha: Must specify private_key in config.php');
         }
@@ -50,7 +51,8 @@ class RecaptchaPlugin extends Plugin
         }
     }
 
-    function checkssl(){
+    function checkssl()
+    {
         if(common_config('site', 'ssl') === 'sometimes' || common_config('site', 'ssl') === 'always') {
             return true;
         }
@@ -102,7 +104,7 @@ class RecaptchaPlugin extends Plugin
             if($this->display_errors) {
                 $action->showForm ("(reCAPTCHA error: " . $resp->error . ")");
             }
-            $action->showForm("Captcha does not match!");
+            $action->showForm(_m("Captcha does not match!"));
             return false;
         }
     }

@@ -297,10 +297,12 @@ $default =
                                  'OStatus' => null,
                                  'WikiHashtags' => null,
                                  'RSSCloud' => null,
+                                 'ClientSideShorten' => null,
                                  'OpenID' => null),
               ),
+        'pluginlist' => array(),
         'admin' =>
-        array('panels' => array('design', 'site', 'user', 'paths', 'access', 'sessions', 'sitenotice')),
+        array('panels' => array('design', 'site', 'user', 'paths', 'access', 'sessions', 'sitenotice', 'plugins')),
         'singleuser' =>
         array('enabled' => false,
               'nickname' => null),
@@ -314,6 +316,10 @@ $default =
         array('subscribers' => true,
               'members' => true,
               'peopletag' => true),
+        'url' =>
+        array('shortener' => 'ur1.ca',
+              'maxlength' => 25,
+              'maxnoticelength' => -1),
         'http' => // HTTP client settings when contacting other sites
         array('ssl_cafile' => false // To enable SSL cert validation, point to a CA bundle (eg '/usr/lib/ssl/certs/ca-certificates.crt')
               ),

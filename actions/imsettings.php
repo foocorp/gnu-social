@@ -31,9 +31,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/connectsettingsaction.php';
-require_once INSTALLDIR.'/lib/jabber.php';
-
 /**
  * Settings for Jabber/XMPP integration
  *
@@ -72,8 +69,8 @@ class ImsettingsAction extends ConnectSettingsAction
         // TRANS: [instant messages] is link text, "(%%doc.im%%)" is the link.
         // TRANS: the order and formatting of link text and link should remain unchanged.
         return _('You can send and receive notices through '.
-                 'Jabber/GTalk [instant messages](%%doc.im%%). '.
-                 'Configure your address and settings below.');
+                 'instant messaging [instant messages](%%doc.im%%). '.
+                 'Configure your addresses and settings below.');
     }
 
     /**
@@ -88,102 +85,124 @@ class ImsettingsAction extends ConnectSettingsAction
 
     function showContent()
     {
-        if (!common_config('xmpp', 'enabled')) {
+        $transports = array();
+        Event::handle('GetImTransports', array(&$transports));
+        if (! $transports) {
             $this->element('div', array('class' => 'error'),
-                           // TRANS: Message given in the IM settings if XMPP is not enabled on the site.
+                           // TRANS: Message given in the IM settings if IM is not enabled on the site.
                            _('IM is not available.'));
             return;
         }
 
         $user = common_current_user();
-        $this->elementStart('form', array('method' => 'post',
-                                          'id' => 'form_settings_im',
-                                          'class' => 'form_settings',
-                                          'action' =>
-                                          common_local_url('imsettings')));
-        $this->elementStart('fieldset', array('id' => 'settings_im_address'));
-        // TRANS: Form legend for IM settings form.
-        $this->element('legend', null, _('IM address'));
-        $this->hidden('token', common_session_token());
 
-        if ($user->jabber) {
-            $this->element('p', 'form_confirmed', $user->jabber);
-            // TRANS: Form note in IM settings form.
-            $this->element('p', 'form_note',
-                           _('Current confirmed Jabber/GTalk address.'));
-            $this->hidden('jabber', $user->jabber);
-            // TRANS: Button label to remove a confirmed IM address.
-            $this->submit('remove', _m('BUTTON','Remove'));
-        } else {
-            $confirm = $this->getConfirmation();
-            if ($confirm) {
-                $this->element('p', 'form_unconfirmed', $confirm->address);
-                $this->element('p', 'form_note',
-                               // TRANS: Form note in IM settings form.
-                               // TRANS: %s is the IM address set for the site.
-                               sprintf(_('Awaiting confirmation on this address. '.
-                                         'Check your Jabber/GTalk account for a '.
-                                         'message with further instructions. '.
-                                         '(Did you add %s to your buddy list?)'),
-                                       jabber_daemon_address()));
-                $this->hidden('jabber', $confirm->address);
-                // TRANS: Button label to cancel an IM address confirmation procedure.
-                $this->submit('cancel', _m('BUTTON','Cancel'));
-            } else {
-                $this->elementStart('ul', 'form_data');
-                $this->elementStart('li');
-                // TRANS: Field label for IM address input in IM settings form.
-                $this->input('jabber', _('IM address'),
-                             ($this->arg('jabber')) ? $this->arg('jabber') : null,
-                             // TRANS: IM address input field instructions in IM settings form.
-                             // TRANS: %s is the IM address set for the site.
-                             sprintf(_('Jabber or GTalk address, '.
-                                       'like "UserName@example.org". '.
-                                       'First, make sure to add %s to your '.
-                                       'buddy list in your IM client or on GTalk.'),
-                                     jabber_daemon_address()));
-                $this->elementEnd('li');
-                $this->elementEnd('ul');
-                // TRANS: Button label for adding an IM address in IM settings form.
-                $this->submit('add', _m('BUTTON','Add'));
-            }
-        }
-        $this->elementEnd('fieldset');
+        $user_im_prefs_by_transport = array();
         
-        $this->elementStart('fieldset', array('id' => 'settings_im_preferences'));
-        // TRANS: Form legend for IM preferences form.
-        $this->element('legend', null, _('IM preferences'));
-        $this->elementStart('ul', 'form_data');
-        $this->elementStart('li');
-        $this->checkbox('jabbernotify',
-                        // TRANS: Checkbox label in IM preferences form.
-                        _('Send me notices through Jabber/GTalk.'),
-                        $user->jabbernotify);
-        $this->elementEnd('li');
-        $this->elementStart('li');
-        $this->checkbox('updatefrompresence',
-                        // TRANS: Checkbox label in IM preferences form.
-                        _('Post a notice when my Jabber/GTalk status changes.'),
-                        $user->updatefrompresence);
-        $this->elementEnd('li');
-        $this->elementStart('li');
-        $this->checkbox('jabberreplies',
-                        // TRANS: Checkbox label in IM preferences form.
-                        _('Send me replies through Jabber/GTalk '.
-                          'from people I\'m not subscribed to.'),
-                        $user->jabberreplies);
-        $this->elementEnd('li');
-        $this->elementStart('li');
-        $this->checkbox('jabbermicroid',
-                        // TRANS: Checkbox label in IM preferences form.
-                        _('Publish a MicroID for my Jabber/GTalk address.'),
-                        $user->jabbermicroid);
-        $this->elementEnd('li');
-        $this->elementEnd('ul');
-        // TRANS: Button label to save IM preferences.
-        $this->submit('save', _m('BUTTON','Save'));
-        $this->elementEnd('fieldset');
-        $this->elementEnd('form');
+        foreach($transports as $transport=>$transport_info)
+        {
+            $this->elementStart('form', array('method' => 'post',
+                                              'id' => 'form_settings_im',
+                                              'class' => 'form_settings',
+                                              'action' =>
+                                              common_local_url('imsettings')));
+            $this->elementStart('fieldset', array('id' => 'settings_im_address'));
+            // TRANS: Form legend for IM settings form.
+            $this->element('legend', null, $transport_info['display']);
+            $this->hidden('token', common_session_token());
+            $this->hidden('transport', $transport);
+
+            if ($user_im_prefs = User_im_prefs::pkeyGet( array('transport' => $transport, 'user_id' => $user->id) )) {
+                $user_im_prefs_by_transport[$transport] = $user_im_prefs;
+                $this->element('p', 'form_confirmed', $user_im_prefs->screenname);
+                // TRANS: Form note in IM settings form.
+                $this->element('p', 'form_note',
+                               sprintf(_('Current confirmed %s address.'),$transport_info['display']));
+                $this->hidden('screenname', $user_im_prefs->screenname);
+                // TRANS: Button label to remove a confirmed IM address.
+                $this->submit('remove', _m('BUTTON','Remove'));
+            } else {
+                $confirm = $this->getConfirmation($transport);
+                if ($confirm) {
+                    $this->element('p', 'form_unconfirmed', $confirm->address);
+                    // TRANS: Form note in IM settings form.
+                    $this->element('p', 'form_note',
+                                   // TRANS: Form note in IM settings form.
+                                   // TRANS: %s is the IM address set for the site.
+                                   sprintf(_('Awaiting confirmation on this address. '.
+                                             'Check your %s account for a '.
+                                             'message with further instructions. '.
+                                             '(Did you add %s to your buddy list?)'),
+                                             $transport_info['display'],
+                                             $transport_info['daemon_screenname']));
+                    $this->hidden('screenname', $confirm->address);
+                    // TRANS: Button label to cancel an IM address confirmation procedure.
+                    $this->submit('cancel', _m('BUTTON','Cancel'));
+                } else {
+                    $this->elementStart('ul', 'form_data');
+                    $this->elementStart('li');
+                    $this->input('screenname', _('IM address'),
+                                 ($this->arg('screenname')) ? $this->arg('screenname') : null,
+                                 sprintf(_('%s screenname.'),
+                                         $transport_info['display']));
+                    $this->elementEnd('li');
+                    $this->elementEnd('ul');
+                    // TRANS: Button label for adding an IM address in IM settings form.
+                    $this->submit('add', _m('BUTTON','Add'));
+                }
+            }
+            $this->elementEnd('fieldset');
+            $this->elementEnd('form');
+        }
+
+        if($user_im_prefs_by_transport)
+        {
+            $this->elementStart('form', array('method' => 'post',
+                                              'id' => 'form_settings_im',
+                                              'class' => 'form_settings',
+                                              'action' =>
+                                              common_local_url('imsettings')));
+            $this->elementStart('fieldset', array('id' => 'settings_im_preferences'));
+            // TRANS: Header for IM preferences form.
+            $this->element('legend', null, _('IM Preferences'));
+            $this->hidden('token', common_session_token());
+            $this->elementStart('table');
+            $this->elementStart('tr');
+            foreach($user_im_prefs_by_transport as $transport=>$user_im_prefs)
+            {
+                $this->element('th', null, $transports[$transport]['display']);
+            }
+            $this->elementEnd('tr');
+            $preferences = array(
+                // TRANS: Checkbox label in IM preferences form.
+                array('name'=>'notify', 'description'=>_('Send me notices')),
+                // TRANS: Checkbox label in IM preferences form.
+                array('name'=>'updatefrompresence', 'description'=>_('Post a notice when my status changes.')),
+                // TRANS: Checkbox label in IM preferences form.
+                array('name'=>'replies', 'description'=>_('Send me replies '.
+                              'from people I\'m not subscribed to.')),
+                // TRANS: Checkbox label in IM preferences form.
+                array('name'=>'microid', 'description'=>_('Publish a MicroID'))
+            );
+            foreach($preferences as $preference)
+            {
+                $this->elementStart('tr');
+                foreach($user_im_prefs_by_transport as $transport=>$user_im_prefs)
+                {
+                    $preference_name = $preference['name'];
+                    $this->elementStart('td');
+                    $this->checkbox($transport . '_' . $preference['name'],
+                                $preference['description'],
+                                $user_im_prefs->$preference_name);
+                    $this->elementEnd('td');
+                }
+                $this->elementEnd('tr');
+            }
+            $this->elementEnd('table');
+            // TRANS: Button label to save IM preferences.
+            $this->submit('save', _m('BUTTON','Save'));
+            $this->elementEnd('fieldset');
+            $this->elementEnd('form');
+        }
     }
 
     /**
@@ -192,14 +211,14 @@ class ImsettingsAction extends ConnectSettingsAction
      * @return Confirm_address address object for this user
      */
 
-    function getConfirmation()
+    function getConfirmation($transport)
     {
         $user = common_current_user();
 
         $confirm = new Confirm_address();
 
         $confirm->user_id      = $user->id;
-        $confirm->address_type = 'jabber';
+        $confirm->address_type = $transport;
 
         if ($confirm->find(true)) {
             return $confirm;
@@ -254,35 +273,33 @@ class ImsettingsAction extends ConnectSettingsAction
 
     function savePreferences()
     {
-        $jabbernotify       = $this->boolean('jabbernotify');
-        $updatefrompresence = $this->boolean('updatefrompresence');
-        $jabberreplies      = $this->boolean('jabberreplies');
-        $jabbermicroid      = $this->boolean('jabbermicroid');
-
         $user = common_current_user();
 
-        assert(!is_null($user)); // should already be checked
+        $user_im_prefs = new User_im_prefs();
+        $user_im_prefs->query('BEGIN');
+        $user_im_prefs->user_id = $user->id;
+        if($user_im_prefs->find() && $user_im_prefs->fetch())
+        {
+            $preferences = array('notify', 'updatefrompresence', 'replies', 'microid');
+            do
+            {
+                $original = clone($user_im_prefs);
+                $new = clone($user_im_prefs);
+                foreach($preferences as $preference)
+                {
+                    $new->$preference = $this->boolean($new->transport . '_' . $preference);
+                }
+                $result = $new->update($original);
 
-        $user->query('BEGIN');
-
-        $original = clone($user);
-
-        $user->jabbernotify       = $jabbernotify;
-        $user->updatefrompresence = $updatefrompresence;
-        $user->jabberreplies      = $jabberreplies;
-        $user->jabbermicroid      = $jabbermicroid;
-
-        $result = $user->update($original);
-
-        if ($result === false) {
-            common_log_db_error($user, 'UPDATE', __FILE__);
-            // TRANS: Server error thrown on database error updating IM preferences.
-            $this->serverError(_('Couldn\'t update user.'));
-            return;
+                if ($result === false) {
+                    common_log_db_error($user, 'UPDATE', __FILE__);
+                    // TRANS: Server error thrown on database error updating IM preferences.
+                    $this->serverError(_('Couldn\'t update IM preferences.'));
+                    return;
+                }
+            }while($user_im_prefs->fetch());
         }
-
-        $user->query('COMMIT');
-
+        $user_im_prefs->query('COMMIT');
         // TRANS: Confirmation message for successful IM preferences save.
         $this->showForm(_('Preferences saved.'), true);
     }
@@ -291,7 +308,7 @@ class ImsettingsAction extends ConnectSettingsAction
      * Sends a confirmation to the address given
      *
      * Stores a confirmation record and sends out a
-     * Jabber message with the confirmation info.
+     * message with the confirmation info.
      *
      * @return void
      */
@@ -300,41 +317,45 @@ class ImsettingsAction extends ConnectSettingsAction
     {
         $user = common_current_user();
 
-        $jabber = $this->trimmed('jabber');
+        $screenname = $this->trimmed('screenname');
+        $transport = $this->trimmed('transport');
 
         // Some validation
 
-        if (!$jabber) {
+        if (!$screenname) {
             // TRANS: Message given saving IM address without having provided one.
-            $this->showForm(_('No Jabber ID.'));
+            $this->showForm(_('No screenname.'));
             return;
         }
 
-        $jabber = jabber_normalize_jid($jabber);
+        if (!$transport) {
+            $this->showForm(_('No transport.'));
+            return;
+        }
 
-        if (!$jabber) {
+        Event::handle('NormalizeImScreenname', array($transport, &$screenname));
+
+        if (!$screenname) {
             // TRANS: Message given saving IM address that cannot be normalised.
-            $this->showForm(_('Cannot normalize that Jabber ID'));
+            $this->showForm(_('Cannot normalize that screenname'));
             return;
         }
-        if (!jabber_valid_base_jid($jabber, common_config('email', 'domain_check'))) {
+        $valid = false;
+        Event::handle('ValidateImScreenname', array($transport, $screenname, &$valid));
+        if (!$valid) {
             // TRANS: Message given saving IM address that not valid.
-            $this->showForm(_('Not a valid Jabber ID'));
+            $this->showForm(_('Not a valid screenname'));
             return;
-        } else if ($user->jabber == $jabber) {
-            // TRANS: Message given saving IM address that is already set.
-            $this->showForm(_('That is already your Jabber ID.'));
-            return;
-        } else if ($this->jabberExists($jabber)) {
+        } else if ($this->screennameExists($transport, $screenname)) {
             // TRANS: Message given saving IM address that is already set for another user.
-            $this->showForm(_('Jabber ID already belongs to another user.'));
+            $this->showForm(_('Screenname already belongs to another user.'));
             return;
         }
 
         $confirm = new Confirm_address();
 
-        $confirm->address      = $jabber;
-        $confirm->address_type = 'jabber';
+        $confirm->address      = $screenname;
+        $confirm->address_type = $transport;
         $confirm->user_id      = $user->id;
         $confirm->code         = common_confirmation_code(64);
         $confirm->sent         = common_sql_now();
@@ -349,17 +370,11 @@ class ImsettingsAction extends ConnectSettingsAction
             return;
         }
 
-        jabber_confirm_address($confirm->code,
-                               $user->nickname,
-                               $jabber);
+        Event::handle('SendImConfirmationCode', array($transport, $screenname, $confirm->code, $user));
 
         // TRANS: Message given saving valid IM address that is to be confirmed.
-        // TRANS: %s is the IM address set for the site.
-        $msg = sprintf(_('A confirmation code was sent '.
-                         'to the IM address you added. '.
-                         'You must approve %s for '.
-                         'sending messages to you.'),
-                       jabber_daemon_address());
+        $msg = _('A confirmation code was sent '.
+                         'to the IM address you added.');
 
         $this->showForm($msg, true);
     }
@@ -374,16 +389,17 @@ class ImsettingsAction extends ConnectSettingsAction
 
     function cancelConfirmation()
     {
-        $jabber = $this->arg('jabber');
+        $screenname = $this->trimmed('screenname');
+        $transport = $this->trimmed('transport');
 
-        $confirm = $this->getConfirmation();
+        $confirm = $this->getConfirmation($transport);
 
         if (!$confirm) {
             // TRANS: Message given canceling IM address confirmation that is not pending.
             $this->showForm(_('No pending confirmation to cancel.'));
             return;
         }
-        if ($confirm->address != $jabber) {
+        if ($confirm->address != $screenname) {
             // TRANS: Message given canceling IM address confirmation for the wrong IM address.
             $this->showForm(_('That is the wrong IM address.'));
             return;
@@ -394,7 +410,7 @@ class ImsettingsAction extends ConnectSettingsAction
         if (!$result) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
             // TRANS: Server error thrown on database error canceling IM address confirmation.
-            $this->serverError(_('Couldn\'t delete IM confirmation.'));
+            $this->serverError(_('Couldn\'t delete confirmation.'));
             return;
         }
 
@@ -414,32 +430,29 @@ class ImsettingsAction extends ConnectSettingsAction
     {
         $user = common_current_user();
 
-        $jabber = $this->arg('jabber');
+        $screenname = $this->trimmed('screenname');
+        $transport = $this->trimmed('transport');
 
         // Maybe an old tab open...?
 
-        if ($user->jabber != $jabber) {
+        $user_im_prefs = new User_im_prefs();
+        $user_im_prefs->user_id = $user->id;
+        if(! ($user_im_prefs->find() && $user_im_prefs->fetch())) {
             // TRANS: Message given trying to remove an IM address that is not
             // TRANS: registered for the active user.
-            $this->showForm(_('That is not your Jabber ID.'));
+            $this->showForm(_('That is not your screenname.'));
             return;
         }
 
-        $user->query('BEGIN');
-
-        $original = clone($user);
-
-        $user->jabber = null;
-
-        $result = $user->updateKeys($original);
+        $result = $user_im_prefs->delete();
 
         if (!$result) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error removing a registered IM address.
+            $this->serverError(_('Couldn\'t update user im prefs.'));
             $this->serverError(_('Couldn\'t update user.'));
             return;
         }
-        $user->query('COMMIT');
 
         // XXX: unsubscribe to the old address
 
@@ -448,25 +461,27 @@ class ImsettingsAction extends ConnectSettingsAction
     }
 
     /**
-     * Does this Jabber ID exist?
+     * Does this screenname exist?
      *
      * Checks if we already have another user with this address.
      *
-     * @param string $jabber Address to check
+     * @param string $transport Transport to check
+     * @param string $screenname Screenname to check
      *
-     * @return boolean whether the Jabber ID exists
+     * @return boolean whether the screenname exists
      */
 
-    function jabberExists($jabber)
+    function screennameExists($transport, $screenname)
     {
         $user = common_current_user();
 
-        $other = User::staticGet('jabber', $jabber);
-
-        if (!$other) {
+        $user_im_prefs = new User_im_prefs();
+        $user_im_prefs->transport = $transport;
+        $user_im_prefs->screenname = $screenname;
+        if($user_im_prefs->find() && $user_im_prefs->fetch()){
+            return true;
+        }else{
             return false;
-        } else {
-            return $other->id != $user->id;
         }
     }
 }

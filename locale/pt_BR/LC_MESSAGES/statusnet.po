@@ -2,6 +2,7 @@
 #
 # Author@translatewiki.net: Aracnus
 # Author@translatewiki.net: Ewout
+# Author@translatewiki.net: Giro720
 # Author@translatewiki.net: Luckas Blade
 # Author@translatewiki.net: McDutchie
 # Author@translatewiki.net: Vuln
@@ -12,12 +13,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-16 22:18+0000\n"
-"PO-Revision-Date: 2010-06-21 18:04:52+0000\n"
+"POT-Creation-Date: 2010-08-03 13:21+0000\n"
+"PO-Revision-Date: 2010-08-03 13:22:23+0000\n"
 "Language-Team: Brazilian Portuguese\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.17alpha (r68367); Translate extension (2010-06-12)\n"
+"X-Generator: MediaWiki 1.17alpha (r70381); Translate extension (2010-07-21)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: pt-br\n"
 "X-Message-Group: out-statusnet\n"
@@ -101,7 +102,7 @@ msgstr "Esta página não existe."
 #: actions/apidirectmessagenew.php:74 actions/apigroupcreate.php:113
 #: actions/apigroupismember.php:91 actions/apigroupjoin.php:100
 #: actions/apigroupleave.php:100 actions/apigrouplist.php:73
-#: actions/apistatusesupdate.php:228 actions/apisubscriptions.php:87
+#: actions/apistatusesupdate.php:229 actions/apisubscriptions.php:87
 #: actions/apitimelinefavorites.php:72 actions/apitimelinefriends.php:174
 #: actions/apitimelinehome.php:80 actions/apitimelinementions.php:80
 #: actions/apitimelineuser.php:82 actions/avatarbynickname.php:75
@@ -170,20 +171,20 @@ msgstr ""
 
 #. TRANS: %1$s is user nickname, %2$s is user nickname, %2$s is user nickname prefixed with "@"
 #: actions/all.php:146
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can try to [nudge %1$s](../%2$s) from his profile or [post something to "
-"his or her attention](%%%%action.newnotice%%%%?status_textarea=%3$s)."
+"You can try to [nudge %1$s](../%2$s) from their profile or [post something "
+"to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 "Você pode tentar [chamar a atenção de %1$s](../%2$s) em seu perfil ou "
 "[publicar alguma coisa que desperte seu interesse](%%%%action.newnotice%%%%?"
 "status_textarea=%3$s)."
 
 #: actions/all.php:149 actions/replies.php:210 actions/showstream.php:211
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
-"post a notice to his or her attention."
+"post a notice to them."
 msgstr ""
 "Por que não [registrar uma conta](%%%%action.register%%%%) e então chamar a "
 "atenção de %s ou publicar uma mensagem para sua atenção."
@@ -218,7 +219,7 @@ msgstr "Atualizações de %1$s e amigos no %2$s!"
 #: actions/apistatusesshow.php:109 actions/apistatusnetconfig.php:141
 #: actions/apistatusnetversion.php:93 actions/apisubscriptions.php:111
 #: actions/apitimelinefavorites.php:174 actions/apitimelinefriends.php:271
-#: actions/apitimelinegroup.php:152 actions/apitimelinehome.php:175
+#: actions/apitimelinegroup.php:154 actions/apitimelinehome.php:175
 #: actions/apitimelinementions.php:174 actions/apitimelinepublic.php:241
 #: actions/apitimelineretweetedtome.php:121
 #: actions/apitimelineretweetsofme.php:152 actions/apitimelinetag.php:161
@@ -268,7 +269,7 @@ msgstr "Não foi possível salvar o perfil."
 
 #: actions/apiaccountupdateprofilebackgroundimage.php:108
 #: actions/apiaccountupdateprofileimage.php:97 actions/apimediaupload.php:80
-#: actions/apistatusesupdate.php:211 actions/avatarsettings.php:257
+#: actions/apistatusesupdate.php:212 actions/avatarsettings.php:257
 #: actions/designadminpanel.php:123 actions/editapplication.php:118
 #: actions/newapplication.php:101 actions/newnotice.php:94
 #: lib/designsettings.php:283
@@ -368,7 +369,8 @@ msgid "Could not delete favorite."
 msgstr "Não foi possível excluir a favorita."
 
 #: actions/apifriendshipscreate.php:109
-msgid "Could not follow user: User not found."
+#, fuzzy
+msgid "Could not follow user: profile not found."
 msgstr "Não é possível seguir o usuário: Usuário não encontrado."
 
 #: actions/apifriendshipscreate.php:118
@@ -384,8 +386,9 @@ msgstr "Não é possível deixar de seguir o usuário: Usuário não encontrado.
 msgid "You cannot unfollow yourself."
 msgstr "Você não pode deixar de seguir você mesmo!"
 
-#: actions/apifriendshipsexists.php:94
-msgid "Two user ids or screen_names must be supplied."
+#: actions/apifriendshipsexists.php:91
+#, fuzzy
+msgid "Two valid IDs or screen_names must be supplied."
 msgstr "Duas IDs de usuário ou screen_names devem ser informados."
 
 #: actions/apifriendshipsshow.php:134
@@ -514,6 +517,11 @@ msgstr "Grupos de %s"
 #, php-format
 msgid "groups on %s"
 msgstr "grupos no %s"
+
+#: actions/apimediaupload.php:99
+#, fuzzy
+msgid "Upload failed."
+msgstr "Enviar arquivo"
 
 #: actions/apioauthauthorize.php:101
 msgid "No oauth_token parameter provided."
@@ -662,22 +670,26 @@ msgstr "A mensagem foi excluída."
 msgid "No status with that ID found."
 msgstr "Não foi encontrada nenhuma mensagem com esse ID."
 
-#: actions/apistatusesupdate.php:241 actions/newnotice.php:155
+#: actions/apistatusesupdate.php:221
+msgid "Client must provide a 'status' parameter with a value."
+msgstr ""
+
+#: actions/apistatusesupdate.php:242 actions/newnotice.php:155
 #: lib/mailhandler.php:60
 #, php-format
 msgid "That's too long. Max notice size is %d chars."
 msgstr "Está muito extenso. O tamanho máximo é de %s caracteres."
 
-#: actions/apistatusesupdate.php:282 actions/apiusershow.php:96
+#: actions/apistatusesupdate.php:283 actions/apiusershow.php:96
 msgid "Not found."
 msgstr "Não encontrado."
 
-#: actions/apistatusesupdate.php:305 actions/newnotice.php:178
+#: actions/apistatusesupdate.php:306 actions/newnotice.php:178
 #, php-format
 msgid "Max notice size is %d chars, including attachment URL."
 msgstr "O tamanho máximo da mensagem é de %s caracteres"
 
-#: actions/apisubscriptions.php:231 actions/apisubscriptions.php:261
+#: actions/apisubscriptions.php:232 actions/apisubscriptions.php:262
 msgid "Unsupported format."
 msgstr "Formato não suportado."
 
@@ -730,6 +742,10 @@ msgstr "Mensagens etiquetadas como %s"
 #, php-format
 msgid "Updates tagged with %1$s on %2$s!"
 msgstr "Mensagens etiquetadas como %1$s no %2$s!"
+
+#: actions/apitrends.php:87
+msgid "API method under construction."
+msgstr "O método da API está em construção."
 
 #: actions/attachment.php:73
 msgid "No such attachment."
@@ -784,7 +800,7 @@ msgid "Preview"
 msgstr "Visualização"
 
 #: actions/avatarsettings.php:149 actions/showapplication.php:252
-#: lib/deleteuserform.php:66 lib/noticelist.php:648
+#: lib/deleteuserform.php:66 lib/noticelist.php:656
 msgid "Delete"
 msgstr "Excluir"
 
@@ -1066,7 +1082,7 @@ msgid "Do not delete this notice"
 msgstr "Não excluir esta mensagem."
 
 #. TRANS: Submit button title for 'Yes' when deleting a notice.
-#: actions/deletenotice.php:158 lib/noticelist.php:648
+#: actions/deletenotice.php:158 lib/noticelist.php:656
 msgid "Delete this notice"
 msgstr "Excluir esta mensagem"
 
@@ -1346,7 +1362,8 @@ msgstr "Apelido inválido: \"%s\""
 msgid "Could not update group."
 msgstr "Não foi possível atualizar o grupo."
 
-#: actions/editgroup.php:264 classes/User_group.php:496
+#. TRANS: Server exception thrown when creating group aliases failed.
+#: actions/editgroup.php:264 classes/User_group.php:514
 msgid "Could not create aliases."
 msgstr "Não foi possível criar os apelidos."
 
@@ -2511,8 +2528,9 @@ msgid "Updates matching search term \"%1$s\" on %2$s!"
 msgstr "Mensagens correspondentes aos termos \"%1$s\" no %2$s!"
 
 #: actions/nudge.php:85
+#, fuzzy
 msgid ""
-"This user doesn't allow nudges or hasn't confirmed or set his email yet."
+"This user doesn't allow nudges or hasn't confirmed or set their email yet."
 msgstr ""
 "Esse usuário não permite ser chamado à atenção ou ainda não confirmou ou "
 "configurou seu e-mail."
@@ -2591,8 +2609,8 @@ msgid "Only %s URLs over plain HTTP please."
 msgstr "Por favor, somente URLs %s sobre HTTP puro."
 
 #. TRANS: Client error on an API request with an unsupported data format.
-#: actions/oembed.php:184 actions/oembed.php:203 lib/apiaction.php:1179
-#: lib/apiaction.php:1208 lib/apiaction.php:1325
+#: actions/oembed.php:184 actions/oembed.php:203 lib/apiaction.php:1204
+#: lib/apiaction.php:1232 lib/apiaction.php:1355
 msgid "Not a supported data format."
 msgstr "Não é um formato de dados suportado."
 
@@ -3508,7 +3526,7 @@ msgstr "Você não pode repetir sua própria mensagem."
 msgid "You already repeated that notice."
 msgstr "Você já repetiu essa mensagem."
 
-#: actions/repeat.php:114 lib/noticelist.php:667
+#: actions/repeat.php:114 lib/noticelist.php:675
 msgid "Repeated"
 msgstr "Repetida"
 
@@ -3543,10 +3561,10 @@ msgid "Replies feed for %s (Atom)"
 msgstr "Fonte de respostas para %s (Atom)"
 
 #: actions/replies.php:199
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "This is the timeline showing replies to %1$s but %2$s hasn't received a "
-"notice to his attention yet."
+"notice to them yet."
 msgstr ""
 "Esse é o fluxo de mensagens de resposta para %1$s, mas %2$s ainda não "
 "recebeu nenhuma mensagem direcionada a ele(a)."
@@ -3561,10 +3579,10 @@ msgstr ""
 "pessoas ou [associe-se a grupos](%%action.groups%%)."
 
 #: actions/replies.php:206
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can try to [nudge %1$s](../%2$s) or [post something to his or her "
-"attention](%%%%action.newnotice%%%%?status_textarea=%3$s)."
+"You can try to [nudge %1$s](../%2$s) or [post something to them](%%%%action."
+"newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 "Você pode tentar [chamar a atenção de %1$s](../%2$s) ou [publicar alguma "
 "coisa que desperte seu interesse](%%%%action.newnotice%%%%?status_textarea=%3"
@@ -3656,7 +3674,7 @@ msgstr "Organização"
 msgid "Description"
 msgstr "Descrição"
 
-#: actions/showapplication.php:192 actions/showgroup.php:444
+#: actions/showapplication.php:192 actions/showgroup.php:436
 #: lib/profileaction.php:187
 msgid "Statistics"
 msgstr "Estatísticas"
@@ -3744,20 +3762,20 @@ msgstr ""
 "para destacar."
 
 #: actions/showfavorites.php:208
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"%s hasn't added any notices to his favorites yet. Post something interesting "
-"they would add to their favorites :)"
+"%s hasn't added any favorite notices yet. Post something interesting they "
+"would add to their favorites :)"
 msgstr ""
 "%s não adicionou nenhuma mensagem às suas favoritas. Publique alguma coisa "
 "interessante para para as pessoas marcarem como favorita. :)"
 
 #: actions/showfavorites.php:212
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"%s hasn't added any notices to his favorites yet. Why not [register an "
-"account](%%%%action.register%%%%) and then post something interesting they "
-"would add to their favorites :)"
+"%s hasn't added any favorite notices yet. Why not [register an account](%%%%"
+"action.register%%%%) and then post something interesting they would add to "
+"their favorites :)"
 msgstr ""
 "%s não adicionou nenhuma mensagem às suas favoritas. Por que você não "
 "[registra uma conta](%%%%action.register%%%%) e publica alguma coisa "
@@ -3819,7 +3837,7 @@ msgstr "Fonte de mensagens do grupo %s (Atom)"
 msgid "FOAF for %s group"
 msgstr "FOAF para o grupo %s"
 
-#: actions/showgroup.php:393 actions/showgroup.php:453 lib/groupnav.php:91
+#: actions/showgroup.php:393 actions/showgroup.php:445 lib/groupnav.php:91
 msgid "Members"
 msgstr "Membros"
 
@@ -3833,11 +3851,11 @@ msgstr "(Nenhum)"
 msgid "All members"
 msgstr "Todos os membros"
 
-#: actions/showgroup.php:447
+#: actions/showgroup.php:439
 msgid "Created"
 msgstr "Criado"
 
-#: actions/showgroup.php:463
+#: actions/showgroup.php:455
 #, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
@@ -3853,7 +3871,7 @@ msgstr ""
 "para se tornar parte deste grupo e muito mais! ([Saiba mais](%%%%doc.help%%%"
 "%))"
 
-#: actions/showgroup.php:469
+#: actions/showgroup.php:461
 #, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
@@ -3866,7 +3884,7 @@ msgstr ""
 "[StatusNet](http://status.net/). Seus membros compartilham mensagens curtas "
 "sobre suas vidas e interesses. "
 
-#: actions/showgroup.php:497
+#: actions/showgroup.php:489
 msgid "Admins"
 msgstr "Administradores"
 
@@ -3943,10 +3961,10 @@ msgstr ""
 "mensagem. Que tal começar agora? :)"
 
 #: actions/showstream.php:207
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can try to nudge %1$s or [post something to his or her attention](%%%%"
-"action.newnotice%%%%?status_textarea=%2$s)."
+"You can try to nudge %1$s or [post something to them](%%%%action.newnotice%%%"
+"%?status_textarea=%2$s)."
 msgstr ""
 "Você pode tentar chamar a atenção de %1$s ou [publicar alguma coisa que "
 "desperte seu interesse](%%%%action.newnotice%%%%?status_textarea=%2$s)."
@@ -4333,7 +4351,8 @@ msgstr "Salvar as configurações de estatísticas"
 msgid "You are not subscribed to that profile."
 msgstr "Você não está assinando esse perfil."
 
-#: actions/subedit.php:83 classes/Subscription.php:132
+#. TRANS: Exception thrown when a subscription could not be stored on the server.
+#: actions/subedit.php:83 classes/Subscription.php:136
 msgid "Could not save subscription."
 msgstr "Não foi possível salvar a assinatura."
 
@@ -4510,10 +4529,6 @@ msgstr ""
 #: actions/tagrss.php:35
 msgid "No such tag."
 msgstr "Esta etiqueta não existe."
-
-#: actions/twitapitrends.php:85
-msgid "API method under construction."
-msgstr "O método da API está em construção."
 
 #: actions/unblock.php:59
 msgid "You haven't blocked that user."
@@ -4828,80 +4843,128 @@ msgstr "Versão"
 msgid "Author(s)"
 msgstr "Autor(es)"
 
-#: classes/File.php:185
+#. TRANS: Server exception thrown when a URL cannot be processed.
+#: classes/File.php:143
 #, php-format
+msgid "Cannot process URL '%s'"
+msgstr ""
+
+#. TRANS: Server exception thrown when... Robin thinks something is impossible!
+#: classes/File.php:175
+msgid "Robin thinks something is impossible."
+msgstr ""
+
+#. TRANS: Message given if an upload is larger than the configured maximum.
+#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
+#: classes/File.php:190
+#, fuzzy, php-format
 msgid ""
-"No file may be larger than %d bytes and the file you sent was %d bytes. Try "
-"to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
+"Try to upload a smaller version."
 msgstr ""
 "Nenhum arquivo pode ser maior que %d bytes e o arquivo que você enviou "
 "possui %d bytes. Experimente enviar uma versão menor."
 
-#: classes/File.php:195
+#. TRANS: Message given if an upload would exceed user quota.
+#. TRANS: %d (number) is the user quota in bytes.
+#: classes/File.php:202
 #, php-format
 msgid "A file this large would exceed your user quota of %d bytes."
 msgstr "Um arquivo deste tamanho excederá a sua conta de %d bytes."
 
-#: classes/File.php:202
+#. TRANS: Message given id an upload would exceed a user's monthly quota.
+#. TRANS: $d (number) is the monthly user quota in bytes.
+#: classes/File.php:211
 #, php-format
 msgid "A file this large would exceed your monthly quota of %d bytes."
 msgstr "Um arquivo deste tamanho excederá a sua conta mensal de %d bytes."
 
-#: classes/Group_member.php:41
+#. TRANS: Client exception thrown if a file upload does not have a valid name.
+#: classes/File.php:248 classes/File.php:263
+#, fuzzy
+msgid "Invalid filename."
+msgstr "Tamanho inválido."
+
+#. TRANS: Exception thrown when joining a group fails.
+#: classes/Group_member.php:42
 msgid "Group join failed."
 msgstr "Não foi possível se unir ao grupo."
 
-#: classes/Group_member.php:53
+#. TRANS: Exception thrown when trying to leave a group the user is not a member of.
+#: classes/Group_member.php:55
 msgid "Not part of group."
 msgstr "Não é parte de um grupo."
 
-#: classes/Group_member.php:60
+#. TRANS: Exception thrown when trying to leave a group fails.
+#: classes/Group_member.php:63
 msgid "Group leave failed."
 msgstr "Não foi possível deixar o grupo."
 
-#: classes/Local_group.php:41
+#. TRANS: Server exception thrown when updating a local group fails.
+#: classes/Local_group.php:42
 msgid "Could not update local group."
 msgstr "Não foi possível atualizar o grupo local."
 
-#: classes/Login_token.php:76
+#. TRANS: Exception thrown when trying creating a login token failed.
+#. TRANS: %s is the user nickname for which token creation failed.
+#: classes/Login_token.php:78
 #, php-format
 msgid "Could not create login token for %s"
 msgstr "Não foi possível criar o token de autenticação para %s"
 
-#: classes/Message.php:45
+#. TRANS: Exception thrown when database name or Data Source Name could not be found.
+#: classes/Memcached_DataObject.php:533
+msgid "No database name or DSN found anywhere."
+msgstr ""
+
+#. TRANS: Client exception thrown when a user tries to send a direct message while being banned from sending them.
+#: classes/Message.php:46
 msgid "You are banned from sending direct messages."
 msgstr "Você está proibido de enviar mensagens diretas."
 
-#: classes/Message.php:61
+#. TRANS: Message given when a message could not be stored on the server.
+#: classes/Message.php:63
 msgid "Could not insert message."
 msgstr "Não foi possível inserir a mensagem."
 
-#: classes/Message.php:71
+#. TRANS: Message given when a message could not be updated on the server.
+#: classes/Message.php:74
 msgid "Could not update message with new URI."
 msgstr "Não foi possível atualizar a mensagem com a nova URI."
 
+#. TRANS: Server exception thrown when a user profile for a notice cannot be found.
+#. TRANS: %1$d is a profile ID (number), %2$d is a notice ID (number).
+#: classes/Notice.php:98
+#, php-format
+msgid "No such profile (%1$d) for notice (%2$d)."
+msgstr ""
+
 #. TRANS: Server exception. %s are the error details.
-#: classes/Notice.php:182
+#: classes/Notice.php:190
 #, php-format
 msgid "Database error inserting hashtag: %s"
 msgstr "Erro no banco de dados durante a inserção da hashtag: %s"
 
-#: classes/Notice.php:251
+#. TRANS: Client exception thrown if a notice contains too many characters.
+#: classes/Notice.php:260
 msgid "Problem saving notice. Too long."
 msgstr "Problema no salvamento da mensagem. Ela é muito extensa."
 
-#: classes/Notice.php:255
+#. TRANS: Client exception thrown when trying to save a notice for an unknown user.
+#: classes/Notice.php:265
 msgid "Problem saving notice. Unknown user."
 msgstr "Problema no salvamento da mensagem. Usuário desconhecido."
 
-#: classes/Notice.php:260
+#. TRANS: Client exception thrown when a user tries to post too many notices in a given time frame.
+#: classes/Notice.php:271
 msgid ""
 "Too many notices too fast; take a breather and post again in a few minutes."
 msgstr ""
 "Muitas mensagens em um período curto de tempo; dê uma respirada e publique "
 "novamente daqui a alguns minutos."
 
-#: classes/Notice.php:266
+#. TRANS: Client exception thrown when a user tries to post too many duplicate notices in a given time frame.
+#: classes/Notice.php:278
 msgid ""
 "Too many duplicate messages too quickly; take a breather and post again in a "
 "few minutes."
@@ -4909,71 +4972,122 @@ msgstr ""
 "Muitas mensagens duplicadas em um período curto de tempo; dê uma respirada e "
 "publique novamente daqui a alguns minutos."
 
-#: classes/Notice.php:272
+#. TRANS: Client exception thrown when a user tries to post while being banned.
+#: classes/Notice.php:286
 msgid "You are banned from posting notices on this site."
 msgstr "Você está proibido de publicar mensagens neste site."
 
-#: classes/Notice.php:338 classes/Notice.php:364
+#. TRANS: Server exception thrown when a notice cannot be saved.
+#. TRANS: Server exception thrown when a notice cannot be updated.
+#: classes/Notice.php:353 classes/Notice.php:380
 msgid "Problem saving notice."
 msgstr "Problema no salvamento da mensagem."
 
-#: classes/Notice.php:973
+#. TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
+#: classes/Notice.php:892
+msgid "Bad type provided to saveKnownGroups"
+msgstr ""
+
+#. TRANS: Server exception thrown when an update for a group inbox fails.
+#: classes/Notice.php:991
 msgid "Problem saving group inbox."
 msgstr "Problema no salvamento das mensagens recebidas do grupo."
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1564
+#: classes/Notice.php:1614
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr "RT @%1$s %2$s"
 
-#: classes/Subscription.php:74 lib/oauthstore.php:465
+#. TRANS: Exception thrown when trying to revoke an existing role for a user that does not exist.
+#. TRANS: %1$s is the role name, %2$s is the user ID (number).
+#: classes/Profile.php:740
+#, php-format
+msgid "Cannot revoke role \"%1$s\" for user #%2$d; does not exist."
+msgstr ""
+
+#. TRANS: Exception thrown when trying to revoke a role for a user with a failing database query.
+#. TRANS: %1$s is the role name, %2$s is the user ID (number).
+#: classes/Profile.php:749
+#, php-format
+msgid "Cannot revoke role \"%1$s\" for user #%2$d; database error."
+msgstr ""
+
+#. TRANS: Exception thrown when a right for a non-existing user profile is checked.
+#: classes/Remote_profile.php:54
+#, fuzzy
+msgid "Missing profile."
+msgstr "O usuário não tem perfil."
+
+#. TRANS: Exception thrown when a tag cannot be saved.
+#: classes/Status_network.php:346
+#, fuzzy
+msgid "Unable to save tag."
+msgstr "Não foi possível salvar os avisos do site."
+
+#. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
+#: classes/Subscription.php:75 lib/oauthstore.php:465
 msgid "You have been banned from subscribing."
 msgstr "Você está proibido de assinar."
 
-#: classes/Subscription.php:78
+#. TRANS: Exception thrown when trying to subscribe while already subscribed.
+#: classes/Subscription.php:80
 msgid "Already subscribed!"
 msgstr "Já assinado!"
 
-#: classes/Subscription.php:82
+#. TRANS: Exception thrown when trying to subscribe to a user who has blocked the subscribing user.
+#: classes/Subscription.php:85
 msgid "User has blocked you."
 msgstr "O usuário bloqueou você."
 
-#: classes/Subscription.php:167
+#. TRANS: Exception thrown when trying to unsibscribe without a subscription.
+#: classes/Subscription.php:171
 msgid "Not subscribed!"
 msgstr "Não assinado!"
 
-#: classes/Subscription.php:173
-msgid "Couldn't delete self-subscription."
+#. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
+#: classes/Subscription.php:178
+#, fuzzy
+msgid "Could not delete self-subscription."
 msgstr "Não foi possível excluir a auto-assinatura."
 
-#: classes/Subscription.php:200
-msgid "Couldn't delete subscription OMB token."
+#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
+#: classes/Subscription.php:206
+#, fuzzy
+msgid "Could not delete subscription OMB token."
 msgstr "Não foi possível excluir o token de assinatura OMB."
 
-#: classes/Subscription.php:211
-msgid "Couldn't delete subscription."
+#. TRANS: Exception thrown when a subscription could not be deleted on the server.
+#: classes/Subscription.php:218
+#, fuzzy
+msgid "Could not delete subscription."
 msgstr "Não foi possível excluir a assinatura."
 
-#: classes/User.php:363
+#. TRANS: Notice given on user registration.
+#. TRANS: %1$s is the sitename, $2$s is the registering user's nickname.
+#: classes/User.php:365
 #, php-format
 msgid "Welcome to %1$s, @%2$s!"
 msgstr "Bem vindo(a) a %1$s, @%2$s!"
 
-#: classes/User_group.php:480
+#. TRANS: Server exception thrown when creating a group failed.
+#: classes/User_group.php:496
 msgid "Could not create group."
 msgstr "Não foi possível criar o grupo."
 
-#: classes/User_group.php:489
+#. TRANS: Server exception thrown when updating a group URI failed.
+#: classes/User_group.php:506
 msgid "Could not set group URI."
 msgstr "Não foi possível definir a URI do grupo."
 
-#: classes/User_group.php:510
+#. TRANS: Server exception thrown when setting group membership failed.
+#: classes/User_group.php:529
 msgid "Could not set group membership."
 msgstr "Não foi possível configurar a associação ao grupo."
 
-#: classes/User_group.php:524
+#. TRANS: Server exception thrown when saving local group information failed.
+#: classes/User_group.php:544
 msgid "Could not save local group info."
 msgstr "Não foi possível salvar a informação do grupo local."
 
@@ -6447,7 +6561,7 @@ msgstr ""
 "privadas para envolver outras pessoas em uma conversa. Você também pode "
 "receber mensagens privadas."
 
-#: lib/mailbox.php:227 lib/noticelist.php:497
+#: lib/mailbox.php:227 lib/noticelist.php:505
 msgid "from"
 msgstr "de"
 
@@ -6508,24 +6622,24 @@ msgstr "Erro ao salvar o arquivo no disco."
 msgid "File upload stopped by extension."
 msgstr "O arquivo a ser enviado foi barrado por causa de sua extensão."
 
-#: lib/mediafile.php:179 lib/mediafile.php:216
+#: lib/mediafile.php:179 lib/mediafile.php:217
 msgid "File exceeds user's quota."
 msgstr "O arquivo excede a quota do usuário."
 
-#: lib/mediafile.php:196 lib/mediafile.php:233
+#: lib/mediafile.php:197 lib/mediafile.php:234
 msgid "File could not be moved to destination directory."
 msgstr "Não foi possível mover o arquivo para o diretório de destino."
 
-#: lib/mediafile.php:201 lib/mediafile.php:237
+#: lib/mediafile.php:202 lib/mediafile.php:238
 msgid "Could not determine file's MIME type."
 msgstr "Não foi possível determinar o tipo MIME do arquivo."
 
-#: lib/mediafile.php:270
+#: lib/mediafile.php:318
 #, php-format
 msgid " Try using another %s format."
 msgstr " Tente usar outro formato %s."
 
-#: lib/mediafile.php:275
+#: lib/mediafile.php:323
 #, php-format
 msgid "%s is not a supported file type on this server."
 msgstr "%s não é um tipo de arquivo suportado neste servidor."
@@ -6581,51 +6695,51 @@ msgstr ""
 "esperado. Por favor, tente novamente mais tarde."
 
 #. TRANS: Used in coordinates as abbreviation of north
-#: lib/noticelist.php:430
+#: lib/noticelist.php:436
 msgid "N"
 msgstr "N"
 
 #. TRANS: Used in coordinates as abbreviation of south
-#: lib/noticelist.php:432
+#: lib/noticelist.php:438
 msgid "S"
 msgstr "S"
 
 #. TRANS: Used in coordinates as abbreviation of east
-#: lib/noticelist.php:434
+#: lib/noticelist.php:440
 msgid "E"
 msgstr "L"
 
 #. TRANS: Used in coordinates as abbreviation of west
-#: lib/noticelist.php:436
+#: lib/noticelist.php:442
 msgid "W"
 msgstr "O"
 
-#: lib/noticelist.php:438
+#: lib/noticelist.php:444
 #, php-format
 msgid "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 msgstr "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 
-#: lib/noticelist.php:447
+#: lib/noticelist.php:453
 msgid "at"
 msgstr "em"
 
-#: lib/noticelist.php:559
+#: lib/noticelist.php:567
 msgid "in context"
 msgstr "no contexto"
 
-#: lib/noticelist.php:594
+#: lib/noticelist.php:602
 msgid "Repeated by"
 msgstr "Repetida por"
 
-#: lib/noticelist.php:621
+#: lib/noticelist.php:629
 msgid "Reply to this notice"
 msgstr "Responder a esta mensagem"
 
-#: lib/noticelist.php:622
+#: lib/noticelist.php:630
 msgid "Reply"
 msgstr "Responder"
 
-#: lib/noticelist.php:666
+#: lib/noticelist.php:674
 msgid "Notice repeated"
 msgstr "Mensagem repetida"
 
@@ -6675,7 +6789,7 @@ msgstr "Respostas"
 
 #: lib/personalgroupnav.php:114
 msgid "Favorites"
-msgstr "Favoritas"
+msgstr "Favoritos"
 
 #: lib/personalgroupnav.php:125
 msgid "Inbox"
@@ -6881,47 +6995,48 @@ msgstr "Nenhuma"
 #: lib/themeuploader.php:50
 msgid "This server cannot handle theme uploads without ZIP support."
 msgstr ""
+"Este servidor não pode processar o envio de temas sem suporte ao formato ZIP."
 
 #: lib/themeuploader.php:58 lib/themeuploader.php:61
-#, fuzzy
-msgid "Theme upload missing or failed."
-msgstr "Erro no sistema durante o envio do arquivo."
+msgid "The theme file is missing or the upload failed."
+msgstr "O arquivo do tema não foi localizado ou ocorreu uma erro no envio."
 
 #: lib/themeuploader.php:91 lib/themeuploader.php:102
 #: lib/themeuploader.php:253 lib/themeuploader.php:257
 #: lib/themeuploader.php:265 lib/themeuploader.php:272
-#, fuzzy
 msgid "Failed saving theme."
-msgstr "Não foi possível atualizar o avatar."
+msgstr "Não foi possível salvar o tema."
 
 #: lib/themeuploader.php:139
 msgid "Invalid theme: bad directory structure."
-msgstr ""
+msgstr "Tema inválido: estrutura de diretórios incorreta."
 
 #: lib/themeuploader.php:166
 #, php-format
 msgid "Uploaded theme is too large; must be less than %d bytes uncompressed."
 msgstr ""
+"O tema enviado é muito grande; ele deve ter menos de %d bytes descomprimido."
 
 #: lib/themeuploader.php:178
 msgid "Invalid theme archive: missing file css/display.css"
-msgstr ""
+msgstr "Arquivo de tema inválido: está faltando o arquivo css/display.css"
 
 #: lib/themeuploader.php:205
 msgid ""
 "Theme contains invalid file or folder name. Stick with ASCII letters, "
 "digits, underscore, and minus sign."
 msgstr ""
+"O tema contém um nome de arquivo ou de diretório inválido. Use somente "
+"caracteres ASCII, números e os sinais de sublinhado e hífen."
 
 #: lib/themeuploader.php:216
 #, php-format
 msgid "Theme contains file of type '.%s', which is not allowed."
-msgstr ""
+msgstr "O tema contém um arquivo do tipo '.%s', que não é permitido."
 
 #: lib/themeuploader.php:234
-#, fuzzy
 msgid "Error opening theme archive."
-msgstr "Ocorreu um erro durante a atualização do perfil remoto."
+msgstr "Ocorreu um erro ao abrir o arquivo do tema."
 
 #: lib/topposterssection.php:74
 msgid "Top posters"

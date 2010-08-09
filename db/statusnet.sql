@@ -62,11 +62,6 @@ create table user (
     language varchar(50) comment 'preferred language',
     timezone varchar(50) comment 'timezone',
     emailpost tinyint default 1 comment 'Post by email',
-    jabber varchar(255) unique key comment 'jabber ID for notices',
-    jabbernotify tinyint default 0 comment 'whether to send notices to jabber',
-    jabberreplies tinyint default 0 comment 'whether to send notices to jabber on replies',
-    jabbermicroid tinyint default 1 comment 'whether to publish xmpp microid',
-    updatefrompresence tinyint default 0 comment 'whether to record updates from Jabber presence notices',
     sms varchar(64) unique key comment 'sms phone number',
     carrier integer comment 'foreign key to sms_carrier' references sms_carrier (id),
     smsnotify tinyint default 0 comment 'whether to send notices to SMS',
@@ -259,9 +254,9 @@ create table oid_nonces (
 create table confirm_address (
     code varchar(32) not null primary key comment 'good random code',
     user_id integer not null comment 'user who requested confirmation' references user (id),
-    address varchar(255) not null comment 'address (email, Jabber, SMS, etc.)',
+    address varchar(255) not null comment 'address (email, xmpp, SMS, etc.)',
     address_extra varchar(255) not null comment 'carrier ID, for SMS',
-    address_type varchar(8) not null comment 'address type ("email", "jabber", "sms")',
+    address_type varchar(8) not null comment 'address type ("email", "xmpp", "sms")',
     claimed datetime comment 'date this was claimed for queueing',
     sent datetime comment 'date this was sent for queueing',
     modified timestamp comment 'date this record was modified'
@@ -276,7 +271,7 @@ create table remember_me (
 create table queue_item (
     id integer auto_increment primary key comment 'unique identifier',
     frame blob not null comment 'data: object reference or opaque string',
-    transport varchar(8) not null comment 'queue for what? "email", "jabber", "sms", "irc", ...',
+    transport varchar(8) not null comment 'queue for what? "email", "xmpp", "sms", "irc", ...',
     created datetime not null comment 'date this record was created',
     claimed datetime comment 'date this item was claimed',
 
@@ -348,7 +343,7 @@ create table invitation (
      code varchar(32) not null primary key comment 'random code for an invitation',
      user_id int not null comment 'who sent the invitation' references user (id),
      address varchar(255) not null comment 'invitation sent to',
-     address_type varchar(8) not null comment 'address type ("email", "jabber", "sms")',
+     address_type varchar(8) not null comment 'address type ("email", "xmpp", "sms")',
      created datetime not null comment 'date this record was created',
 
      index invitation_address_idx (address, address_type),
@@ -639,6 +634,21 @@ create table inbox (
 
 ) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin;
 
+create table user_im_prefs (
+    user_id integer not null comment 'user' references user (id),
+    screenname varchar(255) not null comment 'screenname on this service',
+    transport varchar(255) not null comment 'transport (ex xmpp, aim)',
+    notify tinyint(1) not null default 0 comment 'Notify when a new notice is sent',
+    replies tinyint(1) not null default 0 comment 'Send replies  from people not subscribed to',
+    microid tinyint(1) not null default 1 comment 'Publish a MicroID',
+    updatefrompresence tinyint(1) not null default 0 comment 'Send replies  from people not subscribed to.',
+    created timestamp not null DEFAULT CURRENT_TIMESTAMP comment 'date this record was created',
+    modified timestamp comment 'date this record was modified',
+
+    constraint primary key (user_id, transport),
+    constraint unique key `transport_screenname_key` ( `transport` , `screenname` )
+) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin;
+
 create table conversation (
     id integer auto_increment primary key comment 'unique identifier',
     uri varchar(225) unique comment 'URI of the conversation',
@@ -656,3 +666,15 @@ create table local_group (
 
 ) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin;
 
+create table user_urlshortener_prefs (
+
+   user_id integer not null comment 'user' references user (id),
+   urlshorteningservice varchar(50) default 'ur1.ca' comment 'service to use for auto-shortening URLs',
+   maxurllength integer not null comment 'urls greater than this length will be shortened, 0 = always, null = never',
+   maxnoticelength integer not null comment 'notices with content greater than this value will have all urls shortened, 0 = always, null = never',
+
+   created datetime not null comment 'date this record was created',
+   modified timestamp comment 'date this record was modified',
+
+   constraint primary key (user_id)
+) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin;

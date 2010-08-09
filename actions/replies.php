@@ -196,18 +196,18 @@ class RepliesAction extends OwnerDesignAction
 
     function showEmptyListMessage()
     {
-        $message = sprintf(_('This is the timeline showing replies to %1$s but %2$s hasn\'t received a notice to their attention yet.'), $this->user->nickname, $this->user->nickname) . ' ';
+        $message = sprintf(_('This is the timeline showing replies to %1$s but %2$s hasn\'t received a notice to them yet.'), $this->user->nickname, $this->user->nickname) . ' ';
 
         if (common_logged_in()) {
             $current_user = common_current_user();
             if ($this->user->id === $current_user->id) {
                 $message .= _('You can engage other users in a conversation, subscribe to more people or [join groups](%%action.groups%%).');
             } else {
-                $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) or [post something to their attention](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->user->nickname, $this->user->nickname, '@' . $this->user->nickname);
+                $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) or [post something to them](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->user->nickname, $this->user->nickname, '@' . $this->user->nickname);
             }
         }
         else {
-            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to their attention.'), $this->user->nickname);
+            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to them.'), $this->user->nickname);
         }
 
         $this->elementStart('div', 'guide');

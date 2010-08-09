@@ -47,40 +47,47 @@ if (!defined('STATUSNET')) {
 
 class Schema
 {
-    static $_single = null;
+    static $_static = null;
     protected $conn = null;
 
     /**
      * Constructor. Only run once for singleton object.
      */
 
-    protected function __construct()
+    protected function __construct($conn = null)
     {
-        // XXX: there should be an easier way to do this.
-        $user = new User();
+        if (is_null($conn)) {
+            // XXX: there should be an easier way to do this.
+            $user = new User();
+            $conn = $user->getDatabaseConnection();
+            $user->free();
+            unset($user);
+        }
 
-        $this->conn = $user->getDatabaseConnection();
-
-        $user->free();
-
-        unset($user);
+        $this->conn = $conn;
     }
 
     /**
      * Main public entry point. Use this to get
-     * the singleton object.
+     * the schema object.
      *
-     * @return Schema the (single) Schema object
+     * @return Schema the Schema object for the connection
      */
 
-    static function get()
+    static function get($conn = null)
     {
-        $type = common_config('db', 'type');
-        if (empty(self::$_single)) {
-            $schemaClass = ucfirst($type).'Schema';
-            self::$_single = new $schemaClass();
+        if (is_null($conn)) {
+            $key = 'default';
+        } else {
+            $key = md5(serialize($conn->dsn));
         }
-        return self::$_single;
+        
+        $type = common_config('db', 'type');
+        if (empty(self::$_static[$key])) {
+            $schemaClass = ucfirst($type).'Schema';
+            self::$_static[$key] = new $schemaClass($conn);
+        }
+        return self::$_static[$key];
     }
 
     /**

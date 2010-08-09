@@ -186,7 +186,7 @@ class TwitterStatusFetcher extends ParallelizingDaemon
         $timeline = null;
 
         try {
-            $timeline = $client->statusesFriendsTimeline();
+            $timeline = $client->statusesHomeTimeline();
         } catch (Exception $e) {
             common_log(LOG_WARNING, $this->name() .
                        ' - Twitter client unable to get friends timeline for user ' .

@@ -177,7 +177,7 @@ class HTMLOutputter extends XMLOutputter
         $attrs = array('name' => $id,
                        'type' => 'text',
                        'id' => $id);
-        if ($value) {
+        if (!is_null($value)) { // value can be 0 or ''
             $attrs['value'] = $value;
         }
         $this->element('input', $attrs);

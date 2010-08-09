@@ -31,10 +31,21 @@
 
     })(jQuery,'smartkeypress');
 
+    function longestWordInString(string)
+    {
+        var words = string.split(/\s/);
+        var longestWord = 0;
+        for(var i=0;i<words.length;i++)
+            if(words[i].length > longestWord) longestWord = words[i].length;
+        return longestWord;
+    }
+
     function shorten()
     {
-        $noticeDataText = $('#'+SN.C.S.NoticeDataText);
-        if(Notice_maxContent > 0 && $noticeDataText.val().length > Notice_maxContent){
+        var $noticeDataText = $('#'+SN.C.S.NoticeDataText);
+        var noticeText = $noticeDataText.val();
+
+        if(noticeText.length > maxNoticeLength || longestWordInString(noticeText) > maxUrlLength) {
             var original = $noticeDataText.val();
             shortenAjax = $.ajax({
                 url: $('address .url')[0].href+'/plugins/ClientSideShorten/shorten',

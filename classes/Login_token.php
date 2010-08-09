@@ -73,6 +73,8 @@ class Login_token extends Memcached_DataObject
 
         if (!$result) {
             common_log_db_error($login_token, 'INSERT', __FILE__);
+            // TRANS: Exception thrown when trying creating a login token failed.
+            // TRANS: %s is the user nickname for which token creation failed.
             throw new Exception(sprintf(_('Could not create login token for %s'),
                                                  $user->nickname));
         }

@@ -2,7 +2,7 @@
  *
  * @package   StatusNet
  * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @copyright 2009-2010 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -195,10 +195,6 @@ width:43px;
 margin-right:1%;
 }
 
-.notice-options form {
-width:16px;
-height:16px;
-}
 .notice-options form.processing {
 background-image:none;
 }

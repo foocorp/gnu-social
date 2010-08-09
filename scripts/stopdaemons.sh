@@ -23,8 +23,8 @@
 SDIR=`dirname $0`
 DIR=`php $SDIR/getpiddir.php`
 
-for f in jabberhandler ombhandler publichandler smshandler pinghandler \
-	 xmppconfirmhandler xmppdaemon twitterhandler facebookhandler \
+for f in ombhandler smshandler pinghandler \
+	 twitterhandler facebookhandler \
 	 twitterstatusfetcher synctwitterfriends pluginhandler rsscloudhandler; do
 
 	FILES="$DIR/$f.*.pid"

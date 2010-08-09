@@ -88,8 +88,8 @@ function common_init_language()
         // don't do the job. en_US.UTF-8 should be there most of the
         // time, but not guaranteed.
         $ok = common_init_locale("en_US");
-        if (!$ok) {
-            // Try to find a complete, working locale...
+        if (!$ok && strtolower(substr(PHP_OS, 0, 3)) != 'win') {
+            // Try to find a complete, working locale on Unix/Linux...
             // @fixme shelling out feels awfully inefficient
             // but I don't think there's a more standard way.
             $all = `locale -a`;
@@ -101,9 +101,9 @@ function common_init_language()
                     }
                 }
             }
-            if (!$ok) {
-                common_log(LOG_ERR, "Unable to find a UTF-8 locale on this system; UI translations may not work.");
-            }
+        }
+        if (!$ok) {
+            common_log(LOG_ERR, "Unable to find a UTF-8 locale on this system; UI translations may not work.");
         }
         $locale_set = common_init_locale($language);
     }
@@ -155,23 +155,38 @@ function common_timezone()
     return common_config('site', 'timezone');
 }
 
+function common_valid_language($lang)
+{
+    if ($lang) {
+        // Validate -- we don't want to end up with a bogus code
+        // left over from some old junk.
+        foreach (common_config('site', 'languages') as $code => $info) {
+            if ($info['lang'] == $lang) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 function common_language()
 {
+    // Allow ?uselang=xx override, very useful for debugging
+    // and helping translators check usage and context.
+    if (isset($_GET['uselang'])) {
+        $uselang = strval($_GET['uselang']);
+        if (common_valid_language($uselang)) {
+            return $uselang;
+        }
+    }
 
     // If there is a user logged in and they've set a language preference
     // then return that one...
     if (_have_config() && common_logged_in()) {
         $user = common_current_user();
-        $user_language = $user->language;
 
-        if ($user->language) {
-            // Validate -- we don't want to end up with a bogus code
-            // left over from some old junk.
-            foreach (common_config('site', 'languages') as $code => $info) {
-                if ($info['lang'] == $user_language) {
-                    return $user_language;
-                }
-            }
+        if (common_valid_language($user->language)) {
+            return $user->language;
         }
     }
 
@@ -874,9 +889,21 @@ function common_linkify($url) {
 
 function common_shorten_links($text, $always = false)
 {
-    $maxLength = Notice::maxContent();
-    if (!$always && ($maxLength == 0 || mb_strlen($text) <= $maxLength)) return $text;
-    return common_replace_urls_callback($text, array('File_redirection', 'makeShort'));
+    common_debug("common_shorten_links() called");
+
+    $user = common_current_user();
+
+    $maxLength = User_urlshortener_prefs::maxNoticeLength($user);
+
+    common_debug("maxLength = $maxLength");
+
+    if ($always || mb_strlen($text) > $maxLength) {
+        common_debug("Forcing shortening");
+        return common_replace_urls_callback($text, array('File_redirection', 'forceShort'));
+    } else {
+        common_debug("Not forcing shortening");
+        return common_replace_urls_callback($text, array('File_redirection', 'makeShort'));
+    }
 }
 
 function common_xml_safe_str($str)
@@ -1243,18 +1270,9 @@ function common_enqueue_notice($notice)
         $transports[] = 'plugin';
     }
 
-    $xmpp = common_config('xmpp', 'enabled');
-
-    if ($xmpp) {
-        $transports[] = 'jabber';
-    }
-
     // We can skip these for gatewayed notices.
     if ($notice->isLocal()) {
         $transports = array_merge($transports, $localTransports);
-        if ($xmpp) {
-            $transports[] = 'public';
-        }
     }
 
     if (Event::handle('StartEnqueueNotice', array($notice, &$transports))) {
@@ -1493,7 +1511,7 @@ function common_valid_tag($tag)
  * Determine if given domain or address literal is valid
  * eg for use in JIDs and URLs. Does not check if the domain
  * exists!
- * 
+ *
  * @param string $domain
  * @return boolean valid or not
  */
@@ -1835,30 +1853,42 @@ function common_database_tablename($tablename)
 /**
  * Shorten a URL with the current user's configured shortening service,
  * or ur1.ca if configured, or not at all if no shortening is set up.
- * Length is not considered.
  *
- * @param string $long_url
+ * @param string  $long_url original URL
+ * @param boolean $force    Force shortening (used when notice is too long)
+ *
  * @return string may return the original URL if shortening failed
  *
  * @fixme provide a way to specify a particular shortener
  * @fixme provide a way to specify to use a given user's shortening preferences
  */
-function common_shorten_url($long_url)
+
+function common_shorten_url($long_url, $force = false)
 {
+    common_debug("Shortening URL '$long_url' (force = $force)");
+
     $long_url = trim($long_url);
+
     $user = common_current_user();
-    if (empty($user)) {
-        // common current user does not find a user when called from the XMPP daemon
-        // therefore we'll set one here fix, so that XMPP given URLs may be shortened
-        $shortenerName = 'ur1.ca';
-    } else {
-        $shortenerName = $user->urlshorteningservice;
+
+    $maxUrlLength = User_urlshortener_prefs::maxUrlLength($user);
+    common_debug("maxUrlLength = $maxUrlLength");
+
+    // $force forces shortening even if it's not strictly needed
+
+    if (mb_strlen($long_url) < $maxUrlLength && !$force) {
+        common_debug("Skipped shortening URL.");
+        return $long_url;
     }
 
-    if(Event::handle('StartShortenUrl', array($long_url,$shortenerName,&$shortenedUrl))){
+    $shortenerName = User_urlshortener_prefs::urlShorteningService($user);
+
+    common_debug("Shortener name = '$shortenerName'");
+
+    if (Event::handle('StartShortenUrl', array($long_url, $shortenerName, &$shortenedUrl))) {
         //URL wasn't shortened, so return the long url
         return $long_url;
-    }else{
+    } else {
         //URL was shortened, so return the result
         return trim($shortenedUrl);
     }

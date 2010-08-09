@@ -36,7 +36,7 @@ class QueueMonitor
      * Only explicitly listed thread/site/queue owners will be incremented.
      *
      * @param string $key counter name
-     * @param array $owners list of owner keys like 'queue:jabber' or 'site:stat01'
+     * @param array $owners list of owner keys like 'queue:xmpp' or 'site:stat01'
      */
     public function stats($key, $owners=array())
     {

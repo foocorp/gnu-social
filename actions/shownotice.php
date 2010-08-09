@@ -277,12 +277,6 @@ class ShownoticeAction extends OwnerDesignAction
                                          'content' => $id->toString()));
         }
 
-        if ($user->jabbermicroid && $user->jabber && $this->notice->uri) {
-            $id = new Microid('xmpp:', $user->jabber,
-                              $this->notice->uri);
-            $this->element('meta', array('name' => 'microid',
-                                         'content' => $id->toString()));
-        }
         $this->element('link',array('rel'=>'alternate',
             'type'=>'application/json+oembed',
             'href'=>common_local_url(

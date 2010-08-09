@@ -76,6 +76,9 @@ class XrdAction extends Action
         $salmon_url = common_local_url('usersalmon',
                                        array('id' => $this->user->id));
 
+        $xrd->links[] = array('rel' => Salmon::REL_SALMON,
+                              'href' => $salmon_url);
+        // XXX : Deprecated - to be removed.
         $xrd->links[] = array('rel' => Salmon::NS_REPLIES,
                               'href' => $salmon_url);
 
@@ -98,7 +101,7 @@ class XrdAction extends Action
         $xrd->links[] = array('rel' => 'http://ostatus.org/schema/1.0/subscribe',
                               'template' => $url );
 
-        header('Content-type: text/xml');
+        header('Content-type: application/xrd+xml');
         print $xrd->toXML();
     }
 

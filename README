@@ -836,9 +836,7 @@ sslserver: use an alternate server name for SSL URLs, like
     parameters correctly so that both the SSL server and the
     "normal" server can access the session cookie and
     preferably other cookies as well.
-shorturllength: Length of URL at which URLs in a message exceeding 140
-    characters will be sent to the user's chosen
-    shortening service.
+shorturllength: ignored. See 'url' section below.
 dupelimit: minimum time allowed for one person to say the same thing
     twice. Default 60s. Anything lower is considered a user
     or UI error.
@@ -1460,6 +1458,22 @@ crawldelay: if non-empty, this value is provided as the Crawl-Delay:
 disallow: Array of (virtual) directories to disallow. Default is 'main',
     'search', 'message', 'settings', 'admin'. Ignored when site
     is private, in which case the entire site ('/') is disallowed.
+
+url
+---
+
+Everybody loves URL shorteners. These are some options for fine-tuning
+how and when the server shortens URLs.
+
+shortener: URL shortening service to use by default. Users can override
+           individually. 'ur1.ca' by default.
+maxlength: If an URL is strictly longer than this limit, it will be
+           shortened. Note that the URL shortener service may return an
+           URL longer than this limit. Defaults to 25. Users can
+           override. If set to 0, all URLs will be shortened.
+maxnoticelength: If a notice is strictly longer than this limit, all
+           URLs in the notice will be shortened. Users can override.
+           -1 means the text limit for notices.
 
 Plugins
 =======

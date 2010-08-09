@@ -38,6 +38,7 @@ class Group_member extends Memcached_DataObject
 
         if (!$result) {
             common_log_db_error($member, 'INSERT', __FILE__);
+            // TRANS: Exception thrown when joining a group fails.
             throw new Exception(_("Group join failed."));
         }
 
@@ -50,6 +51,7 @@ class Group_member extends Memcached_DataObject
                                               'profile_id' => $profile_id));
 
         if (empty($member)) {
+            // TRANS: Exception thrown when trying to leave a group the user is not a member of.
             throw new Exception(_("Not part of group."));
         }
 
@@ -57,6 +59,7 @@ class Group_member extends Memcached_DataObject
 
         if (!$result) {
             common_log_db_error($member, 'INSERT', __FILE__);
+            // TRANS: Exception thrown when trying to leave a group fails.
             throw new Exception(_("Group leave failed."));
         }
 

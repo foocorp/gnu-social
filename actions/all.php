@@ -143,10 +143,10 @@ class AllAction extends ProfileAction
                 $message .= _('Try subscribing to more people, [join a group](%%action.groups%%) or post something yourself.');
             } else {
                 // TRANS: %1$s is user nickname, %2$s is user nickname, %2$s is user nickname prefixed with "@"
-                $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) from their profile or [post something to their attention](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->user->nickname, $this->user->nickname, '@' . $this->user->nickname);
+                $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) from their profile or [post something to them](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->user->nickname, $this->user->nickname, '@' . $this->user->nickname);
             }
         } else {
-            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to their attention.'), $this->user->nickname);
+            $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to them.'), $this->user->nickname);
         }
 
         $this->elementStart('div', 'guide');

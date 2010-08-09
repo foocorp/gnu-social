@@ -258,9 +258,10 @@ var SN = { // StatusNet
                             form.append('<p class="form_response success">'+result+'</p>');
                         }
                         else {
+                            // New notice post was successful. If on our timeline, show it!
+                            var notice = document._importNode($('li', data)[0], true);
                             var notices = $('#notices_primary .notices');
-                            if (notices.length > 0) {
-                                var notice = document._importNode($('li', data)[0], true);
+                            if (notices.length > 0 && SN.U.belongsOnTimeline(notice)) {
                                 if ($('#'+notice.id).length === 0) {
                                     var notice_irt_value = $('#'+SN.C.S.NoticeInReplyTo).val();
                                     var notice_irt = '#notices_primary #notice-'+notice_irt_value;
@@ -281,6 +282,8 @@ var SN = { // StatusNet
                                 }
                             }
                             else {
+                                // Not on a timeline that this belongs on?
+                                // Just show a success message.
                                 result = document._importNode($('title', data)[0], true);
                                 result_title = result.textContent || result.innerHTML;
                                 form.append('<p class="form_response success">'+result_title+'</p>');
@@ -707,6 +710,38 @@ var SN = { // StatusNet
             Delete: function() {
                 $.cookie(SN.C.S.StatusNetInstance, null);
             }
+        },
+
+        /**
+         * Check if the current page is a timeline where the current user's
+         * posts should be displayed immediately on success.
+         *
+         * @fixme this should be done in a saner way, with machine-readable
+         * info about what page we're looking at.
+         */
+        belongsOnTimeline: function(notice) {
+            var action = $("body").attr('id');
+            if (action == 'public') {
+                return true;
+            }
+
+            var profileLink = $('#nav_profile a').attr('href');
+            if (profileLink) {
+                var authorUrl = $(notice).find('.entry-title .author a.url').attr('href');
+                if (authorUrl == profileLink) {
+                    if (action == 'all' || action == 'showstream') {
+                        // Posts always show on your own friends and profile streams.
+                        return true;
+                    }
+                }
+            }
+
+            // @fixme tag, group, reply timelines should be feasible as well.
+            // Mismatch between id-based and name-based user/group links currently complicates
+            // the lookup, since all our inline mentions contain the absolute links but the
+            // UI links currently on the page use malleable names.
+
+            return false;
         }
     },
 

@@ -91,7 +91,7 @@ abstract class Installer
         }
 
         if (version_compare(PHP_VERSION, '5.2.3', '<')) {
-            $errors[] = 'Require PHP version 5.2.3 or greater.';
+            $this->warning('Require PHP version 5.2.3 or greater.');
             $pass = false;
         }
 

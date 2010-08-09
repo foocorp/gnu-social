@@ -98,6 +98,8 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
+class ApiValidationException extends Exception { }
+
 /**
  * Contains most of the Twitter-compatible API output functions.
  *

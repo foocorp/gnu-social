@@ -50,7 +50,8 @@ class Remote_profile extends Memcached_DataObject
         if ($profile) {
             return $profile->hasright($right);
         } else {
-            throw new Exception("Missing profile");
+            // TRANS: Exception thrown when a right for a non-existing user profile is checked.
+            throw new Exception(_("Missing profile."));
         }
     }
 }

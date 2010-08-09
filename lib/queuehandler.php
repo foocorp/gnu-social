@@ -37,20 +37,6 @@ class QueueHandler
 {
 
     /**
-     * Return transport keyword which identifies items this queue handler
-     * services; must be defined for all subclasses.
-     *
-     * Must be 8 characters or less to fit in the queue_item database.
-     * ex "email", "jabber", "sms", "irc", ...
-     *
-     * @return string
-     */
-    function transport()
-    {
-        return null;
-    }
-
-    /**
      * Here's the meat of your queue handler -- you're handed a Notice
      * or other object, which you may do as you will with.
      *

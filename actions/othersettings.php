@@ -98,8 +98,10 @@ class OthersettingsAction extends AccountSettingsAction
         $this->hidden('token', common_session_token());
         $this->elementStart('ul', 'form_data');
 
-        $shorteners = array();
+        $shorteners = array(_('[none]') => array('freeService' => false));
+
         Event::handle('GetUrlShorteners', array(&$shorteners));
+
         $services = array();
         foreach($shorteners as $name=>$value)
         {
@@ -119,8 +121,22 @@ class OthersettingsAction extends AccountSettingsAction
             $this->elementEnd('li');
         }
         $this->elementStart('li');
+        $this->input('maxurllength',
+                     _('URL longer than'),
+                     (!is_null($this->arg('maxurllength'))) ?
+                     $this->arg('maxurllength') : User_urlshortener_prefs::maxUrlLength($user),
+                     _('URLs longer than this will be shortened.'));
+        $this->elementEnd('li');
+        $this->elementStart('li');
+        $this->input('maxnoticelength',
+                     _('Text longer than'),
+                     (!is_null($this->arg('maxnoticelength'))) ?
+                     $this->arg('maxnoticelength') : User_urlshortener_prefs::maxNoticeLength($user),
+                     _('URLs in notices longer than this will be shortened.'));
+        $this->elementEnd('li');
+        $this->elementStart('li');
         $this->checkbox('viewdesigns', _('View profile designs'),
-                        $user->viewdesigns, _('Show or hide profile designs.'));
+                         -                        $user->viewdesigns, _('Show or hide profile designs.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->submit('save', _('Save'));
@@ -156,6 +172,18 @@ class OthersettingsAction extends AccountSettingsAction
 
         $viewdesigns = $this->boolean('viewdesigns');
 
+        $maxurllength = $this->trimmed('maxurllength');
+
+        if (!Validate::number($maxurllength, array('min' => 0))) {
+            throw new ClientException(_('Invalid number for max url length.'));
+        }
+
+        $maxnoticelength = $this->trimmed('maxnoticelength');
+
+        if (!Validate::number($maxnoticelength, array('min' => 0))) {
+            throw new ClientException(_('Invalid number for max notice length.'));
+        }
+
         $user = common_current_user();
 
         assert(!is_null($user)); // should already be checked
@@ -173,6 +201,32 @@ class OthersettingsAction extends AccountSettingsAction
             common_log_db_error($user, 'UPDATE', __FILE__);
             $this->serverError(_('Couldn\'t update user.'));
             return;
+        }
+
+        $prefs = User_urlshortener_prefs::getPrefs($user);
+        $orig  = null;
+
+        if (empty($prefs)) {
+            $prefs = new User_urlshortener_prefs();
+
+            $prefs->user_id = $user->id;
+            $prefs->created = common_sql_now();
+        } else {
+            $orig = clone($prefs);
+        }
+
+        $prefs->urlshorteningservice = $urlshorteningservice;
+        $prefs->maxurllength         = $maxurllength;
+        $prefs->maxnoticelength      = $maxnoticelength;
+
+        if (!empty($orig)) {
+            $result = $prefs->update($orig);
+        } else {
+            $result = $prefs->insert();
+        }
+
+        if (!$result) {
+            throw new ServerException(_('Error saving user URL shortening preferences.'));
         }
 
         $user->query('COMMIT');

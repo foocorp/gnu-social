@@ -48,11 +48,6 @@ class User extends Memcached_DataObject
     public $language;                        // varchar(50)
     public $timezone;                        // varchar(50)
     public $emailpost;                       // tinyint(1)   default_1
-    public $jabber;                          // varchar(255)  unique_key
-    public $jabbernotify;                    // tinyint(1)
-    public $jabberreplies;                   // tinyint(1)
-    public $jabbermicroid;                   // tinyint(1)   default_1
-    public $updatefrompresence;              // tinyint(1)
     public $sms;                             // varchar(64)  unique_key
     public $carrier;                         // int(4)
     public $smsnotify;                       // tinyint(1)
@@ -93,7 +88,7 @@ class User extends Memcached_DataObject
     {
         $this->_connect();
         $parts = array();
-        foreach (array('nickname', 'email', 'jabber', 'incomingemail', 'sms', 'carrier', 'smsemail', 'language', 'timezone') as $k) {
+        foreach (array('nickname', 'email', 'incomingemail', 'sms', 'carrier', 'smsemail', 'language', 'timezone') as $k) {
             if (strcmp($this->$k, $orig->$k) != 0) {
                 $parts[] = $k . ' = ' . $this->_quote($this->$k);
             }
@@ -360,11 +355,12 @@ class User extends Memcached_DataObject
                                __FILE__);
                 } else {
                     $notice = Notice::saveNew($welcomeuser->id,
+                                              // TRANS: Notice given on user registration.
+                                              // TRANS: %1$s is the sitename, $2$s is the registering user's nickname.
                                               sprintf(_('Welcome to %1$s, @%2$s!'),
                                                       common_config('site', 'name'),
                                                       $user->nickname),
                                               'system');
-
                 }
             }
 
@@ -375,7 +371,6 @@ class User extends Memcached_DataObject
     }
 
     // Things we do when the email changes
-
     function emailChanged()
     {
 

@@ -39,11 +39,10 @@ if (count($args) < 1) {
 }
 
 $nickname = $args[0];
-
 $sn = Status_network::memGet('nickname', $nickname);
 
 if (empty($sn)) {
-    print "No such site.\n";
+    print "No such site ($nickname).\n";
     exit(-1);
 }
 
@@ -54,16 +53,13 @@ if (count($args) == 1) {
 	exit(0);
 }
 $tag = $args[1];
-
 $i = array_search($tag, $tags);
 
 if ($i !== false) {
     if (have_option('d', 'delete')) { // Delete
         unset($tags[$i]);
 
-        $orig = clone($sn);
-        $sn->tags = implode('|', $tags);
-        $result = $sn->update($orig);
+        $result = $sn->setTags($tags);
         if (!$result) {
             print "Couldn't update.\n";
             exit(-1);
@@ -78,9 +74,7 @@ if ($i !== false) {
         exit(-1);
     } else {
         $tags[] = $tag;
-        $orig = clone($sn);
-        $sn->tags = implode('|', $tags);
-        $result = $sn->update($orig);
+        $result = $sn->setTags($tags);
         if (!$result) {
             print "Couldn't update.\n";
             exit(-1);

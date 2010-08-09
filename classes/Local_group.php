@@ -38,6 +38,7 @@ class Local_group extends Memcached_DataObject
             $this->encache();
         } else {
             common_log_db_error($local, 'UPDATE', __FILE__);
+            // TRANS: Server exception thrown when updating a local group fails.
             throw new ServerException(_('Could not update local group.'));
         }
 

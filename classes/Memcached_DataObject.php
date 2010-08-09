@@ -235,6 +235,7 @@ class Memcached_DataObject extends Safe_DataObject
                 $pkey[] = $key;
                 $pval[] = self::valueString($this->$key);
             } else {
+                // Low level exception. No need for i18n as discussed with Brion.
                 throw new Exception("Unknown key type $key => $type for " . $this->tableName());
             }
         }
@@ -282,6 +283,7 @@ class Memcached_DataObject extends Safe_DataObject
                     } else if ($type == 'fulltext') {
                         $search_engine = new MySQLSearch($this, $table);
                     } else {
+                        // Low level exception. No need for i18n as discussed with Brion.
                         throw new ServerException('Unknown search type: ' . $type);
                     }
                 } else {
@@ -527,7 +529,8 @@ class Memcached_DataObject extends Safe_DataObject
         }
 
         if (!$dsn) {
-            throw new Exception("No database name / dsn found anywhere");
+            // TRANS: Exception thrown when database name or Data Source Name could not be found.
+            throw new Exception(_("No database name or DSN found anywhere."));
         }
 
         return $dsn;
@@ -571,12 +574,13 @@ class Memcached_DataObject extends Safe_DataObject
     function raiseError($message, $type = null, $behaviour = null)
     {
         $id = get_class($this);
-        if ($this->id) {
+        if (!empty($this->id)) {
             $id .= ':' . $this->id;
         }
         if ($message instanceof PEAR_Error) {
             $message = $message->getMessage();
         }
+        // Low level exception. No need for i18n as discussed with Brion.
         throw new ServerException("[$id] DB_DataObject error [$type]: $message");
     }
 
@@ -619,9 +623,11 @@ class Memcached_DataObject extends Safe_DataObject
             case 'sql':
             case 'datetime':
             case 'time':
+                // Low level exception. No need for i18n as discussed with Brion.
                 throw new ServerException("Unhandled DB_DataObject_Cast type passed as cacheKey value: '$v->type'");
                 break;
             default:
+                // Low level exception. No need for i18n as discussed with Brion.
                 throw new ServerException("Unknown DB_DataObject_Cast type passed as cacheKey value: '$v->type'");
                 break;
             }

@@ -105,7 +105,9 @@ class ConnectSettingsNav extends Widget
 
             # action => array('prompt', 'title')
             $menu = array();
-            if (common_config('xmpp', 'enabled')) {
+            $transports = array();
+            Event::handle('GetImTransports', array(&$transports));
+            if ($transports) {
                 $menu['imsettings'] =
                   array(_('IM'),
                         _('Updates by instant messenger (IM)'));

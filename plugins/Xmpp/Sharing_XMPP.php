@@ -1,7 +1,11 @@
 <?php
-/*
+/**
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2009, StatusNet, Inc.
+ *
+ * Send and receive notices using the Jabber network
+ *
+ * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,33 +19,25 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @category  Jabber
+ * @package   StatusNet
+ * @author    Evan Prodromou <evan@status.net>
+ * @copyright 2009 StatusNet, Inc.
+ * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
+ * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
+    // This check helps protect against security problems;
+    // your code file can't be executed directly from the web.
     exit(1);
 }
 
-/**
- * Queue handler for pushing new notices to Jabber users.
- * @fixme this exception handling doesn't look very good.
- */
-class JabberQueueHandler extends QueueHandler
+class Sharing_XMPP extends XMPPHP_XMPP
 {
-    var $conn = null;
-
-    function transport()
+    function getSocket()
     {
-        return 'jabber';
-    }
-
-    function handle($notice)
-    {
-        require_once(INSTALLDIR.'/lib/jabber.php');
-        try {
-            return jabber_broadcast_notice($notice);
-        } catch (XMPPHP_Exception $e) {
-            common_log(LOG_ERR, "Got an XMPPHP_Exception: " . $e->getMessage());
-            return false;
-        }
+        return $this->socket;
     }
 }

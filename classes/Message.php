@@ -42,6 +42,7 @@ class Message extends Memcached_DataObject
         $sender = Profile::staticGet('id', $from);
 
         if (!$sender->hasRight(Right::NEWMESSAGE)) {
+            // TRANS: Client exception thrown when a user tries to send a direct message while being banned from sending them.
             throw new ClientException(_('You are banned from sending direct messages.'));
         }
 
@@ -58,6 +59,7 @@ class Message extends Memcached_DataObject
 
         if (!$result) {
             common_log_db_error($msg, 'INSERT', __FILE__);
+            // TRANS: Message given when a message could not be stored on the server.
             return _('Could not insert message.');
         }
 
@@ -68,6 +70,7 @@ class Message extends Memcached_DataObject
 
         if (!$result) {
             common_log_db_error($msg, 'UPDATE', __FILE__);
+            // TRANS: Message given when a message could not be updated on the server.
             return _('Could not update message with new URI.');
         }
 

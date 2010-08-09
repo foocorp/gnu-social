@@ -44,8 +44,8 @@ mysql -h $DBHOST -u $ADMIN --password=$ADMINPASS $SITEDB << ENDOFCOMMANDS
 
 GRANT ALL ON $database.* TO '$username'@'localhost' IDENTIFIED BY '$password';
 GRANT ALL ON $database.* TO '$username'@'%' IDENTIFIED BY '$password';
-INSERT INTO status_network (nickname, dbhost, dbuser, dbpass, dbname, sitename, created, tags)
-VALUES ('$nickname', '$DBHOSTNAME', '$username', '$password', '$database', '$sitename', now(), '$tags');
+INSERT INTO status_network (nickname, dbhost, dbuser, dbpass, dbname, sitename, created)
+VALUES ('$nickname', '$DBHOSTNAME', '$username', '$password', '$database', '$sitename', now());
 
 ENDOFCOMMANDS
 
@@ -55,6 +55,8 @@ for top in $AVATARBASE $FILEBASE $BACKGROUNDBASE; do
 done
 
 php $PHPBASE/scripts/checkschema.php -s"$server"
+
+php $PHPBASE/scripts/settag.php -s"$server" "$nickname" "$tags"
 
 php $PHPBASE/scripts/registeruser.php \
   -s"$server" \
