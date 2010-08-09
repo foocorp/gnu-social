@@ -831,7 +831,7 @@ class Action extends HTMLOutputter // lawsuit
         }
         $instr .= ' ';
         // TRANS: Second sentence of the StatusNet site license. Mentions the StatusNet source code license.
-        $instr .= sprintf(_('It runs the [GNU social](http://www.gnu.org/software/social/), version %s, available under the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html).'), STATUSNET_VERSION);
+        $instr .= sprintf(_('It runs on [GNU social](http://www.gnu.org/software/social/), version %s, available under the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html).'), STATUSNET_VERSION);
         $output = common_markup_to_html($instr);
         $this->raw($output);
         $this->elementEnd('dd');
