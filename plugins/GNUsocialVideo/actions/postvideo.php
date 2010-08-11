@@ -58,9 +58,12 @@ class PostvideoAction extends Action {
             return;
         }
         $uri = $_POST['video_uri'];
-        // XXX: validate your inputs, dummy.
-        $rend = sprintf('<video src="%s", controls="controls">Sorry, your browser doesn\'t support the video tag.</video>', $uri);
-        Notice::saveNew($this->user->id, 'video : ' . $uri, 'web', array('rendered' => $rend));
+        $uri = filter_var($uri, FILTER_SANITIZE_URL);
+        $uri = filter_var($uri, FILTER_VALIDATE_URL);
+        if($uri) { 
+            $rend = sprintf('<video src="%s", controls="controls">Sorry, your browser doesn\'t support the video tag.</video>', $uri);
+            Notice::saveNew($this->user->id, 'video : ' . $uri, 'web', array('rendered' => $rend));
+        }
     }
  
     function showContent()
