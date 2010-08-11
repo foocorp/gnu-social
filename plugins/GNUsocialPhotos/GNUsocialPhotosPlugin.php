@@ -85,18 +85,18 @@ class GNUsocialPhotosPlugin extends Plugin
 
     function onStartShowNoticeItem($action)
     {
-        common_log(LOG_INFO, 'StartShowNoticeItem: ' . $action->notice->id);
         $photo = GNUsocialPhoto::staticGet('notice_id', $action->notice->id);
         if($photo) { 
-            common_log(LOG_INFO, 'is photo.');
+            $action->out->elementStart('div', 'entry-title');
+            $action->showAuthor();
             $action->out->elementStart('a', array('href' => 'http://' . common_config('site', 'server') . $photo->path));
             $action->out->element('img', array('src' => 'http://' . common_config('site', 'server') . $photo->thumb_path));
             $action->out->elementEnd('a');
+            $action->out->elementEnd('div');
             $action->showNoticeInfo();
             $action->showNoticeOptions();
             return false;
         }
-        common_log(LOG_INFO, 'not photo');
         return true;
     }
 }
