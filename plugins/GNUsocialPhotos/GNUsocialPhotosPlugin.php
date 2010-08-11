@@ -48,12 +48,12 @@ class GNUsocialPhotosPlugin extends Plugin
         case 'PhotouploadAction':
             include_once $dir . '/lib/photolib.php';
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+            include_once $dir . '/classes/gnusocialphoto.php';
             break;
         default:
             break;
         }
 
-        include_once $dir . '/classes/gnusocialphoto.php';
         return true;
     }
 
@@ -75,14 +75,14 @@ class GNUsocialPhotosPlugin extends Plugin
         return true;
     }
 
-    /* function onStartActivityDefaultObjectType(&$notice, &$xs, &$type)
+    function onStartActivityDefaultObjectType(&$notice, &$xs, &$type)
     {
         $photo = GNUsocialPhoto::staticGet('notice_id', $notice->id);
         if($photo) {
             $type = ActivityObject::PHOTO;
         }
-    } */
-
+    } 
+/*
     function onStartShowNoticeItem($action)
     {
         $photo = GNUsocialPhoto::staticGet('notice_id', $action->notice->id);
@@ -98,5 +98,5 @@ class GNUsocialPhotosPlugin extends Plugin
             return false;
         }
         return true;
-    }
+    } */
 }

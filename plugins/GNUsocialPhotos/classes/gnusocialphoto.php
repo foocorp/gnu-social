@@ -86,7 +86,9 @@ class GNUsocialPhoto extends Memcached_DataObject
         $photo->path = $path;
         $photo->owner_id = $profile_id;
 
-        $notice = Notice::saveNew($profile_id, 'http://' . common_config('site', 'server') . $path, $source);
+        $rend = sprintf('<a href="http://%s%s"><img src="http://%s%s" /></a>', common_config('site', 'server'), $path, common_config('site', 'server'), $thumb_path);
+
+        $notice = Notice::saveNew($profile_id, 'http://' . common_config('site', 'server') . $path, $source, array('rendered' => $rend));
         $photo->notice_id = $notice->id;
         $photo_id = $photo->insert();
         if (!$photo_id) {
