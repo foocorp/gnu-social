@@ -35,7 +35,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 class GNUsocialPhoto extends Memcached_DataObject
 {
     public $__table = 'GNUsocialPhoto';
-    public $object_id;   // integer
+    public $noitce_id;   // integer
     public $path;        // varchar(150)
     public $thumb_path;  // varchar(156)
     public $owner_id;    // int(11) (user who posted the photo)
@@ -58,9 +58,51 @@ class GNUsocialPhoto extends Memcached_DataObject
 
     function table()
     {
-        return array('object_id' => DB_DATAOBJECT_INT,
+        return array('notice_id' => DB_DATAOBJECT_INT,
                      'path' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
                      'thumb_path' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
                      'owner_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL);
     }
+
+    function keys()
+    {
+        return array_keys($this->keyTypes());
+    }
+
+    function keyTypes()
+    {
+        return array('notice_id' => 'K');
+    }
+
+    function sequenceKey()
+    {
+        return array(false, false, false);
+    }
+
+    function saveNew($profile_id, $thumb_path, $path, $source)
+    {
+        $photo = new GNUsocialPhoto();
+        $photo->thumb_path = $thumb_path;
+        $photo->path = $path;
+        $photo->owner_id = $profile_id;
+
+        $notice = Notice::saveNew($profile_id, 'http://' . common_config('site', 'server') . $path, $source);
+        $photo->notice_id = $notice->id;
+        $photo_id = $photo->insert();
+        if (!$photo_id) {
+            common_log_db_error($photo, 'INSERT', __FILE__);
+            throw new ServerException(_m('Problem Saving Photo.'));
+        }
+    }    
+    /*
+    function asActivityNoun($element)
+    {
+        $object = new ActivityObject();
+
+        $object->type = ActivityObject::PHOTO;
+        $object->title = "";
+        $object->thumbnail = 'http://' . common_config('site', 'server') . $this->thumb_path;
+        $object->largerImage = 'http://' . common_config('site', 'server') . $this->path;
+        return $object;
+    } */
 }

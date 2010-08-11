@@ -103,6 +103,14 @@ class PhotouploadAction extends Action
         }
     }
 
+    function showForm($msg, $success=false)
+    { 
+        $this->msg = $msg;
+        $this->success = $success;
+
+//        $this->showPage();
+    }
+
     function uploadPhoto()
     {
         common_log(LOG_INFO, 'Is this function even getting called?');
@@ -123,15 +131,13 @@ class PhotouploadAction extends Action
 
         common_log(LOG_INFO, 'upload path : ' . $imagefile->filepath);
 
-        $filename = $cur->nickname . '-' . common_timestamp() . sha1_file($imagefile->filepath) . '.' .  image_type_to_extension($imagefile->type);
+        $filename = $cur->nickname . '-' . common_timestamp() . sha1_file($imagefile->filepath) .  image_type_to_extension($imagefile->type);
         move_uploaded_file($imagefile->filepath, INSTALLDIR . '/file/' . $filename);
         photo_make_thumbnail($filename);
-        $photo = new GNUsocialPhoto();
-        $photo->path = '/file/' . $filename;
-        $photo->thumb_path = '/file/thumb.' . $filename;
-        $photo->owner_id = $cur->id;
-        $photo->object_id = 'DEFAULT';
-        $photo->insert();
+        $path = '/file/' . $filename;
+        $thumb_path = '/file/thumb.' . $filename;
+        $profile_id = $cur->id;
+        GNUsocialPhoto::saveNew($profile_id, $thumb_path, $path, 'web');
     }
 
 }

@@ -44,16 +44,16 @@ class GNUsocialPhotosPlugin extends Plugin
         case 'PhotosAction':
             include_once $dir . '/lib/photolib.php';
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
+            break;
         case 'PhotouploadAction':
             include_once $dir . '/lib/photolib.php';
-            include_once $dir . '/classes/gnusocialphoto.php';
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            return false;
+            break;
         default:
-            return true;
+            break;
         }
 
+        include_once $dir . '/classes/gnusocialphoto.php';
         return true;
     }
 
@@ -61,7 +61,7 @@ class GNUsocialPhotosPlugin extends Plugin
     {
         $schema = Schema::get();
         $schema->ensureTable('GNUsocialPhoto',
-                                array(new ColumnDef('object_id', 'integer', null, false, 'PRI', true, null, null, true),
+                                array(new ColumnDef('notice_id', 'integer', null, false, null, true, null, null, true),
                                       new ColumnDef('path', 'varchar(150)', null, false),
                                       new ColumnDef('thumb_path', 'varchar(156)', null, false), // 156 = 150 + strlen('thumb.')
                                       new ColumnDef('owner_id', 'int(11)', null, false)));
@@ -72,6 +72,31 @@ class GNUsocialPhotosPlugin extends Plugin
         $m->connect(':nickname/photos', array('action' => 'photos'));
         $m->connect('main/uploadphoto', array('action' => 'photoupload'));
         common_log(LOG_INFO, "init'd!");
+        return true;
+    }
+
+    /* function onStartActivityDefaultObjectType(&$notice, &$xs, &$type)
+    {
+        $photo = GNUsocialPhoto::staticGet('notice_id', $notice->id);
+        if($photo) {
+            $type = ActivityObject::PHOTO;
+        }
+    } */
+
+    function onStartShowNoticeItem($action)
+    {
+        common_log(LOG_INFO, 'StartShowNoticeItem: ' . $action->notice->id);
+        $photo = GNUsocialPhoto::staticGet('notice_id', $action->notice->id);
+        if($photo) { 
+            common_log(LOG_INFO, 'is photo.');
+            $action->out->elementStart('a', array('href' => 'http://' . common_config('site', 'server') . $photo->path));
+            $action->out->element('img', array('src' => 'http://' . common_config('site', 'server') . $photo->thumb_path));
+            $action->out->elementEnd('a');
+            $action->showNoticeInfo();
+            $action->showNoticeOptions();
+            return false;
+        }
+        common_log(LOG_INFO, 'not photo');
         return true;
     }
 }
