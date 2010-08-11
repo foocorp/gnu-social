@@ -1,6 +1,5 @@
 %%site.name%% is a
-[micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service
-based on the Free Software [StatusNet](http://status.net/) tool.
+social network based on the Free Software [GNU social](http://www.gnu.org/software/social/) tool.
 
 If you [register](%%action.register%%) for an account,
 you can post small (%%site.textlimit%% chars or less) text notices
