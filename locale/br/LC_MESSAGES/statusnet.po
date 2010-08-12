@@ -9,12 +9,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-03 13:21+0000\n"
-"PO-Revision-Date: 2010-08-03 13:21:44+0000\n"
+"POT-Creation-Date: 2010-08-07 16:23+0000\n"
+"PO-Revision-Date: 2010-08-07 16:24:10+0000\n"
 "Language-Team: Dutch\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.17alpha (r70381); Translate extension (2010-07-21)\n"
+"X-Generator: MediaWiki 1.17alpha (r70633); Translate extension (2010-07-21)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: out-statusnet\n"
@@ -354,9 +354,8 @@ msgid "Could not delete favorite."
 msgstr "Diposupl eo dilemel ar pennroll-mañ."
 
 #: actions/apifriendshipscreate.php:109
-#, fuzzy
 msgid "Could not follow user: profile not found."
-msgstr "Diposupl eo heuliañ an implijer : N'eo ket bet kavet an implijer."
+msgstr "Dibosupl eo heuliañ an implijer : n'eo ket bet kavet ar profil."
 
 #: actions/apifriendshipscreate.php:118
 #, php-format
@@ -503,9 +502,8 @@ msgid "groups on %s"
 msgstr "strolladoù war %s"
 
 #: actions/apimediaupload.php:99
-#, fuzzy
 msgid "Upload failed."
-msgstr "C'hwitet en deus an urzhiad"
+msgstr "Enporzhiadenn c'hwitet."
 
 #: actions/apioauthauthorize.php:101
 msgid "No oauth_token parameter provided."
@@ -720,7 +718,7 @@ msgstr "Hizivadennoù merket gant %1$s e %2$s !"
 
 #: actions/apitrends.php:87
 msgid "API method under construction."
-msgstr ""
+msgstr "Hentenn API war sevel."
 
 #: actions/attachment.php:73
 msgid "No such attachment."
@@ -756,7 +754,7 @@ msgstr ""
 #: actions/grouplogo.php:181 actions/remotesubscribe.php:191
 #: actions/userauthorization.php:72 actions/userrss.php:108
 msgid "User without matching profile."
-msgstr ""
+msgstr "Implijer hep profil klotus."
 
 #: actions/avatarsettings.php:119 actions/avatarsettings.php:197
 #: actions/grouplogo.php:254
@@ -2782,6 +2780,9 @@ msgid ""
 "Search for people on %%site.name%% by their name, location, or interests. "
 "Separate the terms by spaces; they must be 3 characters or more."
 msgstr ""
+"Klask tud e %%site.name%% dre o anv, o lec'hiadur pe o diduadennoù. "
+"Dispartiañ termenoù ar c'hlask gant esaouennoù. Ret eo e vefe da nebeutañ 3 "
+"arouezenn."
 
 #: actions/peoplesearch.php:58
 msgid "People search"
@@ -3233,6 +3234,8 @@ msgstr "Postel"
 #: actions/register.php:446 actions/register.php:450
 msgid "Used only for updates, announcements, and password recovery"
 msgstr ""
+"Implijet hepken evit an hizivadennoù, ar c'hemennoù, pe adtapout gerioù-"
+"tremen"
 
 #: actions/register.php:457
 msgid "Longer name, preferably your \"real\" name"
@@ -3242,22 +3245,22 @@ msgstr "Anv hiroc'h, ho anv \"gwir\" a zo gwelloc'h"
 #, php-format
 msgid ""
 "I understand that content and data of %1$s are private and confidential."
-msgstr ""
+msgstr "Kompren a ran ez eo prevez danvez ha roadennoù %1$s."
 
 #: actions/register.php:528
 #, php-format
 msgid "My text and files are copyright by %1$s."
-msgstr ""
+msgstr "Ma zestenn ha ma restroù a zo gwarezet dre copyright gant %1$s."
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved with ownership left to contributors.
 #: actions/register.php:532
 msgid "My text and files remain under my own copyright."
-msgstr ""
+msgstr "Ma zestenn ha ma restroù a chom dindan ma gwirioù oberour."
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved.
 #: actions/register.php:535
 msgid "All rights reserved."
-msgstr ""
+msgstr "Holl gwrioù miret strizh."
 
 #. TRANS: Copyright checkbox label in registration dialog, for Creative Commons-style licenses.
 #: actions/register.php:540
@@ -4702,12 +4705,12 @@ msgstr ""
 #. TRANS: Client exception thrown if a notice contains too many characters.
 #: classes/Notice.php:260
 msgid "Problem saving notice. Too long."
-msgstr ""
+msgstr "Ur gudenn a zo bet e-pad enrolladenn ar c'hemenn. Re hir."
 
 #. TRANS: Client exception thrown when trying to save a notice for an unknown user.
 #: classes/Notice.php:265
 msgid "Problem saving notice. Unknown user."
-msgstr ""
+msgstr "Ur gudenn a zo bet e-pad enrolladenn ar c'hemenn. Implijer dianav."
 
 #. TRANS: Client exception thrown when a user tries to post too many notices in a given time frame.
 #: classes/Notice.php:271
@@ -4745,36 +4748,34 @@ msgstr "Ur gudenn 'zo bet pa veze enrollet boest degemer ar strollad."
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1614
+#: classes/Notice.php:1745
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr "RT @%1$s %2$s"
 
 #. TRANS: Exception thrown when trying to revoke an existing role for a user that does not exist.
 #. TRANS: %1$s is the role name, %2$s is the user ID (number).
-#: classes/Profile.php:740
+#: classes/Profile.php:737
 #, php-format
 msgid "Cannot revoke role \"%1$s\" for user #%2$d; does not exist."
 msgstr ""
 
 #. TRANS: Exception thrown when trying to revoke a role for a user with a failing database query.
 #. TRANS: %1$s is the role name, %2$s is the user ID (number).
-#: classes/Profile.php:749
+#: classes/Profile.php:746
 #, php-format
 msgid "Cannot revoke role \"%1$s\" for user #%2$d; database error."
 msgstr ""
 
 #. TRANS: Exception thrown when a right for a non-existing user profile is checked.
 #: classes/Remote_profile.php:54
-#, fuzzy
 msgid "Missing profile."
-msgstr "An implijer-mañ n'eus profil ebet dezhañ."
+msgstr "Mankout a ra ar profil."
 
 #. TRANS: Exception thrown when a tag cannot be saved.
 #: classes/Status_network.php:346
-#, fuzzy
 msgid "Unable to save tag."
-msgstr "Diposubl eo enrollañ ali al lec'hienn."
+msgstr "Dibosupl eo enrollañ an tikedenn."
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
 #: classes/Subscription.php:75 lib/oauthstore.php:465
@@ -4810,9 +4811,8 @@ msgstr "Diposubl eo dilemel ar postel kadarnadur."
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
 #: classes/Subscription.php:218
-#, fuzzy
 msgid "Could not delete subscription."
-msgstr "Dibosupl eo paouez gant ar c'houmanant."
+msgstr "Dibosupl eo dilemel ar c'houmanant."
 
 #. TRANS: Notice given on user registration.
 #. TRANS: %1$s is the sitename, $2$s is the registering user's nickname.
@@ -5558,7 +5558,7 @@ msgstr ""
 #: lib/command.php:634
 #, php-format
 msgid "Subscribed to %s"
-msgstr ""
+msgstr "Koumanantet da %s"
 
 #: lib/command.php:655 lib/command.php:754
 msgid "Specify the name of the user to unsubscribe from"
@@ -5567,7 +5567,7 @@ msgstr ""
 #: lib/command.php:664
 #, php-format
 msgid "Unsubscribed from %s"
-msgstr ""
+msgstr "Digoumanantiñ da %s"
 
 #: lib/command.php:682 lib/command.php:705
 msgid "Command not yet implemented."
@@ -5579,7 +5579,7 @@ msgstr "Kemennoù diweredekaet."
 
 #: lib/command.php:687
 msgid "Can't turn off notification."
-msgstr ""
+msgstr "Dibosupl eo diweredekaat ar c'hemennoù."
 
 #: lib/command.php:708
 msgid "Notification on."
@@ -5587,7 +5587,7 @@ msgstr "Kemennoù gweredekaet"
 
 #: lib/command.php:710
 msgid "Can't turn on notification."
-msgstr ""
+msgstr "Dibosupl eo gweredekaat ar c'hemennoù."
 
 #: lib/command.php:723
 msgid "Login command is disabled"
@@ -5596,7 +5596,7 @@ msgstr "Diweredekaet eo an urzhiad evit digeriñ un dalc'h"
 #: lib/command.php:734
 #, php-format
 msgid "This link is useable only once, and is good for only 2 minutes: %s"
-msgstr ""
+msgstr "Implijadus eo al liamm-se ur wech hepken, hag e-pad 2 vunutenn : %s"
 
 #: lib/command.php:761
 #, php-format
@@ -5605,7 +5605,7 @@ msgstr "Digoumanantet eus %s"
 
 #: lib/command.php:778
 msgid "You are not subscribed to anyone."
-msgstr ""
+msgstr "N'hoc'h ket koumanantet da zen ebet."
 
 #: lib/command.php:780
 #, fuzzy
@@ -5616,7 +5616,7 @@ msgstr[1] "You are subscribed to these people:"
 
 #: lib/command.php:800
 msgid "No one is subscribed to you."
-msgstr ""
+msgstr "Den n'eo koumanantet deoc'h."
 
 #: lib/command.php:802
 #, fuzzy
@@ -5680,7 +5680,7 @@ msgstr ""
 
 #: lib/common.php:135
 msgid "No configuration file found. "
-msgstr ""
+msgstr "N'eo bet kavet restr kefluniadur ebet. "
 
 #: lib/common.php:136
 msgid "I looked for configuration files in the following places: "
@@ -5716,11 +5716,11 @@ msgstr ""
 
 #: lib/dberroraction.php:60
 msgid "Database error"
-msgstr ""
+msgstr "Fazi bank roadennoù"
 
 #: lib/designsettings.php:105
 msgid "Upload file"
-msgstr ""
+msgstr "Enporzhiañ ar restr"
 
 #: lib/designsettings.php:109
 msgid ""
@@ -5733,15 +5733,15 @@ msgstr ""
 
 #: lib/disfavorform.php:114 lib/disfavorform.php:140
 msgid "Disfavor this notice"
-msgstr ""
+msgstr "Tennañ eus ar pennrolloù"
 
 #: lib/favorform.php:114 lib/favorform.php:140
 msgid "Favor this notice"
-msgstr ""
+msgstr "Ouzhpennañ d'ar pennrolloù"
 
 #: lib/favorform.php:140
 msgid "Favor"
-msgstr ""
+msgstr "Pennrolloù"
 
 #: lib/feed.php:85
 msgid "RSS 1.0"

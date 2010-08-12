@@ -8,12 +8,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-03 13:21+0000\n"
-"PO-Revision-Date: 2010-08-03 13:22:07+0000\n"
+"POT-Creation-Date: 2010-08-07 16:23+0000\n"
+"PO-Revision-Date: 2010-08-07 16:24:35+0000\n"
 "Language-Team: Interlingua\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.17alpha (r70381); Translate extension (2010-07-21)\n"
+"X-Generator: MediaWiki 1.17alpha (r70633); Translate extension (2010-07-21)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: out-statusnet\n"
@@ -3734,24 +3734,24 @@ msgstr ""
 "mitter los in evidentia."
 
 #: actions/showfavorites.php:208
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%s hasn't added any favorite notices yet. Post something interesting they "
 "would add to their favorites :)"
 msgstr ""
-"%s non ha ancora addite alcun nota a su favorites. Publica alique "
-"interessante que ille favoritisarea :)"
+"%s non ha ancora addite un nota favorite. Publica alique interessante que "
+"ille adderea a su favorites :)"
 
 #: actions/showfavorites.php:212
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%s hasn't added any favorite notices yet. Why not [register an account](%%%%"
 "action.register%%%%) and then post something interesting they would add to "
 "their favorites :)"
 msgstr ""
-"%s non ha ancora addite alcun nota a su favorites. Proque non [registrar un "
-"conto](%%%%action.register%%%%) e postea publicar alique interessante que "
-"ille favoritisarea :)"
+"%s non ha ancora addite un nota favorite. Proque non [crear un conto](%%%%"
+"action.register%%%%) e postea publicar alique interessante que ille adderea "
+"a su favorites :)"
 
 #: actions/showfavorites.php:243
 msgid "This is a way to share what you like."
@@ -3931,13 +3931,13 @@ msgstr ""
 "alcun nota, dunque iste es un bon momento pro comenciar :)"
 
 #: actions/showstream.php:207
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can try to nudge %1$s or [post something to them](%%%%action.newnotice%%%"
 "%?status_textarea=%2$s)."
 msgstr ""
-"Tu pote tentar pulsar %1$s o [publicar un nota a su attention](%%%%action."
-"newnotice%%%%?status_textarea=%2$s)."
+"Tu pote tentar dar un pulsata a %1$s o [publicar un nota a su attention](%%%%"
+"action.newnotice%%%%?status_textarea=%2$s)."
 
 #: actions/showstream.php:243
 #, php-format
@@ -4817,23 +4817,23 @@ msgstr "Autor(es)"
 #: classes/File.php:143
 #, php-format
 msgid "Cannot process URL '%s'"
-msgstr ""
+msgstr "Impossibile processar le URL '%s'"
 
 #. TRANS: Server exception thrown when... Robin thinks something is impossible!
 #: classes/File.php:175
 msgid "Robin thinks something is impossible."
-msgstr ""
+msgstr "Robin pensa que alique es impossibile."
 
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
 #: classes/File.php:190
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
 "Try to upload a smaller version."
 msgstr ""
-"Nulle file pote esser plus grande que %d bytes e le file que tu inviava ha %"
-"d bytes. Tenta incargar un version minus grande."
+"Nulle file pote esser plus grande que %1$d bytes e le file que tu inviava ha "
+"%2$d bytes. Tenta incargar un version minus grande."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes.
@@ -4851,9 +4851,8 @@ msgstr "Un file de iste dimension excederea tu quota mensual de %d bytes."
 
 #. TRANS: Client exception thrown if a file upload does not have a valid name.
 #: classes/File.php:248 classes/File.php:263
-#, fuzzy
 msgid "Invalid filename."
-msgstr "Dimension invalide."
+msgstr "Nomine de file invalide."
 
 #. TRANS: Exception thrown when joining a group fails.
 #: classes/Group_member.php:42
@@ -4885,7 +4884,7 @@ msgstr "Non poteva crear indicio de identification pro %s"
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 #: classes/Memcached_DataObject.php:533
 msgid "No database name or DSN found anywhere."
-msgstr ""
+msgstr "Nulle nomine de base de datos o DSN trovate."
 
 #. TRANS: Client exception thrown when a user tries to send a direct message while being banned from sending them.
 #: classes/Message.php:46
@@ -4907,7 +4906,7 @@ msgstr "Non poteva actualisar message con nove URI."
 #: classes/Notice.php:98
 #, php-format
 msgid "No such profile (%1$d) for notice (%2$d)."
-msgstr ""
+msgstr "Nulle profilo (%1$d) trovate pro le nota (%2$d)."
 
 #. TRANS: Server exception. %s are the error details.
 #: classes/Notice.php:190
@@ -4956,7 +4955,7 @@ msgstr "Problema salveguardar nota."
 #. TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
 #: classes/Notice.php:892
 msgid "Bad type provided to saveKnownGroups"
-msgstr ""
+msgstr "Mal typo fornite a saveKnownGroups"
 
 #. TRANS: Server exception thrown when an update for a group inbox fails.
 #: classes/Notice.php:991
@@ -4965,36 +4964,36 @@ msgstr "Problema salveguardar le cassa de entrata del gruppo."
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1614
+#: classes/Notice.php:1745
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr "RT @%1$s %2$s"
 
 #. TRANS: Exception thrown when trying to revoke an existing role for a user that does not exist.
 #. TRANS: %1$s is the role name, %2$s is the user ID (number).
-#: classes/Profile.php:740
+#: classes/Profile.php:737
 #, php-format
 msgid "Cannot revoke role \"%1$s\" for user #%2$d; does not exist."
-msgstr ""
+msgstr "Non pote revocar le rolo \"%1$s\" del usator #%2$d; non existe."
 
 #. TRANS: Exception thrown when trying to revoke a role for a user with a failing database query.
 #. TRANS: %1$s is the role name, %2$s is the user ID (number).
-#: classes/Profile.php:749
+#: classes/Profile.php:746
 #, php-format
 msgid "Cannot revoke role \"%1$s\" for user #%2$d; database error."
 msgstr ""
+"Non pote revocar le rolo \"%1$s\" del usator #%2$d; error in le base de "
+"datos."
 
 #. TRANS: Exception thrown when a right for a non-existing user profile is checked.
 #: classes/Remote_profile.php:54
-#, fuzzy
 msgid "Missing profile."
-msgstr "Le usator non ha un profilo."
+msgstr "Profilo mancante."
 
 #. TRANS: Exception thrown when a tag cannot be saved.
 #: classes/Status_network.php:346
-#, fuzzy
 msgid "Unable to save tag."
-msgstr "Impossibile salveguardar le aviso del sito."
+msgstr "Impossibile salveguardar le etiquetta."
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
 #: classes/Subscription.php:75 lib/oauthstore.php:465
@@ -5018,19 +5017,16 @@ msgstr "Non subscribite!"
 
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 #: classes/Subscription.php:178
-#, fuzzy
 msgid "Could not delete self-subscription."
 msgstr "Non poteva deler auto-subscription."
 
 #. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
 #: classes/Subscription.php:206
-#, fuzzy
 msgid "Could not delete subscription OMB token."
 msgstr "Non poteva deler le indicio OMB del subscription."
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
 #: classes/Subscription.php:218
-#, fuzzy
 msgid "Could not delete subscription."
 msgstr "Non poteva deler subscription."
 

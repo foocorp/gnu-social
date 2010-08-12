@@ -255,6 +255,9 @@ class FeedSub extends Memcached_DataObject
     /**
      * Send a PuSH unsubscription request to the hub for this feed.
      * The hub will later send us a confirmation POST to /main/push/callback.
+     * Warning: this will cancel the subscription even if someone else in
+     * the system is using it. Most callers will want garbageCollect() instead,
+     * which confirms there's no uses left.
      *
      * @return bool true on success, false on failure
      * @throws ServerException if feed state is not valid
@@ -273,6 +276,33 @@ class FeedSub extends Memcached_DataObject
         }
 
         return $this->doSubscribe('unsubscribe');
+    }
+
+    /**
+     * Check if there are any active local uses of this feed, and if not then
+     * make sure it's inactive, unsubscribing if necessary.
+     *
+     * @return boolean true if the subscription is now inactive, false if still active.
+     */
+    public function garbageCollect()
+    {
+        if ($this->sub_state == '' || $this->sub_state == 'inactive') {
+            // No active PuSH subscription, we can just leave it be.
+            return true;
+        } else {
+            // PuSH subscription is either active or in an indeterminate state.
+            // Check if we're out of subscribers, and if so send an unsubscribe.
+            $count = 0;
+            Event::handle('FeedSubSubscriberCount', array($this, &$count));
+
+            if ($count) {
+                common_log(LOG_INFO, __METHOD__ . ': ok, ' . $count . ' user(s) left for ' . $this->uri);
+                return false;
+            } else {
+                common_log(LOG_INFO, __METHOD__ . ': unsubscribing, no users left for ' . $this->uri);
+                return $this->unsubscribe();
+            }
+        }
     }
 
     protected function doSubscribe($mode)

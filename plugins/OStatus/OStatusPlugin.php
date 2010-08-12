@@ -480,6 +480,24 @@ class OStatusPlugin extends Plugin
     }
 
     /**
+     * Tell the FeedSub infrastructure whether we have any active OStatus
+     * usage for the feed; if not it'll be able to garbage-collect the
+     * feed subscription.
+     * 
+     * @param FeedSub $feedsub
+     * @param integer $count in/out
+     * @return mixed hook return code
+     */
+    function onFeedSubSubscriberCount($feedsub, &$count)
+    {
+        $oprofile = Ostatus_profile::staticGet('feeduri', $feedsub->uri);
+        if ($oprofile) {
+            $count += $oprofile->subscriberCount();
+        }
+        return true;
+    }
+
+    /**
      * When about to subscribe to a remote user, start a server-to-server
      * PuSH subscription if needed. If we can't establish that, abort.
      *

@@ -9,12 +9,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-03 13:21+0000\n"
-"PO-Revision-Date: 2010-08-03 13:22:01+0000\n"
+"POT-Creation-Date: 2010-08-07 16:23+0000\n"
+"PO-Revision-Date: 2010-08-07 16:24:30+0000\n"
 "Language-Team: Galician\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.17alpha (r70381); Translate extension (2010-07-21)\n"
+"X-Generator: MediaWiki 1.17alpha (r70633); Translate extension (2010-07-21)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: out-statusnet\n"
@@ -166,7 +166,7 @@ msgstr ""
 
 #. TRANS: %1$s is user nickname, %2$s is user nickname, %2$s is user nickname prefixed with "@"
 #: actions/all.php:146
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can try to [nudge %1$s](../%2$s) from their profile or [post something "
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
@@ -176,7 +176,7 @@ msgstr ""
 "status_textarea=%3$s)."
 
 #: actions/all.php:149 actions/replies.php:210 actions/showstream.php:211
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
 "post a notice to them."
@@ -512,9 +512,8 @@ msgid "groups on %s"
 msgstr "grupos en %s"
 
 #: actions/apimediaupload.php:99
-#, fuzzy
 msgid "Upload failed."
-msgstr "Cargar un ficheiro"
+msgstr "Houbo un erro durante a carga."
 
 #: actions/apioauthauthorize.php:101
 msgid "No oauth_token parameter provided."
@@ -663,7 +662,7 @@ msgstr "Non se atopou ningún estado con esa ID."
 
 #: actions/apistatusesupdate.php:221
 msgid "Client must provide a 'status' parameter with a value."
-msgstr ""
+msgstr "O cliente debe proporcionar un parámetro de \"estado\" cun valor."
 
 #: actions/apistatusesupdate.php:242 actions/newnotice.php:155
 #: lib/mailhandler.php:60
@@ -3555,7 +3554,7 @@ msgid "Replies feed for %s (Atom)"
 msgstr "Fonte de novas coas respostas a %s (Atom)"
 
 #: actions/replies.php:199
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the timeline showing replies to %1$s but %2$s hasn't received a "
 "notice to them yet."
@@ -3573,7 +3572,7 @@ msgstr ""
 "grupos](%%action.groups%%)."
 
 #: actions/replies.php:206
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can try to [nudge %1$s](../%2$s) or [post something to them](%%%%action."
 "newnotice%%%%?status_textarea=%3$s)."
@@ -3953,7 +3952,7 @@ msgstr ""
 "bo momento para comezar :)"
 
 #: actions/showstream.php:207
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can try to nudge %1$s or [post something to them](%%%%action.newnotice%%%"
 "%?status_textarea=%2$s)."
@@ -4843,12 +4842,12 @@ msgstr "Autores"
 #: classes/File.php:143
 #, php-format
 msgid "Cannot process URL '%s'"
-msgstr ""
+msgstr "Non se pode procesar o URL \"%s\""
 
 #. TRANS: Server exception thrown when... Robin thinks something is impossible!
 #: classes/File.php:175
 msgid "Robin thinks something is impossible."
-msgstr ""
+msgstr "Robin pensa que algo é imposible."
 
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
@@ -4878,9 +4877,8 @@ msgstr "Un ficheiro deste tamaño excedería a súa cota mensual de %d bytes."
 
 #. TRANS: Client exception thrown if a file upload does not have a valid name.
 #: classes/File.php:248 classes/File.php:263
-#, fuzzy
 msgid "Invalid filename."
-msgstr "Tamaño non válido."
+msgstr "Nome de ficheiro incorrecto."
 
 #. TRANS: Exception thrown when joining a group fails.
 #: classes/Group_member.php:42
@@ -4912,7 +4910,7 @@ msgstr "Non se puido crear un pase de sesión para %s"
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 #: classes/Memcached_DataObject.php:533
 msgid "No database name or DSN found anywhere."
-msgstr ""
+msgstr "Non se atopou por ningures o nome da base de datos ou DSN."
 
 #. TRANS: Client exception thrown when a user tries to send a direct message while being banned from sending them.
 #: classes/Message.php:46
@@ -4932,9 +4930,9 @@ msgstr "Non se puido actualizar a mensaxe co novo URI."
 #. TRANS: Server exception thrown when a user profile for a notice cannot be found.
 #. TRANS: %1$d is a profile ID (number), %2$d is a notice ID (number).
 #: classes/Notice.php:98
-#, fuzzy, php-format
+#, php-format
 msgid "No such profile (%1$d) for notice (%2$d)."
-msgstr "Non existe tal perfil (%d) para a nota (%d)"
+msgstr "Non existe tal perfil (%1$d) para a nota (%2$d)."
 
 #. TRANS: Server exception. %s are the error details.
 #: classes/Notice.php:190
@@ -4983,7 +4981,7 @@ msgstr "Houbo un problema ao gardar a nota."
 #. TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
 #: classes/Notice.php:892
 msgid "Bad type provided to saveKnownGroups"
-msgstr ""
+msgstr "O tipo dado para saveKnownGroups era incorrecto"
 
 #. TRANS: Server exception thrown when an update for a group inbox fails.
 #: classes/Notice.php:991
@@ -4992,30 +4990,31 @@ msgstr "Houbo un problema ao gardar a caixa de entrada do grupo."
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1614
+#: classes/Notice.php:1745
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr "♻ @%1$s %2$s"
 
 #. TRANS: Exception thrown when trying to revoke an existing role for a user that does not exist.
 #. TRANS: %1$s is the role name, %2$s is the user ID (number).
-#: classes/Profile.php:740
+#: classes/Profile.php:737
 #, php-format
 msgid "Cannot revoke role \"%1$s\" for user #%2$d; does not exist."
 msgstr ""
+"Non se pode revogar o rol \"%1$s\" do usuario #%2$d: o usuario non existe."
 
 #. TRANS: Exception thrown when trying to revoke a role for a user with a failing database query.
 #. TRANS: %1$s is the role name, %2$s is the user ID (number).
-#: classes/Profile.php:749
+#: classes/Profile.php:746
 #, php-format
 msgid "Cannot revoke role \"%1$s\" for user #%2$d; database error."
 msgstr ""
+"Non se pode revogar o rol \"%1$s\" do usuario #%2$d: erro na base de datos."
 
 #. TRANS: Exception thrown when a right for a non-existing user profile is checked.
 #: classes/Remote_profile.php:54
-#, fuzzy
 msgid "Missing profile."
-msgstr "O usuario non ten perfil."
+msgstr "Falta o perfil de usuario."
 
 #. TRANS: Exception thrown when a tag cannot be saved.
 #: classes/Status_network.php:346
@@ -5044,19 +5043,16 @@ msgstr "Non está subscrito!"
 
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 #: classes/Subscription.php:178
-#, fuzzy
 msgid "Could not delete self-subscription."
 msgstr "Non se puido borrar a subscrición a si mesmo."
 
 #. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
 #: classes/Subscription.php:206
-#, fuzzy
 msgid "Could not delete subscription OMB token."
 msgstr "Non se puido borrar o pase de subscrición OMB."
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
 #: classes/Subscription.php:218
-#, fuzzy
 msgid "Could not delete subscription."
 msgstr "Non se puido borrar a subscrición."
 

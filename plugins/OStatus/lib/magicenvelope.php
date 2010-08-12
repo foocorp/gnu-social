@@ -210,13 +210,13 @@ class MagicEnvelope
         }
 
         $data_element = $env_element->getElementsByTagNameNS(MagicEnvelope::NS, 'data')->item(0);
-        
+        $sig_element = $env_element->getElementsByTagNameNS(MagicEnvelope::NS, 'sig')->item(0);
         return array(
-            'data' => trim($data_element->nodeValue),
+            'data' => preg_replace('/\s/', '', $data_element->nodeValue),
             'data_type' => $data_element->getAttribute('type'),
             'encoding' => $env_element->getElementsByTagNameNS(MagicEnvelope::NS, 'encoding')->item(0)->nodeValue,
             'alg' => $env_element->getElementsByTagNameNS(MagicEnvelope::NS, 'alg')->item(0)->nodeValue,
-            'sig' => $env_element->getElementsByTagNameNS(MagicEnvelope::NS, 'sig')->item(0)->nodeValue,
+            'sig' => preg_replace('/\s/', '', $sig_element->nodeValue),
         );
     }
 

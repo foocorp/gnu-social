@@ -502,6 +502,7 @@ class NoticeListItem extends Widget
             $source_name = (empty($ns->name)) ? _($ns->code) : _($ns->name);
             $this->out->text(' ');
             $this->out->elementStart('span', 'source');
+            // FIXME: probably i18n issue. If "from" is followed by text, that should be a parameter to "from" (from %s).
             $this->out->text(_('from'));
             $this->out->text(' ');
 

@@ -464,10 +464,8 @@ class Profile extends Memcached_DataObject
 
         $sub = new Subscription();
         $sub->subscribed = $this->id;
-
+        $sub->whereAdd('subscriber != subscribed');
         $cnt = (int) $sub->count('distinct subscriber');
-
-        $cnt = ($cnt > 0) ? $cnt - 1 : $cnt;
 
         if (!empty($c)) {
             $c->set(common_cache_key('profile:subscriber_count:'.$this->id), $cnt);

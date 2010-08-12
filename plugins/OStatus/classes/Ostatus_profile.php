@@ -215,22 +215,13 @@ class Ostatus_profile extends Memcached_DataObject
     }
 
     /**
-     * Send a PuSH unsubscription request to the hub for this feed.
-     * The hub will later send us a confirmation POST to /main/push/callback.
+     * Check if this remote profile has any active local subscriptions, and
+     * if not drop the PuSH subscription feed.
      *
      * @return bool true on success, false on failure
-     * @throws ServerException if feed state is not valid
      */
     public function unsubscribe() {
-        $feedsub = FeedSub::staticGet('uri', $this->feeduri);
-        if (!$feedsub || $feedsub->sub_state == '' || $feedsub->sub_state == 'inactive') {
-            // No active PuSH subscription, we can just leave it be.
-            return true;
-        } else {
-            // PuSH subscription is either active or in an indeterminate state.
-            // Send an unsubscribe.
-            return $feedsub->unsubscribe();
-        }
+        $this->garbageCollect();
     }
 
     /**
@@ -241,19 +232,35 @@ class Ostatus_profile extends Memcached_DataObject
      */
     public function garbageCollect()
     {
+        $feedsub = FeedSub::staticGet('uri', $this->feeduri);
+        return $feedsub->garbageCollect();
+    }
+
+    /**
+     * Check if this remote profile has any active local subscriptions, so the
+     * PuSH subscription layer can decide if it can drop the feed.
+     *
+     * This gets called via the FeedSubSubscriberCount event when running
+     * FeedSub::garbageCollect().
+     *
+     * @return int
+     */
+    public function subscriberCount()
+    {
         if ($this->isGroup()) {
             $members = $this->localGroup()->getMembers(0, 1);
             $count = $members->N;
         } else {
             $count = $this->localProfile()->subscriberCount();
         }
-        if ($count == 0) {
-            common_log(LOG_INFO, "Unsubscribing from now-unused remote feed $this->feeduri");
-            $this->unsubscribe();
-            return true;
-        } else {
-            return false;
-        }
+        common_log(LOG_INFO, __METHOD__ . " SUB COUNT BEFORE: $count");
+
+        // Other plugins may be piggybacking on OStatus without having
+        // an active group or user-to-user subscription we know about.
+        Event::handle('Ostatus_profileSubscriberCount', array($this, &$count));
+        common_log(LOG_INFO, __METHOD__ . " SUB COUNT AFTER: $count");
+
+        return $count;
     }
 
     /**

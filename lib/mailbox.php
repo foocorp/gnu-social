@@ -224,6 +224,7 @@ class MailboxAction extends CurrentUserDesignAction
 
         if ($message->source) {
             $this->elementStart('span', 'source');
+            // FIXME: bad i18n. Device should be a parameter (from %s).
             $this->text(_('from'));
             $this->element('span', 'device', $this->showSource($message->source));
             $this->elementEnd('span');
