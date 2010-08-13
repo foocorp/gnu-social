@@ -92,7 +92,13 @@ abstract class BaseMirrorAction extends Action
      */
     protected function profileForFeed($url)
     {
-        $oprofile = Ostatus_profile::ensureProfileURL($url);
+        try {
+            // Maybe we got a web page?
+            $oprofile = Ostatus_profile::ensureProfileURL($url);
+        } catch (Exception $e) {
+            // Direct feed URL?
+            $oprofile = Ostatus_profile::ensureFeedURL($url);
+        }
         if ($oprofile->isGroup()) {
             $this->clientError(_m("Can't mirror a StatusNet group at this time."));
         }

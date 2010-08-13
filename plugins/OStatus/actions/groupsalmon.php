@@ -61,7 +61,7 @@ class GroupsalmonAction extends SalmonAction
     function handlePost()
     {
         // @fixme process all objects?
-        switch ($this->act->objects[0]->type) {
+        switch ($this->activity->objects[0]->type) {
         case ActivityObject::ARTICLE:
         case ActivityObject::BLOGENTRY:
         case ActivityObject::NOTE:
@@ -74,7 +74,7 @@ class GroupsalmonAction extends SalmonAction
 
         // Notice must be to the attention of this group
 
-        $context = $this->act->context;
+        $context = $this->activity->context;
 
         if (empty($context->attention)) {
             throw new ClientException("Not to the attention of anyone.");

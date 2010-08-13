@@ -47,7 +47,6 @@ class SalmonAction extends Action
 
         $xml = file_get_contents('php://input');
 
-
         // Check the signature
         $salmon = new Salmon;
         if (!$salmon->verifyMagicEnv($xml)) {
@@ -58,7 +57,6 @@ class SalmonAction extends Action
             $env = $magic_env->parse($xml);
             $xml = $magic_env->unfold($env);
         }
-        
 
         $dom = DOMDocument::loadXML($xml);
         if ($dom->documentElement->namespaceURI != Activity::ATOM ||
@@ -67,7 +65,7 @@ class SalmonAction extends Action
             $this->clientError(_m('Salmon post must be an Atom entry.'));
         }
 
-        $this->act = new Activity($dom->documentElement);
+        $this->activity = new Activity($dom->documentElement);
         return true;
     }
 
@@ -79,9 +77,9 @@ class SalmonAction extends Action
     {
         StatusNet::setApi(true); // Send smaller error pages
 
-        common_log(LOG_DEBUG, "Got a " . $this->act->verb);
+        common_log(LOG_DEBUG, "Got a " . $this->activity->verb);
         if (Event::handle('StartHandleSalmon', array($this->activity))) {
-            switch ($this->act->verb)
+            switch ($this->activity->verb)
             {
             case ActivityVerb::POST:
                 $this->handlePost();
@@ -164,12 +162,12 @@ class SalmonAction extends Action
      */
     function handleUpdateProfile()
     {
-        $oprofile = Ostatus_profile::getActorProfile($this->act);
+        $oprofile = Ostatus_profile::getActorProfile($this->activity);
         if ($oprofile) {
             common_log(LOG_INFO, "Got a profile-update ping from $oprofile->uri");
-            $oprofile->updateFromActivityObject($this->act->actor);
+            $oprofile->updateFromActivityObject($this->activity->actor);
         } else {
-            common_log(LOG_INFO, "Ignoring profile-update ping from unknown " . $this->act->actor->id);
+            common_log(LOG_INFO, "Ignoring profile-update ping from unknown " . $this->activity->actor->id);
         }
     }
 
@@ -178,10 +176,10 @@ class SalmonAction extends Action
      */
     function ensureProfile()
     {
-        $actor = $this->act->actor;
+        $actor = $this->activity->actor;
         if (empty($actor->id)) {
             common_log(LOG_ERR, "broken actor: " . var_export($actor, true));
-            common_log(LOG_ERR, "activity with no actor: " . var_export($this->act, true));
+            common_log(LOG_ERR, "activity with no actor: " . var_export($this->activity, true));
             throw new Exception("Received a salmon slap from unidentified actor.");
         }
 
@@ -191,6 +189,6 @@ class SalmonAction extends Action
     function saveNotice()
     {
         $oprofile = $this->ensureProfile();
-        return $oprofile->processPost($this->act, 'salmon');
+        return $oprofile->processPost($this->activity, 'salmon');
     }
 }

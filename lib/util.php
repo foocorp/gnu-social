@@ -845,7 +845,10 @@ function common_linkify($url) {
         } elseif (is_string($longurl_data)) {
             $longurl = $longurl_data;
         } else {
-            throw new ServerException("Can't linkify url '$url'");
+            // Unable to reach the server to verify contents, etc
+            // Just pass the link on through for now.
+            common_log(LOG_ERR, "Can't linkify url '$url'");
+            $longurl = $url;
         }
     }
     $attrs = array('href' => $canon, 'title' => $longurl, 'rel' => 'external');

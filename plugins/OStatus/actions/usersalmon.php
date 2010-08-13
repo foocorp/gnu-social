@@ -55,10 +55,10 @@ class UsersalmonAction extends SalmonAction
      */
     function handlePost()
     {
-        common_log(LOG_INFO, "Received post of '{$this->act->objects[0]->id}' from '{$this->act->actor->id}'");
+        common_log(LOG_INFO, "Received post of '{$this->activity->objects[0]->id}' from '{$this->activity->actor->id}'");
 
         // @fixme: process all activity objects?
-        switch ($this->act->objects[0]->type) {
+        switch ($this->activity->objects[0]->type) {
         case ActivityObject::ARTICLE:
         case ActivityObject::BLOGENTRY:
         case ActivityObject::NOTE:
@@ -72,7 +72,7 @@ class UsersalmonAction extends SalmonAction
         // Notice must either be a) in reply to a notice by this user
         // or b) to the attention of this user
 
-        $context = $this->act->context;
+        $context = $this->activity->context;
 
         if (!empty($context->replyToID)) {
             $notice = Notice::staticGet('uri', $context->replyToID);
@@ -92,7 +92,7 @@ class UsersalmonAction extends SalmonAction
             throw new ClientException("Not to anyone in reply to anything!");
         }
 
-        $existing = Notice::staticGet('uri', $this->act->objects[0]->id);
+        $existing = Notice::staticGet('uri', $this->activity->objects[0]->id);
 
         if (!empty($existing)) {
             common_log(LOG_ERR, "Not saving notice '{$existing->uri}'; already exists.");
@@ -143,7 +143,7 @@ class UsersalmonAction extends SalmonAction
 
     function handleFavorite()
     {
-        $notice = $this->getNotice($this->act->objects[0]);
+        $notice = $this->getNotice($this->activity->objects[0]);
         $profile = $this->ensureProfile()->localProfile();
 
         $old = Fave::pkeyGet(array('user_id' => $profile->id,
@@ -164,7 +164,7 @@ class UsersalmonAction extends SalmonAction
      */
     function handleUnfavorite()
     {
-        $notice = $this->getNotice($this->act->objects[0]);
+        $notice = $this->getNotice($this->activity->objects[0]);
         $profile = $this->ensureProfile()->localProfile();
 
         $fave = Fave::pkeyGet(array('user_id' => $profile->id,

@@ -161,7 +161,7 @@ class NewnoticeAction extends Action
 
         $replyto = intval($this->trimmed('inreplyto'));
         if ($replyto) {
-            $options['replyto'] = $replyto;
+            $options['reply_to'] = $replyto;
         }
 
         $upload = null;

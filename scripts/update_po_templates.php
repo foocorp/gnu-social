@@ -94,15 +94,15 @@ function do_translatewiki_plugin($basedir, $plugin)
 BASIC:
   id: out-statusnet-{$pluginlc}
   label: StatusNet - {$plugin}
-  description: "{{int:bw-desc-statusnet-plugin-{$pluginlc}}}"
   namespace: NS_STATUSNET
+  description: "{{int:bw-desc-statusnet-plugin}}"
+  class: FileBasedMessageGroup
   display: out/statusnet/{$pluginlc}
-  class: GettextMessageGroup
 
 FILES:
   class: GettextFFS
-  sourcePattern: %GROUPROOT%/plugins/{$plugin}/locale/%CODE%/LC_MESSAGES/{$plugin}.po
-  targetPattern: plugins/{$plugin}/locale/%CODE%/LC_MESSAGES/{$plugin}.po
+  sourcePattern: %GROUPROOT%/statusnet/plugins/{$plugin}/locale/{$plugin}.pot
+  targetPattern: statusnet/plugins/{$plugin}/locale/%CODE%/LC_MESSAGES/{$plugin}.po
   codeMap:
     en-gb: en_GB
     no: nb

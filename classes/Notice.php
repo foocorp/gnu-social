@@ -245,6 +245,8 @@ class Notice extends Memcached_DataObject
         if (!empty($options)) {
             $options = $options + $defaults;
             extract($options);
+        } else {
+            extract($defaults);
         }
 
         if (!isset($is_local)) {

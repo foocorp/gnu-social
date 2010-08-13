@@ -196,8 +196,9 @@ class FeedDiscovery
      */
     function discoverFromHTML($url, $body)
     {
-        // DOMDocument::loadHTML may throw warnings on unrecognized elements.
-        $old = error_reporting(error_reporting() & ~E_WARNING);
+        // DOMDocument::loadHTML may throw warnings on unrecognized elements,
+        // and notices on unrecognized namespaces.
+        $old = error_reporting(error_reporting() & ~(E_WARNING | E_NOTICE));
         $dom = new DOMDocument();
         $ok = $dom->loadHTML($body);
         error_reporting($old);

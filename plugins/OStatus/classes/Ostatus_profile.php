@@ -445,26 +445,32 @@ class Ostatus_profile extends Memcached_DataObject
      * @param DOMElement $feed for context
      * @param string $source identifier ("push" or "salmon")
      */
+
     public function processEntry($entry, $feed, $source)
     {
         $activity = new Activity($entry, $feed);
 
-        // @todo process all activity objects
-        switch ($activity->objects[0]->type) {
-        case ActivityObject::ARTICLE:
-        case ActivityObject::BLOGENTRY:
-        case ActivityObject::NOTE:
-        case ActivityObject::STATUS:
-        case ActivityObject::COMMENT:
-            break;
-        default:
-            throw new ClientException("Can't handle that kind of post.");
-        }
+        if (Event::handle('StartHandleFeedEntry', array($activity))) {
 
-        if ($activity->verb == ActivityVerb::POST) {
-            $this->processPost($activity, $source);
-        } else {
-            common_log(LOG_INFO, "Ignoring activity with unrecognized verb $activity->verb");
+            // @todo process all activity objects
+            switch ($activity->objects[0]->type) {
+            case ActivityObject::ARTICLE:
+            case ActivityObject::BLOGENTRY:
+            case ActivityObject::NOTE:
+            case ActivityObject::STATUS:
+            case ActivityObject::COMMENT:
+			case null:
+                if ($activity->verb == ActivityVerb::POST) {
+                    $this->processPost($activity, $source);
+                } else {
+                    common_log(LOG_INFO, "Ignoring activity with unrecognized verb $activity->verb");
+                }
+                break;
+            default:
+                throw new ClientException("Can't handle that kind of post.");
+            }
+
+            Event::handle('EndHandleFeedEntry', array($activity));
         }
     }
 
@@ -496,8 +502,11 @@ class Ostatus_profile extends Memcached_DataObject
             } else if ($actor->id) {
                 // We have an ActivityStreams actor with an explicit ID that doesn't match the feed owner.
                 // This isn't what we expect from mainline OStatus person feeds!
-                // Group feeds go down another path, with different validation.
-                throw new Exception("Got an actor '{$actor->title}' ({$actor->id}) on single-user feed for {$this->uri}");
+                // Group feeds go down another path, with different validation...
+                // Most likely this is a plain ol' blog feed of some kind which
+                // doesn't match our expectations. We'll take the entry, but ignore
+                // the <author> info.
+                common_log(LOG_WARNING, "Got an actor '{$actor->title}' ({$actor->id}) on single-user feed for {$this->uri}");
             } else {
                 // Plain <author> without ActivityStreams actor info.
                 // We'll just ignore this info for now and save the update under the feed's identity.

@@ -240,6 +240,14 @@ class File_redirection extends Memcached_DataObject
                 } else if (is_string($redir_data)) {
                     // The file is a known redirect target.
                     $file = File::staticGet('url', $redir_data);
+                    if (empty($file)) {
+                        // @fixme should we save a new one?
+                        // this case was triggering sometimes for redirects
+                        // with unresolvable targets; found while fixing
+                        // "can't linkify" bugs with shortened links to
+                        // SSL sites with cert issues.
+                        return null;
+                    }
                     $file_id = $file->id;
                 }
             } else {
