@@ -88,6 +88,16 @@ class FeedDiscovery
     }
 
     /**
+     * Get the referenced PuSH hub link from an Atom feed.
+     *
+     * @return mixed string or false
+     */
+    public function getHubLink()
+    {
+        return $this->getAtomLink('hub');
+    }
+
+    /**
      * @param string $url
      * @param bool $htmlOk pass false here if you don't want to follow web pages.
      * @return string with validated URL

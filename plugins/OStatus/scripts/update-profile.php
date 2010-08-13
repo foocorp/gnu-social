@@ -55,7 +55,7 @@ print "Re-running feed discovery for profile URL $oprofile->uri\n";
 // @fixme will bork where the URI isn't the profile URL for now
 $discover = new FeedDiscovery();
 $feedurl = $discover->discoverFromURL($oprofile->uri);
-$huburi = $discover->getAtomLink('hub');
+$huburi = $discover->getHubLink();
 $salmonuri = $discover->getAtomLink(Salmon::NS_REPLIES);
 
 print "  Feed URL: $feedurl\n";

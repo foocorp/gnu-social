@@ -110,7 +110,7 @@ var SN = { // StatusNet
                 return;
             }
 
-            var remaining = MaxLength - form.find('#'+SN.C.S.NoticeDataText).val().length;
+            var remaining = MaxLength - SN.U.CharacterCount(form);
             var counter = form.find('#'+SN.C.S.NoticeTextCount);
 
             if (remaining.toString() != counter.text()) {
@@ -132,6 +132,10 @@ var SN = { // StatusNet
                     }
                 }
             }
+        },
+
+        CharacterCount: function(form) {
+            return form.find('#'+SN.C.S.NoticeDataText).val().length;
         },
 
         ClearCounterBlackout: function(form) {

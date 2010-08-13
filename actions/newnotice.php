@@ -131,6 +131,8 @@ class NewnoticeAction extends Action
         $user = common_current_user();
         assert($user); // XXX: maybe an error instead...
         $content = $this->trimmed('status_textarea');
+        $options = array();
+        Event::handle('StartSaveNewNoticeWeb', array($this, $user, &$content, &$options));
 
         if (!$content) {
             $this->clientError(_('No content!'));
@@ -157,11 +159,9 @@ class NewnoticeAction extends Action
                                        Notice::maxContent()));
         }
 
-        $replyto = $this->trimmed('inreplyto');
-        #If an ID of 0 is wrongly passed here, it will cause a database error,
-        #so override it...
-        if ($replyto == 0) {
-            $replyto = 'false';
+        $replyto = intval($this->trimmed('inreplyto'));
+        if ($replyto) {
+            $options['replyto'] = $replyto;
         }
 
         $upload = null;
@@ -169,7 +169,10 @@ class NewnoticeAction extends Action
 
         if (isset($upload)) {
 
-            $content_shortened .= ' ' . $upload->shortUrl();
+            if (Event::handle('StartSaveNewNoticeAppendAttachment', array($this, $upload, &$content_shortened, &$options))) {
+                $content_shortened .= ' ' . $upload->shortUrl();
+            }
+            Event::handle('EndSaveNewNoticeAppendAttachment', array($this, $upload, &$content_shortened, &$options));
 
             if (Notice::contentTooLong($content_shortened)) {
                 $upload->delete();
@@ -181,8 +184,6 @@ class NewnoticeAction extends Action
                 );
             }
         }
-
-        $options = array('reply_to' => ($replyto == 'false') ? null : $replyto);
 
         if ($user->shareLocation()) {
             // use browser data if checked; otherwise profile data
@@ -208,6 +209,7 @@ class NewnoticeAction extends Action
         if (isset($upload)) {
             $upload->attachToNotice($notice);
         }
+        Event::handle('EndSaveNewNoticeWeb', array($this, $user, &$content_shortened, &$options));
 
         if ($this->boolean('ajax')) {
             header('Content-Type: text/xml;charset=utf-8');

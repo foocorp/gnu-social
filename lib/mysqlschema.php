@@ -333,7 +333,7 @@ class MysqlSchema extends Schema
         }
 
         if (empty($name)) {
-            $name = "$table_".implode("_", $columnNames)."_idx";
+            $name = "{$table}_".implode("_", $columnNames)."_idx";
         }
 
         $res = $this->conn->query("ALTER TABLE $table ".

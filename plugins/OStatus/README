@@ -1,16 +1,40 @@
-Plugin to support importing updates from external RSS and Atom feeds into your timeline.
+Plugin to support importing and exporting notices through Atom and RSS feeds.
+The OStatus plugin concentrates on user-to-user cases for federating StatusNet
+and similar social networking / microblogging / blogging sites, but includes
+low-level feed subscription systems which are used by some other plugins.
 
-Uses PubSubHubbub for push feed updates; currently non-PuSH feeds cannot be subscribed.
+Uses PubSubHubbub for push feed updates; currently non-PuSH feeds cannot be
+subscribed unless an external PuSH hub proxy is used.
+
 
 Configuration options available:
 
 $config['ostatus']['hub']
     (default internal hub)
-    Set to URL of an external PuSH hub to use it instead of our internal hub.
+    Set to URL of an external PuSH hub to use it instead of our internal hub
+    for sending outgoing updates in user and group feeds.
 
 $config['ostatus']['hub_retries']
     (default 0)
     Number of times to retry a PuSH send to consumers if using internal hub
+
+
+Settings controlling incoming feed subscription:
+
+$config['feedsub']['fallback_hub']
+    To subscribe to feeds that don't have a hub, an external PuSH proxy hub
+    such as Superfeedr may be used. Any feed without a hub of its own will
+    be subscribed through the specified hub URL instead. If the external hub
+    has usage charges, be aware that there is no restriction placed to how
+    many feeds may be subscribed!
+
+    $config['feedsub']['fallback_hub'] = 'https://superfeedr.com/hubbub';
+
+$config['feedsub']['hub_user']
+$config['feedsub']['hub_password']
+    If using the fallback hub mode, these settings may be used to provide
+    HTTP authentication credentials for contacting the hub. Default hubs
+    specified from feeds are assumed to not require
 
 
 For testing, shouldn't be used in production:
@@ -23,12 +47,11 @@ $config['feedsub']['nohub']
     (default require hub)
     Allow low-level feed subscription setup for feeds without hubs.
     Not actually usable at this stage, OStatus will check for hubs too
-    and we have no polling backend.
+    and we have no polling backend. (The fallback hub option can be used
+    with a 3rd-party service to provide such polling.)
 
 
 Todo:
-* fully functional l10n
-* redo non-OStatus feed support
-** rssCloud support?
-** possibly a polling daemon to support non-PuSH feeds?
+* better support for feeds that aren't natively oriented at social networking
 * make use of tags/categories from feeds
+* better repeat handling

@@ -9,12 +9,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-07 16:23+0000\n"
-"PO-Revision-Date: 2010-08-07 16:24:45+0000\n"
+"POT-Creation-Date: 2010-08-11 10:11+0000\n"
+"PO-Revision-Date: 2010-08-11 10:12:44+0000\n"
 "Language-Team: Macedonian\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.17alpha (r70633); Translate extension (2010-07-21)\n"
+"X-Generator: MediaWiki 1.17alpha (r70848); Translate extension (2010-07-21)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: out-statusnet\n"
@@ -792,7 +792,7 @@ msgid "Preview"
 msgstr "Преглед"
 
 #: actions/avatarsettings.php:149 actions/showapplication.php:252
-#: lib/deleteuserform.php:66 lib/noticelist.php:656
+#: lib/deleteuserform.php:66 lib/noticelist.php:657
 msgid "Delete"
 msgstr "Бриши"
 
@@ -1074,7 +1074,7 @@ msgid "Do not delete this notice"
 msgstr "Не ја бриши оваа забелешка"
 
 #. TRANS: Submit button title for 'Yes' when deleting a notice.
-#: actions/deletenotice.php:158 lib/noticelist.php:656
+#: actions/deletenotice.php:158 lib/noticelist.php:657
 msgid "Delete this notice"
 msgstr "Бриши ја оваа забелешка"
 
@@ -3510,7 +3510,7 @@ msgstr "Не можете да повторувате сопствена заб�
 msgid "You already repeated that notice."
 msgstr "Веќе ја имате повторено таа забелешка."
 
-#: actions/repeat.php:114 lib/noticelist.php:675
+#: actions/repeat.php:114 lib/noticelist.php:676
 msgid "Repeated"
 msgstr "Повторено"
 
@@ -4983,7 +4983,7 @@ msgstr "Проблем при зачувувањето на групното п�
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1745
+#: classes/Notice.php:1746
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr "RT @%1$s %2$s"
@@ -5377,13 +5377,13 @@ msgstr "Прелом на страници"
 #. TRANS: present than the currently displayed information.
 #: lib/action.php:1203
 msgid "After"
-msgstr "По"
+msgstr "Следно"
 
 #. TRANS: Pagination message to go to a page displaying information more in the
 #. TRANS: past than the currently displayed information.
 #: lib/action.php:1213
 msgid "Before"
-msgstr "Пред"
+msgstr "Претходно"
 
 #. TRANS: Client exception thrown when a feed instance is a DOMDocument.
 #: lib/activity.php:122
@@ -6547,7 +6547,7 @@ msgstr ""
 "впуштите во разговор со други корисници. Луѓето можат да ви испраќаат пораки "
 "што ќе можете да ги видите само Вие."
 
-#: lib/mailbox.php:227 lib/noticelist.php:505
+#: lib/mailbox.php:228 lib/noticelist.php:506
 msgid "from"
 msgstr "од"
 
@@ -6709,23 +6709,23 @@ msgstr "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 msgid "at"
 msgstr "во"
 
-#: lib/noticelist.php:567
+#: lib/noticelist.php:568
 msgid "in context"
 msgstr "во контекст"
 
-#: lib/noticelist.php:602
+#: lib/noticelist.php:603
 msgid "Repeated by"
 msgstr "Повторено од"
 
-#: lib/noticelist.php:629
+#: lib/noticelist.php:630
 msgid "Reply to this notice"
 msgstr "Одговори на забелешкава"
 
-#: lib/noticelist.php:630
+#: lib/noticelist.php:631
 msgid "Reply"
 msgstr "Одговор"
 
-#: lib/noticelist.php:674
+#: lib/noticelist.php:675
 msgid "Notice repeated"
 msgstr "Забелешката е повторена"
 

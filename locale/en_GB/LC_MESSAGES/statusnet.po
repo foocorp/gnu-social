@@ -11,12 +11,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-07 16:23+0000\n"
-"PO-Revision-Date: 2010-08-07 16:24:20+0000\n"
+"POT-Creation-Date: 2010-08-11 10:11+0000\n"
+"PO-Revision-Date: 2010-08-11 10:11:54+0000\n"
 "Language-Team: British English\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.17alpha (r70633); Translate extension (2010-07-21)\n"
+"X-Generator: MediaWiki 1.17alpha (r70848); Translate extension (2010-07-21)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: en-gb\n"
 "X-Message-Group: out-statusnet\n"
@@ -173,8 +173,8 @@ msgid ""
 "You can try to [nudge %1$s](../%2$s) from their profile or [post something "
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
-"You can try to [nudge %1$s](../%2$s) from his profile or [post something to "
-"his or her attention](%%%%action.newnotice%%%%?status_textarea=%3$s)."
+"Be the first to [post on this topic](%%%%action.newnotice%%%%?"
+"status_textarea=%s)!"
 
 #: actions/all.php:149 actions/replies.php:210 actions/showstream.php:211
 #, fuzzy, php-format
@@ -182,8 +182,8 @@ msgid ""
 "Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
 "post a notice to them."
 msgstr ""
-"Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
-"post a notice to his or her attention."
+"Why not [register an account](%%action.register%%) and be the first to add a "
+"notice to your favourites!"
 
 #. TRANS: H1 text
 #: actions/all.php:182
@@ -367,7 +367,7 @@ msgstr "Could not delete favourite."
 #: actions/apifriendshipscreate.php:109
 #, fuzzy
 msgid "Could not follow user: profile not found."
-msgstr "Could not follow user: User not found."
+msgstr "Could not unfollow user: User not found."
 
 #: actions/apifriendshipscreate.php:118
 #, php-format
@@ -383,9 +383,8 @@ msgid "You cannot unfollow yourself."
 msgstr "You cannot unfollow yourself."
 
 #: actions/apifriendshipsexists.php:91
-#, fuzzy
 msgid "Two valid IDs or screen_names must be supplied."
-msgstr "Two user ids or screen_names must be supplied."
+msgstr ""
 
 #: actions/apifriendshipsshow.php:134
 msgid "Could not determine source user."
@@ -789,7 +788,7 @@ msgid "Preview"
 msgstr "Preview"
 
 #: actions/avatarsettings.php:149 actions/showapplication.php:252
-#: lib/deleteuserform.php:66 lib/noticelist.php:656
+#: lib/deleteuserform.php:66 lib/noticelist.php:657
 msgid "Delete"
 msgstr "Delete"
 
@@ -1070,7 +1069,7 @@ msgid "Do not delete this notice"
 msgstr "Do not delete this notice"
 
 #. TRANS: Submit button title for 'Yes' when deleting a notice.
-#: actions/deletenotice.php:158 lib/noticelist.php:656
+#: actions/deletenotice.php:158 lib/noticelist.php:657
 msgid "Delete this notice"
 msgstr "Delete this notice"
 
@@ -2128,8 +2127,9 @@ msgid "This is your inbox, which lists your incoming private messages."
 msgstr "This is your inbox, which lists your incoming private messages."
 
 #: actions/invite.php:39
+#, fuzzy
 msgid "Invites have been disabled."
-msgstr ""
+msgstr "Invitations enabled"
 
 #: actions/invite.php:41
 #, php-format
@@ -2493,11 +2493,9 @@ msgid "Updates matching search term \"%1$s\" on %2$s!"
 msgstr "Updates matching search term \"%1$s\" on %2$s!"
 
 #: actions/nudge.php:85
-#, fuzzy
 msgid ""
 "This user doesn't allow nudges or hasn't confirmed or set their email yet."
 msgstr ""
-"This user doesn't allow nudges or hasn't confirmed or set his e-mail yet."
 
 #: actions/nudge.php:94
 msgid "Nudge sent"
@@ -2529,8 +2527,9 @@ msgid "Connected applications"
 msgstr "Connected applications"
 
 #: actions/oauthconnectionssettings.php:83
+#, fuzzy
 msgid "You have allowed the following applications to access you account."
-msgstr ""
+msgstr "You have not authorised any applications to use your account."
 
 #: actions/oauthconnectionssettings.php:175
 msgid "You are not a user of that application."
@@ -2609,8 +2608,9 @@ msgid "View profile designs"
 msgstr "View profile designs"
 
 #: actions/othersettings.php:123
+#, fuzzy
 msgid "Show or hide profile designs."
-msgstr ""
+msgstr "View profile designs"
 
 #: actions/othersettings.php:153
 msgid "URL shortening service is too long (max 50 chars)."
@@ -2717,8 +2717,9 @@ msgid "Paths"
 msgstr ""
 
 #: actions/pathsadminpanel.php:70
+#, fuzzy
 msgid "Path and server settings for this StatusNet site."
-msgstr ""
+msgstr "Basic settings for this StatusNet site"
 
 #: actions/pathsadminpanel.php:157
 #, php-format
@@ -2785,16 +2786,19 @@ msgid "Theme"
 msgstr ""
 
 #: actions/pathsadminpanel.php:264
+#, fuzzy
 msgid "Theme server"
-msgstr ""
+msgstr "SSL server"
 
 #: actions/pathsadminpanel.php:268
+#, fuzzy
 msgid "Theme path"
-msgstr ""
+msgstr "Site path"
 
 #: actions/pathsadminpanel.php:272
+#, fuzzy
 msgid "Theme directory"
-msgstr ""
+msgstr "Avatar directory"
 
 #: actions/pathsadminpanel.php:279
 msgid "Avatars"
@@ -2813,20 +2817,24 @@ msgid "Avatar directory"
 msgstr "Avatar directory"
 
 #: actions/pathsadminpanel.php:301
+#, fuzzy
 msgid "Backgrounds"
-msgstr ""
+msgstr "Background"
 
 #: actions/pathsadminpanel.php:305
+#, fuzzy
 msgid "Background server"
-msgstr ""
+msgstr "Background"
 
 #: actions/pathsadminpanel.php:309
+#, fuzzy
 msgid "Background path"
-msgstr ""
+msgstr "Background"
 
 #: actions/pathsadminpanel.php:313
+#, fuzzy
 msgid "Background directory"
-msgstr ""
+msgstr "Background directory not writable: %s."
 
 #: actions/pathsadminpanel.php:320
 msgid "SSL"
@@ -2845,8 +2853,9 @@ msgid "Always"
 msgstr ""
 
 #: actions/pathsadminpanel.php:329
+#, fuzzy
 msgid "Use SSL"
-msgstr ""
+msgstr "SSL"
 
 #: actions/pathsadminpanel.php:330
 msgid "When to use SSL"
@@ -3062,21 +3071,24 @@ msgid "Public Stream Feed (Atom)"
 msgstr "Public Stream Feed (Atom)"
 
 #: actions/public.php:188
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "This is the public timeline for %%site.name%% but no one has posted anything "
 "yet."
 msgstr ""
+"This is the timeline for %s and friends but no one has posted anything yet."
 
 #: actions/public.php:191
 msgid "Be the first to post!"
 msgstr ""
 
 #: actions/public.php:195
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "Why not [register an account](%%action.register%%) and be the first to post!"
 msgstr ""
+"Why not [register an account](%%action.register%%) and be the first to add a "
+"notice to your favourites!"
 
 #: actions/public.php:242
 #, php-format
@@ -3121,11 +3133,13 @@ msgid "Be the first to post one!"
 msgstr ""
 
 #: actions/publictagcloud.php:75
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "Why not [register an account](%%action.register%%) and be the first to post "
 "one!"
 msgstr ""
+"Why not [register an account](%%action.register%%) and be the first to add a "
+"notice to your favourites!"
 
 #: actions/publictagcloud.php:134
 msgid "Tag cloud"
@@ -3172,8 +3186,9 @@ msgid "You have been identified. Enter a new password below. "
 msgstr ""
 
 #: actions/recoverpassword.php:188
+#, fuzzy
 msgid "Password recovery"
-msgstr ""
+msgstr "Password recovery requested"
 
 #: actions/recoverpassword.php:191
 msgid "Nickname or email address"
@@ -3463,7 +3478,7 @@ msgstr "You can't repeat your own notice."
 msgid "You already repeated that notice."
 msgstr "You already repeated that notice."
 
-#: actions/repeat.php:114 lib/noticelist.php:675
+#: actions/repeat.php:114 lib/noticelist.php:676
 msgid "Repeated"
 msgstr "Repeated"
 
@@ -3502,9 +3517,7 @@ msgstr "Notice feed for %s"
 msgid ""
 "This is the timeline showing replies to %1$s but %2$s hasn't received a "
 "notice to them yet."
-msgstr ""
-"This is the timeline showing replies to %1$s but %2$s hasn't received a "
-"notice to his attention yet."
+msgstr "This is the timeline for %1$s but %2$s hasn't posted anything yet."
 
 #: actions/replies.php:204
 #, php-format
@@ -3519,8 +3532,8 @@ msgid ""
 "You can try to [nudge %1$s](../%2$s) or [post something to them](%%%%action."
 "newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
-"You can try to [nudge %1$s](../%2$s) or [post something to his or her "
-"attention](%%%%action.newnotice%%%%?status_textarea=%3$s)."
+"Be the first to [post on this topic](%%%%action.newnotice%%%%?"
+"status_textarea=%s)!"
 
 #: actions/repliesrss.php:72
 #, php-format
@@ -3550,8 +3563,9 @@ msgstr "User is already sandboxed."
 #. TRANS: Menu item for site administration
 #: actions/sessionsadminpanel.php:54 actions/sessionsadminpanel.php:170
 #: lib/adminpanelaction.php:392
+#, fuzzy
 msgid "Sessions"
-msgstr ""
+msgstr "Version"
 
 #: actions/sessionsadminpanel.php:65
 msgid "Session settings for this StatusNet site."
@@ -3619,16 +3633,18 @@ msgid "Created by %1$s - %2$s access by default - %3$d users"
 msgstr ""
 
 #: actions/showapplication.php:213
+#, fuzzy
 msgid "Application actions"
-msgstr ""
+msgstr "Application not found."
 
 #: actions/showapplication.php:236
 msgid "Reset key & secret"
 msgstr ""
 
 #: actions/showapplication.php:261
+#, fuzzy
 msgid "Application info"
-msgstr ""
+msgstr "Application not found."
 
 #: actions/showapplication.php:263
 msgid "Consumer key"
@@ -3693,13 +3709,11 @@ msgstr ""
 "notices you like to bookmark them for later or shed a spotlight on them."
 
 #: actions/showfavorites.php:208
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%s hasn't added any favorite notices yet. Post something interesting they "
 "would add to their favorites :)"
 msgstr ""
-"%s hasn't added any notices to his favourites yet. Post something "
-"interesting they would add to their favourites :)"
 
 #: actions/showfavorites.php:212
 #, fuzzy, php-format
@@ -3708,9 +3722,8 @@ msgid ""
 "action.register%%%%) and then post something interesting they would add to "
 "their favorites :)"
 msgstr ""
-"%s hasn't added any notices to his favourites yet. Why not [register an "
-"account](%%%%action.register%%%%) and then post something interesting they "
-"would add to their favourites :)"
+"Why not [register an account](%%action.register%%) and be the first to add a "
+"notice to your favourites!"
 
 #: actions/showfavorites.php:243
 msgid "This is a way to share what you like."
@@ -3892,17 +3905,21 @@ msgid ""
 "You can try to nudge %1$s or [post something to them](%%%%action.newnotice%%%"
 "%?status_textarea=%2$s)."
 msgstr ""
-"You can try to nudge %1$s or [post something to his or her attention](%%%%"
-"action.newnotice%%%%?status_textarea=%2$s)."
+"Be the first to [post on this topic](%%%%action.newnotice%%%%?"
+"status_textarea=%s)!"
 
 #: actions/showstream.php:243
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool. [Join now](%%%%action.register%%%%) to "
 "follow **%s**'s notices and many more! ([Read more](%%%%doc.help%%%%))"
 msgstr ""
+"This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
+"blogging) service based on the Free Software [StatusNet](http://status.net/) "
+"tool. [Join now](%%action.register%%) to share notices about yourself with "
+"friends, family, and colleagues! ([Read more](%%doc.help%%))"
 
 #: actions/showstream.php:248
 #, php-format
@@ -3990,8 +4007,9 @@ msgid "Local"
 msgstr "Local"
 
 #: actions/siteadminpanel.php:256
+#, fuzzy
 msgid "Default timezone"
-msgstr ""
+msgstr "Default subscription"
 
 #: actions/siteadminpanel.php:257
 msgid "Default timezone for the site; usually UTC."
@@ -4217,16 +4235,18 @@ msgid "Manage snapshot configuration"
 msgstr "Manage snapshot configuration"
 
 #: actions/snapshotadminpanel.php:127
+#, fuzzy
 msgid "Invalid snapshot run value."
-msgstr ""
+msgstr "Invalid role."
 
 #: actions/snapshotadminpanel.php:133
 msgid "Snapshot frequency must be a number."
 msgstr ""
 
 #: actions/snapshotadminpanel.php:144
+#, fuzzy
 msgid "Invalid snapshot report URL."
-msgstr ""
+msgstr "nvalid logo URL."
 
 #: actions/snapshotadminpanel.php:200
 msgid "Randomly during web hit"
@@ -4237,8 +4257,9 @@ msgid "In a scheduled job"
 msgstr ""
 
 #: actions/snapshotadminpanel.php:206
+#, fuzzy
 msgid "Data snapshots"
-msgstr ""
+msgstr "Save snapshot settings"
 
 #: actions/snapshotadminpanel.php:208
 msgid "When to send statistical data to status.net servers"
@@ -4253,8 +4274,9 @@ msgid "Snapshots will be sent once every N web hits"
 msgstr ""
 
 #: actions/snapshotadminpanel.php:226
+#, fuzzy
 msgid "Report URL"
-msgstr ""
+msgstr "Source URL"
 
 #: actions/snapshotadminpanel.php:227
 msgid "Snapshots will be sent to this URL"
@@ -4322,11 +4344,13 @@ msgid "%s has no subscribers. Want to be the first?"
 msgstr ""
 
 #: actions/subscribers.php:114
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "%s has no subscribers. Why not [register an account](%%%%action.register%%%"
 "%) and be the first?"
 msgstr ""
+"Why not [register an account](%%action.register%%) and be the first to add a "
+"notice to your favourites!"
 
 #: actions/subscriptions.php:52
 #, php-format
@@ -4472,8 +4496,9 @@ msgid "User"
 msgstr "User"
 
 #: actions/useradminpanel.php:70
+#, fuzzy
 msgid "User settings for this StatusNet site."
-msgstr ""
+msgstr "Design settings for this StausNet site."
 
 #: actions/useradminpanel.php:149
 msgid "Invalid bio limit. Must be numeric."
@@ -4507,12 +4532,14 @@ msgid "New users"
 msgstr "New users"
 
 #: actions/useradminpanel.php:235
+#, fuzzy
 msgid "New user welcome"
-msgstr ""
+msgstr "New users"
 
 #: actions/useradminpanel.php:236
+#, fuzzy
 msgid "Welcome text for new users (Max 255 chars)."
-msgstr ""
+msgstr "Name is too long (max 255 chars)."
 
 #: actions/useradminpanel.php:241
 msgid "Default subscription"
@@ -4622,9 +4649,9 @@ msgid "Profile URL ‘%s’ is for a local user."
 msgstr ""
 
 #: actions/userauthorization.php:345
-#, php-format
+#, fuzzy, php-format
 msgid "Avatar URL ‘%s’ is not valid."
-msgstr ""
+msgstr "Callback URL is not valid."
 
 #: actions/userauthorization.php:350
 #, php-format
@@ -4696,8 +4723,9 @@ msgid ""
 msgstr ""
 
 #: actions/version.php:163
+#, fuzzy
 msgid "Contributors"
-msgstr ""
+msgstr "Connections"
 
 #: actions/version.php:170
 msgid ""
@@ -4894,7 +4922,7 @@ msgstr "Problem saving group inbox."
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1745
+#: classes/Notice.php:1746
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr "RT @%1$s %2$s"
@@ -4932,8 +4960,9 @@ msgstr "You have been banned from subscribing."
 
 #. TRANS: Exception thrown when trying to subscribe while already subscribed.
 #: classes/Subscription.php:80
+#, fuzzy
 msgid "Already subscribed!"
-msgstr ""
+msgstr "Not subscribed!"
 
 #. TRANS: Exception thrown when trying to subscribe to a user who has blocked the subscribing user.
 #: classes/Subscription.php:85
@@ -4950,19 +4979,19 @@ msgstr "Not subscribed!"
 #: classes/Subscription.php:178
 #, fuzzy
 msgid "Could not delete self-subscription."
-msgstr "Couldn't delete self-subscription."
+msgstr "Could not save subscription."
 
 #. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
 #: classes/Subscription.php:206
 #, fuzzy
 msgid "Could not delete subscription OMB token."
-msgstr "Couldn't delete subscription OMB token."
+msgstr "Could not save subscription."
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
 #: classes/Subscription.php:218
 #, fuzzy
 msgid "Could not delete subscription."
-msgstr "Couldn't delete subscription."
+msgstr "Could not save subscription."
 
 #. TRANS: Notice given on user registration.
 #. TRANS: %1$s is the sitename, $2$s is the registering user's nickname.
@@ -5400,13 +5429,15 @@ msgstr ""
 
 #. TRANS: Form legend.
 #: lib/applicationeditform.php:137
+#, fuzzy
 msgid "Edit application"
-msgstr ""
+msgstr "Edit Application"
 
 #. TRANS: Form guide.
 #: lib/applicationeditform.php:187
+#, fuzzy
 msgid "Icon for this application"
-msgstr ""
+msgstr "Do not delete this application"
 
 #. TRANS: Form input field instructions.
 #: lib/applicationeditform.php:209
@@ -5503,13 +5534,15 @@ msgstr "Revoke"
 
 #. TRANS: DT element label in attachment list.
 #: lib/attachmentlist.php:88
+#, fuzzy
 msgid "Attachments"
-msgstr ""
+msgstr "No attachments."
 
 #. TRANS: DT element label in attachment list item.
 #: lib/attachmentlist.php:265
+#, fuzzy
 msgid "Author"
-msgstr ""
+msgstr "Authorise URL"
 
 #. TRANS: DT element label in attachment list item.
 #: lib/attachmentlist.php:279
@@ -5521,8 +5554,9 @@ msgid "Notices where this attachment appears"
 msgstr ""
 
 #: lib/attachmenttagcloudsection.php:48
+#, fuzzy
 msgid "Tags for this attachment"
-msgstr ""
+msgstr "No such attachment."
 
 #: lib/authenticationplugin.php:221 lib/authenticationplugin.php:226
 msgid "Password changing failed"
@@ -5912,8 +5946,9 @@ msgstr ""
 "You can upload your personal background image. The maximum file size is 2MB."
 
 #: lib/designsettings.php:418
+#, fuzzy
 msgid "Design defaults restored."
-msgstr ""
+msgstr "Design preferences saved."
 
 #: lib/disfavorform.php:114 lib/disfavorform.php:140
 msgid "Disfavor this notice"
@@ -6313,9 +6348,9 @@ msgid ""
 msgstr ""
 
 #: lib/mail.php:657
-#, php-format
+#, fuzzy, php-format
 msgid "%s (@%s) sent a notice to your attention"
-msgstr ""
+msgstr "%s (@%s) added your notice as a favorite"
 
 #. TRANS: Body of @-reply notification e-mail.
 #: lib/mail.php:660
@@ -6355,7 +6390,7 @@ msgid ""
 "users in conversation. People can send you messages for your eyes only."
 msgstr ""
 
-#: lib/mailbox.php:227 lib/noticelist.php:505
+#: lib/mailbox.php:228 lib/noticelist.php:506
 msgid "from"
 msgstr "from"
 
@@ -6509,23 +6544,23 @@ msgstr ""
 msgid "at"
 msgstr ""
 
-#: lib/noticelist.php:567
+#: lib/noticelist.php:568
 msgid "in context"
 msgstr "in context"
 
-#: lib/noticelist.php:602
+#: lib/noticelist.php:603
 msgid "Repeated by"
 msgstr "Repeated by"
 
-#: lib/noticelist.php:629
+#: lib/noticelist.php:630
 msgid "Reply to this notice"
 msgstr "Reply to this notice"
 
-#: lib/noticelist.php:630
+#: lib/noticelist.php:631
 msgid "Reply"
 msgstr "Reply"
 
-#: lib/noticelist.php:674
+#: lib/noticelist.php:675
 msgid "Notice repeated"
 msgstr "Notice repeated"
 
@@ -6827,16 +6862,18 @@ msgid "Top posters"
 msgstr "Top posters"
 
 #: lib/unsandboxform.php:69
+#, fuzzy
 msgid "Unsandbox"
-msgstr ""
+msgstr "Sandbox"
 
 #: lib/unsandboxform.php:80
 msgid "Unsandbox this user"
 msgstr "Unsandbox this user"
 
 #: lib/unsilenceform.php:67
+#, fuzzy
 msgid "Unsilence"
-msgstr ""
+msgstr "Silence"
 
 #: lib/unsilenceform.php:78
 msgid "Unsilence this user"

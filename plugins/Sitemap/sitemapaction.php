@@ -53,6 +53,8 @@ class SitemapAction extends Action
 
     function handle($args)
     {
+        parent::handle($args);
+
         header('Content-Type: text/xml; charset=UTF-8');
         $this->startXML();
 
@@ -65,6 +67,27 @@ class SitemapAction extends Action
         $this->elementEnd('urlset');
 
         $this->endXML();
+    }
+
+    function lastModified()
+    {
+        $y = $this->trimmed('year');
+
+        $m = $this->trimmed('month');
+        $d = $this->trimmed('day');
+
+        $y += 0;
+        $m += 0;
+        $d += 0;
+
+        $begdate = strtotime("$y-$m-$d 00:00:00");
+        $enddate = $begdate + (24 * 60 * 60);
+
+        if ($enddate < time()) {
+            return $enddate;
+        } else {
+            return null;
+        }
     }
 
     function showUrl($url, $lastMod=null, $changeFreq=null, $priority=null)

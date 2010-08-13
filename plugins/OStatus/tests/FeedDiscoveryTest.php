@@ -10,7 +10,7 @@ define('STATUSNET', true);
 define('LACONICA', true);
 
 require_once INSTALLDIR . '/lib/common.php';
-require_once INSTALLDIR . '/plugins/FeedSub/feedsub.php';
+require_once INSTALLDIR . '/plugins/OStatus/lib/feeddiscovery.php';
 
 class FeedDiscoveryTest extends PHPUnit_Framework_TestCase
 {

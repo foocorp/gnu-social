@@ -310,6 +310,7 @@ function get_all_languages() {
         'da'      => array('q' => 0.8, 'lang' => 'da', 'name' => 'Danish', 'direction' => 'ltr'),
         'de'      => array('q' => 0.8, 'lang' => 'de', 'name' => 'German', 'direction' => 'ltr'),
         'el'      => array('q' => 0.1, 'lang' => 'el',    'name' => 'Greek', 'direction' => 'ltr'),
+        'eo'      => array('q' => 0.8, 'lang' => 'eo',    'name' => 'Esperanto', 'direction' => 'ltr'),
         'en-us'   => array('q' => 1, 'lang' => 'en', 'name' => 'English (US)', 'direction' => 'ltr'),
         'en-gb'   => array('q' => 1, 'lang' => 'en_GB', 'name' => 'English (British)', 'direction' => 'ltr'),
         'en'      => array('q' => 1, 'lang' => 'en',    'name' => 'English (US)', 'direction' => 'ltr'),

@@ -77,6 +77,22 @@ class SubMirror extends Memcached_DataObject
     }
 
     /**
+     * Temporary hack to set up the compound index, since we can't do
+     * it yet through regular Schema interface. (Coming for 1.0...)
+     * 
+     * @param Schema $schema
+     * @return void
+     */
+    static function fixIndexes($schema)
+    {
+        try {
+            $schema->createIndex('submirror', array('subscribed', 'subscriber'));
+        } catch (Exception $e) {
+            common_log(LOG_ERR, __METHOD__ . ': ' . $e->getMessage());
+        }
+    }
+
+    /**
      * return key definitions for DB_DataObject
      *
      * DB_DataObject needs to know about keys that the table has; this function

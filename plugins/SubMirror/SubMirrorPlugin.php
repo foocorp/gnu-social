@@ -120,6 +120,9 @@ class SubMirrorPlugin extends Plugin
     {
         $schema = Schema::get();
         $schema->ensureTable('submirror', SubMirror::schemaDef());
+
+        // @hack until key definition support is merged
+        SubMirror::fixIndexes($schema);
         return true;
     }
 

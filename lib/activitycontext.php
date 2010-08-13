@@ -71,6 +71,7 @@ class ActivityContext
 
         $links = $element->getElementsByTagNameNS(ActivityUtils::ATOM, ActivityUtils::LINK);
 
+        $attention = array();
         for ($i = 0; $i < $links->length; $i++) {
 
             $link = $links->item($i);
@@ -80,11 +81,12 @@ class ActivityContext
             // XXX: Deprecate this in favour of "mentioned" from Salmon spec
             // http://salmon-protocol.googlecode.com/svn/trunk/draft-panzer-salmon-00.html#SALR
             if ($linkRel == self::ATTENTION) {
-                $this->attention[] = $link->getAttribute(self::HREF);
+                $attention[] = $link->getAttribute(self::HREF);
             } elseif ($linkRel == self::MENTIONED) {
-                $this->attention[] = $link->getAttribute(self::HREF);
+                $attention[] = $link->getAttribute(self::HREF);
             }
         }
+        $this->attention = array_unique($attention);
     }
 
     /**

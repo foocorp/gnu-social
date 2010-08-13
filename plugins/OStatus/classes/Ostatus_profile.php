@@ -493,8 +493,14 @@ class Ostatus_profile extends Memcached_DataObject
                 // OK here! assume the default
             } else if ($actor->id == $this->uri || $actor->link == $this->uri) {
                 $this->updateFromActivityObject($actor);
-            } else {
+            } else if ($actor->id) {
+                // We have an ActivityStreams actor with an explicit ID that doesn't match the feed owner.
+                // This isn't what we expect from mainline OStatus person feeds!
+                // Group feeds go down another path, with different validation.
                 throw new Exception("Got an actor '{$actor->title}' ({$actor->id}) on single-user feed for {$this->uri}");
+            } else {
+                // Plain <author> without ActivityStreams actor info.
+                // We'll just ignore this info for now and save the update under the feed's identity.
             }
 
             $oprofile = $this;
@@ -675,7 +681,7 @@ class Ostatus_profile extends Memcached_DataObject
         common_log(LOG_DEBUG, "Original reply recipients: " . implode(', ', $attention_uris));
         $groups = array();
         $replies = array();
-        foreach ($attention_uris as $recipient) {
+        foreach (array_unique($attention_uris) as $recipient) {
             // Is the recipient a local user?
             $user = User::staticGet('uri', $recipient);
             if ($user) {
@@ -869,12 +875,12 @@ class Ostatus_profile extends Memcached_DataObject
         $feeduri = $discover->discoverFromFeedURL($feed_url);
         $hints['feedurl'] = $feeduri;
 
-        $huburi = $discover->getAtomLink('hub');
+        $huburi = $discover->getHubLink();
         $hints['hub'] = $huburi;
         $salmonuri = $discover->getAtomLink(Salmon::NS_REPLIES);
         $hints['salmon'] = $salmonuri;
 
-        if (!$huburi) {
+        if (!$huburi && !common_config('feedsub', 'fallback_hub')) {
             // We can only deal with folks with a PuSH hub
             throw new FeedSubNoHubException();
         }
@@ -1270,10 +1276,10 @@ class Ostatus_profile extends Memcached_DataObject
                 $discover = new FeedDiscovery();
                 $discover->discoverFromFeedURL($hints['feedurl']);
             }
-            $huburi = $discover->getAtomLink('hub');
+            $huburi = $discover->getHubLink();
         }
 
-        if (!$huburi) {
+        if (!$huburi && !common_config('feedsub', 'fallback_hub')) {
             // We can only deal with folks with a PuSH hub
             throw new FeedSubNoHubException();
         }
