@@ -35,35 +35,33 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 class GNUsocialPhoto extends Memcached_DataObject
 {
     public $__table = 'GNUsocialPhoto';
-    public $noitce_id;   // integer
-    public $path;        // varchar(150)
-    public $thumb_path;  // varchar(156)
-    public $owner_id;    // int(11) (user who posted the photo)
-
+    public $notice_id;  // int(11)
+    public $uri;        // varchar(512)
+    public $thumb_uri;  // varchar(512)
+    
     function staticGet($k,$v=NULL)
     {
         return Memcached_DataObject::staticGet('GNUsocialPhoto',$k,$v);
     }
 
-    function delete()
+/*    function delete()
     {
-        if(!unlink(INSTALLDIR . $this->thumb_path)) {
+        if(!unlink(INSTALLDIR . $this->thumb_uri)) {
             return false;
         }
         if(!unlink(INSTALLDIR . $this->path)) {
             return false;
         }
         return parent::delete();
-    }
+    } */
 
     function table()
     {
-        return array('notice_id' => DB_DATAOBJECT_INT,
-                     'path' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'thumb_path' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'owner_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL);
+        return array('notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
+                     'uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
+                     'thumb_uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL);
     }
-
+    
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -79,23 +77,21 @@ class GNUsocialPhoto extends Memcached_DataObject
         return array(false, false, false);
     }
 
-    function saveNew($profile_id, $thumb_path, $path, $source)
+    function saveNew($profile_id, $thumb_uri, $uri, $source)
     {
         $photo = new GNUsocialPhoto();
-        $photo->thumb_path = $thumb_path;
-        $photo->path = $path;
-        $photo->owner_id = $profile_id;
+        $photo->thumb_uri = $thumb_uri;
+        $photo->uri = $uri;
 
-        $rend = sprintf('<a href="http://%s%s"><img src="http://%s%s" /></a>', common_config('site', 'server'), $path, common_config('site', 'server'), $thumb_path);
-
-        $notice = Notice::saveNew($profile_id, 'http://' . common_config('site', 'server') . $path, $source, array('rendered' => $rend));
+        $notice = Notice::saveNew($profile_id, $uri, $source);
         $photo->notice_id = $notice->id;
         $photo_id = $photo->insert();
         if (!$photo_id) {
             common_log_db_error($photo, 'INSERT', __FILE__);
             throw new ServerException(_m('Problem Saving Photo.'));
         }
-    }    
+    }
+
     /*
     function asActivityNoun($element)
     {
@@ -103,7 +99,7 @@ class GNUsocialPhoto extends Memcached_DataObject
 
         $object->type = ActivityObject::PHOTO;
         $object->title = "";
-        $object->thumbnail = 'http://' . common_config('site', 'server') . $this->thumb_path;
+        $object->thumbnail = 'http://' . common_config('site', 'server') . $this->thumb_uri;
         $object->largerImage = 'http://' . common_config('site', 'server') . $this->path;
         return $object;
     } */

@@ -134,10 +134,10 @@ class PhotouploadAction extends Action
         $filename = $cur->nickname . '-' . common_timestamp() . sha1_file($imagefile->filepath) .  image_type_to_extension($imagefile->type);
         move_uploaded_file($imagefile->filepath, INSTALLDIR . '/file/' . $filename);
         photo_make_thumbnail($filename);
-        $path = '/file/' . $filename;
-        $thumb_path = '/file/thumb.' . $filename;
+        $uri = 'http://' . common_config('site', 'server') . '/file/' . $filename;
+        $thumb_uri = 'http://' . common_config('site', 'server') . '/file/thumb.' . $filename;
         $profile_id = $cur->id;
-        GNUsocialPhoto::saveNew($profile_id, $thumb_path, $path, 'web');
+        GNUsocialPhoto::saveNew($profile_id, $thumb_uri, $uri, 'web');
     }
 
 }

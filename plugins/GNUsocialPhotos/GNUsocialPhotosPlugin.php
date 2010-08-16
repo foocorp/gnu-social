@@ -48,12 +48,12 @@ class GNUsocialPhotosPlugin extends Plugin
         case 'PhotouploadAction':
             include_once $dir . '/lib/photolib.php';
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-            include_once $dir . '/classes/gnusocialphoto.php';
             break;
         default:
             break;
         }
 
+        include_once $dir . '/classes/gnusocialphoto.php';
         return true;
     }
 
@@ -61,10 +61,9 @@ class GNUsocialPhotosPlugin extends Plugin
     {
         $schema = Schema::get();
         $schema->ensureTable('GNUsocialPhoto',
-                                array(new ColumnDef('notice_id', 'integer', null, false, null, true, null, null, true),
-                                      new ColumnDef('path', 'varchar(150)', null, false),
-                                      new ColumnDef('thumb_path', 'varchar(156)', null, false), // 156 = 150 + strlen('thumb.')
-                                      new ColumnDef('owner_id', 'int(11)', null, false)));
+                                array(new ColumnDef('notice_id', 'int(11)', null, false),
+                                      new ColumnDef('uri', 'varchar(512)', null, false),
+                                      new ColumnDef('thumb_uri', 'varchar(512)', null, false)));
     }
 
     function onRouterInitialized($m)
@@ -81,7 +80,47 @@ class GNUsocialPhotosPlugin extends Plugin
         if($photo) {
             $type = ActivityObject::PHOTO;
         }
-    } 
+    }
+
+    function onStartActivityObjects(&$notice, &$xs, &$objects)
+    {
+        $photo = GNUsocialPhoto::staticGet('notice_id', $notice->id);
+        if($photo) {
+            $object = new ActivityObject();
+            $object->thumbnail = $photo->thumb_uri;
+            $object->largerImage = $photo->uri;
+            $object->type = ActivityObject::PHOTO;
+            
+            $object->id = $notice->id;
+            $objects[0] = $object;
+        }
+    }
+
+    function onStartHandleFeedEntry($activity)
+    {
+        if ($activity->verb == ActivityVerb::POST) {
+            $oprofile = Ostatus_profile::ensureActorProfile($activity);
+            foreach ($activity->objects as $object) {
+                if ($object->type == ActivityObject::PHOTO) {
+                    $uri = $object->largerImage;
+                    $thumb_uri = $object->thumbnail;
+                    $profile_id = $oprofile->profile_id;
+                    $source = 'unknown'; // TODO: put something better here.
+
+                    $uri = filter_var($uri, FILTER_SANITIZE_URL);
+                    $thumb_uri = filter_var($thumb_uri, FILTER_SANITIZE_URL);
+                    $uri = filter_var($uri, FILTER_VALIDATE_URL);
+                    $thumb_uri = filter_var($thumb_uri, FILTER_VALIDATE_URL);
+                    if (!empty($uri) && !empty($thumb_uri)) {
+                        GNUsocialPhoto::saveNew($profile_id, $thumb_uri, $uri, $source);
+                    }
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
 /*
     function onStartShowNoticeItem($action)
     {
