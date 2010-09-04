@@ -87,8 +87,7 @@ class PhotosAction extends Action
             $username = $pathparts[0];
             $this->elementStart('ul', array('class' => 'photothumbs'));
 
-			$photo_obj= new GNUsocialPhoto();
-			$photos = $photo_obj->getGalleryPage(1, 0, 9);
+			$photos = GNUsocialPhoto::getGalleryPage(1, 0, 9);
 
             foreach ($photos as $photo) {
                 $this->elementStart('li');

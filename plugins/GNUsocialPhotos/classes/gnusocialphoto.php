@@ -109,18 +109,19 @@ class GNUsocialPhoto extends Memcached_DataObject
      * @param int gallery_size The number of thumbnails to show per page in the gallery.
      * @return array Array of GNUsocialPhotos for this gallery page.
      */
-    function getGalleryPage($page_id, $album_id, $gallery_size)
+    static function getGalleryPage($page_id, $album_id, $gallery_size)
     {
 		$page_offset = ($page_id-1) * $gallery_size; 
-        $sql = 'SELECT * FROM GNUsocialPhoto order by notice_id limit ' . $page_offset . ',' . $gallery_size; 
-        $this->query($sql);
-        $thumbs = array();
+        $sql = 'SELECT * FROM GNUsocialPhoto order by notice_id limit ' . $page_offset . ',' . $gallery_size;
+        $photo = new GNUsocialPhoto();
+        $photo->query($sql);
+        $photos = array();
 
-        while ($this->fetch()) {
-            $thumbs[] = clone($this);
+        while ($photo->fetch()) {
+            $photos[] = clone($photo);
         }
 
-        return $thumbs;
+        return $photos;
     }
 
     /*
