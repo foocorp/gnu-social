@@ -86,6 +86,11 @@ class PhotosAction extends Action
             $pathparts = explode('/', $args[1]['nickname']);
             $username = $pathparts[0];
             $this->elementStart('ul', array('class' => 'photothumbs'));
+
+			//scorbett
+			$photo_obj = new GNUsocialPhoto();
+			$photo_obj->getGalleryPage(1, 0, 9);
+
             while (false !== ($file = readdir($dir))) {
                 $fparts = explode('-', $file);
                 if ($fparts[0] == $username // uploaded by this user

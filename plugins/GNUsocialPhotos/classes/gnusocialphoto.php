@@ -36,9 +36,16 @@ class GNUsocialPhoto extends Memcached_DataObject
 {
     public $__table = 'GNUsocialPhoto';
     public $notice_id;  // int(11)
+    public $album_id;   // int(11)
     public $uri;        // varchar(512)
     public $thumb_uri;  // varchar(512)
     
+
+    /**
+     *
+     * k key
+     * v value
+     */
     function staticGet($k,$v=NULL)
     {
         return Memcached_DataObject::staticGet('GNUsocialPhoto',$k,$v);
@@ -58,6 +65,7 @@ class GNUsocialPhoto extends Memcached_DataObject
     function table()
     {
         return array('notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
+                     'album_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
                      'uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
                      'thumb_uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL);
     }
@@ -77,11 +85,12 @@ class GNUsocialPhoto extends Memcached_DataObject
         return array(false, false, false);
     }
 
-    function saveNew($profile_id, $thumb_uri, $uri, $source)
+    function saveNew($profile_id, $album_id, $thumb_uri, $uri, $source)
     {
         $photo = new GNUsocialPhoto();
         $photo->thumb_uri = $thumb_uri;
         $photo->uri = $uri;
+		$photo->album_id = $album_id;
 
         $notice = Notice::saveNew($profile_id, $uri, $source);
         $photo->notice_id = $notice->id;
@@ -90,6 +99,28 @@ class GNUsocialPhoto extends Memcached_DataObject
             common_log_db_error($photo, 'INSERT', __FILE__);
             throw new ServerException(_m('Problem Saving Photo.'));
         }
+    }
+
+
+    /*
+     * TODO: -Sanitize input
+     * @param int page_id The desired page of the gallery to show.
+     * @param int album_id The id of the album to get photos from.
+     * @param int gallery_size The number of thumbnails to show per page in the gallery.
+     * @return array Array of GNUsocialPhotos for this gallery page.
+     */
+    function getGalleryPage($page_id, $album_id, $gallery_size)
+    {
+		$page_offset = ($page_id-1) * $gallery_size; 
+        $sql = 'SELECT * FROM GNUsocialPhoto order by notice_id limit ' . $page_offset . ',' . $gallery_size; 
+        $this->query($sql);
+        $thumbs = array();
+
+        while ($this->fetch()) {
+            $thumbs[] = clone($this);
+        }
+
+        return $thumbs;
     }
 
     /*

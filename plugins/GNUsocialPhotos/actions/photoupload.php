@@ -137,7 +137,8 @@ class PhotouploadAction extends Action
         $uri = 'http://' . common_config('site', 'server') . '/file/' . $filename;
         $thumb_uri = 'http://' . common_config('site', 'server') . '/file/thumb.' . $filename;
         $profile_id = $cur->id;
-        GNUsocialPhoto::saveNew($profile_id, $thumb_uri, $uri, 'web');
+		//scorbett: the second arg below should be set to the album ID
+        GNUsocialPhoto::saveNew($profile_id, 0, $thumb_uri, $uri, 'web');
     }
 
 }
