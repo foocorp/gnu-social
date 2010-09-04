@@ -121,15 +121,15 @@ class GNUsocialPhotosPlugin extends Plugin
         return true;
     }
 
-/*
+
     function onStartShowNoticeItem($action)
     {
         $photo = GNUsocialPhoto::staticGet('notice_id', $action->notice->id);
         if($photo) { 
             $action->out->elementStart('div', 'entry-title');
             $action->showAuthor();
-            $action->out->elementStart('a', array('href' => 'http://' . common_config('site', 'server') . $photo->path));
-            $action->out->element('img', array('src' => 'http://' . common_config('site', 'server') . $photo->thumb_path));
+            $action->out->elementStart('a', array('href' => $photo->uri));
+            $action->out->element('img', array('src' => $photo->thumb_uri));
             $action->out->elementEnd('a');
             $action->out->elementEnd('div');
             $action->showNoticeInfo();
@@ -137,5 +137,5 @@ class GNUsocialPhotosPlugin extends Plugin
             return false;
         }
         return true;
-    } */
+    } 
 }
