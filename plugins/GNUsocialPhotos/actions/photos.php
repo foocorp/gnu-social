@@ -22,6 +22,7 @@
  * @category  Widget
  * @package   GNU Social
  * @author    Ian Denhardt <ian@zenhack.net>
+ * @author    Sean Corbett <sean@gnu.org>
  * @copyright 2010 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  */
@@ -85,10 +86,23 @@ class PhotosAction extends Action
             }
             $pathparts = explode('/', $args[1]['nickname']);
             $username = $pathparts[0];
+
+                        
+
+            $page = $_GET['pageid'];
+            if (!filter_var($page, FILTER_VALIDATE_INT)){
+                $page = 1;
+            }
+   
+            if ($page > 1) { 
+                $this->element('a', array('href' => 'photos?pageid=' . ($page-1)), 'Previous page');
+            }
+            $this->element('a', array('href' => 'photos?pageid=' . ($page+1) ), 'Next page');
+
+            //TODO need to set album ID..
+			$photos = GNUsocialPhoto::getGalleryPage($page, 0, 9);
+
             $this->elementStart('ul', array('class' => 'photothumbs'));
-
-			$photos = GNUsocialPhoto::getGalleryPage(1, 0, 9);
-
             foreach ($photos as $photo) {
                 $this->elementStart('li');
                 $this->elementStart('a', array('href' => $photo->uri));
