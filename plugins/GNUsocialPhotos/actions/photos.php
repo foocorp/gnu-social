@@ -87,27 +87,15 @@ class PhotosAction extends Action
             $username = $pathparts[0];
             $this->elementStart('ul', array('class' => 'photothumbs'));
 
-			//scorbett
-			$photo_obj = new GNUsocialPhoto();
-			$photo_obj->getGalleryPage(1, 0, 9);
+			$photo_obj= new GNUsocialPhoto();
+			$photos = $photo_obj->getGalleryPage(1, 0, 9);
 
-            while (false !== ($file = readdir($dir))) {
-                $fparts = explode('-', $file);
-                if ($fparts[0] == $username // uploaded by this user
-                    && ((substr($file, -4) == '.png') 
-                        || (substr($file, -4) == '.jpg') // XXX: is this needed? status.net seems to save jpgs as .jpeg
-                        || (substr($file, -5) == '.jpeg')
-                        || (substr($file, -4) == '.gif'))) { // and it's an image
-                        common_log(LOG_INFO, 'file : ' . $file);
-                        $this->elementStart('li');
-                        $this->elementStart('a', array('href' => 'http://' . common_config('site', 'server') . '/file/' . $file));
-                        if (!file_exists(INSTALLDIR . '/file/thumb.' . $file)) {
-                            photo_make_thumbnail($file);
-                        }
-                        $this->element('img', array('src' => 'http://' . common_config('site', 'server') . '/file/' . 'thumb.' .  $file));
-                        $this->elementEnd('a');
-                        $this->elementEnd('li');
-                }
+            foreach ($photos as $photo) {
+                $this->elementStart('li');
+                $this->elementStart('a', array('href' => $photo->uri));
+                $this->element('img', array('src' => $photo->thumb_uri));
+                $this->elementEnd('a');
+                $this->elementEnd('li');
             }
             $this->elementEnd('ul');
         }
