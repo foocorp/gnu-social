@@ -99,8 +99,20 @@ class PhotosAction extends Action
             }
             $this->element('a', array('href' => 'photos?pageid=' . ($page+1) ), 'Next page');
 
-            //TODO need to set album ID..
-			$photos = GNUsocialPhoto::getGalleryPage($page, 0, 9);
+            $args = $this->returnToArgs(); 
+            $profile_nick = $args[1]['nickname']; //Nickname for the profile being looked at
+
+            //TODO choice of available albums by user.
+            //Currently based on fact that each user can only have one album.
+            error_log('profile nick:', 3, '/tmp/sean.log');
+            error_log($profile_nick, 3, '/tmp/sean.log');
+            $profile = Profile::staticGet('nickname', $profile_nick); 
+            //error_log(',profile_id:', 3, '/tmp/sean.log');
+            //error_log($profile->id, 3, '/tmp/sean.log');
+            $album = GNUSocialPhotoAlbum::staticGet('profile_id', $profile->id);
+            //error_log(',album_id:', 3, '/tmp/sean.log');
+            //error_log($album->album_id, 3, '/tmp/sean.log');
+			$photos = GNUsocialPhoto::getGalleryPage($page, $album->album_id, 9);
 
             $this->elementStart('ul', array('class' => 'photothumbs'));
             foreach ($photos as $photo) {

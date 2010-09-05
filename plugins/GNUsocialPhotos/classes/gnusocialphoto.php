@@ -116,7 +116,8 @@ class GNUsocialPhoto extends Memcached_DataObject
     static function getGalleryPage($page_id, $album_id, $gallery_size)
     {
 		$page_offset = ($page_id-1) * $gallery_size; 
-        $sql = 'SELECT * FROM GNUsocialPhoto order by notice_id limit ' . $page_offset . ',' . $gallery_size;
+        $sql = 'SELECT * FROM GNUsocialPhoto WHERE album_id = ' . $album_id . 
+               ' ORDER BY notice_id LIMIT ' . $page_offset . ',' . $gallery_size;
         $photo = new GNUsocialPhoto();
         $photo->query($sql);
         $photos = array();
