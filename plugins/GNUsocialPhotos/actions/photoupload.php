@@ -114,7 +114,6 @@ class PhotouploadAction extends Action
 
     function uploadPhoto()
     {
-        common_log(LOG_INFO, 'Is this function even getting called?');
         $cur = common_current_user();
         if(empty($cur)) {
             return;
@@ -138,8 +137,15 @@ class PhotouploadAction extends Action
         $uri = 'http://' . common_config('site', 'server') . '/file/' . $filename;
         $thumb_uri = 'http://' . common_config('site', 'server') . '/file/thumb.' . $filename;
         $profile_id = $cur->id;
-		//scorbett: the second arg below should be set to the album ID
-        GNUsocialPhoto::saveNew($profile_id, 0, $thumb_uri, $uri, 'web');
+       
+        // TODO: proper multiple album support 
+        $album = GNUsocialPhotoAlbum::staticGet('profile_id', $profile_id);
+        if(!$album) {
+            $album = GNUsocialPhotoAlbum::newAlbum($profile_id, 'Default');
+            GNUsocialPhoto::saveNew($profile_id, $album->album_id, $thumb_uri, $uri, 'web');
+        } else {
+            GNUsocialPhoto::saveNew($profile_id, $album->album_id, $thumb_uri, $uri, 'web');
+        }
     }
 
 }

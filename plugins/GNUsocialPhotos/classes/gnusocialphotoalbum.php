@@ -69,8 +69,8 @@ class GNUsocialPhotoAlbum extends Memcached_DataObject
 
     function sequenceKey()
     {
-        return array(false, false, false);
-    } 
+        return array('album_id', true, false);
+    }
 
     static function newAlbum($profile_id, $album_name)
     {
@@ -81,14 +81,16 @@ class GNUsocialPhotoAlbum extends Memcached_DataObject
         }
         
         $album = new GNUsocialPhotoAlbum();
-        //TODO: Should autoincrement..
         $album->profile_id = $profile_id;
         $album->album_name = $album_name;
-        
-        if ($album->insert() == false){
+       
+        $album->album_id = $album->insert();
+        if (!$album->album_id){
             common_log_db_error($album, 'INSERT', __FILE__);
             throw new ServerException(_m('Error creating new album.'));
         }
+        common_log(LOG_INFO, 'album_id : ' . $album->album_id);
+        return $album;
     } 
 
 }
