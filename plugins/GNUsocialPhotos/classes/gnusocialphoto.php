@@ -62,6 +62,10 @@ class GNUsocialPhoto extends Memcached_DataObject
         return parent::delete();
     } */
 
+
+    /*
+     * TODO: Foriegn key on album_id.
+     */
     function table()
     {
         return array('notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,

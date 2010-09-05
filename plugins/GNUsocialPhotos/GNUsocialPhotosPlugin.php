@@ -54,6 +54,7 @@ class GNUsocialPhotosPlugin extends Plugin
         }
 
         include_once $dir . '/classes/gnusocialphoto.php';
+        include_once $dir . '/classes/gnusocialphotoalbum.php';
         return true;
     }
 
@@ -63,9 +64,13 @@ class GNUsocialPhotosPlugin extends Plugin
         $schema->ensureTable('GNUsocialPhoto',
                                 array(new ColumnDef('notice_id', 'int(11)', null, false),
                                       new ColumnDef('album_id', 'int(11)', null, false),
-                                      //new ColumnDef('album_name', 'varchar(30)', null, false),
                                       new ColumnDef('uri', 'varchar(512)', null, false),
                                       new ColumnDef('thumb_uri', 'varchar(512)', null, false)));
+        $schema->ensureTable('GNUsocialPhotoAlbum',
+                                array(new ColumnDef('album_id', 'int(11)', null, false, 'PRI', null, null, true),
+                                      new ColumnDef('profile_id', 'int(11)', null, false),
+                                      new ColumnDef('album_name', 'varchar(256)', null, false)));
+                                          
     }
 
     function onRouterInitialized($m)
