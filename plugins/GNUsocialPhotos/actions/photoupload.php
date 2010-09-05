@@ -22,6 +22,7 @@
  * @category  Widget
  * @package   GNU Social
  * @author    Ian Denhardt <ian@zenhack.net>
+ * @author    Sean Corbett <sean@gnu.org>
  * @copyright 2010 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  */
