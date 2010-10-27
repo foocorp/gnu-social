@@ -224,7 +224,6 @@ class ActivityPlugin extends Plugin
         $act = Notice_activity::staticGet('notice_id', $notice->id);
 
         if (!empty($act)) {
-            $this->debug("Have an activity ({$act->notice_id}, {$act->verb}, {$act->object})");
             $verb = $act->verb;
         }
 
@@ -236,7 +235,6 @@ class ActivityPlugin extends Plugin
         $act = Notice_activity::staticGet('notice_id', $notice->id);
 
         if (!empty($act)) {
-            $this->debug("Have an activity ({$act->notice_id}, {$act->verb}, {$act->object})");
             // no default object
             return false;
         }
@@ -249,7 +247,6 @@ class ActivityPlugin extends Plugin
         $act = Notice_activity::staticGet('notice_id', $notice->id);
 
         if (!empty($act)) {
-            $this->debug("Have an activity ({$act->notice_id}, {$act->verb}, {$act->object})");
             switch ($act->verb)
             {
             case ActivityVerb::FOLLOW:
