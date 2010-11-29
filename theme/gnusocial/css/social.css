@@ -19,7 +19,7 @@ Enable this line to debug:
 
 /* stuff we want to hide..... */
 
-legend, #anon_notice, #notices_primary h2, #site_nav_local_views dt, #ft dt, .entity_profile dt, .entity_profile h2, .entity_actions h2, .entity_nickname, .entities .nickname, .anon_notice, .entity_profile, .entity_subscribers { display: none !important; }
+legend, #anon_notice, #notices_primary h2, #site_nav_local_views dt, #ft dt, .entity_profile dt, .entity_profile h2, .entity_actions h2, .entity_nickname, .entities .nickname, .anon_notice, .entity_profile, .entity_subscribers, #notices_primary .nickname { display: none !important; }
 
 #hd a{ color: white !important; }
 
@@ -426,3 +426,4 @@ content:' and add to your friends';
 
 
 .entity_subscriptions ul:before { content: 'Fan of...'; }
+
