@@ -285,9 +285,9 @@ margin-bottom:18px;
 
 /* #all .notice .entry-content .timestamp, #public .notice .entry-content .timestamp { color: #666; margin-left: 55px; font-size: 80%; text-decoration: none !important; } */
 
-.notices .entry-content { font-size: 80%; }
+.notices div.entry-content { font-size: 80%; }
 
-.notices .entry-content a{ font-color: black; text-decoration: none; }
+.notices div.entry-content a{ font-color: black; text-decoration: none; }
 
 abbr { border: 0px !important;  }
 
