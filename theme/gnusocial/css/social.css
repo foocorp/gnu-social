@@ -412,3 +412,7 @@ padding:2px 4px 1px 26px;
 .entity_actions .accept {
 margin-bottom:18px;
 }
+
+.entity_subscribe a:after { 
+content:'for updates on your own GNU social site';
+ }
