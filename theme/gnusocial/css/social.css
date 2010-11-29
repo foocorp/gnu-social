@@ -353,10 +353,11 @@ font-size:3.25em;
 }
 
 .entity_actions {
-text-align: right;
+text-align: center;
 margin-left:2%;
 margin-bottom:18px;
 min-width:21%;
+font-size: 18px;
 }
 .entity_actions h2 {
 display:none;
