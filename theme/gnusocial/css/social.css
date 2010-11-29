@@ -19,13 +19,13 @@ Enable this line to debug:
 
 /* stuff we want to hide..... */
 
-legend,.entry-content .source, .entry-content .location, .entry-content .response, #anon_notice, #notices_primary h2, #site_nav_local_views dt, #ft dt, .entity_profile dt, .entity_profile h2, .entity_actions h2, .entity_nickname, .entities .nickname, .anon_notice, #content h1, .section h2 { display: none !important; }
+legend,.entry-content .source, .entry-content .location, .entry-content .response, #anon_notice, #notices_primary h2, #site_nav_local_views dt, #ft dt, .entity_profile dt, .entity_profile h2, .entity_actions h2, .entity_nickname, .entities .nickname, .anon_notice, #content h1, .section h2, .entity_profile { display: none !important; }
 
 .entities li { display: inline; list-style: none !important; }
 
 .entity_profile dd { margin-bottom: 1em; }
 
-.notice { background-color: #eee; margin-bottom: 1em; border-top: 1px solid #ddd; }
+.notice { background-color: #eee; margin-bottom: 1em; border-top: 1px solid #ddd; padding: 0.4em; }
 
 .entity_fn { font-size: 130%; }
 
@@ -48,7 +48,7 @@ dl, dd { margin: 0 !important; padding: 0 !important;}
 
    body {background-image: url(/theme/gnusocial/images/bg.png) !important; background-repeat: repeat-x !important; background-color: white;}
 
-   #hd h1 {margin: 0; line-height: 40px; font-size: 24px; font-weight: bold;}
+   #hd h1 {margin: 0; line-height: 57px; font-size: 24px; font-weight: bold;}
 
    #hd h1 a{color: #111; text-decoration: none;}
 
