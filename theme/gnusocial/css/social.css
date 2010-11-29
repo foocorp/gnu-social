@@ -287,7 +287,7 @@ margin-bottom:18px;
 
 .notices div.entry-content { font-size: 80%; }
 
-.notices div.entry-content a{ font-color: black; text-decoration: none; }
+.notices div.entry-content a{ font-color: black !important; text-decoration: none !important; }
 
 abbr { border: 0px !important;  }
 
