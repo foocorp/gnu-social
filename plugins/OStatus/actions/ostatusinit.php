@@ -92,9 +92,7 @@ class OStatusInitAction extends Action
     function showContent()
     {
 
-      $this->elementStart('p','morehelp');
-      $this->morehelp,_m("With GNU social, users do not use one server to communicate in the way that Facebook and Twitter users do. Instead, users are spread out over a network of servers and different sites. You can run your own server, or you can sign up for one of the public servers &mdash; it doesn't even need to be a GNU social server &mdash; any server that speaks the OStatus protocol is suitable. A good place to get an account for yourself is www.status.net");
-      $this->elementEnd('p');
+      $this->clientError(_m("With GNU social, users do not use one server to communicate in the way that Facebook and Twitter users do. Instead, users are spread out over a network of servers and different sites. You can run your own server, or you can sign up for one of the public servers &mdash; it doesn't even need to be a GNU social server &mdash; any server that speaks the OStatus protocol is suitable. A good place to get an account for yourself is www.status.net"));
     
         if ($this->group) {
             $header = sprintf(_m('Join group %s'), $this->group);
