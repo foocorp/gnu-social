@@ -8,6 +8,15 @@ Enable this line to debug:
 
 */
 
+/** theme: GNU social (portions from StatusNet base CSS)
+ *
+ * @package   GNU social
+ * @author    Matt Lee <mattl@cnuk.org>
+ * @copyright 2010 Free Software Foundation, Inc
+ * @copyright 2009-2010 StatusNet, Inc.
+ * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
+ */
+
 /* stuff we want to hide..... */
 
 legend,.entry-content .source, .entry-content .location, .entry-content .response, #anon_notice, #notices_primary h2, #site_nav_local_views dt, #ft dt, .entity_profile dt, .entity_profile h2, .entity_actions h2, .entity_nickname, .entities .nickname, .anon_notice, #content h1, .section h2 { display: none !important; }
@@ -335,4 +344,64 @@ font-size:2.75em;
 }
 .tag-cloud-7 {
 font-size:3.25em;
+}
+
+.entity_actions {
+float:right;
+margin-left:2%;
+margin-bottom:18px;
+min-width:21%;
+}
+.entity_actions h2 {
+display:none;
+}
+.entity_actions ul {
+list-style-type:none;
+}
+.entity_actions li {
+margin-bottom:7px;
+}
+.entity_actions li:first-child {
+border-top:0;
+}
+.entity_actions fieldset {
+border:0;
+padding:0;
+}
+.entity_actions legend {
+display:none;
+}
+
+.entity_actions input.submit {
+display:block;
+text-align:left;
+width:100%;
+}
+.entity_actions a {
+text-decoration:none;
+font-weight:bold;
+display:block;
+}
+.entity_actions a,
+.entity_actions input {
+border-radius:4px;
+-moz-border-radius:4px;
+-webkit-border-radius:4px;
+}
+
+.entity_actions a,
+.entity_actions input,
+.entity_actions p {
+border-width:2px;
+border-style:solid;
+padding-left:23px;
+}
+
+.entity_actions a,
+.entity_actions p {
+padding:2px 4px 1px 26px;
+}
+
+.entity_actions .accept {
+margin-bottom:18px;
 }
