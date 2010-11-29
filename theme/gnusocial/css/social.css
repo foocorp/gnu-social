@@ -277,13 +277,13 @@ border-radius:4px;
 margin-bottom:18px;
 }
 
-#all .notice, #public .notice { padding-bottom: 12px;}
+/* #all .notice, #public .notice { padding-bottom: 12px;} */
 
-#all .notice .entry-title, #public .notice .entry-title { position: relative;}
+/* #all .notice .entry-title, #public .notice .entry-title { position: relative;} */
 
-#all .notice .entry-title .entry-content, #public .notice .entry-title .entry-content { position: absolute; top: 25px; left: 55px; }
+/* #all .notice .entry-title .entry-content, #public .notice .entry-title .entry-content { position: absolute; top: 25px; left: 55px; } */
 
-#all .notice .entry-content .timestamp, #public .notice .entry-content .timestamp { color: #666; margin-left: 55px; font-size: 80%; text-decoration: none !important; }
+/* #all .notice .entry-content .timestamp, #public .notice .entry-content .timestamp { color: #666; margin-left: 55px; font-size: 80%; text-decoration: none !important; } */
 
 abbr { border: 0px !important;  }
 
