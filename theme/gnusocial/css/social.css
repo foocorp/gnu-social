@@ -413,6 +413,8 @@ padding:2px 4px 1px 26px;
 margin-bottom:18px;
 }
 
-.entity_subscribe a:after { 
-content:'for updates on your own GNU social site';
+.entity_actions li { list-style: none !important; }
+
+.entity_subscribe a { 
+content:'Add to your friends';
  }
