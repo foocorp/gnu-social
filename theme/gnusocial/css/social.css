@@ -418,5 +418,5 @@ margin-bottom:18px;
 .entity_actions ul { margin: 0; padding: 0; }
 
 .entity_subscribe a:after { 
-content:' &mdash; add to your friends';
+content:' \0151 add to your friends';
  }
