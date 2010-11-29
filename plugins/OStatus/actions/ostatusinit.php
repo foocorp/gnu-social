@@ -115,7 +115,7 @@ class OStatusInitAction extends Action
         $this->elementEnd('li');
         $this->elementStart('li', array('id' => 'ostatus_profile'));
         $this->input('profile', _m('Profile Account'), $this->profile,
-                     _m("Your account id (i.e. user@identi.ca) &mdash; With GNU social, users do not use one server to communicate in the way that Facebook and Twitter users do. Instead, users are spread out over a network of servers and different sites. You can run your own server, or you can sign up for one of the public servers &mdash; it doesn't even need to be a GNU social server &mdash; any server that speaks the OStatus protocol is suitable. A good place to get an account for yourself is www.status.net"));
+                     _m("Your account id (i.e. user@identi.ca)<br />With GNU social, users do not use one server to communicate in the way that Facebook and Twitter users do. Instead, users are spread out over a network of servers and different sites. You can run your own server, or you can sign up for one of the public servers &mdash; it doesn't even need to be a GNU social server &mdash; any server that speaks the OStatus protocol is suitable. A good place to get an account for yourself is www.status.net"));
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->submit('submit', $submit);
