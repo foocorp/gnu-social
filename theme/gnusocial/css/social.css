@@ -286,3 +286,53 @@ abbr { border: 0px !important;  }
 #form_notice { margin-top: 10px;}
 
 
+/* tagcloud */
+.tag-cloud {
+list-style-type:none;
+text-align:center;
+}
+.aside .tag-cloud {
+font-size:0.8em;
+word-wrap:break-word;
+}
+.tag-cloud li {
+display:inline;
+margin-right:7px;
+line-height:1.25;
+}
+
+.tag-cloud li:before {
+content:'\0009';
+}
+
+.aside .tag-cloud li {
+line-height:1.5;
+}
+.tag-cloud li a {
+text-decoration:none;
+}
+#tagcloud.section dt {
+text-transform:uppercase;
+font-weight:bold;
+}
+.tag-cloud-1 {
+font-size:1em;
+}
+.tag-cloud-2 {
+font-size:1.25em;
+}
+.tag-cloud-3 {
+font-size:1.75em;
+}
+.tag-cloud-4 {
+font-size:2em;
+}
+.tag-cloud-5 {
+font-size:2.25em;
+}
+.tag-cloud-6 {
+font-size:2.75em;
+}
+.tag-cloud-7 {
+font-size:3.25em;
+}
