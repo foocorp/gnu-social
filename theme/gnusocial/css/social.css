@@ -10,7 +10,11 @@ Enable this line to debug:
 
 /* stuff we want to hide..... */
 
-legend,.entry-content .source, .entry-content .location, .entry-content .response, #anon_notice, #notices_primary h2, #site_nav_local_views dt, #ft dt, .entity_profile dt, .entity_profile h2, .entity_actions h2, .entity_nickname { display: none !important; }
+legend,.entry-content .source, .entry-content .location, .entry-content .response, #anon_notice, #notices_primary h2, #site_nav_local_views dt, #ft dt, .entity_profile dt, .entity_profile h2, .entity_actions h2, .entity_nickname, .entities .nickname, .anon_notice, #content h1 { display: none !important; }
+
+.entity_profile dd { margin-bottom: 1em; }
+
+.notice { background-color: #eee; margin-bottom: 1em; border-top: 1px solid #ddd; }
 
 .entity_fn { font-size: 130%; }
 
