@@ -347,7 +347,7 @@ font-size:3.25em;
 }
 
 .entity_actions {
-float:right;
+text-align: right;
 margin-left:2%;
 margin-bottom:18px;
 min-width:21%;
