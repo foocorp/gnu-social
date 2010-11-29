@@ -423,3 +423,7 @@ margin-bottom:18px;
 .entity_subscribe a:after { 
 content:' and add to your friends';
  }
+
+
+.entity_subscriptions ul:before { content: 'Fan of...' }
+.entity_subscribers { display: none !important; }
