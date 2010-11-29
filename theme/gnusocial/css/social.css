@@ -10,7 +10,9 @@ Enable this line to debug:
 
 /* stuff we want to hide..... */
 
-legend,.entry-content .source, .entry-content .location, .entry-content .response, #anon_notice, #notices_primary h2, #site_nav_local_views dt, #ft dt, .entity_profile dt { display: none !important; }
+legend,.entry-content .source, .entry-content .location, .entry-content .response, #anon_notice, #notices_primary h2, #site_nav_local_views dt, #ft dt, .entity_profile dt, .entity_profile h2, .entity_actions h2, .entity_nickname { display: none !important; }
+
+.entity_fn { font-size: 130%; }
 
 dl, dd { margin: 0 !important; padding: 0 !important;}
 
