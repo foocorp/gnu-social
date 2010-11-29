@@ -413,8 +413,10 @@ padding:2px 4px 1px 26px;
 margin-bottom:18px;
 }
 
-.entity_actions li { list-style: none !important; }
+.entity_actions li { list-style: none !important;  }
 
-.entity_subscribe a { 
-content:'Add to your friends';
+.entity_actions ul { margin: 0; padding: 0; }
+
+.entity_subscribe a:after { 
+content:' &mdash; add to your friends';
  }
