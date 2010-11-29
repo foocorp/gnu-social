@@ -21,6 +21,8 @@ Enable this line to debug:
 
 legend, #anon_notice, #notices_primary h2, #site_nav_local_views dt, #ft dt, .entity_profile dt, .entity_profile h2, .entity_actions h2, .entity_nickname, .entities .nickname, .anon_notice, .section h2, .entity_profile { display: none !important; }
 
+#hd a{ color: white !important; }
+
 .entities li { display: inline; list-style: none !important; }
 
 .entity_profile dd { margin-bottom: 1em; }
