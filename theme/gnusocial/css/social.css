@@ -50,7 +50,7 @@ dl, dd { margin: 0 !important; padding: 0 !important;}
 
    body {background-image: url(/theme/gnusocial/images/bg.png) !important; background-repeat: repeat-x !important; background-color: white;}
 
-   #hd h1 {margin: 0; line-height: 57px; font-size: 24px; font-weight: bold;}
+   #hd h1 {margin: 0; line-height: 57px; font-size: 14px; font-weight: bold;}
 
    #hd h1 a{color: #111; text-decoration: none;}
 
