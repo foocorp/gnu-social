@@ -417,7 +417,8 @@ margin-bottom:18px;
 
 .entity_actions ul { margin: 0; padding: 0; }
 
-.entity_subscribe { border: 0; background-color: red; color: white; padding: 8px; }
+.entity_subscribe, .entity_subscribe a { border: 0 !important; background-color: red; color: white !important; padding: 8px; }
+
 
 .entity_subscribe a:after { 
 content:' and add to your friends';
