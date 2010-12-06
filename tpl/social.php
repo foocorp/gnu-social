@@ -13,6 +13,10 @@
         <?php echo section('head'); ?>
         </head>
     <body id="<?php echo section('action'); ?>">
+
+       <div id="feedback-button-of-doom"><a href="http://social.shapado.com/"><img src="/themes/gnusocial/images/fback.png" title="Send us your ideas and suggestions" alt="Feedback" /></a></div>
+
+
         <div id="doc2" class="yui-t6">
            <div id="hd">
                 <h1><a href="/">GNU social</a></h1>            

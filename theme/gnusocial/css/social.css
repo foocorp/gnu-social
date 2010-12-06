@@ -427,3 +427,4 @@ content:' and add to your friends';
 
 .entity_subscriptions ul:before { content: 'Fan of...'; }
 
+#feedback-button-of-doom { position: fixed; top: 350px; left: 0; }
