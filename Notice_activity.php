@@ -67,7 +67,6 @@ class Notice_activity extends Memcached_DataObject
 
     function staticGet($k, $v=null)
     {
-        common_debug("Notice_activity::staticGet($k, $v)");
         $result = Memcached_DataObject::staticGet('Notice_activity', $k, $v);
         return $result;
     }
