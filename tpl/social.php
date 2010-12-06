@@ -14,7 +14,7 @@
         </head>
     <body id="<?php echo section('action'); ?>">
 
-       <div id="feedback-button-of-doom"><a href="http://social.shapado.com/"><img src="/themes/gnusocial/images/fback.png" title="Send us your ideas and suggestions" alt="Feedback" /></a></div>
+       <div id="feedback-button-of-doom"><a href="http://social.shapado.com/"><img src="/theme/gnusocial/images/fback.png" title="Send us your ideas and suggestions" alt="Feedback" /></a></div>
 
 
         <div id="doc2" class="yui-t6">
