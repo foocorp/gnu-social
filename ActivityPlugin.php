@@ -219,63 +219,49 @@ class ActivityPlugin extends Plugin
         return true;
     }
 
-    function onStartActivityVerb(&$notice, &$xs, &$verb)
+    function onEndNoticeAsActivity($notice, &$activity)
     {
-        $act = Notice_activity::staticGet('notice_id', $notice->id);
+        $na = Notice_activity::staticGet('notice_id', $notice->id);
 
-        if (!empty($act)) {
-            $verb = $act->verb;
-        }
+        if (!empty($na)) {
 
-        return true;
-    }
+            $activity->verb = $na->verb;
 
-    function onStartActivityDefaultObjectType(&$notice, &$xs, &$type)
-    {
-        $act = Notice_activity::staticGet('notice_id', $notice->id);
+            // wipe the old object!
 
-        if (!empty($act)) {
-            // no default object
-            return false;
-        }
+            $activity->objects = array();
 
-        return true;
-    }
-
-    function onStartActivityObjects(&$notice, &$xs, &$objects)
-    {
-        $act = Notice_activity::staticGet('notice_id', $notice->id);
-
-        if (!empty($act)) {
-            switch ($act->verb)
+            switch ($na->verb)
             {
             case ActivityVerb::FOLLOW:
             case ActivityVerb::UNFOLLOW:
-                $profile = Profile::fromURI($act->object);
+                $profile = Profile::fromURI($na->object);
                 if (!empty($profile)) {
-                    $objects[] = ActivityObject::fromProfile($profile);
+                    $activity->objects[] = ActivityObject::fromProfile($profile);
                 }
                 break;
             case ActivityVerb::FAVORITE:
             case ActivityVerb::UNFAVORITE:
-                $notice = Notice::staticGet('uri', $act->object);
-                if (!empty($notice)) {
-                    $objects[] = $notice->asActivity();
+                $target = Notice::staticGet('uri', $na->object);
+                if (!empty($target)) {
+                    $activity->objects[] = ActivityObject::fromNotice($target);
                 }
                 break;
             case ActivityVerb::JOIN:
             case ActivityVerb::LEAVE:
-                $group = User_group::staticGet('uri', $act->object);
+                $group = User_group::staticGet('uri', $na->object);
                 if (!empty($notice)) {
-                    $objects[] = ActivityObject::fromGroup($group);
+                    $activity->objects[] = ActivityObject::fromGroup($group);
                 }
                 break;
             default:
                 break;
             }
         }
+
         return true;
     }
+
 
     function onPluginVersion(&$versions)
     {
