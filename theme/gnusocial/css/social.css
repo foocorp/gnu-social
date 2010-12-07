@@ -352,70 +352,70 @@ font-size:2.75em;
 font-size:3.25em;
 }
 
-.entity_actions {
-text-align: center;
-margin-left:2%;
-margin-bottom:18px;
-min-width:21%;
-font-size: 18px;
-}
-.entity_actions h2 {
-display:none;
-}
-.entity_actions ul {
-list-style-type:none;
-}
-.entity_actions li {
-margin-bottom:7px;
-}
-.entity_actions li:first-child {
-border-top:0;
-}
-.entity_actions fieldset {
-border:0;
-padding:0;
-}
-.entity_actions legend {
-display:none;
-}
+/* .entity_actions { */
+/* text-align: center; */
+/* margin-left:2%; */
+/* margin-bottom:18px; */
+/* min-width:21%; */
+/* font-size: 18px; */
+/* } */
+/* .entity_actions h2 { */
+/* display:none; */
+/* } */
+/* .entity_actions ul { */
+/* list-style-type:none; */
+/* } */
+/* .entity_actions li { */
+/* margin-bottom:7px; */
+/* } */
+/* .entity_actions li:first-child { */
+/* border-top:0; */
+/* } */
+/* .entity_actions fieldset { */
+/* border:0; */
+/* padding:0; */
+/* } */
+/* .entity_actions legend { */
+/* display:none; */
+/* } */
 
-.entity_actions input.submit {
-display:block;
-text-align:left;
-width:100%;
-}
-.entity_actions a {
-text-decoration:none;
-font-weight:bold;
-display:block;
-}
-.entity_actions a,
-.entity_actions input {
-border-radius:4px;
--moz-border-radius:4px;
--webkit-border-radius:4px;
-}
+/* .entity_actions input.submit { */
+/* display:block; */
+/* text-align:left; */
+/* width:100%; */
+/* } */
+/* .entity_actions a { */
+/* text-decoration:none; */
+/* font-weight:bold; */
+/* display:block; */
+/* } */
+/* .entity_actions a, */
+/* .entity_actions input { */
+/* border-radius:4px; */
+/* -moz-border-radius:4px; */
+/* -webkit-border-radius:4px; */
+/* } */
 
-.entity_actions a,
-.entity_actions input,
-.entity_actions p {
-border-width:2px;
-border-style:solid;
-padding-left:23px;
-}
+/* .entity_actions a, */
+/* .entity_actions input, */
+/* .entity_actions p { */
+/* border-width:2px; */
+/* border-style:solid; */
+/* padding-left:23px; */
+/* } */
 
-.entity_actions a,
-.entity_actions p {
-padding:2px 4px 1px 26px;
-}
+/* .entity_actions a, */
+/* .entity_actions p { */
+/* padding:2px 4px 1px 26px; */
+/* } */
 
-.entity_actions .accept {
-margin-bottom:18px;
-}
+/* .entity_actions .accept { */
+/* margin-bottom:18px; */
+/* } */
 
-.entity_actions li { list-style: none !important;  }
+/* .entity_actions li { list-style: none !important;  } */
 
-.entity_actions ul { margin: 0; padding: 0; }
+/* .entity_actions ul { margin: 0; padding: 0; } */
 
 .entity_subscribe a { border: 0 !important; background-color: red; color: white !important; padding: 8px; }
 
