@@ -152,3 +152,4 @@ class Notice_activity extends Memcached_DataObject
         }
     }
 }
+?>

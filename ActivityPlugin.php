@@ -96,8 +96,9 @@ class ActivityPlugin extends Plugin
             $rendered = sprintf(_m('<em>Started following <a href="%s">%s</a></em>.'),
                                 $other->profileurl,
                                 $other->getBestName());
-            $content  = sprintf(_m('Started following %s.'),
-                                $other->getBestName());
+            $content  = sprintf(_m('Started following %s : %s'),
+                                $other->getBestName(),
+				$other->profileurl);
 
             $notice = Notice::saveNew($user->id,
                                       $content,
@@ -118,8 +119,9 @@ class ActivityPlugin extends Plugin
             $rendered = sprintf(_m('<em>Stopped following <a href="%s">%s</a></em>.'),
                                 $other->profileurl,
                                 $other->getBestName());
-            $content  = sprintf(_m('Stopped following %s.'),
-                                $other->getBestName());
+            $content  = sprintf(_m('Stopped following %s : %s'),
+                                $other->getBestName(),
+				$other->profileurl);
 
             $notice = Notice::saveNew($user->id,
                                       $content,
@@ -142,8 +144,9 @@ class ActivityPlugin extends Plugin
             $rendered = sprintf(_m('<em>Liked <a href="%s">%s\'s status</a></em>.'),
                                 $notice->bestUrl(),
                                 $author->getBestName());
-            $content  = sprintf(_m('Liked %s\'s status.'),
-                                $author->getBestName());
+            $content  = sprintf(_m('Liked %s\'s status: %s'),
+                                $author->getBestName(), 
+				$notice->bestUrl());
 
             $notice = Notice::saveNew($user->id,
                                       $content,
@@ -166,8 +169,9 @@ class ActivityPlugin extends Plugin
             $rendered = sprintf(_m('<em>Stopped liking <a href="%s">%s\'s status</a></em>.'),
                                 $notice->bestUrl(),
                                 $author->getBestName());
-            $content  = sprintf(_m('Stopped liking %s\'s status.'),
-                                $author->getBestName());
+            $content  = sprintf(_m('Stopped liking %s\'s status: %s'),
+                                $author->getBestName(),
+				$notice->bestUrl());
 
             $notice = Notice::saveNew($user->id,
                                       $content,
@@ -186,8 +190,9 @@ class ActivityPlugin extends Plugin
         $rendered = sprintf(_m('<em>Joined the group &quot;<a href="%s">%s</a>&quot;</em>.'),
                             $group->homeUrl(),
                             $group->getBestName());
-        $content  = sprintf(_m('Joined the group %s.'),
-                            $group->getBestName());
+        $content  = sprintf(_m('Joined the group %s : %s'),
+                            $group->getBestName(),
+			    $group->homeUrl());
 
         $notice = Notice::saveNew($user->id,
                                   $content,
@@ -205,8 +210,9 @@ class ActivityPlugin extends Plugin
         $rendered = sprintf(_m('<em>Left the group &quot;<a href="%s">%s</a>&quot;</em>.'),
                             $group->homeUrl(),
                             $group->getBestName());
-        $content  = sprintf(_m('Left the group "%s".'),
-                            $group->getBestName());
+        $content  = sprintf(_m('Left the group "%s" : %s'),
+                            $group->getBestName(),
+			    $group->homeUrl());
 
         $notice = Notice::saveNew($user->id,
                                   $content,
