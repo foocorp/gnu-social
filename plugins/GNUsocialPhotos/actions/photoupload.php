@@ -61,7 +61,7 @@ class PhotouploadAction extends Action
         if(empty($this->user)) {
             $this->element('p', array(), 'You are not logged in.');
         } else {
-            $this->elementStart('form', array('enctype' => 'mutlipart/form-data',
+            $this->elementStart('form', array('enctype' => 'multipart/form-data',
                                               'method' => 'post',
                                               'action' => common_local_url('photoupload')));
             $this->element('input', array('name' => 'photofile',
