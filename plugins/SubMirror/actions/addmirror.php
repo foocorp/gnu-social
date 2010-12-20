@@ -45,7 +45,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 class AddMirrorAction extends BaseMirrorAction
 {
     var $feedurl;
@@ -57,7 +56,6 @@ class AddMirrorAction extends BaseMirrorAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);

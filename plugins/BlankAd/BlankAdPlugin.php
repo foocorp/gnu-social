@@ -51,7 +51,6 @@ if (!defined('STATUSNET')) {
  *
  * @seeAlso  Location
  */
-
 class BlankAdPlugin extends UAPPlugin
 {
     /**
@@ -61,7 +60,6 @@ class BlankAdPlugin extends UAPPlugin
      *
      * @return void
      */
-
     protected function showMediumRectangle($action)
     {
         $action->element('img',
@@ -78,7 +76,6 @@ class BlankAdPlugin extends UAPPlugin
      *
      * @return void
      */
-
     protected function showRectangle($action)
     {
         $action->element('img',
@@ -95,7 +92,6 @@ class BlankAdPlugin extends UAPPlugin
      *
      * @return void
      */
-
     protected function showWideSkyscraper($action)
     {
         $action->element('img',
@@ -112,7 +108,6 @@ class BlankAdPlugin extends UAPPlugin
      *
      * @return void
      */
-
     protected function showLeaderboard($action)
     {
         $action->element('img',
@@ -120,5 +115,16 @@ class BlankAdPlugin extends UAPPlugin
                                'height' => 90,
                                'src' => common_path('plugins/BlankAd/redpixel.png')),
                          '');
+    }
+
+    function onPluginVersion(&$versions)
+    {
+        $versions[] = array('name' => 'BlankAd',
+                            'version' => STATUSNET_VERSION,
+                            'author' => 'Evan Prodromou',
+                            'homepage' => 'http://status.net/wiki/Plugin:BlankAdPlugin',
+                            'rawdescription' =>
+                            _m('Plugin for testing ad layout.'));
+        return true;
     }
 }

@@ -79,8 +79,10 @@ class CasAuthenticationPlugin extends AuthenticationPlugin
         $action_name = $action->trimmed('action');
 
         $action->menuItem(common_local_url('caslogin'),
+                          // TRANS: Menu item. CAS is Central Authentication Service.
                           _m('CAS'),
-                          _m('Login or register with CAS'),
+                          // TRANS: Tooltip for menu item. CAS is Central Authentication Service.
+                          _m('Login or register with CAS.'),
                           $action_name === 'caslogin');
 
         return true;
@@ -93,9 +95,11 @@ class CasAuthenticationPlugin extends AuthenticationPlugin
         switch ($name)
         {
          case 'login':
-            $instr = '(Have an account with CAS? ' .
-              'Try our [CAS login]'.
-              '(%%action.caslogin%%)!)';
+            // TRANS: Invitation to users with a CAS account to log in using the service.
+            // TRANS: "[CAS login]" is a link description. (%%action.caslogin%%) is the URL.
+            // TRANS: These two elements may not be separated.
+            $instr = _m('(Have an account with CAS? ' .
+              'Try our [CAS login](%%action.caslogin%%)!)');
             break;
          default:
             return true;
@@ -121,13 +125,13 @@ class CasAuthenticationPlugin extends AuthenticationPlugin
     function onInitializePlugin(){
         parent::onInitializePlugin();
         if(!isset($this->server)){
-            throw new Exception("must specify a server");
+            throw new Exception(_m("Specifying a server is required."));
         }
         if(!isset($this->port)){
-            throw new Exception("must specify a port");
+            throw new Exception(_m("Specifying a port is required."));
         }
         if(!isset($this->path)){
-            throw new Exception("must specify a path");
+            throw new Exception(_m("Specifying a path is required."));
         }
         //These values need to be accessible to a action object
         //I can't think of any other way than global variables
@@ -146,8 +150,8 @@ class CasAuthenticationPlugin extends AuthenticationPlugin
                             'version' => STATUSNET_VERSION,
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:CasAuthentication',
-                            'rawdescription' =>
-                            _m('The CAS Authentication plugin allows for StatusNet to handle authentication through CAS (Central Authentication Service).'));
+                            // TRANS: Plugin description. CAS is Central Authentication Service.
+                            'rawdescription' => _m('The CAS Authentication plugin allows for StatusNet to handle authentication through CAS (Central Authentication Service).'));
         return true;
     }
 }

@@ -29,7 +29,7 @@
  * @author    Evan Prodromou <evan@status.net>
  * @author    mEDI <medi@milaro.net>
  * @author    Sarven Capadisli <csarven@status.net>
- * @author    Zach Copley <zach@status.net> 
+ * @author    Zach Copley <zach@status.net>
  * @copyright 2009 StatusNet, Inc.
  * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
@@ -58,26 +58,21 @@ require_once INSTALLDIR.'/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiPrivateAuthAction extends ApiAuthAction
 {
-
    /**
      * Does this API resource require authentication?
      *
      * @return boolean true or false
      */
-
     function requiresAuth()
     {
         // If the site is "private", all API methods except statusnet/config
         // need authentication
-
         if (common_config('site', 'private')) {
             return true;
         }
 
         return false;
     }
-
 }

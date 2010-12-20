@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Get an OAuth request token
+ * Issue temporary OAuth credentials (a request token)
  *
  * PHP version 5
  *
@@ -34,7 +34,7 @@ if (!defined('STATUSNET')) {
 require_once INSTALLDIR . '/lib/apioauth.php';
 
 /**
- * Get an OAuth request token
+ * Issue temporary OAuth credentials (a request token)
  *
  * @category API
  * @package  StatusNet
@@ -42,7 +42,6 @@ require_once INSTALLDIR . '/lib/apioauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiOauthRequestTokenAction extends ApiOauthAction
 {
     /**
@@ -51,24 +50,22 @@ class ApiOauthRequestTokenAction extends ApiOauthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
 
-        $this->callback  = $this->arg('oauth_callback');
-
-        if (!empty($this->callback)) {
-            common_debug("callback: $this->callback");
-        }
+        // XXX: support "force_login" parameter like Twitter? (Forces the user to enter
+        // their credentials to ensure the correct users account is authorized.)
 
         return true;
     }
 
     /**
-     * Class handler.
+     * Handle a request for temporary OAuth credentials
+     *
+     * Make sure the request is kosher, then emit a set of temporary
+     * credentials -- AKA an unauthorized request token.
      *
      * @param array $args array of arguments
      *
@@ -85,15 +82,73 @@ class ApiOauthRequestTokenAction extends ApiOauthAction
         $server->add_signature_method($hmac_method);
 
         try {
-            $req   = OAuthRequest::from_request();
+
+            $req = OAuthRequest::from_request();
+
+            // verify callback
+            if (!$this->verifyCallback($req->get_parameter('oauth_callback'))) {
+                throw new OAuthException(
+                    "You must provide a valid URL or 'oob' in oauth_callback.",
+                    400
+                );
+            }
+
+            // check signature and issue a new request token
             $token = $server->fetch_request_token($req);
-            print $token;
+
+            common_log(
+                LOG_INFO,
+                sprintf(
+                    "API OAuth - Issued request token %s for consumer %s with oauth_callback %s",
+                    $token->key,
+                    $req->get_parameter('oauth_consumer_key'),
+                    "'" . $req->get_parameter('oauth_callback') ."'"
+                )
+            );
+
+            // return token to the client
+            $this->showRequestToken($token);
+
         } catch (OAuthException $e) {
             common_log(LOG_WARNING, 'API OAuthException - ' . $e->getMessage());
-            header('HTTP/1.1 401 Unauthorized');
-            header('Content-Type: text/html; charset=utf-8');
-            print $e->getMessage() . "\n";
+
+            // Return 401 for for bad credentials or signature problems,
+            // and 400 for missing or unsupported parameters
+
+            $code = $e->getCode();
+            $this->clientError($e->getMessage(), empty($code) ? 401 : $code, 'text');
         }
     }
 
+    /*
+     * Display temporary OAuth credentials
+     */
+    function showRequestToken($token)
+    {
+        header('Content-Type: application/x-www-form-urlencoded');
+        print $token;
+        print '&oauth_callback_confirmed=true';
+    }
+
+    /* Make sure the callback parameter contains either a real URL
+     * or the string 'oob'.
+     *
+     * @todo Check for evil/banned URLs here
+     *
+     * @return boolean true or false
+     */
+    function verifyCallback($callback)
+    {
+        if ($callback == "oob") {
+            common_debug("OAuth request token requested for out of band client.");
+
+            // XXX: Should we throw an error if a client is registered as a
+            // web application but requests the pin based workflow? For now I'm
+            // allowing the workflow to proceed and issuing a pin. --Zach
+
+            return true;
+        } else {
+            return Validate::uri($callback);
+        }
+    }
 }

@@ -36,30 +36,6 @@ END_OF_IMPORTTWITTERATOM_HELP;
 require_once INSTALLDIR.'/scripts/commandline.inc';
 require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
 
-function getUser()
-{
-    $user = null;
-
-    if (have_option('i', 'id')) {
-        $id = get_option_value('i', 'id');
-        $user = User::staticGet('id', $id);
-        if (empty($user)) {
-            throw new Exception("Can't find user with id '$id'.");
-        }
-    } else if (have_option('n', 'nickname')) {
-        $nickname = get_option_value('n', 'nickname');
-        $user = User::staticGet('nickname', $nickname);
-        if (empty($user)) {
-            throw new Exception("Can't find user with nickname '$nickname'");
-        }
-    } else {
-        show_help();
-        exit(1);
-    }
-
-    return $user;
-}
-
 function getAtomFeedDocument()
 {
     $filename = get_option_value('f', 'file');
@@ -113,7 +89,7 @@ function importActivityStream($user, $doc)
 
         $html = htmLawed($html, $config);
 
-        $content = html_entity_decode(strip_tags($html));
+        $content = html_entity_decode(strip_tags($html), ENT_QUOTES, 'UTF-8');
 
         $notice = Notice::saveNew($user->id,
                                   $content,

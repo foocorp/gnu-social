@@ -47,7 +47,6 @@ require_once INSTALLDIR.'/lib/servererroraction.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class DBErrorAction extends ServerErrorAction
 {
     function __construct($message='Error', $code=500)

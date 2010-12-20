@@ -55,7 +55,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiStatusesDestroyAction extends ApiAuthAction
 {
     var $status = null;
@@ -66,9 +65,7 @@ class ApiStatusesDestroyAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -94,13 +91,13 @@ class ApiStatusesDestroyAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
+                // TRANS: Client error displayed trying to execute an unknown API method deleting a status.
                 _('API method not found.'),
                 404
             );
@@ -109,6 +106,8 @@ class ApiStatusesDestroyAction extends ApiAuthAction
 
         if (!in_array($_SERVER['REQUEST_METHOD'], array('POST', 'DELETE'))) {
             $this->clientError(
+                // TRANS: Client error displayed trying to delete a status not using POST or DELETE.
+                // TRANS: POST and DELETE should not be translated.
                 _('This method requires a POST or DELETE.'),
                 400,
                 $this->format
@@ -118,6 +117,7 @@ class ApiStatusesDestroyAction extends ApiAuthAction
 
         if (empty($this->notice)) {
             $this->clientError(
+                // TRANS: Client error displayed trying to delete a status with an invalid ID.
                 _('No status found with that ID.'),
                 404, $this->format
             );
@@ -125,13 +125,14 @@ class ApiStatusesDestroyAction extends ApiAuthAction
         }
 
         if ($this->user->id == $this->notice->profile_id) {
-            $replies = new Reply;
-            $replies->get('notice_id', $this->notice_id);
-            $replies->delete();
-            $this->notice->delete();
+            if (Event::handle('StartDeleteOwnNotice', array($this->user, $this->notice))) {
+                $this->notice->delete();
+                Event::handle('EndDeleteOwnNotice', array($this->user, $this->notice));
+            }
 	        $this->showNotice();
         } else {
             $this->clientError(
+                // TRANS: Client error displayed trying to delete a status of another user.
                 _('You may not delete another user\'s status.'),
                 403,
                 $this->format
@@ -144,7 +145,6 @@ class ApiStatusesDestroyAction extends ApiAuthAction
      *
      * @return void
      */
-
     function showNotice()
     {
         if (!empty($this->notice)) {
@@ -155,5 +155,4 @@ class ApiStatusesDestroyAction extends ApiAuthAction
             }
         }
     }
-
 }

@@ -43,19 +43,15 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiAccountUpdateProfileAction extends ApiAuthAction
 {
-
     /**
      * Take arguments for running
      *
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -79,13 +75,13 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400, $this->format
             );
@@ -94,6 +90,7 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to handle an unknown API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -102,6 +99,7 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
         }
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed if a user could not be found.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
@@ -109,6 +107,7 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
         $profile = $this->user->getProfile();
 
         if (empty($profile)) {
+            // TRANS: Client error displayed if a user profile could not be found.
             $this->clientError(_('User has no profile.'));
             return;
         }
@@ -144,6 +143,7 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
 
         if (!$result) {
             common_log_db_error($profile, 'UPDATE', __FILE__);
+            // TRANS: Server error displayed if a user profile could not be saved.
             $this->serverError(_('Could not save profile.'));
             return;
         }
@@ -162,5 +162,4 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
             $this->endDocument('json');
         }
     }
-
 }

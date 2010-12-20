@@ -1,0 +1,106 @@
+# Translation of StatusNet - AnonymousFave to Tagalog (Tagalog)
+# Expored from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AnonymousFave\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:28+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:38:21+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Label for tally for number of times a notice was favored.
+#: AnonymousFavePlugin.php:207
+msgid "Favored"
+msgstr "Pinaboran"
+
+#. TRANS: Server exception.
+#: AnonymousFavePlugin.php:240 AnonymousFavePlugin.php:251
+msgid "Couldn't create anonymous user session."
+msgstr "Hindi malikha ang sesyon ng hindi nakikilalang tagagamit."
+
+#. TRANS: Plugin description.
+#: AnonymousFavePlugin.php:326
+msgid "Allow anonymous users to favorite notices."
+msgstr ""
+"Payagan ang hindi nakikilalang mga tagagamit sa paboritong mga pabatid."
+
+#. TRANS: Client error.
+#: anonfavor.php:60
+msgid ""
+"Could not favor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+"Hindi maipaborito ang pabatid!  Pakitiyak na gumagana ang mga otap ng iyong "
+"pantingin-tingin."
+
+#. TRANS: Client error.
+#: anonfavor.php:71 anondisfavor.php:72
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Nagkaroon ng isang suliranin sa iyong token ng sesyon.  Paki subukang muli."
+
+#. TRANS: Client error.
+#: anonfavor.php:78
+msgid "This notice is already a favorite!"
+msgstr "Isa nang paborito ang pabatid na ito!"
+
+#. TRANS: Server error.
+#: anonfavor.php:85
+msgid "Could not create favorite."
+msgstr "Hindi malikha ang paborito."
+
+#. TRANS: Title.
+#: anonfavor.php:95
+msgid "Disfavor favorite"
+msgstr "Huwag paboran ang paborito"
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: Fave_tally.php:155 Fave_tally.php:184
+#, php-format
+msgid "Couldn't update favorite tally for notice ID %d."
+msgstr ""
+"Hindi maisapanahon ang talang-bilang ng paborito para sa ID na %d ng pabatid."
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: Fave_tally.php:215
+#, php-format
+msgid "Couldn't create favorite tally for notice ID %d."
+msgstr ""
+"Hindi malikha ang talang-bilang ng paborito para sa ID na %d ng pabatid."
+
+#. TRANS: Client error.
+#: anondisfavor.php:61
+msgid ""
+"Could not disfavor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+"Hindi magawang hindi paborito ang pabatid!  Pakitiyak na gumagana ang mga  "
+"otap ng iyong pantingin-tingin."
+
+#. TRANS: Client error.
+#: anondisfavor.php:82
+msgid "This notice is not a favorite!"
+msgstr "Ang pabatid na ito ay hindi isang paborito!"
+
+#. TRANS: Server error.
+#: anondisfavor.php:91
+msgid "Could not delete favorite."
+msgstr "Hindi mabura ang paborito."
+
+#. TRANS: Title.
+#: anondisfavor.php:101
+msgid "Add to favorites"
+msgstr "Idagdag sa mga paborito"

@@ -17,7 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('STATUSNET')) {
+    exit(1);
+}
 
 require_once INSTALLDIR.'/plugins/OpenID/openid.php';
 
@@ -41,14 +43,6 @@ class OpenidloginAction extends Action
             }
 
             oid_assert_allowed($openid_url);
-
-            # CSRF protection
-            $token = $this->trimmed('token');
-            if (!$token || $token != common_session_token()) {
-                // TRANS: Message given when there is a problem with the user's session token.
-                $this->showForm(_m('There was a problem with your session token. Try again, please.'), $openid_url);
-                return;
-            }
 
             $rememberme = $this->boolean('rememberme');
 
@@ -136,7 +130,6 @@ class OpenidloginAction extends Action
         $this->elementStart('fieldset');
         // TRANS: OpenID plugin logon form legend.
         $this->element('legend', null, _m('OpenID login'));
-        $this->hidden('token', common_session_token());
 
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');

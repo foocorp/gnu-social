@@ -32,7 +32,7 @@ class MagicEnvelope
     const ENCODING = 'base64url';
 
     const NS = 'http://salmon-protocol.org/ns/magic-env';
-    
+
     private function normalizeUser($user_id)
     {
         if (substr($user_id, 0, 5) == 'http:' ||
@@ -70,13 +70,14 @@ class MagicEnvelope
                         $keypair = $parts[1];
                     }
                 }
-                
+
                 if ($keypair) {
                     return $keypair;
                 }
             }
         }
-        throw new Exception('Unable to locate signer public key');
+        // TRANS: Exception.
+        throw new Exception(_m('Unable to locate signer public key.'));
     }
 
 
@@ -92,8 +93,6 @@ class MagicEnvelope
             'sig' => $signature_alg->sign($armored_text),
             'alg' => $signature_alg->getName()
         );
-            
-            
     }
 
     public function toXML($env) {
@@ -105,13 +104,12 @@ class MagicEnvelope
         $xs->element('me:alg', null, $env['alg']);
         $xs->element('me:sig', null, $env['sig']);
         $xs->elementEnd('me:env');
-        
+
         $string =  $xs->getString();
         common_debug($string);
         return $string;
     }
 
-    
     public function unfold($env)
     {
         $dom = new DOMDocument();
@@ -137,7 +135,7 @@ class MagicEnvelope
 
         return $dom->saveXML();
     }
-    
+
     public function getAuthor($text) {
         $doc = new DOMDocument();
         if (!$doc->loadXML($text)) {
@@ -154,12 +152,12 @@ class MagicEnvelope
             }
         }
     }
-    
+
     public function checkAuthor($text, $signer_uri)
     {
         return ($this->getAuthor($text) == $signer_uri);
     }
-    
+
     public function verify($env)
     {
         if ($env['alg'] != 'RSA-SHA256') {
@@ -181,14 +179,14 @@ class MagicEnvelope
             common_log(LOG_DEBUG, "Salmon error: ".$e->getMessage());
             return false;
         }
-        
+
         $verifier = Magicsig::fromString($keypair);
 
         if (!$verifier) {
             common_log(LOG_DEBUG, "Salmon error: unable to parse keypair");
             return false;
         }
-        
+
         return $verifier->verify($env['data'], $env['sig']);
     }
 
@@ -219,5 +217,4 @@ class MagicEnvelope
             'sig' => preg_replace('/\s/', '', $sig_element->nodeValue),
         );
     }
-
 }

@@ -3,7 +3,7 @@
  * @package   StatusNet
  * @author    Sarven Capadisli <csarven@status.net>
  * @copyright 2009-2010 StatusNet, Inc.
- * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
+ * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
  * @link      http://status.net/
  */
 
@@ -975,6 +975,29 @@ max-height:96px;
 margin-right:18px;
 float:left;
 }
+
+.oauth-desktop-mode #wrap {
+    min-width: 500px;
+}
+
+.oauth-desktop-mode #content {
+    width: 480px;
+    padding: 6px;
+    margin: 4px 0px 0px 4px;
+    border-top-left-radius: 7px;
+    -moz-border-radius-topleft: 7px;
+    -webkit-border-top-left-radius: 7px;
+}
+
+.oauth-desktop-mode fieldset {
+    margin-bottom: 10px !important;
+}
+
+#oauth_pin {
+    text-align: center;
+    font-size: 3em;
+}
+
 #showapplication .entity_profile {
 width:68%;
 }
@@ -1301,15 +1324,6 @@ margin-left:4px;
 #attachments .attachment,
 .notice .attachment.more {
 padding-left:0;
-}
-.notice .attachment img {
-position:absolute;
-top:18px;
-left:0;
-z-index:99;
-}
-#shownotice .notice .attachment img {
-position:static;
 }
 
 #attachments {
@@ -1693,6 +1707,12 @@ width:auto;
 min-width:0;
 }
 
+.inline-attachment img {
+    /* Why on earth is this changed to block at the top? */
+    display: inline;
+    border: solid 1px #aaa;
+    padding: 1px;
+}
 }/*end of @media screen, projection, tv*/
 
 

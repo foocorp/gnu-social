@@ -1,0 +1,32 @@
+# Translation of StatusNet - NoticeTitle to Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+# Expored from translatewiki.net
+#
+# Author: Nghtwlkr
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - NoticeTitle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:21+0000\n"
+"Language-Team: Norwegian (bokmål)‬ <http://translatewiki.net/wiki/Portal:no>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:44:21+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: no\n"
+"X-Message-Group: #out-statusnet-plugin-noticetitle\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: NoticeTitlePlugin.php:132
+msgid "Adds optional titles to notices."
+msgstr "Legger valgfrie titler til notiser."
+
+#. TRANS: Page title. %1$s is the title, %2$s is the site name.
+#: NoticeTitlePlugin.php:314
+#, php-format
+msgid "%1$s - %2$s"
+msgstr "%1$s - %2$s"

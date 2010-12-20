@@ -79,11 +79,7 @@ class OembedAction extends Action
                     if (empty($profile)) {
                         $this->serverError(_('Notice has no profile.'), 500);
                     }
-                    if (!empty($profile->fullname)) {
-                        $authorname = $profile->fullname . ' (' . $profile->nickname . ')';
-                    } else {
-                        $authorname = $profile->nickname;
-                    }
+                    $authorname = $profile->getFancyName();
                     $oembed['title'] = sprintf(_('%1$s\'s status on %2$s'),
                         $authorname,
                         common_exact_date($notice->created));
@@ -112,10 +108,23 @@ class OembedAction extends Action
                         $oembed['url']=$file_oembed->url;
                     }else if(substr($attachment->mimetype,0,strlen('image/'))=='image/'){
                         $oembed['type']='photo';
-                        //TODO set width and height
-                        //$oembed['width']=
-                        //$oembed['height']=
+                        if ($attachment->filename) {
+                            $filepath = File::path($attachment->filename);
+                            $gis = @getimagesize($filepath);
+                            if ($gis) {
+                                $oembed['width'] = $gis[0];
+                                $oembed['height'] = $gis[1];
+                            } else {
+                                // TODO Either throw an error or find a fallback?
+                            }
+                        }
                         $oembed['url']=$attachment->url;
+                        $thumb = $attachment->getThumbnail();
+                        if ($thumb) {
+                            $oembed['thumbnail_url'] = $thumb->url;
+                            $oembed['thumbnail_width'] = $thumb->width;
+                            $oembed['thumbnail_height'] = $thumb->height;
+                        }
                     }else{
                         $oembed['type']='link';
                         $oembed['url']=common_local_url('attachment',
@@ -206,4 +215,15 @@ class OembedAction extends Action
         return;
     }
 
+    /**
+     * Is this action read-only?
+     *
+     * @param array $args other arguments
+     *
+     * @return boolean is read only action?
+     */
+    function isReadOnly($args)
+    {
+        return true;
+    }
 }

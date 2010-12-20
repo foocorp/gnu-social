@@ -1,0 +1,48 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. TRANS: Leave this message unchanged.
+#. TRANS: %s is notice content that is shared on Twitter, Facebook or another platform.
+#: ShareNoticePlugin.php:106 ShareNoticePlugin.php:194
+#, php-format
+msgid "\"%s\""
+msgstr ""
+
+#. TRANS: Tooltip for image to share a notice on Twitter.
+#: ShareNoticePlugin.php:130
+msgid "Share on Twitter"
+msgstr ""
+
+#. TRANS: Tooltip for image to share a notice on another platform (other than Twitter or Facebook).
+#. TRANS: %s is a host name.
+#: ShareNoticePlugin.php:163
+#, php-format
+msgid "Share on %s"
+msgstr ""
+
+#. TRANS: Tooltip for image to share a notice on Facebook.
+#: ShareNoticePlugin.php:186
+msgid "Share on Facebook"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: ShareNoticePlugin.php:219
+msgid ""
+"This plugin allows sharing of notices to Twitter, Facebook and other "
+"platforms."
+msgstr ""

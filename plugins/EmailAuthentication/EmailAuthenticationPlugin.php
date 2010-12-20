@@ -34,7 +34,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 class EmailAuthenticationPlugin extends Plugin
 {
     //---interface implementation---//
-
     function onStartCheckPassword($nickname, $password, &$authenticatedUser)
     {
         if(strpos($nickname, '@'))
@@ -62,4 +61,3 @@ class EmailAuthenticationPlugin extends Plugin
         return true;
     }
 }
-

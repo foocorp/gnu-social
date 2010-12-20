@@ -1,39 +1,30 @@
-# Translation of StatusNet to Traditional Chinese
+# Translation of StatusNet - Core to Traditional Chinese (‪中文(繁體)‬)
+# Expored from translatewiki.net
 #
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: StatusNet\n"
+"Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-11 10:11+0000\n"
-"PO-Revision-Date: 2010-08-11 10:13:29+0000\n"
-"Language-Team: Traditional Chinese\n"
+"POT-Creation-Date: 2010-09-18 22:06+0000\n"
+"PO-Revision-Date: 2010-09-18 22:08:32+0000\n"
+"Language-Team: Traditional Chinese <http://translatewiki.net/wiki/Portal:zh-"
+"hant>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.17alpha (r70848); Translate extension (2010-07-21)\n"
+"X-Generator: MediaWiki 1.17alpha (r73298); Translate extension (2010-09-17)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hant\n"
-"X-Message-Group: out-statusnet\n"
+"X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#. TRANS: Page title
-#. TRANS: Menu item for site administration
-#: actions/accessadminpanel.php:55 lib/adminpanelaction.php:376
-#, fuzzy
-msgid "Access"
-msgstr "接受"
+"X-POT-Import-Date: 1284-74-75 38::+0000\n"
 
 #. TRANS: Page notice
 #: actions/accessadminpanel.php:67
 msgid "Site access settings"
-msgstr ""
-
-#. TRANS: Form legend for registration form.
-#: actions/accessadminpanel.php:161
-msgid "Registration"
-msgstr ""
+msgstr "使用者設定發生錯誤"
 
 #. TRANS: Checkbox instructions for admin setting "Private"
 #: actions/accessadminpanel.php:165
@@ -61,23 +52,13 @@ msgstr ""
 msgid "Disable new registrations."
 msgstr ""
 
-#. TRANS: Checkbox label for disabling new user registrations.
-#: actions/accessadminpanel.php:185
-msgid "Closed"
-msgstr ""
-
-#. TRANS: Title / tooltip for button to save access settings in site admin panel
-#: actions/accessadminpanel.php:202
-msgid "Save access settings"
-msgstr ""
-
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button label to save SMS preferences.
-#. TRANS: Button label
-#: actions/accessadminpanel.php:203 actions/emailsettings.php:224
-#: actions/imsettings.php:184 actions/smssettings.php:209
-#: lib/applicationeditform.php:361
+#. TRANS: Button label in the "Edit application" form.
+#: actions/accessadminpanel.php:203 actions/emailsettings.php:228
+#: actions/imsettings.php:187 actions/smssettings.php:209
+#: lib/applicationeditform.php:351
 msgctxt "BUTTON"
 msgid "Save"
 msgstr ""
@@ -85,20 +66,20 @@ msgstr ""
 #. TRANS: Server error when page not found (404)
 #: actions/all.php:68 actions/public.php:98 actions/replies.php:93
 #: actions/showfavorites.php:138 actions/tag.php:52
-#, fuzzy
 msgid "No such page."
 msgstr "無此使用者"
 
+#. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
 #: actions/all.php:79 actions/allrss.php:68
-#: actions/apiaccountupdatedeliverydevice.php:114
-#: actions/apiaccountupdateprofile.php:105
-#: actions/apiaccountupdateprofilebackgroundimage.php:116
-#: actions/apiaccountupdateprofileimage.php:105 actions/apiblockcreate.php:97
-#: actions/apiblockdestroy.php:96 actions/apidirectmessage.php:77
-#: actions/apidirectmessagenew.php:74 actions/apigroupcreate.php:113
-#: actions/apigroupismember.php:91 actions/apigroupjoin.php:100
-#: actions/apigroupleave.php:100 actions/apigrouplist.php:73
-#: actions/apistatusesupdate.php:229 actions/apisubscriptions.php:87
+#: actions/apiaccountupdatedeliverydevice.php:115
+#: actions/apiaccountupdateprofile.php:106
+#: actions/apiaccountupdateprofilebackgroundimage.php:117
+#: actions/apiaccountupdateprofileimage.php:106 actions/apiblockcreate.php:98
+#: actions/apiblockdestroy.php:97 actions/apidirectmessage.php:77
+#: actions/apidirectmessagenew.php:74 actions/apigroupcreate.php:114
+#: actions/apigroupismember.php:91 actions/apigroupjoin.php:101
+#: actions/apigroupleave.php:101 actions/apigrouplist.php:73
+#: actions/apistatusesupdate.php:230 actions/apisubscriptions.php:87
 #: actions/apitimelinefavorites.php:72 actions/apitimelinefriends.php:174
 #: actions/apitimelinehome.php:80 actions/apitimelinementions.php:80
 #: actions/apitimelineuser.php:82 actions/avatarbynickname.php:75
@@ -108,16 +89,10 @@ msgstr "無此使用者"
 #: actions/remotesubscribe.php:154 actions/replies.php:73
 #: actions/repliesrss.php:38 actions/rsd.php:116 actions/showfavorites.php:105
 #: actions/userbyid.php:74 actions/usergroups.php:93 actions/userrss.php:40
-#: actions/xrds.php:71 lib/command.php:478 lib/galleryaction.php:59
+#: actions/xrds.php:71 lib/command.php:498 lib/galleryaction.php:59
 #: lib/mailbox.php:82 lib/profileaction.php:77
 msgid "No such user."
 msgstr "無此使用者"
-
-#. TRANS: Page title. %1$s is user nickname, %2$d is page number
-#: actions/all.php:90
-#, fuzzy, php-format
-msgid "%1$s and friends, page %2$d"
-msgstr "%s與好友"
 
 #. TRANS: Page title. %1$s is user nickname
 #. TRANS: H1 text. %1$s is user nickname
@@ -128,24 +103,6 @@ msgstr "%s與好友"
 #, php-format
 msgid "%s and friends"
 msgstr "%s與好友"
-
-#. TRANS: %1$s is user nickname
-#: actions/all.php:107
-#, php-format
-msgid "Feed for friends of %s (RSS 1.0)"
-msgstr ""
-
-#. TRANS: %1$s is user nickname
-#: actions/all.php:116
-#, php-format
-msgid "Feed for friends of %s (RSS 2.0)"
-msgstr ""
-
-#. TRANS: %1$s is user nickname
-#: actions/all.php:125
-#, php-format
-msgid "Feed for friends of %s (Atom)"
-msgstr ""
 
 #. TRANS: %1$s is user nickname
 #: actions/all.php:138
@@ -176,12 +133,6 @@ msgid ""
 "post a notice to them."
 msgstr ""
 
-#. TRANS: H1 text
-#: actions/all.php:182
-#, fuzzy
-msgid "You and friends"
-msgstr "%s與好友"
-
 #. TRANS: Message is used as link description. %1$s is a username, %2$s is a site name.
 #. TRANS: Message is used as a subtitle. %1$s is a user nickname, %2$s is a site name.
 #: actions/allrss.php:121 actions/apitimelinefriends.php:216
@@ -190,75 +141,31 @@ msgstr "%s與好友"
 msgid "Updates from %1$s and friends on %2$s!"
 msgstr ""
 
-#: actions/apiaccountratelimitstatus.php:72
-#: actions/apiaccountupdatedeliverydevice.php:94
-#: actions/apiaccountupdateprofile.php:97
-#: actions/apiaccountupdateprofilebackgroundimage.php:94
-#: actions/apiaccountupdateprofilecolors.php:118
-#: actions/apiaccountverifycredentials.php:70 actions/apidirectmessage.php:156
-#: actions/apifavoritecreate.php:100 actions/apifavoritedestroy.php:101
-#: actions/apifriendshipscreate.php:100 actions/apifriendshipsdestroy.php:100
-#: actions/apifriendshipsshow.php:128 actions/apigroupcreate.php:139
-#: actions/apigroupismember.php:115 actions/apigroupjoin.php:156
-#: actions/apigroupleave.php:142 actions/apigrouplist.php:137
-#: actions/apigrouplistall.php:122 actions/apigroupmembership.php:107
-#: actions/apigroupshow.php:116 actions/apihelptest.php:88
-#: actions/apistatusesdestroy.php:104 actions/apistatusesretweets.php:112
-#: actions/apistatusesshow.php:109 actions/apistatusnetconfig.php:141
-#: actions/apistatusnetversion.php:93 actions/apisubscriptions.php:111
-#: actions/apitimelinefavorites.php:174 actions/apitimelinefriends.php:271
-#: actions/apitimelinegroup.php:154 actions/apitimelinehome.php:175
-#: actions/apitimelinementions.php:174 actions/apitimelinepublic.php:241
-#: actions/apitimelineretweetedtome.php:121
-#: actions/apitimelineretweetsofme.php:152 actions/apitimelinetag.php:161
-#: actions/apitimelineuser.php:163 actions/apiusershow.php:101
-#, fuzzy
-msgid "API method not found."
-msgstr "確認碼遺失"
-
-#: actions/apiaccountupdatedeliverydevice.php:86
-#: actions/apiaccountupdateprofile.php:89
-#: actions/apiaccountupdateprofilebackgroundimage.php:86
-#: actions/apiaccountupdateprofilecolors.php:110
-#: actions/apiaccountupdateprofileimage.php:84 actions/apiblockcreate.php:89
-#: actions/apiblockdestroy.php:88 actions/apidirectmessagenew.php:109
-#: actions/apifavoritecreate.php:91 actions/apifavoritedestroy.php:92
-#: actions/apifriendshipscreate.php:91 actions/apifriendshipsdestroy.php:91
-#: actions/apigroupcreate.php:105 actions/apigroupjoin.php:92
-#: actions/apigroupleave.php:92 actions/apimediaupload.php:67
-#: actions/apistatusesretweet.php:65 actions/apistatusesupdate.php:198
+#. TRANS: Client error message. POST is a HTTP command. It should not be translated.
+#. TRANS: Client error. POST is a HTTP command. It should not be translated.
+#: actions/apiaccountupdatedeliverydevice.php:87
+#: actions/apiaccountupdateprofile.php:90
+#: actions/apiaccountupdateprofilebackgroundimage.php:87
+#: actions/apiaccountupdateprofilecolors.php:111
+#: actions/apiaccountupdateprofileimage.php:85 actions/apiblockcreate.php:90
+#: actions/apiblockdestroy.php:89 actions/apidirectmessagenew.php:110
+#: actions/apifavoritecreate.php:92 actions/apifavoritedestroy.php:93
+#: actions/apifriendshipscreate.php:92 actions/apifriendshipsdestroy.php:92
+#: actions/apigroupcreate.php:106 actions/apigroupjoin.php:93
+#: actions/apigroupleave.php:93 actions/apimediaupload.php:68
+#: actions/apistatusesretweet.php:66 actions/apistatusesupdate.php:199
 msgid "This method requires a POST."
 msgstr ""
 
-#: actions/apiaccountupdatedeliverydevice.php:106
+#: actions/apiaccountupdatedeliverydevice.php:107
 msgid ""
 "You must specify a parameter named 'device' with a value of one of: sms, im, "
 "none."
 msgstr ""
 
-#: actions/apiaccountupdatedeliverydevice.php:133
-#, fuzzy
-msgid "Could not update user."
-msgstr "無法更新使用者"
-
-#: actions/apiaccountupdateprofile.php:112
-#: actions/apiaccountupdateprofilebackgroundimage.php:194
-#: actions/apiaccountupdateprofilecolors.php:185
-#: actions/apiaccountupdateprofileimage.php:130 actions/apiusershow.php:108
-#: actions/avatarbynickname.php:80 actions/foaf.php:65 actions/hcard.php:74
-#: actions/replies.php:80 actions/usergroups.php:100 lib/galleryaction.php:66
-#: lib/profileaction.php:84
-msgid "User has no profile."
-msgstr ""
-
-#: actions/apiaccountupdateprofile.php:147
-#, fuzzy
-msgid "Could not save profile."
-msgstr "無法儲存個人資料"
-
-#: actions/apiaccountupdateprofilebackgroundimage.php:108
-#: actions/apiaccountupdateprofileimage.php:97 actions/apimediaupload.php:80
-#: actions/apistatusesupdate.php:212 actions/avatarsettings.php:257
+#: actions/apiaccountupdateprofilebackgroundimage.php:109
+#: actions/apiaccountupdateprofileimage.php:98 actions/apimediaupload.php:81
+#: actions/apistatusesupdate.php:213 actions/avatarsettings.php:257
 #: actions/designadminpanel.php:123 actions/editapplication.php:118
 #: actions/newapplication.php:101 actions/newnotice.php:94
 #: lib/designsettings.php:283
@@ -268,31 +175,21 @@ msgid ""
 "current configuration."
 msgstr ""
 
-#: actions/apiaccountupdateprofilebackgroundimage.php:136
-#: actions/apiaccountupdateprofilebackgroundimage.php:146
-#: actions/apiaccountupdateprofilecolors.php:164
-#: actions/apiaccountupdateprofilecolors.php:174
+#: actions/apiaccountupdateprofilebackgroundimage.php:137
+#: actions/apiaccountupdateprofilebackgroundimage.php:147
+#: actions/apiaccountupdateprofilecolors.php:165
+#: actions/apiaccountupdateprofilecolors.php:175
 #: actions/groupdesignsettings.php:290 actions/groupdesignsettings.php:300
 #: actions/userdesignsettings.php:210 actions/userdesignsettings.php:220
 #: actions/userdesignsettings.php:263 actions/userdesignsettings.php:273
 msgid "Unable to save your design settings."
 msgstr ""
 
-#: actions/apiaccountupdateprofilebackgroundimage.php:187
-#: actions/apiaccountupdateprofilecolors.php:142
-#, fuzzy
-msgid "Could not update your design."
-msgstr "無法更新使用者"
-
-#: actions/apiblockcreate.php:105
-msgid "You cannot block yourself!"
-msgstr ""
-
-#: actions/apiblockcreate.php:126
+#: actions/apiblockcreate.php:127
 msgid "Block user failed."
 msgstr ""
 
-#: actions/apiblockdestroy.php:114
+#: actions/apiblockdestroy.php:115
 msgid "Unblock user failed."
 msgstr ""
 
@@ -316,218 +213,141 @@ msgstr ""
 msgid "All the direct messages sent to %s"
 msgstr ""
 
-#: actions/apidirectmessagenew.php:118
+#: actions/apidirectmessagenew.php:119
 msgid "No message text!"
 msgstr ""
 
-#: actions/apidirectmessagenew.php:127 actions/newmessage.php:150
+#: actions/apidirectmessagenew.php:128 actions/newmessage.php:150
 #, php-format
 msgid "That's too long. Max message size is %d chars."
 msgstr ""
 
-#: actions/apidirectmessagenew.php:138
-#, fuzzy
-msgid "Recipient user not found."
-msgstr "確認碼遺失"
-
-#: actions/apidirectmessagenew.php:142
+#: actions/apidirectmessagenew.php:143
 msgid "Can't send direct messages to users who aren't your friend."
 msgstr ""
 
-#: actions/apifavoritecreate.php:109 actions/apifavoritedestroy.php:110
+#: actions/apifavoritecreate.php:110 actions/apifavoritedestroy.php:111
 #: actions/apistatusesdestroy.php:121
 msgid "No status found with that ID."
 msgstr ""
 
-#: actions/apifavoritecreate.php:120
+#: actions/apifavoritecreate.php:121
 msgid "This status is already a favorite."
 msgstr ""
 
-#: actions/apifavoritecreate.php:131 actions/favor.php:84 lib/command.php:285
-#, fuzzy
+#. TRANS: Error message text shown when a favorite could not be set.
+#: actions/apifavoritecreate.php:132 actions/favor.php:84 lib/command.php:296
 msgid "Could not create favorite."
-msgstr "無法儲存個人資料"
+msgstr "無法更新使用者"
 
-#: actions/apifavoritedestroy.php:123
+#: actions/apifavoritedestroy.php:124
 msgid "That status is not a favorite."
 msgstr ""
 
-#: actions/apifavoritedestroy.php:135 actions/disfavor.php:87
-#, fuzzy
+#: actions/apifavoritedestroy.php:136 actions/disfavor.php:87
 msgid "Could not delete favorite."
-msgstr "無法更新使用者"
+msgstr "無法新增訂閱"
 
-#: actions/apifriendshipscreate.php:109
-#, fuzzy
+#: actions/apifriendshipscreate.php:110
 msgid "Could not follow user: profile not found."
 msgstr "無法儲存個人資料"
 
-#: actions/apifriendshipscreate.php:118
-#, php-format
-msgid "Could not follow user: %s is already on your list."
-msgstr ""
-
-#: actions/apifriendshipsdestroy.php:109
+#: actions/apifriendshipsdestroy.php:110
 msgid "Could not unfollow user: User not found."
-msgstr ""
-
-#: actions/apifriendshipsdestroy.php:120
-msgid "You cannot unfollow yourself."
-msgstr ""
+msgstr "無法儲存個人資料"
 
 #: actions/apifriendshipsexists.php:91
 msgid "Two valid IDs or screen_names must be supplied."
 msgstr ""
 
-#: actions/apifriendshipsshow.php:134
-#, fuzzy
-msgid "Could not determine source user."
-msgstr "無法更新使用者"
-
-#: actions/apifriendshipsshow.php:142
-#, fuzzy
-msgid "Could not find target user."
-msgstr "無法更新使用者"
-
-#: actions/apigroupcreate.php:167 actions/editgroup.php:186
+#: actions/apigroupcreate.php:168 actions/editgroup.php:186
 #: actions/newgroup.php:126 actions/profilesettings.php:215
 #: actions/register.php:212
 msgid "Nickname must have only lowercase letters and numbers and no spaces."
 msgstr "暱稱請用小寫字母或數字，勿加空格。"
 
-#: actions/apigroupcreate.php:176 actions/editgroup.php:190
+#: actions/apigroupcreate.php:177 actions/editgroup.php:190
 #: actions/newgroup.php:130 actions/profilesettings.php:238
 #: actions/register.php:215
 msgid "Nickname already in use. Try another one."
 msgstr "此暱稱已有人使用。再試試看別的吧。"
 
-#: actions/apigroupcreate.php:183 actions/editgroup.php:193
-#: actions/newgroup.php:133 actions/profilesettings.php:218
-#: actions/register.php:217
-#, fuzzy
-msgid "Not a valid nickname."
-msgstr "無暱稱"
-
-#: actions/apigroupcreate.php:199 actions/editapplication.php:215
+#: actions/apigroupcreate.php:200 actions/editapplication.php:215
 #: actions/editgroup.php:199 actions/newapplication.php:203
 #: actions/newgroup.php:139 actions/profilesettings.php:222
 #: actions/register.php:224
 msgid "Homepage is not a valid URL."
 msgstr "個人首頁位址錯誤"
 
-#: actions/apigroupcreate.php:208 actions/editgroup.php:202
+#: actions/apigroupcreate.php:209 actions/editgroup.php:202
 #: actions/newgroup.php:142 actions/profilesettings.php:225
 #: actions/register.php:227
 msgid "Full name is too long (max 255 chars)."
 msgstr "全名過長（最多255字元）"
 
-#: actions/apigroupcreate.php:216 actions/editapplication.php:190
+#: actions/apigroupcreate.php:217 actions/editapplication.php:190
 #: actions/newapplication.php:172
-#, fuzzy, php-format
+#, php-format
 msgid "Description is too long (max %d chars)."
-msgstr "地點過長（共255個字）"
+msgstr "地點過長（共%d個字）"
 
-#: actions/apigroupcreate.php:227 actions/editgroup.php:208
+#: actions/apigroupcreate.php:228 actions/editgroup.php:208
 #: actions/newgroup.php:148 actions/profilesettings.php:232
 #: actions/register.php:234
 msgid "Location is too long (max 255 chars)."
 msgstr "地點過長（共255個字）"
 
-#: actions/apigroupcreate.php:246 actions/editgroup.php:219
+#: actions/apigroupcreate.php:247 actions/editgroup.php:219
 #: actions/newgroup.php:159
 #, php-format
 msgid "Too many aliases! Maximum %d."
 msgstr ""
 
-#: actions/apigroupcreate.php:267
-#, fuzzy, php-format
-msgid "Invalid alias: \"%s\"."
-msgstr "尺寸錯誤"
-
-#: actions/apigroupcreate.php:276 actions/editgroup.php:232
-#: actions/newgroup.php:172
-#, fuzzy, php-format
-msgid "Alias \"%s\" already in use. Try another one."
-msgstr "此暱稱已有人使用。再試試看別的吧。"
-
-#: actions/apigroupcreate.php:289 actions/editgroup.php:238
+#: actions/apigroupcreate.php:290 actions/editgroup.php:238
 #: actions/newgroup.php:178
 msgid "Alias can't be the same as nickname."
 msgstr ""
 
-#: actions/apigroupismember.php:96 actions/apigroupjoin.php:105
-#: actions/apigroupleave.php:105 actions/apigroupmembership.php:92
+#: actions/apigroupismember.php:96 actions/apigroupjoin.php:106
+#: actions/apigroupleave.php:106 actions/apigroupmembership.php:92
 #: actions/apigroupshow.php:83 actions/apitimelinegroup.php:92
-#, fuzzy
 msgid "Group not found."
 msgstr "確認碼遺失"
 
-#: actions/apigroupjoin.php:111 actions/joingroup.php:100
-#, fuzzy
-msgid "You are already a member of that group."
-msgstr "無法連結到伺服器:%s"
-
-#: actions/apigroupjoin.php:120 actions/joingroup.php:105 lib/command.php:327
+#. TRANS: Error text shown when a user tries to join a group they are blocked from joining.
+#: actions/apigroupjoin.php:121 actions/joingroup.php:105 lib/command.php:341
 msgid "You have been blocked from that group by the admin."
 msgstr ""
 
-#: actions/apigroupjoin.php:139 actions/joingroup.php:134
+#. TRANS: Message given having failed to add a user to a group.
+#. TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
+#: actions/apigroupjoin.php:140 actions/joingroup.php:134 lib/command.php:353
 #, php-format
 msgid "Could not join user %1$s to group %2$s."
-msgstr ""
+msgstr "無法更新使用者"
 
-#: actions/apigroupleave.php:115
-#, fuzzy
-msgid "You are not a member of this group."
-msgstr "無法連結到伺服器:%s"
-
-#: actions/apigroupleave.php:125 actions/leavegroup.php:129
+#. TRANS: Message given having failed to remove a user from a group.
+#. TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
+#: actions/apigroupleave.php:126 actions/leavegroup.php:129
+#: lib/command.php:401
 #, php-format
 msgid "Could not remove user %1$s from group %2$s."
-msgstr ""
-
-#. TRANS: %s is a user name
-#: actions/apigrouplist.php:98
-#, php-format
-msgid "%s's groups"
-msgstr ""
-
-#. TRANS: Meant to convey the user %2$s is a member of each of the groups listed on site %1$s
-#: actions/apigrouplist.php:108
-#, php-format
-msgid "%1$s groups %2$s is a member of."
-msgstr ""
-
-#. TRANS: Message is used as a title. %s is a site name.
-#. TRANS: Message is used as a page title. %s is a nick name.
-#: actions/apigrouplistall.php:92 actions/usergroups.php:63
-#, php-format
-msgid "%s groups"
-msgstr ""
+msgstr "無法更新使用者"
 
 #: actions/apigrouplistall.php:96
 #, php-format
 msgid "groups on %s"
 msgstr ""
 
-#: actions/apimediaupload.php:99
-msgid "Upload failed."
-msgstr ""
-
 #: actions/apioauthauthorize.php:101
 msgid "No oauth_token parameter provided."
 msgstr ""
 
-#: actions/apioauthauthorize.php:106
-#, fuzzy
-msgid "Invalid token."
-msgstr "尺寸錯誤"
-
 #: actions/apioauthauthorize.php:123 actions/avatarsettings.php:268
 #: actions/deletenotice.php:169 actions/disfavor.php:74
-#: actions/emailsettings.php:267 actions/favor.php:75 actions/geocode.php:55
+#: actions/emailsettings.php:271 actions/favor.php:75 actions/geocode.php:55
 #: actions/groupblock.php:66 actions/grouplogo.php:312
-#: actions/groupunblock.php:66 actions/imsettings.php:227
+#: actions/groupunblock.php:66 actions/imsettings.php:230
 #: actions/invite.php:56 actions/login.php:137 actions/makeadmin.php:66
 #: actions/newmessage.php:135 actions/newnotice.php:103 actions/nudge.php:80
 #: actions/oauthappssettings.php:159 actions/oauthconnectionssettings.php:135
@@ -541,18 +361,13 @@ msgstr "尺寸錯誤"
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 
-#: actions/apioauthauthorize.php:135
-#, fuzzy
-msgid "Invalid nickname / password!"
-msgstr "使用者名稱或密碼無效"
-
 #: actions/apioauthauthorize.php:159
 msgid "Database error deleting OAuth application user."
-msgstr ""
+msgstr "個人圖像插入錯誤"
 
 #: actions/apioauthauthorize.php:185
 msgid "Database error inserting OAuth application user."
-msgstr ""
+msgstr "個人圖像插入錯誤"
 
 #: actions/apioauthauthorize.php:214
 #, php-format
@@ -571,8 +386,8 @@ msgstr ""
 #. TRANS: Message given submitting a form with an unknown action in SMS settings.
 #: actions/apioauthauthorize.php:232 actions/avatarsettings.php:281
 #: actions/designadminpanel.php:104 actions/editapplication.php:139
-#: actions/emailsettings.php:286 actions/grouplogo.php:322
-#: actions/imsettings.php:242 actions/newapplication.php:121
+#: actions/emailsettings.php:290 actions/grouplogo.php:322
+#: actions/imsettings.php:245 actions/newapplication.php:121
 #: actions/oauthconnectionssettings.php:147 actions/recoverpassword.php:44
 #: actions/smssettings.php:277 lib/designsettings.php:304
 msgid "Unexpected form submission."
@@ -594,12 +409,6 @@ msgid ""
 "give access to your %4$s account to third parties you trust."
 msgstr ""
 
-#. TRANS: Main menu option when logged in for access to user settings
-#: actions/apioauthauthorize.php:310 lib/action.php:450
-#, fuzzy
-msgid "Account"
-msgstr "關於"
-
 #: actions/apioauthauthorize.php:313 actions/login.php:252
 #: actions/profilesettings.php:106 actions/register.php:431
 #: actions/showgroup.php:245 actions/tagother.php:94
@@ -607,13 +416,6 @@ msgstr "關於"
 #: lib/userprofile.php:132
 msgid "Nickname"
 msgstr "暱稱"
-
-#. TRANS: Link description in user account settings menu.
-#: actions/apioauthauthorize.php:316 actions/login.php:255
-#: actions/register.php:436 lib/accountsettingsaction.php:125
-#, fuzzy
-msgid "Password"
-msgstr "新密碼"
 
 #: actions/apioauthauthorize.php:328
 msgid "Deny"
@@ -635,42 +437,24 @@ msgstr ""
 msgid "You may not delete another user's status."
 msgstr ""
 
-#: actions/apistatusesretweet.php:75 actions/apistatusesretweets.php:72
+#: actions/apistatusesretweet.php:76 actions/apistatusesretweets.php:72
 #: actions/deletenotice.php:52 actions/shownotice.php:92
 msgid "No such notice."
 msgstr "無此通知"
-
-#: actions/apistatusesretweet.php:83
-msgid "Cannot repeat your own notice."
-msgstr ""
-
-#: actions/apistatusesretweet.php:91
-msgid "Already repeated that notice."
-msgstr ""
-
-#: actions/apistatusesshow.php:139
-msgid "Status deleted."
-msgstr ""
 
 #: actions/apistatusesshow.php:145
 msgid "No status with that ID found."
 msgstr ""
 
-#: actions/apistatusesupdate.php:221
+#: actions/apistatusesupdate.php:222
 msgid "Client must provide a 'status' parameter with a value."
 msgstr ""
 
-#: actions/apistatusesupdate.php:242 actions/newnotice.php:155
-#: lib/mailhandler.php:60
-#, php-format
-msgid "That's too long. Max notice size is %d chars."
-msgstr ""
-
-#: actions/apistatusesupdate.php:283 actions/apiusershow.php:96
+#: actions/apistatusesupdate.php:284 actions/apiusershow.php:96
 msgid "Not found."
-msgstr ""
+msgstr "確認碼遺失"
 
-#: actions/apistatusesupdate.php:306 actions/newnotice.php:178
+#: actions/apistatusesupdate.php:307 actions/newnotice.php:181
 #, php-format
 msgid "Max notice size is %d chars, including attachment URL."
 msgstr ""
@@ -678,21 +462,6 @@ msgstr ""
 #: actions/apisubscriptions.php:232 actions/apisubscriptions.php:262
 msgid "Unsupported format."
 msgstr ""
-
-#: actions/apitimelinefavorites.php:110
-#, fuzzy, php-format
-msgid "%1$s / Favorites from %2$s"
-msgstr "%1$s的狀態是%2$s"
-
-#: actions/apitimelinefavorites.php:119
-#, php-format
-msgid "%1$s updates favorited by %2$s / %2$s."
-msgstr ""
-
-#: actions/apitimelinementions.php:118
-#, fuzzy, php-format
-msgid "%1$s / Updates mentioning %2$s"
-msgstr "%1$s的狀態是%2$s"
 
 #: actions/apitimelinementions.php:131
 #, php-format
@@ -724,18 +493,7 @@ msgstr ""
 msgid "Notices tagged with %s"
 msgstr ""
 
-#: actions/apitimelinetag.php:107 actions/tagrss.php:65
-#, php-format
-msgid "Updates tagged with %1$s on %2$s!"
-msgstr ""
-
-#: actions/apitrends.php:87
-#, fuzzy
-msgid "API method under construction."
-msgstr "確認碼遺失"
-
 #: actions/attachment.php:73
-#, fuzzy
 msgid "No such attachment."
 msgstr "無此通知"
 
@@ -774,7 +532,7 @@ msgstr ""
 #: actions/avatarsettings.php:119 actions/avatarsettings.php:197
 #: actions/grouplogo.php:254
 msgid "Avatar settings"
-msgstr ""
+msgstr "使用者設定發生錯誤"
 
 #: actions/avatarsettings.php:127 actions/avatarsettings.php:205
 #: actions/grouplogo.php:202 actions/grouplogo.php:262
@@ -819,20 +577,9 @@ msgstr "更新個人圖像"
 msgid "Failed updating avatar."
 msgstr "無法上傳個人圖像"
 
-#: actions/avatarsettings.php:397
-#, fuzzy
-msgid "Avatar deleted."
-msgstr "更新個人圖像"
-
 #: actions/block.php:69
-#, fuzzy
 msgid "You already blocked that user."
 msgstr "此Jabber ID已有人使用"
-
-#: actions/block.php:107 actions/block.php:136 actions/groupblock.php:158
-#, fuzzy
-msgid "Block user"
-msgstr "無此使用者"
 
 #: actions/block.php:138
 msgid ""
@@ -857,7 +604,7 @@ msgstr ""
 #. TRANS: Submit button title for 'No' when deleting a user.
 #: actions/block.php:157 actions/deleteuser.php:156
 msgid "Do not block this user"
-msgstr ""
+msgstr "此Jabber ID已有人使用"
 
 #. TRANS: Button label on the user block form.
 #. TRANS: Button label on the delete application form.
@@ -871,15 +618,12 @@ msgctxt "BUTTON"
 msgid "Yes"
 msgstr ""
 
-#. TRANS: Submit button title for 'Yes' when blocking a user.
-#: actions/block.php:164 actions/groupmembers.php:392 lib/blockform.php:80
-msgid "Block this user"
-msgstr ""
-
 #: actions/block.php:187
 msgid "Failed to save block information."
 msgstr ""
 
+#. TRANS: Command exception text shown when a group is requested that does not exist.
+#. TRANS: Error text shown when trying to leave a group that does not exist.
 #: actions/blockedfromgroup.php:80 actions/blockedfromgroup.php:87
 #: actions/editgroup.php:100 actions/foafgroup.php:44 actions/foafgroup.php:62
 #: actions/foafgroup.php:69 actions/groupblock.php:86 actions/groupbyid.php:83
@@ -889,36 +633,18 @@ msgstr ""
 #: actions/groupunblock.php:86 actions/joingroup.php:82
 #: actions/joingroup.php:93 actions/leavegroup.php:82
 #: actions/leavegroup.php:93 actions/makeadmin.php:86
-#: actions/showgroup.php:138 actions/showgroup.php:146 lib/command.php:166
-#: lib/command.php:368
-#, fuzzy
+#: actions/showgroup.php:138 actions/showgroup.php:146 lib/command.php:170
+#: lib/command.php:383
 msgid "No such group."
 msgstr "無此使用者"
-
-#: actions/blockedfromgroup.php:97
-#, php-format
-msgid "%s blocked profiles"
-msgstr ""
-
-#: actions/blockedfromgroup.php:100
-#, php-format
-msgid "%1$s blocked profiles, page %2$d"
-msgstr ""
 
 #: actions/blockedfromgroup.php:115
 msgid "A list of the users blocked from joining this group."
 msgstr ""
 
-#: actions/blockedfromgroup.php:288
-msgid "Unblock user from group"
-msgstr ""
-
-#: actions/blockedfromgroup.php:320 lib/unblockform.php:69
+#. TRANS: Title for the form to unblock a user.
+#: actions/blockedfromgroup.php:320 lib/unblockform.php:70
 msgid "Unblock"
-msgstr ""
-
-#: actions/blockedfromgroup.php:320 lib/unblockform.php:80
-msgid "Unblock this user"
 msgstr ""
 
 #. TRANS: Title for mini-posting window loaded from bookmarklet.
@@ -935,22 +661,11 @@ msgstr "無確認碼"
 msgid "Confirmation code not found."
 msgstr "確認碼遺失"
 
-#: actions/confirmaddress.php:85
-#, fuzzy
-msgid "That confirmation code is not for you!"
-msgstr "確認碼遺失"
-
 #. TRANS: Server error for an unknow address type, which can be 'email', 'jabber', or 'sms'.
 #: actions/confirmaddress.php:91
 #, php-format
 msgid "Unrecognized address type %s."
 msgstr ""
-
-#. TRANS: Client error for an already confirmed email/jabbel/sms address.
-#: actions/confirmaddress.php:96
-#, fuzzy
-msgid "That address has already been confirmed."
-msgstr "此電子信箱已註冊過了"
 
 #. TRANS: Server error thrown on database error updating e-mail preferences.
 #. TRANS: Server error thrown on database error removing a registered e-mail address.
@@ -958,9 +673,9 @@ msgstr "此電子信箱已註冊過了"
 #. TRANS: Server error thrown on database error removing a registered IM address.
 #. TRANS: Server error thrown on database error updating SMS preferences.
 #. TRANS: Server error thrown on database error removing a registered SMS phone number.
-#: actions/confirmaddress.php:116 actions/emailsettings.php:327
-#: actions/emailsettings.php:473 actions/imsettings.php:280
-#: actions/imsettings.php:439 actions/othersettings.php:174
+#: actions/confirmaddress.php:116 actions/emailsettings.php:331
+#: actions/emailsettings.php:477 actions/imsettings.php:283
+#: actions/imsettings.php:442 actions/othersettings.php:174
 #: actions/profilesettings.php:283 actions/smssettings.php:308
 #: actions/smssettings.php:464
 msgid "Couldn't update user."
@@ -968,13 +683,12 @@ msgstr "無法更新使用者"
 
 #. TRANS: Server error thrown on database error canceling e-mail address confirmation.
 #. TRANS: Server error thrown on database error canceling SMS phone number confirmation.
-#: actions/confirmaddress.php:128 actions/emailsettings.php:433
+#: actions/confirmaddress.php:128 actions/emailsettings.php:437
 #: actions/smssettings.php:422
 msgid "Couldn't delete email confirmation."
 msgstr "無法取消信箱確認"
 
 #: actions/confirmaddress.php:146
-#, fuzzy
 msgid "Confirm address"
 msgstr "確認"
 
@@ -983,41 +697,30 @@ msgstr "確認"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr ""
 
-#: actions/conversation.php:99
-#, fuzzy
-msgid "Conversation"
-msgstr "地點"
-
 #: actions/conversation.php:154 lib/mailbox.php:116 lib/noticelist.php:87
 #: lib/profileaction.php:229 lib/searchgroupnav.php:82
-#, fuzzy
 msgid "Notices"
-msgstr "新訊息"
+msgstr "無此通知"
 
 #: actions/deleteapplication.php:63
 msgid "You must be logged in to delete an application."
-msgstr ""
-
-#: actions/deleteapplication.php:71
-#, fuzzy
-msgid "Application not found."
-msgstr "確認碼遺失"
+msgstr "無法取消信箱確認"
 
 #: actions/deleteapplication.php:78 actions/editapplication.php:77
 #: actions/showapplication.php:94
-#, fuzzy
 msgid "You are not the owner of this application."
-msgstr "無法連結到伺服器:%s"
+msgstr "無法取消信箱確認"
 
+#. TRANS: Client error text when there is a problem with the session token.
 #: actions/deleteapplication.php:102 actions/editapplication.php:127
 #: actions/newapplication.php:110 actions/showapplication.php:118
-#: lib/action.php:1263
+#: lib/action.php:1315
 msgid "There was a problem with your session token."
 msgstr ""
 
 #: actions/deleteapplication.php:123 actions/deleteapplication.php:147
 msgid "Delete application"
-msgstr ""
+msgstr "無法取消信箱確認"
 
 #: actions/deleteapplication.php:149
 msgid ""
@@ -1029,28 +732,11 @@ msgstr ""
 #. TRANS: Submit button title for 'No' when deleting an application.
 #: actions/deleteapplication.php:158
 msgid "Do not delete this application"
-msgstr ""
+msgstr "無法取消信箱確認"
 
 #. TRANS: Submit button title for 'Yes' when deleting an application.
 #: actions/deleteapplication.php:164
 msgid "Delete this application"
-msgstr ""
-
-#. TRANS: Client error message thrown when trying to access the admin panel while not logged in.
-#: actions/deletenotice.php:67 actions/disfavor.php:61 actions/favor.php:62
-#: actions/groupblock.php:61 actions/groupunblock.php:61 actions/logout.php:69
-#: actions/makeadmin.php:61 actions/newmessage.php:87 actions/newnotice.php:89
-#: actions/nudge.php:63 actions/subedit.php:31 actions/subscribe.php:96
-#: actions/tagother.php:33 actions/unsubscribe.php:52
-#: lib/adminpanelaction.php:73 lib/profileformaction.php:64
-#: lib/settingsaction.php:72
-#, fuzzy
-msgid "Not logged in."
-msgstr "已登入"
-
-#: actions/deletenotice.php:71
-#, fuzzy
-msgid "Can't delete this notice."
 msgstr "無法取消信箱確認"
 
 #: actions/deletenotice.php:103
@@ -1059,32 +745,13 @@ msgid ""
 "be undone."
 msgstr ""
 
-#: actions/deletenotice.php:109 actions/deletenotice.php:141
-#, fuzzy
-msgid "Delete notice"
-msgstr "新訊息"
-
 #: actions/deletenotice.php:144
 msgid "Are you sure you want to delete this notice?"
-msgstr ""
-
-#. TRANS: Submit button title for 'No' when deleting a notice.
-#: actions/deletenotice.php:151
-msgid "Do not delete this notice"
 msgstr ""
 
 #. TRANS: Submit button title for 'Yes' when deleting a notice.
 #: actions/deletenotice.php:158 lib/noticelist.php:657
 msgid "Delete this notice"
-msgstr ""
-
-#: actions/deleteuser.php:67
-#, fuzzy
-msgid "You cannot delete users."
-msgstr "無法更新使用者"
-
-#: actions/deleteuser.php:74
-msgid "You can only delete local users."
 msgstr ""
 
 #: actions/deleteuser.php:110 actions/deleteuser.php:133
@@ -1100,12 +767,11 @@ msgstr ""
 #. TRANS: Submit button title for 'Yes' when deleting a user.
 #: actions/deleteuser.php:163 lib/deleteuserform.php:77
 msgid "Delete this user"
-msgstr ""
+msgstr "註冊確認"
 
 #. TRANS: Message used as title for design settings for the site.
 #. TRANS: Link description in user account settings menu.
 #: actions/designadminpanel.php:63 lib/accountsettingsaction.php:139
-#: lib/groupnav.php:119
 msgid "Design"
 msgstr ""
 
@@ -1113,40 +779,16 @@ msgstr ""
 msgid "Design settings for this StatusNet site."
 msgstr ""
 
-#: actions/designadminpanel.php:318
-#, fuzzy
-msgid "Invalid logo URL."
-msgstr "尺寸錯誤"
-
-#: actions/designadminpanel.php:322
-#, php-format
-msgid "Theme not available: %s."
-msgstr ""
-
 #: actions/designadminpanel.php:426
-#, fuzzy
 msgid "Change logo"
 msgstr "更改"
 
 #: actions/designadminpanel.php:431
 msgid "Site logo"
-msgstr ""
-
-#: actions/designadminpanel.php:443
-#, fuzzy
-msgid "Change theme"
 msgstr "更改"
-
-#: actions/designadminpanel.php:460
-msgid "Site theme"
-msgstr ""
 
 #: actions/designadminpanel.php:461
 msgid "Theme for the site."
-msgstr ""
-
-#: actions/designadminpanel.php:467
-msgid "Custom theme"
 msgstr ""
 
 #: actions/designadminpanel.php:471
@@ -1188,14 +830,8 @@ msgid "Tile background image"
 msgstr ""
 
 #: actions/designadminpanel.php:564 lib/designsettings.php:170
-#, fuzzy
 msgid "Change colours"
-msgstr "更改密碼"
-
-#: actions/designadminpanel.php:587 lib/designsettings.php:191
-#, fuzzy
-msgid "Content"
-msgstr "連結"
+msgstr "更改"
 
 #: actions/designadminpanel.php:600 lib/designsettings.php:204
 msgid "Sidebar"
@@ -1204,11 +840,6 @@ msgstr ""
 #: actions/designadminpanel.php:613 lib/designsettings.php:217
 msgid "Text"
 msgstr ""
-
-#: actions/designadminpanel.php:626 lib/designsettings.php:230
-#, fuzzy
-msgid "Links"
-msgstr "登入"
 
 #: actions/designadminpanel.php:651
 msgid "Advanced"
@@ -1230,13 +861,13 @@ msgstr ""
 msgid "Reset back to default"
 msgstr ""
 
-#. TRANS: Submit button title
+#. TRANS: Submit button title.
 #: actions/designadminpanel.php:685 actions/othersettings.php:126
 #: actions/pathsadminpanel.php:351 actions/profilesettings.php:174
 #: actions/sessionsadminpanel.php:199 actions/siteadminpanel.php:292
 #: actions/sitenoticeadminpanel.php:195 actions/snapshotadminpanel.php:245
 #: actions/subscriptions.php:226 actions/tagother.php:154
-#: actions/useradminpanel.php:294 lib/applicationeditform.php:363
+#: actions/useradminpanel.php:294 lib/applicationeditform.php:353
 #: lib/designsettings.php:256 lib/groupeditform.php:202
 msgid "Save"
 msgstr ""
@@ -1254,23 +885,14 @@ msgid "Add to favorites"
 msgstr ""
 
 #: actions/doc.php:158
-#, fuzzy, php-format
+#, php-format
 msgid "No such document \"%s\""
 msgstr "無此通知"
 
-#: actions/editapplication.php:54
-msgid "Edit Application"
-msgstr ""
-
-#: actions/editapplication.php:66
-msgid "You must be logged in to edit an application."
-msgstr ""
-
 #: actions/editapplication.php:81 actions/oauthconnectionssettings.php:166
 #: actions/showapplication.php:87
-#, fuzzy
 msgid "No such application."
-msgstr "無此通知"
+msgstr "無此使用者"
 
 #: actions/editapplication.php:161
 msgid "Use this form to edit your application."
@@ -1280,37 +902,13 @@ msgstr ""
 msgid "Name is required."
 msgstr ""
 
-#: actions/editapplication.php:180 actions/newapplication.php:165
-#, fuzzy
-msgid "Name is too long (max 255 chars)."
-msgstr "全名過長（最多255字元）"
-
-#: actions/editapplication.php:183 actions/newapplication.php:162
-#, fuzzy
-msgid "Name already in use. Try another one."
-msgstr "此暱稱已有人使用。再試試看別的吧。"
-
-#: actions/editapplication.php:186 actions/newapplication.php:168
-msgid "Description is required."
-msgstr ""
-
 #: actions/editapplication.php:194
 msgid "Source URL is too long."
 msgstr ""
 
-#: actions/editapplication.php:200 actions/newapplication.php:185
-#, fuzzy
-msgid "Source URL is not valid."
-msgstr "個人首頁位址錯誤"
-
 #: actions/editapplication.php:203 actions/newapplication.php:188
 msgid "Organization is required."
 msgstr ""
-
-#: actions/editapplication.php:206 actions/newapplication.php:191
-#, fuzzy
-msgid "Organization is too long (max 255 chars)."
-msgstr "地點過長（共255個字）"
 
 #: actions/editapplication.php:209 actions/newapplication.php:194
 msgid "Organization homepage is required."
@@ -1325,17 +923,12 @@ msgid "Callback URL is not valid."
 msgstr ""
 
 #: actions/editapplication.php:258
-#, fuzzy
 msgid "Could not update application."
-msgstr "無法更新使用者"
+msgstr "無法取消信箱確認"
 
 #: actions/editgroup.php:56
 #, php-format
 msgid "Edit %s group"
-msgstr ""
-
-#: actions/editgroup.php:68 actions/grouplogo.php:70 actions/newgroup.php:65
-msgid "You must be logged in to create a group."
 msgstr ""
 
 #: actions/editgroup.php:107 actions/editgroup.php:172
@@ -1348,23 +941,17 @@ msgid "Use this form to edit the group."
 msgstr ""
 
 #: actions/editgroup.php:205 actions/newgroup.php:145
-#, fuzzy, php-format
+#, php-format
 msgid "description is too long (max %d chars)."
 msgstr "地點過長（共255個字）"
 
 #: actions/editgroup.php:228 actions/newgroup.php:168
 #, php-format
 msgid "Invalid alias: \"%s\""
-msgstr ""
-
-#: actions/editgroup.php:258
-#, fuzzy
-msgid "Could not update group."
-msgstr "無法更新使用者"
+msgstr "尺寸錯誤"
 
 #. TRANS: Server exception thrown when creating group aliases failed.
 #: actions/editgroup.php:264 classes/User_group.php:514
-#, fuzzy
 msgid "Could not create aliases."
 msgstr "無法更新使用者"
 
@@ -1374,7 +961,6 @@ msgstr ""
 
 #. TRANS: Title for e-mail settings.
 #: actions/emailsettings.php:61
-#, fuzzy
 msgid "Email settings"
 msgstr "使用者設定發生錯誤"
 
@@ -1385,239 +971,110 @@ msgstr "使用者設定發生錯誤"
 msgid "Manage how you get email from %%site.name%%."
 msgstr ""
 
-#. TRANS: Form legend for e-mail settings form.
-#. TRANS: Field label for e-mail address input in e-mail settings form.
-#: actions/emailsettings.php:106 actions/emailsettings.php:132
-#, fuzzy
-msgid "Email address"
-msgstr "確認信箱"
-
-#. TRANS: Form note in e-mail settings form.
-#: actions/emailsettings.php:112
-#, fuzzy
-msgid "Current confirmed email address."
-msgstr "目前已確認的Jabber/Gtalk地址"
-
 #. TRANS: Button label to remove a confirmed e-mail address.
 #. TRANS: Button label for removing a set sender e-mail address to post notices from.
 #. TRANS: Button label to remove a confirmed IM address.
 #. TRANS: Button label to remove a confirmed SMS address.
 #. TRANS: Button label for removing a set sender SMS e-mail address to post notices from.
-#: actions/emailsettings.php:115 actions/emailsettings.php:158
+#: actions/emailsettings.php:115 actions/emailsettings.php:162
 #: actions/imsettings.php:116 actions/smssettings.php:124
 #: actions/smssettings.php:180
 msgctxt "BUTTON"
 msgid "Remove"
 msgstr ""
 
-#: actions/emailsettings.php:122
-#, fuzzy
-msgid ""
-"Awaiting confirmation on this address. Check your inbox (and spam box!) for "
-"a message with further instructions."
-msgstr ""
-"等待確認此信箱。看看你的Jabber/GTalk是否有訊息指示下一步動作。(你加入%s到你的"
-"好友清單了嗎？)"
-
-#. TRANS: Button label to cancel an e-mail address confirmation procedure.
-#. TRANS: Button label to cancel an IM address confirmation procedure.
-#. TRANS: Button label to cancel a SMS address confirmation procedure.
-#. TRANS: Button label
-#: actions/emailsettings.php:127 actions/imsettings.php:131
-#: actions/smssettings.php:137 lib/applicationeditform.php:357
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Cancel"
-msgstr "取消"
-
-#. TRANS: Instructions for e-mail address input form.
-#: actions/emailsettings.php:135
+#. TRANS: Instructions for e-mail address input form. Do not translate
+#. TRANS: "example.org". It is one of the domain names reserved for
+#. TRANS: use in examples by http://www.rfc-editor.org/rfc/rfc2606.txt.
+#. TRANS: Any other domain may be owned by a legitimate person or
+#. TRANS: organization.
+#: actions/emailsettings.php:139
 msgid "Email address, like \"UserName@example.org\""
-msgstr ""
-
-#. TRANS: Button label for adding an e-mail address in e-mail settings form.
-#. TRANS: Button label for adding an IM address in IM settings form.
-#. TRANS: Button label for adding a SMS phone number in SMS settings form.
-#: actions/emailsettings.php:139 actions/imsettings.php:148
-#: actions/smssettings.php:162
-msgctxt "BUTTON"
-msgid "Add"
 msgstr ""
 
 #. TRANS: Form legend for incoming e-mail settings form.
 #. TRANS: Form legend for incoming SMS settings form.
-#: actions/emailsettings.php:147 actions/smssettings.php:171
+#: actions/emailsettings.php:151 actions/smssettings.php:171
 msgid "Incoming email"
 msgstr ""
 
 #. TRANS: Form instructions for incoming e-mail form in e-mail settings.
 #. TRANS: Form instructions for incoming SMS e-mail address form in SMS settings.
-#: actions/emailsettings.php:155 actions/smssettings.php:178
+#: actions/emailsettings.php:159 actions/smssettings.php:178
 msgid "Send email to this address to post new notices."
 msgstr ""
 
 #. TRANS: Instructions for incoming e-mail address input form.
 #. TRANS: Instructions for incoming SMS e-mail address input form.
-#: actions/emailsettings.php:164 actions/smssettings.php:186
+#: actions/emailsettings.php:168 actions/smssettings.php:186
 msgid "Make a new email address for posting to; cancels the old one."
 msgstr ""
 
 #. TRANS: Button label for adding an e-mail address to send notices from.
 #. TRANS: Button label for adding an SMS e-mail address to send notices from.
-#: actions/emailsettings.php:168 actions/smssettings.php:189
+#: actions/emailsettings.php:172 actions/smssettings.php:189
 msgctxt "BUTTON"
 msgid "New"
 msgstr ""
 
-#. TRANS: Form legend for e-mail preferences form.
-#: actions/emailsettings.php:174
-msgid "Email preferences"
-msgstr ""
-
 #. TRANS: Checkbox label in e-mail preferences form.
-#: actions/emailsettings.php:180
+#: actions/emailsettings.php:184
 msgid "Send me notices of new subscriptions through email."
 msgstr ""
 
 #. TRANS: Checkbox label in e-mail preferences form.
-#: actions/emailsettings.php:186
+#: actions/emailsettings.php:190
 msgid "Send me email when someone adds my notice as a favorite."
 msgstr ""
 
 #. TRANS: Checkbox label in e-mail preferences form.
-#: actions/emailsettings.php:193
+#: actions/emailsettings.php:197
 msgid "Send me email when someone sends me a private message."
 msgstr ""
 
 #. TRANS: Checkbox label in e-mail preferences form.
-#: actions/emailsettings.php:199
+#: actions/emailsettings.php:203
 msgid "Send me email when someone sends me an \"@-reply\"."
 msgstr ""
 
 #. TRANS: Checkbox label in e-mail preferences form.
-#: actions/emailsettings.php:205
+#: actions/emailsettings.php:209
 msgid "Allow friends to nudge me and send me an email."
 msgstr ""
 
 #. TRANS: Checkbox label in e-mail preferences form.
-#: actions/emailsettings.php:212
+#: actions/emailsettings.php:216
 msgid "I want to post notices by email."
 msgstr ""
 
-#. TRANS: Checkbox label in e-mail preferences form.
-#: actions/emailsettings.php:219
-#, fuzzy
-msgid "Publish a MicroID for my email address."
-msgstr "請輸入暱稱或電子信箱"
-
 #. TRANS: Confirmation message for successful e-mail preferences save.
-#: actions/emailsettings.php:334
+#: actions/emailsettings.php:338
 msgid "Email preferences saved."
 msgstr ""
 
-#. TRANS: Message given saving e-mail address without having provided one.
-#: actions/emailsettings.php:353
-#, fuzzy
-msgid "No email address."
-msgstr "此信箱無效"
-
-#. TRANS: Message given saving e-mail address that cannot be normalised.
-#: actions/emailsettings.php:361
-#, fuzzy
-msgid "Cannot normalize that email address"
-msgstr "此JabberID錯誤"
-
 #. TRANS: Message given saving e-mail address that not valid.
-#: actions/emailsettings.php:366 actions/register.php:208
+#: actions/emailsettings.php:370 actions/register.php:208
 #: actions/siteadminpanel.php:144
 msgid "Not a valid email address."
 msgstr "此信箱無效"
 
-#. TRANS: Message given saving e-mail address that is already set.
-#: actions/emailsettings.php:370
-#, fuzzy
-msgid "That is already your email address."
-msgstr "此信箱無效"
-
-#. TRANS: Message given saving e-mail address that is already set for another user.
-#: actions/emailsettings.php:374
-#, fuzzy
-msgid "That email address already belongs to another user."
-msgstr "此Jabber ID已有人使用"
-
 #. TRANS: Server error thrown on database error adding e-mail confirmation code.
 #. TRANS: Server error thrown on database error adding IM confirmation code.
 #. TRANS: Server error thrown on database error adding SMS confirmation code.
-#: actions/emailsettings.php:391 actions/imsettings.php:348
+#: actions/emailsettings.php:395 actions/imsettings.php:351
 #: actions/smssettings.php:373
 msgid "Couldn't insert confirmation code."
 msgstr "無法輸入確認碼"
 
-#. TRANS: Message given saving valid e-mail address that is to be confirmed.
-#: actions/emailsettings.php:398
-#, fuzzy
-msgid ""
-"A confirmation code was sent to the email address you added. Check your "
-"inbox (and spam box!) for the code and instructions on how to use it."
-msgstr "確認信已寄到你的線上即時通信箱。%s送給你得訊息要先經過你的認可。"
-
-#. TRANS: Message given canceling e-mail address confirmation that is not pending.
-#. TRANS: Message given canceling IM address confirmation that is not pending.
-#. TRANS: Message given canceling SMS phone number confirmation that is not pending.
-#: actions/emailsettings.php:419 actions/imsettings.php:383
-#: actions/smssettings.php:408
-#, fuzzy
-msgid "No pending confirmation to cancel."
-msgstr "無確認碼"
-
-#. TRANS: Message given canceling e-mail address confirmation for the wrong e-mail address.
-#: actions/emailsettings.php:424
-#, fuzzy
-msgid "That is the wrong email address."
-msgstr "請輸入暱稱或電子信箱"
-
 #. TRANS: Message given after successfully canceling e-mail address confirmation.
-#: actions/emailsettings.php:438
-#, fuzzy
+#: actions/emailsettings.php:442
 msgid "Email confirmation cancelled."
 msgstr "無確認碼"
 
-#. TRANS: Message given trying to remove an e-mail address that is not
-#. TRANS: registered for the active user.
-#: actions/emailsettings.php:458
-#, fuzzy
-msgid "That is not your email address."
-msgstr "請輸入暱稱或電子信箱"
-
-#. TRANS: Message given after successfully removing a registered e-mail address.
-#: actions/emailsettings.php:479
-#, fuzzy
-msgid "The email address was removed."
-msgstr "此電子信箱已註冊過了"
-
-#: actions/emailsettings.php:493 actions/smssettings.php:568
-#, fuzzy
-msgid "No incoming email address."
-msgstr "此信箱無效"
-
-#. TRANS: Server error thrown on database error removing incoming e-mail address.
-#. TRANS: Server error thrown on database error adding incoming e-mail address.
-#: actions/emailsettings.php:504 actions/emailsettings.php:528
-#: actions/smssettings.php:578 actions/smssettings.php:602
-#, fuzzy
-msgid "Couldn't update user record."
-msgstr "無法更新使用者"
-
 #. TRANS: Message given after successfully removing an incoming e-mail address.
-#: actions/emailsettings.php:508 actions/smssettings.php:581
+#: actions/emailsettings.php:512 actions/smssettings.php:581
 msgid "Incoming email address removed."
 msgstr ""
-
-#. TRANS: Message given after successfully adding an incoming e-mail address.
-#: actions/emailsettings.php:532 actions/smssettings.php:605
-#, fuzzy
-msgid "New incoming email address added."
-msgstr "此信箱無效"
 
 #: actions/favor.php:79
 msgid "This notice is already a favorite!"
@@ -1625,17 +1082,6 @@ msgstr ""
 
 #: actions/favor.php:92 lib/disfavorform.php:140
 msgid "Disfavor favorite"
-msgstr ""
-
-#: actions/favorited.php:65 lib/popularnoticesection.php:91
-#: lib/publicgroupnav.php:93
-#, fuzzy
-msgid "Popular notices"
-msgstr "無此通知"
-
-#: actions/favorited.php:67
-#, php-format
-msgid "Popular notices, page %d"
 msgstr ""
 
 #: actions/favorited.php:79
@@ -1665,11 +1111,6 @@ msgstr ""
 msgid "%s's favorite notices"
 msgstr ""
 
-#: actions/favoritesrss.php:115
-#, php-format
-msgid "Updates favored by %1$s on %2$s!"
-msgstr ""
-
 #: actions/featured.php:69 lib/featureduserssection.php:87
 #: lib/publicgroupnav.php:89
 msgid "Featured users"
@@ -1686,22 +1127,20 @@ msgid "A selection of some great users on %s"
 msgstr ""
 
 #: actions/file.php:34
-#, fuzzy
 msgid "No notice ID."
 msgstr "無此通知"
 
 #: actions/file.php:38
-#, fuzzy
 msgid "No notice."
 msgstr "無此通知"
 
 #: actions/file.php:42
 msgid "No attachments."
-msgstr ""
+msgstr "無此通知"
 
 #: actions/file.php:51
 msgid "No uploaded attachments."
-msgstr ""
+msgstr "無此通知"
 
 #: actions/finishremotesubscribe.php:69
 msgid "Not expecting this response!"
@@ -1711,11 +1150,6 @@ msgstr ""
 msgid "User being listened to does not exist."
 msgstr ""
 
-#: actions/finishremotesubscribe.php:87 actions/remotesubscribe.php:59
-#, fuzzy
-msgid "You can use the local subscription!"
-msgstr "無法新增訂閱"
-
 #: actions/finishremotesubscribe.php:99
 msgid "That user has blocked you from subscribing."
 msgstr ""
@@ -1724,40 +1158,16 @@ msgstr ""
 msgid "You are not authorized."
 msgstr ""
 
-#: actions/finishremotesubscribe.php:113
-msgid "Could not convert request token to access token."
-msgstr ""
-
 #: actions/finishremotesubscribe.php:118
 msgid "Remote service uses unknown version of OMB protocol."
 msgstr ""
 
-#: actions/finishremotesubscribe.php:138
-#, fuzzy
-msgid "Error updating remote profile."
-msgstr "更新遠端個人資料發生錯誤"
-
-#: actions/getfile.php:79
-#, fuzzy
-msgid "No such file."
-msgstr "無此通知"
-
 #: actions/getfile.php:83
-#, fuzzy
 msgid "Cannot read file."
 msgstr "無法儲存個人資料"
 
-#: actions/grantrole.php:62 actions/revokerole.php:62
-#, fuzzy
-msgid "Invalid role."
-msgstr "尺寸錯誤"
-
 #: actions/grantrole.php:66 actions/revokerole.php:66
 msgid "This role is reserved and cannot be set."
-msgstr ""
-
-#: actions/grantrole.php:75
-msgid "You cannot grant user roles on this site."
 msgstr ""
 
 #: actions/grantrole.php:82
@@ -1785,19 +1195,6 @@ msgstr ""
 msgid "Only an admin can block group members."
 msgstr ""
 
-#: actions/groupblock.php:95
-msgid "User is already blocked from group."
-msgstr ""
-
-#: actions/groupblock.php:100
-#, fuzzy
-msgid "User is not a member of group."
-msgstr "無法連結到伺服器:%s"
-
-#: actions/groupblock.php:134 actions/groupmembers.php:360
-msgid "Block user from group"
-msgstr ""
-
 #: actions/groupblock.php:160
 #, php-format
 msgid ""
@@ -1806,24 +1203,13 @@ msgid ""
 "the group in the future."
 msgstr ""
 
-#. TRANS: Submit button title for 'No' when blocking a user from a group.
-#: actions/groupblock.php:182
-msgid "Do not block this user from this group"
-msgstr ""
-
-#. TRANS: Submit button title for 'Yes' when blocking a user from a group.
-#: actions/groupblock.php:189
-msgid "Block this user from this group"
-msgstr ""
-
 #: actions/groupblock.php:206
 msgid "Database error blocking user from group."
 msgstr ""
 
 #: actions/groupbyid.php:74 actions/userbyid.php:70
-#, fuzzy
 msgid "No ID."
-msgstr "查無此Jabber ID"
+msgstr "無此通知"
 
 #: actions/groupdesignsettings.php:68
 msgid "You must be logged in to edit a group."
@@ -1839,18 +1225,8 @@ msgid ""
 "palette of your choice."
 msgstr ""
 
-#: actions/groupdesignsettings.php:266 actions/userdesignsettings.php:186
-#: lib/designsettings.php:391 lib/designsettings.php:413
-#, fuzzy
-msgid "Couldn't update your design."
-msgstr "無法更新使用者"
-
 #: actions/groupdesignsettings.php:311 actions/userdesignsettings.php:231
 msgid "Design preferences saved."
-msgstr ""
-
-#: actions/grouplogo.php:142 actions/grouplogo.php:195
-msgid "Group logo"
 msgstr ""
 
 #: actions/grouplogo.php:153
@@ -1863,47 +1239,40 @@ msgstr ""
 msgid "Pick a square area of the image to be the logo."
 msgstr ""
 
-#: actions/grouplogo.php:399
-#, fuzzy
-msgid "Logo updated."
-msgstr "更新個人圖像"
-
-#: actions/grouplogo.php:401
-#, fuzzy
-msgid "Failed updating logo."
-msgstr "無法上傳個人圖像"
-
-#: actions/groupmembers.php:100 lib/groupnav.php:92
-#, php-format
-msgid "%s group members"
-msgstr ""
-
-#: actions/groupmembers.php:103
+#. TRANS: Title of the page showing group members.
+#. TRANS: %1$s is the name of the group, %2$d is the page number of the members list.
+#: actions/groupmembers.php:107
 #, php-format
 msgid "%1$s group members, page %2$d"
 msgstr ""
 
-#: actions/groupmembers.php:118
+#: actions/groupmembers.php:122
 msgid "A list of the users in this group."
 msgstr ""
 
-#: actions/groupmembers.php:182 lib/groupnav.php:107
+#: actions/groupmembers.php:186
 msgid "Admin"
 msgstr ""
 
-#: actions/groupmembers.php:392 lib/blockform.php:69
+#. TRANS: Button text for the form that will block a user from a group.
+#: actions/groupmembers.php:399
+msgctxt "BUTTON"
 msgid "Block"
 msgstr ""
 
-#: actions/groupmembers.php:487
+#: actions/groupmembers.php:498
 msgid "Make user an admin of the group"
 msgstr ""
 
-#: actions/groupmembers.php:519
+#. TRANS: Button text for the form that will make a user administrator.
+#: actions/groupmembers.php:533
+msgctxt "BUTTON"
 msgid "Make Admin"
 msgstr ""
 
-#: actions/groupmembers.php:519
+#. TRANS: Submit button title.
+#: actions/groupmembers.php:537
+msgctxt "TOOLTIP"
 msgid "Make this user an admin"
 msgstr ""
 
@@ -1914,12 +1283,6 @@ msgstr ""
 #: lib/atomgroupnoticefeed.php:63 lib/atomusernoticefeed.php:69
 #, php-format
 msgid "%s timeline"
-msgstr ""
-
-#. TRANS: Message is used as link description. %1$s is a username, %2$s is a site name.
-#: actions/grouprss.php:142
-#, php-format
-msgid "Updates from members of %1$s on %2$s!"
 msgstr ""
 
 #: actions/groups.php:62 lib/profileaction.php:223 lib/profileaction.php:249
@@ -1942,10 +1305,6 @@ msgid ""
 "%%%%)"
 msgstr ""
 
-#: actions/groups.php:107 actions/usergroups.php:126 lib/groupeditform.php:122
-msgid "Create a new group"
-msgstr ""
-
 #: actions/groupsearch.php:52
 #, php-format
 msgid ""
@@ -1955,11 +1314,6 @@ msgstr ""
 
 #: actions/groupsearch.php:58
 msgid "Group search"
-msgstr ""
-
-#: actions/groupsearch.php:79 actions/noticesearch.php:117
-#: actions/peoplesearch.php:83
-msgid "No results."
 msgstr ""
 
 #: actions/groupsearch.php:82
@@ -1984,14 +1338,8 @@ msgstr ""
 msgid "User is not blocked from group."
 msgstr ""
 
-#: actions/groupunblock.php:128 actions/unblock.php:86
-#, fuzzy
-msgid "Error removing the block."
-msgstr "儲存使用者發生錯誤"
-
 #. TRANS: Title for instance messaging settings.
 #: actions/imsettings.php:60
-#, fuzzy
 msgid "IM settings"
 msgstr "使用者設定發生錯誤"
 
@@ -2005,16 +1353,11 @@ msgid ""
 "doc.im%%). Configure your address and settings below."
 msgstr ""
 
-#. TRANS: Message given in the IM settings if XMPP is not enabled on the site.
-#: actions/imsettings.php:94
-msgid "IM is not available."
-msgstr ""
-
 #. TRANS: Form legend for IM settings form.
 #. TRANS: Field label for IM address input in IM settings form.
 #: actions/imsettings.php:106 actions/imsettings.php:136
 msgid "IM address"
-msgstr ""
+msgstr "確認"
 
 #: actions/imsettings.php:113
 msgid "Current confirmed Jabber/GTalk address."
@@ -2033,7 +1376,10 @@ msgstr ""
 
 #. TRANS: IM address input field instructions in IM settings form.
 #. TRANS: %s is the IM address set for the site.
-#: actions/imsettings.php:140
+#. TRANS: Do not translate "example.org". It is one of the domain names reserved for use in examples by
+#. TRANS: http://www.rfc-editor.org/rfc/rfc2606.txt. Any other domain may be owned by a legitimate
+#. TRANS: person or organization.
+#: actions/imsettings.php:143
 #, php-format
 msgid ""
 "Jabber or GTalk address, like \"UserName@example.org\". First, make sure to "
@@ -2041,65 +1387,53 @@ msgid ""
 msgstr ""
 
 #. TRANS: Form legend for IM preferences form.
-#: actions/imsettings.php:155
+#: actions/imsettings.php:158
 msgid "IM preferences"
 msgstr ""
 
 #. TRANS: Checkbox label in IM preferences form.
-#: actions/imsettings.php:160
+#: actions/imsettings.php:163
 msgid "Send me notices through Jabber/GTalk."
 msgstr ""
 
 #. TRANS: Checkbox label in IM preferences form.
-#: actions/imsettings.php:166
+#: actions/imsettings.php:169
 msgid "Post a notice when my Jabber/GTalk status changes."
 msgstr ""
 
 #. TRANS: Checkbox label in IM preferences form.
-#: actions/imsettings.php:172
+#: actions/imsettings.php:175
 msgid "Send me replies through Jabber/GTalk from people I'm not subscribed to."
 msgstr ""
 
-#. TRANS: Checkbox label in IM preferences form.
-#: actions/imsettings.php:179
-#, fuzzy
-msgid "Publish a MicroID for my Jabber/GTalk address."
-msgstr "目前已確認的Jabber/Gtalk地址"
-
 #. TRANS: Confirmation message for successful IM preferences save.
-#: actions/imsettings.php:287 actions/othersettings.php:180
+#: actions/imsettings.php:290 actions/othersettings.php:180
 msgid "Preferences saved."
 msgstr ""
 
 #. TRANS: Message given saving IM address without having provided one.
-#: actions/imsettings.php:309
+#: actions/imsettings.php:312
 msgid "No Jabber ID."
 msgstr "查無此Jabber ID"
 
 #. TRANS: Message given saving IM address that cannot be normalised.
-#: actions/imsettings.php:317
+#: actions/imsettings.php:320
 msgid "Cannot normalize that Jabber ID"
 msgstr "此JabberID錯誤"
 
 #. TRANS: Message given saving IM address that not valid.
-#: actions/imsettings.php:322
+#: actions/imsettings.php:325
 msgid "Not a valid Jabber ID"
 msgstr "此JabberID無效"
 
-#. TRANS: Message given saving IM address that is already set.
-#: actions/imsettings.php:326
-#, fuzzy
-msgid "That is already your Jabber ID."
-msgstr "此JabberID無效"
-
 #. TRANS: Message given saving IM address that is already set for another user.
-#: actions/imsettings.php:330
+#: actions/imsettings.php:333
 msgid "Jabber ID already belongs to another user."
 msgstr "此Jabber ID已有人使用"
 
 #. TRANS: Message given saving valid IM address that is to be confirmed.
 #. TRANS: %s is the IM address set for the site.
-#: actions/imsettings.php:358
+#: actions/imsettings.php:361
 #, php-format
 msgid ""
 "A confirmation code was sent to the IM address you added. You must approve %"
@@ -2107,31 +1441,17 @@ msgid ""
 msgstr "確認信已寄到你的線上即時通信箱。%s送給你得訊息要先經過你的認可。"
 
 #. TRANS: Message given canceling IM address confirmation for the wrong IM address.
-#: actions/imsettings.php:388
+#: actions/imsettings.php:391
 msgid "That is the wrong IM address."
 msgstr ""
 
-#. TRANS: Server error thrown on database error canceling IM address confirmation.
-#: actions/imsettings.php:397
-#, fuzzy
-msgid "Couldn't delete IM confirmation."
-msgstr "無法取消信箱確認"
-
 #. TRANS: Message given after successfully canceling IM address confirmation.
-#: actions/imsettings.php:402
-#, fuzzy
+#: actions/imsettings.php:405
 msgid "IM confirmation cancelled."
 msgstr "無確認碼"
 
-#. TRANS: Message given trying to remove an IM address that is not
-#. TRANS: registered for the active user.
-#: actions/imsettings.php:424
-#, fuzzy
-msgid "That is not your Jabber ID."
-msgstr "查無此Jabber ID"
-
 #. TRANS: Message given after successfully removing a registered IM address.
-#: actions/imsettings.php:447
+#: actions/imsettings.php:450
 msgid "The IM address was removed."
 msgstr ""
 
@@ -2153,16 +1473,6 @@ msgstr ""
 msgid "Invites have been disabled."
 msgstr ""
 
-#: actions/invite.php:41
-#, php-format
-msgid "You must be logged in to invite other users to use %s."
-msgstr ""
-
-#: actions/invite.php:72
-#, fuzzy, php-format
-msgid "Invalid email address: %s"
-msgstr "此信箱無效"
-
 #: actions/invite.php:110
 msgid "Invitation(s) sent"
 msgstr ""
@@ -2171,14 +1481,9 @@ msgstr ""
 msgid "Invite new users"
 msgstr ""
 
-#: actions/invite.php:128
-#, fuzzy
-msgid "You are already subscribed to these users:"
-msgstr "此帳號已註冊"
-
 #. TRANS: Whois output.
 #. TRANS: %1$s nickname of the queried user, %2$s is their profile URL.
-#: actions/invite.php:131 actions/invite.php:139 lib/command.php:414
+#: actions/invite.php:131 actions/invite.php:139 lib/command.php:430
 #, php-format
 msgid "%1$s (%2$s)"
 msgstr ""
@@ -2203,11 +1508,6 @@ msgid ""
 "Use this form to invite your friends and colleagues to use this service."
 msgstr ""
 
-#: actions/invite.php:187
-#, fuzzy
-msgid "Email addresses"
-msgstr "此電子信箱已註冊過了"
-
 #: actions/invite.php:189
 msgid "Addresses of friends to invite (one per line)"
 msgstr ""
@@ -2225,12 +1525,6 @@ msgstr ""
 msgctxt "BUTTON"
 msgid "Send"
 msgstr ""
-
-#. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral singular 3rd-person pronoun in English.
-#: actions/invite.php:228
-#, fuzzy, php-format
-msgid "%1$s has invited you to join them on %2$s"
-msgstr "現在%1$s在%2$s成為你的粉絲囉"
 
 #. TRANS: Body text for invitation email. Note that 'them' is correct as a gender-neutral singular 3rd-person pronoun in English.
 #: actions/invite.php:231
@@ -2268,14 +1562,7 @@ msgstr ""
 msgid "You must be logged in to join a group."
 msgstr ""
 
-#: actions/joingroup.php:88 actions/leavegroup.php:88
-#, fuzzy
-msgid "No nickname or ID."
-msgstr "無暱稱"
-
-#. TRANS: Message given having added a user to a group.
-#. TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
-#: actions/joingroup.php:141 lib/command.php:346
+#: actions/joingroup.php:141
 #, php-format
 msgid "%1$s joined group %2$s"
 msgstr ""
@@ -2283,18 +1570,6 @@ msgstr ""
 #: actions/leavegroup.php:60
 msgid "You must be logged in to leave a group."
 msgstr ""
-
-#: actions/leavegroup.php:100 lib/command.php:373
-#, fuzzy
-msgid "You are not a member of that group."
-msgstr "無法連結到伺服器:%s"
-
-#. TRANS: Message given having removed a user from a group.
-#. TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
-#: actions/leavegroup.php:137 lib/command.php:392
-#, fuzzy, php-format
-msgid "%1$s left group %2$s"
-msgstr "%1$s的狀態是%2$s"
 
 #: actions/login.php:102 actions/otp.php:62 actions/register.php:144
 msgid "Already logged in."
@@ -2316,11 +1591,6 @@ msgstr "登入"
 msgid "Login to site"
 msgstr ""
 
-#: actions/login.php:258 actions/register.php:485
-#, fuzzy
-msgid "Remember me"
-msgstr "何時加入會員的呢？"
-
 #: actions/login.php:259 actions/register.php:487
 msgid "Automatically login in the future; not for shared computers!"
 msgstr "未來在同一部電腦自動登入"
@@ -2336,7 +1606,6 @@ msgid ""
 msgstr "為安全起見，請先重新輸入你的使用者名稱與密碼再更改設定。"
 
 #: actions/login.php:292
-#, fuzzy
 msgid "Login with your username and password."
 msgstr "使用者名稱或密碼錯誤"
 
@@ -2355,28 +1624,6 @@ msgstr ""
 msgid "%1$s is already an admin for group \"%2$s\"."
 msgstr ""
 
-#: actions/makeadmin.php:133
-#, php-format
-msgid "Can't get membership record for %1$s in group %2$s."
-msgstr ""
-
-#: actions/makeadmin.php:146
-#, php-format
-msgid "Can't make %1$s an admin for group %2$s."
-msgstr ""
-
-#: actions/microsummary.php:69
-msgid "No current status."
-msgstr ""
-
-#: actions/newapplication.php:52
-msgid "New Application"
-msgstr ""
-
-#: actions/newapplication.php:64
-msgid "You must be logged in to register an application."
-msgstr ""
-
 #: actions/newapplication.php:143
 msgid "Use this form to register a new application."
 msgstr ""
@@ -2386,13 +1633,8 @@ msgid "Source URL is required."
 msgstr ""
 
 #: actions/newapplication.php:258 actions/newapplication.php:267
-#, fuzzy
 msgid "Could not create application."
 msgstr "無法取消信箱確認"
-
-#: actions/newgroup.php:53
-msgid "New group"
-msgstr ""
 
 #: actions/newgroup.php:110
 msgid "Use this form to create a new group."
@@ -2402,13 +1644,10 @@ msgstr ""
 msgid "New message"
 msgstr ""
 
-#: actions/newmessage.php:121 actions/newmessage.php:161 lib/command.php:481
-#, fuzzy
-msgid "You can't send a message to this user."
-msgstr "無法連結到伺服器:%s"
-
-#: actions/newmessage.php:144 actions/newnotice.php:136 lib/command.php:463
-#: lib/command.php:555
+#. TRANS: Command exception text shown when trying to send a direct message to another user without content.
+#. TRANS: Command exception text shown when trying to reply to a notice without providing content for the reply.
+#: actions/newmessage.php:144 actions/newnotice.php:138 lib/command.php:481
+#: lib/command.php:582
 msgid "No content!"
 msgstr "無內容"
 
@@ -2416,7 +1655,8 @@ msgstr "無內容"
 msgid "No recipient specified."
 msgstr ""
 
-#: actions/newmessage.php:164 lib/command.php:484
+#. TRANS: Error text shown when trying to send a direct message to self.
+#: actions/newmessage.php:164 lib/command.php:506
 msgid ""
 "Don't send a message to yourself; just say it to yourself quietly instead."
 msgstr ""
@@ -2425,12 +1665,14 @@ msgstr ""
 msgid "Message sent"
 msgstr ""
 
-#: actions/newmessage.php:185
+#. TRANS: Message given have sent a direct message to another user.
+#. TRANS: %s is the name of the other user.
+#: actions/newmessage.php:185 lib/command.php:514
 #, php-format
 msgid "Direct message to %s sent."
 msgstr ""
 
-#: actions/newmessage.php:210 actions/newnotice.php:251 lib/channel.php:189
+#: actions/newmessage.php:210 actions/newnotice.php:261 lib/channel.php:189
 msgid "Ajax Error"
 msgstr ""
 
@@ -2438,7 +1680,7 @@ msgstr ""
 msgid "New notice"
 msgstr "新訊息"
 
-#: actions/newnotice.php:217
+#: actions/newnotice.php:227
 msgid "Notice posted"
 msgstr ""
 
@@ -2453,11 +1695,6 @@ msgstr ""
 msgid "Text search"
 msgstr ""
 
-#: actions/noticesearch.php:91
-#, php-format
-msgid "Search results for \"%1$s\" on %2$s"
-msgstr ""
-
 #: actions/noticesearch.php:121
 #, php-format
 msgid ""
@@ -2470,16 +1707,6 @@ msgstr ""
 msgid ""
 "Why not [register an account](%%%%action.register%%%%) and be the first to "
 "[post on this topic](%%%%action.newnotice%%%%?status_textarea=%s)!"
-msgstr ""
-
-#: actions/noticesearchrss.php:96
-#, php-format
-msgid "Updates with \"%s\""
-msgstr ""
-
-#: actions/noticesearchrss.php:98
-#, php-format
-msgid "Updates matching search term \"%1$s\" on %2$s!"
 msgstr ""
 
 #: actions/nudge.php:85
@@ -2507,22 +1734,13 @@ msgstr ""
 msgid "Applications you have registered"
 msgstr ""
 
-#: actions/oauthappssettings.php:135
-#, php-format
-msgid "You have not registered any applications yet."
-msgstr ""
-
-#: actions/oauthconnectionssettings.php:72
-msgid "Connected applications"
-msgstr ""
-
 #: actions/oauthconnectionssettings.php:83
 msgid "You have allowed the following applications to access you account."
 msgstr ""
 
 #: actions/oauthconnectionssettings.php:175
 msgid "You are not a user of that application."
-msgstr ""
+msgstr "無法取消信箱確認"
 
 #: actions/oauthconnectionssettings.php:186
 #, php-format
@@ -2539,18 +1757,12 @@ msgstr ""
 
 #: actions/oembed.php:80 actions/shownotice.php:100
 msgid "Notice has no profile."
-msgstr ""
+msgstr "新的更人資料輸入錯誤"
 
 #: actions/oembed.php:87 actions/shownotice.php:175
 #, php-format
 msgid "%1$s's status on %2$s"
 msgstr "%1$s的狀態是%2$s"
-
-#. TRANS: Error message displaying attachments. %s is a raw MIME type (eg 'image/png')
-#: actions/oembed.php:159
-#, php-format
-msgid "Content type %s not supported."
-msgstr ""
 
 #. TRANS: Error message displaying attachments. %s is the site's base URL.
 #: actions/oembed.php:163
@@ -2559,8 +1771,8 @@ msgid "Only %s URLs over plain HTTP please."
 msgstr ""
 
 #. TRANS: Client error on an API request with an unsupported data format.
-#: actions/oembed.php:184 actions/oembed.php:203 lib/apiaction.php:1204
-#: lib/apiaction.php:1232 lib/apiaction.php:1355
+#: actions/oembed.php:184 actions/oembed.php:203 lib/apiaction.php:1206
+#: lib/apiaction.php:1233 lib/apiaction.php:1356
 msgid "Not a supported data format."
 msgstr ""
 
@@ -2573,7 +1785,6 @@ msgid "Notice Search"
 msgstr ""
 
 #: actions/othersettings.php:60
-#, fuzzy
 msgid "Other settings"
 msgstr "使用者設定發生錯誤"
 
@@ -2593,34 +1804,8 @@ msgstr ""
 msgid "Automatic shortening service to use."
 msgstr ""
 
-#: actions/othersettings.php:122
-msgid "View profile designs"
-msgstr ""
-
 #: actions/othersettings.php:123
 msgid "Show or hide profile designs."
-msgstr ""
-
-#: actions/othersettings.php:153
-#, fuzzy
-msgid "URL shortening service is too long (max 50 chars)."
-msgstr "地點過長（共255個字）"
-
-#: actions/otp.php:69
-msgid "No user ID specified."
-msgstr ""
-
-#: actions/otp.php:83
-msgid "No login token specified."
-msgstr ""
-
-#: actions/otp.php:90
-#, fuzzy
-msgid "No login token requested."
-msgstr "無確認請求"
-
-#: actions/otp.php:95
-msgid "Invalid login token specified."
 msgstr ""
 
 #: actions/otp.php:104
@@ -2645,19 +1830,9 @@ msgstr ""
 msgid "Change password"
 msgstr "更改密碼"
 
-#: actions/passwordsettings.php:69
-#, fuzzy
-msgid "Change your password."
-msgstr "更改密碼"
-
 #: actions/passwordsettings.php:96 actions/recoverpassword.php:231
 msgid "Password change"
 msgstr ""
-
-#: actions/passwordsettings.php:104
-#, fuzzy
-msgid "Old password"
-msgstr "新密碼"
 
 #: actions/passwordsettings.php:108 actions/recoverpassword.php:235
 msgid "New password"
@@ -2680,11 +1855,6 @@ msgstr ""
 msgid "Change"
 msgstr "更改"
 
-#: actions/passwordsettings.php:154 actions/register.php:237
-#, fuzzy
-msgid "Password must be 6 or more characters."
-msgstr "6個以上字元"
-
 #: actions/passwordsettings.php:157 actions/register.php:240
 msgid "Passwords don't match."
 msgstr ""
@@ -2706,32 +1876,12 @@ msgid "Password saved."
 msgstr ""
 
 #. TRANS: Menu item for site administration
-#: actions/pathsadminpanel.php:59 lib/adminpanelaction.php:384
+#: actions/pathsadminpanel.php:59 lib/adminpanelaction.php:371
 msgid "Paths"
 msgstr ""
 
 #: actions/pathsadminpanel.php:70
 msgid "Path and server settings for this StatusNet site."
-msgstr ""
-
-#: actions/pathsadminpanel.php:157
-#, php-format
-msgid "Theme directory not readable: %s."
-msgstr ""
-
-#: actions/pathsadminpanel.php:163
-#, php-format
-msgid "Avatar directory not writable: %s."
-msgstr ""
-
-#: actions/pathsadminpanel.php:169
-#, php-format
-msgid "Background directory not writable: %s."
-msgstr ""
-
-#: actions/pathsadminpanel.php:177
-#, php-format
-msgid "Locales directory not readable: %s."
 msgstr ""
 
 #: actions/pathsadminpanel.php:183
@@ -2752,10 +1902,6 @@ msgstr ""
 
 #: actions/pathsadminpanel.php:242
 msgid "Path"
-msgstr ""
-
-#: actions/pathsadminpanel.php:242
-msgid "Site path"
 msgstr ""
 
 #: actions/pathsadminpanel.php:246
@@ -2790,31 +1936,16 @@ msgstr ""
 msgid "Theme directory"
 msgstr ""
 
-#: actions/pathsadminpanel.php:279
-#, fuzzy
-msgid "Avatars"
-msgstr "個人圖像"
-
 #: actions/pathsadminpanel.php:284
-#, fuzzy
 msgid "Avatar server"
 msgstr "個人圖像"
 
-#: actions/pathsadminpanel.php:288
-#, fuzzy
-msgid "Avatar path"
-msgstr "更新個人圖像"
-
 #: actions/pathsadminpanel.php:292
 msgid "Avatar directory"
-msgstr ""
+msgstr "個人圖像"
 
 #: actions/pathsadminpanel.php:301
 msgid "Backgrounds"
-msgstr ""
-
-#: actions/pathsadminpanel.php:305
-msgid "Background server"
 msgstr ""
 
 #: actions/pathsadminpanel.php:309
@@ -2851,14 +1982,10 @@ msgstr ""
 
 #: actions/pathsadminpanel.php:335
 msgid "SSL server"
-msgstr ""
+msgstr "個人圖像"
 
 #: actions/pathsadminpanel.php:336
 msgid "Server to direct SSL requests to"
-msgstr ""
-
-#: actions/pathsadminpanel.php:352
-msgid "Save paths"
 msgstr ""
 
 #: actions/peoplesearch.php:52
@@ -2872,30 +1999,10 @@ msgstr ""
 msgid "People search"
 msgstr ""
 
-#: actions/peopletag.php:68
-#, fuzzy, php-format
-msgid "Not a valid people tag: %s."
-msgstr "此信箱無效"
-
-#: actions/peopletag.php:142
-#, php-format
-msgid "Users self-tagged with %1$s - page %2$d"
-msgstr ""
-
-#: actions/postnotice.php:95
-#, fuzzy
-msgid "Invalid notice content."
-msgstr "尺寸錯誤"
-
 #: actions/postnotice.php:101
 #, php-format
 msgid "Notice license ‘%1$s’ is not compatible with site license ‘%2$s’."
 msgstr ""
-
-#: actions/profilesettings.php:60
-#, fuzzy
-msgid "Profile settings"
-msgstr "使用者設定發生錯誤"
 
 #: actions/profilesettings.php:71
 msgid ""
@@ -2918,21 +2025,12 @@ msgstr "全名"
 
 #. TRANS: Form input field label.
 #: actions/profilesettings.php:115 actions/register.php:460
-#: lib/applicationeditform.php:244 lib/groupeditform.php:161
+#: lib/applicationeditform.php:235 lib/groupeditform.php:161
 msgid "Homepage"
 msgstr "個人首頁"
 
 #: actions/profilesettings.php:117 actions/register.php:462
 msgid "URL of your homepage, blog, or profile on another site"
-msgstr ""
-
-#: actions/profilesettings.php:122 actions/register.php:468
-#, php-format
-msgid "Describe yourself and your interests in %d chars"
-msgstr ""
-
-#: actions/profilesettings.php:125 actions/register.php:471
-msgid "Describe yourself and your interests"
 msgstr ""
 
 #: actions/profilesettings.php:127 actions/register.php:473
@@ -2987,45 +2085,25 @@ msgid ""
 msgstr ""
 
 #: actions/profilesettings.php:228 actions/register.php:230
-#, fuzzy, php-format
+#, php-format
 msgid "Bio is too long (max %d chars)."
-msgstr "地點過長（共255個字）"
+msgstr "地點過長（共%d個字）"
 
 #: actions/profilesettings.php:235 actions/siteadminpanel.php:151
 msgid "Timezone not selected."
 msgstr ""
 
-#: actions/profilesettings.php:241
-#, fuzzy
-msgid "Language is too long (max 50 chars)."
-msgstr "地點過長（共255個字）"
-
 #: actions/profilesettings.php:253 actions/tagother.php:178
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid tag: \"%s\""
 msgstr "尺寸錯誤"
-
-#: actions/profilesettings.php:306
-#, fuzzy
-msgid "Couldn't update user for autosubscribe."
-msgstr "無法更新使用者"
-
-#: actions/profilesettings.php:363
-#, fuzzy
-msgid "Couldn't save location prefs."
-msgstr "無法儲存個人資料"
 
 #: actions/profilesettings.php:375
 msgid "Couldn't save profile."
 msgstr "無法儲存個人資料"
 
-#: actions/profilesettings.php:383
-#, fuzzy
-msgid "Couldn't save tags."
-msgstr "無法儲存個人資料"
-
 #. TRANS: Message after successful saving of administrative settings.
-#: actions/profilesettings.php:391 lib/adminpanelaction.php:141
+#: actions/profilesettings.php:391 lib/adminpanelaction.php:138
 msgid "Settings saved."
 msgstr ""
 
@@ -3033,11 +2111,6 @@ msgstr ""
 #, php-format
 msgid "Beyond the page limit (%s)."
 msgstr ""
-
-#: actions/public.php:92
-#, fuzzy
-msgid "Could not retrieve public stream."
-msgstr "無法更新使用者"
 
 #: actions/public.php:130
 #, php-format
@@ -3054,10 +2127,6 @@ msgstr ""
 
 #: actions/public.php:164
 msgid "Public Stream Feed (RSS 2.0)"
-msgstr ""
-
-#: actions/public.php:168
-msgid "Public Stream Feed (Atom)"
 msgstr ""
 
 #: actions/public.php:188
@@ -3123,11 +2192,6 @@ msgstr ""
 msgid "Tag cloud"
 msgstr ""
 
-#: actions/recoverpassword.php:36
-#, fuzzy
-msgid "You are already logged in!"
-msgstr "已登入"
-
 #: actions/recoverpassword.php:62
 msgid "No such recovery code."
 msgstr "無此恢復碼"
@@ -3148,18 +2212,6 @@ msgstr "確認碼發生錯誤"
 msgid "This confirmation code is too old. Please start again."
 msgstr ""
 
-#: actions/recoverpassword.php:111
-#, fuzzy
-msgid "Could not update user with confirmed email address."
-msgstr "無法更新使用者"
-
-#: actions/recoverpassword.php:152
-#, fuzzy
-msgid ""
-"If you have forgotten or lost your password, you can get a new one sent to "
-"the email address you have stored in your account."
-msgstr "我們已寄出一封信到你帳號中的信箱，告訴你如何取回你的密碼。"
-
 #: actions/recoverpassword.php:158
 msgid "You have been identified. Enter a new password below. "
 msgstr ""
@@ -3168,11 +2220,6 @@ msgstr ""
 msgid "Password recovery"
 msgstr ""
 
-#: actions/recoverpassword.php:191
-#, fuzzy
-msgid "Nickname or email address"
-msgstr "請輸入暱稱或電子信箱"
-
 #: actions/recoverpassword.php:193
 msgid "Your nickname on this server, or your registered email address."
 msgstr ""
@@ -3180,16 +2227,6 @@ msgstr ""
 #: actions/recoverpassword.php:199 actions/recoverpassword.php:200
 msgid "Recover"
 msgstr ""
-
-#: actions/recoverpassword.php:208
-#, fuzzy
-msgid "Reset password"
-msgstr "新密碼"
-
-#: actions/recoverpassword.php:209
-#, fuzzy
-msgid "Recover password"
-msgstr "新密碼"
 
 #: actions/recoverpassword.php:210 actions/recoverpassword.php:335
 msgid "Password recovery requested"
@@ -3210,11 +2247,6 @@ msgstr ""
 #: actions/recoverpassword.php:252
 msgid "Enter a nickname or email address."
 msgstr "請輸入暱稱或電子信箱"
-
-#: actions/recoverpassword.php:282
-#, fuzzy
-msgid "No user with that email address or username."
-msgstr "查無此使用者所註冊的信箱"
 
 #: actions/recoverpassword.php:299
 msgid "No registered email address for that user."
@@ -3254,11 +2286,6 @@ msgstr "新密碼已儲存成功。你已登入。"
 msgid "Sorry, only invited people can register."
 msgstr ""
 
-#: actions/register.php:99
-#, fuzzy
-msgid "Sorry, invalid invitation code."
-msgstr "確認碼發生錯誤"
-
 #: actions/register.php:119
 msgid "Registration successful"
 msgstr ""
@@ -3288,16 +2315,6 @@ msgid ""
 "With this form you can create a new account. You can then post notices and "
 "link up to friends and colleagues. "
 msgstr ""
-
-#: actions/register.php:432
-#, fuzzy
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces. Required."
-msgstr "1-64個小寫英文字母或數字，勿加標點符號或空格"
-
-#: actions/register.php:437
-#, fuzzy
-msgid "6 or more characters. Required."
-msgstr "6個以上字元"
 
 #: actions/register.php:441
 msgid "Same as password above. Required."
@@ -3338,14 +2355,6 @@ msgstr ""
 msgid "All rights reserved."
 msgstr ""
 
-#. TRANS: Copyright checkbox label in registration dialog, for Creative Commons-style licenses.
-#: actions/register.php:540
-#, php-format
-msgid ""
-"My text and files are available under %s except this private data: password, "
-"email address, IM address, and phone number."
-msgstr ""
-
 #: actions/register.php:583
 #, php-format
 msgid ""
@@ -3379,19 +2388,9 @@ msgid ""
 "microblogging site](%%doc.openmublog%%),  enter your profile URL below."
 msgstr ""
 
-#: actions/remotesubscribe.php:112
-#, fuzzy
-msgid "Remote subscribe"
-msgstr "此帳號已註冊"
-
 #: actions/remotesubscribe.php:124
 msgid "Subscribe to a remote user"
 msgstr ""
-
-#: actions/remotesubscribe.php:129
-#, fuzzy
-msgid "User nickname"
-msgstr "無暱稱"
 
 #: actions/remotesubscribe.php:130
 msgid "Nickname of the user you want to follow"
@@ -3405,12 +2404,6 @@ msgstr ""
 msgid "URL of your profile on another compatible microblogging service"
 msgstr ""
 
-#: actions/remotesubscribe.php:137 lib/subscribeform.php:139
-#: lib/userprofile.php:406
-#, fuzzy
-msgid "Subscribe"
-msgstr "此帳號已註冊"
-
 #: actions/remotesubscribe.php:159
 msgid "Invalid profile URL (bad format)"
 msgstr "個人資料連結無效(格式錯誤)"
@@ -3423,17 +2416,13 @@ msgstr ""
 msgid "That’s a local profile! Login to subscribe."
 msgstr ""
 
-#: actions/remotesubscribe.php:183
-msgid "Couldn’t get a request token."
-msgstr ""
-
 #: actions/repeat.php:57
 msgid "Only logged-in users can repeat notices."
 msgstr ""
 
 #: actions/repeat.php:64 actions/repeat.php:71
 msgid "No notice specified."
-msgstr ""
+msgstr "無此通知"
 
 #: actions/repeat.php:76
 msgid "You can't repeat your own notice."
@@ -3441,40 +2430,12 @@ msgstr ""
 
 #: actions/repeat.php:90
 msgid "You already repeated that notice."
-msgstr ""
-
-#: actions/repeat.php:114 lib/noticelist.php:676
-msgid "Repeated"
-msgstr ""
-
-#: actions/repeat.php:119
-msgid "Repeated!"
-msgstr ""
+msgstr "此Jabber ID已有人使用"
 
 #: actions/replies.php:126 actions/repliesrss.php:68
 #: lib/personalgroupnav.php:105
 #, php-format
 msgid "Replies to %s"
-msgstr ""
-
-#: actions/replies.php:128
-#, php-format
-msgid "Replies to %1$s, page %2$d"
-msgstr ""
-
-#: actions/replies.php:145
-#, php-format
-msgid "Replies feed for %s (RSS 1.0)"
-msgstr ""
-
-#: actions/replies.php:152
-#, php-format
-msgid "Replies feed for %s (RSS 2.0)"
-msgstr ""
-
-#: actions/replies.php:159
-#, php-format
-msgid "Replies feed for %s (Atom)"
 msgstr ""
 
 #: actions/replies.php:199
@@ -3498,25 +2459,8 @@ msgid ""
 "newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 
-#: actions/repliesrss.php:72
-#, php-format
-msgid "Replies to %1$s on %2$s!"
-msgstr ""
-
-#: actions/revokerole.php:75
-msgid "You cannot revoke user roles on this site."
-msgstr ""
-
 #: actions/revokerole.php:82
 msgid "User doesn't have this role."
-msgstr ""
-
-#: actions/rsd.php:146 actions/version.php:159
-msgid "StatusNet"
-msgstr ""
-
-#: actions/sandbox.php:65 actions/unsandbox.php:65
-msgid "You cannot sandbox users on this site."
 msgstr ""
 
 #: actions/sandbox.php:72
@@ -3525,7 +2469,7 @@ msgstr ""
 
 #. TRANS: Menu item for site administration
 #: actions/sessionsadminpanel.php:54 actions/sessionsadminpanel.php:170
-#: lib/adminpanelaction.php:392
+#: lib/adminpanelaction.php:379
 msgid "Sessions"
 msgstr ""
 
@@ -3552,39 +2496,12 @@ msgstr ""
 #: actions/sessionsadminpanel.php:199 actions/siteadminpanel.php:292
 #: actions/useradminpanel.php:294
 msgid "Save site settings"
-msgstr ""
-
-#: actions/showapplication.php:82
-msgid "You must be logged in to view an application."
-msgstr ""
-
-#: actions/showapplication.php:157
-msgid "Application profile"
-msgstr ""
+msgstr "使用者設定發生錯誤"
 
 #. TRANS: Form input field label for application icon.
-#: actions/showapplication.php:159 lib/applicationeditform.php:182
+#: actions/showapplication.php:159 lib/applicationeditform.php:173
 msgid "Icon"
 msgstr ""
-
-#. TRANS: Form input field label for application name.
-#: actions/showapplication.php:169 actions/version.php:197
-#: lib/applicationeditform.php:199
-#, fuzzy
-msgid "Name"
-msgstr "暱稱"
-
-#. TRANS: Form input field label.
-#: actions/showapplication.php:178 lib/applicationeditform.php:235
-msgid "Organization"
-msgstr ""
-
-#. TRANS: Form input field label.
-#: actions/showapplication.php:187 actions/version.php:200
-#: lib/applicationeditform.php:216 lib/groupeditform.php:172
-#, fuzzy
-msgid "Description"
-msgstr "所有訂閱"
 
 #: actions/showapplication.php:192 actions/showgroup.php:436
 #: lib/profileaction.php:187
@@ -3638,30 +2555,9 @@ msgstr ""
 msgid "Are you sure you want to reset your consumer key and secret?"
 msgstr ""
 
-#: actions/showfavorites.php:79
-#, php-format
-msgid "%1$s's favorite notices, page %2$d"
-msgstr ""
-
 #: actions/showfavorites.php:132
-#, fuzzy
 msgid "Could not retrieve favorite notices."
-msgstr "無法儲存個人資料"
-
-#: actions/showfavorites.php:171
-#, php-format
-msgid "Feed for favorites of %s (RSS 1.0)"
-msgstr ""
-
-#: actions/showfavorites.php:178
-#, php-format
-msgid "Feed for favorites of %s (RSS 2.0)"
-msgstr ""
-
-#: actions/showfavorites.php:185
-#, php-format
-msgid "Feed for favorites of %s (Atom)"
-msgstr ""
+msgstr "無法更新使用者"
 
 #: actions/showfavorites.php:206
 msgid ""
@@ -3688,20 +2584,6 @@ msgstr ""
 msgid "This is a way to share what you like."
 msgstr ""
 
-#: actions/showgroup.php:82 lib/groupnav.php:86
-#, php-format
-msgid "%s group"
-msgstr ""
-
-#: actions/showgroup.php:84
-#, php-format
-msgid "%1$s group, page %2$d"
-msgstr ""
-
-#: actions/showgroup.php:227
-msgid "Group profile"
-msgstr ""
-
 #: actions/showgroup.php:272 actions/tagother.php:118
 #: actions/userauthorization.php:175 lib/userprofile.php:178
 msgid "URL"
@@ -3714,10 +2596,6 @@ msgstr ""
 
 #: actions/showgroup.php:293 lib/groupeditform.php:184
 msgid "Aliases"
-msgstr ""
-
-#: actions/showgroup.php:302
-msgid "Group actions"
 msgstr ""
 
 #: actions/showgroup.php:338
@@ -3735,16 +2613,6 @@ msgstr ""
 msgid "Notice feed for %s group (Atom)"
 msgstr ""
 
-#: actions/showgroup.php:355
-#, php-format
-msgid "FOAF for %s group"
-msgstr ""
-
-#: actions/showgroup.php:393 actions/showgroup.php:445 lib/groupnav.php:91
-#, fuzzy
-msgid "Members"
-msgstr "何時加入會員的呢？"
-
 #: actions/showgroup.php:398 lib/profileaction.php:117
 #: lib/profileaction.php:152 lib/profileaction.php:255 lib/section.php:95
 #: lib/subscriptionlist.php:127 lib/tagcloudsection.php:71
@@ -3753,10 +2621,6 @@ msgstr ""
 
 #: actions/showgroup.php:404
 msgid "All members"
-msgstr ""
-
-#: actions/showgroup.php:439
-msgid "Created"
 msgstr ""
 
 #: actions/showgroup.php:455
@@ -3782,11 +2646,6 @@ msgstr ""
 msgid "Admins"
 msgstr ""
 
-#: actions/showmessage.php:81
-#, fuzzy
-msgid "No such message."
-msgstr "無此使用者"
-
 #: actions/showmessage.php:98
 msgid "Only the sender and recipient may read this message."
 msgstr ""
@@ -3801,23 +2660,9 @@ msgstr ""
 msgid "Message from %1$s on %2$s"
 msgstr ""
 
-#: actions/shownotice.php:90
-msgid "Notice deleted."
-msgstr ""
-
 #: actions/showstream.php:73
 #, php-format
 msgid " tagged %s"
-msgstr ""
-
-#: actions/showstream.php:79
-#, php-format
-msgid "%1$s, page %2$d"
-msgstr ""
-
-#: actions/showstream.php:122
-#, php-format
-msgid "Notice feed for %1$s tagged %2$s (RSS 1.0)"
 msgstr ""
 
 #: actions/showstream.php:129
@@ -3896,11 +2741,6 @@ msgstr ""
 msgid "Site name must have non-zero length."
 msgstr ""
 
-#: actions/siteadminpanel.php:141
-#, fuzzy
-msgid "You must have a valid contact email address."
-msgstr "此信箱無效"
-
 #: actions/siteadminpanel.php:159
 #, php-format
 msgid "Unknown language \"%s\"."
@@ -3916,10 +2756,6 @@ msgstr ""
 
 #: actions/siteadminpanel.php:221
 msgid "General"
-msgstr ""
-
-#: actions/siteadminpanel.php:224
-msgid "Site name"
 msgstr ""
 
 #: actions/siteadminpanel.php:225
@@ -3941,16 +2777,6 @@ msgstr ""
 #: actions/siteadminpanel.php:235
 msgid "URL used for credits link in footer of each page"
 msgstr ""
-
-#: actions/siteadminpanel.php:239
-#, fuzzy
-msgid "Contact email address for your site"
-msgstr "查無此使用者所註冊的信箱"
-
-#: actions/siteadminpanel.php:245
-#, fuzzy
-msgid "Local"
-msgstr "地點"
 
 #: actions/siteadminpanel.php:256
 msgid "Default timezone"
@@ -3988,41 +2814,22 @@ msgstr ""
 msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 
-#: actions/sitenoticeadminpanel.php:56
-#, fuzzy
-msgid "Site Notice"
-msgstr "新訊息"
-
 #: actions/sitenoticeadminpanel.php:67
 msgid "Edit site-wide message"
-msgstr ""
-
-#: actions/sitenoticeadminpanel.php:103
-msgid "Unable to save site notice."
 msgstr ""
 
 #: actions/sitenoticeadminpanel.php:113
 msgid "Max length for the site-wide notice is 255 chars."
 msgstr ""
 
-#: actions/sitenoticeadminpanel.php:176
-#, fuzzy
-msgid "Site notice text"
-msgstr "新訊息"
-
 #: actions/sitenoticeadminpanel.php:178
 msgid "Site-wide notice text (255 chars max; HTML okay)"
 msgstr ""
 
-#: actions/sitenoticeadminpanel.php:198
-#, fuzzy
-msgid "Save site notice"
-msgstr "新訊息"
-
 #. TRANS: Title for SMS settings.
 #: actions/smssettings.php:59
 msgid "SMS settings"
-msgstr ""
+msgstr "使用者設定發生錯誤"
 
 #. TRANS: SMS settings page instructions.
 #. TRANS: %%site.name%% is the name of the site.
@@ -4031,15 +2838,10 @@ msgstr ""
 msgid "You can receive SMS messages through email from %%site.name%%."
 msgstr ""
 
-#. TRANS: Message given in the SMS settings if SMS is not enabled on the site.
-#: actions/smssettings.php:97
-msgid "SMS is not available."
-msgstr ""
-
 #. TRANS: Form legend for SMS settings form.
 #: actions/smssettings.php:111
 msgid "SMS address"
-msgstr ""
+msgstr "確認"
 
 #. TRANS: Form guide in SMS settings form.
 #: actions/smssettings.php:120
@@ -4051,34 +2853,15 @@ msgstr ""
 msgid "Awaiting confirmation on this phone number."
 msgstr ""
 
-#. TRANS: Field label for SMS address input in SMS settings form.
-#: actions/smssettings.php:142
-#, fuzzy
-msgid "Confirmation code"
-msgstr "無確認碼"
-
 #. TRANS: Form field instructions in SMS settings form.
 #: actions/smssettings.php:144
 msgid "Enter the code you received on your phone."
 msgstr ""
 
-#. TRANS: Button label to confirm SMS confirmation code in SMS settings.
-#: actions/smssettings.php:148
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Confirm"
-msgstr "確認"
-
 #. TRANS: Field label for SMS phone number input in SMS settings form.
 #: actions/smssettings.php:153
 msgid "SMS phone number"
 msgstr ""
-
-#. TRANS: SMS phone number input field instructions in SMS settings form.
-#: actions/smssettings.php:156
-#, fuzzy
-msgid "Phone number, no punctuation or spaces, with area code"
-msgstr "1-64個小寫英文字母或數字，勿加標點符號或空格"
 
 #. TRANS: Form legend for SMS preferences form.
 #: actions/smssettings.php:195
@@ -4097,12 +2880,6 @@ msgstr ""
 msgid "SMS preferences saved."
 msgstr ""
 
-#. TRANS: Message given saving SMS phone number without having provided one.
-#: actions/smssettings.php:338
-#, fuzzy
-msgid "No phone number."
-msgstr "無此使用者"
-
 #. TRANS: Message given saving SMS phone number without having selected a carrier.
 #: actions/smssettings.php:344
 msgid "No carrier selected."
@@ -4113,29 +2890,8 @@ msgstr ""
 msgid "That is already your phone number."
 msgstr ""
 
-#. TRANS: Message given saving SMS phone number that is already set for another user.
-#: actions/smssettings.php:356
-#, fuzzy
-msgid "That phone number already belongs to another user."
-msgstr "此Jabber ID已有人使用"
-
-#. TRANS: Message given saving valid SMS phone number that is to be confirmed.
-#: actions/smssettings.php:384
-#, fuzzy
-msgid ""
-"A confirmation code was sent to the phone number you added. Check your phone "
-"for the code and instructions on how to use it."
-msgstr "確認信已寄到你的線上即時通信箱。%s送給你得訊息要先經過你的認可。"
-
-#. TRANS: Message given canceling SMS phone number confirmation for the wrong phone number.
-#: actions/smssettings.php:413
-#, fuzzy
-msgid "That is the wrong confirmation number."
-msgstr "無法輸入確認碼"
-
 #. TRANS: Message given after successfully canceling SMS phone number confirmation.
 #: actions/smssettings.php:427
-#, fuzzy
 msgid "SMS confirmation cancelled."
 msgstr "無確認碼"
 
@@ -4169,22 +2925,15 @@ msgid ""
 "email but isn't listed here, send email to let us know at %s."
 msgstr ""
 
-#. TRANS: Message given saving SMS phone number confirmation code without having provided one.
-#: actions/smssettings.php:548
-#, fuzzy
-msgid "No code entered"
-msgstr "無內容"
-
 #. TRANS: Menu item for site administration
 #: actions/snapshotadminpanel.php:54 actions/snapshotadminpanel.php:196
-#: lib/adminpanelaction.php:408
+#: lib/adminpanelaction.php:395
 msgid "Snapshots"
 msgstr ""
 
 #: actions/snapshotadminpanel.php:65
-#, fuzzy
 msgid "Manage snapshot configuration"
-msgstr "確認信箱"
+msgstr "無確認碼"
 
 #: actions/snapshotadminpanel.php:127
 msgid "Invalid snapshot run value."
@@ -4230,18 +2979,8 @@ msgstr ""
 msgid "Snapshots will be sent to this URL"
 msgstr ""
 
-#: actions/snapshotadminpanel.php:248
-msgid "Save snapshot settings"
-msgstr ""
-
-#: actions/subedit.php:70
-#, fuzzy
-msgid "You are not subscribed to that profile."
-msgstr "此帳號已註冊"
-
 #. TRANS: Exception thrown when a subscription could not be stored on the server.
 #: actions/subedit.php:83 classes/Subscription.php:136
-#, fuzzy
 msgid "Could not save subscription."
 msgstr "無法新增訂閱"
 
@@ -4249,34 +2988,9 @@ msgstr "無法新增訂閱"
 msgid "This action only accepts POST requests."
 msgstr ""
 
-#: actions/subscribe.php:107
-#, fuzzy
-msgid "No such profile."
-msgstr "無此通知"
-
 #: actions/subscribe.php:117
 msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
 msgstr ""
-
-#: actions/subscribe.php:145
-#, fuzzy
-msgid "Subscribed"
-msgstr "此帳號已註冊"
-
-#: actions/subscribers.php:50
-#, fuzzy, php-format
-msgid "%s subscribers"
-msgstr "此帳號已註冊"
-
-#: actions/subscribers.php:52
-#, php-format
-msgid "%1$s subscribers, page %2$d"
-msgstr ""
-
-#: actions/subscribers.php:63
-#, fuzzy
-msgid "These are the people who listen to your notices."
-msgstr "現在%1$s在%2$s成為你的粉絲囉"
 
 #: actions/subscribers.php:67
 #, php-format
@@ -4301,16 +3015,6 @@ msgid ""
 "%) and be the first?"
 msgstr ""
 
-#: actions/subscriptions.php:52
-#, fuzzy, php-format
-msgid "%s subscriptions"
-msgstr "所有訂閱"
-
-#: actions/subscriptions.php:54
-#, fuzzy, php-format
-msgid "%1$s subscriptions, page %2$d"
-msgstr "所有訂閱"
-
 #: actions/subscriptions.php:65
 msgid "These are the people whose notices you listen to."
 msgstr ""
@@ -4330,23 +3034,8 @@ msgid ""
 "automatically subscribe to people you already follow there."
 msgstr ""
 
-#: actions/subscriptions.php:128 actions/subscriptions.php:132
-#, fuzzy, php-format
-msgid "%s is not listening to anyone."
-msgstr "現在%1$s在%2$s成為你的粉絲囉"
-
-#: actions/subscriptions.php:208
-#, fuzzy
-msgid "Jabber"
-msgstr "查無此Jabber ID"
-
 #: actions/subscriptions.php:222 lib/connectsettingsaction.php:115
 msgid "SMS"
-msgstr ""
-
-#: actions/tag.php:69
-#, php-format
-msgid "Notices tagged with %1$s, page %2$d"
 msgstr ""
 
 #: actions/tag.php:87
@@ -4354,18 +3043,9 @@ msgstr ""
 msgid "Notice feed for tag %s (RSS 1.0)"
 msgstr ""
 
-#: actions/tag.php:93
-#, php-format
-msgid "Notice feed for tag %s (RSS 2.0)"
-msgstr ""
-
 #: actions/tag.php:99
 #, php-format
 msgid "Notice feed for tag %s (Atom)"
-msgstr ""
-
-#: actions/tagother.php:39
-msgid "No ID argument."
 msgstr ""
 
 #: actions/tagother.php:65
@@ -4375,7 +3055,7 @@ msgstr ""
 
 #: actions/tagother.php:77 lib/userprofile.php:76
 msgid "User profile"
-msgstr ""
+msgstr "新的更人資料輸入錯誤"
 
 #: actions/tagother.php:81 actions/userauthorization.php:132
 #: lib/userprofile.php:103
@@ -4398,7 +3078,6 @@ msgid ""
 msgstr ""
 
 #: actions/tagother.php:200
-#, fuzzy
 msgid "Could not save tags."
 msgstr "無法儲存個人資料"
 
@@ -4407,13 +3086,12 @@ msgid "Use this form to add tags to your subscribers or subscriptions."
 msgstr ""
 
 #: actions/tagrss.php:35
-#, fuzzy
 msgid "No such tag."
-msgstr "無此通知"
+msgstr "無此使用者"
 
 #: actions/unblock.php:59
 msgid "You haven't blocked that user."
-msgstr ""
+msgstr "此Jabber ID已有人使用"
 
 #: actions/unsandbox.php:72
 msgid "User is not sandboxed."
@@ -4422,16 +3100,6 @@ msgstr ""
 #: actions/unsilence.php:72
 msgid "User is not silenced."
 msgstr ""
-
-#: actions/unsubscribe.php:77
-#, fuzzy
-msgid "No profile ID in request."
-msgstr "無確認請求"
-
-#: actions/unsubscribe.php:98
-#, fuzzy
-msgid "Unsubscribed"
-msgstr "此帳號已註冊"
 
 #: actions/updateprofile.php:64 actions/userauthorization.php:337
 #, php-format
@@ -4488,17 +3156,8 @@ msgstr ""
 msgid "Welcome text for new users (Max 255 chars)."
 msgstr ""
 
-#: actions/useradminpanel.php:241
-#, fuzzy
-msgid "Default subscription"
-msgstr "所有訂閱"
-
 #: actions/useradminpanel.php:242
 msgid "Automatically subscribe new users to this user."
-msgstr ""
-
-#: actions/useradminpanel.php:251
-msgid "Invitations"
 msgstr ""
 
 #: actions/useradminpanel.php:256
@@ -4528,18 +3187,11 @@ msgstr ""
 msgid "Accept"
 msgstr "接受"
 
-#: actions/userauthorization.php:218 lib/subscribeform.php:115
-#: lib/subscribeform.php:139
-#, fuzzy
-msgid "Subscribe to this user"
-msgstr "此帳號已註冊"
-
 #: actions/userauthorization.php:219
 msgid "Reject"
 msgstr ""
 
 #: actions/userauthorization.php:220
-#, fuzzy
 msgid "Reject this subscription"
 msgstr "註冊確認"
 
@@ -4594,11 +3246,6 @@ msgstr ""
 msgid "Avatar URL ‘%s’ is not valid."
 msgstr ""
 
-#: actions/userauthorization.php:350
-#, php-format
-msgid "Can’t read avatar URL ‘%s’."
-msgstr ""
-
 #: actions/userauthorization.php:355
 #, php-format
 msgid "Wrong image type for avatar URL ‘%s’."
@@ -4618,20 +3265,9 @@ msgstr ""
 msgid "Enjoy your hotdog!"
 msgstr ""
 
-#. TRANS: Message is used as a page title. %1$s is a nick name, %2$d is a page number.
-#: actions/usergroups.php:66
-#, php-format
-msgid "%1$s groups, page %2$d"
-msgstr ""
-
 #: actions/usergroups.php:132
 msgid "Search for more groups"
 msgstr ""
-
-#: actions/usergroups.php:159
-#, fuzzy, php-format
-msgid "%s is not a member of any group."
-msgstr "無法連結到伺服器:%s"
 
 #: actions/usergroups.php:164
 #, php-format
@@ -4692,11 +3328,6 @@ msgstr ""
 msgid "Plugins"
 msgstr ""
 
-#. TRANS: Secondary navigation menu option leading to version information on the StatusNet site.
-#: actions/version.php:198 lib/action.php:789
-msgid "Version"
-msgstr ""
-
 #: actions/version.php:199
 msgid "Author(s)"
 msgstr ""
@@ -4735,39 +3366,27 @@ msgstr ""
 msgid "A file this large would exceed your monthly quota of %d bytes."
 msgstr ""
 
-#. TRANS: Client exception thrown if a file upload does not have a valid name.
-#: classes/File.php:248 classes/File.php:263
-#, fuzzy
-msgid "Invalid filename."
-msgstr "尺寸錯誤"
-
 #. TRANS: Exception thrown when joining a group fails.
 #: classes/Group_member.php:42
 msgid "Group join failed."
-msgstr ""
+msgstr "確認碼遺失"
 
 #. TRANS: Exception thrown when trying to leave a group the user is not a member of.
 #: classes/Group_member.php:55
 msgid "Not part of group."
-msgstr ""
-
-#. TRANS: Exception thrown when trying to leave a group fails.
-#: classes/Group_member.php:63
-msgid "Group leave failed."
-msgstr ""
+msgstr "無此使用者"
 
 #. TRANS: Server exception thrown when updating a local group fails.
 #: classes/Local_group.php:42
-#, fuzzy
 msgid "Could not update local group."
-msgstr "無法更新使用者"
+msgstr "無法儲存個人資料"
 
 #. TRANS: Exception thrown when trying creating a login token failed.
 #. TRANS: %s is the user nickname for which token creation failed.
 #: classes/Login_token.php:78
 #, php-format
 msgid "Could not create login token for %s"
-msgstr ""
+msgstr "無法更新使用者"
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 #: classes/Memcached_DataObject.php:533
@@ -4781,15 +3400,8 @@ msgstr ""
 
 #. TRANS: Message given when a message could not be stored on the server.
 #: classes/Message.php:63
-#, fuzzy
 msgid "Could not insert message."
-msgstr "無法新增訂閱"
-
-#. TRANS: Message given when a message could not be updated on the server.
-#: classes/Message.php:74
-#, fuzzy
-msgid "Could not update message with new URI."
-msgstr "無法更新使用者"
+msgstr "無法儲存個人資料"
 
 #. TRANS: Server exception thrown when a user profile for a notice cannot be found.
 #. TRANS: %1$d is a profile ID (number), %2$d is a notice ID (number).
@@ -4799,61 +3411,37 @@ msgid "No such profile (%1$d) for notice (%2$d)."
 msgstr ""
 
 #. TRANS: Server exception. %s are the error details.
-#: classes/Notice.php:190
-#, fuzzy, php-format
+#: classes/Notice.php:193
+#, php-format
 msgid "Database error inserting hashtag: %s"
 msgstr "個人圖像插入錯誤"
 
-#. TRANS: Client exception thrown if a notice contains too many characters.
-#: classes/Notice.php:260
-#, fuzzy
-msgid "Problem saving notice. Too long."
-msgstr "儲存使用者發生錯誤"
-
-#. TRANS: Client exception thrown when trying to save a notice for an unknown user.
-#: classes/Notice.php:265
-#, fuzzy
-msgid "Problem saving notice. Unknown user."
-msgstr "儲存使用者發生錯誤"
-
 #. TRANS: Client exception thrown when a user tries to post too many notices in a given time frame.
-#: classes/Notice.php:271
+#: classes/Notice.php:276
 msgid ""
 "Too many notices too fast; take a breather and post again in a few minutes."
 msgstr ""
 
 #. TRANS: Client exception thrown when a user tries to post too many duplicate notices in a given time frame.
-#: classes/Notice.php:278
+#: classes/Notice.php:283
 msgid ""
 "Too many duplicate messages too quickly; take a breather and post again in a "
 "few minutes."
 msgstr ""
 
 #. TRANS: Client exception thrown when a user tries to post while being banned.
-#: classes/Notice.php:286
+#: classes/Notice.php:291
 msgid "You are banned from posting notices on this site."
 msgstr ""
 
-#. TRANS: Server exception thrown when a notice cannot be saved.
-#. TRANS: Server exception thrown when a notice cannot be updated.
-#: classes/Notice.php:353 classes/Notice.php:380
-#, fuzzy
-msgid "Problem saving notice."
-msgstr "儲存使用者發生錯誤"
-
 #. TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
-#: classes/Notice.php:892
+#: classes/Notice.php:899
 msgid "Bad type provided to saveKnownGroups"
-msgstr ""
-
-#. TRANS: Server exception thrown when an update for a group inbox fails.
-#: classes/Notice.php:991
-msgid "Problem saving group inbox."
 msgstr ""
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1746
+#: classes/Notice.php:1759
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr ""
@@ -4874,52 +3462,36 @@ msgstr ""
 
 #. TRANS: Exception thrown when a right for a non-existing user profile is checked.
 #: classes/Remote_profile.php:54
-#, fuzzy
 msgid "Missing profile."
 msgstr "新的更人資料輸入錯誤"
 
 #. TRANS: Exception thrown when a tag cannot be saved.
-#: classes/Status_network.php:346
+#: classes/Status_network.php:339
 msgid "Unable to save tag."
-msgstr ""
+msgstr "無法儲存個人資料"
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
-#: classes/Subscription.php:75 lib/oauthstore.php:465
+#: classes/Subscription.php:75 lib/oauthstore.php:466
 msgid "You have been banned from subscribing."
 msgstr ""
-
-#. TRANS: Exception thrown when trying to subscribe while already subscribed.
-#: classes/Subscription.php:80
-#, fuzzy
-msgid "Already subscribed!"
-msgstr "此帳號已註冊"
 
 #. TRANS: Exception thrown when trying to subscribe to a user who has blocked the subscribing user.
 #: classes/Subscription.php:85
 msgid "User has blocked you."
 msgstr ""
 
-#. TRANS: Exception thrown when trying to unsibscribe without a subscription.
-#: classes/Subscription.php:171
-#, fuzzy
-msgid "Not subscribed!"
-msgstr "此帳號已註冊"
-
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 #: classes/Subscription.php:178
-#, fuzzy
 msgid "Could not delete self-subscription."
 msgstr "無法新增訂閱"
 
 #. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
 #: classes/Subscription.php:206
-#, fuzzy
 msgid "Could not delete subscription OMB token."
 msgstr "無法新增訂閱"
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
 #: classes/Subscription.php:218
-#, fuzzy
 msgid "Could not delete subscription."
 msgstr "無法新增訂閱"
 
@@ -4932,44 +3504,23 @@ msgstr ""
 
 #. TRANS: Server exception thrown when creating a group failed.
 #: classes/User_group.php:496
-#, fuzzy
 msgid "Could not create group."
 msgstr "無法更新使用者"
 
 #. TRANS: Server exception thrown when updating a group URI failed.
 #: classes/User_group.php:506
-#, fuzzy
 msgid "Could not set group URI."
 msgstr "無法儲存個人資料"
 
 #. TRANS: Server exception thrown when setting group membership failed.
 #: classes/User_group.php:529
-#, fuzzy
 msgid "Could not set group membership."
 msgstr "無法更新使用者"
 
 #. TRANS: Server exception thrown when saving local group information failed.
 #: classes/User_group.php:544
-#, fuzzy
 msgid "Could not save local group info."
 msgstr "無法儲存個人資料"
-
-#. TRANS: Link title attribute in user account settings menu.
-#: lib/accountsettingsaction.php:109
-msgid "Change your profile settings"
-msgstr ""
-
-#. TRANS: Link title attribute in user account settings menu.
-#: lib/accountsettingsaction.php:116
-#, fuzzy
-msgid "Upload an avatar"
-msgstr "無法上傳個人圖像"
-
-#. TRANS: Link title attribute in user account settings menu.
-#: lib/accountsettingsaction.php:123
-#, fuzzy
-msgid "Change your password"
-msgstr "更改密碼"
 
 #. TRANS: Link title attribute in user account settings menu.
 #: lib/accountsettingsaction.php:130
@@ -4979,231 +3530,148 @@ msgstr ""
 #. TRANS: Link title attribute in user account settings menu.
 #: lib/accountsettingsaction.php:137
 msgid "Design your profile"
-msgstr ""
-
-#. TRANS: Link title attribute in user account settings menu.
-#: lib/accountsettingsaction.php:144
-msgid "Other options"
-msgstr ""
+msgstr "新的更人資料輸入錯誤"
 
 #. TRANS: Link description in user account settings menu.
 #: lib/accountsettingsaction.php:146
 msgid "Other"
 msgstr ""
 
-#. TRANS: Page title. %1$s is the title, %2$s is the site name.
-#: lib/action.php:145
-#, fuzzy, php-format
-msgid "%1$s - %2$s"
-msgstr "%1$s的狀態是%2$s"
-
 #. TRANS: Page title for a page without a title set.
-#: lib/action.php:161
+#: lib/action.php:164
 msgid "Untitled page"
 msgstr ""
 
 #. TRANS: DT element for primary navigation menu. String is hidden in default CSS.
-#: lib/action.php:436
+#: lib/action.php:449
 msgid "Primary site navigation"
 msgstr ""
 
 #. TRANS: Tooltip for main menu option "Personal"
-#: lib/action.php:442
+#: lib/action.php:455
 msgctxt "TOOLTIP"
 msgid "Personal profile and friends timeline"
 msgstr ""
 
-#. TRANS: Main menu option when logged in for access to personal profile and friends timeline
-#: lib/action.php:445
-msgctxt "MENU"
-msgid "Personal"
-msgstr ""
-
-#. TRANS: Tooltip for main menu option "Account"
-#: lib/action.php:447
-msgctxt "TOOLTIP"
-msgid "Change your email, avatar, password, profile"
-msgstr ""
-
-#. TRANS: Tooltip for main menu option "Services"
-#: lib/action.php:452
-msgctxt "TOOLTIP"
-msgid "Connect to services"
-msgstr ""
-
 #. TRANS: Main menu option when logged in and connection are possible for access to options to connect to other services
-#: lib/action.php:455
+#: lib/action.php:468
 msgid "Connect"
 msgstr "連結"
 
 #. TRANS: Tooltip for menu option "Admin"
-#: lib/action.php:458
+#: lib/action.php:471
 msgctxt "TOOLTIP"
 msgid "Change site configuration"
-msgstr ""
+msgstr "無確認碼"
 
 #. TRANS: Main menu option when logged in and site admin for access to site configuration
-#: lib/action.php:461
+#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
+#: lib/action.php:474 lib/groupnav.php:117
 msgctxt "MENU"
 msgid "Admin"
 msgstr ""
 
 #. TRANS: Tooltip for main menu option "Invite"
-#: lib/action.php:465
+#: lib/action.php:478
 #, php-format
 msgctxt "TOOLTIP"
 msgid "Invite friends and colleagues to join you on %s"
 msgstr ""
 
-#. TRANS: Main menu option when logged in and invitations are allowed for inviting new users
-#: lib/action.php:468
-msgctxt "MENU"
-msgid "Invite"
-msgstr ""
-
 #. TRANS: Tooltip for main menu option "Logout"
-#: lib/action.php:474
+#: lib/action.php:487
 msgctxt "TOOLTIP"
 msgid "Logout from the site"
 msgstr ""
 
 #. TRANS: Main menu option when logged in to log out the current user
-#: lib/action.php:477
+#: lib/action.php:490
 msgctxt "MENU"
 msgid "Logout"
-msgstr ""
-
-#. TRANS: Tooltip for main menu option "Register"
-#: lib/action.php:482
-msgctxt "TOOLTIP"
-msgid "Create an account"
-msgstr ""
-
-#. TRANS: Main menu option when not logged in to register a new account
-#: lib/action.php:485
-msgctxt "MENU"
-msgid "Register"
-msgstr ""
+msgstr "登入"
 
 #. TRANS: Tooltip for main menu option "Login"
-#: lib/action.php:488
+#: lib/action.php:501
 msgctxt "TOOLTIP"
 msgid "Login to the site"
 msgstr ""
 
-#: lib/action.php:491
-#, fuzzy
-msgctxt "MENU"
-msgid "Login"
-msgstr "登入"
-
-#. TRANS: Tooltip for main menu option "Help"
-#: lib/action.php:494
-#, fuzzy
-msgctxt "TOOLTIP"
-msgid "Help me!"
-msgstr "求救"
-
-#: lib/action.php:497
-#, fuzzy
-msgctxt "MENU"
-msgid "Help"
-msgstr "求救"
-
 #. TRANS: Tooltip for main menu option "Search"
-#: lib/action.php:500
+#: lib/action.php:513
 msgctxt "TOOLTIP"
 msgid "Search for people or text"
 msgstr ""
 
-#: lib/action.php:503
+#: lib/action.php:516
 msgctxt "MENU"
 msgid "Search"
 msgstr ""
 
-#. TRANS: DT element for site notice. String is hidden in default CSS.
-#. TRANS: Menu item for site administration
-#: lib/action.php:525 lib/adminpanelaction.php:400
-#, fuzzy
-msgid "Site notice"
-msgstr "新訊息"
-
 #. TRANS: DT element for local views block. String is hidden in default CSS.
-#: lib/action.php:592
+#: lib/action.php:605
 msgid "Local views"
 msgstr ""
 
-#. TRANS: DT element for page notice. String is hidden in default CSS.
-#: lib/action.php:659
-#, fuzzy
-msgid "Page notice"
-msgstr "新訊息"
-
 #. TRANS: DT element for secondary navigation menu. String is hidden in default CSS.
-#: lib/action.php:762
+#: lib/action.php:778
 msgid "Secondary site navigation"
 msgstr ""
 
 #. TRANS: Secondary navigation menu option leading to help on StatusNet.
-#: lib/action.php:768
+#: lib/action.php:784
 msgid "Help"
 msgstr "求救"
 
 #. TRANS: Secondary navigation menu option leading to text about StatusNet site.
-#: lib/action.php:771
+#: lib/action.php:787
 msgid "About"
 msgstr "關於"
 
 #. TRANS: Secondary navigation menu option leading to Frequently Asked Questions.
-#: lib/action.php:774
+#: lib/action.php:790
 msgid "FAQ"
 msgstr "常見問題"
 
 #. TRANS: Secondary navigation menu option leading to Terms of Service.
-#: lib/action.php:779
+#: lib/action.php:795
 msgid "TOS"
 msgstr ""
 
 #. TRANS: Secondary navigation menu option leading to privacy policy.
-#: lib/action.php:783
+#: lib/action.php:799
 msgid "Privacy"
 msgstr ""
 
 #. TRANS: Secondary navigation menu option.
-#: lib/action.php:786
+#: lib/action.php:802
 msgid "Source"
 msgstr ""
 
 #. TRANS: Secondary navigation menu option leading to contact information on the StatusNet site.
-#: lib/action.php:792
+#: lib/action.php:808
 msgid "Contact"
 msgstr "好友名單"
 
-#: lib/action.php:794
+#: lib/action.php:810
 msgid "Badge"
 msgstr ""
 
 #. TRANS: DT element for StatusNet software license.
-#: lib/action.php:823
+#: lib/action.php:839
 msgid "StatusNet software license"
 msgstr ""
 
-#. TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is set.
-#: lib/action.php:827
-#, php-format
-msgid ""
-"**%%site.name%%** is a microblogging service brought to you by [%%site."
-"broughtby%%](%%site.broughtbyurl%%)."
-msgstr ""
-
 #. TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is not set.
-#: lib/action.php:830
+#: lib/action.php:849
 #, php-format
 msgid "**%%site.name%%** is a microblogging service."
 msgstr "**%%site.name%%**是個微型部落格"
 
 #. TRANS: Second sentence of the StatusNet site license. Mentions the StatusNet source code license.
-#: lib/action.php:834
+#. TRANS: Make sure there is no whitespace between "]" and "(".
+#. TRANS: Text between [] is a link description, text between () is the link itself.
+#. TRANS: %s is the version of StatusNet that is being used.
+#: lib/action.php:856
 #, php-format
 msgid ""
 "It runs the [StatusNet](http://status.net/) microblogging software, version %"
@@ -5211,51 +3679,41 @@ msgid ""
 "org/licensing/licenses/agpl-3.0.html)."
 msgstr ""
 
-#. TRANS: DT element for StatusNet site content license.
-#: lib/action.php:850
-msgid "Site content license"
-msgstr ""
-
 #. TRANS: Content license displayed when license is set to 'private'.
 #. TRANS: %1$s is the site name.
-#: lib/action.php:857
+#: lib/action.php:879
 #, php-format
 msgid "Content and data of %1$s are private and confidential."
 msgstr ""
 
 #. TRANS: Content license displayed when license is set to 'allrightsreserved'.
 #. TRANS: %1$s is the copyright owner.
-#: lib/action.php:864
+#: lib/action.php:886
 #, php-format
 msgid "Content and data copyright by %1$s. All rights reserved."
 msgstr ""
 
 #. TRANS: Content license displayed when license is set to 'allrightsreserved' and no owner is set.
-#: lib/action.php:868
+#: lib/action.php:890
 msgid "Content and data copyright by contributors. All rights reserved."
 msgstr ""
 
-#. TRANS: license message in footer. %1$s is the site name, %2$s is a link to the license URL, with a licence name set in configuration.
-#: lib/action.php:881
+#. TRANS: license message in footer.
+#. TRANS: %1$s is the site name, %2$s is a link to the license URL, with a licence name set in configuration.
+#: lib/action.php:904
 #, php-format
 msgid "All %1$s content and data are available under the %2$s license."
 msgstr ""
 
 #. TRANS: DT element for pagination (previous/next, etc.).
-#: lib/action.php:1192
+#: lib/action.php:1243
 msgid "Pagination"
 msgstr ""
 
 #. TRANS: Pagination message to go to a page displaying information more in the
 #. TRANS: present than the currently displayed information.
-#: lib/action.php:1203
+#: lib/action.php:1254
 msgid "After"
-msgstr ""
-
-#. TRANS: Pagination message to go to a page displaying information more in the
-#. TRANS: past than the currently displayed information.
-#: lib/action.php:1213
-msgid "Before"
 msgstr ""
 
 #. TRANS: Client exception thrown when a feed instance is a DOMDocument.
@@ -5263,220 +3721,203 @@ msgstr ""
 msgid "Expecting a root feed element but got a whole XML document."
 msgstr ""
 
-#: lib/activityutils.php:208
+#. TRANS: Client exception thrown when there is no source attribute.
+#: lib/activityutils.php:203
 msgid "Can't handle remote content yet."
 msgstr ""
 
-#: lib/activityutils.php:244
+#. TRANS: Client exception thrown when there embedded XML content is found that cannot be processed yet.
+#: lib/activityutils.php:240
 msgid "Can't handle embedded XML content yet."
 msgstr ""
 
-#: lib/activityutils.php:248
+#. TRANS: Client exception thrown when base64 encoded content is found that cannot be processed yet.
+#: lib/activityutils.php:245
 msgid "Can't handle embedded Base64 content yet."
 msgstr ""
 
 #. TRANS: Client error message thrown when a user tries to change admin settings but has no access rights.
-#: lib/adminpanelaction.php:98
+#: lib/adminpanelaction.php:96
 msgid "You cannot make changes to this site."
 msgstr ""
 
 #. TRANS: Client error message throw when a certain panel's settings cannot be changed.
-#: lib/adminpanelaction.php:110
+#: lib/adminpanelaction.php:108
 msgid "Changes to that panel are not allowed."
 msgstr ""
 
 #. TRANS: Client error message.
-#: lib/adminpanelaction.php:229
+#: lib/adminpanelaction.php:222
 msgid "showForm() not implemented."
 msgstr ""
 
 #. TRANS: Client error message
-#: lib/adminpanelaction.php:259
+#: lib/adminpanelaction.php:250
 msgid "saveSettings() not implemented."
 msgstr ""
 
 #. TRANS: Client error message thrown if design settings could not be deleted in
 #. TRANS: the admin panel Design.
-#: lib/adminpanelaction.php:284
+#: lib/adminpanelaction.php:274
 msgid "Unable to delete design setting."
 msgstr ""
 
 #. TRANS: Menu item title/tooltip
-#: lib/adminpanelaction.php:350
-#, fuzzy
+#: lib/adminpanelaction.php:337
 msgid "Basic site configuration"
-msgstr "確認信箱"
-
-#. TRANS: Menu item for site administration
-#: lib/adminpanelaction.php:352
-msgctxt "MENU"
-msgid "Site"
-msgstr ""
+msgstr "無確認碼"
 
 #. TRANS: Menu item title/tooltip
-#: lib/adminpanelaction.php:358
-#, fuzzy
+#: lib/adminpanelaction.php:345
 msgid "Design configuration"
-msgstr "確認信箱"
-
-#. TRANS: Menu item for site administration
-#: lib/adminpanelaction.php:360
-msgctxt "MENU"
-msgid "Design"
-msgstr ""
+msgstr "無確認碼"
 
 #. TRANS: Menu item title/tooltip
-#: lib/adminpanelaction.php:366
-#, fuzzy
+#: lib/adminpanelaction.php:353
 msgid "User configuration"
 msgstr "無確認碼"
 
 #. TRANS: Menu item for site administration
-#: lib/adminpanelaction.php:368 lib/personalgroupnav.php:115
+#: lib/adminpanelaction.php:355 lib/personalgroupnav.php:115
 msgid "User"
 msgstr ""
 
 #. TRANS: Menu item title/tooltip
-#: lib/adminpanelaction.php:374
-#, fuzzy
+#: lib/adminpanelaction.php:361
 msgid "Access configuration"
-msgstr "確認信箱"
+msgstr "無確認碼"
 
 #. TRANS: Menu item title/tooltip
-#: lib/adminpanelaction.php:382
-#, fuzzy
+#: lib/adminpanelaction.php:369
 msgid "Paths configuration"
-msgstr "確認信箱"
+msgstr "無確認碼"
 
 #. TRANS: Menu item title/tooltip
-#: lib/adminpanelaction.php:390
-#, fuzzy
+#: lib/adminpanelaction.php:377
 msgid "Sessions configuration"
-msgstr "確認信箱"
+msgstr "無確認碼"
 
 #. TRANS: Menu item title/tooltip
-#: lib/adminpanelaction.php:398
-#, fuzzy
-msgid "Edit site notice"
-msgstr "新訊息"
-
-#. TRANS: Menu item title/tooltip
-#: lib/adminpanelaction.php:406
-#, fuzzy
+#: lib/adminpanelaction.php:393
 msgid "Snapshots configuration"
-msgstr "確認信箱"
+msgstr "無確認碼"
 
 #. TRANS: Client error 401.
-#: lib/apiauth.php:113
+#: lib/apiauth.php:111
 msgid "API resource requires read-write access, but you only have read access."
 msgstr ""
 
-#. TRANS: Form legend.
-#: lib/applicationeditform.php:137
-msgid "Edit application"
+#. TRANS: OAuth exception thrown when no application is found for a given consumer key.
+#: lib/apiauth.php:175
+msgid "No application for that consumer key."
 msgstr ""
 
-#. TRANS: Form guide.
-#: lib/applicationeditform.php:187
-msgid "Icon for this application"
+#. TRANS: OAuth exception given when an incorrect access token was given for a user.
+#: lib/apiauth.php:212
+msgid "Bad access token."
+msgstr ""
+
+#. TRANS: OAuth exception given when no user was found for a given token (no token was found).
+#: lib/apiauth.php:217
+msgid "No user for that token."
+msgstr ""
+
+#. TRANS: Client error thrown when authentication fails becaus a user clicked "Cancel".
+#. TRANS: Client error thrown when authentication fails.
+#: lib/apiauth.php:258 lib/apiauth.php:290
+msgid "Could not authenticate you."
+msgstr ""
+
+#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
+#: lib/apioauthstore.php:178
+msgid "Tried to revoke unknown token."
+msgstr ""
+
+#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
+#: lib/apioauthstore.php:182
+msgid "Failed to delete revoked token."
 msgstr ""
 
 #. TRANS: Form input field instructions.
-#: lib/applicationeditform.php:209
-#, php-format
-msgid "Describe your application in %d characters"
-msgstr ""
-
-#. TRANS: Form input field instructions.
-#: lib/applicationeditform.php:213
-msgid "Describe your application"
-msgstr ""
-
-#. TRANS: Form input field instructions.
-#: lib/applicationeditform.php:224
+#: lib/applicationeditform.php:215
 msgid "URL of the homepage of this application"
 msgstr ""
 
 #. TRANS: Form input field label.
-#: lib/applicationeditform.php:226
+#: lib/applicationeditform.php:217
 msgid "Source URL"
 msgstr ""
 
 #. TRANS: Form input field instructions.
-#: lib/applicationeditform.php:233
+#: lib/applicationeditform.php:224
 msgid "Organization responsible for this application"
 msgstr ""
 
 #. TRANS: Form input field instructions.
-#: lib/applicationeditform.php:242
+#: lib/applicationeditform.php:233
 msgid "URL for the homepage of the organization"
 msgstr ""
 
 #. TRANS: Form input field instructions.
-#: lib/applicationeditform.php:251
+#: lib/applicationeditform.php:242
 msgid "URL to redirect to after authentication"
 msgstr ""
 
 #. TRANS: Radio button label for application type
-#: lib/applicationeditform.php:278
+#: lib/applicationeditform.php:269
 msgid "Browser"
 msgstr ""
 
 #. TRANS: Radio button label for application type
-#: lib/applicationeditform.php:295
+#: lib/applicationeditform.php:286
 msgid "Desktop"
 msgstr ""
 
 #. TRANS: Form guide.
-#: lib/applicationeditform.php:297
+#: lib/applicationeditform.php:288
 msgid "Type of application, browser or desktop"
 msgstr ""
 
 #. TRANS: Radio button label for access type.
-#: lib/applicationeditform.php:320
+#: lib/applicationeditform.php:311
 msgid "Read-only"
 msgstr ""
 
 #. TRANS: Radio button label for access type.
-#: lib/applicationeditform.php:339
+#: lib/applicationeditform.php:330
 msgid "Read-write"
 msgstr ""
 
 #. TRANS: Form guide.
-#: lib/applicationeditform.php:341
+#: lib/applicationeditform.php:332
 msgid "Default access for this application: read-only, or read-write"
 msgstr ""
 
-#. TRANS: Submit button title
-#: lib/applicationeditform.php:359
+#. TRANS: Submit button title.
+#: lib/applicationeditform.php:349
 msgid "Cancel"
 msgstr "取消"
 
 #. TRANS: Application access type
-#: lib/applicationlist.php:136
+#: lib/applicationlist.php:135
 msgid "read-write"
 msgstr ""
 
 #. TRANS: Application access type
-#: lib/applicationlist.php:138
+#: lib/applicationlist.php:137
 msgid "read-only"
 msgstr ""
 
 #. TRANS: Used in application list. %1$s is a modified date, %2$s is access type (read-write or read-only)
-#: lib/applicationlist.php:144
+#: lib/applicationlist.php:143
 #, php-format
 msgid "Approved %1$s - \"%2$s\" access."
 msgstr ""
 
 #. TRANS: Button label
-#: lib/applicationlist.php:159
+#: lib/applicationlist.php:158
 msgctxt "BUTTON"
 msgid "Revoke"
-msgstr ""
-
-#. TRANS: DT element label in attachment list.
-#: lib/attachmentlist.php:88
-msgid "Attachments"
 msgstr ""
 
 #. TRANS: DT element label in attachment list item.
@@ -5489,12 +3930,9 @@ msgstr ""
 msgid "Provider"
 msgstr ""
 
-#: lib/attachmentnoticesection.php:67
+#. TRANS: Title.
+#: lib/attachmentnoticesection.php:68
 msgid "Notices where this attachment appears"
-msgstr ""
-
-#: lib/attachmenttagcloudsection.php:48
-msgid "Tags for this attachment"
 msgstr ""
 
 #: lib/authenticationplugin.php:221 lib/authenticationplugin.php:226
@@ -5505,8 +3943,9 @@ msgstr ""
 msgid "Password changing is not allowed"
 msgstr ""
 
-#: lib/channel.php:157 lib/channel.php:177
-msgid "Command results"
+#. TRANS: Title for the form to block a user.
+#: lib/blockform.php:70
+msgid "Block"
 msgstr ""
 
 #: lib/channel.php:229 lib/mailhandler.php:142
@@ -5517,44 +3956,46 @@ msgstr ""
 msgid "Command failed"
 msgstr ""
 
-#: lib/command.php:83 lib/command.php:105
-msgid "Notice with that id does not exist"
+#. TRANS: Command exception text shown when a notice ID is requested that does not exist.
+#: lib/command.php:84 lib/command.php:108
+msgid "Notice with that id does not exist."
 msgstr ""
 
-#: lib/command.php:99 lib/command.php:596
-msgid "User has no last notice"
+#. TRANS: Command exception text shown when a last user notice is requested and it does not exist.
+#. TRANS: Error text shown when a last user notice is requested and it does not exist.
+#: lib/command.php:101 lib/command.php:630
+msgid "User has no last notice."
 msgstr ""
-
-#. TRANS: Message given requesting a profile for a non-existing user.
-#. TRANS: %s is the nickname of the user for which the profile could not be found.
-#: lib/command.php:127
-#, php-format
-msgid "Could not find a user with nickname %s"
-msgstr "無法更新使用者"
 
 #. TRANS: Message given getting a non-existing user.
 #. TRANS: %s is the nickname of the user that could not be found.
-#: lib/command.php:147
-#, fuzzy, php-format
-msgid "Could not find a local user with nickname %s"
-msgstr "無法更新使用者"
+#: lib/command.php:150
+#, php-format
+msgid "Could not find a local user with nickname %s."
+msgstr ""
 
-#: lib/command.php:180
+#. TRANS: Error text shown when an unimplemented command is given.
+#: lib/command.php:185
 msgid "Sorry, this command is not yet implemented."
 msgstr ""
 
-#: lib/command.php:225
+#. TRANS: Command exception text shown when a user tries to nudge themselves.
+#: lib/command.php:231
 msgid "It does not make a lot of sense to nudge yourself!"
 msgstr ""
 
 #. TRANS: Message given having nudged another user.
 #. TRANS: %s is the nickname of the user that was nudged.
-#: lib/command.php:234
+#: lib/command.php:240
 #, php-format
-msgid "Nudge sent to %s"
+msgid "Nudge sent to %s."
 msgstr ""
 
-#: lib/command.php:260
+#. TRANS: User statistics text.
+#. TRANS: %1$s is the number of other user the user is subscribed to.
+#. TRANS: %2$s is the number of users that are subscribed to the user.
+#. TRANS: %3$s is the number of notices the user has sent.
+#: lib/command.php:270
 #, php-format
 msgid ""
 "Subscriptions: %1$s\n"
@@ -5562,56 +4003,27 @@ msgid ""
 "Notices: %3$s"
 msgstr ""
 
-#: lib/command.php:302
+#. TRANS: Text shown when a notice has been marked as favourite successfully.
+#: lib/command.php:314
 msgid "Notice marked as fave."
 msgstr ""
 
-#: lib/command.php:323
-#, fuzzy
-msgid "You are already a member of that group"
-msgstr "無法連結到伺服器:%s"
-
-#. TRANS: Message given having failed to add a user to a group.
+#. TRANS: Message given having added a user to a group.
 #. TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
-#: lib/command.php:339
-#, fuzzy, php-format
-msgid "Could not join user %1$s to group %2$s"
-msgstr "無法更新使用者"
-
-#. TRANS: Message given having failed to remove a user from a group.
-#. TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
-#: lib/command.php:385
+#: lib/command.php:360
 #, php-format
-msgid "Could not remove user %1$s from group %2$s"
+msgid "%1$s joined group %2$s."
 msgstr ""
 
-#. TRANS: Whois output. %s is the full name of the queried user.
-#: lib/command.php:418
-#, fuzzy, php-format
-msgid "Fullname: %s"
-msgstr "全名"
+#. TRANS: Message given having removed a user from a group.
+#. TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
+#: lib/command.php:408
+#, php-format
+msgid "%1$s left group %2$s."
+msgstr ""
 
-#. TRANS: Whois output. %s is the location of the queried user.
-#. TRANS: Profile info line in new-subscriber notification e-mail
-#: lib/command.php:422 lib/mail.php:268
-#, fuzzy, php-format
-msgid "Location: %s"
-msgstr "地點"
-
-#. TRANS: Whois output. %s is the homepage of the queried user.
-#. TRANS: Profile info line in new-subscriber notification e-mail
-#: lib/command.php:426 lib/mail.php:271
-#, fuzzy, php-format
-msgid "Homepage: %s"
-msgstr "個人首頁"
-
-#. TRANS: Whois output. %s is the bio information of the queried user.
-#: lib/command.php:430
-#, fuzzy, php-format
-msgid "About: %s"
-msgstr "關於"
-
-#: lib/command.php:457
+#. TRANS: Command exception text shown when trying to send a direct message to a remote user (a user not registered at the current server).
+#: lib/command.php:474
 #, php-format
 msgid ""
 "%s is a remote profile; you can only send direct messages to users on the "
@@ -5620,146 +4032,121 @@ msgstr ""
 
 #. TRANS: Message given if content is too long.
 #. TRANS: %1$d is the maximum number of characters, %2$d is the number of submitted characters.
-#: lib/command.php:472
+#: lib/command.php:491 lib/xmppmanager.php:403
 #, php-format
-msgid "Message too long - maximum is %1$d characters, you sent %2$d"
+msgid "Message too long - maximum is %1$d characters, you sent %2$d."
 msgstr ""
 
-#. TRANS: Message given have sent a direct message to another user.
-#. TRANS: %s is the name of the other user.
-#: lib/command.php:492
+#. TRANS: Message given if content of a notice for a reply is too long.
+#. TRANS: %1$d is the maximum number of characters, %2$d is the number of submitted characters.
+#: lib/command.php:592
 #, php-format
-msgid "Direct message to %s sent"
+msgid "Notice too long - maximum is %1$d characters, you sent %2$d."
 msgstr ""
 
-#: lib/command.php:494
-#, fuzzy
-msgid "Error sending direct message."
-msgstr "使用者設定發生錯誤"
-
-#: lib/command.php:514
-msgid "Cannot repeat your own notice"
-msgstr ""
-
-#: lib/command.php:519
-msgid "Already repeated that notice"
-msgstr ""
-
-#. TRANS: Message given having repeated a notice from another user.
-#. TRANS: %s is the name of the user for which the notice was repeated.
-#: lib/command.php:529
+#. TRANS: Text shown having sent a reply to a notice successfully.
+#. TRANS: %s is the nickname of the user of the notice the reply was sent to.
+#: lib/command.php:603
 #, php-format
-msgid "Notice from %s repeated"
+msgid "Reply to %s sent."
 msgstr ""
 
-#: lib/command.php:531
-#, fuzzy
-msgid "Error repeating notice."
-msgstr "儲存使用者發生錯誤"
-
-#: lib/command.php:562
-#, php-format
-msgid "Notice too long - maximum is %d characters, you sent %d"
-msgstr ""
-
-#: lib/command.php:571
-#, php-format
-msgid "Reply to %s sent"
-msgstr ""
-
-#: lib/command.php:573
+#. TRANS: Error text shown when a reply to a notice fails with an unknown reason.
+#: lib/command.php:606
 msgid "Error saving notice."
 msgstr "儲存使用者發生錯誤"
 
-#: lib/command.php:620
-msgid "Specify the name of the user to subscribe to"
+#. TRANS: Error text shown when no username was provided when issuing a subscribe command.
+#: lib/command.php:655
+msgid "Specify the name of the user to subscribe to."
 msgstr ""
 
-#: lib/command.php:628
+#. TRANS: Command exception text shown when trying to subscribe to an OMB profile using the subscribe command.
+#: lib/command.php:664
 msgid "Can't subscribe to OMB profiles by command."
 msgstr ""
 
-#: lib/command.php:634
+#. TRANS: Text shown after having subscribed to another user successfully.
+#. TRANS: %s is the name of the user the subscription was requested for.
+#: lib/command.php:672
 #, php-format
-msgid "Subscribed to %s"
+msgid "Subscribed to %s."
 msgstr ""
 
-#: lib/command.php:655 lib/command.php:754
-msgid "Specify the name of the user to unsubscribe from"
+#. TRANS: Error text shown when no username was provided when issuing an unsubscribe command.
+#. TRANS: Error text shown when no username was provided when issuing the command.
+#: lib/command.php:694 lib/command.php:804
+msgid "Specify the name of the user to unsubscribe from."
 msgstr ""
 
-#: lib/command.php:664
+#. TRANS: Text shown after having unsubscribed from another user successfully.
+#. TRANS: %s is the name of the user the unsubscription was requested for.
+#: lib/command.php:705
 #, php-format
-msgid "Unsubscribed from %s"
+msgid "Unsubscribed from %s."
 msgstr ""
 
-#: lib/command.php:682 lib/command.php:705
+#. TRANS: Error text shown when issuing the command "off" with a setting which has not yet been implemented.
+#. TRANS: Error text shown when issuing the command "on" with a setting which has not yet been implemented.
+#: lib/command.php:724 lib/command.php:750
 msgid "Command not yet implemented."
 msgstr ""
 
-#: lib/command.php:685
-#, fuzzy
-msgid "Notification off."
-msgstr "無確認碼"
-
-#: lib/command.php:687
+#. TRANS: Error text shown when the command "off" fails for an unknown reason.
+#: lib/command.php:731
 msgid "Can't turn off notification."
 msgstr ""
 
-#: lib/command.php:708
-#, fuzzy
-msgid "Notification on."
-msgstr "無確認碼"
-
-#: lib/command.php:710
+#. TRANS: Error text shown when the command "on" fails for an unknown reason.
+#: lib/command.php:757
 msgid "Can't turn on notification."
 msgstr ""
 
-#: lib/command.php:723
-msgid "Login command is disabled"
+#. TRANS: Error text shown when issuing the login command while login is disabled.
+#: lib/command.php:771
+msgid "Login command is disabled."
 msgstr ""
 
-#: lib/command.php:734
+#. TRANS: Text shown after issuing the login command successfully.
+#. TRANS: %s is a logon link..
+#: lib/command.php:784
 #, php-format
-msgid "This link is useable only once, and is good for only 2 minutes: %s"
+msgid "This link is useable only once and is valid for only 2 minutes: %s."
 msgstr ""
 
-#: lib/command.php:761
-#, fuzzy, php-format
-msgid "Unsubscribed  %s"
-msgstr "此帳號已註冊"
+#. TRANS: Text shown after issuing the lose command successfully (stop another user from following the current user).
+#. TRANS: %s is the name of the user the unsubscription was requested for.
+#: lib/command.php:813
+#, php-format
+msgid "Unsubscribed %s."
+msgstr ""
 
-#: lib/command.php:778
-#, fuzzy
-msgid "You are not subscribed to anyone."
-msgstr "此帳號已註冊"
-
-#: lib/command.php:780
+#. TRANS: Text shown after requesting other users a user is subscribed to.
+#. TRANS: This message supports plural forms. This message is followed by a
+#. TRANS: hard coded space and a comma separated list of subscribed users.
+#: lib/command.php:836
 msgid "You are subscribed to this person:"
 msgid_plural "You are subscribed to these people:"
 msgstr[0] "此帳號已註冊"
 
-#: lib/command.php:800
-#, fuzzy
-msgid "No one is subscribed to you."
-msgstr "無此訂閱"
-
-#: lib/command.php:802
+#. TRANS: Text shown after requesting other users that are subscribed to a user (followers).
+#. TRANS: This message supports plural forms. This message is followed by a
+#. TRANS: hard coded space and a comma separated list of subscribing users.
+#: lib/command.php:863
 msgid "This person is subscribed to you:"
 msgid_plural "These people are subscribed to you:"
 msgstr[0] "無此訂閱"
 
-#: lib/command.php:822
-#, fuzzy
-msgid "You are not a member of any groups."
-msgstr "無法連結到伺服器:%s"
-
-#: lib/command.php:824
+#. TRANS: Text shown after requesting groups a user is subscribed to.
+#. TRANS: This message supports plural forms. This message is followed by a
+#. TRANS: hard coded space and a comma separated list of subscribed groups.
+#: lib/command.php:890
 msgid "You are a member of this group:"
 msgid_plural "You are a member of these groups:"
 msgstr[0] "無法連結到伺服器:%s"
 
-#: lib/command.php:838
+#. TRANS: Help text for commands. Do not translate the command names themselves; they are fixed strings.
+#: lib/command.php:905
 msgid ""
 "Commands:\n"
 "on - turn on notifications\n"
@@ -5801,11 +4188,6 @@ msgid ""
 "tracking - not yet implemented.\n"
 msgstr ""
 
-#: lib/common.php:135
-#, fuzzy
-msgid "No configuration file found. "
-msgstr "無確認碼"
-
 #: lib/common.php:136
 msgid "I looked for configuration files in the following places: "
 msgstr ""
@@ -5830,21 +4212,8 @@ msgstr ""
 msgid "Updates by SMS"
 msgstr ""
 
-#: lib/connectsettingsaction.php:120
-#, fuzzy
-msgid "Connections"
-msgstr "連結"
-
-#: lib/connectsettingsaction.php:121
-msgid "Authorized connected applications"
-msgstr ""
-
 #: lib/dberroraction.php:60
 msgid "Database error"
-msgstr ""
-
-#: lib/designsettings.php:105
-msgid "Upload file"
 msgstr ""
 
 #: lib/designsettings.php:109
@@ -5859,11 +4228,6 @@ msgstr ""
 #: lib/disfavorform.php:114 lib/disfavorform.php:140
 msgid "Disfavor this notice"
 msgstr ""
-
-#: lib/favorform.php:114 lib/favorform.php:140
-#, fuzzy
-msgid "Favor this notice"
-msgstr "無此通知"
 
 #: lib/favorform.php:140
 msgid "Favor"
@@ -5922,15 +4286,6 @@ msgstr ""
 msgid "URL of the homepage or blog of the group or topic"
 msgstr ""
 
-#: lib/groupeditform.php:168
-msgid "Describe the group or topic"
-msgstr ""
-
-#: lib/groupeditform.php:170
-#, php-format
-msgid "Describe the group or topic in %d characters"
-msgstr ""
-
 #: lib/groupeditform.php:179
 msgid ""
 "Location for the group, if any, like \"City, State (or Region), Country\""
@@ -5941,36 +4296,75 @@ msgstr ""
 msgid "Extra nicknames for the group, comma- or space- separated, max %d"
 msgstr ""
 
-#: lib/groupnav.php:85
+#. TRANS: Menu item in the group navigation page.
+#: lib/groupnav.php:86
+msgctxt "MENU"
 msgid "Group"
 msgstr ""
 
-#: lib/groupnav.php:101
+#. TRANS: Tooltip for menu item in the group navigation page.
+#. TRANS: %s is the nickname of the group.
+#: lib/groupnav.php:89
+#, php-format
+msgctxt "TOOLTIP"
+msgid "%s group"
+msgstr ""
+
+#. TRANS: Menu item in the group navigation page.
+#: lib/groupnav.php:95
+msgctxt "MENU"
+msgid "Members"
+msgstr ""
+
+#. TRANS: Tooltip for menu item in the group navigation page.
+#. TRANS: %s is the nickname of the group.
+#: lib/groupnav.php:98
+#, php-format
+msgctxt "TOOLTIP"
+msgid "%s group members"
+msgstr ""
+
+#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
+#: lib/groupnav.php:108
+msgctxt "MENU"
 msgid "Blocked"
 msgstr ""
 
-#: lib/groupnav.php:102
+#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
+#. TRANS: %s is the nickname of the group.
+#: lib/groupnav.php:111
 #, php-format
+msgctxt "TOOLTIP"
 msgid "%s blocked users"
 msgstr ""
 
-#: lib/groupnav.php:108
+#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
+#. TRANS: %s is the nickname of the group.
+#: lib/groupnav.php:120
 #, php-format
+msgctxt "TOOLTIP"
 msgid "Edit %s group properties"
 msgstr ""
 
-#: lib/groupnav.php:113
-#, fuzzy
+#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
+#: lib/groupnav.php:126
+msgctxt "MENU"
 msgid "Logo"
-msgstr "登入"
+msgstr ""
 
-#: lib/groupnav.php:114
+#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
+#. TRANS: %s is the nickname of the group.
+#: lib/groupnav.php:129
 #, php-format
+msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr ""
 
-#: lib/groupnav.php:120
+#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
+#. TRANS: %s is the nickname of the group.
+#: lib/groupnav.php:138
 #, php-format
+msgctxt "TOOLTIP"
 msgid "Add or edit %s design"
 msgstr ""
 
@@ -6001,12 +4395,8 @@ msgstr ""
 msgid "That file is too big. The maximum file size is %s."
 msgstr ""
 
-#: lib/imagefile.php:93
-#, fuzzy
-msgid "Partial upload."
-msgstr "更新個人圖像"
-
-#: lib/imagefile.php:101 lib/mediafile.php:170
+#. TRANS: Client exception thrown when a file upload operation has failed with an unknown reason.
+#: lib/imagefile.php:101 lib/mediafile.php:179
 msgid "System error uploading file."
 msgstr ""
 
@@ -6016,7 +4406,7 @@ msgstr ""
 
 #: lib/imagefile.php:122
 msgid "Lost our file."
-msgstr ""
+msgstr "無法儲存個人資料"
 
 #: lib/imagefile.php:163 lib/imagefile.php:224
 msgid "Unknown file type"
@@ -6040,23 +4430,13 @@ msgstr ""
 msgid "Unknown inbox source %d."
 msgstr ""
 
-#: lib/joinform.php:114
-#, fuzzy
-msgid "Join"
-msgstr "登入"
-
 #: lib/leaveform.php:114
 msgid "Leave"
 msgstr ""
 
 #: lib/logingroupnav.php:80
-#, fuzzy
 msgid "Login with a username and password"
-msgstr "使用者名稱或密碼無效"
-
-#: lib/logingroupnav.php:86
-msgid "Sign up for a new account"
-msgstr ""
+msgstr "使用者名稱或密碼錯誤"
 
 #. TRANS: Subject for address confirmation email
 #: lib/mail.php:174
@@ -6094,34 +4474,6 @@ msgid ""
 "your subscribers list and report as spam to site administrators at %s"
 msgstr ""
 
-#. TRANS: Main body of new-subscriber notification e-mail
-#: lib/mail.php:254
-#, php-format
-msgid ""
-"%1$s is now listening to your notices on %2$s.\n"
-"\n"
-"\t%3$s\n"
-"\n"
-"%4$s%5$s%6$s\n"
-"Faithfully yours,\n"
-"%7$s.\n"
-"\n"
-"----\n"
-"Change your email address or notification options at %8$s\n"
-msgstr ""
-
-#. TRANS: Profile info line in new-subscriber notification e-mail
-#: lib/mail.php:274
-#, fuzzy, php-format
-msgid "Bio: %s"
-msgstr "自我介紹"
-
-#. TRANS: Subject of notification mail for new posting email address
-#: lib/mail.php:304
-#, fuzzy, php-format
-msgid "New email address for posting to %s"
-msgstr "查無此使用者所註冊的信箱"
-
 #. TRANS: Body of notification mail for new posting email address
 #: lib/mail.php:308
 #, php-format
@@ -6135,18 +4487,6 @@ msgid ""
 "Faithfully yours,\n"
 "%4$s"
 msgstr ""
-
-#. TRANS: Subject line for SMS-by-email notification messages
-#: lib/mail.php:433
-#, fuzzy, php-format
-msgid "%s status"
-msgstr "%1$s的狀態是%2$s"
-
-#. TRANS: Subject line for SMS-by-email address confirmation message
-#: lib/mail.php:460
-#, fuzzy
-msgid "SMS confirmation"
-msgstr "無確認碼"
 
 #. TRANS: Main body heading for SMS-by-email address confirmation message
 #: lib/mail.php:463
@@ -6201,12 +4541,6 @@ msgid ""
 "\n"
 "With kind regards,\n"
 "%5$s\n"
-msgstr ""
-
-#. TRANS: Subject for favorite notification email
-#: lib/mail.php:589
-#, php-format
-msgid "%s (@%s) added your notice as a favorite"
 msgstr ""
 
 #. TRANS: Body for favorite notification email
@@ -6287,16 +4621,6 @@ msgstr ""
 msgid "from"
 msgstr ""
 
-#: lib/mailhandler.php:37
-#, fuzzy
-msgid "Could not parse message."
-msgstr "無法更新使用者"
-
-#: lib/mailhandler.php:42
-#, fuzzy
-msgid "Not a registered user."
-msgstr "此恢復碼錯誤"
-
 #: lib/mailhandler.php:46
 msgid "Sorry, that is not your incoming email address."
 msgstr ""
@@ -6310,56 +4634,64 @@ msgstr ""
 msgid "Unsupported message type: %s"
 msgstr ""
 
-#: lib/mediafile.php:98 lib/mediafile.php:123
+#. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
+#: lib/mediafile.php:99 lib/mediafile.php:125
 msgid "There was a database error while saving your file. Please try again."
 msgstr ""
 
-#: lib/mediafile.php:142
+#. TRANS: Client exception thrown when an uploaded file is larger than set in php.ini.
+#: lib/mediafile.php:145
 msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini."
 msgstr ""
 
-#: lib/mediafile.php:147
+#. TRANS: Client exception.
+#: lib/mediafile.php:151
 msgid ""
 "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
 "the HTML form."
 msgstr ""
 
-#: lib/mediafile.php:152
+#. TRANS: Client exception.
+#: lib/mediafile.php:157
 msgid "The uploaded file was only partially uploaded."
 msgstr ""
 
-#: lib/mediafile.php:159
-msgid "Missing a temporary folder."
-msgstr ""
-
-#: lib/mediafile.php:162
+#. TRANS: Client exception thrown when writing to disk is not possible during a file upload operation.
+#: lib/mediafile.php:169
 msgid "Failed to write file to disk."
 msgstr ""
 
-#: lib/mediafile.php:165
+#. TRANS: Client exception thrown when a file upload operation has been stopped by an extension.
+#: lib/mediafile.php:173
 msgid "File upload stopped by extension."
 msgstr ""
 
-#: lib/mediafile.php:179 lib/mediafile.php:217
+#. TRANS: Client exception thrown when a file upload operation would cause a user to exceed a set quota.
+#: lib/mediafile.php:189 lib/mediafile.php:232
 msgid "File exceeds user's quota."
 msgstr ""
 
-#: lib/mediafile.php:197 lib/mediafile.php:234
+#. TRANS: Client exception thrown when a file upload operation fails because the file could
+#. TRANS: not be moved from the temporary folder to the permanent file location.
+#: lib/mediafile.php:209 lib/mediafile.php:251
 msgid "File could not be moved to destination directory."
 msgstr ""
 
-#: lib/mediafile.php:202 lib/mediafile.php:238
-msgid "Could not determine file's MIME type."
+#. TRANS: Client exception thrown trying to upload a forbidden MIME type.
+#. TRANS: %1$s is the file type that was denied, %2$s is the application part of
+#. TRANS: the MIME type that was denied.
+#: lib/mediafile.php:340
+#, php-format
+msgid ""
+"\"%1$s\" is not a supported file type on this server. Try using another %2$s "
+"format."
 msgstr ""
 
-#: lib/mediafile.php:318
+#. TRANS: Client exception thrown trying to upload a forbidden MIME type.
+#. TRANS: %s is the file type that was denied.
+#: lib/mediafile.php:345
 #, php-format
-msgid " Try using another %s format."
-msgstr ""
-
-#: lib/mediafile.php:323
-#, php-format
-msgid "%s is not a supported file type on this server."
+msgid "\"%s\" is not a supported file type on this server."
 msgstr ""
 
 #: lib/messageform.php:120
@@ -6370,43 +4702,29 @@ msgstr ""
 msgid "To"
 msgstr ""
 
-#: lib/messageform.php:159 lib/noticeform.php:185
-#, fuzzy
-msgid "Available characters"
-msgstr "6個以上字元"
-
-#: lib/messageform.php:178 lib/noticeform.php:236
+#: lib/messageform.php:178 lib/noticeform.php:237
 msgctxt "Send button for sending notice"
 msgid "Send"
 msgstr ""
 
-#: lib/noticeform.php:160
-#, fuzzy
-msgid "Send a notice"
-msgstr "新訊息"
-
-#: lib/noticeform.php:173
+#: lib/noticeform.php:174
 #, php-format
 msgid "What's up, %s?"
 msgstr ""
 
-#: lib/noticeform.php:192
+#: lib/noticeform.php:193
 msgid "Attach"
 msgstr ""
 
-#: lib/noticeform.php:196
+#: lib/noticeform.php:197
 msgid "Attach a file"
 msgstr ""
 
-#: lib/noticeform.php:212
-msgid "Share my location"
-msgstr ""
-
-#: lib/noticeform.php:215
-msgid "Do not share my location"
-msgstr ""
-
 #: lib/noticeform.php:216
+msgid "Do not share my location"
+msgstr "無法取消信箱確認"
+
+#: lib/noticeform.php:217
 msgid ""
 "Sorry, retrieving your geo location is taking longer than expected, please "
 "try again later"
@@ -6441,13 +4759,8 @@ msgstr ""
 msgid "at"
 msgstr ""
 
-#: lib/noticelist.php:568
-#, fuzzy
-msgid "in context"
-msgstr "無內容"
-
-#: lib/noticelist.php:603
-msgid "Repeated by"
+#: lib/noticelist.php:502
+msgid "web"
 msgstr ""
 
 #: lib/noticelist.php:630
@@ -6456,10 +4769,6 @@ msgstr ""
 
 #: lib/noticelist.php:631
 msgid "Reply"
-msgstr ""
-
-#: lib/noticelist.php:675
-msgid "Notice repeated"
 msgstr ""
 
 #: lib/nudgeform.php:116
@@ -6475,27 +4784,23 @@ msgid "Send a nudge to this user"
 msgstr ""
 
 #: lib/oauthstore.php:283
-msgid "Error inserting new profile"
-msgstr "新的更人資料輸入錯誤"
+msgid "Error inserting new profile."
+msgstr ""
 
 #: lib/oauthstore.php:291
-msgid "Error inserting avatar"
-msgstr "個人圖像插入錯誤"
-
-#: lib/oauthstore.php:306
-msgid "Error updating remote profile"
-msgstr "更新遠端個人資料發生錯誤"
+msgid "Error inserting avatar."
+msgstr ""
 
 #: lib/oauthstore.php:311
-msgid "Error inserting remote profile"
-msgstr "新增外部個人資料發生錯誤(Error inserting remote profile)"
+msgid "Error inserting remote profile."
+msgstr ""
 
-#: lib/oauthstore.php:345
-#, fuzzy
-msgid "Duplicate notice"
-msgstr "新訊息"
+#. TRANS: Exception thrown when a notice is denied because it has been sent before.
+#: lib/oauthstore.php:346
+msgid "Duplicate notice."
+msgstr ""
 
-#: lib/oauthstore.php:490
+#: lib/oauthstore.php:491
 msgid "Couldn't insert new subscription."
 msgstr "無法新增訂閱"
 
@@ -6532,27 +4837,13 @@ msgstr ""
 msgid "Tags in %s's notices"
 msgstr ""
 
-#: lib/plugin.php:115
+#. TRANS: Displayed as version information for a plugin if no version information was found.
+#: lib/plugin.php:116
 msgid "Unknown"
 msgstr ""
 
-#: lib/profileaction.php:109 lib/profileaction.php:205 lib/subgroupnav.php:82
-#, fuzzy
-msgid "Subscriptions"
-msgstr "所有訂閱"
-
 #: lib/profileaction.php:126
 msgid "All subscriptions"
-msgstr "所有訂閱"
-
-#: lib/profileaction.php:144 lib/profileaction.php:214 lib/subgroupnav.php:90
-#, fuzzy
-msgid "Subscribers"
-msgstr "此帳號已註冊"
-
-#: lib/profileaction.php:161
-#, fuzzy
-msgid "All subscribers"
 msgstr "所有訂閱"
 
 #: lib/profileaction.php:191
@@ -6596,25 +4887,8 @@ msgstr ""
 msgid "Popular"
 msgstr ""
 
-#: lib/redirectingaction.php:95
-msgid "No return-to arguments."
-msgstr ""
-
-#: lib/repeatform.php:107
-msgid "Repeat this notice?"
-msgstr ""
-
 #: lib/repeatform.php:132
 msgid "Yes"
-msgstr ""
-
-#: lib/repeatform.php:132
-msgid "Repeat this notice"
-msgstr ""
-
-#: lib/revokeroleform.php:91
-#, php-format
-msgid "Revoke the \"%s\" role from this user"
 msgstr ""
 
 #: lib/router.php:709
@@ -6625,23 +4899,24 @@ msgstr ""
 msgid "Sandbox"
 msgstr ""
 
-#: lib/sandboxform.php:78
-msgid "Sandbox this user"
-msgstr ""
-
-#: lib/searchaction.php:120
+#. TRANS: Fieldset legend for the search form.
+#: lib/searchaction.php:121
 msgid "Search site"
 msgstr ""
 
-#: lib/searchaction.php:126
+#. TRANS: Used as a field label for the field where one or more keywords
+#. TRANS: for searching can be entered.
+#: lib/searchaction.php:129
 msgid "Keyword(s)"
 msgstr ""
 
-#: lib/searchaction.php:127
+#: lib/searchaction.php:130
+msgctxt "BUTTON"
 msgid "Search"
 msgstr ""
 
-#: lib/searchaction.php:162
+#. TRANS: Definition list item with instructions on how to get (better) search results.
+#: lib/searchaction.php:170
 msgid "Search help"
 msgstr ""
 
@@ -6668,24 +4943,6 @@ msgstr ""
 #: lib/section.php:106
 msgid "More..."
 msgstr ""
-
-#: lib/silenceform.php:67
-msgid "Silence"
-msgstr ""
-
-#: lib/silenceform.php:78
-msgid "Silence this user"
-msgstr ""
-
-#: lib/subgroupnav.php:83
-#, fuzzy, php-format
-msgid "People %s subscribes to"
-msgstr "無此訂閱"
-
-#: lib/subgroupnav.php:91
-#, fuzzy, php-format
-msgid "People subscribed to %s"
-msgstr "此帳號已註冊"
 
 #: lib/subgroupnav.php:99
 #, php-format
@@ -6723,14 +4980,7 @@ msgstr ""
 msgid "The theme file is missing or the upload failed."
 msgstr ""
 
-#: lib/themeuploader.php:91 lib/themeuploader.php:102
-#: lib/themeuploader.php:253 lib/themeuploader.php:257
-#: lib/themeuploader.php:265 lib/themeuploader.php:272
-#, fuzzy
-msgid "Failed saving theme."
-msgstr "無法上傳個人圖像"
-
-#: lib/themeuploader.php:139
+#: lib/themeuploader.php:147
 msgid "Invalid theme: bad directory structure."
 msgstr ""
 
@@ -6743,21 +4993,20 @@ msgstr ""
 msgid "Invalid theme archive: missing file css/display.css"
 msgstr ""
 
-#: lib/themeuploader.php:205
+#: lib/themeuploader.php:218
 msgid ""
 "Theme contains invalid file or folder name. Stick with ASCII letters, "
 "digits, underscore, and minus sign."
 msgstr ""
 
-#: lib/themeuploader.php:216
+#: lib/themeuploader.php:224
+msgid "Theme contains unsafe file extension names; may be unsafe."
+msgstr ""
+
+#: lib/themeuploader.php:241
 #, php-format
 msgid "Theme contains file of type '.%s', which is not allowed."
 msgstr ""
-
-#: lib/themeuploader.php:234
-#, fuzzy
-msgid "Error opening theme archive."
-msgstr "更新遠端個人資料發生錯誤"
 
 #: lib/topposterssection.php:74
 msgid "Top posters"
@@ -6767,40 +5016,8 @@ msgstr ""
 msgid "Unsandbox"
 msgstr ""
 
-#: lib/unsandboxform.php:80
-msgid "Unsandbox this user"
-msgstr ""
-
 #: lib/unsilenceform.php:67
 msgid "Unsilence"
-msgstr ""
-
-#: lib/unsilenceform.php:78
-msgid "Unsilence this user"
-msgstr ""
-
-#: lib/unsubscribeform.php:113 lib/unsubscribeform.php:137
-#, fuzzy
-msgid "Unsubscribe from this user"
-msgstr "此帳號已註冊"
-
-#: lib/unsubscribeform.php:137
-#, fuzzy
-msgid "Unsubscribe"
-msgstr "此帳號已註冊"
-
-#: lib/usernoprofileexception.php:58
-#, php-format
-msgid "User %s (%d) has no profile record."
-msgstr ""
-
-#: lib/userprofile.php:117
-#, fuzzy
-msgid "Edit Avatar"
-msgstr "個人圖像"
-
-#: lib/userprofile.php:234 lib/userprofile.php:248
-msgid "User actions"
 msgstr ""
 
 #: lib/userprofile.php:237
@@ -6808,7 +5025,6 @@ msgid "User deletion in progress..."
 msgstr ""
 
 #: lib/userprofile.php:263
-#, fuzzy
 msgid "Edit profile settings"
 msgstr "使用者設定發生錯誤"
 
@@ -6828,10 +5044,6 @@ msgstr ""
 msgid "Moderate"
 msgstr ""
 
-#: lib/userprofile.php:364
-msgid "User role"
-msgstr ""
-
 #: lib/userprofile.php:366
 msgctxt "role"
 msgid "Administrator"
@@ -6843,70 +5055,64 @@ msgid "Moderator"
 msgstr ""
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
-#: lib/util.php:1100
+#: lib/util.php:1103
 msgid "a few seconds ago"
 msgstr ""
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
-#: lib/util.php:1103
+#: lib/util.php:1106
 msgid "about a minute ago"
 msgstr ""
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
-#: lib/util.php:1107
+#: lib/util.php:1110
 #, php-format
-msgid "about %d minutes ago"
-msgstr ""
+msgid "about one minute ago"
+msgid_plural "about %d minutes ago"
+msgstr[0] ""
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
-#: lib/util.php:1110
+#: lib/util.php:1113
 msgid "about an hour ago"
 msgstr ""
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
-#: lib/util.php:1114
+#: lib/util.php:1117
 #, php-format
-msgid "about %d hours ago"
-msgstr ""
+msgid "about one hour ago"
+msgid_plural "about %d hours ago"
+msgstr[0] ""
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
-#: lib/util.php:1117
+#: lib/util.php:1120
 msgid "about a day ago"
 msgstr ""
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
-#: lib/util.php:1121
+#: lib/util.php:1124
 #, php-format
-msgid "about %d days ago"
-msgstr ""
+msgid "about one day ago"
+msgid_plural "about %d days ago"
+msgstr[0] ""
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
-#: lib/util.php:1124
+#: lib/util.php:1127
 msgid "about a month ago"
 msgstr ""
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
-#: lib/util.php:1128
+#: lib/util.php:1131
 #, php-format
-msgid "about %d months ago"
-msgstr ""
+msgid "about one month ago"
+msgid_plural "about %d months ago"
+msgstr[0] ""
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
-#: lib/util.php:1131
+#: lib/util.php:1134
 msgid "about a year ago"
 msgstr ""
-
-#: lib/webcolor.php:82
-#, fuzzy, php-format
-msgid "%s is not a valid color!"
-msgstr "個人首頁位址錯誤"
 
 #: lib/webcolor.php:123
 #, php-format
 msgid "%s is not a valid color! Use 3 or 6 hex chars."
-msgstr ""
-
-#: lib/xmppmanager.php:403
-#, php-format
-msgid "Message too long - maximum is %1$d characters, you sent %2$d."
 msgstr ""

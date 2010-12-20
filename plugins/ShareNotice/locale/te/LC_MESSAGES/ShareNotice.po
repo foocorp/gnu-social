@@ -1,0 +1,53 @@
+# Translation of StatusNet - ShareNotice to Telugu (తెలుగు)
+# Expored from translatewiki.net
+#
+# Author: Veeven
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ShareNotice\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:54+0000\n"
+"Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:55+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: te\n"
+"X-Message-Group: #out-statusnet-plugin-sharenotice\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Leave this message unchanged.
+#. TRANS: %s is notice content that is shared on Twitter, Facebook or another platform.
+#: ShareNoticePlugin.php:106 ShareNoticePlugin.php:194
+#, php-format
+msgid "\"%s\""
+msgstr "\"%s\""
+
+#. TRANS: Tooltip for image to share a notice on Twitter.
+#: ShareNoticePlugin.php:130
+msgid "Share on Twitter"
+msgstr ""
+
+#. TRANS: Tooltip for image to share a notice on another platform (other than Twitter or Facebook).
+#. TRANS: %s is a host name.
+#: ShareNoticePlugin.php:163
+#, php-format
+msgid "Share on %s"
+msgstr ""
+
+#. TRANS: Tooltip for image to share a notice on Facebook.
+#: ShareNoticePlugin.php:186
+msgid "Share on Facebook"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: ShareNoticePlugin.php:219
+msgid ""
+"This plugin allows sharing of notices to Twitter, Facebook and other "
+"platforms."
+msgstr ""

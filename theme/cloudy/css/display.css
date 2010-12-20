@@ -3,7 +3,7 @@
  * @package   StatusNet
  * @author Sarven Capadisli <csarven@status.net>
  * @copyright 2009 StatusNet, Inc.
- * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
+ * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
  * @link      http://status.net/
  */
 
@@ -1513,6 +1513,27 @@ width:auto;
 min-width:0;
 }
 
+#form_notice {
+display: none;
+}
+
+#public.user_in #form_notice,
+#groups.user_in #form_notice,
+#publictagcloud.user_in #form_notice,
+#featured.user_in #form_notice,
+#favorited.user_in #form_notice,
+#all.user_in #form_notice,
+#replies.user_in #form_notice,
+#showstream.user_in #form_notice,
+#showfavorites.user_in #form_notice,
+#subscriptions.user_in #form_notice,
+#subscribers.user_in #form_notice,
+#showgroup.user_in #form_notice,
+#conversation.user_in #form_notice,
+#attachment.user_in #form_notice {
+display: inline;
+}
+
 #public.user_in #content,
 #groups.user_in #content,
 #publictagcloud.user_in #content,
@@ -1530,38 +1551,6 @@ min-width:0;
 #conversation.user_in #content,
 #attachment.user_in #content {
 padding-top:12.5em;
-}
-
-#profilesettings #form_notice,
-#avatarsettings #form_notice,
-#passwordsettings #form_notice,
-#emailsettings #form_notice,
-#openidsettings #form_notice,
-#othersettings #form_notice,
-#smssettings #form_notice,
-#twittersettings #form_notice,
-#imsettings #form_notice,
-#userdesignsettings #form_notice,
-#groupdesignsettings #form_notice,
-#grouplogo #form_notice,
-#editgroup #form_notice,
-#blockedfromgroup #form_notice,
-#groupmembers #form_notice,
-#doc #form_notice,
-#usergroups #form_notice,
-#invite #form_notice,
-#deletenotice #form_notice,
-#newgroup #form_notice,
-#register #form_notice,
-#shownotice #form_notice,
-#confirmaddress #form_notice,
-#tag #form_notice,
-#siteadminpanel #form_notice,
-#designadminpanel #form_notice,
-#useradminpanel #form_notice,
-#pathsadminpanel #form_notice,
-#adminprofileflag #form_notice {
-display:none;
 }
 
 #public #core,

@@ -1,0 +1,32 @@
+# Translation of StatusNet - Autocomplete to Japanese (日本語)
+# Expored from translatewiki.net
+#
+# Author: 青子守歌
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Autocomplete\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:30+0000\n"
+"Language-Team: Japanese <http://translatewiki.net/wiki/Portal:ja>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:38:23+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ja\n"
+"X-Message-Group: #out-statusnet-plugin-autocomplete\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: AutocompletePlugin.php:80
+msgid ""
+"The autocomplete plugin allows users to autocomplete screen names in @ "
+"replies. When an \"@\" is typed into the notice text area, an autocomplete "
+"box is displayed populated with the user's friend' screen names."
+msgstr ""
+"自動入力プラグインは、ユーザーに、＠返信でのスクリーンネームの自動入力を出来"
+"るようにします。通知テキスト領域で「@」が入力されたとき、自動入力ボックスが表"
+"示され、ユーザーの友達のスクリーンネームを入力します。"

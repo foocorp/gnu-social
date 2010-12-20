@@ -57,6 +57,7 @@ class ProfilesettingsAction extends AccountSettingsAction
 
     function title()
     {
+        // TRANS: Page title for profile settings.
         return _('Profile settings');
     }
 
@@ -68,6 +69,7 @@ class ProfilesettingsAction extends AccountSettingsAction
 
     function getInstructions()
     {
+        // TRANS: Usage instructions for profile settings.
         return _('You can update your personal profile info here '.
                  'so people know more about you.');
     }
@@ -96,6 +98,7 @@ class ProfilesettingsAction extends AccountSettingsAction
                                           'class' => 'form_settings',
                                           'action' => common_local_url('profilesettings')));
         $this->elementStart('fieldset');
+        // TRANS: Profile settings form legend.
         $this->element('legend', null, _('Profile information'));
         $this->hidden('token', common_session_token());
 
@@ -103,38 +106,54 @@ class ProfilesettingsAction extends AccountSettingsAction
         $this->elementStart('ul', 'form_data');
         if (Event::handle('StartProfileFormData', array($this))) {
             $this->elementStart('li');
+            // TRANS: Field label in form for profile settings.
             $this->input('nickname', _('Nickname'),
                          ($this->arg('nickname')) ? $this->arg('nickname') : $profile->nickname,
-                         _('1-64 lowercase letters or numbers, no punctuation or spaces'));
+                         // TRANS: Tooltip for field label in form for profile settings.
+                         _('1-64 lowercase letters or numbers, no punctuation or spaces.'));
             $this->elementEnd('li');
             $this->elementStart('li');
+            // TRANS: Field label in form for profile settings.
             $this->input('fullname', _('Full name'),
                          ($this->arg('fullname')) ? $this->arg('fullname') : $profile->fullname);
             $this->elementEnd('li');
             $this->elementStart('li');
+            // TRANS: Field label in form for profile settings.
             $this->input('homepage', _('Homepage'),
                          ($this->arg('homepage')) ? $this->arg('homepage') : $profile->homepage,
-                         _('URL of your homepage, blog, or profile on another site'));
+                         // TRANS: Tooltip for field label in form for profile settings.
+                         _('URL of your homepage, blog, or profile on another site.'));
             $this->elementEnd('li');
             $this->elementStart('li');
             $maxBio = Profile::maxBio();
             if ($maxBio > 0) {
-                $bioInstr = sprintf(_('Describe yourself and your interests in %d chars'),
+                // TRANS: Tooltip for field label in form for profile settings. Plural
+                // TRANS: is decided by the number of characters available for the
+                // TRANS: biography (%d).
+                $bioInstr = sprintf(_m('Describe yourself and your interests in %d character',
+                                       'Describe yourself and your interests in %d characters',
+                                       $maxBio),
                                     $maxBio);
             } else {
+                // TRANS: Tooltip for field label in form for profile settings.
                 $bioInstr = _('Describe yourself and your interests');
             }
+            // TRANS: Text area label in form for profile settings where users can provide.
+            // TRANS: their biography.
             $this->textarea('bio', _('Bio'),
                             ($this->arg('bio')) ? $this->arg('bio') : $profile->bio,
                             $bioInstr);
             $this->elementEnd('li');
             $this->elementStart('li');
+            // TRANS: Field label in form for profile settings.
             $this->input('location', _('Location'),
                          ($this->arg('location')) ? $this->arg('location') : $profile->location,
+                         // TRANS: Tooltip for field label in form for profile settings.
                          _('Where you are, like "City, State (or Region), Country"'));
             $this->elementEnd('li');
             if (common_config('location', 'share') == 'user') {
                 $this->elementStart('li');
+                // TRANS: Checkbox label in form for profile settings.
                 $this->checkbox('sharelocation', _('Share my current location when posting notices'),
                                 ($this->arg('sharelocation')) ?
                                 $this->arg('sharelocation') : $user->shareLocation());
@@ -142,13 +161,17 @@ class ProfilesettingsAction extends AccountSettingsAction
             }
             Event::handle('EndProfileFormData', array($this));
             $this->elementStart('li');
+            // TRANS: Field label in form for profile settings.
             $this->input('tags', _('Tags'),
                          ($this->arg('tags')) ? $this->arg('tags') : implode(' ', $user->getSelfTags()),
+                         // TRANS: Tooltip for field label in form for profile settings.
                          _('Tags for yourself (letters, numbers, -, ., and _), comma- or space- separated'));
             $this->elementEnd('li');
             $this->elementStart('li');
             $language = common_language();
+            // TRANS: Dropdownlist label in form for profile settings.
             $this->dropdown('language', _('Language'),
+                         // TRANS: Tooltip for dropdown list label in form for profile settings.
                             get_nice_language_list(), _('Preferred language'),
                             false, $language);
             $this->elementEnd('li');
@@ -158,12 +181,15 @@ class ProfilesettingsAction extends AccountSettingsAction
                 $timezones[$v] = $v;
             }
             $this->elementStart('li');
+            // TRANS: Dropdownlist label in form for profile settings.
             $this->dropdown('timezone', _('Timezone'),
+                         // TRANS: Tooltip for dropdown list label in form for profile settings.
                             $timezones, _('What timezone are you normally in?'),
                             true, $timezone);
             $this->elementEnd('li');
             $this->elementStart('li');
             $this->checkbox('autosubscribe',
+                            // TRANS: Checkbox label in form for profile settings.
                             _('Automatically subscribe to whoever '.
                               'subscribes to me (best for non-humans)'),
                             ($this->arg('autosubscribe')) ?
@@ -171,7 +197,8 @@ class ProfilesettingsAction extends AccountSettingsAction
             $this->elementEnd('li');
         }
         $this->elementEnd('ul');
-        $this->submit('save', _('Save'));
+        // TRANS: Button to save input in profile settings.
+        $this->submit('save', _m('BUTTON','Save'));
 
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
@@ -198,7 +225,13 @@ class ProfilesettingsAction extends AccountSettingsAction
 
         if (Event::handle('StartProfileSaveForm', array($this))) {
 
-            $nickname = $this->trimmed('nickname');
+            try {
+                $nickname = Nickname::normalize($this->trimmed('nickname'));
+            } catch (NicknameException $e) {
+                $this->showForm($e->getMessage());
+                return;
+            }
+
             $fullname = $this->trimmed('fullname');
             $homepage = $this->trimmed('homepage');
             $bio = $this->trimmed('bio');
@@ -209,36 +242,43 @@ class ProfilesettingsAction extends AccountSettingsAction
             $tagstring = $this->trimmed('tags');
 
             // Some validation
-            if (!Validate::string($nickname, array('min_length' => 1,
-                                                   'max_length' => 64,
-                                                   'format' => NICKNAME_FMT))) {
-                $this->showForm(_('Nickname must have only lowercase letters and numbers and no spaces.'));
-                return;
-            } else if (!User::allowed_nickname($nickname)) {
+            if (!User::allowed_nickname($nickname)) {
+                // TRANS: Validation error in form for profile settings.
                 $this->showForm(_('Not a valid nickname.'));
                 return;
             } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
                        !Validate::uri($homepage, array('allowed_schemes' => array('http', 'https')))) {
+                // TRANS: Validation error in form for profile settings.
                 $this->showForm(_('Homepage is not a valid URL.'));
                 return;
             } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
-                $this->showForm(_('Full name is too long (max 255 chars).'));
+                // TRANS: Validation error in form for profile settings.
+                $this->showForm(_('Full name is too long (maximum 255 characters).'));
                 return;
             } else if (Profile::bioTooLong($bio)) {
-                $this->showForm(sprintf(_('Bio is too long (max %d chars).'),
+                // TRANS: Validation error in form for profile settings.
+                // TRANS: Plural form is used based on the maximum number of allowed
+                // TRANS: characters for the biography (%d).
+                $this->showForm(sprintf(_m('Bio is too long (maximum %d character).',
+                                           'Bio is too long (maximum %d characters).',
+                                           Profile::maxBio()),
                                         Profile::maxBio()));
                 return;
             } else if (!is_null($location) && mb_strlen($location) > 255) {
-                $this->showForm(_('Location is too long (max 255 chars).'));
+                // TRANS: Validation error in form for profile settings.
+                $this->showForm(_('Location is too long (maximum 255 characters).'));
                 return;
             }  else if (is_null($timezone) || !in_array($timezone, DateTimeZone::listIdentifiers())) {
+                // TRANS: Validation error in form for profile settings.
                 $this->showForm(_('Timezone not selected.'));
                 return;
             } else if ($this->nicknameExists($nickname)) {
+                // TRANS: Validation error in form for profile settings.
                 $this->showForm(_('Nickname already in use. Try another one.'));
                 return;
             } else if (!is_null($language) && strlen($language) > 50) {
-                $this->showForm(_('Language is too long (max 50 chars).'));
+                // TRANS: Validation error in form for profile settings.
+                $this->showForm(_('Language is too long (maximum 50 characters).'));
                 return;
             }
 
@@ -250,6 +290,8 @@ class ProfilesettingsAction extends AccountSettingsAction
 
             foreach ($tags as $tag) {
                 if (!common_valid_profile_tag($tag)) {
+                    // TRANS: Validation error in form for profile settings.
+                    // TRANS: %s is an invalid tag.
                     $this->showForm(sprintf(_('Invalid tag: "%s"'), $tag));
                     return;
                 }
@@ -280,6 +322,7 @@ class ProfilesettingsAction extends AccountSettingsAction
 
                 if ($result === false) {
                     common_log_db_error($user, 'UPDATE', __FILE__);
+                    // TRANS: Server error thrown when user profile settings could not be updated.
                     $this->serverError(_('Couldn\'t update user.'));
                     return;
                 } else {
@@ -303,6 +346,8 @@ class ProfilesettingsAction extends AccountSettingsAction
 
                 if ($result === false) {
                     common_log_db_error($user, 'UPDATE', __FILE__);
+                    // TRANS: Server error thrown when user profile settings could not be updated to
+                    // TRANS: automatically subscribe to any subscriber.
                     $this->serverError(_('Couldn\'t update user for autosubscribe.'));
                     return;
                 }
@@ -360,6 +405,7 @@ class ProfilesettingsAction extends AccountSettingsAction
 
                 if ($result === false) {
                     common_log_db_error($prefs, ($exists) ? 'UPDATE' : 'INSERT', __FILE__);
+                    // TRANS: Server error thrown when user profile location preference settings could not be updated.
                     $this->serverError(_('Couldn\'t save location prefs.'));
                     return;
                 }
@@ -372,6 +418,7 @@ class ProfilesettingsAction extends AccountSettingsAction
 
             if ($result === false) {
                 common_log_db_error($profile, 'UPDATE', __FILE__);
+                // TRANS: Server error thrown when user profile settings could not be saved.
                 $this->serverError(_('Couldn\'t save profile.'));
                 return;
             }
@@ -380,6 +427,7 @@ class ProfilesettingsAction extends AccountSettingsAction
             $result = $user->setSelfTags($tags);
 
             if (!$result) {
+                // TRANS: Server error thrown when user profile settings tags could not be saved.
                 $this->serverError(_('Couldn\'t save tags.'));
                 return;
             }
@@ -388,6 +436,7 @@ class ProfilesettingsAction extends AccountSettingsAction
             Event::handle('EndProfileSaveForm', array($this));
             common_broadcast_profile($profile);
 
+            // TRANS: Confirmation shown when user profile settings are saved.
             $this->showForm(_('Settings saved.'), true);
 
         }

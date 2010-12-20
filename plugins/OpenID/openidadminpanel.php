@@ -257,7 +257,7 @@ class OpenIDAdminPanelForm extends AdminForm
         $this->out->checkbox(
             'openidonly', _m('Enable OpenID-only mode'),
             (bool) $this->value('openidonly', 'site'),
-            _m('Require all users to login via OpenID. WARNING: disables password authentication for all users!'),
+            _m('Require all users to login via OpenID. Warning: disables password authentication for all users!'),
             'true'
         );
         $this->unli();

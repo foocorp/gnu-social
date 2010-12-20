@@ -85,6 +85,19 @@ class Fave extends Memcached_DataObject
         return $ids;
     }
 
+    /**
+     * Note that the sorting for this is by order of *fave* not order of *notice*.
+     *
+     * @fixme add since_id, max_id support?
+     *
+     * @param <type> $user_id
+     * @param <type> $own
+     * @param <type> $offset
+     * @param <type> $limit
+     * @param <type> $since_id
+     * @param <type> $max_id
+     * @return <type>
+     */
     function _streamDirect($user_id, $own, $offset, $limit, $since_id, $max_id)
     {
         $fav = new Fave();
@@ -128,5 +141,71 @@ class Fave extends Memcached_DataObject
         unset($fav);
 
         return $ids;
+    }
+
+    function asActivity()
+    {
+        $notice  = Notice::staticGet('id', $this->notice_id);
+        $profile = Profile::staticGet('id', $this->user_id);
+
+        $act = new Activity();
+
+        $act->verb = ActivityVerb::FAVORITE;
+
+        // FIXME: rationalize this with URL below
+
+        $act->id   = TagURI::mint('favor:%d:%d:%s',
+                                  $profile->id,
+                                  $notice->id,
+                                  common_date_iso8601($this->modified));
+
+        $act->time    = strtotime($this->modified);
+        // TRANS: Activity title when marking a notice as favorite.
+        $act->title   = _("Favor");
+        // TRANS: Ntofication given when a user marks a notice as favorite.
+        // TRANS: %1$s is a user nickname or full name, %2$s is a notice URI.
+        $act->content = sprintf(_('%1$s marked notice %2$s as a favorite.'),
+                               $profile->getBestName(),
+                               $notice->uri);
+
+        $act->actor     = ActivityObject::fromProfile($profile);
+        $act->objects[] = ActivityObject::fromNotice($notice);
+
+        $url = common_local_url('AtomPubShowFavorite',
+                                          array('profile' => $this->user_id,
+                                                'notice'  => $this->notice_id));
+
+        $act->selfLink = $url;
+        $act->editLink = $url;
+
+        return $act;
+    }
+
+    /**
+     * Fetch a stream of favorites by profile
+     *
+     * @param integer $profileId Profile that faved
+     * @param integer $offset    Offset from last
+     * @param integer $limit     Number to get
+     *
+     * @return mixed stream of faves, use fetch() to iterate
+     *
+     * @todo Cache results
+     * @todo integrate with Fave::stream()
+     */
+
+    static function byProfile($profileId, $offset, $limit)
+    {
+        $fav = new Fave();
+
+        $fav->user_id = $profileId;
+
+        $fav->orderBy('modified DESC');
+
+        $fav->limit($offset, $limit);
+
+        $fav->find();
+
+        return $fav;
     }
 }

@@ -43,7 +43,6 @@ require_once INSTALLDIR . '/lib/mediafile.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiStatusesRetweetsAction extends ApiAuthAction
 {
     const MAXCOUNT = 100;
@@ -57,9 +56,7 @@ class ApiStatusesRetweetsAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -69,6 +66,7 @@ class ApiStatusesRetweetsAction extends ApiAuthAction
         $this->original = Notice::staticGet('id', $id);
 
         if (empty($this->original)) {
+            // TRANS: Client error displayed trying to display redents of a non-exiting notice.
             $this->clientError(_('No such notice.'),
                                400, $this->format);
             return false;
@@ -94,7 +92,6 @@ class ApiStatusesRetweetsAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -109,6 +106,7 @@ class ApiStatusesRetweetsAction extends ApiAuthAction
             $this->showJsonTimeline($strm);
             break;
         default:
+            // TRANS: Client error displayed when trying to handle an unknown API method.
             $this->clientError(_('API method not found.'), $code = 404);
             break;
         }

@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class AccessadminpanelAction extends AdminPanelAction
 {
     /**
@@ -48,10 +47,9 @@ class AccessadminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
-        // TRANS: Page title
+        // TRANS: Page title for Access admin panel that allows configuring site access.
         return _('Access');
     }
 
@@ -60,10 +58,9 @@ class AccessadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
-    	// TRANS: Page notice
+        // TRANS: Page notice.
         return _('Site access settings');
     }
 
@@ -72,7 +69,6 @@ class AccessadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new AccessAdminPanelForm($this);
@@ -85,7 +81,6 @@ class AccessadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         static $booleans = array('site' => array('private', 'inviteonly', 'closed'));
@@ -110,7 +105,6 @@ class AccessadminpanelAction extends AdminPanelAction
 
         return;
     }
-
 }
 
 class AccessAdminPanelForm extends AdminForm
@@ -120,7 +114,6 @@ class AccessAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'form_site_admin_panel';
@@ -131,7 +124,6 @@ class AccessAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -142,7 +134,6 @@ class AccessAdminPanelForm extends AdminForm
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('accessadminpanel');
@@ -153,7 +144,6 @@ class AccessAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formData()
     {
 	$this->out->elementStart('fieldset', array('id' => 'settings_admin_access'));
@@ -161,7 +151,7 @@ class AccessAdminPanelForm extends AdminForm
         $this->out->element('legend', null, _('Registration'));
         $this->out->elementStart('ul', 'form_data');
         $this->li();
-        // TRANS: Checkbox instructions for admin setting "Private"
+        // TRANS: Checkbox instructions for admin setting "Private".
         $instructions = _('Prohibit anonymous users (not logged in) from viewing site?');
         // TRANS: Checkbox label for prohibiting anonymous users from viewing site.
         $this->out->checkbox('private', _m('LABEL', 'Private'),
@@ -170,7 +160,7 @@ class AccessAdminPanelForm extends AdminForm
         $this->unli();
 
         $this->li();
-        // TRANS: Checkbox instructions for admin setting "Invite only"
+        // TRANS: Checkbox instructions for admin setting "Invite only".
         $instructions = _('Make registration invitation only.');
         // TRANS: Checkbox label for configuring site as invite only.
         $this->out->checkbox('inviteonly', _('Invite only'),
@@ -179,7 +169,7 @@ class AccessAdminPanelForm extends AdminForm
         $this->unli();
 
         $this->li();
-        // TRANS: Checkbox instructions for admin setting "Closed" (no new registrations)
+        // TRANS: Checkbox instructions for admin setting "Closed" (no new registrations).
         $instructions = _('Disable new registrations.');
         // TRANS: Checkbox label for disabling new user registrations.
         $this->out->checkbox('closed', _('Closed'),
@@ -195,12 +185,11 @@ class AccessAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formActions()
     {
-        // TRANS: Title / tooltip for button to save access settings in site admin panel
+        // TRANS: Title for button to save access settings in site admin panel.
         $title = _('Save access settings');
+        // TRANS: Tooltip for button to save access settings in site admin panel.
         $this->out->submit('submit', _m('BUTTON', 'Save'), 'submit', null, $title);
     }
-
 }

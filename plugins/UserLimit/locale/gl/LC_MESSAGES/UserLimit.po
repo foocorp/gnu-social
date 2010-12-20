@@ -1,0 +1,26 @@
+# Translation of StatusNet - UserLimit to Galician (Galego)
+# Expored from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - UserLimit\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:13:13+0000\n"
+"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:46:19+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-userlimit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: UserLimitPlugin.php:89
+msgid "Limit the number of users who can register."
+msgstr "Limitar o número de usuarios que se poden rexistrar."

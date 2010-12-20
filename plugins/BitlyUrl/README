@@ -1,0 +1,37 @@
+bit.ly URL shortening requires the login name and API key for a bit.ly account.
+Register for an account or set up your API key here:
+
+  http://bit.ly/a/your_api_key
+
+Administrators can configure a login and API key to use through the admin panels
+on the site; these credentials will then be used for all users.
+
+(In the future, options will be added for individual users to override the keys
+with their own login for URLs they post.)
+
+If the login and API key are left empty in the admin panel, then bit.ly will be
+disabled and hidden from the list of available URL shorteners unless a global
+default was provided in the plugin configuration.
+
+
+To enable bit.ly with no default credentials, simply slip into your config.php:
+
+  addPlugin('BitlyUrl');
+
+To provide default credentials, add them as parameters:
+
+  addPlugin('BitlyUrl', array(
+      'login' => 'myname',
+      'apiKey' => '############################'
+  ));
+
+These settings will not be individually exposed to the admin panels, but the
+panel will indicate whether or not the global default settings are available;
+this makes it suitable as a global default for multi-site hosting, where admins
+on individual sites can change to use their own settings.
+
+
+If you're using a bit.ly pro account with a custom domain etc, it should all
+"just work" as long as you use the correct login name and API key for your
+account.
+

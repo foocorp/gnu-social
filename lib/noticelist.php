@@ -208,6 +208,7 @@ class NoticeListItem extends Widget
         $this->showStart();
         if (Event::handle('StartShowNoticeItem', array($this))) {
             $this->showNotice();
+            $this->showNoticeAttachments();
             $this->showNoticeInfo();
             $this->showNoticeOptions();
             Event::handle('EndShowNoticeItem', array($this));
@@ -226,24 +227,31 @@ class NoticeListItem extends Widget
     function showNoticeInfo()
     {
         $this->out->elementStart('div', 'entry-content');
-        $this->showNoticeLink();
-        $this->showNoticeSource();
-        $this->showNoticeLocation();
-        $this->showContext();
-        $this->showRepeat();
+        if (Event::handle('StartShowNoticeInfo', array($this))) {
+            $this->showNoticeLink();
+            $this->showNoticeSource();
+            $this->showNoticeLocation();
+            $this->showContext();
+            $this->showRepeat();
+            Event::handle('EndShowNoticeInfo', array($this));
+        }
+
         $this->out->elementEnd('div');
     }
 
     function showNoticeOptions()
     {
-        $user = common_current_user();
-        if ($user) {
-            $this->out->elementStart('div', 'notice-options');
-            $this->showFaveForm();
-            $this->showReplyLink();
-            $this->showRepeatForm();
-            $this->showDeleteLink();
-            $this->out->elementEnd('div');
+        if (Event::handle('StartShowNoticeOptions', array($this))) {
+            $user = common_current_user();
+            if ($user) {
+                $this->out->elementStart('div', 'notice-options');
+                $this->showFaveForm();
+                $this->showReplyLink();
+                $this->showRepeatForm();
+                $this->showDeleteLink();
+                $this->out->elementEnd('div');
+            }
+            Event::handle('EndShowNoticeOptions', array($this));
         }
     }
 
@@ -270,15 +278,18 @@ class NoticeListItem extends Widget
 
     function showFaveForm()
     {
-        $user = common_current_user();
-        if ($user) {
-            if ($user->hasFave($this->notice)) {
-                $disfavor = new DisfavorForm($this->out, $this->notice);
-                $disfavor->show();
-            } else {
-                $favor = new FavorForm($this->out, $this->notice);
-                $favor->show();
+        if (Event::handle('StartShowFaveForm', array($this))) {
+            $user = common_current_user();
+            if ($user) {
+                if ($user->hasFave($this->notice)) {
+                    $disfavor = new DisfavorForm($this->out, $this->notice);
+                    $disfavor->show();
+                } else {
+                    $favor = new FavorForm($this->out, $this->notice);
+                    $favor->show();
+                }
             }
+            Event::handle('EndShowFaveForm', array($this));
         }
     }
 
@@ -296,7 +307,7 @@ class NoticeListItem extends Widget
         $attrs = array('href' => $this->profile->profileurl,
                        'class' => 'url');
         if (!empty($this->profile->fullname)) {
-            $attrs['title'] = $this->profile->fullname . ' (' . $this->profile->nickname . ')';
+            $attrs['title'] = $this->profile->getFancyName();
         }
         $this->out->elementStart('a', $attrs);
         $this->showAvatar();
@@ -317,11 +328,8 @@ class NoticeListItem extends Widget
 
     function showAvatar()
     {
-        if ('shownotice' === $this->out->trimmed('action')) {
-            $avatar_size = AVATAR_PROFILE_SIZE;
-        } else {
-            $avatar_size = AVATAR_STREAM_SIZE;
-        }
+	$avatar_size = AVATAR_STREAM_SIZE;
+
         $avatar = $this->profile->getAvatar($avatar_size);
 
         $this->out->element('img', array('src' => ($avatar) ?
@@ -374,6 +382,13 @@ class NoticeListItem extends Widget
             $this->out->raw(common_render_content($this->notice->content, $this->notice));
         }
         $this->out->elementEnd('p');
+    }
+
+    function showNoticeAttachments() {
+        if (common_config('attachments', 'show_thumbs')) {
+            $al = new InlineAttachmentList($this->notice, $this->out);
+            $al->show();
+        }
     }
 
     /**

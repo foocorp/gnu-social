@@ -49,7 +49,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiGroupJoinAction extends ApiAuthAction
 {
     var $group   = null;
@@ -60,9 +59,7 @@ class ApiGroupJoinAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -82,13 +79,13 @@ class ApiGroupJoinAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400,
                 $this->format
@@ -97,17 +94,20 @@ class ApiGroupJoinAction extends ApiAuthAction
         }
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when trying to have a non-existing user join a group.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
 
         if (empty($this->group)) {
+            // TRANS: Client error displayed when trying to join a group that does not exist.
             $this->clientError(_('Group not found.'), 404, $this->format);
             return false;
         }
 
         if ($this->user->isMember($this->group)) {
             $this->clientError(
+                // TRANS: Server error displayed when trying to join a group the user is already a member of.
                 _('You are already a member of that group.'),
                 403,
                 $this->format
@@ -117,6 +117,7 @@ class ApiGroupJoinAction extends ApiAuthAction
 
         if (Group_block::isBlocked($this->group, $this->user->getProfile())) {
             $this->clientError(
+                // TRANS: Server error displayed when trying to join a group the user is blocked from joining.
                 _('You have been blocked from that group by the admin.'),
                 403,
                 $this->format
@@ -136,6 +137,8 @@ class ApiGroupJoinAction extends ApiAuthAction
             common_log_db_error($member, 'INSERT', __FILE__);
             $this->serverError(
                 sprintf(
+                    // TRANS: Server error displayed when joining a group fails.
+                    // TRANS: %1$s is a user nickname, $2$s is a group nickname.
                     _('Could not join user %1$s to group %2$s.'),
                     $this->user->nickname,
                     $this->group->nickname
@@ -153,6 +156,7 @@ class ApiGroupJoinAction extends ApiAuthAction
             break;
         default:
             $this->clientError(
+                // TRANS: Client error displayed trying to execute an unknown API method joining a group.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -160,5 +164,4 @@ class ApiGroupJoinAction extends ApiAuthAction
             break;
         }
     }
-
 }

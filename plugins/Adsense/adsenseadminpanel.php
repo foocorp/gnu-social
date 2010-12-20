@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class AdsenseadminpanelAction extends AdminPanelAction
 {
     /**
@@ -48,10 +47,9 @@ class AdsenseadminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
-        return _('Adsense');
+        return _m('TITLE', 'AdSense');
     }
 
     /**
@@ -59,10 +57,9 @@ class AdsenseadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
-        return _('Adsense settings for this StatusNet site');
+        return _m('AdSense settings for this StatusNet site');
     }
 
     /**
@@ -70,7 +67,6 @@ class AdsenseadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new AdsenseAdminPanelForm($this);
@@ -83,7 +79,6 @@ class AdsenseadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         static $settings = array('adsense' => array('adScript', 'client', 'mediumRectangle', 'rectangle', 'leaderboard', 'wideSkyscraper'));
@@ -97,11 +92,9 @@ class AdsenseadminpanelAction extends AdminPanelAction
         }
 
         // This throws an exception on validation errors
-
         $this->validate($values);
 
         // assert(all values are valid);
-
         $config = new Config();
 
         $config->query('BEGIN');
@@ -125,7 +118,6 @@ class AdsenseadminpanelAction extends AdminPanelAction
 /**
  * Form for the adsense admin panel
  */
-
 class AdsenseAdminPanelForm extends AdminForm
 {
     /**
@@ -133,7 +125,6 @@ class AdsenseAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'form_adsense_admin_panel';
@@ -144,7 +135,6 @@ class AdsenseAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_adsense';
@@ -155,7 +145,6 @@ class AdsenseAdminPanelForm extends AdminForm
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('adsenseadminpanel');
@@ -166,45 +155,44 @@ class AdsenseAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->elementStart('fieldset', array('id' => 'adsense_admin'));
         $this->out->elementStart('ul', 'form_data');
         $this->li();
         $this->input('client',
-                     _('Client ID'),
-                     _('Google client ID'),
+                     _m('Client ID'),
+                     _m('Google client ID'),
                      'adsense');
         $this->unli();
         $this->li();
         $this->input('adScript',
-                     _('Ad Script URL'),
-                     _('Script URL (advanced)'),
+                     _m('Ad script URL'),
+                     _m('Script URL (advanced)'),
                      'adsense');
         $this->unli();
         $this->li();
         $this->input('mediumRectangle',
-                     _('Medium rectangle'),
-                     _('Medium rectangle slot code'),
+                     _m('Medium rectangle'),
+                     _m('Medium rectangle slot code'),
                      'adsense');
         $this->unli();
         $this->li();
         $this->input('rectangle',
-                     _('Rectangle'),
-                     _('Rectangle slot code'),
+                     _m('Rectangle'),
+                     _m('Rectangle slot code'),
                      'adsense');
         $this->unli();
         $this->li();
         $this->input('leaderboard',
-                     _('Leaderboard'),
-                     _('Leaderboard slot code'),
+                     _m('Leaderboard'),
+                     _m('Leaderboard slot code'),
                      'adsense');
         $this->unli();
         $this->li();
         $this->input('wideSkyscraper',
-                     _('Skyscraper'),
-                     _('Wide skyscraper slot code'),
+                     _m('Skyscraper'),
+                     _m('Wide skyscraper slot code'),
                      'adsense');
         $this->unli();
         $this->out->elementEnd('ul');
@@ -215,9 +203,8 @@ class AdsenseAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Save'), 'submit', null, _('Save AdSense settings'));
+        $this->out->submit('submit', _m('Save'), 'submit', null, _m('Save AdSense settings'));
     }
 }

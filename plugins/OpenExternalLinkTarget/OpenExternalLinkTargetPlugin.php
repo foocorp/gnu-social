@@ -40,7 +40,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class OpenExternalLinkTargetPlugin extends Plugin
 {
     function onEndShowScripts($action)
@@ -57,8 +56,7 @@ class OpenExternalLinkTargetPlugin extends Plugin
                             'author' => 'Sarven Capadisli',
                             'homepage' => 'http://status.net/wiki/Plugin:OpenExternalLinkTarget',
                             'rawdescription' =>
-                            _m('Opens external links (i.e., with rel=external) on a new window or tab'));
+                            _m('Opens external links (i.e. with rel=external) on a new window or tab.'));
         return true;
     }
 }
-

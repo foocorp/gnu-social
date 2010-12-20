@@ -1,0 +1,27 @@
+# Translation of StatusNet - ModHelper to Hebrew (עברית)
+# Expored from translatewiki.net
+#
+# Author: YaronSh
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ModHelper\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:19+0000\n"
+"Language-Team: Hebrew <http://translatewiki.net/wiki/Portal:he>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:44:20+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: he\n"
+"X-Message-Group: #out-statusnet-plugin-modhelper\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ModHelperPlugin.php:37
+msgid ""
+"Lets users who have been manually marked as \"modhelper\"s silence accounts."
+msgstr "מתן האפשרות למשתמשים שסומנו כ־\"modhelper\" להשתיק חשבונות."

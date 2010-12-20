@@ -118,16 +118,16 @@ EndShowHTML: Showing after the html element
 - $action: the current action
 
 StartPublicGroupNav: Showing the public group nav menu
-- $action: the current action
+- $menu: the menu widget; use $menu->action for output
 
 EndPublicGroupNav: At the end of the public group nav menu
-- $action: the current action
+- $menu: the menu widget; use $menu->action for output
 
 StartSubGroupNav: Showing the subscriptions group nav menu
-- $action: the current action
+- $menu: the menu widget; use $menu->action for output
 
 EndSubGroupNav: At the end of the subscriptions group nav menu
-- $action: the current action
+- $menu: the menu widget; use $menu->action for output
 
 StartInitializeRouter: Before the router instance has been initialized; good place to add routes
 - $m: the Net_URL_Mapper that has just been set up
@@ -258,10 +258,28 @@ EndShowExportData: just after showing the <div> with export data (feeds)
 - $action: action object being shown
 
 StartShowNoticeItem: just before showing the notice item
-- $action: action object being shown
+- $item: The NoticeListItem object being shown
 
 EndShowNoticeItem: just after showing the notice item
-- $action: action object being shown
+- $item: the NoticeListItem object being shown
+
+StartShowNoticeInfo: just before showing notice info
+- $item: The NoticeListItem object being shown
+
+EndShowNoticeInfo: just after showing notice info
+- $item: The NoticeListItem object being shown
+
+StartShowNoticeOptions: just before showing notice options like fave, repeat, etc.
+- $item: the NoticeListItem object being shown
+
+EndShowNoticeOptions: just after showing notice options like fave, repeat, etc.
+- $item: the NoticeListItem object being shown
+
+StartShowFaveForm: just before showing the fave form
+- $item: the NoticeListItem object being shown
+
+EndShowFaveForm: just after showing the fave form
+- $item: the NoticeListItem object being shown
 
 StartShowPageNotice: just before showing the page notice (instructions or error)
 - $action: action object being shown
@@ -283,6 +301,20 @@ StartProfileSaveForm: before starting to save a profile settings form
 
 EndProfileSaveForm: after saving a profile settings form (after commit, no profile or user object!)
 - $action: action object being shown
+
+StartEmailFormData: just before showing text entry fields on email settings page
+- $action: action object being shown
+
+EndEmailFormData: just after showing text entry fields on email settings page
+- $action: action object being shown
+
+StartEmailSaveForm: before starting to save a email settings form
+- $action: action object being shown
+- &$user: user being saved
+
+EndEmailSaveForm: after saving a email settings form (after commit)
+- $action: action object being shown
+- &$user: user being saved
 
 StartRegistrationFormData: just before showing text entry fields on registration page
 - $action: action object being shown
@@ -346,6 +378,14 @@ GetValidDaemons: Just before determining which daemons to run
 
 HandleQueuedNotice: Handle a queued notice at queue time (or immediately if no queue)
 - &$notice: notice to handle
+
+StartHtmlElement: Reight before outputting the HTML element - allows plugins to add namespaces
+- $action: the current action
+- &$attrs: attributes for the HTML element
+
+EndHtmlElement: Right after outputting the HTML element
+- $action: the current action
+- &$attrs: attributes for the HTML element
 
 StartShowHeadElements: Right after the <head> tag
 - $action: the current action
@@ -550,6 +590,12 @@ StartPublicXRDS: Start XRDS output (right after the opening XRDS tag)
 EndPublicXRDS: End XRDS output (right before the closing XRDS tag)
 - $action: the current action
 - &$xrdsoutputter - XRDSOutputter object to write to
+
+StartHostMetaLinks: Start /.well-known/host-meta links
+- &links: array containing the links elements to be written
+
+EndHostMetaLinks: End /.well-known/host-meta links
+- &links: array containing the links elements to be written
 
 StartCheckPassword: Check a username/password
 - $nickname: The nickname to check
@@ -774,6 +820,22 @@ EndDisfavorNotice: After saving a notice as a favorite
 - $profile: profile of the person faving (can be remote!)
 - $notice: notice being faved
 
+StartFavorNoticeForm: starting the data in the form for favoring a notice
+- $FavorForm: the favor form being shown
+- $notice: notice being favored
+
+EndFavorNoticeForm: Ending the data in the form for favoring a notice
+- $FavorForm: the favor form being shown
+- $notice: notice being favored
+
+StartDisFavorNoticeForm: starting the data in the form for disfavoring a notice
+- $DisfavorForm: the disfavor form being shown
+- $notice: notice being difavored
+
+EndDisFavorNoticeForm: Ending the data in the form for disfavoring a notice
+- $DisfavorForm: the disfavor form being shown
+- $notice: notice being disfavored
+
 StartFindMentions: start finding mentions in a block of text
 - $sender: sender profile
 - $text: plain text version of the notice
@@ -836,230 +898,122 @@ EndDeleteUser: handling the post for deleting a user
 - $action: action being shown
 - $user: user being deleted
 
-StartActivityStart: starting the output for a notice activity <event>
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$attrs: <entry> attributes (mostly namespace declarations, if any)
+StartNoticeAsActivity: before converting a notice to an activity
+- $notice: notice being converted
+- &$activity: initially empty activity
 
-EndActivityStart: end the opening tag for an activity <event>
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $attrs: <entry> attributes (mostly namespace declarations, if any)
+EndNoticeAsActivity: after converting a notice to an activity (good time to customize!)
+- $notice: notice being converted
+- &$activity: activity, now more-or-less full
 
-StartActivitySource: before outputting the <source> element for a notice activity
-- &$notice: notice being output
-- &$xs: XMLStringer for output
+StartNoticeSaveWeb: before saving a notice through the Web interface
+- $action: action being executed (instance of NewNoticeAction)
+- &$authorId: integer ID of the author
+- &$text: text of the notice
+- &$options: additional options (location, replies, etc.)
 
-EndActivitySource: after outputting the <source> element for a notice activity
-- &$notice: notice being output
-- &$xs: XMLStringer for output
+EndNoticeSaveWeb: after saving a notice through the Web interface
+- $action: action being executed (instance of NewNoticeAction)
+- $notice: notice that was saved
 
-StartActivityTitle: before outputting notice activity title
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$title: title of the notice, mutable
+StartRssEntryArray: at the start of copying a notice to an array
+- $notice: the notice being copied
+- &$entry: the entry (empty at beginning)
 
-EndActivityTitle: after outputting notice activity title
-- $notice: notice being output
-- &$xs: XMLStringer for output
-- $title: title of the notice
+EndRssEntryArray: at the end of copying a notice to an array
+- $notice: the notice being copied
+- &$entry: the entry, with all the fields filled up
 
-StartActivityAuthor: before outputting atom author
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$atomAuthor: string for XML representing atom author
+NoticeDeleteRelated: at the beginning of deleting related fields to a notice
+- $notice: notice being deleted
 
-EndActivityAuthor: after outputting atom author
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$atomAuthor: string for XML representing atom author
+StartShowHeadTitle: when beginning to show the <title> element
+- $action: action being shown
 
-StartActivityActor: before outputting activity actor element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$actor: string for XML representing activity actor
+EndShowHeadTitle: when done showing the <title>
+- $action: action being shown
 
-EndActivityActor: after outputting activity actor element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$actor: string for XML representing activity actor
+StartShowPageTitle: when beginning to show the page title <h1>
+- $action: action being shown
 
-StartActivityLink: before outputting activity HTML link element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$url: URL for activity HTML link element for a notice activity entry
+EndShowPageTitle: when done showing the page title <h1>
+- $action: action being shown
 
-EndActivityLink: before outputting activity HTML link element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $url:  URL for activity HTML link element for a notice activity entry
+StartDeleteOwnNotice: when a user starts to delete their own notice
+- $user: the user doing the delete
+- $notice: the notice being deleted
 
-StartActivityId: before outputting atom:id element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$id: atom:id (notice URI by default)
+EndDeleteOwnNotice: when a user has deleted their own notice
+- $user: the user doing the delete
+- $notice: the notice being deleted
 
-EndActivityId: after outputting atom:id element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $id:  atom:id (notice URI by default)
+StartShowFeedLinkList: before showing the feed list in the sidebar
+- $action: action being executed
+- $feeds: list of feeds to show
 
-StartActivityPublished: before outputting atom:published element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$published: atom:published value (notice created by default)
+EndShowFeedLinkList: after showing the feed list in the sidebar
+- $action: action being executed
+- $feeds: list of feeds shown
 
-EndActivityPublished: before outputting atom:published element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $published:  atom:published value (notice created by default)
+StartShowFeedLink: before showing an individual feed item
+- $action: action being executed
+- $feed: feed to show
 
-StartActivityUpdated: before outputting atom:updated element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$updated: atom:updated value (same as atom:published by default)
+EndShowFeedLink: after showing an individual feed
+- $action: action being executed
+- $feed: feed to show
 
-EndActivityUpdated: after outputting atom:updated element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $updated: atom:updated value (same as atom:published by default)
+StartShowNoticeForm: before showing the notice form (before <form>)
+- $action: action being executed
 
-StartActivityContent: before outputting atom:content element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$content: atom:content value (notice rendered HTML by default)
+EndShowNoticeForm: after showing the notice form (after <form>)
+- $action: action being executed
 
-EndActivityContent: after outputting atom:content element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $content: atom:content value (notice rendered HTML by default)
+StartGrantRole: when a role is being assigned
+- $profile: profile that will have the role
+- $role: string name of the role
 
-StartActivityVerb: before outputting activity:verb element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$verb: activity:verb URI ('http://activitystrea.ms/schema/1.0/post' by default)
+EndGrantRole: when a role has been successfully assigned
+- $profile: profile that will have the role
+- $role: string name of the role
 
-EndActivityVerb: after outputting activity:verb element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $verb: activity:verb URI ('http://activitystrea.ms/schema/1.0/post' by default)
+StartRevokeRole: when a role is being revoked
+- $profile: profile that will lose the role
+- $role: string name of the role
 
-StartActivityDefaultObjectType: before outputting activity:object-type element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$type: activity:object-type URI for default object ('http://activitystrea.ms/schema/1.0/note' by default)
+EndRevokeRole: when a role has been revoked
+- $profile: profile that lost the role
+- $role: string name of the role
 
-EndActivityDefaultObjectType: after outputting activity:verb element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $type: activity:object-type URI for default object ('http://activitystrea.ms/schema/1.0/note' by default)
+StartAtomPubNewActivity: When a new activity comes in through Atom Pub API
+- &$activity: received activity
 
-StartActivityObjects: before outputting activity:object elements for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$objects: array of ActivityObject objects to output (empty by default)
+EndAtomPubNewActivity: When a new activity comes in through Atom Pub API
+- $activity: received activity
+- $notice: notice that was created
 
-EndActivityObjects: after outputting activity:object elements for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $objects: array of ActivityObject objects to output (empty by default)
+StartXrdActionAliases: About to set aliases for the XRD object for a user
+- &$xrd: XRD object being shown
+- $user: User being shown
 
-StartActivityNoticeInfo: before outputting statusnet:notice-info element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$noticeInfoAttr: array of attributes for notice info element
+EndXrdActionAliases: Done with aliases for the XRD object for a user
+- &$xrd: XRD object being shown
+- $user: User being shown
 
-EndActivityNoticeInfo: after outputting statusnet:notice-info element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $noticeInfoAttr: array of attributes for notice info element
+StartXrdActionLinks: About to set links for the XRD object for a user
+- &$xrd: XRD object being shown
+- $user: User being shown
 
-StartActivityInReplyTo: before outputting thr:in-reply-to element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$replyNotice: Notice object the main notice is in-reply-to
+EndXrdActionLinks: Done with links for the XRD object for a user
+- &$xrd: XRD object being shown
+- $user: User being shown
 
-EndActivityInReplyTo: after outputting thr:in-reply-to element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $replyNotice: Notice object the main notice is in-reply-to
+AdminPanelCheck: When checking whether the current user can access a given admin panel
+- $name:  Name of the admin panel
+- &$isOK: Boolean whether the user is allowed to use the panel
 
-StartActivityConversation: before outputting ostatus:conversation link element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$conv: Conversation object
+StartAdminPanelNav: Before displaying the first item in the list of admin panels
+- $nav The AdminPanelNav widget
 
-EndActivityConversation: after outputting ostatus:conversation link element for a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $conv: Conversation object
-
-StartActivityAttentionProfiles: before outputting ostatus:attention link element for people in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$replyProfiles: array of profiles of people being replied to
-
-EndActivityAttentionProfiles: after outputting ostatus:attention link element for people in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $replyProfiles: array of Profile object of people being replied to
-
-StartActivityAttentionGroups: before outputting ostatus:attention link element for groups in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$groups: array of Group objects of groups being addressed
-
-EndActivityAttentionGroups: after outputting ostatus:attention link element for groups in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $groups: array of Group objects of groups being addressed
-
-StartActivityForward: before outputting ostatus:forward link element in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$repeat: Notice that was repeated
-
-EndActivityForward: after outputting ostatus:forward link element in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $repeat: Notice that was repeated
-
-StartActivityCategories: before outputting atom:category elements in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$tags: array of strings for tags on the notice (used for categories)
-
-EndActivityCategories: after outputting atom:category elements in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $tags: array of strings for tags on the notice (used for categories)
-
-StartActivityEnclosures: before outputting enclosure link elements in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$enclosures: array of enclosure objects (see File::getEnclosure() for details)
-
-EndActivityEnclosures: after outputting enclosure link elements in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $enclosures: array of enclosure objects (see File::getEnclosure() for details)
-
-StartActivityGeo: before outputting geo:rss element in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- &$lat: latitude
-- &$lon: longitude
-
-EndActivityGeo: after outputting geo:rss element in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-- $lat: latitude
-- $lon: longitude
-
-StartActivityEnd: before the closing </entry> in a notice activity entry (last chance for data!)
-- &$notice: notice being output
-- &$xs: XMLStringer for output
-
-EndActivityEnd: after the closing </entry> in a notice activity entry
-- &$notice: notice being output
-- &$xs: XMLStringer for output
+EndAdminPanelNav: After displaying the last item in the list of admin panels
+- $nav The AdminPanelNav widget

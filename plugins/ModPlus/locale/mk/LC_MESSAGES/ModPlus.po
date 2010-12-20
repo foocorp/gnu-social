@@ -1,0 +1,54 @@
+# Translation of StatusNet - ModPlus to Macedonian (Македонски)
+# Expored from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ModPlus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:20+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 17:54:28+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-modplus\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#: ModPlusPlugin.php:39
+msgid "UI extensions for profile moderation actions."
+msgstr ""
+"Додатоци за кориснички посредник наменети за постапки за административна "
+"контрола на профили."
+
+#: ModPlusPlugin.php:110
+msgid "Remote profile options..."
+msgstr "Нагодувања на далечински профил..."
+
+#: remoteprofileaction.php:51
+#, php-format
+msgid "%s on %s"
+msgstr "%s на %s"
+
+#: remoteprofileaction.php:62
+#, php-format
+msgid ""
+"This remote profile is registered on another site; see [%s's original "
+"profile page on %s](%s)."
+msgstr ""
+"Овој далечински профил е регистриран на друго мреж. место. Погледајте ја [%"
+"s's изворната профилна страница на %s](%s)."
+
+#: remoteprofileaction.php:70
+msgid ""
+"Site moderators have silenced this profile, which prevents delivery of new "
+"messages to any users on this site."
+msgstr ""
+"Администраторите го замолчиле овој профил, што оневозможува праќање нови "
+"пораки на било кој корисник на мрежното место."

@@ -28,9 +28,13 @@ class RSSCloudQueueHandler extends QueueHandler
 
     function handle($notice)
     {
-        $profile = $notice->getProfile();
+        try {
+            $profile = $notice->getProfile();
+        } catch (Exception $e) {
+            common_log(LOG_ERR, "Dropping RSSCloud item for notice with bogus profile: " . $e->getMessage());
+            return true;
+        }
         $notifier = new RSSCloudNotifier();
         return $notifier->notify($profile);
     }
 }
-

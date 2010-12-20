@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class UserFlagPlugin extends Plugin
 {
     const REVIEWFLAGS = 'UserFlagPlugin::reviewflags';
@@ -56,7 +55,6 @@ class UserFlagPlugin extends Plugin
      *
      * @return boolean hook return
      */
-
     function onCheckSchema()
     {
         $schema = Schema::get();
@@ -83,7 +81,6 @@ class UserFlagPlugin extends Plugin
      *
      * @return boolean hook return
      */
-
     function onRouterInitialized($m)
     {
         $m->connect('main/flag/profile', array('action' => 'flagprofile'));
@@ -99,7 +96,6 @@ class UserFlagPlugin extends Plugin
      *
      * @return boolean hook return
      */
-
     function onAutoload($cls)
     {
         switch (strtolower($cls))
@@ -130,26 +126,11 @@ class UserFlagPlugin extends Plugin
      *
      * @return boolean hook result
      */
-
     function onEndProfilePageActionsElements(&$action, $profile)
     {
-        $user = common_current_user();
-
-        if (!empty($user) && ($user->id != $profile->id)) {
-
-            $action->elementStart('li', 'entity_flag');
-
-            if (User_flag_profile::exists($profile->id, $user->id)) {
-                $action->element('p', 'flagged', _('Flagged'));
-            } else {
-                $form = new FlagProfileForm($action, $profile,
-                                            array('action' => 'showstream',
-                                                  'nickname' => $profile->nickname));
-                $form->show();
-            }
-
-            $action->elementEnd('li');
-        }
+        $this->showFlagButton($action, $profile,
+                              array('action' => 'showstream',
+                                    'nickname' => $profile->nickname));
 
         return true;
     }
@@ -161,25 +142,42 @@ class UserFlagPlugin extends Plugin
      *
      * @return boolean hook result
      */
-
     function onEndProfileListItemActionElements($item)
+    {
+        list($action, $args) = $item->action->returnToArgs();
+        $args['action'] = $action;
+        $this->showFlagButton($item->action, $item->profile, $args);
+
+        return true;
+    }
+
+    /**
+     * Actually output a flag button. If the target profile has already been
+     * flagged by the current user, a null-action faux button is shown.
+     *
+     * @param Action $action
+     * @param Profile $profile
+     * @param array $returnToArgs
+     */
+    protected function showFlagButton($action, $profile, $returnToArgs)
     {
         $user = common_current_user();
 
-        if (!empty($user)) {
+        if (!empty($user) && ($user->id != $profile->id)) {
 
-            list($action, $args) = $item->action->returnToArgs();
+            $action->elementStart('li', 'entity_flag');
 
-            $args['action'] = $action;
+            if (User_flag_profile::exists($profile->id, $user->id)) {
+                // @todo FIXME: Add a title explaining what 'flagged' means?
+                // TRANS: Message added to a profile if it has been flagged for review.
+                $action->element('p', 'flagged', _m('Flagged'));
+            } else {
+                $form = new FlagProfileForm($action, $profile, $returnToArgs);
+                $form->show();
+            }
 
-            $form = new FlagProfileForm($item->action, $item->profile, $args);
-
-            $item->action->elementStart('li', 'entity_flag');
-            $form->show();
-            $item->action->elementEnd('li');
+            $action->elementEnd('li');
         }
-
-        return true;
     }
 
     /**
@@ -189,7 +187,6 @@ class UserFlagPlugin extends Plugin
      *
      * @return boolean hook result
      */
-
     function onEndShowScripts($action)
     {
         $action->inlineScript('if ($(".form_entity_flag").length > 0) { '.
@@ -210,7 +207,6 @@ class UserFlagPlugin extends Plugin
      *
      * @return boolean hook result
      */
-
     function onUserRightsCheck($user, $right, &$result)
     {
         switch ($right) {
@@ -233,7 +229,6 @@ class UserFlagPlugin extends Plugin
      *
      * @return boolean hook result
      */
-
     function onEndBlockProfile($user, $profile)
     {
         if ($this->flagOnBlock && !User_flag_profile::exists($profile->id,
@@ -255,7 +250,6 @@ class UserFlagPlugin extends Plugin
      *
      * @return boolean hook result
      */
-
     function onProfileDeleteRelated($profile, &$related)
     {
         $related[] = 'user_flag_profile';
@@ -272,10 +266,33 @@ class UserFlagPlugin extends Plugin
      *
      * @return boolean hook result
      */
-
     function onUserDeleteRelated($user, &$related)
     {
         $related[] = 'user_flag_profile';
+        return true;
+    }
+
+    /**
+     * Provide plugin version information.
+     *
+     * This data is used when showing the version page.
+     *
+     * @param array &$versions array of version data arrays; see EVENTS.txt
+     *
+     * @return boolean hook value
+     */
+    function onPluginVersion(&$versions)
+    {
+        $url = 'http://status.net/wiki/Plugin:UserFlag';
+
+        $versions[] = array('name' => 'UserFlag',
+            'version' => STATUSNET_VERSION,
+            'author' => 'Evan Prodromou',
+            'homepage' => $url,
+            'rawdescription' =>
+            // TRANS: Plugin description.
+            _m('This plugin allows flagging of profiles for review and reviewing flagged profiles.'));
+
         return true;
     }
 }

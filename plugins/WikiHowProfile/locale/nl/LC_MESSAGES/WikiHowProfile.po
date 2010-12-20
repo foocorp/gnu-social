@@ -1,0 +1,40 @@
+# Translation of StatusNet - WikiHowProfile to Dutch (Nederlands)
+# Expored from translatewiki.net
+#
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - WikiHowProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:13:15+0000\n"
+"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-10-29 16:14:15+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-wikihowprofile\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: WikiHowProfilePlugin.php:59
+msgid ""
+"Fetches avatar and other profile information for WikiHow users when setting "
+"up an account via OpenID."
+msgstr ""
+"Haalt avatar- en andere informatie op voor WikiHow-gebruikers die een "
+"gebruiker aanmaken via OpenID."
+
+#: WikiHowProfilePlugin.php:171
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Ongeldige avatar-URL %s."
+
+#: WikiHowProfilePlugin.php:179
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Het was niet mogelijk om de avatar op te halen van %s."

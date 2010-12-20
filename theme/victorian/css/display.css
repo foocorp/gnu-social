@@ -1,0 +1,886 @@
+/** theme: Victorian
+ *
+ * @package   StatusNet
+ * @author    Michael R. Bernstein <michael@fandomhome.com>
+ * @copyright 2010 StatusNet, Inc.
+ * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
+ * @link      http://www.michaelbernstein.com/
+ */
+
+/* Typography */
+
+@font-face {
+	font-family: 'LinuxLibertineRegular';
+	src: url('../fonts/LinLibertine_Re-4.1_.8_-webfont.eot');
+	src: local('☺'), url('../fonts/LinLibertine_Re-4.1_.8_-webfont.woff') format('woff'), url('../fonts/LinLibertine_Re-4.1_.8_-webfont.ttf') format('truetype'), url('../fonts/LinLibertine_Re-4.1_.8_-webfont.svg#webfontrdqe1DyH') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'LinuxLibertineItalic';
+	src: url('../fonts/LinLibertine_It-4.0_.3_-webfont.eot');
+	src: local('☺'), url('../fonts/LinLibertine_It-4.0_.3_-webfont.woff') format('woff'), url('../fonts/LinLibertine_It-4.0_.3_-webfont.ttf') format('truetype'), url('../fonts/LinLibertine_It-4.0_.3_-webfont.svg#webfont1JABFqYn') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'LinuxLibertineBold';
+	src: url('../fonts/LinLibertine_Bd-4.0_.2_-webfont.eot');
+	src: local('☺'), url('../fonts/LinLibertine_Bd-4.0_.2_-webfont.woff') format('woff'), url('../fonts/LinLibertine_Bd-4.0_.2_-webfont.ttf') format('truetype'), url('../fonts/LinLibertine_Bd-4.0_.2_-webfont.svg#webfont8Py9MN8V') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'LinuxLibertineCRegular';
+	src: url('../fonts/LinLibertineC_Re-4.0_.1_-webfont.eot');
+	src: local('☺'), url('../fonts/LinLibertineC_Re-4.0_.1_-webfont.woff') format('woff'), url('../fonts/LinLibertineC_Re-4.0_.1_-webfont.ttf') format('truetype'), url('../fonts/LinLibertineC_Re-4.0_.1_-webfont.svg#webfonth75RjTOl') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* bolding */
+
+caption, legend, input.submit, form label, .form_settings #settings_autosubscribe label, address .fn, .system_notice dt, #anon_notice, #site_nav_local_views a, #licenses dt, .form_notice .form_note dt, .form_notice #notice_text-count, button.close, button.minimize, .entity_profile dt, #entity_statistics dt, .entity_profile .fn, .entity_profile .nickname, .entity_actions a, .entity_moderation p, .entity_role p, #showapplication .entity_data dt, .notice .author .fn, .dialogbox .submit_dialogbox, #attachments dt, #attachment_view #oembed_info dt, #filter_tags_all a, .pagination dt, .pagination a, #tagcloud.section dt {
+    font-weight: normal;
+    font-family: 'LinuxLibertineBold', serif;
+}
+
+/* italicizing */
+
+i, cite, em, var, address {
+    font-style: normal;
+    font-family: 'LinuxLibertineItalic', serif;
+}
+
+/* End Typography */
+
+
+@media screen, projection, tv {
+body,
+a:active {
+    background-color:#7D6957;
+}
+
+body {
+    font-family: LinuxLibertineRegular, serif;
+    font-size:1.2em;
+    color: #333;
+    background-image: url(../images/background.jpg);
+    background-attachment:fixed;
+    background-position:center;
+    line-height: 1.5;
+}
+
+#wrap {
+    box-shadow: rgba(0, 0, 0, 0.496094) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.496094) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.496094) 0px 0px 8px;
+    background-color: #F2EFEC;
+    border: 1px solid white;
+    margin-top: 16px;
+    margin-bottom: 16px;
+    width: 60em;
+}
+
+address {
+    float: none;
+    text-align: center;
+    margin-left: 0px;
+}
+
+.vcard .photo {
+    float: none;
+}
+
+address .poweredby {
+    clear: none;
+    float: none;
+    margin: 0px;
+    font-size: 80%;
+    font-family: 'LinuxLibertineItalic';
+}
+
+#site_nav_global_primary {
+    float: none;
+    margin: 0;
+    margin-bottom: 1em;
+    text-align: center;
+    top: 0;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+    background-color: #fff;
+}
+
+#site_nav_global_primary li:hover {
+background-color: #F2EFEC;
+}
+
+body#register #site_nav_global_primary li#nav_register a,
+body#login #site_nav_global_primary li#nav_login a,
+body#openidlogin #site_nav_global_primary li#nav_login a,
+body#all #site_nav_global_primary li#nav_home a,
+body#replies #site_nav_global_primary li#nav_home a,
+body#showstream #site_nav_global_primary li#nav_home a,
+body#showfavorites #site_nav_global_primary li#nav_home a,
+body#inbox #site_nav_global_primary li#nav_home a,
+body#outbox #site_nav_global_primary li#nav_home a,
+body#profilesettings #site_nav_global_primary li#nav_account a,
+body#avatarsettings #site_nav_global_primary li#nav_account a,
+body#passwordsettings #site_nav_global_primary li#nav_account a,
+body#emailsettings #site_nav_global_primary li#nav_account a,
+body#userdesignsettings #site_nav_global_primary li#nav_account a,
+body#othersettings #site_nav_global_primary li#nav_account a,
+body#openidsettings #site_nav_global_primary li#nav_account a,
+body#oauthconnectionssettings #site_nav_global_primary li#nav_connect a,
+body#smssettings #site_nav_global_primary li#nav_connect a, 
+body[id$=adminpanel] #site_nav_global_primary li#nav_admin a,
+body#invite #site_nav_global_primary li#nav_invitecontact a,
+body#usergroups #site_nav_global_primary li#nav_invitecontact a,
+body#subscribers #site_nav_global_primary li#nav_invitecontact a,
+body#subscriptions #site_nav_global_primary li#nav_invitecontact a,
+body[id$=doc] #site_nav_global_primary li#nav_help a,
+body[id$=search] #site_nav_global_primary li#nav_search a {
+    color: #000;
+    text-decoration: none;
+}
+
+#site_notice {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px inset;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px inset;
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    padding: 1em;
+    width: 15em;
+    background-color:#E6DFDA;
+    margin: 0;
+}
+
+.form_notice {
+    float: none;
+    margin: 0 auto;
+    }
+
+.form_notice label{
+    font-family: 'LinuxLibertineCRegular', serif;
+    float: none;
+    text-align: center;
+    }
+
+#form_notice-direct label{
+    float: left;
+    }
+
+.form_guide {
+    font-style: normal;
+    font-family: 'LinuxLibertineItalic';
+}
+
+input, textarea, select {
+    border-width:2px;
+    border-style: solid;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+}
+
+input, textarea, select, option {
+    font-family: 'LinuxLibertineCRegular', serif;
+}
+
+input, textarea, select,
+.entity_actions .dialogbox input,
+.mark-top {
+    border-color:#AAAAAA;
+}
+
+.form_settings fieldset fieldset {
+    background:rgba(240, 240, 240, 0.2);
+    box-shadow:3px 3px 7px rgba(194, 194, 194, 0.3);
+    -moz-box-shadow:3px 3px 7px rgba(194, 194, 194, 0.3);
+    -webkit-box-shadow:3px 3px 7px rgba(194, 194, 194, 0.3);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: LinuxLibertineCRegular, serif;
+    text-align: center;
+    font-weight: normal;
+    text-transform: capitalize;
+    margin-bottom: 1em;
+}
+
+
+#filter_tags ul li,
+.entity_send-a-message .form_notice,
+.form_settings fieldset fieldset,
+.entity_moderation:hover ul,
+.entity_role:hover ul,
+.dialogbox {
+    border-color:#DDDDDD;
+}
+
+.form_settings input.form_action-primary {
+    background:none;
+}
+
+.form_notice.warning #notice_text-count,
+.form_settings .form_note {
+    background-color:#9BB43E;
+}
+
+input.submit,
+.form_notice.warning #notice_text-count,
+.form_settings .form_note,
+.entity_actions a,
+.entity_actions input,
+.entity_moderation p,
+.entity_role p,
+button {
+    box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
+    -moz-box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
+    -webkit-box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
+}
+
+.entity_actions a,
+.entity_actions input,
+.entity_actions p {
+    border-color:transparent;
+    background-color:transparent;
+}
+
+input:focus, textarea:focus, select:focus,
+.form_notice.warning #notice_data-text,
+.form_notice.warning #notice_text-count,
+.form_settings .form_note,
+.entity_actions .dialogbox .form_data input:focus {
+    border-color:#9BB43E;
+}
+
+input.submit {
+    color:#FFFFFF;
+}
+
+.entity_actions input.submit {
+    border-color:transparent;
+    text-shadow:none;
+}
+
+.dialogbox .submit_dialogbox,
+input.submit,
+.form_notice input.submit {
+    background:#D5C5B6 url(../../base/images/illustrations/illu_pattern-01.png) 0 0 repeat-x;
+    color:#000000;
+    border-color:#7D6957;
+    border-top-color:#DAD5D0;
+    border-left-color:#DAD5D0;
+}
+
+.dialogbox .submit_dialogbox:hover,
+input.submit:hover {
+    background-position:0 -5px;
+}
+
+.dialogbox .submit_dialogbox:focus,
+input.submit:focus {
+    background-position:0 -15px;
+    box-shadow:3px 3px 3px rgba(194, 194, 194, 0.1);
+    -moz-box-shadow:3px 3px 3px rgba(194, 194, 194, 0.1);
+    -webkit-box-shadow:3px 3px 3px rgba(194, 194, 194, 0.1);
+    text-shadow:none;
+}
+
+.form_notice label[for=notice_data-geo] {
+    background-position:0 -1780px;
+}
+.form_notice label[for=notice_data-geo].checked {
+    background-position:0 -1846px;
+}
+
+a,
+.form_settings input.form_action-primary,
+.notice-options input,
+.entity_actions a,
+.entity_actions input,
+.entity_moderation p,
+.entity_role p {
+    color:#015C65;
+}
+
+.notice,
+.profile,
+.application,
+#content tbody tr {
+    border-top-color:#C8D1D5;
+}
+
+#notice_text-count {
+    color:#333333;
+}
+
+.form_notice.warning #notice_text-count,
+.dialogbox,
+.entity_actions .dialogbox input {
+    color:#000000;
+}
+
+.form_notice label[for=notice_data-attach] {
+    background-position:0 -328px;
+}
+
+.form_notice #notice_data-attach {
+    opacity:0;
+}
+
+.form_notice label[for=notice_data-attach],
+#export_data li a.rss,
+#export_data li a.atom,
+#export_data li a.foaf,
+.entity_edit a,
+.entity_send-a-message a,
+.entity_nudge p,
+.form_user_nudge input.submit,
+.form_user_block input.submit,
+.form_user_unblock input.submit,
+.form_group_block input.submit,
+.form_group_unblock input.submit,
+.form_make_admin input.submit,
+.notice .attachment,
+.notice-options .notice_reply,
+.notice-options form.form_favor input.submit,
+.notice-options form.form_disfavor input.submit,
+.notice-options .notice_delete,
+.notice-options form.form_repeat input.submit,
+#new_group a,
+.pagination .nav_prev a,
+.pagination .nav_next a,
+button.close,
+.form_group_leave input.submit,
+.form_user_unsubscribe input.submit,
+.form_group_join input.submit,
+.form_user_subscribe input.submit,
+.form_remote_authorize input.submit,
+.entity_subscribe a,
+.entity_moderation p,
+.entity_sandbox input.submit,
+.entity_silence input.submit,
+.entity_delete input.submit,
+.entity_role p,
+.entity_role_administrator input.submit,
+.entity_role_moderator input.submit,
+.notice-options .repeated,
+.form_notice label[for=notice_data-geo],
+button.minimize,
+.form_reset_key input.submit,
+.entity_clear input.submit,
+.entity_flag input.submit,
+.entity_flag p,
+.entity_subscribe input.submit,
+#realtime_play,
+#realtime_pause,
+#realtime_popup {
+    background-image:url(../images/icons/icons-01.gif);
+    background-repeat:no-repeat;
+    background-color:transparent;
+}
+
+#wrap form.processing input.submit,
+#core a.processing,
+.dialogbox.processing .submit_dialogbox {
+    background:#FFFFFF url(../../base/images/icons/icon_processing.gif) no-repeat 47% 47%;
+}
+.notice-options .form_repeat.processing {
+    background-image:none;
+}
+
+#content, body[id$="adminpanel"] #content {
+    -moz-border-radius: 0 0 0 0;
+    border-bottom-left-radius: 0 0;
+    border-bottom-right-radius: 0 0;
+    border-top-left-radius: 0 0;
+    border-top-right-radius: 0 0;
+    border: 1px solid #7D6957;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+    margin-left: 1em;
+    width: 37em;
+}
+
+#content, body[id$="adminpanel"] #content,
+#site_nav_local_views a, body[id$=adminpanel] #site_nav_local_views a,
+#aside_primary {
+    border-color:transparent;
+}
+
+body[id$=adminpanel] #aside_primary {
+display:block;
+}
+
+#aside_primary {
+    background-color:#E6DFDA;
+    -moz-border-radius: 0px 0px 0px 0px;
+    border-bottom-left-radius: 0 0;
+    border-bottom-right-radius: 0 0;
+    border-top-left-radius: 0 0;
+    border-top-right-radius: 0 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px inset;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px inset;
+    width: 15em;
+    float: right;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.aside .section {
+    border-bottom: 1px solid #7D6957;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+}
+
+.aside .section h2 {
+    text-transform: capitalize;
+}
+
+.section .vcard .photo {
+    margin-top: 0.3em;
+    float: left;
+}
+
+.section p {
+    display: block !important;
+    clear: none !important;
+    margin-left: 2.5em;
+    font-size: 90%
+}
+
+.section table {
+    margin: 0 auto;
+}
+
+.section table td {
+    vertical-align: middle;
+}
+
+.section p a.more {
+    float: right;
+}
+
+#content,
+#site_nav_local_views .current a, body[id$=adminpanel] #site_nav_local_views .current a,
+.entity_send-a-message .form_notice,
+.entity_moderation:hover ul,
+.entity_role:hover ul,
+.dialogbox {
+    background-color:#FFFFFF;
+}
+
+#site_nav_local_views, body[id$=adminpanel] #site_nav_local_views {
+    margin-left: 2em;
+    margin-right: 0;
+    margin-bottom: -1em;
+    float: left;
+    width: 100%;
+    position: static;
+}
+
+body[id$=adminpanel] #site_nav_local_views li {
+float:left;
+margin-right:18px;
+list-style-type:none;
+width: auto;
+margin-bottom: 0;
+}
+
+#site_nav_local_views li.current, body[id$=adminpanel] #site_nav_local_views li.current {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px;
+    position: relative;
+    z-index:1;
+    width: auto;
+}
+
+#site_nav_local_views a, body[id$=adminpanel] #site_nav_local_views a {
+    background-color:rgba(194, 194, 194, 0.5);
+    padding: 1em;
+    text-transform: capitalize;
+    font-size: 90%;
+    float: left;
+    font-weight: normal;
+    width:auto;
+    border-radius:4px;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+}
+
+#site_nav_local_views a:hover, body[id$=adminpanel] #site_nav_local_views a:hover {
+    background-color: #ffc;
+}
+
+#site_nav_local_views .current a, body[id$=adminpanel] #site_nav_local_views .current a {
+    text-shadow: rgba(194,194,194,0.5) 1px 1px 1px;
+}
+
+#footer {
+padding: 1.2em;
+background-color:#E6DFDA;
+width: 58em;
+text-align: center;
+}
+
+#licenses {
+margin-left: 5em;
+margin-right: 5em;
+}
+
+.processing {
+    background-image:url(../../base/images/icons/icon_processing.gif);
+    background-repeat:no-repeat;
+    background-position:47% 47%;
+}
+
+.error {
+    background-color:#F7E8E8;
+}
+
+.success {
+    background-color:#EFF3DC;
+}
+
+button.close {
+    background-position:0 -1120px;
+}
+
+button.minimize {
+    background-position:0 -1912px;
+}
+
+#anon_notice {
+    background-color: #E6DFDA;
+    float: none;
+    margin-right: auto;
+    margin-left: auto;
+    border: none;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px inset;
+    -moz-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px inset;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px inset;
+}
+
+#showstream #anon_notice {
+    background-color: #E6DFDA;
+}
+
+#export_data ul {
+    float: none;
+    text-align: center;
+}
+
+#export_data li {
+    float:none;
+    display: inline;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+#export_data li a {
+    background-repeat:no-repeat;
+}
+
+#export_data li a.rss {
+    background-position:0 -130px;
+}
+
+#export_data li a.atom {
+    background-position:0 -64px;
+}
+
+#export_data li a.foaf {
+    background-position:0 1px;
+}
+
+.form_group_join input.submit,
+.form_group_leave input.submit,
+.form_user_subscribe input.submit,
+.form_user_unsubscribe input.submit,
+.form_remote_authorize input.submit,
+.entity_subscribe a {
+    background-color:#AAAAAA;
+    color:#FFFFFF;
+}
+
+.form_group_leave input.submit,
+.form_user_unsubscribe input.submit {
+    background-position:5px -1246px;
+}
+
+.form_group_join input.submit,
+.form_user_subscribe input.submit,
+.form_remote_authorize input.submit,
+.entity_subscribe a {
+    background-position:5px -1181px;
+}
+
+.entity_edit a {
+    background-position: 5px -719px;
+}
+
+.entity_send-a-message a {
+    background-position: 5px -852px;
+}
+
+.entity_send-a-message .form_notice,
+.entity_moderation:hover ul,
+.entity_role:hover ul,
+.dialogbox {
+    box-shadow:3px 7px 5px rgba(194, 194, 194, 0.7);
+    -moz-box-shadow:3px 7px 5px rgba(194, 194, 194, 0.7);
+    -webkit-box-shadow:3px 7px 5px rgba(194, 194, 194, 0.7);
+}
+
+.entity_nudge p,
+.form_user_nudge input.submit {
+    background-position: 5px -785px;
+}
+
+.form_user_block input.submit,
+.form_user_unblock input.submit,
+.form_group_block input.submit,
+.form_group_unblock input.submit {
+    background-position: 5px -918px;
+}
+
+.form_make_admin input.submit {
+    background-position: 5px -983px;
+}
+
+.entity_moderation p {
+    background-position: 5px -1313px;
+}
+
+.entity_sandbox input.submit {
+    background-position: 5px -1380px;
+}
+
+.entity_silence input.submit {
+    background-position: 5px -1445px;
+}
+
+.entity_delete input.submit {
+    background-position: 5px -1511px;
+}
+
+.entity_sandbox .form_user_unsandbox input.submit {
+    background-position: 5px -2568px;
+}
+
+.entity_silence .form_user_unsilence input.submit {
+    background-position: 5px -2633px;
+}
+
+.entity_role p {
+    background-position: 5px -2436px;
+}
+
+.entity_role_administrator .form_user_grantrole input.submit {
+    background-position: 5px -983px;
+}
+
+.entity_role_moderator .form_user_grantrole input.submit {
+    background-position: 5px -1313px;
+}
+
+.entity_role_administrator .form_user_revokerole input.submit {
+    background-position: 5px -2699px;
+}
+
+.entity_role_moderator .form_user_revokerole input.submit {
+    background-position: 5px -2501px;
+}
+
+.form_reset_key input.submit {
+    background-position: 5px -1973px;
+}
+
+.entity_clear input.submit {
+    background-position: 5px -2039px;
+}
+
+.entity_flag input.submit,
+.entity_flag p {
+    background-position: 5px -2105px;
+}
+
+.entity_subscribe input.accept {
+    background-position: 5px -2171px;
+}
+
+.entity_subscribe input.reject {
+    background-position: 5px -2237px;
+}
+
+#realtime_play {
+    background-position: 0 -2308px;
+}
+
+#realtime_pause {
+    background-position: 0 -2374px;
+}
+
+#realtime_popup {
+    background-position: 0 -1714px;
+}
+
+/* NOTICES */
+.notice .attachment {
+    background-position:0 -394px;
+}
+
+.notice .attachment.more {
+    background-position:0 -2770px;
+}
+
+#attachments .attachment {
+    background:none;
+}
+.notice-options .notice_reply {
+    background-position:0 -592px;
+}
+
+.notice-options form.form_favor input.submit {
+    background-position:0 -460px;
+}
+
+.notice-options form.form_disfavor input.submit {
+    background-position:0 -526px;
+}
+.notice-options .notice_delete {
+    background-position:0 -658px;
+}
+.notice-options form.form_repeat input.submit {
+    background-position:0 -1582px;
+}
+
+.notice-options .repeated {
+    background-position:0 -1648px;
+}
+
+.notices .attachment.more,
+.notices div.entry-content,
+.notices div.notice-options {
+    opacity:0.4;
+}
+
+.notices li:hover .attachment.more,
+.notices li:hover div.entry-content,
+.notices li:hover div.notice-options {
+    opacity:1;
+}
+
+.opaque {
+    opacity:1 !important;
+}
+
+.attachment.more,
+.notice-options a,
+.notice-options input {
+    font-family: 'LinuxLibertineCRegular', serif;
+    box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
+    -moz-box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
+    -webkit-box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
+}
+
+.attachment.more:focus {
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    outline:none;
+}
+
+#content .notices li:hover,
+#content .applications li:hover,
+#content tbody tr:hover {
+    background-color:rgba(240, 240, 240, 0.2);
+}
+
+#content .notice .author .photo {
+    margin-right: 0.5em;
+    margin-top: 0.3em;
+}
+
+#conversation .notices li:hover {
+    background-color:transparent;
+}
+
+.notices .notices {
+    background-color:rgba(200, 200, 200, 0.050);
+}
+
+.notices .notices .notices {
+    background-color:rgba(200, 200, 200, 0.100);
+}
+
+.notices .notices .notices .notices {
+    background-color:rgba(200, 200, 200, 0.150);
+}
+
+.notices .notices .notices .notices .notices {
+    background-color:rgba(200, 200, 200, 0.300);
+}
+
+/*END: NOTICES */
+
+#new_group a {
+    background-position:0 -1054px;
+}
+
+.pagination .nav_prev a,
+.pagination .nav_next a {
+    border-bottom-left-radius: 4px 4px;
+    border-bottom-right-radius: 4px 4px;
+    border-style: solid;
+    border-width: 2px;
+    border-top-left-radius: 4px 4px;
+    border-top-right-radius: 4px 4px;
+    background-repeat:no-repeat;
+    background-color: #D5C5B6;
+    color:#000000;
+    border-color:#7D6957;
+    border-top-color:#DAD5D0;
+    border-left-color:#DAD5D0;
+    box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
+    -moz-box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
+    -webkit-box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
+}
+
+.pagination .nav_prev a {
+    background-position:10% -187px;
+}
+
+.pagination .nav_next a {
+    background-position:105% -252px;
+}
+
+.pagination .nav .processing {
+    background-image:url(../../base/images/icons/icon_processing.gif);
+    box-shadow:none;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    outline:none;
+}
+
+.pagination .nav_next a.processing {
+    background-position:90% 47%;
+}
+
+.pagination .nav_prev a.processing {
+    background-position:10% 47%;
+}
+
+}/*end of @media screen, projection, tv*/

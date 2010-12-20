@@ -62,6 +62,14 @@ unless you configure it with a consumer key and secret.)
    $config['twitter']['global_consumer_key']    = 'YOUR_CONSUMER_KEY';
    $config['twitter']['global_consumer_secret'] = 'YOUR_CONSUMER_SECRET';
 
+Upgrade
+-------
+
+If you've used the Twitter bridge plugin prior to version 0.9.5,
+you'll need to run the new scripts/initialize_notice_to_status.php
+script to initialize the new notice-to-status mapping file, which
+greatly improves the integration between StatusNet and Twitter.
+
 Administration panel
 --------------------
 

@@ -1,0 +1,111 @@
+# Translation of StatusNet - UserFlag to Dutch (Nederlands)
+# Expored from translatewiki.net
+#
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - UserFlag\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:13:12+0000\n"
+"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-07 21:20:38+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-userflag\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Title for page with a list of profiles that were flagged for review.
+#: adminprofileflag.php:125
+msgid "Flagged profiles"
+msgstr "Gemarkeerde profielen"
+
+#. TRANS: Header for moderation menu with action buttons for flagged profiles (like 'sandbox', 'silence', ...).
+#: adminprofileflag.php:242
+msgid "Moderate"
+msgstr "Modereren"
+
+#. TRANS: Message displayed on a profile if it has been flagged.
+#. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
+#: adminprofileflag.php:388
+#, php-format
+msgid "Flagged by %1$s and %2$d other"
+msgid_plural "Flagged by %1$s and %2$d others"
+msgstr[0] "Gemarkeerd door %1$s en %2$d andere"
+msgstr[1] "Gemarkeerd door %1$s en %2$d anderen"
+
+#. TRANS: Message displayed on a profile if it has been flagged.
+#. TRANS: %s is a comma separated list of at most 5 user nicknames that flagged.
+#: adminprofileflag.php:392
+#, php-format
+msgid "Flagged by %s"
+msgstr "Gemarkeerd door %s"
+
+#. TRANS: AJAX form title for a flagged profile.
+#: flagprofile.php:125
+msgid "Flagged for review"
+msgstr "Gemarkeerd voor controle"
+
+#. TRANS: Body text for AJAX form when a profile has been flagged for review.
+#. TRANS: Message added to a profile if it has been flagged for review.
+#: flagprofile.php:129 UserFlagPlugin.php:173
+msgid "Flagged"
+msgstr "Gemarkeerd"
+
+#. TRANS: Plugin description.
+#: UserFlagPlugin.php:294
+msgid ""
+"This plugin allows flagging of profiles for review and reviewing flagged "
+"profiles."
+msgstr ""
+"Deze plugin maakt het markeren van profielen voor controle mogelijk en de "
+"controle van gemarkeerde profielen."
+
+#. TRANS: Server exception given when flags could not be cleared.
+#: clearflag.php:105
+#, php-format
+msgid "Couldn't clear flags for profile \"%s\"."
+msgstr ""
+"Het was niet mogelijk de markeringen van het profiel \"%s\" te verwijderen."
+
+#. TRANS: Title for AJAX form to indicated that flags were removed.
+#: clearflag.php:129
+msgid "Flags cleared"
+msgstr "Markeringen verwijderd"
+
+#. TRANS: Body element for "flags cleared" form.
+#: clearflag.php:133
+msgid "Cleared"
+msgstr "Verwijderd"
+
+#. TRANS: Form title for flagging a profile for review.
+#: flagprofileform.php:78
+msgid "Flag"
+msgstr "Markeren"
+
+#. TRANS: Form description.
+#: flagprofileform.php:89
+msgid "Flag profile for review."
+msgstr "Profiel voor controle markeren"
+
+#. TRANS: Server exception.
+#: User_flag_profile.php:160
+#, php-format
+msgid "Couldn't flag profile \"%d\" for review."
+msgstr "Het was niet mogelijk het profiel \"%d\" voor controle te markeren."
+
+#. TRANS: Form title for action on a profile.
+#: clearflagform.php:76
+msgid "Clear"
+msgstr "Wissen"
+
+#: clearflagform.php:88
+msgid "Clear all flags"
+msgstr "Alle markeringen wissen"

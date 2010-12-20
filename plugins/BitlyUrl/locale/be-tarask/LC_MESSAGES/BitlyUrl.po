@@ -1,0 +1,90 @@
+# Translation of StatusNet - BitlyUrl to Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
+# Expored from translatewiki.net
+#
+# Author: EugeneZelenko
+# Author: Jim-by
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - BitlyUrl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:32+0000\n"
+"Language-Team: Belarusian (Taraškievica orthography) <http://translatewiki."
+"net/wiki/Portal:be-tarask>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:26+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: be-tarask\n"
+"X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: BitlyUrlPlugin.php:48
+msgid "You must specify a serviceUrl for bit.ly shortening."
+msgstr "Вам неабходна пазначыць serviceUrl для сэрвісу скарачэньняў bit.ly."
+
+#: BitlyUrlPlugin.php:175
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr ""
+"Выкарыстаньне сэрвісу скарачэньня URL-адрасоў <a href=\"http://%1$s/\">%1$s</"
+"a>."
+
+#: BitlyUrlPlugin.php:216
+msgid "bit.ly"
+msgstr "bit.ly"
+
+#: BitlyUrlPlugin.php:217 bitlyadminpanelaction.php:54
+msgid "bit.ly URL shortening"
+msgstr "Скарачэньне URL-адрасоў bit.ly"
+
+#: bitlyadminpanelaction.php:65
+msgid ""
+"URL shortening with bit.ly requires [a bit.ly account and API key](http://"
+"bit.ly/a/your_api_key). This verifies that this is an authorized account, "
+"and allow you to use bit.ly's tracking features and custom domains."
+msgstr ""
+"Скарачэньне URL-адрасоў з дапамогай bit.ly патрабуе [рахунак bit.ly і ключ "
+"API](http://bit.ly/a/your_api_key). Гэта пацьвердзіць, што гэта аўтарызаваны "
+"рахунак і дазволіць Вам выкарыстоўваць магчымасьці сачэньня bit.ly і "
+"нестандартныя дамэны."
+
+#: bitlyadminpanelaction.php:132
+msgid "Invalid login. Max length is 255 characters."
+msgstr "Няслушнае імя карыстальніка. Максымальная даўжыня 255 сымбаляў."
+
+#: bitlyadminpanelaction.php:138
+msgid "Invalid API key. Max length is 255 characters."
+msgstr "Няслушны API-ключ. Максымальная даўжыня 255 сымбаляў."
+
+#: bitlyadminpanelaction.php:191
+msgid "Credentials"
+msgstr "Упаўнаважаньні"
+
+#: bitlyadminpanelaction.php:199
+msgid "Leave these empty to use global default credentials."
+msgstr ""
+"Пакіньце гэтае поле пустым, каб выкарыстоўваць глябальнымі ўпаўнаважаньнямі "
+"па змоўчваньні."
+
+#: bitlyadminpanelaction.php:202
+msgid "If you leave these empty, bit.ly will be unavailable to users."
+msgstr ""
+"Калі Вы пакінеце гэтае поле пустым, bit.ly будзе недаступны для "
+"карыстальнікаў."
+
+#: bitlyadminpanelaction.php:209
+msgid "Login name"
+msgstr "Імя карыстальніка"
+
+#: bitlyadminpanelaction.php:218
+msgid "API key"
+msgstr "API-ключ"
+
+#: bitlyadminpanelaction.php:236
+msgid "Save bit.ly settings"
+msgstr "Захаваць устаноўкі bit.ly"

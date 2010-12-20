@@ -56,6 +56,7 @@ class OauthappssettingsAction extends SettingsAction
         $this->page = ($this->arg('page')) ? ($this->arg('page') + 0) : 1;
 
         if (!common_logged_in()) {
+            // TRANS: Message displayed to an anonymous user trying to view OAuth application list.
             $this->clientError(_('You must be logged in to list your applications.'));
             return false;
         }
@@ -71,6 +72,7 @@ class OauthappssettingsAction extends SettingsAction
 
     function title()
     {
+        // TRANS: Page title for OAuth applications
         return _('OAuth applications');
     }
 
@@ -82,6 +84,7 @@ class OauthappssettingsAction extends SettingsAction
 
     function getInstructions()
     {
+        // TRANS: Page instructions for OAuth applications
         return _('Applications you have registered');
     }
 
@@ -100,6 +103,7 @@ class OauthappssettingsAction extends SettingsAction
 
         $application = new Oauth_application();
         $application->owner = $user->id;
+        $application->whereAdd("name != 'anonymous'");
         $application->limit($offset, $limit);
         $application->orderBy('created DESC');
         $application->find();
@@ -119,6 +123,7 @@ class OauthappssettingsAction extends SettingsAction
             array('href' => common_local_url('newapplication'),
                   'class' => 'more'
             ),
+            // TRANS: Link description to add a new OAuth application.
             'Register a new application');
         $this->elementEnd('p');
 
@@ -132,6 +137,7 @@ class OauthappssettingsAction extends SettingsAction
 
     function showEmptyListMessage()
     {
+        // TRANS: Empty list message on page with OAuth applications.
         $message = sprintf(_('You have not registered any applications yet.'));
 
         $this->elementStart('div', 'guide');
@@ -162,5 +168,4 @@ class OauthappssettingsAction extends SettingsAction
         }
 
     }
-
 }

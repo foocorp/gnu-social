@@ -49,7 +49,6 @@ require_once INSTALLDIR . '/lib/apibareauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiGroupIsMemberAction extends ApiBareAuthAction
 {
     var $group   = null;
@@ -60,7 +59,6 @@ class ApiGroupIsMemberAction extends ApiBareAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
 
     function prepare($args)
@@ -82,17 +80,18 @@ class ApiGroupIsMemberAction extends ApiBareAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when checking group membership for a non-existing user.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
 
         if (empty($this->group)) {
+            // TRANS: Client error displayed when checking group membership for a non-existing group.
             $this->clientError(_('Group not found.'), 404, $this->format);
             return false;
         }
@@ -112,6 +111,7 @@ class ApiGroupIsMemberAction extends ApiBareAuthAction
             break;
         default:
             $this->clientError(
+                // TRANS: Client error displayed trying to execute an unknown API method showing group membership.
                 _('API method not found.'),
                 400,
                 $this->format
@@ -129,10 +129,8 @@ class ApiGroupIsMemberAction extends ApiBareAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;
     }
-
 }

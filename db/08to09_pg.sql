@@ -120,3 +120,21 @@ create table inbox (
 
 );
 
+create table user_location_prefs (
+    user_id integer not null /*comment 'user who has the preference'*/ references "user" (id),
+    share_location int default 1 /* comment 'Whether to share location data'*/,
+    created timestamp not null /*comment 'date this record was created'*/,
+    modified timestamp /* comment 'date this record was modified'*/,
+
+    primary key (user_id)
+);
+ 
+create table inbox (
+
+    user_id integer not null /* comment 'user receiving the notice' */ references "user" (id),
+    notice_ids bytea /* comment 'packed list of notice ids' */,
+
+    primary key (user_id)
+
+);
+

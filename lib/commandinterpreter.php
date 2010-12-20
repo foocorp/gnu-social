@@ -272,7 +272,7 @@ class CommandInterpreter
             return false;
         }
     }
-    
+
     /**
      * Split arguments without triggering a PHP notice warning
      */
@@ -285,4 +285,3 @@ class CommandInterpreter
         return $pieces;
     }
 }
-

@@ -139,7 +139,42 @@ class Design extends Memcached_DataObject
 
     static function url($filename)
     {
-        $path = common_config('background', 'path');
+        if (StatusNet::isHTTPS()) {
+
+            $sslserver = common_config('background', 'sslserver');
+
+            if (empty($sslserver)) {
+                // XXX: this assumes that background dir == site dir + /background/
+                // not true if there's another server
+                if (is_string(common_config('site', 'sslserver')) &&
+                    mb_strlen(common_config('site', 'sslserver')) > 0) {
+                    $server = common_config('site', 'sslserver');
+                } else if (common_config('site', 'server')) {
+                    $server = common_config('site', 'server');
+                }
+                $path   = common_config('site', 'path') . '/background/';
+            } else {
+                $server = $sslserver;
+                $path   = common_config('background', 'sslpath');
+                if (empty($path)) {
+                    $path = common_config('background', 'path');
+                }
+            }
+
+            $protocol = 'https';
+
+        } else {
+
+            $path = common_config('background', 'path');
+
+            $server = common_config('background', 'server');
+
+            if (empty($server)) {
+                $server = common_config('site', 'server');
+            }
+
+            $protocol = 'http';
+        }
 
         if ($path[strlen($path)-1] != '/') {
             $path .= '/';
@@ -148,25 +183,6 @@ class Design extends Memcached_DataObject
         if ($path[0] != '/') {
             $path = '/'.$path;
         }
-
-        $server = common_config('background', 'server');
-
-        if (empty($server)) {
-            $server = common_config('site', 'server');
-        }
-
-        $ssl = common_config('background', 'ssl');
-
-        if (is_null($ssl)) { // null -> guess
-            if (common_config('site', 'ssl') == 'always' &&
-                !common_config('background', 'server')) {
-                $ssl = true;
-            } else {
-                $ssl = false;
-            }
-        }
-
-        $protocol = ($ssl) ? 'https' : 'http';
 
         return $protocol.'://'.$server.$path.$filename;
     }

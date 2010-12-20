@@ -42,7 +42,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class BlockAction extends ProfileFormAction
 {
     var $profile = null;
@@ -54,7 +53,6 @@ class BlockAction extends ProfileFormAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         if (!parent::prepare($args)) {
@@ -66,6 +64,7 @@ class BlockAction extends ProfileFormAction
         assert(!empty($cur)); // checked by parent
 
         if ($cur->hasBlocked($this->profile)) {
+            // TRANS: Client error displayed when blocking a user that has already been blocked.
             $this->clientError(_('You already blocked that user.'));
             return false;
         }
@@ -82,7 +81,6 @@ class BlockAction extends ProfileFormAction
      *
      * @return void
      */
-
     function handle($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -104,6 +102,7 @@ class BlockAction extends ProfileFormAction
     }
 
     function title() {
+        // TRANS: Title for block user page.
         return _('Block user');
     }
 
@@ -133,8 +132,10 @@ class BlockAction extends ProfileFormAction
                                            'action' => common_local_url('block')));
         $this->elementStart('fieldset');
         $this->hidden('token', common_session_token());
+        // TRANS: Legend for block user form.
         $this->element('legend', _('Block user'));
         $this->element('p', null,
+                       // TRANS: Explanation of consequences when blocking a user on the block user page.
                        _('Are you sure you want to block this user? '.
                          'Afterwards, they will be unsubscribed from you, '.
                          'unable to subscribe to you in the future, and '.
@@ -184,6 +185,7 @@ class BlockAction extends ProfileFormAction
         }
 
         if (!$result) {
+            // TRANS: Server error displayed when blocking a user fails.
             $this->serverError(_('Failed to save block information.'));
             return;
         }
@@ -199,7 +201,7 @@ class BlockAction extends ProfileFormAction
      * Override for form session token checks; on our first hit we're just
      * requesting confirmation, which doesn't need a token. We need to be
      * able to take regular GET requests from email!
-     * 
+     *
      * @throws ClientException if token is bad on POST request or if we have
      *         confirmation parameters which could trigger something.
      */
@@ -216,7 +218,7 @@ class BlockAction extends ProfileFormAction
     /**
      * If we reached this form without returnto arguments, return to the
      * current user's subscription list.
-     * 
+     *
      * @return string URL
      */
     function defaultReturnTo()

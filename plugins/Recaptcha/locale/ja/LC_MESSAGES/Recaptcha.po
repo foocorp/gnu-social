@@ -1,0 +1,38 @@
+# Translation of StatusNet - Recaptcha to Japanese (日本語)
+# Expored from translatewiki.net
+#
+# Author: 青子守歌
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Recaptcha\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:49+0000\n"
+"Language-Team: Japanese <http://translatewiki.net/wiki/Portal:ja>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:51+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ja\n"
+"X-Message-Group: #out-statusnet-plugin-recaptcha\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: RecaptchaPlugin.php:64
+msgid "Captcha"
+msgstr ""
+
+#: RecaptchaPlugin.php:105
+msgid "Captcha does not match!"
+msgstr ""
+
+#: RecaptchaPlugin.php:117
+msgid ""
+"Uses <a href=\"http://recaptcha.org/\">Recaptcha</a> service to add a  "
+"captcha to the registration page."
+msgstr ""
+"登録ページにキャプチャとして<a href=\"http://recaptcha.org/\">Recaptcha</a>"
+"サービスを利用する。"

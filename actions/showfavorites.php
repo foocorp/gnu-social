@@ -227,7 +227,7 @@ class ShowfavoritesAction extends OwnerDesignAction
 
     function showContent()
     {
-        $nl = new NoticeList($this->notice, $this);
+        $nl = new FavoritesNoticeList($this->notice, $this);
 
         $cnt = $nl->show();
         if (0 == $cnt) {
@@ -244,3 +244,15 @@ class ShowfavoritesAction extends OwnerDesignAction
     }
 }
 
+class FavoritesNoticeList extends NoticeList
+{
+    function newListItem($notice)
+    {
+        return new FavoritesNoticeListItem($notice, $this->out);
+    }
+}
+
+// All handled by superclass
+class FavoritesNoticeListItem extends DoFollowListItem
+{
+}

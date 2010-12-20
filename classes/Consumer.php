@@ -65,5 +65,4 @@ class Consumer extends Memcached_DataObject
         $nonce->consumer_key = $this->consumer_key;
         $nonce->delete();
     }
-
 }

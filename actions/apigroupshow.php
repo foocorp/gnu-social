@@ -50,7 +50,6 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiGroupShowAction extends ApiPrivateAuthAction
 {
     var $group = null;
@@ -61,9 +60,7 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -80,6 +77,7 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
                 common_redirect(common_local_url('ApiGroupShow', $args), 301);
             } else {
                 $this->clientError(
+                    // TRANS: Client error displayed when trying to show a group that could not be found.
                     _('Group not found.'),
                     404,
                     $this->format
@@ -100,7 +98,6 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -113,6 +110,7 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
             $this->showSingleJsonGroup($this->group);
             break;
         default:
+            // TRANS: Client error displayed trying to execute an unknown API method showing a group.
             $this->clientError(_('API method not found.'), 404, $this->format);
             break;
         }
@@ -123,7 +121,6 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
      *
      * @return string datestamp of the latest notice in the stream
      */
-
     function lastModified()
     {
         if (!empty($this->group)) {
@@ -141,7 +138,6 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
      *
      * @return string etag
      */
-
     function etag()
     {
         if (!empty($this->group)) {
@@ -149,6 +145,7 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
             return '"' . implode(
                 ':',
                 array($this->arg('action'),
+                      common_user_cache_hash($this->auth_user),
                       common_language(),
                       $this->group->id,
                       strtotime($this->group->modified))
@@ -168,10 +165,8 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;
     }
-
 }

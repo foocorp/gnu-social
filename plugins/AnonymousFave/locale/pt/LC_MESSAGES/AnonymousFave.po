@@ -1,0 +1,102 @@
+# Translation of StatusNet - AnonymousFave to Portuguese (Português)
+# Expored from translatewiki.net
+#
+# Author: Waldir
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AnonymousFave\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:28+0000\n"
+"Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:38:21+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: pt\n"
+"X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Label for tally for number of times a notice was favored.
+#: AnonymousFavePlugin.php:207
+msgid "Favored"
+msgstr "Marcada como favorita"
+
+#. TRANS: Server exception.
+#: AnonymousFavePlugin.php:240 AnonymousFavePlugin.php:251
+msgid "Couldn't create anonymous user session."
+msgstr "Não foi possível criar uma sessão de utilizador anónimo."
+
+#. TRANS: Plugin description.
+#: AnonymousFavePlugin.php:326
+msgid "Allow anonymous users to favorite notices."
+msgstr "Permitir a utilizadores anónimos marcar mensagens como favoritas."
+
+#. TRANS: Client error.
+#: anonfavor.php:60
+msgid ""
+"Could not favor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+"Não foi possível marcar a mensagem como favorito. Por favor, assegure-se de "
+"que os cookies estão ativados no seu navegador."
+
+#. TRANS: Client error.
+#: anonfavor.php:71 anondisfavor.php:72
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Ocorreu um problema com seu identificador de sessão. Tente novamente, por "
+"favor."
+
+#. TRANS: Client error.
+#: anonfavor.php:78
+msgid "This notice is already a favorite!"
+msgstr "Esta mensagem já é uma das suas favoritas!"
+
+#. TRANS: Server error.
+#: anonfavor.php:85
+msgid "Could not create favorite."
+msgstr "Não foi possível criar o favorito."
+
+#. TRANS: Title.
+#: anonfavor.php:95
+msgid "Disfavor favorite"
+msgstr "Retirar das favoritas"
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: Fave_tally.php:155 Fave_tally.php:184
+#, php-format
+msgid "Couldn't update favorite tally for notice ID %d."
+msgstr ""
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: Fave_tally.php:215
+#, php-format
+msgid "Couldn't create favorite tally for notice ID %d."
+msgstr ""
+
+#. TRANS: Client error.
+#: anondisfavor.php:61
+msgid ""
+"Could not disfavor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+
+#. TRANS: Client error.
+#: anondisfavor.php:82
+msgid "This notice is not a favorite!"
+msgstr ""
+
+#. TRANS: Server error.
+#: anondisfavor.php:91
+msgid "Could not delete favorite."
+msgstr ""
+
+#. TRANS: Title.
+#: anondisfavor.php:101
+msgid "Add to favorites"
+msgstr ""

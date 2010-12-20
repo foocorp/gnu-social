@@ -25,7 +25,6 @@ require_once INSTALLDIR . '/plugins/Facebook/facebookaction.php';
 
 class FacebookhomeAction extends FacebookAction
 {
-
     var $page = null;
 
     function prepare($argarray)
@@ -54,7 +53,6 @@ class FacebookhomeAction extends FacebookAction
         }
 
         if ($this->flink) {
-
             $this->user = $this->flink->getUser();
 
             // If this is the first time the user has started the app
@@ -82,18 +80,14 @@ class FacebookhomeAction extends FacebookAction
             // Facebook status update permission? Then show the main page
             // of the app
             $this->showPage();
-
         } else {
-
             // User hasn't authenticated yet, prompt for creds
             $this->login();
         }
-
     }
 
     function login()
     {
-
         $this->showStylesheets();
 
         $nickname = common_canonical_nickname($this->trimmed('nickname'));
@@ -102,13 +96,11 @@ class FacebookhomeAction extends FacebookAction
         $msg = null;
 
         if ($nickname) {
-
             if (common_check_user($nickname, $password)) {
-
                 $user = User::staticGet('nickname', $nickname);
 
                 if (!$user) {
-                    $this->showLoginForm(_m("Server error - couldn't get user!"));
+                    $this->showLoginForm(_m("Server error: Couldn't get user!"));
                 }
 
                 $flink = DB_DataObject::factory('foreign_link');
@@ -126,7 +118,6 @@ class FacebookhomeAction extends FacebookAction
 
                 $this->getUpdatePermission();
                 return;
-
             } else {
                 $msg = _m('Incorrect username or password.');
             }
@@ -134,7 +125,6 @@ class FacebookhomeAction extends FacebookAction
 
         $this->showLoginForm($msg);
         $this->showFooter();
-
     }
 
     function setDefaults()
@@ -155,8 +145,15 @@ class FacebookhomeAction extends FacebookAction
     function title()
     {
         if ($this->page > 1) {
-            return sprintf(_m("%s and friends, page %d"), $this->user->nickname, $this->page);
+            // @todo FIXME: Core should have methods to get "Full name (nickname)" in a localised form
+            // so that this can be used consistenly throughout StatusNet without having to implement it
+	    // over and over..
+            // TRANS: Page title.
+            // TRANS: %1$s is a user nickname, %2$s is a page number.
+            return sprintf(_m('%1$s and friends, page %2$d'), $this->user->nickname, $this->page);
         } else {
+            // TRANS: Page title.
+            // TRANS: %s is a user nickname
             return sprintf(_m("%s and friends"), $this->user->nickname);
         }
     }
@@ -175,17 +172,16 @@ class FacebookhomeAction extends FacebookAction
 
     function showNoticeList($notice)
     {
-
         $nl = new NoticeList($notice, $this);
         return $nl->show();
     }
 
     function getUpdatePermission() {
-
         $this->showStylesheets();
 
         $this->elementStart('div', array('class' => 'facebook_guide'));
 
+        // TRANS: Instructions. %s is the application name.
         $instructions = sprintf(_m('If you would like the %s app to automatically update ' .
             'your Facebook status with your latest notice, you need ' .
             'to give it permission.'), $this->app_name);
@@ -209,6 +205,7 @@ class FacebookhomeAction extends FacebookAction
             '&next_cancel=' . $next . '&submit=skip';
 
         $this->elementStart('span', array('class' => 'facebook-button'));
+        // @todo FIXME: sprintf not needed here?
         $this->element('a', array('href' => $auth_url),
             sprintf(_m('Okay, do it!'), $this->app_name));
         $this->elementEnd('span');
@@ -216,13 +213,13 @@ class FacebookhomeAction extends FacebookAction
         $this->elementEnd('li');
 
         $this->elementStart('li', array('id' => 'fb-permissions-item'));
-        $this->submit('skip', _m('Skip'));
+        // TRANS: Button text. Clicking the button will skip updating Facebook permissions.
+        $this->submit('skip', _m('BUTTON','Skip'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
 
         $this->elementEnd('form');
         $this->elementEnd('div');
-
     }
 
     /**
@@ -238,7 +235,6 @@ class FacebookhomeAction extends FacebookAction
      */
     function pagination($have_before, $have_after, $page, $action, $args=null)
     {
-
         // Does a little before-after block for next/prev page
 
         // XXX: Fix so this uses common_local_url() if possible.
@@ -254,6 +250,7 @@ class FacebookhomeAction extends FacebookAction
             $newargs = $args ? array_merge($args, $pargs) : $pargs;
             $this->elementStart('li', array('class' => 'nav_prev'));
             $this->element('a', array('href' => "$action?page=$newargs[page]", 'rel' => 'prev'),
+                           // TRANS: Pagination link.
                            _m('After'));
             $this->elementEnd('li');
         }
@@ -262,6 +259,7 @@ class FacebookhomeAction extends FacebookAction
             $newargs = $args ? array_merge($args, $pargs) : $pargs;
             $this->elementStart('li', array('class' => 'nav_next'));
             $this->element('a', array('href' => "$action?page=$newargs[page]", 'rel' => 'next'),
+                           // TRANS: Pagination link.
                            _m('Before'));
             $this->elementEnd('li');
         }
@@ -271,5 +269,4 @@ class FacebookhomeAction extends FacebookAction
             $this->elementEnd('dl');
         }
     }
-
 }

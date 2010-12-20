@@ -48,10 +48,8 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiAccountVerifyCredentialsAction extends ApiAuthAction
 {
-
     /**
      * Handle the request
      *
@@ -61,12 +59,12 @@ class ApiAccountVerifyCredentialsAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if (!in_array($this->format, array('xml', 'json'))) {
+            // TRANS: Client error displayed trying to execute an unknown API method verifying user credentials.
             $this->clientError(_('API method not found.'), $code = 404);
             return;
         }
@@ -91,12 +89,9 @@ class ApiAccountVerifyCredentialsAction extends ApiAuthAction
      * @param array $args other arguments
      *
      * @return boolean true
-     *
-     **/
-
+     */
     function isReadOnly($args)
     {
         return true;
     }
-
 }

@@ -36,5 +36,4 @@ class Nonce extends Memcached_DataObject
     {
         return array('consumer_key,token' => 'token:consumer_key,token');
     }
-
 }

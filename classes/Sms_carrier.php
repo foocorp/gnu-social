@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Sms_carrier extends Memcached_DataObject 
+class Sms_carrier extends Memcached_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -22,7 +22,7 @@ class Sms_carrier extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
-    
+
     function toEmailAddress($sms)
     {
         return sprintf($this->email_pattern, $sms);

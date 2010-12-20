@@ -17,14 +17,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+
 /**
  * @package SubMirrorPlugin
  * @maintainer Brion Vibber <brion@status.net>
  */
-
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
-
 class SubMirrorPlugin extends Plugin
 {
     /**

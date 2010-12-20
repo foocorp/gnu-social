@@ -42,7 +42,6 @@ require_once INSTALLDIR.'/lib/form.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ClearFlagForm extends ProfileActionForm
 {
     /**
@@ -51,7 +50,6 @@ class ClearFlagForm extends ProfileActionForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_user_clearflag';
@@ -62,7 +60,6 @@ class ClearFlagForm extends ProfileActionForm
      *
      * @return string Name of the action, lowercased.
      */
-
     function target()
     {
         return 'clearflag';
@@ -73,10 +70,10 @@ class ClearFlagForm extends ProfileActionForm
      *
      * @return string Title of the form, internationalized
      */
-
     function title()
     {
-        return _('Clear');
+        // TRANS: Form title for action on a profile.
+        return _m('Clear');
     }
 
     /**
@@ -87,6 +84,7 @@ class ClearFlagForm extends ProfileActionForm
 
     function description()
     {
-        return _('Clear all flags');
+        // Form description for clearing flags from a profile.
+        return _m('Clear all flags');
     }
 }

@@ -1,22 +1,160 @@
 Some very rough test scripts for hitting up the OAuth endpoints.
 
-Note: this works best if you register an OAuth application, leaving
-the callback URL blank.
+These instructions assume you understand the basics of how OAuth
+works. You may want to read up about it first. Here are some good
+resources for learning about OAuth:
 
-Put your instance info and consumer key and secret in oauth.ini
+    http://hueniverse.com/oauth/
+    http://tools.ietf.org/html/rfc5849
 
-Example usage:
---------------
+To use these scripts (and OAuth in general) first you will need to
+register and OAuth client application with your StatusNet instance:
 
-php getrequesttoken.php
+    http://example.status.net/settings/oauthapps
 
-Gets a request token, token secret and a url to authorize it.  Once
-you authorize the request token you can exchange it for an access token...
+oauth.ini
+---------
 
-php exchangetokens.php --oauth_token=b9a79548a88c1aa9a5bea73103c6d41d --token_secret=4a47d9337fc0202a14ab552e17a3b657
+Using oauth.ini.sample as a guide, put your StatusNet OAuth endpoints
+and consumer key and secret in a file called oauth.ini and save it
+in the same directory as these scripts.
 
-Once you have your access token, go ahead and try a protected API
-resource:
+fetch_temp_creds.php
+--------------------
 
-php verifycreds.php --oauth_token=cf2de7665f0dda0a82c2dc39b01be7f9 --token_secret=4524c3b712200138e1a4cff2e9ca83d8
+Will fetch a request token, token secret and a URL to authorize the
+token.  Once you authorize the request token, you can exchange it
+for an access token.
+
+example usage:
+
+    $ php fetch_temp_creds.php
+    Request Token
+       - oauth_token        = 89d481e376edc622f08da5791e6a4446
+       - oauth_token_secret = 6d028bcd1ea125cbed7da2f254219885
+    Authorize URL
+        http://example.status.net/api/oauth/authorize?oauth_token=89d481e376edc622f08da5791e6a4446
+
+    Now paste the Authorize URL into your browser and authorize your temporary credentials.
+
+fetch_token_creds.php
+---------------------
+
+After you have authorized your request token, you will be presented
+with a verifier code, or pin, in your browser, which you will need
+to get an access token. Make sure you copy it into a text buffer
+or write it down or something. Then call fetch_token_credentials.php
+to exchange your temporary credentials for real token credentials.
+
+example usage:
+
+    $ php fetch_token_creds.php -t 89d481e376edc622f08da5791e6a4446 -s 6d028bcd1ea125cbed7da2f254219885 -v 305162
+    Access Token
+       - oauth_token        = 9b354df102d8e2b4621122c85d8d045c
+       - oauth_token_secret = 1800a88f1574b47d595214a74e5b1ec5
+
+
+oauth_verify_credentials.php
+----------------------------
+
+Now you should have real token credentials (an OAuth access token)
+and you can access protected API resources. This is an example
+script that calls /api/account/verify_credentials.xml.
+
+example usage:
+
+    $ php oauth_verify_creds.php -t 80305cd15c5c69834364ac02d7f9178c -s 673e3b2978b1b92c8edbfe172505fee1
+    <?xml version="1.0" encoding="UTF-8"?>
+    <user xmlns:statusnet="http://status.net/schema/api/1/">
+     <id>23</id>
+     <name>zach</name>
+     <screen_name>zach</screen_name>
+     <location></location>
+     <description></description>
+     <profile_image_url>http://example.status.net/theme/default/default-avatar-stream.png</profile_image_url>
+     <url></url>
+     <protected>false</protected>
+     <followers_count>0</followers_count>
+     <profile_background_color></profile_background_color>
+     <profile_text_color></profile_text_color>
+     <profile_link_color></profile_link_color>
+     <profile_sidebar_fill_color></profile_sidebar_fill_color>
+     <profile_sidebar_border_color></profile_sidebar_border_color>
+     <friends_count>0</friends_count>
+     <created_at>Thu Sep 30 23:11:00 +0000 2010</created_at>
+     <favourites_count>0</favourites_count>
+     <utc_offset>0</utc_offset>
+     <time_zone>UTC</time_zone>
+     <profile_background_image_url></profile_background_image_url>
+     <profile_background_tile>false</profile_background_tile>
+     <statuses_count>4</statuses_count>
+     <following>true</following>
+     <statusnet:blocking>false</statusnet:blocking>
+     <notifications>true</notifications>
+     <status>
+      <text>gar</text>
+      <truncated>false</truncated>
+      <created_at>Wed Oct 06 23:40:14 +0000 2010</created_at>
+      <in_reply_to_status_id></in_reply_to_status_id>
+      <source>web</source>
+      <id>7</id>
+      <in_reply_to_user_id></in_reply_to_user_id>
+      <in_reply_to_screen_name></in_reply_to_screen_name>
+      <geo></geo>
+      <favorited>false</favorited>
+      <statusnet:html>gar</statusnet:html>
+     </status>
+     <statusnet:profile_url>http://example.status.net/statusnet/zach</statusnet:profile_url>
+    </user>
+
+oauth_post_notice.php
+---------------------
+
+This is another test script that lets you post a notice via OAuth.
+
+example usage:
+
+    $ php oauth_post_notice.php -t 80305cd15c5c69834364ac02d7f9178c -s 673e3b2978b1b92c8edbfe172505fee1 -u 'Test test test...'
+    <?xml version="1.0" encoding="UTF-8"?>
+    <status xmlns:statusnet="http://status.net/schema/api/1/">
+     <text>Test test test...</text>
+     <truncated>false</truncated>
+     <created_at>Fri Oct 08 02:37:35 +0000 2010</created_at>
+     <in_reply_to_status_id></in_reply_to_status_id>
+     <source>&lt;a href=&quot;http://banana.com&quot; rel=&quot;nofollow&quot;&gt;Banana&lt;/a&gt;</source>
+     <id>8</id>
+     <in_reply_to_user_id></in_reply_to_user_id>
+     <in_reply_to_screen_name></in_reply_to_screen_name>
+     <geo></geo>
+     <favorited>false</favorited>
+     <user>
+      <id>23</id>
+      <name>zach</name>
+      <screen_name>zach</screen_name>
+      <location></location>
+      <description></description>
+      <profile_image_url>http://example.status.net/statusnet/theme/default/default-avatar-stream.png</profile_image_url>
+      <url></url>
+      <protected>false</protected>
+      <followers_count>0</followers_count>
+      <profile_background_color></profile_background_color>
+      <profile_text_color></profile_text_color>
+      <profile_link_color></profile_link_color>
+      <profile_sidebar_fill_color></profile_sidebar_fill_color>
+      <profile_sidebar_border_color></profile_sidebar_border_color>
+      <friends_count>0</friends_count>
+      <created_at>Thu Sep 30 23:11:00 +0000 2010</created_at>
+      <favourites_count>0</favourites_count>
+      <utc_offset>0</utc_offset>
+      <time_zone>UTC</time_zone>
+      <profile_background_image_url></profile_background_image_url>
+      <profile_background_tile>false</profile_background_tile>
+      <statuses_count>5</statuses_count>
+      <following>true</following>
+      <statusnet:blocking>false</statusnet:blocking>
+      <notifications>true</notifications>
+      <statusnet:profile_url>http://example.status.net/statusnet/zach</statusnet:profile_url>
+     </user>
+     <statusnet:html>Test test test...</statusnet:html>
+    </status>
 

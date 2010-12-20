@@ -1,0 +1,36 @@
+# Translation of StatusNet - ForceGroup to Telugu (తెలుగు)
+# Expored from translatewiki.net
+#
+# Author: Veeven
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ForceGroup\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:57+0000\n"
+"Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:41:56+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: te\n"
+"X-Message-Group: #out-statusnet-plugin-forcegroup\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Server exception.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#: ForceGroupPlugin.php:78
+#, php-format
+msgid "Could not join user %1$s to group %2$s."
+msgstr "వాడుకరి %1$sని %2$s గుంపులో చేర్చలేకపోయాం."
+
+#. TRANS: Plugin description.
+#: ForceGroupPlugin.php:104
+msgid ""
+"Allows forced group memberships and forces all notices to appear in groups "
+"that users were forced in."
+msgstr ""

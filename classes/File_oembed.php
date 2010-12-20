@@ -58,26 +58,16 @@ class File_oembed extends Memcached_DataObject
         return array(false, false, false);
     }
 
-    function _getOembed($url, $maxwidth = 500, $maxheight = 400) {
-        require_once INSTALLDIR.'/extlib/Services/oEmbed.php';
+    function _getOembed($url) {
         $parameters = array(
-            'maxwidth'=>$maxwidth,
-            'maxheight'=>$maxheight,
+            'maxwidth' => common_config('attachments', 'thumb_width'),
+            'maxheight' => common_config('attachments', 'thumb_height'),
         );
-        try{
-            $oEmbed = new Services_oEmbed($url);
-            $object = $oEmbed->getObject($parameters);
-            return $object;
-        }catch(Exception $e){
-            try{
-                $oEmbed = new Services_oEmbed($url, array(
-                    Services_oEmbed::OPTION_API => common_config('oohembed', 'endpoint')
-                ));
-                $object = $oEmbed->getObject($parameters);
-                return $object;
-            }catch(Exception $ex){
-                return false;
-            }
+        try {
+            return oEmbedHelper::getObject($url, $parameters);
+        } catch (Exception $e) {
+            common_log(LOG_ERR, "Error during oembed lookup for $url - " . $e->getMessage());
+            return false;
         }
     }
 
@@ -120,7 +110,7 @@ class File_oembed extends Memcached_DataObject
             }
         }
         $file_oembed->insert();
-        if (!empty($data->thumbnail_url)) {
+        if (!empty($data->thumbnail_url) || ($data->type == 'photo')) {
             $ft = File_thumbnail::staticGet('file_id', $file_id);
             if (!empty($ft)) {
                 common_log(LOG_WARNING, "Strangely, a File_thumbnail object exists for new file $file_id",
@@ -131,4 +121,3 @@ class File_oembed extends Memcached_DataObject
         }
     }
 }
-

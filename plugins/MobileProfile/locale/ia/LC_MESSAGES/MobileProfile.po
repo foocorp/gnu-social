@@ -1,0 +1,80 @@
+# Translation of StatusNet - MobileProfile to Interlingua (Interlingua)
+# Expored from translatewiki.net
+#
+# Author: McDutchie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - MobileProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:18+0000\n"
+"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:45+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ia\n"
+"X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: MobileProfilePlugin.php:193
+msgid "This page is not available in a media type you accept."
+msgstr "Iste pagina non es disponibile in un formato que tu accepta."
+
+#: MobileProfilePlugin.php:310
+msgid "Home"
+msgstr "Initio"
+
+#: MobileProfilePlugin.php:312
+msgid "Account"
+msgstr "Conto"
+
+#: MobileProfilePlugin.php:314
+msgid "Connect"
+msgstr "Connecter"
+
+#: MobileProfilePlugin.php:317
+msgid "Admin"
+msgstr "Admin"
+
+#: MobileProfilePlugin.php:317
+msgid "Change site configuration"
+msgstr "Modificar le configuration del sito"
+
+#: MobileProfilePlugin.php:321
+msgid "Invite"
+msgstr "Invitar"
+
+#: MobileProfilePlugin.php:324
+msgid "Logout"
+msgstr "Clauder session"
+
+#: MobileProfilePlugin.php:328
+msgid "Register"
+msgstr "Crear conto"
+
+#: MobileProfilePlugin.php:331
+msgid "Login"
+msgstr "Aperir session"
+
+#: MobileProfilePlugin.php:335
+msgid "Search"
+msgstr "Cercar"
+
+#: MobileProfilePlugin.php:361
+msgid "Attach"
+msgstr "Annexar"
+
+#: MobileProfilePlugin.php:365
+msgid "Attach a file"
+msgstr "Annexar un file"
+
+#: MobileProfilePlugin.php:417
+msgid "XHTML MobileProfile output for supporting user agents."
+msgstr ""
+"Production de XHTML MobileProfile pro le programmas de usator que lo "
+"supporta."

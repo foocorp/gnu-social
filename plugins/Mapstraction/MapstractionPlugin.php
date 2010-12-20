@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  *
  * @seeAlso  Location
  */
-
 class MapstractionPlugin extends Plugin
 {
     const VERSION = STATUSNET_VERSION;
@@ -64,15 +63,14 @@ class MapstractionPlugin extends Plugin
      *
      * @return boolean event handler return
      */
-
     function onRouterInitialized($m)
     {
         $m->connect(':nickname/all/map',
                     array('action' => 'allmap'),
-                    array('nickname' => '['.NICKNAME_FMT.']{1,64}'));
+                    array('nickname' => Nickname::DISPLAY_FMT));
         $m->connect(':nickname/map',
                     array('action' => 'usermap'),
-                    array('nickname' => '['.NICKNAME_FMT.']{1,64}'));
+                    array('nickname' => Nickname::DISPLAY_FMT));
         return true;
     }
 
@@ -85,7 +83,6 @@ class MapstractionPlugin extends Plugin
      *
      * @return boolean event handler return
      */
-
     function onAutoload($cls)
     {
         switch ($cls)
@@ -109,7 +106,6 @@ class MapstractionPlugin extends Plugin
      *
      * @return boolean event handler return
      */
-
     function onEndShowScripts($action)
     {
         $actionName = $action->trimmed('action');
@@ -129,11 +125,11 @@ class MapstractionPlugin extends Plugin
                                     urlencode($this->apikey)));
             break;
         case 'microsoft':
-            $action->script('http://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6');
+            $action->script((StatusNet::isHTTPS()?'https':'http') + '://dev.virtualearth.net/mapcontrol/mapcontrol.ashx?v=6');
             break;
         case 'openlayers':
-            // XXX: is this not nice...?
-            $action->script('http://openlayers.org/api/OpenLayers.js');
+            // Use our included stripped & minified OpenLayers.
+            $action->script(common_path('plugins/Mapstraction/OpenLayers/OpenLayers.js'));
             break;
         case 'yahoo':
             $action->script(sprintf('http://api.maps.yahoo.com/ajaxymap?v=3.8&appid=%s',
@@ -144,11 +140,19 @@ class MapstractionPlugin extends Plugin
             return true;
         }
 
-        $action->script(sprintf('%s?(%s)',
-                                common_path('plugins/Mapstraction/js/mxn.js'),
-                                $this->provider));
+        if ($this->provider == 'openlayers') {
+            // We have an optimized path for our default case.
+            //
+            // Note that OpenLayers.js needs to be separate, or it won't
+            // be able to find its UI images and styles.
+            $action->script(common_path('plugins/Mapstraction/usermap-mxn-openlayers.min.js'));
+        } else {
+            $action->script(sprintf('%s?(%s)',
+                                    common_path('plugins/Mapstraction/js/mxn.js'),
+                                    $this->provider));
 
-        $action->script(common_path('plugins/Mapstraction/usermap.js'));
+            $action->script(common_path('plugins/Mapstraction/usermap.js'));
+        }
 
         $action->inlineScript(sprintf('var _provider = "%s";', $this->provider));
 
@@ -160,7 +164,8 @@ class MapstractionPlugin extends Plugin
                                   ' var user = null; '.
                                   (($actionName == 'showstream') ? ' user = scrapeUser(); ' : '') .
                                   ' var notices = scrapeNotices(user); ' .
-                                  ' showMapstraction($("#map_canvas"), notices); '.
+				  ' var canvas = $("#map_canvas")[0]; ' .
+                                  ' if (typeof(canvas) != "undefined") { showMapstraction(canvas, notices); } '.
                                   '});');
         }
 
@@ -190,6 +195,7 @@ class MapstractionPlugin extends Plugin
                                     array('nickname' => $action->trimmed('nickname')));
 
         $action->element('a', array('href' => $mapUrl),
+                         // TRANS: Clickable item to allow opening the map in full size.
                          _m("Full size"));
 
         $action->elementEnd('div');
@@ -203,8 +209,7 @@ class MapstractionPlugin extends Plugin
                             'homepage' => 'http://status.net/wiki/Plugin:Mapstraction',
                             'rawdescription' =>
                             _m('Show maps of users\' and friends\' notices '.
-                               'with <a href="http://www.mapstraction.com/">Mapstraction</a> '.
-                               'JavaScript library.'));
+                               'with <a href="http://www.mapstraction.com/">Mapstraction</a>.'));
         return true;
     }
 }

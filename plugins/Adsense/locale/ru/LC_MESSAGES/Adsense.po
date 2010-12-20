@@ -1,0 +1,103 @@
+# Translation of StatusNet - Adsense to Russian (Русский)
+# Expored from translatewiki.net
+#
+# Author: Lockal
+# Author: Сrower
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Adsense\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:27+0000\n"
+"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:24+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ru\n"
+"X-Message-Group: #out-statusnet-plugin-adsense\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: Menu item title/tooltip
+#: AdsensePlugin.php:194
+msgid "AdSense configuration"
+msgstr "Конфигурация AdSense"
+
+#. TRANS: Menu item for site administration
+#: AdsensePlugin.php:196
+msgid "AdSense"
+msgstr "AdSense"
+
+#: AdsensePlugin.php:209
+msgid "Plugin to add Google AdSense to StatusNet sites."
+msgstr "Плагин для добавления Google AdSense на сайты StatusNet."
+
+#: adsenseadminpanel.php:52
+msgctxt "TITLE"
+msgid "AdSense"
+msgstr "AdSense"
+
+#: adsenseadminpanel.php:62
+msgid "AdSense settings for this StatusNet site"
+msgstr "Настройки AdSense для этого сайта StatusNet"
+
+#: adsenseadminpanel.php:164
+msgid "Client ID"
+msgstr "ID клиента"
+
+#: adsenseadminpanel.php:165
+msgid "Google client ID"
+msgstr "ID клиента Google"
+
+#: adsenseadminpanel.php:170
+msgid "Ad script URL"
+msgstr "URL-адрес скрипта рекламы"
+
+#: adsenseadminpanel.php:171
+msgid "Script URL (advanced)"
+msgstr "URL-адрес скрипта (расширенная настройка)"
+
+#: adsenseadminpanel.php:176
+msgid "Medium rectangle"
+msgstr "Средний прямоугольник"
+
+#: adsenseadminpanel.php:177
+msgid "Medium rectangle slot code"
+msgstr "Слот-код среднего прямоугольника"
+
+#: adsenseadminpanel.php:182
+msgid "Rectangle"
+msgstr "Прямоугольник"
+
+#: adsenseadminpanel.php:183
+msgid "Rectangle slot code"
+msgstr "Слот-код прямоугольника"
+
+#: adsenseadminpanel.php:188
+msgid "Leaderboard"
+msgstr "Доска лидеров"
+
+#: adsenseadminpanel.php:189
+msgid "Leaderboard slot code"
+msgstr "Слот-код доски лидеров"
+
+#: adsenseadminpanel.php:194
+msgid "Skyscraper"
+msgstr "Небоскреб"
+
+#: adsenseadminpanel.php:195
+msgid "Wide skyscraper slot code"
+msgstr "Слот-код широкого небоскреба"
+
+#: adsenseadminpanel.php:208
+msgid "Save"
+msgstr "Сохранить"
+
+#: adsenseadminpanel.php:208
+msgid "Save AdSense settings"
+msgstr "Сохранить настройки AdSense"

@@ -23,7 +23,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 define('TWITTER_SERVICE', 1); // Twitter is foreign_service ID 1
 
-require_once INSTALLDIR . '/plugins/TwitterBridge/twitterbasicauthclient.php';
 require_once INSTALLDIR . '/plugins/TwitterBridge/twitteroauthclient.php';
 
 function add_twitter_user($twitter_id, $screen_name)
@@ -31,7 +30,6 @@ function add_twitter_user($twitter_id, $screen_name)
     // Clear out any bad old foreign_users with the new user's legit URL
     // This can happen when users move around or fakester accounts get
     // repoed, and things like that.
-
     $luser = Foreign_user::getForeignUser($twitter_id, TWITTER_SERVICE);
 
     if (!empty($luser)) {
@@ -47,7 +45,7 @@ function add_twitter_user($twitter_id, $screen_name)
     $fuser = new Foreign_user();
 
     $fuser->nickname = $screen_name;
-    $fuser->uri = 'http://twitter.com/' . $screen_name;
+    $fuser->uri = 'http://twitter.com/#!/' . $screen_name;
     $fuser->id = $twitter_id;
     $fuser->service = TWITTER_SERVICE;
     $fuser->created = common_sql_now();
@@ -70,7 +68,6 @@ function save_twitter_user($twitter_id, $screen_name)
 {
     // Check to see whether the Twitter user is already in the system,
     // and update its screen name and uri if so.
-
     $fuser = Foreign_user::getForeignUser($twitter_id, TWITTER_SERVICE);
 
     if (!empty($fuser)) {
@@ -88,9 +85,7 @@ function save_twitter_user($twitter_id, $screen_name)
         }
 
     } else {
-
         // Kill any old, invalid records for this screen name
-
         $fuser = Foreign_user::getByNickname($screen_name, TWITTER_SERVICE);
 
         if (!empty($fuser)) {
@@ -111,13 +106,14 @@ function save_twitter_user($twitter_id, $screen_name)
 }
 
 function is_twitter_bound($notice, $flink) {
-
     // Check to see if notice should go to Twitter
     if (!empty($flink) && ($flink->noticesync & FOREIGN_NOTICE_SEND)) {
 
-        // If it's not a Twitter-style reply, or if the user WANTS to send replies.
+        // If it's not a Twitter-style reply, or if the user WANTS to send replies,
+        // or if it's in reply to a twitter notice
         if (!preg_match('/^@[a-zA-Z0-9_]{1,15}\b/u', $notice->content) ||
-            ($flink->noticesync & FOREIGN_NOTICE_SEND_REPLY)) {
+            ($flink->noticesync & FOREIGN_NOTICE_SEND_REPLY) ||
+            is_twitter_notice($notice->reply_to)) {
             return true;
         }
     }
@@ -125,20 +121,119 @@ function is_twitter_bound($notice, $flink) {
     return false;
 }
 
+function is_twitter_notice($id)
+{
+    $n2s = Notice_to_status::staticGet('notice_id', $id);
+
+    return (!empty($n2s));
+}
+
+/**
+ * Pull the formatted status ID number from a Twitter status object
+ * returned via JSON from Twitter API.
+ *
+ * Encapsulates checking for the id_str attribute, which is required
+ * to read 64-bit "Snowflake" ID numbers on a 32-bit system -- the
+ * integer id attribute gets corrupted into a double-precision float,
+ * losing a few digits of precision.
+ *
+ * Warning: avoid performing arithmetic or direct comparisons with
+ * this number, as it may get coerced back to a double on 32-bit.
+ *
+ * @param object $status
+ * @param string $field base field name if not 'id'
+ * @return mixed id number as int or string
+ */
+function twitter_id($status, $field='id')
+{
+    $field_str = "{$field}_str";
+    if (isset($status->$field_str)) {
+        // String version of the id -- required on 32-bit systems
+        // since the 64-bit numbers get corrupted as ints.
+        return $status->$field_str;
+    } else {
+        return $status->$field;
+    }
+}
+
+/**
+ * Check if we need to broadcast a notice over the Twitter bridge, and
+ * do so if necessary. Will determine whether to do a straight post or
+ * a repeat/retweet
+ *
+ * This function is meant to be called directly from TwitterQueueHandler.
+ *
+ * @param Notice $notice
+ * @return boolean true if complete or successful, false if we should retry
+ */
 function broadcast_twitter($notice)
 {
     $flink = Foreign_link::getByUserID($notice->profile_id,
                                        TWITTER_SERVICE);
 
-    if (is_twitter_bound($notice, $flink)) {
-        if (TwitterOAuthClient::isPackedToken($flink->credentials)) {
+    // Don't bother with basic auth, since it's no longer allowed
+    if (!empty($flink) && TwitterOAuthClient::isPackedToken($flink->credentials)) {
+        if (!empty($notice->repeat_of) && is_twitter_notice($notice->repeat_of)) {
+            $retweet = retweet_notice($flink, Notice::staticGet('id', $notice->repeat_of));
+            if (is_object($retweet)) {
+                Notice_to_status::saveNew($notice->id, twitter_id($retweet));
+                return true;
+            } else {
+                // Our error processing will have decided if we need to requeue
+                // this or can discard safely.
+                return $retweet;
+            }
+        } else if (is_twitter_bound($notice, $flink)) {
             return broadcast_oauth($notice, $flink);
-        } else {
-            return broadcast_basicauth($notice, $flink);
         }
     }
 
     return true;
+}
+
+/**
+ * Send a retweet to Twitter for a notice that has been previously bridged
+ * in or out.
+ *
+ * Warning: the return value is not guaranteed to be an object; some error
+ * conditions will return a 'true' which should be passed on to a calling
+ * queue handler.
+ *
+ * No local information about the resulting retweet is saved: it's up to
+ * caller to save new mappings etc if appropriate.
+ *
+ * @param Foreign_link $flink
+ * @param Notice $notice
+ * @return mixed object with resulting Twitter status data on success, or true/false/null on error conditions.
+ */
+function retweet_notice($flink, $notice)
+{
+    $token = TwitterOAuthClient::unpackToken($flink->credentials);
+    $client = new TwitterOAuthClient($token->key, $token->secret);
+
+    $id = twitter_status_id($notice);
+
+    if (empty($id)) {
+        common_log(LOG_WARNING, "Trying to retweet notice {$notice->id} with no known status id.");
+        return null;
+    }
+
+    try {
+        $status = $client->statusesRetweet($id);
+        return $status;
+    } catch (OAuthClientException $e) {
+        return process_error($e, $flink, $notice);
+    }
+}
+
+function twitter_status_id($notice)
+{
+    $n2s = Notice_to_status::staticGet('notice_id', $notice->id);
+    if (empty($n2s)) {
+        return null;
+    } else {
+        return $n2s->status_id;
+    }
 }
 
 /**
@@ -156,9 +251,12 @@ function twitter_update_params($notice)
         $params['lat'] = $notice->lat;
         $params['long'] = $notice->lon;
     }
+    if (!empty($notice->reply_to) && is_twitter_notice($notice->reply_to)) {
+        $reply = Notice::staticGet('id', $notice->reply_to);
+        $params['in_reply_to_status_id'] = twitter_status_id($reply);
+    }
     return $params;
 }
-
 
 function broadcast_oauth($notice, $flink) {
     $user = $flink->getUser();
@@ -171,6 +269,9 @@ function broadcast_oauth($notice, $flink) {
 
     try {
         $status = $client->statusesUpdate($statustxt, $params);
+        if (!empty($status)) {
+            Notice_to_status::saveNew($notice->id, twitter_id($status));
+        }
     } catch (OAuthClientException $e) {
         return process_error($e, $flink, $notice);
     }
@@ -179,7 +280,6 @@ function broadcast_oauth($notice, $flink) {
 
         // This could represent a failure posting,
         // or the Twitter API might just be behaving flakey.
-
         $errmsg = sprintf('Twitter bridge - No data returned by Twitter API when ' .
                           'trying to post notice %d for User %s (user id %d).',
                           $notice->id,
@@ -192,55 +292,8 @@ function broadcast_oauth($notice, $flink) {
     }
 
     // Notice crossed the great divide
-
     $msg = sprintf('Twitter bridge - posted notice %d to Twitter using ' .
                    'OAuth for User %s (user id %d).',
-                   $notice->id,
-                   $user->nickname,
-                   $user->id);
-
-    common_log(LOG_INFO, $msg);
-
-    return true;
-}
-
-function broadcast_basicauth($notice, $flink)
-{
-    $user = $flink->getUser();
-
-    $statustxt = format_status($notice);
-    $params = twitter_update_params($notice);
-
-    $client = new TwitterBasicAuthClient($flink);
-    $status = null;
-
-    try {
-        $status = $client->statusesUpdate($statustxt, $params);
-    } catch (BasicAuthException $e) {
-        return process_error($e, $flink, $notice);
-    }
-
-    if (empty($status)) {
-
-        $errmsg = sprintf('Twitter bridge - No data returned by Twitter API when ' .
-                          'trying to post notice %d for %s (user id %d).',
-                          $notice->id,
-                          $user->nickname,
-                          $user->id);
-
-        common_log(LOG_WARNING, $errmsg);
-
-        $errmsg = sprintf('No data returned by Twitter API when ' .
-                          'trying to post notice %d for %s (user id %d).',
-                          $notice->id,
-                          $user->nickname,
-                          $user->id);
-        common_log(LOG_WARNING, $errmsg);
-        return false;
-    }
-
-    $msg = sprintf('Twitter bridge - posted notice %d to Twitter using ' .
-                   'HTTP basic auth for User %s (user id %d).',
                    $notice->id,
                    $user->nickname,
                    $user->id);
@@ -287,15 +340,14 @@ function process_error($e, $flink, $notice)
 
 function format_status($notice)
 {
-    // XXX: Hack to get around PHP cURL's use of @ being a a meta character
-    $statustxt = preg_replace('/^@/', ' @', $notice->content);
+    // Start with the plaintext source of this notice...
+    $statustxt = $notice->content;
 
     // Convert !groups to #hashes
-
     // XXX: Make this an optional setting?
-
     $statustxt = preg_replace('/(^|\s)!([A-Za-z0-9]{1,64})/', "\\1#\\2", $statustxt);
 
+    // Twitter still has a 140-char hardcoded max.
     if (mb_strlen($statustxt) > 140) {
         $noticeUrl = common_shorten_url($notice->uri);
         $urlLen = mb_strlen($noticeUrl);
@@ -323,11 +375,9 @@ function remove_twitter_link($flink)
     // Notify the user that her Twitter bridge is down
 
     if (isset($user->email)) {
-
         $result = mail_twitter_bridge_removed($user);
 
         if (!$result) {
-
             $msg = 'Unable to send email to notify ' .
               "$user->nickname (user id: $user->id) " .
               'that their Twitter bridge link was ' .
@@ -336,7 +386,6 @@ function remove_twitter_link($flink)
             common_log(LOG_WARNING, $msg);
         }
     }
-
 }
 
 /**
@@ -349,7 +398,6 @@ function remove_twitter_link($flink)
  *
  * @return boolean success flag
  */
-
 function mail_twitter_bridge_removed($user)
 {
     $profile = $user->getProfile();
@@ -362,11 +410,11 @@ function mail_twitter_bridge_removed($user)
 
     $body = sprintf(_m('Hi, %1$s. We\'re sorry to inform you that your ' .
         'link to Twitter has been disabled. We no longer seem to have ' .
-    'permission to update your Twitter status. (Did you revoke ' .
-    '%3$s\'s access?)' . "\n\n" .
+    'permission to update your Twitter status. Did you maybe revoke ' .
+    '%3$s\'s access?' . "\n\n" .
     'You can re-enable your Twitter bridge by visiting your ' .
     "Twitter settings page:\n\n\t%2\$s\n\n" .
-        "Regards,\n%3\$s\n"),
+        "Regards,\n%3\$s"),
         $profile->getBestName(),
         common_local_url('twittersettings'),
         common_config('site', 'name'));
@@ -374,4 +422,3 @@ function mail_twitter_bridge_removed($user)
     common_switch_locale();
     return mail_to_user($user, $subject, $body);
 }
-

@@ -1,0 +1,35 @@
+# Translation of StatusNet - InfiniteScroll to Spanish (Español)
+# Expored from translatewiki.net
+#
+# Author: Translationista
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - InfiniteScroll\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:09+0000\n"
+"Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-10-29 16:12:49+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: es\n"
+"X-Message-Group: #out-statusnet-plugin-infinitescroll\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: InfiniteScrollPlugin.php:54
+msgid ""
+"Infinite Scroll adds the following functionality to your StatusNet "
+"installation: When a user scrolls towards the bottom of the page, the next "
+"page of notices is automatically retrieved and appended. This means they "
+"never need to click \"Next Page\", which dramatically increases stickiness."
+msgstr ""
+"Desplazamiento Infinito añade la siguiente funcionalidad a tu instalación "
+"StatusNet: Cuando un usuario se desplaza hacia el final de la página, la "
+"próxima página de mensajes se recupera y añade automáticamente. Esto "
+"significa que no será necesario hacer clic en \"Próxima página\", con lo que "
+"se aumenta dramáticamente la capacidad de retención."

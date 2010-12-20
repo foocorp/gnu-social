@@ -40,7 +40,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class BlockedfromgroupAction extends GroupDesignAction
 {
     var $page = null;
@@ -70,6 +69,7 @@ class BlockedfromgroupAction extends GroupDesignAction
         }
 
         if (!$nickname) {
+            // TRANS: Client error displayed when requesting a list of blocked users for a group without providing a group nickname.
             $this->clientError(_('No nickname.'), 404);
             return false;
         }
@@ -77,6 +77,7 @@ class BlockedfromgroupAction extends GroupDesignAction
         $local = Local_group::staticGet('nickname', $nickname);
 
         if (!$local) {
+            // TRANS: Client error displayed when requesting a list of blocked users for a non-local group.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -84,6 +85,7 @@ class BlockedfromgroupAction extends GroupDesignAction
         $this->group = User_group::staticGet('id', $local->group_id);
 
         if (!$this->group) {
+            // TRANS: Client error displayed when requesting a list of blocked users for a non-existing group.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -94,9 +96,13 @@ class BlockedfromgroupAction extends GroupDesignAction
     function title()
     {
         if ($this->page == 1) {
+            // TRANS: Title for first page with list of users blocked from a group.
+            // TRANS: %s is a group nickname.
             return sprintf(_('%s blocked profiles'),
                            $this->group->nickname);
         } else {
+            // TRANS: Title for any but the first page with list of users blocked from a group.
+            // TRANS: %1$s is a group nickname, %2$d is a page number.
             return sprintf(_('%1$s blocked profiles, page %2$d'),
                            $this->group->nickname,
                            $this->page);
@@ -112,6 +118,7 @@ class BlockedfromgroupAction extends GroupDesignAction
     function showPageNotice()
     {
         $this->element('p', 'instructions',
+                       // TRANS: Instructions for list of users blocked from a group.
                        _('A list of the users blocked from joining this group.'));
     }
 
@@ -205,7 +212,6 @@ class GroupBlockListItem extends ProfileListItem
  *
  * @see      UnblockForm
  */
-
 class GroupUnblockForm extends Form
 {
     /**
@@ -234,7 +240,6 @@ class GroupUnblockForm extends Form
      * @param User_group    $group   group to block user from
      * @param array         $args    return-to args
      */
-
     function __construct($out=null, $profile=null, $group=null, $args=null)
     {
         parent::__construct($out);
@@ -249,7 +254,6 @@ class GroupUnblockForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         // This should be unique for the page.
@@ -261,7 +265,6 @@ class GroupUnblockForm extends Form
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_group_unblock';
@@ -272,7 +275,6 @@ class GroupUnblockForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('groupunblock');
@@ -285,6 +287,7 @@ class GroupUnblockForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend for unblocking a user from a group.
         $this->out->element('legend', null, _('Unblock user from group'));
     }
 
@@ -293,7 +296,6 @@ class GroupUnblockForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->hidden('unblockto-' . $this->profile->id,
@@ -314,9 +316,14 @@ class GroupUnblockForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Unblock'), 'submit', null, _('Unblock this user'));
+        $this->out->submit('submit',
+                           // TRANS: Button text for unblocking a user from a group.
+                           _m('BUTTON','Unblock'),
+                           'submit',
+                           null,
+                           // TRANS: Tooltip for button for unblocking a user from a group.
+                           _('Unblock this user'));
     }
 }

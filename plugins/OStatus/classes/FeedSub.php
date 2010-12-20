@@ -17,6 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 /**
  * @package OStatusPlugin
  * @maintainer Brion Vibber <brion@status.net>
@@ -39,7 +43,6 @@ PuSH subscription flow:
         hub sends us updates via POST
 
 */
-
 class FeedDBException extends FeedSubException
 {
     public $obj;
@@ -88,7 +91,6 @@ class FeedSub extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
@@ -143,7 +145,6 @@ class FeedSub extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -157,7 +158,6 @@ class FeedSub extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keyTypes()
     {
         return array('id' => 'K', 'uri' => 'U');
@@ -249,7 +249,7 @@ class FeedSub extends Memcached_DataObject
                 // We'll never actually get updates in this mode.
                 return true;
             } else {
-                throw new ServerException("Attempting to start PuSH subscription for feed with no hub");
+                throw new ServerException(_m('Attempting to start PuSH subscription for feed with no hub.'));
             }
         }
 
@@ -279,7 +279,7 @@ class FeedSub extends Memcached_DataObject
                 // We'll never actually get updates in this mode.
                 return true;
             } else {
-                throw new ServerException("Attempting to end PuSH subscription for feed with no hub");
+                throw new ServerException(_m('Attempting to end PuSH subscription for feed with no hub.'));
             }
         }
 
@@ -500,6 +500,4 @@ class FeedSub extends Memcached_DataObject
         }
         return false;
     }
-
 }
-

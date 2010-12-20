@@ -100,7 +100,7 @@ class DBQueueManager extends QueueManager
             }
         } else {
             $this->_log(LOG_INFO, "[$queue] Got empty/deleted item, discarding");
-            $this->_fail($qi);
+            $this->_done($qi);
         }
         return true;
     }

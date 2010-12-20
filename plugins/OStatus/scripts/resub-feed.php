@@ -38,7 +38,7 @@ if (empty($args[0]) || !Validate::uri($args[0])) {
 $feedurl = $args[0];
 
 
-$sub = FeedSub::staticGet('topic', $feedurl);
+$sub = FeedSub::staticGet('uri', $feedurl);
 if (!$sub) {
     print "Feed $feedurl is not subscribed.\n";
     exit(1);
@@ -57,7 +57,7 @@ if ($ok) {
     print "Could not confirm.\n";
 }
 
-$sub2 = FeedSub::staticGet('topic', $feedurl);
+$sub2 = FeedSub::staticGet('uri', $feedurl);
 
 print "\n";
 print "New state:\n";

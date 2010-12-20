@@ -36,7 +36,6 @@ define('PAGE_TYPE_PREFS_MOBILEPROFILE',
 
 require_once INSTALLDIR.'/plugins/Mobile/WAP20Plugin.php';
 
-
 /**
  * Superclass for plugin to output XHTML Mobile Profile
  *
@@ -46,7 +45,6 @@ require_once INSTALLDIR.'/plugins/Mobile/WAP20Plugin.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class MobileProfilePlugin extends WAP20Plugin
 {
     public $DTD            = null;
@@ -60,14 +58,13 @@ class MobileProfilePlugin extends WAP20Plugin
         parent::__construct();
     }
 
-
     function onStartShowHTML($action)
     {
         // XXX: This should probably graduate to WAP20Plugin
 
         // If they are on the mobile site, serve them MP
         if ((common_config('site', 'mobileserver').'/'.
-             common_config('site', 'path').'/' == 
+             common_config('site', 'path').'/' ==
             $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])) {
 
             $this->serveMobile = true;
@@ -78,18 +75,18 @@ class MobileProfilePlugin extends WAP20Plugin
             //if (strstr('application/vnd.wap.xhtml+xml', $type) !== false) {
             //    $this->serveMobile = true;
             //} else {
-                // If they are a mobile device that supports WAP 2.0, 
+                // If they are a mobile device that supports WAP 2.0,
                 // serve them MP
 
                 // XXX: Browser sniffing sucks
 
-                // I really don't like going through this every page, 
+                // I really don't like going through this every page,
                 // perhaps use $_SESSION or cookies
 
-                // May be better to group the devices in terms of 
+                // May be better to group the devices in terms of
                 // low,mid,high-end
 
-                // Or, detect the mobile devices based on their support for 
+                // Or, detect the mobile devices based on their support for
                 // MP 1.0, 1.1, or 1.2 may be ideal. Possible?
 
                 $this->mobiledevices = array(
@@ -165,11 +162,11 @@ class MobileProfilePlugin extends WAP20Plugin
                 }
             //}
 
-            // If they are okay with MP, and the site has a mobile server, 
+            // If they are okay with MP, and the site has a mobile server,
             // redirect there
-            if ($this->serveMobile && 
+            if ($this->serveMobile &&
                 common_config('site', 'mobileserver') !== false &&
-                (common_config('site', 'mobileserver') != 
+                (common_config('site', 'mobileserver') !=
                     common_config('site', 'server'))) {
 
                 // FIXME: Redirect to equivalent page on mobile site instead
@@ -193,8 +190,8 @@ class MobileProfilePlugin extends WAP20Plugin
             $type = common_negotiate_type($cp, $sp);
 
             if (!$type) {
-                throw new ClientException(_('This page is not available in a '.
-                                            'media type you accept'), 406);
+                throw new ClientException(_m('This page is not available in a '.
+                                            'media type you accept.'), 406);
             }
         //}
 
@@ -217,7 +214,6 @@ class MobileProfilePlugin extends WAP20Plugin
         return false;
     }
 
-
     function setMobileFeatures($useragent)
     {
         $mobiledeviceInputFileType = array(
@@ -234,14 +230,13 @@ class MobileProfilePlugin extends WAP20Plugin
         }
     }
 
-
     function onStartShowStatusNetStyles($action)
     {
         if (!$this->serveMobile) {
             return true;
         }
 
-        $action->cssLink('css/display.css');
+        $action->primaryCssLink();
 
         if (file_exists(Theme::file('css/mp-screen.css'))) {
             $action->cssLink('css/mp-screen.css', null, 'screen');
@@ -261,7 +256,6 @@ class MobileProfilePlugin extends WAP20Plugin
 
         return false;
     }
-
 
     function onStartShowUAStyles($action) {
         if (!$this->serveMobile) {
@@ -288,18 +282,17 @@ class MobileProfilePlugin extends WAP20Plugin
         return false;
     }
 
-
     function _showLogo($action)
     {
         $action->elementStart('address', 'vcard');
         $action->elementStart('a', array('class' => 'url home bookmark',
                                        'href' => common_local_url('public')));
-        if (common_config('site', 'mobilelogo') || 
-            file_exists(Theme::file('logo.png')) || 
+        if (common_config('site', 'mobilelogo') ||
+            file_exists(Theme::file('logo.png')) ||
             file_exists(Theme::file('mobilelogo.png'))) {
 
             $action->element('img', array('class' => 'photo',
-                'src' => (common_config('site', 'mobilelogo')) ? common_config('site', 'mobilelogo') : 
+                'src' => (common_config('site', 'mobilelogo')) ? common_config('site', 'mobilelogo') :
                             ((file_exists(Theme::file('mobilelogo.png'))) ? (Theme::path('mobilelogo.png')) : Theme::path('logo.png')),
                 'alt' => common_config('site', 'name')));
         }
@@ -308,43 +301,41 @@ class MobileProfilePlugin extends WAP20Plugin
         $action->elementEnd('address');
     }
 
-
     function _showPrimaryNav($action)
     {
         $user    = common_current_user();
         $action->elementStart('ul', array('id' => 'site_nav_global_primary'));
         if ($user) {
             $action->menuItem(common_local_url('all', array('nickname' => $user->nickname)),
-                            _('Home'));
+                            _m('Home'));
             $action->menuItem(common_local_url('profilesettings'),
-                            _('Account'));
+                            _m('Account'));
             $action->menuItem(common_local_url('oauthconnectionssettings'),
-                                _('Connect'));
+                                _m('Connect'));
             if ($user->hasRight(Right::CONFIGURESITE)) {
                 $action->menuItem(common_local_url('siteadminpanel'),
-                                _('Admin'), _('Change site configuration'), false, 'nav_admin');
+                                _m('Admin'), _m('Change site configuration'), false, 'nav_admin');
             }
             if (common_config('invite', 'enabled')) {
                 $action->menuItem(common_local_url('invite'),
-                                _('Invite'));
+                                _m('Invite'));
             }
             $action->menuItem(common_local_url('logout'),
-                            _('Logout'));
+                            _m('Logout'));
         } else {
             if (!common_config('site', 'closed')) {
                 $action->menuItem(common_local_url('register'),
-                                _('Register'));
+                                _m('Register'));
             }
             $action->menuItem(common_local_url('login'),
-                            _('Login'));
+                            _m('Login'));
         }
         if ($user || !common_config('site', 'private')) {
             $action->menuItem(common_local_url('peoplesearch'),
-                            _('Search'));
+                            _m('Search'));
         }
         $action->elementEnd('ul');
     }
-
 
     function onStartShowNoticeFormData($form)
     {
@@ -367,11 +358,11 @@ class MobileProfilePlugin extends WAP20Plugin
 
         if (common_config('attachments', 'uploads')) {
             if ($this->mobileFeatures['inputfiletype']) {
-                $form->out->element('label', array('for' => 'notice_data-attach'), _('Attach'));
+                $form->out->element('label', array('for' => 'notice_data-attach'), _m('Attach'));
                 $form->out->element('input', array('id' => 'notice_data-attach',
                                                    'type' => 'file',
                                                    'name' => 'attach',
-                                                   'title' => _('Attach a file')));
+                                                   'title' => _m('Attach a file')));
                 $form->out->hidden('MAX_FILE_SIZE', common_config('attachments', 'file_quota'));
             }
         }
@@ -383,7 +374,6 @@ class MobileProfilePlugin extends WAP20Plugin
         return false;
     }
 
-
     function onStartShowAside($action)
     {
         if ($this->serveMobile) {
@@ -391,12 +381,10 @@ class MobileProfilePlugin extends WAP20Plugin
         }
     }
 
-
     function onStartShowScripts($action)
     {
 
     }
-
 
     function _common_path($relative, $ssl=false)
     {

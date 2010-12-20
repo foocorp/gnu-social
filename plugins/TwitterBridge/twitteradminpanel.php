@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class TwitteradminpanelAction extends AdminPanelAction
 {
     /**
@@ -48,7 +47,6 @@ class TwitteradminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
         return _m('Twitter');
@@ -59,7 +57,6 @@ class TwitteradminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
         return _m('Twitter bridge settings');
@@ -70,7 +67,6 @@ class TwitteradminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new TwitterAdminPanelForm($this);
@@ -83,7 +79,6 @@ class TwitteradminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         static $settings = array(
@@ -138,6 +133,11 @@ class TwitteradminpanelAction extends AdminPanelAction
 
         $config->query('COMMIT');
 
+        // Flush the router cache: we may have enabled/disabled bridging,
+        // which will add or remove some actions.
+        $cache = Cache::instance();
+        $cache->delete(Router::cacheKey());
+
         return;
     }
 
@@ -173,7 +173,6 @@ class TwitterAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'twitteradminpanel';
@@ -184,7 +183,6 @@ class TwitterAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -195,7 +193,6 @@ class TwitterAdminPanelForm extends AdminForm
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('twitteradminpanel');
@@ -206,7 +203,6 @@ class TwitterAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->elementStart(
@@ -239,7 +235,7 @@ class TwitterAdminPanelForm extends AdminForm
 
         if (!empty($globalConsumerKey) && !empty($globalConsumerSec)) {
             $this->li();
-            $this->out->element('p', 'form_guide', _('Note: a global consumer key and secret are set.'));
+            $this->out->element('p', 'form_guide', _m('Note: a global consumer key and secret are set.'));
             $this->unli();
         }
 
@@ -292,9 +288,8 @@ class TwitterAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Save'), 'submit', null, _('Save Twitter settings'));
+        $this->out->submit('submit', _m('Save'), 'submit', null, _m('Save Twitter settings'));
     }
 }

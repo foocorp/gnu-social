@@ -43,10 +43,10 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  */
 class TwitterOAuthClient extends OAuthClient
 {
-    public static $requestTokenURL = 'https://twitter.com/oauth/request_token';
-    public static $authorizeURL    = 'https://twitter.com/oauth/authorize';
-    public static $signinUrl       = 'https://twitter.com/oauth/authenticate';
-    public static $accessTokenURL  = 'https://twitter.com/oauth/access_token';
+    public static $requestTokenURL = 'https://api.twitter.com/oauth/request_token';
+    public static $authorizeURL    = 'https://api.twitter.com/oauth/authorize';
+    public static $signinUrl       = 'https://api.twitter.com/oauth/authenticate';
+    public static $accessTokenURL  = 'https://api.twitter.com/oauth/access_token';
 
     /**
      * Constructor
@@ -157,7 +157,7 @@ class TwitterOAuthClient extends OAuthClient
      */
     function verifyCredentials()
     {
-        $url          = 'https://twitter.com/account/verify_credentials.json';
+        $url          = 'https://api.twitter.com/1/account/verify_credentials.json';
         $response     = $this->oAuthGet($url);
         $twitter_user = json_decode($response);
         return $twitter_user;
@@ -175,7 +175,7 @@ class TwitterOAuthClient extends OAuthClient
      */
     function statusesUpdate($status, $params=array())
     {
-        $url      = 'https://twitter.com/statuses/update.json';
+        $url      = 'https://api.twitter.com/1/statuses/update.json';
         if (is_numeric($params)) {
             $params = array('in_reply_to_status_id' => intval($params));
         }
@@ -188,7 +188,7 @@ class TwitterOAuthClient extends OAuthClient
     }
 
     /**
-     * Calls Twitter's /statuses/friends_timeline API method
+     * Calls Twitter's /statuses/home_timeline API method
      *
      * @param int $since_id show statuses after this id
      * @param int $max_id   show statuses before this id
@@ -197,52 +197,27 @@ class TwitterOAuthClient extends OAuthClient
      *
      * @return mixed an array of statuses
      */
-    function statusesFriendsTimeline($since_id = null, $max_id = null,
-                                     $cnt = null, $page = null)
-    {
-
-        $url    = 'https://twitter.com/statuses/friends_timeline.json';
-        $params = array('since_id' => $since_id,
-                        'max_id' => $max_id,
-                        'count' => $cnt,
-                        'page' => $page);
-        $qry    = http_build_query($params);
-
-        if (!empty($qry)) {
-            $url .= "?$qry";
-        }
-
-        $response = $this->oAuthGet($url);
-        $statuses = json_decode($response);
-        return $statuses;
-    }
-
-    /**
-     * Calls Twitter's /statuses/home_timeline API method
-     *
-     * @param int $since_id show statuses after this id
-     * @param int $max_id   show statuses before this id
-     * @param int $cnt      number of statuses to show
-     * @param int $page     page number
-     *
-     * @return mixed an array of statuses, similar to friends_timeline but including retweets
-     */
     function statusesHomeTimeline($since_id = null, $max_id = null,
-                                     $cnt = null, $page = null)
+                                  $cnt = null, $page = null)
     {
+        $url    = 'https://api.twitter.com/1/statuses/home_timeline.json';
 
-        $url    = 'https://twitter.com/statuses/home_timeline.json';
-        $params = array('since_id' => $since_id,
-                        'max_id' => $max_id,
-                        'count' => $cnt,
-                        'page' => $page);
-        $qry    = http_build_query($params);
+        $params = array('include_entities' => 'true');
 
-        if (!empty($qry)) {
-            $url .= "?$qry";
+        if (!empty($since_id)) {
+            $params['since_id'] = $since_id;
+        }
+        if (!empty($max_id)) {
+            $params['max_id'] = $max_id;
+        }
+        if (!empty($cnt)) {
+            $params['count'] = $cnt;
+        }
+        if (!empty($page)) {
+            $params['page'] = $page;
         }
 
-        $response = $this->oAuthGet($url);
+        $response = $this->oAuthGet($url, $params);
         $statuses = json_decode($response);
         return $statuses;
     }
@@ -260,19 +235,27 @@ class TwitterOAuthClient extends OAuthClient
     function statusesFriends($id = null, $user_id = null, $screen_name = null,
                              $page = null)
     {
-        $url = "https://twitter.com/statuses/friends.json";
+        $url = "https://api.twitter.com/1/statuses/friends.json";
 
-        $params = array('id' => $id,
-                        'user_id' => $user_id,
-                        'screen_name' => $screen_name,
-                        'page' => $page);
-        $qry    = http_build_query($params);
+        $params = array();
 
-        if (!empty($qry)) {
-            $url .= "?$qry";
+        if (!empty($id)) {
+            $params['id'] = $id;
         }
 
-        $response = $this->oAuthGet($url);
+        if (!empty($user_id)) {
+            $params['user_id'] = $user_id;
+        }
+
+        if (!empty($screen_name)) {
+            $params['screen_name'] = $screen_name;
+        }
+
+        if (!empty($page)) {
+            $params['page'] = $page;
+        }
+
+        $response = $this->oAuthGet($url, $params);
         $friends  = json_decode($response);
         return $friends;
     }
@@ -290,21 +273,92 @@ class TwitterOAuthClient extends OAuthClient
     function friendsIds($id = null, $user_id = null, $screen_name = null,
                          $page = null)
     {
-        $url = "https://twitter.com/friends/ids.json";
+        $url = "https://api.twitter.com/1/friends/ids.json";
 
-        $params = array('id' => $id,
-                        'user_id' => $user_id,
-                        'screen_name' => $screen_name,
-                        'page' => $page);
-        $qry    = http_build_query($params);
+        $params = array();
 
-        if (!empty($qry)) {
-            $url .= "?$qry";
+        if (!empty($id)) {
+            $params['id'] = $id;
         }
 
-        $response = $this->oAuthGet($url);
+        if (!empty($user_id)) {
+            $params['user_id'] = $user_id;
+        }
+
+        if (!empty($screen_name)) {
+            $params['screen_name'] = $screen_name;
+        }
+
+        if (!empty($page)) {
+            $params['page'] = $page;
+        }
+
+        $response = $this->oAuthGet($url, $params);
         $ids      = json_decode($response);
         return $ids;
     }
 
+    /**
+     * Calls Twitter's /statuses/retweet/id.json API method
+     *
+     * @param int $id id of the notice to retweet
+     *
+     * @return retweeted status
+     */
+
+    function statusesRetweet($id)
+    {
+        $url = "http://api.twitter.com/1/statuses/retweet/$id.json";
+        $response = $this->oAuthPost($url);
+        $status = json_decode($response);
+        return $status;
+    }
+
+    /**
+     * Calls Twitter's /favorites/create API method
+     *
+     * @param int $id ID of the status to favorite
+     *
+     * @return object faved status
+     */
+
+    function favoritesCreate($id)
+    {
+        $url = "http://api.twitter.com/1/favorites/create/$id.json";
+        $response = $this->oAuthPost($url);
+        $status = json_decode($response);
+        return $status;
+    }
+
+    /**
+     * Calls Twitter's /favorites/destroy API method
+     *
+     * @param int $id ID of the status to unfavorite
+     *
+     * @return object unfaved status
+     */
+
+    function favoritesDestroy($id)
+    {
+        $url = "http://api.twitter.com/1/favorites/destroy/$id.json";
+        $response = $this->oAuthPost($url);
+        $status = json_decode($response);
+        return $status;
+    }
+
+    /**
+     * Calls Twitter's /statuses/destroy API method
+     *
+     * @param int $id ID of the status to destroy
+     *
+     * @return object destroyed
+     */
+
+    function statusesDestroy($id)
+    {
+        $url = "http://api.twitter.com/1/statuses/destroy/$id.json";
+        $response = $this->oAuthPost($url);
+        $status = json_decode($response);
+        return $status;
+    }
 }

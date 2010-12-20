@@ -124,7 +124,7 @@ class Memcached_DataObject extends Safe_DataObject
     }
 
     static function memcache() {
-        return common_memcache();
+        return Cache::instance();
     }
 
     static function cacheKey($cls, $k, $v) {
@@ -134,7 +134,7 @@ class Memcached_DataObject extends Safe_DataObject
                 str_replace("\n", " ", $e->getTraceAsString()));
         }
         $vstr = self::valueString($v);
-        return common_cache_key(strtolower($cls).':'.$k.':'.$vstr);
+        return Cache::key(strtolower($cls).':'.$k.':'.$vstr);
     }
 
     static function getcached($cls, $k, $v) {
@@ -189,11 +189,11 @@ class Memcached_DataObject extends Safe_DataObject
                        str_replace("\n", " ", $e->getTraceAsString()));
             return false;
         } else {
-		$keys = $this->_allCacheKeys();
+            $keys = $this->_allCacheKeys();
 
-		foreach ($keys as $key) {
-		    $c->set($key, $this);
-		}
+            foreach ($keys as $key) {
+                $c->set($key, $this);
+            }
         }
     }
 
@@ -302,8 +302,8 @@ class Memcached_DataObject extends Safe_DataObject
             $inst->query($qry);
             return $inst;
         }
-        $key_part = common_keyize($cls).':'.md5($qry);
-        $ckey = common_cache_key($key_part);
+        $key_part = Cache::keyize($cls).':'.md5($qry);
+        $ckey = Cache::key($key_part);
         $stored = $c->get($ckey);
 
         if ($stored !== false) {
@@ -338,13 +338,31 @@ class Memcached_DataObject extends Safe_DataObject
         }
 
         $start = microtime(true);
-        $result = parent::_query($string);
+        $fail = false;
+        $result = null;
+        if (Event::handle('StartDBQuery', array($this, $string, &$result))) {
+            try {
+                $result = parent::_query($string);
+            } catch (Exception $e) {
+                $fail = $e;
+            }
+            Event::handle('EndDBQuery', array($this, $string, &$result));
+        }
         $delta = microtime(true) - $start;
 
         $limit = common_config('db', 'log_slow_queries');
         if (($limit > 0 && $delta >= $limit) || common_config('db', 'log_queries')) {
             $clean = $this->sanitizeQuery($string);
-            common_log(LOG_DEBUG, sprintf("DB query (%0.3fs): %s", $delta, $clean));
+            if ($fail) {
+                $msg = sprintf("FAILED DB query (%0.3fs): %s - %s", $delta, $fail->getMessage(), $clean);
+            } else {
+                $msg = sprintf("DB query (%0.3fs): %s", $delta, $clean);
+            }
+            common_log(LOG_DEBUG, $msg);
+        }
+
+        if ($fail) {
+            throw $fail;
         }
         return $result;
     }
@@ -550,7 +568,7 @@ class Memcached_DataObject extends Safe_DataObject
 
         $keyPart = vsprintf($format, $args);
 
-        $cacheKey = common_cache_key($keyPart);
+        $cacheKey = Cache::key($keyPart);
 
         return $c->delete($cacheKey);
     }
@@ -592,7 +610,7 @@ class Memcached_DataObject extends Safe_DataObject
             return false;
         }
 
-        $cacheKey = common_cache_key($keyPart);
+        $cacheKey = Cache::key($keyPart);
 
         return $c->get($cacheKey);
     }
@@ -605,7 +623,7 @@ class Memcached_DataObject extends Safe_DataObject
             return false;
         }
 
-        $cacheKey = common_cache_key($keyPart);
+        $cacheKey = Cache::key($keyPart);
 
         return $c->set($cacheKey, $value, $flag, $expiry);
     }
@@ -637,4 +655,3 @@ class Memcached_DataObject extends Safe_DataObject
         return $vstr;
     }
 }
-

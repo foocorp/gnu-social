@@ -46,10 +46,8 @@ define('MEMBERS_PER_SECTION', 27);
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ShowgroupAction extends GroupDesignAction
 {
-
     /** page we're viewing. */
     var $page = null;
 
@@ -58,7 +56,6 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -69,18 +66,16 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return string page title, with page number
      */
-
     function title()
     {
-        if (!empty($this->group->fullname)) {
-            $base = $this->group->fullname . ' (' . $this->group->nickname . ')';
-        } else {
-            $base = $this->group->nickname;
-        }
+        $base = $this->group->getFancyName();
 
         if ($this->page == 1) {
+            // TRANS: Page title for first group page. %s is a group name.
             return sprintf(_('%s group'), $base);
         } else {
+            // TRANS: Page title for any but first group page.
+            // TRANS: %1$s is a group name, $2$s is a page number.
             return sprintf(_('%1$s group, page %2$d'),
                            $base,
                            $this->page);
@@ -96,7 +91,6 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -118,6 +112,7 @@ class ShowgroupAction extends GroupDesignAction
         }
 
         if (!$nickname) {
+            // TRANS: Client error displayed if no nickname argument was given requesting a group page.
             $this->clientError(_('No nickname.'), 404);
             return false;
         }
@@ -135,6 +130,7 @@ class ShowgroupAction extends GroupDesignAction
                 return false;
             } else {
                 common_log(LOG_NOTICE, "Couldn't find local group for nickname '$nickname'");
+                // TRANS: Client error displayed if no remote group with a given name was found requesting group page.
                 $this->clientError(_('No such group.'), 404);
                 return false;
             }
@@ -143,6 +139,7 @@ class ShowgroupAction extends GroupDesignAction
         $this->group = User_group::staticGet('id', $local->group_id);
 
         if (!$this->group) {
+                // TRANS: Client error displayed if no local group with a given name was found requesting group page.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -160,7 +157,6 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return void
      */
-
     function handle($args)
     {
         $this->showPage();
@@ -171,7 +167,6 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showLocalNav()
     {
         $nav = new GroupNav($this, $this->group);
@@ -183,7 +178,6 @@ class ShowgroupAction extends GroupDesignAction
      *
      * Shows a group profile and a list of group notices
      */
-
     function showContent()
     {
         $this->showGroupProfile();
@@ -195,7 +189,6 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showGroupNotices()
     {
         $notice = $this->group->getNotices(($this->page-1)*NOTICES_PER_PAGE,
@@ -218,15 +211,16 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showGroupProfile()
     {
         $this->elementStart('div', array('id' => 'i',
                                          'class' => 'entity_profile vcard author'));
 
+        // TRANS: Group profile header (h2). Text hidden by default.
         $this->element('h2', null, _('Group profile'));
 
         $this->elementStart('dl', 'entity_depiction');
+        // TRANS: Label for group avatar (dt). Text hidden by default.
         $this->element('dt', null, _('Avatar'));
         $this->elementStart('dd');
 
@@ -242,6 +236,7 @@ class ShowgroupAction extends GroupDesignAction
         $this->elementEnd('dl');
 
         $this->elementStart('dl', 'entity_nickname');
+        // TRANS: Label for group nickname (dt). Text hidden by default.
         $this->element('dt', null, _('Nickname'));
         $this->elementStart('dd');
         $hasFN = ($this->group->fullname) ? 'nickname url uid' : 'fn org nickname url uid';
@@ -253,6 +248,7 @@ class ShowgroupAction extends GroupDesignAction
 
         if ($this->group->fullname) {
             $this->elementStart('dl', 'entity_fn');
+            // TRANS: Label for full group name (dt). Text hidden by default.
             $this->element('dt', null, _('Full name'));
             $this->elementStart('dd');
             $this->element('span', 'fn org', $this->group->fullname);
@@ -262,6 +258,7 @@ class ShowgroupAction extends GroupDesignAction
 
         if ($this->group->location) {
             $this->elementStart('dl', 'entity_location');
+            // TRANS: Label for group location (dt). Text hidden by default.
             $this->element('dt', null, _('Location'));
             $this->element('dd', 'label', $this->group->location);
             $this->elementEnd('dl');
@@ -269,6 +266,7 @@ class ShowgroupAction extends GroupDesignAction
 
         if ($this->group->homepage) {
             $this->elementStart('dl', 'entity_url');
+            // TRANS: Label for group URL (dt). Text hidden by default.
             $this->element('dt', null, _('URL'));
             $this->elementStart('dd');
             $this->element('a', array('href' => $this->group->homepage,
@@ -280,6 +278,7 @@ class ShowgroupAction extends GroupDesignAction
 
         if ($this->group->description) {
             $this->elementStart('dl', 'entity_note');
+            // TRANS: Label for group description or group note (dt). Text hidden by default.
             $this->element('dt', null, _('Note'));
             $this->element('dd', 'note', $this->group->description);
             $this->elementEnd('dl');
@@ -290,6 +289,7 @@ class ShowgroupAction extends GroupDesignAction
 
             if (!empty($aliases)) {
                 $this->elementStart('dl', 'entity_aliases');
+                // TRANS: Label for group aliases (dt). Text hidden by default.
                 $this->element('dt', null, _('Aliases'));
                 $this->element('dd', 'aliases', implode(' ', $aliases));
                 $this->elementEnd('dl');
@@ -298,12 +298,13 @@ class ShowgroupAction extends GroupDesignAction
 
         $this->elementEnd('div');
 
+        $cur = common_current_user();
         $this->elementStart('div', 'entity_actions');
+        // TRANS: Group actions header (h2). Text hidden by default.
         $this->element('h2', null, _('Group actions'));
         $this->elementStart('ul');
         $this->elementStart('li', 'entity_subscribe');
         if (Event::handle('StartGroupSubscribe', array($this, $this->group))) {
-            $cur = common_current_user();
             if ($cur) {
                 if ($cur->isMember($this->group)) {
                     $lf = new LeaveForm($this, $this->group);
@@ -316,6 +317,12 @@ class ShowgroupAction extends GroupDesignAction
             Event::handle('EndGroupSubscribe', array($this, $this->group));
         }
         $this->elementEnd('li');
+        if ($cur && $cur->hasRight(Right::DELETEGROUP)) {
+            $this->elementStart('li', 'entity_delete');
+            $df = new DeleteGroupForm($this, $this->group);
+            $df->show();
+            $this->elementEnd('li');
+        }
         $this->elementEnd('ul');
         $this->elementEnd('div');
     }
@@ -325,7 +332,6 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return void
      */
-
     function getFeeds()
     {
         $url =
@@ -335,23 +341,27 @@ class ShowgroupAction extends GroupDesignAction
         return array(new Feed(Feed::RSS1,
                               common_local_url('grouprss',
                                                array('nickname' => $this->group->nickname)),
+                              // TRANS: Tooltip for feed link. %s is a group nickname.
                               sprintf(_('Notice feed for %s group (RSS 1.0)'),
                                       $this->group->nickname)),
                      new Feed(Feed::RSS2,
                               common_local_url('ApiTimelineGroup',
                                                array('format' => 'rss',
                                                      'id' => $this->group->id)),
+                              // TRANS: Tooltip for feed link. %s is a group nickname.
                               sprintf(_('Notice feed for %s group (RSS 2.0)'),
                                       $this->group->nickname)),
                      new Feed(Feed::ATOM,
                               common_local_url('ApiTimelineGroup',
                                                array('format' => 'atom',
                                                      'id' => $this->group->id)),
+                              // TRANS: Tooltip for feed link. %s is a group nickname.
                               sprintf(_('Notice feed for %s group (Atom)'),
                                       $this->group->nickname)),
                      new Feed(Feed::FOAF,
                               common_local_url('foafgroup',
                                                array('nickname' => $this->group->nickname)),
+                              // TRANS: Tooltip for feed link. %s is a group nickname.
                               sprintf(_('FOAF for %s group'),
                                        $this->group->nickname)));
     }
@@ -361,7 +371,6 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showSections()
     {
         $this->showMembers();
@@ -376,7 +385,6 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showMembers()
     {
         $member = $this->group->getMembers(0, MEMBERS_PER_SECTION);
@@ -390,17 +398,22 @@ class ShowgroupAction extends GroupDesignAction
 
         if (Event::handle('StartShowGroupMembersMiniList', array($this))) {
 
+            // TRANS: Header for mini list of group members on a group page (h2).
             $this->element('h2', null, _('Members'));
 
             $gmml = new GroupMembersMiniList($member, $this);
             $cnt = $gmml->show();
             if ($cnt == 0) {
+                // TRANS: Description for mini list of group members on a group page when the group has no members.
                 $this->element('p', null, _('(None)'));
             }
 
+            // @todo FIXME: Should be shown if a group has more than 27 members, but I do not see it displayed at
+            //              for example http://identi.ca/group/statusnet. Broken?
             if ($cnt > MEMBERS_PER_SECTION) {
                 $this->element('a', array('href' => common_local_url('groupmembers',
                                                                      array('nickname' => $this->group->nickname))),
+                               // TRANS: Link to all group members from mini list of group members if group has more than n members.
                                _('All members'));
             }
 
@@ -415,7 +428,6 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showAdmins()
     {
         $adminSection = new GroupAdminSection($this, $this->group);
@@ -427,22 +439,26 @@ class ShowgroupAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showStatistics()
     {
         $this->elementStart('div', array('id' => 'entity_statistics',
                                          'class' => 'section'));
 
+        // TRANS: Header for group statistics on a group page (h2).
         $this->element('h2', null, _('Statistics'));
 
         $this->elementStart('dl', 'entity_created');
-        $this->element('dt', null, _('Created'));
+        // @todo FIXME: i18n issue. This label gets a colon added from somewhere. Should be part of the message.
+        // TRANS: Label for creation date in statistics on group page.
+        $this->element('dt', null, _m('LABEL','Created'));
         $this->element('dd', null, date('j M Y',
                                                  strtotime($this->group->created)));
         $this->elementEnd('dl');
 
         $this->elementStart('dl', 'entity_members');
-        $this->element('dt', null, _('Members'));
+        // @todo FIXME: i18n issue. This label gets a colon added from somewhere. Should be part of the message.
+        // TRANS: Label for member count in statistics on group page.
+        $this->element('dt', null, _m('LABEL','Members'));
         $this->element('dd', null, $this->group->getMemberCount());
         $this->elementEnd('dl');
 
@@ -452,12 +468,21 @@ class ShowgroupAction extends GroupDesignAction
     function showAnonymousMessage()
     {
         if (!(common_config('site','closed') || common_config('site','inviteonly'))) {
+            // @todo FIXME: use group full name here if available instead of (uglier) primary alias.
+            // TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
+            // TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+            // TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
+            // TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
             $m = sprintf(_('**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
                 'based on the Free Software [StatusNet](http://status.net/) tool. Its members share ' .
                 'short messages about their life and interests. '.
                 '[Join now](%%%%action.register%%%%) to become part of this group and many more! ([Read more](%%%%doc.help%%%%))'),
                      $this->group->nickname);
         } else {
+            // @todo FIXME: use group full name here if available instead of (uglier) primary alias.
+            // TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
+            // TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+            // TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
             $m = sprintf(_('**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
                 'based on the Free Software [StatusNet](http://status.net/) tool. Its members share ' .
                 'short messages about their life and interests. '),
@@ -486,6 +511,7 @@ class GroupAdminSection extends ProfileSection
 
     function title()
     {
+        // TRANS: Header for list of group administrators on a group page (h2).
         return _('Admins');
     }
 
@@ -521,4 +547,3 @@ class GroupMembersMiniListItem extends ProfileMiniListItem
         return $aAttrs;
     }
 }
-

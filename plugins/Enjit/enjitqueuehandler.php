@@ -80,5 +80,4 @@ class EnjitQueueHandler extends QueueHandler
 
         return $response->isOk();
     }
-
 }

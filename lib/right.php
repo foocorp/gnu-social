@@ -60,5 +60,6 @@ class Right
     const MAKEGROUPADMIN     = 'makegroupadmin';
     const GRANTROLE          = 'grantrole';
     const REVOKEROLE         = 'revokerole';
+    const DELETEGROUP        = 'deletegroup';
 }
 

@@ -25,7 +25,6 @@ require_once INSTALLDIR . '/plugins/Facebook/facebookaction.php';
 
 class FacebookremoveAction extends FacebookAction
 {
-
     function handle($args)
     {
         parent::handle($args);
@@ -49,6 +48,12 @@ class FacebookremoveAction extends FacebookAction
 
             $flink = Foreign_link::getByForeignID($this->arg('fb_sig_user'), 2);
 
+            if (!$flink) {
+                common_log(LOG_ERR, "Tried to delete missing foreign_link entry with Facebook ID " . $this->arg('fb_sig_user'));
+                $this->serverError(_m('Couldn\'t remove Facebook user: already deleted.'));
+                return;
+            }
+
             common_debug("Removing foreign link to Facebook - local user ID: $flink->user_id, Facebook ID: $flink->foreign_id");
 
             $result = $flink->delete();
@@ -65,5 +70,4 @@ class FacebookremoveAction extends FacebookAction
                 'unsuccessfully tried to remove a foreign link to Facebook!');
         }
     }
-
 }

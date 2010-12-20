@@ -46,11 +46,11 @@ class MinifyAction extends Action
             if(file_exists($this->file)) {
                 return true;
             } else {
-                $this->clientError(_('f parameter is not a valid path'),404);
+                $this->clientError(_m('The parameter "f" is not a valid path.'),404);
                 return false;
             }
         }else{
-            $this->clientError(_('f parameter is required'),500);
+            $this->clientError(_m('The parameter "f" is required but missing.'),500);
             return false;
         }
     }
@@ -74,9 +74,9 @@ class MinifyAction extends Action
     {
         parent::handle($args);
         
-        $c = common_memcache();
+        $c = Cache::instance();
         if (!empty($c)) {
-            $cacheKey = common_cache_key(MinifyPlugin::cacheKey . ':' . $this->file . '?v=' . empty($this->v)?'':$this->v);
+            $cacheKey = Cache::key(MinifyPlugin::cacheKey . ':' . $this->file . '?v=' . empty($this->v)?'':$this->v);
             $out = $c->get($cacheKey);
         }
         if(empty($out)) {
@@ -108,10 +108,9 @@ class MinifyAction extends Action
                 header('Content-Type: ' . self::TYPE_CSS);
                 break;
             default:
-                $this->clientError(_('File type not supported'),500);
+                $this->clientError(_m('File type not supported.'),500);
                 return false;
         }
         return $out;
     }
 }
-

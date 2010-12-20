@@ -1,0 +1,40 @@
+# Translation of StatusNet - Minify to Breton (Brezhoneg)
+# Expored from translatewiki.net
+#
+# Author: Y-M D
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Minify\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:17+0000\n"
+"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-10-29 16:12:55+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: br\n"
+"X-Message-Group: #out-statusnet-plugin-minify\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: minify.php:49
+msgid "The parameter \"f\" is not a valid path."
+msgstr ""
+
+#: minify.php:53
+msgid "The parameter \"f\" is required but missing."
+msgstr ""
+
+#: minify.php:111
+msgid "File type not supported."
+msgstr "N'eo ket skoret ar seurt restroù"
+
+#: MinifyPlugin.php:179
+msgid ""
+"The Minify plugin minifies StatusNet's CSS and JavaScript, removing "
+"whitespace and comments."
+msgstr ""

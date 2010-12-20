@@ -47,6 +47,7 @@ class PoweredByStatusNetPlugin extends Plugin
     {
         $action->text(' ');
         $action->elementStart('span', 'poweredby');
+        // TRANS: %s is a URL to status.net with "StatusNet" (localised) as link text.
         $action->raw(sprintf(_m('powered by %s'),
                      sprintf('<a href="http://status.net/">%s</a>',
                              _m('StatusNet'))));
@@ -62,7 +63,7 @@ class PoweredByStatusNetPlugin extends Plugin
                             'author' => 'Sarven Capadisli',
                             'homepage' => 'http://status.net/wiki/Plugin:PoweredByStatusNet',
                             'rawdescription' =>
-                            _m('Outputs powered by <a href="http://status.net/">StatusNet</a> after site name.'));
+                            _m('Outputs "powered by <a href="http://status.net/">StatusNet</a>" after site name.'));
         return true;
     }
 }

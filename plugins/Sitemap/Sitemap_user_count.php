@@ -47,7 +47,6 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-
 class Sitemap_user_count extends Memcached_DataObject
 {
     public $__table = 'sitemap_user_count'; // table name
@@ -68,7 +67,6 @@ class Sitemap_user_count extends Memcached_DataObject
      * @return Sitemap_user_count object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Sitemap_user_count', $k, $v);
@@ -82,7 +80,6 @@ class Sitemap_user_count extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('registration_date' => DB_DATAOBJECT_DATE + DB_DATAOBJECT_NOTNULL,
@@ -118,7 +115,6 @@ class Sitemap_user_count extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keyTypes()
     {
         return $this->keys();
@@ -235,7 +231,8 @@ class Sitemap_user_count extends Memcached_DataObject
         $suc = Sitemap_user_count::staticGet('registration_date', DB_DataObject_Cast::date($d));
 
         if (empty($suc)) {
-            throw new Exception("No such registration date: $d");
+            // TRANS: Exception thrown when a registration date cannot be found.
+            throw new Exception(_m("No such registration date: $d."));
         }
 
         $orig = clone($suc);

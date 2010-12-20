@@ -36,27 +36,27 @@ class IMChannel extends Channel
 
     function on($user)
     {
-        return $this->set_notify($user, 1);
+        return $this->setNotify($user, 1);
     }
 
     function off($user)
     {
-        return $this->set_notify($user, 0);
+        return $this->setNotify($user, 0);
     }
 
     function output($user, $text)
     {
         $text = '['.common_config('site', 'name') . '] ' . $text;
-        $this->imPlugin->send_message($this->imPlugin->get_screenname($user), $text);
+        $this->imPlugin->sendMessage($this->imPlugin->getScreenname($user), $text);
     }
 
     function error($user, $text)
     {
         $text = '['.common_config('site', 'name') . '] ' . $text;
 
-        $screenname = $this->imPlugin->get_screenname($user);
+        $screenname = $this->imPlugin->getScreenname($user);
         if($screenname){
-            $this->imPlugin->send_message($screenname, $text);
+            $this->imPlugin->sendMessage($screenname, $text);
             return true;
         }else{
             common_log(LOG_ERR,
@@ -66,7 +66,7 @@ class IMChannel extends Channel
         }
     }
 
-    function set_notify($user, $notify)
+    function setNotify($user, $notify)
     {
         $user_im_prefs = new User_im_prefs();
         $user_im_prefs->transport = $this->imPlugin->transport;

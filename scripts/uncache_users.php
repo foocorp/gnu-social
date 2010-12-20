@@ -34,7 +34,7 @@ common_log(LOG_INFO, 'Updating user inboxes.');
 
 $ids = file($id_file);
 
-$memc = common_memcache();
+$memc = Cache::instance();
 
 foreach ($ids as $id) {
 
@@ -47,6 +47,6 @@ foreach ($ids as $id) {
 
     $user->decache();
 
-    $memc->delete(common_cache_key('user:notices_with_friends:'. $user->id));
-    $memc->delete(common_cache_key('user:notices_with_friends:'. $user->id . ';last'));
+    $memc->delete(Cache::key('user:notices_with_friends:'. $user->id));
+    $memc->delete(Cache::key('user:notices_with_friends:'. $user->id . ';last'));
 }

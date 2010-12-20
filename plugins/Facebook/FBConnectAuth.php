@@ -27,6 +27,10 @@
  * @link      http://status.net/
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 require_once INSTALLDIR . '/plugins/Facebook/FacebookPlugin.php';
 
 class FBConnectauthAction extends Action
@@ -60,12 +64,10 @@ class FBConnectauthAction extends Action
         parent::handle($args);
 
         if (common_is_real_login()) {
-
             // User is already logged in.  Does she already have a linked Facebook acct?
             $flink = Foreign_link::getByForeignID($this->fbuid, FACEBOOK_CONNECT_SERVICE);
 
             if (!empty($flink)) {
-
                 // User already has a linked Facebook account and shouldn't be here
                 common_debug('Facebook Connect Plugin - ' .
                              'There is already a local user (' . $flink->user_id .
@@ -74,8 +76,7 @@ class FBConnectauthAction extends Action
                 // We don't want these cookies
                 getFacebook()->clear_cookie_state();
 
-                $this->clientError(_m('There is already a local user linked with this Facebook.'));
-
+                $this->clientError(_m('There is already a local user linked with this Facebook account.'));
             } else {
 
                 // User came from the Facebook connect settings tab, and
@@ -102,7 +103,7 @@ class FBConnectauthAction extends Action
             } else {
                 common_debug('Facebook Connect Plugin - ' .
                              print_r($this->args, true));
-                $this->showForm(_m('Something weird happened.'),
+                $this->showForm(_m('An unknown error has occured.'),
                                 $this->trimmed('newname'));
             }
         } else {
@@ -116,12 +117,14 @@ class FBConnectauthAction extends Action
             $this->element('div', array('class' => 'error'), $this->error);
         } else {
             $this->element('div', 'instructions',
+                           // TRANS: %s is the site name.
                            sprintf(_m('This is the first time you\'ve logged into %s so we must connect your Facebook to a local account. You can either create a new account, or connect with your existing account, if you have one.'), common_config('site', 'name')));
         }
     }
 
     function title()
     {
+        // TRANS: Page title.
         return _m('Facebook Account Setup');
     }
 
@@ -155,6 +158,7 @@ class FBConnectauthAction extends Action
                                           'class' => 'form_settings',
                                           'action' => common_local_url('FBConnectAuth')));
         $this->elementStart('fieldset', array('id' => 'settings_facebook_connect_options'));
+        // TRANS: Legend.
         $this->element('legend', null, _m('Connection options'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
@@ -164,7 +168,8 @@ class FBConnectauthAction extends Action
                                       'name' => 'license',
                                       'value' => 'true'));
         $this->elementStart('label', array('class' => 'checkbox', 'for' => 'license'));
-        $message = _('My text and files are available under %s ' .
+        // TRANS: %s is the name of the license used by the user for their status updates.
+        $message = _m('My text and files are available under %s ' .
                      'except this private data: password, ' .
                      'email address, IM address, and phone number.');
         $link = '<a href="' .
@@ -180,33 +185,39 @@ class FBConnectauthAction extends Action
         $this->elementStart('fieldset');
         $this->hidden('token', common_session_token());
         $this->element('legend', null,
+                       // TRANS: Legend.
                        _m('Create new account'));
         $this->element('p', null,
                        _m('Create a new user with this nickname.'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
+        // TRANS: Field label.
         $this->input('newname', _m('New nickname'),
                      ($this->username) ? $this->username : '',
                      _m('1-64 lowercase letters or numbers, no punctuation or spaces'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('create', _m('Create'));
+        // TRANS: Submit button.
+        $this->submit('create', _m('BUTTON','Create'));
         $this->elementEnd('fieldset');
 
         $this->elementStart('fieldset');
+        // TRANS: Legend.
         $this->element('legend', null,
                        _m('Connect existing account'));
         $this->element('p', null,
                        _m('If you already have an account, login with your username and password to connect it to your Facebook.'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
+        // TRANS: Field label.
         $this->input('nickname', _m('Existing nickname'));
         $this->elementEnd('li');
         $this->elementStart('li');
         $this->password('password', _m('Password'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('connect', _m('Connect'));
+        // TRANS: Submit button.
+        $this->submit('connect', _m('BUTTON','Connect'));
         $this->elementEnd('fieldset');
 
         $this->elementEnd('fieldset');
@@ -222,6 +233,7 @@ class FBConnectauthAction extends Action
     function createNewUser()
     {
         if (common_config('site', 'closed')) {
+            // TRANS: Client error trying to register with registrations not allowed.
             $this->clientError(_m('Registration not allowed.'));
             return;
         }
@@ -231,6 +243,7 @@ class FBConnectauthAction extends Action
         if (common_config('site', 'inviteonly')) {
             $code = $_SESSION['invitecode'];
             if (empty($code)) {
+                // TRANS: Client error trying to register with registrations 'invite only'.
                 $this->clientError(_m('Registration not allowed.'));
                 return;
             }
@@ -238,18 +251,16 @@ class FBConnectauthAction extends Action
             $invite = Invitation::staticGet($code);
 
             if (empty($invite)) {
+                // TRANS: Client error trying to register with an invalid invitation code.
                 $this->clientError(_m('Not a valid invitation code.'));
                 return;
             }
         }
 
-        $nickname = $this->trimmed('newname');
-
-        if (!Validate::string($nickname, array('min_length' => 1,
-                                               'max_length' => 64,
-                                               'format' => NICKNAME_FMT))) {
-            $this->showForm(_m('Nickname must have only lowercase letters and numbers and no spaces.'));
-            return;
+        try {
+            $nickname = Nickname::normalize($this->trimmed('newname'));
+        } catch (NicknameException $e) {
+            $this->showForm($e->getMessage());
         }
 
         if (!User::allowed_nickname($nickname)) {
@@ -422,8 +433,9 @@ class FBConnectauthAction extends Action
         return null;
     }
 
-     // Given a string, try to make it work as a nickname
-
+     /**
+      * Given a string, try to make it work as a nickname
+      */
      function nicknamize($str)
      {
          $str = preg_replace('/\W/', '', $str);
@@ -432,9 +444,7 @@ class FBConnectauthAction extends Action
 
     function isNewNickname($str)
     {
-        if (!Validate::string($str, array('min_length' => 1,
-                                          'max_length' => 64,
-                                          'format' => NICKNAME_FMT))) {
+        if (!Nickname::isValid($str)) {
             return false;
         }
         if (!User::allowed_nickname($str)) {
@@ -467,5 +477,4 @@ class FBConnectauthAction extends Action
             return null;
         }
     }
-
 }

@@ -20,7 +20,6 @@
  */
 
 class DiscoveryHints {
-
     static function fromXRD($xrd)
     {
         $hints = array();

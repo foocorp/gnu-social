@@ -25,7 +25,6 @@ require_once INSTALLDIR . '/plugins/Facebook/facebookaction.php';
 
 class FacebooksettingsAction extends FacebookAction
 {
-
     function handle($args)
     {
         parent::handle($args);
@@ -40,7 +39,6 @@ class FacebooksettingsAction extends FacebookAction
      *
      * @return void
      */
-
     function showContent()
     {
         if ($this->arg('save')) {
@@ -62,6 +60,7 @@ class FacebooksettingsAction extends FacebookAction
         if ($result === false) {
             $this->showForm(_m('There was a problem saving your sync preferences!'));
         } else {
+            // TRANS: Confirmation that synchronisation settings have been saved into the system.
             $this->showForm(_m('Sync preferences saved.'), true);
         }
     }
@@ -99,16 +98,16 @@ class FacebooksettingsAction extends FacebookAction
 
             $this->elementStart('li');
 
-            $this->submit('save', _m('Save'));
+            // TRANS: Submit button to save synchronisation settings.
+            $this->submit('save', _m('BUTTON','Save'));
 
             $this->elementEnd('li');
 
             $this->elementEnd('ul');
 
             $this->elementEnd('form');
-
         } else {
-
+            // TRANS: %s is the application name.
             $instructions = sprintf(_m('If you would like %s to automatically update ' .
                 'your Facebook status with your latest notice, you need ' .
                 'to give it permission.'), $this->app_name);
@@ -127,12 +126,11 @@ class FacebooksettingsAction extends FacebookAction
             $this->elementEnd('li');
             $this->elementEnd('ul');
         }
-
     }
 
     function title()
     {
+        // TRANS: Page title for synchronisation settings.
         return _m('Sync preferences');
     }
-
 }

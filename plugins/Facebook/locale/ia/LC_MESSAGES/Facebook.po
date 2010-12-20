@@ -1,0 +1,572 @@
+# Translation of StatusNet - Facebook to Interlingua (Interlingua)
+# Expored from translatewiki.net
+#
+# Author: McDutchie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Facebook\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:51+0000\n"
+"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:34+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ia\n"
+"X-Message-Group: #out-statusnet-plugin-facebook\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: facebookutil.php:429
+#, php-format
+msgid ""
+"Hi, %1$s. We're sorry to inform you that we are unable to update your "
+"Facebook status from %2$s, and have disabled the Facebook application for "
+"your account. This may be because you have removed the Facebook "
+"application's authorization, or have deleted your Facebook account.  You can "
+"re-enable the Facebook application and automatic status updating by re-"
+"installing the %2$s Facebook application.\n"
+"\n"
+"Regards,\n"
+"\n"
+"%2$s"
+msgstr ""
+"Salute, %1$s. Nos regretta informar te que nos es incapace de actualisar tu "
+"stato de Facebook ab %2$s, e que nos ha disactivate le application Facebook "
+"pro tu conto. Isto pote esser proque tu ha removite le autorisation del "
+"application Facebook, o ha delite tu conto de Facebook. Tu pote reactivar le "
+"application Facebook e le actualisation automatic de tu stato per "
+"reinstallar le application Facebook %2$s.\n"
+"\n"
+"Attentemente,\n"
+"\n"
+"%2$s"
+
+#: FBConnectAuth.php:55
+msgid "You must be logged into Facebook to use Facebook Connect."
+msgstr "Tu debe aperir un session a Facebook pro usar Facebook Connect."
+
+#: FBConnectAuth.php:79
+msgid "There is already a local user linked with this Facebook account."
+msgstr "Il ha jam un usator local ligate a iste conto de Facebook."
+
+#: FBConnectAuth.php:91 FBConnectSettings.php:166
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Occurreva un problema con le indicio de tu session. Per favor reproba."
+
+#: FBConnectAuth.php:96
+msgid "You can't register if you don't agree to the license."
+msgstr "Tu non pote crear un conto si tu non accepta le licentia."
+
+#: FBConnectAuth.php:106
+msgid "An unknown error has occured."
+msgstr "Un error incognite ha occurrite."
+
+#. TRANS: %s is the site name.
+#: FBConnectAuth.php:121
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your "
+"Facebook to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
+msgstr ""
+"Isto es le prime vice que tu ha aperite un session in %s, dunque nos debe "
+"connecter tu Facebook a un conto local. Tu pote crear un nove conto, o "
+"connecter con tu conto existente si tu ha un."
+
+#. TRANS: Page title.
+#: FBConnectAuth.php:128
+msgid "Facebook Account Setup"
+msgstr "Configuration de conto Facebook"
+
+#. TRANS: Legend.
+#: FBConnectAuth.php:162
+msgid "Connection options"
+msgstr "Optiones de connexion"
+
+#. TRANS: %s is the name of the license used by the user for their status updates.
+#: FBConnectAuth.php:172
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"Mi texto e files es disponibile sub %s excepte iste datos private: "
+"contrasigno, adresse de e-mail, adresse de messageria instantanee, numero de "
+"telephono."
+
+#. TRANS: Legend.
+#: FBConnectAuth.php:189
+msgid "Create new account"
+msgstr "Crear nove conto"
+
+#: FBConnectAuth.php:191
+msgid "Create a new user with this nickname."
+msgstr "Crear un nove usator con iste pseudonymo."
+
+#. TRANS: Field label.
+#: FBConnectAuth.php:195
+msgid "New nickname"
+msgstr "Nove pseudonymo"
+
+#: FBConnectAuth.php:197
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+msgstr "1-64 minusculas o numeros, sin punctuation o spatios"
+
+#. TRANS: Submit button.
+#: FBConnectAuth.php:201
+msgctxt "BUTTON"
+msgid "Create"
+msgstr "Crear"
+
+#: FBConnectAuth.php:207
+msgid "Connect existing account"
+msgstr "Connecter conto existente"
+
+#: FBConnectAuth.php:209
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Facebook."
+msgstr ""
+"Si tu ha jam un conto, aperi session con tu nomine de usator e contrasigno "
+"pro connecter lo a tu Facebook."
+
+#. TRANS: Field label.
+#: FBConnectAuth.php:213
+msgid "Existing nickname"
+msgstr "Pseudonymo existente"
+
+#: FBConnectAuth.php:216 facebookaction.php:277
+msgid "Password"
+msgstr "Contrasigno"
+
+#. TRANS: Submit button.
+#: FBConnectAuth.php:220
+msgctxt "BUTTON"
+msgid "Connect"
+msgstr "Connecter"
+
+#. TRANS: Client error trying to register with registrations not allowed.
+#. TRANS: Client error trying to register with registrations 'invite only'.
+#: FBConnectAuth.php:237 FBConnectAuth.php:247
+msgid "Registration not allowed."
+msgstr "Creation de conto non permittite."
+
+#. TRANS: Client error trying to register with an invalid invitation code.
+#: FBConnectAuth.php:255
+msgid "Not a valid invitation code."
+msgstr "Le codice de invitation es invalide."
+
+#: FBConnectAuth.php:267
+msgid "Nickname not allowed."
+msgstr "Pseudonymo non permittite."
+
+#: FBConnectAuth.php:272
+msgid "Nickname already in use. Try another one."
+msgstr "Pseudonymo ja in uso. Proba un altere."
+
+#: FBConnectAuth.php:290 FBConnectAuth.php:324 FBConnectAuth.php:344
+msgid "Error connecting user to Facebook."
+msgstr "Error durante le connexion del usator a Facebook."
+
+#: FBConnectAuth.php:310
+msgid "Invalid username or password."
+msgstr "Nomine de usator o contrasigno invalide."
+
+#. TRANS: Page title.
+#: facebooklogin.php:90 facebookaction.php:255
+msgid "Login"
+msgstr "Aperir session"
+
+#. TRANS: Legend.
+#: facebooknoticeform.php:144
+msgid "Send a notice"
+msgstr "Inviar un nota"
+
+#. TRANS: Field label.
+#: facebooknoticeform.php:157
+#, php-format
+msgid "What's up, %s?"
+msgstr "Como sta, %s?"
+
+#: facebooknoticeform.php:169
+msgid "Available characters"
+msgstr "Characteres disponibile"
+
+#. TRANS: Button text.
+#: facebooknoticeform.php:196
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Inviar"
+
+#: facebookhome.php:103
+msgid "Server error: Couldn't get user!"
+msgstr "Error de servitor: Non poteva obtener le usator!"
+
+#: facebookhome.php:122
+msgid "Incorrect username or password."
+msgstr "Nomine de usator o contrasigno incorrecte."
+
+#. TRANS: Page title.
+#. TRANS: %1$s is a user nickname, %2$s is a page number.
+#: facebookhome.php:153
+#, php-format
+msgid "%1$s and friends, page %2$d"
+msgstr "%1$s e amicos, pagina %2$d"
+
+#. TRANS: Page title.
+#. TRANS: %s is a user nickname
+#: facebookhome.php:157
+#, php-format
+msgid "%s and friends"
+msgstr "%s e amicos"
+
+#. TRANS: Instructions. %s is the application name.
+#: facebookhome.php:185
+#, php-format
+msgid ""
+"If you would like the %s app to automatically update your Facebook status "
+"with your latest notice, you need to give it permission."
+msgstr ""
+"Si tu vole que le application %s actualisa automaticamente tu stato de "
+"Facebook con tu ultim enota, tu debe dar permission a illo."
+
+#: facebookhome.php:210
+msgid "Okay, do it!"
+msgstr "OK, face lo!"
+
+#. TRANS: Button text. Clicking the button will skip updating Facebook permissions.
+#: facebookhome.php:217
+msgctxt "BUTTON"
+msgid "Skip"
+msgstr "Saltar"
+
+#: facebookhome.php:244 facebookaction.php:336
+msgid "Pagination"
+msgstr "Pagination"
+
+#. TRANS: Pagination link.
+#: facebookhome.php:254 facebookaction.php:345
+msgid "After"
+msgstr "Post"
+
+#. TRANS: Pagination link.
+#: facebookhome.php:263 facebookaction.php:353
+msgid "Before"
+msgstr "Ante"
+
+#. TRANS: %s is the name of the site.
+#: facebookinvite.php:69
+#, php-format
+msgid "Thanks for inviting your friends to use %s."
+msgstr "Gratias pro invitar tu amicos a usar %s."
+
+#. TRANS: Followed by an unordered list with invited friends.
+#: facebookinvite.php:72
+msgid "Invitations have been sent to the following users:"
+msgstr "Invitationes ha essite inviate al sequente usatores:"
+
+#: facebookinvite.php:91
+#, php-format
+msgid "You have been invited to %s"
+msgstr "Tu ha essite invitate a %s"
+
+#. TRANS: %s is the name of the site.
+#: facebookinvite.php:101
+#, php-format
+msgid "Invite your friends to use %s"
+msgstr "Invita tu amicos a usar %s"
+
+#. TRANS: %s is the name of the site.
+#: facebookinvite.php:124
+#, php-format
+msgid "Friends already using %s:"
+msgstr "Amicos que jam usa %s:"
+
+#. TRANS: Page title.
+#: facebookinvite.php:143
+msgid "Send invitations"
+msgstr "Inviar invitationes"
+
+#. TRANS: Menu item.
+#. TRANS: Menu item tab.
+#: FacebookPlugin.php:188 FacebookPlugin.php:461 FacebookPlugin.php:485
+msgctxt "MENU"
+msgid "Facebook"
+msgstr "Facebook"
+
+#. TRANS: Tooltip for menu item "Facebook".
+#: FacebookPlugin.php:190
+msgid "Facebook integration configuration"
+msgstr "Configuration del integration de Facebook"
+
+#: FacebookPlugin.php:431
+msgid "Facebook Connect User"
+msgstr "Usator de Facebook Connect"
+
+#. TRANS: Tooltip for menu item "Facebook".
+#: FacebookPlugin.php:463
+msgid "Login or register using Facebook"
+msgstr "Aperir session o crear conto usante Facebook"
+
+#. TRANS: Tooltip for menu item "Facebook".
+#. TRANS: Page title.
+#: FacebookPlugin.php:487 FBConnectSettings.php:55
+msgid "Facebook Connect Settings"
+msgstr "Configurationes de connexion a Facebook"
+
+#: FacebookPlugin.php:591
+msgid ""
+"The Facebook plugin allows integrating StatusNet instances with <a href="
+"\"http://facebook.com/\">Facebook</a> and Facebook Connect."
+msgstr ""
+"Le plug-in de Facebook permitte integrar installationes de StatusNet con <a "
+"href=\"http://facebook.com/\">Facebook</a> e Facebook Connect."
+
+#: FBConnectLogin.php:33
+msgid "Already logged in."
+msgstr "Tu es jam authenticate."
+
+#. TRANS: Instructions.
+#: FBConnectLogin.php:42
+msgid "Login with your Facebook Account"
+msgstr "Aperir session con tu conto de Facebook"
+
+#. TRANS: Page title.
+#: FBConnectLogin.php:57
+msgid "Facebook Login"
+msgstr "Authentication con Facebook"
+
+#: facebookremove.php:53
+msgid "Couldn't remove Facebook user: already deleted."
+msgstr "Non poteva remover usator de Facebook: jam delite."
+
+#: facebookremove.php:63
+msgid "Couldn't remove Facebook user."
+msgstr "Non poteva remover le usator de Facebook."
+
+#. TRANS: Link description for 'Home' link that leads to a start page.
+#: facebookaction.php:169
+msgctxt "MENU"
+msgid "Home"
+msgstr "Initio"
+
+#. TRANS: Tooltip for 'Home' link that leads to a start page.
+#: facebookaction.php:171
+msgid "Home"
+msgstr "Initio"
+
+#. TRANS: Link description for 'Invite' link that leads to a page where friends can be invited.
+#: facebookaction.php:180
+msgctxt "MENU"
+msgid "Invite"
+msgstr "Invitar"
+
+#. TRANS: Tooltip for 'Invite' link that leads to a page where friends can be invited.
+#: facebookaction.php:182
+msgid "Invite"
+msgstr "Invitar"
+
+#. TRANS: Link description for 'Settings' link that leads to a page user preferences can be set.
+#: facebookaction.php:192
+msgctxt "MENU"
+msgid "Settings"
+msgstr "Configurationes"
+
+#. TRANS: Tooltip for 'Settings' link that leads to a page user preferences can be set.
+#: facebookaction.php:194
+msgid "Settings"
+msgstr "Configurationes"
+
+#: facebookaction.php:233
+#, php-format
+msgid ""
+"To use the %s Facebook Application you need to login with your username and "
+"password. Don't have a username yet?"
+msgstr ""
+"Pro usar le application Facebook %s tu debe aperir un session con tu nomine "
+"de usator e contrasigno. Tu non ha ancora un nomine de usator?"
+
+#: facebookaction.php:235
+msgid " a new account."
+msgstr " un nove conto."
+
+#: facebookaction.php:242
+msgid "Register"
+msgstr "Crear conto"
+
+#: facebookaction.php:274
+msgid "Nickname"
+msgstr "Pseudonymo"
+
+#. TRANS: Login button.
+#: facebookaction.php:282
+msgctxt "BUTTON"
+msgid "Login"
+msgstr "Aperir session"
+
+#: facebookaction.php:288
+msgid "Lost or forgotten password?"
+msgstr "Contrasigno perdite o oblidate?"
+
+#: facebookaction.php:370
+msgid "No notice content!"
+msgstr "Le nota non ha contento!"
+
+#: facebookaction.php:377
+#, php-format
+msgid "That's too long. Max notice size is %d chars."
+msgstr ""
+"Isto es troppo longe. Le longitude maximal del notas es %d characteres."
+
+#: facebookaction.php:431
+msgid "Notices"
+msgstr "Notas"
+
+#: facebookadminpanel.php:52
+msgid "Facebook"
+msgstr "Facebook"
+
+#: facebookadminpanel.php:62
+msgid "Facebook integration settings"
+msgstr "Configurationes de integration de Facebook"
+
+#: facebookadminpanel.php:123
+msgid "Invalid Facebook API key. Max length is 255 characters."
+msgstr "Clave API de Facebook invalide. Longitude maximal es 255 characteres."
+
+#: facebookadminpanel.php:129
+msgid "Invalid Facebook API secret. Max length is 255 characters."
+msgstr ""
+"Secreto API de Facebook invalide. Longitude maximal es 255 characteres."
+
+#: facebookadminpanel.php:178
+msgid "Facebook application settings"
+msgstr "Configurationes del application de Facebook"
+
+#: facebookadminpanel.php:184
+msgid "API key"
+msgstr "Clave API"
+
+#: facebookadminpanel.php:185
+msgid "API key provided by Facebook"
+msgstr "Clave API providite per Facebook"
+
+#: facebookadminpanel.php:193
+msgid "Secret"
+msgstr "Secreto"
+
+#: facebookadminpanel.php:194
+msgid "API secret provided by Facebook"
+msgstr "Secreto API providite per Facebook"
+
+#: facebookadminpanel.php:210
+msgid "Save"
+msgstr "Salveguardar"
+
+#: facebookadminpanel.php:210
+msgid "Save Facebook settings"
+msgstr "Salveguardar configuration Facebook"
+
+#. TRANS: Instructions.
+#: FBConnectSettings.php:66
+msgid "Manage how your account connects to Facebook"
+msgstr "Configura como tu conto se connecte a Facebook"
+
+#: FBConnectSettings.php:90
+msgid "There is no Facebook user connected to this account."
+msgstr "Il non ha un usator de Facebook connectite a iste conto."
+
+#: FBConnectSettings.php:98
+msgid "Connected Facebook user"
+msgstr "Usator de Facebook connectite"
+
+#. TRANS: Legend.
+#: FBConnectSettings.php:118
+msgid "Disconnect my account from Facebook"
+msgstr "Disconnecter mi conto ab Facebook"
+
+#. TRANS: Followed by a link containing text "set a password".
+#: FBConnectSettings.php:125
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please "
+msgstr ""
+"Le disconnexion de tu Facebook renderea le authentication impossibile! Per "
+"favor "
+
+#. TRANS: Preceded by "Please " and followed by " first."
+#: FBConnectSettings.php:130
+msgid "set a password"
+msgstr "defini un contrasigno"
+
+#. TRANS: Preceded by "Please set a password".
+#: FBConnectSettings.php:132
+msgid " first."
+msgstr " primo."
+
+#. TRANS: Submit button.
+#: FBConnectSettings.php:145
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "Disconnecter"
+
+#: FBConnectSettings.php:180
+msgid "Couldn't delete link to Facebook."
+msgstr "Non poteva deler le ligamine a Facebook."
+
+#: FBConnectSettings.php:196
+msgid "You have disconnected from Facebook."
+msgstr "Tu te ha disconnectite de Facebook."
+
+#: FBConnectSettings.php:199
+msgid "Not sure what you're trying to do."
+msgstr "Non es clar lo que tu tenta facer."
+
+#: facebooksettings.php:61
+msgid "There was a problem saving your sync preferences!"
+msgstr ""
+"Occurreva un problema durante le salveguarda de tu preferentias de "
+"synchronisation!"
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the system.
+#: facebooksettings.php:64
+msgid "Sync preferences saved."
+msgstr "Preferentias de synchronisation salveguardate."
+
+#: facebooksettings.php:87
+msgid "Automatically update my Facebook status with my notices."
+msgstr "Actualisar automaticamente mi stato de Facebook con mi notas."
+
+#: facebooksettings.php:94
+msgid "Send \"@\" replies to Facebook."
+msgstr "Inviar responsas \"@\" a Facebook."
+
+#. TRANS: Submit button to save synchronisation settings.
+#: facebooksettings.php:102
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Salveguardar"
+
+#. TRANS: %s is the application name.
+#: facebooksettings.php:111
+#, php-format
+msgid ""
+"If you would like %s to automatically update your Facebook status with your "
+"latest notice, you need to give it permission."
+msgstr ""
+"Si tu vole que %s actualisa automaticamente tu stato de Facebook con tu "
+"ultime nota, tu debe dar permission a illo."
+
+#: facebooksettings.php:124
+#, php-format
+msgid "Allow %s to update my Facebook status"
+msgstr "Permitter a %s de actualisar mi stato de Facebook"
+
+#. TRANS: Page title for synchronisation settings.
+#: facebooksettings.php:134
+msgid "Sync preferences"
+msgstr "Preferentias de synchronisation"

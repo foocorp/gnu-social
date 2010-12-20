@@ -44,7 +44,6 @@ define('TAGS_PER_PAGE', 100);
  * @copyright 2008-2009 StatusNet, Inc.
  * @link     http://status.net/
  */
-
 class PublictagcloudAction extends Action
 {
     function isReadOnly($args)
@@ -54,24 +53,37 @@ class PublictagcloudAction extends Action
 
     function title()
     {
+        // TRANS: Title for public tag cloud.
         return _('Public tag cloud');
     }
 
     function showPageNotice()
     {
         $this->element('p', 'instructions',
-                       sprintf(_('These are most popular recent tags on %s '),
+                       // TRANS: Instructions (more used like an explanation/header).
+                       // TRANS: %s is the StatusNet sitename.
+                       sprintf(_('These are most popular recent tags on %s'),
                                common_config('site', 'name')));
     }
 
     function showEmptyList()
     {
+        // TRANS: This message contains a Markdown URL. The link description is between
+        // TRANS: square brackets, and the link between parentheses. Do not separate "]("
+        // TRANS: and do not change the URL part.
         $message = _('No one has posted a notice with a [hashtag](%%doc.tags%%) yet.') . ' ';
 
         if (common_logged_in()) {
+            // TRANS: Message shown to a logged in user for the public tag cloud
+            // TRANS: while no tags exist yet. "One" refers to the non-existing hashtag.
             $message .= _('Be the first to post one!');
         }
         else {
+            // TRANS: Message shown to a anonymous user for the public tag cloud
+            // TRANS: while no tags exist yet. "One" refers to the non-existing hashtag.
+            // TRANS: This message contains a Markdown URL. The link description is between
+            // TRANS: square brackets, and the link between parentheses. Do not separate "]("
+            // TRANS: and do not change the URL part.
             $message .= _('Why not [register an account](%%action.register%%) and be the first to post one!');
         }
 

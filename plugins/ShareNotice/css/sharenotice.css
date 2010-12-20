@@ -1,0 +1,23 @@
+.notice-share {
+    width: 24px;
+    float: right;
+}
+
+.notice-share li a {
+    display: block;
+    width: 16px;
+    height: 16px;
+    background: url(icon-share.png) no-repeat;
+}
+.notice-share li.notice-share-twitter a {
+    background-image: url(icon-twitter.png);
+}
+.notice-share li.notice-share-facebook a {
+    background-image: url(icon-facebook.png);
+}
+.notice-share li.notice-share-statusnet a {
+    background-image: url(icon-statusnet.png);
+}
+.notice-share li a span {
+    display: none;
+}

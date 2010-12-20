@@ -48,42 +48,13 @@ class PopularNoticeSection extends NoticeSection
 {
     function getNotices()
     {
-        // @fixme there should be a common func for this
-        if (common_config('db', 'type') == 'pgsql') {
-            if (!empty($this->out->tag)) {
-                $tag = pg_escape_string($this->out->tag);
-            }
-        } else {
-            if (!empty($this->out->tag)) {
-                 $tag = mysql_escape_string($this->out->tag);
-            }
+        $pop = new Popularity();
+        if (!empty($this->out->tag)) {
+            $pop->tag = $this->out->tag;
         }
-        $weightexpr = common_sql_weight('fave.modified', common_config('popular', 'dropoff'));
-        $cutoff = sprintf("fave.modified > '%s'",
-                          common_sql_date(time() - common_config('popular', 'cutoff')));
-        $qry = "SELECT notice.*, $weightexpr as weight ";
-        if(isset($tag)) {
-            $qry .= 'FROM notice_tag, notice JOIN fave ON notice.id = fave.notice_id ' .
-                    "WHERE $cutoff and notice.id = notice_tag.notice_id and '$tag' = notice_tag.tag";
-        } else {
-            $qry .= 'FROM notice JOIN fave ON notice.id = fave.notice_id ' .
-                    "WHERE $cutoff";
-        }
-        $qry .= ' GROUP BY notice.id,notice.profile_id,notice.content,notice.uri,' .
-                'notice.rendered,notice.url,notice.created,notice.modified,' .
-                'notice.reply_to,notice.is_local,notice.source,notice.conversation, ' .
-                'notice.lat,notice.lon,location_id,location_ns,notice.repeat_of' .
-                ' ORDER BY weight DESC';
-
-        $offset = 0;
-        $limit  = NOTICES_PER_SECTION + 1;
-
-        $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-
-        $notice = Memcached_DataObject::cachedQuery('Notice',
-                                                    $qry,
-                                                    1200);
-        return $notice;
+        $pop->limit = NOTICES_PER_SECTION;
+        $pop->expiry = 1200;
+        return $pop->getNotices();
     }
 
     function title()

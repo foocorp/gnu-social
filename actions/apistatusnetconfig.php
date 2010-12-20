@@ -46,7 +46,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiStatusnetConfigAction extends ApiAction
 {
     var $keys = array(
@@ -69,9 +68,7 @@ class ApiStatusnetConfigAction extends ApiAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -85,7 +82,6 @@ class ApiStatusnetConfigAction extends ApiAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -138,6 +134,7 @@ class ApiStatusnetConfigAction extends ApiAction
             break;
         default:
             $this->clientError(
+                // TRANS: Client error displayed when trying to handle an unknown API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -155,11 +152,8 @@ class ApiStatusnetConfigAction extends ApiAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;
     }
-
 }
-

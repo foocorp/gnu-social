@@ -1,3 +1,7 @@
+<!-- Copyright 2008-2010 StatusNet Inc. and contributors. -->
+<!-- Document licensed under Creative Commons Attribution 3.0 Unported. See -->
+<!-- http://creativecommons.org/licenses/by/3.0/ for details. -->
+
 %%site.name%% is a **microblogging service**. Users post short (%%site.textlimit%%
 character) notices which are broadcast to their friends and fans using
 the Web, RSS, or instant messages.
@@ -31,3 +35,4 @@ Here are some documents that you might find helpful in understanding
 * [Source](%%doc.source%%) - How to get the StatusNet source code
 * [Badge](%%doc.badge%%) - How to put a StatusNet badge on your blog or homepage
 * [Bookmarklet](%%doc.bookmarklet%%) - Bookmarklet for posting Web pages
+* [API](%%doc.api%%) - API for use by external clients

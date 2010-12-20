@@ -51,16 +51,16 @@ class ImapPlugin extends Plugin
 
     function initialize(){
         if(!isset($this->mailbox)){
-            throw new Exception("must specify a mailbox");
+            throw new Exception(_m("A mailbox must be specified."));
         }
         if(!isset($this->user)){
-            throw new Exception("must specify a user");
+            throw new Exception(_m("A user must be specified."));
         }
         if(!isset($this->password)){
-            throw new Exception("must specify a password");
+            throw new Exception(_m("A password must be specified."));
         }
         if(!isset($this->poll_frequency)){
-            throw new Exception("must specify a poll_frequency");
+            throw new Exception(_m("A poll_frequency must be specified."));
         }
 
         return true;

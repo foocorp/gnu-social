@@ -44,14 +44,14 @@ try {
         if (empty($user)) {
             throw new Exception("Can't find user with id '$id'.");
         }
-        updateProfileURL($user);
+        updateOStatus($user);
     } else if (have_option('n', 'nickname')) {
         $nickname = get_option_value('n', 'nickname');
         $user = User::staticGet('nickname', $nickname);
         if (empty($user)) {
-            throw new Exception("Can't find user with nickname '$nickname'");
+            throw new Exception("Can't find user with nickname '$nickname'.");
         }
-        updateProfileURL($user);
+        updateOStatus($user);
     } else if (have_option('a', 'all')) {
         $user = new User();
         if ($user->find()) {

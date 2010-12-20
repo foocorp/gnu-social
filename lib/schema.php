@@ -41,6 +41,7 @@ if (!defined('STATUSNET')) {
  * @category Database
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
+ * @author   Brion Vibber <brion@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
@@ -118,65 +119,216 @@ class Schema
     /**
      * Creates a table with the given names and columns.
      *
-     * @param string $name    Name of the table
-     * @param array  $columns Array of ColumnDef objects
-     *                        for new table.
+     * @param string $tableName    Name of the table
+     * @param array  $def          Table definition array listing fields and indexes.
      *
      * @return boolean success flag
      */
 
-    public function createTable($name, $columns)
+    public function createTable($tableName, $def)
     {
-        $uniques = array();
-        $primary = array();
-        $indices = array();
+        $statements = $this->buildCreateTable($tableName, $def);
+        return $this->runSqlSet($statements);
+    }
 
-        $sql = "CREATE TABLE $name (\n";
+    /**
+     * Build a set of SQL statements to create a table with the given
+     * name and columns.
+     *
+     * @param string $name    Name of the table
+     * @param array  $def     Table definition array
+     *
+     * @return boolean success flag
+     */
+    public function buildCreateTable($name, $def)
+    {
+        $def = $this->validateDef($name, $def);
+        $def = $this->filterDef($def);
+        $sql = array();
 
-        for ($i = 0; $i < count($columns); $i++) {
+        foreach ($def['fields'] as $col => $colDef) {
+            $this->appendColumnDef($sql, $col, $colDef);
+        }
 
-            $cd =& $columns[$i];
+        // Primary, unique, and foreign keys are constraints, so go within
+        // the CREATE TABLE statement normally.
+        if (!empty($def['primary key'])) {
+            $this->appendPrimaryKeyDef($sql, $def['primary key']);
+        }
 
-            if ($i > 0) {
-                $sql .= ",\n";
+        if (!empty($def['unique keys'])) {
+            foreach ($def['unique keys'] as $col => $colDef) {
+                $this->appendUniqueKeyDef($sql, $col, $colDef);
             }
+        }
 
-            $sql .= $this->_columnSql($cd);
-
-            switch ($cd->key) {
-            case 'UNI':
-                $uniques[] = $cd->name;
-                break;
-            case 'PRI':
-                $primary[] = $cd->name;
-                break;
-            case 'MUL':
-                $indices[] = $cd->name;
-                break;
+        if (!empty($def['foreign keys'])) {
+            foreach ($def['foreign keys'] as $keyName => $keyDef) {
+                $this->appendForeignKeyDef($sql, $keyName, $keyDef);
             }
         }
 
-        if (count($primary) > 0) { // it really should be...
-            $sql .= ",\nconstraint primary key (" . implode(',', $primary) . ")";
+        // Wrap the CREATE TABLE around the main body chunks...
+        $statements = array();
+        $statements[] = $this->startCreateTable($name, $def) . "\n" .
+                        implode($sql, ",\n") . "\n" .
+                        $this->endCreateTable($name, $def);
+
+        // Multi-value indexes are advisory and for best portability
+        // should be created as separate statements.
+        if (!empty($def['indexes'])) {
+            foreach ($def['indexes'] as $col => $colDef) {
+                $this->appendCreateIndex($statements, $name, $col, $colDef);
+            }
+        }
+        if (!empty($def['fulltext indexes'])) {
+            foreach ($def['fulltext indexes'] as $col => $colDef) {
+                $this->appendCreateFulltextIndex($statements, $name, $col, $colDef);
+            }
         }
 
-        foreach ($uniques as $u) {
-            $sql .= ",\nunique index {$name}_{$u}_idx ($u)";
+        return $statements;
+    }
+
+    /**
+     * Set up a 'create table' SQL statement.
+     *
+     * @param string $name table name
+     * @param array $def table definition
+     * @param $string
+     */
+    function startCreateTable($name, array $def)
+    {
+        return 'CREATE TABLE ' . $this->quoteIdentifier($name)  . ' (';
+    }
+
+    /**
+     * Close out a 'create table' SQL statement.
+     *
+     * @param string $name table name
+     * @param array $def table definition
+     * @return string
+     */
+    function endCreateTable($name, array $def)
+    {
+        return ')';
+    }
+
+    /**
+     * Append an SQL fragment with a column definition in a CREATE TABLE statement.
+     *
+     * @param array $sql
+     * @param string $name
+     * @param array $def
+     */
+    function appendColumnDef(array &$sql, $name, array $def)
+    {
+        $sql[] = "$name " . $this->columnSql($def);
+    }
+
+    /**
+     * Append an SQL fragment with a constraint definition for a primary
+     * key in a CREATE TABLE statement.
+     *
+     * @param array $sql
+     * @param array $def
+     */
+    function appendPrimaryKeyDef(array &$sql, array $def)
+    {
+        $sql[] = "PRIMARY KEY " . $this->buildIndexList($def);
+    }
+
+    /**
+     * Append an SQL fragment with a constraint definition for a unique
+     * key in a CREATE TABLE statement.
+     *
+     * @param array $sql
+     * @param string $name
+     * @param array $def
+     */
+    function appendUniqueKeyDef(array &$sql, $name, array $def)
+    {
+        $sql[] = "CONSTRAINT $name UNIQUE " . $this->buildIndexList($def);
+    }
+
+    /**
+     * Append an SQL fragment with a constraint definition for a foreign
+     * key in a CREATE TABLE statement.
+     *
+     * @param array $sql
+     * @param string $name
+     * @param array $def
+     */
+    function appendForeignKeyDef(array &$sql, $name, array $def)
+    {
+        if (count($def) != 2) {
+            throw new Exception("Invalid foreign key def for $name: " . var_export($def, true));
         }
+        list($refTable, $map) = $def;
+        $srcCols = array_keys($map);
+        $refCols = array_values($map);
+        $sql[] = "CONSTRAINT $name FOREIGN KEY " .
+                 $this->buildIndexList($srcCols) .
+                 " REFERENCES " .
+                 $this->quoteIdentifier($refTable) .
+                 " " .
+                 $this->buildIndexList($refCols);
+    }
 
-        foreach ($indices as $i) {
-            $sql .= ",\nindex {$name}_{$i}_idx ($i)";
+    /**
+     * Append an SQL statement with an index definition for an advisory
+     * index over one or more columns on a table.
+     *
+     * @param array $statements
+     * @param string $table
+     * @param string $name
+     * @param array $def
+     */
+    function appendCreateIndex(array &$statements, $table, $name, array $def)
+    {
+        $statements[] = "CREATE INDEX $name ON $table " . $this->buildIndexList($def);
+    }
+
+    /**
+     * Append an SQL statement with an index definition for a full-text search
+     * index over one or more columns on a table.
+     *
+     * @param array $statements
+     * @param string $table
+     * @param string $name
+     * @param array $def
+     */
+    function appendCreateFulltextIndex(array &$statements, $table, $name, array $def)
+    {
+        throw new Exception("Fulltext index not supported in this database");
+    }
+
+    /**
+     * Append an SQL statement to drop an index from a table.
+     *
+     * @param array $statements
+     * @param string $table
+     * @param string $name
+     * @param array $def
+     */
+    function appendDropIndex(array &$statements, $table, $name)
+    {
+        $statements[] = "DROP INDEX $name ON " . $this->quoteIdentifier($table);
+    }
+
+    function buildIndexList(array $def)
+    {
+        // @fixme
+        return '(' . implode(',', array_map(array($this, 'buildIndexItem'), $def)) . ')';
+    }
+
+    function buildIndexItem($def)
+    {
+        if (is_array($def)) {
+            list($name, $size) = $def;
+            return $this->quoteIdentifier($name) . '(' . intval($size) . ')';
         }
-
-        $sql .= "); ";
-
-        $res = $this->conn->query($sql);
-
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
-        }
-
-        return true;
+        return $this->quoteIdentifier($def);
     }
 
     /**
@@ -223,7 +375,7 @@ class Schema
         }
 
         if (empty($name)) {
-            $name = "$table_".implode("_", $columnNames)."_idx";
+            $name = "{$table}_".implode("_", $columnNames)."_idx";
         }
 
         $res = $this->conn->query("ALTER TABLE $table ".
@@ -338,46 +490,80 @@ class Schema
      * alter the table to match the column definitions.
      *
      * @param string $tableName name of the table
-     * @param array  $columns   array of ColumnDef
-     *                          objects for the table
+     * @param array  $def       Table definition array
      *
      * @return boolean success flag
      */
 
-    public function ensureTable($tableName, $columns)
+    public function ensureTable($tableName, $def)
     {
-        // XXX: DB engine portability -> toilet
+        $statements = $this->buildEnsureTable($tableName, $def);
+        return $this->runSqlSet($statements);
+    }
 
+    /**
+     * Run a given set of SQL commands on the connection in sequence.
+     * Empty input is ok.
+     *
+     * @fixme if multiple statements, wrap in a transaction?
+     * @param array $statements
+     * @return boolean success flag
+     */
+    function runSqlSet(array $statements)
+    {
+        $ok = true;
+        foreach ($statements as $sql) {
+            if (defined('DEBUG_INSTALLER')) {
+                echo "<tt>" . htmlspecialchars($sql) . "</tt><br/>\n";
+            }
+            $res = $this->conn->query($sql);
+
+            if (PEAR::isError($res)) {
+                throw new Exception($res->getMessage());
+            }
+        }
+        return $ok;
+    }
+
+    /**
+     * Check a table's status, and if needed build a set
+     * of SQL statements which change it to be consistent
+     * with the given table definition.
+     *
+     * If the table does not yet exist, statements will
+     * be returned to create the table. If it does exist,
+     * statements will be returned to alter the table to
+     * match the column definitions.
+     *
+     * @param string $tableName name of the table
+     * @param array  $columns   array of ColumnDef
+     *                          objects for the table
+     *
+     * @return array of SQL statements
+     */
+
+    function buildEnsureTable($tableName, array $def)
+    {
         try {
-            $td = $this->getTableDef($tableName);
-        } catch (Exception $e) {
-            if (preg_match('/no such table/', $e->getMessage())) {
-                return $this->createTable($tableName, $columns);
-            } else {
-                throw $e;
-            }
+            $old = $this->getTableDef($tableName);
+        } catch (SchemaTableMissingException $e) {
+            return $this->buildCreateTable($tableName, $def);
         }
 
-        $cur = $this->_names($td->columns);
-        $new = $this->_names($columns);
+        // Filter the DB-independent table definition to match the current
+        // database engine's features and limitations.
+        $def = $this->validateDef($tableName, $def);
+        $def = $this->filterDef($def);
 
-        $toadd  = array_diff($new, $cur);
-        $todrop = array_diff($cur, $new);
-        $same   = array_intersect($new, $cur);
-        $tomod  = array();
+        $statements = array();
+        $fields = $this->diffArrays($old, $def, 'fields', array($this, 'columnsEqual'));
+        $uniques = $this->diffArrays($old, $def, 'unique keys');
+        $indexes = $this->diffArrays($old, $def, 'indexes');
+        $foreign = $this->diffArrays($old, $def, 'foreign keys');
 
-        foreach ($same as $m) {
-            $curCol = $this->_byName($td->columns, $m);
-            $newCol = $this->_byName($columns, $m);
-
-            if (!$newCol->equals($curCol)) {
-                $tomod[] = $newCol->name;
-            }
-        }
-
-        if (count($toadd) + count($todrop) + count($tomod) == 0) {
-            // nothing to do
-            return true;
+        // Drop any obsolete or modified indexes ahead...
+        foreach ($indexes['del'] + $indexes['mod'] as $indexName) {
+            $this->appendDropIndex($statements, $tableName, $indexName);
         }
 
         // For efficiency, we want this all in one
@@ -385,31 +571,200 @@ class Schema
 
         $phrase = array();
 
-        foreach ($toadd as $columnName) {
-            $cd = $this->_byName($columns, $columnName);
-
-            $phrase[] = 'ADD COLUMN ' . $this->_columnSql($cd);
+        foreach ($foreign['del'] + $foreign['mod'] as $keyName) {
+            $this->appendAlterDropForeign($phrase, $keyName);
         }
 
-        foreach ($todrop as $columnName) {
-            $phrase[] = 'DROP COLUMN ' . $columnName;
+        foreach ($uniques['del'] + $uniques['mod'] as $keyName) {
+            $this->appendAlterDropUnique($phrase, $keyName);
         }
 
-        foreach ($tomod as $columnName) {
-            $cd = $this->_byName($columns, $columnName);
-
-            $phrase[] = 'MODIFY COLUMN ' . $this->_columnSql($cd);
+        foreach ($fields['add'] as $columnName) {
+            $this->appendAlterAddColumn($phrase, $columnName,
+                    $def['fields'][$columnName]);
         }
 
-        $sql = 'ALTER TABLE ' . $tableName . ' ' . implode(', ', $phrase);
-
-        $res = $this->conn->query($sql);
-
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
+        foreach ($fields['mod'] as $columnName) {
+            $this->appendAlterModifyColumn($phrase, $columnName,
+                    $old['fields'][$columnName],
+                    $def['fields'][$columnName]);
         }
 
-        return true;
+        foreach ($fields['del'] as $columnName) {
+            $this->appendAlterDropColumn($phrase, $columnName);
+        }
+
+        foreach ($uniques['mod'] + $uniques['add'] as $keyName) {
+            $this->appendAlterAddUnique($phrase, $keyName, $def['unique keys'][$keyName]);
+        }
+
+        foreach ($foreign['mod'] + $foreign['add'] as $keyName) {
+            $this->appendAlterAddForeign($phrase, $keyName, $def['foreign keys'][$keyName]);
+        }
+
+        $this->appendAlterExtras($phrase, $tableName, $def);
+
+        if (count($phrase) > 0) {
+            $sql = 'ALTER TABLE ' . $tableName . ' ' . implode(",\n", $phrase);
+            $statements[] = $sql;
+        }
+
+        // Now create any indexes...
+        foreach ($indexes['mod'] + $indexes['add'] as $indexName) {
+            $this->appendCreateIndex($statements, $tableName, $indexName, $def['indexes'][$indexName]);
+        }
+
+        return $statements;
+    }
+
+    function diffArrays($oldDef, $newDef, $section, $compareCallback=null)
+    {
+        $old = isset($oldDef[$section]) ? $oldDef[$section] : array();
+        $new = isset($newDef[$section]) ? $newDef[$section] : array();
+
+        $oldKeys = array_keys($old);
+        $newKeys = array_keys($new);
+
+        $toadd  = array_diff($newKeys, $oldKeys);
+        $todrop = array_diff($oldKeys, $newKeys);
+        $same   = array_intersect($newKeys, $oldKeys);
+        $tomod  = array();
+        $tokeep = array();
+
+        // Find which fields have actually changed definition
+        // in a way that we need to tweak them for this DB type.
+        foreach ($same as $name) {
+            if ($compareCallback) {
+                $same = call_user_func($compareCallback, $old[$name], $new[$name]);
+            } else {
+                $same = ($old[$name] == $new[$name]);
+            }
+            if ($same) {
+                $tokeep[] = $name;
+                continue;
+            }
+            $tomod[] = $name;
+        }
+        return array('add' => $toadd,
+                     'del' => $todrop,
+                     'mod' => $tomod,
+                     'keep' => $tokeep,
+                     'count' => count($toadd) + count($todrop) + count($tomod));
+    }
+
+    /**
+     * Append phrase(s) to an array of partial ALTER TABLE chunks in order
+     * to add the given column definition to the table.
+     *
+     * @param array $phrase
+     * @param string $columnName
+     * @param array $cd 
+     */
+    function appendAlterAddColumn(array &$phrase, $columnName, array $cd)
+    {
+        $phrase[] = 'ADD COLUMN ' .
+                    $this->quoteIdentifier($columnName) .
+                    ' ' .
+                    $this->columnSql($cd);
+    }
+
+    /**
+     * Append phrase(s) to an array of partial ALTER TABLE chunks in order
+     * to alter the given column from its old state to a new one.
+     *
+     * @param array $phrase
+     * @param string $columnName
+     * @param array $old previous column definition as found in DB
+     * @param array $cd current column definition
+     */
+    function appendAlterModifyColumn(array &$phrase, $columnName, array $old, array $cd)
+    {
+        $phrase[] = 'MODIFY COLUMN ' .
+                    $this->quoteIdentifier($columnName) .
+                    ' ' .
+                    $this->columnSql($cd);
+    }
+
+    /**
+     * Append phrase(s) to an array of partial ALTER TABLE chunks in order
+     * to drop the given column definition from the table.
+     *
+     * @param array $phrase
+     * @param string $columnName
+     */
+    function appendAlterDropColumn(array &$phrase, $columnName)
+    {
+        $phrase[] = 'DROP COLUMN ' . $this->quoteIdentifier($columnName);
+    }
+
+    function appendAlterAddUnique(array &$phrase, $keyName, array $def)
+    {
+        $sql = array();
+        $sql[] = 'ADD';
+        $this->appendUniqueKeyDef($sql, $keyName, $def);
+        $phrase[] = implode(' ', $sql);
+    }
+
+    function appendAlterAddForeign(array &$phrase, $keyName, array $def)
+    {
+        $sql = array();
+        $sql[] = 'ADD';
+        $this->appendForeignKeyDef($sql, $keyName, $def);
+        $phrase[] = implode(' ', $sql);
+    }
+
+    function appendAlterDropUnique(array &$phrase, $keyName)
+    {
+        $phrase[] = 'DROP CONSTRAINT ' . $keyName;
+    }
+
+    function appendAlterDropForeign(array &$phrase, $keyName)
+    {
+        $phrase[] = 'DROP FOREIGN KEY ' . $keyName;
+    }
+
+    function appendAlterExtras(array &$phrase, $tableName, array $def)
+    {
+        // no-op
+    }
+
+    /**
+     * Quote a db/table/column identifier if necessary.
+     *
+     * @param string $name
+     * @return string
+     */
+    function quoteIdentifier($name)
+    {
+        return $name;
+    }
+
+    function quoteDefaultValue($cd)
+    {
+        if ($cd['type'] == 'datetime' && $cd['default'] == 'CURRENT_TIMESTAMP') {
+            return $cd['default'];
+        } else {
+            return $this->quoteValue($cd['default']);
+        }
+    }
+
+    function quoteValue($val)
+    {
+        return $this->conn->quoteSmart($val);
+    }
+
+    /**
+     * Check if two column definitions are equivalent.
+     * The default implementation checks _everything_ but in many cases
+     * you may be able to discard a bunch of equivalencies.
+     *
+     * @param array $a
+     * @param array $b
+     * @return boolean
+     */
+    function columnsEqual(array $a, array $b)
+    {
+        return !array_diff_assoc($a, $b) && !array_diff_assoc($b, $a);
     }
 
     /**
@@ -421,7 +776,7 @@ class Schema
      * @return array strings for name values
      */
 
-    private function _names($cds)
+    protected function _names($cds)
     {
         $names = array();
 
@@ -442,7 +797,7 @@ class Schema
      * @return ColumnDef matching item or null if no match.
      */
 
-    private function _byName($cds, $name)
+    protected function _byName($cds, $name)
     {
         foreach ($cds as $cd) {
             if ($cd->name == $name) {
@@ -465,32 +820,194 @@ class Schema
      * @return string correct SQL for that column
      */
 
-    private function _columnSql($cd)
+    function columnSql(array $cd)
     {
-        $sql = "{$cd->name} ";
+        $line = array();
+        $line[] = $this->typeAndSize($cd);
 
-        if (!empty($cd->size)) {
-            $sql .= "{$cd->type}({$cd->size}) ";
-        } else {
-            $sql .= "{$cd->type} ";
+        if (isset($cd['default'])) {
+            $line[] = 'default';
+            $line[] = $this->quoteDefaultValue($cd);
+        } else if (!empty($cd['not null'])) {
+            // Can't have both not null AND default!
+            $line[] = 'not null';
         }
 
-        if (!empty($cd->default)) {
-            $sql .= "default {$cd->default} ";
-        } else {
-            $sql .= ($cd->nullable) ? "null " : "not null ";
-        }
-
-        if (!empty($cd->auto_increment)) {
-            $sql .= " auto_increment ";
-        }
-
-        if (!empty($cd->extra)) {
-            $sql .= "{$cd->extra} ";
-        }
-
-        return $sql;
+        return implode(' ', $line);
     }
+
+    /**
+     *
+     * @param string $column canonical type name in defs
+     * @return string native DB type name
+     */
+    function mapType($column)
+    {
+        return $column;
+    }
+
+    function typeAndSize($column)
+    {
+        //$type = $this->mapType($column);
+        $type = $column['type'];
+        if (isset($column['size'])) {
+            $type = $column['size'] . $type;
+        }
+        $lengths = array();
+
+        if (isset($column['precision'])) {
+            $lengths[] = $column['precision'];
+            if (isset($column['scale'])) {
+                $lengths[] = $column['scale'];
+            }
+        } else if (isset($column['length'])) {
+            $lengths[] = $column['length'];
+        }
+
+        if ($lengths) {
+            return $type . '(' . implode(',', $lengths) . ')';
+        } else {
+            return $type;
+        }
+    }
+
+    /**
+     * Convert an old-style set of ColumnDef objects into the current
+     * Drupal-style schema definition array, for backwards compatibility
+     * with plugins written for 0.9.x.
+     *
+     * @param string $tableName
+     * @param array $defs: array of ColumnDef objects
+     * @return array
+     */
+    protected function oldToNew($tableName, array $defs)
+    {
+        $table = array();
+        $prefixes = array(
+            'tiny',
+            'small',
+            'medium',
+            'big',
+        );
+        foreach ($defs as $cd) {
+            $column = array();
+            $column['type'] = $cd->type;
+            foreach ($prefixes as $prefix) {
+                if (substr($cd->type, 0, strlen($prefix)) == $prefix) {
+                    $column['type'] = substr($cd->type, strlen($prefix));
+                    $column['size'] = $prefix;
+                    break;
+                }
+            }
+
+            if ($cd->size) {
+                if ($cd->type == 'varchar' || $cd->type == 'char') {
+                    $column['length'] = $cd->size;
+                }
+            }
+            if (!$cd->nullable) {
+                $column['not null'] = true;
+            }
+            if ($cd->auto_increment) {
+                $column['type'] = 'serial';
+            }
+            if ($cd->default) {
+                $column['default'] = $cd->default;
+            }
+            $table['fields'][$cd->name] = $column;
+
+            if ($cd->key == 'PRI') {
+                // If multiple columns are defined as primary key,
+                // we'll pile them on in sequence.
+                if (!isset($table['primary key'])) {
+                    $table['primary key'] = array();
+                }
+                $table['primary key'][] = $cd->name;
+            } else if ($cd->key == 'MUL') {
+                // Individual multiple-value indexes are only per-column
+                // using the old ColumnDef syntax.
+                $idx = "{$tableName}_{$cd->name}_idx";
+                $table['indexes'][$idx] = array($cd->name);
+            } else if ($cd->key == 'UNI') {
+                // Individual unique-value indexes are only per-column
+                // using the old ColumnDef syntax.
+                $idx = "{$tableName}_{$cd->name}_idx";
+                $table['unique keys'][$idx] = array($cd->name);
+            }
+        }
+
+        return $table;
+    }
+
+    /**
+     * Filter the given table definition array to match features available
+     * in this database.
+     *
+     * This lets us strip out unsupported things like comments, foreign keys,
+     * or type variants that we wouldn't get back from getTableDef().
+     *
+     * @param array $tableDef
+     */
+    function filterDef(array $tableDef)
+    {
+        return $tableDef;
+    }
+
+    /**
+     * Validate a table definition array, checking for basic structure.
+     *
+     * If necessary, converts from an old-style array of ColumnDef objects.
+     *
+     * @param string $tableName
+     * @param array $def: table definition array
+     * @return array validated table definition array
+     *
+     * @throws Exception on wildly invalid input
+     */
+    function validateDef($tableName, array $def)
+    {
+        if (isset($def[0]) && $def[0] instanceof ColumnDef) {
+            $def = $this->oldToNew($tableName, $def);
+        }
+
+        // A few quick checks :D
+        if (!isset($def['fields'])) {
+            throw new Exception("Invalid table definition for $tableName: no fields.");
+        }
+
+        return $def;
+    }
+
+    function isNumericType($type)
+    {
+        $type = strtolower($type);
+        $known = array('int', 'serial', 'numeric');
+        return in_array($type, $known);
+    }
+
+    /**
+     * Pull info from the query into a fun-fun array of dooooom
+     *
+     * @param string $sql
+     * @return array of arrays
+     */
+    protected function fetchQueryData($sql)
+    {
+        $res = $this->conn->query($sql);
+        if (PEAR::isError($res)) {
+            throw new Exception($res->getMessage());
+        }
+
+        $out = array();
+        $row = array();
+        while ($res->fetchInto($row, DB_FETCHMODE_ASSOC)) {
+            $out[] = $row;
+        }
+        $res->free();
+
+        return $out;
+    }
+
 }
 
 class SchemaTableMissingException extends Exception

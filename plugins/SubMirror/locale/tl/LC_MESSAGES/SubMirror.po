@@ -1,0 +1,139 @@
+# Translation of StatusNet - SubMirror to Tagalog (Tagalog)
+# Expored from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SubMirror\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:59+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:46:18+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-submirror\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: SubMirrorPlugin.php:90
+msgid "Pull feeds into your timeline!"
+msgstr "Hilahin ang mga pakain papasok sa iyong guhit ng panahon!"
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+#: SubMirrorPlugin.php:109
+msgctxt "MENU"
+msgid "Mirroring"
+msgstr "Sinasalamin"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+#: SubMirrorPlugin.php:111
+msgid "Configure mirroring of posts from other feeds"
+msgstr "Iayos ang pagsasalamin ng mga pagpapaskil mula sa ibang mga pakain"
+
+#: lib/editmirrorform.php:83
+msgctxt "LABEL"
+msgid "Remote feed:"
+msgstr "Pakaing malayo:"
+
+#: lib/editmirrorform.php:87
+msgctxt "LABEL"
+msgid "Local user"
+msgstr "Katutubong tagagamit"
+
+#: lib/editmirrorform.php:93
+msgid "Mirroring style"
+msgstr "Estilo ng pagsasalamin"
+
+#: lib/editmirrorform.php:95
+msgid ""
+"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+msgstr ""
+"Ulitin: sangguniin ang orihinal na pagpapaskil ng tagagamit (minsang "
+"ipinapakita bilang 'RT @blah')"
+
+#: lib/editmirrorform.php:96
+msgid "Repost the content under my account"
+msgstr "Muling ipaskil ang nilalaman sa ilalim ng aking akawnt"
+
+#: lib/editmirrorform.php:115
+msgid "Save"
+msgstr "Sagipin"
+
+#: lib/editmirrorform.php:117
+msgid "Stop mirroring"
+msgstr "Ihinto ang pagsasalamin"
+
+#: lib/addmirrorform.php:59
+msgid "Web page or feed URL:"
+msgstr "URL ng pahina sa web o pakain:"
+
+#: lib/addmirrorform.php:64
+msgctxt "BUTTON"
+msgid "Add feed"
+msgstr "Idagdag ang pakain"
+
+#: actions/basemirror.php:71
+msgid "Invalid feed URL."
+msgstr "Hindi tanggap na URL ng pakain."
+
+#. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
+#: actions/basemirror.php:83
+msgid "Invalid profile for mirroring."
+msgstr "Hindi tanggap na balangkas para sa pagsasalamin."
+
+#: actions/basemirror.php:101
+msgid "Can't mirror a StatusNet group at this time."
+msgstr "Hindi maisalamin sa ngayon ang isang pangkat ng StatusNet."
+
+#: actions/basemirror.php:115
+msgid "This action only accepts POST requests."
+msgstr "Ang galaw na ito ay tumatanggap lamang ng mga kahilingang POST."
+
+#: actions/basemirror.php:123
+msgid "There was a problem with your session token. Try again, please."
+msgstr "May isang suliranin sa iyong token ng sesyon. Pakisubukan uli."
+
+#: actions/basemirror.php:133
+msgid "Not logged in."
+msgstr "Hindi nakalagda."
+
+#: actions/basemirror.php:156
+msgid "Subscribed"
+msgstr "Tumanggap ng sipi"
+
+#: actions/editmirror.php:68
+msgid "Requested invalid profile to edit."
+msgstr "Hiniling na pamamatnugutang hindi tanggap na balangkas."
+
+#: actions/editmirror.php:86
+msgid "Bad form data."
+msgstr "Datong may masamang anyo."
+
+#. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
+#: actions/editmirror.php:95
+msgid "Requested edit of missing mirror."
+msgstr "Hiniling na pagpatnugot ng nawawalang salamin."
+
+#: actions/addmirror.php:72
+msgid "Could not subscribe to feed."
+msgstr "Hindi magawang makatanggap ng pakain."
+
+#. TRANS: Title.
+#: actions/mirrorsettings.php:42
+msgid "Feed mirror settings"
+msgstr "Mga katakdaan ng salamin ng pakain"
+
+#. TRANS: Instructions.
+#: actions/mirrorsettings.php:54
+msgid ""
+"You can mirror updates from many RSS and Atom feeds into your StatusNet "
+"timeline!"
+msgstr ""
+"Maisasalamin mo ang mga pagsasapanahon mula sa maraming mga pakain ng RSS at "
+"Atom sa iyong guhit ng panahon ng StatusNet!"

@@ -62,7 +62,7 @@ class SessionsadminpanelAction extends AdminPanelAction
 
     function getInstructions()
     {
-        return _('Session settings for this StatusNet site.');
+        return _('Session settings for this StatusNet site');
     }
 
     /**

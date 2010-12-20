@@ -235,6 +235,4 @@ class RSSCloudNotifier
             }
         }
     }
-
 }
-

@@ -47,7 +47,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class WikiHowProfilePlugin extends Plugin
 {
     function onPluginVersion(&$versions)
@@ -57,7 +56,7 @@ class WikiHowProfilePlugin extends Plugin
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:Sample',
                             'rawdescription' =>
-                            _m('Fetches avatar and other profile info for WikiHow users when setting up an account via OpenID.'));
+                            _m('Fetches avatar and other profile information for WikiHow users when setting up an account via OpenID.'));
         return true;
     }
 
@@ -107,14 +106,14 @@ class WikiHowProfilePlugin extends Plugin
 
     /**
      * Given a user's WikiHow profile URL, find their avatar.
-     * 
+     *
      * @param string $profileUrl user page on the wiki
-     * 
+     *
      * @return array of data; possible members:
      *               'avatar' => full URL to avatar image
-     * 
+     *
      * @throws Exception on various low-level failures
-     * 
+     *
      * @todo pull location, web site, and about sections -- they aren't currently marked up cleanly.
      */
     private function fetchProfile($profileUrl)
@@ -169,28 +168,31 @@ class WikiHowProfilePlugin extends Plugin
     private function saveAvatar($user, $url)
     {
         if (!common_valid_http_url($url)) {
-            throw new ServerException(sprintf(_m("Invalid avatar URL %s"), $url));
+            throw new ServerException(sprintf(_m("Invalid avatar URL %s."), $url));
         }
 
         // @fixme this should be better encapsulated
         // ripped from OStatus via oauthstore.php (for old OMB client)
         $temp_filename = tempnam(sys_get_temp_dir(), 'listener_avatar');
-        if (!copy($url, $temp_filename)) {
-            throw new ServerException(sprintf(_m("Unable to fetch avatar from %s"), $url));
+        try {
+            if (!copy($url, $temp_filename)) {
+                throw new ServerException(sprintf(_m("Unable to fetch avatar from %s."), $url));
+            }
+
+            $profile = $user->getProfile();
+            $id = $profile->id;
+            // @fixme should we be using different ids?
+
+            $imagefile = new ImageFile($id, $temp_filename);
+            $filename = Avatar::filename($id,
+                                         image_type_to_extension($imagefile->type),
+                                         null,
+                                         common_timestamp());
+            rename($temp_filename, Avatar::path($filename));
+        } catch (Exception $e) {
+            unlink($temp_filename);
+            throw $e;
         }
-
-        $profile = $user->getProfile();
-        $id = $profile->id;
-        // @fixme should we be using different ids?
-
-        $imagefile = new ImageFile($id, $temp_filename);
-        $filename = Avatar::filename($id,
-                                     image_type_to_extension($imagefile->type),
-                                     null,
-                                     common_timestamp());
-        rename($temp_filename, Avatar::path($filename));
         $profile->setOriginal($filename);
     }
-
 }
-

@@ -117,13 +117,13 @@ class TwitterauthorizationAction extends Action
             $token = $this->trimmed('token');
 
             if (!$token || $token != common_session_token()) {
-                $this->showForm(_('There was a problem with your session token. Try again, please.'));
+                $this->showForm(_m('There was a problem with your session token. Try again, please.'));
                 return;
             }
 
             if ($this->arg('create')) {
                 if (!$this->boolean('license')) {
-                    $this->showForm(_('You can\'t register if you don\'t agree to the license.'),
+                    $this->showForm(_m('You can\'t register if you don\'t agree to the license.'),
                                     $this->trimmed('newname'));
                     return;
                 }
@@ -132,7 +132,7 @@ class TwitterauthorizationAction extends Action
                 $this->connectNewUser();
             } else {
                 common_debug('Twitter bridge - ' . print_r($this->args, true));
-                $this->showForm(_('Something weird happened.'),
+                $this->showForm(_m('Something weird happened.'),
                                 $this->trimmed('newname'));
             }
         } else {
@@ -231,7 +231,6 @@ class TwitterauthorizationAction extends Action
         }
 
         if (common_logged_in()) {
-
             // Save the access token and Twitter user info
 
             $user = common_current_user();
@@ -298,7 +297,7 @@ class TwitterauthorizationAction extends Action
 
         if (empty($flink_id)) {
             common_log_db_error($flink, 'INSERT', __FILE__);
-            $this->serverError(_('Couldn\'t link your Twitter account.'));
+            $this->serverError(_m('Couldn\'t link your Twitter account.'));
         }
 
         return $flink_id;
@@ -310,13 +309,13 @@ class TwitterauthorizationAction extends Action
             $this->element('div', array('class' => 'error'), $this->error);
         } else {
             $this->element('div', 'instructions',
-                           sprintf(_('This is the first time you\'ve logged into %s so we must connect your Twitter account to a local account. You can either create a new account, or connect with your existing account, if you have one.'), common_config('site', 'name')));
+                           sprintf(_m('This is the first time you\'ve logged into %s so we must connect your Twitter account to a local account. You can either create a new account, or connect with your existing account, if you have one.'), common_config('site', 'name')));
         }
     }
 
     function title()
     {
-        return _('Twitter Account Setup');
+        return _m('Twitter Account Setup');
     }
 
     function showForm($error=null, $username=null)
@@ -349,7 +348,7 @@ class TwitterauthorizationAction extends Action
                                           'class' => 'form_settings',
                                           'action' => common_local_url('twitterauthorization')));
         $this->elementStart('fieldset', array('id' => 'settings_twitter_connect_options'));
-        $this->element('legend', null, _('Connection options'));
+        $this->element('legend', null, _m('Connection options'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
         $this->element('input', array('type' => 'checkbox',
@@ -358,7 +357,7 @@ class TwitterauthorizationAction extends Action
                                       'name' => 'license',
                                       'value' => 'true'));
         $this->elementStart('label', array('class' => 'checkbox', 'for' => 'license'));
-        $message = _('My text and files are available under %s ' .
+        $message = _m('My text and files are available under %s ' .
                      'except this private data: password, ' .
                      'email address, IM address, and phone number.');
         $link = '<a href="' .
@@ -379,33 +378,33 @@ class TwitterauthorizationAction extends Action
         $this->elementStart('fieldset');
         $this->hidden('token', common_session_token());
         $this->element('legend', null,
-                       _('Create new account'));
+                       _m('Create new account'));
         $this->element('p', null,
-                       _('Create a new user with this nickname.'));
+                       _m('Create a new user with this nickname.'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
-        $this->input('newname', _('New nickname'),
+        $this->input('newname', _m('New nickname'),
                      ($this->username) ? $this->username : '',
-                     _('1-64 lowercase letters or numbers, no punctuation or spaces'));
+                     _m('1-64 lowercase letters or numbers, no punctuation or spaces'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('create', _('Create'));
+        $this->submit('create', _m('Create'));
         $this->elementEnd('fieldset');
 
         $this->elementStart('fieldset');
         $this->element('legend', null,
-                       _('Connect existing account'));
+                       _m('Connect existing account'));
         $this->element('p', null,
-                       _('If you already have an account, login with your username and password to connect it to your Twitter account.'));
+                       _m('If you already have an account, login with your username and password to connect it to your Twitter account.'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
-        $this->input('nickname', _('Existing nickname'));
+        $this->input('nickname', _m('Existing nickname'));
         $this->elementEnd('li');
         $this->elementStart('li');
-        $this->password('password', _('Password'));
+        $this->password('password', _m('Password'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('connect', _('Connect'));
+        $this->submit('connect', _m('Connect'));
         $this->elementEnd('fieldset');
 
         $this->elementEnd('fieldset');
@@ -421,7 +420,7 @@ class TwitterauthorizationAction extends Action
     function createNewUser()
     {
         if (common_config('site', 'closed')) {
-            $this->clientError(_('Registration not allowed.'));
+            $this->clientError(_m('Registration not allowed.'));
             return;
         }
 
@@ -430,34 +429,32 @@ class TwitterauthorizationAction extends Action
         if (common_config('site', 'inviteonly')) {
             $code = $_SESSION['invitecode'];
             if (empty($code)) {
-                $this->clientError(_('Registration not allowed.'));
+                $this->clientError(_m('Registration not allowed.'));
                 return;
             }
 
             $invite = Invitation::staticGet($code);
 
             if (empty($invite)) {
-                $this->clientError(_('Not a valid invitation code.'));
+                $this->clientError(_m('Not a valid invitation code.'));
                 return;
             }
         }
 
-        $nickname = $this->trimmed('newname');
-
-        if (!Validate::string($nickname, array('min_length' => 1,
-                                               'max_length' => 64,
-                                               'format' => NICKNAME_FMT))) {
-            $this->showForm(_('Nickname must have only lowercase letters and numbers and no spaces.'));
+        try {
+            $nickname = Nickname::normalize($this->trimmed('newname'));
+        } catch (NicknameException $e) {
+            $this->showForm($e->getMessage());
             return;
         }
 
         if (!User::allowed_nickname($nickname)) {
-            $this->showForm(_('Nickname not allowed.'));
+            $this->showForm(_m('Nickname not allowed.'));
             return;
         }
 
         if (User::staticGet('nickname', $nickname)) {
-            $this->showForm(_('Nickname already in use. Try another one.'));
+            $this->showForm(_m('Nickname already in use. Try another one.'));
             return;
         }
 
@@ -472,7 +469,7 @@ class TwitterauthorizationAction extends Action
         $user = User::register($args);
 
         if (empty($user)) {
-            $this->serverError(_('Error registering user.'));
+            $this->serverError(_m('Error registering user.'));
             return;
         }
 
@@ -483,7 +480,7 @@ class TwitterauthorizationAction extends Action
         save_twitter_user($this->twuid, $this->tw_fields['screen_name']);
 
         if (!$result) {
-            $this->serverError(_('Error connecting user to Twitter.'));
+            $this->serverError(_m('Error connecting user to Twitter.'));
             return;
         }
 
@@ -503,7 +500,7 @@ class TwitterauthorizationAction extends Action
         $password = $this->trimmed('password');
 
         if (!common_check_user($nickname, $password)) {
-            $this->showForm(_('Invalid username or password.'));
+            $this->showForm(_m('Invalid username or password.'));
             return;
         }
 
@@ -521,7 +518,7 @@ class TwitterauthorizationAction extends Action
         save_twitter_user($this->twuid, $this->tw_fields['screen_name']);
 
         if (!$result) {
-            $this->serverError(_('Error connecting user to Twitter.'));
+            $this->serverError(_m('Error connecting user to Twitter.'));
             return;
         }
 
@@ -541,7 +538,7 @@ class TwitterauthorizationAction extends Action
         $result = $this->flinkUser($user->id, $this->twuid);
 
         if (empty($result)) {
-            $this->serverError(_('Error connecting user to Twitter.'));
+            $this->serverError(_m('Error connecting user to Twitter.'));
             return;
         }
 
@@ -620,9 +617,7 @@ class TwitterauthorizationAction extends Action
 
     function isNewNickname($str)
     {
-        if (!Validate::string($str, array('min_length' => 1,
-                                          'max_length' => 64,
-                                          'format' => NICKNAME_FMT))) {
+        if (!Nickname::isValid($str)) {
             return false;
         }
         if (!User::allowed_nickname($str)) {

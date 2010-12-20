@@ -42,10 +42,8 @@ require_once INSTALLDIR.'/actions/attachment.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class Attachment_thumbnailAction extends AttachmentAction
 {
-
     function handle($args)
     {
         $this->showPage();
@@ -79,6 +77,4 @@ class Attachment_thumbnailAction extends AttachmentAction
         }
         $this->element('img', array('src' => $file_thumbnail->url, 'alt' => 'Thumbnail'));
     }
-
 }
-

@@ -45,7 +45,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 abstract class BaseMirrorAction extends Action
 {
     var $user;
@@ -58,7 +57,6 @@ abstract class BaseMirrorAction extends Action
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -107,24 +105,22 @@ abstract class BaseMirrorAction extends Action
     }
 
     /**
-     * @fixme none of this belongs in end classes
+     * @todo FIXME: none of this belongs in end classes
      * this stuff belongs in shared code!
      */
     function sharedBoilerplate()
     {
         // Only allow POST requests
-
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->clientError(_('This action only accepts POST requests.'));
+            $this->clientError(_m('This action only accepts POST requests.'));
             return false;
         }
 
         // CSRF protection
-
         $token = $this->trimmed('token');
 
         if (!$token || $token != common_session_token()) {
-            $this->clientError(_('There was a problem with your session token.'.
+            $this->clientError(_m('There was a problem with your session token.'.
                                  ' Try again, please.'));
             return false;
         }
@@ -134,7 +130,7 @@ abstract class BaseMirrorAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            $this->clientError(_('Not logged in.'));
+            $this->clientError(_m('Not logged in.'));
             return false;
         }
         return true;
@@ -149,7 +145,6 @@ abstract class BaseMirrorAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         // Throws exception on error
@@ -158,7 +153,7 @@ abstract class BaseMirrorAction extends Action
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
-            $this->element('title', null, _('Subscribed'));
+            $this->element('title', null, _m('Subscribed'));
             $this->elementEnd('head');
             $this->elementStart('body');
             $unsubscribe = new EditMirrorForm($this, $this->profile);

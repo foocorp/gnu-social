@@ -17,6 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 /**
  * When we have a large batch of PuSH consumers, we break the data set
  * into smaller chunks. Enqueue final destinations...

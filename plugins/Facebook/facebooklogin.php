@@ -25,7 +25,6 @@ require_once INSTALLDIR . '/plugins/Facebook/facebookaction.php';
 
 class FacebookinviteAction extends FacebookAction
 {
-
     function handle($args)
     {
         parent::handle($args);
@@ -37,6 +36,7 @@ class FacebookinviteAction extends FacebookAction
                 $this->facebook->api_client->data_getUserPreference(
                      FACEBOOK_PROMPTED_UPDATE_PREF) == 'true') {
 
+                // @todo FIXME: Missing i18n?
                 echo '<h1>REDIRECT TO HOME</h1>';
             }
         } else {
@@ -46,7 +46,6 @@ class FacebookinviteAction extends FacebookAction
 
     function showContent()
     {
-
         // If the user has opted not to initially allow the app to have
         // Facebook status update permission, store that preference. Only
         // promt the user the first time she uses the app
@@ -56,7 +55,6 @@ class FacebookinviteAction extends FacebookAction
         }
 
         if ($this->flink) {
-
             $this->user = $this->flink->getUser();
 
             // If this is the first time the user has started the app
@@ -69,7 +67,6 @@ class FacebookinviteAction extends FacebookAction
                      return;
                  }
              }
-
         } else {
             $this->showLoginForm();
         }
@@ -88,6 +85,8 @@ class FacebookinviteAction extends FacebookAction
 
     function title()
     {
+        // @todo FIXME: Give a more precise description? Suggestion: "Login with Facebook Connect"
+        // TRANS: Page title.
         return sprintf(_m('Login'));
     }
 
@@ -95,5 +94,4 @@ class FacebookinviteAction extends FacebookAction
     {
 
     }
-
 }

@@ -52,10 +52,10 @@ class MySQLSearch extends SearchEngine
     {
         if ('profile' === $this->table) {
             $this->target->whereAdd('MATCH(nickname, fullname, location, bio, homepage) ' .
-                                    'AGAINST (\''.addslashes($q).'\' IN BOOLEAN MODE)');
+                                    'AGAINST (\''.$this->target->escape($q).'\' IN BOOLEAN MODE)');
             if (strtolower($q) != $q) {
                 $this->target->whereAdd('MATCH(nickname, fullname, location, bio, homepage) ' .
-                                        'AGAINST (\''.addslashes(strtolower($q)).'\' IN BOOLEAN MODE)', 'OR');
+                                        'AGAINST (\''.$this->target->escape(strtolower($q)).'\' IN BOOLEAN MODE)', 'OR');
             }
             return true;
         } else if ('notice' === $this->table) {
@@ -64,13 +64,13 @@ class MySQLSearch extends SearchEngine
             $this->target->whereAdd('notice.is_local != ' . Notice::GATEWAY);
 
             if (strtolower($q) != $q) {
-                $this->target->whereAdd("( MATCH(content) AGAINST ('" . addslashes($q) .
+                $this->target->whereAdd("( MATCH(content) AGAINST ('" . $this->target->escape($q) .
                     "' IN BOOLEAN MODE)) OR ( MATCH(content) " .
-                    "AGAINST ('"  . addslashes(strtolower($q)) .
+                    "AGAINST ('"  . $this->target->escape(strtolower($q)) .
                     "' IN BOOLEAN MODE))");
             } else {
                 $this->target->whereAdd('MATCH(content) ' .
-                                         'AGAINST (\''.addslashes($q).'\' IN BOOLEAN MODE)');
+                                         'AGAINST (\''.$this->target->escape($q).'\' IN BOOLEAN MODE)');
             }
 
             return true;
@@ -89,9 +89,9 @@ class MySQLLikeSearch extends SearchEngine
                            ' fullname LIKE "%%%1$s%%" OR '.
                            ' location LIKE "%%%1$s%%" OR '.
                            ' bio      LIKE "%%%1$s%%" OR '.
-                           ' homepage LIKE "%%%1$s%%")', addslashes($q));
+                           ' homepage LIKE "%%%1$s%%")', $this->target->escape($q, true));
         } else if ('notice' === $this->table) {
-            $qry = sprintf('content LIKE "%%%1$s%%"', addslashes($q));
+            $qry = sprintf('content LIKE "%%%1$s%%"', $this->target->escape($q, true));
         } else {
             throw new ServerException('Unknown table: ' . $this->table);
         }
@@ -107,12 +107,12 @@ class PGSearch extends SearchEngine
     function query($q)
     {
         if ('profile' === $this->table) {
-            return $this->target->whereAdd('textsearch @@ plainto_tsquery(\''.addslashes($q).'\')');
+            return $this->target->whereAdd('textsearch @@ plainto_tsquery(\''.$this->target->escape($q).'\')');
         } else if ('notice' === $this->table) {
 
             // XXX: We need to filter out gateway notices (notice.is_local = -2) --Zach
 
-            return $this->target->whereAdd('to_tsvector(\'english\', content) @@ plainto_tsquery(\''.addslashes($q).'\')');
+            return $this->target->whereAdd('to_tsvector(\'english\', content) @@ plainto_tsquery(\''.$this->target->escape($q).'\')');
         } else {
             throw new ServerException('Unknown table: ' . $this->table);
         }

@@ -42,20 +42,20 @@ sphinx_iterate_sites('sphinx_index_update');
 function sphinx_index_update($sn)
 {
     $base = sphinx_base();
-    
+
     $baseIndexes = array('notice', 'profile');
     $params = array();
-    
+
     if (have_option('rotate')) {
         $params[] = '--rotate';
     }
     foreach ($baseIndexes as $index) {
         $params[] = "{$sn->dbname}_{$index}";
     }
-    
+
     $params = implode(' ', $params);
     $cmd = "$base/bin/indexer --config $base/etc/sphinx.conf $params";
-    
+
     print "$cmd\n";
     system($cmd);
 }

@@ -40,12 +40,11 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 abstract class AuthenticationPlugin extends Plugin
 {
     //is this plugin authoritative for authentication?
     public $authoritative = false;
-    
+
     //should accounts be automatically created after a successful login attempt?
     public $autoregistration = false;
 
@@ -218,12 +217,14 @@ abstract class AuthenticationPlugin extends Plugin
                         //stop handling of other handlers, because what was requested was done
                         return false;
                     }else{
-                        throw new Exception(_('Password changing failed'));
+                        // TRANS: Exception thrown when a password change fails.
+                        throw new Exception(_('Password changing failed.'));
                     }
                 }else{
                     if($this->authoritative){
                         //since we're authoritative, no other plugin could do this
-                        throw new Exception(_('Password changing failed'));
+                        // TRANS: Exception thrown when a password change fails.
+                        throw new Exception(_('Password changing failed.'));
                     }else{
                         //let another handler try
                         return null;
@@ -233,7 +234,8 @@ abstract class AuthenticationPlugin extends Plugin
         }else{
             if($this->authoritative){
                 //since we're authoritative, no other plugin could do this
-                throw new Exception(_('Password changing is not allowed'));
+                // TRANS: Exception thrown when a password change attempt fails because it is not allowed.
+                throw new Exception(_('Password changing is not allowed.'));
             }
         }
     }
@@ -267,4 +269,3 @@ abstract class AuthenticationPlugin extends Plugin
         return true;
     }
 }
-

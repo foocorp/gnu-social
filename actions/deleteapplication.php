@@ -40,7 +40,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class DeleteapplicationAction extends Action
 {
     var $app = null;
@@ -52,7 +51,6 @@ class DeleteapplicationAction extends Action
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         if (!parent::prepare($args)) {
@@ -60,6 +58,7 @@ class DeleteapplicationAction extends Action
         }
 
         if (!common_logged_in()) {
+            // TRANS: Client error displayed trying to delete an application while not logged in.
             $this->clientError(_('You must be logged in to delete an application.'));
             return false;
         }
@@ -68,6 +67,7 @@ class DeleteapplicationAction extends Action
         $this->app = Oauth_application::staticGet('id', $id);
 
         if (empty($this->app)) {
+            // TRANS: Client error displayed trying to delete an application that does not exist.
             $this->clientError(_('Application not found.'));
             return false;
         }
@@ -75,6 +75,7 @@ class DeleteapplicationAction extends Action
         $cur = common_current_user();
 
         if ($cur->id != $this->app->owner) {
+            // TRANS: Client error displayed trying to delete an application the current user does not own.
             $this->clientError(_('You are not the owner of this application.'), 401);
             return false;
         }
@@ -91,7 +92,6 @@ class DeleteapplicationAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -120,6 +120,7 @@ class DeleteapplicationAction extends Action
     }
 
     function title() {
+        // TRANS: Title for delete application page.
         return _('Delete application');
     }
 
@@ -144,8 +145,10 @@ class DeleteapplicationAction extends Action
                                                                        array('id' => $this->app->id))));
         $this->elementStart('fieldset');
         $this->hidden('token', common_session_token());
+        // TRANS: Fieldset legend on delete application page.
         $this->element('legend', _('Delete application'));
         $this->element('p', null,
+                       // TRANS: Confirmation text on delete application page.
                        _('Are you sure you want to delete this application? '.
                          'This will clear all data about the application from the '.
                          'database, including all existing user connections.'));
@@ -171,10 +174,8 @@ class DeleteapplicationAction extends Action
      *
      * @return void
      */
-
     function handlePost()
     {
         $this->app->delete();
     }
 }
-

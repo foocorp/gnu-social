@@ -60,13 +60,13 @@ class LdapCommon
         $this->ldap_config = $this->get_ldap_config();
 
         if(!isset($this->host)){
-            throw new Exception("must specify a host");
+            throw new Exception(_m("A host must be specified."));
         }
         if(!isset($this->basedn)){
-            throw new Exception("must specify a basedn");
+            throw new Exception(_m('"basedn" must be specified.'));
         }
         if(!isset($this->attributes['username'])){
-            throw new Exception("username attribute must be set.");
+            throw new Exception(_m('The username attribute must be set.'));
         }
     }
 
@@ -126,11 +126,11 @@ class LdapCommon
                 }
                 throw new Exception('Could not connect to LDAP server: '.$err->getMessage());
             }
-            $c = common_memcache();
+            $c = Cache::instance();
             if (!empty($c)) {
                 $cacheObj = new MemcacheSchemaCache(
                     array('c'=>$c,
-                       'cacheKey' => common_cache_key('ldap_schema:' . $config_id)));
+                       'cacheKey' => Cache::key('ldap_schema:' . $config_id)));
                 $ldap->registerSchemaCache($cacheObj);
             }
             self::$ldap_connections[$config_id] = $ldap;
@@ -140,10 +140,16 @@ class LdapCommon
 
     function checkPassword($username, $password)
     {
-        $entry = $this->get_user($username);
+        $entry = $this->get_user($username,array('dn' => 'dn'));
         if(!$entry){
             return false;
         }else{
+            if(empty($password)) {
+                //NET_LDAP2 will do an anonymous bind if bindpw is not set / empty string
+                //which causes all login attempts that involve a blank password to appear
+                //to succeed. Which is obviously not good.
+                return false;
+            }
             $config = $this->get_ldap_config();
             $config['binddn']=$entry->dn();
             $config['bindpw']=$password;
@@ -162,7 +168,7 @@ class LdapCommon
             //throw new Exception(_('Sorry, changing LDAP passwords is not supported at this time'));
             return false;
         }
-        $entry = $this->get_user($username);
+        $entry = $this->get_user($username,array('dn' => 'dn'));
         if(!$entry){
             return false;
         }else{
@@ -173,7 +179,7 @@ class LdapCommon
                 $ldap = $this->get_ldap_connection($config);
 
                 $entry = $this->get_user($username,array(),$ldap);
-                
+
                 $newCryptedPassword = $this->hashPassword($newpassword, $this->password_encoding);
                 if ($newCryptedPassword===false) {
                     return false;
@@ -254,15 +260,14 @@ class LdapCommon
      * @return string The hashed password.
      *
      */
-
-    function hashPassword( $passwordClear, $encodageType ) 
+    function hashPassword( $passwordClear, $encodageType )
     {
         $encodageType = strtolower( $encodageType );
         switch( $encodageType ) {
-            case 'crypt': 
-                $cryptedPassword = '{CRYPT}' . crypt($passwordClear,$this->randomSalt(2)); 
+            case 'crypt':
+                $cryptedPassword = '{CRYPT}' . crypt($passwordClear,$this->randomSalt(2));
                 break;
-                
+
             case 'ext_des':
                 // extended des crypt. see OpenBSD crypt man page.
                 if ( ! defined( 'CRYPT_EXT_DES' ) || CRYPT_EXT_DES == 0 ) {return FALSE;} //Your system crypt library does not support extended DES encryption.
@@ -345,8 +350,7 @@ class LdapCommon
      * @param int $length The length of the salt string to generate.
      * @return string The generated salt string.
      */
-     
-    function randomSalt( $length ) 
+    function randomSalt( $length )
     {
         $possible = '0123456789'.
             'abcdefghijklmnopqrstuvwxyz'.
@@ -360,10 +364,8 @@ class LdapCommon
 
         return $str;
     }
-
 }
 
 class LdapInvalidCredentialsException extends Exception
 {
-
 }

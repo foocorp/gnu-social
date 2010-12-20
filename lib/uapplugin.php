@@ -51,7 +51,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 abstract class UAPPlugin extends Plugin
 {
     public $mediumRectangle = null;
@@ -66,7 +65,6 @@ abstract class UAPPlugin extends Plugin
      *
      * @return boolean hook flag
      */
-
     function onEndShowStatusNetStyles($action)
     {
         // XXX: allow override by theme
@@ -81,7 +79,6 @@ abstract class UAPPlugin extends Plugin
      *
      * @return boolean hook flag
      */
-
     function onStartShowAside($action)
     {
         if (!is_null($this->mediumRectangle)) {
@@ -93,6 +90,24 @@ abstract class UAPPlugin extends Plugin
             $this->showMediumRectangle($action);
 
             $action->elementEnd('div');
+        }
+
+        // XXX: Hack to force ads to show on single-notice pages
+
+        if (!is_null($this->rectangle) &&
+            $action->trimmed('action') == 'shownotice') {
+
+            $action->elementStart('div', array('id' => 'aside_primary',
+                                               'class' => 'aside'));
+
+            if (Event::handle('StartShowSections', array($action))) {
+                $action->showSections();
+                Event::handle('EndShowSections', array($action));
+            }
+
+            $action->elementEnd('div');
+
+            return false;
         }
 
         return true;
@@ -126,7 +141,6 @@ abstract class UAPPlugin extends Plugin
      *
      * @return boolean hook flag
      */
-
     function onStartShowSections($action)
     {
         if (!is_null($this->rectangle)) {
@@ -147,7 +161,6 @@ abstract class UAPPlugin extends Plugin
      *
      * @return boolean hook flag
      */
-
     function onEndShowAside($action)
     {
         if (!is_null($this->wideSkyscraper)) {
@@ -169,7 +182,6 @@ abstract class UAPPlugin extends Plugin
      *
      * @return void
      */
-
     abstract protected function showMediumRectangle($action);
 
     /**
@@ -179,7 +191,6 @@ abstract class UAPPlugin extends Plugin
      *
      * @return void
      */
-
     abstract protected function showRectangle($action);
 
     /**
@@ -189,7 +200,6 @@ abstract class UAPPlugin extends Plugin
      *
      * @return void
      */
-
     abstract protected function showWideSkyscraper($action);
 
     /**
@@ -199,6 +209,5 @@ abstract class UAPPlugin extends Plugin
      *
      * @return void
      */
-
     abstract protected function showLeaderboard($action);
 }

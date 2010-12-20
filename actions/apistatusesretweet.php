@@ -43,7 +43,6 @@ require_once INSTALLDIR . '/lib/mediafile.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiStatusesRetweetAction extends ApiAuthAction
 {
     var $original = null;
@@ -54,14 +53,13 @@ class ApiStatusesRetweetAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            // TRANS: Client error. POST is a HTTP command. It should not be translated.
             $this->clientError(_('This method requires a POST.'),
                                400, $this->format);
             return false;
@@ -72,6 +70,7 @@ class ApiStatusesRetweetAction extends ApiAuthAction
         $this->original = Notice::staticGet('id', $id);
 
         if (empty($this->original)) {
+            // TRANS: Client error displayed trying to repeat a non-existing notice through the API.
             $this->clientError(_('No such notice.'),
                                400, $this->format);
             return false;
@@ -80,6 +79,7 @@ class ApiStatusesRetweetAction extends ApiAuthAction
         $this->user = $this->auth_user;
 
         if ($this->user->id == $this->original->profile_id) {
+            // TRANS: Client error displayed trying to repeat an own notice through the API.
             $this->clientError(_('Cannot repeat your own notice.'),
                                400, $this->format);
             return false;
@@ -88,6 +88,7 @@ class ApiStatusesRetweetAction extends ApiAuthAction
         $profile = $this->user->getProfile();
 
         if ($profile->hasRepeated($id)) {
+            // TRANS: Client error displayed trying to re-repeat a notice through the API.
             $this->clientError(_('Already repeated that notice.'),
                                400, $this->format);
             return false;
@@ -105,14 +106,11 @@ class ApiStatusesRetweetAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         $repeat = $this->original->repeat($this->user->id, $this->source);
-
-
 
         $this->showNotice($repeat);
     }
@@ -122,7 +120,6 @@ class ApiStatusesRetweetAction extends ApiAuthAction
      *
      * @return void
      */
-
     function showNotice($notice)
     {
         if (!empty($notice)) {

@@ -1,0 +1,141 @@
+# Translation of StatusNet - SubMirror to Dutch (Nederlands)
+# Expored from translatewiki.net
+#
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SubMirror\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:59+0000\n"
+"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:46:18+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-submirror\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: SubMirrorPlugin.php:90
+msgid "Pull feeds into your timeline!"
+msgstr "Neem feeds op in uw tijdlijn!"
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+#: SubMirrorPlugin.php:109
+msgctxt "MENU"
+msgid "Mirroring"
+msgstr "Spiegelen"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+#: SubMirrorPlugin.php:111
+msgid "Configure mirroring of posts from other feeds"
+msgstr "Spiegelen instellen voor berichten van andere feeds"
+
+#: lib/editmirrorform.php:83
+msgctxt "LABEL"
+msgid "Remote feed:"
+msgstr "Bronfeed:"
+
+#: lib/editmirrorform.php:87
+msgctxt "LABEL"
+msgid "Local user"
+msgstr "Lokale gebruiker"
+
+#: lib/editmirrorform.php:93
+msgid "Mirroring style"
+msgstr "Spiegelstijl"
+
+#: lib/editmirrorform.php:95
+msgid ""
+"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+msgstr ""
+"Herhalen: refereer aan het bericht van de originele gebruiker (wordt soms "
+"weergegeven als \"RT @blah ...\")"
+
+#: lib/editmirrorform.php:96
+msgid "Repost the content under my account"
+msgstr "De inhoud herhalen alsof die van mij komt"
+
+#: lib/editmirrorform.php:115
+msgid "Save"
+msgstr "Opslaan"
+
+#: lib/editmirrorform.php:117
+msgid "Stop mirroring"
+msgstr "Spiegelen beëindigen"
+
+#: lib/addmirrorform.php:59
+msgid "Web page or feed URL:"
+msgstr "URL van webpagina of feed:"
+
+#: lib/addmirrorform.php:64
+msgctxt "BUTTON"
+msgid "Add feed"
+msgstr "Feed toevoegen"
+
+#: actions/basemirror.php:71
+msgid "Invalid feed URL."
+msgstr "Ongeldige URL voor feed."
+
+#. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
+#: actions/basemirror.php:83
+msgid "Invalid profile for mirroring."
+msgstr "Ongeldig profiel om te spiegelen."
+
+#: actions/basemirror.php:101
+msgid "Can't mirror a StatusNet group at this time."
+msgstr "Het is niet mogelijk om een StatusNet-groep te spiegelen."
+
+#: actions/basemirror.php:115
+msgid "This action only accepts POST requests."
+msgstr "Deze handeling accepteert alleen POST-verzoeken."
+
+#: actions/basemirror.php:123
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Er is een probleem ontstaan met uw sessie. Probeer het nog een keer, "
+"alstublieft."
+
+#: actions/basemirror.php:133
+msgid "Not logged in."
+msgstr "Niet aangemeld."
+
+#: actions/basemirror.php:156
+msgid "Subscribed"
+msgstr "Geabonneerd"
+
+#: actions/editmirror.php:68
+msgid "Requested invalid profile to edit."
+msgstr "Er is een ongeldig profiel opgevraagd om te bewerken."
+
+#: actions/editmirror.php:86
+msgid "Bad form data."
+msgstr "Onjuiste formuliergegevens."
+
+#. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
+#: actions/editmirror.php:95
+msgid "Requested edit of missing mirror."
+msgstr "Er is een missende spiegel opgevraagd om te bewerken."
+
+#: actions/addmirror.php:72
+msgid "Could not subscribe to feed."
+msgstr "Het abonneren op de feed is mislukt."
+
+#. TRANS: Title.
+#: actions/mirrorsettings.php:42
+msgid "Feed mirror settings"
+msgstr "Instellingen voor spiegelfeed"
+
+#. TRANS: Instructions.
+#: actions/mirrorsettings.php:54
+msgid ""
+"You can mirror updates from many RSS and Atom feeds into your StatusNet "
+"timeline!"
+msgstr ""
+"U kunt statusupdates vanuit veel RSS- en Atomfeeds spiegelen in uit "
+"StatusNet-tijdlijn."

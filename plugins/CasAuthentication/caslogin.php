@@ -28,7 +28,7 @@ class CasloginAction extends Action
             $this->clientError(_m('Already logged in.'));
         } else {
             global $casSettings;
-            phpCAS::client(CAS_VERSION_2_0,$casSettings['server'],$casSettings['port'],$casSettings['path']);
+            phpCAS::client(CAS_VERSION_2_0,$casSettings['server'],$casSettings['port'],$casSettings['path'],false);
             phpCAS::setNoCasServerValidation();
             phpCAS::handleLogoutRequests();
             phpCAS::forceAuthentication();
@@ -36,13 +36,13 @@ class CasloginAction extends Action
             $casTempPassword = common_good_rand(16);
             $user = common_check_user(phpCAS::getUser(), $casTempPassword);
             if (!$user) {
-                $this->serverError(_('Incorrect username or password.'));
+                $this->serverError(_m('Incorrect username or password.'));
                 return;
             }
 
             // success!
             if (!common_set_user($user)) {
-                $this->serverError(_('Error setting user. You are probably not authorized.'));
+                $this->serverError(_m('Error setting user. You are probably not authorized.'));
                 return;
             }
 
@@ -69,7 +69,6 @@ class CasloginAction extends Action
             }
 
             common_redirect($url, 303);
-
         }
     }
 }

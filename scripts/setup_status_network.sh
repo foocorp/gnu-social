@@ -6,7 +6,7 @@ set -e
 
 source /etc/statusnet/setup.cfg
 
-# setup_status_net.sh mysite 'My Site' '1user' 'owner@example.com' 'Firsty McLastname'
+# setup_status_network.sh mysite 'My Site' '1user' 'owner@example.com' 'Firsty McLastname'
 
 export nickname="$1"
 export sitename="$2"

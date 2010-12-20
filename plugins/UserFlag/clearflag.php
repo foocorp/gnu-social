@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class ClearflagAction extends ProfileFormAction
 {
     /**
@@ -75,7 +74,6 @@ class ClearflagAction extends ProfileFormAction
      *
      * @return void
      */
-
     function handle($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -93,7 +91,6 @@ class ClearflagAction extends ProfileFormAction
      *
      * @return void
      */
-
     function handlePost()
     {
         $ufp = new User_flag_profile();
@@ -104,7 +101,8 @@ class ClearflagAction extends ProfileFormAction
                               'AND profile_id = ' . $this->profile->id);
 
         if ($result == false) {
-            $msg = sprintf(_("Couldn't clear flags for profile '%s'."),
+            // TRANS: Server exception given when flags could not be cleared.
+            $msg = sprintf(_m('Couldn\'t clear flags for profile "%s".'),
                            $this->profile->nickname);
             throw new ServerException($msg);
         }
@@ -121,17 +119,18 @@ class ClearflagAction extends ProfileFormAction
      *
      * @return void
      */
-
     function ajaxResults()
     {
         header('Content-Type: text/xml;charset=utf-8');
         $this->xw->startDocument('1.0', 'UTF-8');
         $this->elementStart('html');
         $this->elementStart('head');
-        $this->element('title', null, _('Flags cleared'));
+        // TRANS: Title for AJAX form to indicated that flags were removed.
+        $this->element('title', null, _m('Flags cleared'));
         $this->elementEnd('head');
         $this->elementStart('body');
-        $this->element('p', 'cleared', _('Cleared'));
+        // TRANS: Body element for "flags cleared" form.
+        $this->element('p', 'cleared', _m('Cleared'));
         $this->elementEnd('body');
         $this->elementEnd('html');
     }

@@ -2,7 +2,8 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Exchange an authorized OAuth request token for an access token
+ * Action for getting OAuth token credentials (exchange an authorized
+ * request token for an access token)
  *
  * PHP version 5
  *
@@ -34,7 +35,8 @@ if (!defined('STATUSNET')) {
 require_once INSTALLDIR . '/lib/apioauth.php';
 
 /**
- * Exchange an authorized OAuth request token for an access token
+ * Action for getting OAuth token credentials (exchange an authorized
+ * request token for an access token)
  *
  * @category API
  * @package  StatusNet
@@ -42,9 +44,10 @@ require_once INSTALLDIR . '/lib/apioauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiOauthAccessTokenAction extends ApiOauthAction
 {
+    protected $reqToken = null;
+    protected $verifier = null;
 
     /**
      * Class handler.
@@ -63,32 +66,61 @@ class ApiOauthAccessTokenAction extends ApiOauthAction
 
         $server->add_signature_method($hmac_method);
 
-        $atok = null;
+        $atok = $app = null;
+
+        // XXX: Insist that oauth_token and oauth_verifier be populated?
+        // Spec doesn't say they MUST be.
 
         try {
             $req  = OAuthRequest::from_request();
-            $atok = $server->fetch_access_token($req);
 
-        } catch (OAuthException $e) {
+            $this->reqToken = $req->get_parameter('oauth_token');
+            $this->verifier = $req->get_parameter('oauth_verifier');
+
+            $app  = $datastore->getAppByRequestToken($this->reqToken);
+            $atok = $server->fetch_access_token($req);
+        } catch (Exception $e) {
             common_log(LOG_WARNING, 'API OAuthException - ' . $e->getMessage());
             common_debug(var_export($req, true));
-            $this->outputError($e->getMessage());
-            return;
+            $code = $e->getCode();
+            $this->clientError($e->getMessage(), empty($code) ? 401 : $code, 'text');
         }
 
         if (empty($atok)) {
-            common_debug('couldn\'t get access token.');
-            print "Token exchange failed. Has the request token been authorized?\n";
+            // Token exchange failed -- log it
+
+            $msg = sprintf(
+                'API OAuth - Failure exchanging OAuth request token for access token, '
+                    . 'request token = %s, verifier = %s',
+                $this->reqToken,
+                $this->verifier
+            );
+
+            common_log(LOG_WARNING, $msg);
+            // TRANS: Client error given from the OAuth API when the request token or verifier is invalid.
+            $this->clientError(_("Invalid request token or verifier.", 400, 'text'));
         } else {
-            print $atok;
+            common_log(
+                LOG_INFO,
+                sprintf(
+                    "Issued access token '%s' for application %d (%s).",
+                    $atok->key,
+                    $app->id,
+                    $app->name
+                )
+            );
+            $this->showAccessToken($atok);
         }
     }
 
-    function outputError($msg)
+    /*
+     * Display OAuth token credentials
+     *
+     * @param OAuthToken token the access token
+     */
+    function showAccessToken($token)
     {
-        header('HTTP/1.1 401 Unauthorized');
-        header('Content-Type: text/html; charset=utf-8');
-        print $msg . "\n";
+        header('Content-Type: application/x-www-form-urlencoded');
+        print $token;
     }
 }
-

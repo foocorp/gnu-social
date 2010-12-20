@@ -185,29 +185,11 @@ class FavoritedAction extends Action
 
     function showContent()
     {
-        $weightexpr = common_sql_weight('fave.modified', common_config('popular', 'dropoff'));
-        $cutoff = sprintf("fave.modified > '%s'",
-                          common_sql_date(time() - common_config('popular', 'cutoff')));
-
-        $qry = 'SELECT notice.*, '.
-          $weightexpr . ' as weight ' .
-          'FROM notice JOIN fave ON notice.id = fave.notice_id ' .
-          "WHERE $cutoff " .
-          'GROUP BY id,profile_id,uri,content,rendered,url,created,notice.modified,reply_to,is_local,source,notice.conversation ' .
-          'ORDER BY weight DESC';
-
-        $offset = ($this->page - 1) * NOTICES_PER_PAGE;
-        $limit  = NOTICES_PER_PAGE + 1;
-
-        if (common_config('db', 'type') == 'pgsql') {
-            $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-        } else {
-            $qry .= ' LIMIT ' . $offset . ', ' . $limit;
-        }
-
-        $notice = Memcached_DataObject::cachedQuery('Notice',
-                                                    $qry,
-                                                    600);
+        $pop = new Popularity();
+        $pop->offset = ($this->page - 1) * NOTICES_PER_PAGE;
+        $pop->limit  = NOTICES_PER_PAGE;
+        $pop->expiry = 600;
+        $notice = $pop->getNotices();
 
         $nl = new NoticeList($notice, $this);
 

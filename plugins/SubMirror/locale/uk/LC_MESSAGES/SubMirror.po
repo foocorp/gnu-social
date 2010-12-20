@@ -1,0 +1,140 @@
+# Translation of StatusNet - SubMirror to Ukrainian (Українська)
+# Expored from translatewiki.net
+#
+# Author: Boogie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SubMirror\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:59+0000\n"
+"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:46:18+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: uk\n"
+"X-Message-Group: #out-statusnet-plugin-submirror\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#: SubMirrorPlugin.php:90
+msgid "Pull feeds into your timeline!"
+msgstr "Стягування веб-каналів до вашої стрічки повідомлень!"
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+#: SubMirrorPlugin.php:109
+msgctxt "MENU"
+msgid "Mirroring"
+msgstr "Дзеркала"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+#: SubMirrorPlugin.php:111
+msgid "Configure mirroring of posts from other feeds"
+msgstr "Конфігурація віддзеркалення дописів з інших веб-стрічок"
+
+#: lib/editmirrorform.php:83
+msgctxt "LABEL"
+msgid "Remote feed:"
+msgstr "Віддалена веб-стрічка:"
+
+#: lib/editmirrorform.php:87
+msgctxt "LABEL"
+msgid "Local user"
+msgstr "Тутешній користувач"
+
+#: lib/editmirrorform.php:93
+msgid "Mirroring style"
+msgstr "Форма віддзеркалення"
+
+#: lib/editmirrorform.php:95
+msgid ""
+"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+msgstr ""
+"Повторення: посилання до оригінального допису користувача (щось на зразок «RT "
+"@pupkin»)"
+
+#: lib/editmirrorform.php:96
+msgid "Repost the content under my account"
+msgstr "Повторення змісту під моїм акаунтом"
+
+#: lib/editmirrorform.php:115
+msgid "Save"
+msgstr "Зберегти"
+
+#: lib/editmirrorform.php:117
+msgid "Stop mirroring"
+msgstr "Зупинити віддзеркалення"
+
+#: lib/addmirrorform.php:59
+msgid "Web page or feed URL:"
+msgstr "Веб-сторінка або ж URL-адреса стрічки:"
+
+#: lib/addmirrorform.php:64
+msgctxt "BUTTON"
+msgid "Add feed"
+msgstr "Додати веб-стрічку"
+
+#: actions/basemirror.php:71
+msgid "Invalid feed URL."
+msgstr "Помилкова URL-адреса веб-стрічки."
+
+#. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
+#: actions/basemirror.php:83
+msgid "Invalid profile for mirroring."
+msgstr "Помилковий профіль для віддзеркалення."
+
+#: actions/basemirror.php:101
+msgid "Can't mirror a StatusNet group at this time."
+msgstr "На даний момент не можу віддзеркалювати спільноту на сайті StatusNet."
+
+#: actions/basemirror.php:115
+msgid "This action only accepts POST requests."
+msgstr "Ця дія приймає запити лише за формою POST."
+
+#: actions/basemirror.php:123
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Виникли певні проблеми з токеном сесії. Спробуйте знов, будь ласка."
+
+#: actions/basemirror.php:133
+msgid "Not logged in."
+msgstr "Ви не увійшли до системи."
+
+#: actions/basemirror.php:156
+msgid "Subscribed"
+msgstr "Підписані"
+
+#: actions/editmirror.php:68
+msgid "Requested invalid profile to edit."
+msgstr "Було запитано невірний профіль для редагування."
+
+#: actions/editmirror.php:86
+msgid "Bad form data."
+msgstr "Невірні дані форми."
+
+#. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
+#: actions/editmirror.php:95
+msgid "Requested edit of missing mirror."
+msgstr "Запитано редагування зниклого дзеркала."
+
+#: actions/addmirror.php:72
+msgid "Could not subscribe to feed."
+msgstr "Не можу підписатися до веб-стрічки."
+
+#. TRANS: Title.
+#: actions/mirrorsettings.php:42
+msgid "Feed mirror settings"
+msgstr "Налаштування дзеркала веб-стрічки"
+
+#. TRANS: Instructions.
+#: actions/mirrorsettings.php:54
+msgid ""
+"You can mirror updates from many RSS and Atom feeds into your StatusNet "
+"timeline!"
+msgstr ""
+"Ви маєте можливість віддзеркалювати оновлення багатьох веб-стрічок формату "
+"RSS або Atom одразу до стрічки своїх дописів на сайті StatusNet!"

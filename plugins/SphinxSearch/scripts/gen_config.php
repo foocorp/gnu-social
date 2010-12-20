@@ -70,8 +70,6 @@ searchd
 
 END;
 
-
-
 /**
  * Build config entries for a single site
  * @fixme we only seem to have master DB currently available...

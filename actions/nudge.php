@@ -82,7 +82,7 @@ class NudgeAction extends Action
         }
 
         if (!$other->email || !$other->emailnotifynudge) {
-            $this->clientError(_('This user doesn\'t allow nudges or hasn\'t confirmed or set their email yet.'));
+            $this->clientError(_('This user doesn\'t allow nudges or hasn\'t confirmed or set their email address yet.'));
             return;
         }
 

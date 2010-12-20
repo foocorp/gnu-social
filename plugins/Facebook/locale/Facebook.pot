@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-29 23:39+0000\n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: facebookutil.php:285
+#: facebookutil.php:429
 #, php-format
 msgid ""
 "Hi, %1$s. We're sorry to inform you that we are unable to update your "
@@ -31,27 +31,28 @@ msgid ""
 "%2$s"
 msgstr ""
 
-#: FBConnectAuth.php:51
+#: FBConnectAuth.php:55
 msgid "You must be logged into Facebook to use Facebook Connect."
 msgstr ""
 
-#: FBConnectAuth.php:77
-msgid "There is already a local user linked with this Facebook."
+#: FBConnectAuth.php:79
+msgid "There is already a local user linked with this Facebook account."
 msgstr ""
 
-#: FBConnectAuth.php:90 FBConnectSettings.php:164
+#: FBConnectAuth.php:91 FBConnectSettings.php:166
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 
-#: FBConnectAuth.php:95
+#: FBConnectAuth.php:96
 msgid "You can't register if you don't agree to the license."
 msgstr ""
 
-#: FBConnectAuth.php:105
-msgid "Something weird happened."
+#: FBConnectAuth.php:106
+msgid "An unknown error has occured."
 msgstr ""
 
-#: FBConnectAuth.php:119
+#. TRANS: %s is the site name.
+#: FBConnectAuth.php:121
 #, php-format
 msgid ""
 "This is the first time you've logged into %s so we must connect your "
@@ -59,365 +60,476 @@ msgid ""
 "with your existing account, if you have one."
 msgstr ""
 
-#: FBConnectAuth.php:125
+#. TRANS: Page title.
+#: FBConnectAuth.php:128
 msgid "Facebook Account Setup"
 msgstr ""
 
-#: FBConnectAuth.php:158
+#. TRANS: Legend.
+#: FBConnectAuth.php:162
 msgid "Connection options"
 msgstr ""
 
-#: FBConnectAuth.php:183
+#. TRANS: %s is the name of the license used by the user for their status updates.
+#: FBConnectAuth.php:172
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+
+#. TRANS: Legend.
+#: FBConnectAuth.php:189
 msgid "Create new account"
 msgstr ""
 
-#: FBConnectAuth.php:185
+#: FBConnectAuth.php:191
 msgid "Create a new user with this nickname."
 msgstr ""
 
-#: FBConnectAuth.php:188
+#. TRANS: Field label.
+#: FBConnectAuth.php:195
 msgid "New nickname"
 msgstr ""
 
-#: FBConnectAuth.php:190
+#: FBConnectAuth.php:197
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
 msgstr ""
 
-#: FBConnectAuth.php:193
+#. TRANS: Submit button.
+#: FBConnectAuth.php:201
+msgctxt "BUTTON"
 msgid "Create"
 msgstr ""
 
-#: FBConnectAuth.php:198
+#: FBConnectAuth.php:207
 msgid "Connect existing account"
 msgstr ""
 
-#: FBConnectAuth.php:200
+#: FBConnectAuth.php:209
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your Facebook."
 msgstr ""
 
-#: FBConnectAuth.php:203
+#. TRANS: Field label.
+#: FBConnectAuth.php:213
 msgid "Existing nickname"
 msgstr ""
 
-#: FBConnectAuth.php:206 facebookaction.php:271
+#: FBConnectAuth.php:216 facebookaction.php:277
 msgid "Password"
 msgstr ""
 
-#: FBConnectAuth.php:209
+#. TRANS: Submit button.
+#: FBConnectAuth.php:220
+msgctxt "BUTTON"
 msgid "Connect"
 msgstr ""
 
-#: FBConnectAuth.php:225 FBConnectAuth.php:234
+#. TRANS: Client error trying to register with registrations not allowed.
+#. TRANS: Client error trying to register with registrations 'invite only'.
+#: FBConnectAuth.php:237 FBConnectAuth.php:247
 msgid "Registration not allowed."
 msgstr ""
 
-#: FBConnectAuth.php:241
+#. TRANS: Client error trying to register with an invalid invitation code.
+#: FBConnectAuth.php:255
 msgid "Not a valid invitation code."
 msgstr ""
 
-#: FBConnectAuth.php:251
-msgid "Nickname must have only lowercase letters and numbers and no spaces."
-msgstr ""
-
-#: FBConnectAuth.php:256
+#: FBConnectAuth.php:267
 msgid "Nickname not allowed."
 msgstr ""
 
-#: FBConnectAuth.php:261
+#: FBConnectAuth.php:272
 msgid "Nickname already in use. Try another one."
 msgstr ""
 
-#: FBConnectAuth.php:279 FBConnectAuth.php:313 FBConnectAuth.php:333
+#: FBConnectAuth.php:290 FBConnectAuth.php:324 FBConnectAuth.php:344
 msgid "Error connecting user to Facebook."
 msgstr ""
 
-#: FBConnectAuth.php:299
+#: FBConnectAuth.php:310
 msgid "Invalid username or password."
 msgstr ""
 
-#: facebooklogin.php:91 facebookaction.php:249 facebookaction.php:275
+#. TRANS: Page title.
+#: facebooklogin.php:90 facebookaction.php:255
 msgid "Login"
 msgstr ""
 
-#: facebookhome.php:111
-msgid "Server error - couldn't get user!"
+#. TRANS: Legend.
+#: facebooknoticeform.php:144
+msgid "Send a notice"
 msgstr ""
 
-#: facebookhome.php:131
+#. TRANS: Field label.
+#: facebooknoticeform.php:157
+#, php-format
+msgid "What's up, %s?"
+msgstr ""
+
+#: facebooknoticeform.php:169
+msgid "Available characters"
+msgstr ""
+
+#. TRANS: Button text.
+#: facebooknoticeform.php:196
+msgctxt "BUTTON"
+msgid "Send"
+msgstr ""
+
+#: facebookhome.php:103
+msgid "Server error: Couldn't get user!"
+msgstr ""
+
+#: facebookhome.php:122
 msgid "Incorrect username or password."
 msgstr ""
 
-#: facebookhome.php:158
+#. TRANS: Page title.
+#. TRANS: %1$s is a user nickname, %2$s is a page number.
+#: facebookhome.php:153
 #, php-format
-msgid "%s and friends, page %d"
+msgid "%1$s and friends, page %2$d"
 msgstr ""
 
-#: facebookhome.php:160
+#. TRANS: Page title.
+#. TRANS: %s is a user nickname
+#: facebookhome.php:157
 #, php-format
 msgid "%s and friends"
 msgstr ""
 
-#: facebookhome.php:189
+#. TRANS: Instructions. %s is the application name.
+#: facebookhome.php:185
 #, php-format
 msgid ""
 "If you would like the %s app to automatically update your Facebook status "
 "with your latest notice, you need to give it permission."
 msgstr ""
 
-#: facebookhome.php:213
+#: facebookhome.php:210
 msgid "Okay, do it!"
 msgstr ""
 
-#: facebookhome.php:219
+#. TRANS: Button text. Clicking the button will skip updating Facebook permissions.
+#: facebookhome.php:217
+msgctxt "BUTTON"
 msgid "Skip"
 msgstr ""
 
-#: facebookhome.php:248 facebookaction.php:330
+#: facebookhome.php:244 facebookaction.php:336
 msgid "Pagination"
 msgstr ""
 
-#: facebookhome.php:257 facebookaction.php:339
+#. TRANS: Pagination link.
+#: facebookhome.php:254 facebookaction.php:345
 msgid "After"
 msgstr ""
 
-#: facebookhome.php:265 facebookaction.php:347
+#. TRANS: Pagination link.
+#: facebookhome.php:263 facebookaction.php:353
 msgid "Before"
 msgstr ""
 
-#: facebookinvite.php:72
+#. TRANS: %s is the name of the site.
+#: facebookinvite.php:69
 #, php-format
-msgid "Thanks for inviting your friends to use %s"
+msgid "Thanks for inviting your friends to use %s."
 msgstr ""
 
-#: facebookinvite.php:74
+#. TRANS: Followed by an unordered list with invited friends.
+#: facebookinvite.php:72
 msgid "Invitations have been sent to the following users:"
 msgstr ""
 
-#: facebookinvite.php:94
+#: facebookinvite.php:91
 #, php-format
 msgid "You have been invited to %s"
 msgstr ""
 
-#: facebookinvite.php:103
+#. TRANS: %s is the name of the site.
+#: facebookinvite.php:101
 #, php-format
 msgid "Invite your friends to use %s"
 msgstr ""
 
-#: facebookinvite.php:125
+#. TRANS: %s is the name of the site.
+#: facebookinvite.php:124
 #, php-format
 msgid "Friends already using %s:"
 msgstr ""
 
+#. TRANS: Page title.
 #: facebookinvite.php:143
 msgid "Send invitations"
 msgstr ""
 
-#: FacebookPlugin.php:195 FacebookPlugin.php:488 FacebookPlugin.php:510
-#: facebookadminpanel.php:54
+#. TRANS: Menu item.
+#. TRANS: Menu item tab.
+#: FacebookPlugin.php:188 FacebookPlugin.php:461 FacebookPlugin.php:485
+msgctxt "MENU"
 msgid "Facebook"
 msgstr ""
 
-#: FacebookPlugin.php:196
+#. TRANS: Tooltip for menu item "Facebook".
+#: FacebookPlugin.php:190
 msgid "Facebook integration configuration"
 msgstr ""
 
-#: FacebookPlugin.php:489
+#: FacebookPlugin.php:431
+msgid "Facebook Connect User"
+msgstr ""
+
+#. TRANS: Tooltip for menu item "Facebook".
+#: FacebookPlugin.php:463
 msgid "Login or register using Facebook"
 msgstr ""
 
-#: FacebookPlugin.php:511 FBConnectSettings.php:56
+#. TRANS: Tooltip for menu item "Facebook".
+#. TRANS: Page title.
+#: FacebookPlugin.php:487 FBConnectSettings.php:55
 msgid "Facebook Connect Settings"
 msgstr ""
 
-#: FacebookPlugin.php:617
+#: FacebookPlugin.php:591
 msgid ""
-"The Facebook plugin allows you to integrate your StatusNet instance with <a "
-"href=\"http://facebook.com/\">Facebook</a> and Facebook Connect."
+"The Facebook plugin allows integrating StatusNet instances with <a href="
+"\"http://facebook.com/\">Facebook</a> and Facebook Connect."
 msgstr ""
 
 #: FBConnectLogin.php:33
 msgid "Already logged in."
 msgstr ""
 
-#: FBConnectLogin.php:41
+#. TRANS: Instructions.
+#: FBConnectLogin.php:42
 msgid "Login with your Facebook Account"
 msgstr ""
 
-#: FBConnectLogin.php:55
+#. TRANS: Page title.
+#: FBConnectLogin.php:57
 msgid "Facebook Login"
 msgstr ""
 
-#: facebookremove.php:58
+#: facebookremove.php:53
+msgid "Couldn't remove Facebook user: already deleted."
+msgstr ""
+
+#: facebookremove.php:63
 msgid "Couldn't remove Facebook user."
 msgstr ""
 
+#. TRANS: Link description for 'Home' link that leads to a start page.
+#: facebookaction.php:169
+msgctxt "MENU"
+msgid "Home"
+msgstr ""
+
+#. TRANS: Tooltip for 'Home' link that leads to a start page.
 #: facebookaction.php:171
 msgid "Home"
 msgstr ""
 
-#: facebookaction.php:179
+#. TRANS: Link description for 'Invite' link that leads to a page where friends can be invited.
+#: facebookaction.php:180
+msgctxt "MENU"
 msgid "Invite"
 msgstr ""
 
-#: facebookaction.php:188
+#. TRANS: Tooltip for 'Invite' link that leads to a page where friends can be invited.
+#: facebookaction.php:182
+msgid "Invite"
+msgstr ""
+
+#. TRANS: Link description for 'Settings' link that leads to a page user preferences can be set.
+#: facebookaction.php:192
+msgctxt "MENU"
 msgid "Settings"
 msgstr ""
 
-#: facebookaction.php:228
+#. TRANS: Tooltip for 'Settings' link that leads to a page user preferences can be set.
+#: facebookaction.php:194
+msgid "Settings"
+msgstr ""
+
+#: facebookaction.php:233
 #, php-format
 msgid ""
 "To use the %s Facebook Application you need to login with your username and "
-"password. Don't have a username yet? "
+"password. Don't have a username yet?"
 msgstr ""
 
-#: facebookaction.php:230
+#: facebookaction.php:235
 msgid " a new account."
 msgstr ""
 
-#: facebookaction.php:236
+#: facebookaction.php:242
 msgid "Register"
 msgstr ""
 
-#: facebookaction.php:268
+#: facebookaction.php:274
 msgid "Nickname"
 msgstr ""
 
-#: facebookaction.php:281
+#. TRANS: Login button.
+#: facebookaction.php:282
+msgctxt "BUTTON"
+msgid "Login"
+msgstr ""
+
+#: facebookaction.php:288
 msgid "Lost or forgotten password?"
 msgstr ""
 
-#: facebookaction.php:365
+#: facebookaction.php:370
 msgid "No notice content!"
 msgstr ""
 
-#: facebookaction.php:371
+#: facebookaction.php:377
 #, php-format
 msgid "That's too long. Max notice size is %d chars."
 msgstr ""
 
-#: facebookaction.php:430
+#: facebookaction.php:431
 msgid "Notices"
 msgstr ""
 
-#: facebookadminpanel.php:65
+#: facebookadminpanel.php:52
+msgid "Facebook"
+msgstr ""
+
+#: facebookadminpanel.php:62
 msgid "Facebook integration settings"
 msgstr ""
 
-#: facebookadminpanel.php:129
+#: facebookadminpanel.php:123
 msgid "Invalid Facebook API key. Max length is 255 characters."
 msgstr ""
 
-#: facebookadminpanel.php:135
+#: facebookadminpanel.php:129
 msgid "Invalid Facebook API secret. Max length is 255 characters."
 msgstr ""
 
-#: facebookadminpanel.php:188
+#: facebookadminpanel.php:178
 msgid "Facebook application settings"
 msgstr ""
 
-#: facebookadminpanel.php:194
+#: facebookadminpanel.php:184
 msgid "API key"
 msgstr ""
 
-#: facebookadminpanel.php:195
+#: facebookadminpanel.php:185
 msgid "API key provided by Facebook"
 msgstr ""
 
-#: facebookadminpanel.php:203
+#: facebookadminpanel.php:193
 msgid "Secret"
 msgstr ""
 
-#: facebookadminpanel.php:204
+#: facebookadminpanel.php:194
 msgid "API secret provided by Facebook"
 msgstr ""
 
-#: FBConnectSettings.php:67
+#: facebookadminpanel.php:210
+msgid "Save"
+msgstr ""
+
+#: facebookadminpanel.php:210
+msgid "Save Facebook settings"
+msgstr ""
+
+#. TRANS: Instructions.
+#: FBConnectSettings.php:66
 msgid "Manage how your account connects to Facebook"
 msgstr ""
 
-#: FBConnectSettings.php:92
+#: FBConnectSettings.php:90
 msgid "There is no Facebook user connected to this account."
 msgstr ""
 
-#: FBConnectSettings.php:100
+#: FBConnectSettings.php:98
 msgid "Connected Facebook user"
 msgstr ""
 
-#: FBConnectSettings.php:119
+#. TRANS: Legend.
+#: FBConnectSettings.php:118
 msgid "Disconnect my account from Facebook"
 msgstr ""
 
-#: FBConnectSettings.php:124
+#. TRANS: Followed by a link containing text "set a password".
+#: FBConnectSettings.php:125
 msgid ""
 "Disconnecting your Faceboook would make it impossible to log in! Please "
 msgstr ""
 
-#: FBConnectSettings.php:128
+#. TRANS: Preceded by "Please " and followed by " first."
+#: FBConnectSettings.php:130
 msgid "set a password"
 msgstr ""
 
-#: FBConnectSettings.php:130
+#. TRANS: Preceded by "Please set a password".
+#: FBConnectSettings.php:132
 msgid " first."
 msgstr ""
 
-#: FBConnectSettings.php:142
+#. TRANS: Submit button.
+#: FBConnectSettings.php:145
+msgctxt "BUTTON"
 msgid "Disconnect"
 msgstr ""
 
-#: FBConnectSettings.php:178
+#: FBConnectSettings.php:180
 msgid "Couldn't delete link to Facebook."
 msgstr ""
 
-#: FBConnectSettings.php:194
+#: FBConnectSettings.php:196
 msgid "You have disconnected from Facebook."
 msgstr ""
 
-#: FBConnectSettings.php:197
+#: FBConnectSettings.php:199
 msgid "Not sure what you're trying to do."
 msgstr ""
 
-#: facebooksettings.php:74
+#: facebooksettings.php:61
 msgid "There was a problem saving your sync preferences!"
 msgstr ""
 
-#: facebooksettings.php:76
+#. TRANS: Confirmation that synchronisation settings have been saved into the system.
+#: facebooksettings.php:64
 msgid "Sync preferences saved."
 msgstr ""
 
-#: facebooksettings.php:99
+#: facebooksettings.php:87
 msgid "Automatically update my Facebook status with my notices."
 msgstr ""
 
-#: facebooksettings.php:106
+#: facebooksettings.php:94
 msgid "Send \"@\" replies to Facebook."
 msgstr ""
 
-#: facebooksettings.php:115
-msgid "Prefix"
-msgstr ""
-
-#: facebooksettings.php:117
-msgid "A string to prefix notices with."
-msgstr ""
-
-#: facebooksettings.php:123
+#. TRANS: Submit button to save synchronisation settings.
+#: facebooksettings.php:102
+msgctxt "BUTTON"
 msgid "Save"
 msgstr ""
 
-#: facebooksettings.php:133
+#. TRANS: %s is the application name.
+#: facebooksettings.php:111
 #, php-format
 msgid ""
 "If you would like %s to automatically update your Facebook status with your "
 "latest notice, you need to give it permission."
 msgstr ""
 
-#: facebooksettings.php:146
+#: facebooksettings.php:124
 #, php-format
 msgid "Allow %s to update my Facebook status"
 msgstr ""
 
-#: facebooksettings.php:156
+#. TRANS: Page title for synchronisation settings.
+#: facebooksettings.php:134
 msgid "Sync preferences"
 msgstr ""

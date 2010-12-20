@@ -23,7 +23,6 @@ require_once(INSTALLDIR.'/lib/channel.php');
 
 class Command
 {
-
     var $user = null;
 
     function __construct($user=null)
@@ -49,7 +48,6 @@ class Command
         }
     }
 
-    
     /**
      * Override this with the meat!
      *
@@ -80,15 +78,16 @@ class Command
 
                 $notice = Notice::staticGet(substr($arg,1));
                 if (!$notice) {
-                    throw new CommandException(_('Notice with that id does not exist'));
+                    // TRANS: Command exception text shown when a notice ID is requested that does not exist.
+                    throw new CommandException(_('Notice with that id does not exist.'));
                 }
             }
-            
+
             if (Validate::uri($this->other)) {
                 // A specific notice by URI lookup
                 $notice = Notice::staticGet('uri', $arg);
             }
-            
+
             if (!$notice) {
                 // Local or remote profile name to get their last notice.
                 // May throw an exception and report 'no such user'
@@ -96,13 +95,15 @@ class Command
 
                 $notice = $recipient->getCurrentNotice();
                 if (!$notice) {
-                    throw new CommandException(_('User has no last notice'));
+                    // TRANS: Command exception text shown when a last user notice is requested and it does not exist.
+                    throw new CommandException(_('User has no last notice.'));
                 }
             }
         }
         Event::handle('EndCommandGetNotice', array($this, $arg, &$notice));
         if (!$notice) {
-            throw new CommandException(_('Notice with that id does not exist'));
+            // TRANS: Command exception text shown when a notice ID is requested that does not exist.
+            throw new CommandException(_('Notice with that id does not exist.'));
         }
         return $notice;
     }
@@ -124,7 +125,7 @@ class Command
         if (!$profile) {
             // TRANS: Message given requesting a profile for a non-existing user.
             // TRANS: %s is the nickname of the user for which the profile could not be found.
-            throw new CommandException(sprintf(_('Could not find a user with nickname %s'), $arg));
+            throw new CommandException(sprintf(_('Could not find a user with nickname %s.'), $arg));
         }
         return $profile;
     }
@@ -138,13 +139,13 @@ class Command
     {
         $user = null;
         if (Event::handle('StartCommandGetUser', array($this, $arg, &$user))) {
-            $user = User::staticGet('nickname', $arg);
+            $user = User::staticGet('nickname', Nickname::normalize($arg));
         }
         Event::handle('EndCommandGetUser', array($this, $arg, &$user));
         if (!$user){
             // TRANS: Message given getting a non-existing user.
             // TRANS: %s is the nickname of the user that could not be found.
-            throw new CommandException(sprintf(_('Could not find a local user with nickname %s'),
+            throw new CommandException(sprintf(_('Could not find a local user with nickname %s.'),
                                $arg));
         }
         return $user;
@@ -163,6 +164,7 @@ class Command
         }
         Event::handle('EndCommandGetGroup', array($this, $arg, &$group));
         if (!$group) {
+            // TRANS: Command exception text shown when a group is requested that does not exist.
             throw new CommandException(_('No such group.'));
         }
         return $group;
@@ -177,6 +179,7 @@ class UnimplementedCommand extends Command
 {
     function handle($channel)
     {
+        // TRANS: Error text shown when an unimplemented command is given.
         $channel->error($this->user, _("Sorry, this command is not yet implemented."));
     }
 }
@@ -222,6 +225,7 @@ class NudgeCommand extends Command
     {
         $recipient = $this->getUser($this->other);
         if ($recipient->id == $this->user->id) {
+            // TRANS: Command exception text shown when a user tries to nudge themselves.
             throw new CommandException(_('It does not make a lot of sense to nudge yourself!'));
         } else {
             if ($recipient->email && $recipient->emailnotifynudge) {
@@ -231,7 +235,7 @@ class NudgeCommand extends Command
             // XXX: notify by SMS
             // TRANS: Message given having nudged another user.
             // TRANS: %s is the nickname of the user that was nudged.
-            $channel->output($this->user, sprintf(_('Nudge sent to %s'),
+            $channel->output($this->user, sprintf(_('Nudge sent to %s.'),
                            $recipient->nickname));
         }
     }
@@ -257,6 +261,10 @@ class StatsCommand extends Command
         $subbed_count = $profile->subscriberCount();
         $notice_count = $profile->noticeCount();
 
+        // TRANS: User statistics text.
+        // TRANS: %1$s is the number of other user the user is subscribed to.
+        // TRANS: %2$s is the number of users that are subscribed to the user.
+        // TRANS: %3$s is the number of notices the user has sent.
         $channel->output($this->user, sprintf(_("Subscriptions: %1\$s\n".
                                    "Subscribers: %2\$s\n".
                                    "Notices: %3\$s"),
@@ -282,6 +290,7 @@ class FavCommand extends Command
         $fave = Fave::addNew($this->user->getProfile(), $notice);
 
         if (!$fave) {
+            // TRANS: Error message text shown when a favorite could not be set.
             $channel->error($this->user, _('Could not create favorite.'));
             return;
         }
@@ -299,9 +308,9 @@ class FavCommand extends Command
 
         $this->user->blowFavesCache();
 
+        // TRANS: Text shown when a notice has been marked as favourite successfully.
         $channel->output($this->user, _('Notice marked as fave.'));
     }
-
 }
 
 class JoinCommand extends Command
@@ -320,10 +329,12 @@ class JoinCommand extends Command
         $cur   = $this->user;
 
         if ($cur->isMember($group)) {
-            $channel->error($cur, _('You are already a member of that group'));
+            // TRANS: Error text shown a user tries to join a group they already are a member of.
+            $channel->error($cur, _('You are already a member of that group.'));
             return;
         }
         if (Group_block::isBlocked($group, $cur->getProfile())) {
+            // TRANS: Error text shown when a user tries to join a group they are blocked from joining.
           $channel->error($cur, _('You have been blocked from that group by the admin.'));
             return;
         }
@@ -336,19 +347,19 @@ class JoinCommand extends Command
         } catch (Exception $e) {
             // TRANS: Message given having failed to add a user to a group.
             // TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
-            $channel->error($cur, sprintf(_('Could not join user %1$s to group %2$s'),
+            $channel->error($cur, sprintf(_('Could not join user %1$s to group %2$s.'),
                                           $cur->nickname, $group->nickname));
             return;
         }
 
         // TRANS: Message given having added a user to a group.
         // TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
-        $channel->output($cur, sprintf(_('%1$s joined group %2$s'),
+        $channel->output($cur, sprintf(_('%1$s joined group %2$s.'),
                                               $cur->nickname,
                                               $group->nickname));
     }
-
 }
+
 class DropCommand extends Command
 {
     var $other = null;
@@ -365,11 +376,13 @@ class DropCommand extends Command
         $cur   = $this->user;
 
         if (!$group) {
+            // TRANS: Error text shown when trying to leave a group that does not exist.
             $channel->error($cur, _('No such group.'));
             return;
         }
 
         if (!$cur->isMember($group)) {
+            // TRANS: Error text shown when trying to leave an existing group the user is not a member of.
             $channel->error($cur, _('You are not a member of that group.'));
             return;
         }
@@ -382,18 +395,17 @@ class DropCommand extends Command
         } catch (Exception $e) {
             // TRANS: Message given having failed to remove a user from a group.
             // TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
-            $channel->error($cur, sprintf(_('Could not remove user %1$s from group %2$s'),
+            $channel->error($cur, sprintf(_('Could not remove user %1$s from group %2$s.'),
                                           $cur->nickname, $group->nickname));
             return;
         }
 
         // TRANS: Message given having removed a user from a group.
         // TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
-        $channel->output($cur, sprintf(_('%1$s left group %2$s'),
+        $channel->output($cur, sprintf(_('%1$s left group %2$s.'),
                                               $cur->nickname,
                                               $group->nickname));
     }
-
 }
 
 class WhoisCommand extends Command
@@ -411,7 +423,7 @@ class WhoisCommand extends Command
 
         // TRANS: Whois output.
         // TRANS: %1$s nickname of the queried user, %2$s is their profile URL.
-        $whois = sprintf(_("%1\$s (%2\$s)"), $recipient->nickname,
+        $whois = sprintf(_m('WHOIS',"%1\$s (%2\$s)"), $recipient->nickname,
                          $recipient->profileurl);
         if ($recipient->fullname) {
             // TRANS: Whois output. %s is the full name of the queried user.
@@ -454,33 +466,42 @@ class MessageCommand extends Command
             } catch (CommandException $f) {
                 throw $e;
             }
+            // TRANS: Command exception text shown when trying to send a direct message to a remote user (a user not registered at the current server).
+            // TRANS: %s is a remote profile.
             throw new CommandException(sprintf(_('%s is a remote profile; you can only send direct messages to users on the same server.'), $this->other));
         }
 
         $len = mb_strlen($this->text);
 
         if ($len == 0) {
+            // TRANS: Command exception text shown when trying to send a direct message to another user without content.
             $channel->error($this->user, _('No content!'));
             return;
         }
 
-        $this->text = common_shorten_links($this->text);
+        $this->text = $this->user->shortenLinks($this->text);
 
         if (Message::contentTooLong($this->text)) {
-            // TRANS: Message given if content is too long.
+            // XXX: i18n. Needs plural support.
+            // TRANS: Message given if content is too long. %1$sd is used for plural.
             // TRANS: %1$d is the maximum number of characters, %2$d is the number of submitted characters.
-            $channel->error($this->user, sprintf(_('Message too long - maximum is %1$d characters, you sent %2$d'),
+            $channel->error($this->user, sprintf(_m('Message too long - maximum is %1$d character, you sent %2$d.',
+                                                    'Message too long - maximum is %1$d characters, you sent %2$d.',
+                                                    Message::maxContent()),
                                                  Message::maxContent(), mb_strlen($this->text)));
             return;
         }
 
         if (!$other) {
+            // TRANS: Error text shown when trying to send a direct message to a user that does not exist.
             $channel->error($this->user, _('No such user.'));
             return;
         } else if (!$this->user->mutuallySubscribed($other)) {
+            // TRANS: Error text shown when trying to send a direct message to a user without a mutual subscription (each user must be subscribed to the other).
             $channel->error($this->user, _('You can\'t send a message to this user.'));
             return;
         } else if ($this->user->id == $other->id) {
+            // TRANS: Error text shown when trying to send a direct message to self.
             $channel->error($this->user, _('Don\'t send a message to yourself; just say it to yourself quietly instead.'));
             return;
         }
@@ -489,8 +510,9 @@ class MessageCommand extends Command
             $message->notify();
             // TRANS: Message given have sent a direct message to another user.
             // TRANS: %s is the name of the other user.
-            $channel->output($this->user, sprintf(_('Direct message to %s sent'), $this->other));
+            $channel->output($this->user, sprintf(_('Direct message to %s sent.'), $this->other));
         } else {
+            // TRANS: Error text shown sending a direct message fails with an unknown reason.
             $channel->error($this->user, _('Error sending direct message.'));
         }
     }
@@ -511,12 +533,14 @@ class RepeatCommand extends Command
 
         if($this->user->id == $notice->profile_id)
         {
-            $channel->error($this->user, _('Cannot repeat your own notice'));
+            // TRANS: Error text shown when trying to repeat an own notice.
+            $channel->error($this->user, _('Cannot repeat your own notice.'));
             return;
         }
 
         if ($this->user->getProfile()->hasRepeated($notice->id)) {
-            $channel->error($this->user, _('Already repeated that notice'));
+            // TRANS: Error text shown when trying to repeat an notice that was already repeated by the user.
+            $channel->error($this->user, _('Already repeated that notice.'));
             return;
         }
 
@@ -526,8 +550,9 @@ class RepeatCommand extends Command
 
             // TRANS: Message given having repeated a notice from another user.
             // TRANS: %s is the name of the user for which the notice was repeated.
-            $channel->output($this->user, sprintf(_('Notice from %s repeated'), $recipient->nickname));
+            $channel->output($this->user, sprintf(_('Notice from %s repeated.'), $recipient->nickname));
         } else {
+            // TRANS: Error text shown when repeating a notice fails with an unknown reason.
             $channel->error($this->user, _('Error repeating notice.'));
         }
     }
@@ -552,14 +577,20 @@ class ReplyCommand extends Command
         $len = mb_strlen($this->text);
 
         if ($len == 0) {
+            // TRANS: Command exception text shown when trying to reply to a notice without providing content for the reply.
             $channel->error($this->user, _('No content!'));
             return;
         }
 
-        $this->text = common_shorten_links($this->text);
+        $this->text = $this->user->shortenLinks($this->text);
 
         if (Notice::contentTooLong($this->text)) {
-            $channel->error($this->user, sprintf(_('Notice too long - maximum is %d characters, you sent %d'),
+            // XXX: i18n. Needs plural support.
+            // TRANS: Message given if content of a notice for a reply is too long. %1$d is used for plural.
+            // TRANS: %1$d is the maximum number of characters, %2$d is the number of submitted characters.
+            $channel->error($this->user, sprintf(_m('Notice too long - maximum is %1$d character, you sent %2$d.',
+                                                    'Notice too long - maximum is %1$d characters, you sent %2$d.',
+                                                    Notice::maxContent()),
                                                  Notice::maxContent(), mb_strlen($this->text)));
             return;
         }
@@ -568,8 +599,11 @@ class ReplyCommand extends Command
                                   array('reply_to' => $notice->id));
 
         if ($notice) {
-            $channel->output($this->user, sprintf(_('Reply to %s sent'), $recipient->nickname));
+            // TRANS: Text shown having sent a reply to a notice successfully.
+            // TRANS: %s is the nickname of the user of the notice the reply was sent to.
+            $channel->output($this->user, sprintf(_('Reply to %s sent.'), $recipient->nickname));
         } else {
+            // TRANS: Error text shown when a reply to a notice fails with an unknown reason.
             $channel->error($this->user, _('Error saving notice.'));
         }
 
@@ -578,7 +612,6 @@ class ReplyCommand extends Command
 
 class GetCommand extends Command
 {
-
     var $other = null;
 
     function __construct($user, $other)
@@ -593,7 +626,8 @@ class GetCommand extends Command
 
         $notice = $target->getCurrentNotice();
         if (!$notice) {
-            $channel->error($this->user, _('User has no last notice'));
+            // TRANS: Error text shown when a last user notice is requested and it does not exist.
+            $channel->error($this->user, _('User has no last notice.'));
             return;
         }
         $notice_content = $notice->content;
@@ -604,7 +638,6 @@ class GetCommand extends Command
 
 class SubCommand extends Command
 {
-
     var $other = null;
 
     function __construct($user, $other)
@@ -617,7 +650,8 @@ class SubCommand extends Command
     {
 
         if (!$this->other) {
-            $channel->error($this->user, _('Specify the name of the user to subscribe to'));
+            // TRANS: Error text shown when no username was provided when issuing a subscribe command.
+            $channel->error($this->user, _('Specify the name of the user to subscribe to.'));
             return;
         }
 
@@ -625,13 +659,16 @@ class SubCommand extends Command
 
         $remote = Remote_profile::staticGet('id', $target->id);
         if ($remote) {
+            // TRANS: Command exception text shown when trying to subscribe to an OMB profile using the subscribe command.
             throw new CommandException(_("Can't subscribe to OMB profiles by command."));
         }
 
         try {
             Subscription::start($this->user->getProfile(),
                                 $target);
-            $channel->output($this->user, sprintf(_('Subscribed to %s'), $this->other));
+            // TRANS: Text shown after having subscribed to another user successfully.
+            // TRANS: %s is the name of the user the subscription was requested for.
+            $channel->output($this->user, sprintf(_('Subscribed to %s.'), $this->other));
         } catch (Exception $e) {
             $channel->error($this->user, $e->getMessage());
         }
@@ -640,7 +677,6 @@ class SubCommand extends Command
 
 class UnsubCommand extends Command
 {
-
     var $other = null;
 
     function __construct($user, $other)
@@ -652,7 +688,8 @@ class UnsubCommand extends Command
     function handle($channel)
     {
         if(!$this->other) {
-            $channel->error($this->user, _('Specify the name of the user to unsubscribe from'));
+            // TRANS: Error text shown when no username was provided when issuing an unsubscribe command.
+            $channel->error($this->user, _('Specify the name of the user to unsubscribe from.'));
             return;
         }
 
@@ -661,7 +698,9 @@ class UnsubCommand extends Command
         try {
             Subscription::cancel($this->user->getProfile(),
                                  $target);
-            $channel->output($this->user, sprintf(_('Unsubscribed from %s'), $this->other));
+            // TRANS: Text shown after having unsubscribed from another user successfully.
+            // TRANS: %s is the name of the user the unsubscription was requested for.
+            $channel->output($this->user, sprintf(_('Unsubscribed from %s.'), $this->other));
         } catch (Exception $e) {
             $channel->error($this->user, $e->getMessage());
         }
@@ -671,6 +710,7 @@ class UnsubCommand extends Command
 class OffCommand extends Command
 {
     var $other = null;
+
     function __construct($user, $other=null)
     {
         parent::__construct($user);
@@ -679,11 +719,14 @@ class OffCommand extends Command
     function handle($channel)
     {
         if ($this->other) {
+            // TRANS: Error text shown when issuing the command "off" with a setting which has not yet been implemented.
             $channel->error($this->user, _("Command not yet implemented."));
         } else {
             if ($channel->off($this->user)) {
+                // TRANS: Text shown when issuing the command "off" successfully.
                 $channel->output($this->user, _('Notification off.'));
             } else {
+                // TRANS: Error text shown when the command "off" fails for an unknown reason.
                 $channel->error($this->user, _('Can\'t turn off notification.'));
             }
         }
@@ -702,11 +745,14 @@ class OnCommand extends Command
     function handle($channel)
     {
         if ($this->other) {
+            // TRANS: Error text shown when issuing the command "on" with a setting which has not yet been implemented.
             $channel->error($this->user, _("Command not yet implemented."));
         } else {
             if ($channel->on($this->user)) {
+                // TRANS: Text shown when issuing the command "on" successfully.
                 $channel->output($this->user, _('Notification on.'));
             } else {
+                // TRANS: Error text shown when the command "on" fails for an unknown reason.
                 $channel->error($this->user, _('Can\'t turn on notification.'));
             }
         }
@@ -720,7 +766,8 @@ class LoginCommand extends Command
         $disabled = common_config('logincommand','disabled');
         $disabled = isset($disabled) && $disabled;
         if($disabled) {
-            $channel->error($this->user, _('Login command is disabled'));
+            // TRANS: Error text shown when issuing the login command while login is disabled.
+            $channel->error($this->user, _('Login command is disabled.'));
             return;
         }
 
@@ -731,7 +778,9 @@ class LoginCommand extends Command
         }
 
         $channel->output($this->user,
-            sprintf(_('This link is useable only once, and is good for only 2 minutes: %s'),
+            // TRANS: Text shown after issuing the login command successfully.
+            // TRANS: %s is a logon link..
+            sprintf(_('This link is useable only once and is valid for only 2 minutes: %s.'),
                     common_local_url('otp',
                         array('user_id' => $login_token->user_id, 'token' => $login_token->token))));
     }
@@ -739,7 +788,6 @@ class LoginCommand extends Command
 
 class LoseCommand extends Command
 {
-
     var $other = null;
 
     function __construct($user, $other)
@@ -751,14 +799,17 @@ class LoseCommand extends Command
     function execute($channel)
     {
         if(!$this->other) {
-            $channel->error($this->user, _('Specify the name of the user to unsubscribe from'));
+            // TRANS: Error text shown when no username was provided when issuing the command.
+            $channel->error($this->user, _('Specify the name of the user to unsubscribe from.'));
             return;
         }
 
         $result = Subscription::cancel($this->getProfile($this->other), $this->user->getProfile());
 
         if ($result) {
-            $channel->output($this->user, sprintf(_('Unsubscribed  %s'), $this->other));
+            // TRANS: Text shown after issuing the lose command successfully (stop another user from following the current user).
+            // TRANS: %s is the name of the user the unsubscription was requested for.
+            $channel->output($this->user, sprintf(_('Unsubscribed %s.'), $this->other));
         } else {
             $channel->error($this->user, $result);
         }
@@ -775,8 +826,12 @@ class SubscriptionsCommand extends Command
             $nicknames[]=$profile->nickname;
         }
         if(count($nicknames)==0){
+            // TRANS: Text shown after requesting other users a user is subscribed to without having any subscriptions.
             $out=_('You are not subscribed to anyone.');
         }else{
+            // TRANS: Text shown after requesting other users a user is subscribed to.
+            // TRANS: This message supports plural forms. This message is followed by a
+            // TRANS: hard coded space and a comma separated list of subscribed users.
             $out = ngettext('You are subscribed to this person:',
                 'You are subscribed to these people:',
                 count($nicknames));
@@ -797,8 +852,13 @@ class SubscribersCommand extends Command
             $nicknames[]=$profile->nickname;
         }
         if(count($nicknames)==0){
+            // TRANS: Text shown after requesting other users that are subscribed to a user
+            // TRANS: (followers) without having any subscribers.
             $out=_('No one is subscribed to you.');
         }else{
+            // TRANS: Text shown after requesting other users that are subscribed to a user (followers).
+            // TRANS: This message supports plural forms. This message is followed by a
+            // TRANS: hard coded space and a comma separated list of subscribing users.
             $out = ngettext('This person is subscribed to you:',
                 'These people are subscribed to you:',
                 count($nicknames));
@@ -819,8 +879,13 @@ class GroupsCommand extends Command
             $groups[]=$group->nickname;
         }
         if(count($groups)==0){
+            // TRANS: Text shown after requesting groups a user is subscribed to without having
+            // TRANS: any group subscriptions.
             $out=_('You are not a member of any groups.');
         }else{
+            // TRANS: Text shown after requesting groups a user is subscribed to.
+            // TRANS: This message supports plural forms. This message is followed by a
+            // TRANS: hard coded space and a comma separated list of subscribed groups.
             $out = ngettext('You are a member of this group:',
                 'You are a member of these groups:',
                 count($nicknames));
@@ -835,6 +900,7 @@ class HelpCommand extends Command
     function handle($channel)
     {
         $channel->output($this->user,
+                         // TRANS: Help text for commands. Do not translate the command names themselves; they are fixed strings.
                          _("Commands:\n".
                            "on - turn on notifications\n".
                            "off - turn off notifications\n".

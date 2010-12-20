@@ -48,10 +48,8 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiFavoriteDestroyAction extends ApiAuthAction
 {
-
     var $notice = null;
 
     /**
@@ -60,9 +58,7 @@ class ApiFavoriteDestroyAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -82,13 +78,13 @@ class ApiFavoriteDestroyAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400,
                 $this->format
@@ -98,6 +94,7 @@ class ApiFavoriteDestroyAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to handle an unknown API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -107,6 +104,7 @@ class ApiFavoriteDestroyAction extends ApiAuthAction
 
         if (empty($this->notice)) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to remove a favourite with an invalid ID.
                 _('No status found with that ID.'),
                 404,
                 $this->format
@@ -120,6 +118,7 @@ class ApiFavoriteDestroyAction extends ApiAuthAction
 
         if (!$fave->find(true)) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to remove a favourite that was not a favourite.
                 _('That status is not a favorite.'),
                 403,
                 $this->favorite
@@ -132,6 +131,7 @@ class ApiFavoriteDestroyAction extends ApiAuthAction
         if (!$result) {
             common_log_db_error($fave, 'DELETE', __FILE__);
             $this->clientError(
+                // TRANS: Client error displayed when removing a favourite has failed.
                 _('Could not delete favorite.'),
                 404,
                 $this->format
@@ -147,5 +147,4 @@ class ApiFavoriteDestroyAction extends ApiAuthAction
             $this->show_single_json_status($this->notice);
         }
     }
-
 }

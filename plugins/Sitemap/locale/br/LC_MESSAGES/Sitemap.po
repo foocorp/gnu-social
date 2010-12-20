@@ -1,0 +1,92 @@
+# Translation of StatusNet - Sitemap to Breton (Brezhoneg)
+# Expored from translatewiki.net
+#
+# Author: Fulup
+# Author: Y-M D
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Sitemap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:56+0000\n"
+"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-07 21:21:54+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: br\n"
+"X-Message-Group: #out-statusnet-plugin-sitemap\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. TRANS: Title for sitemap.
+#: sitemapadminpanel.php:53
+msgid "Sitemap"
+msgstr "Tres al lec'hienn"
+
+#. TRANS: Instructions for sitemap.
+#: sitemapadminpanel.php:64
+msgid "Sitemap settings for this StatusNet site"
+msgstr ""
+
+#. TRANS: Field label.
+#: sitemapadminpanel.php:167
+msgid "Google key"
+msgstr "Alc'hwez Google"
+
+#. TRANS: Title for field label.
+#: sitemapadminpanel.php:169
+msgid "Google Webmaster Tools verification key."
+msgstr ""
+
+#. TRANS: Field label.
+#: sitemapadminpanel.php:175
+msgid "Yahoo key"
+msgstr "Alc'hwez Yahoo"
+
+#. TRANS: Title for field label.
+#: sitemapadminpanel.php:177
+msgid "Yahoo! Site Explorer verification key."
+msgstr ""
+
+#. TRANS: Field label.
+#: sitemapadminpanel.php:183
+msgid "Bing key"
+msgstr "Alc'hwez Bing"
+
+#. TRANS: Title for field label.
+#: sitemapadminpanel.php:185
+msgid "Bing Webmaster Tools verification key."
+msgstr ""
+
+#. TRANS: Submit button text to save sitemap settings.
+#: sitemapadminpanel.php:200
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Enrollañ"
+
+#. TRANS: Submit button title to save sitemap settings.
+#: sitemapadminpanel.php:204
+msgid "Save sitemap settings."
+msgstr "Enrollañ arventennoù tres al lec'hienn"
+
+#. TRANS: Menu item title/tooltip
+#: SitemapPlugin.php:211
+msgid "Sitemap configuration"
+msgstr "Kefluniadur tres al lec'hienn"
+
+#. TRANS: Menu item for site administration
+#: SitemapPlugin.php:213
+msgctxt "MENU"
+msgid "Sitemap"
+msgstr "Tres al lec'hienn"
+
+#. TRANS: Plugin description.
+#: SitemapPlugin.php:238
+msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
+msgstr ""
+"Gant an astenn-mañ e c'haller sevel tresoù lec'hiennoù evit Bing, Yahoo! ha "
+"Google."

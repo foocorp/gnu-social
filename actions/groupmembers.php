@@ -97,9 +97,13 @@ class GroupmembersAction extends GroupDesignAction
     function title()
     {
         if ($this->page == 1) {
+            // TRANS: Title of the page showing group members.
+            // TRANS: %s is the name of the group.
             return sprintf(_('%s group members'),
                            $this->group->nickname);
         } else {
+            // TRANS: Title of the page showing group members.
+            // TRANS: %1$s is the name of the group, %2$d is the page number of the members list.
             return sprintf(_('%1$s group members, page %2$d'),
                            $this->group->nickname,
                            $this->page);
@@ -389,7 +393,14 @@ class GroupBlockForm extends Form
 
     function formActions()
     {
-        $this->out->submit('submit', _('Block'), 'submit', null, _('Block this user'));
+        $this->out->submit(
+            'submit',
+            // TRANS: Button text for the form that will block a user from a group.
+            _m('BUTTON','Block'),
+            'submit',
+            null,
+            // TRANS: Submit button title.
+            _m('TOOLTIP', 'Block this user'));
     }
 }
 
@@ -516,6 +527,13 @@ class MakeAdminForm extends Form
 
     function formActions()
     {
-        $this->out->submit('submit', _('Make Admin'), 'submit', null, _('Make this user an admin'));
+        $this->out->submit(
+          'submit',
+          // TRANS: Button text for the form that will make a user administrator.
+          _m('BUTTON','Make Admin'),
+          'submit',
+          null,
+          // TRANS: Submit button title.
+          _m('TOOLTIP','Make this user an admin'));
     }
 }

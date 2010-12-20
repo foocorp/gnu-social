@@ -1,0 +1,76 @@
+# Translation of StatusNet - CasAuthentication to Dutch (Nederlands)
+# Expored from translatewiki.net
+#
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - CasAuthentication\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:37+0000\n"
+"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:27+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-casauthentication\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Menu item. CAS is Central Authentication Service.
+#: CasAuthenticationPlugin.php:83
+msgid "CAS"
+msgstr "CAS"
+
+#. TRANS: Tooltip for menu item. CAS is Central Authentication Service.
+#: CasAuthenticationPlugin.php:85
+msgid "Login or register with CAS."
+msgstr "Aanmelden of registreren via CAS."
+
+#. TRANS: Invitation to users with a CAS account to log in using the service.
+#. TRANS: "[CAS login]" is a link description. (%%action.caslogin%%) is the URL.
+#. TRANS: These two elements may not be separated.
+#: CasAuthenticationPlugin.php:101
+#, php-format
+msgid "(Have an account with CAS? Try our [CAS login](%%action.caslogin%%)!)"
+msgstr ""
+"Hebt u een gebruiker met CAS? [Meld u dan aan met CAS](%%action.caslogin%%)!"
+
+#: CasAuthenticationPlugin.php:128
+msgid "Specifying a server is required."
+msgstr "Het aangeven van een server is vereist."
+
+#: CasAuthenticationPlugin.php:131
+msgid "Specifying a port is required."
+msgstr "Het aangeven van een poort is vereist."
+
+#: CasAuthenticationPlugin.php:134
+msgid "Specifying a path is required."
+msgstr "Het aangeven van een pad is vereist."
+
+#. TRANS: Plugin description. CAS is Central Authentication Service.
+#: CasAuthenticationPlugin.php:154
+msgid ""
+"The CAS Authentication plugin allows for StatusNet to handle authentication "
+"through CAS (Central Authentication Service)."
+msgstr ""
+"De plugin CAS Authentication stelt StatusNet in staat authenticatie via CAS "
+"after handelen (Central Authentication Service)."
+
+#: caslogin.php:28
+msgid "Already logged in."
+msgstr "U bent al aangemeld."
+
+#: caslogin.php:39
+msgid "Incorrect username or password."
+msgstr "De gebruikersnaam of wachtwoord is onjuist."
+
+#: caslogin.php:45
+msgid "Error setting user. You are probably not authorized."
+msgstr ""
+"Er is een fout opgetreden bij het maken van de instellingen. U hebt "
+"waarschijnlijk niet de juiste rechten."

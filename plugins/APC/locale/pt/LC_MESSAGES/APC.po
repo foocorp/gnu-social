@@ -1,0 +1,30 @@
+# Translation of StatusNet - APC to Portuguese (Português)
+# Expored from translatewiki.net
+#
+# Author: Waldir
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - APC\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:29+0000\n"
+"Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:38:22+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: pt\n"
+"X-Message-Group: #out-statusnet-plugin-apc\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: APCPlugin.php:115
+msgid ""
+"Use the <a href=\"http://pecl.php.net/package/apc\">APC</a> variable cache "
+"to cache query results."
+msgstr ""
+"Usar o <a href=\"http://pecl.php.net/package/apc\">APC</a> para armazenar "
+"resultados de consultas em cache."

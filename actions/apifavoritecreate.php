@@ -48,7 +48,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiFavoriteCreateAction extends ApiAuthAction
 {
     var $notice = null;
@@ -59,9 +58,7 @@ class ApiFavoriteCreateAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -81,13 +78,13 @@ class ApiFavoriteCreateAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400,
                 $this->format
@@ -97,6 +94,7 @@ class ApiFavoriteCreateAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to handle an unknown API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -106,6 +104,7 @@ class ApiFavoriteCreateAction extends ApiAuthAction
 
         if (empty($this->notice)) {
             $this->clientError(
+                // TRANS: Client error displayed when requesting a status with a non-existing ID.
                 _('No status found with that ID.'),
                 404,
                 $this->format
@@ -117,6 +116,7 @@ class ApiFavoriteCreateAction extends ApiAuthAction
 
         if ($this->user->hasFave($this->notice)) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to mark a notice favourite that already is a favourite.
                 _('This status is already a favorite.'),
                 403,
                 $this->format
@@ -128,6 +128,7 @@ class ApiFavoriteCreateAction extends ApiAuthAction
 
         if (empty($fave)) {
             $this->clientError(
+                // TRANS: Client error displayed when marking a notice as favourite fails.
                 _('Could not create favorite.'),
                 403,
                 $this->format
@@ -165,5 +166,4 @@ class ApiFavoriteCreateAction extends ApiAuthAction
             // XXX: notify by SMS
         }
     }
-
 }

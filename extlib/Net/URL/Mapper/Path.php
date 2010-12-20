@@ -5,7 +5,7 @@
  * PHP version 5
  *
  * LICENSE:
- * 
+ *
  * Copyright (c) 2006, Bertrand Mansion <golgote@mamasam.com>
  * All rights reserved.
  *
@@ -16,9 +16,9 @@
  *    * Redistributions of source code must retain the above copyright
  *      notice, this list of conditions and the following disclaimer.
  *    * Redistributions in binary form must reproduce the above copyright
- *      notice, this list of conditions and the following disclaimer in the 
+ *      notice, this list of conditions and the following disclaimer in the
  *      documentation and/or other materials provided with the distribution.
- *    * The names of the authors may not be used to endorse or promote products 
+ *    * The names of the authors may not be used to endorse or promote products
  *      derived from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
@@ -37,7 +37,7 @@
  * @package    Net_URL_Mapper
  * @author     Bertrand Mansion <golgote@mamasam.com>
  * @license    http://opensource.org/licenses/bsd-license.php New BSD License
- * @version    CVS: $Id: Path.php,v 1.1 2007/03/28 10:23:04 mansion Exp $
+ * @version    CVS: $Id: Path.php 296456 2010-03-20 00:41:08Z kguest $
  * @link       http://pear.php.net/package/Net_URL_Mapper
  */
 
@@ -84,6 +84,22 @@ class Net_URL_Mapper_Path
         $this->getRequired();
     }
 
+    /**
+    * Called when the object is serialized
+    * Make sure we do not store too much info when the object is serialized
+    * and call the regular expressions generator functions so that they will
+    * not need to be generated again on wakeup.
+    *
+    * @return   array   Name of properties to store when serialized
+    */
+    public function __sleep()
+    {
+        $this->getFormat();
+        $this->getRule();
+        return array('alias', 'path', 'defaults', 'rule', 'format',
+            'parts', 'minKeys', 'maxKeys', 'fixed', 'required');
+    }
+
     public function getPath()
     {
         return $this->path;
@@ -127,7 +143,7 @@ class Net_URL_Mapper_Path
     /**
     * Set the path parts default values
     * @param array  Associative array with format partname => value
-    */    
+    */
     public function setDefaults($defaults)
     {
         if (is_array($defaults)) {
@@ -140,11 +156,11 @@ class Net_URL_Mapper_Path
     /**
     * Set the path parts default values
     * @param array  Associative array with format partname => value
-    */    
+    */
     public function setRules($rules)
     {
         if (is_array($rules)) {
-            $this->rules = $rules;   
+            $this->rules = $rules;
         } else {
             $this->rules = array();
         }
@@ -153,7 +169,7 @@ class Net_URL_Mapper_Path
     /**
     * Returns the regular expression used to match this path
     * @return string  PERL Regular expression
-    */ 
+    */
     public function getRule()
     {
         if (is_null($this->rule)) {
@@ -213,10 +229,10 @@ class Net_URL_Mapper_Path
 
     /**
     * Checks whether the path contains the given part by name
-    * If value parameter is given, the part also checks if the 
+    * If value parameter is given, the part also checks if the
     * given value conforms to the part rule.
     * @param string Part name
-    * @param mixed  The value to check against 
+    * @param mixed  The value to check against
     */
     public function hasKey($partName, $value = null)
     {
@@ -241,7 +257,12 @@ class Net_URL_Mapper_Path
         }
         $path = '/'.trim(Net_URL::resolvePath($path), '/');
         if (!empty($qstring)) {
-            $path .= '?'.http_build_query($qstring);
+            if(strpos($path, '?') === false) {
+                $path .= '?';
+            } else {
+                $path .= '&';
+            }
+            $path .= http_build_query($qstring);
         }
         if (!empty($anchor)) {
             $path .= '#'.ltrim($anchor, '#');

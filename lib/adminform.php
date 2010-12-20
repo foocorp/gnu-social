@@ -45,7 +45,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  *
  * @see      Form
  */
-
 class AdminForm extends Form
 {
     /**
@@ -59,7 +58,6 @@ class AdminForm extends Form
      *
      * @return void
      */
-
     function input($setting, $title, $instructions, $section='site')
     {
         $this->out->input($setting, $title, $this->value($setting, $section), $instructions);
@@ -73,7 +71,6 @@ class AdminForm extends Form
      *
      * @return string param value if posted, or current config value
      */
-
     function value($setting, $main='site')
     {
         $value = $this->out->trimmed($setting);
@@ -82,5 +79,4 @@ class AdminForm extends Form
         }
         return $value;
     }
-
 }

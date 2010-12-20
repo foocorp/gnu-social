@@ -37,10 +37,10 @@ class ImQueueHandler extends QueueHandler
      */
     function handle($notice)
     {
-        $this->plugin->broadcast_notice($notice);
+        $this->plugin->broadcastNotice($notice);
         if ($notice->is_local == Notice::LOCAL_PUBLIC ||
             $notice->is_local == Notice::LOCAL_NONPUBLIC) {
-            $this->plugin->public_notice($notice);
+            $this->plugin->publicNotice($notice);
         }
         return true;
     }

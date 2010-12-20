@@ -50,15 +50,10 @@ class Reply extends Memcached_DataObject
         $reply = new Reply();
         $reply->profile_id = $user_id;
 
-        if ($since_id != 0) {
-            $reply->whereAdd('notice_id > ' . $since_id);
-        }
+        Notice::addWhereSinceId($reply, $since_id, 'notice_id', 'modified');
+        Notice::addWhereMaxId($reply, $max_id, 'notice_id', 'modified');
 
-        if ($max_id != 0) {
-            $reply->whereAdd('notice_id < ' . $max_id);
-        }
-
-        $reply->orderBy('notice_id DESC');
+        $reply->orderBy('modified DESC, notice_id DESC');
 
         if (!is_null($offset)) {
             $reply->limit($offset, $limit);

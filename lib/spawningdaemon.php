@@ -204,7 +204,7 @@ abstract class SpawningDaemon extends Daemon
 
         // Reconnect main memcached, or threads will stomp on
         // each other and corrupt their requests.
-        $cache = common_memcache();
+        $cache = Cache::instance();
         if ($cache) {
             $cache->reconnect();
         }

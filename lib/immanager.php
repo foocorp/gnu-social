@@ -31,7 +31,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  * 2) override handleInput() with what to do when data is waiting on
  *    one of the sockets
  * 3) override idle($timeout) to do keepalives (if necessary)
- * 4) implement send_raw_message() to send raw data that ImPlugin::enqueue_outgoing_raw
+ * 4) implement send_raw_message() to send raw data that ImPlugin::enqueueOutgoingRaw
  *      enqueued
  */
 

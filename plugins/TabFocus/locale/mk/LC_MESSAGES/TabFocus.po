@@ -1,0 +1,32 @@
+# Translation of StatusNet - TabFocus to Macedonian (Македонски)
+# Expored from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TabFocus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:13:02+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-07 21:35:25+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-tabfocus\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#: TabFocusPlugin.php:54
+msgid ""
+"TabFocus changes the notice form behavior so that, while in the text area, "
+"pressing the tab key focuses the \"Send\" button, matching the behavior of "
+"Twitter."
+msgstr ""
+"TabFocus го менува поведението на образецот за забелешки: со пристискање на "
+"копчето Tab во местото за текст се означува копчето „Прати“, така "
+"поситоветувајќи се со поведението на Twitter."

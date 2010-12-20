@@ -5,6 +5,6 @@
 * Pause ~ retain up to 50-100 most recent notices
 * Add geo data
 * Make it work for Conversation page (perhaps a little tricky)
-* IE is updating the counter in document title all the time (Not sure if this is still an issue)
+* IE is updating the counter in document title all the time (Not sure if this
+  is still an issue)
 * Reconsider the timestamp approach
-

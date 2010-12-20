@@ -46,7 +46,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  *
  * @see      Action::showExportList()
  */
-
 class FeedList extends Widget
 {
     var $action = null;
@@ -59,42 +58,51 @@ class FeedList extends Widget
 
     function show($feeds)
     {
-        $this->out->elementStart('div', array('id' => 'export_data',
-                                              'class' => 'section'));
-        $this->out->element('h2', null, _('Export data'));
-        $this->out->elementStart('ul', array('class' => 'xoxo'));
+        if (Event::handle('StartShowFeedLinkList', array($this->action, &$feeds))) {
+            if (!empty($feeds)) {
+                $this->out->elementStart('div', array('id' => 'export_data',
+                                                      'class' => 'section'));
+                // TRANS: Header for feed links (h2).
+                $this->out->element('h2', null, _('Feeds'));
+                $this->out->elementStart('ul', array('class' => 'xoxo'));
 
-        foreach ($feeds as $feed) {
-            $this->feedItem($feed);
+                foreach ($feeds as $feed) {
+                    $this->feedItem($feed);
+                }
+
+                $this->out->elementEnd('ul');
+                $this->out->elementEnd('div');
+            }
+            Event::handle('EndShowFeedLinkList', array($this->action, &$feeds));
         }
-
-        $this->out->elementEnd('ul');
-        $this->out->elementEnd('div');
     }
 
     function feedItem($feed)
     {
-        $classname = null;
+        if (Event::handle('StartShowFeedLink', array($this->action, &$feed))) {
+            $classname = null;
 
-        switch ($feed->type) {
-         case Feed::RSS1:
-         case Feed::RSS2:
-            $classname = 'rss';
-            break;
-         case Feed::ATOM:
-            $classname = 'atom';
-            break;
-         case Feed::FOAF:
-            $classname = 'foaf';
-            break;
+            switch ($feed->type) {
+            case Feed::RSS1:
+            case Feed::RSS2:
+                $classname = 'rss';
+                break;
+            case Feed::ATOM:
+                $classname = 'atom';
+                break;
+            case Feed::FOAF:
+                $classname = 'foaf';
+                break;
+            }
+
+            $this->out->elementStart('li');
+            $this->out->element('a', array('href' => $feed->url,
+                                           'class' => $classname,
+                                           'type' => $feed->mimeType(),
+                                           'title' => $feed->title),
+                                $feed->typeName());
+            $this->out->elementEnd('li');
+            Event::handle('EndShowFeedLink', array($this->action, $feed));
         }
-
-        $this->out->elementStart('li');
-        $this->out->element('a', array('href' => $feed->url,
-                                       'class' => $classname,
-                                       'type' => $feed->mimeType(),
-                                       'title' => $feed->title),
-                            $feed->typeName());
-        $this->out->elementEnd('li');
     }
 }

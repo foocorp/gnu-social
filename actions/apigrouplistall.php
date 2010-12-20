@@ -49,7 +49,6 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiGroupListAllAction extends ApiPrivateAuthAction
 {
     var $groups   = null;
@@ -60,9 +59,7 @@ class ApiGroupListAllAction extends ApiPrivateAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -82,17 +79,17 @@ class ApiGroupListAllAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         $sitename   = common_config('site', 'name');
-        // TRANS: Message is used as a title. %s is a site name.
+        // TRANS: Message is used as a title when listing the lastest 20 groups. %s is a site name.
         $title      = sprintf(_("%s groups"), $sitename);
         $taguribase = TagURI::base();
         $id         = "tag:$taguribase:Groups";
         $link       = common_local_url('groups');
+        // TRANS: Message is used as a subtitle when listing the lastest 20 groups. %s is a site name.
         $subtitle   = sprintf(_("groups on %s"), $sitename);
 
         switch($this->format) {
@@ -119,13 +116,13 @@ class ApiGroupListAllAction extends ApiPrivateAuthAction
             break;
         default:
             $this->clientError(
+                // TRANS: Client error displayed trying to execute an unknown API method listing the latest 20 groups.
                 _('API method not found.'),
                 404,
                 $this->format
             );
             break;
         }
-
     }
 
     /**
@@ -133,7 +130,6 @@ class ApiGroupListAllAction extends ApiPrivateAuthAction
      *
      * @return array groups
      */
-
     function getGroups()
     {
         $qry = 'SELECT user_group.* '.
@@ -165,7 +161,6 @@ class ApiGroupListAllAction extends ApiPrivateAuthAction
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -176,7 +171,6 @@ class ApiGroupListAllAction extends ApiPrivateAuthAction
      *
      * @return string datestamp of the site's latest group
      */
-
     function lastModified()
     {
         if (!empty($this->groups) && (count($this->groups) > 0)) {
@@ -194,7 +188,6 @@ class ApiGroupListAllAction extends ApiPrivateAuthAction
      *
      * @return string etag
      */
-
     function etag()
     {
         if (!empty($this->groups) && (count($this->groups) > 0)) {
@@ -204,6 +197,7 @@ class ApiGroupListAllAction extends ApiPrivateAuthAction
             return '"' . implode(
                 ':',
                 array($this->arg('action'),
+                      common_user_cache_hash($this->auth_user),
                       common_language(),
                       strtotime($this->groups[0]->created),
                       strtotime($this->groups[$last]->created))
@@ -213,5 +207,4 @@ class ApiGroupListAllAction extends ApiPrivateAuthAction
 
         return null;
     }
-
 }

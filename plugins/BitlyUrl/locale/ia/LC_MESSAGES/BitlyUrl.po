@@ -1,0 +1,83 @@
+# Translation of StatusNet - BitlyUrl to Interlingua (Interlingua)
+# Expored from translatewiki.net
+#
+# Author: McDutchie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - BitlyUrl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:32+0000\n"
+"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:26+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ia\n"
+"X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: BitlyUrlPlugin.php:48
+msgid "You must specify a serviceUrl for bit.ly shortening."
+msgstr "Tu debe specificar un serviceUrl pro accurtamento bit.ly."
+
+#: BitlyUrlPlugin.php:175
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr "Usa abbreviator de URL <a href=\"http://%1$s/\">%1$s</a>."
+
+#: BitlyUrlPlugin.php:216
+msgid "bit.ly"
+msgstr "bit.ly"
+
+#: BitlyUrlPlugin.php:217 bitlyadminpanelaction.php:54
+msgid "bit.ly URL shortening"
+msgstr "Accurtamento de URL con bit.ly"
+
+#: bitlyadminpanelaction.php:65
+msgid ""
+"URL shortening with bit.ly requires [a bit.ly account and API key](http://"
+"bit.ly/a/your_api_key). This verifies that this is an authorized account, "
+"and allow you to use bit.ly's tracking features and custom domains."
+msgstr ""
+"Le accurtamento de URL con bit.ly require [un conto de bit.ly e un clave API]"
+"(http://bit.ly/a/your_api_key). Isto verifica que isto es un conto "
+"autorisate, e permitte usar le functionalitate de traciamento e dominios "
+"personalisate de bit.ly."
+
+#: bitlyadminpanelaction.php:132
+msgid "Invalid login. Max length is 255 characters."
+msgstr "Nomine de usator invalide. Longitude maximal es 255 characteres."
+
+#: bitlyadminpanelaction.php:138
+msgid "Invalid API key. Max length is 255 characters."
+msgstr "Clave API invalide. Longitude maximal es 255 characteres."
+
+#: bitlyadminpanelaction.php:191
+msgid "Credentials"
+msgstr "Datos de authentication"
+
+#: bitlyadminpanelaction.php:199
+msgid "Leave these empty to use global default credentials."
+msgstr ""
+"Lassa istes vacue pro usar le datos de authentication global predefinite."
+
+#: bitlyadminpanelaction.php:202
+msgid "If you leave these empty, bit.ly will be unavailable to users."
+msgstr "Si tu lassa istes vacue, bit.ly non essera disponibile al usatores."
+
+#: bitlyadminpanelaction.php:209
+msgid "Login name"
+msgstr "Nomine de conto"
+
+#: bitlyadminpanelaction.php:218
+msgid "API key"
+msgstr "Clave API"
+
+#: bitlyadminpanelaction.php:236
+msgid "Save bit.ly settings"
+msgstr "Salveguardar configurationes de bit.ly"

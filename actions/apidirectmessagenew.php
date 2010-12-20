@@ -49,7 +49,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiDirectMessageNewAction extends ApiAuthAction
 {
     var $other   = null;
@@ -61,9 +60,7 @@ class ApiDirectMessageNewAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -71,6 +68,7 @@ class ApiDirectMessageNewAction extends ApiAuthAction
         $this->user = $this->auth_user;
 
         if (empty($this->user)) {
+            // TRANS: Client error when user not found for an API direct message action.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
@@ -99,13 +97,13 @@ class ApiDirectMessageNewAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400,
                 $this->format
@@ -115,16 +113,18 @@ class ApiDirectMessageNewAction extends ApiAuthAction
 
         if (empty($this->content)) {
             $this->clientError(
+                // TRANS: Client error displayed when no message text was submitted (406).
                 _('No message text!'),
                 406,
                 $this->format
             );
         } else {
-            $content_shortened = common_shorten_links($this->content);
+            $content_shortened = $this->auth_user->shortenLinks($this->content);
             if (Message::contentTooLong($content_shortened)) {
                 $this->clientError(
-                    sprintf(
-                        _('That\'s too long. Max message size is %d chars.'),
+                    // TRANS: Client error displayed when message content is too long.
+                    // TRANS: %d is the maximum number of characters for a message.
+                    sprintf(_m('That\'s too long. Maximum message size is %d character.', 'That\'s too long. Maximum message size is %d characters.', Message::maxContent()),
                         Message::maxContent()
                     ),
                     406,
@@ -135,10 +135,12 @@ class ApiDirectMessageNewAction extends ApiAuthAction
         }
 
         if (empty($this->other)) {
+            // TRANS: Client error displayed if a recipient user could not be found (403).
             $this->clientError(_('Recipient user not found.'), 403, $this->format);
             return;
         } else if (!$this->user->mutuallySubscribed($this->other)) {
             $this->clientError(
+                // TRANS: Client error displayed trying to direct message another user who's not a friend (403).
                 _('Can\'t send direct messages to users who aren\'t your friend.'),
                 403,
                 $this->format
@@ -148,10 +150,9 @@ class ApiDirectMessageNewAction extends ApiAuthAction
 
             // Note: sending msgs to yourself is allowed by Twitter
 
-            $errmsg = 'Don\'t send a message to yourself; ' .
-                   'just say it to yourself quietly instead.';
-
-            $this->clientError(_($errmsg), 403, $this->format);
+            // TRANS: Client error displayed trying to direct message self (403).
+            $this->clientError(_('Do not send a message to yourself; ' .
+                   'just say it to yourself quietly instead.'), 403, $this->format);
             return;
         }
 
@@ -175,6 +176,4 @@ class ApiDirectMessageNewAction extends ApiAuthAction
             $this->showSingleJsondirectMessage($message);
         }
     }
-
 }
-

@@ -1,0 +1,281 @@
+# Translation of StatusNet - YammerImport to Macedonian (Македонски)
+# Expored from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - YammerImport\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:13:26+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:46:21+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-yammerimport\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#: YammerImportPlugin.php:98
+msgid "Yammer"
+msgstr "Yammer"
+
+#: YammerImportPlugin.php:99 actions/yammeradminpanel.php:135
+msgid "Yammer import"
+msgstr "Увоз од Yammer"
+
+#: lib/yammerauthinitform.php:48 lib/yammerauthverifyform.php:56
+#: lib/yammerprogressform.php:68 actions/yammerauth.php:71
+msgid "Connect to Yammer"
+msgstr "Поврзување со Yammer"
+
+#: lib/yammerauthinitform.php:62
+msgid "Start authentication"
+msgstr "Започни проверка"
+
+#: lib/yammerauthinitform.php:62
+msgid "Request authorization to connect to Yammer account"
+msgstr "Барај овластување за поврзување со сметката на Yammer"
+
+#: lib/yammerauthinitform.php:63
+msgid "Change API key"
+msgstr "Промени API-клуч"
+
+#: lib/yammerimporter.php:230
+msgid "Expertise:"
+msgstr "Стручност:"
+
+#: lib/yammerimporter.php:433
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Неважечка URL-адреса на аватарот: %s."
+
+#: lib/yammerimporter.php:441
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Не можев да го преземам аватарот од %s."
+
+#: lib/yammerapikeyform.php:56
+msgid "Yammer API registration"
+msgstr "Регистрација на API за Yammer"
+
+#: lib/yammerapikeyform.php:72
+msgid ""
+"Before we can connect to your Yammer network, you will need to register the "
+"importer as an application authorized to pull data on your behalf. This "
+"registration will work only for your own network. Follow this link to "
+"register the app at Yammer; you will be prompted to log in if necessary:"
+msgstr ""
+"Пред да можеме да Ве поврземе на Вашата Yammer-мрежа, ќе треба да го "
+"регистрирате увозникот како програм овластен за преземање на податоци во "
+"Ваше име. Оваа регистрација ќе работи само за Вашата мрежа. Проследете ја "
+"врската за да го регистрирате програмот на Yammer. Ако е потребно, ќе Ви "
+"биде побарано да се најавите:"
+
+#: lib/yammerapikeyform.php:84
+msgid "Open Yammer application registration form"
+msgstr "Отвори образец за регистрација на програм на Yammer"
+
+#: lib/yammerapikeyform.php:87
+msgid "Copy the consumer key and secret you are given into the form below:"
+msgstr ""
+"Ископирајте ги потрошувачкиот клуч и тајната што се наведени во образецот "
+"подолу:"
+
+#: lib/yammerapikeyform.php:91
+msgid "Consumer key:"
+msgstr "Потрошувачки клуч:"
+
+#: lib/yammerapikeyform.php:94
+msgid "Consumer secret:"
+msgstr "Потрошувачка тајна:"
+
+#: lib/yammerapikeyform.php:98
+msgid "Save"
+msgstr "Зачувај"
+
+#: lib/yammerapikeyform.php:98
+msgid "Save these consumer keys"
+msgstr "Зачувај ги овие потрошувачки клучеви"
+
+#: lib/yammerauthverifyform.php:72
+msgid ""
+"Follow this link to confirm authorization at Yammer; you will be prompted to "
+"log in if necessary:"
+msgstr ""
+"Проследете ја врскава за да го потврдите овластувањето на страницата на "
+"Yammer. Ако е потребно, ќе Ви биде побарано да се најавите:"
+
+#: lib/yammerauthverifyform.php:87
+msgid "Open Yammer authentication window"
+msgstr "Отвори прозорец за потврда на Yammer"
+
+#: lib/yammerauthverifyform.php:90
+msgid "Copy the verification code you are given below:"
+msgstr "Ископирајте го долунаведениот потврден код:"
+
+#: lib/yammerauthverifyform.php:94
+msgid "Verification code:"
+msgstr "Потврден код:"
+
+#: lib/yammerauthverifyform.php:98 lib/yammerprogressform.php:164
+msgid "Continue"
+msgstr "Продолжи"
+
+#: lib/yammerauthverifyform.php:98
+msgid "Save code and begin import"
+msgstr "Зачувај код и почни со увоз"
+
+#: lib/yammerprogressform.php:63
+msgid "Initialize"
+msgstr "Започни"
+
+#: lib/yammerprogressform.php:64
+msgid "No import running"
+msgstr "Увозот не е во тек"
+
+#: lib/yammerprogressform.php:65
+msgid "Initiated Yammer server connection..."
+msgstr "Започнав со поврзувањето со опслужувачот на Yammer..."
+
+#: lib/yammerprogressform.php:69
+msgid "Awaiting authorization..."
+msgstr "Чекам на овластување..."
+
+#: lib/yammerprogressform.php:70
+msgid "Connected."
+msgstr "Поврзано."
+
+#: lib/yammerprogressform.php:73
+msgid "Import user accounts"
+msgstr "Увези кориснички сметки"
+
+#: lib/yammerprogressform.php:74
+#, php-format
+msgid "Importing %d user..."
+msgid_plural "Importing %d users..."
+msgstr[0] "Увезувам %d корисник..."
+msgstr[1] "Увезувам %d корисници..."
+
+#: lib/yammerprogressform.php:75
+#, php-format
+msgid "Imported %d user."
+msgid_plural "Imported %d users."
+msgstr[0] "Увезов %d корисник."
+msgstr[1] "Увезов %d корисници."
+
+#: lib/yammerprogressform.php:78
+msgid "Import user groups"
+msgstr "Увези кориснички групи"
+
+#: lib/yammerprogressform.php:79
+#, php-format
+msgid "Importing %d group..."
+msgid_plural "Importing %d groups..."
+msgstr[0] "Увезувам %d група..."
+msgstr[1] "Увезувам %d групи..."
+
+#: lib/yammerprogressform.php:80
+#, php-format
+msgid "Imported %d group."
+msgid_plural "Imported %d groups."
+msgstr[0] "Увезов %d група."
+msgstr[1] "Увезов %d групи."
+
+#: lib/yammerprogressform.php:83
+msgid "Prepare public notices for import"
+msgstr "Подготви јавни известувања за увоз"
+
+#: lib/yammerprogressform.php:84
+#, php-format
+msgid "Preparing %d notice..."
+msgid_plural "Preparing %d notices..."
+msgstr[0] "Подготвувам %d известување..."
+msgstr[1] "Подготвувам %d известувања..."
+
+#: lib/yammerprogressform.php:85
+#, php-format
+msgid "Prepared %d notice."
+msgid_plural "Prepared %d notices."
+msgstr[0] "Подготвив %d известување."
+msgstr[1] "Подготвив %d известувања."
+
+#: lib/yammerprogressform.php:88
+msgid "Import public notices"
+msgstr "Увези јавни известувања"
+
+#: lib/yammerprogressform.php:89
+#, php-format
+msgid "Importing %d notice..."
+msgid_plural "Importing %d notices..."
+msgstr[0] "Увезувам %d известување..."
+msgstr[1] "Увезувам %d известувања..."
+
+#: lib/yammerprogressform.php:90
+#, php-format
+msgid "Imported %d notice."
+msgid_plural "Imported %d notices."
+msgstr[0] "Увезов %d известување..."
+msgstr[1] "Увезов %d известувања..."
+
+#: lib/yammerprogressform.php:93
+msgid "Done"
+msgstr "Готово"
+
+#: lib/yammerprogressform.php:94 lib/yammerprogressform.php:95
+msgid "Import is complete!"
+msgstr "Увозот заврши!"
+
+#: lib/yammerprogressform.php:108
+msgid "Import status"
+msgstr "Увези статус"
+
+#: lib/yammerprogressform.php:132
+msgid "Waiting..."
+msgstr "Чекам..."
+
+#: lib/yammerprogressform.php:146
+msgid "Reset import state"
+msgstr "Врати основна состојба на увозот"
+
+#: lib/yammerprogressform.php:151
+msgid "Pause import"
+msgstr "Паузирај увоз"
+
+#: lib/yammerprogressform.php:160
+#, php-format
+msgid "Encountered error \"%s\""
+msgstr "Наидов на грешка „%s“"
+
+#: lib/yammerprogressform.php:162
+msgid "Paused"
+msgstr "Паузирано"
+
+#: lib/yammerprogressform.php:165
+msgid "Abort import"
+msgstr "Прекини увоз"
+
+#: actions/yammeradminpanel.php:45
+msgid "Yammer Import"
+msgstr "Увоз од Yammer"
+
+#: actions/yammeradminpanel.php:55
+msgid ""
+"This Yammer import tool is still undergoing testing, and is incomplete in "
+"some areas. Currently user subscriptions and group memberships are not "
+"transferred; in the future this may be supported for imports done by "
+"verified administrators on the Yammer side."
+msgstr ""
+"Оваа алатка за увоз од Yammer сè уште е во фаза на испробување, а наместа е "
+"недработена. Моментално не можат да се префрлаат кориснички претплати и "
+"членства во групи. Ваквите префрлања може да се поддржани во иднина, и тие "
+"би ги вршеле овластени администратори на Yammer."
+
+#: actions/yammeradminpanel.php:102
+msgid "Paused from admin panel."
+msgstr "Паузирано од администраторската табла."

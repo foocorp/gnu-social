@@ -49,7 +49,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 class ActivityObject
 {
     const ARTICLE   = 'http://activitystrea.ms/schema/1.0/article';
@@ -116,7 +115,6 @@ class ActivityObject
      *
      * @param DOMElement $element DOM thing to turn into an Activity thing
      */
-
     function __construct($element = null)
     {
         if (empty($element)) {
@@ -168,7 +166,6 @@ class ActivityObject
                 ActivityObject::MEDIA_DESCRIPTION,
                 Activity::MEDIA
             );
-
         }
     }
 
@@ -204,7 +201,7 @@ class ActivityObject
 
         $title = ActivityUtils::childHtmlContent($element, self::TITLE);
 
-        $this->title = html_entity_decode(strip_tags($title));
+        $this->title = html_entity_decode(strip_tags($title), ENT_QUOTES, 'UTF-8');
 
         $this->source  = $this->_getSource($element);
 
@@ -217,8 +214,7 @@ class ActivityObject
         }
     }
 
-    // @fixme rationalize with Activity::_fromRssItem()
-
+    // @todo FIXME: rationalize with Activity::_fromRssItem()
     private function _fromRssItem($item)
     {
         $this->title = ActivityUtils::childContent($item, ActivityObject::TITLE, Activity::RSS);
@@ -418,7 +414,6 @@ class ActivityObject
         );
 
         foreach ($sizes as $size) {
-
             $alink  = null;
             $avatar = $profile->getAvatar($size);
 
@@ -430,6 +425,17 @@ class ActivityObject
                 $alink->height = $size;
                 $alink->width  = $size;
                 $alink->url    = Avatar::defaultImage($size);
+
+                if ($size == AVATAR_PROFILE_SIZE) {
+                    // Hack for Twitter import: we don't have a 96x96 image,
+                    // but we do have a 73x73 image. For now, fake it with that.
+                    $avatar = $profile->getAvatar(73);
+                    if ($avatar) {
+                        $alink = AvatarLink::fromAvatar($avatar);
+                        $alink->height= $size;
+                        $alink->width = $size;
+                    }
+                }
             }
 
             $object->avatarLinks[] = $alink;

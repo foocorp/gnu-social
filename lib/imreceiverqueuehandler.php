@@ -37,6 +37,6 @@ class ImReceiverQueueHandler extends QueueHandler
      */
     function handle($data)
     {
-        return $this->plugin->receive_raw_message($data);
+        return $this->plugin->receiveRawMessage($data);
     }
 }

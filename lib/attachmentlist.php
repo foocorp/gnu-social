@@ -49,7 +49,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @see      NoticeListItem
  * @see      ProfileNoticeList
  */
-
 class AttachmentList extends Widget
 {
     /** the current stream of notices being displayed. */
@@ -61,7 +60,6 @@ class AttachmentList extends Widget
      *
      * @param Notice $notice stream of notices from DB_DataObject
      */
-
     function __construct($notice, $out=null)
     {
         parent::__construct($out);
@@ -76,29 +74,38 @@ class AttachmentList extends Widget
      *
      * @return int count of notices listed.
      */
-
     function show()
     {
         $atts = new File;
         $att = $atts->getAttachments($this->notice->id);
         if (empty($att)) return 0;
-        $this->out->elementStart('dl', array('id' =>'attachments',
-                                             'class' => 'entry-content'));
-        // TRANS: DT element label in attachment list.
-        $this->out->element('dt', null, _('Attachments'));
-        $this->out->elementStart('dd');
-        $this->out->elementStart('ol', array('class' => 'attachments'));
+        $this->showListStart();
 
         foreach ($att as $n=>$attachment) {
             $item = $this->newListItem($attachment);
             $item->show();
         }
 
+        $this->showListEnd();
+
+        return count($att);
+    }
+
+    function showListStart()
+    {
+        $this->out->elementStart('dl', array('id' =>'attachments',
+                                             'class' => 'entry-content'));
+        // TRANS: DT element label in attachment list.
+        $this->out->element('dt', null, _('Attachments'));
+        $this->out->elementStart('dd');
+        $this->out->elementStart('ol', array('class' => 'attachments'));
+    }
+
+    function showListEnd()
+    {
         $this->out->elementEnd('dd');
         $this->out->elementEnd('ol');
         $this->out->elementEnd('dl');
-
-        return count($att);
     }
 
     /**
@@ -111,7 +118,6 @@ class AttachmentList extends Widget
      *
      * @return NoticeListItem a list item for displaying the notice
      */
-
     function newListItem($attachment)
     {
         return new AttachmentListItem($attachment, $this->out);
@@ -135,7 +141,6 @@ class AttachmentList extends Widget
  * @see      NoticeList
  * @see      ProfileNoticeListItem
  */
-
 class AttachmentListItem extends Widget
 {
     /** The attachment this item will show. */
@@ -151,7 +156,6 @@ class AttachmentListItem extends Widget
      *
      * @param Notice $notice The notice we'll display
      */
-
     function __construct($attachment, $out=null)
     {
         parent::__construct($out);
@@ -185,7 +189,6 @@ class AttachmentListItem extends Widget
      *
      * @return void
      */
-
     function show()
     {
         $this->showStart();
@@ -194,7 +197,10 @@ class AttachmentListItem extends Widget
     }
 
     function linkAttr() {
-        return array('class' => 'attachment', 'href' => $this->attachment->url, 'id' => 'attachment-' . $this->attachment->id);
+        return array('class' => 'attachment',
+                     'href' => $this->attachment->url,
+                     'id' => 'attachment-' . $this->attachment->id,
+                     'title' => $this->title());
     }
 
     function showLink() {
@@ -210,10 +216,32 @@ class AttachmentListItem extends Widget
     }
 
     function showRepresentation() {
-        $thumbnail = File_thumbnail::staticGet('file_id', $this->attachment->id);
-        if (!empty($thumbnail)) {
-            $this->out->element('img', array('alt' => '', 'src' => $thumbnail->url, 'width' => $thumbnail->width, 'height' => $thumbnail->height));
+        $thumb = $this->getThumbInfo();
+        if ($thumb) {
+            $this->out->element('img', array('alt' => '', 'src' => $thumb->url, 'width' => $thumb->width, 'height' => $thumb->height));
         }
+    }
+
+    /**
+     * Pull a thumbnail image reference for the given file, and if necessary
+     * resize it to match currently thumbnail size settings.
+     *
+     * @return File_Thumbnail or false/null
+     */
+    function getThumbInfo()
+    {
+        $thumbnail = File_thumbnail::staticGet('file_id', $this->attachment->id);
+        if ($thumbnail) {
+            $maxWidth = common_config('attachments', 'thumb_width');
+            $maxHeight = common_config('attachments', 'thumb_height');
+            if ($thumbnail->width > $maxWidth) {
+                $thumb = clone($thumbnail);
+                $thumb->width = $maxWidth;
+                $thumb->height = intval($thumbnail->height * $maxWidth / $thumbnail->width);
+                return $thumb;
+            }
+        }
+        return $thumbnail;
     }
 
     /**
@@ -221,7 +249,6 @@ class AttachmentListItem extends Widget
      *
      * @return void
      */
-
     function showStart()
     {
         // XXX: RDFa
@@ -236,13 +263,15 @@ class AttachmentListItem extends Widget
      *
      * @return void
      */
-
     function showEnd()
     {
         $this->out->elementEnd('li');
     }
 }
 
+/**
+ * used for one-off attachment action
+ */
 class Attachment extends AttachmentListItem
 {
     function showLink() {
@@ -257,7 +286,7 @@ class Attachment extends AttachmentListItem
         $this->out->elementEnd('div');
 
         if (!empty($this->oembed->author_name) || !empty($this->oembed->provider)) {
-            $this->out->elementStart('div', array('id' => 'oembed_info', 
+            $this->out->elementStart('div', array('id' => 'oembed_info',
                                                   'class' => 'entry-content'));
             if (!empty($this->oembed->author_name)) {
                 $this->out->elementStart('dl', 'vcard author');
@@ -426,16 +455,6 @@ class Attachment extends AttachmentListItem
 
     function showFallback()
     {
-        // If we don't know how to display an attachment inline, we probably
-        // shouldn't have gotten to this point.
-        //
-        // But, here we are... displaying details on a file or remote URL
-        // either on the main view or in an ajax-loaded lightbox. As a lesser
-        // of several evils, we'll try redirecting to the actual target via
-        // client-side JS.
-
-        common_log(LOG_ERR, "Empty or unknown type for file id {$this->attachment->id}; falling back to client-side redirect.");
-        $this->out->raw('<script>window.location = ' . json_encode($this->attachment->url) . ';</script>');
+        // still needed: should show a link?
     }
 }
-

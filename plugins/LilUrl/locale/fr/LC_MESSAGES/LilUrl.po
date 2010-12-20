@@ -1,0 +1,34 @@
+# Translation of StatusNet - LilUrl to French (Français)
+# Expored from translatewiki.net
+#
+# Author: Peter17
+# Author: Verdy p
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - LilUrl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:11+0000\n"
+"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:46:15+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fr\n"
+"X-Message-Group: #out-statusnet-plugin-lilurl\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: LilUrlPlugin.php:43
+msgid "A serviceUrl must be specified."
+msgstr "Une URL de service doit être spécifiée."
+
+#: LilUrlPlugin.php:68
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr ""
+"Utilise le service de raccourcissement d’URL <a href=\"http://%1$s/\">%1$s</"
+"a>."

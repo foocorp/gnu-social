@@ -1,0 +1,293 @@
+/** theme: mobile profile screen
+ *
+ * @package   StatusNet
+ * @author    Sarven Capadisli <csarven@status.net>
+ * @copyright 2009-2010 StatusNet, Inc.
+ * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
+ * @link      http://status.net/
+ */
+
+#wrap {
+min-width:0;
+max-width:100%;
+}
+
+body {
+    max-width: 100%;
+    margin: 0 1em;
+}
+
+#header {
+margin:0;
+padding:0.7em 2%;
+width:96%;
+}
+
+address {
+margin:1em 0 0 0;
+float:left;
+width:100%;
+}
+address .vcard .photo {
+margin-right:0;
+}
+
+address img + .fn {
+display:block;
+margin-top:1em;
+float:left;
+}
+
+.vcard .photo {
+margin-right:7px;
+}
+
+
+.form_settings fieldset {
+margin-bottom:7px;
+}
+
+.form_settings label {
+width:auto;
+display:block;
+float:none;
+}
+.form_settings .form_data li {
+margin-bottom:7px;
+}
+
+.form_settings .form_data textarea,
+.form_settings .form_data select, 
+.form_settings .form_data input {
+margin-left:0;
+display:block;
+}
+.form_settings .form_data textarea {
+width:96.41%;
+}
+
+.form_settings .form_data label {
+float:none;
+}
+
+.form_settings .form_data p.form_guide {
+width:auto;
+margin-left:0;
+}
+
+#site_nav_global_primary {
+margin:0;
+width:100%;
+list-style-type:none;
+position:absolute;
+top:0;
+left:0;
+}
+#site_nav_global_primary li {
+margin-left:0;
+margin-right:4%;
+float:left;
+font-size:0.9em;
+}
+
+#form_notice {
+width:100%;
+margin-left: 0;
+}
+
+#form_notice textarea {
+width:60%;
+height:20px;
+}
+
+#notice_text-count {
+position:absolute;
+bottom:2px;
+right:40%;
+z-index:9;
+}
+
+/*input type=file no good in
+iPhone/iPod Touch, Android, Opera Mini Simulator
+*/
+#form_notice #notice_text-count + label,
+#form_notice label[for="notice_data-attach"] {
+display:none;
+}
+#form_notice #notice_data-attach {
+position:static;
+clear:both;
+width:65%;
+height:auto;
+display:block;
+z-index:9;
+padding:0;
+margin:0;
+background:none;
+opacity:1;
+}
+
+#form_notice #notice_action-submit {
+width:20%;
+right:2%;
+text-align:center;
+}
+
+
+#site_nav_local_views li {
+margin-left:0;
+margin-right:0;
+}
+#site_nav_local_views li:first-child {
+margin-left:0;
+}
+#site_nav_local_views a {
+padding:1px 3px;
+display:block;
+font-size:0.9em;
+}
+#site_nav_local_views .current a {
+text-shadow:none;
+}
+#site_nav_local_views li {
+-moz-box-shadow:none;
+-webkit-box-shadow:none;
+box-shadow:none;
+}
+
+
+#content {
+width:96.41%;
+min-height:auto;
+}
+#content, 
+#site_nav_local_views a, 
+#aside_primary {
+border:0;
+}
+
+.instructions p, 
+.instructions ul {
+margin-bottom:4px;
+}
+
+h1 {
+margin-bottom:0;
+}
+
+.notice,
+.profile {
+padding-top:4px;
+padding-bottom:4px;
+min-height:65px;
+}
+#content .notice .entry-title {
+float:left;
+width:100%;
+margin-left:0;
+}
+#content .notice .author .photo {
+position:static;
+float:left;
+}
+#content .notice div.entry-content {
+margin-left:0;
+width:75%;
+max-width:100%;
+min-width:0;
+}
+.notice-options {
+margin-right:1%;
+}
+
+.notice-options form.processing {
+background-image:none;
+}
+#wrap .notice-options form.processing input.submit {
+background-position:0 47%;
+}
+
+.notice .notice-options a,
+.notice .notice-options input {
+box-shadow:none;
+-moz-box-shadow:none;
+-webkit-box-shadow:none;
+}
+.notice .notice-options a,
+.notice .notice-options form {
+margin: 0;
+}
+.notice .notice-options .form_repeat,
+.notice .notice-options .notice_delete {
+margin-top:0px;
+}
+.notice .notice-options .form_favor,
+.notice .notice-options .form_disfavor,
+.notice .notice-options .form_repeat {
+margin-right:11px;
+}
+
+.notice .notice-options .notice_delete {
+float:left;
+}
+
+.entity_profile {
+width:auto;
+}
+
+.entity_actions {
+margin-right:0;
+margin-left:0;
+clear:both;
+float:none;
+width:100%;
+max-width:9999px;
+}
+
+.entity_profile {
+margin-bottom:7px;
+min-height:0;
+}
+
+.entity_profile .entity_fn, 
+.entity_profile .entity_nickname, 
+.entity_profile .entity_location, 
+.entity_profile .entity_url, 
+.entity_profile .entity_note, 
+.entity_profile .entity_tags, 
+.entity_profile .entity_aliases {
+line-height:1.4;
+margin-left:0;
+}
+
+.entity_profile .entity_depiction {
+margin-bottom:1%;
+margin-right:7px;
+}
+
+.entity_actions {
+margin-bottom:1%;
+float:left;
+width:100%;
+}
+
+.entity_actions li {
+float:left;
+margin-right:1.5%;
+margin-bottom:0;
+height:29px;
+width:40%;
+}
+
+.user_in .entity_actions .entity_subscribe {
+margin-bottom:47px;
+width:auto;
+height:auto;
+margin-right:5%;
+}
+
+#footer {
+width:96%;
+padding:2%;
+}
+

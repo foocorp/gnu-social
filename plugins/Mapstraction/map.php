@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class MapAction extends OwnerDesignAction
 {
     var $profile = null;
@@ -54,7 +53,7 @@ class MapAction extends OwnerDesignAction
         parent::prepare($args);
 
         $nickname_arg = $this->arg('nickname');
-        $nickname     = common_canonical_nickname($nickname_arg);
+        $nickname     = Nickname::normalize($nickname_arg);
 
         // Permanent redirect on non-canonical nickname
 
@@ -116,7 +115,6 @@ class MapAction extends OwnerDesignAction
      *
      * @return boolean event handler return
      */
-
     function showScripts()
     {
         parent::showScripts();

@@ -79,7 +79,7 @@ class Queued_XMPP extends XMPPHP_XMPP
      */
     public function send($msg, $timeout=NULL)
     {
-        $this->plugin->enqueue_outgoing_raw($msg);
+        $this->plugin->enqueueOutgoingRaw($msg);
     }
 
     //@{

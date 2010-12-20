@@ -1,0 +1,30 @@
+# Translation of StatusNet - OpenExternalLinkTarget to Brazilian Portuguese (Português do Brasil)
+# Expored from translatewiki.net
+#
+# Author: Giro720
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - OpenExternalLinkTarget\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-10-18 18:35+0000\n"
+"PO-Revision-Date: 2010-10-18 18:43:21+0000\n"
+"Language-Team: Brazilian Portuguese <http://translatewiki.net/wiki/Portal:pt-"
+"br>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-10-09 14:36:34+0000\n"
+"X-Generator: MediaWiki 1.17alpha (r74952); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: pt-br\n"
+"X-Message-Group: #out-statusnet-plugin-openexternallinktarget\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: OpenExternalLinkTargetPlugin.php:59
+#, fuzzy
+msgid "Opens external links (i.e. with rel=external) on a new window or tab."
+msgstr ""
+"Abre links externos (por exemplo, com rel=external) em uma nova janela ou "
+"aba."

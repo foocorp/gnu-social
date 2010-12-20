@@ -38,11 +38,13 @@ class SalmonAction extends Action
         parent::prepare($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            // TRANS: Client error. POST is a HTTP command. It should not be translated.
             $this->clientError(_m('This method requires a POST.'));
         }
 
         if (empty($_SERVER['CONTENT_TYPE']) || $_SERVER['CONTENT_TYPE'] != 'application/magic-envelope+xml') {
-            $this->clientError(_m('Salmon requires application/magic-envelope+xml'));
+            // TRANS: Client error. Do not translate "application/magic-envelope+xml"
+            $this->clientError(_m('Salmon requires "application/magic-envelope+xml".'));
         }
 
         $xml = file_get_contents('php://input');
@@ -51,6 +53,7 @@ class SalmonAction extends Action
         $salmon = new Salmon;
         if (!$salmon->verifyMagicEnv($xml)) {
             common_log(LOG_DEBUG, "Salmon signature verification failed.");
+            // TRANS: Client error.
             $this->clientError(_m('Salmon signature verification failed.'));
         } else {
             $magic_env = new MagicEnvelope();
@@ -62,6 +65,7 @@ class SalmonAction extends Action
         if ($dom->documentElement->namespaceURI != Activity::ATOM ||
             $dom->documentElement->localName != 'entry') {
             common_log(LOG_DEBUG, "Got invalid Salmon post: $xml");
+            // TRANS: Client error.
             $this->clientError(_m('Salmon post must be an Atom entry.'));
         }
 
@@ -110,6 +114,7 @@ class SalmonAction extends Action
                 $this->handleUpdateProfile();
                 break;
             default:
+                // TRANS: Client exception.
                 throw new ClientException(_m("Unrecognized activity type."));
             }
             Event::handle('EndHandleSalmon', array($this->activity));
@@ -118,41 +123,49 @@ class SalmonAction extends Action
 
     function handlePost()
     {
+        // TRANS: Client exception.
         throw new ClientException(_m("This target doesn't understand posts."));
     }
 
     function handleFollow()
     {
+        // TRANS: Client exception.
         throw new ClientException(_m("This target doesn't understand follows."));
     }
 
     function handleUnfollow()
     {
+        // TRANS: Client exception.
         throw new ClientException(_m("This target doesn't understand unfollows."));
     }
 
     function handleFavorite()
     {
+        // TRANS: Client exception.
         throw new ClientException(_m("This target doesn't understand favorites."));
     }
 
     function handleUnfavorite()
     {
+        // TRANS: Client exception.
         throw new ClientException(_m("This target doesn't understand unfavorites."));
     }
 
     function handleShare()
     {
+        // TRANS: Client exception.
         throw new ClientException(_m("This target doesn't understand share events."));
     }
 
     function handleJoin()
     {
+        // TRANS: Client exception.
         throw new ClientException(_m("This target doesn't understand joins."));
     }
 
     function handleLeave()
     {
+        // TRANS: Client exception.
         throw new ClientException(_m("This target doesn't understand leave events."));
     }
 
@@ -180,7 +193,8 @@ class SalmonAction extends Action
         if (empty($actor->id)) {
             common_log(LOG_ERR, "broken actor: " . var_export($actor, true));
             common_log(LOG_ERR, "activity with no actor: " . var_export($this->activity, true));
-            throw new Exception("Received a salmon slap from unidentified actor.");
+            // TRANS: Exception.
+            throw new Exception(_m('Received a salmon slap from unidentified actor.'));
         }
 
         return Ostatus_profile::ensureActivityObjectProfile($actor);

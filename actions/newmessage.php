@@ -144,11 +144,14 @@ class NewmessageAction extends Action
             $this->showForm(_('No content!'));
             return;
         } else {
-            $content_shortened = common_shorten_links($this->content);
+            $content_shortened = $user->shortenLinks($this->content);
 
             if (Message::contentTooLong($content_shortened)) {
-                $this->showForm(sprintf(_('That\'s too long. ' .
-                                          'Max message size is %d chars.'),
+                // TRANS: Form validation error displayed when message content is too long.
+                // TRANS: %d is the maximum number of characters for a message.
+                $this->showForm(sprintf(_m('That\'s too long. Maximum message size is %d character.',
+                                           'That\'s too long. Maximum message size is %d characters.',
+                                           Message::maxContent()),
                                         Message::maxContent()));
                 return;
             }

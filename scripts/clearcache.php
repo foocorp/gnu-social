@@ -38,7 +38,7 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 $karg = get_option_value('k', 'key');
 
 if (!empty($karg)) {
-    $k = common_cache_key($karg);
+    $k = Cache::key($karg);
 } else {
     $table = get_option_value('t', 'table');
     if (empty($table)) {
@@ -55,7 +55,7 @@ if (!empty($karg)) {
 
 print "Clearing key '$k'...";
 
-$c = common_memcache();
+$c = Cache::instance();
 
 if (empty($c)) {
     die("Can't initialize cache object!\n");

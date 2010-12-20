@@ -47,7 +47,6 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiStatusnetVersionAction extends ApiPrivateAuthAction
 {
     /**
@@ -58,7 +57,6 @@ class ApiStatusnetVersionAction extends ApiPrivateAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -72,7 +70,6 @@ class ApiStatusnetVersionAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -90,6 +87,7 @@ class ApiStatusnetVersionAction extends ApiPrivateAuthAction
             break;
         default:
             $this->clientError(
+                // TRANS: Client error displayed when trying to handle an unknown API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -107,11 +105,8 @@ class ApiStatusnetVersionAction extends ApiPrivateAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;
     }
-
 }
-

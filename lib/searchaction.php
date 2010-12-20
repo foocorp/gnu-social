@@ -70,7 +70,6 @@ class SearchAction extends Action
      * @return void
      * @see SearchGroupNav
      */
-
     function showLocalNav()
     {
         $nav = new SearchGroupNav($this, $this->trimmed('q'));
@@ -117,14 +116,18 @@ class SearchAction extends Action
                                            'class' => 'form_settings',
                                            'action' => common_local_url($this->trimmed('action'))));
         $this->elementStart('fieldset');
+        // TRANS: Fieldset legend for the search form.
         $this->element('legend', null, _('Search site'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
         if (!common_config('site', 'fancy')) {
             $this->hidden('action', $this->trimmed('action'));
         }
+        // TRANS: Used as a field label for the field where one or more keywords
+        // TRANS: for searching can be entered.
         $this->input('q', _('Keyword(s)'), $q);
-        $this->submit('search', _('Search'));
+        // TRANS: Button text for searching site.
+        $this->submit('search', _m('BUTTON','Search'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->elementEnd('fieldset');
@@ -135,6 +138,8 @@ class SearchAction extends Action
     }
 
     function searchSuggestions($q) {
+        // @todo FIXME: i18n issue: This formatting does not make this string get picked up by gettext.
+            // TRANS: Standard search suggestions shown when a search does not give any results.
         $message = _(<<<E_O_T
 * Make sure all words are spelled correctly.
 * Try different keywords.
@@ -145,6 +150,8 @@ E_O_T
 );
         if (!common_config('site', 'private')) {
             $qe = urlencode($q);
+            // @todo FIXME: i18n issue: This formatting does not make this string get picked up by gettext.
+            // TRANS: Standard search suggestions shown when a search does not give any results.
             $message .= sprintf(_(<<<E_O_T
 
 You can also try your search on other engines:
@@ -159,6 +166,7 @@ E_O_T
 ), $qe, $qe, $qe, $qe, $qe);
         }
         $this->elementStart('dl', array('id' => 'help_search', 'class' => 'help'));
+        // TRANS: Definition list item with instructions on how to get (better) search results.
         $this->element('dt', null, _('Search help'));
         $this->elementStart('dd', 'instructions');
         $this->raw(common_markup_to_html($message));
@@ -166,4 +174,3 @@ E_O_T
         $this->elementEnd('div');
     }
 }
-

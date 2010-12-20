@@ -1,8 +1,8 @@
 <?php
+
 /**
  * Table Definition for group_inbox
  */
-
 class Group_inbox extends Memcached_DataObject
 {
     ###START_AUTOCODE

@@ -1,0 +1,37 @@
+# Translation of StatusNet - SphinxSearch to Breton (Brezhoneg)
+# Expored from translatewiki.net
+#
+# Author: Fulup
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SphinxSearch\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:57+0000\n"
+"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:54+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: br\n"
+"X-Message-Group: #out-statusnet-plugin-sphinxsearch\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. TRANS: Server exception.
+#: SphinxSearchPlugin.php:87
+msgid "Sphinx PHP extension must be installed."
+msgstr "Rekis eo d'an astenn Sphinx PHP bezañ staliet."
+
+#. TRANS: Plugin description.
+#: SphinxSearchPlugin.php:118
+msgid "Plugin for Sphinx search backend."
+msgstr ""
+
+#. TRANS: Server exception thrown when a database name cannot be identified.
+#: sphinxsearch.php:96
+msgid "Sphinx search could not identify database name."
+msgstr ""

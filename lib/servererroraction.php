@@ -96,4 +96,27 @@ class ServerErrorAction extends ErrorAction
 
         $this->showPage();
     }
+
+    /**
+     *  To specify additional HTTP headers for the action
+     *
+     *  @return void
+     */
+    function extraHeaders()
+    {
+        $status_string = @self::$status[$this->code];
+        header('HTTP/1.1 '.$this->code.' '.$status_string);
+    }
+
+    /**
+     * Page title.
+     *
+     * @return page title
+     */
+
+    function title()
+    {
+        return @self::$status[$this->code];
+    }
+
 }

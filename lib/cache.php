@@ -41,7 +41,6 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class Cache
 {
     var $_items   = array();
@@ -56,7 +55,6 @@ class Cache
      *
      * @return Cache cache object
      */
-
     static function instance()
     {
         if (is_null(self::$_inst)) {
@@ -77,18 +75,66 @@ class Cache
      *
      * @return string full key
      */
-
     static function key($extra)
     {
         $base_key = common_config('cache', 'base');
 
         if (empty($base_key)) {
-            $base_key = common_keyize(common_config('site', 'name'));
+            $base_key = self::keyize(common_config('site', 'name'));
         }
 
         return 'statusnet:' . $base_key . ':' . $extra;
     }
 
+    /**
+     * Create a cache key for data dependent on code
+     *
+     * For cache elements that are dependent on changes in code, this creates
+     * a more-or-less fingerprint of the current running code and adds it to
+     * the cache key. In the case of an upgrade of core, or addition or
+     * removal of plugins, a new unique fingerprint is generated and used.
+     * 
+     * There can still be problems with a) differences in versions of the 
+     * plugins and b) people running code between official versions. This is
+     * usually a problem only for experienced users like developers, who know
+     * how to clear their cache.
+     *
+     * For sites that run code between versions (like the status.net cloud),
+     * there's an additional build number configuration setting.
+     * 
+     * @param string $extra the real part of the key
+     *
+     * @return string full key
+     */
+    
+    static function codeKey($extra)
+    {
+        static $prefix = null;
+	
+        if (empty($prefix)) {
+	    
+            $plugins     = StatusNet::getActivePlugins();
+            $names       = array();
+	    
+            foreach ($plugins as $plugin) {
+                $names[] = $plugin[0];
+            }
+	    
+            $names = array_unique($names);
+            asort($names);
+	    
+            // Unique enough.
+	
+            $uniq = crc32(implode(',', $names));
+
+            $build = common_config('site', 'build');
+
+            $prefix = STATUSNET_VERSION.':'.$build.':'.$uniq;
+        }
+	
+        return Cache::key($prefix.':'.$extra);
+    }
+    
     /**
      * Make a string suitable for use as a key
      *
@@ -98,7 +144,6 @@ class Cache
      *
      * @return string keyized string
      */
-
     static function keyize($str)
     {
         $str = strtolower($str);
@@ -115,7 +160,6 @@ class Cache
      *
      * @return string retrieved value or null if unfound
      */
-
     function get($key)
     {
         $value = false;
@@ -140,7 +184,6 @@ class Cache
      *
      * @return boolean success flag
      */
-
     function set($key, $value, $flag=null, $expiry=null)
     {
         $success = false;
@@ -192,7 +235,6 @@ class Cache
      *
      * @return boolean success flag
      */
-
     function delete($key)
     {
         $success = false;
@@ -214,7 +256,6 @@ class Cache
      *
      * @return boolean success flag
      */
-
     function reconnect()
     {
         $success = false;

@@ -1,0 +1,79 @@
+# Translation of StatusNet - MobileProfile to Simplified Chinese (‪中文(简体)‬)
+# Expored from translatewiki.net
+#
+# Author: ZhengYiFeng
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - MobileProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:19+0000\n"
+"Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
+"hans>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:45+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: zh-hans\n"
+"X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: MobileProfilePlugin.php:193
+msgid "This page is not available in a media type you accept."
+msgstr ""
+
+#: MobileProfilePlugin.php:310
+msgid "Home"
+msgstr ""
+
+#: MobileProfilePlugin.php:312
+msgid "Account"
+msgstr "账号"
+
+#: MobileProfilePlugin.php:314
+msgid "Connect"
+msgstr "关联"
+
+#: MobileProfilePlugin.php:317
+msgid "Admin"
+msgstr "管理"
+
+#: MobileProfilePlugin.php:317
+msgid "Change site configuration"
+msgstr "更改网站配置"
+
+#: MobileProfilePlugin.php:321
+msgid "Invite"
+msgstr "邀请"
+
+#: MobileProfilePlugin.php:324
+msgid "Logout"
+msgstr "登出"
+
+#: MobileProfilePlugin.php:328
+msgid "Register"
+msgstr "注册"
+
+#: MobileProfilePlugin.php:331
+msgid "Login"
+msgstr "登录"
+
+#: MobileProfilePlugin.php:335
+msgid "Search"
+msgstr "搜索"
+
+#: MobileProfilePlugin.php:361
+msgid "Attach"
+msgstr "附件"
+
+#: MobileProfilePlugin.php:365
+msgid "Attach a file"
+msgstr "添加一个文件附件"
+
+#: MobileProfilePlugin.php:417
+msgid "XHTML MobileProfile output for supporting user agents."
+msgstr ""

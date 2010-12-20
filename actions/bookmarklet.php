@@ -34,7 +34,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 require_once INSTALLDIR . '/actions/newnotice.php';
 
 /**
- * Action for posting a notice 
+ * Action for posting a notice
  *
  * @category Bookmarklet
  * @package  StatusNet
@@ -42,12 +42,12 @@ require_once INSTALLDIR . '/actions/newnotice.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class BookmarkletAction extends NewnoticeAction
 {
     function showTitle()
     {
         // TRANS: Title for mini-posting window loaded from bookmarklet.
+        // TRANS: %s is the StatusNet site name.
         $this->element('title', null, sprintf(_('Post to %s'), common_config('site', 'name')));
     }
 
@@ -73,4 +73,3 @@ class BookmarkletAction extends NewnoticeAction
     {
     }
 }
-

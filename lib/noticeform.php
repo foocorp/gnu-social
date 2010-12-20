@@ -169,7 +169,8 @@ class NoticeForm extends Form
     function formData()
     {
         if (Event::handle('StartShowNoticeFormData', array($this))) {
-            $this->out->element('label', array('for' => 'notice_data-text'),
+            $this->out->element('label', array('for' => 'notice_data-text',
+                                               'id' => 'notice_data-text-label'),
                                 sprintf(_('What\'s up, %s?'), $this->user->nickname));
             // XXX: vary by defined max size
             $this->out->element('textarea', array('id' => 'notice_data-text',

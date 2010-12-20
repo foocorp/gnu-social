@@ -148,7 +148,7 @@ class MakeadminAction extends RedirectingAction
                                $this->group->getBestName());
         }
 
-        $this->returnToArgs();
+        $this->returnToPrevious();
     }
 
     /**

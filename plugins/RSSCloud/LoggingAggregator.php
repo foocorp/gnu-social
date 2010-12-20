@@ -47,7 +47,6 @@ if (!defined('STATUSNET')) {
  **/
 class LoggingAggregatorAction extends Action
 {
-
     var $challenge = null;
     var $url       = null;
 
@@ -58,7 +57,6 @@ class LoggingAggregatorAction extends Action
      *
      * @return boolean false if user doesn't exist
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -79,22 +77,20 @@ class LoggingAggregatorAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if (empty($this->url)) {
-            $this->showError('Hey, you have to provide a url parameter.');
+            $this->showError(_('A URL parameter is required.'));
             return;
         }
 
         if (!empty($this->challenge)) {
 
             // must be a GET
-
             if ($_SERVER['REQUEST_METHOD'] != 'GET') {
-                $this->showError('This resource requires an HTTP GET.');
+                $this->showError(_m('This resource requires an HTTP GET.'));
                 return;
             }
 
@@ -104,9 +100,8 @@ class LoggingAggregatorAction extends Action
         } else {
 
             // must be a POST
-
             if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-                $this->showError('This resource requires an HTTP POST.');
+                $this->showError(_m('This resource requires an HTTP POST.'));
                 return;
             }
 
@@ -128,7 +123,6 @@ class LoggingAggregatorAction extends Action
      *
      * @return void
      */
-
     function showError($msg)
     {
         header('HTTP/1.1 400 Bad Request');
@@ -136,5 +130,4 @@ class LoggingAggregatorAction extends Action
         echo "<?xml version='1.0'?>\n";
         echo "<notifyResult success='false' msg='$msg' />\n";
     }
-
 }

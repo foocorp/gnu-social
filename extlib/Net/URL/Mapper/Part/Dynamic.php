@@ -37,7 +37,7 @@
  * @package    Net_URL_Mapper
  * @author     Bertrand Mansion <golgote@mamasam.com>
  * @license    http://opensource.org/licenses/bsd-license.php New BSD License
- * @version    CVS: $Id: Dynamic.php,v 1.1 2007/03/28 10:23:04 mansion Exp $
+ * @version    CVS: $Id: Dynamic.php 232857 2007-03-28 10:23:04Z mansion $
  * @link       http://pear.php.net/package/Net_URL_Mapper
  */
 

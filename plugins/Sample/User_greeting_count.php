@@ -70,7 +70,6 @@ class User_greeting_count extends Memcached_DataObject
      * @return User_greeting_count object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('User_greeting_count', $k, $v);
@@ -84,7 +83,6 @@ class User_greeting_count extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('user_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
@@ -100,7 +98,6 @@ class User_greeting_count extends Memcached_DataObject
      *
      * @return array list of key field names
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -118,7 +115,6 @@ class User_greeting_count extends Memcached_DataObject
      *         'K' for primary key: for compound keys, add an entry for each component;
      *         'U' for unique keys: compound keys are not well supported here.
      */
-
     function keyTypes()
     {
         return array('user_id' => 'K');
@@ -134,7 +130,6 @@ class User_greeting_count extends Memcached_DataObject
      *
      * @return array magic three-false array that stops auto-incrementing.
      */
-
     function sequenceKey()
     {
         return array(false, false, false);
@@ -150,7 +145,6 @@ class User_greeting_count extends Memcached_DataObject
      *
      * @return User_greeting_count instance for this user, with count already incremented.
      */
-
     static function inc($user_id)
     {
         $gc = User_greeting_count::staticGet('user_id', $user_id);
@@ -165,12 +159,12 @@ class User_greeting_count extends Memcached_DataObject
             $result = $gc->insert();
 
             if (!$result) {
-                throw Exception(sprintf(_m("Could not save new greeting count for %d"),
+                // TRANS: Exception thrown when the user greeting count could not be saved in the database.
+                // TRANS: %d is a user ID (number).
+                throw Exception(sprintf(_m("Could not save new greeting count for %d."),
                                         $user_id));
             }
-
         } else {
-
             $orig = clone($gc);
 
             $gc->greeting_count++;
@@ -178,7 +172,9 @@ class User_greeting_count extends Memcached_DataObject
             $result = $gc->update($orig);
 
             if (!$result) {
-                throw Exception(sprintf(_m("Could not increment greeting count for %d"),
+                // TRANS: Exception thrown when the user greeting count could not be saved in the database.
+                // TRANS: %d is a user ID (number).
+                throw Exception(sprintf(_m("Could not increment greeting count for %d."),
                                         $user_id));
             }
         }

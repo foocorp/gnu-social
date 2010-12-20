@@ -40,7 +40,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class GroupsByMembersSection extends GroupSection
 {
     function getGroups()
@@ -68,6 +67,7 @@ class GroupsByMembersSection extends GroupSection
 
     function title()
     {
+        // TRANS: Title for groups with the most members section.
         return _('Groups with most members');
     }
 

@@ -18,7 +18,9 @@ class User_username extends Memcached_DataObject
 
     /* Static get */
     function staticGet($k,$v=null)
-    { return Memcached_DataObject::staticGet('User_username',$k,$v); }
+    {
+        return Memcached_DataObject::staticGet('User_username',$k,$v);
+    }
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
@@ -37,6 +39,7 @@ class User_username extends Memcached_DataObject
         $user_username->provider_name = $provider_name;
         $user_username->username = $username;
         $user_username->created = DB_DataObject_Cast::dateTime();
+
         if($user_username->insert()){
             return $user_username;
         }else{
@@ -57,5 +60,4 @@ class User_username extends Memcached_DataObject
     function keys() {
         return array('provider_name' => 'K', 'username' => 'K');
     }
-
 }

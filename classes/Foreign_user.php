@@ -83,5 +83,4 @@ class Foreign_user extends Memcached_DataObject
         }
         return $result;
     }
-
 }

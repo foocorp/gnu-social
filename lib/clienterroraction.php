@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Client error action.
  *
@@ -13,7 +12,7 @@
  * @link     http://status.net/
  *
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2010 StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -33,7 +32,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/error.php';
+require_once INSTALLDIR . '/lib/error.php';
 
 /**
  * Class for displaying HTTP client errors
@@ -90,5 +89,27 @@ class ClientErrorAction extends ErrorAction
         }
 
         $this->showPage();
+    }
+
+    /**
+     *  To specify additional HTTP headers for the action
+     *
+     *  @return void
+     */
+    function extraHeaders()
+    {
+        $status_string = @self::$status[$this->code];
+        header('HTTP/1.1 '.$this->code.' '.$status_string);
+    }
+
+    /**
+     * Page title.
+     *
+     * @return page title
+     */
+
+    function title()
+    {
+        return @self::$status[$this->code];
     }
 }

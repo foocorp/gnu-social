@@ -23,7 +23,6 @@ class Profile_tag extends Memcached_DataObject
     ###END_AUTOCODE
 
     static function getTags($tagger, $tagged) {
-
         $tags = array();
 
         # XXX: store this in memcached
@@ -44,7 +43,6 @@ class Profile_tag extends Memcached_DataObject
     }
 
     static function setTags($tagger, $tagged, $newtags) {
-
         $newtags = array_unique($newtags);
         $oldtags = Profile_tag::getTags($tagger, $tagged);
 

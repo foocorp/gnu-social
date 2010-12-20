@@ -41,7 +41,7 @@ class AutoSandboxPlugin extends Plugin
     var $contact;
     var $debug;
 
-    function onInitializePlugin() 
+    function onInitializePlugin()
     {
         if(!isset($this->debug))
         {
@@ -53,7 +53,7 @@ class AutoSandboxPlugin extends Plugin
            if (!empty($default)) {
                $this->contact = $default;
            }
-        } 
+        }
     }
 
     function onPluginVersion(&$versions)
@@ -69,16 +69,17 @@ class AutoSandboxPlugin extends Plugin
 
     function onStartRegistrationFormData($action)
     {
-
-         $instr = 'Note you will initially be "sandboxed" so your posts will not appear in the public timeline.';
+         $instr = _m('Note you will initially be "sandboxed" so your posts will not appear in the public timeline.');
 
          if (isset($this->contact)) {
              $contactuser = User::staticGet('nickname', $this->contact);
              if (!empty($contactuser)) {
                  $contactlink = "@<a href=\"$contactuser->uri\">$contactuser->nickname</a>";
-                 $instr = $instr . " Send a message to $contactlink to speed up the unsandboxing process.";
+                 // TRANS: $contactlink is a clickable e-mailaddress.
+                 $instr = _m("Note you will initially be \"sandboxed\" so your posts will not appear in the public timeline. ".
+                   'Send a message to $contactlink to speed up the unsandboxing process.');
              }
-         } 
+         }
 
          $output = common_markup_to_html($instr);
          $action->elementStart('div', 'instructions');

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-29 23:39+0000\n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,18 +16,19 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: MapstractionPlugin.php:182
+#: MapstractionPlugin.php:187
 msgid "Map"
 msgstr ""
 
-#: MapstractionPlugin.php:193
+#. TRANS: Clickable item to allow opening the map in full size.
+#: MapstractionPlugin.php:199
 msgid "Full size"
 msgstr ""
 
-#: MapstractionPlugin.php:205
+#: MapstractionPlugin.php:211
 msgid ""
 "Show maps of users' and friends' notices with <a href=\"http://www."
-"mapstraction.com/\">Mapstraction</a> JavaScript library."
+"mapstraction.com/\">Mapstraction</a>."
 msgstr ""
 
 #: map.php:72
@@ -38,17 +39,21 @@ msgstr ""
 msgid "User has no profile."
 msgstr ""
 
-#: allmap.php:71
+#. TRANS: Page title.
+#. TRANS: %s is a user nickname.
+#: allmap.php:69
 #, php-format
 msgid "%s friends map"
 msgstr ""
 
-#: allmap.php:74
+#. TRANS: Page title.
+#. TRANS: %1$s is a user nickname, %2$d is a page number.
+#: allmap.php:75
 #, php-format
-msgid "%s friends map, page %d"
+msgid "%1$s friends map, page %2$d"
 msgstr ""
 
-#: usermap.php:71
+#: usermap.php:68
 #, php-format
 msgid "%s map, page %d"
 msgstr ""

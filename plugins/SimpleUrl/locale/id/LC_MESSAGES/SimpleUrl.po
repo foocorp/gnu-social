@@ -1,0 +1,27 @@
+# Translation of StatusNet - SimpleUrl to Indonesian (Bahasa Indonesia)
+# Expored from translatewiki.net
+#
+# Author: Farras
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SimpleUrl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:55+0000\n"
+"Language-Team: Indonesian <http://translatewiki.net/wiki/Portal:id>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:46:17+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: id\n"
+"X-Message-Group: #out-statusnet-plugin-simpleurl\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: SimpleUrlPlugin.php:58
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr "Menggunakan layanan pemendek URL <a href=\"http://%1$s/\">%1$s</a>."

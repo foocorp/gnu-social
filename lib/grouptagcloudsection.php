@@ -40,7 +40,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class GroupTagCloudSection extends TagCloudSection
 {
     var $group = null;
@@ -53,6 +52,8 @@ class GroupTagCloudSection extends TagCloudSection
 
     function title()
     {
+        // TRANS: Title for group tag cloud section.
+        // TRANS: %s is a group name.
         return sprintf(_('Tags in %s group\'s notices'), $this->group->nickname);
     }
 

@@ -72,6 +72,6 @@ class AtomCategory
         }
         $xs = new XMLStringer();
         $xs->element('category', $attribs);
-        return $xs->asString();
+        return $xs->getString();
     }
 }

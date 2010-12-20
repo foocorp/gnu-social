@@ -1,6 +1,13 @@
-Autocomplete allows users to autocomplete screen names in @ replies. When an "@" is typed into the notice text area, an autocomplete box is displayed populated with the user's friends' screen names.
+Autocomplete allows users to autocomplete screen names in @ replies and
+! group references.
 
-Note: This plugin doesn't work if the site is in Private mode, i.e. when $config['site']['private'] is set to true.
+When an "@" or "!" is typed into the notice text area, an autocomplete box
+is displayed populated with the user's friends' screen names or group
+memberships.
+
+Completion suggestions can be selected via the mouse or arrow keys, and the
+suggestion can be inserted either by clicking or hitting tab. Hitting enter
+will also select the suggestion, but will submit your message too!
 
 Installation
 ============

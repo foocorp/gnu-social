@@ -1,0 +1,16 @@
+The Account Manager plugin implements the Account Manager specification to "allow a server to describe an account-based user identification process in terms that a user-agent can understand."
+
+See https://wiki.mozilla.org/Labs/Weave/Identity/Account_Manager/Spec/Latest
+
+Installation
+============
+add "addPlugin('accountManager');"
+to the bottom of your config.php
+
+Settings
+========
+none
+
+Example
+=======
+addPlugin('accountManager');

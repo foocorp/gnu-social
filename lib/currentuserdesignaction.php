@@ -22,7 +22,7 @@
  * @category  Action
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @copyright 2009-2010 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -40,13 +40,33 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @category Action
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
+ * @author   Zach Copley    <zach@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  *
  */
-
 class CurrentUserDesignAction extends Action
 {
+
+    protected $cur = null; // The current user
+
+    /**
+     * For initializing members of the class. Set a the
+     * current user here.
+     *
+     * @param array $argarray misc. arguments
+     *
+     * @return boolean true
+     */
+    function prepare($argarray)
+    {
+        parent::prepare($argarray);
+
+        $this->cur = common_current_user();
+
+	return true;
+    }
+
     /**
      * A design for this action
      *
@@ -54,14 +74,11 @@ class CurrentUserDesignAction extends Action
      *
      * @return Design a design object to use
      */
-
     function getDesign()
     {
-        $cur = common_current_user();
+        if (!empty($this->cur)) {
 
-        if (!empty($cur)) {
-
-            $design = $cur->getDesign();
+            $design = $this->cur->getDesign();
 
             if (!empty($design)) {
                 return $design;
@@ -70,4 +87,10 @@ class CurrentUserDesignAction extends Action
 
         return parent::getDesign();
     }
+
+    function getCurrentUser()
+    {
+	return $this->cur;
+    }
 }
+

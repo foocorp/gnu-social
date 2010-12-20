@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Form for posting a notice from within the Facebook App. 
+ * Form for posting a notice from within the Facebook App.
  *
  * This is a stripped down version of the normal NoticeForm (sans
  * location stuff and media upload stuff). I'm not sure we can share the
@@ -53,31 +53,26 @@ require_once INSTALLDIR . '/lib/form.php';
  *
  * @see      HTMLOutputter
  */
-
 class FacebookNoticeForm extends Form
 {
     /**
      * Current action, used for returning to this page.
      */
-
     var $action = null;
 
     /**
      * Pre-filled content of the form
      */
-
     var $content = null;
 
     /**
      * The current user
      */
-
     var $user = null;
 
     /**
      * The notice being replied to
      */
-
     var $inreplyto = null;
 
     /**
@@ -87,7 +82,6 @@ class FacebookNoticeForm extends Form
      * @param string        $action  action to return to, if any
      * @param string        $content content to pre-fill
      */
-
     function __construct($out=null, $action=null, $content=null, $post_action=null, $user=null, $inreplyto=null)
     {
         parent::__construct($out);
@@ -102,7 +96,7 @@ class FacebookNoticeForm extends Form
         } else {
             $this->user = common_current_user();
         }
-        
+
         // Note: Facebook doesn't allow multipart/form-data posting to
         // canvas pages, so don't try to set it--no file uploads, at
         // least not this way.  It can be done using multiple servers
@@ -114,7 +108,6 @@ class FacebookNoticeForm extends Form
      *
      * @return string ID of the form
      */
-
     function id()
     {
         return 'form_notice';
@@ -125,7 +118,6 @@ class FacebookNoticeForm extends Form
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_notice';
@@ -136,7 +128,6 @@ class FacebookNoticeForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return $this->post_action;
@@ -149,7 +140,8 @@ class FacebookNoticeForm extends Form
      */
     function formLegend()
     {
-        $this->out->element('legend', null, _('Send a notice'));
+        // TRANS: Legend.
+        $this->out->element('legend', null, _m('Send a notice'));
     }
 
     /**
@@ -157,12 +149,12 @@ class FacebookNoticeForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         if (Event::handle('StartShowNoticeFormData', array($this))) {
             $this->out->element('label', array('for' => 'notice_data-text'),
-                                sprintf(_('What\'s up, %s?'), $this->user->nickname));
+                                // TRANS: Field label.
+                                sprintf(_m('What\'s up, %s?'), $this->user->nickname));
             // XXX: vary by defined max size
             $this->out->element('textarea', array('id' => 'notice_data-text',
                                                   'cols' => 35,
@@ -174,7 +166,7 @@ class FacebookNoticeForm extends Form
 
             if ($contentLimit > 0) {
                 $this->out->elementStart('dl', 'form_note');
-                $this->out->element('dt', null, _('Available characters'));
+                $this->out->element('dt', null, _m('Available characters'));
                 $this->out->element('dd', array('id' => 'notice_text-count'),
                                     $contentLimit);
                 $this->out->elementEnd('dl');
@@ -194,13 +186,13 @@ class FacebookNoticeForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->element('input', array('id' => 'notice_action-submit',
                                            'class' => 'submit',
                                            'name' => 'status_submit',
                                            'type' => 'submit',
-                                           'value' => _('Send')));
+                                           // TRANS: Button text.
+                                           'value' => _m('BUTTON','Send')));
     }
 }

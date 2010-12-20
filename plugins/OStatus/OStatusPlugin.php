@@ -22,7 +22,9 @@
  * @maintainer Brion Vibber <brion@status.net>
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('STATUSNET')) {
+    exit(1);
+}
 
 set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/extlib/');
 
@@ -50,10 +52,6 @@ class OStatusPlugin extends Plugin
     function onRouterInitialized($m)
     {
         // Discovery actions
-        $m->connect('.well-known/host-meta',
-                    array('action' => 'hostmeta'));
-        $m->connect('main/xrd',
-                    array('action' => 'userxrd'));
         $m->connect('main/ownerxrd',
                     array('action' => 'ownerxrd'));
         $m->connect('main/ostatus',
@@ -223,6 +221,7 @@ class OStatusPlugin extends Plugin
                                     array('nickname' => $profile->nickname));
             $output->element('a', array('href' => $url,
                                         'class' => 'entity_remote_subscribe'),
+                                // TRANS: Link description for link to subscribe to a remote user.
                                 _m('Subscribe'));
 
             $output->elementEnd('li');
@@ -241,21 +240,11 @@ class OStatusPlugin extends Plugin
                                     array('group' => $group->nickname));
             $output->element('a', array('href' => $url,
                                         'class' => 'entity_remote_subscribe'),
+                                // TRANS: Link description for link to join a remote group.
                                 _m('Join'));
         }
 
         return true;
-    }
-
-    /**
-     * Check if we've got remote replies to send via Salmon.
-     *
-     * @fixme push webfinger lookup & sending to a background queue
-     * @fixme also detect short-form name for remote subscribees where not ambiguous
-     */
-
-    function onEndNoticeSave($notice)
-    {
     }
 
     /**
@@ -464,6 +453,7 @@ class OStatusPlugin extends Plugin
                 }
 
                 $url = $notice->url;
+                // TRANSLATE: %s is a domain.
                 $title = sprintf(_m("Sent from %s via OStatus"), $domain);
                 return false;
             }
@@ -492,7 +482,7 @@ class OStatusPlugin extends Plugin
      * Tell the FeedSub infrastructure whether we have any active OStatus
      * usage for the feed; if not it'll be able to garbage-collect the
      * feed subscription.
-     * 
+     *
      * @param FeedSub $feedsub
      * @param integer $count in/out
      * @return mixed hook return code
@@ -535,6 +525,7 @@ class OStatusPlugin extends Plugin
         }
 
         if (!$oprofile->subscribe()) {
+            // TRANS: Exception.
             throw new Exception(_m('Could not set up remote subscription.'));
         }
     }
@@ -564,23 +555,10 @@ class OStatusPlugin extends Plugin
             return true;
         }
 
-        $act = new Activity();
+        $sub = Subscription::pkeyGet(array('subscriber' => $subscriber->id,
+                                           'subscribed' => $other->id));
 
-        $act->verb = ActivityVerb::FOLLOW;
-
-        $act->id   = TagURI::mint('follow:%d:%d:%s',
-                                  $subscriber->id,
-                                  $other->id,
-                                  common_date_iso8601(time()));
-
-        $act->time    = time();
-        $act->title   = _("Follow");
-        $act->content = sprintf(_("%s is now following %s."),
-                               $subscriber->getBestName(),
-                               $other->getBestName());
-
-        $act->actor   = ActivityObject::fromProfile($subscriber);
-        $act->object  = ActivityObject::fromProfile($other);
+        $act = $sub->asActivity();
 
         $oprofile->notifyActivity($act, $subscriber);
 
@@ -622,8 +600,10 @@ class OStatusPlugin extends Plugin
                                   common_date_iso8601(time()));
 
         $act->time    = time();
-        $act->title   = _("Unfollow");
-        $act->content = sprintf(_("%s stopped following %s."),
+        $act->title   = _m('Unfollow');
+        // TRANS: Success message for unsubscribe from user attempt through OStatus.
+        // TRANS: %1$s is the unsubscriber's name, %2$s is the unsubscribed user's name.
+        $act->content = sprintf(_m('%1$s stopped following %2$s.'),
                                $profile->getBestName(),
                                $other->getBestName());
 
@@ -654,6 +634,9 @@ class OStatusPlugin extends Plugin
                 throw new Exception(_m('Could not set up remote group membership.'));
             }
 
+            // NOTE: we don't use Group_member::asActivity() since that record
+            // has not yet been created.
+
             $member = Profile::staticGet($user->id);
 
             $act = new Activity();
@@ -668,7 +651,9 @@ class OStatusPlugin extends Plugin
 
             $act->time = time();
             $act->title = _m("Join");
-            $act->content = sprintf(_m("%s has joined group %s."),
+            // TRANS: Success message for subscribe to group attempt through OStatus.
+            // TRANS: %1$s is the member name, %2$s is the subscribed group's name.
+            $act->content = sprintf(_m('%1$s has joined group %2$s.'),
                                     $member->getBestName(),
                                     $oprofile->getBestName());
 
@@ -676,6 +661,7 @@ class OStatusPlugin extends Plugin
                 return true;
             } else {
                 $oprofile->garbageCollect();
+                // TRANS: Exception.
                 throw new Exception(_m("Failed joining remote group."));
             }
         }
@@ -717,7 +703,9 @@ class OStatusPlugin extends Plugin
 
             $act->time = time();
             $act->title = _m("Leave");
-            $act->content = sprintf(_m("%s has left group %s."),
+            // TRANS: Success message for unsubscribe from group attempt through OStatus.
+            // TRANS: %1$s is the member name, %2$s is the unsubscribed group's name.
+            $act->content = sprintf(_m('%1$s has left group %2$s.'),
                                     $member->getBestName(),
                                     $oprofile->getBestName());
 
@@ -732,7 +720,6 @@ class OStatusPlugin extends Plugin
      * @param Notice $notice being favored
      * @return hook return value
      */
-
     function onEndFavorNotice(Profile $profile, Notice $notice)
     {
         $user = User::staticGet('id', $profile->id);
@@ -747,22 +734,15 @@ class OStatusPlugin extends Plugin
             return true;
         }
 
-        $act = new Activity();
+        $fav = Fave::pkeyGet(array('user_id' => $user->id,
+                                   'notice_id' => $notice->id));
 
-        $act->verb = ActivityVerb::FAVORITE;
-        $act->id   = TagURI::mint('favor:%d:%d:%s',
-                                  $profile->id,
-                                  $notice->id,
-                                  common_date_iso8601(time()));
+        if (empty($fav)) {
+            // That's weird.
+            return true;
+        }
 
-        $act->time    = time();
-        $act->title   = _("Favor");
-        $act->content = sprintf(_("%s marked notice %s as a favorite."),
-                               $profile->getBestName(),
-                               $notice->uri);
-
-        $act->actor   = ActivityObject::fromProfile($profile);
-        $act->object  = ActivityObject::fromNotice($notice);
+        $act = $fav->asActivity();
 
         $oprofile->notifyActivity($act, $profile);
 
@@ -800,8 +780,10 @@ class OStatusPlugin extends Plugin
                                   $notice->id,
                                   common_date_iso8601(time()));
         $act->time    = time();
-        $act->title   = _("Disfavor");
-        $act->content = sprintf(_("%s marked notice %s as no longer a favorite."),
+        $act->title   = _m('Disfavor');
+        // TRANS: Success message for remove a favorite notice through OStatus.
+        // TRANS: %1$s is the unfavoring user's name, %2$s is URI to the no longer favored notice.
+        $act->content = sprintf(_m('%1$s marked notice %2$s as no longer a favorite.'),
                                $profile->getBestName(),
                                $notice->uri);
 
@@ -875,8 +857,9 @@ class OStatusPlugin extends Plugin
             $action->elementStart('p', array('id' => 'entity_remote_subscribe',
                                              'class' => 'entity_subscribe'));
             $action->element('a', array('href' => common_local_url($target),
-                                        'class' => 'entity_remote_subscribe')
-                                , _m('Remote'));
+                                        'class' => 'entity_remote_subscribe'),
+                                // TRANS: Link text for link to remote subscribe.
+                                _m('Remote'));
             $action->elementEnd('p');
             $action->elementEnd('div');
         }
@@ -915,7 +898,10 @@ class OStatusPlugin extends Plugin
                                   $profile->id,
                                   common_date_iso8601(time()));
         $act->time    = time();
+        // TRANS: Title for activity.
         $act->title   = _m("Profile update");
+        // TRANS: Ping text for remote profile update through OStatus.
+        // TRANS: %s is user that updated their profile.
         $act->content = sprintf(_m("%s has updated their profile page."),
                                $profile->getBestName());
 
@@ -945,6 +931,7 @@ class OStatusPlugin extends Plugin
                                         array('nickname' => $profileUser->nickname));
                 $output->element('a', array('href' => $url,
                                             'class' => 'entity_remote_subscribe'),
+                                  // TRANS: Link text for a user to subscribe to an OStatus user.
                                  _m('Subscribe'));
                 $output->elementEnd('li');
             }
@@ -959,15 +946,15 @@ class OStatusPlugin extends Plugin
                             'version' => STATUSNET_VERSION,
                             'author' => 'Evan Prodromou, James Walker, Brion Vibber, Zach Copley',
                             'homepage' => 'http://status.net/wiki/Plugin:OStatus',
-                            'rawdescription' =>
-                            _m('Follow people across social networks that implement '.
+                            // TRANS: Plugin description.
+                            'rawdescription' => _m('Follow people across social networks that implement '.
                                '<a href="http://ostatus.org/">OStatus</a>.'));
 
         return true;
     }
 
     /**
-     * Utility function to check if the given URL is a canonical group profile
+     * Utility function to check if the given URI is a canonical group profile
      * page, and if so return the ID number.
      *
      * @param string $url
@@ -975,11 +962,22 @@ class OStatusPlugin extends Plugin
      */
     public static function localGroupFromUrl($url)
     {
-        $template = common_local_url('groupbyid', array('id' => '31337'));
-        $template = preg_quote($template, '/');
-        $template = str_replace('31337', '(\d+)', $template);
-        if (preg_match("/$template/", $url, $matches)) {
-            return intval($matches[1]);
+        $group = User_group::staticGet('uri', $url);
+        if ($group) {
+            $local = Local_group::staticGet('group_id', $group->id);
+            if ($local) {
+                return $group->id;
+            }
+        } else {
+            // To find local groups which haven't had their uri fields filled out...
+            // If the domain has changed since a subscriber got the URI, it'll
+            // be broken.
+            $template = common_local_url('groupbyid', array('id' => '31337'));
+            $template = preg_quote($template, '/');
+            $template = str_replace('31337', '(\d+)', $template);
+            if (preg_match("/$template/", $url, $matches)) {
+                return intval($matches[1]);
+            }
         }
         return false;
     }
@@ -994,5 +992,59 @@ class OStatusPlugin extends Plugin
 
         $feed = $oprofile->feeduri;
         return false;
+    }
+
+    function onStartGetProfileFromURI($uri, &$profile) {
+
+        // XXX: do discovery here instead (OStatus_profile::ensureProfileURI($uri))
+
+        $oprofile = Ostatus_profile::staticGet('uri', $uri);
+
+        if (!empty($oprofile) && !$oprofile->isGroup()) {
+            $profile = $oprofile->localProfile();
+            return false;
+        }
+
+        return true;
+    }
+
+    function onEndXrdActionLinks(&$xrd, $user)
+    {
+    	$xrd->links[] = array('rel' => Discovery::UPDATESFROM,
+			      'href' => common_local_url('ApiTimelineUser',
+							 array('id' => $user->id,
+							       'format' => 'atom')),
+			      'type' => 'application/atom+xml');
+	
+	            // Salmon
+        $salmon_url = common_local_url('usersalmon',
+                                       array('id' => $user->id));
+
+        $xrd->links[] = array('rel' => Salmon::REL_SALMON,
+                              'href' => $salmon_url);
+        // XXX : Deprecated - to be removed.
+        $xrd->links[] = array('rel' => Salmon::NS_REPLIES,
+                              'href' => $salmon_url);
+
+        $xrd->links[] = array('rel' => Salmon::NS_MENTIONS,
+                              'href' => $salmon_url);
+
+        // Get this user's keypair
+        $magickey = Magicsig::staticGet('user_id', $user->id);
+        if (!$magickey) {
+            // No keypair yet, let's generate one.
+            $magickey = new Magicsig();
+            $magickey->generate($user->id);
+        }
+
+        $xrd->links[] = array('rel' => Magicsig::PUBLICKEYREL,
+                              'href' => 'data:application/magic-public-key,'. $magickey->toString(false));
+
+        // TODO - finalize where the redirect should go on the publisher
+        $url = common_local_url('ostatussub') . '?profile={uri}';
+        $xrd->links[] = array('rel' => 'http://ostatus.org/schema/1.0/subscribe',
+                              'template' => $url );
+	
+    	return true;
     }
 }

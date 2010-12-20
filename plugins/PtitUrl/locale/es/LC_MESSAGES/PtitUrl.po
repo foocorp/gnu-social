@@ -1,0 +1,28 @@
+# Translation of StatusNet - PtitUrl to Spanish (Español)
+# Expored from translatewiki.net
+#
+# Author: Translationista
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - PtitUrl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:47+0000\n"
+"Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:44:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: es\n"
+"X-Message-Group: #out-statusnet-plugin-ptiturl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: PtitUrlPlugin.php:67
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr ""
+"Utiliza el servicio de acortamiento de URL <a href=\"http://%1$s/\">%1$s</a>."

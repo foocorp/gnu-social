@@ -1,0 +1,278 @@
+# Translation of StatusNet - YammerImport to Russian (Русский)
+# Expored from translatewiki.net
+#
+# Author: Eleferen
+# Author: MaxSem
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - YammerImport\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:13:27+0000\n"
+"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:46:21+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ru\n"
+"X-Message-Group: #out-statusnet-plugin-yammerimport\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#: YammerImportPlugin.php:98
+msgid "Yammer"
+msgstr ""
+
+#: YammerImportPlugin.php:99 actions/yammeradminpanel.php:135
+msgid "Yammer import"
+msgstr ""
+
+#: lib/yammerauthinitform.php:48 lib/yammerauthverifyform.php:56
+#: lib/yammerprogressform.php:68 actions/yammerauth.php:71
+msgid "Connect to Yammer"
+msgstr ""
+
+#: lib/yammerauthinitform.php:62
+msgid "Start authentication"
+msgstr "Начало проверки подлинности"
+
+#: lib/yammerauthinitform.php:62
+msgid "Request authorization to connect to Yammer account"
+msgstr ""
+
+#: lib/yammerauthinitform.php:63
+msgid "Change API key"
+msgstr ""
+
+#: lib/yammerimporter.php:230
+msgid "Expertise:"
+msgstr ""
+
+#: lib/yammerimporter.php:433
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr ""
+
+#: lib/yammerimporter.php:441
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr ""
+
+#: lib/yammerapikeyform.php:56
+msgid "Yammer API registration"
+msgstr ""
+
+#: lib/yammerapikeyform.php:72
+msgid ""
+"Before we can connect to your Yammer network, you will need to register the "
+"importer as an application authorized to pull data on your behalf. This "
+"registration will work only for your own network. Follow this link to "
+"register the app at Yammer; you will be prompted to log in if necessary:"
+msgstr ""
+
+#: lib/yammerapikeyform.php:84
+msgid "Open Yammer application registration form"
+msgstr ""
+
+#: lib/yammerapikeyform.php:87
+msgid "Copy the consumer key and secret you are given into the form below:"
+msgstr ""
+
+#: lib/yammerapikeyform.php:91
+msgid "Consumer key:"
+msgstr ""
+
+#: lib/yammerapikeyform.php:94
+msgid "Consumer secret:"
+msgstr ""
+
+#: lib/yammerapikeyform.php:98
+msgid "Save"
+msgstr "Сохранить"
+
+#: lib/yammerapikeyform.php:98
+msgid "Save these consumer keys"
+msgstr ""
+
+#: lib/yammerauthverifyform.php:72
+msgid ""
+"Follow this link to confirm authorization at Yammer; you will be prompted to "
+"log in if necessary:"
+msgstr ""
+
+#: lib/yammerauthverifyform.php:87
+msgid "Open Yammer authentication window"
+msgstr ""
+
+#: lib/yammerauthverifyform.php:90
+msgid "Copy the verification code you are given below:"
+msgstr ""
+
+#: lib/yammerauthverifyform.php:94
+msgid "Verification code:"
+msgstr "Код подтверждения:"
+
+#: lib/yammerauthverifyform.php:98 lib/yammerprogressform.php:164
+msgid "Continue"
+msgstr "Продолжить"
+
+#: lib/yammerauthverifyform.php:98
+msgid "Save code and begin import"
+msgstr "Сохранить код и начать импорт"
+
+#: lib/yammerprogressform.php:63
+msgid "Initialize"
+msgstr "Инициализация"
+
+#: lib/yammerprogressform.php:64
+msgid "No import running"
+msgstr "Импорт не запущен"
+
+#: lib/yammerprogressform.php:65
+msgid "Initiated Yammer server connection..."
+msgstr ""
+
+#: lib/yammerprogressform.php:69
+msgid "Awaiting authorization..."
+msgstr "Ожидание авторизации…"
+
+#: lib/yammerprogressform.php:70
+msgid "Connected."
+msgstr "Подсоединено."
+
+#: lib/yammerprogressform.php:73
+msgid "Import user accounts"
+msgstr "Импорт учётных записей пользователей"
+
+#: lib/yammerprogressform.php:74
+#, php-format
+msgid "Importing %d user..."
+msgid_plural "Importing %d users..."
+msgstr[0] "Импорт %d пользователя…"
+msgstr[1] "Импорт %d пользователей…"
+msgstr[2] "Импорт %d пользователей…"
+
+#: lib/yammerprogressform.php:75
+#, php-format
+msgid "Imported %d user."
+msgid_plural "Imported %d users."
+msgstr[0] "Импортирован %d пользователь."
+msgstr[1] "Импортировано %d пользователя."
+msgstr[2] "Импортировано %d пользователей."
+
+#: lib/yammerprogressform.php:78
+msgid "Import user groups"
+msgstr "Импорт групп пользователей"
+
+#: lib/yammerprogressform.php:79
+#, php-format
+msgid "Importing %d group..."
+msgid_plural "Importing %d groups..."
+msgstr[0] "Импорт %d группы…"
+msgstr[1] "Импорт %d группы…"
+msgstr[2] ""
+
+#: lib/yammerprogressform.php:80
+#, php-format
+msgid "Imported %d group."
+msgid_plural "Imported %d groups."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/yammerprogressform.php:83
+msgid "Prepare public notices for import"
+msgstr ""
+
+#: lib/yammerprogressform.php:84
+#, php-format
+msgid "Preparing %d notice..."
+msgid_plural "Preparing %d notices..."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/yammerprogressform.php:85
+#, php-format
+msgid "Prepared %d notice."
+msgid_plural "Prepared %d notices."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/yammerprogressform.php:88
+msgid "Import public notices"
+msgstr ""
+
+#: lib/yammerprogressform.php:89
+#, php-format
+msgid "Importing %d notice..."
+msgid_plural "Importing %d notices..."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/yammerprogressform.php:90
+#, php-format
+msgid "Imported %d notice."
+msgid_plural "Imported %d notices."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: lib/yammerprogressform.php:93
+msgid "Done"
+msgstr "Готово"
+
+#: lib/yammerprogressform.php:94 lib/yammerprogressform.php:95
+msgid "Import is complete!"
+msgstr "Импорт завершён!"
+
+#: lib/yammerprogressform.php:108
+msgid "Import status"
+msgstr "Статус процесса импорта"
+
+#: lib/yammerprogressform.php:132
+msgid "Waiting..."
+msgstr "Ожидание…"
+
+#: lib/yammerprogressform.php:146
+msgid "Reset import state"
+msgstr ""
+
+#: lib/yammerprogressform.php:151
+msgid "Pause import"
+msgstr "Приостановить импорт"
+
+#: lib/yammerprogressform.php:160
+#, php-format
+msgid "Encountered error \"%s\""
+msgstr "Обнаружена ошибка «%s»"
+
+#: lib/yammerprogressform.php:162
+msgid "Paused"
+msgstr "Приостановлено"
+
+#: lib/yammerprogressform.php:165
+msgid "Abort import"
+msgstr "Прервать импорт"
+
+#: actions/yammeradminpanel.php:45
+msgid "Yammer Import"
+msgstr ""
+
+#: actions/yammeradminpanel.php:55
+msgid ""
+"This Yammer import tool is still undergoing testing, and is incomplete in "
+"some areas. Currently user subscriptions and group memberships are not "
+"transferred; in the future this may be supported for imports done by "
+"verified administrators on the Yammer side."
+msgstr ""
+
+#: actions/yammeradminpanel.php:102
+msgid "Paused from admin panel."
+msgstr ""

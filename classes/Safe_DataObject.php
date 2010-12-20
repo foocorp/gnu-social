@@ -287,4 +287,3 @@ class Safe_DataObject extends DB_DataObject
         return Safe_DataObject::$iniCache[$key];
     }
 }
-

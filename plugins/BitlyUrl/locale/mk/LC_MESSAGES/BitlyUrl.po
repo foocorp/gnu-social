@@ -1,0 +1,85 @@
+# Translation of StatusNet - BitlyUrl to Macedonian (Македонски)
+# Expored from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - BitlyUrl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:32+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:26+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#: BitlyUrlPlugin.php:48
+msgid "You must specify a serviceUrl for bit.ly shortening."
+msgstr "Мора да наведете URL-адреса за скратување со bit.ly."
+
+#: BitlyUrlPlugin.php:175
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr ""
+"Користи <a href=\"http://%1$s/\">%1$s</a> - служба за скратување на URL-"
+"адреса."
+
+#: BitlyUrlPlugin.php:216
+msgid "bit.ly"
+msgstr "bit.ly"
+
+#: BitlyUrlPlugin.php:217 bitlyadminpanelaction.php:54
+msgid "bit.ly URL shortening"
+msgstr "Скратување на URL со bit.ly"
+
+#: bitlyadminpanelaction.php:65
+msgid ""
+"URL shortening with bit.ly requires [a bit.ly account and API key](http://"
+"bit.ly/a/your_api_key). This verifies that this is an authorized account, "
+"and allow you to use bit.ly's tracking features and custom domains."
+msgstr ""
+"Скратувањето на URL-адреси со bit.ly бара [сметка и API-клуч за bit.ly]"
+"(http://bit.ly/a/your_api_key). Со ова се потврдува дека ова е овластена "
+"сметка, и Ви овозможува да ги користите можностите за следење и "
+"прилагодување на домени што ги нуди bit.ly's."
+
+#: bitlyadminpanelaction.php:132
+msgid "Invalid login. Max length is 255 characters."
+msgstr "Неважечко корисничко име. Дозволени се највеќе 255 знаци."
+
+#: bitlyadminpanelaction.php:138
+msgid "Invalid API key. Max length is 255 characters."
+msgstr "Неважечки API-клуч. Дозволени се највеќе 255 знаци."
+
+#: bitlyadminpanelaction.php:191
+msgid "Credentials"
+msgstr "Уверенија"
+
+#: bitlyadminpanelaction.php:199
+msgid "Leave these empty to use global default credentials."
+msgstr ""
+"Оставете го ова празно за да го користите глобалното уверение по основно."
+
+#: bitlyadminpanelaction.php:202
+msgid "If you leave these empty, bit.ly will be unavailable to users."
+msgstr "Ако ова го оставите празно, bit.ly ќе биде недостапен за корисниците."
+
+#: bitlyadminpanelaction.php:209
+msgid "Login name"
+msgstr "Корисничко име"
+
+#: bitlyadminpanelaction.php:218
+msgid "API key"
+msgstr "API-клуч"
+
+#: bitlyadminpanelaction.php:236
+msgid "Save bit.ly settings"
+msgstr "Зачувај нагодувања на bit.ly"

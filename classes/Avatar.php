@@ -42,8 +42,9 @@ class Avatar extends Memcached_DataObject
         return Memcached_DataObject::pkeyGet('Avatar', $kv);
     }
 
-    // where should the avatar go for this user?
-
+    /**
+     * Where should the avatar go for this user?
+     */
     static function filename($id, $extension, $size=null, $extra=null)
     {
         if ($size) {

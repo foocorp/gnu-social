@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class SitemapadminpanelAction extends AdminPanelAction
 {
     /**
@@ -48,10 +47,10 @@ class SitemapadminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
-        return _('Sitemap');
+        // TRANS: Title for sitemap.
+        return _m('Sitemap');
     }
 
     /**
@@ -59,10 +58,10 @@ class SitemapadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
-        return _('Sitemap settings for this StatusNet site');
+        // TRANS: Instructions for sitemap.
+        return _m('Sitemap settings for this StatusNet site');
     }
 
     /**
@@ -70,7 +69,6 @@ class SitemapadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new SitemapAdminPanelForm($this);
@@ -83,7 +81,6 @@ class SitemapadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         static $settings = array('sitemap' => array('googlekey', 'yahookey', 'bingkey'));
@@ -97,7 +94,6 @@ class SitemapadminpanelAction extends AdminPanelAction
         }
 
         // This throws an exception on validation errors
-
         $this->validate($values);
 
         // assert(all values are valid);
@@ -125,7 +121,6 @@ class SitemapadminpanelAction extends AdminPanelAction
 /**
  * Form for the sitemap admin panel
  */
-
 class SitemapAdminPanelForm extends AdminForm
 {
     /**
@@ -133,7 +128,6 @@ class SitemapAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'form_sitemap_admin_panel';
@@ -144,7 +138,6 @@ class SitemapAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_sitemap';
@@ -155,7 +148,6 @@ class SitemapAdminPanelForm extends AdminForm
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('sitemapadminpanel');
@@ -166,27 +158,31 @@ class SitemapAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formData()
     {
-        $this->out->elementStart('fieldset', array('id' => 'sitemap_admin'));
         $this->out->elementStart('ul', 'form_data');
         $this->li();
         $this->input('googlekey',
-                     _('Google key'),
-                     _('Google Webmaster Tools verification key'),
+                     // TRANS: Field label.
+                     _m('Google key'),
+                     // TRANS: Title for field label.
+                     _m('Google Webmaster Tools verification key.'),
                      'sitemap');
         $this->unli();
         $this->li();
         $this->input('yahookey',
-                     _('Yahoo key'),
-                     _('Yahoo! Site Explorer verification key'),
+                     // TRANS: Field label.
+                     _m('Yahoo key'),
+                     // TRANS: Title for field label.
+                     _m('Yahoo! Site Explorer verification key.'),
                      'sitemap');
         $this->unli();
         $this->li();
         $this->input('bingkey',
-                     _('Bing key'),
-                     _('Bing Webmaster Tools verification key'),
+                     // TRANS: Field label.
+                     _m('Bing key'),
+                     // TRANS: Title for field label.
+                     _m('Bing Webmaster Tools verification key.'),
                      'sitemap');
         $this->unli();
         $this->out->elementEnd('ul');
@@ -197,9 +193,14 @@ class SitemapAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Save'), 'submit', null, _('Save sitemap settings'));
+        $this->out->submit('submit',
+                           // TRANS: Submit button text to save sitemap settings.
+                           _m('BUTTON','Save'),
+                           'submit',
+                           null,
+                           // TRANS: Submit button title to save sitemap settings.
+                           _m('Save sitemap settings.'));
     }
 }

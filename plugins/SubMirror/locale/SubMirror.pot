@@ -1,0 +1,130 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: SubMirrorPlugin.php:90
+msgid "Pull feeds into your timeline!"
+msgstr ""
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+#: SubMirrorPlugin.php:109
+msgctxt "MENU"
+msgid "Mirroring"
+msgstr ""
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+#: SubMirrorPlugin.php:111
+msgid "Configure mirroring of posts from other feeds"
+msgstr ""
+
+#: lib/editmirrorform.php:83
+msgctxt "LABEL"
+msgid "Remote feed:"
+msgstr ""
+
+#: lib/editmirrorform.php:87
+msgctxt "LABEL"
+msgid "Local user"
+msgstr ""
+
+#: lib/editmirrorform.php:93
+msgid "Mirroring style"
+msgstr ""
+
+#: lib/editmirrorform.php:95
+msgid ""
+"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+msgstr ""
+
+#: lib/editmirrorform.php:96
+msgid "Repost the content under my account"
+msgstr ""
+
+#: lib/editmirrorform.php:115
+msgid "Save"
+msgstr ""
+
+#: lib/editmirrorform.php:117
+msgid "Stop mirroring"
+msgstr ""
+
+#: lib/addmirrorform.php:59
+msgid "Web page or feed URL:"
+msgstr ""
+
+#: lib/addmirrorform.php:64
+msgctxt "BUTTON"
+msgid "Add feed"
+msgstr ""
+
+#: actions/basemirror.php:71
+msgid "Invalid feed URL."
+msgstr ""
+
+#. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
+#: actions/basemirror.php:83
+msgid "Invalid profile for mirroring."
+msgstr ""
+
+#: actions/basemirror.php:101
+msgid "Can't mirror a StatusNet group at this time."
+msgstr ""
+
+#: actions/basemirror.php:115
+msgid "This action only accepts POST requests."
+msgstr ""
+
+#: actions/basemirror.php:123
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#: actions/basemirror.php:133
+msgid "Not logged in."
+msgstr ""
+
+#: actions/basemirror.php:156
+msgid "Subscribed"
+msgstr ""
+
+#: actions/editmirror.php:68
+msgid "Requested invalid profile to edit."
+msgstr ""
+
+#: actions/editmirror.php:86
+msgid "Bad form data."
+msgstr ""
+
+#. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
+#: actions/editmirror.php:95
+msgid "Requested edit of missing mirror."
+msgstr ""
+
+#: actions/addmirror.php:72
+msgid "Could not subscribe to feed."
+msgstr ""
+
+#. TRANS: Title.
+#: actions/mirrorsettings.php:42
+msgid "Feed mirror settings"
+msgstr ""
+
+#. TRANS: Instructions.
+#: actions/mirrorsettings.php:54
+msgid ""
+"You can mirror updates from many RSS and Atom feeds into your StatusNet "
+"timeline!"
+msgstr ""

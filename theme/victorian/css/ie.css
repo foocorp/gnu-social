@@ -1,0 +1,20 @@
+/* IE specific styles */
+
+.notice-options input.submit {
+color:#FFFFFF;
+}
+#site_nav_local_views a {
+background-color:#C8D1D5;
+}
+.form_notice .form_note + label {
+background:transparent url(../../base/images/icons/icons-01.gif) no-repeat 0 -328px;
+}
+.form_notice #notice_data-attach {
+filter: alpha(opacity=0);
+}
+.notice-options form.form_favor input.submit {
+background-position:0 -460px;
+}
+.notice-options form.form_disfavor input.submit {
+background-position:0 -526px;
+}

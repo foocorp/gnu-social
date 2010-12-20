@@ -58,6 +58,19 @@ class RegisterThrottlePlugin extends Plugin
                               3600 => 3); // per hour
 
     /**
+     * Disallow registration if a silenced user has registered from
+     * this IP address.
+     */
+
+    public $silenced = true;
+
+    /**
+     * Whether we're enabled; prevents recursion.
+     */
+
+    static private $enabled = true;
+
+    /**
      * Database schema setup
      *
      * We store user registrations in a table registration_ip.
@@ -113,7 +126,6 @@ class RegisterThrottlePlugin extends Plugin
      * @return boolean hook value
      *
      */
-
     function onStartRegistrationTry($action)
     {
         $ipaddress = $this->_getIpAddress();
@@ -134,7 +146,19 @@ class RegisterThrottlePlugin extends Plugin
                 $now     = time();
                 $this->debug("Comparing {$regtime} to {$now}");
                 if ($now - $regtime < $seconds) {
-                    throw new Exception(_("Too many registrations. Take a break and try again later."));
+                    throw new Exception(_m("Too many registrations. Take a break and try again later."));
+                }
+            }
+        }
+
+        // Check for silenced users
+
+        if ($this->silenced) {
+            $ids = Registration_ip::usersByIP($ipaddress);
+            foreach ($ids as $id) {
+                $profile = Profile::staticGet('id', $id);
+                if ($profile && $profile->isSilenced()) {
+                    throw new Exception(_m("A banned user has registered from this address."));
                 }
             }
         }
@@ -197,7 +221,7 @@ class RegisterThrottlePlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:RegisterThrottle',
                             'description' =>
-                            _m('Throttles excessive registration from a single IP.'));
+                            _m('Throttles excessive registration from a single IP address.'));
         return true;
     }
 
@@ -244,6 +268,61 @@ class RegisterThrottlePlugin extends Plugin
             return $reg;
         } else {
             return null;
+        }
+    }
+
+    /**
+     * When silencing a user, silence all other users registered from that IP
+     * address.
+     *
+     * @param Profile $profile Person getting a new role
+     * @param string  $role    Role being assigned like 'moderator' or 'silenced'
+     *
+     * @return boolean hook value
+     */
+
+    function onEndGrantRole($profile, $role)
+    {
+        if (!self::$enabled) {
+            return true;
+        }
+
+        if ($role != Profile_role::SILENCED) {
+            return true;
+        }
+
+        if (!$this->silenced) {
+            return true;
+        }
+
+        $ri = Registration_ip::staticGet('user_id', $profile->id);
+
+        if (empty($ri)) {
+            return true;
+        }
+
+        $ids = Registration_ip::usersByIP($ri->ipaddress);
+
+        foreach ($ids as $id) {
+
+            if ($id == $profile->id) {
+                continue;
+            }
+
+            $other = Profile::staticGet('id', $id);
+
+            if (empty($other)) {
+                continue;
+            }
+
+            if ($other->isSilenced()) {
+                continue;
+            }
+
+            $old = self::$enabled;
+            self::$enabled = false;
+            $other->silence();
+            self::$enabled = $old;
         }
     }
 }

@@ -109,7 +109,7 @@ class Atom10Feed extends XMLStringer
             $xs->element('name', null, $name);
         } else {
             throw new Atom10FeedException(
-                'author element must contain a name element.'
+                _('author element must contain a name element.')
             );
         }
 
@@ -323,5 +323,4 @@ class Atom10Feed extends XMLStringer
 
         array_push($this->links, $attrs);
     }
-
 }

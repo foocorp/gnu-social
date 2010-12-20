@@ -47,7 +47,6 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiFriendshipsExistsAction extends ApiPrivateAuthAction
 {
     var $profile_a = null;
@@ -59,9 +58,7 @@ class ApiFriendshipsExistsAction extends ApiPrivateAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -81,14 +78,14 @@ class ApiFriendshipsExistsAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if (empty($this->profile_a) || empty($this->profile_b)) {
             $this->clientError(
-                _('Two valid IDs or screen_names must be supplied.'),
+                // TRANS: Client error displayed when supplying invalid parameters to an API call checking if a friendship exists.
+                _('Two valid IDs or nick names must be supplied.'),
                 400,
                 $this->format
             );
@@ -122,10 +119,8 @@ class ApiFriendshipsExistsAction extends ApiPrivateAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;
     }
-
 }

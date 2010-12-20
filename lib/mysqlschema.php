@@ -72,72 +72,127 @@ class MysqlSchema extends Schema
      *
      * Throws an exception if the table is not found.
      *
-     * @param string $name Name of the table to get
+     * @param string $table Name of the table to get
      *
      * @return TableDef tabledef for that table.
      * @throws SchemaTableMissingException
      */
 
-    public function getTableDef($name)
+    public function getTableDef($table)
     {
-        $query = "SELECT * FROM INFORMATION_SCHEMA.COLUMNS " .
-                 "WHERE TABLE_SCHEMA='%s' AND TABLE_NAME='%s'";
-        $schema = $this->conn->dsn['database'];
-        $sql = sprintf($query, $schema, $name);
-        $res = $this->conn->query($sql);
+        $def = array();
+        $hasKeys = false;
 
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
-        }
-        if ($res->numRows() == 0) {
-            $res->free();
-            throw new SchemaTableMissingException("No such table: $name");
+        // Pull column data from INFORMATION_SCHEMA
+        $columns = $this->fetchMetaInfo($table, 'COLUMNS', 'ORDINAL_POSITION');
+        if (count($columns) == 0) {
+            throw new SchemaTableMissingException("No such table: $table");
         }
 
-        $td = new TableDef();
+        foreach ($columns as $row) {
 
-        $td->name    = $name;
-        $td->columns = array();
+            $name = $row['COLUMN_NAME'];
+            $field = array();
 
-        $row = array();
+            // warning -- 'unsigned' attr on numbers isn't given in DATA_TYPE and friends.
+            // It is stuck in on COLUMN_TYPE though (eg 'bigint(20) unsigned')
+            $field['type'] = $type = $row['DATA_TYPE'];
 
-        while ($res->fetchInto($row, DB_FETCHMODE_ASSOC)) {
-
-            $cd = new ColumnDef();
-
-            $cd->name = $row['COLUMN_NAME'];
-
-            $packed = $row['COLUMN_TYPE'];
-
-            if (preg_match('/^(\w+)\((\d+)\)$/', $packed, $match)) {
-                $cd->type = $match[1];
-                $cd->size = $match[2];
-            } else {
-                $cd->type = $packed;
+            if ($type == 'char' || $type == 'varchar') {
+                if ($row['CHARACTER_MAXIMUM_LENGTH'] !== null) {
+                    $field['length'] = intval($row['CHARACTER_MAXIMUM_LENGTH']);
+                }
+            }
+            if ($type == 'decimal') {
+                // Other int types may report these values, but they're irrelevant.
+                // Just ignore them!
+                if ($row['NUMERIC_PRECISION'] !== null) {
+                    $field['precision'] = intval($row['NUMERIC_PRECISION']);
+                }
+                if ($row['NUMERIC_SCALE'] !== null) {
+                    $field['scale'] = intval($row['NUMERIC_SCALE']);
+                }
+            }
+            if ($row['IS_NULLABLE'] == 'NO') {
+                $field['not null'] = true;
+            }
+            if ($row['COLUMN_DEFAULT'] !== null) {
+                // Hack for timestamp cols
+                if ($type == 'timestamp' && $row['COLUMN_DEFAULT'] == 'CURRENT_TIMESTAMP') {
+                    // skip
+                } else {
+                    $field['default'] = $row['COLUMN_DEFAULT'];
+                    if ($this->isNumericType($type)) {
+                        $field['default'] = intval($field['default']);
+                    }
+                }
+            }
+            if ($row['COLUMN_KEY'] !== null) {
+                // We'll need to look up key info...
+                $hasKeys = true;
+            }
+            if ($row['COLUMN_COMMENT'] !== null && $row['COLUMN_COMMENT'] != '') {
+                $field['description'] = $row['COLUMN_COMMENT'];
             }
 
-            $cd->nullable = ($row['IS_NULLABLE'] == 'YES') ? true : false;
-            $cd->key      = $row['COLUMN_KEY'];
-            $cd->default  = $row['COLUMN_DEFAULT'];
-            $cd->extra    = $row['EXTRA'];
-
-            // Autoincrement is stuck into the extra column.
-            // Pull it out so we don't accidentally mod it every time...
-            $extra = preg_replace('/(^|\s)auto_increment(\s|$)/i', '$1$2', $cd->extra);
-            if ($extra != $cd->extra) {
-                $cd->extra = trim($extra);
-                $cd->auto_increment = true;
+            $extra = $row['EXTRA'];
+            if ($extra) {
+                if (preg_match('/(^|\s)auto_increment(\s|$)/i', $extra)) {
+                    $field['auto_increment'] = true;
+                }
+                // $row['EXTRA'] may contain 'on update CURRENT_TIMESTAMP'
+                // ^ ...... how to specify?
             }
 
-            // mysql extensions -- not (yet) used by base class
-            $cd->charset  = $row['CHARACTER_SET_NAME'];
-            $cd->collate  = $row['COLLATION_NAME'];
+            if ($row['CHARACTER_SET_NAME'] !== null) {
+                // @fixme check against defaults?
+                //$def['charset'] = $row['CHARACTER_SET_NAME'];
+                //$def['collate']  = $row['COLLATION_NAME'];
+            }
 
-            $td->columns[] = $cd;
+            $def['fields'][$name] = $field;
         }
-        $res->free();
 
-        return $td;
+        if ($hasKeys) {
+            // INFORMATION_SCHEMA's CONSTRAINTS and KEY_COLUMN_USAGE tables give
+            // good info on primary and unique keys but don't list ANY info on
+            // multi-value keys, which is lame-o. Sigh.
+            //
+            // Let's go old school and use SHOW INDEX :D
+            //
+            $keyInfo = $this->fetchIndexInfo($table);
+            $keys = array();
+            foreach ($keyInfo as $row) {
+                $name = $row['Key_name'];
+                $column = $row['Column_name'];
+
+                if (!isset($keys[$name])) {
+                    $keys[$name] = array();
+                }
+                $keys[$name][] = $column;
+
+                if ($name == 'PRIMARY') {
+                    $type = 'primary key';
+                } else if ($row['Non_unique'] == 0) {
+                    $type = 'unique keys';
+                } else if ($row['Index_type'] == 'FULLTEXT') {
+                    $type = 'fulltext indexes';
+                } else {
+                    $type = 'indexes';
+                }
+                $keyTypes[$name] = $type;
+            }
+
+            foreach ($keyTypes as $name => $type) {
+                if ($type == 'primary key') {
+                    // there can be only one
+                    $def[$type] = $keys[$name];
+                } else {
+                    $def[$type][$name] = $keys[$name];
+                }
+            }
+        }
+        return $def;
     }
 
     /**
@@ -150,127 +205,81 @@ class MysqlSchema extends Schema
 
     function getTableProperties($table, $props)
     {
-        $query = "SELECT %s FROM INFORMATION_SCHEMA.TABLES " .
-                 "WHERE TABLE_SCHEMA='%s' AND TABLE_NAME='%s'";
-        $schema = $this->conn->dsn['database'];
-        $sql = sprintf($query, implode(',', $props), $schema, $table);
-        $res = $this->conn->query($sql);
-
-        $row = array();
-        $ok = $res->fetchInto($row, DB_FETCHMODE_ASSOC);
-        $res->free();
-        
-        if ($ok) {
-            return $row;
+        $data = $this->fetchMetaInfo($table, 'TABLES');
+        if ($data) {
+            return $data[0];
         } else {
             throw new SchemaTableMissingException("No such table: $table");
         }
     }
 
     /**
-     * Gets a ColumnDef object for a single column.
+     * Pull some INFORMATION.SCHEMA data for the given table.
      *
-     * Throws an exception if the table is not found.
-     *
-     * @param string $table  name of the table
-     * @param string $column name of the column
-     *
-     * @return ColumnDef definition of the column or null
-     *                   if not found.
+     * @param string $table
+     * @return array of arrays
      */
-
-    public function getColumnDef($table, $column)
+    function fetchMetaInfo($table, $infoTable, $orderBy=null)
     {
-        $td = $this->getTableDef($table);
-
-        foreach ($td->columns as $cd) {
-            if ($cd->name == $column) {
-                return $cd;
-            }
+        $query = "SELECT * FROM INFORMATION_SCHEMA.%s " .
+                 "WHERE TABLE_SCHEMA='%s' AND TABLE_NAME='%s'";
+        $schema = $this->conn->dsn['database'];
+        $sql = sprintf($query, $infoTable, $schema, $table);
+        if ($orderBy) {
+            $sql .= ' ORDER BY ' . $orderBy;
         }
-
-        return null;
+        return $this->fetchQueryData($sql);
     }
 
     /**
-     * Creates a table with the given names and columns.
+     * Pull 'SHOW INDEX' data for the given table.
      *
-     * @param string $name    Name of the table
-     * @param array  $columns Array of ColumnDef objects
-     *                        for new table.
-     *
-     * @return boolean success flag
+     * @param string $table
+     * @return array of arrays
      */
-
-    public function createTable($name, $columns)
+    function fetchIndexInfo($table)
     {
-        $uniques = array();
-        $primary = array();
-        $indices = array();
-
-        $sql = "CREATE TABLE $name (\n";
-
-        for ($i = 0; $i < count($columns); $i++) {
-
-            $cd =& $columns[$i];
-
-            if ($i > 0) {
-                $sql .= ",\n";
-            }
-
-            $sql .= $this->_columnSql($cd);
-        }
-
-        $idx = $this->_indexList($columns);
-
-        if ($idx['primary']) {
-            $sql .= ",\nconstraint primary key (" . implode(',', $idx['primary']) . ")";
-        }
-
-        foreach ($idx['uniques'] as $u) {
-            $key = $this->_uniqueKey($name, $u);
-            $sql .= ",\nunique index $key ($u)";
-        }
-
-        foreach ($idx['indices'] as $i) {
-            $key = $this->_key($name, $i);
-            $sql .= ",\nindex $key ($i)";
-        }
-
-        $sql .= ") ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin; ";
-
-        $res = $this->conn->query($sql);
-
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
-        }
-
-        return true;
+        $query = "SHOW INDEX FROM `%s`";
+        $sql = sprintf($query, $table);
+        return $this->fetchQueryData($sql);
     }
 
     /**
-     * Look over a list of column definitions and list up which
-     * indices will be present
+     * Append an SQL statement with an index definition for a full-text search
+     * index over one or more columns on a table.
+     *
+     * @param array $statements
+     * @param string $table
+     * @param string $name
+     * @param array $def
      */
-    private function _indexList(array $columns)
+    function appendCreateFulltextIndex(array &$statements, $table, $name, array $def)
     {
-        $list = array('uniques' => array(),
-                      'primary' => array(),
-                      'indices' => array());
-        foreach ($columns as $cd) {
-            switch ($cd->key) {
-            case 'UNI':
-                $list['uniques'][] = $cd->name;
-                break;
-            case 'PRI':
-                $list['primary'][] = $cd->name;
-                break;
-            case 'MUL':
-                $list['indices'][] = $cd->name;
-                break;
-            }
+        $statements[] = "CREATE FULLTEXT INDEX $name ON $table " . $this->buildIndexList($def);
+    }
+
+    /**
+     * Close out a 'create table' SQL statement.
+     *
+     * @param string $name
+     * @param array $def
+     * @return string;
+     *
+     * @fixme ENGINE may need to be set differently in some cases,
+     * such as to support fulltext index.
+     */
+    function endCreateTable($name, array $def)
+    {
+        $engine = $this->preferredEngine($def);
+        return ") ENGINE=$engine CHARACTER SET utf8 COLLATE utf8_bin";
+    }
+    
+    function preferredEngine($def)
+    {
+        if (!empty($def['fulltext indexes'])) {
+            return 'MyISAM';
         }
-        return $list;
+        return 'InnoDB';
     }
 
     /**
@@ -289,344 +298,46 @@ class MysqlSchema extends Schema
         return "{$tableName}_{$columnName}_idx";
     }
 
+
     /**
-     * Drops a table from the schema
+     * MySQL doesn't take 'DROP CONSTRAINT', need to treat unique keys as
+     * if they were indexes here.
      *
-     * Throws an exception if the table is not found.
-     *
-     * @param string $name Name of the table to drop
-     *
-     * @return boolean success flag
+     * @param array $phrase
+     * @param <type> $keyName MySQL
      */
-
-    public function dropTable($name)
+    function appendAlterDropUnique(array &$phrase, $keyName)
     {
-        $res = $this->conn->query("DROP TABLE $name");
-
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
-        }
-
-        return true;
+        $phrase[] = 'DROP INDEX ' . $keyName;
     }
 
     /**
-     * Adds an index to a table.
-     *
-     * If no name is provided, a name will be made up based
-     * on the table name and column names.
-     *
-     * Throws an exception on database error, esp. if the table
-     * does not exist.
-     *
-     * @param string $table       Name of the table
-     * @param array  $columnNames Name of columns to index
-     * @param string $name        (Optional) name of the index
-     *
-     * @return boolean success flag
+     * Throw some table metadata onto the ALTER TABLE if we have a mismatch
+     * in expected type, collation.
      */
-
-    public function createIndex($table, $columnNames, $name=null)
+    function appendAlterExtras(array &$phrase, $tableName, array $def)
     {
-        if (!is_array($columnNames)) {
-            $columnNames = array($columnNames);
-        }
-
-        if (empty($name)) {
-            $name = "{$table}_".implode("_", $columnNames)."_idx";
-        }
-
-        $res = $this->conn->query("ALTER TABLE $table ".
-                                   "ADD INDEX $name (".
-                                   implode(",", $columnNames).")");
-
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
-        }
-
-        return true;
-    }
-
-    /**
-     * Drops a named index from a table.
-     *
-     * @param string $table name of the table the index is on.
-     * @param string $name  name of the index
-     *
-     * @return boolean success flag
-     */
-
-    public function dropIndex($table, $name)
-    {
-        $res = $this->conn->query("ALTER TABLE $table DROP INDEX $name");
-
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
-        }
-
-        return true;
-    }
-
-    /**
-     * Adds a column to a table
-     *
-     * @param string    $table     name of the table
-     * @param ColumnDef $columndef Definition of the new
-     *                             column.
-     *
-     * @return boolean success flag
-     */
-
-    public function addColumn($table, $columndef)
-    {
-        $sql = "ALTER TABLE $table ADD COLUMN " . $this->_columnSql($columndef);
-
-        $res = $this->conn->query($sql);
-
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
-        }
-
-        return true;
-    }
-
-    /**
-     * Modifies a column in the schema.
-     *
-     * The name must match an existing column and table.
-     *
-     * @param string    $table     name of the table
-     * @param ColumnDef $columndef new definition of the column.
-     *
-     * @return boolean success flag
-     */
-
-    public function modifyColumn($table, $columndef)
-    {
-        $sql = "ALTER TABLE $table MODIFY COLUMN " .
-          $this->_columnSql($columndef);
-
-        $res = $this->conn->query($sql);
-
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
-        }
-
-        return true;
-    }
-
-    /**
-     * Drops a column from a table
-     *
-     * The name must match an existing column.
-     *
-     * @param string $table      name of the table
-     * @param string $columnName name of the column to drop
-     *
-     * @return boolean success flag
-     */
-
-    public function dropColumn($table, $columnName)
-    {
-        $sql = "ALTER TABLE $table DROP COLUMN $columnName";
-
-        $res = $this->conn->query($sql);
-
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
-        }
-
-        return true;
-    }
-
-    /**
-     * Ensures that a table exists with the given
-     * name and the given column definitions.
-     *
-     * If the table does not yet exist, it will
-     * create the table. If it does exist, it will
-     * alter the table to match the column definitions.
-     *
-     * @param string $tableName name of the table
-     * @param array  $columns   array of ColumnDef
-     *                          objects for the table
-     *
-     * @return boolean success flag
-     */
-
-    public function ensureTable($tableName, $columns)
-    {
-        // XXX: DB engine portability -> toilet
-
-        try {
-            $td = $this->getTableDef($tableName);
-        } catch (SchemaTableMissingException $e) {
-            return $this->createTable($tableName, $columns);
-        }
-
-        $cur = $this->_names($td->columns);
-        $new = $this->_names($columns);
-
-        $dropIndex  = array();
-        $toadd      = array_diff($new, $cur);
-        $todrop     = array_diff($cur, $new);
-        $same       = array_intersect($new, $cur);
-        $tomod      = array();
-        $addIndex   = array();
-        $tableProps = array();
-
-        foreach ($same as $m) {
-            $curCol = $this->_byName($td->columns, $m);
-            $newCol = $this->_byName($columns, $m);
-
-            if (!$newCol->equals($curCol)) {
-                $tomod[] = $newCol->name;
-                continue;
-            }
-
-            // Earlier versions may have accidentally left tables at default
-            // charsets which might be latin1 or other freakish things.
-            if ($this->_isString($curCol)) {
-                if ($curCol->charset != 'utf8') {
-                    $tomod[] = $newCol->name;
-                    continue;
-                }
-            }
-        }
-
-        // Find any indices we have to change...
-        $curIdx = $this->_indexList($td->columns);
-        $newIdx = $this->_indexList($columns);
-
-        if ($curIdx['primary'] != $newIdx['primary']) {
-            if ($curIdx['primary']) {
-                $dropIndex[] = 'drop primary key';
-            }
-            if ($newIdx['primary']) {
-                $keys = implode(',', $newIdx['primary']);
-                $addIndex[] = "add constraint primary key ($keys)";
-            }
-        }
-
-        $dropUnique = array_diff($curIdx['uniques'], $newIdx['uniques']);
-        $addUnique = array_diff($newIdx['uniques'], $curIdx['uniques']);
-        foreach ($dropUnique as $columnName) {
-            $dropIndex[] = 'drop key ' . $this->_uniqueKey($tableName, $columnName);
-        }
-        foreach ($addUnique as $columnName) {
-            $addIndex[] = 'add constraint unique key ' . $this->_uniqueKey($tableName, $columnName) . " ($columnName)";;
-        }
-
-        $dropMultiple = array_diff($curIdx['indices'], $newIdx['indices']);
-        $addMultiple = array_diff($newIdx['indices'], $curIdx['indices']);
-        foreach ($dropMultiple as $columnName) {
-            $dropIndex[] = 'drop key ' . $this->_key($tableName, $columnName);
-        }
-        foreach ($addMultiple as $columnName) {
-            $addIndex[] = 'add key ' . $this->_key($tableName, $columnName) . " ($columnName)";
-        }
-
         // Check for table properties: make sure we're using a sane
         // engine type and charset/collation.
         // @fixme make the default engine configurable?
         $oldProps = $this->getTableProperties($tableName, array('ENGINE', 'TABLE_COLLATION'));
-        if (strtolower($oldProps['ENGINE']) != 'innodb') {
-            $tableProps['ENGINE'] = 'InnoDB';
+        $engine = $this->preferredEngine($def);
+        if (strtolower($oldProps['ENGINE']) != strtolower($engine)) {
+            $phrase[] = "ENGINE=$engine";
         }
         if (strtolower($oldProps['TABLE_COLLATION']) != 'utf8_bin') {
-            $tableProps['DEFAULT CHARSET'] = 'utf8';
-            $tableProps['COLLATE'] = 'utf8_bin';
+            $phrase[] = 'DEFAULT CHARSET=utf8';
+            $phrase[] = 'COLLATE=utf8_bin';
         }
-
-        if (count($dropIndex) + count($toadd) + count($todrop) + count($tomod) + count($addIndex) + count($tableProps) == 0) {
-            // nothing to do
-            return true;
-        }
-
-        // For efficiency, we want this all in one
-        // query, instead of using our methods.
-
-        $phrase = array();
-
-        foreach ($dropIndex as $indexSql) {
-            $phrase[] = $indexSql;
-        }
-
-        foreach ($toadd as $columnName) {
-            $cd = $this->_byName($columns, $columnName);
-
-            $phrase[] = 'ADD COLUMN ' . $this->_columnSql($cd);
-        }
-
-        foreach ($todrop as $columnName) {
-            $phrase[] = 'DROP COLUMN ' . $columnName;
-        }
-
-        foreach ($tomod as $columnName) {
-            $cd = $this->_byName($columns, $columnName);
-
-            $phrase[] = 'MODIFY COLUMN ' . $this->_columnSql($cd);
-        }
-
-        foreach ($addIndex as $indexSql) {
-            $phrase[] = $indexSql;
-        }
-
-        foreach ($tableProps as $key => $val) {
-            $phrase[] = "$key=$val";
-        }
-
-        $sql = 'ALTER TABLE ' . $tableName . ' ' . implode(', ', $phrase);
-
-        common_log(LOG_DEBUG, __METHOD__ . ': ' . $sql);
-        $res = $this->conn->query($sql);
-
-        if (PEAR::isError($res)) {
-            throw new Exception($res->getMessage());
-        }
-
-        return true;
     }
 
     /**
-     * Returns the array of names from an array of
-     * ColumnDef objects.
-     *
-     * @param array $cds array of ColumnDef objects
-     *
-     * @return array strings for name values
+     * Is this column a string type?
      */
-
-    private function _names($cds)
+    private function _isString(array $cd)
     {
-        $names = array();
-
-        foreach ($cds as $cd) {
-            $names[] = $cd->name;
-        }
-
-        return $names;
-    }
-
-    /**
-     * Get a ColumnDef from an array matching
-     * name.
-     *
-     * @param array  $cds  Array of ColumnDef objects
-     * @param string $name Name of the column
-     *
-     * @return ColumnDef matching item or null if no match.
-     */
-
-    private function _byName($cds, $name)
-    {
-        foreach ($cds as $cd) {
-            if ($cd->name == $name) {
-                return $cd;
-            }
-        }
-
-        return null;
+        $strings = array('char', 'varchar', 'text');
+        return in_array(strtolower($cd['type']), $strings);
     }
 
     /**
@@ -641,43 +352,93 @@ class MysqlSchema extends Schema
      * @return string correct SQL for that column
      */
 
-    private function _columnSql($cd)
+    function columnSql(array $cd)
     {
-        $sql = "{$cd->name} ";
+        $line = array();
+        $line[] = parent::columnSql($cd);
 
-        if (!empty($cd->size)) {
-            $sql .= "{$cd->type}({$cd->size}) ";
-        } else {
-            $sql .= "{$cd->type} ";
+        // This'll have been added from our transform of 'serial' type
+        if (!empty($cd['auto_increment'])) {
+            $line[] = 'auto_increment';
         }
 
-        if ($this->_isString($cd)) {
-            $sql .= " CHARACTER SET utf8 ";
+        if (!empty($cd['description'])) {
+            $line[] = 'comment';
+            $line[] = $this->quoteValue($cd['description']);
         }
 
-        if (!empty($cd->default)) {
-            $sql .= "default {$cd->default} ";
-        } else {
-            $sql .= ($cd->nullable) ? "null " : "not null ";
-        }
+        return implode(' ', $line);
+    }
+
+    function mapType($column)
+    {
+        $map = array('serial' => 'int',
+                     'integer' => 'int',
+                     'numeric' => 'decimal');
         
-        if (!empty($cd->auto_increment)) {
-            $sql .= " auto_increment ";
+        $type = $column['type'];
+        if (isset($map[$type])) {
+            $type = $map[$type];
         }
 
-        if (!empty($cd->extra)) {
-            $sql .= "{$cd->extra} ";
+        if (!empty($column['size'])) {
+            $size = $column['size'];
+            if ($type == 'int' &&
+                       in_array($size, array('tiny', 'small', 'medium', 'big'))) {
+                $type = $size . $type;
+            } else if (in_array($type, array('blob', 'text')) &&
+                       in_array($size, array('tiny', 'medium', 'long'))) {
+                $type = $size . $type;
+            }
         }
 
-        return $sql;
+        return $type;
+    }
+
+    function typeAndSize($column)
+    {
+        if ($column['type'] == 'enum') {
+            $vals = array_map(array($this, 'quote'), $column['enum']);
+            return 'enum(' . implode(',', $vals) . ')';
+        } else if ($this->_isString($column)) {
+            $col = parent::typeAndSize($column);
+            if (!empty($column['charset'])) {
+                $col .= ' CHARSET ' . $column['charset'];
+            }
+            if (!empty($column['collate'])) {
+                $col .= ' COLLATE ' . $column['collate'];
+            }
+            return $col;
+        } else {
+            return parent::typeAndSize($column);
+        }
     }
 
     /**
-     * Is this column a string type?
+     * Filter the given table definition array to match features available
+     * in this database.
+     *
+     * This lets us strip out unsupported things like comments, foreign keys,
+     * or type variants that we wouldn't get back from getTableDef().
+     *
+     * @param array $tableDef
      */
-    private function _isString(ColumnDef $cd)
+    function filterDef(array $tableDef)
     {
-        $strings = array('char', 'varchar', 'text');
-        return in_array(strtolower($cd->type), $strings);
+        foreach ($tableDef['fields'] as $name => &$col) {
+            if ($col['type'] == 'serial') {
+                $col['type'] = 'int';
+                $col['auto_increment'] = true;
+            }
+            if ($col['type'] == 'datetime' && isset($col['default']) && $col['default'] == 'CURRENT_TIMESTAMP') {
+                $col['type'] = 'timestamp';
+            }
+            $col['type'] = $this->mapType($col);
+            unset($col['size']);
+        }
+        if (!common_config('db', 'mysql_foreign_keys')) {
+            unset($tableDef['foreign keys']);
+        }
+        return $tableDef;
     }
 }

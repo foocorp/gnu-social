@@ -144,10 +144,8 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
     </statuses>
 @endverbatim
 */
-
 class ApiTimelinePublicAction extends ApiPrivateAuthAction
 {
-
     var $notices = null;
 
     /**
@@ -158,7 +156,6 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -177,7 +174,6 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -189,16 +185,17 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function showTimeline()
     {
         $sitename   = common_config('site', 'name');
         $sitelogo   = (common_config('site', 'logo')) ? common_config('site', 'logo') : Theme::path('logo.png');
+        // TRANS: Title for site timeline. %s is the StatusNet sitename.
         $title      = sprintf(_("%s public timeline"), $sitename);
         $taguribase = TagURI::base();
         $id         = "tag:$taguribase:PublicTimeline";
         $link       = common_local_url('public');
         $self       = $this->getSelfUri();
+        // TRANS: Subtitle for site timeline. %s is the StatusNet sitename.
         $subtitle   = sprintf(_("%s updates from everyone!"), $sitename);
 
         switch($this->format) {
@@ -238,6 +235,7 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
             $this->showJsonTimeline($this->notices);
             break;
         default:
+            // TRANS: Client error displayed when trying to handle an unknown API method.
             $this->clientError(_('API method not found.'), $code = 404);
             break;
         }
@@ -248,7 +246,6 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
      *
      * @return array notices
      */
-
     function getNotices()
     {
         $notices = array();
@@ -272,7 +269,6 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -283,7 +279,6 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
      *
      * @return string datestamp of the latest notice in the stream
      */
-
     function lastModified()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
@@ -301,7 +296,6 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
      *
      * @return string etag
      */
-
     function etag()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
@@ -311,6 +305,7 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
             return '"' . implode(
                 ':',
                 array($this->arg('action'),
+                      common_user_cache_hash($this->auth_user),
                       common_language(),
                       strtotime($this->notices[0]->created),
                       strtotime($this->notices[$last]->created))
@@ -320,5 +315,4 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
 
         return null;
     }
-
 }

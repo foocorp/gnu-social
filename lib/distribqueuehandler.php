@@ -78,13 +78,19 @@ class DistribQueueHandler
         }
 
         try {
-            Event::handle('EndNoticeSave', array($notice));
-            // Enqueue for other handlers
+            Event::handle('EndNoticeDistribute', array($notice));
         } catch (Exception $e) {
             $this->logit($notice, $e);
         }
 
         try {
+            Event::handle('EndNoticeSave', array($notice));
+        } catch (Exception $e) {
+            $this->logit($notice, $e);
+        }
+
+        try {
+            // Enqueue for other handlers
             common_enqueue_notice($notice);
         } catch (Exception $e) {
             $this->logit($notice, $e);

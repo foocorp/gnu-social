@@ -60,4 +60,3 @@ function sphinx_iterate_sites($callback)
         }
     }
 }
-

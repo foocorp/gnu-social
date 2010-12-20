@@ -49,7 +49,6 @@ require_once INSTALLDIR . '/lib/apibareauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiGroupListAction extends ApiBareAuthAction
 {
     var $groups   = null;
@@ -60,9 +59,7 @@ class ApiGroupListAction extends ApiBareAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -88,13 +85,12 @@ class ApiGroupListAction extends ApiBareAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         $sitename   = common_config('site', 'name');
-        // TRANS: %s is a user name
+        // TRANS: Used as title in check for group membership. %s is a user name.
         $title      = sprintf(_("%s's groups"), $this->user->nickname);
         $taguribase = TagURI::base();
         $id         = "tag:$taguribase:Groups";
@@ -104,8 +100,8 @@ class ApiGroupListAction extends ApiBareAuthAction
         );
 
         $subtitle   = sprintf(
-            // TRANS: Meant to convey the user %2$s is a member of each of the groups listed on site %1$s
-            _("%1\$s groups %2\$s is a member of."),
+            // TRANS: Used as subtitle in check for group membership. %1$s is a user name, %2$s is the site name.
+            _('%1$s groups %2$s is a member of.'),
             $sitename,
             $this->user->nickname
         );
@@ -134,13 +130,13 @@ class ApiGroupListAction extends ApiBareAuthAction
             break;
         default:
             $this->clientError(
+                // TRANS: Client error displayed trying to execute an unknown API method checking group membership.
                 _('API method not found.'),
                 404,
                 $this->format
             );
             break;
         }
-
     }
 
     /**
@@ -148,7 +144,6 @@ class ApiGroupListAction extends ApiBareAuthAction
      *
      * @return array groups
      */
-
     function getGroups()
     {
         $groups = array();
@@ -174,7 +169,6 @@ class ApiGroupListAction extends ApiBareAuthAction
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -203,7 +197,6 @@ class ApiGroupListAction extends ApiBareAuthAction
      *
      * @return string etag
      */
-
     function etag()
     {
         if (!empty($this->groups) && (count($this->groups) > 0)) {
@@ -213,6 +206,7 @@ class ApiGroupListAction extends ApiBareAuthAction
             return '"' . implode(
                 ':',
                 array($this->arg('action'),
+                      common_user_cache_hash($this->auth_user),
                       common_language(),
                       $this->user->id,
                       strtotime($this->groups[0]->created),
@@ -223,5 +217,4 @@ class ApiGroupListAction extends ApiBareAuthAction
 
         return null;
     }
-
 }

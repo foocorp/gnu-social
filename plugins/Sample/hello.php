@@ -46,7 +46,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class HelloAction extends Action
 {
     var $user = null;
@@ -67,7 +66,6 @@ class HelloAction extends Action
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -93,7 +91,6 @@ class HelloAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -108,13 +105,12 @@ class HelloAction extends Action
      *
      * @return string Title of the page
      */
-
     function title()
     {
         if (empty($this->user)) {
             return _m('Hello');
         } else {
-            return sprintf(_m('Hello, %s'), $this->user->nickname);
+            return sprintf(_m('Hello, %s!'), $this->user->nickname);
         }
     }
 
@@ -130,7 +126,6 @@ class HelloAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         if (empty($this->user)) {
@@ -162,7 +157,6 @@ class HelloAction extends Action
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return false;

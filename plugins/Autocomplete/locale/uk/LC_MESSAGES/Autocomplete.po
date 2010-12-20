@@ -1,0 +1,34 @@
+# Translation of StatusNet - Autocomplete to Ukrainian (Українська)
+# Expored from translatewiki.net
+#
+# Author: Boogie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Autocomplete\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:30+0000\n"
+"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:38:23+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: uk\n"
+"X-Message-Group: #out-statusnet-plugin-autocomplete\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#: AutocompletePlugin.php:80
+msgid ""
+"The autocomplete plugin allows users to autocomplete screen names in @ "
+"replies. When an \"@\" is typed into the notice text area, an autocomplete "
+"box is displayed populated with the user's friend' screen names."
+msgstr ""
+"Додаток автозавершення дозволяє користувачам автоматично завершувати "
+"нікнейми у «@-відповідях». Якщо у вікні набору повідомлення з’являється "
+"символ «@», то даний додаток автоматично пропонує обрати ім’я користувача із "
+"списку тих, з ким ви найчастіше листуєтесь."

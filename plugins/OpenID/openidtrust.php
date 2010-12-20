@@ -17,10 +17,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('STATUSNET')) {
+    exit(1);
+}
 
 require_once INSTALLDIR.'/plugins/OpenID/openid.php';
-require_once(INSTALLDIR.'/plugins/OpenID/User_openid_trustroot.php');
 
 class OpenidtrustAction extends Action
 {

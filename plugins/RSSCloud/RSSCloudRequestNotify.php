@@ -41,7 +41,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  **/
-
 class RSSCloudRequestNotifyAction extends Action
 {
     /**
@@ -51,7 +50,6 @@ class RSSCloudRequestNotifyAction extends Action
      *
      * @return boolean false if user doesn't exist
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -84,13 +82,12 @@ class RSSCloudRequestNotifyAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-            $this->showResult(false, 'Request must be POST.');
+            $this->showResult(false, _m('Request must be POST.'));
             return;
         }
 
@@ -107,7 +104,7 @@ class RSSCloudRequestNotifyAction extends Action
         if (empty($this->protocol)) {
             $missing[] = 'protocol';
         } else if (strtolower($this->protocol) != 'http-post') {
-            $msg = 'Only http-post notifications are supported at this time.';
+            $msg = _m('Only http-post notifications are supported at this time.');
             $this->showResult(false, $msg);
             return;
         }
@@ -117,15 +114,15 @@ class RSSCloudRequestNotifyAction extends Action
         }
 
         if (!empty($missing)) {
-            $msg = 'The following parameters were missing from the request body: ' .
-                implode(', ', $missing) . '.';
+            // TRANS: %s is a comma separated list of parameters.
+            $msg = sprintf(_m('The following parameters were missing from the request body: %s.'),implode(', ', $missing));
             $this->showResult(false, $msg);
             return;
         }
 
         if (empty($this->feeds)) {
-            $msg = 'You must provide at least one valid profile feed url ' .
-              '(url1, url2, url3 ... urlN).';
+            $msg = _m('You must provide at least one valid profile feed url ' .
+              '(url1, url2, url3 ... urlN).');
             $this->showResult(false, $msg);
             return;
         }
@@ -133,7 +130,6 @@ class RSSCloudRequestNotifyAction extends Action
         // We have to validate everything before saving anything.
         // We only return one success or failure no matter how
         // many feeds the subscriber is trying to subscribe to
-
         foreach ($this->feeds as $feed) {
 
             if (!$this->validateFeed($feed)) {
@@ -142,18 +138,17 @@ class RSSCloudRequestNotifyAction extends Action
                 common_log(LOG_WARNING,
                            "RSSCloud plugin - $nh tried to subscribe to invalid feed: $feed");
 
-                $msg = 'Feed subscription failed - Not a valid feed.';
+                $msg = _m('Feed subscription failed: Not a valid feed.');
                 $this->showResult(false, $msg);
                 return;
             }
 
             if (!$this->testNotificationHandler($feed)) {
-                $msg = 'Feed subscription failed - ' .
-                'notification handler doesn\'t respond correctly.';
+                $msg = _m('Feed subscription failed - ' .
+                'notification handler doesn\'t respond correctly.');
                 $this->showResult(false, $msg);
                 return;
             }
-
         }
 
         foreach ($this->feeds as $feed) {
@@ -163,9 +158,8 @@ class RSSCloudRequestNotifyAction extends Action
         // XXX: What to do about deleting stale subscriptions?
         // 25 hours seems harsh. WordPress doesn't ever remove
         // subscriptions.
-
-        $msg = 'Thanks for the subscription. ' .
-          'When the feed(s) update(s) we\'ll notify you.';
+        $msg = _m('Thanks for the subscription. ' .
+          'When the feed(s) update(s), you will be notified.');
 
         $this->showResult(true, $msg);
     }
@@ -178,7 +172,6 @@ class RSSCloudRequestNotifyAction extends Action
      *
      * @return void
      */
-
     function validateFeed($feed)
     {
         $user = $this->userFromFeed($feed);
@@ -196,7 +189,6 @@ class RSSCloudRequestNotifyAction extends Action
      *
      * @return array $feeds the list of feeds
      */
-
     function getFeeds()
     {
         $feeds = array();
@@ -218,7 +210,6 @@ class RSSCloudRequestNotifyAction extends Action
      *
      * @return boolean success result
      */
-
     function testNotificationHandler($feed)
     {
         $notifyUrl = $this->getNotifyUrl();
@@ -226,9 +217,7 @@ class RSSCloudRequestNotifyAction extends Action
         $notifier = new RSSCloudNotifier();
 
         if (isset($this->domain)) {
-
             // 'domain' param set, so we have to use GET and send a challenge
-
             common_log(LOG_INFO,
                        'RSSCloud plugin - Testing notification handler with challenge: ' .
                        $notifyUrl);
@@ -248,7 +237,6 @@ class RSSCloudRequestNotifyAction extends Action
      *
      * @return string notification handler url
      */
-
     function getNotifyUrl()
     {
         if (isset($this->domain)) {
@@ -267,12 +255,10 @@ class RSSCloudRequestNotifyAction extends Action
      *
      * @return boolean success
      */
-
     function userFromFeed($feed)
     {
         // We only do canonical RSS2 profile feeds (specified by ID), e.g.:
         // http://www.example.com/api/statuses/user_timeline/2.rss
-
         $path  = common_path('api/statuses/user_timeline/');
         $valid = '%^' . $path . '(?<id>.*)\.rss$%';
 
@@ -293,7 +279,6 @@ class RSSCloudRequestNotifyAction extends Action
      *
      * @return boolean success result
      */
-
     function saveSubscription($feed)
     {
         $user = $this->userFromFeed($feed);
@@ -334,7 +319,6 @@ class RSSCloudRequestNotifyAction extends Action
      *
      * @return boolean success result
      */
-
     function showResult($success, $msg)
     {
         $this->startXML();
@@ -343,6 +327,4 @@ class RSSCloudRequestNotifyAction extends Action
                                   'msg'     => $msg));
         $this->endXML();
     }
-
 }
-

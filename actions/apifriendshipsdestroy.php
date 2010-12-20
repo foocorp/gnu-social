@@ -48,7 +48,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiFriendshipsDestroyAction extends ApiAuthAction
 {
     var $other  = null;
@@ -61,7 +60,6 @@ class ApiFriendshipsDestroyAction extends ApiAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -81,13 +79,13 @@ class ApiFriendshipsDestroyAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400,
                 $this->format
@@ -97,6 +95,7 @@ class ApiFriendshipsDestroyAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to handle an unknown API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -106,6 +105,7 @@ class ApiFriendshipsDestroyAction extends ApiAuthAction
 
         if (empty($this->other)) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to unfollow a user that cannot be found.
                 _('Could not unfollow user: User not found.'),
                 403,
                 $this->format
@@ -117,6 +117,7 @@ class ApiFriendshipsDestroyAction extends ApiAuthAction
 
         if ($this->user->id == $this->other->id) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to unfollow self.
                 _("You cannot unfollow yourself."),
                 403,
                 $this->format
@@ -131,5 +132,4 @@ class ApiFriendshipsDestroyAction extends ApiAuthAction
         $this->showProfile($this->other, $this->format);
         $this->endDocument($this->format);
     }
-
 }

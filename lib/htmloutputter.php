@@ -119,9 +119,16 @@ class HTMLOutputter extends XMLOutputter
 
         $language = $this->getLanguage();
 
-        $this->elementStart('html', array('xmlns' => 'http://www.w3.org/1999/xhtml',
-                                          'xml:lang' => $language,
-                                          'lang' => $language));
+        $attrs = array(
+            'xmlns' => 'http://www.w3.org/1999/xhtml',
+            'xml:lang' => $language,
+            'lang' => $language
+        );
+
+        if (Event::handle('StartHtmlElement', array($this, &$attrs))) {
+            $this->elementStart('html', $attrs);
+            Event::handle('EndHtmlElement', array($this, &$attrs));
+        }
     }
 
     function getLanguage()
@@ -325,6 +332,7 @@ class HTMLOutputter extends XMLOutputter
      * @param string $label text of the button
      * @param string $cls   class of the button, default 'submit'
      * @param string $name  name, if different than ID
+     * @param string $title  title text for the submit button
      *
      * @return void
      *
@@ -351,22 +359,57 @@ class HTMLOutputter extends XMLOutputter
      */
     function script($src, $type='text/javascript')
     {
-        if(Event::handle('StartScriptElement', array($this,&$src,&$type))) {
+        if (Event::handle('StartScriptElement', array($this,&$src,&$type))) {
 
             $url = parse_url($src);
 
-            if( empty($url['scheme']) && empty($url['host']) && empty($url['query']) && empty($url['fragment']))
-            {
+            if (empty($url['scheme']) && empty($url['host']) && empty($url['query']) && empty($url['fragment'])) {
+
+                // XXX: this seems like a big assumption
+
                 if (strpos($src, 'plugins/') === 0 || strpos($src, 'local/') === 0) {
 
-                    $src = common_path($src) . '?version=' . STATUSNET_VERSION;
+                    $src = common_path($src, StatusNet::isHTTPS()) . '?version=' . STATUSNET_VERSION;
 
-                }else{
+                } else {
 
-                    $path = common_config('javascript', 'path');
+                    if (StatusNet::isHTTPS()) {
 
-                    if (empty($path)) {
-                        $path = common_config('site', 'path') . '/js/';
+                        $sslserver = common_config('javascript', 'sslserver');
+
+                        if (empty($sslserver)) {
+                            if (is_string(common_config('site', 'sslserver')) &&
+                                mb_strlen(common_config('site', 'sslserver')) > 0) {
+                                $server = common_config('site', 'sslserver');
+                            } else if (common_config('site', 'server')) {
+                                $server = common_config('site', 'server');
+                            }
+                            $path   = common_config('site', 'path') . '/js/';
+                        } else {
+                            $server = $sslserver;
+                            $path   = common_config('javascript', 'sslpath');
+                            if (empty($path)) {
+                                $path = common_config('javascript', 'path');
+                            }
+                        }
+
+                        $protocol = 'https';
+
+                    } else {
+
+                        $path = common_config('javascript', 'path');
+
+                        if (empty($path)) {
+                            $path = common_config('site', 'path') . '/js/';
+                        }
+
+                        $server = common_config('javascript', 'server');
+
+                        if (empty($server)) {
+                            $server = common_config('site', 'server');
+                        }
+
+                        $protocol = 'http';
                     }
 
                     if ($path[strlen($path)-1] != '/') {
@@ -377,32 +420,13 @@ class HTMLOutputter extends XMLOutputter
                         $path = '/'.$path;
                     }
 
-                    $server = common_config('javascript', 'server');
-
-                    if (empty($server)) {
-                        $server = common_config('site', 'server');
-                    }
-
-                    $ssl = common_config('javascript', 'ssl');
-
-                    if (is_null($ssl)) { // null -> guess
-                        if (common_config('site', 'ssl') == 'always' &&
-                            !common_config('javascript', 'server')) {
-                            $ssl = true;
-                        } else {
-                            $ssl = false;
-                        }
-                    }
-
-                    $protocol = ($ssl) ? 'https' : 'http';
-
                     $src = $protocol.'://'.$server.$path.$src . '?version=' . STATUSNET_VERSION;
                 }
             }
 
             $this->element('script', array('type' => $type,
-                                                   'src' => $src),
-                                   ' ');
+                                           'src' => $src),
+                           ' ');
 
             Event::handle('EndScriptElement', array($this,$src,$type));
         }
@@ -452,7 +476,7 @@ class HTMLOutputter extends XMLOutputter
                 if(file_exists(Theme::file($src,$theme))){
                    $src = Theme::path($src, $theme);
                 }else{
-                   $src = common_path($src);
+                    $src = common_path($src, StatusNet::isHTTPS());
                 }
                 $src.= '?version=' . STATUSNET_VERSION;
             }

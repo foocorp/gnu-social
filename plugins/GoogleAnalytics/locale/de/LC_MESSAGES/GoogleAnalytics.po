@@ -1,0 +1,30 @@
+# Translation of StatusNet - GoogleAnalytics to German (Deutsch)
+# Expored from translatewiki.net
+#
+# Author: The Evil IP address
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - GoogleAnalytics\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:04+0000\n"
+"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:41:57+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-googleanalytics\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: GoogleAnalyticsPlugin.php:80
+msgid ""
+"Use <a href=\"http://www.google.com/analytics/\">Google Analytics</a> to "
+"track web access."
+msgstr ""
+"Benutzung von <a href=\"http://www.google.com/analytics/\">Google Analytics</"
+"a> zur Verfolgung des Web-Zugangs."

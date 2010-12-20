@@ -42,7 +42,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiTimelineRetweetedToMeAction extends ApiAuthAction
 {
     const DEFAULTCOUNT = 20;
@@ -61,9 +60,7 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -88,7 +85,6 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -108,6 +104,7 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
         case 'atom':
             $profile    = $this->auth_user->getProfile();
 
+            // TRANS: Title for Atom feed "repeated to me". %s is the user nickname.
             $title      = sprintf(_("Repeated to %s"), $this->auth_user->nickname);
             $taguribase = TagURI::base();
             $id         = "tag:$taguribase:RepeatedToMe:" . $this->auth_user->id;
@@ -116,8 +113,8 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
 
             $this->showAtomTimeline($strm, $title, $id, $link);
             break;
-
         default:
+            // TRANS: Client error displayed when trying to handle an unknown API method.
             $this->clientError(_('API method not found.'), $code = 404);
             break;
         }
@@ -132,7 +129,6 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;

@@ -71,7 +71,7 @@ class DesignadminpanelAction extends AdminPanelAction
 
     function getInstructions()
     {
-        return _('Design settings for this StatusNet site.');
+        return _('Design settings for this StatusNet site');
     }
 
     /**
@@ -120,8 +120,11 @@ class DesignadminpanelAction extends AdminPanelAction
             && empty($_POST)
             && ($_SERVER['CONTENT_LENGTH'] > 0)
         ) {
-            $msg = _('The server was unable to handle that much POST ' .
-                'data (%s bytes) due to its current configuration.');
+            // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
+            // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
+            $msg = _m('The server was unable to handle that much POST data (%s byte) due to its current configuration.',
+                      'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
+                      intval($_SERVER['CONTENT_LENGTH']));
             $this->clientException(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
             return;
         }
@@ -140,7 +143,7 @@ class DesignadminpanelAction extends AdminPanelAction
             $themeChanged = ($this->trimmed('theme') != $oldtheme);
         }
 
-        static $settings = array('theme', 'logo');
+        static $settings = array('theme', 'logo', 'ssllogo');
 
         $values = array();
 
@@ -154,9 +157,22 @@ class DesignadminpanelAction extends AdminPanelAction
 
         $config->query('BEGIN');
 
-        // Only update colors if the theme has not changed.
+        if ($themeChanged) {
+            // If the theme has changed, reset custom colors and let them pick
+            // up the new theme's defaults.
+            $colors = array('background', 'content', 'sidebar', 'text', 'link');
+            foreach ($colors as $colorKey) {
+                // Clear from global config so we see defaults on this page...
+                $GLOBALS['config']['design'][$colorKey . 'color'] = false;
 
-        if (!$themeChanged) {
+                // And remove old settings from DB...
+                $this->deleteSetting('design', $colorKey . 'color');
+            }
+        } else {
+            // Only save colors from the form if the theme has not changed.
+            //
+            // @fixme a future more ajaxy form should allow theme switch
+            // and color customization in one step.
 
             $bgcolor = new WebColor($this->trimmed('design_background'));
             $ccolor  = new WebColor($this->trimmed('design_content'));
@@ -217,6 +233,7 @@ class DesignadminpanelAction extends AdminPanelAction
     function restoreDefaults()
     {
         $this->deleteSetting('site', 'logo');
+        $this->deleteSetting('site', 'ssllogo');
         $this->deleteSetting('site', 'theme');
 
         $settings = array(
@@ -244,8 +261,8 @@ class DesignadminpanelAction extends AdminPanelAction
     function saveBackgroundImage()
     {
         $filename = null;
-
-        if ($_FILES['design_background-image_file']['error'] ==
+        if (isset($_FILES['design_background-image_file']['error']) &&
+            $_FILES['design_background-image_file']['error'] ==
             UPLOAD_ERR_OK) {
 
             $filepath = null;
@@ -280,7 +297,7 @@ class DesignadminpanelAction extends AdminPanelAction
 
     /**
      * Save the custom theme if the user uploaded one.
-     * 
+     *
      * @return mixed custom theme name, if succesful, or null if no theme upload.
      * @throws ClientException for invalid theme archives
      * @throws ServerException if trouble saving the theme files
@@ -316,6 +333,11 @@ class DesignadminpanelAction extends AdminPanelAction
         if (!empty($values['logo']) &&
             !Validate::uri($values['logo'], array('allowed_schemes' => array('http', 'https')))) {
             $this->clientError(_('Invalid logo URL.'));
+        }
+
+        if (!empty($values['ssllogo']) &&
+            !Validate::uri($values['ssllogo'], array('allowed_schemes' => array('https')))) {
+            $this->clientError(_('Invalid SSL logo URL.'));
         }
 
         if (!in_array($values['theme'], Theme::listAvailable())) {
@@ -429,6 +451,10 @@ class DesignAdminPanelForm extends AdminForm
 
         $this->li();
         $this->input('logo', _('Site logo'), 'Logo for the site (full URL)');
+        $this->unli();
+
+        $this->li();
+        $this->input('ssllogo', _('SSL logo'), 'Logo to show on SSL pages');
         $this->unli();
 
         $this->out->elementEnd('ul');

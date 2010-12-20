@@ -42,14 +42,14 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class NewApplicationAction extends OwnerDesignAction
 {
     var $msg;
 
     function title()
     {
-        return _('New Application');
+        // TRANS: This is the title of the form for adding a new application.
+        return _('New application');
     }
 
     /**
@@ -61,6 +61,7 @@ class NewApplicationAction extends OwnerDesignAction
         parent::prepare($args);
 
         if (!common_logged_in()) {
+            // TRANS: Client error displayed trying to add a new application while not logged in.
             $this->clientError(_('You must be logged in to register an application.'));
             return false;
         }
@@ -91,35 +92,38 @@ class NewApplicationAction extends OwnerDesignAction
 
     function handlePost($args)
     {
-    // Workaround for PHP returning empty $_POST and $_FILES when POST
+        // Workaround for PHP returning empty $_POST and $_FILES when POST
         // length > post_max_size in php.ini
 
         if (empty($_FILES)
             && empty($_POST)
             && ($_SERVER['CONTENT_LENGTH'] > 0)
         ) {
-            $msg = _('The server was unable to handle that much POST ' .
-             'data (%s bytes) due to its current configuration.');
+            // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
+            // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
+            $msg = _m('The server was unable to handle that much POST data (%s byte) due to its current configuration.',
+                      'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
+                      intval($_SERVER['CONTENT_LENGTH']));
             $this->clientException(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
             return;
         }
 
-    // CSRF protection
-    $token = $this->trimmed('token');
-    if (!$token || $token != common_session_token()) {
-        $this->clientError(_('There was a problem with your session token.'));
-        return;
-    }
+        // CSRF protection
+        $token = $this->trimmed('token');
+        if (!$token || $token != common_session_token()) {
+            $this->clientError(_('There was a problem with your session token.'));
+            return;
+        }
 
-    $cur = common_current_user();
+        $cur = common_current_user();
 
-    if ($this->arg('cancel')) {
-        common_redirect(common_local_url('oauthappssettings'), 303);
-    } elseif ($this->arg('save')) {
-        $this->trySave();
-    } else {
-        $this->clientError(_('Unexpected form submission.'));
-    }
+        if ($this->arg('cancel')) {
+            common_redirect(common_local_url('oauthappssettings'), 303);
+        } elseif ($this->arg('save')) {
+            $this->trySave();
+        } else {
+            $this->clientError(_('Unexpected form submission.'));
+        }
     }
 
     function showForm($msg=null)
@@ -162,15 +166,19 @@ class NewApplicationAction extends OwnerDesignAction
             $this->showForm(_('Name already in use. Try another one.'));
             return;
         } elseif (mb_strlen($name) > 255) {
-            $this->showForm(_('Name is too long (max 255 chars).'));
+            $this->showForm(_('Name is too long (maximum 255 characters).'));
             return;
         } elseif (empty($description)) {
             $this->showForm(_('Description is required.'));
             return;
         } elseif (Oauth_application::descriptionTooLong($description)) {
             $this->showForm(sprintf(
-                _('Description is too long (max %d chars).'),
-                Oauth_application::maxDescription()));
+                // TRANS: Form validation error in New application form.
+                // TRANS: %d is the maximum number of characters for the description.
+                _m('Description is too long (maximum %d character).',
+                   'Description is too long (maximum %d characters).',
+                   Oauth_application::maxDesc()),
+                Oauth_application::maxDesc()));
             return;
         } elseif (empty($source_url)) {
             $this->showForm(_('Source URL is required.'));
@@ -188,7 +196,7 @@ class NewApplicationAction extends OwnerDesignAction
             $this->showForm(_('Organization is required.'));
             return;
         } elseif (mb_strlen($organization) > 255) {
-            $this->showForm(_('Organization is too long (max 255 chars).'));
+            $this->showForm(_('Organization is too long (maximum 255 characters).'));
             return;
         } elseif (empty($homepage)) {
             $this->showForm(_('Organization homepage is required.'));

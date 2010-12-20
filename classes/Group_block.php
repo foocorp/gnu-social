@@ -111,5 +111,4 @@ class Group_block extends Memcached_DataObject
 
         return true;
     }
-
 }

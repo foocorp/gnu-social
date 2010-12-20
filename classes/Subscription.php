@@ -26,6 +26,8 @@ require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
 class Subscription extends Memcached_DataObject
 {
+    const CACHE_WINDOW = 201;
+
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
 
@@ -90,6 +92,9 @@ class Subscription extends Memcached_DataObject
             $sub->notify();
 
             self::blow('user:notices_with_friends:%d', $subscriber->id);
+
+            self::blow('subscription:by-subscriber:'.$subscriber->id);
+            self::blow('subscription:by-subscribed:'.$other->id);
 
             $subscriber->blowSubscriptionCount();
             $other->blowSubscriberCount();
@@ -220,6 +225,9 @@ class Subscription extends Memcached_DataObject
 
             self::blow('user:notices_with_friends:%d', $subscriber->id);
 
+            self::blow('subscription:by-subscriber:'.$subscriber->id);
+            self::blow('subscription:by-subscribed:'.$other->id);
+
             $subscriber->blowSubscriptionCount();
             $other->blowSubscriberCount();
 
@@ -234,5 +242,186 @@ class Subscription extends Memcached_DataObject
         $sub = Subscription::pkeyGet(array('subscriber' => $subscriber->id,
                                            'subscribed' => $other->id));
         return (empty($sub)) ? false : true;
+    }
+
+    function asActivity()
+    {
+        $subscriber = Profile::staticGet('id', $this->subscriber);
+        $subscribed = Profile::staticGet('id', $this->subscribed);
+
+        $act = new Activity();
+
+        $act->verb = ActivityVerb::FOLLOW;
+
+        // XXX: rationalize this with the URL
+
+        $act->id   = TagURI::mint('follow:%d:%d:%s',
+                                  $subscriber->id,
+                                  $subscribed->id,
+                                  common_date_iso8601($this->created));
+
+        $act->time    = strtotime($this->created);
+        // TRANS: Activity tile when subscribing to another person.
+        $act->title   = _("Follow");
+        // TRANS: Notification given when one person starts following another.
+        // TRANS: %1$s is the subscriber, %2$s is the subscribed.
+        $act->content = sprintf(_('%1$s is now following %2$s.'),
+                               $subscriber->getBestName(),
+                               $subscribed->getBestName());
+
+        $act->actor     = ActivityObject::fromProfile($subscriber);
+        $act->objects[] = ActivityObject::fromProfile($subscribed);
+
+        $url = common_local_url('AtomPubShowSubscription',
+                                array('subscriber' => $subscriber->id,
+                                      'subscribed' => $subscribed->id));
+
+        $act->selfLink = $url;
+        $act->editLink = $url;
+
+        return $act;
+    }
+
+    /**
+     * Stream of subscriptions with the same subscriber
+     *
+     * Useful for showing pages that list subscriptions in reverse
+     * chronological order. Has offset & limit to make paging
+     * easy.
+     *
+     * @param integer $subscriberId Profile ID of the subscriber
+     * @param integer $offset       Offset from latest
+     * @param integer $limit        Maximum number to fetch
+     *
+     * @return Subscription stream of subscriptions; use fetch() to iterate
+     */
+
+    static function bySubscriber($subscriberId,
+                                 $offset = 0,
+                                 $limit = PROFILES_PER_PAGE)
+    {
+        if ($offset + $limit > self::CACHE_WINDOW) {
+            return new ArrayWrapper(self::realBySubscriber($subscriberId,
+                                                           $offset,
+                                                           $limit));
+        } else {
+            $key = 'subscription:by-subscriber:'.$subscriberId;
+            $window = self::cacheGet($key);
+            if ($window === false) {
+                $window = self::realBySubscriber($subscriberId,
+                                                 0,
+                                                 self::CACHE_WINDOW);
+                self::cacheSet($key, $window);
+            }
+            return new ArrayWrapper(array_slice($window,
+                                                $offset,
+                                                $limit));
+        }
+    }
+
+    private static function realBySubscriber($subscriberId,
+                                             $offset,
+                                             $limit)
+    {
+        $sub = new Subscription();
+
+        $sub->subscriber = $subscriberId;
+
+        $sub->whereAdd('subscribed != ' . $subscriberId);
+
+        $sub->orderBy('created DESC');
+        $sub->limit($offset, $limit);
+
+        $sub->find();
+
+        $subs = array();
+
+        while ($sub->fetch()) {
+            $subs[] = clone($sub);
+        }
+
+        return $subs;
+    }
+
+    /**
+     * Stream of subscriptions with the same subscribed profile
+     *
+     * Useful for showing pages that list subscribers in reverse
+     * chronological order. Has offset & limit to make paging
+     * easy.
+     *
+     * @param integer $subscribedId Profile ID of the subscribed
+     * @param integer $offset       Offset from latest
+     * @param integer $limit        Maximum number to fetch
+     *
+     * @return Subscription stream of subscriptions; use fetch() to iterate
+     */
+
+    static function bySubscribed($subscribedId,
+                                 $offset = 0,
+                                 $limit = PROFILES_PER_PAGE)
+    {
+        if ($offset + $limit > self::CACHE_WINDOW) {
+            return new ArrayWrapper(self::realBySubscribed($subscribedId,
+                                                           $offset,
+                                                           $limit));
+        } else {
+            $key = 'subscription:by-subscribed:'.$subscribedId;
+            $window = self::cacheGet($key);
+            if ($window === false) {
+                $window = self::realBySubscribed($subscribedId,
+                                                 0,
+                                                 self::CACHE_WINDOW);
+                self::cacheSet($key, $window);
+            }
+            return new ArrayWrapper(array_slice($window,
+                                                $offset,
+                                                $limit));
+        }
+    }
+
+    private static function realBySubscribed($subscribedId,
+                                             $offset,
+                                             $limit)
+    {
+        $sub = new Subscription();
+
+        $sub->subscribed = $subscribedId;
+
+        $sub->whereAdd('subscriber != ' . $subscribedId);
+
+        $sub->orderBy('created DESC');
+        $sub->limit($offset, $limit);
+
+        $sub->find();
+
+        $subs = array();
+
+        while ($sub->fetch()) {
+            $subs[] = clone($sub);
+        }
+
+        return $subs;
+    }
+
+    /**
+     * Flush cached subscriptions when subscription is updated
+     *
+     * Because we cache subscriptions, it's useful to flush them
+     * here.
+     *
+     * @param mixed $orig Original version of object
+     *
+     * @return boolean success flag.
+     */
+
+    function update($orig=null)
+    {
+        $result = parent::update($orig);
+
+        self::blow('subscription:by-subscriber:'.$this->subscriber);
+        self::blow('subscription:by-subscribed:'.$this->subscribed);
+
+        return $result;
     }
 }

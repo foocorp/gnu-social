@@ -1,0 +1,45 @@
+# Translation of StatusNet - AutoSandbox to German (Deutsch)
+# Expored from translatewiki.net
+#
+# Author: The Evil IP address
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AutoSandbox\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:30+0000\n"
+"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:38:24+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-autosandbox\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: AutoSandboxPlugin.php:66
+msgid "Automatically sandboxes newly registered members."
+msgstr "Neu registrierte Benutzer automatisch auf die Spielwiese setzen."
+
+#: AutoSandboxPlugin.php:72
+msgid ""
+"Note you will initially be \"sandboxed\" so your posts will not appear in "
+"the public timeline."
+msgstr ""
+"Beachte, dass du anfangs in die „Spielwiese“ gesetzt wirst, sodass deine "
+"Beiträge nicht in der öffentlichen Zeitleiste erscheinen."
+
+#. TRANS: $contactlink is a clickable e-mailaddress.
+#: AutoSandboxPlugin.php:79
+msgid ""
+"Note you will initially be \"sandboxed\" so your posts will not appear in "
+"the public timeline. Send a message to $contactlink to speed up the "
+"unsandboxing process."
+msgstr ""
+"Beachte, dass du anfangs in die „Spielwiese“ gesetzt wirst, sodass deine "
+"Beiträge nicht in der öffentlichen Zeitleiste erscheinen. Schicke eine "
+"Nachricht an $contactlink, um schneller aus der Spielwiese rauszukommen."

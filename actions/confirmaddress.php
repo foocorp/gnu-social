@@ -44,7 +44,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ConfirmaddressAction extends Action
 {
     /** type of confirmation. */
@@ -61,7 +60,6 @@ class ConfirmaddressAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -72,16 +70,19 @@ class ConfirmaddressAction extends Action
         }
         $code = $this->trimmed('code');
         if (!$code) {
+            // TRANS: Client error displayed when not providing a confirmation code in the contact address confirmation action.
             $this->clientError(_('No confirmation code.'));
             return;
         }
         $confirm = Confirm_address::staticGet('code', $code);
         if (!$confirm) {
+            // TRANS: Client error displayed when providing a non-existing confirmation code in the contact address confirmation action.
             $this->clientError(_('Confirmation code not found.'));
             return;
         }
         $cur = common_current_user();
         if ($cur->id != $confirm->user_id) {
+            // TRANS: Client error displayed when not providing a confirmation code for another user in the contact address confirmation action.
             $this->clientError(_('That confirmation code is not for you!'));
             return;
         }
@@ -98,6 +99,7 @@ class ConfirmaddressAction extends Action
         if (in_array($type, array('email', 'sms')))
         {
             if ($cur->$type == $confirm->address) {
+            //     TRANS: Client error for an already confirmed email/jabber/sms address.
                 $this->clientError(_('That address has already been confirmed.'));
                 return;
             }
@@ -162,7 +164,9 @@ class ConfirmaddressAction extends Action
 
         if (!$result) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
-            $this->serverError(_('Couldn\'t delete email confirmation.'));
+            // TRANS: Server error displayed when an address confirmation code deletion from the
+            // TRANS: database fails in the contact address confirmation action.
+            $this->serverError(_('Could not delete address confirmation.'));
             return;
         }
 
@@ -175,9 +179,9 @@ class ConfirmaddressAction extends Action
      *
      * @return string title
      */
-
     function title()
     {
+        // TRANS: Title for the contact address confirmation action.
         return _('Confirm address');
     }
 
@@ -186,12 +190,13 @@ class ConfirmaddressAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         $cur  = common_current_user();
 
         $this->element('p', null,
+                       // TRANS: Success message for the contact address confirmation action.
+                       // TRANS: %s can be 'email', 'jabber', or 'sms'.
                        sprintf(_('The address "%s" has been '.
                                  'confirmed for your account.'),
                                $this->address));

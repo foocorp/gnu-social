@@ -1,0 +1,2114 @@
+/** theme: mnml
+ *
+ * @package   StatusNet
+ * @author    Michael R. Bernstein <michael@fandomhome.com>
+ * @copyright 2010 StatusNet, Inc.
+ * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
+ * @link      http://www.michaelbernstein.com/
+ */
+
+/*-- FONTS --*/
+
+@font-face {
+    font-family: 'TeXGyreHerosRegular';
+    src: url('../fonts/texgyreheros-regular-webfont.eot');
+    src: local('☺'), url('../fonts/texgyreheros-regular-webfont.woff') format('woff'), url('../fonts/texgyreheros-regular-webfont.ttf') format('truetype'), url('../fonts/texgyreheros-regular-webfont.svg#webfonts1QuWEVy') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TeXGyreHerosItalic';
+    src: url('../fonts/texgyreheros-italic-webfont.eot');
+    src: local('☺'), url('../fonts/texgyreheros-italic-webfont.woff') format('woff'), url('../fonts/texgyreheros-italic-webfont.ttf') format('truetype'), url('../fonts/texgyreheros-italic-webfont.svg#webfontonVrQ9Kn') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'TeXGyreHerosBold';
+    src: url('../fonts/texgyreheros-bold-webfont.eot');
+    src: local('☺'), url('../fonts/texgyreheros-bold-webfont.woff') format('woff'), url('../fonts/texgyreheros-bold-webfont.ttf') format('truetype'), url('../fonts/texgyreheros-bold-webfont.svg#webfontaJCL46uI') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*-- END FONTS --*/
+
+
+@media screen, projection, tv {
+
+/* -- RESET -- */
+/* From Eric Meyer http://meyerweb.com/eric/tools/css/reset/index.html  */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+    outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+    text-decoration: none;
+}
+del {
+    text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*-- END RESET --*/
+
+
+/*-- TYPOGRAPHY --*/
+/* Borrowed liberally from Typogridphy 2.0 - http://csswizardry.com/typogridphy/preview/ */
+
+html{
+    font-size:100%;
+}
+body{
+    font-size:62.5%;
+    font-family:TeXGyreHerosRegular, sans-serif;
+    color:#444;
+    background-color: #EEE;
+    height: 100%;
+}
+
+#wrap{
+    width:94em;
+    padding:3em 2em 1em 2em;
+    margin-top: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    background-color: #fff;
+}
+
+#header{
+    width:100%;
+    overflow:hidden;
+}
+#content{
+    margin-right:2em;
+    float:left;
+    width: 70em;
+    clear:both;
+    background-color: #FFF;
+}
+
+
+/*-- HEADINGS --*/
+h1,h2,h3,h4,h5,h6{
+    font-family: 'TeXGyreHerosBold', sans-serif;
+    font-weight: normal;
+    color:#444;
+}
+h1{ /* H1 is a bit hacky but it works */
+    font-size:4.3em;
+    line-height:1.2;
+    margin-bottom:0.5em;
+}
+h2{
+    font-size:2em;
+    line-height:1.2em;
+    margin-bottom:1.2em;
+    margin-top:-1px;
+    padding-bottom:1px;
+}
+h3{
+    font-size:1.8em;
+    line-height:1.3333333333333333333333333333333em;
+    margin-bottom:1.3333333333333333333333333333333em;
+}
+h4{
+    font-size:1.6em;
+    line-height:1.5em;
+    margin-bottom:1.5em;
+}
+h5{
+    font-size:1.6em;
+    line-height:1.5em;
+    margin-bottom:1.5em;
+}
+h6{
+    font-size:1.3em;
+    line-height:1.8461538461538461538461538461538em;
+    margin-bottom:1.8461538461538461538461538461538em;
+}
+
+/*-- END HEADINGS --*/
+
+/*-- LISTS --*/
+ul,ol{
+    font-size:1.6em;
+    line-height:1.5em;
+    margin-bottom:1.5em;
+    }
+
+ul{
+    list-style:square;
+    }
+
+ol{
+    list-style:lower-roman;
+    }
+
+ul,ol{
+    padding-left:1em;margin-left:-1em;/* This makes IE display hung bullets */
+    }
+
+ul ul,ol ol{
+    clear: both;
+    font-size:1em;
+    line-height:1.5em;
+    margin:0 0 0 2em;
+}
+
+dl{
+    }
+dl dt{
+    font-family: 'TeXGyreHerosBold', sans-serif;
+}
+dl dd{
+    margin-bottom:1.5em;
+}
+
+/*-- END LISTS --*/
+
+/* --- =LINKS --- */
+a{
+    color:#C00;
+    font-family: 'TeXGyreHerosBold', sans-serif;
+}
+a:visited{
+    color:#C00;
+}
+a:hover{
+    text-decoration:none;
+}
+
+/*-- PARAGRAPHS --*/
+p{
+    font-size:1.6em;
+    line-height:1.5em;
+    margin-bottom:1.5em;
+}
+
+p.instructions {
+    font-family: 'TeXGyreHerosBold', sans-serif;
+}
+
+/*-- FORMS --*/
+
+.form_notice label[for=notice_data-attach],
+#export_data li a.rss,
+#export_data li a.atom,
+#export_data li a.foaf,
+.entity_edit a,
+.entity_send-a-message a,
+.entity_nudge p,
+.form_user_nudge input.submit,
+.form_user_block input.submit,
+.form_user_unblock input.submit,
+.form_group_block input.submit,
+.form_group_unblock input.submit,
+.form_make_admin input.submit,
+.notice .attachment,
+.notice-options .notice_reply,
+.notice-options form.form_favor input.submit,
+.notice-options form.form_disfavor input.submit,
+.notice-options .notice_delete,
+.notice-options form.form_repeat input.submit,
+#new_group a,
+.pagination .nav_prev a,
+.pagination .nav_next a,
+button.close,
+.form_group_leave input.submit,
+.form_user_unsubscribe input.submit,
+.form_group_join input.submit,
+.form_user_subscribe input.submit,
+.form_remote_authorize input.submit,
+.entity_subscribe a,
+.entity_moderation p,
+.entity_sandbox input.submit,
+.entity_silence input.submit,
+.entity_delete input.submit,
+.entity_role p,
+.entity_role_administrator input.submit,
+.entity_role_moderator input.submit,
+.notice-options .repeated,
+.form_notice label[for=notice_data-geo],
+button.minimize,
+.form_reset_key input.submit,
+.entity_clear input.submit,
+.entity_flag input.submit,
+.entity_flag p,
+.entity_subscribe input.submit,
+#realtime_play,
+#realtime_pause,
+#realtime_popup {
+    background-image:url(../images/icons/icons-01.png);
+    background-repeat:no-repeat;
+    background-color:transparent;
+}
+
+.form_notice label[for=notice_data-geo] {
+    background-position:0 -1780px;
+}
+.form_notice label[for=notice_data-geo].checked {
+    background-position:0 -1846px;
+}
+.form_notice label[for=notice_data-attach] {
+    background-position:0 -328px;
+}
+button.close {
+    background-position:0 -1120px;
+}
+button.minimize {
+    background-position:0 -1912px;
+}
+#export_data li a.rss {
+    background-position:0 -125px;
+}
+#export_data li a.atom {
+    background-position:0 -59px;
+}
+#export_data li a.foaf {
+    background-position:0 1px;
+}
+.form_group_leave input.submit,
+.form_user_unsubscribe input.submit {
+    background-position:5px -1246px;
+}
+.form_group_join input.submit,
+.form_user_subscribe input.submit,
+.form_remote_authorize input.submit,
+.entity_subscribe a {
+    background-position:5px -1181px;
+}
+
+.entity_edit a {
+    background-position: 5px -719px;
+}
+.entity_send-a-message a {
+    background-position: 5px -852px;
+}
+.entity_nudge p,
+.form_user_nudge input.submit {
+    background-position: 5px -785px;
+}
+.form_user_block input.submit,
+.form_user_unblock input.submit,
+.form_group_block input.submit,
+.form_group_unblock input.submit {
+    background-position: 5px -918px;
+}
+.form_make_admin input.submit {
+    background-position: 5px -983px;
+}
+.entity_moderation p {
+    background-position: 5px -1313px;
+}
+.entity_sandbox input.submit {
+    background-position: 5px -1380px;
+}
+.entity_silence input.submit {
+    background-position: 5px -1445px;
+}
+.entity_delete input.submit {
+    background-position: 5px -1511px;
+}
+.entity_sandbox .form_user_unsandbox input.submit {
+    background-position: 5px -2568px;
+}
+.entity_silence .form_user_unsilence input.submit {
+    background-position: 5px -2633px;
+}
+.entity_role p {
+    background-position: 5px -2436px;
+}
+.entity_role_administrator .form_user_grantrole input.submit {
+    background-position: 5px -983px;
+}
+.entity_role_moderator .form_user_grantrole input.submit {
+    background-position: 5px -1313px;
+}
+.entity_role_administrator .form_user_revokerole input.submit {
+    background-position: 5px -2699px;
+}
+.entity_role_moderator .form_user_revokerole input.submit {
+    background-position: 5px -2501px;
+}
+.form_reset_key input.submit {
+    background-position: 5px -1973px;
+}
+.entity_clear input.submit {
+    background-position: 5px -2039px;
+}
+.entity_flag input.submit,
+.entity_flag p {
+    background-position: 5px -2105px;
+}
+.entity_subscribe input.accept {
+    background-position: 5px -2171px;
+}
+.entity_subscribe input.reject {
+    background-position: 5px -2237px;
+}
+#realtime_play {
+    background-position: 0 -2308px;
+}
+#realtime_pause {
+    background-position: 0 -2374px;
+}
+#realtime_popup {
+    background-position: 0 -1714px;
+}
+.notice .attachment {
+    background-position:0 -394px;
+}
+.notice .attachment.more {
+    background-position:0 -2770px;
+}
+#attachments .attachment {
+    background:none;
+}
+.notice-options .notice_reply {
+    background-position:0 -592px;
+}
+.notice-options form.form_favor input.submit {
+    background-position:0 -461px;
+}
+.notice-options form.form_disfavor input.submit {
+    background-position:0 -526px;
+}
+.notice-options .notice_delete {
+    background-position:0 -658px;
+}
+.notice-options form.form_repeat input.submit {
+    background-position:0 -1582px;
+}
+.notice-options .repeated {
+    background-position:0 -1648px;
+}
+#new_group a {
+    background-position:0 -1054px;
+}
+.pagination .nav_prev a {
+    background-position:10% -187px;
+}
+.pagination .nav_next a {
+    background-position:105% -252px;
+}
+
+caption, legend {
+font-family: 'TeXGyreHerosBold', sans-serif;
+}
+
+input, textarea, select, option {
+
+}
+
+input.submit {
+font-family: 'TeXGyreHerosBold', sans-serif;
+cursor:pointer;
+}
+textarea {
+overflow:auto;
+}
+option {
+padding-bottom:0;
+}
+fieldset {
+padding:0;
+border:0;
+}
+form ul li {
+list-style-type:none;
+margin:0 0 18px 0;
+}
+form label {
+    font-family: 'TeXGyreHerosBold', sans-serif;
+    font-size: 1.6em;
+    line-height: 1.5em;
+}
+input.checkbox,
+input.radio {
+position:relative;
+top:2px;
+left:auto;
+border:0;
+}
+
+.error,
+.success {
+    font-size:1.6em;
+    line-height:1.5em;
+    font-family: 'TeXGyreHerosBold', sans-serif;
+    display: inline-block;
+    width: auto;
+    min-width: 10em;
+}
+
+.error {
+    color: #000;
+    background-color: #C00;
+}
+
+.success {
+    color: #FFF;
+    background-color: #090;
+}
+.xoxo li {
+list-style-type:none;
+}
+
+form label.submit {
+display:none;
+}
+.form_settings {
+clear:both;
+}
+.form_settings fieldset {
+margin-bottom:29px;
+}
+.form_settings fieldset fieldset {
+margin-bottom:41px;
+padding:3% 1.795% 1.795% 3%;
+border-width:1px;
+border-style:solid;
+}
+.form_settings fieldset fieldset legend {
+line-height:0;
+}
+
+.form_settings input.remove {
+margin-left:11px;
+}
+
+ul.form_data {
+    font-size: 100%
+}
+
+.form_settings .form_data li {
+width:100%;
+float:left;
+}
+.form_settings .form_data label {
+float:left;
+}
+.form_settings .form_data textarea,
+.form_settings .form_data select,
+.form_settings .form_data input {
+margin-left:1.795%;
+float:left;
+}
+.form_settings .form_data input {
+}
+.form_settings .form_data input.submit,
+.form_settings .form_data input.checkbox,
+.form_settings .form_data input.radio {
+width:auto;
+}
+.form_settings .form_data textarea {
+width:63%;
+}
+
+.form_settings .form_data input.submit {
+margin-left:0;
+}
+
+.form_settings label {
+margin-top:2px;
+width:24%;
+}
+
+.form_actions label {
+display:none;
+}
+.form_guide {
+font-family: 'TeXGyreHerosItalic', sans-serif;
+}
+
+.form_settings #settings_autosubscribe label {
+display:inline;
+font-weight:bold;
+}
+
+#form_settings_profile legend,
+#form_login legend,
+#form_register legend,
+#form_password legend,
+#form_settings_avatar legend,
+#newgroup legend,
+#editgroup legend,
+#form_tag_user legend,
+#form_remote_subscribe legend,
+#form_openid_login legend,
+#form_search legend,
+#form_invite legend,
+#form_notice_delete legend,
+#form_password_recover legend,
+#form_password_change legend,
+.form_entity_block legend,
+#form_filter_bytag legend,
+#apioauthauthorize_allowdeny {
+display:none;
+}
+
+.form_settings .form_data p.form_guide {
+clear:both;
+margin-left:26%;
+margin-bottom:0;
+}
+
+.form_settings p {
+margin-bottom:11px;
+}
+
+.form_settings input.checkbox,
+.form_settings input.radio {
+margin-top:3px;
+margin-left:0;
+}
+.form_settings label.checkbox {
+font-weight:normal;
+margin-top:0;
+margin-right:0;
+margin-left:11px;
+float:left;
+width:90%;
+}
+.form_settings label.radio {
+margin-top:0;
+margin-right:47px;
+margin-left:11px;
+width:auto;
+}
+
+#form_login p.form_guide,
+#form_register #settings_rememberme p.form_guide,
+#form_openid_login #settings_rememberme p.form_guide,
+#settings_twitter_remove p.form_guide,
+#form_search ul.form_data #q,
+#design_background-image_onoff p.form_guide {
+margin-left:0;
+}
+
+.form_settings .form_note {
+padding:0 7px;
+}
+
+.form_settings input.form_action-default {
+margin-right:11px;
+}
+.form_settings input.form_action-default,
+.form_settings input.form_action-primary {
+padding:0;
+}
+.form_settings input.form_action-secondary {
+margin-left:29px;
+}
+
+#form_search .submit {
+margin-left:11px;
+}
+#form_search .form_data input {
+width:auto;
+}
+
+address {
+    margin-bottom: 0.5em;
+    margin-top: 4.75em;
+    margin-bottom: 1.75em;
+    float: left;
+}
+address.vcard img.logo {
+margin-right:0;
+float: none;
+}
+address .fn {
+font-weight:bold;
+}
+address img + .fn {
+display:none;
+}
+address a {
+text-decoration:none;
+}
+address .poweredby {
+float:left;
+clear:left;
+display:block;
+position:relative;
+top:7px;
+margin-right:-47px;
+}
+
+
+#site_nav_global_primary {
+    margin: 0;
+    margin-bottom: 2.4em;
+    position: absolute;
+}
+
+#site_nav_global_primary dd {
+    margin: 0;
+    }
+
+#site_nav_global_primary li {
+
+}
+
+.system_notice dt {
+font-weight:bold;
+text-transform:uppercase;
+display:none;
+}
+
+#site_notice {
+    float:right;
+    clear:right;
+    margin-top: 4.75em;
+    margin-bottom: 1.75em;
+    width:22em;
+    background-color: #EEE;
+}
+#page_notice {
+clear:both;
+margin-bottom:18px;
+}
+
+#anon_notice {
+    float:left;
+    margin-left: 15em;
+    margin-top: 3.7em;
+    margin-bottom: 0.9em;
+    width: 32em;
+    padding: 0.9em;
+    border-width:2px;
+    border-style:solid;
+    font-family: 'TeXGyreHerosBold', sans-serif;
+}
+
+#anon_notice p {
+    margin-bottom: 0;
+}
+#footer {
+    clear: both;
+}
+
+#site_nav_local_views {
+width:100%;
+float:left;
+margin: 0;
+margin-bottom: -.25em;
+}
+
+#site_nav_local_views dt{
+    display:none;
+    }
+
+#site_nav_local_views dd {
+    margin:0;
+    }
+
+ul.nav{
+    overflow:hidden;
+    list-style:none;
+    font-size:1.3em;
+    line-height:1.8461538461538461538461538461538em;
+    margin-bottom:1.8461538461538461538461538461538em;
+    float: left;
+    }
+
+ul.nav li{
+    float:left;
+    font-family: 'TeXGyreHerosBold', sans-serif;
+    }
+
+ul.nav li#nav_invitecontact {
+    }
+ul.nav li a, ul.nav li a:visited{
+    color:#444 !important;
+    text-decoration:none;
+    width: 7.8em;
+    margin-right:1.5em;
+    display:block;
+    }
+
+ul.nav li.current a {
+    color: #fff !important;
+    background-color: #666 !important;
+}
+ul.nav li a:hover{
+    text-decoration:underline;
+}
+
+body#register #site_nav_global_primary li#nav_register a,
+body#login #site_nav_global_primary li#nav_login a,
+body#openidlogin #site_nav_global_primary li#nav_login a,
+body#all #site_nav_global_primary li#nav_home a,
+body#replies #site_nav_global_primary li#nav_home a,
+body#showstream #site_nav_global_primary li#nav_home a,
+body#showfavorites #site_nav_global_primary li#nav_home a,
+body#inbox #site_nav_global_primary li#nav_home a,
+body#outbox #site_nav_global_primary li#nav_home a,
+body#profilesettings #site_nav_global_primary li#nav_account a,
+body#avatarsettings #site_nav_global_primary li#nav_account a,
+body#passwordsettings #site_nav_global_primary li#nav_account a,
+body#emailsettings #site_nav_global_primary li#nav_account a,
+body#userdesignsettings #site_nav_global_primary li#nav_account a,
+body#othersettings #site_nav_global_primary li#nav_account a,
+body#openidsettings #site_nav_global_primary li#nav_account a,
+body#oauthconnectionssettings #site_nav_global_primary li#nav_connect a,
+body#smssettings #site_nav_global_primary li#nav_connect a, 
+body[id$=adminpanel] #site_nav_global_primary li#nav_admin a,
+body#invite #site_nav_global_primary li#nav_invitecontact a,
+body#usergroups #site_nav_global_primary li#nav_invitecontact a,
+body#subscribers #site_nav_global_primary li#nav_invitecontact a,
+body#subscriptions #site_nav_global_primary li#nav_invitecontact a,
+body[id$=doc] #site_nav_global_primary li#nav_help a,
+body[id$=search] #site_nav_global_primary li#nav_search a {
+    background-color: #666;
+    color: #FFF !important;
+}
+body[id$=adminpanel] #aside_primary {
+display:none;
+}
+
+#site_nav_global_primary dt,
+#site_nav_global_secondary dt {
+display:none;
+}
+
+#site_nav_global_secondary {
+margin: 0;
+}
+
+#site_nav_global_secondary dd {
+    margin: 0;
+}
+
+#site_nav_global_secondary ul li {
+display:inline;
+}
+#export_data li a {
+padding-left:20px;
+}
+#export_data li a.foaf {
+padding-left:30px;
+}
+#export_data li a.export_vcard {
+padding-left:28px;
+}
+
+#export_data ul {
+width:100%;
+float:left;
+}
+#export_data li {
+list-style-type:none;
+float:left;
+margin-right:11px;
+}
+
+#licenses {
+margin: 0;
+clear: left;
+}
+
+#licenses dt {
+font-family: 'TeXGyreHerosBold', sans-serif;;
+display:none;
+}
+#licenses dd {
+margin: 0;
+line-height:1.5;
+}
+
+#site_content_license_cc {
+margin-bottom:0;
+}
+#site_content_license_cc img {
+    display:inline;
+    vertical-align:top;
+    margin-right:4px;
+}
+
+#core {
+    position:relative;
+    width:100%;
+    float:left;
+    margin-top: 0.5em;
+}
+
+#shownotice #content {
+    min-height:0;
+}
+
+#content_inner {
+    position:relative;
+    width:100%;
+    float:left;
+}
+
+#aside_primary {
+    width: 22em;
+    float:left;
+    margin-right:0;
+    margin-right:0;
+    margin-bottom: 2.4em;
+    background-color: #FFF;
+}
+
+#aside_primary dl {
+    font-size:1.3em;
+    line-height:1.8461538461538461538461538461538em;
+    margin-bottom:0;
+    margin-left: 0;
+}
+
+#aside_primary dl dd {
+    margin-left: 0;
+}
+
+.form_notice {
+width:45%;
+float:left;
+position:relative;
+line-height:1;
+margin-left: 9em;
+margin-top: 4.75em;
+margin-bottom: 2.6em;
+}
+.form_notice fieldset {
+border:0;
+padding:0;
+position:relative;
+}
+.form_notice legend {
+display:none;
+}
+.form_notice textarea {
+float:left;
+clear: left;
+width: 24.4em;
+height:6.7em;
+line-height:1.5;
+padding:7px 7px 16px 7px;
+position:relative;
+z-index:2;
+}
+.form_notice label {
+float:left;
+}
+.form_notice label[for=notice_data-attach],
+.form_notice #notice_data-attach {
+position:absolute;
+top:2em;
+right: 3em;
+cursor:pointer;
+}
+.form_notice label[for=notice_data-attach] {
+text-indent:-9999px;
+width:16px;
+height:16px;
+}
+.form_notice #notice_data-attach {
+opacity: 0;
+padding:0;
+height:1.6em;
+}
+.form_notice .form_note {
+position:absolute;
+bottom:2px;
+right:21.715%;
+z-index:9;
+}
+.form_notice .form_note dt {
+font-weight:bold;
+display:none;
+}
+.form_notice #notice_text-count {
+font-family: 'TeXGyreHerosBold', sans-serif;
+line-height:1.15;
+padding:1px 2px;
+}
+.form_notice #notice_action-submit {
+width:14%;
+height:47px;
+padding:0;
+position:absolute;
+bottom:0;
+right:0;
+}
+.form_notice label[for=to] {
+}
+.form_notice select[id=to] {
+margin-left: 3em;
+float:left;
+width: 21em;
+}
+.form_notice .error,
+.form_notice .success {
+float:left;
+clear:both;
+width:81.5%;
+margin-bottom:0;
+line-height:1.618;
+}
+.form_notice #notice_data-attach_selected code {
+float:left;
+width:80%;
+display:block;
+overflow:auto;
+margin-right:2.5%;
+font-size:1.1em;
+}
+.form_notice #notice_data-attach_selected button.close {
+float:right;
+font-size:0.8em;
+}
+
+.form_notice #notice_data-geo_wrap label,
+.form_notice #notice_data-geo_wrap input {
+position:absolute;
+top:3.25em;
+right:0.4em;
+left:auto;
+cursor:pointer;
+width:1.6em;
+height:1.6em;
+display:block;
+}
+.form_notice #notice_data-geo_wrap input {
+visibility:hidden;
+}
+.form_notice #notice_data-geo_wrap label {
+font-weight:normal;
+font-size:1em;
+margin-bottom:0;
+text-indent:-9999px;
+}
+
+button.close,
+button.minimize {
+width:1.6em;
+height:1.6em;
+text-indent:-9999px;
+padding:0;
+border:0;
+text-align:center;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* entity_profile */
+.entity_profile {
+position:relative;
+width: 52em;
+float:left;
+margin-left:0;
+overflow:hidden;
+}
+.entity_profile dt,
+#entity_statistics dt {
+font-family: 'TeXGyreHerosBold', sans-serif;;
+}
+.entity_profile dd {
+    display:inline;
+    font-size:1.6em;
+    line-height:1.5em;
+    margin-bottom:1.5em;
+}
+
+
+.entity_profile .entity_depiction {
+float:left;
+width:96px;
+margin-right: 2.4em;
+margin-bottom: 2.4em;
+text-align: center;
+}
+
+.entity_profile .entity_fn,
+.entity_profile .entity_nickname,
+.entity_profile .entity_location,
+.entity_profile .entity_url,
+.entity_profile .entity_note,
+.entity_profile .entity_tags,
+.entity_profile .entity_aliases,
+.entity_profile .entity_statistics {
+margin-left:113px;
+}
+
+.entity_profile .entity_fn,
+.entity_profile .entity_nickname {
+margin-left:11px;
+display:inline;
+}
+.entity_profile .entity_nickname {
+margin-left:0;
+}
+.entity_profile .fn,
+.entity_profile .nickname {
+    font-family: 'TeXGyreHerosBold', sans-serif;
+}
+
+body#subscriptions .entity_profile .fn, .entity_profile .nickname {
+    font-family: TeXGyreHerosBold, sans-serif;
+    font-size: 1.6em;
+    line-height: 1.5em;
+    margin-bottom: 1.5em;
+}
+
+.entity_profile .fn:before {
+content: "(";
+font-weight:normal;
+}
+.entity_profile .fn:after {
+content: ")";
+font-weight:normal;
+}
+.entity_profile .nickname:after,
+.entity_profile .nickname:before {
+content:"";
+}
+.entity_profile dt,
+.entity_profile h2 {
+display:none;
+}
+.entity_profile .role {
+margin-left:11px;
+font-family: 'TeXGyreHerosItalic', sans-serif;
+}
+
+.section .entity_remote_subscribe {
+    color: #C00 !important;
+}
+/* entity_profile */
+
+/*entity_actions*/
+.entity_actions {
+float:right;
+margin-left:2%;
+min-width:21%;
+}
+.entity_actions h2 {
+display:none;
+}
+.entity_actions ul {
+list-style-type:none;
+}
+.entity_actions li {
+margin-bottom:7px;
+}
+.entity_actions li:first-child {
+border-top:0;
+}
+.entity_actions fieldset {
+border:0;
+padding:0;
+}
+.entity_actions legend {
+display:none;
+}
+
+.entity_actions input.submit {
+display:block;
+text-align:left;
+width:100%;
+border-color: transparent;
+text-shadow: none;
+color: #C00;
+line-height: 1.5em;
+font-size: 1.6em;
+}
+
+.entity_actions a {
+text-decoration:none;
+font-family: 'TeXGyreHerosBold', sans-serif;
+display:block;
+}
+.entity_actions a,
+.entity_actions input {
+}
+
+.entity_actions a,
+.entity_actions input,
+.entity_actions p {
+padding-left:23px;
+}
+
+.entity_actions a,
+.entity_actions p {
+padding:2px 4px 1px 26px;
+}
+
+.entity_actions .accept {
+margin-bottom:18px;
+}
+
+.entity_send-a-message button {
+position:absolute;
+top:3px;
+right:3px;
+}
+
+.entity_send-a-message .form_notice {
+position:absolute;
+top:34px;
+right:-1px;
+padding:1.795%;
+width:65%;
+z-index:2;
+border-width:1px;
+border-style:solid;
+}
+.entity_send-a-message .form_notice legend {
+display:block;
+margin-bottom:11px;
+}
+
+.entity_send-a-message .form_notice label,
+.entity_send-a-message .form_notice select {
+display:none;
+}
+.entity_send-a-message .form_notice input.submit {
+text-align:center;
+}
+
+.entity_moderation,
+.entity_role {
+position:relative;
+}
+.entity_moderation p,
+.entity_role p {
+font-weight:bold;
+padding-bottom:2px;
+margin-bottom:7px;
+}
+.entity_moderation ul,
+.entity_role ul {
+display:none;
+}
+.entity_moderation:hover ul,
+.entity_role:hover ul {
+display:block;
+width:110%;
+padding:11px;
+position:absolute;
+top:-1px;
+right:-1px;
+z-index:1;
+border-width:1px;
+border-style:solid;
+}
+
+.entity_tags ul {
+list-style-type:none;
+display:inline;
+}
+.entity_tags li {
+display:inline;
+margin-right:7px;
+}
+.entity_tags li:before {
+content:'\0009';
+}
+
+.aside .section {
+clear:both;
+float:left;
+width:100%;
+list-style-position:inside;
+}
+.aside .section h2 {
+    text-transform:uppercase;
+    color: #FFF;
+    background-color: #CCC;
+}
+
+#entity_statistics {
+    margin-bottom: 2.4em;
+}
+#entity_statistics dt,
+#entity_statistics dd {
+display:inline;
+margin-right: 0.5em;
+}
+#entity_statistics dt:after {
+content: ":";
+}
+
+#entity_map a {
+    font-size: 1.3em;
+    line-height: 1.84615em;
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+.section ul.entities {
+float:left;
+width: 15em;
+}
+.section .entities li {
+list-style-type:none;
+float:left;
+margin-right:1.5em;
+margin-bottom: 1.5em;
+display:inline;
+}
+.section .entities li .photo {
+margin-right:0;
+margin-bottom:0;
+}
+.section .entities li .fn {
+display:none;
+}
+
+.aside .section p,
+.aside .section .more {
+clear:both;
+}
+
+.profile .entity_profile {
+margin-bottom: 1.6em;
+min-height:60px;
+}
+
+.profile .form_group_join legend,
+.profile .form_group_leave legend,
+.profile .form_user_subscribe legend,
+.profile .form_user_unsubscribe legend {
+display:none;
+}
+
+.profiles {
+list-style-type:none;
+font-size: 100%;
+}
+.profile .entity_profile .fn.nickname,
+.profile .entity_profile .url[rel~=contact] {
+    margin-left: 1.2em;
+    display:inline;
+}
+
+.profile .entity_profile .fn,
+.profile .entity_profile .label {
+margin-left:11px;
+margin-bottom:4px;
+width:auto;
+clear:none;
+}
+
+.profile .entity_profile .note,
+.profile .entity_profile .entity_tag,
+.profile .entity_profile .form_subscription_edit {
+margin-left: 3.75em;
+clear:none;
+display:block;
+width:auto;
+}
+
+.profile .entity_profile .note {
+    margin-bottom: 0.2em;
+}
+
+.profile .entity_profile .url,
+.profile .entity_profile .entity_tags{
+    margin-left: 6em;
+    display: block;
+    width: auto;
+}
+
+.profile .entity_profile .entity_tags dt {
+display:inline;
+margin-right:11px;
+}
+
+.profile .entity_profile .form_subscription_edit label {
+font-weight:normal;
+margin-right:11px;
+}
+
+/*applications*/
+.applications {
+margin-bottom:18px;
+float:left;
+width:100%;
+}
+.applications li {
+list-style-type:none;
+}
+.application img,
+#showapplication .entity_profile img,
+.form_data #application_icon img,
+#apioauthauthorize .form_data img {
+max-width:96px;
+max-height:96px;
+}
+#apioauthauthorize .form_data img {
+margin-right:18px;
+float:left;
+}
+#showapplication .entity_profile {
+width:68%;
+}
+#showapplication .entity_profile .entity_fn {
+margin-left:0;
+}
+#showapplication .entity_profile .entity_fn .fn:before,
+#showapplication .entity_profile .entity_fn .fn:after {
+content:'';
+}
+#showapplication .entity_data {
+clear:both;
+margin-bottom:18px;
+}
+#showapplication .entity_data h2 {
+display:none;
+}
+#showapplication .entity_data dl {
+margin-bottom:18px;
+}
+#showapplication .entity_data dt {
+font-weight:bold;
+}
+#showapplication .entity_data dd {
+margin-left:1.795%;
+font-family:monospace;
+font-size:1.3em;
+}
+.form_data #application_types label.radio,
+.form_data #default_access_types label.radio {
+width:14.5%;
+}
+
+/* NOTICE */
+ol.notices, ol.xoxo {
+    font-size: 100%;
+    line-height: 1;
+}
+
+.notice,
+.profile,
+.application {
+position:relative;
+clear:both;
+float:left;
+width:100%;
+}
+.notices li {
+list-style-type:none;
+}
+
+.notices li li {
+}
+.notices .notices {
+margin-top: 4.8em;
+}
+.mark-top {
+border-top-width:1px;
+border-top-style:solid;
+}
+
+/* NOTICES */
+#notices_primary {
+float:left;
+width:100%;
+}
+#notices_primary h2 {
+display:none;
+}
+.notice-data a span {
+display:block;
+padding-left:28px;
+}
+
+.notice .author {
+margin-right:11px;
+}
+#showstream #content .notice .author {
+display:none;
+}
+
+.fn {
+    overflow:hidden;
+}
+
+p .fn {
+    font-size: 100%;
+}
+.notice .author .fn {
+    font-family: 'TexGyreHerosBold', sans-serif;
+    font-size:1.6em;
+    line-height:1.5em;
+    margin-bottom:1.5em;
+}
+
+.vcard .photo {
+display:inline;
+float:left;
+}
+#shownotice .vcard .photo {
+margin-bottom:4px;
+}
+#content .notice .author .photo {
+position:absolute;
+left:0;
+float:none;
+margin-top: 0.6em;
+}
+#content .notice .entry-title {
+margin-left: 6em;
+max-width: 48em;
+}
+
+.vcard .url,
+.vcard .entity_tags{
+    text-decoration:none;i
+    font-size:1.3em;
+}
+.vcard .url:hover {
+text-decoration:underline;
+}
+
+.notice .entry-title {
+overflow:hidden;
+word-wrap:break-word;
+}
+.notice .entry-title.ov {
+overflow:visible;
+}
+#showstream .notice .entry-title,
+#showstream .notice div.entry-content {
+margin-left:0;
+}
+#shownotice .notice .entry-title {
+margin-left:110px;
+font-size:2.2em;
+min-height:123px;
+}
+#shownotice .notice div.entry-content {
+margin-left:0;
+}
+
+.notice p.entry-content {
+display:inline;
+}
+
+#content .notice p.entry-content a:visited {
+}
+.notice p.entry-content .vcard a {
+}
+
+.notice div.entry-content {
+    clear:left;
+    float:left;
+    font-size:1.3em;
+    line-height:1.8461538461538461538461538461538em;
+    margin-bottom:1.8461538461538461538461538461538em;
+    margin-left: 4.75em;
+}
+#showstream .notice div.entry-content,
+#shownotice .notice div.entry-content {
+max-width:79%;
+}
+
+.notice .notice-options a,
+.notice .notice-options input {
+float:left;
+}
+
+.notice div.entry-content .timestamp {
+display:inline-block;
+}
+
+.entry-content .repeat {
+display:block;
+}
+.entry-content .repeat .photo {
+float:none;
+margin-right:1px;
+position:relative;
+top:4px;
+left:0;
+}
+
+.dialogbox {
+position:absolute;
+top:-1px;
+right:-1px;
+z-index:9;
+float:none;
+padding:11px;
+border-style:solid;
+border-width:1px;
+background-color: #FFF;
+font-size: 62.5%;
+}
+
+.dialogbox legend {
+display:block !important;
+margin-right:18px;
+margin-bottom:18px;
+font-size: 1.6em;
+}
+
+.dialogbox button.close {
+position:absolute;
+right:3px;
+top:3px;
+}
+
+.dialogbox .form_guide {
+font-weight:normal;
+padding:0;
+}
+
+.dialogbox .submit_dialogbox {
+font-weight:bold;
+text-indent:0;
+min-width:46px;
+}
+.dialogbox input {
+padding-left:4px;
+}
+.dialogbox fieldset {
+margin-bottom:0;
+}
+
+#wrap form.processing input.submit,
+.entity_actions a.processing,
+.dialogbox.processing .submit_dialogbox {
+cursor:wait;
+outline:none;
+text-indent:-9999px;
+}
+
+.form_repeat.dialogbox {
+top:-4px;
+right:29px;
+min-width:199px;
+}
+
+.notice-options {
+position:relative;
+width:9.8em;
+float:right;
+}
+
+.notice-options a {
+float:left;
+}
+.notice-options .notice_reply,
+.notice-options .form_repeat,
+.notice-options .form_favor,
+.notice-options .form_disfavor,
+.notice-options .repeated {
+float:left;
+margin-left: 0.5em;
+}
+.notice-options .form_favor,
+.notice-options .form_disfavor {
+margin-left:0;
+}
+.notice-options input,
+.notice-options a,
+.notice-options .repeated {
+text-indent:-9999px;
+outline:none;
+width: 1em;
+}
+.notice-options input.submit {
+display:block;
+border:0;
+}
+.notice-options .notice_reply,
+.notice-options .notice_delete {
+text-decoration:none;
+}
+.notice .notice-options .notice_delete {
+float:right;
+}
+.notice-options form input.submit {
+width:16px;
+height:16px;
+padding:0;
+}
+.notice-options .form_repeat legend,
+.notice-options .form_favor legend,
+.notice-options .form_disfavor legend {
+display:none;
+}
+.notice-options .form_repeat fieldset,
+.notice-options .form_favor fieldset,
+.notice-options .form_disfavor fieldset {
+border:0;
+padding:0;
+}
+.notice-options a,
+.notice-options .repeated {
+    font-size:1.6em;
+    line-height:1.5em;
+    margin-bottom:0;
+}
+
+.notice .attachment {
+position:relative;
+padding-left:16px;
+}
+.notice .attachment.more {
+text-indent:-9999px;
+width:16px;
+height:16px;
+display:inline-block;
+overflow:hidden;
+vertical-align:middle;
+margin-left:4px;
+}
+
+#attachments .attachment,
+.notice .attachment.more {
+padding-left:0;
+}
+.notice .attachment img {
+position:absolute;
+top:18px;
+left:0;
+z-index:99;
+}
+#shownotice .notice .attachment img {
+position:static;
+}
+
+#attachments {
+clear:both;
+float:left;
+width:100%;
+margin-top:18px;
+}
+#attachments dt {
+font-weight:bold;
+font-size:1.3em;
+margin-bottom:4px;
+}
+
+#attachments ol li {
+margin-bottom:18px;
+list-style-type:decimal;
+float:left;
+clear:both;
+}
+
+#jOverlayContent,
+#jOverlayContent #content,
+#jOverlayContent #content_inner {
+width: auto !important;
+margin-bottom:0;
+}
+#jOverlayContent #content {
+padding:11px;
+min-height:auto;
+}
+#jOverlayContent .entry-title {
+display:block;
+margin-bottom:11px;
+}
+#jOverlayContent button {
+position:absolute;
+top:0;
+right:0;
+}
+#jOverlayContent h1 {
+max-width:425px;
+}
+#jOverlayContent #content {
+}
+#jOverlayLoading {
+top:5%;
+left:40%;
+}
+#attachment_view img {
+max-width:480px;
+max-height:480px;
+}
+#attachment_view #oembed_info {
+margin-top:11px;
+}
+#attachment_view #oembed_info dt,
+#attachment_view #oembed_info dd {
+float:left;
+}
+#attachment_view #oembed_info dt {
+clear:left;
+margin-right:11px;
+font-weight:bold;
+}
+#attachment_view #oembed_info dt:after {
+content: ":";
+}
+
+#usergroups #new_group {
+float: left;
+margin-right: 2em;
+}
+#new_group, #group_search {
+margin-bottom:18px;
+}
+#new_group a {
+padding-left:20px;
+}
+
+#filter_tags {
+margin-bottom:11px;
+float:left;
+}
+#filter_tags dt {
+display:none;
+}
+#filter_tags ul {
+    list-style-type:none;
+    font-size: 100%;
+    line-height: 1;
+}
+#filter_tags li {
+float:left;
+margin-left:7px;
+padding-left:7px;
+border-left-width:1px;
+border-left-style:solid;
+}
+#filter_tags #filter_tags_all {
+margin-left:0;
+border-left:0;
+padding-left:0;
+}
+#filter_tags_all a {
+font-weight:bold;
+margin-top:7px;
+float:left;
+}
+
+#filter_tags_item label {
+margin-right:7px;
+}
+#filter_tags_item label,
+#filter_tags_item select {
+float:left;
+}
+#filter_tags_item p {
+float:left;
+clear:both;
+margin-left:38px;
+}
+#filter_tags_item .submit {
+position:relative;
+top:-3px;
+left:3px;
+}
+
+.pagination {
+float:left;
+clear:both;
+width:100%;
+margin-top:18px;
+}
+
+.pagination dt {
+font-weight:bold;
+display:none;
+}
+
+.pagination .nav {
+float:left;
+width:100%;
+list-style-type:none;
+}
+
+.pagination .nav_prev {
+float:left;
+}
+.pagination .nav_next {
+float:right;
+}
+
+.pagination a {
+display:block;
+text-decoration:none;
+padding:0.7em;
+font-size: 1.2em;
+vertical-align: middle;
+line-height: 1;
+color: #C00 !important;
+width: auto !important;
+}
+
+.pagination .nav_prev a {
+padding-left:30px;
+}
+.pagination .nav_next a {
+padding-right:30px;
+}
+/* END: NOTICE */
+
+.hentry .entry-content li {
+    margin-left: 3.75em;;
+}
+
+.hentry .entry-content .form_settings ul {
+margin-left:0;
+}
+
+#content #plugin_authors {
+min-width:122px;
+}
+#content thead th {
+text-align:left;
+}
+#content tbody th {
+vertical-align:top;
+text-align:left;
+font-weight:normal;
+padding-top:11px;
+padding-right:18px;
+}
+#content tbody tr {
+border-top-width:1px;
+border-top-style:dotted;
+}
+#content td {
+padding:11px 18px 11px 0;
+vertical-align:top;
+}
+#content td:last-child {
+padding-right:0;
+}
+
+/* TOP_POSTERS */
+.section tbody td {
+padding-right:18px;
+padding-bottom:11px;
+}
+.section .vcard .photo {
+margin-right:7px;
+margin-bottom:0;
+}
+
+.section .notice {
+padding-top:7px;
+padding-bottom:7px;
+border-top:0;
+}
+
+.section .notice:first-child {
+padding-top:0;
+}
+
+.section .notice .author {
+margin-right:0;
+}
+.section .notice .author .fn {
+display:none;
+}
+
+/* tagcloud */
+.tag-cloud {
+list-style-type:none;
+text-align:center;
+}
+.aside .tag-cloud {
+font-size:0.8em;
+word-wrap:break-word;
+}
+.tag-cloud li {
+display:inline;
+margin-right:7px;
+line-height:1.25;
+}
+
+.tag-cloud li:before {
+content:'\0009';
+}
+
+.aside .tag-cloud li {
+line-height:1.5;
+}
+.tag-cloud li a {
+text-decoration:none;
+}
+#tagcloud.section dt {
+text-transform:uppercase;
+font-weight:bold;
+}
+.tag-cloud-1 {
+font-size:1em;
+}
+.tag-cloud-2 {
+font-size:1.25em;
+}
+.tag-cloud-3 {
+font-size:1.75em;
+}
+.tag-cloud-4 {
+font-size:2em;
+}
+.tag-cloud-5 {
+font-size:2.25em;
+}
+.tag-cloud-6 {
+font-size:2.75em;
+}
+.tag-cloud-7 {
+font-size:3.25em;
+}
+
+#publictagcloud #tagcloud.section dt {
+display:none;
+}
+
+#form_settings_photo .form_data {
+clear:both;
+}
+
+#form_settings_avatar li {
+width:auto;
+}
+#form_settings_avatar input {
+margin-left:0;
+}
+#avatar_original,
+#avatar_preview {
+float:left;
+}
+#avatar_preview {
+margin-left:29px;
+}
+#avatar_preview_view {
+height:96px;
+width:96px;
+margin-bottom:18px;
+overflow:hidden;
+}
+
+#settings_attach,
+#form_settings_avatar .form_actions {
+clear:both;
+}
+
+#form_settings_avatar .form_actions {
+margin-bottom:0;
+}
+
+#settings_design_background-image img {
+max-width:480px;
+max-height:480px;
+}
+
+#settings_design_color .form_data,
+#color-picker {
+float:left;
+}
+#settings_design_color .form_data {
+width:400px;
+margin-right:1%;
+}
+
+#settings_design_color .form_data li {
+width:33%;
+}
+#settings_design_color .form_data label {
+float:none;
+display:block;
+}
+#settings_design_color .form_data .swatch {
+padding:11px;
+margin-left:0;
+width:auto;
+}
+
+.system_notice ul,
+.instructions ul {
+margin-left:1em;
+}
+.instructions ul {
+margin-bottom:18px;
+}
+.help dt {
+display:none;
+}
+.guide {
+clear:both;
+}
+
+#bookmarklet address {
+display:none;
+}
+#bookmarklet .form_notice {
+width:auto;
+}
+#bookmarklet #wrap {
+min-width:0;
+}
+
+}/*end of @media screen, projection, tv*/
+
+
+@media print {
+a:after { background-color:#FFFFFF; }
+a:not([href^="#"]):after { content:" <"attr(href)"> "; }
+img { border:none; }
+p { orphans: 2; widows: 1; }
+
+#site_nav_global_primary,
+#site_nav_local_views,
+#form_notice,
+.pagination,
+#site_nav_global_secondary,
+.entity_actions,
+.notice-options,
+#aside_primary,
+.form_subscription_edit .submit {
+display:none;
+}
+.timestamp dt, .timestamp dd,
+.device dt, .device dd {
+display:inline;
+}
+
+}/*end of @media print*/

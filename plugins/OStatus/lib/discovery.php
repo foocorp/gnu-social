@@ -106,7 +106,8 @@ class Discovery
             }
         }
 
-        throw new Exception('Unable to find services for '. $id);
+        // TRANS: Exception.
+        throw new Exception(sprintf(_m('Unable to find services for %s.'),$id));
     }
 
     public static function getService($links, $service) {
@@ -160,7 +161,7 @@ class Discovery_LRDD_Host_Meta implements Discovery_LRDD
         } else {
             $domain = parse_url($uri, PHP_URL_HOST);
         }
-        
+
         $url = 'http://'. $domain .'/.well-known/host-meta';
 
         $xrd = Discovery::fetchXrd($url);

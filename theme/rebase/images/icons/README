@@ -1,0 +1,59 @@
+/**
+ * @author    Paul Jarvis http://code.google.com/p/twotiny/
+ * @license   http://dev.perl.org/licenses/ Artistic License/GPL
+ * @note
+        White left arrow with green background
+        White right arrow with green background
+        White clip with green background
+        White heart with green background
+        White reply with green background
+        White garbage with green background
+        White pencil with green background
+        White envelope with green background
+        White speech bubble with green background
+        White shield with green background
+        White asterisk with green background
+        White x with green background
+        White plus with green background
+        White minus with green background
+        White skull with green background
+        White recycle with green background
+        White external with green background
+        White key with green background
+        White flag with green background
+        White checkmark with green background
+        White reject with green background
+        White play with green background
+        White pause with green background
+ */
+
+
+/**
+ * @author    Sarven Capadisli <csarven@status.net>
+ * @copyright 2008-2010 StatusNet, Inc.
+ * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
+ * @link      http://status.net/
+ * @note
+        Green clip with transparent background
+        Green heart with white background
+        White person with tie with green background
+        White sherif badge with green background
+        White boxes with green background
+        White speech bubble broken with green background
+        Green recycle with transparent background
+        Green pin with white background
+        White pin with green background
+        White underscore with green background
+        White C with green background
+        White magic wand with green background
+        Green badge with white background
+        Green sandbox with white background
+        Green speech bubble broken with white background
+        Green person with tie with white background
+ */
+
+Created by various authors
+* FOAF icon from http://iandavis.com/2006/foaf-icons/ with Public Domain license
+* Atom feed icon from http://intertwingly.net/wiki/pie/Icon with Public Domain license
+* RSS feed icon from http://www.feedicons.com/ (Mozilla, Microsoft, Matt Brett) with MPL/GPL/LGPL tri-license
+* Processing icon from/by Unknown with Unknown license //FIXME

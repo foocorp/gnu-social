@@ -162,6 +162,20 @@ class RsdAction extends Action
                            'true');
             $this->elementEnd('settings');
             $this->elementEnd('api');
+
+            // Atom API
+
+            if (empty($this->user)) {
+                $service = common_local_url('ApiAtomService');
+            } else {
+                $service = common_local_url('ApiAtomService', array('id' => $this->user->nickname));
+            }
+
+            $this->element('api', array('name' => 'Atom',
+                                        'preferred' => 'false',
+                                        'apiLink' => $service,
+                                        'blogID' => $blogID));
+
             Event::handle('EndRsdListApis', array($this, $this->user));
         }
         $this->elementEnd('apis');

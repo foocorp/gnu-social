@@ -101,7 +101,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class SamplePlugin extends Plugin
 {
     /**
@@ -129,7 +128,6 @@ class SamplePlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function initialize()
     {
         return true;
@@ -143,7 +141,6 @@ class SamplePlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function cleanup()
     {
         return true;
@@ -168,7 +165,6 @@ class SamplePlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onCheckSchema()
     {
         $schema = Schema::get();
@@ -176,9 +172,20 @@ class SamplePlugin extends Plugin
         // For storing user-submitted flags on profiles
 
         $schema->ensureTable('user_greeting_count',
-                             array(new ColumnDef('user_id', 'integer', null,
-                                                 true, 'PRI'),
-                                   new ColumnDef('greeting_count', 'integer')));
+            array(
+                'fields' => array(
+                    'user_id' => array('type' => 'int', 'not null' => true),
+                    'greeting_count' => array('type' => 'int'),
+                ),
+                'primary key' => array('user_id'),
+                'foreign keys' => array(
+                    // Not all databases will support foreign keys, but even
+                    // when not enforced it's helpful to include these definitions
+                    // as documentation.
+                    'user_greeting_count_user_id_fkey' => array('user', array('user_id' => 'id')),
+                ),
+            )
+        );
 
         return true;
     }
@@ -201,7 +208,6 @@ class SamplePlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onAutoload($cls)
     {
         $dir = dirname(__FILE__);
@@ -231,7 +237,6 @@ class SamplePlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onRouterInitialized($m)
     {
         $m->connect('main/hello',
@@ -256,7 +261,6 @@ class SamplePlugin extends Plugin
      *
      * @see Action
      */
-
     function onEndPrimaryNav($action)
     {
         // common_local_url() gets the correct URL for the action name
@@ -278,4 +282,3 @@ class SamplePlugin extends Plugin
         return true;
     }
 }
-

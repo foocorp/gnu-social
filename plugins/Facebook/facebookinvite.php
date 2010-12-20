@@ -25,7 +25,6 @@ require_once INSTALLDIR . '/plugins/Facebook/facebookaction.php';
 
 class FacebookinviteAction extends FacebookAction
 {
-
     function handle($args)
     {
         parent::handle($args);
@@ -41,7 +40,6 @@ class FacebookinviteAction extends FacebookAction
      *
      * @return void
      */
-
     function showForm($error=null)
     {
         $this->error = $error;
@@ -56,7 +54,6 @@ class FacebookinviteAction extends FacebookAction
      *
      * @return void
      */
-
     function showContent()
     {
         if ($this->arg('ids')) {
@@ -68,9 +65,10 @@ class FacebookinviteAction extends FacebookAction
 
     function showSuccessContent()
     {
-
-        $this->element('h2', null, sprintf(_m('Thanks for inviting your friends to use %s'),
+        // TRANS: %s is the name of the site.
+        $this->element('h2', null, sprintf(_m('Thanks for inviting your friends to use %s.'),
             common_config('site', 'name')));
+        // TRANS: Followed by an unordered list with invited friends.
         $this->element('p', null, _m('Invitations have been sent to the following users:'));
 
         $friend_ids = $_POST['ids']; // XXX: Hmm... is this the best way to access the list?
@@ -85,8 +83,7 @@ class FacebookinviteAction extends FacebookAction
             $this->elementEnd('li');
         }
 
-        $this->elementEnd("ul");
-
+        $this->elementEnd('ul');
     }
 
     function showFormContent()
@@ -100,6 +97,7 @@ class FacebookinviteAction extends FacebookAction
                                                       'type' => common_config('site', 'name'),
                                                       'content' => $content));
         $this->hidden('invite', 'true');
+        // TRANS: %s is the name of the site.
         $actiontext = sprintf(_m('Invite your friends to use %s'), common_config('site', 'name'));
 
         $multi_params = array('showborder' => 'false');
@@ -122,6 +120,7 @@ class FacebookinviteAction extends FacebookAction
 
         if ($exclude_ids) {
 
+            // TRANS: %s is the name of the site.
             $this->element('h2', null, sprintf(_m('Friends already using %s:'),
                 common_config('site', 'name')));
             $this->elementStart('ul', array('id' => 'facebook-friends'));
@@ -140,7 +139,7 @@ class FacebookinviteAction extends FacebookAction
 
     function title()
     {
+        // TRANS: Page title.
         return sprintf(_m('Send invitations'));
     }
-
 }

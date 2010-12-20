@@ -42,7 +42,6 @@ require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class SitenoticeadminpanelAction extends AdminPanelAction
 {
     /**
@@ -50,9 +49,9 @@ class SitenoticeadminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
+        // TRANS: Page title for site-wide notice tab in admin panel.
         return _('Site Notice');
     }
 
@@ -61,9 +60,9 @@ class SitenoticeadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
+        // TRANS: Instructions for site-wide notice tab in admin panel.
         return _('Edit site-wide message');
     }
 
@@ -72,7 +71,6 @@ class SitenoticeadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new SiteNoticeAdminPanelForm($this);
@@ -85,7 +83,6 @@ class SitenoticeadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         $siteNotice = $this->trimmed('site-notice');
@@ -100,6 +97,7 @@ class SitenoticeadminpanelAction extends AdminPanelAction
         $result = Config::save('site', 'notice', $siteNotice);
 
         if (!$result) {
+            // TRANS: Server error displayed when saving a site-wide notice was impossible.
             $this->ServerError(_("Unable to save site notice."));
         }
     }
@@ -110,7 +108,8 @@ class SitenoticeadminpanelAction extends AdminPanelAction
 
         if (mb_strlen($siteNotice) > 255)  {
             $this->clientError(
-                _('Max length for the site-wide notice is 255 chars.')
+                // TRANS: Client error displayed when a site-wide notice was longer than allowed.
+                _('Maximum length for the site-wide notice is 255 characters.')
             );
         }
 
@@ -173,9 +172,11 @@ class SiteNoticeAdminPanelForm extends AdminForm
         $this->out->elementStart('li');
         $this->out->textarea(
             'site-notice',
+            // TRANS: Label for site-wide notice text field in admin panel.
             _('Site notice text'),
             common_config('site', 'notice'),
-            _('Site-wide notice text (255 chars max; HTML okay)')
+            // TRANS: Tooltip for site-wide notice text field in admin panel.
+            _('Site-wide notice text (255 characters maximum; HTML allowed)')
         );
         $this->out->elementEnd('li');
 
@@ -192,9 +193,11 @@ class SiteNoticeAdminPanelForm extends AdminForm
     {
         $this->out->submit(
             'submit',
-            _('Save'),
+            // TRANS: Button text for saving site notice in admin panel.
+            _m('BUTTON','Save'),
             'submit',
             null,
+            // TRANS: Title for button to save site notice in admin panel.
             _('Save site notice')
         );
     }

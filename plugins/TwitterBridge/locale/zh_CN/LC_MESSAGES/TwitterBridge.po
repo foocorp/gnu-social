@@ -1,0 +1,389 @@
+# Translation of StatusNet - TwitterBridge to Simplified Chinese (‪中文(简体)‬)
+# Expored from translatewiki.net
+#
+# Author: PhiLiP
+# Author: ZhengYiFeng
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TwitterBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:13:11+0000\n"
+"Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
+"hans>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:58+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: zh-hans\n"
+"X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
+#. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
+#: twitterimport.php:114
+#, php-format
+msgid "RT @%1$s %2$s"
+msgstr "RT @%1$s %2$s"
+
+#: twitter.php:407
+msgid "Your Twitter bridge has been disabled."
+msgstr "你的 Twitter bridge 已被禁用。"
+
+#: twitter.php:411
+#, php-format
+msgid ""
+"Hi, %1$s. We're sorry to inform you that your link to Twitter has been "
+"disabled. We no longer seem to have permission to update your Twitter "
+"status. Did you maybe revoke %3$s's access?\n"
+"\n"
+"You can re-enable your Twitter bridge by visiting your Twitter settings "
+"page:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"Regards,\n"
+"%3$s"
+msgstr ""
+"Hi, %1$s。我们很抱歉通知你，你与 Twitter 的连接已被禁用了。我们似乎没有更新"
+"你 Twitter 消息的权限了。或许你之前取消了 %3$ 的访问权限？\n"
+"\n"
+"你可以通过更新你的 Twitter 设置重新恢复你的 Twitter 连接：\n"
+"\n"
+"%2$s\n"
+"\n"
+"祝好，\n"
+"%3$s"
+
+#: TwitterBridgePlugin.php:151 TwitterBridgePlugin.php:174
+#: TwitterBridgePlugin.php:302 twitteradminpanel.php:52
+msgid "Twitter"
+msgstr "Twitter"
+
+#: TwitterBridgePlugin.php:152
+msgid "Login or register using Twitter"
+msgstr "使用 Twitter 登录或注册"
+
+#: TwitterBridgePlugin.php:175
+msgid "Twitter integration options"
+msgstr "Twitter 整合选项"
+
+#: TwitterBridgePlugin.php:303
+msgid "Twitter bridge configuration"
+msgstr "Twitter bridge 设置"
+
+#: TwitterBridgePlugin.php:327
+msgid ""
+"The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
+"with <a href=\"http://twitter.com/\">Twitter</a>."
+msgstr ""
+"Twitter \"bridge\" 是个可以让 StatusNet 账户与 <a href=\"http://twitter.com/"
+"\">Twitter</a> 整合的插件。"
+
+#: twitteradminpanel.php:62
+msgid "Twitter bridge settings"
+msgstr "Twitter bridge 设置"
+
+#: twitteradminpanel.php:150
+msgid "Invalid consumer key. Max length is 255 characters."
+msgstr "无效的 consumer key。最大长度为 255 字符。"
+
+#: twitteradminpanel.php:156
+msgid "Invalid consumer secret. Max length is 255 characters."
+msgstr "无效的 consumer secret。最大长度为 255 字符。"
+
+#: twitteradminpanel.php:212
+msgid "Twitter application settings"
+msgstr "Twitter 应用设置"
+
+#: twitteradminpanel.php:218
+msgid "Consumer key"
+msgstr "Consumer key"
+
+#: twitteradminpanel.php:219
+msgid "Consumer key assigned by Twitter"
+msgstr "Twitter 分配的 consumer key"
+
+#: twitteradminpanel.php:227
+msgid "Consumer secret"
+msgstr "Consumer secret"
+
+#: twitteradminpanel.php:228
+msgid "Consumer secret assigned by Twitter"
+msgstr "Twitter 分配的 consumer secret"
+
+#: twitteradminpanel.php:238
+msgid "Note: a global consumer key and secret are set."
+msgstr "注意：已设置了一个全局的 consumer key 和 secret。"
+
+#: twitteradminpanel.php:245
+msgid "Integration source"
+msgstr "整合来源"
+
+#: twitteradminpanel.php:246
+msgid "Name of your Twitter application"
+msgstr "你的 Twitter 应用名称"
+
+#: twitteradminpanel.php:258
+msgid "Options"
+msgstr "选项"
+
+#: twitteradminpanel.php:265
+msgid "Enable \"Sign-in with Twitter\""
+msgstr "启用 “使用 Twitter 登录”"
+
+#: twitteradminpanel.php:267
+msgid "Allow users to login with their Twitter credentials"
+msgstr "允许用户使用他们的 Twitter 帐号登录。"
+
+#: twitteradminpanel.php:274
+msgid "Enable Twitter import"
+msgstr "启用 Twitter 导入"
+
+#: twitteradminpanel.php:276
+msgid ""
+"Allow users to import their Twitter friends' timelines. Requires daemons to "
+"be manually configured."
+msgstr "允许用户导入他们 Twitter 好友的时间线。需要手动设置后台进程。"
+
+#: twitteradminpanel.php:293 twittersettings.php:200
+msgid "Save"
+msgstr "保存"
+
+#: twitteradminpanel.php:293
+msgid "Save Twitter settings"
+msgstr "保存 Twitter 设置"
+
+#: twitterlogin.php:56
+msgid "Already logged in."
+msgstr "已登录。"
+
+#: twitterlogin.php:64
+msgid "Twitter Login"
+msgstr "Twitter 登录"
+
+#: twitterlogin.php:69
+msgid "Login with your Twitter account"
+msgstr "使用你的 Twitter 帐号登录"
+
+#: twitterlogin.php:87
+msgid "Sign in with Twitter"
+msgstr "使用 Twitter 登录"
+
+#: twitterauthorization.php:120 twittersettings.php:226
+msgid "There was a problem with your session token. Try again, please."
+msgstr "你的 session token 出现了一个问题，请重试。"
+
+#: twitterauthorization.php:126
+msgid "You can't register if you don't agree to the license."
+msgstr "你必须同意许可协议才能注册。"
+
+#: twitterauthorization.php:135
+msgid "Something weird happened."
+msgstr "发生了很诡异的事情。"
+
+#: twitterauthorization.php:181 twitterauthorization.php:229
+#: twitterauthorization.php:300
+msgid "Couldn't link your Twitter account."
+msgstr "无法连接你的 Twitter 帐号。"
+
+#: twitterauthorization.php:201
+msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr "无法连接你的 Twitter 帐号：oauth_token 不符。"
+
+#: twitterauthorization.php:312
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your Twitter "
+"account to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
+msgstr ""
+"这是你第一次登录到 %s，我们需要将你的 Twitter 帐号与一个本地的帐号关联。你可"
+"以新建一个帐号，或者使用你在本站已有的帐号。"
+
+#: twitterauthorization.php:318
+msgid "Twitter Account Setup"
+msgstr "Twitter 帐号设置"
+
+#: twitterauthorization.php:351
+msgid "Connection options"
+msgstr "连接选项"
+
+#: twitterauthorization.php:360
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"我的文字和文件在%s下提供，除了如下隐私内容：密码、电子邮件地址、IM 地址和电话"
+"号码。"
+
+#: twitterauthorization.php:381
+msgid "Create new account"
+msgstr "创建新帐户"
+
+#: twitterauthorization.php:383
+msgid "Create a new user with this nickname."
+msgstr "以此昵称创建新帐户"
+
+#: twitterauthorization.php:386
+msgid "New nickname"
+msgstr "新昵称"
+
+#: twitterauthorization.php:388
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+msgstr "1 到 64 个小写字母或数字，不包含标点或空格"
+
+#: twitterauthorization.php:391
+msgid "Create"
+msgstr "创建"
+
+#: twitterauthorization.php:396
+msgid "Connect existing account"
+msgstr "关联现有账号"
+
+#: twitterauthorization.php:398
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Twitter account."
+msgstr "如果你已有帐号，请输入用户名和密码登录并将其与你的 Twitter 账号关联。"
+
+#: twitterauthorization.php:401
+msgid "Existing nickname"
+msgstr "已存在的昵称"
+
+#: twitterauthorization.php:404
+msgid "Password"
+msgstr "密码"
+
+#: twitterauthorization.php:407
+msgid "Connect"
+msgstr "关联"
+
+#: twitterauthorization.php:423 twitterauthorization.php:432
+msgid "Registration not allowed."
+msgstr "不允许注册。"
+
+#: twitterauthorization.php:439
+msgid "Not a valid invitation code."
+msgstr "无效的邀请码。"
+
+#: twitterauthorization.php:452
+msgid "Nickname not allowed."
+msgstr "昵称不被允许。"
+
+#: twitterauthorization.php:457
+msgid "Nickname already in use. Try another one."
+msgstr "昵称已被使用，换一个吧。"
+
+#: twitterauthorization.php:472
+msgid "Error registering user."
+msgstr "注册用户出错。"
+
+#: twitterauthorization.php:483 twitterauthorization.php:521
+#: twitterauthorization.php:541
+msgid "Error connecting user to Twitter."
+msgstr "关联用户到 Twitter 出错。"
+
+#: twitterauthorization.php:503
+msgid "Invalid username or password."
+msgstr "用户名或密码不正确。"
+
+#: twittersettings.php:58
+msgid "Twitter settings"
+msgstr "Twitter 设置"
+
+#: twittersettings.php:69
+msgid ""
+"Connect your Twitter account to share your updates with your Twitter friends "
+"and vice-versa."
+msgstr ""
+"关联你的 Twitter 帐号并与你的 Twitter 好友分享你的更新和查看好友的更新。"
+
+#: twittersettings.php:116
+msgid "Twitter account"
+msgstr "Twitter 帐号"
+
+#: twittersettings.php:121
+msgid "Connected Twitter account"
+msgstr "已关联的 Twitter 帐号"
+
+#: twittersettings.php:126
+msgid "Disconnect my account from Twitter"
+msgstr "取消我的帐号与 Twitter 的关联"
+
+#: twittersettings.php:132
+msgid "Disconnecting your Twitter could make it impossible to log in! Please "
+msgstr "取消关联你的 Twitter 帐号和能会导致无法登录！请"
+
+#: twittersettings.php:136
+msgid "set a password"
+msgstr "设置一个密码"
+
+#: twittersettings.php:138
+msgid " first."
+msgstr "先。"
+
+#. TRANS: %1$s is the current website name.
+#: twittersettings.php:142
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
+"password to log in."
+msgstr "保留你的 %1$s 帐号并取消关联 Twitter。你可以使用你的 %1$s 密码来登录。"
+
+#: twittersettings.php:150
+msgid "Disconnect"
+msgstr "取消关联"
+
+#: twittersettings.php:157
+msgid "Preferences"
+msgstr "参数设置"
+
+#: twittersettings.php:161
+msgid "Automatically send my notices to Twitter."
+msgstr "自动将我的消息发送到 Twitter。"
+
+#: twittersettings.php:168
+msgid "Send local \"@\" replies to Twitter."
+msgstr "将本地的“@”回复发送到 Twitter。"
+
+#: twittersettings.php:175
+msgid "Subscribe to my Twitter friends here."
+msgstr "关注我在这里的 Twitter 好友。"
+
+#: twittersettings.php:184
+msgid "Import my friends timeline."
+msgstr "导入我好友的时间线。"
+
+#: twittersettings.php:202
+msgid "Add"
+msgstr "添加"
+
+#: twittersettings.php:236
+msgid "Unexpected form submission."
+msgstr "未预料的表单提交。"
+
+#: twittersettings.php:251
+msgid "No Twitter connection to remove."
+msgstr "没有可以移除的Twitter连接。"
+
+#: twittersettings.php:259
+msgid "Couldn't remove Twitter user."
+msgstr "无法删除 Twitter 用户。"
+
+#: twittersettings.php:263
+msgid "Twitter account disconnected."
+msgstr "已取消 Twitter 帐号关联。"
+
+#: twittersettings.php:283 twittersettings.php:294
+msgid "Couldn't save Twitter preferences."
+msgstr "无法保存 Twitter 参数设置。"
+
+#: twittersettings.php:302
+msgid "Twitter preferences saved."
+msgstr "已保存 Twitter 参数设置。"

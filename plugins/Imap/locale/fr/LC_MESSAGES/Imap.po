@@ -1,0 +1,59 @@
+# Translation of StatusNet - Imap to French (Français)
+# Expored from translatewiki.net
+#
+# Author: Peter17
+# Author: Verdy p
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Imap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:08+0000\n"
+"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:42:07+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fr\n"
+"X-Message-Group: #out-statusnet-plugin-imap\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: imapmailhandler.php:30
+msgid "Error"
+msgstr "Erreur"
+
+#: imapmanager.php:51
+msgid ""
+"ImapManager should be created using its constructor, not the using the "
+"static get method."
+msgstr ""
+"ImapManager devrait être instancié en utilisant son constructeur et non pas "
+"en utilisant la méthode statique « get »."
+
+#: ImapPlugin.php:54
+msgid "A mailbox must be specified."
+msgstr "Une boîte aux lettres doit être spécifiée."
+
+#: ImapPlugin.php:57
+msgid "A user must be specified."
+msgstr "Un nom d’utilisateur doit être spécifié."
+
+#: ImapPlugin.php:60
+msgid "A password must be specified."
+msgstr "Un mot de passe doit être spécifié."
+
+#: ImapPlugin.php:63
+msgid "A poll_frequency must be specified."
+msgstr "Une fréquence d’interrogation doit être spécifiée."
+
+#: ImapPlugin.php:103
+msgid ""
+"The IMAP plugin allows for StatusNet to check a POP or IMAP mailbox for "
+"incoming mail containing user posts."
+msgstr ""
+"L’extension IMAP permet à StatusNet de rechercher dans une boîte "
+"électronique POP ou IMAP les messages contenant des avis des utilisateurs."

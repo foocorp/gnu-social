@@ -133,6 +133,8 @@ class MessageForm extends Form
         $mutual_users = $user->mutuallySubscribedUsers();
 
         $mutual = array();
+        // TRANS Label entry in drop-down selection box in direct-message inbox/outbox. This is the default entry in the drop-down box, doubling as instructions and a brake against accidental submissions with the first user in the list.
+        $mutual[0] = _('Select recipient:');
 
         while ($mutual_users->fetch()) {
             if ($mutual_users->id != $user->id) {
@@ -142,6 +144,11 @@ class MessageForm extends Form
 
         $mutual_users->free();
         unset($mutual_users);
+
+        if (count($mutual) == 1) {
+            // TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+            $mutual[0] = _('No mutual subscribers.');
+        }
 
         $this->out->dropdown('to', _('To'), $mutual, null, false,
                              ($this->to) ? $this->to->id : null);

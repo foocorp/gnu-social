@@ -77,7 +77,7 @@ foreach ($languages as $language) {
         http_build_query(array(
             'title' => 'Special:Translate',
             'task' => 'export-to-file',
-            'group' => 'out-statusnet',
+            'group' => 'out-statusnet-core',
             'language' => $twnCode));
 
     $lcdir = INSTALLDIR . '/locale/' . $code;

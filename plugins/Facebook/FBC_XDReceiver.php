@@ -1,4 +1,7 @@
 <?php
+/**
+ * @todo Add header and documentation
+ */
 
 if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
@@ -13,13 +16,11 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  */
 class FBC_XDReceiverAction extends Action
 {
-
     /**
      * Do we need to write to the database?
      *
      * @return boolean true
      */
-
     function isReadonly()
     {
         return true;
@@ -32,7 +33,6 @@ class FBC_XDReceiverAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         // Parent handling, including cache check
@@ -63,6 +63,4 @@ class FBC_XDReceiverAction extends Action
 
         $this->elementEnd('html');
     }
-
 }
-

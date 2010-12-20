@@ -49,7 +49,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiGroupLeaveAction extends ApiAuthAction
 {
     var $group   = null;
@@ -60,9 +59,7 @@ class ApiGroupLeaveAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -82,13 +79,13 @@ class ApiGroupLeaveAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400,
                 $this->format
@@ -97,11 +94,13 @@ class ApiGroupLeaveAction extends ApiAuthAction
         }
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when trying to have a non-existing user leave a group.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
 
         if (empty($this->group)) {
+            // TRANS: Client error displayed when trying to leave a group that does not exist.
             $this->clientError(_('Group not found.'), 404, $this->format);
             return false;
         }
@@ -112,6 +111,7 @@ class ApiGroupLeaveAction extends ApiAuthAction
         $member->profile_id = $this->auth_user->id;
 
         if (!$member->find(true)) {
+            // TRANS: Server error displayed when trying to leave a group the user is not a member of.
             $this->serverError(_('You are not a member of this group.'));
             return;
         }
@@ -122,6 +122,8 @@ class ApiGroupLeaveAction extends ApiAuthAction
             common_log_db_error($member, 'DELETE', __FILE__);
             $this->serverError(
                 sprintf(
+                    // TRANS: Server error displayed when leaving a group fails.
+                    // TRANS: %1$s is a user nickname, $2$s is a group nickname.
                     _('Could not remove user %1$s from group %2$s.'),
                     $this->user->nickname,
                     $this->group->nickname
@@ -139,6 +141,7 @@ class ApiGroupLeaveAction extends ApiAuthAction
             break;
         default:
             $this->clientError(
+                // TRANS: Client error displayed trying to execute an unknown API method leaving a group.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -146,5 +149,4 @@ class ApiGroupLeaveAction extends ApiAuthAction
             break;
         }
     }
-
 }

@@ -1,0 +1,21 @@
+The Strict Transport Security plugin implements the Strict Transport Security header, improving the security of HTTPS only sites.
+See http://lists.w3.org/Archives/Public/www-archive/2009Sep/att-0051/draft-hodges-strict-transport-sec-05.plain.html for the specification.
+
+Installation
+============
+add "addPlugin('strictTransportSecurity');"
+to the bottom of your config.php
+
+The plugin will not do anything unless:
+$config['site']['ssl'] is set to 'always'
+$config['site']['path'] is either not set, empty, or '/'
+
+Settings
+========
+max_age (15552000): sets how long to remember the forced HTTPS (seconds) (15552000 seconds is 180 days)
+includeSubDomains (false): if set, then STS will apply to all the sub-domains too.
+
+Example
+=======
+addPlugin('strictTransportSecurity');
+

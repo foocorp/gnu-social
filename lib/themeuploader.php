@@ -128,8 +128,16 @@ class ThemeUploader
                 continue;
             }
 
-            // Check the directory structure...
+            // Is this a safe or skippable file?
             $path = pathinfo($name);
+            if ($this->skippable($path['filename'], $path['extension'])) {
+                // Documentation and such... booooring
+                continue;
+            } else {
+                $this->validateFile($path['filename'], $path['extension']);
+            }
+
+            // Check the directory structure...
             $dirs = explode('/', $path['dirname']);
             $baseDir = array_shift($dirs);
             if ($commonBaseDir === false) {
@@ -144,14 +152,6 @@ class ThemeUploader
                 $this->validateFileOrFolder($dir);
             }
 
-            // Is this a safe or skippable file?
-            if ($this->skippable($path['filename'], $path['extension'])) {
-                // Documentation and such... booooring
-                continue;
-            } else {
-                $this->validateFile($path['filename'], $path['extension']);
-            }
-
             $fullPath = $dirs;
             $fullPath[] = $path['basename'];
             $localFile = implode('/', $fullPath);
@@ -163,9 +163,10 @@ class ThemeUploader
             $estSize = $blockSize * max(1, intval(ceil($size / $blockSize)));
             $totalSize += $estSize;
             if ($totalSize > $sizeLimit) {
-                $msg = sprintf(_("Uploaded theme is too large; " .
-                                 "must be less than %d bytes uncompressed."),
-                                 $sizeLimit);
+                $msg = sprintf(_m('Uploaded theme is too large; must be less than %d byte uncompressed.',
+                                  'Uploaded theme is too large; must be less than %d bytes uncompressed.',
+                                  $sizeLimit),
+                               $sizeLimit);
                 throw new ClientException($msg);
             }
 
@@ -180,13 +181,25 @@ class ThemeUploader
         }
     }
 
+    /**
+     * @fixme Probably most unrecognized files should just be skipped...
+     */
     protected function skippable($filename, $ext)
     {
-        $skip = array('txt', 'rtf', 'doc', 'docx', 'odt');
+        $skip = array('txt', 'html', 'rtf', 'doc', 'docx', 'odt', 'xcf');
         if (strtolower($filename) == 'readme') {
             return true;
         }
         if (in_array(strtolower($ext), $skip)) {
+            return true;
+        }
+        if ($filename == '' || substr($filename, 0, 1) == '.') {
+            // Skip Unix-style hidden files
+            return true;
+        }
+        if ($filename == '__MACOSX') {
+            // Skip awful metadata files Mac OS X slips in for you.
+            // Thanks Apple!
             return true;
         }
         return false;
@@ -195,24 +208,37 @@ class ThemeUploader
     protected function validateFile($filename, $ext)
     {
         $this->validateFileOrFolder($filename);
-        $this->validateExtension($ext);
+        $this->validateExtension($filename, $ext);
         // @fixme validate content
     }
 
     protected function validateFileOrFolder($name)
     {
-        if (!preg_match('/^[a-z0-9_-]+$/i', $name)) {
+        if (!preg_match('/^[a-z0-9_\.-]+$/i', $name)) {
+            common_log(LOG_ERR, "Bad theme filename: $name");
             $msg = _("Theme contains invalid file or folder name. " .
                      "Stick with ASCII letters, digits, underscore, and minus sign.");
+            throw new ClientException($msg);
+        }
+        if (preg_match('/\.(php|cgi|asp|aspx|js|vb)\w/i', $name)) {
+            common_log(LOG_ERR, "Unsafe theme filename: $name");
+            $msg = _("Theme contains unsafe file extension names; may be unsafe.");
             throw new ClientException($msg);
         }
         return true;
     }
 
-    protected function validateExtension($ext)
+    protected function validateExtension($base, $ext)
     {
-        $allowed = array('css', 'png', 'gif', 'jpg', 'jpeg');
+        $allowed = array('css', // CSS may need validation
+                         'png', 'gif', 'jpg', 'jpeg',
+                         'svg', // SVG images/fonts may need validation
+                         'ttf', 'eot', 'woff');
         if (!in_array(strtolower($ext), $allowed)) {
+            if ($ext == 'ini' && $base == 'theme') {
+                // theme.ini exception
+                return true;
+            }
             $msg = sprintf(_("Theme contains file of type '.%s', " .
                              "which is not allowed."),
                            $ext);

@@ -1,0 +1,47 @@
+# Translation of StatusNet - Disqus to Interlingua (Interlingua)
+# Expored from translatewiki.net
+#
+# Author: McDutchie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Disqus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:41+0000\n"
+"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ia\n"
+"X-Message-Group: #out-statusnet-plugin-disqus\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: DisqusPlugin.php:142
+#, php-format
+msgid ""
+"Please enable JavaScript to view the [comments powered by Disqus](http://"
+"disqus.com/?ref_noscript=%s)."
+msgstr ""
+"Per favor activa JavaScript pro vider le [commentos actionate per Disqus]"
+"(http://disqus.com/?ref_noscript=%s)."
+
+#: DisqusPlugin.php:149
+msgid "Comments powered by "
+msgstr "Commentos actionate per "
+
+#: DisqusPlugin.php:201
+msgid "Comments"
+msgstr "Commentos"
+
+#: DisqusPlugin.php:241
+msgid ""
+"Use <a href=\"http://disqus.com/\">Disqus</a> to add commenting to notice "
+"pages."
+msgstr ""
+"Usar <a href=\"http://disqus.com/\">Disqus</a> pro adder le possibilitate de "
+"commentar a paginas de notas."

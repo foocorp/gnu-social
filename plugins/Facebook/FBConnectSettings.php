@@ -42,7 +42,6 @@ require_once INSTALLDIR.'/lib/connectsettingsaction.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class FBConnectSettingsAction extends ConnectSettingsAction
 {
     /**
@@ -50,9 +49,9 @@ class FBConnectSettingsAction extends ConnectSettingsAction
      *
      * @return string Title of the page
      */
-
     function title()
     {
+        // TRANS: Page title.
         return _m('Facebook Connect Settings');
     }
 
@@ -61,9 +60,9 @@ class FBConnectSettingsAction extends ConnectSettingsAction
      *
      * @return instructions for use
      */
-
     function getInstructions()
     {
+    	// TRANS: Instructions.
         return _m('Manage how your account connects to Facebook');
     }
 
@@ -74,7 +73,6 @@ class FBConnectSettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function showContent()
     {
         $user = common_current_user();
@@ -116,17 +114,21 @@ class FBConnectSettingsAction extends ConnectSettingsAction
 
             $this->elementStart('fieldset');
 
+            // TRANS: Legend.
             $this->element('legend', null, _m('Disconnect my account from Facebook'));
 
             if (!$user->password) {
 
                 $this->elementStart('p', array('class' => 'form_guide'));
+                // @todo FIXME: Bad i18n. Patchwork message in three parts.
+                // TRANS: Followed by a link containing text "set a password".
                 $this->text(_m('Disconnecting your Faceboook ' .
                                'would make it impossible to log in! Please '));
                 $this->element('a',
                     array('href' => common_local_url('passwordsettings')),
+                        // TRANS: Preceded by "Please " and followed by " first."
                         _m('set a password'));
-
+                // TRANS: Preceded by "Please set a password".
                 $this->text(_m(' first.'));
                 $this->elementEnd('p');
             } else {
@@ -139,7 +141,8 @@ class FBConnectSettingsAction extends ConnectSettingsAction
                 $this->element('p', 'instructions',
                     sprintf($note, $site, $site));
 
-                $this->submit('disconnect', _m('Disconnect'));
+                // TRANS: Submit button.
+                $this->submit('disconnect', _m('BUTTON','Disconnect'));
             }
 
             $this->elementEnd('fieldset');
@@ -155,7 +158,6 @@ class FBConnectSettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function handlePost()
     {
         // CSRF protection
@@ -197,7 +199,5 @@ class FBConnectSettingsAction extends ConnectSettingsAction
             $this->showForm(_m('Not sure what you\'re trying to do.'));
             return;
         }
-
     }
-
 }

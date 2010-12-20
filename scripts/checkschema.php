@@ -27,4 +27,18 @@ END_OF_CHECKSCHEMA_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
+function tableDefs()
+{
+	$schema = array();
+	require INSTALLDIR.'/db/core.php';
+	return $schema;
+}
+
+$schema = Schema::get();
+$schemaUpdater = new SchemaUpdater($schema);
+foreach (tableDefs() as $table => $def) {
+	$schemaUpdater->register($table, $def);
+}
+$schemaUpdater->checkSchema();
+
 Event::handle('CheckSchema');

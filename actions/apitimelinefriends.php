@@ -151,7 +151,6 @@ require_once INSTALLDIR . '/lib/apibareauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiTimelineFriendsAction extends ApiBareAuthAction
 {
     var $notices  = null;
@@ -164,13 +163,13 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
         $this->user = $this->getTargetUser($this->arg('id'));
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when requesting dents of a user and friends for a user that does not exist.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
@@ -189,7 +188,6 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -201,7 +199,6 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
      *
      * @return void
      */
-
     function showTimeline()
     {
         $profile    = $this->user->getProfile();
@@ -246,7 +243,6 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
             );
             break;
         case 'atom':
-
             header('Content-Type: application/atom+xml; charset=utf-8');
 
             $atom = new AtomNoticeFeed($this->auth_user);
@@ -268,6 +264,7 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
             $this->showJsonTimeline($this->notices);
             break;
         default:
+            // TRANS: Client error displayed when trying to handle an unknown API method.
             $this->clientError(_('API method not found.'), $code = 404);
             break;
         }
@@ -278,7 +275,6 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
      *
      * @return array notices
      */
-
     function getNotices()
     {
         $notices = array();
@@ -307,7 +303,6 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -318,7 +313,6 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
      *
      * @return string datestamp of the latest notice in the stream
      */
-
     function lastModified()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
@@ -336,16 +330,15 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
      *
      * @return string etag
      */
-
     function etag()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
-
             $last = count($this->notices) - 1;
 
             return '"' . implode(
                                  ':',
                                  array($this->arg('action'),
+                                       common_user_cache_hash($this->auth_user),
                                        common_language(),
                                        $this->user->id,
                                        strtotime($this->notices[0]->created),
@@ -356,5 +349,4 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
 
         return null;
     }
-
 }

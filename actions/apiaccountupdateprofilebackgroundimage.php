@@ -42,10 +42,8 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
 {
-
     var $tile = false;
 
     /**
@@ -56,7 +54,6 @@ class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -76,13 +73,13 @@ class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400, $this->format
             );
@@ -91,6 +88,7 @@ class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to handle an unknown API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -105,14 +103,18 @@ class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
             && empty($_POST)
             && ($_SERVER['CONTENT_LENGTH'] > 0)
         ) {
-             $msg = _('The server was unable to handle that much POST ' .
-                    'data (%s bytes) due to its current configuration.');
+             // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
+             // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
+             $msg = _m('The server was unable to handle that much POST data (%s byte) due to its current configuration.',
+                      'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
+                      intval($_SERVER['CONTENT_LENGTH']));
 
             $this->clientError(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
             return;
         }
 
         if (empty($this->user)) {
+            // TRANS: Client error when user not found updating a profile background image.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
@@ -124,7 +126,6 @@ class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
         // is part of the img filename.
 
         if (empty($design)) {
-
             $this->user->query('BEGIN');
 
             // save new design
@@ -133,6 +134,7 @@ class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
 
             if (empty($id)) {
                 common_log_db_error($id, 'INSERT', __FILE__);
+                // TRANS: Client error displayed when saving design settings fails because of an empty id.
                 $this->clientError(_('Unable to save your design settings.'));
                 return;
             }
@@ -143,6 +145,7 @@ class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
 
             if (empty($result)) {
                 common_log_db_error($original, 'UPDATE', __FILE__);
+                // TRANS: Client error displayed when saving design settings fails because of an empty result.
                 $this->clientError(_('Unable to save your design settings.'));
                 $this->user->query('ROLLBACK');
                 return;
@@ -184,6 +187,7 @@ class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
 
         if ($result === false) {
             common_log_db_error($design, 'UPDATE', __FILE__);
+            // TRANS: Error displayed when updating design settings fails.
             $this->showForm(_('Could not update your design.'));
             return;
         }
@@ -191,6 +195,7 @@ class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
         $profile = $this->user->getProfile();
 
         if (empty($profile)) {
+            // TRANS: Client error displayed when a user has no profile.
             $this->clientError(_('User has no profile.'));
             return;
         }
@@ -207,5 +212,4 @@ class ApiAccountUpdateProfileBackgroundImageAction extends ApiAuthAction
             $this->endDocument('json');
         }
     }
-
 }

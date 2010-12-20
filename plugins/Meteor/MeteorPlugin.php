@@ -42,7 +42,6 @@ require_once INSTALLDIR.'/plugins/Realtime/RealtimePlugin.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class MeteorPlugin extends RealtimePlugin
 {
     public $webserver     = null;
@@ -90,7 +89,7 @@ class MeteorPlugin extends RealtimePlugin
     {
         $scripts = parent::_getScripts();
         $scripts[] = 'http://'.$this->webserver.(($this->webport == 80) ? '':':'.$this->webport).'/meteor.js';
-        $scripts[] = common_path('plugins/Meteor/meteorupdater.js');
+        $scripts[] = common_path('plugins/Meteor/meteorupdater.min.js');
         return $scripts;
     }
 
@@ -112,7 +111,8 @@ class MeteorPlugin extends RealtimePlugin
         // May throw an exception.
         $this->_socket = stream_socket_client("tcp://{$controlserver}:{$this->controlport}", $errno, $errstr, $timeout, $flags);
         if (!$this->_socket) {
-            throw new Exception("Couldn't connect to {$controlserver} on {$this->controlport}");
+            // TRANS: Exception. %1$s is the control server, %2$s is the control port.
+            throw new Exception(sprintf(_m('Couldn\'t connect to %1$s on %2$s.'),$controlserver,$this->controlport));
         }
     }
 
@@ -124,7 +124,8 @@ class MeteorPlugin extends RealtimePlugin
         $cnt = fwrite($this->_socket, $cmd);
         $result = fgets($this->_socket);
         if (preg_match('/^ERR (.*)$/', $result, $matches)) {
-            throw new Exception('Error adding meteor message "'.$matches[1].'"');
+            // TRANS: Exception. %s is the Meteor message that could not be added.
+            throw new Exception(sprintf(_m('Error adding meteor message "%s"'),$matches[1]));
         }
         // TODO: parse and deal with result
     }
@@ -145,5 +146,16 @@ class MeteorPlugin extends RealtimePlugin
             array_unshift($path, $this->channelbase);
         }
         return implode('-', $path);
+    }
+
+    function onPluginVersion(&$versions)
+    {
+        $versions[] = array('name' => 'Meteor',
+                            'version' => STATUSNET_VERSION,
+                            'author' => 'Evan Prodromou',
+                            'homepage' => 'http://status.net/wiki/Plugin:Meteor',
+                            'rawdescription' =>
+                            _m('Plugin to do "real time" updates using Comet/Bayeux.'));
+        return true;
     }
 }

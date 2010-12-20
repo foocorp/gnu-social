@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class AllmapAction extends MapAction
 {
     function prepare($args)
@@ -62,17 +61,18 @@ class AllmapAction extends MapAction
 
     function title()
     {
-        if (!empty($this->profile->fullname)) {
-            $base = $this->profile->fullname . ' (' . $this->user->nickname . ') ';
-        } else {
-            $base = $this->user->nickname;
-        }
+        $base = $this->profile->getFancyName();
 
         if ($this->page == 1) {
+            // TRANS: Page title.
+            // TRANS: %s is a user nickname.
             return sprintf(_m("%s friends map"),
                            $base);
         } else {
-            return sprintf(_m("%s friends map, page %d"),
+            // @todo CHECKME: does this even happen? May not be needed.
+            // TRANS: Page title.
+            // TRANS: %1$s is a user nickname, %2$d is a page number.
+            return sprintf(_m('%1$s friends map, page %2$d'),
                            $base,
                            $this->page);
         }

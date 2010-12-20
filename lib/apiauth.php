@@ -68,7 +68,6 @@ require_once INSTALLDIR . '/lib/apioauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiAuthAction extends ApiAction
 {
     var $auth_user_nickname = null;
@@ -83,7 +82,6 @@ class ApiAuthAction extends ApiAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -126,7 +124,6 @@ class ApiAuthAction extends ApiAction
      *
      * @return mixed the OAuthRequest or false
      */
-
     function getOAuthRequest()
     {
         ApiOauthAction::cleanRequest();
@@ -154,7 +151,6 @@ class ApiAuthAction extends ApiAction
      *
      * @return nothing
      */
-
     function checkOAuthRequest($request)
     {
         $datastore   = new ApiStatusNetOAuthDataStore();
@@ -164,7 +160,6 @@ class ApiAuthAction extends ApiAction
         $server->add_signature_method($hmac_method);
 
         try {
-
             $server->verify_request($request);
 
             $consumer     = $request->get_parameter('oauth_consumer_key');
@@ -173,59 +168,64 @@ class ApiAuthAction extends ApiAction
             $app = Oauth_application::getByConsumerKey($consumer);
 
             if (empty($app)) {
-                common_log(LOG_WARNING,
-                           'Couldn\'t find the OAuth app for consumer key: ' .
-                           $consumer);
-                throw new OAuthException('No application for that consumer key.');
+                common_log(
+                    LOG_WARNING,
+                    'API OAuth - Couldn\'t find the OAuth app for consumer key: ' .
+                    $consumer
+                );
+                // TRANS: OAuth exception thrown when no application is found for a given consumer key.
+                throw new OAuthException(_('No application for that consumer key.'));
             }
 
             // set the source attr
+            if ($app->name != 'anonymous') {
+                $this->source = $app->name;
+            }
 
-            $this->source = $app->name;
 
             $appUser = Oauth_application_user::staticGet('token', $access_token);
 
             if (!empty($appUser)) {
-
                 // If access_type == 0 we have either a request token
                 // or a bad / revoked access token
 
                 if ($appUser->access_type != 0) {
-
                     // Set the access level for the api call
-
                     $this->access = ($appUser->access_type & Oauth_application::$writeAccess)
                       ? self::READ_WRITE : self::READ_ONLY;
 
                     // Set the auth user
-
                     if (Event::handle('StartSetApiUser', array(&$user))) {
                         $this->auth_user = User::staticGet('id', $appUser->profile_id);
                         Event::handle('EndSetApiUser', array($user));
                     }
 
                     $msg = "API OAuth authentication for user '%s' (id: %d) on behalf of " .
-                      "application '%s' (id: %d) with %s access.";
+                        "application '%s' (id: %d) with %s access.";
 
-                    common_log(LOG_INFO, sprintf($msg,
-                                                 $this->auth_user->nickname,
-                                                 $this->auth_user->id,
-                                                 $app->name,
-                                                 $app->id,
-                                                 ($this->access = self::READ_WRITE) ?
-                                                 'read-write' : 'read-only'
-                                                 ));
+                    common_log(
+                        LOG_INFO,
+                        sprintf(
+                            $msg,
+                            $this->auth_user->nickname,
+                            $this->auth_user->id,
+                            $app->name,
+                            $app->id,
+                            ($this->access = self::READ_WRITE) ? 'read-write' : 'read-only'
+                        )
+                    );
                 } else {
-                    throw new OAuthException('Bad access token.');
+                    // TRANS: OAuth exception given when an incorrect access token was given for a user.
+                    throw new OAuthException(_('Bad access token.'));
                 }
             } else {
-
                 // Also should not happen
-
-                throw new OAuthException('No user for that token.');
+                // TRANS: OAuth exception given when no user was found for a given token (no token was found).
+                throw new OAuthException(_('No user for that token.'));
             }
 
         } catch (OAuthException $e) {
+            $this->logAuthFailure($e->getMessage());
             common_log(LOG_WARNING, 'API OAuthException - ' . $e->getMessage());
             $this->clientError($e->getMessage(), 401, $this->format);
             exit;
@@ -237,7 +237,6 @@ class ApiAuthAction extends ApiAction
      *
      * @return boolean true
      */
-
     function requiresAuth()
     {
         return true;
@@ -249,7 +248,6 @@ class ApiAuthAction extends ApiAction
      *
      * @return boolean true or false
      */
-
     function checkBasicAuthUser($required = true)
     {
         $this->basicAuthProcessHeader();
@@ -264,8 +262,8 @@ class ApiAuthAction extends ApiAction
             header('WWW-Authenticate: Basic realm="' . $realm . '"');
 
             // show error if the user clicks 'cancel'
-
-            $this->clientError("Could not authenticate you.", 401, $this->format);
+            // TRANS: Client error thrown when authentication fails becaus a user clicked "Cancel".
+            $this->clientError(_('Could not authenticate you.'), 401, $this->format);
             exit;
 
         } else {
@@ -283,22 +281,16 @@ class ApiAuthAction extends ApiAction
             }
 
             // By default, basic auth users have rw access
-
             $this->access = self::READ_WRITE;
 
             if (empty($this->auth_user) && ($required || isset($_SERVER['PHP_AUTH_USER']))) {
-
-                // basic authentication failed
-
-                list($proxy, $ip) = common_client_ip();
-
-                $msg = sprintf( 'Failed API auth attempt, nickname = %1$s, ' .
-                         'proxy = %2$s, ip = %3$s',
-                               $this->auth_user_nickname,
-                               $proxy,
-                               $ip);
-                common_log(LOG_WARNING, $msg);
-                $this->clientError("Could not authenticate you.", 401, $this->format);
+                $msg = sprintf(
+                    "basic auth nickname = %s",
+                    $this->auth_user_nickname
+                );
+                $this->logAuthFailure($msg);
+                // TRANS: Client error thrown when authentication fails.
+                $this->clientError(_('Could not authenticate you.'), 401, $this->format);
                 exit;
             }
         }
@@ -310,7 +302,6 @@ class ApiAuthAction extends ApiAction
      *
      * @return void
      */
-
     function basicAuthProcessHeader()
     {
         $authHeaders = array('AUTHORIZATION',
@@ -332,7 +323,6 @@ class ApiAuthAction extends ApiAction
 
             // Decode the HTTP_AUTHORIZATION header on php-cgi server self
             // on fcgid server the header name is AUTHORIZATION
-
             $auth_hash = base64_decode(substr($authorization_header, 6));
             list($this->auth_user_nickname,
                  $this->auth_user_password) = explode(':', $auth_hash);
@@ -345,4 +335,23 @@ class ApiAuthAction extends ApiAction
             }
         }
     }
+
+    /**
+     * Log an API authentication failer. Collect the proxy and IP
+     * and log them
+     *
+     * @param string $logMsg additional log message
+     */
+     function logAuthFailure($logMsg)
+     {
+        list($proxy, $ip) = common_client_ip();
+
+        $msg = sprintf(
+            'API auth failure (proxy = %1$s, ip = %2$s) - ',
+            $proxy,
+            $ip
+        );
+
+        common_log(LOG_WARNING, $msg . $logMsg);
+     }
 }

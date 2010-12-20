@@ -48,7 +48,7 @@ class AvatarbynicknameAction extends Action
      * Class handler.
      *
      * @param array $args query arguments
-     * 
+     *
      * @return boolean false if nickname or user isn't found
      */
     function handle($args)
@@ -56,27 +56,32 @@ class AvatarbynicknameAction extends Action
         parent::handle($args);
         $nickname = $this->trimmed('nickname');
         if (!$nickname) {
+            // TRANS: Client error displayed trying to get an avatar without providing a nickname.
             $this->clientError(_('No nickname.'));
             return;
         }
         $size = $this->trimmed('size');
         if (!$size) {
+            // TRANS: Client error displayed trying to get an avatar without providing an avatar size.
             $this->clientError(_('No size.'));
             return;
         }
         $size = strtolower($size);
         if (!in_array($size, array('original', '96', '48', '24'))) {
+            // TRANS: Client error displayed trying to get an avatar providing an invalid avatar size.
             $this->clientError(_('Invalid size.'));
             return;
         }
 
         $user = User::staticGet('nickname', $nickname);
         if (!$user) {
+            // TRANS: Client error displayed trying to get an avatar for a non-existing user.
             $this->clientError(_('No such user.'));
             return;
         }
         $profile = $user->getProfile();
         if (!$profile) {
+            // TRANS: Client error displayed trying to get an avatar for a user without a profile.
             $this->clientError(_('User has no profile.'));
             return;
         }
@@ -103,4 +108,3 @@ class AvatarbynicknameAction extends Action
         return true;
     }
 }
-

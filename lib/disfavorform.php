@@ -123,9 +123,13 @@ class DisfavorForm extends Form
 
     function formData()
     {
-        $this->out->hidden('notice-n'.$this->notice->id,
-                           $this->notice->id,
-                           'notice');
+        if (Event::handle('StartDisFavorNoticeForm', array($this, $this->notice))) {
+            $this->out->hidden('notice-n'.$this->notice->id,
+                               $this->notice->id,
+                               'notice');
+            Event::handle('EndDisFavorNoticeForm', array($this, $this->notice));
+        }
+
     }
 
     /**

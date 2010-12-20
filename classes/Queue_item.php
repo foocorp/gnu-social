@@ -32,7 +32,7 @@ class Queue_item extends Memcached_DataObject
         if ($transports) {
             if (is_array($transports)) {
                 // @fixme use safer escaping
-                $list = implode("','", array_map('addslashes', $transports));
+                $list = implode("','", array_map(array($qi, 'escape'), $transports));
                 $qi->whereAdd("transport in ('$list')");
             } else {
                 $qi->transport = $transports;

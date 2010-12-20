@@ -45,13 +45,61 @@ require INSTALLDIR . '/lib/installer.php';
  * Helper class for building form
  */
 class Posted {
+    /**
+     * HTML-friendly escaped string for the POST param of given name, or empty.
+     * @param string $name
+     * @return string
+     */
     function value($name)
     {
+        return htmlspecialchars($this->string($name));
+    }
+
+    /**
+     * The given POST parameter value, forced to a string.
+     * Missing value will give ''.
+     *
+     * @param string $name
+     * @return string
+     */
+    function string($name)
+    {
+        return strval($this->raw($name));
+    }
+
+    /**
+     * The given POST parameter value, in its original form.
+     * Magic quotes are stripped, if provided.
+     * Missing value will give null.
+     *
+     * @param string $name
+     * @return mixed
+     */
+    function raw($name)
+    {
         if (isset($_POST[$name])) {
-            return htmlspecialchars(strval($_POST[$name]));
+            return $this->dequote($_POST[$name]);
         } else {
-            return '';
+            return null;
         }
+    }
+
+    /**
+     * If necessary, strip magic quotes from the given value.
+     *
+     * @param mixed $val
+     * @return mixed
+     */
+    function dequote($val)
+    {
+        if (get_magic_quotes_gpc()) {
+            if (is_string($val)) {
+                return stripslashes($val);
+            } else if (is_array($val)) {
+                return array_map(array($this, 'dequote'), $val);
+            }
+        }
+        return $val;
     }
 }
 
@@ -107,11 +155,7 @@ class WebInstaller extends Installer
         global $dbModules;
         $post = new Posted();
         $dbRadios = '';
-        if (isset($_POST['dbtype'])) {
-            $dbtype = $_POST['dbtype'];
-        } else {
-            $dbtype = null;
-        }
+        $dbtype = $post->raw('dbtype');
         foreach (self::$dbModules as $type => $info) {
             if ($this->checkExtension($info['check_module'])) {
                 if ($dbtype == null || $dbtype == $type) {
@@ -245,19 +289,20 @@ STR;
      */
     function prepare()
     {
-        $this->host     = $_POST['host'];
-        $this->dbtype   = $_POST['dbtype'];
-        $this->database = $_POST['database'];
-        $this->username = $_POST['dbusername'];
-        $this->password = $_POST['dbpassword'];
-        $this->sitename = $_POST['sitename'];
-        $this->fancy    = !empty($_POST['fancy']);
+        $post = new Posted();
+        $this->host     = $post->string('host');
+        $this->dbtype   = $post->string('dbtype');
+        $this->database = $post->string('database');
+        $this->username = $post->string('dbusername');
+        $this->password = $post->string('dbpassword');
+        $this->sitename = $post->string('sitename');
+        $this->fancy    = (bool)$post->string('fancy');
 
-        $this->adminNick    = strtolower($_POST['admin_nickname']);
-        $this->adminPass    = $_POST['admin_password'];
-        $adminPass2         = $_POST['admin_password2'];
-        $this->adminEmail   = $_POST['admin_email'];
-        $this->adminUpdates = $_POST['admin_updates'];
+        $this->adminNick    = strtolower($post->string('admin_nickname'));
+        $this->adminPass    = $post->string('admin_password');
+        $adminPass2         = $post->string('admin_password2');
+        $this->adminEmail   = $post->string('admin_email');
+        $this->adminUpdates = $post->string('admin_updates');
 
         $this->server = $_SERVER['HTTP_HOST'];
         $this->path = substr(dirname($_SERVER['PHP_SELF']), 1);

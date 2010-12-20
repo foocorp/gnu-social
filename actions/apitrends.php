@@ -44,10 +44,8 @@ require_once INSTALLDIR.'/lib/apiprivateauth.php';
  *
  * @see      ApiAction
  */
-
 class ApiTrendsAction extends ApiPrivateAuthAction
 {
-
     var $callback;
 
     /**
@@ -70,7 +68,6 @@ class ApiTrendsAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -84,7 +81,7 @@ class ApiTrendsAction extends ApiPrivateAuthAction
      */
     function showTrends()
     {
+        // TRANS: Server error for unfinished API method showTrends.
         $this->serverError(_('API method under construction.'), 501);
     }
-
 }

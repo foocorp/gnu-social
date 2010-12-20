@@ -36,8 +36,11 @@ class InviteAction extends CurrentUserDesignAction
     {
         parent::handle($args);
         if (!common_config('invite', 'enabled')) {
+            // TRANS: Client error displayed when trying to sent invites while they have been disabled.
             $this->clientError(_('Invites have been disabled.'));
         } else if (!common_logged_in()) {
+            // TRANS: Client error displayed when trying to sent invites while not logged in.
+            // TRANS: %s is the StatusNet site name.
             $this->clientError(sprintf(_('You must be logged in to invite other users to use %s.'),
                                         common_config('site', 'name')));
             return;
@@ -69,7 +72,9 @@ class InviteAction extends CurrentUserDesignAction
         foreach ($addresses as $email) {
             $email = trim($email);
             if (!Validate::email($email, common_config('email', 'check_domain'))) {
-                $this->showForm(sprintf(_('Invalid email address: %s'), $email));
+                // TRANS: Form validation message when providing an e-mail address that does not validate.
+                // TRANS: %s is an invalid e-mail address.
+                $this->showForm(sprintf(_('Invalid email address: %s.'), $email));
                 return;
             }
         }
@@ -107,8 +112,10 @@ class InviteAction extends CurrentUserDesignAction
     function title()
     {
         if ($this->mode == 'sent') {
-            return _('Invitation(s) sent');
+            // TRANS: Page title when invitations have been sent.
+            return _('Invitations sent');
         } else {
+            // TRANS: Page title when inviting potential users.
             return _('Invite new users');
         }
     }
@@ -125,28 +132,48 @@ class InviteAction extends CurrentUserDesignAction
     function showInvitationSuccess()
     {
         if ($this->already) {
-            $this->element('p', null, _('You are already subscribed to these users:'));
+            // TRANS: Message displayed inviting users to use a StatusNet site while the inviting user
+            // TRANS: is already subscribed to one or more users with the given e-mail address(es).
+            // TRANS: Plural form is based on the number of reported already subscribed e-mail addresses.
+            // TRANS: Followed by a bullet list.
+            $this->element('p', null, _m('You are already subscribed to this user:',
+                                         'You are already subscribed to these users:',
+                                         count($this->already)));
             $this->elementStart('ul');
             foreach ($this->already as $other) {
-                $this->element('li', null, sprintf(_('%1$s (%2$s)'), $other->nickname, $other->email));
+                // TRANS: Used as list item for already subscribed users (%1$s is nickname, %2$s is e-mail address).
+                $this->element('li', null, sprintf(_m('INVITE','%1$s (%2$s)'), $other->nickname, $other->email));
             }
             $this->elementEnd('ul');
         }
         if ($this->subbed) {
-            $this->element('p', null, _('These people are already users and you were automatically subscribed to them:'));
+            // TRANS: Message displayed inviting users to use a StatusNet site while the invited user
+            // TRANS: already uses a this StatusNet site. Plural form is based on the number of
+            // TRANS: reported already present people. Followed by a bullet list.
+            $this->element('p', null, _m('This person is already a user and you were automatically subscribed:',
+                                         'These people are already users and you were automatically subscribed to them:',
+                                         count($this->subbed)));
             $this->elementStart('ul');
             foreach ($this->subbed as $other) {
-                $this->element('li', null, sprintf(_('%1$s (%2$s)'), $other->nickname, $other->email));
+                // TRANS: Used as list item for already registered people (%1$s is nickname, %2$s is e-mail address).
+                $this->element('li', null, sprintf(_m('INVITE','%1$s (%2$s)'), $other->nickname, $other->email));
             }
             $this->elementEnd('ul');
         }
         if ($this->sent) {
-            $this->element('p', null, _('Invitation(s) sent to the following people:'));
+            // TRANS: Message displayed inviting users to use a StatusNet site. Plural form is
+            // TRANS: based on the number of invitations sent. Followed by a bullet list of
+            // TRANS: e-mail addresses to which invitations were sent.
+            $this->element('p', null, _m('Invitation sent to the following person:',
+                                         'Invitations sent to the following people:',
+                                         count($this->sent)));
             $this->elementStart('ul');
             foreach ($this->sent as $other) {
                 $this->element('li', null, $other);
             }
             $this->elementEnd('ul');
+            // TRANS: Generic message displayed after sending out one or more invitations to
+            // TRANS: people to join a StatusNet site.
             $this->element('p', null, _('You will be notified when your invitees accept the invitation and register on the site. Thanks for growing the community!'));
         }
     }
@@ -159,6 +186,7 @@ class InviteAction extends CurrentUserDesignAction
             } else {
                 $this->elementStart('div', 'instructions');
                 $this->element('p', null,
+                               // TRANS: Form instructions.
                                _('Use this form to invite your friends and colleagues to use this service.'));
                 $this->elementEnd('div');
             }
@@ -179,18 +207,23 @@ class InviteAction extends CurrentUserDesignAction
                                            'class' => 'form_settings',
                                            'action' => common_local_url('invite')));
         $this->elementStart('fieldset');
+        // TRANS: Form legend.
         $this->element('legend', null, 'Send an invitation');
         $this->hidden('token', common_session_token());
 
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
+        // TRANS: Field label for a list of e-mail addresses.
         $this->textarea('addresses', _('Email addresses'),
                         $this->trimmed('addresses'),
+                        // TRANS: Tooltip for field label for a list of e-mail addresses.
                         _('Addresses of friends to invite (one per line)'));
         $this->elementEnd('li');
         $this->elementStart('li');
+        // TRANS: Field label for a personal message to send to invitees.
         $this->textarea('personal', _('Personal message'),
                         $this->trimmed('personal'),
+                        // TRANS: Tooltip for field label for a personal message to send to invitees.
                         _('Optionally add a personal message to the invitation.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
@@ -224,10 +257,16 @@ class InviteAction extends CurrentUserDesignAction
 
         $headers['From'] = mail_notify_from();
         $headers['To'] = trim($email);
-        // TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral singular 3rd-person pronoun in English.
+        // TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
+        // TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
+        // TRANS: the StatusNet sitename.
         $headers['Subject'] = sprintf(_('%1$s has invited you to join them on %2$s'), $bestname, $sitename);
 
-        // TRANS: Body text for invitation email. Note that 'them' is correct as a gender-neutral singular 3rd-person pronoun in English.
+        // TRANS: Body text for invitation email. Note that 'them' is correct as a gender-neutral
+        // TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, %2$s is the
+        // TRANS: StatusNet sitename, %3$s is the site URL, %4$s is the personal message from the
+        // TRANS: inviting user, %s%5 a link to the timeline for the inviting user, %s$6 is a link
+        // TRANS: to register with the StatusNet site.
         $body = sprintf(_("%1\$s has invited you to join them on %2\$s (%3\$s).\n\n".
                           "%2\$s is a micro-blogging service that lets you keep up-to-date with people you know and people who interest you.\n\n".
                           "You can also share news about yourself, your thoughts, or your life online with people who know about you. ".

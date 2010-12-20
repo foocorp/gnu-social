@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class AdminprofileflagAction extends Action
 {
     var $page     = null;
@@ -53,7 +52,6 @@ class AdminprofileflagAction extends Action
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -109,7 +107,6 @@ class AdminprofileflagAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -122,10 +119,10 @@ class AdminprofileflagAction extends Action
      *
      * @return string Title of the page
      */
-
     function title()
     {
-        return _('Flagged profiles');
+        // TRANS: Title for page with a list of profiles that were flagged for review.
+        return _m('Flagged profiles');
     }
 
     /**
@@ -133,7 +130,6 @@ class AdminprofileflagAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         $pl = new FlaggedProfileList($this->profiles, $this);
@@ -149,7 +145,6 @@ class AdminprofileflagAction extends Action
      *
      * @return Profile $profile Profile query results
      */
-
     function getProfiles()
     {
         $ufp = new User_flag_profile();
@@ -196,7 +191,6 @@ class AdminprofileflagAction extends Action
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class FlaggedProfileList extends ProfileList
 {
     /**
@@ -206,7 +200,6 @@ class FlaggedProfileList extends ProfileList
      *
      * @return ProfileListItem newly-created item
      */
-
     function newListItem($profile)
     {
         return new FlaggedProfileListItem($this->profile, $this->action);
@@ -222,7 +215,6 @@ class FlaggedProfileList extends ProfileList
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class FlaggedProfileListItem extends ProfileListItem
 {
     const MAX_FLAGGERS = 5;
@@ -235,7 +227,6 @@ class FlaggedProfileListItem extends ProfileListItem
      *
      * @return void
      */
-
     function showActions()
     {
         $this->user = common_current_user();
@@ -247,7 +238,8 @@ class FlaggedProfileListItem extends ProfileListItem
         $this->startActions();
         if (Event::handle('StartProfileListItemActionElements', array($this))) {
             $this->out->elementStart('li', 'entity_moderation');
-            $this->out->element('p', null, _('Moderate'));
+            // TRANS: Header for moderation menu with action buttons for flagged profiles (like 'sandbox', 'silence', ...).
+            $this->out->element('p', null, _m('Moderate'));
             $this->out->elementStart('ul');
             $this->showSandboxButton();
             $this->showSilenceButton();
@@ -265,7 +257,6 @@ class FlaggedProfileListItem extends ProfileListItem
      *
      * @return void
      */
-
     function showSandboxButton()
     {
         if ($this->user->hasRight(Right::SANDBOXUSER)) {
@@ -286,7 +277,6 @@ class FlaggedProfileListItem extends ProfileListItem
      *
      * @return void
      */
-
     function showSilenceButton()
     {
         if ($this->user->hasRight(Right::SILENCEUSER)) {
@@ -307,7 +297,6 @@ class FlaggedProfileListItem extends ProfileListItem
      *
      * @return void
      */
-
     function showDeleteButton()
     {
 
@@ -324,7 +313,6 @@ class FlaggedProfileListItem extends ProfileListItem
      *
      * @return void
      */
-
     function showClearButton()
     {
         if ($this->user->hasRight(UserFlagPlugin::CLEARFLAGS)) {
@@ -340,7 +328,6 @@ class FlaggedProfileListItem extends ProfileListItem
      *
      * @return void
      */
-
     function endProfile()
     {
         $this->showFlaggersList();
@@ -352,7 +339,6 @@ class FlaggedProfileListItem extends ProfileListItem
      *
      * @return void
      */
-
     function showFlaggersList()
     {
         $flaggers = array();
@@ -394,12 +380,16 @@ class FlaggedProfileListItem extends ProfileListItem
         }
 
         if ($cnt > 0) {
-            $text = _('Flagged by ');
-
-            $text .= implode(', ', $lnks);
-
             if ($others > 0) {
-                $text .= sprintf(_(' and %d others'), $others);
+                $flagging_users = implode(', ', $lnks);
+                // TRANS: Message displayed on a profile if it has been flagged.
+                // TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
+                // TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
+                $text .= sprintf(_m('Flagged by %1$s and %2$d other', 'Flagged by %1$s and %2$d others', $others), $flagging_users, $others);
+            } else {
+                // TRANS: Message displayed on a profile if it has been flagged.
+                // TRANS: %s is a comma separated list of at most 5 user nicknames that flagged.
+                $text .= sprintf(_m('Flagged by %s'), $flagging_users);
             }
 
             $this->out->elementStart('p', array('class' => 'flaggers'));

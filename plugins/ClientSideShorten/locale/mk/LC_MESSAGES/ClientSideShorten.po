@@ -1,0 +1,35 @@
+# Translation of StatusNet - ClientSideShorten to Macedonian (Македонски)
+# Expored from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ClientSideShorten\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:38+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:41:51+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-clientsideshorten\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#: ClientSideShortenPlugin.php:74
+msgid ""
+"ClientSideShorten causes the web interface's notice form to automatically "
+"shorten URLs as they entered, and before the notice is submitted."
+msgstr ""
+"Со ClientSideShorten, образецот за забелешки во мрежниот посредник "
+"автоматски ги скратува URL-адресите при самото нивно внесување, и пред да се "
+"поднесе забелешката."
+
+#: shorten.php:55
+msgid "'text' argument must be specified."
+msgstr "Мора да се назначи аргументот „text“."

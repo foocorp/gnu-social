@@ -79,7 +79,8 @@ class User extends Memcached_DataObject
 
     function isSubscribed($other)
     {
-        return Subscription::exists($this->getProfile(), $other);
+        $profile = $this->getProfile();
+        return $profile->isSubscribed($other);
     }
 
     // 'update' won't write key columns, so we have to do it ourselves.
@@ -110,6 +111,16 @@ class User extends Memcached_DataObject
         return $result;
     }
 
+    /**
+     * Check whether the given nickname is potentially usable, or if it's
+     * excluded by any blacklists on this system.
+     *
+     * WARNING: INPUT IS NOT VALIDATED OR NORMALIZED. NON-NORMALIZED INPUT
+     * OR INVALID INPUT MAY LEAD TO FALSE RESULTS.
+     *
+     * @param string $nickname
+     * @return boolean true if clear, false if blacklisted
+     */
     static function allowed_nickname($nickname)
     {
         // XXX: should already be validated for size, content, etc.
@@ -250,6 +261,19 @@ class User extends Memcached_DataObject
 
         $user->inboxed = 1;
 
+        // Set default-on options here, otherwise they'll be disabled
+        // initially for sites using caching, since the initial encache
+        // doesn't know about the defaults in the database.
+        $user->emailnotifysub = 1;
+        $user->emailnotifyfav = 1;
+        $user->emailnotifynudge = 1;
+        $user->emailnotifymsg = 1;
+        $user->emailnotifyattn = 1;
+        $user->emailmicroid = 1;
+        $user->emailpost = 1;
+        $user->jabbermicroid = 1;
+        $user->viewdesigns = 1;
+
         $user->created = common_sql_now();
 
         if (Event::handle('StartUserRegister', array(&$user, &$profile))) {
@@ -264,7 +288,13 @@ class User extends Memcached_DataObject
             }
 
             $user->id = $id;
-            $user->uri = common_user_uri($user);
+
+            if (!empty($uri)) {
+                $user->uri = $uri;
+            } else {
+                $user->uri = common_user_uri($user);
+            }
+
             if (!empty($password)) { // may not have a password for OpenID users
                 $user->password = common_munge_password($password, $id);
             }
@@ -388,43 +418,14 @@ class User extends Memcached_DataObject
 
     function hasFave($notice)
     {
-        $cache = common_memcache();
-
-        // XXX: Kind of a hack.
-
-        if ($cache) {
-            // This is the stream of favorite notices, in rev chron
-            // order. This forces it into cache.
-
-            $ids = Fave::stream($this->id, 0, NOTICE_CACHE_WINDOW);
-
-            // If it's in the list, then it's a fave
-
-            if (in_array($notice->id, $ids)) {
-                return true;
-            }
-
-            // If we're not past the end of the cache window,
-            // then the cache has all available faves, so this one
-            // is not a fave.
-
-            if (count($ids) < NOTICE_CACHE_WINDOW) {
-                return false;
-            }
-
-            // Otherwise, cache doesn't have all faves;
-            // fall through to the default
-        }
-
-        $fave = Fave::pkeyGet(array('user_id' => $this->id,
-                                    'notice_id' => $notice->id));
-        return ((is_null($fave)) ? false : true);
+        $profile = $this->getProfile();
+        return $profile->hasFave($notice);
     }
 
     function mutuallySubscribed($other)
     {
-        return $this->isSubscribed($other) &&
-          $other->isSubscribed($this);
+        $profile = $this->getProfile();
+        return $profile->mutuallySubscribed($other);
     }
 
     function mutuallySubscribedUsers()
@@ -487,17 +488,8 @@ class User extends Memcached_DataObject
 
     function blowFavesCache()
     {
-        $cache = common_memcache();
-        if ($cache) {
-            // Faves don't happen chronologically, so we need to blow
-            // ;last cache, too
-            $cache->delete(common_cache_key('fave:ids_by_user:'.$this->id));
-            $cache->delete(common_cache_key('fave:ids_by_user:'.$this->id.';last'));
-            $cache->delete(common_cache_key('fave:ids_by_user_own:'.$this->id));
-            $cache->delete(common_cache_key('fave:ids_by_user_own:'.$this->id.';last'));
-        }
         $profile = $this->getProfile();
-        $profile->blowFaveCount();
+        $profile->blowFavesCache();
     }
 
     function getSelfTags()
@@ -546,6 +538,9 @@ class User extends Memcached_DataObject
         $self = $this->getProfile();
         if (Subscription::exists($other, $self)) {
             Subscription::cancel($other, $self);
+        }
+        if (Subscription::exists($self, $other)) {
+            Subscription::cancel($self, $other);
         }
 
         $block->query('COMMIT');
@@ -755,19 +750,14 @@ class User extends Memcached_DataObject
         $notice->profile_id = $this->id;
         $notice->whereAdd('repeat_of IS NOT NULL');
 
-        $notice->orderBy('id DESC');
+        $notice->orderBy('created DESC, id DESC');
 
         if (!is_null($offset)) {
             $notice->limit($offset, $limit);
         }
 
-        if ($since_id != 0) {
-            $notice->whereAdd('id > ' . $since_id);
-        }
-
-        if ($max_id != 0) {
-            $notice->whereAdd('id <= ' . $max_id);
-        }
+        Notice::addWhereSinceId($notice, $since_id);
+        Notice::addWhereMaxId($notice, $max_id);
 
         $ids = array();
 
@@ -800,17 +790,17 @@ class User extends Memcached_DataObject
           'FROM notice original JOIN notice rept ON original.id = rept.repeat_of ' .
           'WHERE original.profile_id = ' . $this->id . ' ';
 
-        if ($since_id != 0) {
-            $qry .= 'AND original.id > ' . $since_id . ' ';
+        $since = Notice::whereSinceId($since_id, 'original.id', 'original.created');
+        if ($since) {
+            $qry .= "AND ($since) ";
         }
 
-        if ($max_id != 0) {
-            $qry .= 'AND original.id <= ' . $max_id . ' ';
+        $max = Notice::whereMaxId($max_id, 'original.id', 'original.created');
+        if ($max) {
+            $qry .= "AND ($max) ";
         }
 
-        // NOTE: we sort by fave time, not by notice time!
-
-        $qry .= 'ORDER BY original.id DESC ';
+        $qry .= 'ORDER BY original.created, original.id DESC ';
 
         if (!is_null($offset)) {
             $qry .= "LIMIT $limit OFFSET $offset";
@@ -886,4 +876,126 @@ class User extends Memcached_DataObject
 
         return $owner;
     }
+
+    /**
+     * Pull the primary site account to use in single-user mode.
+     * If a valid user nickname is listed in 'singleuser':'nickname'
+     * in the config, this will be used; otherwise the site owner
+     * account is taken by default.
+     *
+     * @return User
+     * @throws ServerException if no valid single user account is present
+     * @throws ServerException if called when not in single-user mode
+     */
+    static function singleUser()
+    {
+        if (common_config('singleuser', 'enabled')) {
+
+            $user = null;
+
+            $nickname = common_config('singleuser', 'nickname');
+
+            if (!empty($nickname)) {
+                $user = User::staticGet('nickname', $nickname);
+            }
+
+            // if there was no nickname or no user by that nickname,
+            // try the site owner.
+
+            if (empty($user)) {
+                $user = User::siteOwner();
+            }
+
+            if (!empty($user)) {
+                return $user;
+            } else {
+                // TRANS: Server exception.
+                throw new ServerException(_('No single user defined for single-user mode.'));
+            }
+        } else {
+            // TRANS: Server exception.
+            throw new ServerException(_('Single-user mode code called when not enabled.'));
+        }
+    }
+
+    /**
+     * This is kind of a hack for using external setup code that's trying to
+     * build single-user sites.
+     *
+     * Will still return a username if the config singleuser/nickname is set
+     * even if the account doesn't exist, which normally indicates that the
+     * site is horribly misconfigured.
+     *
+     * At the moment, we need to let it through so that router setup can
+     * complete, otherwise we won't be able to create the account.
+     *
+     * This will be easier when we can more easily create the account and
+     * *then* switch the site to 1user mode without jumping through hoops.
+     *
+     * @return string
+     * @throws ServerException if no valid single user account is present
+     * @throws ServerException if called when not in single-user mode
+     */
+    static function singleUserNickname()
+    {
+        try {
+            $user = User::singleUser();
+            return $user->nickname;
+        } catch (Exception $e) {
+            if (common_config('singleuser', 'enabled') && common_config('singleuser', 'nickname')) {
+                common_log(LOG_WARN, "Warning: code attempting to pull single-user nickname when the account does not exist. If this is not setup time, this is probably a bug.");
+                return common_config('singleuser', 'nickname');
+            }
+            throw $e;
+        }
+    }
+
+    /**
+     * Find and shorten links in the given text using this user's URL shortening
+     * settings.
+     *
+     * By default, links will be left untouched if the text is shorter than the
+     * configured maximum notice length. Pass true for the $always parameter
+     * to force all links to be shortened regardless.
+     *
+     * Side effects: may save file and file_redirection records for referenced URLs.
+     *
+     * @param string $text
+     * @param boolean $always
+     * @return string
+     */
+    public function shortenLinks($text, $always=false)
+    {
+        return common_shorten_links($text, $always, $this);
+    }
+
+    /*
+     * Get a list of OAuth client application that have access to this
+     * user's account.
+     */
+    function getConnectedApps($offset = 0, $limit = null)
+    {
+        $qry =
+          'SELECT u.* ' .
+          'FROM oauth_application_user u, oauth_application a ' .
+          'WHERE u.profile_id = %d ' .
+          'AND a.id = u.application_id ' .
+          'AND u.access_type > 0 ' .
+          'ORDER BY u.created DESC ';
+
+        if ($offset > 0) {
+            if (common_config('db','type') == 'pgsql') {
+                $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
+            } else {
+                $qry .= ' LIMIT ' . $offset . ', ' . $limit;
+            }
+        }
+
+        $apps = new Oauth_application_user();
+
+        $cnt = $apps->query(sprintf($qry, $this->id));
+
+        return $apps;
+    }
+
 }

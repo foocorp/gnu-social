@@ -45,7 +45,6 @@ class EditMirrorForm extends Form
      *
      * @return void
      */
-
     function formLegend()
     {
     }
@@ -58,7 +57,6 @@ class EditMirrorForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->elementStart('fieldset');
@@ -81,6 +79,7 @@ class EditMirrorForm extends Form
         $this->out->elementEnd('div');
         $this->out->elementStart('div');
         if ($feed) {
+            // XXX: Why the hard coded space?
             $this->out->text(_m('LABEL', 'Remote feed:') . ' ');
             //$this->out->element('a', array('href' => $feed), $feed);
             $this->out->element('input', array('value' => $feed, 'readonly' => 'readonly', 'style' => 'width: 100%'));
@@ -111,7 +110,7 @@ class EditMirrorForm extends Form
         }
         $this->out->elementEnd('fieldset');
 
-        
+
         $this->out->elementStart('div');
         $this->out->submit($this->id() . '-save', _m('Save'));
         $this->out->element('input', array('type' => 'submit',
@@ -155,7 +154,6 @@ class EditMirrorForm extends Form
      *
      * @return string ID of the form
      */
-
     function id()
     {
         return 'edit-mirror-form-' . $this->profile->id;
@@ -169,7 +167,6 @@ class EditMirrorForm extends Form
      *
      * @return string URL to post to
      */
-
     function action()
     {
         return common_local_url('editmirror');
@@ -180,10 +177,8 @@ class EditMirrorForm extends Form
      *
      * @return string the form's class
      */
-
     function formClass()
     {
         return 'form_settings';
     }
-
 }

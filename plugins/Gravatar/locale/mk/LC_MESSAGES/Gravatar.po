@@ -1,0 +1,76 @@
+# Translation of StatusNet - Gravatar to Macedonian (Македонски)
+# Expored from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Gravatar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:06+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:41:57+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-gravatar\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#: GravatarPlugin.php:60
+msgid "Set Gravatar"
+msgstr "Постави Gravatar"
+
+#: GravatarPlugin.php:63
+msgid "If you want to use your Gravatar image, click \"Add\"."
+msgstr ""
+"Ако сакате да ја користите Вашата слика од Gravatar, кликнете на „Додај“."
+
+#: GravatarPlugin.php:68
+msgid "Add"
+msgstr "Додај"
+
+#: GravatarPlugin.php:78
+msgid "Remove Gravatar"
+msgstr "Отстрани Gravatar"
+
+#: GravatarPlugin.php:81
+msgid "If you want to remove your Gravatar image, click \"Remove\"."
+msgstr ""
+"Ако сакате да ја отстраните Вашата слика од Gravatar, кликнете на „Отстрани“."
+
+#: GravatarPlugin.php:86
+msgid "Remove"
+msgstr "Отстрани"
+
+#: GravatarPlugin.php:91
+msgid "To use a Gravatar first enter in an email address."
+msgstr "За да користите Gravatar најпрвин внесете е-пошта."
+
+#: GravatarPlugin.php:140
+msgid "You do not have an email address set in your profile."
+msgstr "Во профилот немате назначено е-пошта."
+
+#: GravatarPlugin.php:158
+msgid "Failed to save Gravatar to the database."
+msgstr "Не успеав да го зачувам Gravatar-от во базата на податоци."
+
+#: GravatarPlugin.php:162
+msgid "Gravatar added."
+msgstr "Gravatar-от е додаден."
+
+#: GravatarPlugin.php:180
+msgid "Gravatar removed."
+msgstr "Gravatar-от е отстранет."
+
+#: GravatarPlugin.php:200
+msgid ""
+"The Gravatar plugin allows users to use their <a href=\"http://www.gravatar."
+"com/\">Gravatar</a> with StatusNet."
+msgstr ""
+"Приклучокот Gravatar им овозможува на корисниците да го користат својот <a "
+"href=\"http://www.gravatar.com/\">Gravatar</a> со StatusNet."

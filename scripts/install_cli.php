@@ -208,7 +208,7 @@ END_HELP;
         $breakout = preg_replace('/<a[^>+]\bhref="(.*)"[^>]*>(.*)<\/a>/',
                                  '\2 &lt;\1&gt;',
                                  $html);
-        return html_entity_decode(strip_tags($breakout));
+        return html_entity_decode(strip_tags($breakout), ENT_QUOTES, 'UTF-8');
     }
 }
 

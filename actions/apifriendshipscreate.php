@@ -48,7 +48,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiFriendshipsCreateAction extends ApiAuthAction
 {
     var $other  = null;
@@ -61,7 +60,6 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -81,13 +79,13 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400,
                 $this->format
@@ -97,6 +95,7 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
+                // TRANS: Client error displayed when trying to handle an unknown API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -106,6 +105,7 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
 
         if (empty($this->other)) {
             $this->clientError(
+                // TRANS: Client error displayed when trying follow who's profile could not be found.
                 _('Could not follow user: profile not found.'),
                 403,
                 $this->format
@@ -115,6 +115,8 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
 
         if ($this->user->isSubscribed($this->other)) {
             $errmsg = sprintf(
+                // TRANS: Client error displayed when trying to follow a user that's already being followed.
+                // TRANS: %s is the nickname of the user that is already being followed.
                 _('Could not follow user: %s is already on your list.'),
                 $this->other->nickname
             );
@@ -133,5 +135,4 @@ class ApiFriendshipsCreateAction extends ApiAuthAction
         $this->showProfile($this->other, $this->format);
         $this->endDocument($this->format);
     }
-
 }

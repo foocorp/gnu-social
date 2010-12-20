@@ -1,0 +1,80 @@
+# Translation of StatusNet - MobileProfile to Tagalog (Tagalog)
+# Expored from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - MobileProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:19+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:45+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: MobileProfilePlugin.php:193
+msgid "This page is not available in a media type you accept."
+msgstr "Ang pahinang ito ay hindi makukuha sa uri ng midya na tinanggap mo."
+
+#: MobileProfilePlugin.php:310
+msgid "Home"
+msgstr "Tahanan"
+
+#: MobileProfilePlugin.php:312
+msgid "Account"
+msgstr "Akawnt"
+
+#: MobileProfilePlugin.php:314
+msgid "Connect"
+msgstr "Umugnay"
+
+#: MobileProfilePlugin.php:317
+msgid "Admin"
+msgstr "Tagapangasiwa"
+
+#: MobileProfilePlugin.php:317
+msgid "Change site configuration"
+msgstr "Baguhin ang pagkakaayos ng sityo"
+
+#: MobileProfilePlugin.php:321
+msgid "Invite"
+msgstr "Anyayahan"
+
+#: MobileProfilePlugin.php:324
+msgid "Logout"
+msgstr "Umalis sa pagkakalagda"
+
+#: MobileProfilePlugin.php:328
+msgid "Register"
+msgstr "Magpatala"
+
+#: MobileProfilePlugin.php:331
+msgid "Login"
+msgstr "Lumagda"
+
+#: MobileProfilePlugin.php:335
+msgid "Search"
+msgstr "Humanap"
+
+#: MobileProfilePlugin.php:361
+msgid "Attach"
+msgstr "Ilakip"
+
+#: MobileProfilePlugin.php:365
+msgid "Attach a file"
+msgstr "Maglakip ng isang talaksan"
+
+#: MobileProfilePlugin.php:417
+msgid "XHTML MobileProfile output for supporting user agents."
+msgstr ""
+"Mga paglalabas na XHTML na MobileProfile para sa pagtataguyo ng mga ahente "
+"ng tagagamit."

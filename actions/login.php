@@ -63,28 +63,6 @@ class LoginAction extends Action
     }
 
     /**
-     * Prepare page to run
-     *
-     *
-     * @param $args
-     * @return string title
-     */
-
-    function prepare($args)
-    {
-        parent::prepare($args);
-
-        // @todo this check should really be in index.php for all sensitive actions
-        $ssl = common_config('site', 'ssl');
-        if (empty($_SERVER['HTTPS']) && ($ssl == 'always' || $ssl == 'sometimes')) {
-            common_redirect(common_local_url('login'));
-            // exit
-        }
-
-        return true;
-    }
-
-    /**
      * Handle input, produce output
      *
      * Switches on request method; either shows the form or handles its input.
@@ -118,26 +96,9 @@ class LoginAction extends Action
      * @return void
      */
 
-    function checkLogin($user_id=null, $token=null)
+    function checkLogin($user_id=null)
     {
         // XXX: login throttle
-
-        // CSRF protection - token set in NoticeForm
-        $token = $this->trimmed('token');
-        if (!$token || $token != common_session_token()) {
-	    $st = common_session_token();
-	    if (empty($token)) {
-		common_log(LOG_WARNING, 'No token provided by client.');
-	    } else if (empty($st)) {
-		common_log(LOG_WARNING, 'No session token stored.');
-	    } else {
-		common_log(LOG_WARNING, 'Token = ' . $token . ' and session token = ' . $st);
-	    }
-
-            $this->clientError(_('There was a problem with your session token. '.
-                                 'Try again, please.'));
-            return;
-        }
 
         $nickname = $this->trimmed('nickname');
         $password = $this->arg('password');
@@ -261,7 +222,6 @@ class LoginAction extends Action
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->submit('submit', _('Login'));
-        $this->hidden('token', common_session_token());
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
         $this->elementStart('p');

@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link     http://status.net/
  */
-
 class BlacklistadminpanelAction extends AdminPanelAction
 {
     /**
@@ -48,10 +47,9 @@ class BlacklistadminpanelAction extends AdminPanelAction
      *
      * @return string title
      */
-
     function title()
     {
-        return _('Blacklist');
+        return _m('Blacklist');
     }
 
     /**
@@ -59,10 +57,9 @@ class BlacklistadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
-        return _('Blacklisted URLs and nicknames');
+        return _m('Blacklisted URLs and nicknames');
     }
 
     /**
@@ -72,7 +69,6 @@ class BlacklistadminpanelAction extends AdminPanelAction
      *
      * @see BlacklistAdminPanelForm
      */
-
     function showForm()
     {
         $form = new BlacklistAdminPanelForm($this);
@@ -85,7 +81,6 @@ class BlacklistadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         $nickPatterns = $this->splitPatterns($this->trimmed('blacklist-nicknames'));
@@ -116,7 +111,6 @@ class BlacklistadminpanelAction extends AdminPanelAction
      *
      * @return boolean success flag
      */
-
     function validate(&$values)
     {
         return true;
@@ -132,7 +126,6 @@ class BlacklistadminpanelAction extends AdminPanelAction
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link     http://status.net/
  */
-
 class BlacklistAdminPanelForm extends Form
 {
     /**
@@ -140,7 +133,6 @@ class BlacklistAdminPanelForm extends Form
      *
      * @return string ID
      */
-
     function id()
     {
         return 'blacklistadminpanel';
@@ -151,7 +143,6 @@ class BlacklistAdminPanelForm extends Form
      *
      * @return string class
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -162,7 +153,6 @@ class BlacklistAdminPanelForm extends Form
      *
      * @return string action URL
      */
-
     function action()
     {
         return common_local_url('blacklistadminpanel');
@@ -173,7 +163,6 @@ class BlacklistAdminPanelForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->elementStart('ul', 'form_data');
@@ -184,7 +173,7 @@ class BlacklistAdminPanelForm extends Form
 
         $this->out->textarea('blacklist-nicknames', _m('Nicknames'),
                              implode("\r\n", $nickPatterns),
-                             _('Patterns of nicknames to block, one per line'));
+                             _m('Patterns of nicknames to block, one per line'));
         $this->out->elementEnd('li');
 
         $urlPatterns = Homepage_blacklist::getPatterns();
@@ -192,7 +181,7 @@ class BlacklistAdminPanelForm extends Form
         $this->out->elementStart('li');
         $this->out->textarea('blacklist-urls', _m('URLs'),
                              implode("\r\n", $urlPatterns),
-                             _('Patterns of URLs to block, one per line'));
+                             _m('Patterns of URLs to block, one per line'));
         $this->out->elementEnd('li');
 
         $this->out->elementEnd('ul');
@@ -203,13 +192,12 @@ class BlacklistAdminPanelForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->submit('submit',
-                           _('Save'),
+                           _m('Save'),
                            'submit',
                            null,
-                           _('Save site settings'));
+                           _m('Save site settings'));
     }
 }

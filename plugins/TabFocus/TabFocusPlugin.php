@@ -51,7 +51,7 @@ class TabFocusPlugin extends Plugin
                             'author' => 'Craig Andrews and Paul Irish',
                             'homepage' => 'http://status.net/wiki/Plugin:TabFocus',
                             'rawdescription' =>
-                            _m('TabFocus changes the notice form behavior so that, while in the text area, pressing the tab key focuses the "Send" button, matching the behavor of Twitter.'));
+                            _m('TabFocus changes the notice form behavior so that, while in the text area, pressing the tab key focuses the "Send" button, matching the behavior of Twitter.'));
         return true;
     }
 }

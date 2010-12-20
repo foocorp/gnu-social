@@ -17,6 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 /**
  * Send a Salmon notification in the background.
  * @package OStatusPlugin
@@ -36,7 +40,7 @@ class SalmonQueueHandler extends QueueHandler
         assert(is_string($data['entry']));
 
         $actor = Profile::staticGet($data['actor']);
-        
+
         $salmon = new Salmon();
         $salmon->post($data['salmonuri'], $data['entry'], $actor);
 

@@ -1,0 +1,29 @@
+# Translation of StatusNet - OpenExternalLinkTarget to French (Français)
+# Expored from translatewiki.net
+#
+# Author: Peter17
+# Author: Verdy p
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - OpenExternalLinkTarget\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:21+0000\n"
+"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:44:22+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fr\n"
+"X-Message-Group: #out-statusnet-plugin-openexternallinktarget\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: OpenExternalLinkTargetPlugin.php:59
+msgid "Opens external links (i.e. with rel=external) on a new window or tab."
+msgstr ""
+"Ouvre les liens externes (p. ex., avec rel=external) dans une nouvelle "
+"fenêtre ou un nouvel onglet."

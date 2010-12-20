@@ -30,6 +30,7 @@ class TwitterQueueHandler extends QueueHandler
 
     function handle($notice)
     {
-        return broadcast_twitter($notice);
+        $ok = broadcast_twitter($notice);
+        return $ok || common_config('twitter', 'ignore_errors');
     }
 }

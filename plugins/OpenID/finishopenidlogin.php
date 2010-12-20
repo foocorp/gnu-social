@@ -17,7 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('STATUSNET')) {
+    exit(1);
+}
 
 require_once INSTALLDIR.'/plugins/OpenID/openid.php';
 
@@ -98,8 +100,15 @@ class FinishopenidloginAction extends Action
             return;
         }
 
+        // We don't recognize this OpenID, so we're going to give the user
+        // two options, each in its own mini-form.
+        //
+        // First, they can create a new account using their OpenID auth
+        // info. The profile will be pre-populated with whatever name,
+        // email, and location we can get from the OpenID provider, so
+        // all we ask for is the license confirmation.
         $this->elementStart('form', array('method' => 'post',
-                                          'id' => 'account_connect',
+                                          'id' => 'account_create',
                                           'class' => 'form_settings',
                                           'action' => common_local_url('finishopenidlogin')));
         $this->hidden('token', common_session_token());
@@ -139,7 +148,15 @@ class FinishopenidloginAction extends Action
         // TRANS: Button label in form in which to create a new user on the site for an OpenID.
         $this->submit('create', _m('BUTTON', 'Create'));
         $this->elementEnd('fieldset');
+        $this->elementEnd('form');
 
+        // The second option is to attach this OpenID to an existing account
+        // on the local system, which they need to provide a password for.
+        $this->elementStart('form', array('method' => 'post',
+                                          'id' => 'account_connect',
+                                          'class' => 'form_settings',
+                                          'action' => common_local_url('finishopenidlogin')));
+        $this->hidden('token', common_session_token());
         $this->elementStart('fieldset', array('id' => 'form_openid_createaccount'));
         $this->element('legend', null,
                        // TRANS: Used as form legend for form in which to connect an OpenID to an existing user on the site.
@@ -270,13 +287,10 @@ class FinishopenidloginAction extends Action
             }
         }
 
-        $nickname = $this->trimmed('newname');
-
-        if (!Validate::string($nickname, array('min_length' => 1,
-                                               'max_length' => 64,
-                                               'format' => NICKNAME_FMT))) {
-            // TRANS: OpenID plugin message. The entered new user name did not conform to the requirements.
-            $this->showForm(_m('Nickname must have only lowercase letters and numbers and no spaces.'));
+        try {
+            $nickname = Nickname::normalize($this->trimmed('newname'));
+        } catch (NicknameException $e) {
+            $this->showForm($e->getMessage());
             return;
         }
 
@@ -461,9 +475,7 @@ class FinishopenidloginAction extends Action
 
     function isNewNickname($str)
     {
-        if (!Validate::string($str, array('min_length' => 1,
-                                          'max_length' => 64,
-                                          'format' => NICKNAME_FMT))) {
+        if (!Nickname::isValid($str)) {
             return false;
         }
         if (!User::allowed_nickname($str)) {

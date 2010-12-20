@@ -271,17 +271,17 @@ class ShowApplicationAction extends OwnerDesignAction
 
         $this->elementStart('dl', 'entity_request_token_url');
         $this->element('dt', null, _('Request token URL'));
-        $this->element('dd', null, common_local_url('apioauthrequesttoken'));
+        $this->element('dd', null, common_local_url('ApiOauthRequestToken'));
         $this->elementEnd('dl');
 
         $this->elementStart('dl', 'entity_access_token_url');
         $this->element('dt', null, _('Access token URL'));
-        $this->element('dd', null, common_local_url('apioauthaccesstoken'));
+        $this->element('dd', null, common_local_url('ApiOauthAccessToken'));
         $this->elementEnd('dl');
 
         $this->elementStart('dl', 'entity_authorize_url');
         $this->element('dt', null, _('Authorize URL'));
-        $this->element('dd', null, common_local_url('apioauthauthorize'));
+        $this->element('dd', null, common_local_url('ApiOauthAuthorize'));
         $this->elementEnd('dl');
 
         $this->element('p', 'note',

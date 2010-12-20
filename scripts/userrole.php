@@ -38,8 +38,8 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 if (have_option('i', 'id')) {
     $id = get_option_value('i', 'id');
-    $user = User::staticGet('id', $id);
-    if (empty($user)) {
+    $profile = Profile::staticGet('id', $id);
+    if (empty($profile)) {
         print "Can't find user with ID $id\n";
         exit(1);
     }
@@ -48,6 +48,11 @@ if (have_option('i', 'id')) {
     $user = User::staticGet('nickname', $nickname);
     if (empty($user)) {
         print "Can't find user with nickname '$nickname'\n";
+        exit(1);
+    }
+    $profile = $user->getProfile();
+    if (empty($profile)) {
+        print "User with ID $id has no profile\n";
         exit(1);
     }
 } else {
@@ -63,9 +68,9 @@ if (empty($role)) {
 }
 
 if (have_option('d', 'delete')) {
-    print "Revoking role '$role' from user '$user->nickname' ($user->id)...";
+    print "Revoking role '$role' from user '$profile->nickname' ($profile->id)...";
     try {
-        $user->revokeRole($role);
+        $profile->revokeRole($role);
         print "OK\n";
     } catch (Exception $e) {
         print "FAIL\n";
@@ -73,9 +78,9 @@ if (have_option('d', 'delete')) {
         print "\n";
     }
 } else {
-    print "Granting role '$role' to user '$user->nickname' ($user->id)...";
+    print "Granting role '$role' to user '$profile->nickname' ($profile->id)...";
     try {
-        $user->grantRole($role);
+        $profile->grantRole($role);
         print "OK\n";
     } catch (Exception $e) {
         print "FAIL\n";

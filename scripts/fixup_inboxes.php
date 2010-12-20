@@ -46,7 +46,7 @@ if ($start_at) {
 }
 
 $cnt = $user->find();
-$cache = common_memcache();
+$cache = Cache::instance();
 
 while ($user->fetch()) {
     common_log(LOG_INFO, 'Updating inbox for user ' . $user->id);
@@ -76,6 +76,6 @@ while ($user->fetch()) {
     $inbox->free();
     unset($inbox);
     if ($cache) {
-        $cache->delete(common_cache_key('user:notices_with_friends:' . $user->id));
+        $cache->delete(Cache::key('user:notices_with_friends:' . $user->id));
     }
 }

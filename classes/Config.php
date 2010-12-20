@@ -58,7 +58,7 @@ class Config extends Memcached_DataObject
         $c = self::memcache();
 
         if (!empty($c)) {
-            $settings = $c->get(common_cache_key(self::settingsKey));
+            $settings = $c->get(Cache::key(self::settingsKey));
             if ($settings !== false) {
                 return $settings;
             }
@@ -77,7 +77,7 @@ class Config extends Memcached_DataObject
         $config->free();
 
         if (!empty($c)) {
-            $c->set(common_cache_key(self::settingsKey), $settings);
+            $c->set(Cache::key(self::settingsKey), $settings);
         }
 
         return $settings;
@@ -154,7 +154,7 @@ class Config extends Memcached_DataObject
         $c = self::memcache();
 
         if (!empty($c)) {
-            $c->delete(common_cache_key(self::settingsKey));
+            $c->delete(Cache::key(self::settingsKey));
         }
     }
 }

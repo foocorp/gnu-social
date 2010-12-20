@@ -41,16 +41,17 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
 class SubscriptionsAction extends GalleryAction
 {
     function title()
     {
         if ($this->page == 1) {
+            // TRANS: Header for subscriptions overview for a user (first page).
+            // TRANS: %s is a user nickname.
             return sprintf(_('%s subscriptions'), $this->user->nickname);
         } else {
+            // TRANS: Header for subscriptions overview for a user (not first page).
+            // TRANS: %1$s is a user nickname, %2$d is the page number.
             return sprintf(_('%1$s subscriptions, page %2$d'),
                            $this->user->nickname,
                            $this->page);
@@ -62,10 +63,14 @@ class SubscriptionsAction extends GalleryAction
         $user = common_current_user();
         if ($user && ($user->id == $this->profile->id)) {
             $this->element('p', null,
+                           // TRANS: Page notice for page with an overview of all subscriptions
+                           // TRANS: of the logged in user's own profile.
                            _('These are the people whose notices '.
                              'you listen to.'));
         } else {
             $this->element('p', null,
+                           // TRANS: Page notice for page with an overview of all subscriptions of a user other
+                           // TRANS: than the logged in user. %s is the user nickname.
                            sprintf(_('These are the people whose '.
                                      'notices %s listens to.'),
                                    $this->profile->nickname));
@@ -123,12 +128,24 @@ class SubscriptionsAction extends GalleryAction
         if (common_logged_in()) {
             $current_user = common_current_user();
             if ($this->user->id === $current_user->id) {
-                $message = _('You\'re not listening to anyone\'s notices right now, try subscribing to people you know. Try [people search](%%action.peoplesearch%%), look for members in groups you\'re interested in and in our [featured users](%%action.featured%%). If you\'re a [Twitter user](%%action.twittersettings%%), you can automatically subscribe to people you already follow there.');
+                // TRANS: Subscription list text when the logged in user has no subscriptions.
+                // TRANS: This message contains Markdown URLs. The link description is between
+                // TRANS: square brackets, and the link between parentheses. Do not separate "]("
+                // TRANS: and do not change the URL part.
+                $message = _('You\'re not listening to anyone\'s notices right now, try subscribing to people you know. '.
+                             'Try [people search](%%action.peoplesearch%%), look for members in groups you\'re interested '.
+                             'in and in our [featured users](%%action.featured%%). '.
+                             'If you\'re a [Twitter user](%%action.twittersettings%%), you can automatically subscribe to '.
+                             'people you already follow there.');
             } else {
+                // TRANS: Subscription list text when looking at the subscriptions for a of a user other
+                // TRANS: than the logged in user that has no subscriptions. %s is the user nickname.
                 $message = sprintf(_('%s is not listening to anyone.'), $this->user->nickname);
             }
         }
         else {
+            // TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
+            // TRANS: as an anonymous user. %s is the user nickname.
             $message = sprintf(_('%s is not listening to anyone.'), $this->user->nickname);
         }
 
@@ -145,6 +162,22 @@ class SubscriptionsAction extends GalleryAction
 
         $cloud2 = new SubscriptionsPeopleSelfTagCloudSection($this);
         $cloud2->show();
+    }
+
+    /**
+     * Link to feeds of subscriptions
+     *
+     * @return array of Feed objects
+     */
+
+    function getFeeds()
+    {
+        return array(new Feed(Feed::ATOM,
+                              common_local_url('AtomPubSubscriptionFeed',
+                                               array('subscriber' => $this->profile->id)),
+                              sprintf(_('Subscription feed for %s (Atom)'),
+                                      $this->profile->nickname)));
+
     }
 }
 
@@ -207,6 +240,7 @@ class SubscriptionsListItem extends SubscriptionListItem
             }
 
             $this->out->element('input', $attrs);
+            // TRANS: Checkbox label for enabling Jabber messages for a profile in a subscriptions list.
             $this->out->element('label', array('for' => 'jabber-'.$this->profile->id), _('IM'));
         } else {
             $this->out->hidden('jabber', $sub->jabber);
@@ -221,12 +255,15 @@ class SubscriptionsListItem extends SubscriptionListItem
             }
 
             $this->out->element('input', $attrs);
+            // TRANS: Checkbox label for enabling SMS messages for a profile in a subscriptions list.
             $this->out->element('label', array('for' => 'sms-'.$this->profile->id), _('SMS'));
         } else {
             $this->out->hidden('sms', $sub->sms);
         }
-        $this->out->submit('save', _('Save'));
+        // TRANS: Save button for settings for a profile in a subscriptions list.
+        $this->out->submit('save', _m('BUTTON','Save'));
         $this->out->elementEnd('form');
         return;
     }
+
 }

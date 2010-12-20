@@ -1,0 +1,191 @@
+/* mobile style */
+
+body {
+    background-image: none;
+    min-width: 0;
+}
+
+#wrap {
+    margin: 0;
+    padding: 0;
+    min-width:0;
+    max-width:100%;
+}
+
+#header {
+    width: 96%;
+    padding: 0 2%;
+    padding-top: 20px;
+}
+
+.user_in #header {
+    padding-top: 40px;
+}
+
+address {
+margin:1em 0 0 0;
+float:left;
+width:100%;
+}
+
+address img + .fn {
+display:block;
+margin-top:1em;
+    margin-right: 10px;
+clear: left;
+float:left;
+}
+
+#site_nav_global_primary {
+    margin:0;
+    width: 98%;
+    padding: 4px 0;
+    margin-left: -2%;
+    height: auto;
+    position:absolute;
+    top:0;
+    left:0;
+    font-size: 1em;
+	letter-spacing: 0em;
+}
+
+#site_nav_global_primary li {
+    margin-left:0;
+    margin-right:10px;
+    float:left;
+    font-size:0.9em;
+    padding: 2px 4px;
+    line-height: 1em;
+}
+
+.form_notice {
+    float: left;
+    margin-left: -10px;
+    width: 300px;
+    padding: 4px;
+}
+
+#form_notice-direct.form_notice {
+    padding-top: 10px;
+}
+
+.form_notice textarea {
+    width: 210px;
+    height: 50px;
+    padding: 4px;
+}
+
+#notice_text-count {
+position:absolute;
+bottom:2px;
+    left: 175px;
+    font-size: 0.8em;
+z-index:9;
+}
+
+#form_notice-direct.form_notice #notice_text-count {
+    left: 0px;
+}
+
+/*input type=file no good in
+iPhone/iPod Touch, Android, Opera Mini Simulator
+*/
+.form_notice #notice_text-count + label,
+.form_notice label[for="notice_data-attach"] {
+display:none;
+}
+.form_notice #notice_data-attach {
+position:static;
+clear:both;
+width:65%;
+height:auto;
+display:block;
+z-index:9;
+padding:0;
+margin:0;
+background:none;
+opacity:1;
+}
+
+.form_notice #notice_action-submit {
+    text-align: center;
+    left: 230px;
+    top: 32px;
+    width: 70px;
+    font-size: 0.8em;
+}
+
+#form_notice-direct.form_notice #notice_action-submit {
+    top: 62px;
+}
+
+#site_nav_local_views {
+    height: auto;
+    font-size: 0.9em;
+    line-height: 2em;
+    margin-bottom: 0px;
+    padding-left: 4px;
+}
+
+#site_nav_local_views li {
+    margin-right: 6px;
+}
+
+
+#core {
+    width: 100%;
+    margin: 0;
+}
+
+#content {
+    width: 96%;
+    padding: 10px 2%;
+    margin: 0;
+    min-height: auto;
+}
+
+#footer {
+    margin: 0;
+    padding: 10px 4px 4px 4px;
+}
+
+
+.form_settings fieldset {
+margin-bottom:7px;
+}
+
+.form_settings label {
+width:auto;
+display:block;
+float:none;
+    text-align: left;
+}
+
+.form_settings .form_data li {
+margin-bottom:7px;
+}
+
+.form_settings .form_data textarea,
+.form_settings .form_data select, 
+.form_settings .form_data input {
+margin-left:0;
+display:block;
+}
+.form_settings .form_data textarea {
+width:96.41%;
+}
+
+.form_settings .form_data label {
+float:none;
+}
+
+.form_settings .form_data p.form_guide {
+width:auto;
+margin-left:0;
+}
+
+
+#settings_design_color .form_data {
+ width: auto;
+ margin-right: 0;
+}

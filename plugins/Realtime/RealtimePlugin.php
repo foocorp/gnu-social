@@ -43,7 +43,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class RealtimePlugin extends Plugin
 {
     protected $replyurl = null;
@@ -323,7 +322,33 @@ class RealtimePlugin extends Plugin
 
     function _getScripts()
     {
-        return array('plugins/Realtime/realtimeupdate.js');
+        return array('plugins/Realtime/realtimeupdate.min.js');
+    }
+
+    /**
+     * Export any i18n messages that need to be loaded at runtime...
+     *
+     * @param Action $action
+     * @param array $messages
+     *
+     * @return boolean hook return value
+     */
+    function onEndScriptMessages($action, &$messages)
+    {
+        // TRANS: Text label for realtime view "play" button, usually replaced by an icon.
+        $messages['realtime_play'] = _m('BUTTON', 'Play');
+        // TRANS: Tooltip for realtime view "play" button.
+        $messages['realtime_play_tooltip'] = _m('TOOLTIP', 'Play');
+        // TRANS: Text label for realtime view "pause" button
+        $messages['realtime_pause'] = _m('BUTTON', 'Pause');
+        // TRANS: Tooltip for realtime view "pause" button
+        $messages['realtime_pause_tooltip'] = _m('TOOLTIP', 'Pause');
+        // TRANS: Text label for realtime view "popup" button, usually replaced by an icon.
+        $messages['realtime_popup'] = _m('BUTTON', 'Pop up');
+        // TRANS: Tooltip for realtime view "popup" button.
+        $messages['realtime_popup_tooltip'] = _m('TOOLTIP', 'Pop up in a window');
+
+        return true;
     }
 
     function _updateInitialize($timeline, $user_id)

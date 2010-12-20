@@ -1,5 +1,5 @@
 <?php
-/** 
+/**
  * StatusNet, the distributed open-source microblogging tool
  *
  * Cache the LDAP schema in memcache to improve performance
@@ -32,14 +32,14 @@ class MemcacheSchemaCache implements Net_LDAP2_SchemaCache
     protected $cacheKey;
 
     /**
-    * Initialize the simple cache
-    *
-    * Config is as following:
-    *  memcache     memcache instance
-    *  cachekey  the key in the cache to look at
-    *
-    * @param array $cfg Config array
-    */
+     * Initialize the simple cache
+     *
+     * Config is as following:
+     *  memcache     memcache instance
+     *  cachekey  the key in the cache to look at
+     *
+     * @param array $cfg Config array
+     */
     public function MemcacheSchemaCache($cfg)
     {
         $this->c = $cfg['c'];
@@ -57,18 +57,18 @@ class MemcacheSchemaCache implements Net_LDAP2_SchemaCache
     }
 
     /**
-    * Store a schema object in the cache
-    *
-    * This method will be called, if Net_LDAP2 has fetched a fresh
-    * schema object from LDAP and wants to init or refresh the cache.
-    *
-    * To invalidate the cache and cause Net_LDAP2 to refresh the cache,
-    * you can call this method with null or false as value.
-    * The next call to $ldap->schema() will then refresh the caches object.
-    *
-    * @param mixed $schema The object that should be cached
-    * @return true|Net_LDAP2_Error|false
-    */
+     * Store a schema object in the cache
+     *
+     * This method will be called, if Net_LDAP2 has fetched a fresh
+     * schema object from LDAP and wants to init or refresh the cache.
+     *
+     * To invalidate the cache and cause Net_LDAP2 to refresh the cache,
+     * you can call this method with null or false as value.
+     * The next call to $ldap->schema() will then refresh the caches object.
+     *
+     * @param mixed $schema The object that should be cached
+     * @return true|Net_LDAP2_Error|false
+     */
     public function storeSchema($schema) {
         return $this->c->set($this->cacheKey, $schema);
     }

@@ -17,6 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 /**
  * PuSH feed subscription record
  * @package Hub
@@ -54,7 +58,6 @@ class HubSub extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('hashkey' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
@@ -112,7 +115,6 @@ class HubSub extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keyTypes()
     {
         return array('hashkey' => 'K');
@@ -206,7 +208,8 @@ class HubSub extends Memcached_DataObject
         if ($status >= 200 && $status < 300) {
             common_log(LOG_INFO, "Verified $mode of $this->callback:$this->topic");
         } else {
-            throw new ClientException("Hub subscriber verification returned HTTP $status");
+            // TRANS: Client exception. %s is a HTTP status code.
+            throw new ClientException(sprintf(_m('Hub subscriber verification returned HTTP %s.'),$status));
         }
 
         $old = HubSub::staticGet($this->topic, $this->callback);
@@ -307,9 +310,9 @@ class HubSub extends Memcached_DataObject
     /**
      * Queue up a large batch of pushes to multiple subscribers
      * for this same topic update.
-     * 
+     *
      * If queues are disabled, this will run immediately.
-     * 
+     *
      * @param string $atom well-formed Atom feed
      * @param array $pushCallbacks list of callback URLs
      */
@@ -352,11 +355,9 @@ class HubSub extends Memcached_DataObject
         if ($response->isOk()) {
             return true;
         } else {
-            throw new Exception("Callback returned status: " .
-                                $response->getStatus() .
-                                "; body: " .
-                                trim($response->getBody()));
+            // TRANS: Exception. %1$s is a response status code, %2$s is the body of the response.
+            throw new Exception(sprintf(_m('Callback returned status: %1$s. Body: %2$s'),
+                                $response->getStatus(),trim($response->getBody())));
         }
     }
 }
-

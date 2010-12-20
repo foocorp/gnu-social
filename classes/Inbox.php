@@ -55,7 +55,6 @@ class Inbox extends Memcached_DataObject
     /**
      * Create a new inbox from existing Notice_inbox stuff
      */
-
     static function initialize($user_id)
     {
         $inbox = Inbox::fromNoticeInbox($user_id);
@@ -115,10 +114,10 @@ class Inbox extends Memcached_DataObject
      */
     static function insertNotice($user_id, $notice_id)
     {
-		// Going straight to the DB rather than trusting our caching
-		// during an update. Note: not using DB_DataObject::staticGet,
-		// which is unsafe to use directly (in-process caching causes
-		// memory leaks, which accumulate in queue processes).
+        // Going straight to the DB rather than trusting our caching
+        // during an update. Note: not using DB_DataObject::staticGet,
+        // which is unsafe to use directly (in-process caching causes
+        // memory leaks, which accumulate in queue processes).
         $inbox = new Inbox();
         if (!$inbox->get('user_id', $user_id)) {
             $inbox = Inbox::initialize($user_id);

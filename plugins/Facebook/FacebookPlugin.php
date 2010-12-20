@@ -45,10 +45,8 @@ require_once INSTALLDIR . '/plugins/Facebook/facebookutil.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class FacebookPlugin extends Plugin
 {
-
     const VERSION = STATUSNET_VERSION;
 
     /**
@@ -59,7 +57,6 @@ class FacebookPlugin extends Plugin
     {
         // Allow the key and secret to be passed in
         // Control panel will override
-
         if (isset($this->apikey)) {
             $key = common_config('facebook', 'apikey');
             if (empty($key)) {
@@ -85,7 +82,6 @@ class FacebookPlugin extends Plugin
      *
      * @return boolean result
      */
-
     static function hasKeys()
     {
         $apiKey    = common_config('facebook', 'apikey');
@@ -107,13 +103,11 @@ class FacebookPlugin extends Plugin
      *
      * @return boolean hook return
      */
-
     function onStartInitializeRouter($m)
     {
         $m->connect('admin/facebook', array('action' => 'facebookadminpanel'));
 
         if (self::hasKeys()) {
-
             // Facebook App stuff
 
             $m->connect('facebook/app', array('action' => 'facebookhome'));
@@ -142,7 +136,6 @@ class FacebookPlugin extends Plugin
      * @return boolean hook return
      *
      */
-
     function onAutoload($cls)
     {
         switch ($cls) {
@@ -183,7 +176,6 @@ class FacebookPlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onEndAdminPanelNav($nav)
     {
         if (AdminPanelAction::canAdmin('facebook')) {
@@ -192,7 +184,9 @@ class FacebookPlugin extends Plugin
 
             $nav->out->menuItem(
                 common_local_url('facebookadminpanel'),
-                _m('Facebook'),
+                // TRANS: Menu item.
+                _m('MENU','Facebook'),
+                // TRANS: Tooltip for menu item "Facebook".
                 _m('Facebook integration configuration'),
                 $action_name == 'facebookadminpanel',
                 'nav_facebook_admin_panel'
@@ -210,12 +204,9 @@ class FacebookPlugin extends Plugin
      *
      * @return void
      */
-
     function onStartShowHTML($action)
     {
-
         if ($this->reqFbScripts($action)) {
-
             // XXX: Horrible hack to make Safari, FF2, and Chrome work with
             // Facebook Connect. These browser cannot use Facebook's
             // DOM parsing routines unless the mime type of the page is
@@ -238,9 +229,7 @@ class FacebookPlugin extends Plugin
                       'lang'     => $language));
 
             return false;
-
         } else {
-
             return true;
         }
     }
@@ -255,7 +244,6 @@ class FacebookPlugin extends Plugin
      * @return void
      *
      */
-
     function onEndShowScripts($action)
     {
         if ($this->reqFbScripts($action)) {
@@ -306,12 +294,10 @@ class FacebookPlugin extends Plugin
             $js = sprintf($js, $apikey, $login_url, $logout_url);
 
             // Compress the bugger down a bit
-
             $js = str_replace('  ', '', $js);
 
             $action->inlineScript($js);
         }
-
     }
 
     /**
@@ -323,7 +309,6 @@ class FacebookPlugin extends Plugin
      * @return void
      *
      */
-
     function onEndShowFooter($action)
     {
         if ($this->reqFbScripts($action)) {
@@ -340,7 +325,6 @@ class FacebookPlugin extends Plugin
      * @return void
      *
      */
-
     function onEndShowStatusNetStyles($action)
     {
         if ($this->reqFbScripts($action)) {
@@ -357,7 +341,6 @@ class FacebookPlugin extends Plugin
      *
      * @return boolean true
      */
-
     function reqFbScripts($action)
     {
         if (!self::hasKeys()) {
@@ -365,7 +348,6 @@ class FacebookPlugin extends Plugin
         }
 
         // If you're logged in w/FB Connect, you always need the FB stuff
-
         $fbuid = $this->loggedIn();
 
         if (!empty($fbuid)) {
@@ -373,7 +355,6 @@ class FacebookPlugin extends Plugin
         }
 
         // List of actions that require FB stuff
-
         $needy = array('FBConnectLoginAction',
                        'FBConnectauthAction',
                        'FBConnectSettingsAction');
@@ -383,7 +364,6 @@ class FacebookPlugin extends Plugin
         }
 
         return false;
-
     }
 
     /**
@@ -391,7 +371,6 @@ class FacebookPlugin extends Plugin
      *
      * @return mixed $fbuid the Facebook ID of the logged in user, or null
      */
-
     function loggedIn()
     {
         $user = common_current_user();
@@ -403,12 +382,9 @@ class FacebookPlugin extends Plugin
             $fbuid = 0;
 
             if (!empty($flink)) {
-
                 try {
-
                     $facebook = getFacebook();
                     $fbuid    = $facebook->get_loggedin_user();
-
                 } catch (Exception $e) {
                     common_log(LOG_WARNING, 'Facebook Connect Plugin - ' .
                         'Problem getting Facebook user: ' .
@@ -432,17 +408,14 @@ class FacebookPlugin extends Plugin
      * @return void
      *
      */
-
     function onStartPrimaryNav($action)
     {
         if (self::hasKeys()) {
             $user = common_current_user();
             if (!empty($user)) {
-
                 $fbuid = $this->loggedIn();
 
                 if (!empty($fbuid)) {
-
                     /* Default FB silhouette pic for FB users who haven't
                        uploaded a profile pic yet. */
 
@@ -455,7 +428,7 @@ class FacebookPlugin extends Plugin
 
                     $action->element('img', array('id' => 'fbc_profile-pic',
                         'src' => (!empty($url)) ? $url : $silhouetteUrl,
-                        'alt' => 'Facebook Connect User',
+                        'alt' => _m('Facebook Connect User'),
                         'width' => '16'), '');
 
                     $iconurl =  common_path('plugins/Facebook/fbfavicon.ico');
@@ -477,18 +450,20 @@ class FacebookPlugin extends Plugin
      *
      * @return void
      */
-
     function onEndLoginGroupNav(&$action)
     {
         if (self::hasKeys()) {
-
             $action_name = $action->trimmed('action');
 
             $action->menuItem(common_local_url('FBConnectLogin'),
-                                               _m('Facebook'),
+                                               // @todo CHECKME: Should be 'Facebook Login'?
+                                               // TRANS: Menu item.
+                                               _m('MENU','Facebook'),
+                                               // TRANS: Tooltip for menu item "Facebook".
                                                _m('Login or register using Facebook'),
                                                'FBConnectLogin' === $action_name);
         }
+
         return true;
     }
 
@@ -499,18 +474,20 @@ class FacebookPlugin extends Plugin
      *
      * @return void
      */
-
     function onEndConnectSettingsNav(&$action)
     {
         if (self::hasKeys()) {
-
             $action_name = $action->trimmed('action');
 
             $action->menuItem(common_local_url('FBConnectSettings'),
-                              _m('Facebook'),
+                              // @todo CHECKME: Should be 'Facebook Connect'? 
+                              // TRANS: Menu item tab.
+                              _m('MENU','Facebook'),
+                              // TRANS: Tooltip for menu item "Facebook".
                               _m('Facebook Connect Settings'),
                               $action_name === 'FBConnectSettings');
         }
+
         return true;
     }
 
@@ -521,7 +498,6 @@ class FacebookPlugin extends Plugin
      *
      * @return void
      */
-
     function onStartLogout($action)
     {
         if (self::hasKeys()) {
@@ -550,14 +526,12 @@ class FacebookPlugin extends Plugin
      *
      * @return string $url the url for the user's Facebook avatar
      */
-
     function getProfilePicURL($fbuid)
     {
         $facebook = getFacebook();
         $url      = null;
 
         try {
-
             $fqry = 'SELECT pic_square FROM user WHERE uid = %s';
 
             $result = $facebook->api_client->fql_query(sprintf($fqry, $fbuid));
@@ -582,7 +556,6 @@ class FacebookPlugin extends Plugin
      *
      * @return boolean hook return
      */
-
     function onStartEnqueueNotice($notice, &$transports)
     {
         if (self::hasKeys() && $notice->isLocal()) {
@@ -613,14 +586,14 @@ class FacebookPlugin extends Plugin
             'version' => self::VERSION,
             'author' => 'Zach Copley',
             'homepage' => 'http://status.net/wiki/Plugin:Facebook',
+            // TRANS: Plugin description.
             'rawdescription' => _m(
-                'The Facebook plugin allows you to integrate ' .
-                'your StatusNet instance with ' .
+                'The Facebook plugin allows integrating ' .
+                'StatusNet instances with ' .
                 '<a href="http://facebook.com/">Facebook</a> ' .
                 'and Facebook Connect.'
             )
         );
         return true;
     }
-
 }

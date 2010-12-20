@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ColumnDef
 {
     /** name of the column. */
@@ -76,7 +75,6 @@ class ColumnDef
      * @param value   $extra    unused
      * @param boolean $auto_increment
      */
-
     function __construct($name=null, $type=null, $size=null,
                          $nullable=true, $key=null, $default=null,
                          $extra=null, $auto_increment=false)
@@ -99,7 +97,6 @@ class ColumnDef
      *
      * @return boolean true if equivalent, otherwise false.
      */
-
     function equals($other)
     {
         return ($this->name == $other->name &&
@@ -122,7 +119,6 @@ class ColumnDef
      *
      * @return boolean true if they're about equivalent
      */
-
     private function _typeMatch($other)
     {
         switch ($this->type) {
@@ -145,7 +141,6 @@ class ColumnDef
      *
      * @return boolean true if defaults are effectively the same.
      */
-
     private function _defaultMatch($other)
     {
         return ((is_null($this->default) && is_null($other->default)) ||
@@ -160,7 +155,6 @@ class ColumnDef
      *
      * @return boolean true if these columns 'null' the same.
      */
-
     private function _nullMatch($other)
     {
         return ((!is_null($this->default) && !is_null($other->default) &&

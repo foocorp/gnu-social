@@ -1,0 +1,101 @@
+# Translation of StatusNet - Adsense to Georgian (ქართული)
+# Expored from translatewiki.net
+#
+# Author: Zaal
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Adsense\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:26+0000\n"
+"Language-Team: Georgian <http://translatewiki.net/wiki/Portal:ka>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:24+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ka\n"
+"X-Message-Group: #out-statusnet-plugin-adsense\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Menu item title/tooltip
+#: AdsensePlugin.php:194
+msgid "AdSense configuration"
+msgstr "AdSense კონფიგურაცია"
+
+#. TRANS: Menu item for site administration
+#: AdsensePlugin.php:196
+msgid "AdSense"
+msgstr "AdSense"
+
+#: AdsensePlugin.php:209
+msgid "Plugin to add Google AdSense to StatusNet sites."
+msgstr ""
+
+#: adsenseadminpanel.php:52
+msgctxt "TITLE"
+msgid "AdSense"
+msgstr "AdSense"
+
+#: adsenseadminpanel.php:62
+msgid "AdSense settings for this StatusNet site"
+msgstr "AdSense პარამეტრები ამ საიტისათვის."
+
+#: adsenseadminpanel.php:164
+msgid "Client ID"
+msgstr "კლიენტის ID"
+
+#: adsenseadminpanel.php:165
+msgid "Google client ID"
+msgstr "Google კლიენტის ID"
+
+#: adsenseadminpanel.php:170
+msgid "Ad script URL"
+msgstr "სარეკლამო სკრიპტის URL"
+
+#: adsenseadminpanel.php:171
+msgid "Script URL (advanced)"
+msgstr "სკრიპტის URL (გაფართოებული)"
+
+#: adsenseadminpanel.php:176
+msgid "Medium rectangle"
+msgstr "საშუალო მართკუთხედი"
+
+#: adsenseadminpanel.php:177
+msgid "Medium rectangle slot code"
+msgstr ""
+
+#: adsenseadminpanel.php:182
+msgid "Rectangle"
+msgstr "მართკუთხედი"
+
+#: adsenseadminpanel.php:183
+msgid "Rectangle slot code"
+msgstr ""
+
+#: adsenseadminpanel.php:188
+msgid "Leaderboard"
+msgstr ""
+
+#: adsenseadminpanel.php:189
+msgid "Leaderboard slot code"
+msgstr ""
+
+#: adsenseadminpanel.php:194
+msgid "Skyscraper"
+msgstr ""
+
+#: adsenseadminpanel.php:195
+msgid "Wide skyscraper slot code"
+msgstr ""
+
+#: adsenseadminpanel.php:208
+msgid "Save"
+msgstr ""
+
+#: adsenseadminpanel.php:208
+msgid "Save AdSense settings"
+msgstr ""

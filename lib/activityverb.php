@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 class ActivityVerb
 {
     const POST     = 'http://activitystrea.ms/schema/1.0/post';

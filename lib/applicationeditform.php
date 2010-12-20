@@ -43,13 +43,11 @@ require_once INSTALLDIR . '/lib/form.php';
  * @link     http://status.net/
  *
  */
-
 class ApplicationEditForm extends Form
 {
     /**
      * group for user to join
      */
-
     var $application = null;
 
     /**
@@ -58,7 +56,6 @@ class ApplicationEditForm extends Form
      * @param Action     $out   output channel
      * @param User_group $group group to join
      */
-
     function __construct($out=null, $application=null)
     {
         parent::__construct($out);
@@ -71,7 +68,6 @@ class ApplicationEditForm extends Form
      *
      * @return string ID of the form
      */
-
     function id()
     {
         if ($this->application) {
@@ -89,7 +85,6 @@ class ApplicationEditForm extends Form
      *
      * @return string the method to use for submitting
      */
-
     function method()
     {
         $this->enctype = 'multipart/form-data';
@@ -101,7 +96,6 @@ class ApplicationEditForm extends Form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -112,7 +106,6 @@ class ApplicationEditForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         $cur = common_current_user();
@@ -130,7 +123,6 @@ class ApplicationEditForm extends Form
      *
      * @return void
      */
-
     function formLegend()
     {
         // TRANS: Form legend.
@@ -142,7 +134,6 @@ class ApplicationEditForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         if ($this->application) {
@@ -206,7 +197,8 @@ class ApplicationEditForm extends Form
         $maxDesc = Oauth_application::maxDesc();
         if ($maxDesc > 0) {
             // TRANS: Form input field instructions.
-            $descInstr = sprintf(_('Describe your application in %d characters'),
+            // TRANS: %d is the number of available characters for the description.
+            $descInstr = sprintf(ngettext('Describe your application in %d character','Describe your application in %d characters',$maxDesc),
                                  $maxDesc);
         } else {
             // TRANS: Form input field instructions.
@@ -265,8 +257,9 @@ class ApplicationEditForm extends Form
 
         // Default to Browser
 
-        if ($this->application->type == Oauth_application::$browser
-            || empty($this->application->type)) {
+        if (empty($this->application)
+            || empty($this->application->type)
+            || $this->application->type == Oauth_application::$browser) {
             $attrs['checked'] = 'checked';
         }
 
@@ -283,7 +276,7 @@ class ApplicationEditForm extends Form
                        'class' => 'radio',
                        'value' => Oauth_application::$desktop);
 
-        if ($this->application->type == Oauth_application::$desktop) {
+        if (!empty($this->application) && $this->application->type == Oauth_application::$desktop) {
             $attrs['checked'] = 'checked';
         }
 
@@ -307,8 +300,9 @@ class ApplicationEditForm extends Form
 
         // default to read-only access
 
-        if ($this->application->access_type & Oauth_application::$readAccess
-            || empty($this->application->access_type)) {
+        if (empty($this->application)
+            || empty($this->application->access_type)
+            || $this->application->access_type & Oauth_application::$readAccess) {
             $attrs['checked'] = 'checked';
         }
 
@@ -325,7 +319,8 @@ class ApplicationEditForm extends Form
                        'class' => 'radio',
                        'value' => 'rw');
 
-        if ($this->application->access_type & Oauth_application::$readAccess
+        if (!empty($this->application)
+            && $this->application->access_type & Oauth_application::$readAccess
             && $this->application->access_type & Oauth_application::$writeAccess
             ) {
             $attrs['checked'] = 'checked';
@@ -350,16 +345,15 @@ class ApplicationEditForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        // TRANS: Button label
+        // TRANS: Button label in the "Edit application" form.
         $this->out->submit('cancel', _m('BUTTON','Cancel'), 'submit form_action-primary',
-                           // TRANS: Submit button title
+                           // TRANS: Submit button title.
                            'cancel', _('Cancel'));
-        // TRANS: Button label
+        // TRANS: Button label in the "Edit application" form.
         $this->out->submit('save', _m('BUTTON','Save'), 'submit form_action-secondary',
-                           // TRANS: Submit button title
+                           // TRANS: Submit button title.
                            'save', _('Save'));
     }
 }

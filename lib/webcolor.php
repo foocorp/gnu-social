@@ -32,7 +32,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 }
 
 class WebColor {
-
     // XXX: Maybe make getters and setters for r,g,b values and tuples,
     // e.g.: to support this kinda CSS representation: rgb(255,0,0)
     // http://www.w3.org/TR/CSS21/syndata.html#color-units
@@ -65,7 +64,6 @@ class WebColor {
      *
      * @return nothing
      */
-
     function parseColor($color) {
 
         if (is_numeric($color)) {
@@ -90,12 +88,10 @@ class WebColor {
      *
      * @return nothing
      */
-
     function setNamedColor($name)
     {
         // XXX Implement this
     }
-
 
     /**
      * Sets the RGB color values from a a hex tuple
@@ -104,7 +100,6 @@ class WebColor {
      *
      * @return nothing
      */
-
     function setHexColor($hexcolor) {
 
         if ($hexcolor[0] == '#') {
@@ -120,7 +115,9 @@ class WebColor {
                                      $hexcolor[1].$hexcolor[1],
                                      $hexcolor[2].$hexcolor[2]);
         } else {
-            $errmsg = _('%s is not a valid color! Use 3 or 6 hex chars.');
+            // TRANS: Validation error for a web colour.
+            // TRANS: %s is the provided (invalid) text for colour.
+            $errmsg = _('%s is not a valid color! Use 3 or 6 hex characters.');
             throw new WebColorException(sprintf($errmsg, $hexcolor));
         }
 
@@ -137,7 +134,6 @@ class WebColor {
      *
      * @return nothing
      */
-
     function setIntColor($intcolor)
     {
         // We could do 32 bit and have an alpha channel because
@@ -154,7 +150,6 @@ class WebColor {
      *
      * @return string
      */
-
     function hexValue() {
 
         $hexcolor  = (strlen(dechex($this->red)) < 2 ? '0' : '' ) .
@@ -165,7 +160,6 @@ class WebColor {
             dechex($this->blue);
 
         return strtoupper($hexcolor);
-
     }
 
     /**
@@ -176,7 +170,6 @@ class WebColor {
      *
      * @return int
      */
-
     function intValue()
     {
         $intcolor = 256 * 256 * $this->red + 256 * $this->green + $this->blue;
@@ -188,5 +181,3 @@ class WebColor {
 class WebColorException extends Exception
 {
 }
-
-?>

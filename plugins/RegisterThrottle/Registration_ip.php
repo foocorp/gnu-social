@@ -42,7 +42,6 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class Registration_ip extends Memcached_DataObject
 {
     public $__table = 'registration_ip';     // table name
@@ -59,7 +58,6 @@ class Registration_ip extends Memcached_DataObject
      * @return User_greeting_count object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Registration_ip', $k, $v);
@@ -70,7 +68,6 @@ class Registration_ip extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('user_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
@@ -86,7 +83,6 @@ class Registration_ip extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keys()
     {
         return array('user_id' => 'K');
@@ -100,7 +96,6 @@ class Registration_ip extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keyTypes()
     {
         return $this->keys();
@@ -120,5 +115,29 @@ class Registration_ip extends Memcached_DataObject
     function sequenceKey()
     {
         return array(false, false, false);
+    }
+
+    /**
+     * Get the users who've registered with this ip address.
+     *
+     * @param Array $ipaddress IP address to check for
+     *
+     * @return Array IDs of users who registered with this address.
+     */
+
+    static function usersByIP($ipaddress)
+    {
+        $ids = array();
+
+        $ri            = new Registration_ip();
+        $ri->ipaddress = $ipaddress;
+
+        if ($ri->find()) {
+            while ($ri->fetch()) {
+                $ids[] = $ri->user_id;
+            }
+        }
+
+        return $ids;
     }
 }

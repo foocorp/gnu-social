@@ -56,7 +56,6 @@ require_once INSTALLDIR . '/lib/apibareauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiTimelineHomeAction extends ApiBareAuthAction
 {
     var $notices  = null;
@@ -67,9 +66,7 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -77,6 +74,7 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
         $this->user = $this->getTargetUser($this->arg('id'));
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when requesting most recent dents by user and friends for a non-existing user.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
@@ -95,7 +93,6 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -107,12 +104,12 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
      *
      * @return void
      */
-
     function showTimeline()
     {
         $profile    = $this->user->getProfile();
         $avatar     = $profile->getAvatar(AVATAR_PROFILE_SIZE);
         $sitename   = common_config('site', 'name');
+        // TRANS: Timeline title for user and friends. %s is a user nickname.
         $title      = sprintf(_("%s and friends"), $this->user->nickname);
         $taguribase = TagURI::base();
         $id         = "tag:$taguribase:HomeTimeline:" . $this->user->id;
@@ -172,6 +169,7 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
             $this->showJsonTimeline($this->notices);
             break;
         default:
+            // TRANS: Client error displayed when trying to handle an unknown API method.
             $this->clientError(_('API method not found.'), $code = 404);
             break;
         }
@@ -182,7 +180,6 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
      *
      * @return array notices
      */
-
     function getNotices()
     {
         $notices = array();
@@ -215,7 +212,6 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -226,7 +222,6 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
      *
      * @return string datestamp of the latest notice in the stream
      */
-
     function lastModified()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
@@ -244,7 +239,6 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
      *
      * @return string etag
      */
-
     function etag()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
@@ -254,6 +248,7 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
             return '"' . implode(
                 ':',
                 array($this->arg('action'),
+                      common_user_cache_hash($this->auth_user),
                       common_language(),
                       $this->user->id,
                       strtotime($this->notices[0]->created),
@@ -264,5 +259,4 @@ class ApiTimelineHomeAction extends ApiBareAuthAction
 
         return null;
     }
-
 }

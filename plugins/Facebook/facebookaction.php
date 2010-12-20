@@ -36,7 +36,6 @@ require_once INSTALLDIR . '/plugins/Facebook/facebooknoticeform.php';
 
 class FacebookAction extends Action
 {
-
     var $facebook = null;
     var $fbuid    = null;
     var $flink    = null;
@@ -102,7 +101,6 @@ class FacebookAction extends Action
      *
      * @return void
      */
-
     function startHTML($type=null)
     {
         $this->showStylesheets();
@@ -143,7 +141,6 @@ class FacebookAction extends Action
 
     function showHead($error, $success)
     {
-
         if ($error) {
             $this->element("h1", null, $error);
         }
@@ -168,7 +165,10 @@ class FacebookAction extends Action
         $this->elementStart('li', array('class' =>
             ($this->action == 'facebookhome') ? 'current' : 'facebook_home'));
         $this->element('a',
-            array('href' => 'index.php', 'title' => _m('Home')), _m('Home'));
+            // TRANS: Link description for 'Home' link that leads to a start page.
+            array('href' => 'index.php', 'title' => _m('MENU','Home')),
+            // TRANS: Tooltip for 'Home' link that leads to a start page.
+            _m('Home'));
         $this->elementEnd('li');
 
         if (common_config('invite', 'enabled')) {
@@ -176,7 +176,10 @@ class FacebookAction extends Action
                 array('class' =>
                     ($this->action == 'facebookinvite') ? 'current' : 'facebook_invite'));
             $this->element('a',
-                array('href' => 'invite.php', 'title' => _m('Invite')), _m('Invite'));
+                // TRANS: Link description for 'Invite' link that leads to a page where friends can be invited.
+                array('href' => 'invite.php', 'title' => _m('MENU','Invite')),
+                // TRANS: Tooltip for 'Invite' link that leads to a page where friends can be invited.
+                _m('Invite'));
             $this->elementEnd('li');
         }
 
@@ -185,7 +188,10 @@ class FacebookAction extends Action
                 ($this->action == 'facebooksettings') ? 'current' : 'facebook_settings'));
         $this->element('a',
             array('href' => 'settings.php',
-                'title' => _m('Settings')), _m('Settings'));
+                // TRANS: Link description for 'Settings' link that leads to a page user preferences can be set.
+                'title' => _m('MENU','Settings')),
+                // TRANS: Tooltip for 'Settings' link that leads to a page user preferences can be set.
+                _m('Settings'));
         $this->elementEnd('li');
 
         $this->elementEnd('ul');
@@ -219,22 +225,22 @@ class FacebookAction extends Action
 
     function showInstructions()
     {
-
         $this->elementStart('div', array('class' => 'facebook_guide'));
 
         $this->elementStart('dl', array('class' => 'system_notice'));
         $this->element('dt', null, 'Page Notice');
 
         $loginmsg_part1 = _m('To use the %s Facebook Application you need to login ' .
-            'with your username and password. Don\'t have a username yet? ');
+            'with your username and password. Don\'t have a username yet?');
         $loginmsg_part2 = _m(' a new account.');
 
         $this->elementStart('dd');
         $this->elementStart('p');
         $this->text(sprintf($loginmsg_part1, common_config('site', 'name')));
+        // @todo FIXME: Bad i18n. Patchwork message in two parts.
         $this->element('a',
             array('href' => common_local_url('register')), _m('Register'));
-        $this->text($loginmsg_part2);
+        $this->text( " " . $loginmsg_part2);
         $this->elementEnd('p');
         $this->elementEnd('dd');
 
@@ -272,7 +278,8 @@ class FacebookAction extends Action
         $this->elementEnd('li');
         $this->elementEnd('ul');
 
-        $this->submit('submit', _m('Login'));
+        // TRANS: Login button.
+        $this->submit('submit', _m('BUTTON','Login'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
 
@@ -283,7 +290,6 @@ class FacebookAction extends Action
 
         $this->elementEnd('div');
         $this->elementEnd('div');
-
     }
 
     function updateProfileBox($notice)
@@ -356,7 +362,6 @@ class FacebookAction extends Action
 
     function saveNewNotice()
     {
-
         $user = $this->flink->getUser();
 
         $content = $this->trimmed('status_textarea');
@@ -365,9 +370,10 @@ class FacebookAction extends Action
             $this->showPage(_m('No notice content!'));
             return;
         } else {
-            $content_shortened = common_shorten_links($content);
+            $content_shortened = $user->shortenLinks($content);
 
             if (Notice::contentTooLong($content_shortened)) {
+                // @todo FIXME: i18n: Needs plural.
                 $this->showPage(sprintf(_m('That\'s too long. Max notice size is %d chars.'),
                                         Notice::maxContent()));
                 return;
@@ -379,9 +385,7 @@ class FacebookAction extends Action
         $cmd = $inter->handle_command($user, $content_shortened);
 
         if ($cmd) {
-
             // XXX fix this
-
             $cmd->execute(new WebChannel());
             return;
         }
@@ -398,12 +402,10 @@ class FacebookAction extends Action
         }
 
     }
-
 }
 
 class FacebookNoticeList extends NoticeList
 {
-
     /**
      * constructor
      *
@@ -423,7 +425,6 @@ class FacebookNoticeList extends NoticeList
      *
      * @return int count of notices listed.
      */
-
     function show()
     {
         $this->out->elementStart('div', array('id' =>'notices_primary'));
@@ -459,17 +460,14 @@ class FacebookNoticeList extends NoticeList
      * @return FacebookNoticeListItem a list item for displaying the notice
      * formatted for display in the Facebook App.
      */
-
     function newListItem($notice)
     {
         return new FacebookNoticeListItem($notice, $this);
     }
-
 }
 
 class FacebookNoticeListItem extends NoticeListItem
 {
-
     /**
      * constructor
      *
@@ -477,7 +475,6 @@ class FacebookNoticeListItem extends NoticeListItem
      *
      * @param Notice $notice The notice we'll display
      */
-
     function __construct($notice, $out=null)
     {
         parent::__construct($notice, $out);
@@ -491,7 +488,6 @@ class FacebookNoticeListItem extends NoticeListItem
      *
      * @return void
      */
-
     function show()
     {
         $this->showStart();
@@ -502,12 +498,10 @@ class FacebookNoticeListItem extends NoticeListItem
 
         $this->showEnd();
     }
-
 }
 
 class FacebookProfileBoxNotice extends FacebookNoticeListItem
 {
-
     /**
      * constructor
      *
@@ -515,7 +509,6 @@ class FacebookProfileBoxNotice extends FacebookNoticeListItem
      *
      * @param Notice $notice The notice we'll display
      */
-
     function __construct($notice, $out=null)
     {
         parent::__construct($notice, $out);
@@ -527,7 +520,6 @@ class FacebookProfileBoxNotice extends FacebookNoticeListItem
      *
      * @return void
      */
-
     function show()
     {
         $this->showNotice();
@@ -537,7 +529,6 @@ class FacebookProfileBoxNotice extends FacebookNoticeListItem
 
     function showAppLink()
     {
-
         $this->facebook = getFacebook();
 
         $app_props = $this->facebook->api_client->Admin_getAppProperties(
@@ -551,5 +542,4 @@ class FacebookProfileBoxNotice extends FacebookNoticeListItem
         $this->out->text($this->app_name);
         $this->out->elementEnd('a');
     }
-
 }

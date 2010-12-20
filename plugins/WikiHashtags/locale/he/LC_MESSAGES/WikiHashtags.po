@@ -1,0 +1,30 @@
+# Translation of StatusNet - WikiHashtags to Hebrew (עברית)
+# Expored from translatewiki.net
+#
+# Author: YaronSh
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - WikiHashtags\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:13:14+0000\n"
+"Language-Team: Hebrew <http://translatewiki.net/wiki/Portal:he>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:46:21+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: he\n"
+"X-Message-Group: #out-statusnet-plugin-wikihashtags\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: WikiHashtagsPlugin.php:110
+msgid ""
+"Gets hashtag descriptions from <a href=\"http://hashtags.wikia.com/"
+"\">WikiHashtags</a>."
+msgstr ""
+"קבלת תיאורי תגיות סולמית מ־<a href=\"http://hashtags.wikia.com/"
+"\">WikiHashtags</a>."

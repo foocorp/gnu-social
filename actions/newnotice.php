@@ -82,7 +82,6 @@ class NewnoticeAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         if (!common_logged_in()) {
@@ -91,9 +90,12 @@ class NewnoticeAction extends Action
             // check for this before token since all POST and FILES data
             // is losts when size is exceeded
             if (empty($_POST) && $_SERVER['CONTENT_LENGTH']) {
-                $this->clientError(sprintf(_('The server was unable to handle ' .
-                                             'that much POST data (%s bytes) due to its current configuration.'),
-                                           $_SERVER['CONTENT_LENGTH']));
+                // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
+                // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
+                $msg = _m('The server was unable to handle that much POST data (%s byte) due to its current configuration.',
+                          'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
+                          intval($_SERVER['CONTENT_LENGTH']));
+                $this->clientError(sprintf($msg,$_SERVER['CONTENT_LENGTH']));
             }
             parent::handle($args);
 
@@ -152,10 +154,13 @@ class NewnoticeAction extends Action
             return;
         }
 
-        $content_shortened = common_shorten_links($content);
+        $content_shortened = $user->shortenLinks($content);
         if (Notice::contentTooLong($content_shortened)) {
-            $this->clientError(sprintf(_('That\'s too long. '.
-                                         'Max notice size is %d chars.'),
+            // TRANS: Client error displayed when the parameter "status" is missing.
+            // TRANS: %d is the maximum number of character for a notice.
+            $this->clientError(sprintf(_m('That\'s too long. Maximum notice size is %d character.',
+                                          'That\'s too long. Maximum notice size is %d characters.',
+                                          Notice::maxContent()),
                                        Notice::maxContent()));
         }
 
@@ -176,12 +181,10 @@ class NewnoticeAction extends Action
 
             if (Notice::contentTooLong($content_shortened)) {
                 $upload->delete();
-                $this->clientError(
-                    sprintf(
-                        _('Max notice size is %d chars, including attachment URL.'),
-                          Notice::maxContent()
-                    )
-                );
+                $this->clientError(sprintf(_m('Maximum notice size is %d character, including attachment URL.',
+                                              'Maximum notice size is %d characters, including attachment URL.',
+                                              Notice::maxContent()),
+                                           Notice::maxContent()));
             }
         }
 
@@ -204,10 +207,18 @@ class NewnoticeAction extends Action
             $options = array_merge($options, $locOptions);
         }
 
-        $notice = Notice::saveNew($user->id, $content_shortened, 'web', $options);
+        $author_id = $user->id;
+        $text      = $content_shortened;
 
-        if (isset($upload)) {
-            $upload->attachToNotice($notice);
+        if (Event::handle('StartNoticeSaveWeb', array($this, &$author_id, &$text, &$options))) {
+
+            $notice = Notice::saveNew($user->id, $content_shortened, 'web', $options);
+
+            if (isset($upload)) {
+                $upload->attachToNotice($notice);
+            }
+
+            Event::handle('EndNoticeSaveWeb', array($this, $notice));
         }
         Event::handle('EndSaveNewNoticeWeb', array($this, $user, &$content_shortened, &$options));
 
@@ -344,4 +355,3 @@ class NewnoticeAction extends Action
         $nli->show();
     }
 }
-

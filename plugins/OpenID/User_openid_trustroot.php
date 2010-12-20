@@ -2,7 +2,10 @@
 /**
  * Table Definition for user_openid_trustroot
  */
-require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
+
+if (!defined('STATUSNET')) {
+    exit(1);
+}
 
 class User_openid_trustroot extends Memcached_DataObject
 {

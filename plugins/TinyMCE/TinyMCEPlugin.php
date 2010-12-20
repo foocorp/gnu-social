@@ -48,12 +48,16 @@ if (!defined('STATUSNET')) {
  */
 class TinyMCEPlugin extends Plugin
 {
-
     var $html;
+
+    // By default, TinyMCE editor will be available to all users.
+    // With restricted on, only users who have been granted the
+    // "richedit" role get it.
+    public $restricted = false;
 
     function onEndShowScripts($action)
     {
-        if (common_logged_in ()) {
+        if (common_logged_in() && $this->isAllowedRichEdit()) {
             $action->script(common_path('plugins/TinyMCE/js/jquery.tinymce.js'));
             $action->inlineScript($this->_inlineScript());
         }
@@ -63,7 +67,9 @@ class TinyMCEPlugin extends Plugin
 
     function onEndShowStyles($action)
     {
-        $action->style('span#notice_data-text_container, span#notice_data-text_parent { float: left }');
+        if ($this->isAllowedRichEdit()) {
+            $action->style('span#notice_data-text_container, span#notice_data-text_parent { float: left }');
+        }
         return true;
     }
 
@@ -74,7 +80,7 @@ class TinyMCEPlugin extends Plugin
             'author' => 'Evan Prodromou',
             'homepage' => 'http://status.net/wiki/Plugin:TinyMCE',
             'rawdescription' =>
-            _m('Use TinyMCE library to allow rich text editing in the browser'));
+            _m('Use TinyMCE library to allow rich text editing in the browser.'));
         return true;
     }
 
@@ -108,7 +114,7 @@ class TinyMCEPlugin extends Plugin
     /**
      * Hook for new-notice form processing to take our HTML goodies;
      * won't affect API posting etc.
-     * 
+     *
      * @param NewNoticeAction $action
      * @param User $user
      * @param string $content
@@ -117,7 +123,7 @@ class TinyMCEPlugin extends Plugin
      */
     function onStartSaveNewNoticeWeb($action, $user, &$content, &$options)
     {
-        if ($action->arg('richedit')) {
+        if ($action->arg('richedit') && $this->isAllowedRichEdit()) {
             $html = $this->sanitizeHtml($content);
             $options['rendered'] = $html;
             $content = $this->stripHtml($html);
@@ -136,7 +142,7 @@ class TinyMCEPlugin extends Plugin
      */
     function onStartSaveNewNoticeAppendAttachment($action, $media, &$content, &$options)
     {
-        if ($action->arg('richedit')) {
+        if ($action->arg('richedit') && $this->isAllowedRichEdit()) {
             // See if we've got a placeholder inline image; if so, fill it!
             $dom = new DOMDocument();
 
@@ -159,9 +165,9 @@ class TinyMCEPlugin extends Plugin
 
     /**
      * Format the attachment placeholder img with the final version.
-     * 
+     *
      * @param DOMElement $img
-     * @param MediaFile $media 
+     * @param MediaFile $media
      */
     private function formatAttachment($img, $media)
     {
@@ -322,4 +328,22 @@ END_OF_SCRIPT;
         return $scr;
     }
 
+    /**
+     * Does the current user have permission to use the rich-text editor?
+     * Always true unless the plugin's "restricted" setting is on, in which
+     * case it's limited to users with the "richedit" role.
+     *
+     * @fixme make that more sanely configurable :)
+     *
+     * @return boolean
+     */
+    private function isAllowedRichEdit()
+    {
+        if ($this->restricted) {
+            $user = common_current_user();
+            return !empty($user) && $user->hasRole('richedit');
+        } else {
+            return true;
+        }
+    }
 }

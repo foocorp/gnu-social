@@ -1,0 +1,32 @@
+# Translation of StatusNet - Autocomplete to Hebrew (עברית)
+# Expored from translatewiki.net
+#
+# Author: YaronSh
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Autocomplete\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:30+0000\n"
+"Language-Team: Hebrew <http://translatewiki.net/wiki/Portal:he>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:38:23+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: he\n"
+"X-Message-Group: #out-statusnet-plugin-autocomplete\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: AutocompletePlugin.php:80
+msgid ""
+"The autocomplete plugin allows users to autocomplete screen names in @ "
+"replies. When an \"@\" is typed into the notice text area, an autocomplete "
+"box is displayed populated with the user's friend' screen names."
+msgstr ""
+"תוסף ההשלמה האוטומטית מאפשר למשתמשים להשלים אוטומטית שמות תצוגה בתגובות @. "
+"כאשר \"@\" מוקלד לתוך אזור טקסט ההתרעה, מופיעה תיבת השלמה אוטומטית ובה שמות "
+"התצוגה של החברים של המשתמש."

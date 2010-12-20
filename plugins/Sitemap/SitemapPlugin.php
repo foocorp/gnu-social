@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class SitemapPlugin extends Plugin
 {
     const USERS_PER_MAP   = 50000;
@@ -57,7 +56,6 @@ class SitemapPlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onAutoload($cls)
     {
         $dir = dirname(__FILE__);
@@ -89,7 +87,6 @@ class SitemapPlugin extends Plugin
      *
      * @return boolean hook value.
      */
-
     function onEndRobotsTxt($action)
     {
         $url = common_local_url('sitemapindex');
@@ -106,7 +103,6 @@ class SitemapPlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onRouterInitialized($m)
     {
         $m->connect('sitemapindex.xml',
@@ -142,7 +138,6 @@ class SitemapPlugin extends Plugin
      *
      * @return boolean hook value.
      */
-
     function onStartShowHeadElements($action)
     {
         $actionName = $action->trimmed('action');
@@ -181,7 +176,6 @@ class SitemapPlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onCheckSchema()
     {
         $schema = Schema::get();
@@ -214,11 +208,35 @@ class SitemapPlugin extends Plugin
     function onEndAdminPanelNav($menu) {
         if (AdminPanelAction::canAdmin('sitemap')) {
             // TRANS: Menu item title/tooltip
-            $menu_title = _('Sitemap configuration');
+            $menu_title = _m('Sitemap configuration');
             // TRANS: Menu item for site administration
-            $menu->out->menuItem(common_local_url('sitemapadminpanel'), _('Sitemap'),
+            $menu->out->menuItem(common_local_url('sitemapadminpanel'), _m('MENU','Sitemap'),
                                  $menu_title, $action_name == 'sitemapadminpanel', 'nav_sitemap_admin_panel');
         }
+        return true;
+    }
+
+    /**
+     * Provide plugin version information.
+     *
+     * This data is used when showing the version page.
+     *
+     * @param array &$versions array of version data arrays; see EVENTS.txt
+     *
+     * @return boolean hook value
+     */
+    function onPluginVersion(&$versions)
+    {
+        $url = 'http://status.net/wiki/Plugin:Sitemap';
+
+        $versions[] = array('name' => 'Sitemap',
+            'version' => STATUSNET_VERSION,
+            'author' => 'Evan Prodromou',
+            'homepage' => $url,
+            'rawdescription' =>
+            // TRANS: Plugin description.
+            _m('This plugin allows creation of sitemaps for Bing, Yahoo! and Google.'));
+
         return true;
     }
 }

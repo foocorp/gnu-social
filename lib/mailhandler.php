@@ -55,10 +55,11 @@ class MailHandler
             return true;
         }
         $msg = $this->cleanup_msg($msg);
-        $msg = common_shorten_links($msg);
+        $msg = $user->shortenLinks($msg);
         if (Notice::contentTooLong($msg)) {
-            $this->error($from, sprintf(_('That\'s too long. '.
-                                          'Max notice size is %d chars.'),
+            $this->error($from, sprintf(_('That\'s too long. Maximum notice size is %d character.',
+                                          'That\'s too long. Maximum notice size is %d characters.',
+                                          Notice::maxContent()),
                                         Notice::maxContent()));
         }
 

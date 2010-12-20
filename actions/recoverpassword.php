@@ -362,7 +362,7 @@ class RecoverpasswordAction extends Action
         $confirm = $this->trimmed('confirm');
 
         if (!$newpassword || strlen($newpassword) < 6) {
-            $this->showPasswordForm(_('Password must be 6 chars or more.'));
+            $this->showPasswordForm(_('Password must be 6 characters or more.'));
             return;
         }
         if ($newpassword != $confirm) {

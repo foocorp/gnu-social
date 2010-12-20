@@ -254,7 +254,7 @@ class XmppPlugin extends ImPlugin
         return false;
     }
 
-    function daemon_screenname()
+    function daemonScreenname()
     {
         $ret = $this->user . '@' . $this->server;
         if($this->resource)
@@ -311,14 +311,14 @@ class XmppPlugin extends ImPlugin
         return 'xmpp:' . $screenname;    
     }
 
-    function send_message($screenname, $body)
+    function sendMessage($screenname, $body)
     {
         $this->queuedConnection()->message($screenname, $body, 'chat');
     }
 
-    function send_notice($screenname, $notice)
+    function sendNotice($screenname, $notice)
     {
-        $msg   = $this->format_notice($notice);
+        $msg   = $this->formatNotice($notice);
         $entry = $this->format_entry($notice);
         
         $this->queuedConnection()->message($screenname, $msg, 'chat', null, $entry);
@@ -364,7 +364,7 @@ class XmppPlugin extends ImPlugin
         return $html . ' ' . $entry;
     }
 
-    function receive_raw_message($pl)
+    function receiveRawMessage($pl)
     {
         $from = $this->normalize($pl['from']);
 
@@ -378,7 +378,7 @@ class XmppPlugin extends ImPlugin
             return;
         }
 
-        $this->handle_incoming($from, $pl['body']);
+        $this->handleIncoming($from, $pl['body']);
         
         return true;
     }

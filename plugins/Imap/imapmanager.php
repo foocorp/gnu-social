@@ -29,6 +29,10 @@
  * @link      http://status.net/
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 class ImapManager extends IoManager
 {
     protected $conn = null;
@@ -44,7 +48,7 @@ class ImapManager extends IoManager
      */
     public static function get()
     {
-        throw new Exception('ImapManager should be created using it\'s constructor, not the static get method');
+        throw new Exception(_m('ImapManager should be created using its constructor, not the using the static get method.'));
     }
 
     /**
@@ -94,12 +98,12 @@ class ImapManager extends IoManager
     {
         return $this->check_mailbox() > 0;
     }
-    
+
     function pollInterval()
     {
         return $this->plugin->poll_frequency;
     }
-    
+
     protected function connect()
     {
         $this->conn = imap_open($this->plugin->mailbox, $this->plugin->user, $this->plugin->password);

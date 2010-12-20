@@ -43,10 +43,8 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
 {
-
     var $profile_background_color     = null;
     var $profile_text_color           = null;
     var $profile_link_color           = null;
@@ -59,9 +57,7 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -100,13 +96,13 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400, $this->format
             );
@@ -115,6 +111,7 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
+                // TRANS: Client error displayed trying to execute an unknown API method updating profile colours.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -125,7 +122,6 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
         $design = $this->user->getDesign();
 
         if (!empty($design)) {
-
             $original = clone($design);
 
             try {
@@ -139,12 +135,11 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
 
             if ($result === false) {
                 common_log_db_error($design, 'UPDATE', __FILE__);
+                // TRANS: Client error displayed when a database error occurs updating profile colours.
                 $this->clientError(_('Could not update your design.'));
                 return;
             }
-
         } else {
-
             $this->user->query('BEGIN');
 
             // save new design
@@ -161,6 +156,7 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
 
             if (empty($id)) {
                 common_log_db_error($id, 'INSERT', __FILE__);
+                // TRANS: Client error displayed when a database error occurs inserting profile colours.
                 $this->clientError(_('Unable to save your design settings.'));
                 return;
             }
@@ -171,6 +167,7 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
 
             if (empty($result)) {
                 common_log_db_error($original, 'UPDATE', __FILE__);
+                // TRANS: Client error displayed when a database error occurs updating profile colours.
                 $this->clientError(_('Unable to save your design settings.'));
                 $this->user->query('ROLLBACK');
                 return;
@@ -182,6 +179,7 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
         $profile = $this->user->getProfile();
 
         if (empty($profile)) {
+            // TRANS: Client error displayed a user has no profile updating profile colours.
             $this->clientError(_('User has no profile.'));
             return;
         }
@@ -206,7 +204,6 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
      *
      * @return void
      */
-
     function setColors($design)
     {
         $bgcolor = empty($this->profile_background_color) ?
@@ -242,5 +239,4 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
 
         return true;
     }
-
 }

@@ -1,0 +1,34 @@
+# Translation of StatusNet - SlicedFavorites to Dutch (Nederlands)
+# Expored from translatewiki.net
+#
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SlicedFavorites\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:57+0000\n"
+"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-10-29 16:14:05+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-slicedfavorites\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+#: SlicedFavoritesPlugin.php:129
+msgid "Shows timelines of popular notices for defined subsets of users."
+msgstr ""
+"Geeft de tijdlijnen van populaire mededelingen weer voor ingestelde groepen "
+"gebruikers."
+
+#. TRANS: Client exception.
+#: favoritedsliceaction.php:56
+msgid "Unknown favorites slice."
+msgstr "Onbekende favorietengebruikersgroep."

@@ -1,0 +1,34 @@
+# Translation of StatusNet - NoticeTitle to Arabic (العربية)
+# Expored from translatewiki.net
+#
+# Author: OsamaK
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - NoticeTitle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:20+0000\n"
+"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:44:21+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ar\n"
+"X-Message-Group: #out-statusnet-plugin-noticetitle\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
+"2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
+"99) ? 4 : 5 ) ) ) );\n"
+
+#: NoticeTitlePlugin.php:132
+msgid "Adds optional titles to notices."
+msgstr "يضيف عناوين اختيارية إلى الإشعارات."
+
+#. TRANS: Page title. %1$s is the title, %2$s is the site name.
+#: NoticeTitlePlugin.php:314
+#, php-format
+msgid "%1$s - %2$s"
+msgstr "%1$s - %2$s"

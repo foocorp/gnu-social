@@ -1,0 +1,104 @@
+# Translation of StatusNet - AnonymousFave to Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
+# Expored from translatewiki.net
+#
+# Author: EugeneZelenko
+# Author: Jim-by
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AnonymousFave\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:28+0000\n"
+"Language-Team: Belarusian (Taraškievica orthography) <http://translatewiki."
+"net/wiki/Portal:be-tarask>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:38:21+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: be-tarask\n"
+"X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Label for tally for number of times a notice was favored.
+#: AnonymousFavePlugin.php:207
+msgid "Favored"
+msgstr "Улюблёнае"
+
+#. TRANS: Server exception.
+#: AnonymousFavePlugin.php:240 AnonymousFavePlugin.php:251
+msgid "Couldn't create anonymous user session."
+msgstr "Немагчыма стварыць сэсію ананімнага карыстальніка."
+
+#. TRANS: Plugin description.
+#: AnonymousFavePlugin.php:326
+msgid "Allow anonymous users to favorite notices."
+msgstr "Дазволіць ананімным карыстальнікам дадаваць паведамленьні ў улюблёныя."
+
+#. TRANS: Client error.
+#: anonfavor.php:60
+msgid ""
+"Could not favor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+"Немагчыма пазначыць паведамленьне як улюблёнае. Калі ласка, упэўніцеся ў "
+"тым, што ў Вашым браўзэры ўключаныя закладкі (cookie)."
+
+#. TRANS: Client error.
+#: anonfavor.php:71 anondisfavor.php:72
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Узьнікла праблема з ключом Вашай сэсіі. Калі ласка, паспрабуйце зноў."
+
+#. TRANS: Client error.
+#: anonfavor.php:78
+msgid "This notice is already a favorite!"
+msgstr "Гэтае паведамленьне ўжо знаходзіцца ў ліку ўлюблёных!"
+
+#. TRANS: Server error.
+#: anonfavor.php:85
+msgid "Could not create favorite."
+msgstr "Немагчыма стварыць як улюблёны."
+
+#. TRANS: Title.
+#: anonfavor.php:95
+msgid "Disfavor favorite"
+msgstr "Выдаліць з улюблёных"
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: Fave_tally.php:155 Fave_tally.php:184
+#, php-format
+msgid "Couldn't update favorite tally for notice ID %d."
+msgstr "Немагчыма абнавіць лічыльнік пазнакаў улюблёных для запісу %d."
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: Fave_tally.php:215
+#, php-format
+msgid "Couldn't create favorite tally for notice ID %d."
+msgstr "Немагчыма стварыць лічыльнік пазнакаў улюлёных для паведамленьня %d."
+
+#. TRANS: Client error.
+#: anondisfavor.php:61
+msgid ""
+"Could not disfavor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+"Немагчыма выдаліць паведамленьне са сьпісу ўлюблёных! Калі ласка, "
+"упэўніцеся, што ў Вашым браўзэры дазволеныя закладкі (cookie)."
+
+#. TRANS: Client error.
+#: anondisfavor.php:82
+msgid "This notice is not a favorite!"
+msgstr "Гэтае паведамленьне не зьяўляецца ўлюблёным!"
+
+#. TRANS: Server error.
+#: anondisfavor.php:91
+msgid "Could not delete favorite."
+msgstr "Немагчыма выдаліць са сьпісу ўлюблёных."
+
+#. TRANS: Title.
+#: anondisfavor.php:101
+msgid "Add to favorites"
+msgstr "Дадаць ва ўлюблёныя"

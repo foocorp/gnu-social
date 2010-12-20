@@ -45,7 +45,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiAccountUpdateDeliveryDeviceAction extends ApiAuthAction
 {
     /**
@@ -54,9 +53,7 @@ class ApiAccountUpdateDeliveryDeviceAction extends ApiAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -76,13 +73,13 @@ class ApiAccountUpdateDeliveryDeviceAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error message. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400, $this->format
             );
@@ -91,6 +88,7 @@ class ApiAccountUpdateDeliveryDeviceAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
+                // TRANS: Client error displayed handling a non-existing API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -101,16 +99,14 @@ class ApiAccountUpdateDeliveryDeviceAction extends ApiAuthAction
         // Note: Twitter no longer supports IM
 
         if (!in_array(strtolower($this->device), array('sms', 'im', 'none'))) {
-            $this->clientError(
-                _(
-                    'You must specify a parameter named ' .
-                    '\'device\' with a value of one of: sms, im, none.'
-                )
-            );
+            // TRANS: Client error displayed when no valid device parameter is provided for a user's delivery device setting.
+            $this->clientError(_( 'You must specify a parameter named ' .
+                                  '\'device\' with a value of one of: sms, im, none.' ));
             return;
         }
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when no existing user is provided for a user's delivery device setting.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
@@ -136,6 +132,7 @@ class ApiAccountUpdateDeliveryDeviceAction extends ApiAuthAction
 
         if ($result === false) {
             common_log_db_error($this->user, 'UPDATE', __FILE__);
+            // TRANS: Server error displayed when a user's delivery device cannot be updated.
             $this->serverError(_('Could not update user.'));
             return;
         }
@@ -160,5 +157,4 @@ class ApiAccountUpdateDeliveryDeviceAction extends ApiAuthAction
             $this->endDocument('json');
         }
     }
-
 }

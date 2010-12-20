@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Remember_me extends Memcached_DataObject 
+class Remember_me extends Memcached_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -16,11 +16,15 @@ class Remember_me extends Memcached_DataObject
 
     /* Static get */
     function staticGet($k,$v=null)
-    { return Memcached_DataObject::staticGet('Remember_me',$k,$v); }
+    {
+        return Memcached_DataObject::staticGet('Remember_me',$k,$v);
+    }
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
     function sequenceKey()
-    { return array(false, false); }
+    {
+        return array(false, false);
+    }
 }

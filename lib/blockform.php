@@ -44,7 +44,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  *
  * @see      UnblockForm
  */
-
 class BlockForm extends ProfileActionForm
 {
     /**
@@ -63,9 +62,9 @@ class BlockForm extends ProfileActionForm
      *
      * @return string Title of the form, internationalized
      */
-
     function title()
     {
+        // TRANS: Title for the form to block a user.
         return _('Block');
     }
 
@@ -74,9 +73,9 @@ class BlockForm extends ProfileActionForm
      *
      * @return string description of the form, internationalized
      */
-
     function description()
     {
+        // TRANS: Description of the form to block a user.
         return _('Block this user');
     }
 }

@@ -45,14 +45,13 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class EditgroupAction extends GroupDesignAction
 {
-
     var $msg;
 
     function title()
     {
+        // TRANS: Title for form to edit a group. %s is a group nickname.
         return sprintf(_('Edit %s group'), $this->group->nickname);
     }
 
@@ -65,6 +64,7 @@ class EditgroupAction extends GroupDesignAction
         parent::prepare($args);
 
         if (!common_logged_in()) {
+            // TRANS: Client error displayed trying to edit a group while not logged in.
             $this->clientError(_('You must be logged in to create a group.'));
             return false;
         }
@@ -81,6 +81,7 @@ class EditgroupAction extends GroupDesignAction
         }
 
         if (!$nickname) {
+            // TRANS: Client error displayed trying to edit a group while not proving a nickname for the group to edit.
             $this->clientError(_('No nickname.'), 404);
             return false;
         }
@@ -97,6 +98,7 @@ class EditgroupAction extends GroupDesignAction
         }
 
         if (!$this->group) {
+            // TRANS: Client error displayed trying to edit a non-existing group.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -104,6 +106,7 @@ class EditgroupAction extends GroupDesignAction
         $cur = common_current_user();
 
         if (!$cur->isAdmin($this->group)) {
+            // TRANS: Client error displayed trying to edit a group while not being a group admin.
             $this->clientError(_('You must be an admin to edit the group.'), 403);
             return false;
         }
@@ -120,7 +123,6 @@ class EditgroupAction extends GroupDesignAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -155,6 +157,7 @@ class EditgroupAction extends GroupDesignAction
             $this->element('p', 'error', $this->msg);
         } else {
             $this->element('p', 'instructions',
+                           // TRANS: Form instructions for group edit form.
                            _('Use this form to edit the group.'));
         }
     }
@@ -169,43 +172,48 @@ class EditgroupAction extends GroupDesignAction
     {
         $cur = common_current_user();
         if (!$cur->isAdmin($this->group)) {
+            // TRANS: Client error displayed trying to edit a group while not being a group admin.
             $this->clientError(_('You must be an admin to edit the group.'), 403);
             return;
         }
 
-        $nickname    = common_canonical_nickname($this->trimmed('nickname'));
+        $nickname    = Nickname::normalize($this->trimmed('nickname'));
         $fullname    = $this->trimmed('fullname');
         $homepage    = $this->trimmed('homepage');
         $description = $this->trimmed('description');
         $location    = $this->trimmed('location');
         $aliasstring = $this->trimmed('aliases');
 
-        if (!Validate::string($nickname, array('min_length' => 1,
-                                               'max_length' => 64,
-                                               'format' => NICKNAME_FMT))) {
-            $this->showForm(_('Nickname must have only lowercase letters '.
-                              'and numbers and no spaces.'));
-            return;
-        } else if ($this->nicknameExists($nickname)) {
+        if ($this->nicknameExists($nickname)) {
+            // TRANS: Group edit form validation error.
             $this->showForm(_('Nickname already in use. Try another one.'));
             return;
         } else if (!User_group::allowedNickname($nickname)) {
+            // TRANS: Group edit form validation error.
             $this->showForm(_('Not a valid nickname.'));
             return;
         } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
                    !Validate::uri($homepage,
                                   array('allowed_schemes' =>
                                         array('http', 'https')))) {
+            // TRANS: Group edit form validation error.
             $this->showForm(_('Homepage is not a valid URL.'));
             return;
         } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
-            $this->showForm(_('Full name is too long (max 255 chars).'));
+            // TRANS: Group edit form validation error.
+            $this->showForm(_('Full name is too long (maximum 255 characters).'));
             return;
         } else if (User_group::descriptionTooLong($description)) {
-            $this->showForm(sprintf(_('description is too long (max %d chars).'), User_group::maxDescription()));
+            $this->showForm(sprintf(
+                // TRANS: Group edit form validation error.
+                _m('Description is too long (maximum %d character).',
+                  'Description is too long (maximum %d characters).',
+                  User_group::maxDescription()),
+                                    User_group::maxDescription()));
             return;
         } else if (!is_null($location) && mb_strlen($location) > 255) {
-            $this->showForm(_('Location is too long (max 255 chars).'));
+            // TRANS: Group edit form validation error.
+            $this->showForm(_('Location is too long (maximum 255 characters).'));
             return;
         }
 
@@ -216,25 +224,30 @@ class EditgroupAction extends GroupDesignAction
         }
 
         if (count($aliases) > common_config('group', 'maxaliases')) {
-            $this->showForm(sprintf(_('Too many aliases! Maximum %d.'),
+            // TRANS: Group edit form validation error.
+            // TRANS: %d is the maximum number of allowed aliases.
+            $this->showForm(sprintf(_m('Too many aliases! Maximum %d allowed.',
+                                       'Too many aliases! Maximum %d allowed.',
+                                       common_config('group', 'maxaliases')),
                                     common_config('group', 'maxaliases')));
             return;
         }
 
         foreach ($aliases as $alias) {
-            if (!Validate::string($alias, array('min_length' => 1,
-                                                'max_length' => 64,
-                                                'format' => NICKNAME_FMT))) {
+            if (!Nickname::isValid($alias)) {
+                // TRANS: Group edit form validation error.
                 $this->showForm(sprintf(_('Invalid alias: "%s"'), $alias));
                 return;
             }
             if ($this->nicknameExists($alias)) {
+                // TRANS: Group edit form validation error.
                 $this->showForm(sprintf(_('Alias "%s" already in use. Try another one.'),
                                         $alias));
                 return;
             }
             // XXX assumes alphanum nicknames
             if (strcmp($alias, $nickname) == 0) {
+                // TRANS: Group edit form validation error.
                 $this->showForm(_('Alias can\'t be the same as nickname.'));
                 return;
             }
@@ -255,12 +268,14 @@ class EditgroupAction extends GroupDesignAction
 
         if (!$result) {
             common_log_db_error($this->group, 'UPDATE', __FILE__);
+            // TRANS: Server error displayed when editing a group fails.
             $this->serverError(_('Could not update group.'));
         }
 
         $result = $this->group->setAliases($aliases);
 
         if (!$result) {
+            // TRANS: Server error displayed when group aliases could not be added.
             $this->serverError(_('Could not create aliases.'));
         }
 
@@ -277,6 +292,7 @@ class EditgroupAction extends GroupDesignAction
                                              array('nickname' => $nickname)),
                             303);
         } else {
+            // TRANS: Group edit form success message.
             $this->showForm(_('Options saved.'));
         }
     }
@@ -300,4 +316,3 @@ class EditgroupAction extends GroupDesignAction
         return false;
     }
 }
-

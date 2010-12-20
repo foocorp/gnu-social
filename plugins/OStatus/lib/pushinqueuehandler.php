@@ -17,12 +17,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 /**
  * Process a feed distribution POST from a PuSH hub.
  * @package FeedSub
  * @author Brion Vibber <brion@status.net>
  */
-
 class PushInQueueHandler extends QueueHandler
 {
     function transport()

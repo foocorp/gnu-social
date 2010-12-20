@@ -28,7 +28,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class AddMirrorForm extends Form
 {
-
     /**
      * Name of the form
      *
@@ -36,7 +35,6 @@ class AddMirrorForm extends Form
      *
      * @return void
      */
-
     function formLegend()
     {
     }
@@ -49,7 +47,6 @@ class AddMirrorForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->elementStart('fieldset');
@@ -64,7 +61,7 @@ class AddMirrorForm extends Form
         $this->unli();
 
         $this->li();
-        $this->out->submit('addmirror-save', _m('Add feed'));
+        $this->out->submit('addmirror-save', _m('BUTTON','Add feed'));
         $this->unli();
         $this->out->elementEnd('ul');
         $this->out->elementEnd('fieldset');
@@ -94,7 +91,6 @@ class AddMirrorForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
     }
@@ -107,7 +103,6 @@ class AddMirrorForm extends Form
      *
      * @return string ID of the form
      */
-
     function id()
     {
         return 'add-mirror-form';
@@ -121,7 +116,6 @@ class AddMirrorForm extends Form
      *
      * @return string URL to post to
      */
-
     function action()
     {
         return common_local_url('addmirror');
@@ -132,10 +126,8 @@ class AddMirrorForm extends Form
      *
      * @return string the form's class
      */
-
     function formClass()
     {
         return 'form_settings';
     }
-
 }

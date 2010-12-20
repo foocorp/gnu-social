@@ -101,7 +101,7 @@ class ProfileAction extends OwnerDesignAction
 
     function showSubscriptions()
     {
-        $profile = $this->user->getSubscriptions(0, PROFILES_PER_MINILIST + 1);
+        $profile = $this->profile->getSubscriptions(0, PROFILES_PER_MINILIST + 1);
 
         $this->elementStart('div', array('id' => 'entity_subscriptions',
                                          'class' => 'section'));
@@ -134,7 +134,7 @@ class ProfileAction extends OwnerDesignAction
 
     function showSubscribers()
     {
-        $profile = $this->user->getSubscribers(0, PROFILES_PER_MINILIST + 1);
+        $profile = $this->profile->getSubscribers(0, PROFILES_PER_MINILIST + 1);
 
         $this->elementStart('div', array('id' => 'entity_subscribers',
                                          'class' => 'section'));
@@ -173,7 +173,7 @@ class ProfileAction extends OwnerDesignAction
         $subs_count   = $this->profile->subscriptionCount();
         $subbed_count = $this->profile->subscriberCount();
         $notice_count = $this->profile->noticeCount();
-        $group_count  = $this->user->getGroups()->N;
+        $group_count  = $this->profile->getGroups()->N;
         $age_days     = (time() - strtotime($this->profile->created)) / 86400;
         if ($age_days < 1) {
             // Rather than extrapolating out to a bajillion...
@@ -241,7 +241,7 @@ class ProfileAction extends OwnerDesignAction
 
     function showGroups()
     {
-        $groups = $this->user->getGroups(0, GROUPS_PER_MINILIST + 1);
+        $groups = $this->profile->getGroups(0, GROUPS_PER_MINILIST + 1);
 
         $this->elementStart('div', array('id' => 'entity_groups',
                                          'class' => 'section'));
@@ -249,7 +249,7 @@ class ProfileAction extends OwnerDesignAction
             $this->element('h2', null, _('Groups'));
 
             if ($groups) {
-                $gml = new GroupMiniList($groups, $this->user, $this);
+                $gml = new GroupMiniList($groups, $this->profile, $this);
                 $cnt = $gml->show();
                 if ($cnt == 0) {
                     $this->element('p', null, _('(None)'));

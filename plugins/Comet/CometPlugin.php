@@ -42,7 +42,6 @@ require_once INSTALLDIR.'/plugins/Realtime/RealtimePlugin.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class CometPlugin extends RealtimePlugin
 {
     public $server   = null;
@@ -103,5 +102,16 @@ class CometPlugin extends RealtimePlugin
             array_unshift($path, $this->prefix);
         }
         return '/' . implode('/', $path);
+    }
+
+    function onPluginVersion(&$versions)
+    {
+        $versions[] = array('name' => 'Comet',
+                            'version' => STATUSNET_VERSION,
+                            'author' => 'Evan Prodromou',
+                            'homepage' => 'http://status.net/wiki/Plugin:Comet',
+                            'rawdescription' =>
+                            _m('Plugin to do "real time" updates using Comet/Bayeux.'));
+        return true;
     }
 }

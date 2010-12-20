@@ -1,0 +1,32 @@
+# Translation of StatusNet - ReverseUsernameAuthentication to Macedonian (Македонски)
+# Expored from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ReverseUsernameAuthentication\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:51+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-10-29 16:14:00+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-reverseusernameauthentication\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#: ReverseUsernameAuthenticationPlugin.php:67
+msgid ""
+"The Reverse Username Authentication plugin allows for StatusNet to handle "
+"authentication by checking if the provided password is the same as the "
+"reverse of the username."
+msgstr ""
+"Приклучокот за Потврда на обратно корисничко име му овозможува на StatusNet "
+"да работи со потврди проверувајќи дали наведената лозинка е иста што и "
+"обратното од корисничкото име."

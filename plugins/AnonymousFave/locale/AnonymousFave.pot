@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. TRANS: Label for tally for number of times a notice was favored.
+#: AnonymousFavePlugin.php:207
+msgid "Favored"
+msgstr ""
+
+#. TRANS: Server exception.
+#: AnonymousFavePlugin.php:240 AnonymousFavePlugin.php:251
+msgid "Couldn't create anonymous user session."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: AnonymousFavePlugin.php:326
+msgid "Allow anonymous users to favorite notices."
+msgstr ""
+
+#. TRANS: Client error.
+#: anonfavor.php:60
+msgid ""
+"Could not favor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+
+#. TRANS: Client error.
+#: anonfavor.php:71 anondisfavor.php:72
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Client error.
+#: anonfavor.php:78
+msgid "This notice is already a favorite!"
+msgstr ""
+
+#. TRANS: Server error.
+#: anonfavor.php:85
+msgid "Could not create favorite."
+msgstr ""
+
+#. TRANS: Title.
+#: anonfavor.php:95
+msgid "Disfavor favorite"
+msgstr ""
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: Fave_tally.php:155 Fave_tally.php:184
+#, php-format
+msgid "Couldn't update favorite tally for notice ID %d."
+msgstr ""
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#: Fave_tally.php:215
+#, php-format
+msgid "Couldn't create favorite tally for notice ID %d."
+msgstr ""
+
+#. TRANS: Client error.
+#: anondisfavor.php:61
+msgid ""
+"Could not disfavor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+
+#. TRANS: Client error.
+#: anondisfavor.php:82
+msgid "This notice is not a favorite!"
+msgstr ""
+
+#. TRANS: Server error.
+#: anondisfavor.php:91
+msgid "Could not delete favorite."
+msgstr ""
+
+#. TRANS: Title.
+#: anondisfavor.php:101
+msgid "Add to favorites"
+msgstr ""

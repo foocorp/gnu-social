@@ -53,7 +53,7 @@ class FeedDiscoveryTest extends PHPUnit_Framework_TestCase
 </style>
 
 <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://leuksman.com/log/xmlrpc.php?rsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://leuksman.com/log/wp-includes/wlwmanifest.xml" /> 
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://leuksman.com/log/wp-includes/wlwmanifest.xml" />
 <link rel='index' title='leŭksman' href='http://leuksman.com/log' />
 <meta name="generator" content="WordPress 2.8.6" />
 </head>
@@ -75,9 +75,10 @@ END;
                            '<body><pre><LINK rel=alternate hRef=http://example.com/feed/rss type=application/rss+xml><fnork',
                            'http://example.com/feed/rss'),
                      // 'rel' attribute must be lowercase, alone per http://www.rssboard.org/rss-autodiscovery
+                     // but we're going to be liberal in what we receive.
                      array('http://example.com/tagsoup2',
                            '<body><pre><LINK rel=" feeders    alternate 467" hRef=http://example.com/feed/rss type=application/rss+xml><fnork',
-                           false),
+                           'http://example.com/feed/rss'),
                      array('http://example.com/tagsoup3',
                            '<body><pre><LINK rel=ALTERNATE hRef=http://example.com/feed/rss type=application/rss+xml><fnork',
                            false),
@@ -87,18 +88,20 @@ END;
                      array('http://example.com/relative/link2',
                            '<html><link rel="alternate" href="../feed/rss" type="application/rss+xml">',
                            'http://example.com/feed/rss'),
+                     // This one can't resolve correctly; relative link is bogus.
                      array('http://example.com/relative/link3',
                            '<html><link rel="alternate" href="http:/feed/rss" type="application/rss+xml">',
-                           'http://example.com/feed/rss'),
+                           'http:/feed/rss'),
                      array('http://example.com/base/link1',
                            '<html><link rel="alternate" href="/feed/rss" type="application/rss+xml"><base href="http://target.example.com/">',
                            'http://target.example.com/feed/rss'),
                      array('http://example.com/base/link2',
                            '<html><link rel="alternate" href="feed/rss" type="application/rss+xml"><base href="http://target.example.com/">',
                            'http://target.example.com/feed/rss'),
+                     // This one can't resolve; relative link is bogus.
                      array('http://example.com/base/link3',
                            '<html><link rel="alternate" href="http:/feed/rss" type="application/rss+xml"><base href="http://target.example.com/">',
-                           'http://target.example.com/feed/rss'),
+                           'http:/feed/rss'),
                      // Trick question! There's a <base> but no href on it
                      array('http://example.com/relative/fauxbase',
                            '<html><link rel="alternate" href="../feed/rss" type="application/rss+xml"><base target="top">',

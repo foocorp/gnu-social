@@ -44,7 +44,6 @@ require_once INSTALLDIR.'/lib/form.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class FlagProfileForm extends ProfileActionForm
 {
     /**
@@ -53,7 +52,6 @@ class FlagProfileForm extends ProfileActionForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_entity_flag';
@@ -64,7 +62,6 @@ class FlagProfileForm extends ProfileActionForm
      *
      * @return string Name of the action, lowercased.
      */
-
     function target()
     {
         return 'flagprofile';
@@ -75,10 +72,10 @@ class FlagProfileForm extends ProfileActionForm
      *
      * @return string Title of the form, internationalized
      */
-
     function title()
     {
-        return _('Flag');
+        // TRANS: Form title for flagging a profile for review.
+        return _m('Flag');
     }
 
     /**
@@ -86,9 +83,9 @@ class FlagProfileForm extends ProfileActionForm
      *
      * @return string description of the form, internationalized
      */
-
     function description()
     {
-        return _('Flag profile for review');
+        // TRANS: Form description.
+        return _m('Flag profile for review.');
     }
 }

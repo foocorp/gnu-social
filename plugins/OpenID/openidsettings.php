@@ -27,11 +27,10 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/accountsettingsaction.php';
 require_once INSTALLDIR.'/plugins/OpenID/openid.php';
 
 /**

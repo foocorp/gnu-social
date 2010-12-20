@@ -22,7 +22,9 @@
  * @maintainer Brion Vibber <brion@status.net>
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('STATUSNET')) {
+    exit(1);
+}
 
 /**
  * Key UI methods:
@@ -62,13 +64,15 @@ class OStatusSubAction extends Action
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
         $this->input('profile',
+                     // TRANS: Field label for a field that takes an OStatus user address.
                      _m('Subscribe to'),
                      $this->profile_uri,
-                     _m("OStatus user's address, like nickname@example.com or http://example.net/nickname"));
+                     // TRANS: Tooltip for field label "Subscribe to".
+                     _m('OStatus user\'s address, like nickname@example.com or http://example.net/nickname'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-
-        $this->submit('validate', _m('Continue'));
+        // TRANS: Button text.
+        $this->submit('validate', _m('BUTTON','Continue'));
 
         $this->elementEnd('fieldset');
 
@@ -103,9 +107,13 @@ class OStatusSubAction extends Action
         $this->hidden('profile', $this->profile_uri);
         if ($this->oprofile->isGroup()) {
             $this->submit('submit', _m('Join'), 'submit', null,
-                         _m('Join this group'));
+                         // TRANS: Button text.
+                         // TRANS: Tooltip for button "Join".
+                         _m('BUTTON','Join this group'));
         } else {
-            $this->submit('submit', _m('Confirm'), 'submit', null,
+            // TRANS: Button text.
+            $this->submit('submit', _m('BUTTON','Confirm'), 'submit', null,
+                         // TRANS: Tooltip for button "Confirm".
                          _m('Subscribe to this user'));
         }
         $this->elementEnd('fieldset');
@@ -156,7 +164,7 @@ class OStatusSubAction extends Action
 
         $this->elementStart('div', 'entity_profile vcard');
         $this->elementStart('dl', 'entity_depiction');
-        $this->element('dt', null, _('Photo'));
+        $this->element('dt', null, _m('Photo'));
         $this->elementStart('dd');
         $this->element('img', array('src' => $avatar,
                                     'class' => 'photo avatar',
@@ -167,7 +175,7 @@ class OStatusSubAction extends Action
         $this->elementEnd('dl');
 
         $this->elementStart('dl', 'entity_nickname');
-        $this->element('dt', null, _('Nickname'));
+        $this->element('dt', null, _m('Nickname'));
         $this->elementStart('dd');
         $hasFN = ($fullname !== '') ? 'nickname' : 'fn nickname';
         $this->elementStart('a', array('href' => $profile,
@@ -188,7 +196,7 @@ class OStatusSubAction extends Action
         }
         if (!is_null($location)) {
             $this->elementStart('dl', 'entity_location');
-            $this->element('dt', null, _('Location'));
+            $this->element('dt', null, _m('Location'));
             $this->elementStart('dd', 'label');
             $this->raw($location);
             $this->elementEnd('dd');
@@ -197,7 +205,7 @@ class OStatusSubAction extends Action
 
         if (!is_null($homepage)) {
             $this->elementStart('dl', 'entity_url');
-            $this->element('dt', null, _('URL'));
+            $this->element('dt', null, _m('URL'));
             $this->elementStart('dd');
             $this->elementStart('a', array('href' => $homepage,
                                                 'class' => 'url'));
@@ -209,7 +217,7 @@ class OStatusSubAction extends Action
 
         if (!is_null($note)) {
             $this->elementStart('dl', 'entity_note');
-            $this->element('dt', null, _('Note'));
+            $this->element('dt', null, _m('Note'));
             $this->elementStart('dd', 'note');
             $this->raw($note);
             $this->elementEnd('dd');
@@ -244,32 +252,40 @@ class OStatusSubAction extends Action
             } else if (Validate::uri($this->profile_uri)) {
                 $this->oprofile = Ostatus_profile::ensureProfileURL($this->profile_uri);
             } else {
-                $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname");
+                // TRANS: Error text.
+                $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
                 common_debug('Invalid address format.', __FILE__);
                 return false;
             }
             return true;
         } catch (FeedSubBadURLException $e) {
-            $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname");
+            // TRANS: Error text.
+            $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
             common_debug('Invalid URL or could not reach server.', __FILE__);
         } catch (FeedSubBadResponseException $e) {
+            // TRANS: Error text.
             $this->error = _m("Sorry, we could not reach that feed. Please try that OStatus address again later.");
             common_debug('Cannot read feed; server returned error.', __FILE__);
         } catch (FeedSubEmptyException $e) {
+            // TRANS: Error text.
             $this->error = _m("Sorry, we could not reach that feed. Please try that OStatus address again later.");
             common_debug('Cannot read feed; server returned an empty page.', __FILE__);
         } catch (FeedSubBadHTMLException $e) {
+            // TRANS: Error text.
             $this->error = _m("Sorry, we could not reach that feed. Please try that OStatus address again later.");
             common_debug('Bad HTML, could not find feed link.', __FILE__);
         } catch (FeedSubNoFeedException $e) {
+            // TRANS: Error text.
             $this->error = _m("Sorry, we could not reach that feed. Please try that OStatus address again later.");
             common_debug('Could not find a feed linked from this URL.', __FILE__);
         } catch (FeedSubUnrecognizedTypeException $e) {
+            // TRANS: Error text.
             $this->error = _m("Sorry, we could not reach that feed. Please try that OStatus address again later.");
             common_debug('Not a recognized feed type.', __FILE__);
         } catch (Exception $e) {
             // Any new ones we forgot about
-            $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname");
+            // TRANS: Error text.
+            $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
             common_debug(sprintf('Bad feed URL: %s %s', get_class($e), $e->getMessage()), __FILE__);
         }
 
@@ -350,7 +366,7 @@ class OStatusSubAction extends Action
         // CSRF protection
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
-            $this->showForm(_('There was a problem with your session token. '.
+            $this->showForm(_m('There was a problem with your session token. '.
                               'Try again, please.'));
             return;
         }
@@ -377,6 +393,7 @@ class OStatusSubAction extends Action
             $this->xw->startDocument('1.0', 'UTF-8');
             $this->elementStart('html');
             $this->elementStart('head');
+            // TRANS: Form title.
             $this->element('title', null, _m('Subscribe to user'));
             $this->elementEnd('head');
             $this->elementStart('body');
@@ -408,6 +425,7 @@ class OStatusSubAction extends Action
 
     function getInstructions()
     {
+        // TRANS: Instructions.
         return _m('You can subscribe to users from other supported sites. Paste their address or profile URI below:');
     }
 
@@ -426,7 +444,6 @@ class OStatusSubAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         if ($this->oprofile) {
@@ -459,5 +476,4 @@ class OStatusSubAction extends Action
     function showNoticeForm() {
         // nop
     }
-
 }

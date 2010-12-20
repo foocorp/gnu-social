@@ -46,7 +46,6 @@ require_once INSTALLDIR . '/lib/apibareauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiFriendshipsShowAction extends ApiBareAuthAction
 {
     var $source = null;
@@ -58,9 +57,7 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -93,7 +90,6 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
      *
      * @return boolean true or false
      */
-
     function requiresAuth()
     {
         if (common_config('site', 'private')) {
@@ -119,18 +115,19 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if (!in_array($this->format, array('xml', 'json'))) {
+            // TRANS: Client error displayed trying to execute an unknown API method showing friendship.
             $this->clientError(_('API method not found.'), 404);
             return;
         }
 
         if (empty($this->source)) {
             $this->clientError(
+                // TRANS: Client error displayed when a source user could not be determined showing friendship.
                 _('Could not determine source user.'),
                 404
              );
@@ -139,6 +136,7 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
 
         if (empty($this->target)) {
             $this->clientError(
+                // TRANS: Client error displayed when a target user could not be determined showing friendship.
                 _('Could not find target user.'),
                 404
             );
@@ -161,7 +159,6 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
         default:
             break;
         }
-
     }
 
     /**
@@ -178,5 +175,4 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
     {
         return true;
     }
-
 }

@@ -67,4 +67,3 @@ class File_to_post extends Memcached_DataObject
         return Memcached_DataObject::pkeyGet('File_to_post', $kv);
     }
 }
-

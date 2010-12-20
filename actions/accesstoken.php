@@ -67,4 +67,3 @@ class AccesstokenAction extends Action
         }
     }
 }
-?>

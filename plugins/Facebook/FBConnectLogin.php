@@ -38,6 +38,7 @@ class FBConnectLoginAction extends Action
 
     function getInstructions()
     {
+        // TRANS: Instructions.
         return _m('Login with your Facebook Account');
     }
 
@@ -52,6 +53,7 @@ class FBConnectLoginAction extends Action
 
     function title()
     {
+        // TRANS: Page title.
         return _m('Facebook Login');
     }
 

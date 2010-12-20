@@ -17,11 +17,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 /**
  * @package OStatusPlugin
  * @maintainer Brion Vibber <brion@status.net>
  */
-
 class Ostatus_source extends Memcached_DataObject
 {
     public $__table = 'ostatus_source';
@@ -43,7 +46,6 @@ class Ostatus_source extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
@@ -69,7 +71,6 @@ class Ostatus_source extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -83,7 +84,6 @@ class Ostatus_source extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keyTypes()
     {
         return array('notice_id' => 'K');

@@ -42,7 +42,6 @@ require_once INSTALLDIR.'/lib/attachmentlist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class AttachmentAction extends Action
 {
     /**
@@ -70,6 +69,7 @@ class AttachmentAction extends Action
         }
 
         if (empty($this->attachment)) {
+            // TRANS: Client error displayed trying to get a non-existing attachment.
             $this->clientError(_('No such attachment.'), 404);
             return false;
         }
@@ -81,7 +81,6 @@ class AttachmentAction extends Action
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -129,7 +128,6 @@ class AttachmentAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -150,7 +148,6 @@ class AttachmentAction extends Action
      *
      * @return void
      */
-
     function showLocalNavBlock()
     {
     }
@@ -162,7 +159,6 @@ class AttachmentAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         $ali = new Attachment($this->attachment, $this);
@@ -174,7 +170,6 @@ class AttachmentAction extends Action
      *
      * @return void
      */
-
     function showPageNoticeBlock()
     {
     }
@@ -191,4 +186,3 @@ class AttachmentAction extends Action
         $atcs->show();
     }
 }
-

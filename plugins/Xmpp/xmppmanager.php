@@ -184,14 +184,14 @@ class XmppManager extends ImManager
         }
 
         common_log(LOG_DEBUG, "Sending ping #{$this->pingid}");
-		$this->conn->send("<iq from='{" . $this->plugin->daemon_screenname() . "}' to='{$this->plugin->server}' id='ping_{$this->pingid}' type='get'><ping xmlns='urn:xmpp:ping'/></iq>");
+		$this->conn->send("<iq from='{" . $this->plugin->daemonScreenname() . "}' to='{$this->plugin->server}' id='ping_{$this->pingid}' type='get'><ping xmlns='urn:xmpp:ping'/></iq>");
         $this->lastping = $now;
         return true;
     }
 
     function handle_xmpp_message(&$pl)
     {
-        $this->plugin->enqueue_incoming_raw($pl);
+        $this->plugin->enqueueIncomingRaw($pl);
         return true;
     }
 

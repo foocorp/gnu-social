@@ -45,7 +45,7 @@ $skip = have_option('skip') ? intval(get_option_value('skip')) : 0;
 $count = have_option('count') ? intval(get_option_value('count')) : 0;
 
 
-$sub = FeedSub::staticGet('topic', $feedurl);
+$sub = FeedSub::staticGet('uri', $feedurl);
 if (!$sub) {
     print "Feed $feedurl is not subscribed.\n";
     exit(1);
@@ -86,4 +86,3 @@ if ($skip || $count) {
 }
 
 Event::handle('StartFeedSubReceive', array($sub, $feed));
-

@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Plugin to show reCaptcha when a user registers 
+ * Plugin to show reCaptcha when a user registers
  *
  * PHP version 5
  *
@@ -51,26 +51,17 @@ class RecaptchaPlugin extends Plugin
         }
     }
 
-    function checkssl()
-    {
-        if(common_config('site', 'ssl') === 'sometimes' || common_config('site', 'ssl') === 'always') {
-            return true;
-        }
-        return false;
-    }
-
-
     function onEndRegistrationFormData($action)
     {
         $action->elementStart('li');
-        $action->raw('<label for="recaptcha">Captcha</label>');
+        $action->raw('<label for="recaptcha">'._m('Captcha').'</label>');
 
         // AJAX API will fill this div out.
         // We're calling that instead of the regular one so we stay compatible
         // with application/xml+xhtml output as for mobile.
         $action->element('div', array('id' => 'recaptcha'));
         $action->elementEnd('li');
-        
+
         $action->recaptchaPluginNeedsOutput = true;
         return true;
     }
@@ -79,13 +70,13 @@ class RecaptchaPlugin extends Plugin
     {
         if (isset($action->recaptchaPluginNeedsOutput) && $action->recaptchaPluginNeedsOutput) {
             // Load the AJAX API
-            if ($this->checkssl()) {
+            if (StatusNet::isHTTPS()) {
                 $url = "https://api-secure.recaptcha.net/js/recaptcha_ajax.js";
             } else {
                 $url = "http://api.recaptcha.net/js/recaptcha_ajax.js";
             }
             $action->script($url);
-            
+
             // And when we're ready, fill out the captcha!
             $key = json_encode($this->public_key);
             $action->inlinescript("\$(function(){Recaptcha.create($key, 'recaptcha');});");
@@ -102,7 +93,7 @@ class RecaptchaPlugin extends Plugin
 
         if (!$resp->is_valid) {
             if($this->display_errors) {
-                $action->showForm ("(reCAPTCHA error: " . $resp->error . ")");
+                $action->showForm(sprintf(_("(reCAPTCHA error: %s)", $resp->error)));
             }
             $action->showForm(_m("Captcha does not match!"));
             return false;

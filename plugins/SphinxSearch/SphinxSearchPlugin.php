@@ -41,8 +41,6 @@ foreach($sphinxDefaults as $key => $val) {
     }
 }
 
-
-
 /**
  * Plugin for Sphinx search backend.
  *
@@ -53,7 +51,6 @@ foreach($sphinxDefaults as $key => $val) {
  * @link     http://laconi.ca/
  * @link     http://twitter.com/
  */
-
 class SphinxSearchPlugin extends Plugin
 {
     /**
@@ -86,7 +83,8 @@ class SphinxSearchPlugin extends Plugin
     {
         if (common_config('sphinx', 'enabled')) {
             if (!class_exists('SphinxClient')) {
-                throw new ServerException('Sphinx PHP extension must be installed.');
+                // TRANS: Server exception.
+                throw new ServerException(_m('Sphinx PHP extension must be installed.'));
             }
             $engine = new SphinxSearch($target, $table);
             if ($engine->is_connected()) {
@@ -95,6 +93,30 @@ class SphinxSearchPlugin extends Plugin
             }
         }
         // Sphinx disabled or disconnected
+        return true;
+    }
+
+    /**
+     * Provide plugin version information.
+     *
+     * This data is used when showing the version page.
+     *
+     * @param array &$versions array of version data arrays; see EVENTS.txt
+     *
+     * @return boolean hook value
+     */
+    function onPluginVersion(&$versions)
+    {
+        $url = 'http://status.net/wiki/Plugin:SphinxSearch';
+
+        $versions[] = array('name' => 'SphinxSearch',
+            'version' => STATUSNET_VERSION,
+            'author' => 'Brion Vibber',
+            'homepage' => $url,
+            'rawdescription' =>
+            // TRANS: Plugin description.
+            _m('Plugin for Sphinx search backend.'));
+
         return true;
     }
 }

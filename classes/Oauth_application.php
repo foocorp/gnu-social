@@ -46,12 +46,19 @@ class Oauth_application extends Memcached_DataObject
 
     static function maxDesc()
     {
-        $desclimit = common_config('application', 'desclimit');
-        // null => use global limit (distinct from 0!)
-        if (is_null($desclimit)) {
-            $desclimit = common_config('site', 'textlimit');
+        // This used to default to textlimit or allow unlimited descriptions,
+        // but this isn't part of a notice and the field's limited to 255 chars
+        // in the DB, so those seem silly.
+        //
+        // Now just defaulting to 255 max unless a smaller application desclimit
+        // is actually set. Setting to 0 will use the maximum.
+        $max = 255;
+        $desclimit = intval(common_config('application', 'desclimit'));
+        if ($desclimit > 0 && $desclimit < $max) {
+            return $desclimit;
+        } else {
+            return $max;
         }
-        return $desclimit;
     }
 
     static function descriptionTooLong($desc)
@@ -110,7 +117,6 @@ class Oauth_application extends Memcached_DataObject
      *
      * @return void
      */
-
     function uploadLogo()
     {
         if ($_FILES['app_icon']['error'] ==
@@ -153,5 +159,4 @@ class Oauth_application extends Memcached_DataObject
         $oauser->application_id = $this->id;
         $oauser->delete();
     }
-
 }

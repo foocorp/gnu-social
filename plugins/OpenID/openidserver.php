@@ -28,13 +28,11 @@
  * @link      http://status.net/
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) {
+if (!defined('STATUSNET')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/action.php';
 require_once INSTALLDIR.'/plugins/OpenID/openid.php';
-require_once(INSTALLDIR.'/plugins/OpenID/User_openid_trustroot.php');
 
 /**
  * Settings for OpenID

@@ -49,7 +49,6 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiUserShowAction extends ApiPrivateAuthAction
 {
     /**
@@ -60,7 +59,6 @@ class ApiUserShowAction extends ApiPrivateAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -87,17 +85,18 @@ class ApiUserShowAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if (empty($this->user)) {
-            $this->clientError(_('Not found.'), 404, $this->format);
+            // TRANS: Client error displayed when requesting user information for a non-existing user.
+            $this->clientError(_('User not found.'), 404, $this->format);
             return;
         }
 
         if (!in_array($this->format, array('xml', 'json'))) {
+            // TRANS: Client error displayed when trying to handle an unknown API method.
             $this->clientError(_('API method not found.'), $code = 404);
             return;
         }
@@ -105,6 +104,7 @@ class ApiUserShowAction extends ApiPrivateAuthAction
         $profile = $this->user->getProfile();
 
         if (empty($profile)) {
+            // TRANS: Client error displayed when requesting user information for a user without a profile.
             $this->clientError(_('User has no profile.'));
             return;
         }
@@ -120,7 +120,6 @@ class ApiUserShowAction extends ApiPrivateAuthAction
             $this->showJsonObjects($twitter_user);
             $this->endDocument('json');
         }
-
     }
 
     /**
@@ -132,10 +131,8 @@ class ApiUserShowAction extends ApiPrivateAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;
     }
-
 }

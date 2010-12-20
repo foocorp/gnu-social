@@ -84,7 +84,7 @@ class AimManager extends ImManager
 
     function handle_aim_message($data)
     {
-        $this->plugin->enqueue_incoming_raw($data);
+        $this->plugin->enqueueIncomingRaw($data);
         return true;
     }
 

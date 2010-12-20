@@ -66,7 +66,7 @@ class AimPlugin extends ImPlugin
         return strtolower($screenname);
     }
 
-    function daemon_screenname()
+    function daemonScreenname()
     {
         return $this->user;
     }
@@ -119,10 +119,10 @@ class AimPlugin extends ImPlugin
         return 'aim:' . $screenname;    
     }
 
-    function send_message($screenname, $body)
+    function sendMessage($screenname, $body)
     {
         $this->fake_aim->sendIm($screenname, $body);
-	    $this->enqueue_outgoing_raw($this->fake_aim->would_be_sent);
+	    $this->enqueueOutgoingRaw($this->fake_aim->would_be_sent);
         return true;
     }
 
@@ -131,14 +131,14 @@ class AimPlugin extends ImPlugin
      *
      * @return true if processing completed, false if message should be reprocessed
      */
-    function receive_raw_message($message)
+    function receiveRawMessage($message)
     {
         $info=Aim::getMessageInfo($message);
         $from = $info['from'];
-        $user = $this->get_user($from);
+        $user = $this->getUser($from);
         $notice_text = $info['message'];
 
-        $this->handle_incoming($from, $notice_text);
+        $this->handleIncoming($from, $notice_text);
 
         return true;
     }

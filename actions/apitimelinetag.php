@@ -49,10 +49,8 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiTimelineTagAction extends ApiPrivateAuthAction
 {
-
     var $notices = null;
 
     /**
@@ -61,9 +59,7 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -85,7 +81,6 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -97,13 +92,16 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function showTimeline()
     {
         $sitename   = common_config('site', 'name');
         $sitelogo   = (common_config('site', 'logo')) ? common_config('site', 'logo') : Theme::path('logo.png');
+        // TRANS: Title for timeline with lastest notices with a given tag.
+        // TRANS: %s is the tag.
         $title      = sprintf(_("Notices tagged with %s"), $this->tag);
         $subtitle   = sprintf(
+            // TRANS: Subtitle for timeline with lastest notices with a given tag.
+            // TRANS: %1$s is the tag, $2$s is the StatusNet sitename.
             _('Updates tagged with %1$s on %2$s!'),
             $this->tag,
             $sitename
@@ -136,7 +134,6 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
             );
             break;
         case 'atom':
-
             header('Content-Type: application/atom+xml; charset=utf-8');
 
             $atom = new AtomNoticeFeed($this->auth_user);
@@ -158,6 +155,7 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
             $this->showJsonTimeline($this->notices);
             break;
         default:
+            // TRANS: Client error displayed when trying to handle an unknown API method.
             $this->clientError(_('API method not found.'), $code = 404);
             break;
         }
@@ -168,7 +166,6 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      *
      * @return array notices
      */
-
     function getNotices()
     {
         $notices = array();
@@ -193,7 +190,6 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -204,7 +200,6 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      *
      * @return string datestamp of the latest notice in the stream
      */
-
     function lastModified()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
@@ -222,7 +217,6 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
      *
      * @return string etag
      */
-
     function etag()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
@@ -232,6 +226,7 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
             return '"' . implode(
                 ':',
                 array($this->arg('action'),
+                      common_user_cache_hash($this->auth_user),
                       common_language(),
                       $this->tag,
                       strtotime($this->notices[0]->created),
@@ -242,5 +237,4 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
 
         return null;
     }
-
 }

@@ -17,12 +17,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 /**
  * @package OStatusPlugin
  * @maintainer Brion Vibber <brion@status.net>
  */
 
-class Ostatus_profile extends Memcached_DataObject
+class Ostatus_profile extends Managed_DataObject
 {
     public $__table = 'ostatus_profile';
 
@@ -44,77 +48,35 @@ class Ostatus_profile extends Memcached_DataObject
     }
 
     /**
-     * return table definition for DB_DataObject
-     *
-     * DB_DataObject needs to know something about the table to manipulate
-     * instances. This method provides all the DB_DataObject needs to know.
+     * Return table definition for Schema setup and DB_DataObject usage.
      *
      * @return array array of column definitions
      */
 
-    function table()
-    {
-        return array('uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'profile_id' => DB_DATAOBJECT_INT,
-                     'group_id' => DB_DATAOBJECT_INT,
-                     'feeduri' => DB_DATAOBJECT_STR,
-                     'salmonuri' =>  DB_DATAOBJECT_STR,
-                     'avatar' =>  DB_DATAOBJECT_STR,
-                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-                     'modified' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-    }
-
     static function schemaDef()
     {
-        return array(new ColumnDef('uri', 'varchar',
-                                   255, false, 'PRI'),
-                     new ColumnDef('profile_id', 'integer',
-                                   null, true, 'UNI'),
-                     new ColumnDef('group_id', 'integer',
-                                   null, true, 'UNI'),
-                     new ColumnDef('feeduri', 'varchar',
-                                   255, true, 'UNI'),
-                     new ColumnDef('salmonuri', 'text',
-                                   null, true),
-                     new ColumnDef('avatar', 'text',
-                                   null, true),
-                     new ColumnDef('created', 'datetime',
-                                   null, false),
-                     new ColumnDef('modified', 'datetime',
-                                   null, false));
-    }
-
-    /**
-     * return key definitions for DB_DataObject
-     *
-     * DB_DataObject needs to know about keys that the table has; this function
-     * defines them.
-     *
-     * @return array key definitions
-     */
-
-    function keys()
-    {
-        return array_keys($this->keyTypes());
-    }
-
-    /**
-     * return key definitions for Memcached_DataObject
-     *
-     * Our caching system uses the same key definitions, but uses a different
-     * method to get them.
-     *
-     * @return array key definitions
-     */
-
-    function keyTypes()
-    {
-        return array('uri' => 'K', 'profile_id' => 'U', 'group_id' => 'U', 'feeduri' => 'U');
-    }
-
-    function sequenceKey()
-    {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'uri' => array('type' => 'varchar', 'length' => 255, 'not null' => true),
+                'profile_id' => array('type' => 'integer'),
+                'group_id' => array('type' => 'integer'),
+                'feeduri' => array('type' => 'varchar', 'length' => 255),
+                'salmonuri' => array('type' => 'varchar', 'length' => 255),
+                'avatar' => array('type' => 'text'),
+                'created' => array('type' => 'datetime', 'not null' => true),
+                'modified' => array('type' => 'datetime', 'not null' => true),
+            ),
+            'primary key' => array('uri'),
+            'unique keys' => array(
+                'ostatus_profile_profile_id_idx' => array('profile_id'),
+                'ostatus_profile_group_id_idx' => array('group_id'),
+                'ostatus_profile_feeduri_idx' => array('feeduri'),
+            ),
+            'foreign keys' => array(
+                'ostatus_profile_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
+                'ostatus_profile_group_id_fkey' => array('user_group', array('group_id' => 'id')),
+            ),
+        );
     }
 
     /**
@@ -188,9 +150,11 @@ class Ostatus_profile extends Memcached_DataObject
         } else if ($this->group_id && !$this->profile_id) {
             return true;
         } else if ($this->group_id && $this->profile_id) {
-            throw new ServerException("Invalid ostatus_profile state: both group and profile IDs set for $this->uri");
+            // TRANS: Server exception. %s is a URI.
+            throw new ServerException(sprintf(_m('Invalid ostatus_profile state: both group and profile IDs set for %s.'),$this->uri));
         } else {
-            throw new ServerException("Invalid ostatus_profile state: both group and profile IDs empty for $this->uri");
+            // TRANS: Server exception. %s is a URI.
+            throw new ServerException(sprintf(_m('Invalid ostatus_profile state: both group and profile IDs empty for %s.'),$this->uri));
         }
     }
 
@@ -278,7 +242,9 @@ class Ostatus_profile extends Memcached_DataObject
             if ($type == 'object') {
                 $type = get_class($actor);
             }
-            throw new ServerException("Invalid actor passed to " . __METHOD__ . ": " . $type);
+            // TRANS: Server exception.
+            // TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.
+            throw new ServerException(sprintf(_m('Invalid actor passed to %1$s: %2$s.'),__METHOD__,$type));
         }
         if ($object == null) {
             $object = $this;
@@ -370,7 +336,8 @@ class Ostatus_profile extends Memcached_DataObject
         } else if ($entry instanceof Notice) {
             return $preamble . $entry->asAtomEntry(true, true);
         } else {
-            throw new ServerException("Invalid type passed to Ostatus_profile::notify; must be XML string or Activity entry");
+            // TRANS: Server exception.
+            throw new ServerException(_m('Invalid type passed to Ostatus_profile::notify. It must be XML string or Activity entry.'));
         }
     }
 
@@ -400,7 +367,8 @@ class Ostatus_profile extends Memcached_DataObject
         } else if ($feed->localName == 'rss') { // @fixme check namespace
             $this->processRssFeed($feed, $source);
         } else {
-            throw new Exception("Unknown feed format.");
+            // TRANS: Exception.
+            throw new Exception(_m('Unknown feed format.'));
         }
     }
 
@@ -423,7 +391,8 @@ class Ostatus_profile extends Memcached_DataObject
         $channels = $rss->getElementsByTagName('channel');
 
         if ($channels->length == 0) {
-            throw new Exception("RSS feed without a channel.");
+            // TRANS: Exception.
+            throw new Exception(_m('RSS feed without a channel.'));
         } else if ($channels->length > 1) {
             common_log(LOG_WARNING, __METHOD__ . ": more than one channel in an RSS feed");
         }
@@ -467,7 +436,8 @@ class Ostatus_profile extends Memcached_DataObject
                 }
                 break;
             default:
-                throw new ClientException("Can't handle that kind of post.");
+                // TRANS: Client exception.
+                throw new ClientException(_m('Can\'t handle that kind of post.'));
             }
 
             Event::handle('EndHandleFeedEntry', array($activity));
@@ -549,13 +519,14 @@ class Ostatus_profile extends Memcached_DataObject
             $sourceContent = $note->title;
         } else {
             // @fixme fetch from $sourceUrl?
-            throw new ClientException("No content for notice {$sourceUri}");
+            // TRANS: Client exception. %s is a source URI.
+            throw new ClientException(sprintf(_m('No content for notice %s.'),$sourceUri));
         }
 
         // Get (safe!) HTML and text versions of the content
 
         $rendered = $this->purify($sourceContent);
-        $content = html_entity_decode(strip_tags($rendered));
+        $content = html_entity_decode(strip_tags($rendered), ENT_QUOTES, 'UTF-8');
 
         $shortened = common_shorten_links($content);
 
@@ -566,7 +537,7 @@ class Ostatus_profile extends Memcached_DataObject
 
         if (Notice::contentTooLong($shortened)) {
             $attachment = $this->saveHTMLFile($note->title, $rendered);
-            $summary = html_entity_decode(strip_tags($note->summary));
+            $summary = html_entity_decode(strip_tags($note->summary), ENT_QUOTES, 'UTF-8');
             if (empty($summary)) {
                 $summary = $content;
             }
@@ -580,12 +551,17 @@ class Ostatus_profile extends Memcached_DataObject
 
                 // We mark up the attachment link specially for the HTML output
                 // so we can fold-out the full version inline.
+
+                // @fixme I18N this tooltip will be saved with the site's default language
+                // TRANS: Shown when a notice is longer than supported and/or when attachments are present. At runtime
+                // TRANS: this will usually be replaced with localised text from StatusNet core messages.
+                $showMoreText = _m('Show more');
                 $attachUrl = common_local_url('attachment',
                                               array('attachment' => $attachment->id));
                 $rendered = common_render_text($shortSummary) .
                             '<a href="' . htmlspecialchars($attachUrl) .'"'.
                             ' class="attachment more"' .
-                            ' title="'. htmlspecialchars(_m('Show more')) . '">' .
+                            ' title="'. htmlspecialchars($showMoreText) . '">' .
                             '&#8230;' .
                             '</a>';
             }
@@ -699,21 +675,7 @@ class Ostatus_profile extends Memcached_DataObject
                 continue;
             }
 
-            // Is the recipient a remote group?
-            $oprofile = Ostatus_profile::staticGet('uri', $recipient);
-            if ($oprofile) {
-                if ($oprofile->isGroup()) {
-                    // Deliver to local members of this remote group.
-                    // @fixme sender verification?
-                    $groups[] = $oprofile->group_id;
-                } else {
-                    common_log(LOG_DEBUG, "Skipping reply to remote profile $recipient");
-                }
-                continue;
-            }
-
             // Is the recipient a local group?
-            // @fixme uri on user_group isn't reliable yet
             // $group = User_group::staticGet('uri', $recipient);
             $id = OStatusPlugin::localGroupFromUrl($recipient);
             if ($id) {
@@ -732,7 +694,22 @@ class Ostatus_profile extends Memcached_DataObject
                 }
             }
 
-            common_log(LOG_DEBUG, "Skipping reply to unrecognized profile $recipient");
+            // Is the recipient a remote user or group?
+            try {
+                $oprofile = Ostatus_profile::ensureProfileURI($recipient);
+                if ($oprofile->isGroup()) {
+                    // Deliver to local members of this remote group.
+                    // @fixme sender verification?
+                    $groups[] = $oprofile->group_id;
+                } else {
+                    // may be canonicalized or something
+                    $replies[] = $oprofile->uri;
+                }
+                continue;
+            } catch (Exception $e) {
+                // Neither a recognizable local nor remote user!
+                common_log(LOG_DEBUG, "Skipping reply to unrecognized profile $recipient: " . $e->getMessage());
+            }
 
         }
         $attention_uris = $replies;
@@ -770,7 +747,8 @@ class Ostatus_profile extends Memcached_DataObject
         $response = $client->get($profile_url);
 
         if (!$response->isOk()) {
-            throw new Exception("Could not reach profile page: " . $profile_url);
+            // TRANS: Exception. %s is a profile URL.
+            throw new Exception(sprintf(_m('Could not reach profile page %s.'),$profile_url));
         }
 
         // Check if we have a non-canonical URL
@@ -827,7 +805,8 @@ class Ostatus_profile extends Memcached_DataObject
             return self::ensureFeedURL($feedurl, $hints);
         }
 
-        throw new Exception("Could not find a feed URL for profile page " . $finalUrl);
+        // TRANS: Exception. %s is a URL.
+        throw new Exception(sprintf(_m('Could not find a feed URL for profile page %s.'),$finalUrl));
     }
 
     /**
@@ -859,6 +838,7 @@ class Ostatus_profile extends Memcached_DataObject
         $user = User::staticGet('id', $profile->id);
 
         if (!empty($user)) {
+            // @todo i18n FIXME: use sprintf and add i18n (?)
             throw new OStatusShadowException($profile, "'$profile_url' is the profile for local user '{$user->nickname}'.");
         }
 
@@ -963,8 +943,8 @@ class Ostatus_profile extends Memcached_DataObject
         }
 
         // XXX: make some educated guesses here
-
-        throw new FeedSubException("Can't find enough profile information to make a feed.");
+        // TRANS: Feed sub exception.
+        throw new FeedSubException(_m('Can\'t find enough profile information to make a feed.'));
     }
 
     /**
@@ -1023,7 +1003,8 @@ class Ostatus_profile extends Memcached_DataObject
             return;
         }
         if (!common_valid_http_url($url)) {
-            throw new ServerException(sprintf(_m("Invalid avatar URL %s"), $url));
+            // TRANS: Server exception. %s is a URL.
+            throw new ServerException(sprintf(_m("Invalid avatar URL %s."), $url));
         }
 
         if ($this->isGroup()) {
@@ -1033,29 +1014,44 @@ class Ostatus_profile extends Memcached_DataObject
         }
         if (!$self) {
             throw new ServerException(sprintf(
-                _m("Tried to update avatar for unsaved remote profile %s"),
+                // TRANS: Server exception. %s is a URI.
+                _m("Tried to update avatar for unsaved remote profile %s."),
                 $this->uri));
         }
 
         // @fixme this should be better encapsulated
         // ripped from oauthstore.php (for old OMB client)
         $temp_filename = tempnam(sys_get_temp_dir(), 'listener_avatar');
-        if (!copy($url, $temp_filename)) {
-            throw new ServerException(sprintf(_m("Unable to fetch avatar from %s"), $url));
-        }
+        try {
+            if (!copy($url, $temp_filename)) {
+                // TRANS: Server exception. %s is a URL.
+                throw new ServerException(sprintf(_m("Unable to fetch avatar from %s."), $url));
+            }
 
-        if ($this->isGroup()) {
-            $id = $this->group_id;
-        } else {
-            $id = $this->profile_id;
+            if ($this->isGroup()) {
+                $id = $this->group_id;
+            } else {
+                $id = $this->profile_id;
+            }
+            // @fixme should we be using different ids?
+            $imagefile = new ImageFile($id, $temp_filename);
+            $filename = Avatar::filename($id,
+                                         image_type_to_extension($imagefile->type),
+                                         null,
+                                         common_timestamp());
+            rename($temp_filename, Avatar::path($filename));
+        } catch (Exception $e) {
+            unlink($temp_filename);
+            throw $e;
         }
-        // @fixme should we be using different ids?
-        $imagefile = new ImageFile($id, $temp_filename);
-        $filename = Avatar::filename($id,
-                                     image_type_to_extension($imagefile->type),
-                                     null,
-                                     common_timestamp());
-        rename($temp_filename, Avatar::path($filename));
+        // @fixme hardcoded chmod is lame, but seems to be necessary to
+        // keep from accidentally saving images from command-line (queues)
+        // that can't be read from web server, which causes hard-to-notice
+        // problems later on:
+        //
+        // http://status.net/open-source/issues/2663
+        chmod(Avatar::path($filename), 0644);
+
         $self->setOriginal($filename);
 
         $orig = clone($this);
@@ -1071,7 +1067,7 @@ class Ostatus_profile extends Memcached_DataObject
      * @return mixed URL string or false
      */
 
-    protected static function getActivityObjectAvatar($object, $hints=array())
+    public static function getActivityObjectAvatar($object, $hints=array())
     {
         if ($object->avatarLinks) {
             $best = false;
@@ -1224,7 +1220,7 @@ class Ostatus_profile extends Memcached_DataObject
         if ($object->link && common_valid_http_url($object->link)) {
             return $object->link;
         }
-        throw new ServerException("No author ID URI found");
+        throw new ServerException("No author ID URI found.");
     }
 
     /**
@@ -1254,11 +1250,13 @@ class Ostatus_profile extends Memcached_DataObject
 
         $user = User::staticGet('uri', $homeuri);
         if ($user) {
-            throw new Exception("Local user can't be referenced as remote.");
+            // TRANS: Exception.
+            throw new Exception(_m('Local user can\'t be referenced as remote.'));
         }
 
         if (OStatusPlugin::localGroupFromUrl($homeuri)) {
-            throw new Exception("Local group can't be referenced as remote.");
+            // TRANS: Exception.
+            throw new Exception(_m('Local group can\'t be referenced as remote.'));
         }
 
         if (array_key_exists('feedurl', $hints)) {
@@ -1309,7 +1307,8 @@ class Ostatus_profile extends Memcached_DataObject
 
             $oprofile->profile_id = $profile->insert();
             if (!$oprofile->profile_id) {
-                throw new ServerException("Can't save local profile");
+            // TRANS: Server exception.
+                throw new ServerException(_m('Can\'t save local profile.'));
             }
         } else {
             $group = new User_group();
@@ -1319,14 +1318,16 @@ class Ostatus_profile extends Memcached_DataObject
 
             $oprofile->group_id = $group->insert();
             if (!$oprofile->group_id) {
-                throw new ServerException("Can't save local profile");
+                // TRANS: Server exception.
+                throw new ServerException(_m('Can\'t save local profile.'));
             }
         }
 
         $ok = $oprofile->insert();
 
         if (!$ok) {
-            throw new ServerException("Can't save OStatus profile");
+            // TRANS: Server exception.
+            throw new ServerException(_m('Can\'t save OStatus profile.'));
         }
 
         $avatar = self::getActivityObjectAvatar($object, $hints);
@@ -1368,7 +1369,7 @@ class Ostatus_profile extends Memcached_DataObject
         }
     }
 
-    protected static function updateProfile($profile, $object, $hints=array())
+    public static function updateProfile($profile, $object, $hints=array())
     {
         $orig = clone($profile);
 
@@ -1496,7 +1497,7 @@ class Ostatus_profile extends Memcached_DataObject
         return $bio;
     }
 
-    protected static function getActivityObjectNickname($object, $hints=array())
+    public static function getActivityObjectNickname($object, $hints=array())
     {
         if ($object->poco) {
             if (!empty($object->poco->preferredUsername)) {
@@ -1513,8 +1514,11 @@ class Ostatus_profile extends Memcached_DataObject
         }
 
         // Try the profile url (like foo.example.com or example.com/user/foo)
-
-        $profileUrl = ($object->link) ? $object->link : $hints['profileurl'];
+        if (!empty($object->link)) {
+            $profileUrl = $object->link;
+        } else if (!empty($hints['profileurl'])) {
+            $profileUrl = $hints['profileurl'];
+        }
 
         if (!empty($profileUrl)) {
             $nickname = self::nicknameFromURI($profileUrl);
@@ -1545,9 +1549,11 @@ class Ostatus_profile extends Memcached_DataObject
 
     protected static function nicknameFromURI($uri)
     {
-        preg_match('/(\w+):/', $uri, $matches);
-
-        $protocol = $matches[1];
+        if (preg_match('/(\w+):/', $uri, $matches)) {
+            $protocol = $matches[1];
+        } else {
+            return null;
+        }
 
         switch ($protocol) {
         case 'acct':
@@ -1584,7 +1590,8 @@ class Ostatus_profile extends Memcached_DataObject
         if ($uri !== false) {
             if (is_null($uri)) {
                 // Negative cache entry
-                throw new Exception('Not a valid webfinger address.');
+                // TRANS: Exception.
+                throw new Exception(_m('Not a valid webfinger address.'));
             }
             $oprofile = Ostatus_profile::staticGet('uri', $uri);
             if (!empty($oprofile)) {
@@ -1611,7 +1618,8 @@ class Ostatus_profile extends Memcached_DataObject
             // Save negative cache entry so we don't waste time looking it up again.
             // @fixme distinguish temporary failures?
             self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), null);
-            throw new Exception('Not a valid webfinger address.');
+                // TRANS: Exception.
+            throw new Exception(_m('Not a valid webfinger address.'));
         }
 
         $hints = array('webfinger' => $addr);
@@ -1692,7 +1700,8 @@ class Ostatus_profile extends Memcached_DataObject
 
             if (!$profile_id) {
                 common_log_db_error($profile, 'INSERT', __FILE__);
-                throw new Exception("Couldn't save profile for '$addr'");
+                // TRANS: Exception. %s is a webfinger address.
+                throw new Exception(sprintf(_m('Couldn\'t save profile for "%s".'),$addr));
             }
 
             $oprofile = new Ostatus_profile();
@@ -1710,14 +1719,16 @@ class Ostatus_profile extends Memcached_DataObject
 
             if (!$result) {
                 common_log_db_error($oprofile, 'INSERT', __FILE__);
-                throw new Exception("Couldn't save ostatus_profile for '$addr'");
+                // TRANS: Exception. %s is a webfinger address.
+                throw new Exception(sprintf(_m('Couldn\'t save ostatus_profile for "%s".'),$addr));
             }
 
             self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), $oprofile->uri);
             return $oprofile;
         }
 
-        throw new Exception("Couldn't find a valid profile for '$addr'");
+        // TRANS: Exception. %s is a webfinger address.
+        throw new Exception(sprintf(_m('Couldn\'t find a valid profile for "%s".'),$addr));
     }
 
     /**
@@ -1759,10 +1770,42 @@ class Ostatus_profile extends Memcached_DataObject
 
         if ($file_id === false) {
             common_log_db_error($file, "INSERT", __FILE__);
-            throw new ServerException(_('Could not store HTML content of long post as file.'));
+            // TRANS: Server exception.
+            throw new ServerException(_m('Could not store HTML content of long post as file.'));
         }
 
         return $file;
+    }
+
+    static function ensureProfileURI($uri)
+    {
+        $oprofile = null;
+
+        // First, try to query it
+
+        $oprofile = Ostatus_profile::staticGet('uri', $uri);
+
+        // If unfound, do discovery stuff
+
+        if (empty($oprofile)) {
+            if (preg_match("/^(\w+)\:(.*)/", $uri, $match)) {
+                $protocol = $match[1];
+                switch ($protocol) {
+                case 'http':
+                case 'https':
+                    $oprofile = Ostatus_profile::ensureProfileURL($uri);
+                    break;
+                case 'acct':
+                case 'mailto':
+                    $rest = $match[2];
+                    $oprofile = Ostatus_profile::ensureWebfinger($rest);
+                default:
+                    common_log("Unrecognized URI protocol for profile: $protocol ($uri)");
+                    break;
+                }
+            }
+        }
+        return $oprofile;
     }
 }
 
@@ -1785,4 +1828,3 @@ class OStatusShadowException extends Exception
         parent::__construct($message);
     }
 }
-

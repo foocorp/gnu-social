@@ -178,6 +178,18 @@ class Session extends Memcached_DataObject
         $result = session_set_save_handler('Session::open', 'Session::close', 'Session::read',
                                            'Session::write', 'Session::destroy', 'Session::gc');
         self::logdeb("save handlers result = $result");
+
+        // PHP 5.3 with APC ends up destroying a bunch of object stuff before the session
+        // save handlers get called on request teardown.
+        // Registering an explicit shutdown function should take care of this before
+        // everything breaks on us.
+        register_shutdown_function('Session::cleanup');
+        
         return $result;
+    }
+
+    static function cleanup()
+    {
+        session_write_close();
     }
 }

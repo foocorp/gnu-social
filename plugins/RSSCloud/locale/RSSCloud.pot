@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-29 23:39+0000\n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,9 +16,52 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: RSSCloudPlugin.php:260
+#: RSSCloudRequestNotify.php:90
+msgid "Request must be POST."
+msgstr ""
+
+#: RSSCloudRequestNotify.php:107
+msgid "Only http-post notifications are supported at this time."
+msgstr ""
+
+#. TRANS: %s is a comma separated list of parameters.
+#: RSSCloudRequestNotify.php:118
+#, php-format
+msgid "The following parameters were missing from the request body: %s."
+msgstr ""
+
+#: RSSCloudRequestNotify.php:124
+msgid ""
+"You must provide at least one valid profile feed url (url1, url2, url3 ... "
+"urlN)."
+msgstr ""
+
+#: RSSCloudRequestNotify.php:141
+msgid "Feed subscription failed: Not a valid feed."
+msgstr ""
+
+#: RSSCloudRequestNotify.php:147
+msgid ""
+"Feed subscription failed - notification handler doesn't respond correctly."
+msgstr ""
+
+#: RSSCloudRequestNotify.php:161
+msgid ""
+"Thanks for the subscription. When the feed(s) update(s), you will be "
+"notified."
+msgstr ""
+
+#: LoggingAggregator.php:93
+msgid "This resource requires an HTTP GET."
+msgstr ""
+
+#: LoggingAggregator.php:104
+msgid "This resource requires an HTTP POST."
+msgstr ""
+
+#: RSSCloudPlugin.php:248
 msgid ""
 "The RSSCloud plugin enables your StatusNet instance to publish real-time "
 "updates for profile RSS feeds using the <a href=\"http://rsscloud.org/"
-"\">RSSCloud protocol</a>\"."
+"\">RSSCloud protocol</a>."
 msgstr ""

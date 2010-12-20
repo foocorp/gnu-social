@@ -1,0 +1,10 @@
+; Setup OAuth info here
+apiroot       = "https://YOURSTATUSNET/api"
+
+request_token_url = "/oauth/request_token"
+authorize_url     = "/oauth/authorize"
+access_token_url  = "/oauth/access_token"
+
+consumer_key  = "b748968e9bea81a53f3a3c15aa0c686f"
+consumer_secret = "5434e18cce05d9e53cdd48029a62fa41"
+

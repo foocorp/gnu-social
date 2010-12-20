@@ -1,0 +1,67 @@
+# Translation of StatusNet - Mapstraction to Dutch (Nederlands)
+# Expored from translatewiki.net
+#
+# Author: McDutchie
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Mapstraction\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:14+0000\n"
+"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-mapstraction\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: MapstractionPlugin.php:187
+msgid "Map"
+msgstr "Kaart"
+
+#. TRANS: Clickable item to allow opening the map in full size.
+#: MapstractionPlugin.php:199
+msgid "Full size"
+msgstr "Groter"
+
+#: MapstractionPlugin.php:211
+msgid ""
+"Show maps of users' and friends' notices with <a href=\"http://www."
+"mapstraction.com/\">Mapstraction</a>."
+msgstr ""
+"Geeft een kaart met de mededelingen van de gebruiker en vrienden weer met "
+"behulp van <a href=\"http://www.mapstraction.com/\">Mapstraction</a>."
+
+#: map.php:72
+msgid "No such user."
+msgstr "Deze gebruiker bestaat niet"
+
+#: map.php:79
+msgid "User has no profile."
+msgstr "Deze gebruiker heeft geen profiel."
+
+#. TRANS: Page title.
+#. TRANS: %s is a user nickname.
+#: allmap.php:69
+#, php-format
+msgid "%s friends map"
+msgstr "Kaart van %s en vrienden"
+
+#. TRANS: Page title.
+#. TRANS: %1$s is a user nickname, %2$d is a page number.
+#: allmap.php:75
+#, php-format
+msgid "%1$s friends map, page %2$d"
+msgstr "Kaart van vrienden van %1$s, pagina %2$d"
+
+#: usermap.php:68
+#, php-format
+msgid "%s map, page %d"
+msgstr "Kaart van %s, pagina %d"

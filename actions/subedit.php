@@ -19,6 +19,7 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
+// @todo FIXME: Documentation needed.
 class SubeditAction extends Action
 {
     var $profile = null;
@@ -28,6 +29,7 @@ class SubeditAction extends Action
         parent::prepare($args);
 
         if (!common_logged_in()) {
+            // TRANS: Client error displayed trying a change a subscription while not logged in.
             $this->clientError(_('Not logged in.'));
             return false;
         }
@@ -43,6 +45,7 @@ class SubeditAction extends Action
         $id = $this->trimmed('profile');
 
         if (!$id) {
+            // TRANS: Client error displayed trying a change a subscription without providing a profile.
             $this->clientError(_('No profile specified.'));
             return false;
         }
@@ -50,6 +53,7 @@ class SubeditAction extends Action
         $this->profile = Profile::staticGet('id', $id);
 
         if (!$this->profile) {
+            // TRANS: Client error displayed trying a change a subscription for a non-existant profile ID.
             $this->clientError(_('No profile with that ID.'));
             return false;
         }
@@ -67,6 +71,7 @@ class SubeditAction extends Action
                                                'subscribed' => $this->profile->id));
 
             if (!$sub) {
+                // TRANS: Client error displayed trying a change a subscription for a non-subscribed profile.
                 $this->clientError(_('You are not subscribed to that profile.'));
                 return false;
             }
@@ -80,6 +85,7 @@ class SubeditAction extends Action
 
             if (!$result) {
                 common_log_db_error($sub, 'UPDATE', __FILE__);
+                // TRANS: Server error displayed when updating a subscription fails with a database error.
                 $this->serverError(_('Could not save subscription.'));
                 return false;
             }

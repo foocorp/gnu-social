@@ -45,7 +45,6 @@ require_once INSTALLDIR.'/lib/noticelist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class ConversationAction extends Action
 {
     var $id   = null;
@@ -58,7 +57,6 @@ class ConversationAction extends Action
      *
      * @return boolean false if id not passed in
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -81,7 +79,6 @@ class ConversationAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -93,10 +90,10 @@ class ConversationAction extends Action
      *
      * @return string page title
      */
-
     function title()
     {
-        return _("Conversation");
+        // TRANS: Title for page with a conversion (multiple notices in context).
+        return _('Conversation');
     }
 
     /**
@@ -107,7 +104,6 @@ class ConversationAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         $notices = Notice::conversationStream($this->id, null, null);
@@ -134,7 +130,6 @@ class ConversationAction extends Action
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class ConversationTree extends NoticeList
 {
     var $tree  = null;
@@ -145,12 +140,12 @@ class ConversationTree extends NoticeList
      *
      * @return void
      */
-
     function show()
     {
         $cnt = $this->_buildTree();
 
         $this->out->elementStart('div', array('id' =>'notices_primary'));
+        // TRANS: Header on conversation page. Hidden by default (h2).
         $this->out->element('h2', null, _('Notices'));
         $this->out->elementStart('ol', array('class' => 'notices xoxo'));
 
@@ -200,7 +195,6 @@ class ConversationTree extends NoticeList
      *
      * @return void
      */
-
     function showNoticePlus($id)
     {
         $notice = $this->table[$id];
@@ -237,7 +231,6 @@ class ConversationTree extends NoticeList
      *
      * @return NoticeListItem a list item to show
      */
-
     function newListItem($notice)
     {
         return new ConversationTreeItem($notice, $this->out);
@@ -255,7 +248,6 @@ class ConversationTree extends NoticeList
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class ConversationTreeItem extends NoticeListItem
 {
     /**
@@ -266,7 +258,6 @@ class ConversationTreeItem extends NoticeListItem
      *
      * @return void
      */
-
     function showStart()
     {
         return;
@@ -280,7 +271,6 @@ class ConversationTreeItem extends NoticeListItem
      *
      * @return void
      */
-
     function showEnd()
     {
         return;
@@ -293,7 +283,6 @@ class ConversationTreeItem extends NoticeListItem
      *
      * @return void
      */
-
     function showContext()
     {
         return;

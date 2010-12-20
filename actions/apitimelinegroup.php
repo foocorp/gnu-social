@@ -49,10 +49,8 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiTimelineGroupAction extends ApiPrivateAuthAction
 {
-
     var $group   = null;
     var $notices = null;
 
@@ -64,7 +62,6 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -83,12 +80,12 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if (empty($this->group)) {
+            // TRANS: Client error displayed requesting most recent notices to a group for a non-existing group.
             $this->clientError(_('Group not found.'), 404, $this->format);
             return false;
         }
@@ -102,7 +99,6 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function showTimeline()
     {
         // We'll pull common formatting out of this for other formats
@@ -126,7 +122,6 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
             );
             break;
         case 'atom':
-
             header('Content-Type: application/atom+xml; charset=utf-8');
 
             try {
@@ -138,19 +133,21 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
                 $this->raw($atom->getString());
             } catch (Atom10FeedException $e) {
                 $this->serverError(
-                    'Could not generate feed for group - ' . $e->getMessage(),
+                    // TRANS: Server error displayed when generating an Atom feed fails.
+                    // TRANS: %s is the error.
+                    sprintf(_('Could not generate feed for group - %s'),$e->getMessage()),
 		    400,
 		    $this->format
                 );
                 return;
             }
-
             break;
         case 'json':
             $this->showJsonTimeline($this->notices);
             break;
         default:
             $this->clientError(
+                // TRANS: Client error displayed when trying to handle an unknown API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -164,7 +161,6 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
      *
      * @return array notices
      */
-
     function getNotices()
     {
         $notices = array();
@@ -190,7 +186,6 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -201,7 +196,6 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
      *
      * @return string datestamp of the latest notice in the stream
      */
-
     function lastModified()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
@@ -219,7 +213,6 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
      *
      * @return string etag
      */
-
     function etag()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
@@ -229,6 +222,7 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
             return '"' . implode(
                 ':',
                 array($this->arg('action'),
+                      common_user_cache_hash($this->auth_user),
                       common_language(),
                       $this->group->id,
                       strtotime($this->notices[0]->created),
@@ -239,5 +233,4 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
 
         return null;
     }
-
 }

@@ -45,7 +45,6 @@ require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
  *
  * @see      SettingsAction
  */
-
 class TwittersettingsAction extends ConnectSettingsAction
 {
     /**
@@ -79,7 +78,6 @@ class TwittersettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function showContent()
     {
 
@@ -130,6 +128,7 @@ class TwittersettingsAction extends ConnectSettingsAction
             if (!$user->password) {
 
                 $this->elementStart('p', array('class' => 'form_guide'));
+                // @todo FIXME: Bad i18n (patchwork in three parts).
                 $this->text(_m('Disconnecting your Twitter ' .
                                'could make it impossible to log in! Please '));
                 $this->element('a',
@@ -139,7 +138,7 @@ class TwittersettingsAction extends ConnectSettingsAction
                 $this->text(_m(' first.'));
                 $this->elementEnd('p');
             } else {
-
+                // TRANS: %1$s is the current website name.
                 $note = _m('Keep your %1$s account but disconnect from Twitter. ' .
                     'You can use your %1$s password to log in.');
 
@@ -182,7 +181,7 @@ class TwittersettingsAction extends ConnectSettingsAction
             if (common_config('twitterimport','enabled')) {
                 $this->elementStart('li');
                 $this->checkbox('noticerecv',
-                                _m('Import my Friends Timeline.'),
+                                _m('Import my friends timeline.'),
                                 ($flink) ?
                                 ($flink->noticesync & FOREIGN_NOTICE_RECV) :
                                 false);
@@ -219,7 +218,6 @@ class TwittersettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function handlePost()
     {
         // CSRF protection
@@ -244,11 +242,15 @@ class TwittersettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function removeTwitterAccount()
     {
         $user = common_current_user();
         $flink = Foreign_link::getByUserID($user->id, TWITTER_SERVICE);
+
+        if (empty($flink)) {
+            $this->clientError(_m('No Twitter connection to remove.'));
+            return;
+        }
 
         $result = $flink->safeDelete();
 
@@ -266,7 +268,6 @@ class TwittersettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function savePreferences()
     {
         $noticesend = $this->boolean('noticesend');
@@ -284,6 +285,7 @@ class TwittersettingsAction extends ConnectSettingsAction
         }
 
         $original = clone($flink);
+        $wasReceiving = (bool)($original->noticesync & FOREIGN_NOTICE_RECV);
         $flink->set_flags($noticesend, $noticerecv, $replysync, $friendsync);
         $result = $flink->update($original);
 
@@ -293,7 +295,19 @@ class TwittersettingsAction extends ConnectSettingsAction
             return;
         }
 
+        if ($wasReceiving xor $noticerecv) {
+            $this->notifyDaemon($flink->foreign_id, $noticerecv);
+        }
+
         $this->showForm(_m('Twitter preferences saved.'), true);
+    }
+
+    /**
+     * Tell the import daemon that we've updated a user's receive status.
+     */
+    function notifyDaemon($twitterUserId, $receiving)
+    {
+        // todo... should use control signals rather than queues
     }
 
 }

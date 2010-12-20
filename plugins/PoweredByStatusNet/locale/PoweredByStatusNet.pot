@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-29 23:39+0000\n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,17 +16,18 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: PoweredByStatusNetPlugin.php:50
+#. TRANS: %s is a URL to status.net with "StatusNet" (localised) as link text.
+#: PoweredByStatusNetPlugin.php:51
 #, php-format
 msgid "powered by %s"
 msgstr ""
 
-#: PoweredByStatusNetPlugin.php:52
+#: PoweredByStatusNetPlugin.php:53
 msgid "StatusNet"
 msgstr ""
 
-#: PoweredByStatusNetPlugin.php:65
+#: PoweredByStatusNetPlugin.php:66
 msgid ""
-"Outputs powered by <a href=\"http://status.net/\">StatusNet</a> after site "
-"name."
+"Outputs \"powered by <a href=\"http://status.net/\">StatusNet</a>\" after "
+"site name."
 msgstr ""

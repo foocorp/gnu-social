@@ -45,17 +45,14 @@ require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
  * @link     http://status.net/
  * @link     http://twitter.com/
  */
-
 class TwitterBridgePlugin extends Plugin
 {
-
     const VERSION = STATUSNET_VERSION;
     public $adminImportControl = false; // Should the 'import' checkbox be exposed in the admin panel?
 
     /**
      * Initializer for the plugin.
      */
-
     function initialize()
     {
         // Allow the key and secret to be passed in
@@ -86,7 +83,6 @@ class TwitterBridgePlugin extends Plugin
      *
      * @return boolean result
      */
-
     static function hasKeys()
     {
         $ckey    = common_config('twitter', 'consumer_key');
@@ -113,7 +109,6 @@ class TwitterBridgePlugin extends Plugin
      *
      * @return boolean hook return
      */
-
     function onRouterInitialized($m)
     {
         $m->connect('admin/twitter', array('action' => 'twitteradminpanel'));
@@ -194,18 +189,29 @@ class TwitterBridgePlugin extends Plugin
      */
     function onAutoload($cls)
     {
+        $dir = dirname(__FILE__);
+
         switch ($cls) {
         case 'TwittersettingsAction':
         case 'TwitterauthorizationAction':
         case 'TwitterloginAction':
         case 'TwitteradminpanelAction':
-            include_once INSTALLDIR . '/plugins/TwitterBridge/' .
-              strtolower(mb_substr($cls, 0, -6)) . '.php';
+            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
         case 'TwitterOAuthClient':
         case 'TwitterQueueHandler':
-            include_once INSTALLDIR . '/plugins/TwitterBridge/' .
-              strtolower($cls) . '.php';
+        case 'TwitterImport':
+        case 'JsonStreamReader':
+        case 'TwitterStreamReader':
+            include_once $dir . '/' . strtolower($cls) . '.php';
+            return false;
+        case 'TwitterSiteStream':
+        case 'TwitterUserStream':
+            include_once $dir . '/twitterstreamreader.php';
+            return false;
+        case 'Notice_to_status':
+        case 'Twitter_synch_status':
+            include_once $dir . '/' . $cls . '.php';
             return false;
         default:
             return true;
@@ -268,7 +274,11 @@ class TwitterBridgePlugin extends Plugin
     function onEndInitializeQueueManager($manager)
     {
         if (self::hasKeys()) {
+            // Outgoing notices -> twitter
             $manager->connect('twitter', 'TwitterQueueHandler');
+
+            // Incoming statuses <- twitter
+            $manager->connect('tweetin', 'TweetInQueueHandler');
         }
         return true;
     }
@@ -306,7 +316,6 @@ class TwitterBridgePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onPluginVersion(&$versions)
     {
         $versions[] = array(
@@ -315,8 +324,8 @@ class TwitterBridgePlugin extends Plugin
             'author' => 'Zach Copley, Julien C',
             'homepage' => 'http://status.net/wiki/Plugin:TwitterBridge',
             'rawdescription' => _m(
-                'The Twitter "bridge" plugin allows you to integrate ' .
-                'your StatusNet instance with ' .
+                'The Twitter "bridge" plugin allows integration ' .
+                'of a StatusNet instance with ' .
                 '<a href="http://twitter.com/">Twitter</a>.'
             )
         );
@@ -335,5 +344,190 @@ class TwitterBridgePlugin extends Plugin
         return (bool)$this->adminImportControl;
     }
 
-}
+    /**
+     * When the site is set to ssl=sometimes mode, we should make sure our
+     * various auth-related pages are on SSL to keep things looking happy.
+     * Although we're not submitting passwords directly, we do link out to
+     * an authentication source and it's a lot happier if we've got some
+     * protection against MitM.
+     *
+     * @param string $action name
+     * @param boolean $ssl outval to force SSL
+     * @return mixed hook return value
+     */
+    function onSensitiveAction($action, &$ssl)
+    {
+        $sensitive = array('twitteradminpanel',
+                           'twittersettings',
+                           'twitterauthorization',
+                           'twitterlogin');
+        if (in_array($action, $sensitive)) {
+            $ssl = true;
+            return false;
+        } else {
+            return true;
+        }
+    }
 
+    /**
+     * Database schema setup
+     *
+     * We maintain a table mapping StatusNet notices to Twitter statuses
+     *
+     * @see Schema
+     * @see ColumnDef
+     *
+     * @return boolean hook value; true means continue processing, false means stop.
+     */
+    function onCheckSchema()
+    {
+        $schema = Schema::get();
+
+        // For saving the last-synched status of various timelines
+        // home_timeline, messages (in), messages (out), ...
+
+        $schema->ensureTable('twitter_synch_status',
+                             array(new ColumnDef('foreign_id', 'bigint', null,
+                                                 false, 'PRI'),
+                                   new ColumnDef('timeline', 'varchar', 255,
+                                                 false, 'PRI'),
+                                   new ColumnDef('last_id', 'bigint', null, // XXX: check for PostgreSQL
+                                                 false),
+                                   new ColumnDef('created', 'datetime', null,
+                                                 false),
+                                   new ColumnDef('modified', 'datetime', null,
+                                                 false)));
+
+        // For storing user-submitted flags on profiles
+
+        $schema->ensureTable('notice_to_status',
+                             array(new ColumnDef('notice_id', 'integer', null,
+                                                 false, 'PRI'),
+                                   new ColumnDef('status_id', 'bigint', null, // XXX: check for PostgreSQL
+                                                 false, 'UNI'),
+                                   new ColumnDef('created', 'datetime', null,
+                                                 false)));
+
+        return true;
+    }
+
+    /**
+     * If a notice gets deleted, remove the Notice_to_status mapping and
+     * delete the status on Twitter.
+     *
+     * @param User   $user   The user doing the deleting
+     * @param Notice $notice The notice getting deleted
+     *
+     * @return boolean hook value
+     */
+    function onStartDeleteOwnNotice(User $user, Notice $notice)
+    {
+        $n2s = Notice_to_status::staticGet('notice_id', $notice->id);
+
+        if (!empty($n2s)) {
+
+            $flink = Foreign_link::getByUserID($notice->profile_id,
+                                               TWITTER_SERVICE); // twitter service
+
+            if (empty($flink)) {
+                return true;
+            }
+
+            if (!TwitterOAuthClient::isPackedToken($flink->credentials)) {
+                $this->log(LOG_INFO, "Skipping deleting notice for {$notice->id} since link is not OAuth.");
+                return true;
+            }
+
+            try {
+                $token = TwitterOAuthClient::unpackToken($flink->credentials);
+                $client = new TwitterOAuthClient($token->key, $token->secret);
+
+                $client->statusesDestroy($n2s->status_id);
+            } catch (Exception $e) {
+                common_log(LOG_ERR, "Error attempting to delete bridged notice from Twitter: " . $e->getMessage());
+            }
+
+            $n2s->delete();
+        }
+        return true;
+    }
+
+    /**
+     * Notify remote users when their notices get favorited.
+     *
+     * @param Profile or User $profile of local user doing the faving
+     * @param Notice $notice being favored
+     * @return hook return value
+     */
+    function onEndFavorNotice(Profile $profile, Notice $notice)
+    {
+        $flink = Foreign_link::getByUserID($profile->id,
+                                           TWITTER_SERVICE); // twitter service
+
+        if (empty($flink)) {
+            return true;
+        }
+
+        if (!TwitterOAuthClient::isPackedToken($flink->credentials)) {
+            $this->log(LOG_INFO, "Skipping fave processing for {$profile->id} since link is not OAuth.");
+            return true;
+        }
+
+        $status_id = twitter_status_id($notice);
+
+        if (empty($status_id)) {
+            return true;
+        }
+
+        try {
+            $token = TwitterOAuthClient::unpackToken($flink->credentials);
+            $client = new TwitterOAuthClient($token->key, $token->secret);
+
+            $client->favoritesCreate($status_id);
+        } catch (Exception $e) {
+            common_log(LOG_ERR, "Error attempting to favorite bridged notice on Twitter: " . $e->getMessage());
+        }
+
+        return true;
+    }
+
+    /**
+     * Notify remote users when their notices get de-favorited.
+     *
+     * @param Profile $profile Profile person doing the de-faving
+     * @param Notice  $notice  Notice being favored
+     *
+     * @return hook return value
+     */
+    function onEndDisfavorNotice(Profile $profile, Notice $notice)
+    {
+        $flink = Foreign_link::getByUserID($profile->id,
+                                           TWITTER_SERVICE); // twitter service
+
+        if (empty($flink)) {
+            return true;
+        }
+
+        if (!TwitterOAuthClient::isPackedToken($flink->credentials)) {
+            $this->log(LOG_INFO, "Skipping fave processing for {$profile->id} since link is not OAuth.");
+            return true;
+        }
+
+        $status_id = twitter_status_id($notice);
+
+        if (empty($status_id)) {
+            return true;
+        }
+
+        try {
+            $token = TwitterOAuthClient::unpackToken($flink->credentials);
+            $client = new TwitterOAuthClient($token->key, $token->secret);
+
+            $client->favoritesDestroy($status_id);
+        } catch (Exception $e) {
+            common_log(LOG_ERR, "Error attempting to unfavorite bridged notice on Twitter: " . $e->getMessage());
+        }
+
+        return true;
+    }
+}

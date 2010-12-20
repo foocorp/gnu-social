@@ -177,3 +177,70 @@ function get_option_value($opt, $alt=null)
 
     return null;
 }
+
+class NoUserArgumentException extends Exception
+{
+}
+
+function getUser()
+{
+    $user = null;
+
+    if (have_option('i', 'id')) {
+        $id = get_option_value('i', 'id');
+        $user = User::staticGet('id', $id);
+        if (empty($user)) {
+            throw new Exception("Can't find user with id '$id'.");
+        }
+    } else if (have_option('n', 'nickname')) {
+        $nickname = get_option_value('n', 'nickname');
+        $user = User::staticGet('nickname', $nickname);
+        if (empty($user)) {
+            throw new Exception("Can't find user with nickname '$nickname'");
+        }
+    } else {
+        throw new NoUserArgumentException("No user argument specified.");
+    }
+
+    return $user;
+}
+
+/** "Printf not quiet" */
+
+function printfnq()
+{
+    if (have_option('q', 'quiet')) {
+        return null;
+    }
+
+    $cargs  = func_num_args();
+
+    if ($cargs == 0) {
+        return 0;
+    }
+
+    $args   = func_get_args();
+    $format = array_shift($args);
+
+    return vprintf($format, $args);
+}
+
+/** "Print when verbose" */
+
+function printfv()
+{
+    if (!have_option('v', 'verbose')) {
+        return null;
+    }
+
+    $cargs  = func_num_args();
+
+    if ($cargs == 0) {
+        return 0;
+    }
+
+    $args   = func_get_args();
+    $format = array_shift($args);
+
+    return vprintf($format, $args);
+}

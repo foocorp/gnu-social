@@ -1,0 +1,34 @@
+# Translation of StatusNet - Linkback to Indonesian (Bahasa Indonesia)
+# Expored from translatewiki.net
+#
+# Author: Farras
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Linkback\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:12+0000\n"
+"Language-Team: Indonesian <http://translatewiki.net/wiki/Portal:id>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-10-29 16:12:52+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: id\n"
+"X-Message-Group: #out-statusnet-plugin-linkback\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: LinkbackPlugin.php:241
+msgid ""
+"Notify blog authors when their posts have been linked in microblog notices "
+"using <a href=\"http://www.hixie.ch/specs/pingback/pingback\">Pingback</a> "
+"or <a href=\"http://www.movabletype.org/docs/mttrackback.html\">Trackback</"
+"a> protocols."
+msgstr ""
+"Memberitahu penulis blog apabila kiriman mereka telah terhubung dengan "
+"mikroblog menggunakan protokol <a href=\"http://www.hixie.ch/specs/pingback/"
+"pingback\">Pingback</a> atau <a href=\"http://www.movabletype.org/docs/"
+"mttrackback.html\">Trackback</a> ."

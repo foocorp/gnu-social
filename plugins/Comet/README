@@ -6,7 +6,10 @@ NOTE: this is an insecure version; don't roll it out on a production
 server.
 
 It requires a cometd server. I've only had the cometd-java server work
-correctly; something's wiggy with the Twisted-based server.
+correctly; something's wiggy with the Twisted-based server. See here
+for help setting up a comet server:
+
+    http://cometd.org/
 
 After you have a cometd server installed, just add this code to your
 config.php:

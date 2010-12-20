@@ -1,0 +1,14 @@
+The default OpenLayers.js file, minified, weighs in at a whopping 943kb uncompressed.
+With gzip compression it's still over 200kb, so we're building a stripped-down copy
+with just what we need.
+
+Docs on how the stripping process works:
+http://docs.openlayers.org/library/deploying.html
+
+To recreate this OpenLayers.js file:
+
+  # get yui-compressor (install from apt, or set up a shell script or alias to the jar)
+  # download and decompress OpenLayers-2.10 zip or tgz
+  make clean && make
+
+If necessary, change the relative path to the OpenLayers source directory in the Makefile.

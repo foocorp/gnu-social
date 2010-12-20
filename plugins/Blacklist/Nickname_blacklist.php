@@ -44,7 +44,6 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-
 class Nickname_blacklist extends Memcached_DataObject
 {
     public $__table = 'nickname_blacklist'; // table name
@@ -62,7 +61,6 @@ class Nickname_blacklist extends Memcached_DataObject
      * @return Nickname_blacklist object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Nickname_blacklist', $k, $v);
@@ -73,7 +71,6 @@ class Nickname_blacklist extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('pattern' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
@@ -85,7 +82,6 @@ class Nickname_blacklist extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -96,7 +92,6 @@ class Nickname_blacklist extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keyTypes()
     {
         return array('pattern' => 'K');
@@ -107,7 +102,6 @@ class Nickname_blacklist extends Memcached_DataObject
      *
      * @return array string patterns to check
      */
-
     static function getPatterns()
     {
         $patterns = self::cacheGet('nickname_blacklist:patterns');
@@ -135,17 +129,14 @@ class Nickname_blacklist extends Memcached_DataObject
      *
      * @return array of patterns to check
      */
-
     static function saveNew($newPatterns)
     {
         $oldPatterns = self::getPatterns();
 
         // Delete stuff that's old that not in new
-
         $toDelete = array_diff($oldPatterns, $newPatterns);
 
         // Insert stuff that's in new and not in old
-
         $toInsert = array_diff($newPatterns, $oldPatterns);
 
         foreach ($toDelete as $pattern) {

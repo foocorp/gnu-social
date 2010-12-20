@@ -59,7 +59,6 @@ abstract class ImPlugin extends Plugin
      */
     abstract function normalize($screenname);
 
-
     /**
      * validate (ensure the validity of) a screenname
      *
@@ -79,35 +78,35 @@ abstract class ImPlugin extends Plugin
     /**
      * send a single notice to a given screenname
      * The implementation should put raw data, ready to send, into the outgoing
-     *   queue using enqueue_outgoing_raw()
+     *   queue using enqueueOutgoingRaw()
      *
      * @param string $screenname screenname to send to
      * @param Notice $notice notice to send
      *
      * @return boolean success value
      */
-    function send_notice($screenname, $notice)
+    function sendNotice($screenname, $notice)
     {
-        return $this->send_message($screenname, $this->format_notice($notice));
+        return $this->sendMessage($screenname, $this->formatNotice($notice));
     }
 
     /**
      * send a message (text) to a given screenname
      * The implementation should put raw data, ready to send, into the outgoing
-     *   queue using enqueue_outgoing_raw()
+     *   queue using enqueueOutgoingRaw()
      *
      * @param string $screenname screenname to send to
      * @param Notice $body text to send
      *
      * @return boolean success value
      */
-    abstract function send_message($screenname, $body);
+    abstract function sendMessage($screenname, $body);
 
     /**
      * receive a raw message
      * Raw IM data is taken from the incoming queue, and passed to this function.
-     * It should parse the raw message and call handle_incoming()
-     * 
+     * It should parse the raw message and call handleIncoming()
+     *
      * Returning false may CAUSE REPROCESSING OF THE QUEUE ITEM, and should
      * be used for temporary failures only. For permanent failures such as
      * unrecognized addresses, return true to indicate your processing has
@@ -117,14 +116,14 @@ abstract class ImPlugin extends Plugin
      *
      * @return boolean true if processing completed, false for temporary failures
      */
-    abstract function receive_raw_message($data);
+    abstract function receiveRawMessage($data);
 
     /**
      * get the screenname of the daemon that sends and receives message for this service
      *
      * @return string screenname of this plugin
      */
-    abstract function daemon_screenname();
+    abstract function daemonScreenname();
 
     /**
      * get the microid uri of a given screenname
@@ -135,7 +134,7 @@ abstract class ImPlugin extends Plugin
      */
     function microiduri($screenname)
     {
-        return $this->transport . ':' . $screenname;    
+        return $this->transport . ':' . $screenname;
     }
     //========================UTILITY FUNCTIONS USEFUL TO IMPLEMENTATIONS - MISC ========================\
 
@@ -144,7 +143,7 @@ abstract class ImPlugin extends Plugin
      *
      * @param object $data
      */
-    function enqueue_outgoing_raw($data)
+    function enqueueOutgoingRaw($data)
     {
         $qm = QueueManager::get();
         $qm->enqueue($data, $this->transport . '-out');
@@ -155,7 +154,7 @@ abstract class ImPlugin extends Plugin
      *
      * @param object $data
      */
-    function enqueue_incoming_raw($data)
+    function enqueueIncomingRaw($data)
     {
         $qm = QueueManager::get();
         $qm->enqueue($data, $this->transport . '-in');
@@ -168,9 +167,9 @@ abstract class ImPlugin extends Plugin
      *
      * @return User user
      */
-    function get_user($screenname)
+    function getUser($screenname)
     {
-        $user_im_prefs = $this->get_user_im_prefs_from_screenname($screenname);
+        $user_im_prefs = $this->getUserImPrefsFromScreenname($screenname);
         if($user_im_prefs){
             $user = User::staticGet('id', $user_im_prefs->user_id);
             $user_im_prefs->free();
@@ -180,7 +179,6 @@ abstract class ImPlugin extends Plugin
         }
     }
 
-
     /**
      * given a screenname, get the User_im_prefs object for this transport
      *
@@ -188,7 +186,7 @@ abstract class ImPlugin extends Plugin
      *
      * @return User_im_prefs user_im_prefs
      */
-    function get_user_im_prefs_from_screenname($screenname)
+    function getUserImPrefsFromScreenname($screenname)
     {
         $user_im_prefs = User_im_prefs::pkeyGet(
             array('transport' => $this->transport,
@@ -200,7 +198,6 @@ abstract class ImPlugin extends Plugin
         }
     }
 
-
     /**
      * given a User, get their screenname
      *
@@ -208,16 +205,15 @@ abstract class ImPlugin extends Plugin
      *
      * @return string screenname of that user
      */
-    function get_screenname($user)
+    function getScreenname($user)
     {
-        $user_im_prefs = $this->get_user_im_prefs_from_user($user);
+        $user_im_prefs = $this->getUserImPrefsFromUser($user);
         if ($user_im_prefs) {
             return $user_im_prefs->screenname;
         } else {
             return false;
         }
     }
-
 
     /**
      * given a User, get their User_im_prefs
@@ -226,7 +222,7 @@ abstract class ImPlugin extends Plugin
      *
      * @return User_im_prefs user_im_prefs of that user
      */
-    function get_user_im_prefs_from_user($user)
+    function getUserImPrefsFromUser($user)
     {
         $user_im_prefs = User_im_prefs::pkeyGet(
             array('transport' => $this->transport,
@@ -246,10 +242,10 @@ abstract class ImPlugin extends Plugin
      *
      * @param boolean success
      */
-    protected function send_from_site($screenname, $msg)
+    protected function sendFromSite($screenname, $msg)
     {
         $text = '['.common_config('site', 'name') . '] ' . $msg;
-        $this->send_message($screenname, $text);
+        $this->sendMessage($screenname, $text);
     }
 
     /**
@@ -261,7 +257,7 @@ abstract class ImPlugin extends Plugin
      *
      * @return boolean success value
      */
-    function send_confirmation_code($screenname, $code, $user)
+    function sendConfirmationCode($screenname, $code, $user)
     {
         $body = sprintf(_('User "%s" on %s has said that your %s screenname belongs to them. ' .
           'If that\'s true, you can confirm by clicking on this URL: ' .
@@ -271,7 +267,7 @@ abstract class ImPlugin extends Plugin
           'or if you didn\'t request this confirmation, just ignore this message.'),
           $user->nickname, common_config('site', 'name'), $this->getDisplayName(), common_local_url('confirmaddress', array('code' => $code)));
 
-        return $this->send_message($screenname, $body);
+        return $this->sendMessage($screenname, $body);
     }
 
     /**
@@ -285,7 +281,7 @@ abstract class ImPlugin extends Plugin
      * @return boolean success flag
      */
 
-    function public_notice($notice)
+    function publicNotice($notice)
     {
         // Now, users who want everything
 
@@ -298,7 +294,7 @@ abstract class ImPlugin extends Plugin
                        'Sending notice ' . $notice->id .
                        ' to public listener ' . $screenname,
                        __FILE__);
-            $this->send_notice($screenname, $notice);
+            $this->sendNotice($screenname, $notice);
         }
 
         return true;
@@ -318,7 +314,7 @@ abstract class ImPlugin extends Plugin
      * @return boolean success flag
      */
 
-    function broadcast_notice($notice)
+    function broadcastNotice($notice)
     {
 
         $ni = $notice->whoGets();
@@ -329,7 +325,7 @@ abstract class ImPlugin extends Plugin
                 // either not a local user, or just not found
                 continue;
             }
-            $user_im_prefs = $this->get_user_im_prefs_from_user($user);
+            $user_im_prefs = $this->getUserImPrefsFromUser($user);
             if(!$user_im_prefs || !$user_im_prefs->notify){
                 continue;
             }
@@ -356,7 +352,7 @@ abstract class ImPlugin extends Plugin
             common_log(LOG_INFO,
                        'Sending notice ' . $notice->id . ' to ' . $user_im_prefs->screenname,
                        __FILE__);
-            $this->send_notice($user_im_prefs->screenname, $notice);
+            $this->sendNotice($user_im_prefs->screenname, $notice);
             $user_im_prefs->free();
         }
 
@@ -371,7 +367,7 @@ abstract class ImPlugin extends Plugin
      * @return string plain-text version of the notice, with user nickname prefixed
      */
 
-    function format_notice($notice)
+    function formatNotice($notice)
     {
         $profile = $notice->getProfile();
         return $profile->nickname . ': ' . $notice->content . ' [' . $notice->id . ']';
@@ -384,7 +380,7 @@ abstract class ImPlugin extends Plugin
      * @param string $body message text
      * @return boolean true if the message was a command and was executed, false if it was not a command
      */
-    protected function handle_command($user, $body)
+    protected function handleCommand($user, $body)
     {
         $inter = new CommandInterpreter();
         $cmd = $inter->handle_command($user, $body);
@@ -402,7 +398,7 @@ abstract class ImPlugin extends Plugin
      * @param string $txt message text
      * @return boolean true if autoreply
      */
-    protected function is_autoreply($txt)
+    protected function isAutoreply($txt)
     {
         if (preg_match('/[\[\(]?[Aa]uto[-\s]?[Rr]e(ply|sponse)[\]\)]/', $txt)) {
             return true;
@@ -418,7 +414,7 @@ abstract class ImPlugin extends Plugin
      * @param string $txt message text
      * @return boolean true if OTR
      */
-    protected function is_otr($txt)
+    protected function isOtr($txt)
     {
         if (preg_match('/^\?OTR/', $txt)) {
             return true;
@@ -436,34 +432,34 @@ abstract class ImPlugin extends Plugin
      *
      * @param boolean success
      */
-    protected function handle_incoming($from, $notice_text)
+    protected function handleIncoming($from, $notice_text)
     {
-        $user = $this->get_user($from);
+        $user = $this->getUser($from);
         // For common_current_user to work
         global $_cur;
         $_cur = $user;
 
         if (!$user) {
-            $this->send_from_site($from, 'Unknown user; go to ' .
+            $this->sendFromSite($from, 'Unknown user; go to ' .
                              common_local_url('imsettings') .
                              ' to add your address to your account');
             common_log(LOG_WARNING, 'Message from unknown user ' . $from);
             return;
         }
-        if ($this->handle_command($user, $notice_text)) {
+        if ($this->handleCommand($user, $notice_text)) {
             common_log(LOG_INFO, "Command message by $from handled.");
             return;
-        } else if ($this->is_autoreply($notice_text)) {
+        } else if ($this->isAutoreply($notice_text)) {
             common_log(LOG_INFO, 'Ignoring auto reply from ' . $from);
             return;
-        } else if ($this->is_otr($notice_text)) {
+        } else if ($this->isOtr($notice_text)) {
             common_log(LOG_INFO, 'Ignoring OTR from ' . $from);
             return;
         } else {
 
             common_log(LOG_INFO, 'Posting a notice from ' . $user->nickname);
 
-            $this->add_notice($from, $user, $notice_text);
+            $this->addNotice($from, $user, $notice_text);
         }
 
         $user->free();
@@ -481,12 +477,12 @@ abstract class ImPlugin extends Plugin
      *
      * @param boolean success
      */
-    protected function add_notice($screenname, $user, $body)
+    protected function addNotice($screenname, $user, $body)
     {
         $body = trim(strip_tags($body));
         $content_shortened = common_shorten_links($body);
         if (Notice::contentTooLong($content_shortened)) {
-          $this->send_from_site($screenname, sprintf(_('Message too long - maximum is %1$d characters, you sent %2$d.'),
+          $this->sendFromSite($screenname, sprintf(_('Message too long - maximum is %1$d characters, you sent %2$d.'),
                                           Notice::maxContent(),
                                           mb_strlen($content_shortened)));
           return;
@@ -496,11 +492,10 @@ abstract class ImPlugin extends Plugin
             $notice = Notice::saveNew($user->id, $content_shortened, $this->transport);
         } catch (Exception $e) {
             common_log(LOG_ERR, $e->getMessage());
-            $this->send_from_site($from, $e->getMessage());
+            $this->sendFromSite($from, $e->getMessage());
             return;
         }
 
-        common_broadcast_notice($notice);
         common_log(LOG_INFO,
                    'Added notice ' . $notice->id . ' from user ' . $user->nickname);
         $notice->free();
@@ -508,7 +503,7 @@ abstract class ImPlugin extends Plugin
     }
 
     //========================EVENT HANDLERS========================\
-    
+
     /**
      * Register notice queue handler
      *
@@ -599,14 +594,14 @@ abstract class ImPlugin extends Plugin
     {
         $transports[$this->transport] = array(
             'display' => $this->getDisplayName(),
-            'daemon_screenname' => $this->daemon_screenname());
+            'daemonScreenname' => $this->daemonScreenname());
     }
 
     function onSendImConfirmationCode($transport, $screenname, $code, $user)
     {
         if($transport == $this->transport)
         {
-            $this->send_confirmation_code($screenname, $code, $user);
+            $this->sendConfirmationCode($screenname, $code, $user);
             return false;
         }
     }

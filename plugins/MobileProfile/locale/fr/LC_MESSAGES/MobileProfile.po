@@ -1,0 +1,80 @@
+# Translation of StatusNet - MobileProfile to French (Français)
+# Expored from translatewiki.net
+#
+# Author: Peter17
+# Author: Verdy p
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - MobileProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:18+0000\n"
+"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:45+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fr\n"
+"X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: MobileProfilePlugin.php:193
+msgid "This page is not available in a media type you accept."
+msgstr ""
+"Cette page n’est pas disponible dans un des types de média que vous acceptez."
+
+#: MobileProfilePlugin.php:310
+msgid "Home"
+msgstr "Accueil"
+
+#: MobileProfilePlugin.php:312
+msgid "Account"
+msgstr "Compte"
+
+#: MobileProfilePlugin.php:314
+msgid "Connect"
+msgstr "Connexion"
+
+#: MobileProfilePlugin.php:317
+msgid "Admin"
+msgstr "Administrateur"
+
+#: MobileProfilePlugin.php:317
+msgid "Change site configuration"
+msgstr "Modifier la configuration du site"
+
+#: MobileProfilePlugin.php:321
+msgid "Invite"
+msgstr "Inviter"
+
+#: MobileProfilePlugin.php:324
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: MobileProfilePlugin.php:328
+msgid "Register"
+msgstr "S’inscrire"
+
+#: MobileProfilePlugin.php:331
+msgid "Login"
+msgstr "Connexion"
+
+#: MobileProfilePlugin.php:335
+msgid "Search"
+msgstr "Rechercher"
+
+#: MobileProfilePlugin.php:361
+msgid "Attach"
+msgstr "Joindre"
+
+#: MobileProfilePlugin.php:365
+msgid "Attach a file"
+msgstr "Joindre un fichier"
+
+#: MobileProfilePlugin.php:417
+msgid "XHTML MobileProfile output for supporting user agents."
+msgstr "Sortie XHTML MobileProfile pour les navigateurs compatibles."

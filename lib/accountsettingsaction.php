@@ -44,7 +44,6 @@ require_once INSTALLDIR.'/lib/settingsaction.php';
  *
  * @see      Widget
  */
-
 class AccountSettingsAction extends SettingsAction
 {
     /**
@@ -54,7 +53,6 @@ class AccountSettingsAction extends SettingsAction
      *
      * @return void
      */
-
     function showLocalNav()
     {
         $menu = new AccountSettingsNav($this);
@@ -73,7 +71,6 @@ class AccountSettingsAction extends SettingsAction
  *
  * @see      HTMLOutputter
  */
-
 class AccountSettingsNav extends Widget
 {
     var $action = null;
@@ -83,7 +80,6 @@ class AccountSettingsNav extends Widget
      *
      * @param Action $action current action, used for output
      */
-
     function __construct($action=null)
     {
         parent::__construct($action);
@@ -95,7 +91,6 @@ class AccountSettingsNav extends Widget
      *
      * @return void
      */
-
     function show()
     {
         $action_name = $this->action->trimmed('action');
@@ -139,12 +134,12 @@ class AccountSettingsNav extends Widget
                 $this->showMenuItem('userdesignsettings',_('Design'),$title);
                 Event::handle('EndAccountSettingsDesignMenuItem', array($this, &$menu));
             }
-            if(Event::handle('StartAccountSettingsOtherMenuItem', array($this, &$menu))){
+            if(Event::handle('StartAccountSettingsUrlMenuItem', array($this, &$menu))){
                 // TRANS: Link title attribute in user account settings menu.
-                $title = _('Other options');
+                $title = _('URL shortener settings');
                 // TRANS: Link description in user account settings menu.
-                $this->showMenuItem('othersettings',_('Other'),$title);
-                Event::handle('EndAccountSettingsOtherMenuItem', array($this, &$menu));
+                $this->showMenuItem('urlsettings',_('URL'),$title);
+                Event::handle('EndAccountSettingsUrlMenuItem', array($this, &$menu));
             }
 
             Event::handle('EndAccountSettingsNav', array(&$this->action));

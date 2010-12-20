@@ -40,7 +40,7 @@ class Notice_tag extends Memcached_DataObject
 
         $ids = Notice::stream(array('Notice_tag', '_streamDirect'),
                               array($tag),
-                              'notice_tag:notice_ids:' . common_keyize($tag),
+                              'notice_tag:notice_ids:' . Cache::keyize($tag),
                               $offset, $limit);
 
         return Notice::getStreamByIds($ids);
@@ -55,15 +55,10 @@ class Notice_tag extends Memcached_DataObject
         $nt->selectAdd();
         $nt->selectAdd('notice_id');
 
-        if ($since_id != 0) {
-            $nt->whereAdd('notice_id > ' . $since_id);
-        }
+        Notice::addWhereSinceId($nt, $since_id, 'notice_id');
+        Notice::addWhereMaxId($nt, $max_id, 'notice_id');
 
-        if ($max_id != 0) {
-            $nt->whereAdd('notice_id < ' . $max_id);
-        }
-
-        $nt->orderBy('notice_id DESC');
+        $nt->orderBy('created DESC, notice_id DESC');
 
         if (!is_null($offset)) {
             $nt->limit($offset, $limit);
@@ -82,9 +77,9 @@ class Notice_tag extends Memcached_DataObject
 
     function blowCache($blowLast=false)
     {
-        self::blow('notice_tag:notice_ids:%s', common_keyize($this->tag));
+        self::blow('notice_tag:notice_ids:%s', Cache::keyize($this->tag));
         if ($blowLast) {
-            self::blow('notice_tag:notice_ids:%s;last', common_keyize($this->tag));
+            self::blow('notice_tag:notice_ids:%s;last', Cache::keyize($this->tag));
         }
     }
 

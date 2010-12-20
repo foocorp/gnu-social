@@ -81,45 +81,6 @@ END;
     chdir($old);
 }
 
-function do_translatewiki_plugin($basedir, $plugin)
-{
-    $yamldir = "$basedir/locale/TranslateWiki";
-    if (!file_exists($yamldir)) {
-        mkdir($yamldir);
-    }
-    $outfile = "$yamldir/StatusNet-{$plugin}.yml";
-    $pluginlc = strtolower( $plugin );
-    $data = <<<END
----
-BASIC:
-  id: out-statusnet-{$pluginlc}
-  label: StatusNet - {$plugin}
-  namespace: NS_STATUSNET
-  description: "{{int:bw-desc-statusnet-plugin}}"
-  class: FileBasedMessageGroup
-  display: out/statusnet/{$pluginlc}
-
-FILES:
-  class: GettextFFS
-  sourcePattern: %GROUPROOT%/statusnet/plugins/{$plugin}/locale/{$plugin}.pot
-  targetPattern: statusnet/plugins/{$plugin}/locale/%CODE%/LC_MESSAGES/{$plugin}.po
-  codeMap:
-    en-gb: en_GB
-    no: nb
-    pt-br: pt_BR
-    zh-hans: zh_CN
-    zh-hant: zh_TW
-
-MANGLER
-  class: StringMatcher
-  prefix: {$pluginlc}-
-  patterns:
-    - "*"
-
-END;
-    file_put_contents($outfile, $data);
-}
-
 function get_plugins($dir)
 {
     $plugins = array();
@@ -168,7 +129,6 @@ function update_plugin($basedir, $name)
     $dir = "$basedir/plugins/$name";
     if (plugin_using_gettext($dir)) {
         do_update_plugin($dir, $name);
-        do_translatewiki_plugin($basedir, $name);
         return true;
     } else {
         return false;
@@ -199,8 +159,6 @@ foreach ($args as $arg) {
         exit(0);
     }
 }
-
-
 
 if ($all || $core) {
     echo "core...";

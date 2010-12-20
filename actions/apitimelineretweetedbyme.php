@@ -43,7 +43,6 @@ require_once INSTALLDIR . '/lib/mediafile.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiTimelineRetweetedByMeAction extends ApiAuthAction
 {
     const DEFAULTCOUNT = 20;
@@ -64,12 +63,12 @@ class ApiTimelineRetweetedByMeAction extends ApiAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
 
-        $this->serverError('Unimplemented.', 503);
+        // TRANS: Server error displayed calling unimplemented API method for 'retweeted by me'.
+        $this->serverError(_('Unimplemented.'), 503);
 
         return false;
     }
@@ -81,7 +80,6 @@ class ApiTimelineRetweetedByMeAction extends ApiAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;

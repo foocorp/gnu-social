@@ -49,7 +49,6 @@ require_once INSTALLDIR . '/lib/apiprivateauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiGroupMembershipAction extends ApiPrivateAuthAction
 {
     var $group    = null;
@@ -61,9 +60,7 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -83,12 +80,12 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if (empty($this->group)) {
+            // TRANS: Client error displayed trying to show group membership on a non-existing group.
             $this->clientError(_('Group not found.'), 404, $this->format);
             return false;
         }
@@ -104,6 +101,7 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
             break;
         default:
             $this->clientError(
+                // TRANS: Client error displayed trying to execute an unknown API method showing group membership.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -117,7 +115,6 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
      *
      * @return array $profiles list of profiles
      */
-
     function getProfiles()
     {
         $profiles = array();
@@ -143,7 +140,6 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -154,7 +150,6 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
      *
      * @return string datestamp of the lastest profile in the group
      */
-
     function lastModified()
     {
         if (!empty($this->profiles) && (count($this->profiles) > 0)) {
@@ -173,7 +168,6 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
      *
      * @return string etag
      */
-
     function etag()
     {
         if (!empty($this->profiles) && (count($this->profiles) > 0)) {
@@ -183,6 +177,7 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
             return '"' . implode(
                 ':',
                 array($this->arg('action'),
+                      common_user_cache_hash($this->auth_user),
                       common_language(),
                       $this->group->id,
                       strtotime($this->profiles[0]->created),
@@ -193,5 +188,4 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
 
         return null;
     }
-
 }

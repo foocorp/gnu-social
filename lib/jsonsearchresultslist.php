@@ -101,6 +101,10 @@ class JSONSearchResultsList
                 $this->max_id = (int)$this->notice->id;
             }
 
+            if ($this->since_id && $this->notice->id <= $this->since_id) {
+                break;
+            }
+
             if ($cnt > $this->rpp) {
                 break;
             }

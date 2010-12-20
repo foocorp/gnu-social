@@ -1,0 +1,103 @@
+# Translation of StatusNet - Adsense to Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
+# Expored from translatewiki.net
+#
+# Author: EugeneZelenko
+# Author: Jim-by
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Adsense\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:23+0000\n"
+"Language-Team: Belarusian (Taraškievica orthography) <http://translatewiki."
+"net/wiki/Portal:be-tarask>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:24+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: be-tarask\n"
+"X-Message-Group: #out-statusnet-plugin-adsense\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Menu item title/tooltip
+#: AdsensePlugin.php:194
+msgid "AdSense configuration"
+msgstr "Устаноўкі AdSense"
+
+#. TRANS: Menu item for site administration
+#: AdsensePlugin.php:196
+msgid "AdSense"
+msgstr "AdSense"
+
+#: AdsensePlugin.php:209
+msgid "Plugin to add Google AdSense to StatusNet sites."
+msgstr "Дапаўненьне для даданьня Google AdSense на сайты StatusNet."
+
+#: adsenseadminpanel.php:52
+msgctxt "TITLE"
+msgid "AdSense"
+msgstr "AdSense"
+
+#: adsenseadminpanel.php:62
+msgid "AdSense settings for this StatusNet site"
+msgstr "Устаноўкі AdSense для гэтага сайта StatusNet"
+
+#: adsenseadminpanel.php:164
+msgid "Client ID"
+msgstr "Ідэнтыфікатар кліента"
+
+#: adsenseadminpanel.php:165
+msgid "Google client ID"
+msgstr "Ідэнтыфікатар кліента Google"
+
+#: adsenseadminpanel.php:170
+msgid "Ad script URL"
+msgstr "URL-адрас скрыпта рэклямы"
+
+#: adsenseadminpanel.php:171
+msgid "Script URL (advanced)"
+msgstr "URL-адрас скрыпта (палепшаная ўстаноўка)"
+
+#: adsenseadminpanel.php:176
+msgid "Medium rectangle"
+msgstr "Сярэдні прамавугольнік"
+
+#: adsenseadminpanel.php:177
+msgid "Medium rectangle slot code"
+msgstr "Слот-код сярэдняга прамавугольніка"
+
+#: adsenseadminpanel.php:182
+msgid "Rectangle"
+msgstr "Прамавугольнік"
+
+#: adsenseadminpanel.php:183
+msgid "Rectangle slot code"
+msgstr "Слот-код прамавугольніка"
+
+#: adsenseadminpanel.php:188
+msgid "Leaderboard"
+msgstr "Дошка гонару"
+
+#: adsenseadminpanel.php:189
+msgid "Leaderboard slot code"
+msgstr "Слот-код дошкі гонару"
+
+#: adsenseadminpanel.php:194
+msgid "Skyscraper"
+msgstr "Хмарачос"
+
+#: adsenseadminpanel.php:195
+msgid "Wide skyscraper slot code"
+msgstr "Слот-код хмарачосу"
+
+#: adsenseadminpanel.php:208
+msgid "Save"
+msgstr "Захаваць"
+
+#: adsenseadminpanel.php:208
+msgid "Save AdSense settings"
+msgstr "Захаваць устаноўкі AdSense"

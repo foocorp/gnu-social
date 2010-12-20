@@ -44,7 +44,6 @@ class Foreign_link extends Memcached_DataObject
         $result = $flink->find(true);
 
         return empty($result) ? null : $flink;
-
     }
 
     static function getByForeignID($foreign_id, $service)
@@ -129,5 +128,4 @@ class Foreign_link extends Memcached_DataObject
             return false;
         }
     }
-
 }

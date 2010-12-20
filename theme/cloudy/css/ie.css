@@ -1,3 +1,10 @@
+/**
+ * @package   StatusNet
+ * @author    Sarven Capadisli <csarven@status.net>
+ * @copyright 2009-2010 StatusNet, Inc.
+ * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
+ * @link      http://status.net/
+ */
 /* IE specific styles */
 
 .notice-options input.submit {
@@ -45,19 +52,22 @@ width:181px;
 top:190px;
 }
 
-#public #content,
-#groups #content,
-#publictagcloud #content,
-#featured #content,
-#favorited #content,
-#all #content,
-#replies #content,
-#showstream #content,
-#showfavorites #content,
-#inbox #content,
-#outbox #content,
-#subscriptions #content,
-#subscribers #content {
+#public.user_in #content,
+#groups.user_in #content,
+#publictagcloud.user_in #content,
+#featured.user_in #content,
+#favorited.user_in #content,
+#all.user_in #content,
+#replies.user_in #content,
+#showstream.user_in #content,
+#showfavorites.user_in #content,
+#inbox.user_in #content,
+#outbox.user_in #content,
+#subscriptions.user_in #content,
+#subscribers.user_in #content,
+#showgroup.user_in #content,
+#conversation.user_in #content,
+#attachment.user_in #content {
 padding-top:138px;
 }
 

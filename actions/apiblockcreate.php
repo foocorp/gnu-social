@@ -46,7 +46,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiBlockCreateAction extends ApiAuthAction
 {
     var $other   = null;
@@ -59,7 +58,6 @@ class ApiBlockCreateAction extends ApiAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -79,13 +77,13 @@ class ApiBlockCreateAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400,
                 $this->format
@@ -102,6 +100,7 @@ class ApiBlockCreateAction extends ApiAuthAction
 
         if ($this->user->id == $this->other->id) {
             $this->clientError(
+                // TRANS: Client error displayed when users try to block themselves.
                 _("You cannot block yourself!"),
                 403,
                 $this->format
@@ -123,10 +122,8 @@ class ApiBlockCreateAction extends ApiAuthAction
             $this->showProfile($this->other, $this->format);
             $this->endDocument($this->format);
         } else {
+            // TRANS: Server error displayed when blocking a user has failed.
             $this->serverError(_('Block user failed.'), 500, $this->format);
         }
-
     }
-
 }
-

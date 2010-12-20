@@ -1,0 +1,141 @@
+# Translation of StatusNet - SubMirror to French (Français)
+# Expored from translatewiki.net
+#
+# Author: Verdy p
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SubMirror\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:59+0000\n"
+"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-29 19:46:18+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fr\n"
+"X-Message-Group: #out-statusnet-plugin-submirror\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: SubMirrorPlugin.php:90
+msgid "Pull feeds into your timeline!"
+msgstr "Importez des flux d’information dans votre agenda !"
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+#: SubMirrorPlugin.php:109
+msgctxt "MENU"
+msgid "Mirroring"
+msgstr "Mise en miroir"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+#: SubMirrorPlugin.php:111
+msgid "Configure mirroring of posts from other feeds"
+msgstr "Configurer la mise en miroir de messages provenant d’autres flux"
+
+#: lib/editmirrorform.php:83
+msgctxt "LABEL"
+msgid "Remote feed:"
+msgstr "Flux distant :"
+
+#: lib/editmirrorform.php:87
+msgctxt "LABEL"
+msgid "Local user"
+msgstr "Utilisateur local"
+
+#: lib/editmirrorform.php:93
+msgid "Mirroring style"
+msgstr "Style de mise en miroir"
+
+#: lib/editmirrorform.php:95
+msgid ""
+"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+msgstr ""
+"Répéter : référence le message de l’auteur d’origine (montré parfois comme « "
+"RT @blabla »)"
+
+#: lib/editmirrorform.php:96
+msgid "Repost the content under my account"
+msgstr "Reposter le contenu sous mon compte"
+
+#: lib/editmirrorform.php:115
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: lib/editmirrorform.php:117
+msgid "Stop mirroring"
+msgstr "Arrêter le miroir"
+
+#: lib/addmirrorform.php:59
+msgid "Web page or feed URL:"
+msgstr "Adresse URL de la page Web ou du flux :"
+
+#: lib/addmirrorform.php:64
+msgctxt "BUTTON"
+msgid "Add feed"
+msgstr "Ajouter le flux"
+
+#: actions/basemirror.php:71
+msgid "Invalid feed URL."
+msgstr "Adresse URL de flux invalide."
+
+#. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
+#: actions/basemirror.php:83
+msgid "Invalid profile for mirroring."
+msgstr "Profil invalide pour la mise en miroir."
+
+#: actions/basemirror.php:101
+msgid "Can't mirror a StatusNet group at this time."
+msgstr "Impossible de mettre en miroir un groupe StatusNet actuellement."
+
+#: actions/basemirror.php:115
+msgid "This action only accepts POST requests."
+msgstr "Cette action n’accepte que les requêtes de type POST."
+
+#: actions/basemirror.php:123
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Un problème est survenu avec votre jeton de session. Veuillez essayer à "
+"nouveau."
+
+#: actions/basemirror.php:133
+msgid "Not logged in."
+msgstr "Non connecté."
+
+#: actions/basemirror.php:156
+msgid "Subscribed"
+msgstr "Abonné"
+
+#: actions/editmirror.php:68
+msgid "Requested invalid profile to edit."
+msgstr "Profil invalide demandé à modifier."
+
+#: actions/editmirror.php:86
+msgid "Bad form data."
+msgstr "Données de formulaire erronées."
+
+#. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
+#: actions/editmirror.php:95
+msgid "Requested edit of missing mirror."
+msgstr "Miroir inexistant demandé à modifier."
+
+#: actions/addmirror.php:72
+msgid "Could not subscribe to feed."
+msgstr "Impossible de vous abonner au flux."
+
+#. TRANS: Title.
+#: actions/mirrorsettings.php:42
+msgid "Feed mirror settings"
+msgstr "Paramètres de miroir de flux"
+
+#. TRANS: Instructions.
+#: actions/mirrorsettings.php:54
+msgid ""
+"You can mirror updates from many RSS and Atom feeds into your StatusNet "
+"timeline!"
+msgstr ""
+"Vous pouvez mettre en miroir dans votre agenda StatusNet les mises à jour de "
+"nombreux flux RSS et Atom !"

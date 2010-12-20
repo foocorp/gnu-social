@@ -1,0 +1,48 @@
+# Translation of StatusNet - ModPlus to Breton (Brezhoneg)
+# Expored from translatewiki.net
+#
+# Author: Y-M D
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ModPlus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:20+0000\n"
+"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 17:54:28+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: br\n"
+"X-Message-Group: #out-statusnet-plugin-modplus\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ModPlusPlugin.php:39
+msgid "UI extensions for profile moderation actions."
+msgstr ""
+
+#: ModPlusPlugin.php:110
+msgid "Remote profile options..."
+msgstr ""
+
+#: remoteprofileaction.php:51
+#, php-format
+msgid "%s on %s"
+msgstr "%s war %s"
+
+#: remoteprofileaction.php:62
+#, php-format
+msgid ""
+"This remote profile is registered on another site; see [%s's original "
+"profile page on %s](%s)."
+msgstr ""
+
+#: remoteprofileaction.php:70
+msgid ""
+"Site moderators have silenced this profile, which prevents delivery of new "
+"messages to any users on this site."
+msgstr ""

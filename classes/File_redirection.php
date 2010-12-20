@@ -91,9 +91,16 @@ class File_redirection extends Memcached_DataObject
             $request->setMethod(HTTP_Request2::METHOD_HEAD);
             $response = $request->send();
 
-            if (405 == $response->getStatus()) {
+            if (405 == $response->getStatus() || 204 == $response->getStatus()) {
+                // HTTP 405 Unsupported Method
                 // Server doesn't support HEAD method? Can this really happen?
                 // We'll try again as a GET and ignore the response data.
+                //
+                // HTTP 204 No Content
+                // YFrog sends 204 responses back for our HEAD checks, which
+                // seems like it may be a logic error in their servers. If
+                // we get a 204 back, re-run it as a GET... if there's really
+                // no content it'll be cheap. :)
                 $request = self::_commonHttp($short_url, $redirs);
                 $response = $request->send();
             }
@@ -132,6 +139,7 @@ class File_redirection extends Memcached_DataObject
      * reached.
      *
      * @param string $in_url
+     * @param boolean $discover true to attempt dereferencing the redirect if we don't know it already
      * @return mixed one of:
      *         string - target URL, if this is a direct link or a known redirect
      *         array - redirect info if this is an *unknown* redirect:
@@ -143,7 +151,7 @@ class File_redirection extends Memcached_DataObject
      *                size (optional): byte size from Content-Length header
      *                time (optional): timestamp from Last-Modified header
      */
-    public function where($in_url) {
+    public function where($in_url, $discover=true) {
         // let's see if we know this...
         $a = File::staticGet('url', $in_url);
 
@@ -159,8 +167,13 @@ class File_redirection extends Memcached_DataObject
             }
         }
 
-        $ret = File_redirection::lookupWhere($in_url);
-        return $ret;
+        if ($discover) {
+            $ret = File_redirection::lookupWhere($in_url);
+            return $ret;
+        } else {
+            // No manual dereferencing; leave the unknown URL as is.
+            return $in_url;
+        }
     }
 
     /**
@@ -174,14 +187,14 @@ class File_redirection extends Memcached_DataObject
      * may be saved.
      *
      * @param string $long_url
+     * @param User $user whose shortening options to use; defaults to the current web session user
      * @return string
      */
-
-    function makeShort($long_url)
+    function makeShort($long_url, $user=null)
     {
         $canon = File_redirection::_canonUrl($long_url);
 
-        $short_url = File_redirection::_userMakeShort($canon);
+        $short_url = File_redirection::_userMakeShort($canon, $user);
 
         // Did we get one? Is it shorter?
 
@@ -206,11 +219,11 @@ class File_redirection extends Memcached_DataObject
      * @return string
      */
 
-    function forceShort($long_url)
+    function forceShort($long_url, $user)
     {
         $canon = File_redirection::_canonUrl($long_url);
 
-        $short_url = File_redirection::_userMakeShort($canon, true);
+        $short_url = File_redirection::_userMakeShort($canon, $user, true);
 
         // Did we get one? Is it shorter?
         if (!empty($short_url)) {
@@ -220,8 +233,8 @@ class File_redirection extends Memcached_DataObject
         }
     }
 
-    function _userMakeShort($long_url, $force = false) {
-        $short_url = common_shorten_url($long_url, $force);
+    function _userMakeShort($long_url, User $user=null, $force = false) {
+        $short_url = common_shorten_url($long_url, $user, $force);
         if (!empty($short_url) && $short_url != $long_url) {
             $short_url = (string)$short_url;
             // store it
@@ -265,6 +278,18 @@ class File_redirection extends Memcached_DataObject
         return null;
     }
 
+    /**
+     * Basic attempt to canonicalize a URL, cleaning up some standard variants
+     * such as funny syntax or a missing path. Used internally when cleaning
+     * up URLs for storage and following redirect chains.
+     *
+     * Note that despite being on File_redirect, this function DOES NOT perform
+     * any dereferencing of redirects.
+     *
+     * @param string $in_url input URL
+     * @param string $default_scheme if given a bare link; defaults to 'http://'
+     * @return string
+     */
     function _canonUrl($in_url, $default_scheme = 'http://') {
         if (empty($in_url)) return false;
         $out_url = $in_url;
@@ -311,4 +336,3 @@ class File_redirection extends Memcached_DataObject
         $file_redir->insert();
     }
 }
-

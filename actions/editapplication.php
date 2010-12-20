@@ -42,7 +42,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class EditApplicationAction extends OwnerDesignAction
 {
     var $msg   = null;
@@ -51,18 +50,19 @@ class EditApplicationAction extends OwnerDesignAction
 
     function title()
     {
-        return _('Edit Application');
+        // TRANS: Title for "Edit application" form.
+        return _('Edit application');
     }
 
     /**
      * Prepare to run
      */
-
     function prepare($args)
     {
         parent::prepare($args);
 
         if (!common_logged_in()) {
+            // TRANS: Client error displayed trying to edit an application while not logged in.
             $this->clientError(_('You must be logged in to edit an application.'));
             return false;
         }
@@ -74,10 +74,12 @@ class EditApplicationAction extends OwnerDesignAction
         $cur         = common_current_user();
 
         if ($cur->id != $this->owner->id) {
+            // TRANS: Client error displayed trying to edit an application while not being its owner.
             $this->clientError(_('You are not the owner of this application.'), 401);
         }
 
         if (!$this->app) {
+            // TRANS: Client error displayed trying to edit an application that does not exist.
             $this->clientError(_('No such application.'));
             return false;
         }
@@ -94,7 +96,6 @@ class EditApplicationAction extends OwnerDesignAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -115,8 +116,11 @@ class EditApplicationAction extends OwnerDesignAction
             && empty($_POST)
             && ($_SERVER['CONTENT_LENGTH'] > 0)
             ) {
-            $msg = _('The server was unable to handle that much POST ' .
-                     'data (%s bytes) due to its current configuration.');
+            // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
+            // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
+            $msg = _m('The server was unable to handle that much POST data (%s byte) due to its current configuration.',
+                      'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
+                      intval($_SERVER['CONTENT_LENGTH']));
             $this->clientException(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
             return;
         }
@@ -136,6 +140,7 @@ class EditApplicationAction extends OwnerDesignAction
         } elseif ($this->arg('save')) {
             $this->trySave();
         } else {
+            // TRANS: Client error displayed submitting invalid form data for edit application.
             $this->clientError(_('Unexpected form submission.'));
         }
     }
@@ -158,6 +163,7 @@ class EditApplicationAction extends OwnerDesignAction
             $this->element('p', 'error', $this->msg);
         } else {
             $this->element('p', 'instructions',
+                           // TRANS: Instructions for "Edit application" form.
                            _('Use this form to edit your application.'));
         }
     }
@@ -174,36 +180,47 @@ class EditApplicationAction extends OwnerDesignAction
         $access_type  = $this->arg('default_access_type');
 
         if (empty($name)) {
+            // TRANS: Validation error shown when not providing a name in the "Edit application" form.
             $this->showForm(_('Name is required.'));
             return;
         } elseif (mb_strlen($name) > 255) {
-            $this->showForm(_('Name is too long (max 255 chars).'));
+            // TRANS: Validation error shown when providing too long a name in the "Edit application" form.
+            $this->showForm(_('Name is too long (maximum 255 characters).'));
             return;
         } else if ($this->nameExists($name)) {
+            // TRANS: Validation error shown when providing a name for an application that already exists in the "Edit application" form.
             $this->showForm(_('Name already in use. Try another one.'));
             return;
         } elseif (empty($description)) {
+            // TRANS: Validation error shown when not providing a description in the "Edit application" form.
             $this->showForm(_('Description is required.'));
             return;
         } elseif (Oauth_application::descriptionTooLong($description)) {
             $this->showForm(sprintf(
-                _('Description is too long (max %d chars).'),
-                                    Oauth_application::maxDescription()));
+                // TRANS: Validation error shown when providing too long a description in the "Edit application" form.
+                _m('Description is too long (maximum %d character).',
+                  'Description is too long (maximum %d characters).',
+                  Oauth_application::maxDesc()),
+                                    Oauth_application::maxDesc()));
             return;
         } elseif (mb_strlen($source_url) > 255) {
+            // TRANS: Validation error shown when providing too long a source URL in the "Edit application" form.
             $this->showForm(_('Source URL is too long.'));
             return;
         } elseif ((mb_strlen($source_url) > 0)
                   && !Validate::uri($source_url,
                                     array('allowed_schemes' => array('http', 'https'))))
             {
+                // TRANS: Validation error shown when providing an invalid source URL in the "Edit application" form.
                 $this->showForm(_('Source URL is not valid.'));
                 return;
         } elseif (empty($organization)) {
+            // TRANS: Validation error shown when not providing an organisation in the "Edit application" form.
             $this->showForm(_('Organization is required.'));
             return;
         } elseif (mb_strlen($organization) > 255) {
-            $this->showForm(_('Organization is too long (max 255 chars).'));
+            // TRANS: Validation error shown when providing too long an arganisation name in the "Edit application" form.
+            $this->showForm(_('Organization is too long (maximum 255 characters).'));
             return;
         } elseif (empty($homepage)) {
             $this->showForm(_('Organization homepage is required.'));
@@ -212,9 +229,11 @@ class EditApplicationAction extends OwnerDesignAction
                   && !Validate::uri($homepage,
                                     array('allowed_schemes' => array('http', 'https'))))
             {
+                // TRANS: Validation error shown when providing an invalid homepage URL in the "Edit application" form.
                 $this->showForm(_('Homepage is not a valid URL.'));
                 return;
             } elseif (mb_strlen($callback_url) > 255) {
+                // TRANS: Validation error shown when providing too long a callback URL in the "Edit application" form.
                 $this->showForm(_('Callback is too long.'));
                 return;
             } elseif (mb_strlen($callback_url) > 0
@@ -222,6 +241,7 @@ class EditApplicationAction extends OwnerDesignAction
                                         array('allowed_schemes' => array('http', 'https'))
                                         ))
                 {
+                    // TRANS: Validation error shown when providing an invalid callback URL in the "Edit application" form.
                     $this->showForm(_('Callback URL is not valid.'));
                     return;
                 }
@@ -253,8 +273,12 @@ class EditApplicationAction extends OwnerDesignAction
 
         $result = $this->app->update($orig);
 
-        if (!$result) {
+        // Note: 0 means no rows changed, which can happen if the only
+        // thing we changed was the icon, since it's not altered until
+        // the next step.
+        if ($result === false) {
             common_log_db_error($this->app, 'UPDATE', __FILE__);
+            // TRANS: Server error occuring when an application could not be updated from the "Edit application" form.
             $this->serverError(_('Could not update application.'));
         }
 
@@ -273,7 +297,6 @@ class EditApplicationAction extends OwnerDesignAction
      *
      * @return boolean true if the name already exists
      */
-
     function nameExists($name)
     {
         $newapp = Oauth_application::staticGet('name', $name);
@@ -283,6 +306,4 @@ class EditApplicationAction extends OwnerDesignAction
             return $newapp->id != $this->app->id;
         }
     }
-
 }
-

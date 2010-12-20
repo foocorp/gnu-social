@@ -17,6 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 /**
  * Send a PuSH subscription verification from our internal hub.
  * @package Hub
@@ -51,4 +55,3 @@ class HubConfQueueHandler extends QueueHandler
         return true;
     }
 }
-

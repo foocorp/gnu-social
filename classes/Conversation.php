@@ -74,6 +74,4 @@ class Conversation extends Memcached_DataObject
 
         return $conv;
     }
-
 }
-

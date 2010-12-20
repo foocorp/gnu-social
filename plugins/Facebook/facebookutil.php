@@ -17,6 +17,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+if (!defined('STATUSNET')) {
+    exit(1);
+}
+
 require_once INSTALLDIR . '/plugins/Facebook/facebook/facebook.php';
 require_once INSTALLDIR . '/plugins/Facebook/facebookaction.php';
 require_once INSTALLDIR . '/lib/noticelist.php';
@@ -45,13 +49,11 @@ function getFacebook()
 }
 
 function isFacebookBound($notice, $flink) {
-
     if (empty($flink)) {
         return false;
     }
 
     // Avoid a loop
-
     if ($notice->source == 'Facebook') {
         common_log(LOG_INFO, "Skipping notice $notice->id because its " .
                    'source is Facebook.');
@@ -59,7 +61,6 @@ function isFacebookBound($notice, $flink) {
     }
 
     // If the user does not want to broadcast to Facebook, move along
-
     if (!($flink->noticesync & FOREIGN_NOTICE_SEND == FOREIGN_NOTICE_SEND)) {
         common_log(LOG_INFO, "Skipping notice $notice->id " .
             'because user has FOREIGN_NOTICE_SEND bit off.');
@@ -68,14 +69,12 @@ function isFacebookBound($notice, $flink) {
 
     // If it's not a reply, or if the user WANTS to send @-replies,
     // then, yeah, it can go to Facebook.
-
     if (!preg_match('/@[a-zA-Z0-9_]{1,15}\b/u', $notice->content) ||
         ($flink->noticesync & FOREIGN_NOTICE_SEND_REPLY)) {
         return true;
     }
 
     return false;
-
 }
 
 function facebookBroadcastNotice($notice)
@@ -87,16 +86,12 @@ function facebookBroadcastNotice($notice)
     );
 
     if (isFacebookBound($notice, $flink)) {
-
         // Okay, we're good to go, update the FB status
-
         $fbuid = $flink->foreign_id;
         $user = $flink->getUser();
 
         try {
-
             // Check permissions
-
             common_debug(
                 'FacebookPlugin - checking for publish_stream permission for user '
                 . "$user->nickname ($user->id), Facebook UID: $fbuid"
@@ -105,7 +100,6 @@ function facebookBroadcastNotice($notice)
             // NOTE: $facebook->api_client->users_hasAppPermission('publish_stream', $fbuid)
             // has been returning bogus results, so we're using FQL to check for
             // publish_stream permission now
-
             $fql = "SELECT publish_stream FROM permissions WHERE uid = $fbuid";
             $result = $facebook->api_client->fql_query($fql);
 
@@ -152,7 +146,6 @@ function facebookBroadcastNotice($notice)
             }
 
             // Post to Facebook
-
             if ($notice->hasAttachments() && $canPublish == 1) {
                 publishStream($notice, $user, $fbuid);
             } elseif ($canUpdate == 1 || $canPublish == 1) {
@@ -165,7 +158,6 @@ function facebookBroadcastNotice($notice)
             }
 
             // Finally, attempt to update the user's profile box
-
             if ($canPublish == 1 || $canUpdate == 1) {
                 updateProfileBox($facebook, $flink, $notice, $user);
             }
@@ -412,7 +404,6 @@ function remove_facebook_app($flink)
 
         common_log(LOG_WARNING, $msg);
     }
-
 }
 
 /**
@@ -423,7 +414,6 @@ function remove_facebook_app($flink)
  *
  * @return boolean success flag
  */
-
 function mail_facebook_app_removed($user)
 {
     $profile = $user->getProfile();
@@ -447,5 +437,4 @@ function mail_facebook_app_removed($user)
 
     common_switch_locale();
     return mail_to_user($user, $subject, $body);
-
 }

@@ -17,15 +17,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * @package OStatusPlugin
- * @author James Walker <james@status.net>
- */
-
 if (!defined('STATUSNET')) {
     exit(1);
 }
 
+/**
+ * @package OStatusPlugin
+ * @author James Walker <james@status.net>
+ */
 class GroupsalmonAction extends SalmonAction
 {
     var $group = null;
@@ -37,17 +36,20 @@ class GroupsalmonAction extends SalmonAction
         $id = $this->trimmed('id');
 
         if (!$id) {
-            $this->clientError(_('No ID.'));
+            // TRANS: Client error.
+            $this->clientError(_m('No ID.'));
         }
 
         $this->group = User_group::staticGet('id', $id);
 
         if (empty($this->group)) {
-            $this->clientError(_('No such group.'));
+            // TRANS: Client error.
+            $this->clientError(_m('No such group.'));
         }
 
         $oprofile = Ostatus_profile::staticGet('group_id', $id);
         if ($oprofile) {
+            // TRANS: Client error.
             $this->clientError(_m("Can't accept remote posts for a remote group."));
         }
 
@@ -57,7 +59,6 @@ class GroupsalmonAction extends SalmonAction
     /**
      * We've gotten a post event on the Salmon backchannel, probably a reply.
      */
-
     function handlePost()
     {
         // @fixme process all objects?
@@ -69,18 +70,20 @@ class GroupsalmonAction extends SalmonAction
         case ActivityObject::COMMENT:
             break;
         default:
+            // TRANS: Client exception.
             throw new ClientException("Can't handle that kind of post.");
         }
 
         // Notice must be to the attention of this group
-
         $context = $this->activity->context;
 
         if (empty($context->attention)) {
+            // TRANS: Client exception.
             throw new ClientException("Not to the attention of anyone.");
         } else {
             $uri = common_local_url('groupbyid', array('id' => $this->group->id));
             if (!in_array($uri, $context->attention)) {
+                // TRANS: Client exception.
                 throw new ClientException("Not to the attention of this group.");
             }
         }
@@ -116,14 +119,15 @@ class GroupsalmonAction extends SalmonAction
      *        currently we're doing the main logic in joingroup action
      *        and so have to repeat it here.
      */
-
     function handleJoin()
     {
         $oprofile = $this->ensureProfile();
         if (!$oprofile) {
+            // TRANS: Client error.
             $this->clientError(_m("Can't read profile to set up group membership."));
         }
         if ($oprofile->isGroup()) {
+            // TRANS: Client error.
             $this->clientError(_m("Groups can't join groups."));
         }
 
@@ -137,7 +141,7 @@ class GroupsalmonAction extends SalmonAction
         }
 
         if (Group_block::isBlocked($this->group, $profile)) {
-            $this->clientError(_('You have been blocked from that group by the admin.'), 403);
+            $this->clientError(_m('You have been blocked from that group by the admin.'), 403);
             return false;
         }
 
@@ -151,6 +155,7 @@ class GroupsalmonAction extends SalmonAction
                 //Event::handle('EndJoinGroup', array($this->group, $profile));
             //}
         } catch (Exception $e) {
+            // TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
             $this->serverError(sprintf(_m('Could not join remote user %1$s to group %2$s.'),
                                        $oprofile->uri, $this->group->nickname));
         }
@@ -159,7 +164,6 @@ class GroupsalmonAction extends SalmonAction
     /**
      * A remote user left our group.
      */
-
     function handleLeave()
     {
         $oprofile = $this->ensureProfile();
@@ -180,10 +184,10 @@ class GroupsalmonAction extends SalmonAction
                 //Event::handle('EndLeaveGroup', array($this->group, $profile));
             //}
         } catch (Exception $e) {
+            // TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
             $this->serverError(sprintf(_m('Could not remove remote user %1$s from group %2$s.'),
                                        $oprofile->uri, $this->group->nickname));
             return;
         }
     }
-
 }

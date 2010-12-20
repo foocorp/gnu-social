@@ -2,8 +2,8 @@
 README
 ------
 
-StatusNet 0.9.4beta2
-11 August 2010
+StatusNet 0.9.6 "Man on the Moon"
+29 October 2010
 
 This is the README file for StatusNet, the Open Source microblogging
 platform. It includes installation instructions, descriptions of
@@ -38,7 +38,8 @@ more, please see the Open Software Service Definition 1.1:
     http://www.opendefinition.org/ossd
 
 StatusNet, Inc. <http://status.net/> also offers this software as a
-Web service, requiring no installation on your part. The software run
+Web service, requiring no installation on your part. See
+<http://status.net/signup> for details. The software run
 on status.net is identical to the software available for download, so
 you can move back and forth between a hosted version or a version
 installed on your own servers.
@@ -72,6 +73,20 @@ License along with this program, in the file "COPYING".  If not, see
     of using the software, and if you do not wish to share your
     modifications, *YOU MAY NOT INSTALL STATUSNET*.
 
+Documentation in the /doc-src/ directory is available under the
+Creative Commons Attribution 3.0 Unported license, with attribution to
+"StatusNet". See http://creativecommons.org/licenses/by/3.0/ for details.
+
+CSS and images in the /theme/ directory are available under the
+Creative Commons Attribution 3.0 Unported license, with attribution to
+"StatusNet". See http://creativecommons.org/licenses/by/3.0/ for details.
+
+Our understanding and intention is that if you add your own theme that
+uses only CSS and images, those files are not subject to the copyleft
+requirements of the Affero General Public License 3.0. See
+http://wordpress.org/news/2009/07/themes-are-gpl-too/ . This is not
+legal advice; consult your lawyer.
+
 Additional library software has been made available in the 'extlib'
 directory. All of it is Free Software and can be distributed under
 liberal terms, but those terms may differ in detail from the AGPL's
@@ -81,31 +96,43 @@ for additional terms.
 New this version
 ================
 
-This is a security, bug and feature release since version 0.9.3 released on
-29 June 2010.
+This is a security, bug and feature release since version 0.9.5 released on
+10 September 2010.
 
 For best compatibility with client software and site federation, and a lot of
 bug fixes, it is highly recommended that all public sites upgrade to the new
 version.
 
-Changes from 0.9.4beta1:
-- fix for daemon config switching on multi-site setup
-
 Notable changes this version:
 
-- OpenID and OAuth libraries patched for potential timing attack
-- OStatus feed i/o updated for Activity Streams
-- Correctness fixes on XRD, other discovery bits
-- Support for contacting SNI-based SSL virtual hosts when SSL
-  certificate verification is enabled (requires PHP 5.3.2+ or
-  enabling CURL backend with $config['http']['curl'] = true)
-- Experimental SubMirror plugin
-- Multi-site status_network table mode has been tweaked to support
-  multiple tags better
-- Many updates to user interface translation from TranslateWiki
-- Many other bugfixes
+- Site moderators can now delete groups.
+- New themes: clean, shiny, mnml, victorian
+- New YammerImport plugin allows site admins to import non-private profiles and
+  message from an authenticated Yammer site.
+- New experimental plugins: AnonFavorites, SlicedFavorites, GroupFavorited,
+  ForceGroup, ShareNotice
+- OAuth upgraded to 1.0a
+- Localization updates now include plugins, thanks to translatewiki.net!
+- SSL link generation should be more consistent; alternate SSL URLs can be
+  set in the admin UI for more parts of the system.
+- Experimental backupuser.php, restoreuser.php command-line scripts to
+  dump/restore a user's complete activity stream. Can be used to transfer
+  accounts manually between sites, or to save a backup before deleting.
+- Unicode fixes for OStatus notices
+- Header metadata on notice pages to aid in manual reposting on Facebook
+- Lots of little fixes...
 
-A full changelog is available at http://status.net/wiki/StatusNet_0.9.4.
+Changes from 0.9.6 release candidate 1:
+- fix for broken group pages when logged out
+- fix for stuck ping queue entries when bad profile
+- fix for bogus single-user nickname config entry error
+- i18n updates
+- nofollow updates
+- SSL-only mode secure cookie fix
+- experimental ApiLogger plugin for usage data gathering
+- experimental follow-everyone plugin
+
+A full changelog is available at http://status.net/wiki/StatusNet_0.9.6.
 
 Prerequisites
 =============
@@ -193,14 +220,12 @@ and the URLs are listed here for your convenience.
   version may render your StatusNet site unable to send or receive XMPP
   messages.
 - Facebook library. Used for the Facebook application.
-- PEAR Services_oEmbed. Used for some multimedia integration.
-- PEAR HTTP_Request is an oEmbed dependency.
-- PEAR Validate is an oEmbed dependency.
-- PEAR Net_URL2 is an oEmbed dependency.
+- PEAR Validate is used for URL and email validation.
 - Console_GetOpt for parsing command-line options.
 - libomb. a library for implementing OpenMicroBlogging 0.1, the
   predecessor to OStatus.
 - HTTP_Request2, a library for making HTTP requests.
+- PEAR Net_URL2 is an HTTP_Request2 dependency.
 
 A design goal of StatusNet is that the basic Web functionality should
 work on even the most restrictive commercial hosting services.
@@ -218,9 +243,9 @@ especially if you've previously installed PHP/MySQL packages.
 1. Unpack the tarball you downloaded on your Web server. Usually a
    command like this will work:
 
-       tar zxf statusnet-0.9.4.tar.gz
+       tar zxf statusnet-0.9.6.tar.gz
 
-   ...which will make a statusnet-0.9.2 subdirectory in your current
+   ...which will make a statusnet-0.9.6 subdirectory in your current
    directory. (If you don't have shell access on your Web server, you
    may have to unpack the tarball on your local computer and FTP the
    files to the server.)
@@ -228,7 +253,7 @@ especially if you've previously installed PHP/MySQL packages.
 2. Move the tarball to a directory of your choosing in your Web root
    directory. Usually something like this will work:
 
-       mv statusnet-0.9.4 /var/www/statusnet
+       mv statusnet-0.9.6 /var/www/statusnet
 
    This will make your StatusNet instance available in the statusnet path of
    your server, like "http://example.net/statusnet". "microblog" or
@@ -587,7 +612,7 @@ subdirectory to add a new language to your system. You'll need to
 compile the ".po" files into ".mo" files, however.
 
 Contributions of translation information to StatusNet are very easy:
-you can use the Web interface at TranslateWiki.net to add one
+you can use the Web interface at translatewiki.net to add one
 or a few or lots of new translations -- or even new languages. You can
 also download more up-to-date .po files there, if you so desire.
 
@@ -643,7 +668,7 @@ with this situation.
 If you've been using StatusNet 0.7, 0.6, 0.5 or lower, or if you've
 been tracking the "git" version of the software, you will probably
 want to upgrade and keep your existing data. There is no automated
-upgrade procedure in StatusNet 0.9.2. Try these step-by-step
+upgrade procedure in StatusNet 0.9.6. Try these step-by-step
 instructions; read to the end first before trying them.
 
 0. Download StatusNet and set up all the prerequisites as if you were
@@ -664,10 +689,11 @@ instructions; read to the end first before trying them.
 5. Once all writing processes to your site are turned off, make a
    final backup of the Web directory and database.
 6. Move your StatusNet directory to a backup spot, like "statusnet.bak".
-7. Unpack your StatusNet 0.9.2 tarball and move it to "statusnet" or
+7. Unpack your StatusNet 0.9.6 tarball and move it to "statusnet" or
    wherever your code used to be.
-8. Copy the config.php file and avatar directory from your old
-   directory to your new directory.
+8. Copy the config.php file and the contents of the avatar/, background/,
+   file/, and local/ subdirectories from your old directory to your new
+   directory.
 9. Copy htaccess.sample to .htaccess in the new directory. Change the
    RewriteBase to use the correct path.
 10. Rebuild the database. (You can safely skip this step and go to #12
@@ -835,6 +861,8 @@ notice: A plain string that will appear on every page. A good place
     be escaped.
 logo: URL of an image file to use as the logo for the site. Overrides
     the logo in the theme, if any.
+ssllogo: URL of an image file to use as the logo on SSL pages. If unset,
+    theme logo is used instead.
 ssl: Whether to use SSL and https:// URLs for some or all pages.
     Possible values are 'always' (use it for all pages), 'never'
     (don't use it for any pages), or 'sometimes' (use it for
@@ -1092,6 +1120,9 @@ path: Path part of theme URLs, before the theme name. Relative to the
     which means to use the site path + '/theme'.
 ssl: Whether to use SSL for theme elements. Default is null, which means
     guess based on site SSL settings.
+sslserver: SSL server to use when page is HTTPS-encrypted. If
+    unspecified, site ssl server and so on will be used.
+sslpath: If sslserver if defined, path to use when page is HTTPS-encrypted.
 
 javascript
 ----------
@@ -1103,6 +1134,9 @@ path: Path part of Javascript URLs. Defaults to null,
     which means to use the site path + '/js/'.
 ssl: Whether to use SSL for JavaScript files. Default is null, which means
     guess based on site SSL settings.
+sslserver: SSL server to use when page is HTTPS-encrypted. If
+    unspecified, site ssl server and so on will be used.
+sslpath: If sslserver if defined, path to use when page is HTTPS-encrypted.
 
 xmpp
 ----
@@ -1330,6 +1364,11 @@ ssl: whether to use HTTPS for file URLs. Defaults to null, meaning to
 filecommand: command to use for determining the type of a file. May be
     skipped if fileinfo extension is installed. Defaults to
     '/usr/bin/file'.
+sslserver: if specified, this server will be used when creating HTTPS
+    URLs. Otherwise, the site SSL server will be used, with /file/ path.
+sslpath: if this and the sslserver are specified, this path will be used
+    when creating HTTPS URLs. Otherwise, the attachments|path value
+    will be used.
 
 group
 -----
@@ -1386,8 +1425,9 @@ dir: directory to write backgrounds too. Default is '/background/'
     subdir of install dir.
 path: path to backgrounds. Default is sub-path of install path; note
     that you may need to change this if you change site-path too.
-ssl: Whether or not to use HTTPS for background files. Defaults to
-    null, meaning to guess from site-wide SSL settings.
+sslserver: SSL server to use when page is HTTPS-encrypted. If
+    unspecified, site ssl server and so on will be used.
+sslpath: If sslserver if defined, path to use when page is HTTPS-encrypted.
 
 ping
 ----
@@ -1452,7 +1492,8 @@ If an installation has only one user, this can simplify a lot of the
 interface. It also makes the user's profile the root URL.
 
 enabled: Whether to run in "single user mode". Default false.
-nickname: nickname of the single user.
+nickname: nickname of the single user. If no nickname is specified,
+          the site owner account will be used (if present).
 
 robotstxt
 ---------
@@ -1467,6 +1508,33 @@ crawldelay: if non-empty, this value is provided as the Crawl-Delay:
 disallow: Array of (virtual) directories to disallow. Default is 'main',
     'search', 'message', 'settings', 'admin'. Ignored when site
     is private, in which case the entire site ('/') is disallowed.
+
+api
+---
+
+Options for the Twitter-like API.
+
+realm: HTTP Basic Auth realm (see http://tools.ietf.org/html/rfc2617
+    for details). Some third-party tools like ping.fm want this to be
+    'Identi.ca API', so set it to that if you want to. default = null,
+    meaning 'something based on the site name'.
+
+nofollow
+--------
+
+We optionally put 'rel="nofollow"' on some links in some pages. The
+following configuration settings let you fine-tune how or when things
+are nofollowed. See http://en.wikipedia.org/wiki/Nofollow for more
+information on what 'nofollow' means.
+
+subscribers: whether to nofollow links to subscribers on the profile
+    and personal pages. Default is true.
+members: links to members on the group page. Default true.
+peopletag: links to people listed in the peopletag page. Default true.
+external: external links in notices. One of three values: 'sometimes',
+    'always', 'never'. If 'sometimes', then external links are not
+    nofollowed on profile, notice, and favorites page. Default is
+    'sometimes'.
 
 url
 ---
@@ -1483,6 +1551,19 @@ maxlength: If an URL is strictly longer than this limit, it will be
 maxnoticelength: If a notice is strictly longer than this limit, all
            URLs in the notice will be shortened. Users can override.
            -1 means the text limit for notices.
+
+router
+------
+
+We use a router class for mapping URLs to code. This section controls
+how that router works.
+
+cache: whether to cache the router in memcache (or another caching
+    mechanism). Defaults to true, but may be set to false for
+    developers (who might be actively adding pages, so won't want the
+    router cached) or others who see strange behavior. You're unlikely
+    to need this unless you're a developer.
+
 
 Plugins
 =======
@@ -1541,7 +1622,7 @@ repository (see below), and you get a compilation error ("unexpected
 T_STRING") in the browser, check to see that you don't have any
 conflicts in your code.
 
-If you upgraded to StatusNet 0.9.2 without reading the "Notice
+If you upgraded to StatusNet 0.9.x without reading the "Notice
 inboxes" section above, and all your users' 'Personal' tabs are empty,
 read the "Notice inboxes" section above.
 
@@ -1652,6 +1733,10 @@ if anyone's been overlooked in error.
 * mEDI
 * Brett Taylor
 * Brigitte Schuster
+* Siebrand Mazeland and the amazing volunteer translators at translatewiki.net
+* Brion Vibber, StatusNet, Inc.
+* James Walker, StatusNet, Inc.
+* Samantha Doherty, designer, StatusNet, Inc.
 
 Thanks also to the developers of our upstream library code and to the
 thousands of people who have tried out Identi.ca, installed StatusNet,

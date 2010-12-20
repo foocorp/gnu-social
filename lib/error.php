@@ -33,6 +33,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
+require_once INSTALLDIR . '/lib/info.php';
+
 /**
  * Base class for displaying HTTP errors
  *
@@ -42,7 +44,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-class ErrorAction extends Action
+class ErrorAction extends InfoAction
 {
     static $status = array();
 
@@ -52,7 +54,7 @@ class ErrorAction extends Action
 
     function __construct($message, $code, $output='php://output', $indent=null)
     {
-        parent::__construct($output, $indent);
+        parent::__construct(null, $message, $output, $indent);
 
         $this->code = $code;
         $this->message = $message;
@@ -62,43 +64,6 @@ class ErrorAction extends Action
         // call this page directly, but because it's
         // an action it needs an args array anyway
         $this->prepare($_REQUEST);
-    }
-
-    /**
-     *  To specify additional HTTP headers for the action
-     *
-     *  @return void
-     */
-    function extraHeaders()
-    {
-        $status_string = @self::$status[$this->code];
-        header('HTTP/1.1 '.$this->code.' '.$status_string);
-    }
-
-    /**
-     * Display content.
-     *
-     * @return nothing
-     */
-    function showContent()
-    {
-        $this->element('div', array('class' => 'error'), $this->message);
-    }
-
-    /**
-     * Page title.
-     *
-     * @return page title
-     */
-
-    function title()
-    {
-        return @self::$status[$this->code];
-    }
-
-    function isReadOnly($args)
-    {
-        return true;
     }
 
     function showPage()
@@ -116,32 +81,16 @@ class ErrorAction extends Action
         exit();
     }
 
-    // Overload a bunch of stuff so the page isn't too bloated
-
-    function showBody()
+    /**
+     * Display content.
+     *
+     * @return nothing
+     */
+    function showContent()
     {
-        $this->elementStart('body', array('id' => 'error'));
-        $this->elementStart('div', array('id' => 'wrap'));
-        $this->showHeader();
-        $this->showCore();
-        $this->showFooter();
-        $this->elementEnd('div');
-        $this->elementEnd('body');
+        $this->element('div', array('class' => 'error'), $this->message);
     }
 
-    function showCore()
-    {
-        $this->elementStart('div', array('id' => 'core'));
-        $this->showContentBlock();
-        $this->elementEnd('div');
-    }
 
-    function showHeader()
-    {
-        $this->elementStart('div', array('id' => 'header'));
-        $this->showLogo();
-        $this->showPrimaryNav();
-        $this->elementEnd('div');
-    }
 
 }

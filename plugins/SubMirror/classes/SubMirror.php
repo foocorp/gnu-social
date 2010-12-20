@@ -79,7 +79,7 @@ class SubMirror extends Memcached_DataObject
     /**
      * Temporary hack to set up the compound index, since we can't do
      * it yet through regular Schema interface. (Coming for 1.0...)
-     * 
+     *
      * @param Schema $schema
      * @return void
      */
@@ -145,7 +145,7 @@ class SubMirror extends Memcached_DataObject
         $mirror->created = common_sql_now();
         $mirror->modified = common_sql_now();
         $mirror->insert();
-        
+
         return $mirror;
     }
 
@@ -173,7 +173,7 @@ class SubMirror extends Memcached_DataObject
      * This retains attribution within the site, and other nice things,
      * but currently ends up looking like 'RT @foobar bla bla' when
      * bridged out over OStatus or TwitterBridge.
-     * 
+     *
      * @param Notice $notice
      * @return mixed Notice on successful repeat, true if already repeated, false on failure
      */
@@ -192,7 +192,7 @@ class SubMirror extends Memcached_DataObject
      * Mirror a notice by emitting a new notice with the same contents.
      * Kind of dirty, but if pulling an external data feed into an account
      * that may be what you want.
-     * 
+     *
      * @param Notice $notice
      * @return mixed Notice on successful repeat, true if already repeated, false on failure
      */
@@ -216,7 +216,7 @@ class SubMirror extends Memcached_DataObject
 
     /**
      * Get the mirroring setting for a pair of profiles, if existing.
-     * 
+     *
      * @param Profile $subscriber
      * @param Profile $subscribed
      * @return mixed Profile or empty

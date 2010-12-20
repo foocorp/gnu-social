@@ -1,0 +1,81 @@
+# Translation of StatusNet - MobileProfile to Dutch (Nederlands)
+# Expored from translatewiki.net
+#
+# Author: McDutchie
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - MobileProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:19+0000\n"
+"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:45+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: MobileProfilePlugin.php:193
+msgid "This page is not available in a media type you accept."
+msgstr "Deze pagina is niet beschikbaar in een mediumtype dat u accepteert."
+
+#: MobileProfilePlugin.php:310
+msgid "Home"
+msgstr "Hoofdmenu"
+
+#: MobileProfilePlugin.php:312
+msgid "Account"
+msgstr "Gebruiker"
+
+#: MobileProfilePlugin.php:314
+msgid "Connect"
+msgstr "Koppelen"
+
+#: MobileProfilePlugin.php:317
+msgid "Admin"
+msgstr "Beheer"
+
+#: MobileProfilePlugin.php:317
+msgid "Change site configuration"
+msgstr "Websiteinstellingen wijzigen"
+
+#: MobileProfilePlugin.php:321
+msgid "Invite"
+msgstr "Uitnodigen"
+
+#: MobileProfilePlugin.php:324
+msgid "Logout"
+msgstr "Afmelden"
+
+#: MobileProfilePlugin.php:328
+msgid "Register"
+msgstr "Registreren"
+
+#: MobileProfilePlugin.php:331
+msgid "Login"
+msgstr "Aanmelden"
+
+#: MobileProfilePlugin.php:335
+msgid "Search"
+msgstr "Zoeken"
+
+#: MobileProfilePlugin.php:361
+msgid "Attach"
+msgstr "Toevoegen"
+
+#: MobileProfilePlugin.php:365
+msgid "Attach a file"
+msgstr "Bestand toevoegen"
+
+#: MobileProfilePlugin.php:417
+msgid "XHTML MobileProfile output for supporting user agents."
+msgstr ""
+"Uitvoer in MobileProfile XHTML voor de gebruikersprogramma's die dat "
+"ondersteunen."

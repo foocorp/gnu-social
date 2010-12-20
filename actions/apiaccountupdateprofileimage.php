@@ -43,19 +43,15 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiAccountUpdateProfileImageAction extends ApiAuthAction
 {
-
     /**
      * Take arguments for running
      *
      * @param array $args $_REQUEST args
      *
      * @return boolean success flag
-     *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -74,13 +70,13 @@ class ApiAccountUpdateProfileImageAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400, $this->format
             );
@@ -94,14 +90,17 @@ class ApiAccountUpdateProfileImageAction extends ApiAuthAction
             && empty($_POST)
             && ($_SERVER['CONTENT_LENGTH'] > 0)
         ) {
-             $msg = _('The server was unable to handle that much POST ' .
-                    'data (%s bytes) due to its current configuration.');
-
+            // TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
+            // TRANS: %s is the number of bytes of the CONTENT_LENGTH.
+            $msg = _m('The server was unable to handle that much POST data (%s byte) due to its current configuration.',
+                      'The server was unable to handle that much POST data (%s bytes) due to its current configuration.',
+                      intval($_SERVER['CONTENT_LENGTH']));
             $this->clientError(sprintf($msg, $_SERVER['CONTENT_LENGTH']));
             return;
         }
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed updating profile image without having a user object.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
@@ -127,6 +126,7 @@ class ApiAccountUpdateProfileImageAction extends ApiAuthAction
         $profile = $this->user->getProfile();
 
         if (empty($profile)) {
+            // TRANS: Client error displayed if a user profile could not be found updating a profile image.
             $this->clientError(_('User has no profile.'));
             return;
         }
@@ -147,5 +147,4 @@ class ApiAccountUpdateProfileImageAction extends ApiAuthAction
             $this->endDocument('json');
         }
     }
-
 }

@@ -46,7 +46,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 class ActivityUtils
 {
     const ATOM = 'http://www.w3.org/2005/Atom';
@@ -66,7 +65,6 @@ class ActivityUtils
      *
      * @return string related link, if any
      */
-
     static function getPermalink($element)
     {
         return self::getLink($element, 'alternate', 'text/html');
@@ -79,19 +77,16 @@ class ActivityUtils
      *
      * @return string related link, if any
      */
-
     static function getLink(DOMNode $element, $rel, $type=null)
     {
         $els = $element->childNodes;
 
         foreach ($els as $link) {
-
             if (!($link instanceof DOMElement)) {
                 continue;
             }
 
             if ($link->localName == self::LINK && $link->namespaceURI == self::ATOM) {
-
                 $linkRel = $link->getAttribute(self::REL);
                 $linkType = $link->getAttribute(self::TYPE);
 
@@ -112,7 +107,6 @@ class ActivityUtils
 
         foreach ($els as $link) {
             if ($link->localName == self::LINK && $link->namespaceURI == self::ATOM) {
-
                 $linkRel = $link->getAttribute(self::REL);
                 $linkType = $link->getAttribute(self::TYPE);
 
@@ -135,7 +129,6 @@ class ActivityUtils
      *
      * @return DOMElement found element or null
      */
-
     static function child(DOMNode $element, $tag, $namespace=self::ATOM)
     {
         $els = $element->childNodes;
@@ -160,7 +153,6 @@ class ActivityUtils
      *
      * @return string content of the child
      */
-
     static function childContent(DOMNode $element, $tag, $namespace=self::ATOM)
     {
         $el = self::child($element, $tag, $namespace);
@@ -194,7 +186,6 @@ class ActivityUtils
      * @todo handle embedded XML mime types
      * @todo handle base64-encoded non-XML and non-text mime types
      */
-
     static function getContent($element)
     {
         return self::childHtmlContent($element, self::CONTENT, self::ATOM);
@@ -205,6 +196,7 @@ class ActivityUtils
         $src  = $el->getAttribute(self::SRC);
 
         if (!empty($src)) {
+            // TRANS: Client exception thrown when there is no source attribute.
             throw new ClientException(_("Can't handle remote content yet."));
         }
 
@@ -241,10 +233,12 @@ class ActivityUtils
             return trim($text);
         } else if (in_array($type, array('text/xml', 'application/xml')) ||
                    preg_match('#(+|/)xml$#', $type)) {
+            // TRANS: Client exception thrown when there embedded XML content is found that cannot be processed yet.
             throw new ClientException(_("Can't handle embedded XML content yet."));
         } else if (strncasecmp($type, 'text/', 5)) {
             return $el->textContent;
         } else {
+            // TRANS: Client exception thrown when base64 encoded content is found that cannot be processed yet.
             throw new ClientException(_("Can't handle embedded Base64 content yet."));
         }
     }

@@ -1,0 +1,80 @@
+# Translation of StatusNet - MobileProfile to Russian (Русский)
+# Expored from translatewiki.net
+#
+# Author: Eleferen
+# Author: Александр Сигачёв
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - MobileProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:19+0000\n"
+"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:45+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ru\n"
+"X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#: MobileProfilePlugin.php:193
+msgid "This page is not available in a media type you accept."
+msgstr "Страница недоступна для того типа, который вы задействовали."
+
+#: MobileProfilePlugin.php:310
+msgid "Home"
+msgstr "Домой"
+
+#: MobileProfilePlugin.php:312
+msgid "Account"
+msgstr "Аккаунт"
+
+#: MobileProfilePlugin.php:314
+msgid "Connect"
+msgstr "Подключиться"
+
+#: MobileProfilePlugin.php:317
+msgid "Admin"
+msgstr "Администратор"
+
+#: MobileProfilePlugin.php:317
+msgid "Change site configuration"
+msgstr "Изменить конфигурацию сайта"
+
+#: MobileProfilePlugin.php:321
+msgid "Invite"
+msgstr "Пригласить"
+
+#: MobileProfilePlugin.php:324
+msgid "Logout"
+msgstr "Выйти"
+
+#: MobileProfilePlugin.php:328
+msgid "Register"
+msgstr "Регистрация"
+
+#: MobileProfilePlugin.php:331
+msgid "Login"
+msgstr "Представиться"
+
+#: MobileProfilePlugin.php:335
+msgid "Search"
+msgstr "Поиск"
+
+#: MobileProfilePlugin.php:361
+msgid "Attach"
+msgstr "Прикрепить"
+
+#: MobileProfilePlugin.php:365
+msgid "Attach a file"
+msgstr "Прикрепить файл"
+
+#: MobileProfilePlugin.php:417
+msgid "XHTML MobileProfile output for supporting user agents."
+msgstr "XHTML MobileProfile вывод для поддерживаемых пользовательских агентов."

@@ -48,7 +48,6 @@ require_once INSTALLDIR . '/lib/apibareauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiUserFriendsAction extends ApiSubscriptionsAction
 {
     /**
@@ -56,7 +55,6 @@ class ApiUserFriendsAction extends ApiSubscriptionsAction
      *
      * @return array Profiles
      */
-
     function getProfiles()
     {
         $offset = ($this->page - 1) * $this->count;
@@ -85,5 +83,4 @@ class ApiUserFriendsAction extends ApiSubscriptionsAction
 
         return $profiles;
     }
-
 }

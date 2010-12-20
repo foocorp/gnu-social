@@ -20,29 +20,35 @@
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 function ping_broadcast_notice($notice) {
+    if ($notice->is_local != Notice::LOCAL_PUBLIC && $notice->is_local != Notice::LOCAL_NONPUBLIC) {
+        return true;
+    }
 
-	if ($notice->is_local != Notice::LOCAL_PUBLIC && $notice->is_local != Notice::LOCAL_NONPUBLIC) {
-		return true;
-	}
+    # Array of servers, URL => type
+    $notify = common_config('ping', 'notify');
+    try {
+        $profile = $notice->getProfile();
+    } catch (Exception $e) {
+        // @todo: distinguish the 'broken notice/profile' case from more general
+        //        transitory errors.
+        common_log(LOG_ERR, "Exception getting notice profile: " . $e->getMessage());
+        return true;
+    }
+    $tags = ping_notice_tags($notice);
 
-	# Array of servers, URL => type
-	$notify = common_config('ping', 'notify');
-	$profile = $notice->getProfile();
-	$tags = ping_notice_tags($notice);
-
-	foreach ($notify as $notify_url => $type) {
-		switch ($type) {
-		 case 'xmlrpc':
-		 case 'extended':
-			$req = xmlrpc_encode_request('weblogUpdates.ping',
-										 array($profile->nickname, # site name
-											   common_local_url('showstream',
-																array('nickname' => $profile->nickname)),
-											   common_local_url('shownotice',
-																array('notice' => $notice->id)),
-											   common_local_url('userrss',
-																array('nickname' => $profile->nickname)),
-											   $tags));
+    foreach ($notify as $notify_url => $type) {
+        switch ($type) {
+         case 'xmlrpc':
+         case 'extended':
+            $req = xmlrpc_encode_request('weblogUpdates.ping',
+                                         array($profile->nickname, # site name
+                                               common_local_url('showstream',
+                                                                array('nickname' => $profile->nickname)),
+                                               common_local_url('shownotice',
+                                                                array('notice' => $notice->id)),
+                                               common_local_url('userrss',
+                                                                array('nickname' => $profile->nickname)),
+                                               $tags));
 
             $request = HTTPClient::start();
             $request->setConfig('connect_timeout', common_config('ping', 'timeout'));
@@ -72,9 +78,8 @@ function ping_broadcast_notice($notice) {
                            "Ping success for $notify_url $notice->id");
             }
             break;
-
-		 case 'get':
-		 case 'post':
+         case 'get':
+         case 'post':
             $args = array('name' => $profile->nickname,
                           'url' => common_local_url('showstream',
                                                     array('nickname' => $profile->nickname)),
@@ -101,26 +106,25 @@ function ping_broadcast_notice($notice) {
                            "'$result->body'");
             }
             break;
-
-		 default:
-			common_log(LOG_WARNING, 'Unknown notify type for ' . $notify_url . ': ' . $type);
+         default:
+            common_log(LOG_WARNING, 'Unknown notify type for ' . $notify_url . ': ' . $type);
         }
-	}
+    }
 
     return true;
 }
 
 function ping_notice_tags($notice) {
-	$tag = new Notice_tag();
-	$tag->notice_id = $notice->id;
-	$tags = array();
-	if ($tag->find()) {
-		while ($tag->fetch()) {
-			$tags[] = $tag->tag;
-		}
-		$tag->free();
-		unset($tag);
-		return implode('|', $tags);
-	}
-	return NULL;
+    $tag = new Notice_tag();
+    $tag->notice_id = $notice->id;
+    $tags = array();
+    if ($tag->find()) {
+        while ($tag->fetch()) {
+            $tags[] = $tag->tag;
+        }
+        $tag->free();
+        unset($tag);
+        return implode('|', $tags);
+    }
+    return NULL;
 }

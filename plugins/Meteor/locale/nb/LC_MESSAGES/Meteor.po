@@ -1,0 +1,38 @@
+# Translation of StatusNet - Meteor to Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+# Expored from translatewiki.net
+#
+# Author: Nghtwlkr
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Meteor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:12:16+0000\n"
+"Language-Team: Norwegian (bokmål)‬ <http://translatewiki.net/wiki/Portal:no>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:40:38+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: no\n"
+"X-Message-Group: #out-statusnet-plugin-meteor\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Exception. %1$s is the control server, %2$s is the control port.
+#: MeteorPlugin.php:115
+#, php-format
+msgid "Couldn't connect to %1$s on %2$s."
+msgstr "Kunne ikke koble til %1$s på %2$s."
+
+#. TRANS: Exception. %s is the Meteor message that could not be added.
+#: MeteorPlugin.php:128
+#, php-format
+msgid "Error adding meteor message \"%s\""
+msgstr "Mislyktes å legge til meteormelding «%s»"
+
+#: MeteorPlugin.php:158
+msgid "Plugin to do \"real time\" updates using Comet/Bayeux."
+msgstr "Utvidelse for å gjøre «sanntids»-oppdateringer med Comet/Bayeux."

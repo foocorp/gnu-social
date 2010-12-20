@@ -1,0 +1,405 @@
+# Translation of StatusNet - TwitterBridge to Catalan (Català)
+# Expored from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TwitterBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:13:10+0000\n"
+"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-11-30 20:43:58+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
+#. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
+#: twitterimport.php:114
+#, php-format
+msgid "RT @%1$s %2$s"
+msgstr "RT @%1$s %2$s"
+
+#: twitter.php:407
+msgid "Your Twitter bridge has been disabled."
+msgstr "S'ha inhabilitat el vostre pont del Twitter."
+
+#: twitter.php:411
+#, php-format
+msgid ""
+"Hi, %1$s. We're sorry to inform you that your link to Twitter has been "
+"disabled. We no longer seem to have permission to update your Twitter "
+"status. Did you maybe revoke %3$s's access?\n"
+"\n"
+"You can re-enable your Twitter bridge by visiting your Twitter settings "
+"page:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"Regards,\n"
+"%3$s"
+msgstr ""
+"Hola, %1$s. Lamentem informar-vos que s'ha inhabilitat el vostre enllaç al "
+"Twitter. Sembla que ja no tenim permisos per actualitzar el vostre estat al "
+"Twitter. N'heu revocat potser l'accés a %3$s?\n"
+"\n"
+"Podeu tornar a habilitar el pont al Twitter visitant la pàgina de "
+"configuració:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"Atentament,\n"
+"%3$s"
+
+#: TwitterBridgePlugin.php:151 TwitterBridgePlugin.php:174
+#: TwitterBridgePlugin.php:302 twitteradminpanel.php:52
+msgid "Twitter"
+msgstr "Twitter"
+
+#: TwitterBridgePlugin.php:152
+msgid "Login or register using Twitter"
+msgstr "Inicieu una sessió o registreu-vos fent servir el Twitter"
+
+#: TwitterBridgePlugin.php:175
+msgid "Twitter integration options"
+msgstr "Opcions d'integració del Twitter"
+
+#: TwitterBridgePlugin.php:303
+msgid "Twitter bridge configuration"
+msgstr "Configuració del pont del Twitter"
+
+#: TwitterBridgePlugin.php:327
+msgid ""
+"The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
+"with <a href=\"http://twitter.com/\">Twitter</a>."
+msgstr ""
+"El connector del pont del Twitter permet integrar una instància de "
+"l'StatusNet amb el <a href=\"http://twitter.com/\">Twitter</a>."
+
+#: twitteradminpanel.php:62
+msgid "Twitter bridge settings"
+msgstr "Paràmetres del pont del Twitter"
+
+#: twitteradminpanel.php:150
+msgid "Invalid consumer key. Max length is 255 characters."
+msgstr "Clau de consumidor no vàlida. La llargada màxima és 255 caràcters."
+
+#: twitteradminpanel.php:156
+msgid "Invalid consumer secret. Max length is 255 characters."
+msgstr ""
+"Clau secreta de consumidor no vàlida. La llargada màxima és 255 caràcters."
+
+#: twitteradminpanel.php:212
+msgid "Twitter application settings"
+msgstr "Paràmetres de l'aplicació del Twitter"
+
+#: twitteradminpanel.php:218
+msgid "Consumer key"
+msgstr "Clau de consumidor"
+
+#: twitteradminpanel.php:219
+msgid "Consumer key assigned by Twitter"
+msgstr "Clau de consumidor assignada pel Twitter"
+
+#: twitteradminpanel.php:227
+msgid "Consumer secret"
+msgstr "Clau secreta de consumidor"
+
+#: twitteradminpanel.php:228
+msgid "Consumer secret assigned by Twitter"
+msgstr "Clau secreta de consumidor assignada pel Twitter"
+
+#: twitteradminpanel.php:238
+msgid "Note: a global consumer key and secret are set."
+msgstr "Nota: es defineixen una clau pública i secreta de consumidor."
+
+#: twitteradminpanel.php:245
+msgid "Integration source"
+msgstr "Font d'integració"
+
+#: twitteradminpanel.php:246
+msgid "Name of your Twitter application"
+msgstr "Nom de la vostra aplicació del Twitter"
+
+#: twitteradminpanel.php:258
+msgid "Options"
+msgstr "Opcions"
+
+#: twitteradminpanel.php:265
+msgid "Enable \"Sign-in with Twitter\""
+msgstr "Habilita l'inici de sessió amb el Twitter"
+
+#: twitteradminpanel.php:267
+msgid "Allow users to login with their Twitter credentials"
+msgstr "Permet als usuaris iniciar una sessió amb les credencials del Twitter"
+
+#: twitteradminpanel.php:274
+msgid "Enable Twitter import"
+msgstr "Habilita la importació del Twitter"
+
+#: twitteradminpanel.php:276
+msgid ""
+"Allow users to import their Twitter friends' timelines. Requires daemons to "
+"be manually configured."
+msgstr ""
+"Permet als usuaris importar les línies temporals dels amics al Twitter. Cal "
+"que es configurin els dimonis manualment."
+
+#: twitteradminpanel.php:293 twittersettings.php:200
+msgid "Save"
+msgstr "Desa"
+
+#: twitteradminpanel.php:293
+msgid "Save Twitter settings"
+msgstr "Desa els paràmetres del Twitter"
+
+#: twitterlogin.php:56
+msgid "Already logged in."
+msgstr "Ja heu iniciat una sessió."
+
+#: twitterlogin.php:64
+msgid "Twitter Login"
+msgstr "Inici de sessió del Twitter"
+
+#: twitterlogin.php:69
+msgid "Login with your Twitter account"
+msgstr "Inicieu una sessió amb el vostre compte del Twitter"
+
+#: twitterlogin.php:87
+msgid "Sign in with Twitter"
+msgstr "Inici de sessió amb el Twitter"
+
+#: twitterauthorization.php:120 twittersettings.php:226
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"S'ha produït un problema amb el vostre testimoni de sessió. Torneu-ho a "
+"provar."
+
+#: twitterauthorization.php:126
+msgid "You can't register if you don't agree to the license."
+msgstr "No podeu registrar-vos-hi si no accepteu la llicència."
+
+#: twitterauthorization.php:135
+msgid "Something weird happened."
+msgstr "Ha passat quelcom estrany."
+
+#: twitterauthorization.php:181 twitterauthorization.php:229
+#: twitterauthorization.php:300
+msgid "Couldn't link your Twitter account."
+msgstr "No s'ha pogut enllaçar amb el compte del Twitter."
+
+#: twitterauthorization.php:201
+msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr ""
+"No s'ha pogut enllaçar amb el vostre compte del Twitter: no coincidència de "
+"l'oath_token."
+
+#: twitterauthorization.php:312
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your Twitter "
+"account to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
+msgstr ""
+"Aquesta és la primera vegada que inicieu una sessió a %s, per tant hem de "
+"connectar el vostre compte del Twitter al vostre compte local. Podeu crear "
+"un compte nou, o bé connectar-vos amb un compte ja existent si en teniu un."
+
+#: twitterauthorization.php:318
+msgid "Twitter Account Setup"
+msgstr "Configuració del compte del Twitter"
+
+#: twitterauthorization.php:351
+msgid "Connection options"
+msgstr "Opcions de connexió"
+
+#: twitterauthorization.php:360
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"El meu text i fitxers es troben disponibles sots %s excepte pel que fa a les "
+"dades privades: contrasenya, adreça de correu electrònic i MI, i número de "
+"telèfon."
+
+#: twitterauthorization.php:381
+msgid "Create new account"
+msgstr "Crea un compte nou"
+
+#: twitterauthorization.php:383
+msgid "Create a new user with this nickname."
+msgstr "Crea un usuari nom amb aquest sobrenom."
+
+#: twitterauthorization.php:386
+msgid "New nickname"
+msgstr "Nou sobrenom"
+
+#: twitterauthorization.php:388
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+msgstr "1-64 lletres en minúscules o nombres, sense puntuació o espais"
+
+#: twitterauthorization.php:391
+msgid "Create"
+msgstr "Crea"
+
+#: twitterauthorization.php:396
+msgid "Connect existing account"
+msgstr "Connecta un compte ja existent"
+
+#: twitterauthorization.php:398
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Twitter account."
+msgstr ""
+"Si ja teniu un compte, inicieu una sessió amb el vostre usuari i contrasenya "
+"per connectar-lo al vostre compte del Twitter."
+
+#: twitterauthorization.php:401
+msgid "Existing nickname"
+msgstr "Sobrenom ja existent"
+
+#: twitterauthorization.php:404
+msgid "Password"
+msgstr "Contrasenya"
+
+#: twitterauthorization.php:407
+msgid "Connect"
+msgstr "Connecta"
+
+#: twitterauthorization.php:423 twitterauthorization.php:432
+msgid "Registration not allowed."
+msgstr "No es permet el registre."
+
+#: twitterauthorization.php:439
+msgid "Not a valid invitation code."
+msgstr "No és un codi d'invitació vàlid."
+
+#: twitterauthorization.php:452
+msgid "Nickname not allowed."
+msgstr "El sobrenom no és permès."
+
+#: twitterauthorization.php:457
+msgid "Nickname already in use. Try another one."
+msgstr "El sobrenom ja és en ús. Proveu-ne un altre."
+
+#: twitterauthorization.php:472
+msgid "Error registering user."
+msgstr "Error en registrar l'usuari."
+
+#: twitterauthorization.php:483 twitterauthorization.php:521
+#: twitterauthorization.php:541
+msgid "Error connecting user to Twitter."
+msgstr "Error en connectar l'usuari al Twitter."
+
+#: twitterauthorization.php:503
+msgid "Invalid username or password."
+msgstr "Nom d'usuari o contrasenya no vàlida."
+
+#: twittersettings.php:58
+msgid "Twitter settings"
+msgstr "Paràmetres del Twitter"
+
+#: twittersettings.php:69
+msgid ""
+"Connect your Twitter account to share your updates with your Twitter friends "
+"and vice-versa."
+msgstr ""
+"Connecteu el vostre compte del Twitter per compartir les vostres "
+"actualitzacions amb els vostres amics del Twitter i viceversa."
+
+#: twittersettings.php:116
+msgid "Twitter account"
+msgstr "Compte del Twitter"
+
+#: twittersettings.php:121
+msgid "Connected Twitter account"
+msgstr "Compte del Twitter connectat"
+
+#: twittersettings.php:126
+msgid "Disconnect my account from Twitter"
+msgstr "Desconnecta el meu compte del Twitter"
+
+#: twittersettings.php:132
+msgid "Disconnecting your Twitter could make it impossible to log in! Please "
+msgstr ""
+"En desconnectar el vostre Twitter podeu impossibilitar que torneu a iniciar "
+"una sessió! "
+
+#: twittersettings.php:136
+msgid "set a password"
+msgstr "Definiu una contrasenya"
+
+#: twittersettings.php:138
+msgid " first."
+msgstr " primer."
+
+#. TRANS: %1$s is the current website name.
+#: twittersettings.php:142
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
+"password to log in."
+msgstr ""
+"Mantingueu el vostre compte %1$s, però desconnecteu-lo del Twitter. Podeu "
+"emprar la vostra contrasenya %1$s per iniciar una sessió."
+
+#: twittersettings.php:150
+msgid "Disconnect"
+msgstr "Desconnecta"
+
+#: twittersettings.php:157
+msgid "Preferences"
+msgstr "Preferències"
+
+#: twittersettings.php:161
+msgid "Automatically send my notices to Twitter."
+msgstr "Envia automàticament els meus avisos al Twitter."
+
+#: twittersettings.php:168
+msgid "Send local \"@\" replies to Twitter."
+msgstr "Envia les respostes locals «@» al Twitter."
+
+#: twittersettings.php:175
+msgid "Subscribe to my Twitter friends here."
+msgstr "Subscriu els meus amics del Twitter aquí."
+
+#: twittersettings.php:184
+msgid "Import my friends timeline."
+msgstr "Importa la línia temporal d'amics."
+
+#: twittersettings.php:202
+msgid "Add"
+msgstr "Afegeix"
+
+#: twittersettings.php:236
+msgid "Unexpected form submission."
+msgstr "Enviament de formulari inesperat."
+
+#: twittersettings.php:251
+msgid "No Twitter connection to remove."
+msgstr "No hi ha cap connexió del Twitter a suprimir."
+
+#: twittersettings.php:259
+msgid "Couldn't remove Twitter user."
+msgstr "No s'ha pogut suprimir l'usuari del Twitter."
+
+#: twittersettings.php:263
+msgid "Twitter account disconnected."
+msgstr "S'ha desconnectat el compte del Twitter."
+
+#: twittersettings.php:283 twittersettings.php:294
+msgid "Couldn't save Twitter preferences."
+msgstr "No s'han pogut desar les preferències del Twitter."
+
+#: twittersettings.php:302
+msgid "Twitter preferences saved."
+msgstr "S'han desat les preferències del Twitter."

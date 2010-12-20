@@ -4,6 +4,8 @@ if (php_sapi_name() != 'cli') {
     die('not for web');
 }
 
+define('HTTP_TIMEOUT', 60); // ssslllloowwwww salmon if queues are off
+
 define('INSTALLDIR', dirname(dirname(dirname(dirname(__FILE__)))));
 set_include_path(INSTALLDIR . '/extlib' . PATH_SEPARATOR . get_include_path());
 
@@ -61,14 +63,15 @@ class OStatusTester extends TestBase
     /**
      * @param string $a base URL of test site A (eg http://localhost/mublog)
      * @param string $b base URL of test site B (eg http://localhost/mublog2)
+     * @param int $timeout HTTP timeout value (needs to be long if Salmon is slow)
      */
-    function __construct($a, $b) {
+    function __construct($a, $b, $timeout=60) {
         $this->a = $a;
         $this->b = $b;
 
         $base = 'test' . mt_rand(1, 1000000);
-        $this->pub = new SNTestClient($this->a, 'pub' . $base, 'pw-' . mt_rand(1, 1000000));
-        $this->sub = new SNTestClient($this->b, 'sub' . $base, 'pw-' . mt_rand(1, 1000000));
+        $this->pub = new SNTestClient($this->a, 'pub' . $base, 'pw-' . mt_rand(1, 1000000), $timeout);
+        $this->sub = new SNTestClient($this->b, 'sub' . $base, 'pw-' . mt_rand(1, 1000000), $timeout);
     }
 
     function run()
@@ -164,11 +167,12 @@ class OStatusTester extends TestBase
 
 class SNTestClient extends TestBase
 {
-    function __construct($base, $username, $password)
+    function __construct($base, $username, $password, $timeout=60)
     {
         $this->basepath = $base;
         $this->username = $username;
         $this->password = $password;
+        $this->timeout = $timeout;
 
         $this->fullname = ucfirst($username) . ' Smith';
         $this->homepage = 'http://example.org/' . $username;
@@ -188,7 +192,7 @@ class SNTestClient extends TestBase
     {
         $url = $this->basepath . '/' . $path;
 
-        $http = new HTTP_Request2($url, 'POST');
+        $http = new HTTP_Request2($url, 'POST', array('timeout' => $this->timeout));
         if ($auth) {
             $http->setAuth($this->username, $this->password, HTTP_Request2::AUTH_BASIC);
         }
@@ -215,7 +219,7 @@ class SNTestClient extends TestBase
     protected function web($path, $form, $params=array())
     {
         $url = $this->basepath . '/' . $path;
-        $http = new HTTP_Request2($url, 'GET');
+        $http = new HTTP_Request2($url, 'GET', array('timeout' => $this->timeout));
         $response = $http->send();
 
         $dom = $this->checkWeb($url, 'GET', $response);
@@ -500,7 +504,7 @@ class SNTestClient extends TestBase
         $me = $this->getProfileUri();
         return $this->checkSubscription($profile_uri, $me);
     }
-    
+
     protected function checkSubscription($subscriber, $subscribed)
     {
         // Using FOAF as the API methods for checking the social graph
@@ -532,10 +536,29 @@ class SNTestClient extends TestBase
 
 }
 
-$args = array_slice($_SERVER['argv'], 1);
+// @fixme switch to commandline.inc?
+$timeout = HTTP_TIMEOUT;
+
+$args = array();
+$options = array();
+foreach (array_slice($_SERVER['argv'], 1) as $arg) {
+    if (substr($arg, 0, 2) == '--') {
+        $bits = explode('=', substr($arg, 2), 2);
+        if (count($bits == 2)) {
+            list($key, $val) = $bits;
+            $options[$key] = $val;
+        } else {
+            list($key) = $bits;
+            $options[$key] = true;
+        }
+    } else {
+        $args[] = $arg;
+    }
+}
 if (count($args) < 2) {
     print <<<END_HELP
-remote-tests.php <url1> <url2>
+remote-tests.php [options] <url1> <url2>
+  --timeout=## change HTTP timeout from default {$timeout}s
   url1: base URL of a StatusNet instance
   url2: base URL of another StatusNet instance
 
@@ -549,7 +572,9 @@ exit(1);
 
 $a = $args[0];
 $b = $args[1];
+if (isset($options['timeout'])) {
+    $timeout = intval($options['timeout']);
+}
 
-$tester = new OStatusTester($a, $b);
+$tester = new OStatusTester($a, $b, $timeout);
 $tester->run();
-

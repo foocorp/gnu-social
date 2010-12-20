@@ -1,0 +1,30 @@
+# Translation of StatusNet - EmailAuthentication to Portuguese (Português)
+# Expored from translatewiki.net
+#
+# Author: Waldir
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailAuthentication\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"PO-Revision-Date: 2010-12-16 15:11:43+0000\n"
+"Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2010-10-29 16:12:44+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: pt\n"
+"X-Message-Group: #out-statusnet-plugin-emailauthentication\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: EmailAuthenticationPlugin.php:60
+msgid ""
+"The Email Authentication plugin allows users to login using their email "
+"address."
+msgstr ""
+"O plugin de autenticação por email permite aos utilizadores autenticar-se "
+"usando o seu endereço de email."

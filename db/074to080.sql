@@ -107,3 +107,15 @@ create table group_alias (
    index group_alias_group_id_idx (group_id)
 
 ) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin;
+
+create table session (
+
+    id varchar(32) primary key comment 'session ID',
+    session_data text comment 'session data',
+    created datetime not null comment 'date this record was created',
+    modified timestamp comment 'date this record was modified',
+
+    index session_modified_idx (modified)
+
+) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_bin;
+

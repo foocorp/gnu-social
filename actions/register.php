@@ -74,13 +74,6 @@ class RegisterAction extends Action
         parent::prepare($args);
         $this->code = $this->trimmed('code');
 
-        // @todo this check should really be in index.php for all sensitive actions
-        $ssl = common_config('site', 'ssl');
-        if (empty($_SERVER['HTTPS']) && ($ssl == 'always' || $ssl == 'sometimes')) {
-            common_redirect(common_local_url('register'));
-            // exit
-        }
-
         if (empty($this->code)) {
             common_ensure_session();
             if (array_key_exists('invitecode', $_SESSION)) {
@@ -198,7 +191,11 @@ class RegisterAction extends Action
             }
 
             // Input scrubbing
-            $nickname = common_canonical_nickname($nickname);
+            try {
+                $nickname = Nickname::normalize($nickname);
+            } catch (NicknameException $e) {
+                $this->showForm($e->getMessage());
+            }
             $email    = common_canonical_email($email);
 
             if (!$this->boolean('license')) {
@@ -206,11 +203,6 @@ class RegisterAction extends Action
                                   'agree to the license.'));
             } else if ($email && !Validate::email($email, common_config('email', 'check_domain'))) {
                 $this->showForm(_('Not a valid email address.'));
-            } else if (!Validate::string($nickname, array('min_length' => 1,
-                                                          'max_length' => 64,
-                                                          'format' => NICKNAME_FMT))) {
-                $this->showForm(_('Nickname must have only lowercase letters '.
-                                  'and numbers and no spaces.'));
             } else if ($this->nicknameExists($nickname)) {
                 $this->showForm(_('Nickname already in use. Try another one.'));
             } else if (!User::allowed_nickname($nickname)) {
@@ -224,14 +216,16 @@ class RegisterAction extends Action
                 $this->showForm(_('Homepage is not a valid URL.'));
                 return;
             } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
-                $this->showForm(_('Full name is too long (max 255 chars).'));
+                $this->showForm(_('Full name is too long (maximum 255 characters).'));
                 return;
             } else if (Profile::bioTooLong($bio)) {
-                $this->showForm(sprintf(_('Bio is too long (max %d chars).'),
+                $this->showForm(sprintf(_m('Bio is too long (maximum %d character).',
+                                           'Bio is too long (maximum %d characters).',
+                                           Profile::maxBio()),
                                         Profile::maxBio()));
                 return;
             } else if (!is_null($location) && mb_strlen($location) > 255) {
-                $this->showForm(_('Location is too long (max 255 chars).'));
+                $this->showForm(_('Location is too long (maximum 255 characters).'));
                 return;
             } else if (strlen($password) < 6) {
                 $this->showForm(_('Password must be 6 or more characters.'));
@@ -465,7 +459,12 @@ class RegisterAction extends Action
             $this->elementStart('li');
             $maxBio = Profile::maxBio();
             if ($maxBio > 0) {
-                $bioInstr = sprintf(_('Describe yourself and your interests in %d chars'),
+                // TRANS: Tooltip for field label in form for profile settings. Plural
+                // TRANS: is decided by the number of characters available for the
+                // TRANS: biography (%d).
+                $bioInstr = sprintf(_m('Describe yourself and your interests in %d character',
+                                       'Describe yourself and your interests in %d characters',
+                                       $maxBio),
                                     $maxBio);
             } else {
                 $bioInstr = _('Describe yourself and your interests');

@@ -1,4 +1,7 @@
 <?php
+/**
+ * @todo Add file header and documentation.
+ */
 
 class LinkHeader
 {

@@ -45,7 +45,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 class EditMirrorAction extends BaseMirrorAction
 {
 
@@ -56,7 +55,6 @@ class EditMirrorAction extends BaseMirrorAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -93,7 +91,8 @@ class EditMirrorAction extends BaseMirrorAction
     {
         $mirror = SubMirror::getMirror($this->user, $this->profile);
         if (!$mirror) {
-            $this->clientError(_m('Requested edit of missing mirror'));
+            // TRANS: Client error thrown when a mirror request is made and no result is retrieved.
+            $this->clientError(_m('Requested edit of missing mirror.'));
         }
 
         if ($this->delete) {

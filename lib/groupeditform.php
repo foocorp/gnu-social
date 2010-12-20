@@ -160,14 +160,17 @@ class GroupEditForm extends Form
         $this->out->elementStart('li');
         $this->out->input('homepage', _('Homepage'),
                           ($this->out->arg('homepage')) ? $this->out->arg('homepage') : $homepage,
-                          _('URL of the homepage or blog of the group or topic'));
+                          _('URL of the homepage or blog of the group or topic.'));
         $this->out->elementEnd('li');
         $this->out->elementStart('li');
         $desclimit = User_group::maxDescription();
         if ($desclimit == 0) {
             $descinstr = _('Describe the group or topic');
         } else {
-            $descinstr = sprintf(_('Describe the group or topic in %d characters'), $desclimit);
+            $descinstr = sprintf(_m('Describe the group or topic in %d character or less',
+                                    'Describe the group or topic in %d characters or less',
+                                    $desclimit),
+                                 $desclimit);
         }
         $this->out->textarea('description', _('Description'),
                              ($this->out->arg('description')) ? $this->out->arg('description') : $description,
@@ -176,7 +179,7 @@ class GroupEditForm extends Form
         $this->out->elementStart('li');
         $this->out->input('location', _('Location'),
                           ($this->out->arg('location')) ? $this->out->arg('location') : $location,
-                          _('Location for the group, if any, like "City, State (or Region), Country"'));
+                          _('Location for the group, if any, like "City, State (or Region), Country".'));
         $this->out->elementEnd('li');
         if (common_config('group', 'maxaliases') > 0) {
             $aliases = (empty($this->group)) ? array() : $this->group->getAliases();
@@ -184,7 +187,9 @@ class GroupEditForm extends Form
             $this->out->input('aliases', _('Aliases'),
                               ($this->out->arg('aliases')) ? $this->out->arg('aliases') :
                               (!empty($aliases)) ? implode(' ', $aliases) : '',
-                              sprintf(_('Extra nicknames for the group, comma- or space- separated, max %d'),
+                              sprintf(_m('Extra nicknames for the group, separated with commas or spaces. Maximum %d alias allowed.',
+                                         'Extra nicknames for the group, separated with commas or spaces. Maximum %d aliases allowed.',
+                                         common_config('group', 'maxaliases')),
                                       common_config('group', 'maxaliases')));;
             $this->out->elementEnd('li');
         }
@@ -199,6 +204,6 @@ class GroupEditForm extends Form
 
     function formActions()
     {
-        $this->out->submit('submit', _('Save'));
+        $this->out->submit('submit', _m('BUTTON','Save'));
     }
 }

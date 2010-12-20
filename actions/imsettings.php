@@ -133,7 +133,7 @@ class ImsettingsAction extends ConnectSettingsAction
                                              'message with further instructions. '.
                                              '(Did you add %s to your buddy list?)'),
                                              $transport_info['display'],
-                                             $transport_info['daemon_screenname']));
+                                             $transport_info['daemonScreenname']));
                     $this->hidden('screenname', $confirm->address);
                     // TRANS: Button label to cancel an IM address confirmation procedure.
                     $this->submit('cancel', _m('BUTTON','Cancel'));

@@ -51,7 +51,6 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-
 class Sitemap_notice_count extends Memcached_DataObject
 {
     public $__table = 'sitemap_notice_count'; // table name
@@ -72,7 +71,6 @@ class Sitemap_notice_count extends Memcached_DataObject
      * @return Sitemap_notice_count object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Sitemap_notice_count', $k, $v);
@@ -86,7 +84,6 @@ class Sitemap_notice_count extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('notice_date' => DB_DATAOBJECT_DATE + DB_DATAOBJECT_NOTNULL,
@@ -103,7 +100,6 @@ class Sitemap_notice_count extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keys()
     {
         return array('notice_date' => 'K');
@@ -117,7 +113,6 @@ class Sitemap_notice_count extends Memcached_DataObject
      *
      * @return array key definitions
      */
-
     function keyTypes()
     {
         return $this->keys();
@@ -128,7 +123,6 @@ class Sitemap_notice_count extends Memcached_DataObject
         $noticeCounts = self::cacheGet('sitemap:notice:counts');
 
         if ($noticeCounts === false) {
-
             $snc = new Sitemap_notice_count();
             $snc->orderBy('notice_date DESC');
 
@@ -236,7 +230,8 @@ class Sitemap_notice_count extends Memcached_DataObject
         $snc = Sitemap_notice_count::staticGet('notice_date', DB_DataObject_Cast::date($d));
 
         if (empty($snc)) {
-            throw new Exception("No such registration date: $d");
+            // TRANS: Exception
+            throw new Exception(_m("No such registration date: $d."));
         }
 
         $orig = clone($snc);

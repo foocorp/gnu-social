@@ -36,9 +36,9 @@ class MirrorSettingsAction extends AccountSettingsAction
      *
      * @return string Page title
      */
-
     function title()
     {
+        // TRANS: Title.
         return _m('Feed mirror settings');
     }
 
@@ -50,6 +50,7 @@ class MirrorSettingsAction extends AccountSettingsAction
 
     function getInstructions()
     {
+        // TRANS: Instructions.
         return _m('You can mirror updates from many RSS and Atom feeds ' .
                   'into your StatusNet timeline!');
     }
@@ -61,13 +62,12 @@ class MirrorSettingsAction extends AccountSettingsAction
      *
      * @return void
      */
-
     function showContent()
     {
         $user = common_current_user();
 
         $this->showAddFeedForm();
-        
+
         $mirror = new SubMirror();
         $mirror->subscriber = $user->id;
         if ($mirror->find()) {
@@ -99,7 +99,6 @@ class MirrorSettingsAction extends AccountSettingsAction
      *
      * @return void
      */
-
     function handlePost()
     {
     }

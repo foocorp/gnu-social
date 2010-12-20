@@ -22,12 +22,12 @@
  * @maintainer James Walker <james@status.net>
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
-
+if (!defined('STATUSNET')) {
+    exit(1);
+}
 
 class OStatusInitAction extends Action
 {
-
     var $nickname;
     var $group;
     var $profile;
@@ -38,6 +38,7 @@ class OStatusInitAction extends Action
         parent::prepare($args);
 
         if (common_logged_in()) {
+            // TRANS: Client error.
             $this->clientError(_m('You can use the local subscription!'));
             return false;
         }
@@ -45,13 +46,13 @@ class OStatusInitAction extends Action
         // Local user or group the remote wants to subscribe to
         $this->nickname = $this->trimmed('nickname');
         $this->group = $this->trimmed('group');
-        
+
         // Webfinger or profile URL of the remote user
         $this->profile = $this->trimmed('profile');
 
         return true;
     }
-    
+
     function handle($args)
     {
         parent::handle($args);
@@ -69,7 +70,7 @@ class OStatusInitAction extends Action
             $this->showForm();
         }
     }
-    
+
     function showForm($err = null)
     {
         $this->err = $err;
@@ -78,6 +79,7 @@ class OStatusInitAction extends Action
             $this->xw->startDocument('1.0', 'UTF-8');
             $this->elementStart('html');
             $this->elementStart('head');
+            // TRANS: Form title.
             $this->element('title', null, _m('Subscribe to user'));
             $this->elementEnd('head');
             $this->elementStart('body');
@@ -93,11 +95,15 @@ class OStatusInitAction extends Action
     {
     
         if ($this->group) {
+            // TRANS: Form legend.
             $header = sprintf(_m('Join group %s'), $this->group);
-            $submit = _m('Join');
+            // TRANS: Button text.
+            $submit = _m('BUTTON','Join');
         } else {
+            // TRANS: Form legend.
             $header = sprintf(_m('Subscribe to %s'), $this->nickname);
-            $submit = _m('Subscribe');
+            // TRANS: Button text.
+            $submit = _m('BUTTON','Subscribe');
         }
         $this->elementStart('form', array('id' => 'form_ostatus_connect',
                                           'method' => 'post',
@@ -109,11 +115,13 @@ class OStatusInitAction extends Action
 
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li', array('id' => 'ostatus_nickname'));
+        // TRANS: Field label.
         $this->input('nickname', _m('User nickname'), $this->nickname,
-                     _m('Nickname of the user you want to follow'));
+                     _m('Nickname of the user you want to follow.'));
         $this->hidden('group', $this->group); // pass-through for magic links
         $this->elementEnd('li');
         $this->elementStart('li', array('id' => 'ostatus_profile'));
+        // TRANS: Field label.
         $this->input('profile', _m('Profile Account'), $this->profile,
                      _m("Your account id (i.e. user@status.net) -- with GNU social, users do not use one server to communicate in the way that Facebook and Twitter users do. Instead, users are spread out over a network of servers and different sites. You can run your own server, or you can sign up for one of the public servers -- it doesn't even need to be a GNU social server -- any server that speaks the OStatus protocol is suitable. A good place to get an account for yourself is www.status.net"));
         $this->elementEnd('li');
@@ -136,6 +144,7 @@ class OStatusInitAction extends Action
         } elseif (strpos($this->profile, '@') !== false) {
             $this->connectWebfinger($this->profile);
         } else {
+            // TRANS: Client error.
             $this->clientError(_m("Must provide a remote profile."));
         }
     }
@@ -147,6 +156,7 @@ class OStatusInitAction extends Action
         $disco = new Discovery;
         $result = $disco->lookup($acct);
         if (!$result) {
+            // TRANS: Client error.
             $this->clientError(_m("Couldn't look up OStatus account profile."));
         }
 
@@ -159,6 +169,7 @@ class OStatusInitAction extends Action
             }
 
         }
+        // TRANS: Client error.
         $this->clientError(_m("Couldn't confirm remote profile address."));
     }
 
@@ -184,6 +195,7 @@ class OStatusInitAction extends Action
             if ($user) {
                 return common_local_url('userbyid', array('id' => $user->id));
             } else {
+                // TRANS: Client error.
                 $this->clientError("No such user.");
             }
         } else if ($this->group) {
@@ -191,18 +203,18 @@ class OStatusInitAction extends Action
             if ($group) {
                 return common_local_url('groupbyid', array('id' => $group->group_id));
             } else {
+                // TRANS: Client error.
                 $this->clientError("No such group.");
             }
         } else {
+            // TRANS: Client error.
             $this->clientError("No local user or group nickname provided.");
         }
     }
 
     function title()
     {
-      return _m('OStatus Connect');  
+      // TRANS: Page title.
+      return _m('OStatus Connect');
     }
-
-  
-  
 }

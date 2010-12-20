@@ -75,5 +75,4 @@ class RSSCloudSubscription extends Memcached_DataObject {
 
         return false;
     }
-
 }

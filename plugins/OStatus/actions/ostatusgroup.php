@@ -22,7 +22,9 @@
  * @maintainer Brion Vibber <brion@status.net>
  */
 
-if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
+if (!defined('STATUSNET')) {
+    exit(1);
+}
 
 /**
  * Key UI methods:
@@ -72,13 +74,16 @@ class OStatusGroupAction extends OStatusSubAction
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
         $this->input('profile',
+                     // TRANS: Field label.
                      _m('Join group'),
                      $this->profile_uri,
-                     _m("OStatus group's address, like http://example.net/group/nickname"));
+                     // TRANS: Tooltip for field label "Join group".
+                     _m("OStatus group's address, like http://example.net/group/nickname."));
         $this->elementEnd('li');
         $this->elementEnd('ul');
 
-        $this->submit('validate', _m('Continue'));
+        // TRANS: Button text.
+        $this->submit('validate', _m('BUTTON','Continue'));
 
         $this->elementEnd('fieldset');
 
@@ -156,7 +161,6 @@ class OStatusGroupAction extends OStatusSubAction
      *
      * @return string Title of the page
      */
-
     function title()
     {
         // TRANS: Page title for OStatus remote group join form
@@ -168,9 +172,9 @@ class OStatusGroupAction extends OStatusSubAction
      *
      * @return instructions for use
      */
-
     function getInstructions()
     {
+        // TRANS: Instructions.
         return _m('You can subscribe to groups from other supported sites. Paste the group\'s profile URI below:');
     }
 

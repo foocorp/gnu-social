@@ -39,6 +39,8 @@ class ActivityContext
     public $location;
     public $attention = array();
     public $conversation;
+    public $forwardID; // deprecated, use ActivityVerb::SHARE instead
+    public $forwardUrl; // deprecated, use ActivityVerb::SHARE instead
 
     const THR     = 'http://purl.org/syndication/thread/1.0';
     const GEORSS  = 'http://www.georss.org/georss';
@@ -54,8 +56,12 @@ class ActivityContext
     const MENTIONED    = 'mentioned';
     const CONVERSATION = 'ostatus:conversation';
 
-    function __construct($element)
+    function __construct($element = null)
     {
+        if (empty($element)) {
+            return;
+        }
+
         $replyToEl = ActivityUtils::child($element, self::INREPLYTO, self::THR);
 
         if (!empty($replyToEl)) {
@@ -73,7 +79,6 @@ class ActivityContext
 
         $attention = array();
         for ($i = 0; $i < $links->length; $i++) {
-
             $link = $links->item($i);
 
             $linkRel = $link->getAttribute(ActivityUtils::REL);

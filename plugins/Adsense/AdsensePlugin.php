@@ -77,7 +77,6 @@ if (!defined('STATUSNET')) {
  *
  * @seeAlso  UAPPlugin
  */
-
 class AdsensePlugin extends UAPPlugin
 {
     public $adScript = 'http://pagead2.googlesyndication.com/pagead/show_ads.js';
@@ -89,7 +88,6 @@ class AdsensePlugin extends UAPPlugin
 
         // A little bit of chicanery so we avoid overwriting values that
         // are passed in with the constructor
-
         foreach (array('mediumRectangle', 'rectangle', 'leaderboard', 'wideSkyscraper', 'adScript', 'client') as $setting) {
             $value = common_config('adsense', strtolower($setting));
             if (!empty($value)) { // not found
@@ -105,7 +103,6 @@ class AdsensePlugin extends UAPPlugin
      *
      * @return void
      */
-
     protected function showMediumRectangle($action)
     {
         $this->showAdsenseCode($action, 300, 250, $this->mediumRectangle);
@@ -118,7 +115,6 @@ class AdsensePlugin extends UAPPlugin
      *
      * @return void
      */
-
     protected function showRectangle($action)
     {
         $this->showAdsenseCode($action, 180, 150, $this->rectangle);
@@ -131,7 +127,6 @@ class AdsensePlugin extends UAPPlugin
      *
      * @return void
      */
-
     protected function showWideSkyscraper($action)
     {
         $this->showAdsenseCode($action, 160, 600, $this->wideSkyscraper);
@@ -144,7 +139,6 @@ class AdsensePlugin extends UAPPlugin
      *
      * @return void
      */
-
     protected function showLeaderboard($action)
     {
         $this->showAdsenseCode($action, 728, 90, $this->leaderboard);
@@ -160,7 +154,6 @@ class AdsensePlugin extends UAPPlugin
      *
      * @return void
      */
-
     protected function showAdsenseCode($action, $width, $height, $slot)
     {
         $code  = 'google_ad_client = "'.$this->client.'"; ';
@@ -198,11 +191,22 @@ class AdsensePlugin extends UAPPlugin
     function onEndAdminPanelNav($menu) {
         if (AdminPanelAction::canAdmin('adsense')) {
             // TRANS: Menu item title/tooltip
-            $menu_title = _('Adsense configuration');
+            $menu_title = _m('AdSense configuration');
             // TRANS: Menu item for site administration
-            $menu->out->menuItem(common_local_url('adsenseadminpanel'), _('Adsense'),
+            $menu->out->menuItem(common_local_url('adsenseadminpanel'), _m('AdSense'),
                                  $menu_title, $action_name == 'adsenseadminpanel', 'nav_adsense_admin_panel');
         }
+        return true;
+    }
+
+    function onPluginVersion(&$versions)
+    {
+        $versions[] = array('name' => 'BlankAdPlugin',
+                            'version' => STATUSNET_VERSION,
+                            'author' => 'Evan Prodromou',
+                            'homepage' => 'http://status.net/wiki/Plugin:Adsense',
+                            'rawdescription' =>
+                            _m('Plugin to add Google AdSense to StatusNet sites.'));
         return true;
     }
 }

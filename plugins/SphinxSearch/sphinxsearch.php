@@ -91,6 +91,8 @@ class SphinxSearch extends SearchEngine
         if (preg_match('!^.*?://.*?:.*?@.*?/(.*?)$!', common_config('db', 'database'), $matches)) {
             return $matches[1];
         }
-        throw new ServerException("Sphinx search could not identify database name");
+
+        // TRANS: Server exception thrown when a database name cannot be identified.
+        throw new ServerException(_m("Sphinx search could not identify database name."));
     }
 }

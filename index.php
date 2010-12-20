@@ -204,7 +204,7 @@ function checkMirror($action_obj, $args)
 
 function isLoginAction($action)
 {
-    static $loginActions =  array('login', 'recoverpassword', 'api', 'doc', 'register', 'publicxrds', 'otp', 'opensearch', 'rsd');
+    static $loginActions =  array('login', 'recoverpassword', 'api', 'doc', 'register', 'publicxrds', 'otp', 'opensearch', 'rsd', 'hostmeta');
 
     $login = null;
 
@@ -225,12 +225,12 @@ function main()
         if ($_lighty_url['path'] != '/index.php' && $_lighty_url['path'] != '/') {
             $_lighty_path = preg_replace('/^'.preg_quote(common_config('site', 'path')).'\//', '', substr($_lighty_url['path'], 1));
             $_SERVER['QUERY_STRING'] = 'p='.$_lighty_path;
-            if ($_lighty_url['query']) {
+            if (isset($_lighty_url['query']) && $_lighty_url['query'] != '') {
                 $_SERVER['QUERY_STRING'] .= '&'.$_lighty_url['query'];
-            }
-            parse_str($_lighty_url['query'], $_lighty_query);
-            foreach ($_lighty_query as $key => $val) {
-                $_GET[$key] = $_REQUEST[$key] = $val;
+                parse_str($_lighty_url['query'], $_lighty_query);
+                foreach ($_lighty_query as $key => $val) {
+                    $_GET[$key] = $_REQUEST[$key] = $val;
+                }
             }
             $_GET['p'] = $_REQUEST['p'] = $_lighty_path;
         }
@@ -280,6 +280,14 @@ function main()
     if (!$args) {
         $cac = new ClientErrorAction(_('Unknown page'), 404);
         $cac->showPage();
+        return;
+    }
+
+    $site_ssl = common_config('site', 'ssl');
+
+    // If the request is HTTP and it should be HTTPS...
+    if ($site_ssl != 'never' && !StatusNet::isHTTPS() && common_is_sensitive($args['action'])) {
+        common_redirect(common_local_url($args['action'], $args));
         return;
     }
 

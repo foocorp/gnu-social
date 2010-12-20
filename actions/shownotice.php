@@ -151,6 +151,7 @@ class ShownoticeAction extends OwnerDesignAction
           strtotime($this->avatar->modified) : 0;
 
         return 'W/"' . implode(':', array($this->arg('action'),
+                                          common_user_cache_hash(),
                                           common_language(),
                                           $this->notice->id,
                                           strtotime($this->notice->created),
@@ -166,11 +167,7 @@ class ShownoticeAction extends OwnerDesignAction
 
     function title()
     {
-        if (!empty($this->profile->fullname)) {
-            $base = $this->profile->fullname . ' (' . $this->profile->nickname . ')';
-        } else {
-            $base = $this->profile->nickname;
-        }
+        $base = $this->profile->getFancyName();
 
         return sprintf(_('%1$s\'s status on %2$s'),
                        $base,
@@ -291,10 +288,20 @@ class ShownoticeAction extends OwnerDesignAction
                 array(),
                 array('format'=>'xml','url'=>$this->notice->uri)),
             'title'=>'oEmbed'),null);
+
+        // Extras to aid in sharing notices to Facebook
+        $avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
+        $avatarUrl = ($avatar) ?
+                     $avatar->displayUrl() :
+                     Avatar::defaultImage(AVATAR_PROFILE_SIZE);
+        $this->element('meta', array('property' => 'og:image',
+                                     'content' => $avatarUrl));
+        $this->element('meta', array('property' => 'og:description',
+                                     'content' => $this->notice->content));
     }
 }
 
-class SingleNoticeItem extends NoticeListItem
+class SingleNoticeItem extends DoFollowListItem
 {
     /**
      * recipe function for displaying a single notice.
@@ -307,15 +314,49 @@ class SingleNoticeItem extends NoticeListItem
     function show()
     {
         $this->showStart();
-        $this->showNotice();
-        $this->showNoticeAttachments();
-        $this->showNoticeInfo();
-        $this->showNoticeOptions();
+        if (Event::handle('StartShowNoticeItem', array($this))) {
+            $this->showNotice();
+            $this->showNoticeAttachments();
+            $this->showNoticeInfo();
+            $this->showNoticeOptions();
+            Event::handle('EndShowNoticeItem', array($this));
+        }
+
         $this->showEnd();
     }
 
+    /**
+     * For our zoomed-in special case we'll use a fuller list
+     * for the attachment info.
+     */
     function showNoticeAttachments() {
         $al = new AttachmentList($this->notice, $this->out);
         $al->show();
+    }
+
+    /**
+     * show the avatar of the notice's author
+     *
+     * We use the larger size for single notice page.
+     * 
+     * @return void
+     */
+
+    function showAvatar()
+    {
+	$avatar_size = AVATAR_PROFILE_SIZE;
+
+        $avatar = $this->profile->getAvatar($avatar_size);
+
+        $this->out->element('img', array('src' => ($avatar) ?
+                                         $avatar->displayUrl() :
+                                         Avatar::defaultImage($avatar_size),
+                                         'class' => 'avatar photo',
+                                         'width' => $avatar_size,
+                                         'height' => $avatar_size,
+                                         'alt' =>
+                                         ($this->profile->fullname) ?
+                                         $this->profile->fullname :
+                                         $this->profile->nickname));
     }
 }
