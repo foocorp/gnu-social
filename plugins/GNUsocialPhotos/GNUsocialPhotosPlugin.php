@@ -40,6 +40,7 @@ class GNUsocialPhotosPlugin extends Plugin
         $dir = dirname(__FILE__);
 
         include_once $dir . '/lib/tempphoto.php';
+        include_once $dir . '/lib/photonav.php';
         switch ($cls)
         {
         case 'PhotosAction':
@@ -53,7 +54,6 @@ class GNUsocialPhotosPlugin extends Plugin
         default:
             break;
         }
-
         include_once $dir . '/classes/gnusocialphoto.php';
         include_once $dir . '/classes/gnusocialphotoalbum.php';
         return true;

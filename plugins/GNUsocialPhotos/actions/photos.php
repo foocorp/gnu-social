@@ -64,6 +64,11 @@ class PhotosAction extends Action
         }
     }
 
+    function showLocalNav()
+    {
+        $nav = new GNUsocialPhotoNav($this);
+        $nav->show();
+    }
 
     function showContent()
     {
