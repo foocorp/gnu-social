@@ -89,19 +89,24 @@ class GNUsocialPhoto extends Memcached_DataObject
         return array(false, false, false);
     }
 
-    function saveNew($profile_id, $album_id, $thumb_uri, $uri, $source)
+    function saveNew($profile_id, $album_id, $thumb_uri, $uri, $source, $insert_now)
     {
         $photo = new GNUsocialPhoto();
         $photo->thumb_uri = $thumb_uri;
         $photo->uri = $uri;
 		$photo->album_id = $album_id;
 
-        $notice = Notice::saveNew($profile_id, $uri, $source);
-        $photo->notice_id = $notice->id;
-        $photo_id = $photo->insert();
-        if (!$photo_id) {
-            common_log_db_error($photo, 'INSERT', __FILE__);
-            throw new ServerException(_m('Problem Saving Photo.'));
+        if($insert_now) {
+            $notice = Notice::saveNew($profile_id, $uri, $source);
+            $photo->notice_id = $notice->id;
+            $photo_id = $photo->insert();
+            if (!$photo_id) {
+                common_log_db_error($photo, 'INSERT', __FILE__);
+                throw new ServerException(_m('Problem Saving Photo.'));
+            }
+        } else {
+            GNUsocialPhotoTemp::$tmp = $photo;
+            Notice::saveNew($profile_id, $uri, $source);
         }
     }
 
@@ -128,16 +133,4 @@ class GNUsocialPhoto extends Memcached_DataObject
 
         return $photos;
     }
-
-    /*
-    function asActivityNoun($element)
-    {
-        $object = new ActivityObject();
-
-        $object->type = ActivityObject::PHOTO;
-        $object->title = "";
-        $object->thumbnail = 'http://' . common_config('site', 'server') . $this->thumb_uri;
-        $object->largerImage = 'http://' . common_config('site', 'server') . $this->path;
-        return $object;
-    } */
 }

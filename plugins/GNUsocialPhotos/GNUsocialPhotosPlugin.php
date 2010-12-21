@@ -39,6 +39,7 @@ class GNUsocialPhotosPlugin extends Plugin
     {
         $dir = dirname(__FILE__);
 
+        include_once $dir . '/lib/tempphoto.php';
         switch ($cls)
         {
         case 'PhotosAction':
@@ -81,53 +82,72 @@ class GNUsocialPhotosPlugin extends Plugin
         return true;
     }
 
-    function onStartActivityDefaultObjectType(&$notice, &$xs, &$type)
+    function onStartNoticeDistribute($notice)
     {
-        $photo = GNUsocialPhoto::staticGet('notice_id', $notice->id);
-        if($photo) {
-            $type = ActivityObject::PHOTO;
-        }
-    }
-
-    function onStartActivityObjects(&$notice, &$xs, &$objects)
-    {
-        $photo = GNUsocialPhoto::staticGet('notice_id', $notice->id);
-        if($photo) {
-            $object = new ActivityObject();
-            $object->thumbnail = $photo->thumb_uri;
-            $object->largerImage = $photo->uri;
-            $object->type = ActivityObject::PHOTO;
-            
-            $object->id = $notice->id;
-            $objects[0] = $object;
-        }
-    }
-
-    function onStartHandleFeedEntry($activity)
-    {
-        if ($activity->verb == ActivityVerb::POST) {
-            $oprofile = Ostatus_profile::ensureActorProfile($activity);
-            foreach ($activity->objects as $object) {
-                if ($object->type == ActivityObject::PHOTO) {
-                    $uri = $object->largerImage;
-                    $thumb_uri = $object->thumbnail;
-                    $profile_id = $oprofile->profile_id;
-                    $source = 'unknown'; // TODO: put something better here.
-
-                    $uri = filter_var($uri, FILTER_SANITIZE_URL);
-                    $thumb_uri = filter_var($thumb_uri, FILTER_SANITIZE_URL);
-                    $uri = filter_var($uri, FILTER_VALIDATE_URL);
-                    $thumb_uri = filter_var($thumb_uri, FILTER_VALIDATE_URL);
-                    if (!empty($uri) && !empty($thumb_uri)) {
-                        GNUsocialPhoto::saveNew($profile_id, $thumb_uri, $uri, $source);
-                    }
-                    return false;
-                }
+        common_log(LOG_INFO, "event: StartNoticeDistribute");
+        if (GNUsocialPhotoTemp::$tmp) {
+            GNUsocialPhotoTemp::$tmp->notice_id = $notice->id;
+            $photo_id = GNUsocialPhotoTemp::$tmp->insert();
+            if (!$photo_id) {
+                common_log_db_error($photo, 'INSERT', __FILE__);
+                throw new ServerException(_m('Problem saving photo.'));
             }
         }
         return true;
     }
 
+    function onEndNoticeAsActivity($notice, &$activity)
+    {
+        common_log(LOG_INFO, 'photo plugin: EndNoticeAsActivity');
+        $photo = GNUsocialPhoto::staticGet('notice_id', $notice->id);
+        if(!$photo) {
+            common_log(LOG_INFO, 'not a photo.');
+            return true;
+        }
+
+        $activity->objects[0]->type = ActivityObject::PHOTO;
+        $activity->objects[0]->thumbnail = $photo->thumb_uri;
+        $activity->objects[0]->largerImage = $photo->uri;
+        return false;
+    }
+
+
+    function onStartHandleFeedEntry($activity)
+    {
+        common_log(LOG_INFO, 'photo plugin: onEndAtomPubNewActivity');
+        $oprofile = Ostatus_profile::ensureActorProfile($activity);
+        foreach ($activity->objects as $object) {
+            if($object->type == ActivityObject::PHOTO) {
+                $uri = $object->largerImage;
+                $thumb_uri = $object->thumbnail;
+                $profile_id = $oprofile->profile_id;
+                $source = 'unknown'; // TODO: put something better here.
+
+                common_log(LOG_INFO, 'uri : ' .  $uri);
+                common_log(LOG_INFO, 'thumb_uri : ' . $thumb_uri);
+
+                // It's possible this is validated elsewhere, but I'm not sure and
+                // would rather be safe.
+                $uri = filter_var($uri, FILTER_SANITIZE_URL);
+                $thumb_uri = filter_var($thumb_uri, FILTER_SANITIZE_URL);
+                $uri = filter_var($uri, FILTER_VALIDATE_URL);
+                $thumb_uri = filter_var($thumb_uri, FILTER_VALIDATE_URL);
+
+                if(empty($thumb_uri)) {
+                    // We need a thumbnail, so if we aren't given one, use the actual picture for now.
+                    $thumb_uri = $uri;
+                }
+
+                if (!empty($uri) && !empty($thumb_uri)) {
+                    GNUsocialPhoto::saveNew($profile_id, $thumb_uri, $uri, $source, false);
+                } else {
+                    common_log(LOG_INFO, 'bad URI for photo');
+                }
+                return false;
+            }
+        }
+        return true;
+    }
 
     function onStartShowNoticeItem($action)
     {

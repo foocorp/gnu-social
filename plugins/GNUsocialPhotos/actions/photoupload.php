@@ -142,9 +142,9 @@ class PhotouploadAction extends Action
         $album = GNUsocialPhotoAlbum::staticGet('profile_id', $profile_id);
         if(!$album) {
             $album = GNUsocialPhotoAlbum::newAlbum($profile_id, 'Default');
-            GNUsocialPhoto::saveNew($profile_id, $album->album_id, $thumb_uri, $uri, 'web');
+            GNUsocialPhoto::saveNew($profile_id, $album->album_id, $thumb_uri, $uri, 'web', false);
         } else {
-            GNUsocialPhoto::saveNew($profile_id, $album->album_id, $thumb_uri, $uri, 'web');
+            GNUsocialPhoto::saveNew($profile_id, $album->album_id, $thumb_uri, $uri, 'web', false);
         }
     }
 
