@@ -156,7 +156,8 @@ class GNUsocialPhotosPlugin extends Plugin
             $action->out->elementStart('div', 'entry-title');
             $action->showAuthor();
             $action->out->elementStart('a', array('href' => $photo->uri));
-            $action->out->element('img', array('src' => $photo->thumb_uri));
+            $action->out->element('img', array('src' => $photo->thumb_uri,
+                                    'width' => 256, 'height' => 192));
             $action->out->elementEnd('a');
             $action->out->elementEnd('div');
             $action->showNoticeInfo();
