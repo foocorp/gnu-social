@@ -78,7 +78,6 @@ class GNUsocialPhotosPlugin extends Plugin
     {
         $m->connect(':nickname/photos', array('action' => 'photos'));
         $m->connect('main/uploadphoto', array('action' => 'photoupload'));
-        common_log(LOG_INFO, "init'd!");
         return true;
     }
 
@@ -166,4 +165,12 @@ class GNUsocialPhotosPlugin extends Plugin
         }
         return true;
     } 
+
+    function onEndPersonalGroupNav($nav)
+    {
+        if($nav->action instanceof ShowstreamAction) {
+            $nav->out->menuItem(common_local_url('photos',
+                array('nickname' => $nav->action->trimmed('nickname'))), 'Photos');
+        }
+    }
 }
