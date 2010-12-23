@@ -3219,9 +3219,7 @@ msgstr "Particular"
 
 #: actions/licenseadminpanel.php:246
 msgid "All Rights Reserved"
-msgstr ""
-"\n"
-"Todos os Direitos Reservados"
+msgstr "Todos os Direitos Reservados"
 
 #: actions/licenseadminpanel.php:247
 msgid "Creative Commons"

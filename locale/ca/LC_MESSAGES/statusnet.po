@@ -7914,8 +7914,7 @@ msgid ""
 "\n"
 "Thanks for your time, \n"
 "%2$s\n"
-msgstr ""
-"Hola, %1$s.\n"
+msgstr "Hola, %1$s.\n"
 "\n"
 "Algú ha introduït aquesta adreça electrònica a %2$s.\n"
 "\n"
@@ -7927,7 +7926,7 @@ msgstr ""
 "Si no, simplement ignoreu el missatge.\n"
 "\n"
 "Gràcies pel vostre temps, \n"
-"%2$s"
+"%2$s\n"
 
 #. TRANS: Subject of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
