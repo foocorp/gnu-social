@@ -39,6 +39,8 @@ class GNUsocialPhoto extends Memcached_DataObject
     public $album_id;   // int(11)
     public $uri;        // varchar(512)
     public $thumb_uri;  // varchar(512)
+	public $title;      // varchar(512)
+	public $photo_description; // text
     
 
     /**
@@ -71,7 +73,9 @@ class GNUsocialPhoto extends Memcached_DataObject
         return array('notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
                      'album_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
                      'uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'thumb_uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL);
+                     'thumb_uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
+                     'title' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
+                     'photo_description' => DB_DATAOBJECT_TXT + DB_DATAOBJECT_NOTNULL);
     }
     
     function keys()
@@ -89,12 +93,14 @@ class GNUsocialPhoto extends Memcached_DataObject
         return array(false, false, false);
     }
 
-    function saveNew($profile_id, $album_id, $thumb_uri, $uri, $source, $insert_now)
+    function saveNew($profile_id, $album_id, $thumb_uri, $uri, $source, $insert_now, $title = null, $photo_description = null)
     {
         $photo = new GNUsocialPhoto();
         $photo->thumb_uri = $thumb_uri;
         $photo->uri = $uri;
 		$photo->album_id = $album_id;
+		if(!empty($title)) $photo->title = $title;
+		if(!empty($photo_description)) $photo->photo_description = $photo_description;
 
         if($insert_now) {
             $notice = Notice::saveNew($profile_id, $uri, $source);

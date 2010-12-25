@@ -64,9 +64,20 @@ class PhotouploadAction extends Action
             $this->elementStart('form', array('enctype' => 'multipart/form-data',
                                               'method' => 'post',
                                               'action' => common_local_url('photoupload')));
+			$this->elementStart('ul', 'form_data');
+			$this->elementStart('li');
             $this->element('input', array('name' => 'photofile',
                                           'type' => 'file',
                                           'id' => 'photofile'));
+			$this->elementEnd('li');
+			//$this->element('br');
+			$this->elementStart('li');
+			$this->input('phototitle', "Title", $this->trimmed('phototitle'), "The title of the photo. (Optional)");
+			$this->elementEnd('li');
+			$this->elementStart('li');
+			$this->textarea('photo_description', "Description", $this->trimmed('photo_description'), "A description of the photo. (Optional)");
+			$this->elementEnd('li');
+			$this->elementEnd('ul');
             $this->submit('upload', _('Upload'));
             $this->elementEnd('form');
         }
@@ -129,6 +140,9 @@ class PhotouploadAction extends Action
             return;
         }
 
+		$title = $this->trimmed('phototitle');
+		$photo_description = $this->trimmed('photo_description');
+
         common_log(LOG_INFO, 'upload path : ' . $imagefile->filepath);
 
         $filename = $cur->nickname . '-' . common_timestamp() . sha1_file($imagefile->filepath) .  image_type_to_extension($imagefile->type);
@@ -140,12 +154,9 @@ class PhotouploadAction extends Action
        
         // TODO: proper multiple album support 
         $album = GNUsocialPhotoAlbum::staticGet('profile_id', $profile_id);
-        if(!$album) {
+        if(!$album)
             $album = GNUsocialPhotoAlbum::newAlbum($profile_id, 'Default');
-            GNUsocialPhoto::saveNew($profile_id, $album->album_id, $thumb_uri, $uri, 'web', false);
-        } else {
-            GNUsocialPhoto::saveNew($profile_id, $album->album_id, $thumb_uri, $uri, 'web', false);
-        }
+        GNUsocialPhoto::saveNew($profile_id, $album->album_id, $thumb_uri, $uri, 'web', false, $title, $photo_description);
     }
 
 }
