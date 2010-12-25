@@ -51,10 +51,10 @@ class GNUsocialPhotosPlugin extends Plugin
             include_once $dir . '/lib/photolib.php';
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             break;
-		case 'PhotoAction':
-    		include_once $dir . '/lib/photolib.php';
-			include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
-			break;
+        case 'PhotoAction':
+            include_once $dir . '/lib/photolib.php';
+            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+            break;
         default:
             break;
         }
@@ -71,13 +71,13 @@ class GNUsocialPhotosPlugin extends Plugin
                                       new ColumnDef('album_id', 'int(11)', null, false),
                                       new ColumnDef('uri', 'varchar(512)', null, false),
                                       new ColumnDef('thumb_uri', 'varchar(512)', null, false),
-									  new ColumnDef('title', 'varchar(512)', null, false),
-									  new ColumnDef('photo_description', 'text', null, false)));
+                                      new ColumnDef('title', 'varchar(512)', null, false),
+                                      new ColumnDef('photo_description', 'text', null, false)));
         $schema->ensureTable('GNUsocialPhotoAlbum',
                                 array(new ColumnDef('album_id', 'int(11)', null, false, 'PRI', null, null, true),
                                       new ColumnDef('profile_id', 'int(11)', null, false),
                                       new ColumnDef('album_name', 'varchar(256)', null, false),
-									  new ColumnDef('album_description', 'text', null, false)));
+                                      new ColumnDef('album_description', 'text', null, false)));
                                           
     }
 
@@ -85,7 +85,7 @@ class GNUsocialPhotosPlugin extends Plugin
     {
         $m->connect(':nickname/photos', array('action' => 'photos'));
         $m->connect('main/uploadphoto', array('action' => 'photoupload'));
-		$m->connect(':nickname/photo/:photoid', array('action' => 'photo'));
+        $m->connect(':nickname/photo/:photoid', array('action' => 'photo'));
         return true;
     }
 
@@ -176,9 +176,7 @@ class GNUsocialPhotosPlugin extends Plugin
 
     function onEndPersonalGroupNav($nav)
     {
-        if($nav->action instanceof ShowstreamAction) {
-            $nav->out->menuItem(common_local_url('photos',
-                array('nickname' => $nav->action->trimmed('nickname'))), 'Photos');
-        }
+        $nav->out->menuItem(common_local_url('photos',
+            array('nickname' => $nav->action->trimmed('nickname'))), 'Photos');
     }
 }
