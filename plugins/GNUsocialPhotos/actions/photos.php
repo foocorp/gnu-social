@@ -93,7 +93,8 @@ class PhotosAction extends Action
         $this->elementStart('ul', array('class' => 'photothumbs'));
         foreach ($photos as $photo) {
             $this->elementStart('li');
-            $this->elementStart('a', array('href' => $photo->uri));
+			$photolink = '/' . $this->user->nickname . '/photo/' . $photo->notice_id;
+            $this->elementStart('a', array('href' => $photolink));
             $this->element('img', array('src' => $photo->thumb_uri));
             $this->elementEnd('a');
             $this->elementEnd('li');
