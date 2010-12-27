@@ -77,7 +77,7 @@ class PhotoAction extends Action
 
     function showLocalNav()
     {
-        $nav = new GNUsocialPhotoNav($this);
+        $nav = new GNUsocialPhotoNav($this, $this->user->nickname);
         $nav->show();
     }
 

@@ -32,23 +32,27 @@ if(!defined('STATUSNET')) {
 class GNUsocialPhotoNav extends Widget {
     var $action = null;
 
-    function __construct($action = null)
+    function __construct($action = null, $nickname = null)
     {
         parent::__construct($action);
         $this->action = $action;
+        $this->nickname = $nickname;
     }
 
     function show()
     {
-        $nickname = $this->action->trimmed('nickname');
+        if (empty($this->nickname)) 
+            $this->nickname = $this->action->trimmed('nickname');
         
         $this->out->elementStart('ul', array('class' => 'nav'));
 
-        $this->out->menuItem(common_local_url('photos', array('nickname' => $nickname)),
-            'Photos', null, true);
+        $this->out->menuItem(common_local_url('showstream', array('nickname' => $this->nickname)), _('Profile'));
+
+        $this->out->menuItem(common_local_url('photos', array('nickname' => $this->nickname)),
+            _('Photos'));
         
         $this->out->menuItem(common_local_url('photoupload', array()),
-            'Upload Photos');
+            _('Upload Photos'));
 
         $this->out->elementEnd('ul');
     }
