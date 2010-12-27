@@ -22,6 +22,7 @@
  * @category  Widget
  * @package   GNU Social
  * @author    Ian Denhardt <ian@zenhack.net>
+ * @author    Max Shinn    <trombonechamp@gmail.com>
  * @copyright 2010 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  */
@@ -85,7 +86,7 @@ class GNUsocialPhotosPlugin extends Plugin
     {
         $m->connect(':nickname/photos', array('action' => 'photos'));
         $m->connect('main/uploadphoto', array('action' => 'photoupload'));
-        $m->connect(':nickname/photo/:photoid', array('action' => 'photo'));
+        $m->connect('photo/:photoid', array('action' => 'photo'));
         return true;
     }
 
@@ -162,7 +163,7 @@ class GNUsocialPhotosPlugin extends Plugin
         if($photo) { 
             $action->out->elementStart('div', 'entry-title');
             $action->showAuthor();
-            $action->out->elementStart('a', array('href' => $photo->uri));
+            $action->out->elementStart('a', array('href' => $photo->getPageLink()));
             $action->out->element('img', array('src' => $photo->thumb_uri,
                                     'width' => 256, 'height' => 192));
             $action->out->elementEnd('a');
@@ -174,9 +175,22 @@ class GNUsocialPhotosPlugin extends Plugin
         return true;
     } 
 
+    /*    function onEndShowNoticeFormData($action)
+    {
+        $link = "/main/uploadphoto";
+        $action->out->element('label', array('for' => 'photofile'),_('Attach'));
+        $action->out->element('input', array('id' => 'photofile',
+                                     'type' => 'file',
+                                     'name' => 'photofile',
+                                     'title' => _('Upload a photo')));
+    }
+    */
     function onEndPersonalGroupNav($nav)
     {
+      
         $nav->out->menuItem(common_local_url('photos',
-            array('nickname' => $nav->action->trimmed('nickname'))), 'Photos');
+                           array('nickname' => $nav->action->trimmed('nickname'))), _('Photos'), 
+                           _('Photo gallery'), $nav->action->trimmed('action') == 'photos', 'nav_photos');
     }
 }
+

@@ -31,6 +31,8 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
+require_once INSTALLDIR.'/lib/personalgroupnav.php';
+
 class PhotosAction extends Action
 {
     var $user = null;
@@ -66,7 +68,7 @@ class PhotosAction extends Action
 
     function showLocalNav()
     {
-        $nav = new GNUsocialPhotoNav($this);
+        $nav = new PersonalGroupNav($this);
         $nav->show();
     }
 
@@ -80,21 +82,22 @@ class PhotosAction extends Action
             $page = 1;
         }
    
-        if ($page > 1) { 
-            $this->element('a', array('href' => 'photos?pageid=' . ($page-1)), 'Previous page');
-        }
-        $this->element('a', array('href' => 'photos?pageid=' . ($page+1) ), 'Next page');
-
         //TODO choice of available albums by user.
         //Currently based on fact that each user can only have one album.
         $album = GNUSocialPhotoAlbum::staticGet('profile_id', $this->user->id);
         $photos = GNUsocialPhoto::getGalleryPage($page, $album->album_id, 9);
 
+        if ($page > 1) { 
+            $this->element('a', array('href' => 'photos?pageid=' . ($page-1)), 'Previous page');
+        }
+        if (GNUsocialPhoto::getGalleryPage($page+1, $album->album_id, 9)) {
+            $this->element('a', array('href' => 'photos?pageid=' . ($page+1) ), 'Next page');
+        }
+
         $this->elementStart('ul', array('class' => 'photothumbs'));
         foreach ($photos as $photo) {
             $this->elementStart('li');
-			$photolink = '/' . $this->user->nickname . '/photo/' . $photo->notice_id;
-            $this->elementStart('a', array('href' => $photolink));
+            $this->elementStart('a', array('href' => $photo->getPageLink()));
             $this->element('img', array('src' => $photo->thumb_uri));
             $this->elementEnd('a');
             $this->elementEnd('li');

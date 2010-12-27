@@ -116,6 +116,10 @@ class GNUsocialPhoto extends Memcached_DataObject
         }
     }
 
+    function getPageLink()
+    {
+        return '/photo/' . $this->notice_id;
+    }
 
     /*
      * TODO: -Sanitize input
