@@ -75,7 +75,7 @@ class GNUsocialPhoto extends Memcached_DataObject
                      'uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
                      'thumb_uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
                      'title' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
-                     'photo_description' => DB_DATAOBJECT_TXT + DB_DATAOBJECT_NOTNULL);
+                     'photo_description' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL);
     }
     
     function keys()
@@ -100,7 +100,7 @@ class GNUsocialPhoto extends Memcached_DataObject
         $photo->uri = $uri;
 		$photo->album_id = $album_id;
 		if(!empty($title)) $photo->title = $title;
-		if(!empty($photo_description)) $photo->photo_description = $photo_description;
+		if(!empty($photo_description)) $photo->photo_description = (string)$photo_description;
 
         if($insert_now) {
             $notice = Notice::saveNew($profile_id, $uri, $source);
