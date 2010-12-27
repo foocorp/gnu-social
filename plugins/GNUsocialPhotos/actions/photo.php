@@ -92,7 +92,7 @@ class PhotoAction extends Action
         $this->elementEnd('a');
         $this->element('p', array(), $this->photo->photo_description);
         //This is a hack to hide the top-level comment
-        $this->element('style', array(), "#notice-{$this->photo->notice_id} div { display: none } #notice-{$this->photoid} ol li div { display: inline }");
+        $this->element('style', array(), "#notice-{$this->photo->notice_id} div { display: none } #notice-{$this->photo->notice_id} ol li div { display: inline }");
         $this->conversation->show();
     }
 }

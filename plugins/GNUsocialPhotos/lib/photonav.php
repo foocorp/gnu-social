@@ -21,6 +21,7 @@
  *
  * @package   GNU Social
  * @author    Ian Denhardt <ian@zenhack.net>
+ * @author    Max Shinn <trombonechamp@gmail.com>
  * @copyright 2010 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  */
@@ -50,9 +51,12 @@ class GNUsocialPhotoNav extends Widget {
 
         $this->out->menuItem(common_local_url('photos', array('nickname' => $this->nickname)),
             _('Photos'));
-        
-        $this->out->menuItem(common_local_url('photoupload', array()),
-            _('Upload Photos'));
+
+        $user = common_current_user();
+        if (!empty($user)) {
+            $this->out->menuItem(common_local_url('photoupload', array()),
+                _('Upload Photos'));
+        }
 
         $this->out->elementEnd('ul');
     }
