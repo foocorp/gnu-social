@@ -68,7 +68,8 @@ class GNUsocialPhotosPlugin extends Plugin
     {
         $schema = Schema::get();
         $schema->ensureTable('GNUsocialPhoto',
-                                array(new ColumnDef('notice_id', 'int(11)', null, false, 'PRI'),
+                                array(new ColumnDef('id', 'int(11)', null, false, 'PRI', null, null, true),
+                                      new ColumnDef('notice_id', 'int(11)', null, false),
                                       new ColumnDef('album_id', 'int(11)', null, false),
                                       new ColumnDef('uri', 'varchar(512)', null, false),
                                       new ColumnDef('thumb_uri', 'varchar(512)', null, false),

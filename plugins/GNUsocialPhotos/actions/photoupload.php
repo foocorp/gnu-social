@@ -73,10 +73,10 @@ class PhotouploadAction extends Action
             $this->elementEnd('li');
             //$this->element('br');
             $this->elementStart('li');
-            $this->input('phototitle', "Title", $this->trimmed('phototitle'), "The title of the photo. (Optional)");
+            $this->input('phototitle', "Title", null, "The title of the photo. (Optional)");
             $this->elementEnd('li');
             $this->elementStart('li');
-            $this->textarea('photo_description', "Description", $this->trimmed('photo_description'), "A description of the photo. (Optional)");
+            $this->textarea('photo_description', "Description", null, "A description of the photo. (Optional)");
             $this->elementEnd('li');
             $this->elementEnd('ul');
             $this->submit('upload', _('Upload'));

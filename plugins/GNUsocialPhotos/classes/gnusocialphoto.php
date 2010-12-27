@@ -35,6 +35,7 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 class GNUsocialPhoto extends Memcached_DataObject
 {
     public $__table = 'GNUsocialPhoto';
+    public $id;         // int(11)
     public $notice_id;  // int(11)
     public $album_id;   // int(11)
     public $uri;        // varchar(512)
@@ -70,7 +71,8 @@ class GNUsocialPhoto extends Memcached_DataObject
      */
     function table()
     {
-        return array('notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
+        return array('id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
+                     'notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
                      'album_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
                      'uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
                      'thumb_uri' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
@@ -118,7 +120,7 @@ class GNUsocialPhoto extends Memcached_DataObject
 
     function getPageLink()
     {
-        return '/photo/' . $this->notice_id;
+        return '/photo/' . $this->id;
     }
 
     /*

@@ -45,8 +45,8 @@ class PhotoAction extends Action
 
         $args = $this->returnToArgs();
         $this->photoid = $args[1]['photoid'];
-        $this->photo = GNUsocialPhoto::staticGet('notice_id', $this->photoid);
-        $this->notice = Notice::staticGet('id', $this->photoid);
+        $this->photo = GNUsocialPhoto::staticGet('id', $this->photoid);
+        $this->notice = Notice::staticGet('id', $this->photo->notice_id);
 
         $this->user = Profile::staticGet('id', $this->notice->profile_id);
         
@@ -92,7 +92,7 @@ class PhotoAction extends Action
         $this->elementEnd('a');
         $this->element('p', array(), $this->photo->photo_description);
         //This is a hack to hide the top-level comment
-        $this->element('style', array(), "#notice-{$this->photoid} div { display: none } #notice-{$this->photoid} ol li div { display: inline }");
+        $this->element('style', array(), "#notice-{$this->photo->notice_id} div { display: none } #notice-{$this->photoid} ol li div { display: inline }");
         $this->conversation->show();
     }
 }
