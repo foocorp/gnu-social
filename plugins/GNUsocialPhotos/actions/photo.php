@@ -44,12 +44,12 @@ class PhotoAction extends Action
         parent::prepare($args);
 
         $args = $this->returnToArgs();
-		$this->photoid = $args[1]['photoid'];
-		$this->photo = GNUsocialPhoto::staticGet('notice_id', $this->photoid);
-		$this->notice = Notice::staticGet('id', $this->photoid);
+        $this->photoid = $args[1]['photoid'];
+        $this->photo = GNUsocialPhoto::staticGet('notice_id', $this->photoid);
+        $this->notice = Notice::staticGet('id', $this->photoid);
 
         $this->user = Profile::staticGet('id', $this->notice->profile_id);
-		
+        
         $notices = Notice::conversationStream((int)$this->photoid-1, null, null); //Why do I have to do -1?
         $this->conversation = new ConversationTree($notices, $this);
         return true;
@@ -67,10 +67,10 @@ class PhotoAction extends Action
         if (empty($this->user)) {
             return _m('No such user.');
         } else if (empty($this->photo)) {
-		    return _m('No such photo.');
-		} else if (!empty($this->photo->title)) {
+            return _m('No such photo.');
+        } else if (!empty($this->photo->title)) {
             return $this->photo->title;
-		} else {
+        } else {
             return sprintf(_m("%s's Photo."), $this->user->nickname);
         }
     }
@@ -90,9 +90,9 @@ class PhotoAction extends Action
         $this->elementStart('a', array('href' => $this->photo->uri));
         $this->element('img', array('src' => $this->photo->uri));
         $this->elementEnd('a');
-		$this->element('p', array(), $this->photo->photo_description);
-		//This is a hack to hide the top-level comment
-		$this->element('style', array(), "#notice-{$this->photoid} div { display: none } #notice-{$this->photoid} ol li div { display: inline }");
-		$this->conversation->show();
+        $this->element('p', array(), $this->photo->photo_description);
+        //This is a hack to hide the top-level comment
+        $this->element('style', array(), "#notice-{$this->photoid} div { display: none } #notice-{$this->photoid} ol li div { display: inline }");
+        $this->conversation->show();
     }
 }

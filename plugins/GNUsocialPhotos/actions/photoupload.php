@@ -64,20 +64,20 @@ class PhotouploadAction extends Action
             $this->elementStart('form', array('enctype' => 'multipart/form-data',
                                               'method' => 'post',
                                               'action' => common_local_url('photoupload')));
-			$this->elementStart('ul', 'form_data');
-			$this->elementStart('li');
+            $this->elementStart('ul', 'form_data');
+            $this->elementStart('li');
             $this->element('input', array('name' => 'photofile',
                                           'type' => 'file',
                                           'id' => 'photofile'));
-			$this->elementEnd('li');
-			//$this->element('br');
-			$this->elementStart('li');
-			$this->input('phototitle', "Title", $this->trimmed('phototitle'), "The title of the photo. (Optional)");
-			$this->elementEnd('li');
-			$this->elementStart('li');
-			$this->textarea('photo_description', "Description", $this->trimmed('photo_description'), "A description of the photo. (Optional)");
-			$this->elementEnd('li');
-			$this->elementEnd('ul');
+            $this->elementEnd('li');
+            //$this->element('br');
+            $this->elementStart('li');
+            $this->input('phototitle', "Title", $this->trimmed('phototitle'), "The title of the photo. (Optional)");
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            $this->textarea('photo_description', "Description", $this->trimmed('photo_description'), "A description of the photo. (Optional)");
+            $this->elementEnd('li');
+            $this->elementEnd('ul');
             $this->submit('upload', _('Upload'));
             $this->elementEnd('form');
         }
@@ -140,8 +140,8 @@ class PhotouploadAction extends Action
             return;
         }
 
-		$title = $this->trimmed('phototitle');
-		$photo_description = $this->trimmed('photo_description');
+        $title = $this->trimmed('phototitle');
+        $photo_description = $this->trimmed('photo_description');
 
         common_log(LOG_INFO, 'upload path : ' . $imagefile->filepath);
 
