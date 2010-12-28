@@ -50,7 +50,7 @@ class PhotoAction extends Action
 
         $this->user = Profile::staticGet('id', $this->notice->profile_id);
         
-        $notices = Notice::conversationStream((int)$this->notice->conversation, null, null); //Why do I have to do -1?
+        $notices = Notice::conversationStream((int)$this->notice->conversation, null, null); 
         $this->conversation = new ConversationTree($notices, $this);
         return true;
 

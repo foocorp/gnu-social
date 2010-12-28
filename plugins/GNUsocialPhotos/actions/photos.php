@@ -83,16 +83,15 @@ class PhotosAction extends Action
         if (!$album->find()) {
             GNUsocialPhotoAlbum::newAlbum($cur->id, 'Default');
         }
-        $this->elementStart('ul', array('class' => 'photothumbs'));
         while ($album->fetch()) {
-            $this->elementStart('li');
-            $this->element('h3', array(), $album->title);
+            $this->element('style', array(), '.albumcontainer { display: block; background-color: green; float: left; padding: 30px; margin: 20px; }');
+            $this->elementStart('div', array('class' => 'photocontainer'));
             $this->elementStart('a', array('href' => $album->getPageLink()));
             $this->element('img', array('src' => $album->getThumbUri()));
             $this->elementEnd('a');
-            $this->elementEnd('li');
+            $this->element('h3', array(), $album->album_name);
+            $this->elementEnd('div');
         }
-        $this->elementEnd('ul');
         
     }
     
@@ -116,15 +115,16 @@ class PhotosAction extends Action
             $this->element('a', array('href' => $album->getPageLink() . '?pageid=' . ($page+1) ), 'Next page');
         }
 
-        $this->elementStart('ul', array('class' => 'photothumbs'));
+            $this->element('style', array(), '.photocontainer { display: block; background-color: yellow; float: left; padding: 30px; margin: 20px; }');
         foreach ($photos as $photo) {
-            $this->elementStart('li');
             $this->elementStart('a', array('href' => $photo->getPageLink()));
+            $this->elementStart('div', array('class' => 'photocontainer'));
             $this->element('img', array('src' => $photo->thumb_uri));
+            $this->element('div', array('class' => 'phototitle'), $photo->title);
+            $this->elementEnd('div');
             $this->elementEnd('a');
-            $this->elementEnd('li');
         }
-        $this->elementEnd('ul');
+
     }
 
 
