@@ -85,6 +85,9 @@ class PhotosAction extends Action
         //TODO choice of available albums by user.
         //Currently based on fact that each user can only have one album.
         $album = GNUSocialPhotoAlbum::staticGet('profile_id', $this->user->id);
+        if (!$album) {
+            $album = GNUSocialPhotoAlbum::newAlbum($this->user->id, 'Default');
+        }
         $photos = GNUsocialPhoto::getGalleryPage($page, $album->album_id, 9);
 
         if ($page > 1) { 
