@@ -57,32 +57,52 @@ class EditphotoAction extends Action
 
     function title()
     {
-        return _m('Upload Photos');
+        if ($this->photo->title)
+            return _m('Edit photo - ' . $this->photo->title);
+        else
+            return _m('Edit photo');
     }
 
     function showContent()
     {
-        if($this->user->profile_id != $this->photo->profile_id) {
-            $this->element('p', array(), _('You are not authorized to edit this photo.'));
-        } else {
-            $this->element('img', array('src' => $this->photo->uri));
-            $this->elementStart('form', array('method' => 'post',
-                                              'action' => '/editphoto/' . $this->photo->id));
-            $this->elementStart('ul', 'form_data');
-            $this->elementStart('li');
-            $this->input('phototitle', _("Title"), $this->photo->title, _("The title of the photo. (Optional)"));
-            $this->elementEnd('li');
-            $this->elementStart('li');
-            $this->textarea('photo_description', _("Description"), $this->photo->photo_description, _("A description of the photo. (Optional)"));
-            $this->elementEnd('li');
-            $this->elementStart('li');
-            $this->dropdown('album', _("Album"), $this->albumList(), _("The album in which to place this photo"), false, $this->photo->album_id);
-            $this->elementEnd('li');
-            $this->elementEnd('ul');
-            $this->submit('update', _('Update'));
-            $this->elementEnd('form');
-            $this->element('br');            
+
+        if ($this->photo->album_id == 0) {
+            $this->element('p', array(), _('This photo does not exist or was deleted.'));
+            return;
         }
+
+        if ($this->user->profile_id != $this->photo->profile_id) {
+            $this->element('p', array(), _('You are not authorized to edit this photo.'));
+            return;
+        } 
+
+        $this->element('img', array('src' => $this->photo->uri));
+        $this->elementStart('form', array('method' => 'post',
+                                          'action' => '/editphoto/' . $this->photo->id));
+        $this->elementStart('ul', 'form_data');
+        $this->elementStart('li');
+        $this->input('phototitle', _("Title"), $this->photo->title, _("The title of the photo. (Optional)"));
+        $this->elementEnd('li');
+        $this->elementStart('li');
+        $this->textarea('photo_description', _("Description"), $this->photo->photo_description, _("A description of the photo. (Optional)"));
+        $this->elementEnd('li');
+        $this->elementStart('li');
+        $this->dropdown('album', _("Album"), $this->albumList(), _("The album in which to place this photo"), false, $this->photo->album_id);
+        $this->elementEnd('li');
+        $this->elementEnd('ul');
+        $this->submit('update', _('Update'));
+        $this->elementEnd('form');
+        $this->element('br');            
+        $this->elementStart('form', array('method' => 'post',
+                                          'action' => '/editphoto/' . $this->photo->id));
+        $this->element('input', array('type' => 'submit',
+                                      'name' => 'delete',
+                                      'value' => _('Delete Photo'),
+                                      'id' => 'delete',
+                                      'class' => 'submit',
+                                      'onclick' => 'return confirm(\'Are you sure you would like to delete this photo?\')'));
+        $this->elementEnd('form');
+
     }
 
     function handlePost()
@@ -90,8 +110,21 @@ class EditphotoAction extends Action
 
         common_log(LOG_INFO, 'handlPost()!');
 
+        if ($this->photo->album_id == 0) {
+            $this->element('p', array(), _('This photo does not exist or was deleted.'));
+            return;
+        }
+
+        if ($this->user->profile_id != $this->photo->profile_id) {
+            $this->element('p', array(), _('You are not authorized to edit this photo.'));
+            return;
+        } 
+
         if ($this->arg('update')) {
             $this->updatePhoto();
+        }
+        if ($this->arg('delete')) {
+            $this->deletePhoto();
         }
     }
 
@@ -122,10 +155,6 @@ class EditphotoAction extends Action
     function updatePhoto()
     {
         $cur = common_current_user();
-        if($this->user->profile_id != $this->photo->profile_id) {
-            return;
-        }
-
         $this->photo->title = $this->trimmed('phototitle');
         $this->photo->photo_description = $this->trimmed('photo_description');
 
@@ -145,6 +174,25 @@ class EditphotoAction extends Action
         }
         $this->showForm(_('Success!'));
 
+    }
+
+    function deletePhoto()
+    {
+        $this->photo->title = "";
+        $this->photo->photo_description = "";
+        $this->photo->profile_id = 0;
+        $this->photo->album_id = 0;
+        $this->photo->uri = "";
+        $this->photo->thumb_uri = "";
+
+        if ($this->photo->validate())
+            $this->photo->update();
+        else {
+            $this->showForm(_('Error: The photo data is not valid.'));
+            return;
+        }
+        $this->showForm(_('Success!'));
+        return;
     }
 
 }
