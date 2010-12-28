@@ -23,6 +23,7 @@
  * @package   GNU Social
  * @author    Ian Denhardt <ian@zenhack.net>
  * @author    Sean Corbett <sean@gnu.org>
+ * @author    Max Shinn    <trombonechamp@gmail.com>
  * @copyright 2010 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  */
@@ -43,6 +44,7 @@ class PhotosAction extends Action
 
         $args = $this->returnToArgs();
         $username = $args[1]['nickname'];
+        $this->albumid = $args[1]['albumid'];
         if (common_valid_profile_tag($username) == 0) {
             $this->user = null;
         } else {
@@ -72,29 +74,46 @@ class PhotosAction extends Action
         $nav->show();
     }
 
-    function showContent()
+    function showAlbums()
     {
-        if(empty($this->user)) {
+        $album = new GNUsocialPhotoAlbum();
+        $album->user_id = $this->user->id;
+
+        $albums = array();
+        if (!$album->find()) {
+            GNUsocialPhotoAlbum::newAlbum($cur->id, 'Default');
+        }
+        $this->elementStart('ul', array('class' => 'photothumbs'));
+        while ($album->fetch()) {
+            $this->elementStart('li');
+            $this->element('h3', array(), $album->title);
+            $this->elementStart('a', array('href' => $album->getPageLink()));
+            $this->element('img', array('src' => $album->getThumbUri()));
+            $this->elementEnd('a');
+            $this->elementEnd('li');
+        }
+        $this->elementEnd('ul');
+        
+    }
+    
+    function showAlbum($album_id)
+    {
+        $album = GNUSocialPhotoAlbum::staticGet('album_id', $album_id);
+        if (!$album) {
             return;
         }
+
         $page = $_GET['pageid'];
         if (!filter_var($page, FILTER_VALIDATE_INT)){
             $page = 1;
         }
-   
-        //TODO choice of available albums by user.
-        //Currently based on fact that each user can only have one album.
-        $album = GNUSocialPhotoAlbum::staticGet('profile_id', $this->user->id);
-        if (!$album) {
-            $album = GNUSocialPhotoAlbum::newAlbum($this->user->id, 'Default');
-        }
-        $photos = GNUsocialPhoto::getGalleryPage($page, $album->album_id, 9);
 
+        $photos = GNUsocialPhoto::getGalleryPage($page, $album->album_id, 9);
         if ($page > 1) { 
-            $this->element('a', array('href' => 'photos?pageid=' . ($page-1)), 'Previous page');
+            $this->element('a', array('href' => $album->getPageLink() . '?pageid=' . ($page-1)), 'Previous page');
         }
         if (GNUsocialPhoto::getGalleryPage($page+1, $album->album_id, 9)) {
-            $this->element('a', array('href' => 'photos?pageid=' . ($page+1) ), 'Next page');
+            $this->element('a', array('href' => $album->getPageLink() . '?pageid=' . ($page+1) ), 'Next page');
         }
 
         $this->elementStart('ul', array('class' => 'photothumbs'));
@@ -106,5 +125,14 @@ class PhotosAction extends Action
             $this->elementEnd('li');
         }
         $this->elementEnd('ul');
+    }
+
+
+    function showContent()
+    {
+        if (!empty($this->albumid))
+            $this->showAlbum($this->albumid);
+        else
+            $this->showAlbums();
     }
 }

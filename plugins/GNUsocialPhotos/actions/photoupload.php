@@ -193,7 +193,6 @@ class PhotouploadAction extends Action
         $thumb_uri = 'http://' . common_config('site', 'server') . '/file/thumb.' . $filename;
         $profile_id = $cur->id;
        
-        // TODO: proper multiple album support 
         $album = GNUsocialPhotoAlbum::staticGet('album_id', $this->trimmed('album'));
         if ($album->profile_id != $profile_id) {
             $this->showForm(_('Error: This is not your album!'));

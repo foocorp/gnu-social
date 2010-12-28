@@ -74,6 +74,20 @@ class GNUsocialPhotoAlbum extends Memcached_DataObject
         return array('album_id', true, false);
     }
 
+    function getPageLink()
+    {
+        $profile = Profile::StaticGet('id', $this->profile_id);
+        return '/' . $profile->nickname . '/photos/' . $this->album_id;
+    }
+
+    function getThumbUri()
+    {
+        $photo = GNUsocialPhoto::staticGet('album_id', $this->album_id);
+        if (empty($photo))
+            return '/theme/default/default-avatar-profile.png'; //For now...
+        return $photo->thumb_uri;
+    }
+
     static function newAlbum($profile_id, $album_name, $album_description)
     {
         //TODO: Should use foreign key instead...
@@ -94,6 +108,6 @@ class GNUsocialPhotoAlbum extends Memcached_DataObject
         }
         common_log(LOG_INFO, 'album_id : ' . $album->album_id);
         return $album;
-    } 
+    }
 
 }

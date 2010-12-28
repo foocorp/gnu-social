@@ -86,6 +86,7 @@ class GNUsocialPhotosPlugin extends Plugin
     function onRouterInitialized($m)
     {
         $m->connect(':nickname/photos', array('action' => 'photos'));
+        $m->connect(':nickname/photos/:albumid', array('action' => 'photos'));
         $m->connect('main/uploadphoto', array('action' => 'photoupload'));
         $m->connect('photo/:photoid', array('action' => 'photo'));
         return true;
