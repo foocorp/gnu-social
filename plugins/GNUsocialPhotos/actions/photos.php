@@ -83,10 +83,20 @@ class PhotosAction extends Action
         if (!$album->find()) {
             GNUsocialPhotoAlbum::newAlbum($cur->id, 'Default');
         }
+
+        $this->elementStart('div', array('class' => 'galleryheader'));
+        $this->element('a', array('href' => '#',
+                                  'onclick' => 'increasePhotoSize()'), '+');
+        $this->raw(' | ');
+        $this->element('a', array('href' => '#',
+                                  'onclick' => 'decreasePhotoSize()'), '-');
+        $this->elementEnd('div');
+
         while ($album->fetch()) {
             $this->elementStart('div', array('class' => 'photocontainer'));
             $this->elementStart('a', array('href' => $album->getPageLink()));
-            $this->element('img', array('src' => $album->getThumbUri()));
+            $this->element('img', array('src' => $album->getThumbUri(),
+                                        'class' => 'albumingallery'));
             $this->elementEnd('a');
             $this->element('h3', array(), $album->album_name);
             $this->elementEnd('div');
@@ -107,17 +117,28 @@ class PhotosAction extends Action
         }
 
         $photos = GNUsocialPhoto::getGalleryPage($page, $album->album_id, 9);
+        $this->elementStart('div', array('class' => 'galleryheader'));
         if ($page > 1) { 
             $this->element('a', array('href' => $album->getPageLink() . '?pageid=' . ($page-1)), 'Previous page');
+            $this->raw(' | ');
         }
         if (GNUsocialPhoto::getGalleryPage($page+1, $album->album_id, 9)) {
             $this->element('a', array('href' => $album->getPageLink() . '?pageid=' . ($page+1) ), 'Next page');
+            $this->raw(' | ');
         }
+        $this->element('a', array('href' => '#',
+                                  'onclick' => 'increasePhotoSize()'), '+');
+        $this->raw(' | ');
+        $this->element('a', array('href' => '#',
+                                  'onclick' => 'decreasePhotoSize()'), '-');
+        $this->elementEnd('div');
+        
 
         foreach ($photos as $photo) {
             $this->elementStart('a', array('href' => $photo->getPageLink()));
             $this->elementStart('div', array('class' => 'photocontainer'));
-            $this->element('img', array('src' => $photo->thumb_uri));
+            $this->element('img', array('src' => $photo->thumb_uri,
+                                        'class' => 'photoingallery'));
             $this->element('div', array('class' => 'phototitle'), $photo->title);
             $this->elementEnd('div');
             $this->elementEnd('a');

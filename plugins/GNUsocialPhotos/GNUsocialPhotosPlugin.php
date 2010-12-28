@@ -199,5 +199,10 @@ class GNUsocialPhotosPlugin extends Plugin
     {
         $action->cssLink('/plugins/GNUsocialPhotos/res/style.css');
     }
+
+    function onEndShowScripts($action)
+    {
+        $action->script('plugins/GNUsocialPhotos/res/gnusocialphotos.js');
+    }
 }
 
