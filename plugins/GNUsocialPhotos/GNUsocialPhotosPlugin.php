@@ -194,5 +194,10 @@ class GNUsocialPhotosPlugin extends Plugin
                            array('nickname' => $nav->action->trimmed('nickname'))), _('Photos'), 
                            _('Photo gallery'), $nav->action->trimmed('action') == 'photos', 'nav_photos');
     }
+
+    function onEndShowStyles($action)
+    {
+        $action->cssLink('/plugins/GNUsocialPhotos/res/style.css');
+    }
 }
 

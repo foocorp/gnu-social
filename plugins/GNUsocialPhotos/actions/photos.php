@@ -84,7 +84,6 @@ class PhotosAction extends Action
             GNUsocialPhotoAlbum::newAlbum($cur->id, 'Default');
         }
         while ($album->fetch()) {
-            $this->element('style', array(), '.albumcontainer { display: block; background-color: green; float: left; padding: 30px; margin: 20px; }');
             $this->elementStart('div', array('class' => 'photocontainer'));
             $this->elementStart('a', array('href' => $album->getPageLink()));
             $this->element('img', array('src' => $album->getThumbUri()));
@@ -115,7 +114,6 @@ class PhotosAction extends Action
             $this->element('a', array('href' => $album->getPageLink() . '?pageid=' . ($page+1) ), 'Next page');
         }
 
-            $this->element('style', array(), '.photocontainer { display: block; background-color: yellow; float: left; padding: 30px; margin: 20px; }');
         foreach ($photos as $photo) {
             $this->elementStart('a', array('href' => $photo->getPageLink()));
             $this->elementStart('div', array('class' => 'photocontainer'));
