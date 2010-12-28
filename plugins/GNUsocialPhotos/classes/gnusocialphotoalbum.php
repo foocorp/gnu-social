@@ -36,9 +36,10 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 class GNUsocialPhotoAlbum extends Memcached_DataObject
 {
     public $__table = 'GNUsocialPhotoAlbum';
-    public $album_id;       // int(11) -- Unique identifier for the album
-    public $profile_id;     // int(11) -- Profile ID for the owner of the album
-    public $album_name;     // varchar(256) -- Title for this album
+    public $album_id;          // int(11) -- Unique identifier for the album
+    public $profile_id;        // int(11) -- Profile ID for the owner of the album
+    public $album_name;        // varchar(256) -- Title for this album
+    public $album_description; // text -- A description of the album
     
 
     function staticGet($k,$v=NULL)
@@ -52,7 +53,8 @@ class GNUsocialPhotoAlbum extends Memcached_DataObject
     {
         return array('album_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
                      'profile_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-                     'album_name' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL);
+                     'album_name' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
+                     'album_description' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL);
     }
     
     function keys()
@@ -72,7 +74,7 @@ class GNUsocialPhotoAlbum extends Memcached_DataObject
         return array('album_id', true, false);
     }
 
-    static function newAlbum($profile_id, $album_name)
+    static function newAlbum($profile_id, $album_name, $album_description)
     {
         //TODO: Should use foreign key instead...
         if (!Profile::staticGet('id', $profile_id)){
@@ -83,6 +85,7 @@ class GNUsocialPhotoAlbum extends Memcached_DataObject
         $album = new GNUsocialPhotoAlbum();
         $album->profile_id = $profile_id;
         $album->album_name = $album_name;
+        $album->album_description = $album_description;
        
         $album->album_id = $album->insert();
         if (!$album->album_id){

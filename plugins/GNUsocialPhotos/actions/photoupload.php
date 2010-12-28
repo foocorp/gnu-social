@@ -59,6 +59,7 @@ class PhotouploadAction extends Action
 
     function showContent()
     {
+        //Upload a photo
         if(empty($this->user)) {
             $this->element('p', array(), 'You are not logged in.');
         } else {
@@ -73,14 +74,34 @@ class PhotouploadAction extends Action
             $this->elementEnd('li');
             //$this->element('br');
             $this->elementStart('li');
-            $this->input('phototitle', "Title", null, "The title of the photo. (Optional)");
+            $this->input('phototitle', _("Title"), null, _("The title of the photo. (Optional)"));
             $this->elementEnd('li');
             $this->elementStart('li');
-            $this->textarea('photo_description', "Description", null, "A description of the photo. (Optional)");
+            $this->textarea('photo_description', _("Description"), null, _("A description of the photo. (Optional)"));
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            $this->dropdown('album', _("Album"), $this->albumList(), _("The album in which to place this photo"), false);
             $this->elementEnd('li');
             $this->elementEnd('ul');
             $this->submit('upload', _('Upload'));
             $this->elementEnd('form');
+            $this->element('br');
+
+            //Create a new album
+            $this->element('h3', array(), _("Create a new album"));
+            $this->elementStart('form', array('method' => 'post',
+                                              'action' =>common_local_url('photoupload')));
+            $this->elementStart('ul', 'form_data');
+            $this->elementStart('li');
+            $this->input('album_name', _("Title"), null, _("The title of the album."));
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            $this->textarea('album_description', _("Description"), null, _("A description of the album. (Optional)"));
+            $this->elementEnd('li');
+            $this->elementEnd('ul');
+            $this->submit('create', _('Create'));
+            $this->elementEnd('form');
+            
         }
     }
 
@@ -111,17 +132,36 @@ class PhotouploadAction extends Action
             return;
         } */
 
-        if($this->arg('upload')) {
+        if ($this->arg('upload')) {
             $this->uploadPhoto();
+        }
+        if ($this->arg('create')) {
+            $this->createAlbum();
         }
     }
 
     function showForm($msg, $success=false)
-    { 
+    {
         $this->msg = $msg;
         $this->success = $success;
 
 //        $this->showPage();
+    }
+
+    function albumList() 
+    {
+        $cur = common_current_user();
+        $album = new GNUsocialPhotoAlbum();
+        $album->user_id = $cur->id;
+
+        $albumlist = array();
+        if (!$album->find()) {
+            GNUsocialPhotoAlbum::newAlbum($cur->id, 'Default');
+        }
+        while ($album->fetch()) {
+            $albumlist[$album->album_id] = $album->album_name;
+        }
+        return $albumlist;
     }
 
     function uploadPhoto()
@@ -154,10 +194,24 @@ class PhotouploadAction extends Action
         $profile_id = $cur->id;
        
         // TODO: proper multiple album support 
-        $album = GNUsocialPhotoAlbum::staticGet('profile_id', $profile_id);
-        if(!$album)
-            $album = GNUsocialPhotoAlbum::newAlbum($profile_id, 'Default');
+        $album = GNUsocialPhotoAlbum::staticGet('album_id', $this->trimmed('album'));
+        if ($album->profile_id != $profile_id) {
+            $this->showForm(_('Error: This is not your album!'));
+            return;
+        }
         GNUsocialPhoto::saveNew($profile_id, $album->album_id, $thumb_uri, $uri, 'web', false, $title, $photo_description);
     }
 
+    function createAlbum()
+    {
+        $cur = common_current_user();
+        if(empty($cur)) {
+            return;
+        }
+
+        $album_name = $this->trimmed('album_name');
+        $album_description = $this->trimmed('album_description');
+       
+        GNUsocialPhotoAlbum::newAlbum($cur->id, $album_name, $album_description);
+    }
 }
