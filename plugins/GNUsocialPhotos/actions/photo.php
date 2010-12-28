@@ -90,6 +90,15 @@ class PhotoAction extends Action
         $this->elementStart('a', array('href' => $this->photo->uri));
         $this->element('img', array('src' => $this->photo->uri));
         $this->elementEnd('a');
+
+        //Image "toolbar"
+        $cur = common_current_user();
+        if($this->photo->profile_id == $cur->profile_id) {
+            $this->elementStart('div', array('id' => 'image_toolbar'));
+            $this->element('a', array('href' => '/editphoto/' . $this->photo->id), 'Edit');
+            $this->elementEnd('div');
+        }
+
         $this->element('p', array(), $this->photo->photo_description);
         //This is a hack to hide the top-level comment
         $this->element('style', array(), "#notice-{$this->photo->notice_id} div { display: none } #notice-{$this->photo->notice_id} ol li div { display: inline }");

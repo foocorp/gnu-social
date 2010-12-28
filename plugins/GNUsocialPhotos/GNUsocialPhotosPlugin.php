@@ -56,6 +56,10 @@ class GNUsocialPhotosPlugin extends Plugin
             include_once $dir . '/lib/photolib.php';
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             break;
+        case 'EditphotoAction':
+            include_once $dir . '/lib/photolib.php';
+            include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+            break;
         default:
             break;
         }
@@ -89,6 +93,7 @@ class GNUsocialPhotosPlugin extends Plugin
         $m->connect(':nickname/photos/:albumid', array('action' => 'photos'));
         $m->connect('main/uploadphoto', array('action' => 'photoupload'));
         $m->connect('photo/:photoid', array('action' => 'photo'));
+        $m->connect('editphoto/:photoid', array('action' => 'editphoto'));
         return true;
     }
 

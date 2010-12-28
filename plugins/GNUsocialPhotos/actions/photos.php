@@ -86,10 +86,10 @@ class PhotosAction extends Action
 
         $this->elementStart('div', array('class' => 'galleryheader'));
         $this->element('a', array('href' => '#',
-                                  'onclick' => 'increasePhotoSize()'), '+');
+                                  'onclick' => 'return increasePhotoSize()'), '+');
         $this->raw(' | ');
         $this->element('a', array('href' => '#',
-                                  'onclick' => 'decreasePhotoSize()'), '-');
+                                  'onclick' => 'return decreasePhotoSize()'), '-');
         $this->elementEnd('div');
 
         while ($album->fetch()) {
@@ -127,10 +127,10 @@ class PhotosAction extends Action
             $this->raw(' | ');
         }
         $this->element('a', array('href' => '#',
-                                  'onclick' => 'increasePhotoSize()'), '+');
+                                  'onclick' => 'return increasePhotoSize()'), '+');
         $this->raw(' | ');
         $this->element('a', array('href' => '#',
-                                  'onclick' => 'decreasePhotoSize()'), '-');
+                                  'onclick' => 'return decreasePhotoSize()'), '-');
         $this->elementEnd('div');
         
 
