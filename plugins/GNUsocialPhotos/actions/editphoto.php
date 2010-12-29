@@ -172,12 +172,16 @@ class EditphotoAction extends Action
             $this->showForm(_('Error: The photo data is not valid.'));
             return;
         }
+        common_redirect('/photo/' . $this->photo->id, '303');
         $this->showForm(_('Success!'));
 
     }
 
     function deletePhoto()
     {
+        //For redirection
+        $oldalbum = $this->album_id;
+
         $this->photo->title = "";
         $this->photo->photo_description = "";
         $this->photo->profile_id = 0;
@@ -192,6 +196,7 @@ class EditphotoAction extends Action
             return;
         }
         $this->showForm(_('Success!'));
+        common_redirect('/' . $this->user->nickname . '/photos/' . $oldalbum, '303');
         return;
     }
 

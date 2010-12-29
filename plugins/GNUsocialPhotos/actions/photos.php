@@ -74,6 +74,16 @@ class PhotosAction extends Action
         $nav->show();
     }
 
+    function showResizeImagesBox()
+    {
+        $this->elementStart('select', array('onchange' => 'return scalePhotosToSize(this.value)'));
+        $this->element('option', array('value' => ''), "");
+        $this->element('option', array('value' => '60'), _("Thumbnail"));
+        $this->element('option', array('value' => '120'), _("Medium"));
+        $this->element('option', array('value' => '400'), _("Normal"));
+        $this->elementEnd('select');
+    }        
+
     function showAlbums()
     {
         $album = new GNUsocialPhotoAlbum();
@@ -85,12 +95,16 @@ class PhotosAction extends Action
         }
 
         $this->elementStart('div', array('class' => 'galleryheader'));
-        $this->element('a', array('href' => '#',
-                                  'onclick' => 'return increasePhotoSize()'), '+');
-        $this->raw(' | ');
-        $this->element('a', array('href' => '#',
-                                  'onclick' => 'return decreasePhotoSize()'), '-');
+        //$this->element('a', array('href' => '#',
+        //                          'onclick' => 'return increasePhotoSize()'), '+');
+        //$this->raw(' | ');
+        //$this->element('a', array('href' => '#',
+        //                          'onclick' => 'return decreasePhotoSize()'), '-');
+
+        $this->showResizeImagesBox();
         $this->elementEnd('div');
+
+
 
         while ($album->fetch()) {
             $this->elementStart('div', array('class' => 'photocontainer'));
@@ -126,13 +140,16 @@ class PhotosAction extends Action
             $this->element('a', array('href' => $album->getPageLink() . '?pageid=' . ($page+1) ), 'Next page');
             $this->raw(' | ');
         }
-        $this->element('a', array('href' => '#',
-                                  'onclick' => 'return increasePhotoSize()'), '+');
-        $this->raw(' | ');
-        $this->element('a', array('href' => '#',
-                                  'onclick' => 'return decreasePhotoSize()'), '-');
+
+        //$this->element('a', array('href' => '#',
+        //                          'onclick' => 'return increasePhotoSize()'), '+');
+        //$this->raw(' | ');
+        //$this->element('a', array('href' => '#',
+        //                          'onclick' => 'return decreasePhotoSize()'), '-');
+        //$this->raw(' | ');
+
+        $this->showResizeImagesBox();
         $this->elementEnd('div');
-        
 
         foreach ($photos as $photo) {
             $this->elementStart('a', array('href' => $photo->getPageLink()));
