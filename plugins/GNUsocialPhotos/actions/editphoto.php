@@ -182,20 +182,15 @@ class EditphotoAction extends Action
         //For redirection
         $oldalbum = $this->album_id;
 
-        $this->photo->title = "";
-        $this->photo->photo_description = "";
-        $this->photo->profile_id = 0;
-        $this->photo->album_id = 0;
-        $this->photo->uri = "";
-        $this->photo->thumb_uri = "";
+        $notice = Notice::staticGet('id', $this->photo->notice_id);
 
-        if ($this->photo->validate())
-            $this->photo->update();
-        else {
-            $this->showForm(_('Error: The photo data is not valid.'));
-            return;
+        $this->photo->delete();
+        
+        if (Event::handle('StartDeleteOwnNotice', array($this->user, $notice))) {
+            $notice->delete();
+            Event::handle('EndDeleteOwnNotice', array($this->user, $notice));
         }
-        $this->showForm(_('Success!'));
+       $this->showForm(_('Success!'));
         common_redirect('/' . $this->user->nickname . '/photos/' . $oldalbum, '303');
         return;
     }
