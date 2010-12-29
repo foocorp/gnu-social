@@ -91,7 +91,8 @@ class PhotosAction extends Action
 
         $albums = array();
         if (!$album->find()) {
-            GNUsocialPhotoAlbum::newAlbum($cur->id, 'Default');
+            $cur = common_current_user();
+            GNUsocialPhotoAlbum::newAlbum($cur->profile_id, 'Default');
         }
 
         $this->elementStart('div', array('class' => 'galleryheader'));
