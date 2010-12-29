@@ -87,12 +87,11 @@ class PhotosAction extends Action
     function showAlbums()
     {
         $album = new GNUsocialPhotoAlbum();
-        $album->user_id = $this->user->id;
+        $album->profile_id = $this->user->id;
 
         $albums = array();
         if (!$album->find()) {
-            $cur = common_current_user();
-            GNUsocialPhotoAlbum::newAlbum($cur->profile_id, 'Default');
+            GNUsocialPhotoAlbum::newAlbum($this->user->id, 'Default');
         }
 
         $this->elementStart('div', array('class' => 'galleryheader'));
