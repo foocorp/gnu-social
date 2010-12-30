@@ -63,6 +63,12 @@ class PhotouploadAction extends Action
         if(empty($this->user)) {
             $this->element('p', array(), 'You are not logged in.');
         } else {
+            //showForm() data
+            if(!empty($this->msg)) {
+                $class = ($this->success) ? 'success' : 'error';
+                $this->element('p', array('class' => $class), $this->msg);
+            }
+
             $this->elementStart('form', array('enctype' => 'multipart/form-data',
                                               'method' => 'post',
                                               'action' => common_local_url('photoupload')));
@@ -101,6 +107,18 @@ class PhotouploadAction extends Action
             $this->elementEnd('ul');
             $this->submit('create', _('Create'));
             $this->elementEnd('form');
+
+            //Delete an album
+            $this->element('h3', array(), _("Delete an album"));
+            $this->elementStart('form', array('method' => 'post',
+                                              'action' =>common_local_url('photoupload')));
+            $this->elementStart('ul', 'form_data');
+            $this->elementStart('li');
+            $this->dropdown('album', _("Album"), $this->albumList(), _("The album in which to place this photo"), false);
+            $this->elementEnd('li');
+            $this->elementEnd('ul');
+            $this->submit('deletealbum', _('Delete'));
+            $this->elementEnd('form');
             
         }
     }
@@ -137,6 +155,9 @@ class PhotouploadAction extends Action
         }
         if ($this->arg('create')) {
             $this->createAlbum();
+        }
+        if ($this->arg('deletealbum')) {
+            $this->deleteAlbum();
         }
     }
 
@@ -212,5 +233,27 @@ class PhotouploadAction extends Action
         $album_description = $this->trimmed('album_description');
        
         GNUsocialPhotoAlbum::newAlbum($cur->id, $album_name, $album_description);
+    }
+
+    function deleteAlbum()
+    {
+        $cur = common_current_user();
+        if(empty($cur)) return;
+        
+        $album_id = $this->trimmed('album');
+        $album = GNUsocialPhotoAlbum::staticGet('album_id', $album_id);
+        if (empty($album)) {
+            $this->showForm(_('This album does not exist or has been deleted.'));
+            return;
+        }
+        //Check if the album has any photos in it before deleting
+        $photos = GNUsocialPhoto::staticGet('album_id', $album_id);
+        if(empty($photos)) {
+            $album->delete();
+            $this->showForm(_('Album deleted'), true);
+        }
+        else {
+            $this->showForm(_('Cannot delete album when there are photos in it!'), false);
+        }
     }
 }

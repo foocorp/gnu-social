@@ -76,6 +76,12 @@ class EditphotoAction extends Action
             return;
         } 
 
+        //showForm() data
+        if(!empty($this->msg)) {
+            $class = ($this->success) ? 'success' : 'error';
+            $this->element('p', array('class' => $class), $this->msg);
+        }
+
         $this->element('img', array('src' => $this->photo->uri));
         $this->elementStart('form', array('method' => 'post',
                                           'action' => '/editphoto/' . $this->photo->id));
@@ -173,7 +179,7 @@ class EditphotoAction extends Action
             return;
         }
         common_redirect('/photo/' . $this->photo->id, '303');
-        $this->showForm(_('Success!'));
+        $this->showForm(_('Success!'), true);
 
     }
 
