@@ -37,4 +37,11 @@ function gnusocial_profile_merge(&$profile)
     }
 }
     
-
+function gnusocial_field_systemname_validate($systemname)
+{
+    $fields = GNUsocialProfileExtensionField::allFields();
+    foreach ($fields as $field)
+        if ($field->systemname == $systemname)
+            return false;
+    return ctype_alphanum($systemname);
+}

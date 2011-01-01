@@ -54,12 +54,28 @@ class ProfilefieldsAdminPanelAction extends AdminPanelAction
 
     function saveSettings()
     {
-        $title = $this->trimmed('title');
-        $description = $this->trimmed('description');
-        $type = $this->trimmed('type');
-        $systemname = $this->trimmed('systemname');
-
-        $field = GNUsocialProfileExtensionField::newField($title, $description, $type, $systemname);
+        $field = GNUsocialProfileExtensionField::staticGet('id', $this->trimmed('id'));
+        if (!$field)
+            $field = new GNUsocialProfileExtensionField();
+        $field->title = $this->trimmed('title');
+        $field->description = $this->trimmed('description');
+        $field->type = $this->trimmed('type');
+        $field->systemname = $this->trimmed('systemname');
+        if (!gnusocial_field_systemname_validate($field->systemname)) {
+            $this->clientError(_('Internal system name must be unique and consist of only alphanumeric characters!'));
+            return false;
+        }
+        if ($field->id) {
+            if ($field->validate())
+                $field->update();
+            else {
+                $this->clientError(_('There was an error with the field data.'));
+                return false;
+            }
+        }
+        else {
+            $field->insert();
+        }
 
         return;
     }
@@ -86,41 +102,63 @@ class ProfilefieldsAdminForm extends AdminForm
 
     function formData()
     {
-        //Listing all fields
-        $this->out->elementStart('fieldset');
-        $this->out->element('legend', null, _('Existing Custom Profile Fields'));
-        $this->out->elementStart('ul', 'form_data');
-        $fields = GNUsocialProfileExtensionField::allFields();
-        foreach ($fields as $field) {
-            $this->li();
-            $this->out->element('div', array(), $field->title . ' (' .
-                                $field->type . '): ' . $field->description);
-            $this->unli();
+        $title = null;
+        $description = null;
+        $type = null;
+        $systemname = null;
+        $id = null;
+        $fieldsettitle = _("New Profile Field");
+        //Edit a field
+        if ($this->out->trimmed('edit')) { 
+            $field = GNUsocialProfileExtensionField::staticGet('id', $this->out->trimmed('edit'));
+            $title = $field->title;
+            $description = $field->description;
+            $type = $field->type;
+            $systemname = $field->systemname;
+            $this->out->hidden('id', $field->id, 'id');
+            $fieldsettitle = _("Edit Profile Field");
         }
-        $this->out->elementEnd('ul');
-        $this->out->elementEnd('fieldset');
+        //Don't show the list of all fields when editing one
+        else { 
+            $this->out->elementStart('fieldset');
+            $this->out->element('legend', null, _('Existing Custom Profile Fields'));
+            $this->out->elementStart('ul', 'form_data');
+            $fields = GNUsocialProfileExtensionField::allFields();
+            foreach ($fields as $field) {
+                $this->li();
+                $content = 
+                $this->out->elementStart('div');
+                $this->out->element('a', array('href' => '/admin/profilefields?edit=' . $field->id),
+                                    $field->title);
+                $this->out->text(' (' . $field->type . '): ' . $field->description);
+                $this->out->elementEnd('div');
+                $this->unli();
+            }
+            $this->out->elementEnd('ul');
+            $this->out->elementEnd('fieldset');
+        }
 
         //New fields
         $this->out->elementStart('fieldset');
-        $this->out->element('legend', null, _('New Profile Field'));
+        $this->out->element('legend', null, $fieldsettitle);
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
-        $this->input('title', _('Title'),
+        $this->out->input('title', _('Title'), $title,
                      _('The title of the field'));
         $this->unli();
         $this->li();
-        $this->input('systemname', _('Internal name'), 
-                    _('The name used internally for this field.  Also the key used in OStatus user info. (optional)'));
+        $this->out->input('systemname', _('Internal name'), $systemname,
+                     _('The alphanumeric name used internally for this field.  Also the key used in OStatus user info. (optional)'));
         $this->unli();
         $this->li();
-        $this->input('description', _('Description'),
+        $this->out->input('description', _('Description'), $description,
                      _('An optional more detailed description of the field'));
         $this->unli();
         $this->li();
         $this->out->dropdown('type', _('Type'), array('text' => _("Text"),
                                                       'str' => _("String")), 
-                             _('The type of the datafield'));
+                             _('The type of the datafield'), false, $type);
         $this->unli();
         $this->out->elementEnd('ul');
         $this->out->elementEnd('fieldset');
