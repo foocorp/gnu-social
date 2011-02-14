@@ -16,4 +16,8 @@
 }
 div.replyform {
     display: none;
+    padding-left: 15px;
+}
+.replyform .form_notice {
+    width: 75%;
 }

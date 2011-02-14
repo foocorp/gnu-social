@@ -118,10 +118,9 @@ class NoticeTreeItem extends NoticeListItem
             if ($cnt > 1) $this->out->text("s"); //there has to be a better way to do this...
         }
 
-        //TODO: Rewrite this too
         //Show response form
         $this->out->elementStart('div', array('id' => 'form' . $this->notice->id, 'class' => 'replyform'));
-        $noticeform = new NoticeForm($this->out, null, null, null, $this->notice->id);
+        $noticeform = new ReplyForm($this->out, null, null, null, $this->notice->id);
         $noticeform->show();
         $this->out->elementEnd('div');
         return;
@@ -137,6 +136,7 @@ class NoticeTreeItem extends NoticeListItem
     {
         if (common_logged_in()) {
             $this->out->text(' ');
+            //Why doesn't common_local_url work here?
             $reply_url = '/notice/respond?replyto=' . $this->profile->nickname . '&inreplyto=' . $this->notice->id;
             $this->out->elementStart('a', array('href' => $reply_url,
                                                 'class' => 'notice_reply',
@@ -148,4 +148,61 @@ class NoticeTreeItem extends NoticeListItem
         }
     }
 
+}
+
+class ReplyForm extends NoticeForm
+{
+    //Changing the text.  We have to either repeat ids or get hacky.  I vote repeat ids.
+    function formData()
+    {
+        if (Event::handle('StartShowNoticeFormData', array($this))) {
+            // XXX: vary by defined max size
+            $this->out->element('textarea', array('id' => 'notice_data-text',
+                                                  'cols' => 35,
+                                                  'rows' => 4,
+                                                  'name' => 'status_textarea'),
+                                ($this->content) ? $this->content : '');
+
+            $contentLimit = Notice::maxContent();
+
+            if ($contentLimit > 0) {
+                $this->out->elementStart('dl', 'form_note');
+                $this->out->element('dt', null, _('Available characters'));
+                $this->out->element('dd', array('id' => 'notice_text-count'),
+                                    $contentLimit);
+                $this->out->elementEnd('dl');
+            }
+
+            if (common_config('attachments', 'uploads')) {
+                $this->out->element('label', array('for' => 'notice_data-attach'),_('Attach'));
+                $this->out->element('input', array('id' => 'notice_data-attach',
+                                                   'type' => 'file',
+                                                   'name' => 'attach',
+                                                   'title' => _('Attach a file')));
+                $this->out->hidden('MAX_FILE_SIZE', common_config('attachments', 'file_quota'));
+            }
+            if ($this->action) {
+                $this->out->hidden('notice_return-to', $this->action, 'returnto');
+            }
+            $this->out->hidden('notice_in-reply-to', $this->inreplyto, 'inreplyto');
+
+            if ($this->user->shareLocation()) {
+                $this->out->hidden('notice_data-lat', empty($this->lat) ? (empty($this->profile->lat) ? null : $this->profile->lat) : $this->lat, 'lat');
+                $this->out->hidden('notice_data-lon', empty($this->lon) ? (empty($this->profile->lon) ? null : $this->profile->lon) : $this->lon, 'lon');
+                $this->out->hidden('notice_data-location_id', empty($this->location_id) ? (empty($this->profile->location_id) ? null : $this->profile->location_id) : $this->location_id, 'location_id');
+                $this->out->hidden('notice_data-location_ns', empty($this->location_ns) ? (empty($this->profile->location_ns) ? null : $this->profile->location_ns) : $this->location_ns, 'location_ns');
+
+                $this->out->elementStart('div', array('id' => 'notice_data-geo_wrap',
+                                                      'title' => common_local_url('geocode')));
+                $this->out->checkbox('notice_data-geo', _('Share my location'), true);
+                $this->out->elementEnd('div');
+                $this->out->inlineScript(' var NoticeDataGeo_text = {'.
+                    'ShareDisable: ' .json_encode(_('Do not share my location')).','.
+                    'ErrorTimeout: ' .json_encode(_('Sorry, retrieving your geo location is taking longer than expected, please try again later')).
+                    '}');
+            }
+
+            Event::handle('EndShowNoticeFormData', array($this));
+        }
+    }
 }
