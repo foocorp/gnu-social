@@ -22,7 +22,7 @@
  * @category  Widget
  * @package   GNU Social
  * @author    Max Shinn <trombonechamp@gmail.com>
- * @copyright 2010 Free Software Foundation, Inc.
+ * @copyright 2011 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  */
 
@@ -40,6 +40,7 @@ class GNUsocialProfileExtensionsPlugin extends Plugin
         switch ($cls)
         {
         case 'BioAction':
+        case 'NewresponseAction':
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             break;
         case 'ProfilefieldsAdminPanelAction':
@@ -51,6 +52,7 @@ class GNUsocialProfileExtensionsPlugin extends Plugin
         include_once $dir . '/classes/GNUsocialProfileExtensionField.php';
         include_once $dir . '/classes/GNUsocialProfileExtensionResponse.php';
         include_once $dir . '/lib/profiletools.php';
+        include_once $dir . '/lib/noticetree.php';
         return true;
     }
 
@@ -75,6 +77,7 @@ class GNUsocialProfileExtensionsPlugin extends Plugin
     {
         $m->connect(':nickname/bio', array('action' => 'bio'));
         $m->connect('admin/profilefields', array('action' => 'profilefieldsAdminPanel'));
+        $m->connect('notice/respond', array('action' => 'newresponse'));
         return true;
     }
 
@@ -135,6 +138,11 @@ class GNUsocialProfileExtensionsPlugin extends Plugin
         $action->cssLink('/plugins/GNUsocialProfileExtensions/res/style.css');
     }
 
+    function onEndShowScripts($action)
+    {
+        $action->script('plugins/GNUsocialProfileExtensions/js/profile.js');
+    }
+
     function onEndAdminPanelNav($nav)
     {
         if (AdminPanelAction::canAdmin('profilefields')) {
@@ -158,6 +166,13 @@ class GNUsocialProfileExtensionsPlugin extends Plugin
         $nav->out->menuItem(common_local_url('bio',
                            array('nickname' => $nav->action->trimmed('nickname'))), _('Bio'), 
                            _('The user\'s extended profile'), $nav->action->trimmed('action') == 'bio', 'nav_bio');
+    }
+
+    //Why the heck is this shoved into this plugin!?!?  It deserves its own!
+    function onShowStreamNoticeList($notice, $action, &$pnl)
+    {
+        $pnl = new NoticeTree($notice, $action);
+        return false;
     }
 
 }

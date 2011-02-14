@@ -22,7 +22,7 @@
  * @category  Widget
  * @package   GNU Social
  * @author    Max Shinn <trombonechamp@gmail.com>
- * @copyright 2010 Free Software Foundation, Inc.
+ * @copyright 2011 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  */
 
@@ -101,3 +101,5 @@ class BioAction extends Action
     }
 
 }
+
+

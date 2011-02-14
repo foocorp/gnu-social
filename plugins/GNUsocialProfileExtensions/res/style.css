@@ -4,3 +4,16 @@
 .biovalue {
     font-style: italic;
 }
+#showstream ol.notices ol.notices {
+    background-image: url(/plugins/GNUsocialProfileExtensions/res/bgstripe.gif); 
+    background-repeat: repeat-y;
+    background-position: left top;
+    padding-left: 15px;
+    color: #333333;
+}
+#showstream ol.notices ol.notices ol.notices {
+    padding-left: 5px;
+}
+div.replyform {
+    display: none;
+}
