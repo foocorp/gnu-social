@@ -25,7 +25,7 @@
  * @copyright 2011 Free Software Foundation, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  */
-
+            //functions to sort replies
 class NoticeTree extends NoticeList
 {
     function show()
@@ -48,9 +48,10 @@ class NoticeTree extends NoticeList
             }
 
             try {
-                $this->showNoticePlus($this->notice);
+                $this->showNoticePlus($this->newListItem($this->notice));
             } catch (Exception $e) {
                 // we log exceptions and continue
+                print "ERROR!" . $e->getMessage();
                 common_log(LOG_ERR, $e->getMessage());
                 continue;
             }
@@ -62,25 +63,38 @@ class NoticeTree extends NoticeList
         return $cnt;
     }
 
+    function _cmpDate($a, $b) { return strcmp($a->notice->modified, $b->notice->modified); }
+    function _cmpFav($a, $b) { return (int)$a->faves < (int)$b->faves; }
 
-    function showNoticePlus($notice)
+    function showNoticePlus($item)
     {
         $replies = new Notice();
-        $replies->reply_to = $notice->id;
+        $replies->reply_to = $item->notice->id;
 
         // We take responsibility for doing the li
 
-         $this->out->elementStart('li', array('class' => 'hentry notice',
-                                             'id' => 'notice-' . $id));
+        $this->out->elementStart('li', array('class' => 'hentry notice',
+                                             'id' => 'notice-' . $item->notice->id));
 
-        $item = $this->newListItem($notice);
         $item->show();
 
         if ($replies->find()) {
             $this->out->elementStart('ol', array('class' => 'notices'));
 
+            $replieslist = array();
             while ($replies->fetch()) {
-                $this->showNoticePlus($replies);
+                $replieslist[] = $this->newListItem(clone($replies));
+            }
+
+            //Sorting based on url argument
+            if($_GET['sort'] == 'faves')
+                usort($replieslist, array($this, '_cmpFav'));
+            else
+                usort($replieslist, array($this, '_cmpDate'));
+
+
+            foreach($replieslist as $reply) {
+                $this->showNoticePlus($reply);
             }
 
             $this->out->elementEnd('ol');
@@ -97,13 +111,9 @@ class NoticeTree extends NoticeList
 
 class NoticeTreeItem extends NoticeListItem
 {
-    function showStart()
+    function __construct($notice, $out=null)
     {
-        return;
-    }
-
-    function showEnd()
-    {
+        parent::__construct($notice, $out);
         //TODO: Rewrite this
         //Showing number of favorites
         $fave = new Fave();
@@ -113,9 +123,19 @@ class NoticeTreeItem extends NoticeListItem
             while ($fave->fetch())
                 $cnt++;
         }
-        if ($cnt > 0) {
-            $this->out->text(_m("Favorited by $cnt user"));
-            if ($cnt > 1) $this->out->text("s"); //there has to be a better way to do this...
+        $this->faves = $cnt;
+    }        
+
+    function showStart()
+    {
+        return;
+    }
+
+    function showEnd()
+    {
+        if ($this->faves > 0) {
+            $this->out->text(_m("Favorited by $this->faves user"));
+            if ($this->faves > 1) $this->out->text("s"); //there has to be a better way to do this...
         }
 
         //Show response form
