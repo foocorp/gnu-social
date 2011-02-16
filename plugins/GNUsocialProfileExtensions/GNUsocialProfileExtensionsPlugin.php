@@ -171,7 +171,15 @@ class GNUsocialProfileExtensionsPlugin extends Plugin
     //Why the heck is this shoved into this plugin!?!?  It deserves its own!
     function onShowStreamNoticeList($notice, $action, &$pnl)
     {
-        $pnl = new NoticeTree($notice, $action);
+        //TODO: This function is called after the notices in $notice are superfluously retrieved in showstream.php
+        $newnotice = new Notice();
+        $newnotice->profile_id = $action->user->id;
+        $newnotice->orderBy('modified DESC');
+        $newnotice->whereAdd('reply_to IS NULL');
+        $newnotice->limit(($action->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
+        $newnotice->find();
+
+        $pnl = new NoticeTree($newnotice, $action);
         return false;
     }
 
