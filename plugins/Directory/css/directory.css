@@ -1,0 +1,64 @@
+/* CSS file for the Directory plugin */
+
+div#user_directory div.alpha_nav {
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+}
+
+/* XXX: this needs serious CSS foo */
+div#user_directory div.alpha_nav > a {
+    border-left: 1px solid #000;
+    padding-left: 2px;
+}
+div#user_directory div.alpha_nav > a.first {
+    border-left: none;
+}
+
+div#user_directory div.alpha_nav a:link {
+    text-decoration: none;
+}
+
+div#user_directory div.alpha_nav a:visited {
+    text-decoration: none;
+}
+div#user_directory div.alpha_nav a:active {
+    text-decoration: none;
+}
+div#user_directory div.alpha_nav a:hover {
+    text-decoration: underline; color: blue;
+}
+
+div#user_directory div.alpha_nav a.current {
+    background-color:#9BB43E;
+}
+
+table.profile_list {
+    width: 100%;
+}
+
+table.profile_list tr {
+    float: none;
+}
+
+table.profile_list tr.alt {
+    background-color: #def; /* zebra stripe */
+}
+
+table.profie_list td {
+    width: 100%;
+    padding: 0;
+}
+
+
+th.current {
+    background-image: url(../images/control_arrow_down.gif);
+    background-repeat: no-repeat;
+    background-position: 60% 2px;
+}
+
+th.current.reverse {
+    background-image: url(../images/control_arrow_up.gif);
+    background-repeat: no-repeat;
+    background-position: 60% 2px;
+}

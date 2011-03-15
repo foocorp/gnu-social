@@ -33,6 +33,7 @@ class RecoverpasswordAction extends Action
     {
         parent::handle($args);
         if (common_logged_in()) {
+            // TRANS: Client error displayed trying to recover password while already logged in.
             $this->clientError(_('You are already logged in!'));
             return;
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -41,6 +42,7 @@ class RecoverpasswordAction extends Action
             } else if ($this->arg('reset')) {
                 $this->resetPassword();
             } else {
+                // TRANS: Client error displayed when unexpected data is posted in the password recovery form.
                 $this->clientError(_('Unexpected form submission.'));
             }
         } else {
@@ -54,15 +56,16 @@ class RecoverpasswordAction extends Action
 
     function checkCode()
     {
-
         $code = $this->trimmed('code');
         $confirm = Confirm_address::staticGet('code', $code);
 
         if (!$confirm) {
+            // TRANS: Client error displayed when password recovery code is not correct.
             $this->clientError(_('No such recovery code.'));
             return;
         }
         if ($confirm->address_type != 'recover') {
+            // TRANS: Client error displayed when no proper password recovery code was submitted.
             $this->clientError(_('Not a recovery code.'));
             return;
         }
@@ -70,6 +73,7 @@ class RecoverpasswordAction extends Action
         $user = User::staticGet($confirm->user_id);
 
         if (!$user) {
+            // TRANS: Server error displayed trying to recover password without providing a user.
             $this->serverError(_('Recovery code for unknown user.'));
             return;
         }
@@ -83,6 +87,7 @@ class RecoverpasswordAction extends Action
 
         if (!$result) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
+            // TRANS: Server error displayed removing a password recovery code from the database.
             $this->serverError(_('Error with confirmation code.'));
             return;
         }
@@ -94,6 +99,7 @@ class RecoverpasswordAction extends Action
             common_log(LOG_WARNING,
                        'Attempted redemption on recovery code ' .
                        'that is ' . $touched . ' seconds old. ');
+            // TRANS: Client error displayed trying to recover password with too old a recovery code.
             $this->clientError(_('This confirmation code is too old. ' .
                                    'Please start again.'));
             return;
@@ -108,6 +114,7 @@ class RecoverpasswordAction extends Action
             $result = $user->updateKeys($orig);
             if (!$result) {
                 common_log_db_error($user, 'UPDATE', __FILE__);
+                // TRANS: Server error displayed when updating a user's e-mail address in the database fails while recovering a password.
                 $this->serverError(_('Could not update user with confirmed email address.'));
                 return;
             }
@@ -149,14 +156,16 @@ class RecoverpasswordAction extends Action
             $this->elementStart('div', 'instructions');
             if ($this->mode == 'recover') {
                 $this->element('p', null,
+                               // TRANS: Page notice for password recovery page.
                                _('If you have forgotten or lost your' .
                                  ' password, you can get a new one sent to' .
                                  ' the email address you have stored' .
                                  ' in your account.'));
             } else if ($this->mode == 'reset') {
+                // TRANS: Page notice for password change page.
                 $this->element('p', null,
                                _('You have been identified. Enter a' .
-                                 ' new password below. '));
+                                 ' new password below.'));
             }
             $this->elementEnd('div');
         }
@@ -185,19 +194,24 @@ class RecoverpasswordAction extends Action
                                            'class' => 'form_settings',
                                            'action' => common_local_url('recoverpassword')));
         $this->elementStart('fieldset');
+        // TRANS: Fieldset legend for password recovery page.
         $this->element('legend', null, _('Password recovery'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
+        // TRANS: Field label on password recovery page.
         $this->input('nicknameoremail', _('Nickname or email address'),
                      $this->trimmed('nicknameoremail'),
+                     // TRANS: Title for field label on password recovery page.
                      _('Your nickname on this server, ' .
                         'or your registered email address.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->element('input', array('name' => 'recover',
                                       'type' => 'hidden',
+                                      // TRANS: Field label on password recovery page.
                                       'value' => _('Recover')));
-        $this->submit('recover', _('Recover'));
+        // TRANS: Button text on password recovery page.
+        $this->submit('recover', _m('BUTTON','Recover'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }
@@ -205,11 +219,16 @@ class RecoverpasswordAction extends Action
     function title()
     {
         switch ($this->mode) {
+         // TRANS: Title for password recovery page in password reset mode.
          case 'reset': return _('Reset password');
+         // TRANS: Title for password recovery page in password recover mode.
          case 'recover': return _('Recover password');
+         // TRANS: Title for password recovery page in email sent mode.
          case 'sent': return _('Password recovery requested');
-         case 'saved': return _('Password saved.');
+         // TRANS: Title for password recovery page in password saved mode.
+         case 'saved': return _('Password saved');
          default:
+            // TRANS: Title for password recovery page when an unknown action has been specified.
             return _('Unknown action');
         }
     }
@@ -228,19 +247,25 @@ class RecoverpasswordAction extends Action
                                            'class' => 'form_settings',
                                            'action' => common_local_url('recoverpassword')));
         $this->elementStart('fieldset');
+         // TRANS: Fieldset legend for password reset form.
         $this->element('legend', null, _('Password change'));
         $this->hidden('token', common_session_token());
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
+         // TRANS: Field label for password reset form.
         $this->password('newpassword', _('New password'),
-                        _('6 or more characters, and don\'t forget it!'));
+                        // TRANS: Title for field label for password reset form.
+                        _('6 or more characters, and do not forget it!'));
         $this->elementEnd('li');
         $this->elementStart('li');
+         // TRANS: Field label for password reset form where the password has to be typed again.
         $this->password('confirm', _('Confirm'),
-                        _('Same as password above'));
+                        // TRANS: Ttile for field label for password reset form where the password has to be typed again.
+                        _('Same as password above.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('reset', _('Reset'));
+         // TRANS: Button text for password reset form.
+        $this->submit('reset', _m('BUTTON','Reset'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }
@@ -249,6 +274,7 @@ class RecoverpasswordAction extends Action
     {
         $nore = $this->trimmed('nicknameoremail');
         if (!$nore) {
+            // TRANS: Form instructions for password recovery form.
             $this->showForm(_('Enter a nickname or email address.'));
             return;
         }
@@ -256,7 +282,11 @@ class RecoverpasswordAction extends Action
         $user = User::staticGet('email', common_canonical_email($nore));
 
         if (!$user) {
-            $user = User::staticGet('nickname', common_canonical_nickname($nore));
+            try {
+                $user = User::staticGet('nickname', common_canonical_nickname($nore));
+            } catch (NicknameException $e) {
+                // invalid
+            }
         }
 
         # See if it's an unconfirmed email address
@@ -279,6 +309,7 @@ class RecoverpasswordAction extends Action
         }
 
         if (!$user) {
+            // TRANS: Information on password recovery form if no known username or e-mail address was specified.
             $this->showForm(_('No user with that email address or username.'));
             return;
         }
@@ -296,6 +327,7 @@ class RecoverpasswordAction extends Action
         }
 
         if (!$user->email && !$confirm_email) {
+            // TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
             $this->clientError(_('No registered email address for that user.'));
             return;
         }
@@ -310,10 +342,12 @@ class RecoverpasswordAction extends Action
 
         if (!$confirm->insert()) {
             common_log_db_error($confirm, 'INSERT', __FILE__);
+            // TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
             $this->serverError(_('Error saving address confirmation.'));
             return;
         }
 
+         // @todo FIXME: needs i18n.
         $body = "Hey, $user->nickname.";
         $body .= "\n\n";
         $body .= 'Someone just asked for a new password ' .
@@ -332,9 +366,11 @@ class RecoverpasswordAction extends Action
         $body .= "\n";
 
         $headers = _mail_prepare_headers('recoverpassword', $user->nickname, $user->nickname);
+        // TRANS: Subject for password recovery e-mail.
         mail_to_user($user, _('Password recovery requested'), $body, $headers, $confirm->address);
 
         $this->mode = 'sent';
+        // TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
         $this->msg = _('Instructions for recovering your password ' .
                           'have been sent to the email address registered to your ' .
                           'account.');
@@ -347,6 +383,7 @@ class RecoverpasswordAction extends Action
         # CSRF protection
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
+            // TRANS: Form validation error message.
             $this->showForm(_('There was a problem with your session token. Try again, please.'));
             return;
         }
@@ -354,6 +391,7 @@ class RecoverpasswordAction extends Action
         $user = $this->getTempUser();
 
         if (!$user) {
+            // TRANS: Client error displayed when trying to reset as password without providing a user.
             $this->clientError(_('Unexpected password reset.'));
             return;
         }
@@ -362,10 +400,12 @@ class RecoverpasswordAction extends Action
         $confirm = $this->trimmed('confirm');
 
         if (!$newpassword || strlen($newpassword) < 6) {
+            // TRANS: Reset password form validation error message.
             $this->showPasswordForm(_('Password must be 6 characters or more.'));
             return;
         }
         if ($newpassword != $confirm) {
+            // TRANS: Reset password form validation error message.
             $this->showPasswordForm(_('Password and confirmation do not match.'));
             return;
         }
@@ -378,13 +418,15 @@ class RecoverpasswordAction extends Action
 
         if (!$user->update($original)) {
             common_log_db_error($user, 'UPDATE', __FILE__);
-            $this->serverError(_('Can\'t save new password.'));
+            // TRANS: Reset password form validation error message.
+            $this->serverError(_('Cannot save new password.'));
             return;
         }
 
         $this->clearTempUser();
 
         if (!common_set_user($user->nickname)) {
+            // TRANS: Server error displayed when something does wrong with the user object during password reset.
             $this->serverError(_('Error setting user.'));
             return;
         }
@@ -392,6 +434,7 @@ class RecoverpasswordAction extends Action
         common_real_login(true);
 
         $this->mode = 'saved';
+        // TRANS: Success message for user after password reset.
         $this->msg = _('New password successfully saved. ' .
                        'You are now logged in.');
         $this->success = true;

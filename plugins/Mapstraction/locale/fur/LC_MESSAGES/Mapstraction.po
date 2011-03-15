@@ -1,0 +1,58 @@
+# Translation of StatusNet - Mapstraction to Friulian (Furlan)
+# Exported from translatewiki.net
+#
+# Author: Klenje
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Mapstraction\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:31+0000\n"
+"Language-Team: Friulian <http://translatewiki.net/wiki/Portal:fur>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:44:52+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fur\n"
+"X-Message-Group: #out-statusnet-plugin-mapstraction\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Map"
+msgstr "Mape"
+
+#. TRANS: Clickable item to allow opening the map in full size.
+msgid "Full size"
+msgstr "Dimension plene"
+
+msgid ""
+"Show maps of users' and friends' notices with <a href=\"http://www."
+"mapstraction.com/\">Mapstraction</a>."
+msgstr ""
+"Mostre lis mapis dai avîs dai utents e dai amis cun <a href=\"http://www."
+"mapstraction.com/\">Mapstraction</a>."
+
+#. TRANS: Page title.
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "%s friends map"
+msgstr "Mape dai amîs di %s"
+
+#. TRANS: Page title.
+#. TRANS: %1$s is a user nickname, %2$d is a page number.
+#, php-format
+msgid "%1$s friends map, page %2$d"
+msgstr "Mape dai amîs di %1$s, pagjine %2$d"
+
+msgid "No such user."
+msgstr "Utent no cjatât."
+
+msgid "User has no profile."
+msgstr "L'utent nol à un profîl."
+
+#, php-format
+msgid "%s map, page %d"
+msgstr "Mape di %s, pagjine %d"

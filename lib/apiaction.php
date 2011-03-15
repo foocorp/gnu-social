@@ -265,8 +265,7 @@ class ApiAction extends Action
             ? Design::url($design->backgroundimage) : '';
 
         $twitter_user['profile_background_tile']
-            = empty($design->disposition)
-            ? '' : ($design->disposition & BACKGROUND_TILE) ? 'true' : 'false';
+            = (bool)($design->disposition & BACKGROUND_TILE);
 
         $twitter_user['statuses_count'] = $profile->noticeCount();
 
@@ -414,7 +413,7 @@ class ApiAction extends Action
     {
         $twitter_group = array();
 
-        $twitter_group['id'] = $group->id;
+        $twitter_group['id'] = intval($group->id);
         $twitter_group['url'] = $group->permalink();
         $twitter_group['nickname'] = $group->nickname;
         $twitter_group['fullname'] = $group->fullname;
@@ -563,7 +562,7 @@ class ApiAction extends Action
 
         $details['notifications_enabled'] = $notifications;
         $details['blocking'] = $source->hasBlocked($target);
-        $details['id'] = $source->id;
+        $details['id'] = intval($source->id);
 
         return $details;
     }
@@ -947,10 +946,10 @@ class ApiAction extends Action
         $from_profile = $message->getFrom();
         $to_profile = $message->getTo();
 
-        $dmsg['id'] = $message->id;
-        $dmsg['sender_id'] = $message->from_profile;
+        $dmsg['id'] = intval($message->id);
+        $dmsg['sender_id'] = intval($from_profile);
         $dmsg['text'] = trim($message->content);
-        $dmsg['recipient_id'] = $message->to_profile;
+        $dmsg['recipient_id'] = intval($to_profile);
         $dmsg['created_at'] = $this->dateTwitter($message->created);
         $dmsg['sender_screen_name'] = $from_profile->nickname;
         $dmsg['recipient_screen_name'] = $to_profile->nickname;
@@ -1238,9 +1237,12 @@ class ApiAction extends Action
         return;
     }
 
-    function clientError($msg, $code = 400, $format = 'xml')
+    function clientError($msg, $code = 400, $format = null)
     {
         $action = $this->trimmed('action');
+        if ($format === null) {
+            $format = $this->format;
+        }
 
         common_debug("User error '$code' on '$action': $msg", __FILE__);
 
@@ -1280,9 +1282,12 @@ class ApiAction extends Action
         }
     }
 
-    function serverError($msg, $code = 500, $content_type = 'xml')
+    function serverError($msg, $code = 500, $content_type = null)
     {
         $action = $this->trimmed('action');
+        if ($content_type === null) {
+            $content_type = $this->format;
+        }
 
         common_debug("Server error '$code' on '$action': $msg", __FILE__);
 
@@ -1439,41 +1444,23 @@ class ApiAction extends Action
     {
         if (empty($id)) {
             if (self::is_decimal($this->arg('id'))) {
-                return User_group::staticGet($this->arg('id'));
+                return User_group::staticGet('id', $this->arg('id'));
             } else if ($this->arg('id')) {
-                $nickname = common_canonical_nickname($this->arg('id'));
-                $local = Local_group::staticGet('nickname', $nickname);
-                if (empty($local)) {
-                    return null;
-                } else {
-                    return User_group::staticGet('id', $local->id);
-                }
+                return User_group::getForNickname($this->arg('id'));
             } else if ($this->arg('group_id')) {
-                // This is to ensure that a non-numeric user_id still
-                // overrides screen_name even if it doesn't get used
+                // This is to ensure that a non-numeric group_id still
+                // overrides group_name even if it doesn't get used
                 if (self::is_decimal($this->arg('group_id'))) {
                     return User_group::staticGet('id', $this->arg('group_id'));
                 }
             } else if ($this->arg('group_name')) {
-                $nickname = common_canonical_nickname($this->arg('group_name'));
-                $local = Local_group::staticGet('nickname', $nickname);
-                if (empty($local)) {
-                    return null;
-                } else {
-                    return User_group::staticGet('id', $local->group_id);
-                }
+                return User_group::getForNickname($this->arg('group_name'));
             }
 
         } else if (self::is_decimal($id)) {
-            return User_group::staticGet($id);
+            return User_group::staticGet('id', $id);
         } else {
-            $nickname = common_canonical_nickname($id);
-            $local = Local_group::staticGet('nickname', $nickname);
-            if (empty($local)) {
-                return null;
-            } else {
-                return User_group::staticGet('id', $local->group_id);
-            }
+            return User_group::getForNickname($id);
         }
     }
 

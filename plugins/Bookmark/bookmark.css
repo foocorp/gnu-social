@@ -1,0 +1,8 @@
+.bookmark-tags li { display: inline; }
+.bookmark-mentions li { display: inline; }
+.bookmark-avatar { float: left; }
+.bookmark-notice-count { float: right; }
+.bookmark-info { float: left; }
+.bookmark-title { margin-left: 0px; }
+#content .bookmark .entry-title { margin-left: 0px; }
+#content .bookmark .entry-content { margin-left: 0px; }

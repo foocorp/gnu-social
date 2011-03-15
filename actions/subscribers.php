@@ -100,8 +100,6 @@ class SubscribersAction extends GalleryAction
             }
         }
 
-        $subscribers->free();
-
         $this->pagination($this->page > 1, $cnt > PROFILES_PER_PAGE,
                           $this->page, 'subscribers',
                           array('nickname' => $this->user->nickname));

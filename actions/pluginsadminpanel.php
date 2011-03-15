@@ -40,20 +40,17 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class PluginsadminpanelAction extends AdminPanelAction
 {
-
     /**
      * Returns the page title
      *
      * @return string page title
      */
-
     function title()
     {
         // TRANS: Tab and title for plugins admin panel.
-        return _('Plugins');
+        return _m('TITLE','Plugins');
     }
 
     /**
@@ -61,11 +58,10 @@ class PluginsadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
         // TRANS: Instructions at top of plugin admin page.
-        return _('Additional plugins can be enabled and configured manually. ' . 
+        return _('Additional plugins can be enabled and configured manually. ' .
                  'See the <a href="http://status.net/wiki/Plugins">online plugin ' .
                  'documentation</a> for more details.');
     }
@@ -75,11 +71,10 @@ class PluginsadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $this->elementStart('fieldset', array('id' => 'settings_plugins_default'));
-        
+
         // TRANS: Admin form section header
         $this->element('legend', null, _('Default plugins'), 'default');
 
@@ -103,6 +98,7 @@ class PluginsadminpanelAction extends AdminPanelAction
             $list->show();
         } else {
             $this->element('p', null,
+                           // TRANS: Text displayed on plugin admin page when no plugin are enabled.
                            _('All default plugins have been disabled from the ' .
                              'site\'s configuration file.'));
         }

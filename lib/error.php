@@ -91,6 +91,7 @@ class ErrorAction extends InfoAction
         $this->element('div', array('class' => 'error'), $this->message);
     }
 
-
-
+    function showNoticeForm()
+    {
+    }
 }

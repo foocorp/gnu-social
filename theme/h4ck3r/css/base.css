@@ -432,22 +432,22 @@ margin-bottom:7px;
 #form_notice #notice_submit label {
 display:none;
 }
-#form_notice .form_note {
+.form_notice .count {
 position:absolute;
 top:99px;
 right:98px;
 z-index:9;
 }
-#form_notice .form_note dt {
+.form_notice .count dt {
 font-weight:bold;
 display:none;
 }
-#notice_text-count {
+.form_notice .count {
 font-weight:bold;
 line-height:1.15;
 padding:1px 2px;
 }
-#form_notice #notice_action-submit {
+#form_notice .submit {
 width:14%;
 height:47px;
 padding:0;

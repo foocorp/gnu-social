@@ -31,7 +31,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/connectsettingsaction.php';
 require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
 
 /**
@@ -45,7 +44,7 @@ require_once INSTALLDIR . '/plugins/TwitterBridge/twitter.php';
  *
  * @see      SettingsAction
  */
-class TwittersettingsAction extends ConnectSettingsAction
+class TwittersettingsAction extends ProfileSettingsAction
 {
     /**
      * Title of the page

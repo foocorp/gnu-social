@@ -1,5 +1,5 @@
 # Translation of StatusNet - Sample to Macedonian (Македонски)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Bjankuloski06
 # --
@@ -9,62 +9,53 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Sample\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:53+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:10+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:55+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:10+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-sample\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
+msgid "Hello"
+msgstr "Здраво"
+
+#, php-format
+msgid "Hello, %s!"
+msgstr "Здраво, %s!"
+
+msgid "Hello, stranger!"
+msgstr "Здрво, незнајнику!"
+
+#, php-format
+msgid "Hello, %s"
+msgstr "Здраво, %s"
+
+#, php-format
+msgid "I have greeted you %d time."
+msgid_plural "I have greeted you %d times."
+msgstr[0] "Ве поздравив еднаш."
+msgstr[1] "Ве поздравив %d пати."
+
+msgid "A warm greeting"
+msgstr "Срдечен поздрав"
+
+msgid "A sample plugin to show basics of development for new hackers."
+msgstr ""
+"Приклучок-пример за основите на развојното програмирање за нови хакери."
+
 #. TRANS: Exception thrown when the user greeting count could not be saved in the database.
 #. TRANS: %d is a user ID (number).
-#: User_greeting_count.php:164
 #, php-format
 msgid "Could not save new greeting count for %d."
 msgstr "Не можев да го зачувам бројот на поздрави за %d."
 
 #. TRANS: Exception thrown when the user greeting count could not be saved in the database.
 #. TRANS: %d is a user ID (number).
-#: User_greeting_count.php:177
 #, php-format
 msgid "Could not increment greeting count for %d."
 msgstr "Не можев да го дополнам бројот на поздрави за %d."
-
-#: SamplePlugin.php:259 hello.php:111
-msgid "Hello"
-msgstr "Здраво"
-
-#: SamplePlugin.php:259
-msgid "A warm greeting"
-msgstr "Срдечен поздрав"
-
-#: SamplePlugin.php:270
-msgid "A sample plugin to show basics of development for new hackers."
-msgstr ""
-"Приклучок-пример за основите на развојното програмирање за нови хакери."
-
-#: hello.php:113
-#, php-format
-msgid "Hello, %s!"
-msgstr "Здраво, %s!"
-
-#: hello.php:133
-msgid "Hello, stranger!"
-msgstr "Здрво, незнајнику!"
-
-#: hello.php:136
-#, php-format
-msgid "Hello, %s"
-msgstr "Здраво, %s"
-
-#: hello.php:138
-#, php-format
-msgid "I have greeted you %d time."
-msgid_plural "I have greeted you %d times."
-msgstr[0] "Ве поздравив еднаш."
-msgstr[1] "Ве поздравив %d пати."

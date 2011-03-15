@@ -84,6 +84,7 @@ class ApiOauthAccessTokenAction extends ApiOauthAction
             common_debug(var_export($req, true));
             $code = $e->getCode();
             $this->clientError($e->getMessage(), empty($code) ? 401 : $code, 'text');
+            return;
         }
 
         if (empty($atok)) {
@@ -98,7 +99,7 @@ class ApiOauthAccessTokenAction extends ApiOauthAction
 
             common_log(LOG_WARNING, $msg);
             // TRANS: Client error given from the OAuth API when the request token or verifier is invalid.
-            $this->clientError(_("Invalid request token or verifier.", 400, 'text'));
+            $this->clientError(_('Invalid request token or verifier.'), 400, 'text');
         } else {
             common_log(
                 LOG_INFO,

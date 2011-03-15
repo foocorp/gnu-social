@@ -1,0 +1,97 @@
+# Translation of StatusNet - ExtendedProfile to Telugu (తెలుగు)
+# Exported from translatewiki.net
+#
+# Author: Veeven
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ExtendedProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-11 18:15+0000\n"
+"PO-Revision-Date: 2011-03-11 18:18:04+0000\n"
+"Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-08 01:22:06+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83703); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: te\n"
+"X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "UI extensions for additional profile fields."
+msgstr ""
+
+#. TRANS: Link description in user account settings menu.
+msgid "Details"
+msgstr "వివరాలు"
+
+msgid "More details..."
+msgstr "మరిన్ని వివరాలు..."
+
+msgid "Personal"
+msgstr "వ్యక్తిగతం"
+
+msgid "Full name"
+msgstr "పూర్తి పేరు"
+
+msgid "Title"
+msgstr "శీర్షిక"
+
+msgid "Manager"
+msgstr ""
+
+msgid "Location"
+msgstr "ప్రాంతం"
+
+msgid "Bio"
+msgstr ""
+
+msgid "Tags"
+msgstr "ట్యాగులు"
+
+msgid "Contact"
+msgstr "సంప్రదించండి"
+
+msgid "Phone"
+msgstr ""
+
+msgid "IM"
+msgstr ""
+
+msgid "Websites"
+msgstr "జాలగూళ్ళు"
+
+msgid "Birthday"
+msgstr "పుట్టినరోజు"
+
+msgid "Spouse's name"
+msgstr ""
+
+msgid "Kids' names"
+msgstr "పిల్లల పేర్లు"
+
+msgid "Work experience"
+msgstr "ఉద్యోగ అనుభవం"
+
+msgid "Employer"
+msgstr ""
+
+msgid "Education"
+msgstr "చదువు"
+
+msgid "Institution"
+msgstr ""
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr ""
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "మార్చు"
+
+msgid "Extended profile settings"
+msgstr ""

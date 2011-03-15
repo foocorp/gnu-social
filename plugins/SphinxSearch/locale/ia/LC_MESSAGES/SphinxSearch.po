@@ -1,5 +1,5 @@
 # Translation of StatusNet - SphinxSearch to Interlingua (Interlingua)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: McDutchie
 # --
@@ -9,29 +9,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SphinxSearch\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:57+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:14+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:54+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:18+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-sphinxsearch\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Server exception thrown when a database name cannot be identified.
+msgid "Sphinx search could not identify database name."
+msgstr "Le recerca Sphinx non poteva identificar le nomine del base de datos."
+
 #. TRANS: Server exception.
-#: SphinxSearchPlugin.php:87
 msgid "Sphinx PHP extension must be installed."
 msgstr "Le extension PHP Sphinx debe esser installate."
 
 #. TRANS: Plugin description.
-#: SphinxSearchPlugin.php:118
 msgid "Plugin for Sphinx search backend."
 msgstr "Plug-in pro back-end de recerca Sphinx."
-
-#. TRANS: Server exception thrown when a database name cannot be identified.
-#: sphinxsearch.php:96
-msgid "Sphinx search could not identify database name."
-msgstr "Le recerca Sphinx non poteva identificar le nomine del base de datos."

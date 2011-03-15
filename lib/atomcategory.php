@@ -60,6 +60,13 @@ class AtomCategory
 
     function asString()
     {
+        $xs = new XMLStringer();
+        $this->outputTo($xs);
+        return $xs->getString();
+    }
+
+    function outputTo($xo)
+    {
         $attribs = array();
         if ($this->term !== null) {
             $attribs['term'] = $this->term;
@@ -70,8 +77,6 @@ class AtomCategory
         if ($this->label !== null) {
             $attribs['label'] = $this->label;
         }
-        $xs = new XMLStringer();
-        $xs->element('category', $attribs);
-        return $xs->getString();
+        $xo->element('category', $attribs);
     }
 }

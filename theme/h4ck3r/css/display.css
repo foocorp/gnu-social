@@ -44,14 +44,14 @@ background:none;
 }
 
 input.submit,
-#form_notice.warning #notice_text-count,
+#form_notice.warning .count,
 .form_settings .form_note,
 .entity_remote_subscribe {
 background-color:rgba(0, 255, 0, 0.5);
 }
 
 input:focus, textarea:focus, select:focus,
-#form_notice.warning #notice_data-text {
+#form_notice.warning textarea {
 border-color:#9BB43E;
 }
 input.submit,
@@ -82,13 +82,13 @@ border-top-color:#87B4C8;
 background-color:rgba(0,128,0,0.3);
 }
 
-#notice_text-count {
+.form_notice .count {
 color:#0f0;
 }
-#form_notice.warning #notice_text-count {
+#form_notice.warning .count {
 color:#000;
 }
-#form_notice.processing #notice_action-submit {
+#form_notice.processing .submit {
 background:#ccc url(../../base/images/icons/icon_processing.gif) no-repeat 47% 47%;
 cursor:wait;
 text-indent:-9999px;

@@ -48,7 +48,6 @@ require_once INSTALLDIR.'/lib/noticelist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class FavoritedAction extends Action
 {
     var $page = null;
@@ -62,8 +61,11 @@ class FavoritedAction extends Action
     function title()
     {
         if ($this->page == 1) {
+            // TRANS: Page title for first page of favorited notices.
             return _('Popular notices');
         } else {
+            // TRANS: Page title for all but first page of favorited notices.
+            // TRANS: %d is the page number being displayed.
             return sprintf(_('Popular notices, page %d'), $this->page);
         }
     }
@@ -73,9 +75,9 @@ class FavoritedAction extends Action
      *
      * @return instructions for use
      */
-
     function getInstructions()
     {
+        // TRANS: Description on page displaying favorited notices.
         return _('The most popular notices on the site right now.');
     }
 
@@ -84,7 +86,6 @@ class FavoritedAction extends Action
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -99,7 +100,6 @@ class FavoritedAction extends Action
      *
      * @todo move queries from showContent() to here
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -119,7 +119,6 @@ class FavoritedAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -134,7 +133,6 @@ class FavoritedAction extends Action
      *
      * @return void
      */
-
     function showPageNotice()
     {
         $instr  = $this->getInstructions();
@@ -147,12 +145,16 @@ class FavoritedAction extends Action
 
     function showEmptyList()
     {
+        // TRANS: Text displayed instead of a list when a site does not yet have any favourited notices.
         $message = _('Favorite notices appear on this page but no one has favorited one yet.') . ' ';
 
         if (common_logged_in()) {
+            // TRANS: Additional text displayed instead of a list when a site does not yet have any favourited notices for logged in users.
             $message .= _('Be the first to add a notice to your favorites by clicking the fave button next to any notice you like.');
         }
         else {
+            // TRANS: Additional text displayed instead of a list when a site does not yet have any favourited notices for not logged in users.
+            // TRANS: %%action.register%% is a registration link. "[link text](link)" is Mark Down. Do not change the formatting.
             $message .= _('Why not [register an account](%%action.register%%) and be the first to add a notice to your favorites!');
         }
 
@@ -162,27 +164,12 @@ class FavoritedAction extends Action
     }
 
     /**
-     * Local navigation
-     *
-     * This page is part of the public group, so show that.
-     *
-     * @return void
-     */
-
-    function showLocalNav()
-    {
-        $nav = new PublicGroupNav($this);
-        $nav->show();
-    }
-
-    /**
      * Content area
      *
      * Shows the list of popular notices
      *
      * @return void
      */
-
     function showContent()
     {
         $pop = new Popularity();

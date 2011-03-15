@@ -1,5 +1,5 @@
 # Translation of StatusNet - Gravatar to French (Français)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Verdy p
 # --
@@ -9,66 +9,54 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Gravatar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:06+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:20+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:41:57+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:44:10+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-gravatar\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: GravatarPlugin.php:60
 msgid "Set Gravatar"
 msgstr "Définir un Gravatar"
 
-#: GravatarPlugin.php:63
 msgid "If you want to use your Gravatar image, click \"Add\"."
 msgstr ""
 "Si vous souhaitez utiliser votre image Gravatar, cliquez sur « Ajouter »."
 
-#: GravatarPlugin.php:68
 msgid "Add"
 msgstr "Ajouter"
 
-#: GravatarPlugin.php:78
 msgid "Remove Gravatar"
 msgstr "Supprimer le Gravatar"
 
-#: GravatarPlugin.php:81
 msgid "If you want to remove your Gravatar image, click \"Remove\"."
 msgstr ""
 "Si vous souhaitez supprimer votre image Gravatar, cliquez sur « Supprimer »."
 
-#: GravatarPlugin.php:86
 msgid "Remove"
 msgstr "Enlever"
 
-#: GravatarPlugin.php:91
 msgid "To use a Gravatar first enter in an email address."
 msgstr ""
 "Pour utiliser un Gravatar, veuillez d’abord saisir une adresse courriel."
 
-#: GravatarPlugin.php:140
 msgid "You do not have an email address set in your profile."
 msgstr "Vous n'avez pas d’adresse courriel définie dans votre profil."
 
-#: GravatarPlugin.php:158
 msgid "Failed to save Gravatar to the database."
 msgstr "Impossible de sauvegarder le Gravatar dans la base de données."
 
-#: GravatarPlugin.php:162
 msgid "Gravatar added."
 msgstr "Gravatar ajouté."
 
-#: GravatarPlugin.php:180
 msgid "Gravatar removed."
 msgstr "Gravatar supprimé."
 
-#: GravatarPlugin.php:200
 msgid ""
 "The Gravatar plugin allows users to use their <a href=\"http://www.gravatar."
 "com/\">Gravatar</a> with StatusNet."

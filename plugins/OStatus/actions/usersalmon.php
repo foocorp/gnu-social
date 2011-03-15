@@ -43,6 +43,8 @@ class UsersalmonAction extends SalmonAction
             $this->clientError(_m('No such user.'));
         }
 
+        $this->target = $this->user;
+
         return true;
     }
 

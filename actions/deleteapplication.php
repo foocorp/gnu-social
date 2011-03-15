@@ -158,13 +158,13 @@ class DeleteapplicationAction extends Action
                       'submit form_action-primary',
                       'no',
                       // TRANS: Submit button title for 'No' when deleting an application.
-                      _('Do not delete this application'));
+                      _('Do not delete this application.'));
         $this->submit('form_action-yes',
                       // TRANS: Button label on the delete application form.
                       _m('BUTTON','Yes'),
                       'submit form_action-secondary',
                       // TRANS: Submit button title for 'Yes' when deleting an application.
-                      'yes', _('Delete this application'));
+                      'yes', _('Delete this application.'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }

@@ -46,7 +46,6 @@ require_once INSTALLDIR . '/lib/designsettings.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class UserDesignSettingsAction extends DesignSettingsAction
 {
     /**
@@ -70,7 +69,6 @@ class UserDesignSettingsAction extends DesignSettingsAction
      *
      * @return string Title of the page
      */
-
     function title()
     {
         return _('Profile design');
@@ -81,7 +79,6 @@ class UserDesignSettingsAction extends DesignSettingsAction
      *
      * @return instructions for use
      */
-
     function getInstructions()
     {
         return _('Customize the way your profile looks ' .
@@ -93,7 +90,6 @@ class UserDesignSettingsAction extends DesignSettingsAction
      *
      * @return Design
      */
-
     function getWorkingDesign()
     {
         $user   = common_current_user();
@@ -108,7 +104,6 @@ class UserDesignSettingsAction extends DesignSettingsAction
      *
      * @return void
      */
-
     function showContent()
     {
         $design = $this->getWorkingDesign();
@@ -139,7 +134,6 @@ class UserDesignSettingsAction extends DesignSettingsAction
      *
      * @return void
      */
-
     function saveDesign()
     {
         $this->saveDesignPreferences();
@@ -185,7 +179,6 @@ class UserDesignSettingsAction extends DesignSettingsAction
         $design = $user->getDesign();
 
         if (!empty($design)) {
-
             $original = clone($design);
 
             $design->backgroundcolor = $bgcolor->intValue();
@@ -200,13 +193,11 @@ class UserDesignSettingsAction extends DesignSettingsAction
 
             if ($result === false) {
                 common_log_db_error($design, 'UPDATE', __FILE__);
-                $this->showForm(_('Couldn\'t update your design.'));
+                $this->showForm(_('Could not update your design.'));
                 return;
             }
-
             // update design
         } else {
-
             $user->query('BEGIN');
 
             // save new design
@@ -253,7 +244,6 @@ class UserDesignSettingsAction extends DesignSettingsAction
      *
      * @return nothing
      */
-
     function sethd()
     {
 

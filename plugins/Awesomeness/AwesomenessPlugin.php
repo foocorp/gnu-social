@@ -53,7 +53,7 @@ class AwesomenessPlugin extends Plugin
             'homepage' => 'http://status.net/wiki/Plugin:Awesomeness',
             // TRANS: Plugin description for a sample plugin.
             'rawdescription' => _m(
-                'The Awesomeness plugin adds aditional awesomeness ' .
+                'The Awesomeness plugin adds additional awesomeness ' .
                 'to a StatusNet installation.'
             )
         );

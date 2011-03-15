@@ -44,7 +44,6 @@ require_once INSTALLDIR.'/lib/feedlist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ShowfavoritesAction extends OwnerDesignAction
 {
     /** User we're getting the faves of */
@@ -57,7 +56,6 @@ class ShowfavoritesAction extends OwnerDesignAction
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -70,12 +68,15 @@ class ShowfavoritesAction extends OwnerDesignAction
      *
      * @return string title of page
      */
-
     function title()
     {
         if ($this->page == 1) {
+            // TRANS: Title for first page of favourite notices of a user.
+            // TRANS: %s is the user for whom the favourite notices are displayed.
             return sprintf(_('%s\'s favorite notices'), $this->user->nickname);
         } else {
+            // TRANS: Title for all but the first page of favourite notices of a user.
+            // TRANS: %1$s is the user for whom the favourite notices are displayed, %2$d is the page number.
             return sprintf(_('%1$s\'s favorite notices, page %2$d'),
                            $this->user->nickname,
                            $this->page);
@@ -92,7 +93,6 @@ class ShowfavoritesAction extends OwnerDesignAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -102,6 +102,7 @@ class ShowfavoritesAction extends OwnerDesignAction
         $this->user = User::staticGet('nickname', $nickname);
 
         if (!$this->user) {
+            // TRANS: Client error displayed when trying to display favourite notices for a non-existing user.
             $this->clientError(_('No such user.'));
             return false;
         }
@@ -129,6 +130,7 @@ class ShowfavoritesAction extends OwnerDesignAction
         }
 
         if (empty($this->notice)) {
+            // TRANS: Server error displayed when favourite notices could not be retrieved from the database.
             $this->serverError(_('Could not retrieve favorite notices.'));
             return;
         }
@@ -150,7 +152,6 @@ class ShowfavoritesAction extends OwnerDesignAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -162,12 +163,12 @@ class ShowfavoritesAction extends OwnerDesignAction
      *
      * @return array Feed objects to show
      */
-
     function getFeeds()
     {
         return array(new Feed(Feed::RSS1,
                               common_local_url('favoritesrss',
                                                array('nickname' => $this->user->nickname)),
+                              // TRANS: Feed link text. %s is a username.
                               sprintf(_('Feed for favorites of %s (RSS 1.0)'),
                                       $this->user->nickname)),
                      new Feed(Feed::RSS2,
@@ -175,6 +176,7 @@ class ShowfavoritesAction extends OwnerDesignAction
                                                array(
                                                     'id' => $this->user->nickname,
                                                     'format' => 'rss')),
+                              // TRANS: Feed link text. %s is a username.
                               sprintf(_('Feed for favorites of %s (RSS 2.0)'),
                                       $this->user->nickname)),
                      new Feed(Feed::ATOM,
@@ -182,20 +184,9 @@ class ShowfavoritesAction extends OwnerDesignAction
                                                array(
                                                     'id' => $this->user->nickname,
                                                     'format' => 'atom')),
+                              // TRANS: Feed link text. %s is a username.
                               sprintf(_('Feed for favorites of %s (Atom)'),
                                       $this->user->nickname)));
-    }
-
-    /**
-     * show the personal group nav
-     *
-     * @return void
-     */
-
-    function showLocalNav()
-    {
-        $nav = new PersonalGroupNav($this);
-        $nav->show();
     }
 
     function showEmptyListMessage()
@@ -203,12 +194,18 @@ class ShowfavoritesAction extends OwnerDesignAction
         if (common_logged_in()) {
             $current_user = common_current_user();
             if ($this->user->id === $current_user->id) {
+                // TRANS: Text displayed instead of favourite notices for the current logged in user that has no favourites.
                 $message = _('You haven\'t chosen any favorite notices yet. Click the fave button on notices you like to bookmark them for later or shed a spotlight on them.');
             } else {
+                // TRANS: Text displayed instead of favourite notices for a user that has no favourites while logged in.
+                // TRANS: %s is a username.
                 $message = sprintf(_('%s hasn\'t added any favorite notices yet. Post something interesting they would add to their favorites :)'), $this->user->nickname);
             }
         }
         else {
+                // TRANS: Text displayed instead of favourite notices for a user that has no favourites while not logged in.
+                // TRANS: %s is a username, %%%%action.register%%%% is a link to the user registration page.
+                // TRANS: (link text)[link] is a Mark Down link.
             $message = sprintf(_('%s hasn\'t added any favorite notices yet. Why not [register an account](%%%%action.register%%%%) and then post something interesting they would add to their favorites :)'), $this->user->nickname);
         }
 
@@ -224,7 +221,6 @@ class ShowfavoritesAction extends OwnerDesignAction
      *
      * @return void
      */
-
     function showContent()
     {
         $nl = new FavoritesNoticeList($this->notice, $this);
@@ -240,6 +236,7 @@ class ShowfavoritesAction extends OwnerDesignAction
     }
 
     function showPageNotice() {
+        // TRANS: Page notice for show favourites page.
         $this->element('p', 'instructions', _('This is a way to share what you like.'));
     }
 }

@@ -46,13 +46,11 @@ require_once INSTALLDIR.'/lib/form.php';
  *
  * @see      DisfavorForm
  */
-
 class FavorForm extends Form
 {
     /**
      * Notice to favor
      */
-
     var $notice = null;
 
     /**
@@ -61,7 +59,6 @@ class FavorForm extends Form
      * @param HTMLOutputter $out    output channel
      * @param Notice        $notice notice to favor
      */
-
     function __construct($out=null, $notice=null)
     {
         parent::__construct($out);
@@ -74,7 +71,6 @@ class FavorForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'favor-' . $this->notice->id;
@@ -85,7 +81,6 @@ class FavorForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('favor');
@@ -96,13 +91,11 @@ class FavorForm extends Form
      *
      * @return void
      */
-
     function sessionToken()
     {
         $this->out->hidden('token-' . $this->notice->id,
                            common_session_token());
     }
-
 
     /**
      * Legend of the Form
@@ -111,16 +104,15 @@ class FavorForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend for adding the favourite status to a notice.
         $this->out->element('legend', null, _('Favor this notice'));
     }
-
 
     /**
      * Data elements
      *
      * @return void
      */
-
     function formData()
     {
         if (Event::handle('StartFavorNoticeForm', array($this, $this->notice))) {
@@ -136,21 +128,24 @@ class FavorForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->submit('favor-submit-' . $this->notice->id,
-                           _('Favor'), 'submit', null, _('Favor this notice'));
+                           // TRANS: Button text for adding the favourite status to a notice.
+                           _m('BUTTON','Favor'),
+                           'submit',
+                           null,
+                           // TRANS: Title for button text for adding the favourite status to a notice.
+                           _('Favor this notice'));
     }
-    
+
     /**
      * Class of the form.
      *
      * @return string the form's class
      */
-    
     function formClass()
     {
-        return 'form_favor';
+        return 'form_favor ajax';
     }
 }

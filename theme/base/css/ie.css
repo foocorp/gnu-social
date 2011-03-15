@@ -13,7 +13,7 @@ top:0;
 .form_notice textarea {
 width:78%;
 }
-.form_notice .form_note + label {
+.form_notice .count + label {
 position:absolute;
 top:25px;
 left:83%;
@@ -22,15 +22,15 @@ height:16px;
 width:16px;
 display:block;
 }
-.form_notice #notice_action-submit {
+.form_notice .submit {
 width:17%;
 max-width:17%;
 }
-.form_notice #notice_data-attach_selected,
+.form_notice .attach-status,
 .form_notice #notice_data-geo_selected {
 width:78.75%;
 }
-.form_notice #notice_data-attach_selected button,
+.form_notice .attach-status button,
 .form_notice #notice_data-geo_selected button {
 padding:0 4px;
 }

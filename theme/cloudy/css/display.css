@@ -493,38 +493,38 @@ float:left;
 font-size:1.3em;
 margin-bottom:7px;
 }
-.form_notice label[for=notice_data-attach],
-.form_notice #notice_data-attach {
+.form_notice label.notice_data-attach,
+.form_notice input.notice_data-attach {
 position:absolute;
 top:25px;
 right:10.5%;
 cursor:pointer;
 }
-.form_notice label[for=notice_data-attach] {
+.form_notice label.notice_data-attach {
 text-indent:-9999px;
 width:16px;
 height:16px;
 }
-.form_notice #notice_data-attach {
+.form_notice input.notice_data-attach {
 padding:0;
 height:16px;
 }
-.form_notice .form_note {
+.form_notice .count {
 position:absolute;
 bottom:2px;
 right:21.715%;
 z-index:9;
 }
-.form_notice .form_note dt {
+.form_notice .count dt {
 font-weight:bold;
 display:none;
 }
-.form_notice #notice_text-count {
+.form_notice .count {
 font-weight:bold;
 line-height:1.15;
 padding:1px 2px;
 }
-.form_notice #notice_action-submit {
+.form_notice .submit {
 width:14%;
 height:47px;
 padding:0;
@@ -549,7 +549,7 @@ width:81.5%;
 margin-bottom:0;
 line-height:1.618;
 }
-.form_notice #notice_data-attach_selected code,
+.form_notice .attach-status code,
 .form_notice #notice_data-geo_name {
 float:left;
 width:80%;
@@ -557,10 +557,10 @@ display:block;
 overflow:auto;
 margin-right:2.5%;
 }
-.form_notice #notice_data-attach_selected code {
+.form_notice .attach-status code {
 font-size:1.1em;
 }
-.form_notice #notice_data-attach_selected button.close,
+.form_notice .attach-status button.close,
 .form_notice #notice_data-geo_selected button.close {
 float:right;
 font-size:0.8em;
@@ -570,7 +570,7 @@ font-size:0.8em;
 float:left;
 }
 
-.form_notice #notice_data-geo_wrap label {
+.form_notice .notice_data-geo_wrap label {
 position:absolute;
 top:25px;
 right:4px;
@@ -580,10 +580,10 @@ width:16px;
 height:16px;
 display:block;
 }
-.form_notice #notice_data-geo_wrap input {
+.form_notice .notice_data-geo_wrap input {
 display:none;
 }
-.form_notice #notice_data-geo_wrap label {
+.form_notice .notice_data-geo_wrap label {
 font-weight:normal;
 font-size:1em;
 margin-bottom:0;
@@ -1602,7 +1602,7 @@ background:none;
 }
 
 
-.form_notice label[for=notice_data-attach],
+.form_notice label.notice_data-attach,
 #export_data li a.rss,
 #export_data li a.atom,
 #export_data li a.foaf,
@@ -1636,7 +1636,7 @@ button.close,
 .entity_silence input.submit,
 .entity_delete input.submit,
 .notice-options .repeated,
-.form_notice label[for=notice_data-geo],
+.form_notice label.notice_data-geo,
 button.minimize,
 .form_reset_key input.submit,
 .entity_clear input.submit,
@@ -1673,7 +1673,7 @@ background-position:0 -1912px;
 }
 
 input.submit,
-.form_notice.warning #notice_text-count,
+.form_notice.warning .count,
 .form_settings .form_note,
 .entity_actions a,
 .entity_actions input,
@@ -1690,8 +1690,8 @@ border-color:transparent;
 background-color:transparent;
 }
 input:focus, textarea:focus, select:focus,
-.form_notice.warning #notice_data-text,
-.form_notice.warning #notice_text-count,
+.form_notice.warning textarea,
+.form_notice.warning .count,
 .form_settings .form_note {
 border-color:#9BB43E;
 }
@@ -1705,8 +1705,8 @@ border-color:transparent;
 background-color:transparent;
 }
 input:focus, textarea:focus, select:focus,
-.form_notice.warning #notice_data-text,
-.form_notice.warning #notice_text-count,
+.form_notice.warning textarea,
+.form_notice.warning .count,
 .form_settings .form_note {
 border-color:#9BB43E;
 }
@@ -1746,10 +1746,10 @@ background-position:0 47%;
 .form_notice a#notice_data-geo_name {
 background-position:0 -1711px;
 }
-.form_notice label[for=notice_data-geo] {
+.form_notice label.notice_data-geo {
 background-position:0 -1780px;
 }
-.form_notice label[for=notice_data-geo].checked {
+.form_notice label.notice_data-geo.checked {
 background-position:0 -1846px;
 }
 
@@ -1781,20 +1781,20 @@ border-color:#AAAAAA;
 background-color:#DDFFCC;
 }
 
-#notice_text-count {
+.form_notice .count {
 color:#000000;
 }
-#form_notice.warning #notice_text-count {
+#form_notice.warning .count {
 color:#000000;
 }
-#form_notice label[for=notice_data-attach] {
+#form_notice label.notice_data-attach {
 background:transparent url(../../base/images/icons/twotone/green/clip-01.gif) no-repeat 0 45%;
 }
-#form_notice #notice_data-attach {
+#form_notice input.notice_data-attach {
 opacity:0;
 }
 
-#form_notice.processing #notice_action-submit {
+#form_notice.processing .submit {
 background:#fff url(../../base/images/icons/icon_processing.gif) no-repeat 47% 47%;
 cursor:wait;
 text-indent:-9999px;
@@ -2071,7 +2071,7 @@ border-color:#FFFF00;
 }
 
 
-#form_notice .form_note {
+.form_notice .count {
 color:#CCC;
 }
 

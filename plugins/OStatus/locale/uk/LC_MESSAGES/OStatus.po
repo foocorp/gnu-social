@@ -1,5 +1,5 @@
 # Translation of StatusNet - OStatus to Ukrainian (Українська)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Boogie
 # --
@@ -9,109 +9,95 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:45+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:00+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:51+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:49:39+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+msgid "Feeds"
+msgstr "Веб-стрічки"
+
 #. TRANS: Link description for link to subscribe to a remote user.
 #. TRANS: Link text for a user to subscribe to an OStatus user.
-#: OStatusPlugin.php:225 OStatusPlugin.php:935
 msgid "Subscribe"
 msgstr "Підписатись"
 
 #. TRANS: Link description for link to join a remote group.
-#: OStatusPlugin.php:244 OStatusPlugin.php:653 actions/ostatussub.php:109
 msgid "Join"
 msgstr "Приєднатися"
 
 #. TRANSLATE: %s is a domain.
-#: OStatusPlugin.php:457
 #, php-format
 msgid "Sent from %s via OStatus"
 msgstr "Надіслано з %s через OStatus"
 
 #. TRANS: Exception.
-#: OStatusPlugin.php:529
 msgid "Could not set up remote subscription."
 msgstr "Не вдалося створити віддалену підписку."
 
-#: OStatusPlugin.php:603
 msgid "Unfollow"
 msgstr "Не читати"
 
 #. TRANS: Success message for unsubscribe from user attempt through OStatus.
 #. TRANS: %1$s is the unsubscriber's name, %2$s is the unsubscribed user's name.
-#: OStatusPlugin.php:606
 #, php-format
 msgid "%1$s stopped following %2$s."
 msgstr "%1$s припинив читати ваші дописи %2$s."
 
-#: OStatusPlugin.php:634
 msgid "Could not set up remote group membership."
 msgstr "Не вдалося приєднатися до віддаленої спільноти."
 
 #. TRANS: Success message for subscribe to group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the subscribed group's name.
-#: OStatusPlugin.php:656
 #, php-format
 msgid "%1$s has joined group %2$s."
 msgstr "%1$s приєднався до спільноти %2$s."
 
 #. TRANS: Exception.
-#: OStatusPlugin.php:665
 msgid "Failed joining remote group."
 msgstr "Помилка приєднання до віддаленої спільноти."
 
-#: OStatusPlugin.php:705
 msgid "Leave"
 msgstr "Залишити"
 
 #. TRANS: Success message for unsubscribe from group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the unsubscribed group's name.
-#: OStatusPlugin.php:708
 #, php-format
 msgid "%1$s has left group %2$s."
 msgstr "%1$s залишив спільноту %2$s."
 
-#: OStatusPlugin.php:783
 msgid "Disfavor"
 msgstr "Не обраний"
 
 #. TRANS: Success message for remove a favorite notice through OStatus.
 #. TRANS: %1$s is the unfavoring user's name, %2$s is URI to the no longer favored notice.
-#: OStatusPlugin.php:786
 #, php-format
 msgid "%1$s marked notice %2$s as no longer a favorite."
 msgstr "%1$s позначив допис %2$s, як такий, що більше не є обраним."
 
 #. TRANS: Link text for link to remote subscribe.
-#: OStatusPlugin.php:862
 msgid "Remote"
 msgstr "Віддалено"
 
 #. TRANS: Title for activity.
-#: OStatusPlugin.php:902
 msgid "Profile update"
 msgstr "Оновлення профілю"
 
 #. TRANS: Ping text for remote profile update through OStatus.
 #. TRANS: %s is user that updated their profile.
-#: OStatusPlugin.php:905
 #, php-format
 msgid "%s has updated their profile page."
 msgstr "%s оновив сторінку свого профілю."
 
 #. TRANS: Plugin description.
-#: OStatusPlugin.php:950
 msgid ""
 "Follow people across social networks that implement <a href=\"http://ostatus."
 "org/\">OStatus</a>."
@@ -119,275 +105,16 @@ msgstr ""
 "Додає можливість слідкувати за дописами людей з інших мереж, які підтримують "
 "протокол <a href=\"http://ostatus.org/\">OStatus</a>."
 
-#: classes/FeedSub.php:252
-msgid "Attempting to start PuSH subscription for feed with no hub."
-msgstr ""
-"Спроба підписатися за допомогою PuSH до веб-стрічки, котра не має вузла."
-
-#: classes/FeedSub.php:282
-msgid "Attempting to end PuSH subscription for feed with no hub."
-msgstr ""
-"Спроба скасувати підписку за допомогою PuSH до веб-стрічки, котра не має "
-"вузла."
-
-#. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:192
-#, php-format
-msgid "Invalid ostatus_profile state: both group and profile IDs set for %s."
-msgstr ""
-"Невірний стан параметру ostatus_profile: як групові, так і персональні "
-"ідентифікатори встановлено для %s."
-
-#. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:195
-#, php-format
-msgid "Invalid ostatus_profile state: both group and profile IDs empty for %s."
-msgstr ""
-"Невірний стан параметру ostatus_profile: як групові, так і персональні "
-"ідентифікатори порожні для %s."
-
-#. TRANS: Server exception.
-#. TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.
-#: classes/Ostatus_profile.php:285
-#, php-format
-msgid "Invalid actor passed to %1$s: %2$s."
-msgstr "До %1$s передано невірний об’єкт: %2$s."
-
-#. TRANS: Server exception.
-#: classes/Ostatus_profile.php:378
-msgid ""
-"Invalid type passed to Ostatus_profile::notify. It must be XML string or "
-"Activity entry."
-msgstr ""
-"До параметру Ostatus_profile::notify передано невірний тип. Це має бути або "
-"рядок у форматі XML, або запис активності."
-
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:409
-msgid "Unknown feed format."
-msgstr "Невідомий формат веб-стрічки."
-
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:433
-msgid "RSS feed without a channel."
-msgstr "RSS-стрічка не має каналу."
-
 #. TRANS: Client exception.
-#: classes/Ostatus_profile.php:478
-msgid "Can't handle that kind of post."
-msgstr "Не вдається обробити такий тип допису."
-
-#. TRANS: Client exception. %s is a source URI.
-#: classes/Ostatus_profile.php:561
-#, php-format
-msgid "No content for notice %s."
-msgstr "Допис %s не має змісту."
-
-#. TRANS: Shown when a notice is longer than supported and/or when attachments are present. At runtime
-#. TRANS: this will usually be replaced with localised text from StatusNet core messages.
-#: classes/Ostatus_profile.php:596
-msgid "Show more"
-msgstr "Розгорнути"
-
-#. TRANS: Exception. %s is a profile URL.
-#: classes/Ostatus_profile.php:789
-#, php-format
-msgid "Could not reach profile page %s."
-msgstr "Не вдалося досягти сторінки профілю %s."
-
-#. TRANS: Exception. %s is a URL.
-#: classes/Ostatus_profile.php:847
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Не вдалося знайти URL веб-стрічки для сторінки профілю %s."
-
-#. TRANS: Feed sub exception.
-#: classes/Ostatus_profile.php:985
-msgid "Can't find enough profile information to make a feed."
-msgstr ""
-"Не можу знайти достатньо інформації про профіль, аби сформувати веб-стрічку."
-
-#. TRANS: Server exception. %s is a URL.
-#: classes/Ostatus_profile.php:1045
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Невірна URL-адреса аватари %s."
-
-#. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:1056
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Намагаюся оновити аватару для не збереженого віддаленого профілю %s."
-
-#. TRANS: Server exception. %s is a URL.
-#: classes/Ostatus_profile.php:1066
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Неможливо завантажити аватару з %s."
-
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:1292
-msgid "Local user can't be referenced as remote."
-msgstr "Місцевий користувач не може бути зазначеним у якості віддаленого."
-
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:1297
-msgid "Local group can't be referenced as remote."
-msgstr "Локальну спільноту не можна зазначити у якості віддаленої."
-
-#. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1349 classes/Ostatus_profile.php:1360
-msgid "Can't save local profile."
-msgstr "Не вдається зберегти місцевий профіль."
-
-#. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1368
-msgid "Can't save OStatus profile."
-msgstr "Не вдається зберегти профіль OStatus."
-
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:1632 classes/Ostatus_profile.php:1660
-msgid "Not a valid webfinger address."
-msgstr "Це недійсна адреса для протоколу WebFinger."
-
-#. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1742
-#, php-format
-msgid "Couldn't save profile for \"%s\"."
-msgstr "Не можу зберегти профіль для «%s»."
-
-#. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1761
-#, php-format
-msgid "Couldn't save ostatus_profile for \"%s\"."
-msgstr "Не можу зберегти профіль OStatus для «%s»."
-
-#. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1769
-#, php-format
-msgid "Couldn't find a valid profile for \"%s\"."
-msgstr "не можу знайти відповідний й профіль для «%s»."
-
-#. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1812
-msgid "Could not store HTML content of long post as file."
-msgstr "Не можу зберегти HTML місткого допису у якості файлу."
-
-#. TRANS: Client exception. %s is a HTTP status code.
-#: classes/HubSub.php:212
-#, php-format
-msgid "Hub subscriber verification returned HTTP %s."
-msgstr "Перевірка вузла підписки завершилася зі статусом HTTP %s."
-
-#. TRANS: Exception. %1$s is a response status code, %2$s is the body of the response.
-#: classes/HubSub.php:359
-#, php-format
-msgid "Callback returned status: %1$s. Body: %2$s"
-msgstr "Зворотній виклик повернуто зі статусом: %1$s. Зміст: %2$s"
-
-#. TRANS: Client error. POST is a HTTP command. It should not be translated.
-#: lib/salmonaction.php:42
-msgid "This method requires a POST."
-msgstr "Цей метод вимагає команди POST."
-
-#. TRANS: Client error. Do not translate "application/magic-envelope+xml"
-#: lib/salmonaction.php:47
-msgid "Salmon requires \"application/magic-envelope+xml\"."
-msgstr "Протокол Salmon вимагає \"application/magic-envelope+xml\"."
-
-#. TRANS: Client error.
-#: lib/salmonaction.php:57
-msgid "Salmon signature verification failed."
-msgstr "Перевірка підпису протоколу Salmon не вдалася."
-
-#. TRANS: Client error.
-#: lib/salmonaction.php:69
-msgid "Salmon post must be an Atom entry."
-msgstr "Дописи за протоколом Salmon мають бути у форматі Atom."
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:118
-msgid "Unrecognized activity type."
-msgstr "Невідомий тип діяльності."
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:127
-msgid "This target doesn't understand posts."
-msgstr "Ціль не розуміє, що таке «дописи»."
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:133
-msgid "This target doesn't understand follows."
-msgstr "Ціль не розуміє, що таке «слідувати»."
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:139
-msgid "This target doesn't understand unfollows."
-msgstr "Ціль не розуміє, що таке «не слідувати»."
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:145
-msgid "This target doesn't understand favorites."
-msgstr "Ціль не розуміє, що таке «додати до обраних»."
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:151
-msgid "This target doesn't understand unfavorites."
-msgstr "Ціль не розуміє, що таке «вилучити з обраних»."
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:157
-msgid "This target doesn't understand share events."
-msgstr "Ціль не розуміє, що таке «поділитися подією»."
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:163
-msgid "This target doesn't understand joins."
-msgstr "Ціль не розуміє, що таке «приєднатися»."
-
-#. TRANS: Client exception.
-#: lib/salmonaction.php:169
-msgid "This target doesn't understand leave events."
-msgstr "Ціль не розуміє, що таке «залишати подію»."
-
-#. TRANS: Exception.
-#: lib/salmonaction.php:197
-msgid "Received a salmon slap from unidentified actor."
-msgstr "Отримано ляпаса від невизначеного учасника за протоколом Salmon."
-
-#. TRANS: Exception.
-#: lib/discovery.php:110
-#, php-format
-msgid "Unable to find services for %s."
-msgstr "Не вдається знайти сервіси для %s."
-
-#. TRANS: Exception.
-#: lib/magicenvelope.php:80
-msgid "Unable to locate signer public key."
-msgstr "Не вдалося знайти публічного ключа підписанта."
-
-#. TRANS: Exception.
-#: lib/salmon.php:93
-msgid "Salmon invalid actor for signing."
-msgstr "Недійсний учасник подій за протоколом Salmon для підписання."
-
-#: tests/gettext-speedtest.php:57
-msgid "Feeds"
-msgstr "Веб-стрічки"
-
-#. TRANS: Client exception.
-#: actions/pushhub.php:70
 msgid "Publishing outside feeds not supported."
 msgstr "Публікація змісту зовнішніх веб-стрічок не підтримується."
 
 #. TRANS: Client exception. %s is a mode.
-#: actions/pushhub.php:73
 #, php-format
 msgid "Unrecognized mode \"%s\"."
 msgstr "Невизначений режим «%s»."
 
 #. TRANS: Client exception. %s is a topic.
-#: actions/pushhub.php:93
 #, php-format
 msgid ""
 "Unsupported hub.topic %s this hub only serves local user and group Atom "
@@ -397,13 +124,11 @@ msgstr ""
 "користувачами та групою веб-стрічок у форматі Atom."
 
 #. TRANS: Client exception.
-#: actions/pushhub.php:99
 #, php-format
 msgid "Invalid hub.verify \"%s\". It must be sync or async."
 msgstr "hub.verify «%s» невірний. Він має бути синхронним або ж асинхронним."
 
 #. TRANS: Client exception.
-#: actions/pushhub.php:105
 #, php-format
 msgid "Invalid hub.lease \"%s\". It must be empty or positive integer."
 msgstr ""
@@ -411,182 +136,62 @@ msgstr ""
 "число."
 
 #. TRANS: Client exception.
-#: actions/pushhub.php:113
 #, php-format
 msgid "Invalid hub.secret \"%s\". It must be under 200 bytes."
 msgstr "hub.secret «%s» невірний. 200 байтів — не більше."
 
 #. TRANS: Client exception.
-#: actions/pushhub.php:165
 #, php-format
 msgid "Invalid hub.topic \"%s\". User doesn't exist."
 msgstr "hub.topic «%s» невірний. Користувача не існує."
 
 #. TRANS: Client exception.
-#: actions/pushhub.php:174
 #, php-format
 msgid "Invalid hub.topic \"%s\". Group doesn't exist."
 msgstr "hub.topic «%s» невірний. Спільноти не існує."
 
 #. TRANS: Client exception.
 #. TRANS: %1$s is this argument to the method this exception occurs in, %2$s is a URL.
-#: actions/pushhub.php:199
 #, php-format
 msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "Для %1$s передано невірний URL: «%2$s»"
 
-#: actions/ownerxrd.php:39 actions/usersalmon.php:43
+msgid "Empty or invalid feed id."
+msgstr "Порожній або недійсний ідентифікатор веб-стрічки."
+
+#. TRANS: Server exception. %s is a feed ID.
+#, php-format
+msgid "Unknown PuSH feed id %s"
+msgstr "Веб-стрічка за протоколом PuSH має невідомий ідентифікатор %s"
+
+#. TRANS: Client exception. %s is an invalid feed name.
+#, php-format
+msgid "Bad hub.topic feed \"%s\"."
+msgstr "hub.topic веб-стрічки «%s» неправильний."
+
+#. TRANS: Client exception. %1$s the invalid token, %2$s is the topic for which the invalid token was given.
+#, php-format
+msgid "Bad hub.verify_token %1$s for %2$s."
+msgstr "hub.verify_token %1$s для %2$s неправильний."
+
+#. TRANS: Client exception. %s is an invalid topic.
+#, php-format
+msgid "Unexpected subscribe request for %s."
+msgstr "Несподіваний запит підписки для %s."
+
+#. TRANS: Client exception. %s is an invalid topic.
+#, php-format
+msgid "Unexpected unsubscribe request for %s."
+msgstr "Несподіваний запит щодо скасування підписки для %s."
+
 msgid "No such user."
 msgstr "Такого користувача немає."
 
-#. TRANS: Client error.
-#: actions/usersalmon.php:37 actions/groupsalmon.php:40
-msgid "No ID."
-msgstr "Немає ідентифікатора."
-
-#. TRANS: Client exception.
-#: actions/usersalmon.php:81
-msgid "In reply to unknown notice."
-msgstr "У відповідь на невідомий допис."
-
-#. TRANS: Client exception.
-#: actions/usersalmon.php:86
-msgid "In reply to a notice not by this user and not mentioning this user."
-msgstr ""
-"У відповідь на допис іншого користувача, а даний користувач у ньому навіть "
-"не згадується."
-
-#. TRANS: Client exception.
-#: actions/usersalmon.php:163
-msgid "Could not save new favorite."
-msgstr "Не вдалося зберегти як новий обраний допис."
-
-#. TRANS: Client exception.
-#: actions/usersalmon.php:195
-msgid "Can't favorite/unfavorite without an object."
-msgstr ""
-"Неможливо додати до обраних або видалити зі списку обраних, якщо немає "
-"об’єкта."
-
-#. TRANS: Client exception.
-#: actions/usersalmon.php:207
-msgid "Can't handle that kind of object for liking/faving."
-msgstr ""
-"Не вдається обробити подібний об’єкт для додавання його до списку обраних."
-
-#. TRANS: Client exception. %s is an object ID.
-#: actions/usersalmon.php:214
-#, php-format
-msgid "Notice with ID %s unknown."
-msgstr "Допис з ідентифікатором %s є невідомим."
-
-#. TRANS: Client exception. %1$s is a notice ID, %2$s is a user ID.
-#: actions/usersalmon.php:219
-#, php-format
-msgid "Notice with ID %1$s not posted by %2$s."
-msgstr "Допис з ідентифікатором %1$s було надіслано не %2$s."
-
-#. TRANS: Field label.
-#: actions/ostatusgroup.php:78
-msgid "Join group"
-msgstr "Долучитися до спільноти"
-
-#. TRANS: Tooltip for field label "Join group".
-#: actions/ostatusgroup.php:81
-msgid "OStatus group's address, like http://example.net/group/nickname."
-msgstr ""
-"Адреса спільноти згідно протоколу OStatus, наприклад http://example.net/"
-"group/nickname."
-
-#. TRANS: Button text.
-#: actions/ostatusgroup.php:86 actions/ostatussub.php:75
-msgctxt "BUTTON"
-msgid "Continue"
-msgstr "Продовжити"
-
-#: actions/ostatusgroup.php:105
-msgid "You are already a member of this group."
-msgstr "Ви вже є учасником цієї спільноти."
-
-#. TRANS: OStatus remote group subscription dialog error.
-#: actions/ostatusgroup.php:140
-msgid "Already a member!"
-msgstr "Ви вже учасник!"
-
-#. TRANS: OStatus remote group subscription dialog error.
-#: actions/ostatusgroup.php:151
-msgid "Remote group join failed!"
-msgstr "Приєднатися до віддаленої спільноти не вдалося!"
-
-#. TRANS: OStatus remote group subscription dialog error.
-#: actions/ostatusgroup.php:155
-msgid "Remote group join aborted!"
-msgstr "Приєднання до віддаленої спільноти перервано!"
-
-#. TRANS: Page title for OStatus remote group join form
-#: actions/ostatusgroup.php:167
-msgid "Confirm joining remote group"
-msgstr "Підтвердження приєднання до віддаленої спільноти"
-
-#. TRANS: Instructions.
-#: actions/ostatusgroup.php:178
-msgid ""
-"You can subscribe to groups from other supported sites. Paste the group's "
-"profile URI below:"
-msgstr ""
-"Ви можете долучатися до спільнот на аналогічних сайтах. Просто вставте URI "
-"профілю спільноти тут:"
-
-#. TRANS: Client error.
-#: actions/groupsalmon.php:47
-msgid "No such group."
-msgstr "Такої спільноти немає."
-
-#. TRANS: Client error.
-#: actions/groupsalmon.php:53
-msgid "Can't accept remote posts for a remote group."
-msgstr "Не можу узгодити віддалену пересилку дописів до віддаленої спільноти."
-
-#. TRANS: Client error.
-#: actions/groupsalmon.php:127
-msgid "Can't read profile to set up group membership."
-msgstr "Не можу прочитати профіль, аби долучитися до спільноти."
-
-#. TRANS: Client error.
-#: actions/groupsalmon.php:131 actions/groupsalmon.php:174
-msgid "Groups can't join groups."
-msgstr "Спільноти ніяк не можуть приєднуватися до спільнот."
-
-#: actions/groupsalmon.php:144
-msgid "You have been blocked from that group by the admin."
-msgstr "Адміністратор спільноти заблокував ваш профіль."
-
-#. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
-#: actions/groupsalmon.php:159
-#, php-format
-msgid "Could not join remote user %1$s to group %2$s."
-msgstr ""
-"Віддаленому користувачеві %1$s не вдалося долучитися до спільноти %2$s."
-
-#: actions/groupsalmon.php:171
-msgid "Can't read profile to cancel group membership."
-msgstr ""
-"Не вдається прочитати профіль користувача, щоб скасувати його перебування у "
-"спільноті."
-
-#. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
-#: actions/groupsalmon.php:188
-#, php-format
-msgid "Could not remove remote user %1$s from group %2$s."
-msgstr "Не вдалось видалити віддаленого користувача %1$s зі спільноти %2$s."
-
 #. TRANS: Field label for a field that takes an OStatus user address.
-#: actions/ostatussub.php:68
 msgid "Subscribe to"
 msgstr "Підписатися"
 
 #. TRANS: Tooltip for field label "Subscribe to".
-#: actions/ostatussub.php:71
 msgid ""
 "OStatus user's address, like nickname@example.com or http://example.net/"
 "nickname"
@@ -595,50 +200,29 @@ msgstr ""
 "com або http://example.net/nickname"
 
 #. TRANS: Button text.
+msgctxt "BUTTON"
+msgid "Continue"
+msgstr "Продовжити"
+
+#. TRANS: Button text.
 #. TRANS: Tooltip for button "Join".
-#: actions/ostatussub.php:112
 msgctxt "BUTTON"
 msgid "Join this group"
 msgstr "Приєднатися до спільноти"
 
 #. TRANS: Button text.
-#: actions/ostatussub.php:115
 msgctxt "BUTTON"
 msgid "Confirm"
 msgstr "Підтвердити"
 
 #. TRANS: Tooltip for button "Confirm".
-#: actions/ostatussub.php:117
 msgid "Subscribe to this user"
 msgstr "Підписатись до цього користувача"
 
-#: actions/ostatussub.php:138
 msgid "You are already subscribed to this user."
 msgstr "Ви вже підписані до цього користувача."
 
-#: actions/ostatussub.php:167
-msgid "Photo"
-msgstr "Фото"
-
-#: actions/ostatussub.php:178
-msgid "Nickname"
-msgstr "Псевдонім"
-
-#: actions/ostatussub.php:199
-msgid "Location"
-msgstr "Розташування"
-
-#: actions/ostatussub.php:208
-msgid "URL"
-msgstr "URL-адреса"
-
-#: actions/ostatussub.php:220
-msgid "Note"
-msgstr "Примітка"
-
 #. TRANS: Error text.
-#: actions/ostatussub.php:256 actions/ostatussub.php:263
-#: actions/ostatussub.php:288
 msgid ""
 "Sorry, we could not reach that address. Please make sure that the OStatus "
 "address is like nickname@example.com or http://example.net/nickname."
@@ -648,9 +232,6 @@ msgstr ""
 "nickname@example.com або ж http://example.net/nickname."
 
 #. TRANS: Error text.
-#: actions/ostatussub.php:267 actions/ostatussub.php:271
-#: actions/ostatussub.php:275 actions/ostatussub.php:279
-#: actions/ostatussub.php:283
 msgid ""
 "Sorry, we could not reach that feed. Please try that OStatus address again "
 "later."
@@ -659,31 +240,25 @@ msgstr ""
 "дану адресу ще раз пізніше."
 
 #. TRANS: OStatus remote subscription dialog error.
-#: actions/ostatussub.php:317
 msgid "Already subscribed!"
 msgstr "Вже підписаний!"
 
 #. TRANS: OStatus remote subscription dialog error.
-#: actions/ostatussub.php:322
 msgid "Remote subscription failed!"
 msgstr "Підписатися віддалено не вдалося!"
 
-#: actions/ostatussub.php:369 actions/ostatusinit.php:64
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Виникли певні проблеми з токеном сесії. Спробуйте знов, будь ласка."
 
 #. TRANS: Form title.
-#: actions/ostatussub.php:397 actions/ostatusinit.php:83
 msgid "Subscribe to user"
 msgstr "Підписатися до користувача"
 
 #. TRANS: Page title for OStatus remote subscription form
-#: actions/ostatussub.php:417
 msgid "Confirm"
 msgstr "Підтвердити"
 
 #. TRANS: Instructions.
-#: actions/ostatussub.php:429
 msgid ""
 "You can subscribe to users from other supported sites. Paste their address "
 "or profile URI below:"
@@ -691,104 +266,377 @@ msgstr ""
 "Ви маєте можливість підписуватись до користувачів на аналогічних сайтах. "
 "Просто вставте їхні адреси або URI профілів тут:"
 
+#. TRANS: Field label.
+msgid "Join group"
+msgstr "Долучитися до спільноти"
+
+#. TRANS: Tooltip for field label "Join group".
+msgid "OStatus group's address, like http://example.net/group/nickname."
+msgstr ""
+"Адреса спільноти згідно протоколу OStatus, наприклад http://example.net/"
+"group/nickname."
+
+msgid "You are already a member of this group."
+msgstr "Ви вже є учасником цієї спільноти."
+
+#. TRANS: OStatus remote group subscription dialog error.
+msgid "Already a member!"
+msgstr "Ви вже учасник!"
+
+#. TRANS: OStatus remote group subscription dialog error.
+msgid "Remote group join failed!"
+msgstr "Приєднатися до віддаленої спільноти не вдалося!"
+
+#. TRANS: OStatus remote group subscription dialog error.
+msgid "Remote group join aborted!"
+msgstr "Приєднання до віддаленої спільноти перервано!"
+
+#. TRANS: Page title for OStatus remote group join form
+msgid "Confirm joining remote group"
+msgstr "Підтвердження приєднання до віддаленої спільноти"
+
+#. TRANS: Instructions.
+msgid ""
+"You can subscribe to groups from other supported sites. Paste the group's "
+"profile URI below:"
+msgstr ""
+"Ви можете долучатися до спільнот на аналогічних сайтах. Просто вставте URI "
+"профілю спільноти тут:"
+
 #. TRANS: Client error.
-#: actions/ostatusinit.php:42
+msgid "No ID."
+msgstr "Немає ідентифікатора."
+
+#. TRANS: Client exception.
+msgid "In reply to unknown notice."
+msgstr "У відповідь на невідомий допис."
+
+#. TRANS: Client exception.
+msgid "In reply to a notice not by this user and not mentioning this user."
+msgstr ""
+"У відповідь на допис іншого користувача, а даний користувач у ньому навіть "
+"не згадується."
+
+#. TRANS: Client exception.
+msgid "Could not save new favorite."
+msgstr "Не вдалося зберегти як новий обраний допис."
+
+#. TRANS: Client exception.
+msgid "Can't favorite/unfavorite without an object."
+msgstr ""
+"Неможливо додати до обраних або видалити зі списку обраних, якщо немає "
+"об’єкта."
+
+#. TRANS: Client exception.
+msgid "Can't handle that kind of object for liking/faving."
+msgstr ""
+"Не вдається обробити подібний об’єкт для додавання його до списку обраних."
+
+#. TRANS: Client exception. %s is an object ID.
+#, php-format
+msgid "Notice with ID %s unknown."
+msgstr "Допис з ідентифікатором %s є невідомим."
+
+#. TRANS: Client exception. %1$s is a notice ID, %2$s is a user ID.
+#, php-format
+msgid "Notice with ID %1$s not posted by %2$s."
+msgstr "Допис з ідентифікатором %1$s було надіслано не %2$s."
+
+#. TRANS: Client error.
+msgid "No such group."
+msgstr "Такої спільноти немає."
+
+#. TRANS: Client error.
+msgid "Can't accept remote posts for a remote group."
+msgstr "Не можу узгодити віддалену пересилку дописів до віддаленої спільноти."
+
+#. TRANS: Client error.
+msgid "Can't read profile to set up group membership."
+msgstr "Не можу прочитати профіль, аби долучитися до спільноти."
+
+#. TRANS: Client error.
+msgid "Groups can't join groups."
+msgstr "Спільноти ніяк не можуть приєднуватися до спільнот."
+
+msgid "You have been blocked from that group by the admin."
+msgstr "Адміністратор спільноти заблокував ваш профіль."
+
+#. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
+#, php-format
+msgid "Could not join remote user %1$s to group %2$s."
+msgstr ""
+"Віддаленому користувачеві %1$s не вдалося долучитися до спільноти %2$s."
+
+msgid "Can't read profile to cancel group membership."
+msgstr ""
+"Не вдається прочитати профіль користувача, щоб скасувати його перебування у "
+"спільноті."
+
+#. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
+#, php-format
+msgid "Could not remove remote user %1$s from group %2$s."
+msgstr "Не вдалось видалити віддаленого користувача %1$s зі спільноти %2$s."
+
+#. TRANS: Client error.
 msgid "You can use the local subscription!"
 msgstr "Ви можете користуватись локальними підписками!"
 
 #. TRANS: Form legend.
-#: actions/ostatusinit.php:98
 #, php-format
 msgid "Join group %s"
 msgstr "Приєднатися до спільноти %s"
 
 #. TRANS: Button text.
-#: actions/ostatusinit.php:100
 msgctxt "BUTTON"
 msgid "Join"
 msgstr "Приєднатися"
 
 #. TRANS: Form legend.
-#: actions/ostatusinit.php:103
 #, php-format
 msgid "Subscribe to %s"
 msgstr "Підписатися до %s"
 
 #. TRANS: Button text.
-#: actions/ostatusinit.php:105
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr "Підписатись"
 
 #. TRANS: Field label.
-#: actions/ostatusinit.php:118
+msgid "Group nickname"
+msgstr "Назва спільноти"
+
+msgid "Nickname of the group you want to join."
+msgstr "Назва спільноти, до якої ви хотіли б приєднатися."
+
+#. TRANS: Field label.
 msgid "User nickname"
 msgstr "Ім’я користувача"
 
-#: actions/ostatusinit.php:119
 msgid "Nickname of the user you want to follow."
 msgstr "Ім’я користувача, дописи якого ви хотіли б читати."
 
 #. TRANS: Field label.
-#: actions/ostatusinit.php:124
 msgid "Profile Account"
 msgstr "Профіль акаунту"
 
 #. TRANS: Tooltip for field label "Profile Account".
-#: actions/ostatusinit.php:126
 msgid "Your account id (e.g. user@identi.ca)."
 msgstr "Ідентифікатор вашого акаунту (щось на зразок user@identi.ca)"
 
 #. TRANS: Client error.
-#: actions/ostatusinit.php:148
 msgid "Must provide a remote profile."
 msgstr "Мусите зазначити віддалений профіль."
 
 #. TRANS: Client error.
-#: actions/ostatusinit.php:160
 msgid "Couldn't look up OStatus account profile."
 msgstr "Не вдалося знайти профіль акаунту за протоколом OStatus."
 
 #. TRANS: Client error.
-#: actions/ostatusinit.php:173
 msgid "Couldn't confirm remote profile address."
 msgstr "Не вдалося підтвердити адресу віддаленого профілю."
 
 #. TRANS: Page title.
-#: actions/ostatusinit.php:218
 msgid "OStatus Connect"
 msgstr "З’єднання OStatus"
 
-#: actions/pushcallback.php:50
-msgid "Empty or invalid feed id."
-msgstr "Порожній або недійсний ідентифікатор веб-стрічки."
+msgid "Attempting to start PuSH subscription for feed with no hub."
+msgstr ""
+"Спроба підписатися за допомогою PuSH до веб-стрічки, котра не має вузла."
 
-#. TRANS: Server exception. %s is a feed ID.
-#: actions/pushcallback.php:56
-#, php-format
-msgid "Unknown PuSH feed id %s"
-msgstr "Веб-стрічка за протоколом PuSH має невідомий ідентифікатор %s"
+msgid "Attempting to end PuSH subscription for feed with no hub."
+msgstr ""
+"Спроба скасувати підписку за допомогою PuSH до веб-стрічки, котра не має "
+"вузла."
 
-#. TRANS: Client exception. %s is an invalid feed name.
-#: actions/pushcallback.php:96
+#. TRANS: Server exception. %s is a URI.
 #, php-format
-msgid "Bad hub.topic feed \"%s\"."
-msgstr "hub.topic веб-стрічки «%s» неправильний."
+msgid "Invalid ostatus_profile state: both group and profile IDs set for %s."
+msgstr ""
+"Невірний стан параметру ostatus_profile: як групові, так і персональні "
+"ідентифікатори встановлено для %s."
 
-#. TRANS: Client exception. %1$s the invalid token, %2$s is the topic for which the invalid token was given.
-#: actions/pushcallback.php:101
+#. TRANS: Server exception. %s is a URI.
 #, php-format
-msgid "Bad hub.verify_token %1$s for %2$s."
-msgstr "hub.verify_token %1$s для %2$s неправильний."
+msgid "Invalid ostatus_profile state: both group and profile IDs empty for %s."
+msgstr ""
+"Невірний стан параметру ostatus_profile: як групові, так і персональні "
+"ідентифікатори порожні для %s."
 
-#. TRANS: Client exception. %s is an invalid topic.
-#: actions/pushcallback.php:108
+#. TRANS: Server exception.
+#. TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.
 #, php-format
-msgid "Unexpected subscribe request for %s."
-msgstr "Несподіваний запит підписки для %s."
+msgid "Invalid actor passed to %1$s: %2$s."
+msgstr "До %1$s передано невірний об’єкт: %2$s."
 
-#. TRANS: Client exception. %s is an invalid topic.
-#: actions/pushcallback.php:113
+#. TRANS: Server exception.
+msgid ""
+"Invalid type passed to Ostatus_profile::notify. It must be XML string or "
+"Activity entry."
+msgstr ""
+"До параметру Ostatus_profile::notify передано невірний тип. Це має бути або "
+"рядок у форматі XML, або запис активності."
+
+#. TRANS: Exception.
+msgid "Unknown feed format."
+msgstr "Невідомий формат веб-стрічки."
+
+#. TRANS: Exception.
+msgid "RSS feed without a channel."
+msgstr "RSS-стрічка не має каналу."
+
+#. TRANS: Client exception.
+msgid "Can't handle that kind of post."
+msgstr "Не вдається обробити такий тип допису."
+
+#. TRANS: Client exception. %s is a source URI.
 #, php-format
-msgid "Unexpected unsubscribe request for %s."
-msgstr "Несподіваний запит щодо скасування підписки для %s."
+msgid "No content for notice %s."
+msgstr "Допис %s не має змісту."
+
+#. TRANS: Shown when a notice is longer than supported and/or when attachments are present. At runtime
+#. TRANS: this will usually be replaced with localised text from StatusNet core messages.
+msgid "Show more"
+msgstr "Розгорнути"
+
+#. TRANS: Exception. %s is a profile URL.
+#, php-format
+msgid "Could not reach profile page %s."
+msgstr "Не вдалося досягти сторінки профілю %s."
+
+#. TRANS: Exception. %s is a URL.
+#, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr "Не вдалося знайти URL веб-стрічки для сторінки профілю %s."
+
+#. TRANS: Feed sub exception.
+msgid "Can't find enough profile information to make a feed."
+msgstr ""
+"Не можу знайти достатньо інформації про профіль, аби сформувати веб-стрічку."
+
+#. TRANS: Server exception. %s is a URL.
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Невірна URL-адреса аватари %s."
+
+#. TRANS: Server exception. %s is a URI.
+#, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr "Намагаюся оновити аватару для не збереженого віддаленого профілю %s."
+
+#. TRANS: Server exception. %s is a URL.
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Неможливо завантажити аватару з %s."
+
+#. TRANS: Exception.
+msgid "Local user can't be referenced as remote."
+msgstr "Місцевий користувач не може бути зазначеним у якості віддаленого."
+
+#. TRANS: Exception.
+msgid "Local group can't be referenced as remote."
+msgstr "Локальну спільноту не можна зазначити у якості віддаленої."
+
+#. TRANS: Server exception.
+msgid "Can't save local profile."
+msgstr "Не вдається зберегти місцевий профіль."
+
+#. TRANS: Server exception.
+msgid "Can't save OStatus profile."
+msgstr "Не вдається зберегти профіль OStatus."
+
+#. TRANS: Exception.
+msgid "Not a valid webfinger address."
+msgstr "Це недійсна адреса для протоколу WebFinger."
+
+#. TRANS: Exception. %s is a webfinger address.
+#, php-format
+msgid "Couldn't save profile for \"%s\"."
+msgstr "Не можу зберегти профіль для «%s»."
+
+#. TRANS: Exception. %s is a webfinger address.
+#, php-format
+msgid "Couldn't save ostatus_profile for \"%s\"."
+msgstr "Не можу зберегти профіль OStatus для «%s»."
+
+#. TRANS: Exception. %s is a webfinger address.
+#, php-format
+msgid "Couldn't find a valid profile for \"%s\"."
+msgstr "не можу знайти відповідний й профіль для «%s»."
+
+#. TRANS: Server exception.
+msgid "Could not store HTML content of long post as file."
+msgstr "Не можу зберегти HTML місткого допису у якості файлу."
+
+#. TRANS: Client exception. %s is a HTTP status code.
+#, php-format
+msgid "Hub subscriber verification returned HTTP %s."
+msgstr "Перевірка вузла підписки завершилася зі статусом HTTP %s."
+
+#. TRANS: Exception. %1$s is a response status code, %2$s is the body of the response.
+#, php-format
+msgid "Callback returned status: %1$s. Body: %2$s"
+msgstr "Зворотній виклик повернуто зі статусом: %1$s. Зміст: %2$s"
+
+#. TRANS: Exception.
+msgid "Unable to locate signer public key."
+msgstr "Не вдалося знайти публічного ключа підписанта."
+
+#. TRANS: Exception.
+msgid "Salmon invalid actor for signing."
+msgstr "Недійсний учасник подій за протоколом Salmon для підписання."
+
+#. TRANS: Client error. POST is a HTTP command. It should not be translated.
+msgid "This method requires a POST."
+msgstr "Цей метод вимагає команди POST."
+
+#. TRANS: Client error. Do not translate "application/magic-envelope+xml"
+msgid "Salmon requires \"application/magic-envelope+xml\"."
+msgstr "Протокол Salmon вимагає \"application/magic-envelope+xml\"."
+
+#. TRANS: Client error.
+msgid "Salmon signature verification failed."
+msgstr "Перевірка підпису протоколу Salmon не вдалася."
+
+#. TRANS: Client error.
+msgid "Salmon post must be an Atom entry."
+msgstr "Дописи за протоколом Salmon мають бути у форматі Atom."
+
+#. TRANS: Client exception.
+msgid "Unrecognized activity type."
+msgstr "Невідомий тип діяльності."
+
+#. TRANS: Client exception.
+msgid "This target doesn't understand posts."
+msgstr "Ціль не розуміє, що таке «дописи»."
+
+#. TRANS: Client exception.
+msgid "This target doesn't understand follows."
+msgstr "Ціль не розуміє, що таке «слідувати»."
+
+#. TRANS: Client exception.
+msgid "This target doesn't understand unfollows."
+msgstr "Ціль не розуміє, що таке «не слідувати»."
+
+#. TRANS: Client exception.
+msgid "This target doesn't understand favorites."
+msgstr "Ціль не розуміє, що таке «додати до обраних»."
+
+#. TRANS: Client exception.
+msgid "This target doesn't understand unfavorites."
+msgstr "Ціль не розуміє, що таке «вилучити з обраних»."
+
+#. TRANS: Client exception.
+msgid "This target doesn't understand share events."
+msgstr "Ціль не розуміє, що таке «поділитися подією»."
+
+#. TRANS: Client exception.
+msgid "This target doesn't understand joins."
+msgstr "Ціль не розуміє, що таке «приєднатися»."
+
+#. TRANS: Client exception.
+msgid "This target doesn't understand leave events."
+msgstr "Ціль не розуміє, що таке «залишати подію»."
+
+#. TRANS: Exception.
+msgid "Received a salmon slap from unidentified actor."
+msgstr "Отримано ляпаса від невизначеного учасника за протоколом Salmon."

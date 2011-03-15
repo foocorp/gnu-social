@@ -65,7 +65,7 @@ class BlankAdPlugin extends UAPPlugin
         $action->element('img',
                          array('width' => 300,
                                'height' => 250,
-                               'src' => common_path('plugins/BlankAd/redpixel.png')),
+                               'src' => $this->path('redpixel.png')),
                          '');
     }
 
@@ -81,7 +81,7 @@ class BlankAdPlugin extends UAPPlugin
         $action->element('img',
                          array('width' => 180,
                                'height' => 150,
-                               'src' => common_path('plugins/BlankAd/redpixel.png')),
+                               'src' => $this->path('redpixel.png')),
                          '');
     }
 
@@ -97,7 +97,7 @@ class BlankAdPlugin extends UAPPlugin
         $action->element('img',
                          array('width' => 160,
                                'height' => 600,
-                               'src' => common_path('plugins/BlankAd/redpixel.png')),
+                               'src' => $this->path('redpixel.png')),
                          '');
     }
 
@@ -113,7 +113,7 @@ class BlankAdPlugin extends UAPPlugin
         $action->element('img',
                          array('width' => 728,
                                'height' => 90,
-                               'src' => common_path('plugins/BlankAd/redpixel.png')),
+                               'src' => $this->path('redpixel.png')),
                          '');
     }
 

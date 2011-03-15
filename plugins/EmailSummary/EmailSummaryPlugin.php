@@ -62,15 +62,15 @@ class EmailSummaryPlugin extends Plugin
                              array(new ColumnDef('user_id', 'integer', null,
                                                  false, 'PRI'),
                                    new ColumnDef('send_summary', 'tinyint', null,
-						 false, null, 1),
+                                                 false, null, 1),
                                    new ColumnDef('last_summary_id', 'integer', null,
-						 true),
+                                                 true),
                                    new ColumnDef('created', 'datetime', null,
-						 false),
+                                                 false),
                                    new ColumnDef('modified', 'datetime', null,
-						 false),
-				   )
-			     );
+                                                 false),
+                             )
+        );
         return true;
     }
 
@@ -88,17 +88,17 @@ class EmailSummaryPlugin extends Plugin
         $dir = dirname(__FILE__);
 
         switch ($cls)
-        {
-	 case 'SiteEmailSummaryHandler':
-	 case 'UserEmailSummaryHandler':
-            include_once $dir . '/'.strtolower($cls).'.php';
-	    return false;
-	 case 'Email_summary_status':
-            include_once $dir . '/'.$cls.'.php';
+            {
+            case 'SiteEmailSummaryHandler':
+            case 'UserEmailSummaryHandler':
+                include_once $dir . '/'.strtolower($cls).'.php';
             return false;
-	 default:
-            return true;
-        }
+            case 'Email_summary_status':
+                include_once $dir . '/'.$cls.'.php';
+                return false;
+            default:
+                return true;
+            }
     }
 
     /**
@@ -131,9 +131,9 @@ class EmailSummaryPlugin extends Plugin
     
     function onEndInitializeQueueManager($qm)
     {
-	$qm->connect('sitesum', 'SiteEmailSummaryHandler');
-	$qm->connect('usersum', 'UserEmailSummaryHandler');
-	return true;
+        $qm->connect('sitesum', 'SiteEmailSummaryHandler');
+        $qm->connect('usersum', 'UserEmailSummaryHandler');
+        return true;
     }
     
     /**
@@ -146,15 +146,15 @@ class EmailSummaryPlugin extends Plugin
     
     function onEndEmailFormData($action)
     {
-	$user = common_current_user();
+        $user = common_current_user();
 	
-	$action->elementStart('li');
-	$action->checkbox('emailsummary',
-			  // TRANS: Checkbox label in e-mail preferences form.
-			  _('Send me a periodic summary of updates from my network.'),
-			  Email_summary_status::getSendSummary($user->id));
-	$action->elementEnd('li');
-	return true;
+        $action->elementStart('li');
+        $action->checkbox('emailsummary',
+                          // TRANS: Checkbox label in e-mail preferences form.
+                          _('Send me a periodic summary of updates from my network.'),
+                          Email_summary_status::getSendSummary($user->id));
+        $action->elementEnd('li');
+        return true;
     }
     
     /**
@@ -167,36 +167,36 @@ class EmailSummaryPlugin extends Plugin
     
     function onEndEmailSaveForm($action)
     {
-	$sendSummary = $action->boolean('emailsummary');
+        $sendSummary = $action->boolean('emailsummary');
 	
-	$user = common_current_user();
+        $user = common_current_user();
 	
-	if (!empty($user)) {
+        if (!empty($user)) {
 	    
-	    $ess = Email_summary_status::staticGet('user_id', $user->id);
+            $ess = Email_summary_status::staticGet('user_id', $user->id);
 	    
-	    if (empty($ess)) {
+            if (empty($ess)) {
 		
-		$ess = new Email_summary_status();
+                $ess = new Email_summary_status();
 
-		$ess->user_id      = $user->id;
-		$ess->send_summary = $sendSummary;
-		$ess->created      = common_sql_now();
-		$ess->modified     = common_sql_now();
+                $ess->user_id      = $user->id;
+                $ess->send_summary = $sendSummary;
+                $ess->created      = common_sql_now();
+                $ess->modified     = common_sql_now();
 		
-		$ess->insert();
+                $ess->insert();
 		
-	    } else {
+            } else {
 		
-		$orig = clone($ess);
+                $orig = clone($ess);
 		
-		$ess->send_summary = $sendSummary;
-		$ess->modified     = common_sql_now();
+                $ess->send_summary = $sendSummary;
+                $ess->modified     = common_sql_now();
 		
-		$ess->update($orig);
-	    }
-	}
+                $ess->update($orig);
+            }
+        }
 	
-	return true;
+        return true;
     }
 }

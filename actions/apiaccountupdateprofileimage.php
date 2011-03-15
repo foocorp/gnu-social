@@ -112,16 +112,17 @@ class ApiAccountUpdateProfileImageAction extends ApiAuthAction
             return;
         }
 
+        $type = $imagefile->preferredType();
         $filename = Avatar::filename(
             $user->id,
-            image_type_to_extension($imagefile->type),
+            image_type_to_extension($type),
             null,
             'tmp'.common_timestamp()
         );
 
         $filepath = Avatar::path($filename);
 
-        move_uploaded_file($imagefile->filepath, $filepath);
+        $imagefile->copyTo($filepath);
 
         $profile = $this->user->getProfile();
 
@@ -139,7 +140,7 @@ class ApiAccountUpdateProfileImageAction extends ApiAuthAction
 
         if ($this->format == 'xml') {
             $this->initDocument('xml');
-            $this->showTwitterXmlUser($twitter_user);
+            $this->showTwitterXmlUser($twitter_user, 'user', true);
             $this->endDocument('xml');
         } elseif ($this->format == 'json') {
             $this->initDocument('json');

@@ -40,25 +40,21 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class RegisterAction extends Action
 {
     /**
      * Has there been an error?
      */
-
     var $error = null;
 
     /**
      * Have we registered?
      */
-
     var $registered = false;
 
     /**
      * Are we processing an invite?
      */
-
     var $invite = null;
 
     /**
@@ -68,7 +64,6 @@ class RegisterAction extends Action
      * @param $args
      * @return string title
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -105,7 +100,6 @@ class RegisterAction extends Action
      *
      * @return string title
      */
-
     function title()
     {
         if ($this->registered) {
@@ -126,7 +120,6 @@ class RegisterAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -156,7 +149,6 @@ class RegisterAction extends Action
      *
      * @return void
      */
-
     function tryRegister()
     {
         if (Event::handle('StartRegistrationTry', array($this))) {
@@ -199,7 +191,7 @@ class RegisterAction extends Action
             $email    = common_canonical_email($email);
 
             if (!$this->boolean('license')) {
-                $this->showForm(_('You can\'t register if you don\'t '.
+                $this->showForm(_('You cannot register if you don\'t '.
                                   'agree to the license.'));
             } else if ($email && !Validate::email($email, common_config('email', 'check_domain'))) {
                 $this->showForm(_('Not a valid email address.'));
@@ -277,7 +269,6 @@ class RegisterAction extends Action
      *
      * @return boolean true if the nickname already exists
      */
-
     function nicknameExists($nickname)
     {
         $user = User::staticGet('nickname', $nickname);
@@ -293,7 +284,6 @@ class RegisterAction extends Action
      *
      * @return boolean true if the address already exists
      */
-
     function emailExists($email)
     {
         $email = common_canonical_email($email);
@@ -332,7 +322,6 @@ class RegisterAction extends Action
      *
      * @return void
      */
-
     function showPageNotice()
     {
         if ($this->registered) {
@@ -344,7 +333,7 @@ class RegisterAction extends Action
               common_markup_to_html(_('With this form you can create '.
                                       'a new account. ' .
                                       'You can then post notices and '.
-                                      'link up to friends and colleagues. '));
+                                      'link up to friends and colleagues.'));
 
             $this->elementStart('div', 'instructions');
             $this->raw($instr);
@@ -361,7 +350,6 @@ class RegisterAction extends Action
      *
      * @return void
      */
-
     function showForm($error=null)
     {
         $this->error = $error;
@@ -376,7 +364,6 @@ class RegisterAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         if ($this->registered) {
@@ -391,7 +378,6 @@ class RegisterAction extends Action
      *
      * @return void
      */
-
     function showFormContent()
     {
         $code = $this->trimmed('code');
@@ -423,38 +409,37 @@ class RegisterAction extends Action
         if (Event::handle('StartRegistrationFormData', array($this))) {
             $this->elementStart('li');
             $this->input('nickname', _('Nickname'), $this->trimmed('nickname'),
-                         _('1-64 lowercase letters or numbers, '.
-                           'no punctuation or spaces. Required.'));
+                         _('1-64 lowercase letters or numbers, no punctuation or spaces.'));
             $this->elementEnd('li');
             $this->elementStart('li');
             $this->password('password', _('Password'),
-                            _('6 or more characters. Required.'));
+                            _('6 or more characters.'));
             $this->elementEnd('li');
             $this->elementStart('li');
             $this->password('confirm', _('Confirm'),
-                            _('Same as password above. Required.'));
+                            _('Same as password above.'));
             $this->elementEnd('li');
             $this->elementStart('li');
             if ($this->invite && $this->invite->address_type == 'email') {
                 $this->input('email', _('Email'), $this->invite->address,
                              _('Used only for updates, announcements, '.
-                               'and password recovery'));
+                               'and password recovery.'));
             } else {
                 $this->input('email', _('Email'), $this->trimmed('email'),
                              _('Used only for updates, announcements, '.
-                               'and password recovery'));
+                               'and password recovery.'));
             }
             $this->elementEnd('li');
             $this->elementStart('li');
             $this->input('fullname', _('Full name'),
                          $this->trimmed('fullname'),
-                         _('Longer name, preferably your "real" name'));
+                         _('Longer name, preferably your "real" name.'));
             $this->elementEnd('li');
             $this->elementStart('li');
             $this->input('homepage', _('Homepage'),
                          $this->trimmed('homepage'),
                          _('URL of your homepage, blog, '.
-                           'or profile on another site'));
+                           'or profile on another site.'));
             $this->elementEnd('li');
             $this->elementStart('li');
             $maxBio = Profile::maxBio();
@@ -477,7 +462,7 @@ class RegisterAction extends Action
             $this->input('location', _('Location'),
                          $this->trimmed('location'),
                          _('Where you are, like "City, '.
-                           'State (or Region), Country"'));
+                           'State (or Region), Country".'));
             $this->elementEnd('li');
             Event::handle('EndRegistrationFormData', array($this));
             $this->elementStart('li', array('id' => 'settings_rememberme'));
@@ -513,6 +498,7 @@ class RegisterAction extends Action
         switch (common_config('license', 'type')) {
         case 'private':
             // TRANS: Copyright checkbox label in registration dialog, for private sites.
+            // TRANS: %1$s is the StatusNet sitename.
             $out .= htmlspecialchars(sprintf(
                 _('I understand that content and data of %1$s are private and confidential.'),
                 common_config('site', 'name')));
@@ -556,7 +542,6 @@ class RegisterAction extends Action
      *
      * @return void
      */
-
     function showSuccess()
     {
         $this->registered = true;
@@ -570,7 +555,6 @@ class RegisterAction extends Action
      *
      * @return void
      */
-
     function showSuccessContent()
     {
         $nickname = $this->arg('nickname');
@@ -617,11 +601,13 @@ class RegisterAction extends Action
      *
      * @return void
      */
-
     function showLocalNav()
     {
         $nav = new LoginGroupNav($this);
         $nav->show();
     }
-}
 
+    function showNoticeForm()
+    {
+    }
+}

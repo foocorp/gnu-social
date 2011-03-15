@@ -24,6 +24,7 @@ VALUES
     ('HelloTxt','HelloTxt','http://hellotxt.com/', now()),
     ('identicatools','Laconica Tools','http://bitbucketlabs.net/laconica-tools/', now()),
     ('identichat','identichat','http://identichat.prosody.im/', now()),
+    ('IdentiCurse','IdentiCurse','http://identicurse.net/', now()),
     ('IdentiFox','IdentiFox','http://www.bitbucket.org/uncryptic/identifox/', now()),
     ('identitwitch','IdentiTwitch','http://richfish.org/identitwitch/', now()),
     ('Jiminy','Jiminy','http://code.google.com/p/jiminy/', now()),
@@ -77,4 +78,5 @@ VALUES
     ('twitvim','TwitVim','http://vim.sourceforge.net/scripts/script.php?script_id=2204', now()),
     ('Updating.Me','Updating.Me','http://updating.me/', now()),
     ('urfastr','urfastr','http://urfastr.net/', now()),
-    ('yatca','Yatca','http://www.yatca.com/', now());
+    ('yatca','Yatca','http://www.yatca.com/', now()),
+    ('rss.me', 'rss.me', 'http://rss.me/', now());

@@ -1,0 +1,81 @@
+# Translation of StatusNet - NewMenu to Arabic (العربية)
+# Exported from translatewiki.net
+#
+# Author: OsamaK
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - NewMenu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-29 21:45+0000\n"
+"PO-Revision-Date: 2011-03-06 01:37:41+0000\n"
+"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:45:38+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ar\n"
+"X-Message-Group: #out-statusnet-plugin-newmenu\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
+"2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
+"99) ? 4 : 5 ) ) ) );\n"
+
+msgid "Home"
+msgstr ""
+
+msgid "Friends timeline"
+msgstr ""
+
+msgid "Profile"
+msgstr ""
+
+msgid "Your profile"
+msgstr ""
+
+msgid "Public"
+msgstr ""
+
+msgid "Everyone on this site"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Change your personal settings"
+msgstr ""
+
+msgid "Admin"
+msgstr ""
+
+msgid "Site configuration"
+msgstr ""
+
+msgid "Logout"
+msgstr ""
+
+msgid "Logout from the site"
+msgstr ""
+
+msgid "Login"
+msgstr "ادخل"
+
+msgid "Login to the site"
+msgstr "ادخل الموقع"
+
+msgid "Search"
+msgstr "ابحث"
+
+msgid "Search the site"
+msgstr "ابحث في الموقع"
+
+msgid "IM"
+msgstr "المراسلة الفورية"
+
+msgid "SMS"
+msgstr "الرسائل القصيرة"
+
+msgid "A preview of the new menu layout in StatusNet 1.0."
+msgstr "معاينة لتخطيط القوائم الجديد في ستاتسنت 1.0."

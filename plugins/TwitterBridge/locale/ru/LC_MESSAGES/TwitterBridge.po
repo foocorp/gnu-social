@@ -1,0 +1,372 @@
+# Translation of StatusNet - TwitterBridge to Russian (Русский)
+# Expored from translatewiki.net
+#
+# Author: Lockal
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TwitterBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-15 00:20+0000\n"
+"PO-Revision-Date: 2011-01-15 00:24:58+0000\n"
+"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-01-14 13:22:21+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r80364); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ru\n"
+"X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
+#. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
+#: twitterimport.php:114
+#, php-format
+msgid "RT @%1$s %2$s"
+msgstr ""
+
+#: twitter.php:407
+msgid "Your Twitter bridge has been disabled."
+msgstr ""
+
+#: twitter.php:411
+#, php-format
+msgid ""
+"Hi, %1$s. We're sorry to inform you that your link to Twitter has been "
+"disabled. We no longer seem to have permission to update your Twitter "
+"status. Did you maybe revoke %3$s's access?\n"
+"\n"
+"You can re-enable your Twitter bridge by visiting your Twitter settings "
+"page:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"Regards,\n"
+"%3$s"
+msgstr ""
+
+#: TwitterBridgePlugin.php:151 TwitterBridgePlugin.php:174
+#: TwitterBridgePlugin.php:302 twitteradminpanel.php:52
+msgid "Twitter"
+msgstr "Twitter"
+
+#: TwitterBridgePlugin.php:152
+msgid "Login or register using Twitter"
+msgstr "Войти или зарегистрироваться с помощью Twitter"
+
+#: TwitterBridgePlugin.php:175
+msgid "Twitter integration options"
+msgstr "Настройки интеграции с Twitter"
+
+#: TwitterBridgePlugin.php:303
+msgid "Twitter bridge configuration"
+msgstr "Настройки моста с Twitter"
+
+#: TwitterBridgePlugin.php:327
+msgid ""
+"The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
+"with <a href=\"http://twitter.com/\">Twitter</a>."
+msgstr ""
+
+#: twitteradminpanel.php:62
+msgid "Twitter bridge settings"
+msgstr ""
+
+#: twitteradminpanel.php:150
+msgid "Invalid consumer key. Max length is 255 characters."
+msgstr ""
+
+#: twitteradminpanel.php:156
+msgid "Invalid consumer secret. Max length is 255 characters."
+msgstr ""
+
+#: twitteradminpanel.php:212
+msgid "Twitter application settings"
+msgstr ""
+
+#: twitteradminpanel.php:218
+msgid "Consumer key"
+msgstr ""
+
+#: twitteradminpanel.php:219
+msgid "Consumer key assigned by Twitter"
+msgstr ""
+
+#: twitteradminpanel.php:227
+msgid "Consumer secret"
+msgstr ""
+
+#: twitteradminpanel.php:228
+msgid "Consumer secret assigned by Twitter"
+msgstr ""
+
+#: twitteradminpanel.php:238
+msgid "Note: a global consumer key and secret are set."
+msgstr ""
+
+#: twitteradminpanel.php:245
+msgid "Integration source"
+msgstr ""
+
+#: twitteradminpanel.php:246
+msgid "Name of your Twitter application"
+msgstr ""
+
+#: twitteradminpanel.php:258
+msgid "Options"
+msgstr ""
+
+#: twitteradminpanel.php:265
+msgid "Enable \"Sign-in with Twitter\""
+msgstr ""
+
+#: twitteradminpanel.php:267
+msgid "Allow users to login with their Twitter credentials"
+msgstr ""
+
+#: twitteradminpanel.php:274
+msgid "Enable Twitter import"
+msgstr ""
+
+#: twitteradminpanel.php:276
+msgid ""
+"Allow users to import their Twitter friends' timelines. Requires daemons to "
+"be manually configured."
+msgstr ""
+
+#: twitteradminpanel.php:293 twittersettings.php:200
+msgid "Save"
+msgstr "Сохранить"
+
+#: twitteradminpanel.php:293
+msgid "Save Twitter settings"
+msgstr "Сохранить настройки Twitter"
+
+#: twitterlogin.php:56
+msgid "Already logged in."
+msgstr "Вы уже авторизовались."
+
+#: twitterlogin.php:64
+msgid "Twitter Login"
+msgstr ""
+
+#: twitterlogin.php:69
+msgid "Login with your Twitter account"
+msgstr "Войти с помощью учётной записи Twitter"
+
+#: twitterlogin.php:87
+msgid "Sign in with Twitter"
+msgstr ""
+
+#: twitterauthorization.php:120 twittersettings.php:226
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#: twitterauthorization.php:126
+msgid "You can't register if you don't agree to the license."
+msgstr ""
+
+#: twitterauthorization.php:135
+msgid "Something weird happened."
+msgstr ""
+
+#: twitterauthorization.php:181 twitterauthorization.php:229
+#: twitterauthorization.php:300
+msgid "Couldn't link your Twitter account."
+msgstr ""
+
+#: twitterauthorization.php:201
+msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr ""
+
+#: twitterauthorization.php:312
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your Twitter "
+"account to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
+msgstr ""
+
+#: twitterauthorization.php:318
+msgid "Twitter Account Setup"
+msgstr ""
+
+#: twitterauthorization.php:351
+msgid "Connection options"
+msgstr ""
+
+#: twitterauthorization.php:360
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+
+#: twitterauthorization.php:381
+msgid "Create new account"
+msgstr ""
+
+#: twitterauthorization.php:383
+msgid "Create a new user with this nickname."
+msgstr ""
+
+#: twitterauthorization.php:386
+msgid "New nickname"
+msgstr ""
+
+#: twitterauthorization.php:388
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+msgstr ""
+
+#: twitterauthorization.php:391
+msgid "Create"
+msgstr ""
+
+#: twitterauthorization.php:396
+msgid "Connect existing account"
+msgstr ""
+
+#: twitterauthorization.php:398
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Twitter account."
+msgstr ""
+
+#: twitterauthorization.php:401
+msgid "Existing nickname"
+msgstr ""
+
+#: twitterauthorization.php:404
+msgid "Password"
+msgstr ""
+
+#: twitterauthorization.php:407
+msgid "Connect"
+msgstr ""
+
+#: twitterauthorization.php:423 twitterauthorization.php:432
+msgid "Registration not allowed."
+msgstr ""
+
+#: twitterauthorization.php:439
+msgid "Not a valid invitation code."
+msgstr ""
+
+#: twitterauthorization.php:452
+msgid "Nickname not allowed."
+msgstr ""
+
+#: twitterauthorization.php:457
+msgid "Nickname already in use. Try another one."
+msgstr ""
+
+#: twitterauthorization.php:472
+msgid "Error registering user."
+msgstr ""
+
+#: twitterauthorization.php:483 twitterauthorization.php:521
+#: twitterauthorization.php:541
+msgid "Error connecting user to Twitter."
+msgstr ""
+
+#: twitterauthorization.php:503
+msgid "Invalid username or password."
+msgstr ""
+
+#: twittersettings.php:58
+msgid "Twitter settings"
+msgstr ""
+
+#: twittersettings.php:69
+msgid ""
+"Connect your Twitter account to share your updates with your Twitter friends "
+"and vice-versa."
+msgstr ""
+
+#: twittersettings.php:116
+msgid "Twitter account"
+msgstr ""
+
+#: twittersettings.php:121
+msgid "Connected Twitter account"
+msgstr ""
+
+#: twittersettings.php:126
+msgid "Disconnect my account from Twitter"
+msgstr ""
+
+#: twittersettings.php:132
+msgid "Disconnecting your Twitter could make it impossible to log in! Please "
+msgstr ""
+
+#: twittersettings.php:136
+msgid "set a password"
+msgstr ""
+
+#: twittersettings.php:138
+msgid " first."
+msgstr ""
+
+#. TRANS: %1$s is the current website name.
+#: twittersettings.php:142
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
+"password to log in."
+msgstr ""
+
+#: twittersettings.php:150
+msgid "Disconnect"
+msgstr ""
+
+#: twittersettings.php:157
+msgid "Preferences"
+msgstr ""
+
+#: twittersettings.php:161
+msgid "Automatically send my notices to Twitter."
+msgstr ""
+
+#: twittersettings.php:168
+msgid "Send local \"@\" replies to Twitter."
+msgstr ""
+
+#: twittersettings.php:175
+msgid "Subscribe to my Twitter friends here."
+msgstr ""
+
+#: twittersettings.php:184
+msgid "Import my friends timeline."
+msgstr ""
+
+#: twittersettings.php:202
+msgid "Add"
+msgstr "Добавить"
+
+#: twittersettings.php:236
+msgid "Unexpected form submission."
+msgstr ""
+
+#: twittersettings.php:251
+msgid "No Twitter connection to remove."
+msgstr ""
+
+#: twittersettings.php:259
+msgid "Couldn't remove Twitter user."
+msgstr "Ошибка при удалении пользователя Twitter."
+
+#: twittersettings.php:263
+msgid "Twitter account disconnected."
+msgstr "Учётная запись в Twitter отключена."
+
+#: twittersettings.php:283 twittersettings.php:294
+msgid "Couldn't save Twitter preferences."
+msgstr "Ошибка при сохранении настроек Twitter."
+
+#: twittersettings.php:302
+msgid "Twitter preferences saved."
+msgstr "Настройки Twitter сохранены."

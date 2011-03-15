@@ -57,12 +57,12 @@ border-color:#DDDDDD;
 background:none;
 }
 
-.form_notice.warning #notice_text-count,
+.form_notice.warning .count,
 .form_settings .form_note {
 background-color:#9BB43E;
 }
 input.submit,
-.form_notice.warning #notice_text-count,
+.form_notice.warning .count,
 .form_settings .form_note,
 .entity_actions a,
 .entity_actions input,
@@ -80,8 +80,8 @@ border-color:transparent;
 background-color:transparent;
 }
 input:focus, textarea:focus, select:focus,
-.form_notice.warning #notice_data-text,
-.form_notice.warning #notice_text-count,
+.form_notice.warning textarea,
+.form_notice.warning .count,
 .form_settings .form_note,
 .entity_actions .dialogbox .form_data input:focus {
 border-color:#9BB43E;
@@ -117,10 +117,10 @@ box-shadow:3px 3px 3px rgba(194, 194, 194, 0.1);
 text-shadow:none;
 }
 
-.form_notice label[for=notice_data-geo] {
+.form_notice label.notice_data-geo {
 background-position:0 -1780px;
 }
-.form_notice label[for=notice_data-geo].checked {
+.form_notice label.notice_data-geo.checked {
 background-position:0 -1846px;
 }
 
@@ -145,22 +145,22 @@ border-top-color:#CEE1E9;
 background-color:#CEE1E9;
 }
 
-#notice_text-count {
+.form_notice .count {
 color:#333333;
 }
-.form_notice.warning #notice_text-count,
+.form_notice.warning .count,
 .dialogbox,
 .entity_actions .dialogbox input {
 color:#000000;
 }
-.form_notice label[for=notice_data-attach] {
+.form_notice label.notice_data-attach {
 background-position:0 -328px;
 }
-.form_notice #notice_data-attach {
+.form_notice input.notice_data-attach {
 opacity:0;
 }
 
-.form_notice label[for=notice_data-attach],
+.form_notice label.notice_data-attach,
 #export_data li a.rss,
 #export_data li a.atom,
 #export_data li a.foaf,
@@ -197,7 +197,7 @@ button.close,
 .entity_role_administrator input.submit,
 .entity_role_moderator input.submit,
 .notice-options .repeated,
-.form_notice label[for=notice_data-geo],
+.form_notice label.notice_data-geo,
 button.minimize,
 .form_reset_key input.submit,
 .entity_clear input.submit,

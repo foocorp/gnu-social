@@ -145,12 +145,10 @@ class OStatusPlugin extends Plugin
             $user = $feed->getUser();
             $id   = $user->id;
             $profile = $user->getProfile();
-            $feed->setActivitySubject($profile->asActivityNoun('subject'));
         } else if ($feed instanceof AtomGroupNoticeFeed) {
             $salmonAction = 'groupsalmon';
             $group = $feed->getGroup();
             $id = $group->id;
-            $feed->setActivitySubject($group->asActivitySubject());
         } else {
             return true;
         }
@@ -421,12 +419,12 @@ class OStatusPlugin extends Plugin
     }
 
     function onEndShowStatusNetStyles($action) {
-        $action->cssLink('plugins/OStatus/theme/base/css/ostatus.css');
+        $action->cssLink($this->path('theme/base/css/ostatus.css'));
         return true;
     }
 
     function onEndShowStatusNetScripts($action) {
-        $action->script('plugins/OStatus/js/ostatus.js');
+        $action->script($this->path('js/ostatus.js'));
         return true;
     }
 
@@ -994,16 +992,28 @@ class OStatusPlugin extends Plugin
         return false;
     }
 
-    function onStartGetProfileFromURI($uri, &$profile) {
+    function onStartGetProfileFromURI($uri, &$profile)
+    {
+        // Don't want to do Web-based discovery on our own server,
+        // so we check locally first.
 
-        // XXX: do discovery here instead (OStatus_profile::ensureProfileURI($uri))
+        $user = User::staticGet('uri', $uri);
+        
+        if (!empty($user)) {
+            $profile = $user->getProfile();
+            return false;
+        }
 
-        $oprofile = Ostatus_profile::staticGet('uri', $uri);
+        // Now, check remotely
 
-        if (!empty($oprofile) && !$oprofile->isGroup()) {
+        $oprofile = Ostatus_profile::ensureProfileURI($uri);
+
+        if (!empty($oprofile)) {
             $profile = $oprofile->localProfile();
             return false;
         }
+
+        // Still not a hit, so give up.
 
         return true;
     }

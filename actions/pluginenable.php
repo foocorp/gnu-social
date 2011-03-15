@@ -52,7 +52,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 class PluginEnableAction extends Action
 {
     var $user;
@@ -65,7 +64,6 @@ class PluginEnableAction extends Action
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -75,6 +73,8 @@ class PluginEnableAction extends Action
         // Only allow POST requests
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            // TRANS: Client error displayed when trying to use another method than POST.
+            // TRANS: Do not translate POST.
             $this->clientError(_('This action only accepts POST requests.'));
             return false;
         }
@@ -94,11 +94,13 @@ class PluginEnableAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when trying to enable or disable a plugin while not logged in.
             $this->clientError(_('Not logged in.'));
             return false;
         }
 
         if (!AdminPanelAction::canAdmin('plugins')) {
+            // TRANS: Client error displayed when trying to enable or disable a plugin without access rights.
             $this->clientError(_('You cannot administer plugins.'));
             return false;
         }
@@ -106,6 +108,7 @@ class PluginEnableAction extends Action
         $this->plugin = $this->arg('plugin');
         $defaultPlugins = common_config('plugins', 'default');
         if (!array_key_exists($this->plugin, $defaultPlugins)) {
+            // TRANS: Client error displayed when trying to enable or disable a non-existing plugin.
             $this->clientError(_('No such plugin.'));
             return false;
         }
@@ -122,7 +125,6 @@ class PluginEnableAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         $key = 'disable-' . $this->plugin;

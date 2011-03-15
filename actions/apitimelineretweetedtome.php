@@ -92,6 +92,20 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
         $offset = ($this->page-1) * $this->cnt;
         $limit  = $this->cnt;
 
+        // TRANS: Title for Atom feed "repeated to me". %s is the user nickname.
+        $title      = sprintf(_("Repeated to %s"), $this->auth_user->nickname);
+        $subtitle   = sprintf(
+            _('%1$s notices that were to repeated to %2$s / %3$s.'),
+            $sitename, $this->user->nickname, $profile->getBestName()
+        );
+        $taguribase = TagURI::base();
+        $id         = "tag:$taguribase:RepeatedToMe:" . $this->auth_user->id;
+
+        $link = common_local_url(
+            'all',
+             array('nickname' => $this->auth_user->nickname)
+        );
+
         $strm = $this->auth_user->repeatedToMe($offset, $limit, $this->since_id, $this->max_id);
 
         switch ($this->format) {
@@ -102,16 +116,31 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
             $this->showJsonTimeline($strm);
             break;
         case 'atom':
-            $profile    = $this->auth_user->getProfile();
+            header('Content-Type: application/atom+xml; charset=utf-8');
 
-            // TRANS: Title for Atom feed "repeated to me". %s is the user nickname.
-            $title      = sprintf(_("Repeated to %s"), $this->auth_user->nickname);
-            $taguribase = TagURI::base();
-            $id         = "tag:$taguribase:RepeatedToMe:" . $this->auth_user->id;
-            $link       = common_local_url('all',
-                                           array('nickname' => $this->auth_user->nickname));
+            $atom = new AtomNoticeFeed($this->auth_user);
 
-            $this->showAtomTimeline($strm, $title, $id, $link);
+            $atom->setId($id);
+            $atom->setTitle($title);
+            $atom->setSubtitle($subtitle);
+            $atom->setUpdated('now');
+            $atom->addLink($link);
+
+            $id = $this->arg('id');
+
+            $atom->setSelfLink($self);
+            $atom->addEntryFromNotices($strm);
+
+            $this->raw($atom->getString());
+
+            break;
+        case 'as':
+            header('Content-Type: application/json; charset=utf-8');
+            $doc = new ActivityStreamJSONDocument($this->auth_user);
+            $doc->setTitle($title);
+            $doc->addLink($link, 'alternate', 'text/html');
+            $doc->addItemsFromNotices($strm);
+            $this->raw($doc->asString());
             break;
         default:
             // TRANS: Client error displayed when trying to handle an unknown API method.

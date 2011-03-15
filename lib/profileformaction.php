@@ -40,7 +40,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class ProfileFormAction extends RedirectingAction
 {
     var $profile = null;
@@ -52,7 +51,6 @@ class ProfileFormAction extends RedirectingAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -61,6 +59,7 @@ class ProfileFormAction extends RedirectingAction
 
         if (!common_logged_in()) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                // TRANS: Client error displayed when trying to change user options while not logged in.
                 $this->clientError(_('Not logged in.'));
             } else {
                 // Redirect to login.
@@ -76,6 +75,7 @@ class ProfileFormAction extends RedirectingAction
         $id = $this->trimmed('profileid');
 
         if (!$id) {
+            // TRANS: Client error displayed when trying to change user options without specifying a user to work on.
             $this->clientError(_('No profile specified.'));
             return false;
         }
@@ -83,6 +83,7 @@ class ProfileFormAction extends RedirectingAction
         $this->profile = Profile::staticGet('id', $id);
 
         if (!$this->profile) {
+            // TRANS: Client error displayed when trying to change user options without specifying an existing user to work on.
             $this->clientError(_('No profile with that ID.'));
             return false;
         }
@@ -99,7 +100,6 @@ class ProfileFormAction extends RedirectingAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -117,9 +117,9 @@ class ProfileFormAction extends RedirectingAction
      *
      * @return void
      */
-
     function handlePost()
     {
+        // TRANS: Server error displayed when using an unimplemented method.
         $this->serverError(_("Unimplemented method."));
     }
 }

@@ -1,0 +1,97 @@
+# Translation of StatusNet - ExtendedProfile to Dutch (Nederlands)
+# Exported from translatewiki.net
+#
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ExtendedProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:09+0000\n"
+"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 20:42:39+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "UI extensions for additional profile fields."
+msgstr "UI-uitbreidingen voor extra profielvelden."
+
+#. TRANS: Link description in user account settings menu.
+msgid "Details"
+msgstr "Details"
+
+msgid "More details..."
+msgstr "Meer details..."
+
+msgid "Personal"
+msgstr "Persoonlijk"
+
+msgid "Full name"
+msgstr "Volledige naam"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Manager"
+msgstr "Manager"
+
+msgid "Location"
+msgstr "Locatie"
+
+msgid "Bio"
+msgstr "Beschrijving"
+
+msgid "Tags"
+msgstr "Labels"
+
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Phone"
+msgstr "Telefoonnummer"
+
+msgid "IM"
+msgstr "IM"
+
+msgid "Websites"
+msgstr "Websites"
+
+msgid "Birthday"
+msgstr "Geboortedatum"
+
+msgid "Spouse's name"
+msgstr "Naam partner:"
+
+msgid "Kids' names"
+msgstr "Namen van kinderen"
+
+msgid "Work experience"
+msgstr "Werkervaring"
+
+msgid "Employer"
+msgstr "Werkgever"
+
+msgid "Education"
+msgstr "Opleiding"
+
+msgid "Institution"
+msgstr "Instelling"
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Uitgebreide profielinstellingen bewerken"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Bewerken"
+
+msgid "Extended profile settings"
+msgstr "Uitgebreide profielinstellingen"

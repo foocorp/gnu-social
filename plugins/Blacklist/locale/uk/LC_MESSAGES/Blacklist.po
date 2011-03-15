@@ -1,5 +1,5 @@
 # Translation of StatusNet - Blacklist to Ukrainian (Українська)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Boogie
 # --
@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blacklist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:34+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:54+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 17:54:24+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:43:04+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-blacklist\n"
@@ -23,108 +23,87 @@ msgstr ""
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
 #. TRANS: Validation failure for URL. %s is the URL.
-#: BlacklistPlugin.php:149
 #, php-format
 msgid "You may not register with homepage \"%s\"."
 msgstr "Ви не можете зареєструватися, вказавши «%s» як веб-адресу."
 
 #. TRANS: Validation failure for nickname. %s is the nickname.
-#: BlacklistPlugin.php:160
 #, php-format
 msgid "You may not register with nickname \"%s\"."
 msgstr "Ви не можете зареєструватися, використавши нікнейм «%s»."
 
 #. TRANS: Validation failure for URL. %s is the URL.
-#: BlacklistPlugin.php:185
 #, php-format
 msgid "You may not use homepage \"%s\"."
 msgstr "Ви не можете використовувати веб-адресу «%s»."
 
 #. TRANS: Validation failure for nickname. %s is the nickname.
-#: BlacklistPlugin.php:196
 #, php-format
 msgid "You may not use nickname \"%s\"."
 msgstr "Ви не можете використовувати нікнейм «%s»."
 
 #. TRANS: Validation failure for URL. %s is the URL.
-#: BlacklistPlugin.php:239
 #, php-format
 msgid "You may not use URL \"%s\" in notices."
 msgstr "Ви не можете використовувати URL-адресу «%s» в своїх повідомленнях."
 
-#: BlacklistPlugin.php:343
 msgid "Keeps a blacklist of forbidden nickname and URL patterns."
 msgstr "Зберігає чорний список заборонених нікнеймів та URL-шаблонів."
 
 #. TRANS: Menu item in admin panel.
-#: BlacklistPlugin.php:381
 msgctxt "MENU"
 msgid "Blacklist"
 msgstr "Чорний список"
 
 #. TRANS: Tooltip for menu item in admin panel.
-#: BlacklistPlugin.php:383
 msgctxt "TOOLTIP"
 msgid "Blacklist configuration"
 msgstr "Конфігурація чорного списку"
 
 #. TRANS: Checkbox with text label in the delete user form.
-#: BlacklistPlugin.php:410
 msgid "Add this nickname pattern to blacklist"
 msgstr "Додати цей нікнейм до чорного списку"
 
 #. TRANS: Checkbox with text label in the delete user form.
-#: BlacklistPlugin.php:420
 msgid "Add this homepage pattern to blacklist"
 msgstr "Додати цей шаблон веб-адреси до чорного списку"
 
 #. TRANS: Exception thrown trying to post a notice while having set a blocked homepage URL. %s is the blocked URL.
 #. TRANS: Client exception thrown trying to subscribe to a person with a blocked homepage or site URL. %s is the blocked URL.
-#: BlacklistPlugin.php:499 BlacklistPlugin.php:534
 #, php-format
 msgid "Users from \"%s\" blocked."
 msgstr "Користувачів з «%s» заблоковано."
 
 #. TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
-#: BlacklistPlugin.php:510
 #, php-format
 msgid "Posts from nickname \"%s\" disallowed."
 msgstr "Дописи від користувача «%s» заборонені."
 
 #. TRANS: Client exception thrown trying to subscribe to a person with a blocked nickname. %s is the blocked nickname.
-#: BlacklistPlugin.php:545
 #, php-format
 msgid "Can't subscribe to nickname \"%s\"."
 msgstr "Не можу підписатися до користувача «%s»."
 
-#: blacklistadminpanel.php:52
 msgid "Blacklist"
 msgstr "Чорний список"
 
-#: blacklistadminpanel.php:62
 msgid "Blacklisted URLs and nicknames"
 msgstr "URL-адреси і нікнеми, що містяться в чорному списку"
 
-#: blacklistadminpanel.php:174
 msgid "Nicknames"
 msgstr "Нікнейми"
 
-#: blacklistadminpanel.php:176
 msgid "Patterns of nicknames to block, one per line"
 msgstr "Шаблони нікнеймів, котрі будуть блокуватися (по одному на рядок)"
 
-#: blacklistadminpanel.php:182
 msgid "URLs"
 msgstr "URL-адреси"
 
-#: blacklistadminpanel.php:184
 msgid "Patterns of URLs to block, one per line"
 msgstr "Шаблони URL-адрес, котрі будуть блокуватися (по одному на рядок)"
 
-#: blacklistadminpanel.php:198
 msgid "Save"
 msgstr "Зберегти"
 
-#: blacklistadminpanel.php:201
 msgid "Save site settings"
 msgstr "Зберегти налаштування сайту"

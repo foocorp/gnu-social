@@ -1,0 +1,30 @@
+# Translation of StatusNet - NoticeTitle to Portuguese (Português)
+# Exported from translatewiki.net
+#
+# Author: SandroHc
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - NoticeTitle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-08 01:03+0000\n"
+"PO-Revision-Date: 2011-03-08 01:06:36+0000\n"
+"Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-06 02:18:34+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83429); Translate extension (2011-03-07)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: pt\n"
+"X-Message-Group: #out-statusnet-plugin-noticetitle\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Adds optional titles to notices."
+msgstr ""
+
+#. TRANS: Page title. %1$s is the title, %2$s is the site name.
+#, php-format
+msgid "%1$s - %2$s"
+msgstr "%1$s - %2$s"

@@ -66,6 +66,13 @@ class NewgroupAction extends Action
             return false;
         }
 
+        $user = common_current_user();
+        $profile = $user->getProfile();
+        if (!$profile->hasRight(Right::CREATEGROUP)) {
+            // TRANS: Client exception thrown when a user tries to create a group while banned.
+            throw new ClientException(_('You are not allowed to create groups on this site.'), 403);
+        }
+
         return true;
     }
 
@@ -113,105 +120,109 @@ class NewgroupAction extends Action
 
     function trySave()
     {
-        try {
-            $nickname = Nickname::normalize($this->trimmed('nickname'));
-        } catch (NicknameException $e) {
-            $this->showForm($e->getMessage());
-        }
-        $fullname    = $this->trimmed('fullname');
-        $homepage    = $this->trimmed('homepage');
-        $description = $this->trimmed('description');
-        $location    = $this->trimmed('location');
-        $aliasstring = $this->trimmed('aliases');
+        if (Event::handle('StartGroupSaveForm', array($this))) {
+            try {
+                $nickname = Nickname::normalize($this->trimmed('nickname'));
+            } catch (NicknameException $e) {
+                $this->showForm($e->getMessage());
+            }
+            $fullname    = $this->trimmed('fullname');
+            $homepage    = $this->trimmed('homepage');
+            $description = $this->trimmed('description');
+            $location    = $this->trimmed('location');
+            $aliasstring = $this->trimmed('aliases');
 
-        if ($this->nicknameExists($nickname)) {
-            // TRANS: Group create form validation error.
-            $this->showForm(_('Nickname already in use. Try another one.'));
-            return;
-        } else if (!User_group::allowedNickname($nickname)) {
-            // TRANS: Group create form validation error.
-            $this->showForm(_('Not a valid nickname.'));
-            return;
-        } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
-                   !Validate::uri($homepage,
-                                  array('allowed_schemes' =>
-                                        array('http', 'https')))) {
-            // TRANS: Group create form validation error.
-            $this->showForm(_('Homepage is not a valid URL.'));
-            return;
-        } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
-            // TRANS: Group create form validation error.
-            $this->showForm(_('Full name is too long (maximum 255 characters).'));
-            return;
-        } else if (User_group::descriptionTooLong($description)) {
-            // TRANS: Group create form validation error.
-            // TRANS: %d is the maximum number of allowed characters.
-            $this->showForm(sprintf(_m('Description is too long (maximum %d character).',
-                                       'Description is too long (maximum %d characters).',
-                                       User_group::maxDescription()),
-                                    User_group::maxDescription()));
-            return;
-        } else if (!is_null($location) && mb_strlen($location) > 255) {
-            // TRANS: Group create form validation error.
-            $this->showForm(_('Location is too long (maximum 255 characters).'));
-            return;
-        }
-
-        if (!empty($aliasstring)) {
-            $aliases = array_map('common_canonical_nickname', array_unique(preg_split('/[\s,]+/', $aliasstring)));
-        } else {
-            $aliases = array();
-        }
-
-        if (count($aliases) > common_config('group', 'maxaliases')) {
-            // TRANS: Group create form validation error.
-            // TRANS: %d is the maximum number of allowed aliases.
-            $this->showForm(sprintf(_m('Too many aliases! Maximum %d allowed.',
-                                       'Too many aliases! Maximum %d allowed.',
-                                       common_config('group', 'maxaliases')),
-                                    common_config('group', 'maxaliases')));
-            return;
-        }
-
-        foreach ($aliases as $alias) {
-            if (!Nickname::isValid($alias)) {
+            if ($this->nicknameExists($nickname)) {
                 // TRANS: Group create form validation error.
-                $this->showForm(sprintf(_('Invalid alias: "%s"'), $alias));
+                $this->showForm(_('Nickname already in use. Try another one.'));
+                return;
+            } else if (!User_group::allowedNickname($nickname)) {
+                // TRANS: Group create form validation error.
+                $this->showForm(_('Not a valid nickname.'));
+                return;
+            } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
+                       !Validate::uri($homepage,
+                                      array('allowed_schemes' =>
+                                            array('http', 'https')))) {
+                // TRANS: Group create form validation error.
+                $this->showForm(_('Homepage is not a valid URL.'));
+                return;
+            } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
+                // TRANS: Group create form validation error.
+                $this->showForm(_('Full name is too long (maximum 255 characters).'));
+                return;
+            } else if (User_group::descriptionTooLong($description)) {
+                // TRANS: Group create form validation error.
+                // TRANS: %d is the maximum number of allowed characters.
+                $this->showForm(sprintf(_m('Description is too long (maximum %d character).',
+                                           'Description is too long (maximum %d characters).',
+                                           User_group::maxDescription()),
+                                        User_group::maxDescription()));
+                return;
+            } else if (!is_null($location) && mb_strlen($location) > 255) {
+                // TRANS: Group create form validation error.
+                $this->showForm(_('Location is too long (maximum 255 characters).'));
                 return;
             }
-            if ($this->nicknameExists($alias)) {
+
+            if (!empty($aliasstring)) {
+                $aliases = array_map('common_canonical_nickname', array_unique(preg_split('/[\s,]+/', $aliasstring)));
+            } else {
+                $aliases = array();
+            }
+
+            if (count($aliases) > common_config('group', 'maxaliases')) {
                 // TRANS: Group create form validation error.
-                $this->showForm(sprintf(_('Alias "%s" already in use. Try another one.'),
-                                        $alias));
+                // TRANS: %d is the maximum number of allowed aliases.
+                $this->showForm(sprintf(_m('Too many aliases! Maximum %d allowed.',
+                                           'Too many aliases! Maximum %d allowed.',
+                                           common_config('group', 'maxaliases')),
+                                        common_config('group', 'maxaliases')));
                 return;
             }
-            // XXX assumes alphanum nicknames
-            if (strcmp($alias, $nickname) == 0) {
-                // TRANS: Group create form validation error.
-                $this->showForm(_('Alias can\'t be the same as nickname.'));
-                return;
+
+            foreach ($aliases as $alias) {
+                if (!Nickname::isValid($alias)) {
+                    // TRANS: Group create form validation error.
+                    // TRANS: %s is the invalid alias.
+                    $this->showForm(sprintf(_('Invalid alias: "%s"'), $alias));
+                    return;
+                }
+                if ($this->nicknameExists($alias)) {
+                    // TRANS: Group create form validation error. %s is the already used alias.
+                    $this->showForm(sprintf(_('Alias "%s" already in use. Try another one.'),
+                                            $alias));
+                    return;
+                }
+                // XXX assumes alphanum nicknames
+                if (strcmp($alias, $nickname) == 0) {
+                    // TRANS: Group create form validation error.
+                    $this->showForm(_('Alias cannot be the same as nickname.'));
+                    return;
+                }
             }
+
+            $cur = common_current_user();
+
+            // Checked in prepare() above
+
+            assert(!is_null($cur));
+
+            $group = User_group::register(array('nickname' => $nickname,
+                                                'fullname' => $fullname,
+                                                'homepage' => $homepage,
+                                                'description' => $description,
+                                                'location' => $location,
+                                                'aliases'  => $aliases,
+                                                'userid'   => $cur->id,
+                                                'local'    => true));
+
+            $this->group = $group;
+
+            Event::handle('EndGroupSaveForm', array($this));
+
+            common_redirect($group->homeUrl(), 303);
         }
-
-        $mainpage = common_local_url('showgroup', array('nickname' => $nickname));
-
-        $cur = common_current_user();
-
-        // Checked in prepare() above
-
-        assert(!is_null($cur));
-
-        $group = User_group::register(array('nickname' => $nickname,
-                                            'fullname' => $fullname,
-                                            'homepage' => $homepage,
-                                            'description' => $description,
-                                            'location' => $location,
-                                            'aliases'  => $aliases,
-                                            'userid'   => $cur->id,
-                                            'mainpage' => $mainpage,
-                                            'local'    => true));
-
-        common_redirect($group->homeUrl(), 303);
     }
 
     function nicknameExists($nickname)

@@ -1,5 +1,5 @@
 # Translation of StatusNet - FacebookBridge to Breton (Brezhoneg)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Y-M D
 # --
@@ -9,79 +9,133 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:55+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:12+0000\n"
 "Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:35+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:43:42+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. TRANS: Menu item.
-#. TRANS: Menu item tab.
-#: FacebookBridgePlugin.php:201 FacebookBridgePlugin.php:240
-#: FacebookBridgePlugin.php:281
-msgctxt "MENU"
+msgid "Already logged in."
+msgstr "Kevreet oc'h dija."
+
+#. TRANS: Instructions.
+msgid "Login with your Facebook Account"
+msgstr "Kevreit gant ho kont Facebook"
+
+#. TRANS: Page title.
+msgid "Login with Facebook"
+msgstr "Kevreañ gant Facebook"
+
 msgid "Facebook"
 msgstr "Facebook"
 
-#. TRANS: Tooltip for menu item "Facebook".
-#: FacebookBridgePlugin.php:203
-msgid "Login or register using Facebook"
-msgstr "Kevreañ pe en em enskrivañ dre Facebook"
+msgid "Facebook integration settings"
+msgstr "Arventennoù enframmañ Facebook"
 
-#. TRANS: Tooltip for menu item "Facebook".
-#: FacebookBridgePlugin.php:242
-msgid "Facebook integration configuration"
+msgid "Invalid Facebook ID. Max length is 255 characters."
 msgstr ""
 
-#. TRANS: Tooltip for menu item "Facebook".
+msgid "Invalid Facebook secret. Max length is 255 characters."
+msgstr ""
+
+msgid "Facebook application settings"
+msgstr "Arventennoù poellad Facebook"
+
+msgid "Application ID"
+msgstr "ID ar poellad"
+
+msgid "ID of your Facebook application"
+msgstr "ID ho poellad Facebook"
+
+msgid "Secret"
+msgstr "Kuzh"
+
+msgid "Application secret"
+msgstr ""
+
+msgid "Save"
+msgstr "Enrollañ"
+
+msgid "Save Facebook settings"
+msgstr "Enrollañ arventennoù Facebook"
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Ur gudenn 'zo bet gant ho jedaouer dalc'h. Mar plij adklaskit."
+
 #. TRANS: Page title for Facebook settings.
-#: FacebookBridgePlugin.php:283 actions/facebooksettings.php:105
+#. TRANS: Tooltip for menu item "Facebook".
 msgid "Facebook settings"
 msgstr "Arventennoù Facebook"
 
-#: FacebookBridgePlugin.php:547
-msgid "A plugin for integrating StatusNet with Facebook."
+msgid "Connected Facebook user"
+msgstr "Implijer Facebook kevreet"
+
+msgid "Publish my notices to Facebook."
 msgstr ""
 
-#: lib/facebookclient.php:776
-msgid "Your Facebook connection has been removed"
-msgstr ""
+msgid "Send \"@\" replies to Facebook."
+msgstr "Kas respontoù \"@\" da Facebook."
 
-#: lib/facebookclient.php:835
+#. TRANS: Submit button to save synchronisation settings.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Enrollañ"
+
+#. TRANS: Legend.
+msgid "Disconnect my account from Facebook"
+msgstr "Digevreañ ma c'hont deus Facebook"
+
 #, php-format
-msgid "Contact the %s administrator to retrieve your account"
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please [set "
+"a password](%s) first."
 msgstr ""
 
-#: actions/facebookfinishlogin.php:88
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
+"password to log in."
+msgstr ""
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "Digevrañ"
+
+msgid "There was a problem saving your sync preferences."
+msgstr ""
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the system.
+msgid "Sync preferences saved."
+msgstr ""
+
+msgid "Couldn't delete link to Facebook."
+msgstr "N'eus ket bet gallet diverkañ al liamm war-du Facebook."
+
+msgid "You have disconnected from Facebook."
+msgstr "Digevreet ho peus deus Facebook."
+
 msgid ""
 "You must be logged into Facebook to register a local account using Facebook."
 msgstr ""
 
-#: actions/facebookfinishlogin.php:118
 msgid "There is already a local account linked with that Facebook account."
 msgstr "Un implijer lec'hel liammet d'ar gont Facebook-se a zo dija."
 
-#: actions/facebookfinishlogin.php:141 actions/facebooksettings.php:86
-msgid "There was a problem with your session token. Try again, please."
-msgstr "Ur gudenn 'zo bet gant ho jedaouer dalc'h. Mar plij adklaskit."
-
-#: actions/facebookfinishlogin.php:150
 msgid "You can't register if you don't agree to the license."
 msgstr ""
 "Rankout a rit bezañ a-du gant termenoù an aotre-implijout evit krouiñ ur "
 "gont."
 
-#: actions/facebookfinishlogin.php:167
 msgid "An unknown error has occured."
 msgstr "Ur gudenn dizanv a zo bet."
 
-#: actions/facebookfinishlogin.php:185
 #, php-format
 msgid ""
 "This is the first time you've logged into %s so we must connect your "
@@ -90,17 +144,14 @@ msgid ""
 msgstr ""
 
 #. TRANS: Page title.
-#: actions/facebookfinishlogin.php:195
 msgid "Facebook Setup"
 msgstr ""
 
 #. TRANS: Legend.
-#: actions/facebookfinishlogin.php:229
 msgid "Connection options"
 msgstr "Dibarzhioù kevreañ"
 
 #. TRANS: %s is the name of the license used by the user for their status updates.
-#: actions/facebookfinishlogin.php:239
 #, php-format
 msgid ""
 "My text and files are available under %s except this private data: password, "
@@ -108,195 +159,85 @@ msgid ""
 msgstr ""
 
 #. TRANS: Legend.
-#: actions/facebookfinishlogin.php:256
 msgid "Create new account"
 msgstr "Krouiñ ur gont nevez"
 
-#: actions/facebookfinishlogin.php:258
 msgid "Create a new user with this nickname."
 msgstr "Krouiñ un implijer nevez gant al lesanv-se."
 
 #. TRANS: Field label.
-#: actions/facebookfinishlogin.php:262
 msgid "New nickname"
 msgstr "Lesanv nevez"
 
-#: actions/facebookfinishlogin.php:264
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
 msgstr "1 da 64 lizherenn vihan pe sifr, hep poentaouiñ nag esaouenn"
 
 #. TRANS: Submit button.
-#: actions/facebookfinishlogin.php:268
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Krouiñ"
 
-#: actions/facebookfinishlogin.php:274
 msgid "Connect existing account"
 msgstr "Kevreañ d'ur gont a zo dioutañ"
 
-#: actions/facebookfinishlogin.php:276
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your Facebook."
 msgstr ""
 
 #. TRANS: Field label.
-#: actions/facebookfinishlogin.php:280
 msgid "Existing nickname"
 msgstr "Lesanv a zo dioutañ"
 
-#: actions/facebookfinishlogin.php:283
 msgid "Password"
 msgstr "Ger-tremen"
 
 #. TRANS: Submit button.
-#: actions/facebookfinishlogin.php:287
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Kevreañ"
 
 #. TRANS: Client error trying to register with registrations not allowed.
 #. TRANS: Client error trying to register with registrations 'invite only'.
-#: actions/facebookfinishlogin.php:304 actions/facebookfinishlogin.php:314
 msgid "Registration not allowed."
 msgstr "N'eo ket aotreet krouiñ kontoù."
 
 #. TRANS: Client error trying to register with an invalid invitation code.
-#: actions/facebookfinishlogin.php:322
 msgid "Not a valid invitation code."
 msgstr "N'eo ket reizh ar c'hod pedadenn."
 
-#: actions/facebookfinishlogin.php:335
 msgid "Nickname not allowed."
 msgstr "Lesanv nann-aotreet."
 
-#: actions/facebookfinishlogin.php:340
 msgid "Nickname already in use. Try another one."
 msgstr "Implijet eo dija al lesanv-se. Klaskit unan all."
 
-#: actions/facebookfinishlogin.php:368 actions/facebookfinishlogin.php:505
 msgid "Error connecting user to Facebook."
 msgstr ""
 
-#: actions/facebookfinishlogin.php:468
 msgid "Invalid username or password."
 msgstr "Anv implijer pe ger-tremen direizh."
 
-#: actions/facebooklogin.php:43
-msgid "Already logged in."
-msgstr "Kevreet oc'h dija."
-
-#. TRANS: Instructions.
-#: actions/facebooklogin.php:52
-msgid "Login with your Facebook Account"
-msgstr "Kevreit gant ho kont Facebook"
-
-#. TRANS: Page title.
-#: actions/facebooklogin.php:67
-msgid "Login with Facebook"
-msgstr "Kevreañ gant Facebook"
-
-#: actions/facebookadminpanel.php:52
+#. TRANS: Menu item.
+#. TRANS: Menu item tab.
+msgctxt "MENU"
 msgid "Facebook"
 msgstr "Facebook"
 
-#: actions/facebookadminpanel.php:62
-msgid "Facebook integration settings"
-msgstr "Arventennoù enframmañ Facebook"
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Login or register using Facebook"
+msgstr "Kevreañ pe en em enskrivañ dre Facebook"
 
-#: actions/facebookadminpanel.php:123
-msgid "Invalid Facebook ID. Max length is 255 characters."
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Facebook integration configuration"
 msgstr ""
 
-#: actions/facebookadminpanel.php:129
-msgid "Invalid Facebook secret. Max length is 255 characters."
+msgid "A plugin for integrating StatusNet with Facebook."
 msgstr ""
 
-#: actions/facebookadminpanel.php:178
-msgid "Facebook application settings"
-msgstr "Arventennoù poellad Facebook"
-
-#: actions/facebookadminpanel.php:184
-msgid "Application ID"
-msgstr "ID ar poellad"
-
-#: actions/facebookadminpanel.php:185
-msgid "ID of your Facebook application"
-msgstr "ID ho poellad Facebook"
-
-#: actions/facebookadminpanel.php:193
-msgid "Secret"
-msgstr "Kuzh"
-
-#: actions/facebookadminpanel.php:194
-msgid "Application secret"
+msgid "Your Facebook connection has been removed"
 msgstr ""
 
-#: actions/facebookadminpanel.php:210
-msgid "Save"
-msgstr "Enrollañ"
-
-#: actions/facebookadminpanel.php:210
-msgid "Save Facebook settings"
-msgstr ""
-
-#: actions/facebooksettings.php:137
-msgid "Connected Facebook user"
-msgstr ""
-
-#: actions/facebooksettings.php:164
-msgid "Publish my notices to Facebook."
-msgstr ""
-
-#: actions/facebooksettings.php:174
-msgid "Send \"@\" replies to Facebook."
-msgstr ""
-
-#. TRANS: Submit button to save synchronisation settings.
-#: actions/facebooksettings.php:183
-msgctxt "BUTTON"
-msgid "Save"
-msgstr "Enrollañ"
-
-#. TRANS: Legend.
-#: actions/facebooksettings.php:192
-msgid "Disconnect my account from Facebook"
-msgstr ""
-
-#: actions/facebooksettings.php:199
 #, php-format
-msgid ""
-"Disconnecting your Faceboook would make it impossible to log in! Please [set "
-"a password](%s) first."
-msgstr ""
-
-#: actions/facebooksettings.php:213
-#, php-format
-msgid ""
-"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
-"password to log in."
-msgstr ""
-
-#. TRANS: Submit button.
-#: actions/facebooksettings.php:220
-msgctxt "BUTTON"
-msgid "Disconnect"
-msgstr "Digevrañ"
-
-#: actions/facebooksettings.php:243
-msgid "There was a problem saving your sync preferences."
-msgstr ""
-
-#. TRANS: Confirmation that synchronisation settings have been saved into the system.
-#: actions/facebooksettings.php:246
-msgid "Sync preferences saved."
-msgstr ""
-
-#: actions/facebooksettings.php:260
-msgid "Couldn't delete link to Facebook."
-msgstr ""
-
-#: actions/facebooksettings.php:264
-msgid "You have disconnected from Facebook."
+msgid "Contact the %s administrator to retrieve your account"
 msgstr ""

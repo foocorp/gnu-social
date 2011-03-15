@@ -77,58 +77,37 @@ class TagotherAction extends Action
         $this->element('h2', null, _('User profile'));
 
         $avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
-        $this->elementStart('dl', 'entity_depiction');
-        $this->element('dt', null, _('Photo'));
-        $this->elementStart('dd');
         $this->element('img', array('src' => ($avatar) ? $avatar->displayUrl() : Avatar::defaultImage(AVATAR_PROFILE_SIZE),
-                                    'class' => 'photo avatar',
+                                    'class' => 'photo avatar entity_depiction',
                                     'width' => AVATAR_PROFILE_SIZE,
                                     'height' => AVATAR_PROFILE_SIZE,
                                     'alt' =>
                                     ($this->profile->fullname) ? $this->profile->fullname :
                                     $this->profile->nickname));
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
 
-        $this->elementStart('dl', 'entity_nickname');
-        $this->element('dt', null, _('Nickname'));
-        $this->elementStart('dd');
         $this->element('a', array('href' => $this->profile->profileurl,
-                                  'class' => 'nickname'),
+                                  'class' => 'entity_nickname nickname'),
                        $this->profile->nickname);
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
 
         if ($this->profile->fullname) {
-            $this->elementStart('dl', 'entity_fn');
-            $this->element('dt', null, _('Full name'));
-            $this->elementStart('dd');
-            $this->element('span', 'fn', $this->profile->fullname);
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
+            $this->element('div', 'fn entity_fn', $this->profile->fullname);
         }
+
         if ($this->profile->location) {
-            $this->elementStart('dl', 'entity_location');
-            $this->element('dt', null, _('Location'));
-            $this->element('dd', 'label', $this->profile->location);
-            $this->elementEnd('dl');
+            $this->element('div', 'label entity_location', $this->profile->location);
         }
+
         if ($this->profile->homepage) {
-            $this->elementStart('dl', 'entity_url');
-            $this->element('dt', null, _('URL'));
-            $this->elementStart('dd');
             $this->element('a', array('href' => $this->profile->homepage,
-                                      'rel' => 'me', 'class' => 'url'),
+                                      'rel' => 'me',
+                                      'class' => 'url entity_url'),
                            $this->profile->homepage);
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
         }
+
         if ($this->profile->bio) {
-            $this->elementStart('dl', 'entity_note');
-            $this->element('dt', null, _('Note'));
-            $this->element('dd', 'note', $this->profile->bio);
-            $this->elementEnd('dl');
+            $this->element('div', 'note entity_note', $this->profile->bio);
         }
+
         $this->elementEnd('div');
 
         $this->elementStart('form', array('method' => 'post',

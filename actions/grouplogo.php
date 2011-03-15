@@ -32,7 +32,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/accountsettingsaction.php';
+
 
 define('MAX_ORIGINAL', 480);
 
@@ -49,7 +49,6 @@ define('MAX_ORIGINAL', 480);
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class GrouplogoAction extends GroupDesignAction
 {
     var $mode = null;
@@ -61,12 +60,12 @@ class GrouplogoAction extends GroupDesignAction
     /**
      * Prepare to run
      */
-
     function prepare($args)
     {
         parent::prepare($args);
 
         if (!common_logged_in()) {
+            // TRANS: Client error displayed when trying to create a group while not logged in.
             $this->clientError(_('You must be logged in to create a group.'));
             return false;
         }
@@ -83,6 +82,7 @@ class GrouplogoAction extends GroupDesignAction
         }
 
         if (!$nickname) {
+            // TRANS: Client error displayed when trying to change group logo settings without providing a nickname.
             $this->clientError(_('No nickname.'), 404);
             return false;
         }
@@ -99,6 +99,7 @@ class GrouplogoAction extends GroupDesignAction
         }
 
         if (!$this->group) {
+            // TRANS: Client error displayed when trying to update logo settings for a non-existing group.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -106,6 +107,7 @@ class GrouplogoAction extends GroupDesignAction
         $cur = common_current_user();
 
         if (!$cur->isAdmin($this->group)) {
+            // TRANS: Client error displayed when trying to change group logo settings while not being a group admin.
             $this->clientError(_('You must be an admin to edit the group.'), 403);
             return false;
         }
@@ -136,9 +138,9 @@ class GrouplogoAction extends GroupDesignAction
      *
      * @return string Title of the page
      */
-
     function title()
     {
+        // TRANS: Title for group logo settings page.
         return _('Group logo');
     }
 
@@ -147,9 +149,10 @@ class GrouplogoAction extends GroupDesignAction
      *
      * @return instructions for use
      */
-
     function getInstructions()
     {
+        // TRANS: Instructions for group logo page.
+        // TRANS: %s is the maximum file size for that site.
         return sprintf(_('You can upload a logo image for your group. The maximum file size is %s.'), ImageFile::maxFileSize());
     }
 
@@ -160,7 +163,6 @@ class GrouplogoAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showContent()
     {
         if ($this->mode == 'crop') {
@@ -178,6 +180,7 @@ class GrouplogoAction extends GroupDesignAction
 
         if (!$profile) {
             common_log_db_error($user, 'SELECT', __FILE__);
+            // TRANS: Server error displayed coming across a request from a user without a profile.
             $this->serverError(_('User without matching profile.'));
             return;
         }
@@ -192,6 +195,7 @@ class GrouplogoAction extends GroupDesignAction
                                           common_local_url('grouplogo',
                                                            array('nickname' => $this->group->nickname))));
         $this->elementStart('fieldset');
+        // TRANS: Group logo form legend.
         $this->element('legend', null, _('Group logo'));
         $this->hidden('token', common_session_token());
 
@@ -199,7 +203,8 @@ class GrouplogoAction extends GroupDesignAction
         if ($original) {
             $this->elementStart('li', array('id' => 'avatar_original',
                                             'class' => 'avatar_view'));
-            $this->element('h2', null, _("Original"));
+            // TRANS: Uploaded original file in group logo form.
+            $this->element('h2', null, _('Original'));
             $this->elementStart('div', array('id'=>'avatar_original_view'));
             $this->element('img', array('src' => $this->group->original_logo,
                                         'alt' => $this->group->nickname));
@@ -210,7 +215,8 @@ class GrouplogoAction extends GroupDesignAction
         if ($this->group->homepage_logo) {
             $this->elementStart('li', array('id' => 'avatar_preview',
                                             'class' => 'avatar_view'));
-            $this->element('h2', null, _("Preview"));
+            // TRANS: Header for preview of to be displayed group logo.
+            $this->element('h2', null, _('Preview'));
             $this->elementStart('div', array('id'=>'avatar_preview_view'));
             $this->element('img', array('src' => $this->group->homepage_logo,
                                         'width' => AVATAR_PROFILE_SIZE,
@@ -221,25 +227,25 @@ class GrouplogoAction extends GroupDesignAction
         }
 
         $this->elementStart('li', array ('id' => 'settings_attach'));
-        $this->element('input', array('name' => 'avatarfile',
-                                      'type' => 'file',
-                                      'id' => 'avatarfile'));
         $this->element('input', array('name' => 'MAX_FILE_SIZE',
                                       'type' => 'hidden',
                                       'id' => 'MAX_FILE_SIZE',
                                       'value' => ImageFile::maxFileSizeInt()));
+        $this->element('input', array('name' => 'avatarfile',
+                                      'type' => 'file',
+                                      'id' => 'avatarfile'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
 
         $this->elementStart('ul', 'form_actions');
         $this->elementStart('li');
+        // TRANS: Submit button for uploading a group logo.
         $this->submit('upload', _('Upload'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
 
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
-
     }
 
     function showCropForm()
@@ -251,6 +257,7 @@ class GrouplogoAction extends GroupDesignAction
                                           common_local_url('grouplogo',
                                                            array('nickname' => $this->group->nickname))));
         $this->elementStart('fieldset');
+        // TRANS: Legend for group logo settings fieldset.
         $this->element('legend', null, _('Avatar settings'));
         $this->hidden('token', common_session_token());
 
@@ -259,7 +266,8 @@ class GrouplogoAction extends GroupDesignAction
         $this->elementStart('li',
                             array('id' => 'avatar_original',
                                   'class' => 'avatar_view'));
-        $this->element('h2', null, _("Original"));
+        // TRANS: Header for originally uploaded file before a crop on the group logo page.
+        $this->element('h2', null, _('Original'));
         $this->elementStart('div', array('id'=>'avatar_original_view'));
         $this->element('img', array('src' => Avatar::url($this->filedata['filename']),
                                     'width' => $this->filedata['width'],
@@ -271,7 +279,8 @@ class GrouplogoAction extends GroupDesignAction
         $this->elementStart('li',
                             array('id' => 'avatar_preview',
                                   'class' => 'avatar_view'));
-        $this->element('h2', null, _("Preview"));
+        // TRANS: Header for the cropped group logo on the group logo page.
+        $this->element('h2', null, _('Preview'));
         $this->elementStart('div', array('id'=>'avatar_preview_view'));
         $this->element('img', array('src' => Avatar::url($this->filedata['filename']),
                                     'width' => AVATAR_PROFILE_SIZE,
@@ -286,13 +295,13 @@ class GrouplogoAction extends GroupDesignAction
                                           'id' => $crop_info));
         }
 
+        // TRANS: Button text for cropping an uploaded group logo.
         $this->submit('crop', _('Crop'));
 
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
-
     }
 
     /**
@@ -302,13 +311,13 @@ class GrouplogoAction extends GroupDesignAction
      *
      * @return void
      */
-
     function handlePost()
     {
         // CSRF protection
 
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
+            // TRANS: Form validation error message.
             $this->show_form(_('There was a problem with your session token. '.
                                'Try again, please.'));
             return;
@@ -319,6 +328,7 @@ class GrouplogoAction extends GroupDesignAction
         } else if ($this->arg('crop')) {
             $this->cropLogo();
         } else {
+            // TRANS: Form validation error message when an unsupported argument is used.
             $this->showForm(_('Unexpected form submission.'));
         }
     }
@@ -331,7 +341,6 @@ class GrouplogoAction extends GroupDesignAction
      *
      * @return void
      */
-
     function uploadLogo()
     {
         try {
@@ -341,20 +350,21 @@ class GrouplogoAction extends GroupDesignAction
             return;
         }
 
+        $type = $imagefile->preferredType();
         $filename = Avatar::filename($this->group->id,
-                                     image_type_to_extension($imagefile->type),
+                                     image_type_to_extension($type),
                                      null,
                                      'group-temp-'.common_timestamp());
 
         $filepath = Avatar::path($filename);
 
-        move_uploaded_file($imagefile->filepath, $filepath);
+        $imagefile->copyTo($filepath);
 
         $filedata = array('filename' => $filename,
                           'filepath' => $filepath,
                           'width' => $imagefile->width,
                           'height' => $imagefile->height,
-                          'type' => $imagefile->type);
+                          'type' => $type);
 
         $_SESSION['FILEDATA'] = $filedata;
 
@@ -362,6 +372,7 @@ class GrouplogoAction extends GroupDesignAction
 
         $this->mode = 'crop';
 
+        // TRANS: Form instructions on the group logo page.
         $this->showForm(_('Pick a square area of the image to be the logo.'),
                         true);
     }
@@ -371,12 +382,12 @@ class GrouplogoAction extends GroupDesignAction
      *
      * @return void
      */
-
     function cropLogo()
     {
         $filedata = $_SESSION['FILEDATA'];
 
         if (!$filedata) {
+            // TRANS: Server error displayed trying to crop an uploaded group logo that is no longer present.
             $this->serverError(_('Lost our file data.'));
             return;
         }
@@ -396,8 +407,10 @@ class GrouplogoAction extends GroupDesignAction
             @unlink($filedata['filepath']);
             unset($_SESSION['FILEDATA']);
             $this->mode = 'upload';
+            // TRANS: Form success message after updating a group logo.
             $this->showForm(_('Logo updated.'), true);
         } else {
+            // TRANS: Form failure message after failing to update a group logo.
             $this->showForm(_('Failed updating logo.'));
         }
     }
@@ -422,7 +435,6 @@ class GrouplogoAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showStylesheets()
     {
         parent::showStylesheets();
@@ -434,7 +446,6 @@ class GrouplogoAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showScripts()
     {
         parent::showScripts();
@@ -447,7 +458,7 @@ class GrouplogoAction extends GroupDesignAction
         $this->autofocus('avatarfile');
     }
 
-    function showLocalNav()
+    function showObjectNav()
     {
         $nav = new GroupNav($this, $this->group);
         $nav->show();

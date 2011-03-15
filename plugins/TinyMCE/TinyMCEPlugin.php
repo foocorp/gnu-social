@@ -38,6 +38,10 @@ if (!defined('STATUSNET')) {
  * Use TinyMCE library to allow rich text editing in the browser
  *
  * Converts the notice form in browser to a rich-text editor.
+ * 
+ * FIXME: this plugin DOES NOT load its static files from the configured
+ * plugin server if one exists. There are cross-server permissions errors
+ * if you try to do that (something about window.tinymce).
  *
  * @category  WYSIWYG
  * @package   StatusNet
@@ -286,9 +290,14 @@ class TinyMCEPlugin extends Plugin
         // our AJAX form submission. Manually moving it to trigger
         // on our send button click.
         $scr = <<<END_OF_SCRIPT
-        $().ready(function() {
-            var noticeForm = $('#form_notice');
-            $('textarea#notice_data-text').tinymce({
+        (function() {
+        var origInit = SN.Init.NoticeFormSetup;
+        SN.Init.NoticeFormSetup = function(form) {
+            origInit(form);
+            var noticeForm = form;
+            var textarea = form.find('.notice_data-text');
+            if (textarea.length == 0) return;
+            textarea.tinymce({
                 script_url : '{$path}',
                 // General options
                 theme : "advanced",
@@ -302,7 +311,7 @@ class TinyMCEPlugin extends Plugin
                 setup: function(ed) {
                     noticeForm.append('<input type="hidden" name="richedit" value="1">');
 
-                    $('#notice_action-submit').click(function() {
+                    form.find('.submit:first').click(function() {
                         tinymce.triggerSave();
                     });
 
@@ -315,14 +324,15 @@ class TinyMCEPlugin extends Plugin
                         SN.U.Counter(noticeForm);
                     });
 
-                    $('#'+SN.C.S.NoticeDataAttach).change(function() {
+                    form.find('input[type=file]').change(function() {
                         var img = '<img src="{$placeholder}" class="placeholder" width="320" height="240">';
                         var html = tinyMCE.activeEditor.getContent();
                         ed.setContent(html + img);
                     });
                 }
             });
-        });
+        };
+        })();
 END_OF_SCRIPT;
 
         return $scr;

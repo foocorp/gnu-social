@@ -1,5 +1,5 @@
 # Translation of StatusNet - Realtime to Dutch (Nederlands)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Siebrand
 # --
@@ -9,50 +9,44 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Realtime\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:49+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:04+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:44:32+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:45:50+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-realtime\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Text label for realtime view "play" button, usually replaced by an icon.
-#: RealtimePlugin.php:339
 msgctxt "BUTTON"
 msgid "Play"
 msgstr "Afspelen"
 
 #. TRANS: Tooltip for realtime view "play" button.
-#: RealtimePlugin.php:341
 msgctxt "TOOLTIP"
 msgid "Play"
 msgstr "Afspelen"
 
 #. TRANS: Text label for realtime view "pause" button
-#: RealtimePlugin.php:343
 msgctxt "BUTTON"
 msgid "Pause"
 msgstr "Pauzeren"
 
 #. TRANS: Tooltip for realtime view "pause" button
-#: RealtimePlugin.php:345
 msgctxt "TOOLTIP"
 msgid "Pause"
 msgstr "Pauzeren"
 
 #. TRANS: Text label for realtime view "popup" button, usually replaced by an icon.
-#: RealtimePlugin.php:347
 msgctxt "BUTTON"
 msgid "Pop up"
 msgstr "Pop-up"
 
 #. TRANS: Tooltip for realtime view "popup" button.
-#: RealtimePlugin.php:349
 msgctxt "TOOLTIP"
 msgid "Pop up in a window"
 msgstr "In nieuw venstertje weergeven"

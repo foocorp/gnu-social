@@ -76,8 +76,7 @@ class AttachmentList extends Widget
      */
     function show()
     {
-        $atts = new File;
-        $att = $atts->getAttachments($this->notice->id);
+        $att = File::getAttachments($this->notice->id);
         if (empty($att)) return 0;
         $this->showListStart();
 
@@ -93,19 +92,12 @@ class AttachmentList extends Widget
 
     function showListStart()
     {
-        $this->out->elementStart('dl', array('id' =>'attachments',
-                                             'class' => 'entry-content'));
-        // TRANS: DT element label in attachment list.
-        $this->out->element('dt', null, _('Attachments'));
-        $this->out->elementStart('dd');
-        $this->out->elementStart('ol', array('class' => 'attachments'));
+        $this->out->elementStart('ol', array('class' => 'attachments entry-content'));
     }
 
     function showListEnd()
     {
-        $this->out->elementEnd('dd');
         $this->out->elementEnd('ol');
-        $this->out->elementEnd('dl');
     }
 
     /**
@@ -289,32 +281,22 @@ class Attachment extends AttachmentListItem
             $this->out->elementStart('div', array('id' => 'oembed_info',
                                                   'class' => 'entry-content'));
             if (!empty($this->oembed->author_name)) {
-                $this->out->elementStart('dl', 'vcard author');
-                // TRANS: DT element label in attachment list item.
-                $this->out->element('dt', null, _('Author'));
-                $this->out->elementStart('dd', 'fn');
+                $this->out->elementStart('div', 'fn vcard author');
                 if (empty($this->oembed->author_url)) {
                     $this->out->text($this->oembed->author_name);
                 } else {
                     $this->out->element('a', array('href' => $this->oembed->author_url,
                                                    'class' => 'url'), $this->oembed->author_name);
                 }
-                $this->out->elementEnd('dd');
-                $this->out->elementEnd('dl');
             }
             if (!empty($this->oembed->provider)) {
-                $this->out->elementStart('dl', 'vcard');
-                // TRANS: DT element label in attachment list item.
-                $this->out->element('dt', null, _('Provider'));
-                $this->out->elementStart('dd', 'fn');
+                $this->out->elementStart('div', 'fn vcard');
                 if (empty($this->oembed->provider_url)) {
                     $this->out->text($this->oembed->provider);
                 } else {
                     $this->out->element('a', array('href' => $this->oembed->provider_url,
                                                    'class' => 'url'), $this->oembed->provider);
                 }
-                $this->out->elementEnd('dd');
-                $this->out->elementEnd('dl');
             }
             $this->out->elementEnd('div');
         }

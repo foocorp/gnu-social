@@ -156,6 +156,13 @@ class Session extends Memcached_DataObject
         $session->selectAdd();
         $session->selectAdd('id');
 
+        $limit = common_config('sessions', 'gc_limit');
+        if ($limit > 0) {
+            // On large sites, too many sessions to expire
+            // at once will just result in failure.
+            $session->limit($limit);
+        }
+
         $session->find();
 
         while ($session->fetch()) {

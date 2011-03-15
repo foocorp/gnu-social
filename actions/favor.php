@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Favor action.
  *
@@ -59,6 +58,7 @@ class FavorAction extends Action
     {
         parent::handle($args);
         if (!common_logged_in()) {
+            // TRANS: Client error displayed when trying to mark a notice as favorite without being logged in.
             $this->clientError(_('Not logged in.'));
             return;
         }
@@ -76,11 +76,13 @@ class FavorAction extends Action
             return;
         }
         if ($user->hasFave($notice)) {
+            // TRANS: Client error displayed when trying to mark a notice as favorite that already is a favorite.
             $this->clientError(_('This notice is already a favorite!'));
             return;
         }
         $fave = Fave::addNew($user->getProfile(), $notice);
         if (!$fave) {
+            // TRANS: Server error displayed when trying to mark a notice as favorite fails in the database.
             $this->serverError(_('Could not create favorite.'));
             return;
         }
@@ -89,7 +91,8 @@ class FavorAction extends Action
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
-            $this->element('title', null, _('Disfavor favorite'));
+            // TRANS: Page title for page on which favorite notices can be unfavourited.
+            $this->element('title', null, _('Disfavor favorite.'));
             $this->elementEnd('head');
             $this->elementStart('body');
             $disfavor = new DisFavorForm($this, $notice);
@@ -123,4 +126,3 @@ class FavorAction extends Action
         }
     }
 }
-

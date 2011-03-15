@@ -1,0 +1,22 @@
+/* Note the #content is only needed to override weird crap in default styles */
+
+#content table.extended-profile {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 8px;
+}
+#content table.extended-profile th {
+    color: #777;
+    background-color: #eee;
+    width: 150px;
+
+    padding-top: 0; /* override bizarre theme defaults */
+
+    text-align: right;
+    padding-right: 8px;
+}
+#content table.extended-profile td {
+    padding: 0; /* override bizarre theme defaults */
+
+    padding-left: 8px;
+}

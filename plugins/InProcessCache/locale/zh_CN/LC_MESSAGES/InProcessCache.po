@@ -1,0 +1,26 @@
+# Translation of StatusNet - InProcessCache to Simplified Chinese (‪中文(简体)‬)
+# Exported from translatewiki.net
+#
+# Author: Hydra
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - InProcessCache\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:25+0000\n"
+"Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
+"hans>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:44:40+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: zh-hans\n"
+"X-Message-Group: #out-statusnet-plugin-inprocesscache\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Additional in-process cache for plugins."
+msgstr "其他过程中缓存的插件。"

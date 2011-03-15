@@ -1,0 +1,52 @@
+# Translation of StatusNet - GroupPrivateMessage to Portuguese (Português)
+# Exported from translatewiki.net
+#
+# Author: SandroHc
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - GroupPrivateMessage\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-08 01:03+0000\n"
+"PO-Revision-Date: 2011-03-08 01:06:16+0000\n"
+"Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-06 02:17:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83429); Translate extension (2011-03-07)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: pt\n"
+"X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Inbox"
+msgstr "Caixa de Entrada"
+
+msgid "Private messages for this group"
+msgstr "Mensagens privadas para este grupo"
+
+msgid "Allow posting DMs to a group."
+msgstr "Permitir pastagens DMs a um grupo."
+
+msgid "This group has not received any private messages."
+msgstr "Este grupo ainda não recebeu nenhuma mensagem privada."
+
+#. TRANS: Instructions for user inbox page.
+msgid ""
+"This is the group inbox, which lists all incoming private messages for this "
+"group."
+msgstr ""
+"Esta é a caixa de entrada do grupo, que lista todas as mensagens privadas "
+"recebidas para este grupo."
+
+msgctxt "Send button for sending notice"
+msgid "Send"
+msgstr "Enviar"
+
+#, php-format
+msgid "That's too long. Maximum message size is %d character."
+msgid_plural "That's too long. Maximum message size is %d characters."
+msgstr[0] "É muito longo. Máx. tamanho da mensagem é %d caracteres."
+msgstr[1] "É muito longo. Máx. tamanho da mensagem é %d caracteres."

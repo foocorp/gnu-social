@@ -30,6 +30,7 @@ class SalmonAction extends Action
 {
     var $xml      = null;
     var $activity = null;
+    var $target   = null;
 
     function prepare($args)
     {
@@ -82,7 +83,8 @@ class SalmonAction extends Action
         StatusNet::setApi(true); // Send smaller error pages
 
         common_log(LOG_DEBUG, "Got a " . $this->activity->verb);
-        if (Event::handle('StartHandleSalmon', array($this->activity))) {
+        if (Event::handle('StartHandleSalmonTarget', array($this->activity, $this->target)) &&
+            Event::handle('StartHandleSalmon', array($this->activity))) {
             switch ($this->activity->verb)
             {
             case ActivityVerb::POST:
@@ -118,6 +120,7 @@ class SalmonAction extends Action
                 throw new ClientException(_m("Unrecognized activity type."));
             }
             Event::handle('EndHandleSalmon', array($this->activity));
+            Event::handle('EndHandleSalmonTarget', array($this->activity, $this->target));
         }
     }
 

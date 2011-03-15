@@ -40,19 +40,16 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ShowApplicationAction extends OwnerDesignAction
 {
     /**
      * Application to show
      */
-
     var $application = null;
 
     /**
      * User who owns the app
      */
-
     var $owner = null;
 
     var $msg = null;
@@ -68,7 +65,6 @@ class ShowApplicationAction extends OwnerDesignAction
      *
      * @return success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -105,7 +101,6 @@ class ShowApplicationAction extends OwnerDesignAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -132,7 +127,6 @@ class ShowApplicationAction extends OwnerDesignAction
      *
      * @return string title of the page
      */
-
     function title()
     {
         if (!empty($this->application->name)) {
@@ -155,42 +149,24 @@ class ShowApplicationAction extends OwnerDesignAction
 
         $this->elementStart('div', 'entity_profile vcard');
         $this->element('h2', null, _('Application profile'));
-        $this->elementStart('dl', 'entity_depiction');
-        $this->element('dt', null, _('Icon'));
-        $this->elementStart('dd');
         if (!empty($this->application->icon)) {
             $this->element('img', array('src' => $this->application->icon,
-                                        'class' => 'photo logo'));
+                                        'class' => 'photo logo entity_depiction'));
         }
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
 
-        $this->elementStart('dl', 'entity_fn');
-        $this->element('dt', null, _('Name'));
-        $this->elementStart('dd');
         $this->element('a', array('href' =>  $this->application->source_url,
-                                  'class' => 'url fn'),
+                                  'class' => 'url fn entity_fn'),
                             $this->application->name);
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
 
-        $this->elementStart('dl', 'entity_org');
-        $this->element('dt', null, _('Organization'));
-        $this->elementStart('dd');
         $this->element('a', array('href' =>  $this->application->homepage,
-                                  'class' => 'url'),
+                                  'class' => 'url entity_org'),
                             $this->application->organization);
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
 
-        $this->elementStart('dl', 'entity_note');
-        $this->element('dt', null, _('Description'));
-        $this->element('dd', 'note', $this->application->description);
-        $this->elementEnd('dl');
+        $this->element('div',
+                       'note entity_note',
+                       $this->application->description);
 
-        $this->elementStart('dl', 'entity_statistics');
-        $this->element('dt', null, _('Statistics'));
-        $this->elementStart('dd');
+        $this->elementStart('div', 'entity_statistics');
         $defaultAccess = ($this->application->access_type & Oauth_application::$writeAccess)
             ? 'read-write' : 'read-only';
         $profile = Profile::staticGet($this->application->owner);
@@ -205,8 +181,8 @@ class ShowApplicationAction extends OwnerDesignAction
               $defaultAccess,
               $userCnt
             ));
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
+        $this->elementEnd('div');
+
         $this->elementEnd('div');
 
         $this->elementStart('div', 'entity_actions');
@@ -259,30 +235,21 @@ class ShowApplicationAction extends OwnerDesignAction
 
         $this->elementStart('div', 'entity_data');
         $this->element('h2', null, _('Application info'));
-        $this->elementStart('dl', 'entity_consumer_key');
-        $this->element('dt', null, _('Consumer key'));
-        $this->element('dd', null, $consumer->consumer_key);
-        $this->elementEnd('dl');
+        $this->element('div',
+                       'entity_consumer_key',
+                       $consumer->consumer_key);
 
-        $this->elementStart('dl', 'entity_consumer_secret');
-        $this->element('dt', null, _('Consumer secret'));
-        $this->element('dd', null, $consumer->consumer_secret);
-        $this->elementEnd('dl');
+        $this->element('div',
+                       'entity_consumer_secret',
+                       $consumer->consumer_secret);
 
-        $this->elementStart('dl', 'entity_request_token_url');
-        $this->element('dt', null, _('Request token URL'));
-        $this->element('dd', null, common_local_url('ApiOauthRequestToken'));
-        $this->elementEnd('dl');
+        $this->element('div',
+                       'entity_request_token_url',
+                       common_local_url('ApiOauthRequestToken'));
 
-        $this->elementStart('dl', 'entity_access_token_url');
-        $this->element('dt', null, _('Access token URL'));
-        $this->element('dd', null, common_local_url('ApiOauthAccessToken'));
-        $this->elementEnd('dl');
+        $this->element('div', 'entity_access_token_url', common_local_url('ApiOauthAccessToken'));
 
-        $this->elementStart('dl', 'entity_authorize_url');
-        $this->element('dt', null, _('Authorize URL'));
-        $this->element('dd', null, common_local_url('ApiOauthAuthorize'));
-        $this->elementEnd('dl');
+        $this->element('div', 'entity_authorize_url', common_local_url('ApiOauthAuthorize'));
 
         $this->element('p', 'note',
             _('Note: We support HMAC-SHA1 signatures. We do not support the plaintext signature method.'));
@@ -301,7 +268,6 @@ class ShowApplicationAction extends OwnerDesignAction
      *
      * @return void
      */
-
     function showScripts()
     {
         parent::showScripts();
@@ -322,7 +288,6 @@ class ShowApplicationAction extends OwnerDesignAction
      * XXX: Should this be moved to its own page with a confirm?
      *
      */
-
     function resetKey()
     {
         $this->application->query('BEGIN');
@@ -382,5 +347,4 @@ class ShowApplicationAction extends OwnerDesignAction
         $this->msg = ('Consumer key and secret reset.');
         $this->showPage();
     }
-
 }

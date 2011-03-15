@@ -89,7 +89,7 @@ class NudgeForm extends Form
 
     function formClass()
     {
-        return 'form_user_nudge';
+        return 'form_user_nudge ajax';
     }
 
 

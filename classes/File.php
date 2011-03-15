@@ -55,14 +55,20 @@ class File extends Memcached_DataObject
         return 'http://www.facebook.com/login.php' === $url;
     }
 
-    function getAttachments($post_id) {
-        $query = "select file.* from file join file_to_post on (file_id = file.id) join notice on (post_id = notice.id) where post_id = " . $this->escape($post_id);
-        $this->query($query);
+    /**
+     * Get the attachments for a particlar notice.
+     *
+     * @param int $post_id
+     * @return array of File objects
+     */
+    static function getAttachments($post_id) {
+        $file = new File();
+        $query = "select file.* from file join file_to_post on (file_id = file.id) where post_id = " . $file->escape($post_id);
+        $file = Memcached_DataObject::cachedQuery('File', $query);
         $att = array();
-        while ($this->fetch()) {
-            $att[] = clone($this);
+        while ($file->fetch()) {
+            $att[] = clone($file);
         }
-        $this->free();
         return $att;
     }
 
@@ -411,5 +417,103 @@ class File extends Memcached_DataObject
     function getThumbnail()
     {
         return File_thumbnail::staticGet('file_id', $this->id);
+    }
+
+    /**
+     * Blow the cache of notices that link to this URL
+     *
+     * @param boolean $last Whether to blow the "last" cache too
+     *
+     * @return void
+     */
+
+    function blowCache($last=false)
+    {
+        self::blow('file:notice-ids:%s', $this->url);
+        if ($last) {
+            self::blow('file:notice-ids:%s;last', $this->url);
+        }
+        self::blow('file:notice-count:%d', $this->id);
+    }
+
+    /**
+     * Stream of notices linking to this URL
+     *
+     * @param integer $offset   Offset to show; default is 0
+     * @param integer $limit    Limit of notices to show
+     * @param integer $since_id Since this notice
+     * @param integer $max_id   Before this notice
+     *
+     * @return array ids of notices that link to this file
+     */
+
+    function stream($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
+    {
+        $ids = Notice::stream(array($this, '_streamDirect'),
+                              array(),
+                              'file:notice-ids:'.$this->url,
+                              $offset, $limit, $since_id, $max_id);
+
+        return Notice::getStreamByIds($ids);
+    }
+
+    /**
+     * Stream of notices linking to this URL
+     *
+     * @param integer $offset   Offset to show; default is 0
+     * @param integer $limit    Limit of notices to show
+     * @param integer $since_id Since this notice
+     * @param integer $max_id   Before this notice
+     *
+     * @return array ids of notices that link to this file
+     */
+
+    function _streamDirect($offset, $limit, $since_id, $max_id)
+    {
+        $f2p = new File_to_post();
+
+        $f2p->selectAdd();
+        $f2p->selectAdd('post_id');
+
+        $f2p->file_id = $this->id;
+
+        Notice::addWhereSinceId($f2p, $since_id, 'post_id', 'modified');
+        Notice::addWhereMaxId($f2p, $max_id, 'post_id', 'modified');
+
+        $f2p->orderBy('modified DESC, post_id DESC');
+
+        if (!is_null($offset)) {
+            $f2p->limit($offset, $limit);
+        }
+
+        $ids = array();
+
+        if ($f2p->find()) {
+            while ($f2p->fetch()) {
+                $ids[] = $f2p->post_id;
+            }
+        }
+
+        return $ids;
+    }
+
+    function noticeCount()
+    {
+        $cacheKey = sprintf('file:notice-count:%d', $this->id);
+        
+        $count = self::cacheGet($cacheKey);
+
+        if ($count === false) {
+
+            $f2p = new File_to_post();
+
+            $f2p->file_id = $this->id;
+
+            $count = $f2p->count();
+
+            self::cacheSet($cacheKey, $count);
+        } 
+
+        return $count;
     }
 }

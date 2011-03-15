@@ -89,7 +89,7 @@ class SubscribeForm extends Form
 
     function formClass()
     {
-        return 'form_user_subscribe';
+        return 'form_user_subscribe ajax';
     }
 
 

@@ -41,8 +41,35 @@ class SearchEngine
 
     function set_sort_mode($mode)
     {
-        if ('chron' === $mode)
-            return $this->target->orderBy('created desc');
+        switch ($mode) {
+        case 'chron':
+            return $this->target->orderBy('created DESC');
+            break;
+        case 'reverse_chron':
+            return $this->target->orderBy('created ASC');
+            break;
+        case 'nickname_desc':
+            if ($this->table != 'profile') {
+                throw new Exception(
+                    'nickname_desc sort mode can only be use when searching profile.'
+                );
+            } else {
+                return $this->target->orderBy('nickname DESC');
+            }
+            break;
+        case 'nickname_asc':
+            if ($this->table != 'profile') {
+                throw new Exception(
+                    'nickname_desc sort mode can only be use when searching profile.'
+                );
+            } else {
+                return $this->target->orderBy('nickname ASC');
+            }
+            break;
+        default:
+            return $this->target->orderBy('created DESC');
+            break;
+        }
     }
 }
 

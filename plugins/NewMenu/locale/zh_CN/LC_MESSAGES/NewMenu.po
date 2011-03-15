@@ -1,0 +1,80 @@
+# Translation of StatusNet - NewMenu to Simplified Chinese (‪中文(简体)‬)
+# Exported from translatewiki.net
+#
+# Author: Hydra
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - NewMenu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-29 21:45+0000\n"
+"PO-Revision-Date: 2011-03-06 01:37:41+0000\n"
+"Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
+"hans>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:45:38+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: zh-hans\n"
+"X-Message-Group: #out-statusnet-plugin-newmenu\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Home"
+msgstr "首页"
+
+msgid "Friends timeline"
+msgstr "时间轴的朋友"
+
+msgid "Profile"
+msgstr "配置文件"
+
+msgid "Your profile"
+msgstr "您的配置文件"
+
+msgid "Public"
+msgstr "市民"
+
+msgid "Everyone on this site"
+msgstr "此站点上的每个人"
+
+msgid "Settings"
+msgstr "设置"
+
+msgid "Change your personal settings"
+msgstr "更改您的个人设置"
+
+msgid "Admin"
+msgstr "管理员"
+
+msgid "Site configuration"
+msgstr "网站配置"
+
+msgid "Logout"
+msgstr "注销"
+
+msgid "Logout from the site"
+msgstr "从网站登出"
+
+msgid "Login"
+msgstr "登录"
+
+msgid "Login to the site"
+msgstr "登录这个网站"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Search the site"
+msgstr ""
+
+msgid "IM"
+msgstr ""
+
+msgid "SMS"
+msgstr ""
+
+msgid "A preview of the new menu layout in StatusNet 1.0."
+msgstr ""

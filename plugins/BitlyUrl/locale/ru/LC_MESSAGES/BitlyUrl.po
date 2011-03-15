@@ -1,8 +1,9 @@
 # Translation of StatusNet - BitlyUrl to Russian (Русский)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Eleferen
 # Author: Lockal
+# Author: Александр Сигачёв
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -10,37 +11,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - BitlyUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:32+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:52+0000\n"
 "Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:26+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:42:52+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-#: BitlyUrlPlugin.php:48
-msgid "You must specify a serviceUrl for bit.ly shortening."
-msgstr ""
-
-#: BitlyUrlPlugin.php:175
-#, php-format
-msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
-msgstr "Использование службы сокращения URL <a href=\"http://%1$s/\">%1$s</a>."
-
-#: BitlyUrlPlugin.php:216
-msgid "bit.ly"
-msgstr "bit.ly"
-
-#: BitlyUrlPlugin.php:217 bitlyadminpanelaction.php:54
 msgid "bit.ly URL shortening"
 msgstr "Сервис сокращения URL bit.ly"
 
-#: bitlyadminpanelaction.php:65
 msgid ""
 "URL shortening with bit.ly requires [a bit.ly account and API key](http://"
 "bit.ly/a/your_api_key). This verifies that this is an authorized account, "
@@ -51,37 +37,39 @@ msgstr ""
 "авторизована и позволяет использовать функции отслеживания bit.ly и "
 "настраивать домены."
 
-#: bitlyadminpanelaction.php:132
 msgid "Invalid login. Max length is 255 characters."
 msgstr "Неверное имя пользователя. Максимальная длина составляет 255 символов."
 
-#: bitlyadminpanelaction.php:138
 msgid "Invalid API key. Max length is 255 characters."
 msgstr "Неверный ключ API. Максимальная длина составляет 255 символов."
 
-#: bitlyadminpanelaction.php:191
 msgid "Credentials"
 msgstr "Полномочия"
 
-#: bitlyadminpanelaction.php:199
 msgid "Leave these empty to use global default credentials."
 msgstr ""
 "Оставьте это поле пустым для использования глобальных полномочий по "
 "умолчанию."
 
-#: bitlyadminpanelaction.php:202
 msgid "If you leave these empty, bit.ly will be unavailable to users."
 msgstr ""
 "Если оставить это поле пустым, bit.ly будет недоступен для пользователей."
 
-#: bitlyadminpanelaction.php:209
 msgid "Login name"
 msgstr "Имя учётной записи"
 
-#: bitlyadminpanelaction.php:218
 msgid "API key"
 msgstr "Ключ API"
 
-#: bitlyadminpanelaction.php:236
 msgid "Save bit.ly settings"
 msgstr "Сохранить настройки bit.ly"
+
+msgid "You must specify a serviceUrl for bit.ly shortening."
+msgstr "Вы должны указать serviceUrl для bit.ly сокращений."
+
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr "Использование службы сокращения URL <a href=\"http://%1$s/\">%1$s</a>."
+
+msgid "bit.ly"
+msgstr "bit.ly"

@@ -1,5 +1,5 @@
-# Translation of StatusNet - BlogspamNet to Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
-# Expored from translatewiki.net
+# Translation of StatusNet - BlogspamNet to Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+# Exported from translatewiki.net
 #
 # Author: EugeneZelenko
 # --
@@ -9,20 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - BlogspamNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:35+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:55+0000\n"
 "Language-Team: Belarusian (Taraškievica orthography) <http://translatewiki."
 "net/wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 17:54:25+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:43:06+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: be-tarask\n"
 "X-Message-Group: #out-statusnet-plugin-blogspamnet\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: BlogspamNetPlugin.php:152
 msgid "Plugin to check submitted notices with blogspam.net."
 msgstr ""
 "Дапаўненьне для праверкі дасланых абвяшчэньняў з дапамогай blogspam.net."

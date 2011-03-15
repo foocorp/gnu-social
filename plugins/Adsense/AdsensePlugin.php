@@ -168,7 +168,7 @@ class AdsensePlugin extends UAPPlugin
 
     function onRouterInitialized($m)
     {
-        $m->connect('admin/adsense',
+        $m->connect('panel/adsense',
                     array('action' => 'adsenseadminpanel'));
 
         return true;

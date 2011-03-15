@@ -80,7 +80,7 @@ class OpenIDPlugin extends Plugin
         $m->connect('index.php?action=finishaddopenid',
                     array('action' => 'finishaddopenid'));
         $m->connect('main/openidserver', array('action' => 'openidserver'));
-        $m->connect('admin/openid', array('action' => 'openidadminpanel'));
+        $m->connect('panel/openid', array('action' => 'openidadminpanel'));
 
         return true;
     }
@@ -248,11 +248,11 @@ class OpenIDPlugin extends Plugin
      *
      * If we're in openidOnly mode, we disable the menu for all other login.
      *
-     * @param Action &$action Action being executed
+     * @param Action $action Action being executed
      *
      * @return boolean hook return
      */
-    function onStartLoginGroupNav(&$action)
+    function onStartLoginGroupNav($action)
     {
         if (common_config('site', 'openidonly')) {
             $this->showOpenIDLoginTab($action);
@@ -268,11 +268,11 @@ class OpenIDPlugin extends Plugin
     /**
      * Menu item for login
      *
-     * @param Action &$action Action being executed
+     * @param Action $action Action being executed
      *
      * @return boolean hook return
      */
-    function onEndLoginGroupNav(&$action)
+    function onEndLoginGroupNav($action)
     {
         $this->showOpenIDLoginTab($action);
 
@@ -318,11 +318,11 @@ class OpenIDPlugin extends Plugin
     /**
      * Menu item for OpenID settings
      *
-     * @param Action &$action Action being executed
+     * @param Action $action Action being executed
      *
      * @return boolean hook return
      */
-    function onEndAccountSettingsNav(&$action)
+    function onEndAccountSettingsNav($action)
     {
         $action_name = $action->trimmed('action');
 

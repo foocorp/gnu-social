@@ -1,5 +1,5 @@
 # Translation of StatusNet - YammerImport to Ukrainian (Українська)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Boogie
 # --
@@ -9,271 +9,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - YammerImport\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:13:27+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:37+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:46:21+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:55+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-yammerimport\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-#: YammerImportPlugin.php:98
-msgid "Yammer"
-msgstr "Yammer"
-
-#: YammerImportPlugin.php:99 actions/yammeradminpanel.php:135
-msgid "Yammer import"
-msgstr "Імпорт з Yammer"
-
-#: lib/yammerauthinitform.php:48 lib/yammerauthverifyform.php:56
-#: lib/yammerprogressform.php:68 actions/yammerauth.php:71
 msgid "Connect to Yammer"
 msgstr "З’єднання з Yammer"
 
-#: lib/yammerauthinitform.php:62
-msgid "Start authentication"
-msgstr "Початок автентифікації"
-
-#: lib/yammerauthinitform.php:62
-msgid "Request authorization to connect to Yammer account"
-msgstr "Запит дозволу на підключення до Yammer"
-
-#: lib/yammerauthinitform.php:63
-msgid "Change API key"
-msgstr "Змінити API-ключ"
-
-#: lib/yammerimporter.php:230
-msgid "Expertise:"
-msgstr "Експертиза:"
-
-#: lib/yammerimporter.php:433
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Невірна URL-адреса аватари %s."
-
-#: lib/yammerimporter.php:441
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Неможливо завантажити аватару з %s."
-
-#: lib/yammerapikeyform.php:56
-msgid "Yammer API registration"
-msgstr "Реєстрація API Yammer"
-
-#: lib/yammerapikeyform.php:72
-msgid ""
-"Before we can connect to your Yammer network, you will need to register the "
-"importer as an application authorized to pull data on your behalf. This "
-"registration will work only for your own network. Follow this link to "
-"register the app at Yammer; you will be prompted to log in if necessary:"
-msgstr ""
-"Перш ніж ми зможемо підключитися до вашого акаунту Yammer, вам необхідно "
-"зареєструвати у якості імпортера цей авторизований додаток, аби той забирав "
-"дані від вашого імені. Ця реєстрація буде працювати тільки для вашої власної "
-"мережі. Перейдіть за цим посиланням, щоб зареєструвати додаток на Yammer; "
-"вам буде запропоновано увійти до системи, якщо це необхідно:"
-
-#: lib/yammerapikeyform.php:84
-msgid "Open Yammer application registration form"
-msgstr "Відкрити реєстраційну форму додатку для Yammer"
-
-#: lib/yammerapikeyform.php:87
-msgid "Copy the consumer key and secret you are given into the form below:"
-msgstr ""
-"Скопіюйте ключ споживача та секретний код, котрі вам було надано, до віконця "
-"нижче:"
-
-#: lib/yammerapikeyform.php:91
-msgid "Consumer key:"
-msgstr "Ключ споживача:"
-
-#: lib/yammerapikeyform.php:94
-msgid "Consumer secret:"
-msgstr "Секретний код:"
-
-#: lib/yammerapikeyform.php:98
-msgid "Save"
-msgstr "Зберегти"
-
-#: lib/yammerapikeyform.php:98
-msgid "Save these consumer keys"
-msgstr "Зберегти ключі споживача"
-
-#: lib/yammerauthverifyform.php:72
-msgid ""
-"Follow this link to confirm authorization at Yammer; you will be prompted to "
-"log in if necessary:"
-msgstr ""
-"Перейдіть за цим посиланням для підтвердження дозволу від Yammer; вам буде "
-"запропоновано увійти до системи, якщо це необхідно:"
-
-#: lib/yammerauthverifyform.php:87
-msgid "Open Yammer authentication window"
-msgstr "Відкрити вікно автентифікації Yammer"
-
-#: lib/yammerauthverifyform.php:90
-msgid "Copy the verification code you are given below:"
-msgstr "Скопіюйте наданий вам код підтвердження до віконця нижче:"
-
-#: lib/yammerauthverifyform.php:94
-msgid "Verification code:"
-msgstr "Код підтвердження:"
-
-#: lib/yammerauthverifyform.php:98 lib/yammerprogressform.php:164
-msgid "Continue"
-msgstr "Продовжити"
-
-#: lib/yammerauthverifyform.php:98
-msgid "Save code and begin import"
-msgstr "Зберегти код і почати імпорт"
-
-#: lib/yammerprogressform.php:63
-msgid "Initialize"
-msgstr "Ініціалізація"
-
-#: lib/yammerprogressform.php:64
-msgid "No import running"
-msgstr "Імпорт не працює"
-
-#: lib/yammerprogressform.php:65
-msgid "Initiated Yammer server connection..."
-msgstr "Розпочато з’єднання з сервером Yammer..."
-
-#: lib/yammerprogressform.php:69
-msgid "Awaiting authorization..."
-msgstr "Чекаємо дозволу..."
-
-#: lib/yammerprogressform.php:70
-msgid "Connected."
-msgstr "Під’єднано."
-
-#: lib/yammerprogressform.php:73
-msgid "Import user accounts"
-msgstr "Імпорт облікових записів користувачів"
-
-#: lib/yammerprogressform.php:74
-#, php-format
-msgid "Importing %d user..."
-msgid_plural "Importing %d users..."
-msgstr[0] "Імпорт %d користувача..."
-msgstr[1] "Імпорт %d користувачів..."
-msgstr[2] "Імпорт %d користувачів..."
-
-#: lib/yammerprogressform.php:75
-#, php-format
-msgid "Imported %d user."
-msgid_plural "Imported %d users."
-msgstr[0] "Імпортовано %d користувача."
-msgstr[1] "Імпортовано %d користувачів."
-msgstr[2] "Імпортовано %d користувачів."
-
-#: lib/yammerprogressform.php:78
-msgid "Import user groups"
-msgstr "Імпорт спільнот"
-
-#: lib/yammerprogressform.php:79
-#, php-format
-msgid "Importing %d group..."
-msgid_plural "Importing %d groups..."
-msgstr[0] "Імпорт %d спільноти..."
-msgstr[1] "Імпорт %d спільнот..."
-msgstr[2] "Імпорт %d спільнот..."
-
-#: lib/yammerprogressform.php:80
-#, php-format
-msgid "Imported %d group."
-msgid_plural "Imported %d groups."
-msgstr[0] "Імпортовано %d спільноту."
-msgstr[1] "Імпортовано %d спільнот."
-msgstr[2] "Імпортовано %d спільнот."
-
-#: lib/yammerprogressform.php:83
-msgid "Prepare public notices for import"
-msgstr "Підготовка до імпорту стрічки дописів"
-
-#: lib/yammerprogressform.php:84
-#, php-format
-msgid "Preparing %d notice..."
-msgid_plural "Preparing %d notices..."
-msgstr[0] "Підготовка %d допису..."
-msgstr[1] "Підготовка %d дописів..."
-msgstr[2] "Підготовка %d дописів..."
-
-#: lib/yammerprogressform.php:85
-#, php-format
-msgid "Prepared %d notice."
-msgid_plural "Prepared %d notices."
-msgstr[0] "Готовий %d допис."
-msgstr[1] "Готово %d дописів."
-msgstr[2] "Готово %d дописів."
-
-#: lib/yammerprogressform.php:88
-msgid "Import public notices"
-msgstr "Імпорт стрічки дописів"
-
-#: lib/yammerprogressform.php:89
-#, php-format
-msgid "Importing %d notice..."
-msgid_plural "Importing %d notices..."
-msgstr[0] "Імпорт %d допису..."
-msgstr[1] "Імпорт %d дописів..."
-msgstr[2] "Імпорт %d дописів..."
-
-#: lib/yammerprogressform.php:90
-#, php-format
-msgid "Imported %d notice."
-msgid_plural "Imported %d notices."
-msgstr[0] "Імпортовано %d допис."
-msgstr[1] "Імпортовано %d дописів."
-msgstr[2] "Імпортовано %d дописів."
-
-#: lib/yammerprogressform.php:93
-msgid "Done"
-msgstr "Виконано"
-
-#: lib/yammerprogressform.php:94 lib/yammerprogressform.php:95
-msgid "Import is complete!"
-msgstr "Імпорт завершено!"
-
-#: lib/yammerprogressform.php:108
-msgid "Import status"
-msgstr "Статус процесу імпорту"
-
-#: lib/yammerprogressform.php:132
-msgid "Waiting..."
-msgstr "Очікування..."
-
-#: lib/yammerprogressform.php:146
-msgid "Reset import state"
-msgstr "Перезапустити імпорт"
-
-#: lib/yammerprogressform.php:151
-msgid "Pause import"
-msgstr "Призупинити імпорт"
-
-#: lib/yammerprogressform.php:160
-#, php-format
-msgid "Encountered error \"%s\""
-msgstr "Виявлено помилку «%s»"
-
-#: lib/yammerprogressform.php:162
-msgid "Paused"
-msgstr "Призупинено"
-
-#: lib/yammerprogressform.php:165
-msgid "Abort import"
-msgstr "Перервати імпорт"
-
-#: actions/yammeradminpanel.php:45
 msgid "Yammer Import"
 msgstr "Імпорт з Yammer"
 
-#: actions/yammeradminpanel.php:55
 msgid ""
 "This Yammer import tool is still undergoing testing, and is incomplete in "
 "some areas. Currently user subscriptions and group memberships are not "
@@ -286,6 +40,199 @@ msgstr ""
 "сайту Yammer піде нам на зустріч і тоді роботу над цим додатком буде "
 "завершено."
 
-#: actions/yammeradminpanel.php:102
 msgid "Paused from admin panel."
 msgstr "Призупинено з адміністраторської панелі."
+
+msgid "Yammer import"
+msgstr "Імпорт з Yammer"
+
+msgid "Yammer"
+msgstr "Yammer"
+
+msgid "Expertise:"
+msgstr "Експертиза:"
+
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Невірна URL-адреса аватари %s."
+
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Неможливо завантажити аватару з %s."
+
+msgid "Start authentication"
+msgstr "Початок автентифікації"
+
+msgid "Request authorization to connect to Yammer account"
+msgstr "Запит дозволу на підключення до Yammer"
+
+msgid "Change API key"
+msgstr "Змінити API-ключ"
+
+msgid "Initialize"
+msgstr "Ініціалізація"
+
+msgid "No import running"
+msgstr "Імпорт не працює"
+
+msgid "Initiated Yammer server connection..."
+msgstr "Розпочато з’єднання з сервером Yammer..."
+
+msgid "Awaiting authorization..."
+msgstr "Чекаємо дозволу..."
+
+msgid "Connected."
+msgstr "Під’єднано."
+
+msgid "Import user accounts"
+msgstr "Імпорт облікових записів користувачів"
+
+#, php-format
+msgid "Importing %d user..."
+msgid_plural "Importing %d users..."
+msgstr[0] "Імпорт %d користувача..."
+msgstr[1] "Імпорт %d користувачів..."
+msgstr[2] "Імпорт %d користувачів..."
+
+#, php-format
+msgid "Imported %d user."
+msgid_plural "Imported %d users."
+msgstr[0] "Імпортовано %d користувача."
+msgstr[1] "Імпортовано %d користувачів."
+msgstr[2] "Імпортовано %d користувачів."
+
+msgid "Import user groups"
+msgstr "Імпорт спільнот"
+
+#, php-format
+msgid "Importing %d group..."
+msgid_plural "Importing %d groups..."
+msgstr[0] "Імпорт %d спільноти..."
+msgstr[1] "Імпорт %d спільнот..."
+msgstr[2] "Імпорт %d спільнот..."
+
+#, php-format
+msgid "Imported %d group."
+msgid_plural "Imported %d groups."
+msgstr[0] "Імпортовано %d спільноту."
+msgstr[1] "Імпортовано %d спільнот."
+msgstr[2] "Імпортовано %d спільнот."
+
+msgid "Prepare public notices for import"
+msgstr "Підготовка до імпорту стрічки дописів"
+
+#, php-format
+msgid "Preparing %d notice..."
+msgid_plural "Preparing %d notices..."
+msgstr[0] "Підготовка %d допису..."
+msgstr[1] "Підготовка %d дописів..."
+msgstr[2] "Підготовка %d дописів..."
+
+#, php-format
+msgid "Prepared %d notice."
+msgid_plural "Prepared %d notices."
+msgstr[0] "Готовий %d допис."
+msgstr[1] "Готово %d дописів."
+msgstr[2] "Готово %d дописів."
+
+msgid "Import public notices"
+msgstr "Імпорт стрічки дописів"
+
+#, php-format
+msgid "Importing %d notice..."
+msgid_plural "Importing %d notices..."
+msgstr[0] "Імпорт %d допису..."
+msgstr[1] "Імпорт %d дописів..."
+msgstr[2] "Імпорт %d дописів..."
+
+#, php-format
+msgid "Imported %d notice."
+msgid_plural "Imported %d notices."
+msgstr[0] "Імпортовано %d допис."
+msgstr[1] "Імпортовано %d дописів."
+msgstr[2] "Імпортовано %d дописів."
+
+msgid "Done"
+msgstr "Виконано"
+
+msgid "Import is complete!"
+msgstr "Імпорт завершено!"
+
+msgid "Import status"
+msgstr "Статус процесу імпорту"
+
+msgid "Waiting..."
+msgstr "Очікування..."
+
+msgid "Reset import state"
+msgstr "Перезапустити імпорт"
+
+msgid "Pause import"
+msgstr "Призупинити імпорт"
+
+#, php-format
+msgid "Encountered error \"%s\""
+msgstr "Виявлено помилку «%s»"
+
+msgid "Paused"
+msgstr "Призупинено"
+
+msgid "Continue"
+msgstr "Продовжити"
+
+msgid "Abort import"
+msgstr "Перервати імпорт"
+
+msgid ""
+"Follow this link to confirm authorization at Yammer; you will be prompted to "
+"log in if necessary:"
+msgstr ""
+"Перейдіть за цим посиланням для підтвердження дозволу від Yammer; вам буде "
+"запропоновано увійти до системи, якщо це необхідно:"
+
+msgid "Open Yammer authentication window"
+msgstr "Відкрити вікно автентифікації Yammer"
+
+msgid "Copy the verification code you are given below:"
+msgstr "Скопіюйте наданий вам код підтвердження до віконця нижче:"
+
+msgid "Verification code:"
+msgstr "Код підтвердження:"
+
+msgid "Save code and begin import"
+msgstr "Зберегти код і почати імпорт"
+
+msgid "Yammer API registration"
+msgstr "Реєстрація API Yammer"
+
+msgid ""
+"Before we can connect to your Yammer network, you will need to register the "
+"importer as an application authorized to pull data on your behalf. This "
+"registration will work only for your own network. Follow this link to "
+"register the app at Yammer; you will be prompted to log in if necessary:"
+msgstr ""
+"Перш ніж ми зможемо підключитися до вашого акаунту Yammer, вам необхідно "
+"зареєструвати у якості імпортера цей авторизований додаток, аби той забирав "
+"дані від вашого імені. Ця реєстрація буде працювати тільки для вашої власної "
+"мережі. Перейдіть за цим посиланням, щоб зареєструвати додаток на Yammer; "
+"вам буде запропоновано увійти до системи, якщо це необхідно:"
+
+msgid "Open Yammer application registration form"
+msgstr "Відкрити реєстраційну форму додатку для Yammer"
+
+msgid "Copy the consumer key and secret you are given into the form below:"
+msgstr ""
+"Скопіюйте ключ споживача та секретний код, котрі вам було надано, до віконця "
+"нижче:"
+
+msgid "Consumer key:"
+msgstr "Ключ споживача:"
+
+msgid "Consumer secret:"
+msgstr "Секретний код:"
+
+msgid "Save"
+msgstr "Зберегти"
+
+msgid "Save these consumer keys"
+msgstr "Зберегти ключі споживача"

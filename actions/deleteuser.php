@@ -40,7 +40,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class DeleteuserAction extends ProfileFormAction
 {
     var $user = null;
@@ -52,7 +51,6 @@ class DeleteuserAction extends ProfileFormAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         if (!parent::prepare($args)) {
@@ -64,6 +62,7 @@ class DeleteuserAction extends ProfileFormAction
         assert(!empty($cur)); // checked by parent
 
         if (!$cur->hasRight(Right::DELETEUSER)) {
+            // TRANS: Client error displayed when trying to delete a user without having the right to delete users.
             $this->clientError(_('You cannot delete users.'));
             return false;
         }
@@ -71,6 +70,7 @@ class DeleteuserAction extends ProfileFormAction
         $this->user = User::staticGet('id', $this->profile->id);
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when trying to delete a non-local user.
             $this->clientError(_('You can only delete local users.'));
             return false;
         }
@@ -87,7 +87,6 @@ class DeleteuserAction extends ProfileFormAction
      *
      * @return void
      */
-
     function handle($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -107,7 +106,8 @@ class DeleteuserAction extends ProfileFormAction
     }
 
     function title() {
-        return _('Delete user');
+        // TRANS: Title of delete user page.
+        return _m('TITLE','Delete user');
     }
 
     function showNoticeForm() {
@@ -130,9 +130,11 @@ class DeleteuserAction extends ProfileFormAction
                                            'action' => common_local_url('deleteuser')));
         $this->elementStart('fieldset');
         $this->hidden('token', common_session_token());
+        // TRANS: Fieldset legend on delete user page.
         $this->element('legend', _('Delete user'));
         if (Event::handle('StartDeleteUserForm', array($this, $this->user))) {
             $this->element('p', null,
+                           // TRANS: Information text to request if a user is certain that the described action has to be performed.
                            _('Are you sure you want to delete this user? '.
                              'This will clear all data about the user from the '.
                              'database, without a backup.'));
@@ -153,14 +155,14 @@ class DeleteuserAction extends ProfileFormAction
                       'submit form_action-primary',
                       'no',
                       // TRANS: Submit button title for 'No' when deleting a user.
-                      _('Do not block this user'));
+                      _('Do not delete this user.'));
         $this->submit('form_action-yes',
                       // TRANS: Button label on the delete user form.
                       _m('BUTTON','Yes'),
                       'submit form_action-secondary',
                       'yes',
                       // TRANS: Submit button title for 'Yes' when deleting a user.
-                      _('Delete this user'));
+                      _('Delete this user.'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }
@@ -170,7 +172,6 @@ class DeleteuserAction extends ProfileFormAction
      *
      * @return void
      */
-
     function handlePost()
     {
         if (Event::handle('StartDeleteUser', array($this, $this->user))) {

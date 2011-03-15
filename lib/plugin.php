@@ -110,16 +110,68 @@ class Plugin
     {
         $this->log(LOG_DEBUG, $msg);
     }
+    
+    function name()
+    {
+        $cls = get_class($this);
+        return mb_substr($cls, 0, -6);
+    }
 
     function onPluginVersion(&$versions)
     {
-        $cls = get_class($this);
-        $name = mb_substr($cls, 0, -6);
+        $name = $this->name();
 
         $versions[] = array('name' => $name,
                             // TRANS: Displayed as version information for a plugin if no version information was found.
                             'version' => _('Unknown'));
 
         return true;
+    }
+
+    function path($relative)
+    {
+        return self::staticPath($this->name(), $relative);
+    }
+
+    static function staticPath($plugin, $relative)
+    {
+        $isHTTPS = StatusNet::isHTTPS();
+
+        if ($isHTTPS) {
+            $server = common_config('plugins', 'sslserver');
+        } else {
+            $server = common_config('plugins', 'server');
+        }
+
+        if (empty($server)) {
+            if ($isHTTPS) {
+                $server = common_config('site', 'sslserver');
+            }
+            if (empty($server)) {
+                $server = common_config('site', 'server');
+            }
+        }
+
+        if ($isHTTPS) {
+            $path = common_config('plugins', 'sslpath');
+        } else {
+            $path = common_config('plugins', 'path');
+        }
+
+        if (empty($path)) {
+            $path = common_config('site', 'path') . '/plugins/';
+        }
+
+        if ($path[strlen($path)-1] != '/') {
+            $path .= '/';
+        }
+
+        if ($path[0] != '/') {
+            $path = '/'.$path;
+        }
+
+        $protocol = ($isHTTPS) ? 'https' : 'http';
+
+        return $protocol.'://'.$server.$path.$plugin.'/'.$relative;
     }
 }

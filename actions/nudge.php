@@ -60,6 +60,7 @@ class NudgeAction extends Action
         parent::handle($args);
 
         if (!common_logged_in()) {
+            // TRANS: Client error displayed trying to nudge a user without being logged in.
             $this->clientError(_('Not logged in.'));
             return;
         }
@@ -82,6 +83,7 @@ class NudgeAction extends Action
         }
 
         if (!$other->email || !$other->emailnotifynudge) {
+            // TRANS: Client error displayed trying to nudge a user that cannot be nudged.
             $this->clientError(_('This user doesn\'t allow nudges or hasn\'t confirmed or set their email address yet.'));
             return;
         }
@@ -91,9 +93,11 @@ class NudgeAction extends Action
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
+            // TRANS: Page title after sending a nudge.
             $this->element('title', null, _('Nudge sent'));
             $this->elementEnd('head');
             $this->elementStart('body');
+            // TRANS: Confirmation text after sending a nudge.
             $this->element('p', array('id' => 'nudge_response'), _('Nudge sent!'));
             $this->elementEnd('body');
             $this->elementEnd('html');
@@ -129,4 +133,3 @@ class NudgeAction extends Action
         return true;
     }
 }
-

@@ -66,6 +66,12 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
         parent::prepare($args);
 
         $this->group    = $this->getTargetGroup($this->arg('id'));
+        if (empty($this->group)) {
+            // TRANS: Client error displayed trying to show group membership on a non-existing group.
+            $this->clientError(_('Group not found.'), 404, $this->format);
+            return false;
+        }
+
         $this->profiles = $this->getProfiles();
 
         return true;
@@ -83,12 +89,6 @@ class ApiGroupMembershipAction extends ApiPrivateAuthAction
     function handle($args)
     {
         parent::handle($args);
-
-        if (empty($this->group)) {
-            // TRANS: Client error displayed trying to show group membership on a non-existing group.
-            $this->clientError(_('Group not found.'), 404, $this->format);
-            return false;
-        }
 
         // XXX: RSS and Atom
 

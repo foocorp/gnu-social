@@ -42,10 +42,8 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ApiGroupProfileUpdateAction extends ApiAuthAction
 {
-
     /**
      * Take arguments for running
      *
@@ -54,7 +52,6 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -82,7 +79,6 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -97,6 +93,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
+                // TRANS: Client error displayed when using an unsupported API format.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -105,16 +102,19 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
         }
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when not providing a user or an invalid user.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
 
         if (empty($this->group)) {
+            // TRANS: Client error displayed when not providing a group or an invalid group.
             $this->clientError(_('Group not found.'), 404, $this->format);
             return false;
         }
 
         if (!$this->user->isAdmin($this->group)) {
+            // TRANS: Client error displayed when trying to edit a group without being an admin.
             $this->clientError(_('You must be an admin to edit the group.'), 403);
             return false;
         }
@@ -168,15 +168,15 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
 
         if (!$result) {
             common_log_db_error($this->group, 'UPDATE', __FILE__);
+            // TRANS: Server error displayed when group update fails.
             $this->serverError(_('Could not update group.'));
         }
 
         $aliases = array();
 
         try {
-
-			if (!empty($this->aliasstring)) {
-				$aliases = $this->validateAliases();
+            if (!empty($this->aliasstring)) {
+                $aliases = $this->validateAliases();
             }
 
         } catch (ApiValidationException $ave) {
@@ -191,6 +191,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
         $result = $this->group->setAliases($aliases);
 
         if (!$result) {
+            // TRANS: Server error displayed when adding group aliases fails.
             $this->serverError(_('Could not create aliases.'));
         }
 
@@ -210,6 +211,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             $this->showSingleJsonGroup($this->group);
             break;
         default:
+            // TRANS: Client error displayed when using an unsupported API format.
             $this->clientError(_('API method not found.'), 404, $this->format);
             break;
         }
@@ -245,17 +247,17 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             )
         ) {
             throw new ApiValidationException(
-                _(
-                    'Nickname must have only lowercase letters ' .
-                    'and numbers and no spaces.'
-                )
+                // TRANS: API validation exception thrown when nickname does not validate.
+                _('Nickname must have only lowercase letters and numbers and no spaces.')
             );
         } else if ($this->nicknameExists($this->nickname)) {
             throw new ApiValidationException(
+                // TRANS: API validation exception thrown when nickname is already used.
                 _('Nickname already in use. Try another one.')
             );
         } else if (!User_group::allowedNickname($this->nickname)) {
             throw new ApiValidationException(
+                // TRANS: API validation exception thrown when nickname does not validate.
                 _('Not a valid nickname.')
             );
         }
@@ -274,6 +276,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             )
         ) {
             throw new ApiValidationException(
+                // TRANS: API validation exception thrown when homepage URL does not validate.
                 _('Homepage is not a valid URL.')
             );
         }
@@ -283,7 +286,8 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
     {
         if (!is_null($this->fullname) && mb_strlen($this->fullname) > 255) {
             throw new ApiValidationException(
-                _('Full name is too long (max 255 chars).')
+                // TRANS: API validation exception thrown when full name does not validate.
+                _('Full name is too long (maximum 255 characters).')
             );
         }
     }
@@ -291,12 +295,12 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
     function validateDescription()
     {
         if (User_group::descriptionTooLong($this->description)) {
-            throw new ApiValidationException(
-                sprintf(
-                    _('description is too long (max %d chars).'),
-                    User_group::maxDescription()
-                )
-            );
+            // TRANS: API validation exception thrown when description does not validate.
+            // TRANS: %d is the maximum description length and used for plural.
+            throw new ApiValidationException(sprintf(_m('Description is too long (maximum %d character).',
+                                                        'Description is too long (maximum %d characters).',
+                                                        User_group::maxDescription()),
+                                                     User_group::maxDescription()));
         }
     }
 
@@ -304,7 +308,8 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
     {
         if (!is_null($this->location) && mb_strlen($this->location) > 255) {
             throw new ApiValidationException(
-                _('Location is too long (max 255 chars).')
+                // TRANS: API validation exception thrown when location does not validate.
+                _('Location is too long (maximum 255 characters).')
             );
         }
     }
@@ -321,12 +326,12 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
         );
 
         if (count($aliases) > common_config('group', 'maxaliases')) {
-            throw new ApiValidationException(
-                sprintf(
-                    _('Too many aliases! Maximum %d.'),
-                    common_config('group', 'maxaliases')
-                )
-            );
+            // TRANS: API validation exception thrown when aliases do not validate.
+            // TRANS: %d is the maximum number of aliases and used for plural.
+            throw new ApiValidationException(sprintf(_m('Too many aliases! Maximum %d allowed.',
+                                                        'Too many aliases! Maximum %d allowed.',
+                                                        common_config('group', 'maxaliases')),
+                                                     common_config('group', 'maxaliases')));
         }
 
         foreach ($aliases as $alias) {
@@ -339,7 +344,9 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             ) {
                 throw new ApiValidationException(
                     sprintf(
-                        _('Invalid alias: "%s"'),
+                        // TRANS: API validation exception thrown when aliases does not validate.
+                        // TRANS: %s is the invalid alias.
+                        _('Invalid alias: "%s".'),
                         $alias
                     )
                 );
@@ -348,6 +355,8 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             if ($this->nicknameExists($alias)) {
                 throw new ApiValidationException(
                     sprintf(
+                        // TRANS: API validation exception thrown when aliases is already used.
+                        // TRANS: %s is the already used alias.
                         _('Alias "%s" already in use. Try another one.'),
                         $alias)
                 );
@@ -356,12 +365,12 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             // XXX assumes alphanum nicknames
             if (strcmp($alias, $this->nickname) == 0) {
                 throw new ApiValidationException(
-                    _('Alias can\'t be the same as nickname.')
+                    // TRANS: API validation exception thrown when alias is the same as nickname.
+                    _('Alias cannot be the same as nickname.')
                 );
             }
         }
 
         return $aliases;
     }
-
 }

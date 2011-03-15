@@ -1,5 +1,5 @@
 # Translation of StatusNet - Recaptcha to German (Deutsch)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Apmon
 # Author: The Evil IP address
@@ -10,27 +10,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Recaptcha\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:49+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:05+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:51+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:46:59+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-recaptcha\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: RecaptchaPlugin.php:64
 msgid "Captcha"
 msgstr "Captcha"
 
-#: RecaptchaPlugin.php:105
 msgid "Captcha does not match!"
 msgstr "Captcha stimmt nicht mit Text überein!"
 
-#: RecaptchaPlugin.php:117
 msgid ""
 "Uses <a href=\"http://recaptcha.org/\">Recaptcha</a> service to add a  "
 "captcha to the registration page."

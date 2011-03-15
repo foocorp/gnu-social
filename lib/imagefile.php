@@ -69,6 +69,7 @@ class ImageFile
             ($info[2] == IMAGETYPE_XBM && function_exists('imagecreatefromxbm')) ||
             ($info[2] == IMAGETYPE_PNG && function_exists('imagecreatefrompng')))) {
 
+            // TRANS: Exception thrown when trying to upload an unsupported image file format.
             throw new Exception(_('Unsupported image file format.'));
             return;
         }
@@ -92,6 +93,7 @@ class ImageFile
             return;
          case UPLOAD_ERR_PARTIAL:
             @unlink($_FILES[$param]['tmp_name']);
+            // TRANS: Exception thrown when uploading an image and that action could not be completed.
             throw new Exception(_('Partial upload.'));
             return;
          case UPLOAD_ERR_NO_FILE:
@@ -100,6 +102,7 @@ class ImageFile
          default:
             common_log(LOG_ERR, __METHOD__ . ": Unknown upload error " .
                 $_FILES[$param]['error']);
+            // TRANS: Exception thrown when uploading an image fails for an unknown reason.
             throw new Exception(_('System error uploading file.'));
             return;
         }
@@ -108,6 +111,7 @@ class ImageFile
 
         if (!$info) {
             @unlink($_FILES[$param]['tmp_name']);
+            // TRANS: Exception thrown when uploading a file as image that is not an image or is a corrupt file.
             throw new Exception(_('Not an image or corrupt file.'));
             return;
         }
@@ -128,7 +132,7 @@ class ImageFile
      */
     function resize($size, $x = 0, $y = 0, $w = null, $h = null)
     {
-        $targetType = $this->preferredType($this->type);
+        $targetType = $this->preferredType();
         $outname = Avatar::filename($this->id,
                                     image_type_to_extension($targetType),
                                     $size,
@@ -136,6 +140,19 @@ class ImageFile
         $outpath = Avatar::path($outname);
         $this->resizeTo($outpath, $size, $size, $x, $y, $w, $h);
         return $outname;
+    }
+
+    /**
+     * Copy the image file to the given destination.
+     * For obscure formats, this will automatically convert to PNG;
+     * otherwise the original file will be copied as-is.
+     *
+     * @param string $outpath
+     * @return string filename
+     */
+    function copyTo($outpath)
+    {
+        return $this->resizeTo($outpath, $this->width, $this->height);
     }
 
     /**
@@ -154,9 +171,10 @@ class ImageFile
     {
         $w = ($w === null) ? $this->width:$w;
         $h = ($h === null) ? $this->height:$h;
-        $targetType = $this->preferredType($this->type);
+        $targetType = $this->preferredType();
 
         if (!file_exists($this->filepath)) {
+            // TRANS: Exception thrown during resize when image has been registered as present, but is no longer there.
             throw new Exception(_('Lost our file.'));
             return;
         }
@@ -194,6 +212,7 @@ class ImageFile
             $image_src = imagecreatefromxbm($this->filepath);
             break;
          default:
+            // TRANS: Exception thrown when trying to resize an unknown file type.
             throw new Exception(_('Unknown file type'));
             return;
         }
@@ -234,6 +253,7 @@ class ImageFile
             imagepng($image_dest, $outpath);
             break;
          default:
+            // TRANS: Exception thrown when trying resize an unknown file type.
             throw new Exception(_('Unknown file type'));
             return;
         }
@@ -247,25 +267,25 @@ class ImageFile
     /**
      * Several obscure file types should be normalized to PNG on resize.
      *
-     * @param int $type
+     * @fixme consider flattening anything not GIF or JPEG to PNG
      * @return int
      */
-    function preferredType($type)
+    function preferredType()
     {
-        if($type == IMAGETYPE_BMP) {
+        if($this->type == IMAGETYPE_BMP) {
             //we don't want to save BMP... it's an inefficient, rare, antiquated format
             //save png instead
             return IMAGETYPE_PNG;
-        } else if($type == IMAGETYPE_WBMP) {
+        } else if($this->type == IMAGETYPE_WBMP) {
             //we don't want to save WBMP... it's a rare format that we can't guarantee clients will support
             //save png instead
             return IMAGETYPE_PNG;
-        } else if($type == IMAGETYPE_XBM) {
+        } else if($this->type == IMAGETYPE_XBM) {
             //we don't want to save XBM... it's a rare format that we can't guarantee clients will support
             //save png instead
             return IMAGETYPE_PNG;
         }
-        return $type;
+        return $this->type;
     }
 
     function unlink()

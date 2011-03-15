@@ -1,0 +1,259 @@
+# Translation of StatusNet - FacebookBridge to German (Deutsch)
+# Exported from translatewiki.net
+#
+# Author: Fujnky
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - FacebookBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:12+0000\n"
+"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:43:42+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Already logged in."
+msgstr "Bereits angemeldet."
+
+#. TRANS: Instructions.
+msgid "Login with your Facebook Account"
+msgstr "Mit ihrem Facebook-Konto anmelden"
+
+#. TRANS: Page title.
+msgid "Login with Facebook"
+msgstr "Mit Facebook anmelden"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Facebook integration settings"
+msgstr "Einstellungen der Facebook-Integration"
+
+msgid "Invalid Facebook ID. Max length is 255 characters."
+msgstr "Ungültige Facebook-ID. Die maximale Länge beträgt 255 Zeichen."
+
+msgid "Invalid Facebook secret. Max length is 255 characters."
+msgstr "Ungültiges Facebook-Geheimnis. Die maximale Länge beträgt 255 Zeichen."
+
+msgid "Facebook application settings"
+msgstr "Einstellungen der Facebook-Anwendung"
+
+msgid "Application ID"
+msgstr "Anwendungs-ID"
+
+msgid "ID of your Facebook application"
+msgstr "ID ihrer Facebook-Anwendung"
+
+msgid "Secret"
+msgstr "Geheimnis"
+
+msgid "Application secret"
+msgstr "Anwendungs-Geheimnis"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Save Facebook settings"
+msgstr "Facebook-Einstellungen speichern"
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Es gab ein Problem mit deinem Sitzungstoken. Versuche es bitte erneut."
+
+#. TRANS: Page title for Facebook settings.
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Facebook settings"
+msgstr "Facebook-Einstellungen"
+
+msgid "Connected Facebook user"
+msgstr "Verbundene Facebook-Benuter"
+
+msgid "Publish my notices to Facebook."
+msgstr "Meine Nachrichten auf Facebook veröffentlichen."
+
+msgid "Send \"@\" replies to Facebook."
+msgstr "\"@\"-Antworten zu Facebook senden."
+
+#. TRANS: Submit button to save synchronisation settings.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Speichern"
+
+#. TRANS: Legend.
+msgid "Disconnect my account from Facebook"
+msgstr "Mein Konto von Facebook trennen"
+
+#, php-format
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please [set "
+"a password](%s) first."
+msgstr ""
+"Die Trennung von Facebook würde es unmöglich machen, sich anzumelden! Bitte "
+"zuerst ein [Passwort setzen](%s)."
+
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
+"password to log in."
+msgstr ""
+"Du behältst dein %1$s-Konto, trennst es aber von Facebook. Du wirst dein %1"
+"$s-Passwort benutzen, um dich anzumelden."
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "Trennen"
+
+msgid "There was a problem saving your sync preferences."
+msgstr ""
+"Es ist ein Problem beim Speichern ihrer Synchronisations-Einstellungen "
+"aufgetreten."
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the system.
+msgid "Sync preferences saved."
+msgstr "Synchronisations-Einstellungen gespeichert."
+
+msgid "Couldn't delete link to Facebook."
+msgstr "Konnte die Verbindung zu Facebook nicht löschen."
+
+msgid "You have disconnected from Facebook."
+msgstr "Du bist nun nicht mehr mit Facebook verbunden."
+
+msgid ""
+"You must be logged into Facebook to register a local account using Facebook."
+msgstr ""
+"Du musst bei Facebook angemeldet sein, um ein lokales Konto mit Facebook zu "
+"registrieren."
+
+msgid "There is already a local account linked with that Facebook account."
+msgstr ""
+"Es gibt bereits ein lokales Konto, das mit diesem Facebook-Konto verbunden "
+"ist."
+
+msgid "You can't register if you don't agree to the license."
+msgstr ""
+"Du kannst dich nicht registrieren, falls du die Lizenz nicht akzeptierst."
+
+msgid "An unknown error has occured."
+msgstr "Ein unbekannter Fehler ist aufgetreten."
+
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your "
+"Facebook to a local account. You can either create a new local account, or "
+"connect with an existing local account."
+msgstr ""
+"Dies ist das erste Mal, dass du dich bei %s angemeldet hast, also müssen wir "
+"Facebook mit deinem lokalen Konto verbinden. Du kannst entweder ein neues "
+"lokales Konto erstellen, oder mit einem bestehenden verbinden."
+
+#. TRANS: Page title.
+msgid "Facebook Setup"
+msgstr "Facebook-Einrichtung"
+
+#. TRANS: Legend.
+msgid "Connection options"
+msgstr "Verbindungsoptionen"
+
+#. TRANS: %s is the name of the license used by the user for their status updates.
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"Mein Text und meine Dateien sind mit Ausnahme dieser privaten Daten unter %s "
+"verfügbar: Passwort, E-Mail-Adresse, IM-Adresse und Telefonnummer."
+
+#. TRANS: Legend.
+msgid "Create new account"
+msgstr "Neues Konto erstellen"
+
+msgid "Create a new user with this nickname."
+msgstr "Einen neuen Benutzer mit diesem Spitznamen erstellen."
+
+#. TRANS: Field label.
+msgid "New nickname"
+msgstr "Neuer Spitzname"
+
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+msgstr "1–64 Kleinbuchstaben oder Zahlen, keine Satz- oder Leerzeichen"
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Create"
+msgstr "Erstellen"
+
+msgid "Connect existing account"
+msgstr "Verbinde vorhandenes Konto"
+
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Facebook."
+msgstr ""
+"Falls de bereits ein Konto hast, melde dich mit deinem Benutzernamen und "
+"Passwort an, um es mit deinem Facebook zu verbinden."
+
+#. TRANS: Field label.
+msgid "Existing nickname"
+msgstr "Vorhandener Spitzname"
+
+msgid "Password"
+msgstr "Passwort"
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Connect"
+msgstr "Verbinden"
+
+#. TRANS: Client error trying to register with registrations not allowed.
+#. TRANS: Client error trying to register with registrations 'invite only'.
+msgid "Registration not allowed."
+msgstr "Registrierung nicht erlaubt."
+
+#. TRANS: Client error trying to register with an invalid invitation code.
+msgid "Not a valid invitation code."
+msgstr "Ungültiger Einladungs-Code."
+
+msgid "Nickname not allowed."
+msgstr "Spitzname nicht erlaubt."
+
+msgid "Nickname already in use. Try another one."
+msgstr "Spitzname bereits vergeben. Versuche einen anderen."
+
+msgid "Error connecting user to Facebook."
+msgstr "Fehler bei der Verbindung des Benutzers zu Facebook."
+
+msgid "Invalid username or password."
+msgstr "Benutzername oder Kennwort ungültig."
+
+#. TRANS: Menu item.
+#. TRANS: Menu item tab.
+msgctxt "MENU"
+msgid "Facebook"
+msgstr "Facebook"
+
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Login or register using Facebook"
+msgstr "Über Facebook anmelden oder registrieren"
+
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Facebook integration configuration"
+msgstr "Konfiguration der Facebook-Integration"
+
+msgid "A plugin for integrating StatusNet with Facebook."
+msgstr "Ein Plugin zur Integration von StatusNet mit Facebook."
+
+msgid "Your Facebook connection has been removed"
+msgstr "Ihre Facebook-Verbindung wurde entfernt"
+
+#, php-format
+msgid "Contact the %s administrator to retrieve your account"
+msgstr "Kontaktiere den %s-Administrator um dein Konto zurück zu bekommen"

@@ -107,7 +107,7 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
             $sitename
         );
         $taguribase = TagURI::base();
-        $id         = "tag:$taguribase:TagTimeline:".$tag;
+        $id         = "tag:$taguribase:TagTimeline:".$this->tag;
 
         $link = common_local_url(
             'tag',
@@ -115,8 +115,6 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
         );
 
         $self = $this->getSelfUri();
-
-        common_debug("self link is: $self");
 
         switch($this->format) {
         case 'xml':
@@ -153,6 +151,14 @@ class ApiTimelineTagAction extends ApiPrivateAuthAction
             break;
         case 'json':
             $this->showJsonTimeline($this->notices);
+            break;
+        case 'as':
+            header('Content-Type: application/json; charset=utf-8');
+            $doc = new ActivityStreamJSONDocument($this->auth_user);
+            $doc->setTitle($title);
+            $doc->addLink($link, 'alternate', 'text/html');
+            $doc->addItemsFromNotices($this->notices);
+            $this->raw($doc->asString());
             break;
         default:
             // TRANS: Client error displayed when trying to handle an unknown API method.

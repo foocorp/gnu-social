@@ -202,6 +202,70 @@ class Inbox extends Memcached_DataObject
      * additional items up to the limit if we were short due to deleted
      * notices still being listed in the inbox.
      *
+     * This is meant to assist threaded views, and optimizes paging for
+     * threadness. Not ideal for very late pages, as we have to bump about
+     * through all previous items.
+     *
+     * Should avoid duplicates in paging, though.
+     *
+     * @param int $user_id
+     * @param int $offset skip past the most recent N notices (after since_id checks)
+     * @param int $limit
+     * @param mixed $since_id return only notices after but not including this id
+     * @param mixed $max_id return only notices up to and including this id
+     * @param mixed $own ignored?
+     * @return array of Notice objects
+     *
+     * @todo consider repacking the inbox when this happens?
+     * @fixme reimplement $own if we need it?
+     */
+    function streamNoticesThreaded($user_id, $offset, $limit, $since_id, $max_id, $own=false)
+    {
+        // So what we want is:
+        // * slurp in the beginning of the notice list
+        // * filter out deleted notices
+        // * replace any reply notices with their conversation roots
+        // * filter out any duplicate conversations
+        // * return $limit notices after skipping $offset from the most recent
+
+        $ids = self::stream($user_id, 0, self::MAX_NOTICES, $since_id, $max_id, $own);
+
+        // Do a bulk lookup for the first $limit items
+        // Fast path when nothing's deleted.
+        $firstChunk = array_slice($ids, 0, $offset + $limit);
+        $notices = Notice::getStreamByIds($firstChunk);
+
+        assert($notices instanceof ArrayWrapper);
+        $items = $notices->_items;
+
+        // Extract the latest non-deleted item in each convo
+        $noticeByConvo = array();
+        foreach ($items as $notice) {
+            if (empty($noticeByConvo[$notice->conversation])) {
+                $noticeByConvo[$notice->conversation] = $notice;
+            }
+        }
+
+        $wanted = count($firstChunk); // raw entry count in the inbox up to our $limit
+        // There were deleted notices, we'll need to look for more.
+        $remainder = array_slice($ids, $limit);
+
+        for ($i = $offset + $limit; count($noticeByConvo) < $wanted && $i < count($ids); $i++) {
+            $notice = Notice::staticGet($ids[$i]);
+            if ($notice && empty($noticeByConvo[$notice->conversation])) {
+                $noticeByConvo[$notice->conversation] = $notice;
+            }
+        }
+
+        $slice = array_slice($noticeByConvo, $offset, $limit, false);
+        return new ArrayWrapper($slice);
+    }
+
+    /**
+     * Wrapper for Inbox::stream() and Notice::getStreamByIds() returning
+     * additional items up to the limit if we were short due to deleted
+     * notices still being listed in the inbox.
+     *
      * The fast path (when no items are deleted) should be just as fast; the
      * offset parameter is applied *before* lookups for maximum efficiency.
      *

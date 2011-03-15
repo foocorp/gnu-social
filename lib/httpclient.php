@@ -149,6 +149,14 @@ class HTTPClient extends HTTP_Request2
             $this->config['adapter'] = 'HTTP_Request2_Adapter_Curl';
         }
 
+        foreach (array('host', 'port', 'user', 'password', 'auth_scheme') as $cf) {
+            $k = 'proxy_'.$cf;
+            $v = common_config('http', $k); 
+            if (!empty($v)) {
+                $this->config[$k] = $v;
+            }
+        }
+
         parent::__construct($url, $method, $config);
         $this->setHeader('User-Agent', $this->userAgent());
     }

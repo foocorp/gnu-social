@@ -68,6 +68,7 @@ class NewmessageAction extends Action
 
     function title()
     {
+        // TRANS: Page title for new direct message page.
         return _('New message');
     }
 
@@ -84,6 +85,7 @@ class NewmessageAction extends Action
         parent::handle($args);
 
         if (!common_logged_in()) {
+            // TRANS: Client error displayed trying to create a new direct message while not logged in.
             $this->clientError(_('Not logged in.'), 403);
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->saveNewMessage();
@@ -113,12 +115,15 @@ class NewmessageAction extends Action
             $this->other = User::staticGet('id', $this->to);
 
             if (!$this->other) {
+                // TRANS: Client error displayed trying to send a direct message to a non-existing user.
                 $this->clientError(_('No such user.'), 404);
                 return false;
             }
 
             if (!$user->mutuallySubscribed($this->other)) {
-                $this->clientError(_('You can\'t send a message to this user.'), 404);
+                // TRANS: Client error displayed trying to send a direct message to a user while sender and
+                // TRANS: receiver are not subscribed to each other.
+                $this->clientError(_('You cannot send a message to this user.'), 404);
                 return false;
             }
         }
@@ -141,6 +146,7 @@ class NewmessageAction extends Action
         assert($user); // XXX: maybe an error instead...
 
         if (!$this->content) {
+            // TRANS: Form validator error displayed trying to send a direct message without content.
             $this->showForm(_('No content!'));
             return;
         } else {
@@ -158,12 +164,16 @@ class NewmessageAction extends Action
         }
 
         if (!$this->other) {
+            // TRANS: Form validation error displayed trying to send a direct message without specifying a recipient.
             $this->showForm(_('No recipient specified.'));
             return;
         } else if (!$user->mutuallySubscribed($this->other)) {
-            $this->clientError(_('You can\'t send a message to this user.'), 404);
+            // TRANS: Client error displayed trying to send a direct message to a user while sender and
+            // TRANS: receiver are not subscribed to each other.
+            $this->clientError(_('You cannot send a message to this user.'), 404);
             return;
         } else if ($user->id == $this->other->id) {
+            // TRANS: Client error displayed trying to send a direct message to self.
             $this->clientError(_('Don\'t send a message to yourself; ' .
                 'just say it to yourself quietly instead.'), 403);
             return;
@@ -181,10 +191,13 @@ class NewmessageAction extends Action
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
+            // TRANS: Page title after sending a direct message.
             $this->element('title', null, _('Message sent'));
             $this->elementEnd('head');
             $this->elementStart('body');
             $this->element('p', array('id' => 'command_result'),
+                // TRANS: Confirmation text after sending a direct message.
+                // TRANS: %s is the direct message recipient.
                 sprintf(_('Direct message to %s sent.'),
                     $this->other->nickname));
             $this->elementEnd('body');
@@ -210,6 +223,7 @@ class NewmessageAction extends Action
     {
         $this->startHTML('text/xml;charset=utf-8', true);
         $this->elementStart('head');
+        // TRANS: Page title after an AJAX error occurred on the "send direct message" page.
         $this->element('title', null, _('Ajax Error'));
         $this->elementEnd('head');
         $this->elementStart('body');
@@ -231,6 +245,7 @@ class NewmessageAction extends Action
             $this->xw->startDocument('1.0', 'UTF-8');
             $this->elementStart('html');
             $this->elementStart('head');
+            // TRANS: Page title on page for sending a direct message.
             $this->element('title', null, _('New message'));
             $this->elementEnd('head');
             $this->elementStart('body');

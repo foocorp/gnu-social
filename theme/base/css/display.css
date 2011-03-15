@@ -94,6 +94,55 @@ list-style-type:none;
 form label.submit {
 display:none;
 }
+
+body[id$=settings] #site_nav_local_views {
+position:relative;
+z-index:9;
+float:right;
+margin-right:10.65%;
+width:22.25%;
+}
+body[id$=settings] #site_nav_local_views li {
+width:100%;
+margin-right:0;
+margin-bottom:7px;
+}
+body[id$=settings] #site_nav_local_views a {
+display:block;
+width:80%;
+padding-right:10%;
+padding-left:10%;
+border-radius-toprleft:0;
+-moz-border-radius-topleft:0;
+-webkit-border-top-left-radius:0;
+border-radius-topright:4px;
+-moz-border-radius-topright:4px;
+-webkit-border-top-right-radius:4px;
+border-radius-bottomright:4px;
+-moz-border-radius-bottomright:4px;
+-webkit-border-bottom-right-radius:4px;
+}
+body[id$=settings] #site_nav_local_views li.current {
+box-shadow:none;
+-moz-box-shadow:none;
+-webkit-box-shadow:none;
+}
+
+body[id$=settings] #content {
+border-radius-topleft:7px;
+border-radius-topright:7px;
+-moz-border-radius-topleft:7px;
+-moz-border-radius-topright:7px;
+-webkit-border-top-left-radius:7px;
+-webkit-border-top-right-radius:7px;
+border-radius-topright:0;
+-moz-border-radius-topright:0;
+-webkit-border-top-right-radius:0;
+}
+body[id$=settings] #aside_primary {
+display:none;
+}
+
 .form_settings {
 clear:both;
 }
@@ -346,14 +395,12 @@ list-style-type:none;
 float:left;
 text-decoration:none;
 padding:4px 11px;
-border-radius-topleft:4px;
-border-radius-topright:4px;
+border-top-left-radius:4px;
+border-top-right-radius:4px;
 -moz-border-radius-topleft:4px;
 -moz-border-radius-topright:4px;
 -webkit-border-top-left-radius:4px;
 -webkit-border-top-right-radius:4px;
-border-radius-topleft:0;
-border-radius-topright:0;
 border-width:1px;
 border-style:solid;
 border-bottom:0;
@@ -381,13 +428,13 @@ display:block;
 width:80%;
 padding-right:10%;
 padding-left:10%;
-border-radius-toprleft:0;
+border-top-left-radius:0;
 -moz-border-radius-topleft:0;
 -webkit-border-top-left-radius:0;
-border-radius-topright:4px;
+border-top-right-radius:4px;
 -moz-border-radius-topright:4px;
 -webkit-border-top-right-radius:4px;
-border-radius-bottomright:4px;
+border-bottom-right-radius:4px;
 -moz-border-radius-bottomright:4px;
 -webkit-border-bottom-right-radius:4px;
 }
@@ -398,13 +445,10 @@ box-shadow:none;
 }
 
 body[id$=adminpanel] #content {
-border-radius-topleft:7px;
-border-radius-topright:7px;
+border-top-left-radius:7px;
 -moz-border-radius-topleft:7px;
--moz-border-radius-topright:7px;
 -webkit-border-top-left-radius:7px;
--webkit-border-top-right-radius:7px;
-border-radius-topright:0;
+border-top-right-radius:0;
 -moz-border-radius-topright:0;
 -webkit-border-top-right-radius:0;
 }
@@ -421,7 +465,7 @@ display:none;
 margin-bottom:11px;
 }
 
-#site_nav_global_secondary ul li {
+#site_nav_global_secondary li {
 display:inline;
 margin-right:18px;
 }
@@ -488,6 +532,7 @@ min-height:259px;
 padding:1.795%;
 float:left;
 border-radius:7px;
+border-top-left-radius:0;
 -moz-border-radius:7px;
 -moz-border-radius-topleft:0;
 -webkit-border-radius:7px;
@@ -518,8 +563,10 @@ border-width:1px;
 border-style:solid;
 }
 
-.form_notice {
+#header .form_notice {
 width:45%;
+}
+.form_notice {
 float:left;
 position:relative;
 line-height:1;
@@ -550,38 +597,38 @@ float:left;
 font-size:1.3em;
 margin-bottom:7px;
 }
-.form_notice label[for=notice_data-attach],
-.form_notice #notice_data-attach {
+.form_notice label.notice_data-attach,
+.form_notice input.notice_data-attach {
 position:absolute;
 top:25px;
 right:10.5%;
 cursor:pointer;
 }
-.form_notice label[for=notice_data-attach] {
+.form_notice label.notice_data-attach {
 text-indent:-9999px;
 width:16px;
 height:16px;
 }
-.form_notice #notice_data-attach {
+.form_notice input.notice_data-attach {
 padding:0;
 height:16px;
 }
-.form_notice .form_note {
+.form_notice .count {
 position:absolute;
 bottom:2px;
 right:21.715%;
 z-index:9;
 }
-.form_notice .form_note dt {
+.form_notice .count dt {
 font-weight:bold;
 display:none;
 }
-.form_notice #notice_text-count {
+.form_notice .count {
 font-weight:bold;
 line-height:1.15;
 padding:1px 2px;
 }
-.form_notice #notice_action-submit {
+.form_notice .submit {
 width:14%;
 height:47px;
 padding:0;
@@ -599,14 +646,15 @@ float:left;
 max-width:322px;
 }
 .form_notice .error,
-.form_notice .success {
+.form_notice .success,
+.form_notice .notice-status {
 float:left;
 clear:both;
 width:81.5%;
 margin-bottom:0;
 line-height:1.618;
 }
-.form_notice #notice_data-attach_selected code {
+.form_notice .attach-status code {
 float:left;
 width:80%;
 display:block;
@@ -614,13 +662,14 @@ overflow:auto;
 margin-right:2.5%;
 font-size:1.1em;
 }
-.form_notice #notice_data-attach_selected button.close {
+.form_notice .attach-status button.close,
+.form_notice .notice-status button.close,{
 float:right;
 font-size:0.8em;
 }
 
-.form_notice #notice_data-geo_wrap label,
-.form_notice #notice_data-geo_wrap input {
+.form_notice .notice_data-geo_wrap label,
+.form_notice .notice_data-geo_wrap input {
 position:absolute;
 top:25px;
 right:4px;
@@ -630,10 +679,10 @@ width:16px;
 height:16px;
 display:block;
 }
-.form_notice #notice_data-geo_wrap input {
+.form_notice .notice_data-geo_wrap input {
 visibility:hidden;
 }
-.form_notice #notice_data-geo_wrap label {
+.form_notice .notice_data-geo_wrap label {
 font-weight:normal;
 font-size:1em;
 margin-bottom:0;
@@ -874,7 +923,9 @@ text-transform:uppercase;
 font-size:1em;
 }
 
-#entity_statistics dt,
+#entity_statistics dt {
+margin-right:11px;
+}
 #entity_statistics dd {
 display:inline;
 margin-right:11px;
@@ -1058,6 +1109,41 @@ border-top-width:1px;
 border-top-style:solid;
 }
 
+/* Threaded notices sublist */
+#content .notices .threaded-replies {
+    margin-left: 10%;
+    width: 90%;
+
+    background: #e4e8f1;
+}
+#content .threaded-replies .notice .author .photo {
+    left: 8px;
+    width: 32px;
+    height: 32px;
+}
+.threaded-replies .notice-reply {
+    margin: 8px;
+}
+.threaded-replies .notice-reply-placeholder input.placeholder {
+    margin-left: 0;
+    width: 95%;
+}
+.threaded-replies .notice-reply-placeholder input.placeholder {
+    color: gray;
+    margin-left: 8px; /* ?? */
+    margin-bottom: 8px;
+}
+.threaded-replies .notice-reply .controls {
+    text-align: right;
+}
+.threaded-replies .notice-reply-comments {
+    margin: 8px;
+}
+.threaded-replies .response,
+.threaded-replies .source {
+    /* Hide these for ajax/realtime sourced notices */
+    display: none;
+}
 /* NOTICES */
 #notices_primary {
 float:left;

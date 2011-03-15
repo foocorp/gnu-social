@@ -72,6 +72,8 @@ class OStatusTester extends TestBase
         $base = 'test' . mt_rand(1, 1000000);
         $this->pub = new SNTestClient($this->a, 'pub' . $base, 'pw-' . mt_rand(1, 1000000), $timeout);
         $this->sub = new SNTestClient($this->b, 'sub' . $base, 'pw-' . mt_rand(1, 1000000), $timeout);
+
+        $this->group = 'group' . $base;
     }
 
     function run()
@@ -163,6 +165,39 @@ class OStatusTester extends TestBase
         $this->assertFalse($this->pub->hasSubscriber($this->sub->getProfileUri()));
     }
 
+    function testCreateGroup()
+    {
+        $this->groupUrl = $this->pub->createGroup($this->group);
+        $this->assertTrue(!empty($this->groupUrl));
+    }
+
+    function testJoinGroup()
+    {
+        #$this->assertFalse($this->sub->inGroup($this->groupUrl));
+        $this->sub->joinGroup($this->groupUrl);
+        #$this->assertTrue($this->sub->inGroup($this->groupUrl));
+    }
+
+    function testLocalGroupPost()
+    {
+        $post = $this->pub->post("Group post from local to !{$this->group}, should go out over push.");
+        $this->assertNotEqual('', $post);
+        $this->sub->assertReceived($post);
+    }
+
+    function testRemoteGroupPost()
+    {
+        $post = $this->sub->post("Group post from remote to !{$this->group}, should come in over salmon.");
+        $this->assertNotEqual('', $post);
+        $this->pub->assertReceived($post);
+    }
+
+    function testLeaveGroup()
+    {
+        #$this->assertTrue($this->sub->inGroup($this->groupUrl));
+        $this->sub->leaveGroup($this->groupUrl);
+        #$this->assertFalse($this->sub->inGroup($this->groupUrl));
+    }
 }
 
 class SNTestClient extends TestBase
@@ -534,6 +569,63 @@ class SNTestClient extends TestBase
         return false;
     }
 
+    /**
+     * Create a group on this site.
+     *
+     * @param string $nickname
+     * @param array $options
+     * @return string: profile URL for the group
+     */
+    function createGroup($nickname, $options=array()) {
+        $this->log("Creating group as %s on %s: %s",
+                   $this->username,
+                   $this->basepath,
+                   $nickname);
+
+        $data = $this->api('statusnet/groups/create', 'json',
+            array_merge(array('nickname' => $nickname), $options));
+        $url = $data['url'];
+
+        if ($url) {
+            $this->log('  created as %s', $url);
+        } else {
+            $this->log('  failed? %s', var_export($data, true));
+        }
+        return $url;
+    }
+
+    function groupInfo($nickname) {
+        $data = $this->api('statusnet/groups/show', 'json', array(
+            'id' => $nickname
+        ));
+    }
+
+    /**
+     * Join a group.
+     *
+     * @param string $group nickname or URL
+     */
+    function joinGroup($group) {
+        $this->post('join ' . $group);
+    }
+
+    /**
+     * Leave a group.
+     *
+     * @param string $group nickname or URL
+     */
+    function leaveGroup($group) {
+        $this->post('drop ' . $group);
+    }
+
+    /**
+     *
+     * @param string $nickname
+     * @return
+     */
+    function inGroup($nickname) {
+        // @todo
+    }
 }
 
 // @fixme switch to commandline.inc?

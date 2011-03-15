@@ -471,9 +471,19 @@ class User extends Memcached_DataObject
         return Inbox::streamNotices($this->id, $offset, $limit, $since_id, $before_id, false);
     }
 
+    function noticesWithFriendsThreaded($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
+    {
+        return Inbox::streamNoticesThreaded($this->id, $offset, $limit, $since_id, $before_id, false);
+    }
+
     function noticeInbox($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
     {
         return Inbox::streamNotices($this->id, $offset, $limit, $since_id, $before_id, true);
+    }
+
+    function noticeInboxThreaded($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
+    {
+        return Inbox::streamNoticesThreaded($this->id, $offset, $limit, $since_id, $before_id, true);
     }
 
     function friendsTimeline($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
@@ -970,7 +980,7 @@ class User extends Memcached_DataObject
     }
 
     /*
-     * Get a list of OAuth client application that have access to this
+     * Get a list of OAuth client applications that have access to this
      * user's account.
      */
     function getConnectedApps($offset = 0, $limit = null)

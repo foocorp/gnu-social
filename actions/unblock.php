@@ -42,7 +42,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class UnblockAction extends ProfileFormAction
 {
     function prepare($args)
@@ -56,6 +55,7 @@ class UnblockAction extends ProfileFormAction
         assert(!empty($cur)); // checked by parent
 
         if (!$cur->hasBlocked($this->profile)) {
+            // TRANS: Client error displayed when trying to unblock a non-blocked user.
             $this->clientError(_("You haven't blocked that user."));
             return false;
         }
@@ -68,7 +68,6 @@ class UnblockAction extends ProfileFormAction
      *
      * @return void
      */
-
     function handlePost()
     {
         $cur = common_current_user();
@@ -83,6 +82,7 @@ class UnblockAction extends ProfileFormAction
         }
 
         if (!$result) {
+            // TRANS: Server error displayed when removing a user block.
             $this->serverError(_('Error removing the block.'));
             return;
         }

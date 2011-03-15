@@ -1,0 +1,37 @@
+# Translation of StatusNet - PoweredByStatusNet to Catalan (Català)
+# Exported from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - PoweredByStatusNet\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:02+0000\n"
+"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:45:47+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-poweredbystatusnet\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: %s is a URL to status.net with "StatusNet" (localised) as link text.
+#, php-format
+msgid "powered by %s"
+msgstr "funciona amb %s"
+
+msgid "StatusNet"
+msgstr "StatusNet"
+
+msgid ""
+"Outputs \"powered by <a href=\"http://status.net/\">StatusNet</a>\" after "
+"site name."
+msgstr ""
+"Les sortides «funciona amb <a href=\"http://status.net/\">StatusNet</a>» "
+"després del lloc del nom."

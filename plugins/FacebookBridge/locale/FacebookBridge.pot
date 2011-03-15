@@ -8,173 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#. TRANS: Menu item.
-#. TRANS: Menu item tab.
-#: FacebookBridgePlugin.php:201 FacebookBridgePlugin.php:240
-#: FacebookBridgePlugin.php:281
-msgctxt "MENU"
-msgid "Facebook"
-msgstr ""
-
-#. TRANS: Tooltip for menu item "Facebook".
-#: FacebookBridgePlugin.php:203
-msgid "Login or register using Facebook"
-msgstr ""
-
-#. TRANS: Tooltip for menu item "Facebook".
-#: FacebookBridgePlugin.php:242
-msgid "Facebook integration configuration"
-msgstr ""
-
-#. TRANS: Tooltip for menu item "Facebook".
-#. TRANS: Page title for Facebook settings.
-#: FacebookBridgePlugin.php:283 actions/facebooksettings.php:105
-msgid "Facebook settings"
-msgstr ""
-
-#: FacebookBridgePlugin.php:547
-msgid "A plugin for integrating StatusNet with Facebook."
-msgstr ""
-
-#: lib/facebookclient.php:776
-msgid "Your Facebook connection has been removed"
-msgstr ""
-
-#: lib/facebookclient.php:835
-#, php-format
-msgid "Contact the %s administrator to retrieve your account"
-msgstr ""
-
-#: actions/facebookfinishlogin.php:88
-msgid ""
-"You must be logged into Facebook to register a local account using Facebook."
-msgstr ""
-
-#: actions/facebookfinishlogin.php:118
-msgid "There is already a local account linked with that Facebook account."
-msgstr ""
-
-#: actions/facebookfinishlogin.php:141 actions/facebooksettings.php:86
-msgid "There was a problem with your session token. Try again, please."
-msgstr ""
-
-#: actions/facebookfinishlogin.php:150
-msgid "You can't register if you don't agree to the license."
-msgstr ""
-
-#: actions/facebookfinishlogin.php:167
-msgid "An unknown error has occured."
-msgstr ""
-
-#: actions/facebookfinishlogin.php:185
-#, php-format
-msgid ""
-"This is the first time you've logged into %s so we must connect your "
-"Facebook to a local account. You can either create a new local account, or "
-"connect with an existing local account."
-msgstr ""
-
-#. TRANS: Page title.
-#: actions/facebookfinishlogin.php:195
-msgid "Facebook Setup"
-msgstr ""
-
-#. TRANS: Legend.
-#: actions/facebookfinishlogin.php:229
-msgid "Connection options"
-msgstr ""
-
-#. TRANS: %s is the name of the license used by the user for their status updates.
-#: actions/facebookfinishlogin.php:239
-#, php-format
-msgid ""
-"My text and files are available under %s except this private data: password, "
-"email address, IM address, and phone number."
-msgstr ""
-
-#. TRANS: Legend.
-#: actions/facebookfinishlogin.php:256
-msgid "Create new account"
-msgstr ""
-
-#: actions/facebookfinishlogin.php:258
-msgid "Create a new user with this nickname."
-msgstr ""
-
-#. TRANS: Field label.
-#: actions/facebookfinishlogin.php:262
-msgid "New nickname"
-msgstr ""
-
-#: actions/facebookfinishlogin.php:264
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
-msgstr ""
-
-#. TRANS: Submit button.
-#: actions/facebookfinishlogin.php:268
-msgctxt "BUTTON"
-msgid "Create"
-msgstr ""
-
-#: actions/facebookfinishlogin.php:274
-msgid "Connect existing account"
-msgstr ""
-
-#: actions/facebookfinishlogin.php:276
-msgid ""
-"If you already have an account, login with your username and password to "
-"connect it to your Facebook."
-msgstr ""
-
-#. TRANS: Field label.
-#: actions/facebookfinishlogin.php:280
-msgid "Existing nickname"
-msgstr ""
-
-#: actions/facebookfinishlogin.php:283
-msgid "Password"
-msgstr ""
-
-#. TRANS: Submit button.
-#: actions/facebookfinishlogin.php:287
-msgctxt "BUTTON"
-msgid "Connect"
-msgstr ""
-
-#. TRANS: Client error trying to register with registrations not allowed.
-#. TRANS: Client error trying to register with registrations 'invite only'.
-#: actions/facebookfinishlogin.php:304 actions/facebookfinishlogin.php:314
-msgid "Registration not allowed."
-msgstr ""
-
-#. TRANS: Client error trying to register with an invalid invitation code.
-#: actions/facebookfinishlogin.php:322
-msgid "Not a valid invitation code."
-msgstr ""
-
-#: actions/facebookfinishlogin.php:335
-msgid "Nickname not allowed."
-msgstr ""
-
-#: actions/facebookfinishlogin.php:340
-msgid "Nickname already in use. Try another one."
-msgstr ""
-
-#: actions/facebookfinishlogin.php:368 actions/facebookfinishlogin.php:505
-msgid "Error connecting user to Facebook."
-msgstr ""
-
-#: actions/facebookfinishlogin.php:468
-msgid "Invalid username or password."
-msgstr ""
 
 #: actions/facebooklogin.php:43
 msgid "Already logged in."
@@ -232,6 +72,16 @@ msgstr ""
 
 #: actions/facebookadminpanel.php:210
 msgid "Save Facebook settings"
+msgstr ""
+
+#: actions/facebooksettings.php:86 actions/facebookfinishlogin.php:141
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Page title for Facebook settings.
+#. TRANS: Tooltip for menu item "Facebook".
+#: actions/facebooksettings.php:105 FacebookBridgePlugin.php:300
+msgid "Facebook settings"
 msgstr ""
 
 #: actions/facebooksettings.php:137
@@ -292,4 +142,154 @@ msgstr ""
 
 #: actions/facebooksettings.php:264
 msgid "You have disconnected from Facebook."
+msgstr ""
+
+#: actions/facebookfinishlogin.php:88
+msgid ""
+"You must be logged into Facebook to register a local account using Facebook."
+msgstr ""
+
+#: actions/facebookfinishlogin.php:118
+msgid "There is already a local account linked with that Facebook account."
+msgstr ""
+
+#: actions/facebookfinishlogin.php:150
+msgid "You can't register if you don't agree to the license."
+msgstr ""
+
+#: actions/facebookfinishlogin.php:167
+msgid "An unknown error has occured."
+msgstr ""
+
+#: actions/facebookfinishlogin.php:185
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your "
+"Facebook to a local account. You can either create a new local account, or "
+"connect with an existing local account."
+msgstr ""
+
+#. TRANS: Page title.
+#: actions/facebookfinishlogin.php:195
+msgid "Facebook Setup"
+msgstr ""
+
+#. TRANS: Legend.
+#: actions/facebookfinishlogin.php:229
+msgid "Connection options"
+msgstr ""
+
+#. TRANS: %s is the name of the license used by the user for their status updates.
+#: actions/facebookfinishlogin.php:239
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+
+#. TRANS: Legend.
+#: actions/facebookfinishlogin.php:256
+msgid "Create new account"
+msgstr ""
+
+#: actions/facebookfinishlogin.php:258
+msgid "Create a new user with this nickname."
+msgstr ""
+
+#. TRANS: Field label.
+#: actions/facebookfinishlogin.php:266
+msgid "New nickname"
+msgstr ""
+
+#: actions/facebookfinishlogin.php:268
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+msgstr ""
+
+#. TRANS: Submit button.
+#: actions/facebookfinishlogin.php:276
+msgctxt "BUTTON"
+msgid "Create"
+msgstr ""
+
+#: actions/facebookfinishlogin.php:282
+msgid "Connect existing account"
+msgstr ""
+
+#: actions/facebookfinishlogin.php:284
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Facebook."
+msgstr ""
+
+#. TRANS: Field label.
+#: actions/facebookfinishlogin.php:288
+msgid "Existing nickname"
+msgstr ""
+
+#: actions/facebookfinishlogin.php:291
+msgid "Password"
+msgstr ""
+
+#. TRANS: Submit button.
+#: actions/facebookfinishlogin.php:295
+msgctxt "BUTTON"
+msgid "Connect"
+msgstr ""
+
+#. TRANS: Client error trying to register with registrations not allowed.
+#. TRANS: Client error trying to register with registrations 'invite only'.
+#: actions/facebookfinishlogin.php:316 actions/facebookfinishlogin.php:326
+msgid "Registration not allowed."
+msgstr ""
+
+#. TRANS: Client error trying to register with an invalid invitation code.
+#: actions/facebookfinishlogin.php:334
+msgid "Not a valid invitation code."
+msgstr ""
+
+#: actions/facebookfinishlogin.php:347
+msgid "Nickname not allowed."
+msgstr ""
+
+#: actions/facebookfinishlogin.php:352
+msgid "Nickname already in use. Try another one."
+msgstr ""
+
+#: actions/facebookfinishlogin.php:380 actions/facebookfinishlogin.php:519
+msgid "Error connecting user to Facebook."
+msgstr ""
+
+#: actions/facebookfinishlogin.php:482
+msgid "Invalid username or password."
+msgstr ""
+
+#. TRANS: Menu item.
+#. TRANS: Menu item tab.
+#: FacebookBridgePlugin.php:218 FacebookBridgePlugin.php:257
+#: FacebookBridgePlugin.php:298
+msgctxt "MENU"
+msgid "Facebook"
+msgstr ""
+
+#. TRANS: Tooltip for menu item "Facebook".
+#: FacebookBridgePlugin.php:220
+msgid "Login or register using Facebook"
+msgstr ""
+
+#. TRANS: Tooltip for menu item "Facebook".
+#: FacebookBridgePlugin.php:259
+msgid "Facebook integration configuration"
+msgstr ""
+
+#: FacebookBridgePlugin.php:564
+msgid "A plugin for integrating StatusNet with Facebook."
+msgstr ""
+
+#: lib/facebookclient.php:786
+msgid "Your Facebook connection has been removed"
+msgstr ""
+
+#: lib/facebookclient.php:845
+#, php-format
+msgid "Contact the %s administrator to retrieve your account"
 msgstr ""

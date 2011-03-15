@@ -49,12 +49,14 @@ class GroupsearchAction extends SearchAction
 {
     function getInstructions()
     {
+        // TRANS: Instructions for page where groups can be searched. %%site.name%% is the name of the StatusNet site.
         return _('Search for groups on %%site.name%% by their name, location, or description. ' .
                   'Separate the terms by spaces; they must be 3 characters or more.');
     }
 
     function title()
     {
+        // TRANS: Title for page where groups can be searched.
         return _('Group search');
     }
 
@@ -76,12 +78,17 @@ class GroupsearchAction extends SearchAction
             $this->pagination($page > 1, $cnt > GROUPS_PER_PAGE,
                           $page, 'groupsearch', array('q' => $q));
         } else {
+            // TRANS: Text on page where groups can be searched if no results were found for a query.
             $this->element('p', 'error', _('No results.'));
             $this->searchSuggestions($q);
             if (common_logged_in()) {
-                $message = _('If you can\'t find the group you\'re looking for, you can [create it](%%action.newgroup%%) yourself.');
+                // TRANS: Additional text on page where groups can be searched if no results were found for a query for a logged in user.
+                // TRANS: This message contains Markdown links in the form [link text](link).
+                $message = _('If you cannot find the group you\'re looking for, you can [create it](%%action.newgroup%%) yourself.');
             }
             else {
+                // TRANS: Additional text on page where groups can be searched if no results were found for a query for a not logged in user.
+                // TRANS: This message contains Markdown links in the form [link text](link).
                 $message = _('Why not [register an account](%%action.register%%) and [create the group](%%action.newgroup%%) yourself!');
             }
             $this->elementStart('div', 'guide');
@@ -116,4 +123,3 @@ class GroupSearchResults extends GroupList
         return preg_replace($this->pattern, '<strong>\\1</strong>', htmlspecialchars($text));
     }
 }
-

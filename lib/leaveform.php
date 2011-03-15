@@ -88,7 +88,7 @@ class LeaveForm extends Form
 
     function formClass()
     {
-        return 'form_group_leave';
+        return 'form_group_leave ajax';
     }
 
     /**

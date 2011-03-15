@@ -45,9 +45,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  */
 class RealtimePlugin extends Plugin
 {
-    protected $replyurl = null;
-    protected $favorurl = null;
-    protected $deleteurl = null;
+    protected $showurl = null;
 
     /**
      * When it's time to initialize the plugin, calculate and
@@ -56,11 +54,8 @@ class RealtimePlugin extends Plugin
 
     function onInitializePlugin()
     {
-        $this->replyurl = common_local_url('newnotice');
-        $this->favorurl = common_local_url('favor');
-        $this->repeaturl = common_local_url('repeat');
         // FIXME: need to find a better way to pass this pattern in
-        $this->deleteurl = common_local_url('deletenotice',
+        $this->showurl = common_local_url('shownotice',
                                             array('notice' => '0000000000'));
         return true;
     }
@@ -116,8 +111,9 @@ class RealtimePlugin extends Plugin
 
     function onEndShowStatusNetStyles($action)
     {
-        $action->cssLink('plugins/Realtime/realtimeupdate.css',
-                         null, 'screen, projection, tv');
+        $action->cssLink(Plugin::staticPath('Realtime', 'realtimeupdate.css'),
+                         null,
+                         'screen, projection, tv');
         return true;
     }
 
@@ -322,7 +318,12 @@ class RealtimePlugin extends Plugin
 
     function _getScripts()
     {
-        return array('plugins/Realtime/realtimeupdate.min.js');
+        if (common_config('site', 'minify')) {
+            $js = 'realtimeupdate.min.js';
+        } else {
+            $js = 'realtimeupdate.js';
+        }
+        return array(Plugin::staticPath('Realtime', $js));
     }
 
     /**
@@ -353,7 +354,7 @@ class RealtimePlugin extends Plugin
 
     function _updateInitialize($timeline, $user_id)
     {
-        return "RealtimeUpdate.init($user_id, \"$this->replyurl\", \"$this->favorurl\", \"$this->repeaturl\", \"$this->deleteurl\"); ";
+        return "RealtimeUpdate.init($user_id, \"$this->showurl\"); ";
     }
 
     function _connect()

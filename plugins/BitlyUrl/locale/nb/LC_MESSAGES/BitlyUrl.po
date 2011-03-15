@@ -1,5 +1,5 @@
 # Translation of StatusNet - BitlyUrl to Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Nghtwlkr
 # --
@@ -9,36 +9,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - BitlyUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:32+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:52+0000\n"
 "Language-Team: Norwegian (bokmål)‬ <http://translatewiki.net/wiki/Portal:no>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:26+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:42:52+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: no\n"
 "X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: BitlyUrlPlugin.php:48
-msgid "You must specify a serviceUrl for bit.ly shortening."
-msgstr "Du må angi en serviceUrl for bit.ly-forkortelse."
-
-#: BitlyUrlPlugin.php:175
-#, php-format
-msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
-msgstr "Bruker URL-forkortertjenesten <a href=\"http://%1$s/\">%1$s</a>."
-
-#: BitlyUrlPlugin.php:216
-msgid "bit.ly"
-msgstr "bit.ly"
-
-#: BitlyUrlPlugin.php:217 bitlyadminpanelaction.php:54
 msgid "bit.ly URL shortening"
 msgstr "bit.ly URL-forkortelse"
 
-#: bitlyadminpanelaction.php:65
 msgid ""
 "URL shortening with bit.ly requires [a bit.ly account and API key](http://"
 "bit.ly/a/your_api_key). This verifies that this is an authorized account, "
@@ -48,34 +33,36 @@ msgstr ""
 "ly/a/your_api_key). Denne bekrefter at dette er en autorisert konto og "
 "tillater deg å bruke bit.lys sporingsfunksjoner og egendefinerte domener."
 
-#: bitlyadminpanelaction.php:132
 msgid "Invalid login. Max length is 255 characters."
 msgstr "Ugyldig pålogging. Maks lengde er 255 tegn."
 
-#: bitlyadminpanelaction.php:138
 msgid "Invalid API key. Max length is 255 characters."
 msgstr "Ugyldig API-nøkkel. Maks lengde er 255 tegn."
 
-#: bitlyadminpanelaction.php:191
 msgid "Credentials"
 msgstr "Attester"
 
-#: bitlyadminpanelaction.php:199
 msgid "Leave these empty to use global default credentials."
 msgstr "La disse være tomme for å bruke globale standardattester."
 
-#: bitlyadminpanelaction.php:202
 msgid "If you leave these empty, bit.ly will be unavailable to users."
 msgstr "Om du lar disse være tomme vil bit.ly være utilgjengelig for brukere."
 
-#: bitlyadminpanelaction.php:209
 msgid "Login name"
 msgstr "Innloggingsnavn"
 
-#: bitlyadminpanelaction.php:218
 msgid "API key"
 msgstr "API-nøkkel"
 
-#: bitlyadminpanelaction.php:236
 msgid "Save bit.ly settings"
 msgstr "Lagre bit.ly-innstillinger"
+
+msgid "You must specify a serviceUrl for bit.ly shortening."
+msgstr "Du må angi en serviceUrl for bit.ly-forkortelse."
+
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr "Bruker URL-forkortertjenesten <a href=\"http://%1$s/\">%1$s</a>."
+
+msgid "bit.ly"
+msgstr "bit.ly"

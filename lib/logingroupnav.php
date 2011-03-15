@@ -44,50 +44,39 @@ require_once INSTALLDIR.'/lib/widget.php';
  *
  * @see      Widget
  */
-
-class LoginGroupNav extends Widget
+class LoginGroupNav extends Menu
 {
-    var $action = null;
-
-    /**
-     * Construction
-     *
-     * @param Action $action current action, used for output
-     */
-
-    function __construct($action=null)
-    {
-        parent::__construct($action);
-        $this->action = $action;
-    }
-
     /**
      * Show the menu
      *
      * @return void
      */
-
     function show()
     {
         $action_name = $this->action->trimmed('action');
 
         $this->action->elementStart('ul', array('class' => 'nav'));
 
-        if (Event::handle('StartLoginGroupNav', array(&$this->action))) {
+        if (Event::handle('StartLoginGroupNav', array($this->action))) {
 
             $this->action->menuItem(common_local_url('login'),
-                                    _('Login'),
+                                    // TRANS: Menu item for logging in to the StatusNet site.
+                                    _m('MENU','Login'),
+                                    // TRANS: Title for menu item for logging in to the StatusNet site.
                                     _('Login with a username and password'),
                                     $action_name === 'login');
 
-            if (!(common_config('site','closed') || common_config('site','inviteonly'))) {
+            if (!common_logged_in() &&
+                !(common_config('site','closed') || common_config('site','inviteonly'))) {
                 $this->action->menuItem(common_local_url('register'),
-                                        _('Register'),
+                                        // TRANS: Menu item for registering with the StatusNet site.
+                                        _m('MENU','Register'),
+                                        // TRANS: Title for menu item for registering with the StatusNet site.
                                         _('Sign up for a new account'),
                                         $action_name === 'register');
             }
 
-            Event::handle('EndLoginGroupNav', array(&$this->action));
+            Event::handle('EndLoginGroupNav', array($this->action));
         }
 
         $this->action->elementEnd('ul');

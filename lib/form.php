@@ -172,7 +172,13 @@ class Form extends Widget
     }
 
     /**
-     * Class of the form.
+     * Class of the form. May include space-separated list of multiple classes.
+     *
+     * If 'ajax' is included, the form will automatically be submitted with
+     * an 'ajax=1' parameter added, and the resulting form or error message
+     * will replace the form after submission.
+     *
+     * It's up to you to make sure that the target action supports this!
      *
      * @return string the form's class
      */

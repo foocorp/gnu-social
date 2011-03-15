@@ -24,6 +24,8 @@
  * @package   StatusNet
  * @author    Craig Andrews <candrews@integralblue.com>
  * @author    Brion Vibber <brion@status.net>
+ * @author    Evan Prodromou <evan@status.net>
+ * @copyright 2011 StatusNet Inc. http://status.net/
  * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
@@ -74,6 +76,33 @@ class RequireValidatedEmailPlugin extends Plugin
      */
 
     public $trustedOpenIDs = array();
+
+    /**
+     * Whether or not to disallow login for unvalidated users.
+     */
+
+    public $disallowLogin = false;
+
+    function onAutoload($cls)
+    {
+        $dir = dirname(__FILE__);
+
+        switch ($cls)
+        {
+        case 'ConfirmfirstemailAction':
+            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+            return false;
+        default:
+            return true;
+        }
+    }
+
+    function onRouterInitialized($m)
+    {
+        $m->connect('main/confirmfirst/:code',
+                    array('action' => 'confirmfirstemail'));
+        return true;
+    }
 
     /**
      * Event handler for notice saves; rejects the notice
@@ -232,6 +261,36 @@ class RequireValidatedEmailPlugin extends Plugin
             if (!$this->validated($user)) {
                 return false;
             }
+        }
+        return true;
+    }
+
+    /**
+     * Prevent unvalidated folks from creating spam groups.
+     *
+     * @param Profile $profile User profile we're checking
+     * @param string $right rights key
+     * @param boolean $result if overriding, set to true/false has right
+     * @return boolean hook result value
+     */
+    function onUserRightsCheck(Profile $profile, $right, &$result)
+    {
+        if ($right == Right::CREATEGROUP ||
+            ($this->disallowLogin && ($right == Right::WEBLOGIN || $right == Right::API))) {
+            $user = User::staticGet('id', $profile->id);
+            if ($user && !$this->validated($user)) {
+                $result = false;
+                return false;
+            }
+        }
+        return true;
+    }
+
+    function onLoginAction($action, &$login)
+    {
+        if ($action == 'confirmfirstemail') {
+            $login = true;
+            return false;
         }
         return true;
     }

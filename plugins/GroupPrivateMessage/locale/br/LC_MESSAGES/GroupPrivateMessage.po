@@ -1,0 +1,54 @@
+# Translation of StatusNet - GroupPrivateMessage to Breton (Brezhoneg)
+# Exported from translatewiki.net
+#
+# Author: Fulup
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - GroupPrivateMessage\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:22+0000\n"
+"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:44:11+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: br\n"
+"X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Inbox"
+msgstr "Boest resev"
+
+msgid "Private messages for this group"
+msgstr "Kemennadennoù prevez evit a strollad-mañ"
+
+msgid "Allow posting DMs to a group."
+msgstr ""
+
+msgid "This group has not received any private messages."
+msgstr "N'eus bet kaset kemennadenn brevez ebet d'ar strollad-mañ."
+
+#. TRANS: Instructions for user inbox page.
+msgid ""
+"This is the group inbox, which lists all incoming private messages for this "
+"group."
+msgstr ""
+
+msgctxt "Send button for sending notice"
+msgid "Send"
+msgstr "Kas"
+
+#, php-format
+msgid "That's too long. Maximum message size is %d character."
+msgid_plural "That's too long. Maximum message size is %d characters."
+msgstr[0] ""
+"Re hir eo. %d eo an niver brasañ a arouezennoù a c'haller kaout en ur "
+"gemennadenn."
+msgstr[1] ""
+"Re hir eo. %d eo an niver brasañ a arouezennoù a c'haller kaout en ur "
+"gemennadenn."

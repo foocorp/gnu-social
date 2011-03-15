@@ -1,5 +1,5 @@
 # Translation of StatusNet - ClientSideShorten to Breton (Brezhoneg)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Y-M D
 # --
@@ -9,24 +9,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ClientSideShorten\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:38+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:59+0000\n"
 "Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:41:51+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:43:35+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-clientsideshorten\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: ClientSideShortenPlugin.php:74
 msgid ""
 "ClientSideShorten causes the web interface's notice form to automatically "
 "shorten URLs as they entered, and before the notice is submitted."
 msgstr ""
 
-#: shorten.php:55
 msgid "'text' argument must be specified."
 msgstr "Spisaet e rank bezañ an arguzenn \"testenn\"."

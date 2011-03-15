@@ -152,7 +152,7 @@ class PathsadminpanelAction extends AdminPanelAction
         if (!empty($values['theme']['dir']) && !is_readable($values['theme']['dir'])) {
             // TRANS: Client error in Paths admin panel.
             // TRANS: %s is the directory that could not be read from.
-            $this->clientError(sprintf(_("Theme directory not readable: %s."), $values['theme']['dir']));
+            $this->clientError(sprintf(_('Theme directory not readable: %s.'), $values['theme']['dir']));
         }
 
         // Validate avatar dir
@@ -160,7 +160,7 @@ class PathsadminpanelAction extends AdminPanelAction
         if (empty($values['avatar']['dir']) || !is_writable($values['avatar']['dir'])) {
             // TRANS: Client error in Paths admin panel.
             // TRANS: %s is the avatar directory that could not be written to.
-            $this->clientError(sprintf(_("Avatar directory not writable: %s."), $values['avatar']['dir']));
+            $this->clientError(sprintf(_('Avatar directory not writable: %s.'), $values['avatar']['dir']));
         }
 
         // Validate background dir
@@ -168,7 +168,7 @@ class PathsadminpanelAction extends AdminPanelAction
         if (empty($values['background']['dir']) || !is_writable($values['background']['dir'])) {
             // TRANS: Client error in Paths admin panel.
             // TRANS: %s is the background directory that could not be written to.
-            $this->clientError(sprintf(_("Background directory not writable: %s."), $values['background']['dir']));
+            $this->clientError(sprintf(_('Background directory not writable: %s.'), $values['background']['dir']));
         }
 
         // Validate locales dir
@@ -178,7 +178,7 @@ class PathsadminpanelAction extends AdminPanelAction
         if (!empty($values['site']['locale_path']) && !is_readable($values['site']['locale_path'])) {
             // TRANS: Client error in Paths admin panel.
             // TRANS: %s is the locales directory that could not be read from.
-            $this->clientError(sprintf(_("Locales directory not readable: %s."), $values['site']['locale_path']));
+            $this->clientError(sprintf(_('Locales directory not readable: %s.'), $values['site']['locale_path']));
         }
 
         // Validate SSL setup
@@ -239,6 +239,7 @@ class PathsAdminPanelForm extends AdminForm
         $this->input('server',
                      // TRANS: Field label in Paths admin panel.
                      _('Server'),
+                     // TRANS: Field title in Paths admin panel.
                      _('Site\'s server hostname.'));
         $this->unli();
 
@@ -246,6 +247,7 @@ class PathsAdminPanelForm extends AdminForm
         $this->input('path',
                      // TRANS: Field label in Paths admin panel.
                      _('Path'),
+                     // TRANS: Field title in Paths admin panel.
                      _('Site path.'));
         $this->unli();
 
@@ -253,6 +255,7 @@ class PathsAdminPanelForm extends AdminForm
         $this->input('locale_path',
                      // TRANS: Field label in Paths admin panel.
                      _('Locale directory'),
+                     // TRANS: Field title in Paths admin panel.
                      _('Directory path to locales.'),
                      'site');
         $this->unli();
@@ -262,14 +265,16 @@ class PathsAdminPanelForm extends AdminForm
                              // TRANS: Checkbox label in Paths admin panel.
                              _('Fancy URLs'),
                              (bool) $this->value('fancy'),
-                             _('Use fancy (more readable and memorable) URLs?'));
+                             // TRANS: Field title in Paths admin panel.
+                             _('Use fancy URLs (more readable and memorable)?'));
         $this->unli();
 
         $this->out->elementEnd('ul');
         $this->out->elementEnd('fieldset');
 
         $this->out->elementStart('fieldset', array('id' => 'settings_paths_theme'));
-        $this->out->element('legend', null, _('Theme'));
+        // TRANS: Fieldset legend in Paths admin panel.
+        $this->out->element('legend', null, _m('LEGEND','Theme'));
 
         $this->out->elementStart('ul', 'form_data');
 
@@ -469,7 +474,7 @@ class PathsAdminPanelForm extends AdminForm
 
         $this->out->elementStart('fieldset', array('id' => 'settings_admin_ssl'));
         // TRANS: Fieldset legend in Paths admin panel.
-        $this->out->element('legend', null, _('SSL'));
+        $this->out->element('legend', null, _m('LEGEND','SSL'));
         $this->out->elementStart('ul', 'form_data');
         $this->li();
 

@@ -34,9 +34,9 @@ class YammerImportPlugin extends Plugin
      */
     function onRouterInitialized($m)
     {
-        $m->connect('admin/yammer',
+        $m->connect('panel/yammer',
                     array('action' => 'yammeradminpanel'));
-        $m->connect('admin/yammer/auth',
+        $m->connect('panel/yammer/auth',
                     array('action' => 'yammerauth'));
         return true;
     }

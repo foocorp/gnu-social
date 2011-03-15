@@ -155,14 +155,14 @@ class BlockAction extends ProfileFormAction
                       'submit form_action-primary',
                       'no',
                       // TRANS: Submit button title for 'No' when blocking a user.
-                      _('Do not block this user'));
+                      _('Do not block this user.'));
         $this->submit('form_action-yes',
                       // TRANS: Button label on the user block form.
                       _m('BUTTON','Yes'),
                       'submit form_action-secondary',
                       'yes',
                       // TRANS: Submit button title for 'Yes' when blocking a user.
-                      _('Block this user'));
+                      _('Block this user.'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }

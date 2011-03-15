@@ -25,252 +25,299 @@ class CommandInterpreter
 {
     function handle_command($user, $text)
     {
-        # XXX: localise
+        // XXX: localise
 
         $text = preg_replace('/\s+/', ' ', trim($text));
         list($cmd, $arg) = $this->split_arg($text);
 
-        # We try to support all the same commands as Twitter, see
-        # http://getsatisfaction.com/twitter/topics/what_are_the_twitter_commands
-        # There are a few compatibility commands from earlier versions of
-        # StatusNet
+        // We try to support all the same commands as Twitter, see
+        // http://getsatisfaction.com/twitter/topics/what_are_the_twitter_commands
+        // There are a few compatibility commands from earlier versions of
+        // StatusNet
 
-        switch(strtolower($cmd)) {
-         case 'help':
-            if ($arg) {
-                return null;
-            }
-            return new HelpCommand($user);
-         case 'login':
-            if ($arg) {
-                return null;
-            } else {
-                return new LoginCommand($user);
-            }
-         case 'lose':
-            if ($arg) {
+        $cmd = strtolower($cmd);
+
+        if (Event::handle('StartIntepretCommand', array($cmd, $arg, $user, &$result))) {
+            switch($cmd) {
+            case 'help':
+                if ($arg) {
+                    $result = null;
+                } else {
+                    $result = new HelpCommand($user);
+                }
+                break;
+            case 'login':
+                if ($arg) {
+                    $result = null;
+                } else {
+                    $result = new LoginCommand($user);
+                }
+                break;
+            case 'lose':
+                if ($arg) {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new LoseCommand($user, $other);
+                    }
+                } else {
+                    $result = null;
+                }
+                break;
+            case 'subscribers':
+                if ($arg) {
+                    $result = null;
+                } else {
+                    $result = new SubscribersCommand($user);
+                }
+                break;
+            case 'subscriptions':
+                if ($arg) {
+                    $result = null;
+                } else {
+                    $result = new SubscriptionsCommand($user);
+                }
+                break;
+            case 'groups':
+                if ($arg) {
+                    $result = null;
+                } else {
+                    $result = new GroupsCommand($user);
+                }
+                break;
+            case 'on':
+                if ($arg) {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new OnCommand($user, $other);
+                    }
+                } else {
+                    $result = new OnCommand($user);
+                }
+                break;
+            case 'off':
+                if ($arg) {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new OffCommand($user, $other);
+                    }
+                } else {
+                    $result = new OffCommand($user);
+                }
+                break;
+            case 'stop':
+            case 'quit':
+                if ($arg) {
+                    $result = null;
+                } else {
+                    $result = new OffCommand($user);
+                }
+                break;
+            case 'join':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new JoinCommand($user, $other);
+                    }
+                }
+                break;
+            case 'drop':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new DropCommand($user, $other);
+                    }
+                }
+                break;
+            case 'follow':
+            case 'sub':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new SubCommand($user, $other);
+                    }
+                }
+                break;
+            case 'leave':
+            case 'unsub':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new UnsubCommand($user, $other);
+                    }
+                }
+                break;
+            case 'get':
+            case 'last':
+                if (!$arg) {
+                    $result = null;
+                }
                 list($other, $extra) = $this->split_arg($arg);
                 if ($extra) {
-                    return null;
+                    $result = null;
                 } else {
-                    return new LoseCommand($user, $other);
+                    $result = new GetCommand($user, $other);
                 }
-            } else {
-              return null;
-            }
-         case 'subscribers':
-            if ($arg) {
-                return null;
-            } else {
-                return new SubscribersCommand($user);
-            }
-         case 'subscriptions':
-            if ($arg) {
-                return null;
-            } else {
-                return new SubscriptionsCommand($user);
-            }
-         case 'groups':
-            if ($arg) {
-                return null;
-            } else {
-                return new GroupsCommand($user);
-            }
-         case 'on':
-            if ($arg) {
+                break;
+            case 'd':
+            case 'dm':
+                if (!$arg) {
+                    $result = null;
+                }
                 list($other, $extra) = $this->split_arg($arg);
-                if ($extra) {
-                    return null;
+                if (!$extra) {
+                    $result = null;
                 } else {
-                    return new OnCommand($user, $other);
+                    $result = new MessageCommand($user, $other, $extra);
                 }
-            } else {
-                return new OnCommand($user);
-            }
-         case 'off':
-            if ($arg) {
+                break;
+            case 'r':
+            case 'reply':
+                if (!$arg) {
+                    $result = null;
+                }
                 list($other, $extra) = $this->split_arg($arg);
-                if ($extra) {
-                    return null;
+                if (!$extra) {
+                    $result = null;
                 } else {
-                    return new OffCommand($user, $other);
+                    $result = new ReplyCommand($user, $other, $extra);
                 }
-            } else {
-                return new OffCommand($user);
+                break;
+            case 'repeat':
+            case 'rp':
+            case 'rt':
+            case 'rd':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new RepeatCommand($user, $other);
+                    }
+                }
+                break;
+            case 'whois':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new WhoisCommand($user, $other);
+                    }
+                }
+                break;
+            case 'fav':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new FavCommand($user, $other);
+                    }
+                }
+                break;
+            case 'nudge':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new NudgeCommand($user, $other);
+                    }
+                }
+                break;
+            case 'stats':
+                if ($arg) {
+                    $result = null;
+                } else {
+                    $result = new StatsCommand($user);
+                }
+                break;
+            case 'invite':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($other, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else {
+                        $result = new InviteCommand($user, $other);
+                    }
+                }
+                break;
+            case 'track':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($word, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else if ($word == 'off') {
+                        $result = new TrackOffCommand($user);
+                    } else {
+                        $result = new TrackCommand($user, $word);
+                    }
+                }
+                break;
+            case 'untrack':
+                if (!$arg) {
+                    $result = null;
+                } else {
+                    list($word, $extra) = $this->split_arg($arg);
+                    if ($extra) {
+                        $result = null;
+                    } else if ($word == 'all') {
+                        $result = new TrackOffCommand($user);
+                    } else {
+                        $result = new UntrackCommand($user, $word);
+                    }
+                }
+                break;
+            case 'tracks':
+            case 'tracking':
+                if ($arg) {
+                    $result = null;
+                } else {
+                    $result = new TrackingCommand($user);
+                }
+                break;
+            default:
+                $result = false;
             }
-         case 'stop':
-         case 'quit':
-            if ($arg) {
-                return null;
-            } else {
-                return new OffCommand($user);
-            }
-         case 'join':
-             if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else {
-                return new JoinCommand($user, $other);
-            }
-         case 'drop':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else {
-                return new DropCommand($user, $other);
-            }
-         case 'follow':
-         case 'sub':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else {
-                return new SubCommand($user, $other);
-            }
-         case 'leave':
-         case 'unsub':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else {
-                return new UnsubCommand($user, $other);
-            }
-         case 'get':
-         case 'last':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else {
-                return new GetCommand($user, $other);
-            }
-         case 'd':
-         case 'dm':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if (!$extra) {
-                return null;
-            } else {
-                return new MessageCommand($user, $other, $extra);
-            }
-         case 'r':
-         case 'reply':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if (!$extra) {
-                return null;
-            } else {
-                return new ReplyCommand($user, $other, $extra);
-            }
-         case 'repeat':
-         case 'rp':
-         case 'rt':
-         case 'rd':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else {
-                return new RepeatCommand($user, $other);
-            }
-         case 'whois':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else {
-                return new WhoisCommand($user, $other);
-            }
-         case 'fav':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else {
-                return new FavCommand($user, $other);
-            }
-         case 'nudge':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else {
-                return new NudgeCommand($user, $other);
-            }
-         case 'stats':
-            if ($arg) {
-                return null;
-            }
-            return new StatsCommand($user);
-         case 'invite':
-            if (!$arg) {
-                return null;
-            }
-            list($other, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else {
-                return new InviteCommand($user, $other);
-            }
-         case 'track':
-            if (!$arg) {
-                return null;
-            }
-            list($word, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else if ($word == 'off') {
-                return new TrackOffCommand($user);
-            } else {
-                return new TrackCommand($user, $word);
-            }
-         case 'untrack':
-            if (!$arg) {
-                return null;
-            }
-            list($word, $extra) = $this->split_arg($arg);
-            if ($extra) {
-                return null;
-            } else if ($word == 'all') {
-                return new TrackOffCommand($user);
-            } else {
-                return new UntrackCommand($user, $word);
-            }
-         case 'tracks':
-         case 'tracking':
-            if ($arg) {
-                return null;
-            }
-            return new TrackingCommand($user);
-         default:
-            return false;
+                
+            Event::handle('EndInterpretCommand', array($cmd, $arg, $user, $result));
         }
+
+        return $result;
     }
 
     /**

@@ -43,7 +43,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class LeavegroupAction extends Action
 {
     var $group = null;
@@ -51,12 +50,12 @@ class LeavegroupAction extends Action
     /**
      * Prepare to run
      */
-
     function prepare($args)
     {
         parent::prepare($args);
 
         if (!common_logged_in()) {
+            // TRANS: Client error displayed when trying to leave a group while not logged in.
             $this->clientError(_('You must be logged in to leave a group.'));
             return false;
         }
@@ -79,17 +78,20 @@ class LeavegroupAction extends Action
             $local = Local_group::staticGet('nickname', $nickname);
 
             if (!$local) {
+                // TRANS: Client error displayed when trying to leave a non-local group.
                 $this->clientError(_('No such group.'), 404);
                 return false;
             }
 
             $this->group = User_group::staticGet('id', $local->group_id);
         } else {
+            // TRANS: Client error displayed when trying to leave a group without providing a group name or group ID.
             $this->clientError(_('No nickname or ID.'), 404);
             return false;
         }
 
         if (!$this->group) {
+            // TRANS: Client error displayed when trying to leave a non-existing group.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -97,6 +99,7 @@ class LeavegroupAction extends Action
         $cur = common_current_user();
 
         if (!$cur->isMember($this->group)) {
+            // TRANS: Client error displayed when trying to join a group while already a member.
             $this->clientError(_('You are not a member of that group.'), 403);
             return false;
         }
@@ -113,7 +116,6 @@ class LeavegroupAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -126,6 +128,8 @@ class LeavegroupAction extends Action
                 Event::handle('EndLeaveGroup', array($this->group, $cur));
             }
         } catch (Exception $e) {
+            // TRANS: Server error displayed when leaving a group failed in the database.
+            // TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.
             $this->serverError(sprintf(_('Could not remove user %1$s from group %2$s.'),
                                        $cur->nickname, $this->group->nickname));
             return;
@@ -134,7 +138,8 @@ class LeavegroupAction extends Action
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
-            $this->element('title', null, sprintf(_('%1$s left group %2$s'),
+            // TRANS: Title for leave group page after leaving.
+            $this->element('title', null, sprintf(_m('TITLE','%1$s left group %2$s'),
                                                   $cur->nickname,
                                                   $this->group->nickname));
             $this->elementEnd('head');

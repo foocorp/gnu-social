@@ -88,7 +88,7 @@ class JoinForm extends Form
 
     function formClass()
     {
-        return 'form_group_join';
+        return 'form_group_join ajax';
     }
 
     /**

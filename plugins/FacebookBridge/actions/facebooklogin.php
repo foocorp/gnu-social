@@ -89,10 +89,7 @@ class FacebookloginAction extends Action
         );
 
         $attrs = array(
-            'src' => common_path(
-                'plugins/FacebookBridge/images/login-button.png',
-                true
-            ),
+            'src' => Plugin::staticPath('FacebookBridge', 'images/login-button.png'),
             'alt'   => 'Login with Facebook',
             'title' => 'Login with Facebook'
         );

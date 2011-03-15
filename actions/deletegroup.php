@@ -221,14 +221,14 @@ class DeletegroupAction extends RedirectingAction
                       'submit form_action-primary',
                       'no',
                       // TRANS: Submit button title for 'No' when deleting a group.
-                      _('Do not delete this group'));
+                      _('Do not delete this group.'));
         $this->submit('form_action-yes',
                       // TRANS: Button label on the delete group form.
                       _m('BUTTON','Yes'),
                       'submit form_action-secondary',
                       'yes',
                       // TRANS: Submit button title for 'Yes' when deleting a group.
-                      _('Delete this group'));
+                      _('Delete this group.'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }

@@ -89,7 +89,7 @@ class MeteorPlugin extends RealtimePlugin
     {
         $scripts = parent::_getScripts();
         $scripts[] = 'http://'.$this->webserver.(($this->webport == 80) ? '':':'.$this->webport).'/meteor.js';
-        $scripts[] = common_path('plugins/Meteor/meteorupdater.min.js');
+        $scripts[] = $this->path('meteorupdater.min.js');
         return $scripts;
     }
 

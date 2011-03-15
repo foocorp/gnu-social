@@ -89,7 +89,7 @@ class UnsubscribeForm extends Form
 
     function formClass()
     {
-        return 'form_user_unsubscribe';
+        return 'form_user_unsubscribe ajax';
     }
 
     /**

@@ -1,5 +1,5 @@
 # Translation of StatusNet - AutoSandbox to Macedonian (Македонски)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Bjankuloski06
 # --
@@ -9,23 +9,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AutoSandbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:31+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:50+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:38:24+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:42:41+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-autosandbox\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
-#: AutoSandboxPlugin.php:66
 msgid "Automatically sandboxes newly registered members."
 msgstr "Автоматски става новорегистрираните членови во песочник."
 
-#: AutoSandboxPlugin.php:72
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline."
@@ -34,7 +32,6 @@ msgstr ""
 "објави нема да фигурираат во јавната хронологија."
 
 #. TRANS: $contactlink is a clickable e-mailaddress.
-#: AutoSandboxPlugin.php:79
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline. Send a message to $contactlink to speed up the "

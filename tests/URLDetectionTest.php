@@ -20,6 +20,8 @@ class URLDetectionTest extends PHPUnit_Framework_TestCase
     public function testProduction($content, $expected)
     {
         $rendered = common_render_text($content);
+        // hack!
+        $rendered = preg_replace('/id="attachment-\d+"/', 'id="attachment-XXX"', $rendered);
         $this->assertEquals($expected, $rendered);
     }
 
@@ -269,7 +271,13 @@ class URLDetectionTest extends PHPUnit_Framework_TestCase
                      array('file.html',
                            'file.html'),
                      array('file.php',
-                           'file.php')
+                           'file.php'),
+
+                     // scheme-less HTTP URLs with @ in the path: http://status.net/open-source/issues/2248
+                     array('http://flickr.com/photos/34807140@N05/3838905434',
+                           '<a href="http://flickr.com/photos/34807140@N05/3838905434" title="http://flickr.com/photos/34807140@N05/3838905434" class="attachment thumbnail" id="attachment-XXX" rel="nofollow external">http://flickr.com/photos/34807140@N05/3838905434</a>'),
+                     array('flickr.com/photos/34807140@N05/3838905434',
+                           '<a href="http://flickr.com/photos/34807140@N05/3838905434" title="http://flickr.com/photos/34807140@N05/3838905434" class="attachment thumbnail" id="attachment-XXX" rel="nofollow external">flickr.com/photos/34807140@N05/3838905434</a>'),
                      );
     }
 }

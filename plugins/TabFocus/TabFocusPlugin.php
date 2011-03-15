@@ -41,7 +41,7 @@ class TabFocusPlugin extends Plugin
 
     function onEndShowScripts($action)
     {
-        $action->script('plugins/TabFocus/tabfocus.js');
+        $action->script($this->path('tabfocus.js'));
     }
 
     function onPluginVersion(&$versions)

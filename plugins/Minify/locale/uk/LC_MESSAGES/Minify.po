@@ -1,5 +1,5 @@
 # Translation of StatusNet - Minify to Ukrainian (Українська)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Boogie
 # --
@@ -9,35 +9,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Minify\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:17+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:35+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-10-29 16:12:55+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:44:27+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-minify\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-#: minify.php:49
-msgid "The parameter \"f\" is not a valid path."
-msgstr "Параметр «f» не є правильним шляхом."
-
-#: minify.php:53
-msgid "The parameter \"f\" is required but missing."
-msgstr "Параметр «f» має бути зазначено, але він відсутній."
-
-#: minify.php:111
-msgid "File type not supported."
-msgstr "Тип файлу не підтримується."
-
-#: MinifyPlugin.php:179
 msgid ""
 "The Minify plugin minifies StatusNet's CSS and JavaScript, removing "
 "whitespace and comments."
 msgstr ""
 "Додаток Minify мінімізує CSS та JavaScript сайту StatusNet, усуваючи "
 "пропуски і коментарі."
+
+msgid "The parameter \"f\" is not a valid path."
+msgstr "Параметр «f» не є правильним шляхом."
+
+msgid "The parameter \"f\" is required but missing."
+msgstr "Параметр «f» має бути зазначено, але він відсутній."
+
+msgid "File type not supported."
+msgstr "Тип файлу не підтримується."

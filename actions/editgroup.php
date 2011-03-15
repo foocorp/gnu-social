@@ -139,7 +139,7 @@ class EditgroupAction extends GroupDesignAction
         $this->showPage();
     }
 
-    function showLocalNav()
+    function showObjectNav()
     {
         $nav = new GroupNav($this, $this->group);
         $nav->show();
@@ -177,115 +177,120 @@ class EditgroupAction extends GroupDesignAction
             return;
         }
 
-        $nickname    = Nickname::normalize($this->trimmed('nickname'));
-        $fullname    = $this->trimmed('fullname');
-        $homepage    = $this->trimmed('homepage');
-        $description = $this->trimmed('description');
-        $location    = $this->trimmed('location');
-        $aliasstring = $this->trimmed('aliases');
+        if (Event::handle('StartGroupSaveForm', array($this))) {
 
-        if ($this->nicknameExists($nickname)) {
-            // TRANS: Group edit form validation error.
-            $this->showForm(_('Nickname already in use. Try another one.'));
-            return;
-        } else if (!User_group::allowedNickname($nickname)) {
-            // TRANS: Group edit form validation error.
-            $this->showForm(_('Not a valid nickname.'));
-            return;
-        } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
-                   !Validate::uri($homepage,
-                                  array('allowed_schemes' =>
-                                        array('http', 'https')))) {
-            // TRANS: Group edit form validation error.
-            $this->showForm(_('Homepage is not a valid URL.'));
-            return;
-        } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
-            // TRANS: Group edit form validation error.
-            $this->showForm(_('Full name is too long (maximum 255 characters).'));
-            return;
-        } else if (User_group::descriptionTooLong($description)) {
-            $this->showForm(sprintf(
+            $nickname    = Nickname::normalize($this->trimmed('nickname'));
+            $fullname    = $this->trimmed('fullname');
+            $homepage    = $this->trimmed('homepage');
+            $description = $this->trimmed('description');
+            $location    = $this->trimmed('location');
+            $aliasstring = $this->trimmed('aliases');
+
+            if ($this->nicknameExists($nickname)) {
                 // TRANS: Group edit form validation error.
-                _m('Description is too long (maximum %d character).',
-                  'Description is too long (maximum %d characters).',
-                  User_group::maxDescription()),
+                $this->showForm(_('Nickname already in use. Try another one.'));
+                return;
+            } else if (!User_group::allowedNickname($nickname)) {
+                // TRANS: Group edit form validation error.
+                $this->showForm(_('Not a valid nickname.'));
+                return;
+            } else if (!is_null($homepage) && (strlen($homepage) > 0) &&
+                       !Validate::uri($homepage,
+                                      array('allowed_schemes' =>
+                                            array('http', 'https')))) {
+                // TRANS: Group edit form validation error.
+                $this->showForm(_('Homepage is not a valid URL.'));
+                return;
+            } else if (!is_null($fullname) && mb_strlen($fullname) > 255) {
+                // TRANS: Group edit form validation error.
+                $this->showForm(_('Full name is too long (maximum 255 characters).'));
+                return;
+            } else if (User_group::descriptionTooLong($description)) {
+                $this->showForm(sprintf(
+                                    // TRANS: Group edit form validation error.
+                                    _m('Description is too long (maximum %d character).',
+                                       'Description is too long (maximum %d characters).',
+                                       User_group::maxDescription()),
                                     User_group::maxDescription()));
-            return;
-        } else if (!is_null($location) && mb_strlen($location) > 255) {
-            // TRANS: Group edit form validation error.
-            $this->showForm(_('Location is too long (maximum 255 characters).'));
-            return;
-        }
-
-        if (!empty($aliasstring)) {
-            $aliases = array_map('common_canonical_nickname', array_unique(preg_split('/[\s,]+/', $aliasstring)));
-        } else {
-            $aliases = array();
-        }
-
-        if (count($aliases) > common_config('group', 'maxaliases')) {
-            // TRANS: Group edit form validation error.
-            // TRANS: %d is the maximum number of allowed aliases.
-            $this->showForm(sprintf(_m('Too many aliases! Maximum %d allowed.',
-                                       'Too many aliases! Maximum %d allowed.',
-                                       common_config('group', 'maxaliases')),
-                                    common_config('group', 'maxaliases')));
-            return;
-        }
-
-        foreach ($aliases as $alias) {
-            if (!Nickname::isValid($alias)) {
+                return;
+            } else if (!is_null($location) && mb_strlen($location) > 255) {
                 // TRANS: Group edit form validation error.
-                $this->showForm(sprintf(_('Invalid alias: "%s"'), $alias));
+                $this->showForm(_('Location is too long (maximum 255 characters).'));
                 return;
             }
-            if ($this->nicknameExists($alias)) {
+
+            if (!empty($aliasstring)) {
+                $aliases = array_map('common_canonical_nickname', array_unique(preg_split('/[\s,]+/', $aliasstring)));
+            } else {
+                $aliases = array();
+            }
+
+            if (count($aliases) > common_config('group', 'maxaliases')) {
                 // TRANS: Group edit form validation error.
-                $this->showForm(sprintf(_('Alias "%s" already in use. Try another one.'),
-                                        $alias));
+                // TRANS: %d is the maximum number of allowed aliases.
+                $this->showForm(sprintf(_m('Too many aliases! Maximum %d allowed.',
+                                           'Too many aliases! Maximum %d allowed.',
+                                           common_config('group', 'maxaliases')),
+                                        common_config('group', 'maxaliases')));
                 return;
             }
-            // XXX assumes alphanum nicknames
-            if (strcmp($alias, $nickname) == 0) {
-                // TRANS: Group edit form validation error.
-                $this->showForm(_('Alias can\'t be the same as nickname.'));
-                return;
+
+            foreach ($aliases as $alias) {
+                if (!Nickname::isValid($alias)) {
+                    // TRANS: Group edit form validation error.
+                    $this->showForm(sprintf(_('Invalid alias: "%s"'), $alias));
+                    return;
+                }
+                if ($this->nicknameExists($alias)) {
+                    // TRANS: Group edit form validation error.
+                    $this->showForm(sprintf(_('Alias "%s" already in use. Try another one.'),
+                                            $alias));
+                    return;
+                }
+                // XXX assumes alphanum nicknames
+                if (strcmp($alias, $nickname) == 0) {
+                    // TRANS: Group edit form validation error.
+                    $this->showForm(_('Alias can\'t be the same as nickname.'));
+                    return;
+                }
             }
+
+            $this->group->query('BEGIN');
+
+            $orig = clone($this->group);
+
+            $this->group->nickname    = $nickname;
+            $this->group->fullname    = $fullname;
+            $this->group->homepage    = $homepage;
+            $this->group->description = $description;
+            $this->group->location    = $location;
+            $this->group->mainpage    = common_local_url('showgroup', array('nickname' => $nickname));
+
+            $result = $this->group->update($orig);
+
+            if (!$result) {
+                common_log_db_error($this->group, 'UPDATE', __FILE__);
+                // TRANS: Server error displayed when editing a group fails.
+                $this->serverError(_('Could not update group.'));
+            }
+
+            $result = $this->group->setAliases($aliases);
+
+            if (!$result) {
+                // TRANS: Server error displayed when group aliases could not be added.
+                $this->serverError(_('Could not create aliases.'));
+            }
+
+            if ($nickname != $orig->nickname) {
+                common_log(LOG_INFO, "Saving local group info.");
+                $local = Local_group::staticGet('group_id', $this->group->id);
+                $local->setNickname($nickname);
+            }
+
+            $this->group->query('COMMIT');
+
+            Event::handle('EndGroupSaveForm', array($this));
         }
-
-        $this->group->query('BEGIN');
-
-        $orig = clone($this->group);
-
-        $this->group->nickname    = $nickname;
-        $this->group->fullname    = $fullname;
-        $this->group->homepage    = $homepage;
-        $this->group->description = $description;
-        $this->group->location    = $location;
-        $this->group->mainpage    = common_local_url('showgroup', array('nickname' => $nickname));
-
-        $result = $this->group->update($orig);
-
-        if (!$result) {
-            common_log_db_error($this->group, 'UPDATE', __FILE__);
-            // TRANS: Server error displayed when editing a group fails.
-            $this->serverError(_('Could not update group.'));
-        }
-
-        $result = $this->group->setAliases($aliases);
-
-        if (!$result) {
-            // TRANS: Server error displayed when group aliases could not be added.
-            $this->serverError(_('Could not create aliases.'));
-        }
-
-        if ($nickname != $orig->nickname) {
-            common_log(LOG_INFO, "Saving local group info.");
-            $local = Local_group::staticGet('group_id', $this->group->id);
-            $local->setNickname($nickname);
-        }
-
-        $this->group->query('COMMIT');
 
         if ($this->group->nickname != $orig->nickname) {
             common_redirect(common_local_url('editgroup',

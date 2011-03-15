@@ -23,6 +23,7 @@ define('LISTENER', 1);
 define('LISTENEE', -1);
 define('BOTH', 0);
 
+// @todo XXX: Documentation missing.
 class FoafAction extends Action
 {
     function isReadOnly($args)
@@ -37,6 +38,7 @@ class FoafAction extends Action
         $nickname_arg = $this->arg('nickname');
 
         if (empty($nickname_arg)) {
+            // TRANS: Client error displayed when requesting Friends of a Friend feed without providing a user nickname.
             $this->clientError(_('No such user.'), 404);
             return false;
         }
@@ -55,6 +57,7 @@ class FoafAction extends Action
         $this->user = User::staticGet('nickname', $this->nickname);
 
         if (!$this->user) {
+            // TRANS: Client error displayed when requesting Friends of a Friend feed for an object that is not a user.
             $this->clientError(_('No such user.'), 404);
             return false;
         }
@@ -62,6 +65,7 @@ class FoafAction extends Action
         $this->profile = $this->user->getProfile();
 
         if (!$this->profile) {
+            // TRANS: Server error displayed when requesting Friends of a Friend feed for a user for which the profile could not be found.
             $this->serverError(_('User has no profile.'), 500);
             return false;
         }
@@ -110,7 +114,7 @@ class FoafAction extends Action
         if ($this->profile->bio) {
             $this->element('bio:olb', null, $this->profile->bio);
         }
-        
+
         $location = $this->profile->getLocation();
         if ($location) {
             $attr = array();
@@ -118,7 +122,7 @@ class FoafAction extends Action
                 $attr['rdf:about'] = $location->getRdfURL();
             }
             $location_name = $location->getName();
-            
+
             $this->elementStart('based_near');
             $this->elementStart('geo:SpatialThing', $attr);
             if ($location_name) {
@@ -193,7 +197,7 @@ class FoafAction extends Action
                 $this->element('knows', array('rdf:resource' => $uri));
             }
         }
-        
+
         $this->elementEnd('Agent');
 
 
@@ -239,18 +243,17 @@ class FoafAction extends Action
 
     /**
      * Output FOAF <account> bit for the given profile.
-     * 
+     *
      * @param Profile $profile
      * @param mixed $service Root URL of this StatusNet instance for a local
      *                       user, otherwise null.
      * @param mixed $useruri URI string for the referenced profile..
      * @param boolean $fetchSubscriptions Should we load and list all their subscriptions?
      * @param boolean $isSubscriber if not fetching subs, we can still mark the user as following the current page.
-     * 
+     *
      * @return array if $fetchSubscribers is set, return a list of info on those
      *               subscriptions.
      */
-
     function showMicrobloggingAccount($profile, $service=null, $useruri=null, $fetchSubscriptions=false, $isSubscriber=false)
     {
         $attr = array();

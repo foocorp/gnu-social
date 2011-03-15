@@ -168,6 +168,10 @@ class ApplicationEditForm extends Form
             $this->out->element('img', array('src' => $icon));
         }
 
+        $this->out->element('input', array('name' => 'MAX_FILE_SIZE',
+                                           'type' => 'hidden',
+                                           'id' => 'MAX_FILE_SIZE',
+                                           'value' => ImageFile::maxFileSizeInt()));
         $this->out->element('label', array('for' => 'app_icon'),
                             // TRANS: Form input field label for application icon.
                             _('Icon'));
@@ -176,10 +180,6 @@ class ApplicationEditForm extends Form
                                            'id' => 'app_icon'));
         // TRANS: Form guide.
         $this->out->element('p', 'form_guide', _('Icon for this application'));
-        $this->out->element('input', array('name' => 'MAX_FILE_SIZE',
-                                           'type' => 'hidden',
-                                           'id' => 'MAX_FILE_SIZE',
-                                           'value' => ImageFile::maxFileSizeInt()));
         $this->out->elementEnd('li');
 
         $this->out->elementStart('li');

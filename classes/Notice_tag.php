@@ -87,4 +87,19 @@ class Notice_tag extends Memcached_DataObject
     {
         return Memcached_DataObject::pkeyGet('Notice_tag', $kv);
     }
+
+	static function url($tag)
+	{
+		if (common_config('singleuser', 'enabled')) {
+			// regular TagAction isn't set up in 1user mode
+			$nickname = User::singleUserNickname();
+			$url = common_local_url('showstream',
+									array('nickname' => $nickname,
+										  'tag' => $tag));
+		} else {
+			$url = common_local_url('tag', array('tag' => $tag));
+		}
+
+		return $url;
+	}
 }

@@ -31,7 +31,7 @@ class XrdAction extends Action
     const PROFILEPAGE = 'http://webfinger.net/rel/profile-page';
     const UPDATESFROM = 'http://schemas.google.com/g/2010#updates-from';
     const HCARD = 'http://microformats.org/profile/hcard';
-    
+
     public $uri;
 
     public $user;
@@ -54,39 +54,39 @@ class XrdAction extends Action
         }
 
         if (Event::handle('StartXrdActionAliases', array(&$xrd, $this->user))) {
-	    
+
             // Possible aliases for the user
-	    
+
             $uris = array($this->user->uri, $profile->profileurl);
-	    
+
             // FIXME: Webfinger generation code should live somewhere on its own
-	    
+
             $path = common_config('site', 'path');
-	    
+
             if (empty($path)) {
                 $uris[] = sprintf('acct:%s@%s', $nick, common_config('site', 'server'));
             }
-	    
+
             foreach ($uris as $uri) {
                 if ($uri != $xrd->subject) {
                     $xrd->alias[] = $uri;
                 }
             }
-	    
+
             Event::handle('EndXrdActionAliases', array(&$xrd, $this->user));
         }
 
         if (Event::handle('StartXrdActionLinks', array(&$xrd, $this->user))) {
-	    
+
             $xrd->links[] = array('rel' => self::PROFILEPAGE,
                                   'type' => 'text/html',
                                   'href' => $profile->profileurl);
-	    
+
             // hCard
             $xrd->links[] = array('rel' => self::HCARD,
                                   'type' => 'text/html',
                                   'href' => common_local_url('hcard', array('nickname' => $nick)));
-	    
+
             // XFN
             $xrd->links[] = array('rel' => 'http://gmpg.org/xfn/11',
                                   'type' => 'text/html',
@@ -96,17 +96,19 @@ class XrdAction extends Action
                                   'type' => 'application/rdf+xml',
                                   'href' => common_local_url('foaf',
                                                              array('nickname' => $nick)));
-	    
+
             $xrd->links[] = array('rel' => 'http://apinamespace.org/atom',
                                   'type' => 'application/atomsvc+xml',
-                                  'href' => common_local_url('ApiAtomService', array('id' => $nick)));
+                                  'href' => common_local_url('ApiAtomService', array('id' => $nick)),
+                                  'property' => array(array('type' => 'http://apinamespace.org/atom/username',
+                                                            'value' => $nick)));
 
             if (common_config('site', 'fancy')) {
                 $apiRoot = common_path('api/', true);
             } else {
                 $apiRoot = common_path('index.php/api/', true);
             }
-            
+
             $xrd->links[] = array('rel' => 'http://apinamespace.org/twitter',
                                   'href' => $apiRoot,
                                   'property' => array(array('type' => 'http://apinamespace.org/twitter/username',
@@ -118,12 +120,12 @@ class XrdAction extends Action
         header('Content-type: application/xrd+xml');
         print $xrd->toXML();
     }
-    
+
     /**
      * Given a "user id" make sure it's normalized to either a webfinger
      * acct: uri or a profile HTTP URL.
      */
-    
+
     public static function normalize($user_id)
     {
         if (substr($user_id, 0, 5) == 'http:' ||

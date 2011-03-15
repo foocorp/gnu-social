@@ -1,0 +1,97 @@
+# Translation of StatusNet - ExtendedProfile to Swedish (Svenska)
+# Exported from translatewiki.net
+#
+# Author: WikiPhoenix
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ExtendedProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-11 18:15+0000\n"
+"PO-Revision-Date: 2011-03-11 18:18:04+0000\n"
+"Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-08 01:22:06+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83703); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: sv\n"
+"X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "UI extensions for additional profile fields."
+msgstr ""
+
+#. TRANS: Link description in user account settings menu.
+msgid "Details"
+msgstr "Detaljer"
+
+msgid "More details..."
+msgstr "Mer detaljer..."
+
+msgid "Personal"
+msgstr "Personlig"
+
+msgid "Full name"
+msgstr "Fullt namn"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Manager"
+msgstr ""
+
+msgid "Location"
+msgstr "Ort"
+
+msgid "Bio"
+msgstr ""
+
+msgid "Tags"
+msgstr "Taggar"
+
+msgid "Contact"
+msgstr "Kontakt"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "IM"
+msgstr ""
+
+msgid "Websites"
+msgstr "Webbsidor"
+
+msgid "Birthday"
+msgstr "Födelsedag"
+
+msgid "Spouse's name"
+msgstr "Partnerns namn"
+
+msgid "Kids' names"
+msgstr "Barnens namn"
+
+msgid "Work experience"
+msgstr "Arbetserfarenhet"
+
+msgid "Employer"
+msgstr "Arbetsgivare"
+
+msgid "Education"
+msgstr "Utbildning"
+
+msgid "Institution"
+msgstr "Institution"
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Redigera utökade profilinställningar"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Redigera"
+
+msgid "Extended profile settings"
+msgstr "Utökade profilinställningar"

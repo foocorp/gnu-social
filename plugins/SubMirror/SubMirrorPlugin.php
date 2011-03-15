@@ -93,15 +93,16 @@ class SubMirrorPlugin extends Plugin
     }
 
     /**
-     * Menu item for settings
+     * Menu item for personal subscriptions/groups area
      *
-     * @param Action &$action Action being executed
+     * @param Widget $widget Widget being executed
      *
      * @return boolean hook return
      */
 
-    function onEndAccountSettingsNav(&$action)
+    function onEndSubGroupNav($widget)
     {
+        $action = $widget->out;
         $action_name = $action->trimmed('action');
 
         $action->menuItem(common_local_url('mirrorsettings'),
@@ -160,6 +161,39 @@ class SubMirrorPlugin extends Plugin
                     $count++;
                 }
             }
+        }
+        return true;
+    }
+
+    /**
+     * Add a count of mirrored feeds into a user's profile sidebar stats.
+     *
+     * @param Profile $profile
+     * @param array $stats
+     * @return boolean hook return value
+     */
+    function onProfileStats($profile, &$stats)
+    {
+        $cur = common_current_user();
+        if (!empty($cur) && $cur->id == $profile->id) {
+            $mirror = new SubMirror();
+            $mirror->subscriber = $profile->id;
+            $entry = array(
+                'id' => 'mirrors',
+                'label' => _m('Mirrored feeds'),
+                'link' => common_local_url('mirrorsettings'),
+                'value' => $mirror->count(),
+            );
+
+            $insertAt = count($stats);
+            foreach ($stats as $i => $row) {
+                if ($row['id'] == 'groups') {
+                    // Slip us in after them.
+                    $insertAt = $i + 1;
+                    break;
+                }
+            }
+            array_splice($stats, $insertAt, 0, array($entry));
         }
         return true;
     }

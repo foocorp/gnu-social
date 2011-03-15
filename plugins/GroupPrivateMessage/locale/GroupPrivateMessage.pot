@@ -1,0 +1,53 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: GroupPrivateMessagePlugin.php:210
+msgid "Inbox"
+msgstr ""
+
+#: GroupPrivateMessagePlugin.php:211
+msgid "Private messages for this group"
+msgstr ""
+
+#: GroupPrivateMessagePlugin.php:502
+msgid "Allow posting DMs to a group."
+msgstr ""
+
+#: groupinbox.php:125
+msgid "This group has not received any private messages."
+msgstr ""
+
+#. TRANS: Instructions for user inbox page.
+#: groupinbox.php:206
+msgid ""
+"This is the group inbox, which lists all incoming private messages for this "
+"group."
+msgstr ""
+
+#: groupmessageform.php:164
+msgctxt "Send button for sending notice"
+msgid "Send"
+msgstr ""
+
+#: Group_message.php:137
+#, php-format
+msgid "That's too long. Maximum message size is %d character."
+msgid_plural "That's too long. Maximum message size is %d characters."
+msgstr[0] ""
+msgstr[1] ""

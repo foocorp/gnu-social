@@ -22,7 +22,7 @@
  * @category  Applications
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -55,7 +55,6 @@ class NewApplicationAction extends OwnerDesignAction
     /**
      * Prepare to run
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -78,7 +77,6 @@ class NewApplicationAction extends OwnerDesignAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -122,6 +120,7 @@ class NewApplicationAction extends OwnerDesignAction
         } elseif ($this->arg('save')) {
             $this->trySave();
         } else {
+            // TRANS: Client error displayed when encountering an unexpected action on form submission.
             $this->clientError(_('Unexpected form submission.'));
         }
     }
@@ -144,6 +143,7 @@ class NewApplicationAction extends OwnerDesignAction
             $this->element('p', 'error', $this->msg);
         } else {
             $this->element('p', 'instructions',
+                           // TRANS: Form instructions for registering a new application.
                            _('Use this form to register a new application.'));
         }
     }
@@ -160,15 +160,19 @@ class NewApplicationAction extends OwnerDesignAction
         $access_type  = $this->arg('default_access_type');
 
         if (empty($name)) {
+            // TRANS: Validation error shown when not providing a name in the "New application" form.
              $this->showForm(_('Name is required.'));
              return;
         } else if ($this->nameExists($name)) {
+            // TRANS: Validation error shown when providing a name for an application that already exists in the "New application" form.
             $this->showForm(_('Name already in use. Try another one.'));
             return;
         } elseif (mb_strlen($name) > 255) {
+            // TRANS: Validation error shown when providing too long a name in the "New application" form.
             $this->showForm(_('Name is too long (maximum 255 characters).'));
             return;
         } elseif (empty($description)) {
+            // TRANS: Validation error shown when not providing a description in the "New application" form.
             $this->showForm(_('Description is required.'));
             return;
         } elseif (Oauth_application::descriptionTooLong($description)) {
@@ -181,6 +185,7 @@ class NewApplicationAction extends OwnerDesignAction
                 Oauth_application::maxDesc()));
             return;
         } elseif (empty($source_url)) {
+            // TRANS: Validation error shown when not providing a source URL in the "New application" form.
             $this->showForm(_('Source URL is required.'));
             return;
         } elseif ((strlen($source_url) > 0)
@@ -190,15 +195,19 @@ class NewApplicationAction extends OwnerDesignAction
                 )
             )
         {
+            // TRANS: Validation error shown when providing an invalid source URL in the "New application" form.
             $this->showForm(_('Source URL is not valid.'));
             return;
         } elseif (empty($organization)) {
+            // TRANS: Validation error shown when not providing an organisation in the "New application" form.
             $this->showForm(_('Organization is required.'));
             return;
         } elseif (mb_strlen($organization) > 255) {
+            // TRANS: Validation error shown when providing too long an arganisation name in the "Edit application" form.
             $this->showForm(_('Organization is too long (maximum 255 characters).'));
             return;
         } elseif (empty($homepage)) {
+            // TRANS: Form validation error show when an organisation name has not been provided in the new application form.
             $this->showForm(_('Organization homepage is required.'));
             return;
         } elseif ((strlen($homepage) > 0)
@@ -208,9 +217,11 @@ class NewApplicationAction extends OwnerDesignAction
                 )
             )
         {
+            // TRANS: Validation error shown when providing an invalid homepage URL in the "New application" form.
             $this->showForm(_('Homepage is not a valid URL.'));
             return;
         } elseif (mb_strlen($callback_url) > 255) {
+            // TRANS: Validation error shown when providing too long a callback URL in the "New application" form.
             $this->showForm(_('Callback is too long.'));
             return;
         } elseif (strlen($callback_url) > 0
@@ -220,6 +231,7 @@ class NewApplicationAction extends OwnerDesignAction
                 )
             )
         {
+            // TRANS: Validation error shown when providing an invalid callback URL in the "New application" form.
             $this->showForm(_('Callback URL is not valid.'));
             return;
         }
@@ -263,6 +275,7 @@ class NewApplicationAction extends OwnerDesignAction
 
         if (!$result) {
             common_log_db_error($consumer, 'INSERT', __FILE__);
+            // TRANS: Server error displayed when an application could not be registered in the database through the "New application" form.
             $this->serverError(_('Could not create application.'));
         }
 
@@ -272,16 +285,22 @@ class NewApplicationAction extends OwnerDesignAction
 
         if (!$this->app_id) {
             common_log_db_error($app, 'INSERT', __FILE__);
+            // TRANS: Server error displayed when an application could not be registered in the database through the "New application" form.
             $this->serverError(_('Could not create application.'));
             $app->query('ROLLBACK');
         }
 
-        $app->uploadLogo();
+	try {
+            $app->uploadLogo();
+        } catch (Exception $e) {
+            $app->query('ROLLBACK');
+            $this->showForm(_('Invalid image.'));
+	    return;	 
+	}
 
         $app->query('COMMIT');
 
         common_redirect(common_local_url('oauthappssettings'), 303);
-
     }
 
     /**
@@ -294,12 +313,9 @@ class NewApplicationAction extends OwnerDesignAction
      *
      * @return boolean true if the name already exists
      */
-
     function nameExists($name)
     {
         $app = Oauth_application::staticGet('name', $name);
         return !empty($app);
     }
-
 }
-

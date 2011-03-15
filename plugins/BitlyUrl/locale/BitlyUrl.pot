@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,20 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: BitlyUrlPlugin.php:48
-msgid "You must specify a serviceUrl for bit.ly shortening."
-msgstr ""
-
-#: BitlyUrlPlugin.php:175
-#, php-format
-msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
-msgstr ""
-
-#: BitlyUrlPlugin.php:216
-msgid "bit.ly"
-msgstr ""
-
-#: BitlyUrlPlugin.php:217 bitlyadminpanelaction.php:54
+#: bitlyadminpanelaction.php:54 BitlyUrlPlugin.php:215
 msgid "bit.ly URL shortening"
 msgstr ""
 
@@ -70,4 +57,17 @@ msgstr ""
 
 #: bitlyadminpanelaction.php:236
 msgid "Save bit.ly settings"
+msgstr ""
+
+#: BitlyUrlPlugin.php:46
+msgid "You must specify a serviceUrl for bit.ly shortening."
+msgstr ""
+
+#: BitlyUrlPlugin.php:173
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr ""
+
+#: BitlyUrlPlugin.php:214
+msgid "bit.ly"
 msgstr ""

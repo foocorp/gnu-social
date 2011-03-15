@@ -1,0 +1,72 @@
+# Translation of StatusNet - MobileProfile to Chechen (Нохчийн)
+# Exported from translatewiki.net
+#
+# Author: Sasan700
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - MobileProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:36+0000\n"
+"Language-Team: Chechen <http://translatewiki.net/wiki/Portal:ce>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:49:34+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ce\n"
+"X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "This page is not available in a media type you accept."
+msgstr "Агlо схьа ца гойту ишта тайпнара чун, ахьа лелош йолу."
+
+msgid "Home"
+msgstr "Цlехьа"
+
+msgid "Account"
+msgstr "Дlавазвалар"
+
+msgid "Connect"
+msgstr "Зlе тасар"
+
+msgid "Admin"
+msgstr "Адаманкуьйгалхо"
+
+msgid "Change site configuration"
+msgstr ""
+
+msgid "Invite"
+msgstr "Схьакхайкха"
+
+msgid "Logout"
+msgstr "Ара валар"
+
+msgid "Register"
+msgstr "Дlавазвалар"
+
+msgid "Login"
+msgstr "Вовзийта хьой"
+
+msgid "Search"
+msgstr "Лаха"
+
+msgid "Attach"
+msgstr "Тlечlагlде"
+
+msgid "Attach a file"
+msgstr "Тlечlагlйе хlума"
+
+#. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
+msgid "Switch to desktop site layout."
+msgstr ""
+
+#. TRANS: Link to switch site layout from desktop to mobile mode. Appears at very bottom of page.
+msgid "Switch to mobile site layout."
+msgstr ""
+
+msgid "XHTML MobileProfile output for supporting user agents."
+msgstr "XHTML MobileProfile арайокху иза лелочу декъашхошна аттон."

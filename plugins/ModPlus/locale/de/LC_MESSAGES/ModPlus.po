@@ -1,0 +1,47 @@
+# Translation of StatusNet - ModPlus to German (Deutsch)
+# Exported from translatewiki.net
+#
+# Author: Fujnky
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ModPlus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:38+0000\n"
+"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:45:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-modplus\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, php-format
+msgid "%s on %s"
+msgstr "%s auf %s"
+
+#, php-format
+msgid ""
+"This remote profile is registered on another site; see [%s's original "
+"profile page on %s](%s)."
+msgstr ""
+"Dieses entfernte Profil ist auf einer anderen Seite registriert; siehe [%ss "
+"Original-Profilseite auf %s](%s)"
+
+msgid ""
+"Site moderators have silenced this profile, which prevents delivery of new "
+"messages to any users on this site."
+msgstr ""
+"Moderatoren haben dieses Profil stumm geschaltet, was die Zustellung neuer "
+"Nachrichten an andere Benutzer dieser Seite unterbindet."
+
+msgid "UI extensions for profile moderation actions."
+msgstr "Benutzerobeflächenerweiterungen zur Moderation von Profilen."
+
+msgid "Remote profile options..."
+msgstr "Remoteprofil-Einstellungen…"

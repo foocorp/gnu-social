@@ -45,7 +45,6 @@ require_once INSTALLDIR.'/lib/grouplist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class GroupsAction extends Action
 {
     var $page = null;
@@ -59,9 +58,12 @@ class GroupsAction extends Action
     function title()
     {
         if ($this->page == 1) {
-            return _("Groups");
+            // TRANS: Title for first page of the groups list.
+            return _m('TITLE',"Groups");
         } else {
-            return sprintf(_("Groups, page %d"), $this->page);
+            // TRANS: Title for all but the first page of the groups list.
+            // TRANS: %d is the page number.
+            return sprintf(_m('TITLE',"Groups, page %d"), $this->page);
         }
     }
 
@@ -78,21 +80,18 @@ class GroupsAction extends Action
         $this->showPage();
     }
 
-    function showLocalNav()
-    {
-        $nav = new PublicGroupNav($this);
-        $nav->show();
-    }
-
     function showPageNotice()
     {
         $notice =
+          // TRANS: Page notice of group list. %%%%site.name%%%% is the StatusNet site name,
+          // TRANS: %%%%action.groupsearch%%%% and %%%%action.newgroup%%%% are URLs. Do not change them.
+          // TRANS: This message contains Markdown links in the form [link text](link).
           sprintf(_('%%%%site.name%%%% groups let you find and talk with ' .
                     'people of similar interests. After you join a group ' .
                     'you can send messages to all other members using the ' .
                     'syntax "!groupname". Don\'t see a group you like? Try ' .
                     '[searching for one](%%%%action.groupsearch%%%%) or ' .
-                    '[start your own!](%%%%action.newgroup%%%%)'));
+                    '[start your own](%%%%action.newgroup%%%%)!'));
         $this->elementStart('div', 'instructions');
         $this->raw(common_markup_to_html($notice));
         $this->elementEnd('div');
@@ -104,6 +103,7 @@ class GroupsAction extends Action
             $this->elementStart('p', array('id' => 'new_group'));
             $this->element('a', array('href' => common_local_url('newgroup'),
                                       'class' => 'more'),
+                           // TRANS: Link to create a new group on the group list page.
                            _('Create a new group'));
             $this->elementEnd('p');
         }

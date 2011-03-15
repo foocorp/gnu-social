@@ -28,9 +28,9 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
+// @todo XXX: Add documentation.
 class HostMetaAction extends Action
 {
-
     /**
      * Is read only?
      *

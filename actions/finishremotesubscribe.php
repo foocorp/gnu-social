@@ -48,7 +48,6 @@ require_once INSTALLDIR.'/lib/omb.php';
  */
 class FinishremotesubscribeAction extends Action
 {
-
     /**
      * Class handler.
      *
@@ -56,7 +55,7 @@ class FinishremotesubscribeAction extends Action
      *
      * @return nothing
      *
-     **/
+     */
     function handle($args)
     {
         parent::handle($args);
@@ -66,6 +65,7 @@ class FinishremotesubscribeAction extends Action
         $service  = unserialize($_SESSION['oauth_authorization_request']);
 
         if (!$service) {
+            // TRANS: Client error displayed when subscribing to a remote profile and an unexpected response is received.
             $this->clientError(_('Not expecting this response!'));
             return;
         }
@@ -77,6 +77,7 @@ class FinishremotesubscribeAction extends Action
         $user = User::staticGet('uri', $service->getListeneeURI());
 
         if (!$user) {
+            // TRANS: Client error displayed when subscribing to a remote profile that does not exist.
             $this->clientError(_('User being listened to does not exist.'));
             return;
         }
@@ -84,6 +85,7 @@ class FinishremotesubscribeAction extends Action
         $other = User::staticGet('uri', $service->getListenerURI());
 
         if ($other) {
+            // TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
             $this->clientError(_('You can use the local subscription!'));
             return;
         }
@@ -96,6 +98,7 @@ class FinishremotesubscribeAction extends Action
             $profile = Profile::staticGet($remote->id);
 
             if ($user->hasBlocked($profile)) {
+                // TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
                 $this->clientError(_('That user has blocked you from subscribing.'));
                 return;
             }
@@ -107,14 +110,17 @@ class FinishremotesubscribeAction extends Action
         } catch (OAuthException $e) {
             if ($e->getMessage() == 'The authorized token does not equal the ' .
                                     'submitted token.') {
+                // TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
                 $this->clientError(_('You are not authorized.'));
                 return;
             } else {
+                // TRANS: Client error displayed when subscribing to a remote profile and conversion of the request token to access token fails.
                 $this->clientError(_('Could not convert request token to ' .
                                      'access token.'));
                 return;
             }
         } catch (OMB_RemoteServiceException $e) {
+            // TRANS: Client error displayed when subscribing to a remote profile fails because of an unsupported version of the OMB protocol.
             $this->clientError(_('Remote service uses unknown version of ' .
                                  'OMB protocol.'));
             return;
@@ -135,6 +141,7 @@ class FinishremotesubscribeAction extends Action
                             $service->getServiceURI(OMB_ENDPOINT_UPDATEPROFILE);
 
         if (!$remote->update($orig_remote)) {
+                // TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
                 $this->serverError(_('Error updating remote profile.'));
                 return;
         }

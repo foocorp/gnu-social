@@ -39,7 +39,6 @@ require_once INSTALLDIR.'/lib/apibareauth.php';
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 class ApiAtomServiceAction extends ApiBareAuthAction
 {
     /**
@@ -50,13 +49,13 @@ class ApiAtomServiceAction extends ApiBareAuthAction
      * @return boolean success flag
      *
      */
-
     function prepare($args)
     {
         parent::prepare($args);
         $this->user = $this->getTargetUser($this->arg('id'));
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when making an Atom API request for an unknown user.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }
@@ -71,7 +70,6 @@ class ApiAtomServiceAction extends ApiBareAuthAction
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -83,13 +81,15 @@ class ApiAtomServiceAction extends ApiBareAuthAction
                                              'xmlns:atom' => 'http://www.w3.org/2005/Atom',
                                              'xmlns:activity' => 'http://activitystrea.ms/spec/1.0/'));
         $this->elementStart('workspace');
-        $this->element('atom:title', null, _('Main'));
+        // TRANS: Title for Atom feed.
+        $this->element('atom:title', null, _m('ATOM','Main'));
         $this->elementStart('collection',
                             array('href' => common_local_url('ApiTimelineUser',
                                                              array('id' => $this->user->id,
                                                                    'format' => 'atom'))));
         $this->element('atom:title',
                        null,
+                       // TRANS: Title for Atom feed. %s is a user nickname.
                        sprintf(_("%s timeline"),
                                $this->user->nickname));
         $this->element('accept', null, 'application/atom+xml;type=entry');
@@ -100,6 +100,7 @@ class ApiAtomServiceAction extends ApiBareAuthAction
                                                              array('subscriber' => $this->user->id))));
         $this->element('atom:title',
                        null,
+                       // TRANS: Title for Atom feed with a user's subscriptions. %s is a user nickname.
                        sprintf(_("%s subscriptions"),
                                $this->user->nickname));
         $this->element('accept', null, 'application/atom+xml;type=entry');
@@ -110,6 +111,7 @@ class ApiAtomServiceAction extends ApiBareAuthAction
                                                              array('profile' => $this->user->id))));
         $this->element('atom:title',
                        null,
+                       // TRANS: Title for Atom feed with a user's favorite notices. %s is a user nickname.
                        sprintf(_("%s favorites"),
                                $this->user->nickname));
         $this->element('accept', null, 'application/atom+xml;type=entry');
@@ -120,6 +122,7 @@ class ApiAtomServiceAction extends ApiBareAuthAction
                                                              array('profile' => $this->user->id))));
         $this->element('atom:title',
                        null,
+                       // TRANS: Title for Atom feed with a user's memberships. %s is a user nickname.
                        sprintf(_("%s memberships"),
                                $this->user->nickname));
         $this->element('accept', null, 'application/atom+xml;type=entry');

@@ -139,6 +139,7 @@ ENDOFSCRIPT;
                 $action->elementStart('div', $attrs);
                 $action->elementStart('noscript');
 
+                // TRANS: User notification that JavaScript is required for Disqus comment display.
                 $noScriptMsg = sprintf(_m("Please enable JavaScript to view the [comments powered by Disqus](http://disqus.com/?ref_noscript=%s)."), $this->shortname);
                 $output = common_markup_to_html($noScriptMsg);
                 $action->raw($output);
@@ -146,6 +147,7 @@ ENDOFSCRIPT;
                 $action->elementEnd('noscript');
 
                 $action->elementStart('a', array('href' => 'http://disqus.com', 'class' => 'dsq-brlink'));
+                // TRANS: This message is followed by a Disqus logo. Alt text is "Disqus".
                 $action->raw(_m('Comments powered by '));
                 $action->element('span', array('class' => 'logo-disqus'), 'Disqus');
                 $action->elementEnd('a');
@@ -198,6 +200,7 @@ ENDOFSCRIPT;
             $noticeListItem->out->element(
                 'a',
                 array('href' => $noticeUrl, 'class' => 'disqus_count'),
+                // TRANS: Plugin supplied feature for Disqus comments to notices.
                 _m('Comments')
             );
         }
@@ -238,6 +241,7 @@ ENDOFSCRIPT;
                             'author' => 'Zach Copley',
                             'homepage' => 'http://status.net/wiki/Plugin:Disqus',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Use <a href="http://disqus.com/">Disqus</a>'.
                                ' to add commenting to notice pages.'));
         return true;

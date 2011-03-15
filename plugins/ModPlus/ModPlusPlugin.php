@@ -51,13 +51,13 @@ class ModPlusPlugin extends Plugin
     {
         $user = common_current_user();
         if ($user) {
-            $action->script('plugins/ModPlus/modplus.js');
+            $action->script($this->path('modplus.js'));
         }
         return true;
     }
 
     function onEndShowStatusNetStyles($action) {
-        $action->cssLink('plugins/ModPlus/modplus.css');
+        $action->cssLink($this->path('modplus.css'));
         return true;
     }
 

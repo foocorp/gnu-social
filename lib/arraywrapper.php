@@ -76,6 +76,10 @@ class ArrayWrapper
     function __call($name, $args)
     {
         $item =& $this->_items[$this->_i];
+        if (!is_object($item)) {
+            common_log(LOG_ERR, "Invalid entry " . var_export($item, true) . " at index $this->_i of $this->N; calling $name()");
+            throw new ServerException("Internal error: bad entry in array wrapper list.");
+        }
         return call_user_func_array(array($item, $name), $args);
     }
 }

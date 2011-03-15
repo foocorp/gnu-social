@@ -40,7 +40,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class PersonalTagCloudSection extends TagCloudSection
 {
     var $user = null;
@@ -53,6 +52,7 @@ class PersonalTagCloudSection extends TagCloudSection
 
     function title()
     {
+        // TRANS: Title for personal tag cloud section. %s is a user nickname.
         return sprintf(_('Tags in %s\'s notices'), $this->user->nickname);
     }
 
@@ -84,5 +84,4 @@ class PersonalTagCloudSection extends TagCloudSection
                                                  3600);
         return $tag;
     }
-
 }

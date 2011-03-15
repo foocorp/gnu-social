@@ -1,5 +1,5 @@
 # Translation of StatusNet - Imap to Ukrainian (Українська)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Boogie
 # --
@@ -9,24 +9,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Imap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:08+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:23+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:42:07+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:44:35+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-imap\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-#: imapmailhandler.php:30
 msgid "Error"
 msgstr "Помилка"
 
-#: imapmanager.php:51
 msgid ""
 "ImapManager should be created using its constructor, not the using the "
 "static get method."
@@ -34,23 +32,18 @@ msgstr ""
 "ImapManager має бути створений за допомогою конструктору, не статичним "
 "методом."
 
-#: ImapPlugin.php:54
 msgid "A mailbox must be specified."
 msgstr "Поштову скриньку має бути зазначено."
 
-#: ImapPlugin.php:57
 msgid "A user must be specified."
 msgstr "Користувача має бути зазначено."
 
-#: ImapPlugin.php:60
 msgid "A password must be specified."
 msgstr "Пароль має бути зазначено."
 
-#: ImapPlugin.php:63
 msgid "A poll_frequency must be specified."
 msgstr "Періодичність перевірки має бути зазначено."
 
-#: ImapPlugin.php:103
 msgid ""
 "The IMAP plugin allows for StatusNet to check a POP or IMAP mailbox for "
 "incoming mail containing user posts."

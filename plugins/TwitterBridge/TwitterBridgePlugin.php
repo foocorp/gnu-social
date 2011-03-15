@@ -111,7 +111,7 @@ class TwitterBridgePlugin extends Plugin
      */
     function onRouterInitialized($m)
     {
-        $m->connect('admin/twitter', array('action' => 'twitteradminpanel'));
+        $m->connect('panel/twitter', array('action' => 'twitteradminpanel'));
 
         if (self::hasKeys()) {
             $m->connect(
@@ -137,11 +137,11 @@ class TwitterBridgePlugin extends Plugin
     /*
      * Add a login tab for 'Sign in with Twitter'
      *
-     * @param Action &action the current action
+     * @param Action $action the current action
      *
      * @return void
      */
-    function onEndLoginGroupNav(&$action)
+    function onEndLoginGroupNav($action)
     {
         $action_name = $action->trimmed('action');
 
@@ -160,11 +160,11 @@ class TwitterBridgePlugin extends Plugin
     /**
      * Add the Twitter Settings page to the Connect Settings menu
      *
-     * @param Action &$action The calling page
+     * @param Action $action The calling page
      *
      * @return boolean hook return
      */
-    function onEndConnectSettingsNav(&$action)
+    function onEndConnectSettingsNav($action)
     {
         if (self::hasKeys()) {
             $action_name = $action->trimmed('action');

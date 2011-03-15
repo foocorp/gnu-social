@@ -47,6 +47,9 @@ class GroupsalmonAction extends SalmonAction
             $this->clientError(_m('No such group.'));
         }
 
+
+        $this->target = $this->group;
+
         $oprofile = Ostatus_profile::staticGet('group_id', $id);
         if ($oprofile) {
             // TRANS: Client error.

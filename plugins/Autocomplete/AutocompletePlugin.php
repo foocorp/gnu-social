@@ -51,15 +51,17 @@ class AutocompletePlugin extends Plugin
 
     function onEndShowScripts($action){
         if (common_logged_in()) {
-            $action->script('plugins/Autocomplete/jquery-autocomplete/jquery.autocomplete.pack.js');
-            $action->script('plugins/Autocomplete/Autocomplete.js');
+            $action->element('span', array('id' => 'autocomplete-api',
+                                           'data-url' => common_local_url('autocomplete')));
+            $action->script($this->path('jquery-autocomplete/jquery.autocomplete.pack.js'));
+            $action->script($this->path('Autocomplete.js'));
         }
     }
 
     function onEndShowStatusNetStyles($action)
     {
         if (common_logged_in()) {
-            $action->cssLink('plugins/Autocomplete/jquery-autocomplete/jquery.autocomplete.css');
+            $action->cssLink($this->path('jquery-autocomplete/jquery.autocomplete.css'));
         }
     }
 

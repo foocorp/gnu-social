@@ -1,0 +1,36 @@
+# Translation of StatusNet - Bookmark to Interlingua (Interlingua)
+# Exported from translatewiki.net
+#
+# Author: McDutchie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Bookmark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-11 18:15+0000\n"
+"PO-Revision-Date: 2011-03-11 18:17:50+0000\n"
+"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-08 01:22:22+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83703); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ia\n"
+"X-Message-Group: #out-statusnet-plugin-bookmark\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Simple extension for supporting bookmarks."
+msgstr "Extension simple pro supportar marcapaginas."
+
+msgid "Bookmark"
+msgstr "Marcapaginas"
+
+msgctxt "BUTTON"
+msgid "Upload"
+msgstr "Incargar"
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Salveguardar"

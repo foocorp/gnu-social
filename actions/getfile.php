@@ -47,13 +47,11 @@ require_once 'MIME/Type.php';
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class GetfileAction extends Action
 {
     /**
      * Path of file to return
      */
-
     var $path = null;
 
     /**
@@ -63,7 +61,6 @@ class GetfileAction extends Action
      *
      * @return success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -76,10 +73,12 @@ class GetfileAction extends Action
         }
 
         if (empty($path) or !file_exists($path)) {
+            // TRANS: Client error displayed when requesting a non-existent file.
             $this->clientError(_('No such file.'), 404);
             return false;
         }
         if (!is_readable($path)) {
+            // TRANS: Client error displayed when requesting a file without having read access to it.
             $this->clientError(_('Cannot read file.'), 403);
             return false;
         }
@@ -93,7 +92,6 @@ class GetfileAction extends Action
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -104,7 +102,6 @@ class GetfileAction extends Action
      *
      * @return int last-modified date as unix timestamp
      */
-
     function lastModified()
     {
         if (common_config('site', 'use_x_sendfile')) {
@@ -122,7 +119,6 @@ class GetfileAction extends Action
      *
      * @return string etag http header
      */
-
     function etag()
     {
         if (common_config('site', 'use_x_sendfile')) {
@@ -151,7 +147,6 @@ class GetfileAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         // undo headers set by PHP sessions

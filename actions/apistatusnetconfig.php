@@ -59,7 +59,8 @@ class ApiStatusnetConfigAction extends ApiAction
         'notice' => array('contentlimit'),
         'throttle' => array('enabled', 'count', 'timespan'),
         'xmpp' => array('enabled', 'server', 'port', 'user'),
-        'integration' => array('source')
+        'integration' => array('source'),
+        'attachments' => array('uploads', 'file_quota')
     );
 
     /**
@@ -96,7 +97,7 @@ class ApiStatusnetConfigAction extends ApiAction
             foreach ($this->keys as $section => $settings) {
                 $this->elementStart($section);
                 foreach ($settings as $setting) {
-                    $value = common_config($section, $setting);
+                    $value = $this->setting($section, $setting);
                     if (is_array($value)) {
                         $value = implode(',', $value);
                     } else if ($value === false || $value == '0') {
@@ -125,7 +126,7 @@ class ApiStatusnetConfigAction extends ApiAction
                 $result[$section] = array();
                 foreach ($settings as $setting) {
                     $result[$section][$setting]
-                        = common_config($section, $setting);
+                        = $this->setting($section, $setting);
                 }
             }
             $this->initDocument('json');
@@ -141,6 +142,20 @@ class ApiStatusnetConfigAction extends ApiAction
             );
             break;
         }
+    }
+
+    function setting($section, $key) {
+        $result = common_config($section, $key);
+        if ($key == 'file_quota') {
+            // hack: adjust for the live upload limit
+            if (common_config($section, 'uploads')) {
+                $max = ImageFile::maxFileSizeInt();
+            } else {
+                $max = 0;
+            }
+            return min($result, $max);
+        }
+        return $result;
     }
 
     /**

@@ -1,0 +1,135 @@
+# Translation of StatusNet - SubMirror to Breton (Brezhoneg)
+# Expored from translatewiki.net
+#
+# Author: Y-M D
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SubMirror\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-15 00:20+0000\n"
+"PO-Revision-Date: 2011-01-15 00:24:49+0000\n"
+"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-01-14 13:22:17+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r80364); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: br\n"
+"X-Message-Group: #out-statusnet-plugin-submirror\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: SubMirrorPlugin.php:90
+msgid "Pull feeds into your timeline!"
+msgstr ""
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+#: SubMirrorPlugin.php:109
+msgctxt "MENU"
+msgid "Mirroring"
+msgstr ""
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+#: SubMirrorPlugin.php:111
+msgid "Configure mirroring of posts from other feeds"
+msgstr ""
+
+#: lib/editmirrorform.php:83
+msgctxt "LABEL"
+msgid "Remote feed:"
+msgstr ""
+
+#: lib/editmirrorform.php:87
+msgctxt "LABEL"
+msgid "Local user"
+msgstr "Implijer lec'hel"
+
+#: lib/editmirrorform.php:93
+msgid "Mirroring style"
+msgstr ""
+
+#: lib/editmirrorform.php:95
+msgid ""
+"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+msgstr ""
+
+#: lib/editmirrorform.php:96
+msgid "Repost the content under my account"
+msgstr ""
+
+#: lib/editmirrorform.php:115
+msgid "Save"
+msgstr "Enrollañ"
+
+#: lib/editmirrorform.php:117
+msgid "Stop mirroring"
+msgstr ""
+
+#: lib/addmirrorform.php:59
+msgid "Web page or feed URL:"
+msgstr ""
+
+#: lib/addmirrorform.php:64
+msgctxt "BUTTON"
+msgid "Add feed"
+msgstr ""
+
+#: actions/basemirror.php:71
+msgid "Invalid feed URL."
+msgstr ""
+
+#. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
+#: actions/basemirror.php:83
+msgid "Invalid profile for mirroring."
+msgstr ""
+
+#: actions/basemirror.php:101
+msgid "Can't mirror a StatusNet group at this time."
+msgstr ""
+
+#: actions/basemirror.php:115
+msgid "This action only accepts POST requests."
+msgstr ""
+
+#: actions/basemirror.php:123
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#: actions/basemirror.php:133
+msgid "Not logged in."
+msgstr "Nann-kevreet."
+
+#: actions/basemirror.php:156
+msgid "Subscribed"
+msgstr "Koumanantet"
+
+#: actions/editmirror.php:68
+msgid "Requested invalid profile to edit."
+msgstr ""
+
+#: actions/editmirror.php:86
+msgid "Bad form data."
+msgstr ""
+
+#. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
+#: actions/editmirror.php:95
+msgid "Requested edit of missing mirror."
+msgstr ""
+
+#: actions/addmirror.php:72
+msgid "Could not subscribe to feed."
+msgstr ""
+
+#. TRANS: Title.
+#: actions/mirrorsettings.php:42
+msgid "Feed mirror settings"
+msgstr ""
+
+#. TRANS: Instructions.
+#: actions/mirrorsettings.php:54
+msgid ""
+"You can mirror updates from many RSS and Atom feeds into your StatusNet "
+"timeline!"
+msgstr ""

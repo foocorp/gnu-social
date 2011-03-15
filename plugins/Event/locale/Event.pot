@@ -1,0 +1,50 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-11 18:15+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: cancelrsvpform.php:126
+msgctxt "BUTTON"
+msgid "Cancel"
+msgstr ""
+
+#: rsvpform.php:116
+msgctxt "BUTTON"
+msgid "Yes"
+msgstr ""
+
+#: rsvpform.php:117
+msgctxt "BUTTON"
+msgid "No"
+msgstr ""
+
+#: rsvpform.php:118
+msgctxt "BUTTON"
+msgid "Maybe"
+msgstr ""
+
+#: eventform.php:162
+msgctxt "BUTTON"
+msgid "Save"
+msgstr ""
+
+#: EventPlugin.php:133
+msgid "Event invitations and RSVPs."
+msgstr ""
+
+#: EventPlugin.php:138
+msgid "Event"
+msgstr ""

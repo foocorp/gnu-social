@@ -1,5 +1,5 @@
 # Translation of StatusNet - Adsense to Simplified Chinese (‪中文(简体)‬)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Chenxiaoqino
 # Author: ZhengYiFeng
@@ -10,94 +10,75 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:27+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:45+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:24+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:42:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. TRANS: Menu item title/tooltip
-#: AdsensePlugin.php:194
 msgid "AdSense configuration"
 msgstr "AdSense配置"
 
 #. TRANS: Menu item for site administration
-#: AdsensePlugin.php:196
 msgid "AdSense"
 msgstr "AdSense"
 
-#: AdsensePlugin.php:209
 msgid "Plugin to add Google AdSense to StatusNet sites."
 msgstr "添加 Google AdSense 到 StatusNet 网站的插件。"
 
-#: adsenseadminpanel.php:52
 msgctxt "TITLE"
 msgid "AdSense"
 msgstr "AdSense"
 
-#: adsenseadminpanel.php:62
 msgid "AdSense settings for this StatusNet site"
 msgstr "这个 StatusNet 网站的 AdSense 设置"
 
-#: adsenseadminpanel.php:164
 msgid "Client ID"
 msgstr "客户ID"
 
-#: adsenseadminpanel.php:165
 msgid "Google client ID"
 msgstr "Google 发布商 ID（例如：pub-1234567890123456）"
 
-#: adsenseadminpanel.php:170
 msgid "Ad script URL"
 msgstr "广告脚本地址"
 
-#: adsenseadminpanel.php:171
 msgid "Script URL (advanced)"
 msgstr "高级脚本地址"
 
-#: adsenseadminpanel.php:176
 msgid "Medium rectangle"
 msgstr "中等矩形"
 
-#: adsenseadminpanel.php:177
 msgid "Medium rectangle slot code"
 msgstr "中等矩形广告代码（#ID）"
 
-#: adsenseadminpanel.php:182
 msgid "Rectangle"
 msgstr "小矩形"
 
-#: adsenseadminpanel.php:183
 msgid "Rectangle slot code"
 msgstr "小矩形广告代码（#ID）"
 
-#: adsenseadminpanel.php:188
 msgid "Leaderboard"
 msgstr "首页横幅"
 
-#: adsenseadminpanel.php:189
 msgid "Leaderboard slot code"
 msgstr "首页横幅广告代码（#ID）"
 
-#: adsenseadminpanel.php:194
 msgid "Skyscraper"
 msgstr "宽幅摩天大楼"
 
-#: adsenseadminpanel.php:195
 msgid "Wide skyscraper slot code"
 msgstr "宽幅摩天大楼广告代码（#ID）"
 
-#: adsenseadminpanel.php:208
 msgid "Save"
 msgstr "保存"
 
-#: adsenseadminpanel.php:208
 msgid "Save AdSense settings"
 msgstr "保存AdSense设置"

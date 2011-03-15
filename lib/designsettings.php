@@ -32,9 +32,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/accountsettingsaction.php';
-require_once INSTALLDIR . '/lib/webcolor.php';
-
 /**
  * Base class for setting a user or group design
  *
@@ -48,7 +45,8 @@ require_once INSTALLDIR . '/lib/webcolor.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class DesignSettingsAction extends AccountSettingsAction
+
+class DesignSettingsAction extends SettingsAction
 {
     var $submitaction = null;
 

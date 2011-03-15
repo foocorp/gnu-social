@@ -987,9 +987,12 @@ EndRevokeRole: when a role has been revoked
 
 StartAtomPubNewActivity: When a new activity comes in through Atom Pub API
 - &$activity: received activity
+- $user: user publishing the entry
+- &$notice: notice created; initially null, can be set
 
 EndAtomPubNewActivity: When a new activity comes in through Atom Pub API
 - $activity: received activity
+- $user: user publishing the entry
 - $notice: notice that was created
 
 StartXrdActionAliases: About to set aliases for the XRD object for a user
@@ -1017,3 +1020,114 @@ StartAdminPanelNav: Before displaying the first item in the list of admin panels
 
 EndAdminPanelNav: After displaying the last item in the list of admin panels
 - $nav The AdminPanelNav widget
+
+StartActivityObjectFromNotice: When converting a notice to an activity:object
+- $notice: The notice being converted
+- &$object: The resulting object. Fill this and return false to override defaults.
+
+EndActivityObjectFromNotice: After converting a notice to an activity:object
+- $notice: The notice being converted
+- &$object: The resulting object. Can be edited
+
+StartActivityObjectFromProfile: When converting a profile to an activity:object
+- $profile: The profile being converted
+- &$object: The (empty) object. Fill it up and return false to override defaults.
+
+EndActivityObjectFromProfile: After converting a profile to an activity:object
+- $profile: The profile being converted
+- &$object: The finished object. Can be tweaked
+
+StartActivityObjectFromGroup: When converting a group to an activity:object
+- $group: The group being converted
+- &$object: The (empty) object. Fill and return false to override.
+
+EndActivityObjectFromGroup:  After converting a group to an activity:object
+- $group:  The group being converted
+- &$object: The finished object. Tweak as needed.
+
+StartImportActivity: when we start to import an activity
+- $user: User to make the author import
+- $author: Author of the feed; good for comparisons
+- $activity: The current activity
+- $trusted: How "trusted" the process is
+- &$done: Return value; whether to continue
+
+EndImportActivity: when we finish importing an activity
+- $user: User to make the author import
+- $author: Author of the feed; good for comparisons
+- $activity: The current activity
+- $trusted: How "trusted" the process is
+
+StartProfileSettingsActions: when we're showing account-management action list
+- $action: Action being shown (use for output)
+
+EndProfileSettingsActions: when we're showing account-management action list
+- $action: Action being shown (use for output)
+
+StartOpenNoticeListItemElement: Before the opening <li> of a notice list element
+- $nli: The notice list item being shown
+
+EndOpenNoticeListItemElement: After the opening <li> of a notice list element
+- $nli: The notice list item being shown
+
+StartCloseNoticeListItemElement: Before the closing </li> of a notice list element
+- $nli: The notice list item being shown
+
+EndCloseNoticeListItemElement: After the closing </li> of a notice list element
+- $nli: The notice list item being shown
+
+StartGroupEditFormData: Beginning the group edit form entries
+- $form: The form widget being shown
+
+EndGroupEditFormData: Ending the group edit form entries
+- $form: The form widget being shown
+
+StartGroupSave: After initializing but before saving a group
+- &$group: group about to be saved
+
+EndGroupSave: After saving a group, aliases, and first member
+- $group: group that was saved
+
+StartInterpretCommand: Before running a command
+- $cmd: First word in the string, 'foo' in 'foo argument' 
+- $arg: Argument, if any, like 'argument' in 'foo argument'
+- $user: User who issued the command
+- &$result: Resulting command; you can set this!
+
+EndInterpretCommand: Before running a command
+- $cmd: First word in the string, 'foo' in 'foo argument' 
+- $arg: Argument, if any, like 'argument' in 'foo argument'
+- $user: User who issued the command
+- $result: Resulting command
+
+StartGroupActionsList: Start the list of actions on a group profile page (after <ul>, before first <li>)
+- $action: action being executed (for output and params)
+- $group: group for the page
+
+EndGroupActionsList: End the list of actions on a group profile page (before </ul>, after last </li>)
+- $action: action being executed (for output and params)
+- $group: group for the page
+
+StartGroupProfileElements: Start showing stuff about the group on its profile page
+- $action: action being executed (for output and params)
+- $group: group for the page
+			   
+EndGroupProfileElements: Start showing stuff about the group on its profile page
+- $action: action being executed (for output and params)
+- $group: group for the page
+
+StartActivityObjectOutputAtom: Called at start of Atom XML output generation for ActivityObject chunks, just inside the <activity:object>. Cancel the event to take over its output completely (you're responsible for calling the matching End event if so)
+- $obj: ActivityObject
+- $out: XMLOutputter to append custom output
+
+EndActivityObjectOutputAtom: Called at end of Atom XML output generation for ActivityObject chunks, just inside the </activity:object>
+- $obj: ActivityObject
+- $out: XMLOutputter to append custom output
+
+StartActivityObjectOutputJson: Called at start of JSON output generation for ActivityObject chunks: the array has not yet been filled out. Cancel the event to take over its output completely (you're responsible for calling the matching End event if so)
+- $obj ActivityObject
+- &$out: array to be serialized; you're free to modify it
+
+EndActivityObjectOutputJson: Called at end of JSON output generation for ActivityObject chunks: the array has not yet been filled out.
+- $obj ActivityObject
+- &$out: array to be serialized; you're free to modify it

@@ -1,5 +1,5 @@
 # Translation of StatusNet - WikiHowProfile to Interlingua (Interlingua)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: McDutchie
 # --
@@ -9,19 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - WikiHowProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:13:15+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:31+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-10-29 16:14:15+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:52+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-wikihowprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: WikiHowProfilePlugin.php:59
 msgid ""
 "Fetches avatar and other profile information for WikiHow users when setting "
 "up an account via OpenID."
@@ -29,12 +28,10 @@ msgstr ""
 "Obtene le avatar e altere informationes de profilo pro usatores de WikiHow "
 "durante le creation de un conto via OpenID."
 
-#: WikiHowProfilePlugin.php:171
 #, php-format
 msgid "Invalid avatar URL %s."
 msgstr "URL de avatar %s invalide."
 
-#: WikiHowProfilePlugin.php:179
 #, php-format
 msgid "Unable to fetch avatar from %s."
 msgstr "Incapace de obtener avatar ab %s."

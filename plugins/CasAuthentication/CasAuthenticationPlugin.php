@@ -74,7 +74,7 @@ class CasAuthenticationPlugin extends AuthenticationPlugin
         return true;
     }
 
-    function onEndLoginGroupNav(&$action)
+    function onEndLoginGroupNav($action)
     {
         $action_name = $action->trimmed('action');
 

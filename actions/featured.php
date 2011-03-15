@@ -45,7 +45,6 @@ require_once INSTALLDIR.'/lib/publicgroupnav.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class FeaturedAction extends Action
 {
     var $page = null;
@@ -66,8 +65,11 @@ class FeaturedAction extends Action
     function title()
     {
         if ($this->page == 1) {
+            // TRANS: Page title for first page of featured users.
             return _('Featured users');
         } else {
+            // TRANS: Page title for all but first page of featured users.
+            // TRANS: %d is the page number being displayed.
             return sprintf(_('Featured users, page %d'), $this->page);
         }
     }
@@ -88,15 +90,10 @@ class FeaturedAction extends Action
         $this->elementEnd('div');
     }
 
-    function showLocalNav()
-    {
-        $nav = new PublicGroupNav($this);
-        $nav->show();
-    }
-
     function getInstructions()
     {
-        return sprintf(_('A selection of some great users on %s'),
+        // TRANS: Description on page displaying featured users.
+        return sprintf(_('A selection of some great users on %s.'),
                        common_config('site', 'name'));
     }
 

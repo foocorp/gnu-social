@@ -32,7 +32,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/accountsettingsaction.php';
+
 
 /**
  * Settings for email
@@ -47,14 +47,13 @@ require_once INSTALLDIR.'/lib/accountsettingsaction.php';
  * @see      Widget
  */
 
-class EmailsettingsAction extends AccountSettingsAction
+class EmailsettingsAction extends SettingsAction
 {
     /**
      * Title of the page
      *
      * @return string Title of the page
      */
-
     function title()
     {
         // TRANS: Title for e-mail settings.
@@ -66,7 +65,6 @@ class EmailsettingsAction extends AccountSettingsAction
      *
      * @return instructions for use
      */
-
     function getInstructions()
     {
         // XXX: For consistency of parameters in messages, this should be a
@@ -91,7 +89,6 @@ class EmailsettingsAction extends AccountSettingsAction
      *
      * @return void
      */
-
     function showContent()
     {
         $user = common_current_user();
@@ -118,8 +115,8 @@ class EmailsettingsAction extends AccountSettingsAction
             $confirm = $this->getConfirmation();
             if ($confirm) {
                 $this->element('p', array('id' => 'form_unconfirmed'), $confirm->address);
-                // TRANS: Form note in e-mail settings form.
                 $this->element('p', array('class' => 'form_note'),
+                                        // TRANS: Form note in e-mail settings form.
                                         _('Awaiting confirmation on this address. '.
                                         'Check your inbox (and spam box!) for a message '.
                                         'with further instructions.'));
@@ -173,7 +170,7 @@ class EmailsettingsAction extends AccountSettingsAction
             if ($user->incomingemail) {
                 $this->elementStart('p');
                 $this->element('span', 'address', $user->incomingemail);
-                // XXX: Looks a little awkward in the UI.
+                // @todo XXX: Looks a little awkward in the UI.
                 //      Something like "xxxx@identi.ca  Send email ..". Needs improvement.
                 $this->element('span', 'input_instructions',
                                // TRANS: Form instructions for incoming e-mail form in e-mail settings.
@@ -208,7 +205,7 @@ class EmailsettingsAction extends AccountSettingsAction
         $this->element('legend', null, _('Email preferences'));
 
         $this->elementStart('ul', 'form_data');
-	
+
         if (Event::handle('StartEmailFormData', array($this))) {
 	    $this->elementStart('li');
 	    $this->checkbox('emailnotifysub',
@@ -262,7 +259,6 @@ class EmailsettingsAction extends AccountSettingsAction
      *
      * @return Confirm_address Email address confirmation for user, or null
      */
-
     function getConfirmation()
     {
         $user = common_current_user();
@@ -288,7 +284,6 @@ class EmailsettingsAction extends AccountSettingsAction
      *
      * @return void
      */
-
     function handlePost()
     {
         // CSRF protection
@@ -322,13 +317,12 @@ class EmailsettingsAction extends AccountSettingsAction
      *
      * @return void
      */
-
     function savePreferences()
     {
 	$user = common_current_user();
-	
+
 	if (Event::handle('StartEmailSaveForm', array($this, &$user))) {
-	    
+
 	    $emailnotifysub   = $this->boolean('emailnotifysub');
 	    $emailnotifyfav   = $this->boolean('emailnotifyfav');
 	    $emailnotifymsg   = $this->boolean('emailnotifymsg');
@@ -336,13 +330,13 @@ class EmailsettingsAction extends AccountSettingsAction
 	    $emailnotifyattn  = $this->boolean('emailnotifyattn');
 	    $emailmicroid     = $this->boolean('emailmicroid');
 	    $emailpost        = $this->boolean('emailpost');
-	    
+
 	    assert(!is_null($user)); // should already be checked
-	    
+
 	    $user->query('BEGIN');
-	    
+
 	    $original = clone($user);
-	    
+
 	    $user->emailnotifysub   = $emailnotifysub;
 	    $user->emailnotifyfav   = $emailnotifyfav;
 	    $user->emailnotifymsg   = $emailnotifymsg;
@@ -350,20 +344,20 @@ class EmailsettingsAction extends AccountSettingsAction
 	    $user->emailnotifyattn  = $emailnotifyattn;
 	    $user->emailmicroid     = $emailmicroid;
 	    $user->emailpost        = $emailpost;
-	    
+
 	    $result = $user->update($original);
-	    
+
 	    if ($result === false) {
 		common_log_db_error($user, 'UPDATE', __FILE__);
 		// TRANS: Server error thrown on database error updating e-mail preferences.
-		$this->serverError(_('Couldn\'t update user.'));
+		$this->serverError(_('Could not update user.'));
 		return;
 	    }
-	    
+
 	    $user->query('COMMIT');
-	    
+
 	    Event::handle('EndEmailSaveForm', array($this));
-	    
+
 	    // TRANS: Confirmation message for successful e-mail preferences save.
 	    $this->showForm(_('Email preferences saved.'), true);
 	}
@@ -374,7 +368,6 @@ class EmailsettingsAction extends AccountSettingsAction
      *
      * @return void
      */
-
     function addAddress()
     {
         $user = common_current_user();
@@ -393,7 +386,7 @@ class EmailsettingsAction extends AccountSettingsAction
 
         if (!$email) {
             // TRANS: Message given saving e-mail address that cannot be normalised.
-            $this->showForm(_('Cannot normalize that email address'));
+            $this->showForm(_('Cannot normalize that email address.'));
             return;
         }
         if (!Validate::email($email, common_config('email', 'check_domain'))) {
@@ -423,7 +416,7 @@ class EmailsettingsAction extends AccountSettingsAction
         if ($result === false) {
             common_log_db_error($confirm, 'INSERT', __FILE__);
             // TRANS: Server error thrown on database error adding e-mail confirmation code.
-            $this->serverError(_('Couldn\'t insert confirmation code.'));
+            $this->serverError(_('Could not insert confirmation code.'));
             return;
         }
 
@@ -442,7 +435,6 @@ class EmailsettingsAction extends AccountSettingsAction
      *
      * @return void
      */
-
     function cancelConfirmation()
     {
         $email = $this->arg('email');
@@ -465,7 +457,7 @@ class EmailsettingsAction extends AccountSettingsAction
         if (!$result) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
             // TRANS: Server error thrown on database error canceling e-mail address confirmation.
-            $this->serverError(_('Couldn\'t delete email confirmation.'));
+            $this->serverError(_('Could not delete email confirmation.'));
             return;
         }
 
@@ -478,7 +470,6 @@ class EmailsettingsAction extends AccountSettingsAction
      *
      * @return void
      */
-
     function removeAddress()
     {
         $user = common_current_user();
@@ -505,7 +496,7 @@ class EmailsettingsAction extends AccountSettingsAction
         if (!$result) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error removing a registered e-mail address.
-            $this->serverError(_('Couldn\'t update user.'));
+            $this->serverError(_('Could not update user.'));
             return;
         }
         $user->query('COMMIT');
@@ -519,12 +510,12 @@ class EmailsettingsAction extends AccountSettingsAction
      *
      * @return void
      */
-
     function removeIncoming()
     {
         $user = common_current_user();
 
         if (!$user->incomingemail) {
+            // TRANS: Form validation error displayed when trying to remove an incoming e-mail address while no address has been set.
             $this->showForm(_('No incoming email address.'));
             return;
         }
@@ -537,7 +528,7 @@ class EmailsettingsAction extends AccountSettingsAction
         if (!$user->updateKeys($orig)) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error removing incoming e-mail address.
-            $this->serverError(_("Couldn't update user record."));
+            $this->serverError(_('Could not update user record.'));
         }
 
         // TRANS: Message given after successfully removing an incoming e-mail address.
@@ -549,7 +540,6 @@ class EmailsettingsAction extends AccountSettingsAction
      *
      * @return void
      */
-
     function newIncoming()
     {
         $user = common_current_user();
@@ -562,7 +552,7 @@ class EmailsettingsAction extends AccountSettingsAction
         if (!$user->updateKeys($orig)) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error adding incoming e-mail address.
-            $this->serverError(_("Couldn't update user record."));
+            $this->serverError(_('Could not update user record.'));
         }
 
         // TRANS: Message given after successfully adding an incoming e-mail address.

@@ -64,8 +64,12 @@ class TagAction extends Action
     function title()
     {
         if ($this->page == 1) {
+            // TRANS: Title for first page of notices with tags.
+            // TRANS: %s is the tag.
             return sprintf(_('Notices tagged with %s'), $this->tag);
         } else {
+            // TRANS: Title for all but the first page of notices with tags.
+            // TRANS: %1$s is the tag, %2$d is the page number.
             return sprintf(_('Notices tagged with %1$s, page %2$d'),
                            $this->tag,
                            $this->page);

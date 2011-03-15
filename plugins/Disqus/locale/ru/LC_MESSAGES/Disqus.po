@@ -1,5 +1,5 @@
 # Translation of StatusNet - Disqus to Russian (Русский)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: MaxSem
 # Author: Александр Сигачёв
@@ -10,20 +10,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Disqus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:42+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:04+0000\n"
 "Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:43:16+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-disqus\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-#: DisqusPlugin.php:142
+#. TRANS: User notification that JavaScript is required for Disqus comment display.
 #, php-format
 msgid ""
 "Please enable JavaScript to view the [comments powered by Disqus](http://"
@@ -32,15 +32,15 @@ msgstr ""
 "Пожалуйста, включите JavaScript для просмотра [комментариев, работающих с "
 "помощью Disqus](http://disqus.com/?ref_noscript=%s)."
 
-#: DisqusPlugin.php:149
+#. TRANS: This message is followed by a Disqus logo. Alt text is "Disqus".
 msgid "Comments powered by "
 msgstr "Комментарии работают с помощью "
 
-#: DisqusPlugin.php:201
+#. TRANS: Plugin supplied feature for Disqus comments to notices.
 msgid "Comments"
 msgstr "Комментарии"
 
-#: DisqusPlugin.php:241
+#. TRANS: Plugin description.
 msgid ""
 "Use <a href=\"http://disqus.com/\">Disqus</a> to add commenting to notice "
 "pages."

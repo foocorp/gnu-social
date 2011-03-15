@@ -24,7 +24,7 @@
  * @category  Pugin
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2010 StatusNet, Inc.
+ * @copyright 2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
@@ -47,8 +47,9 @@ define("FACEBOOK_SERVICE", 2);
  */
 class FacebookBridgePlugin extends Plugin
 {
-    public $appId    = null; // Facebook application ID
-    public $secret   = null; // Facebook application secret
+    public $appId;  // Facebook application ID
+    public $secret; // Facebook application secret
+
     public $facebook = null; // Facebook application instance
     public $dir      = null; // Facebook plugin dir
 
@@ -61,6 +62,28 @@ class FacebookBridgePlugin extends Plugin
      */
     function initialize()
     {
+
+        // Allow the id and key to be passed in
+        // Control panel will override
+
+        if (isset($this->appId)) {
+            $appId = common_config('facebook', 'appid');
+            if (empty($appId)) {
+                Config::save(
+                    'facebook',
+                    'appid',
+                    $this->appId
+                );
+            }
+        }
+
+        if (isset($this->secret)) {
+            $secret = common_config('facebook', 'secret');
+            if (empty($secret)) {
+                Config::save('facebook', 'secret', $this->secret);
+            }
+        }
+
         $this->facebook = Facebookclient::getFacebook(
             $this->appId,
             $this->secret
@@ -154,30 +177,24 @@ class FacebookBridgePlugin extends Plugin
     function onRouterInitialized($m)
     {
         // Always add the admin panel route
-        $m->connect('admin/facebook', array('action' => 'facebookadminpanel'));
+        $m->connect('panel/facebook', array('action' => 'facebookadminpanel'));
 
-        // Only add these routes if an application has been setup on
-        // Facebook for the plugin to use.
-        if ($this->hasApplication()) {
-
-            $m->connect(
-                'main/facebooklogin',
-                array('action' => 'facebooklogin')
-            );
-            $m->connect(
-                'main/facebookfinishlogin',
-                array('action' => 'facebookfinishlogin')
-            );
-            $m->connect(
-                'settings/facebook',
-                array('action' => 'facebooksettings')
-            );
-            $m->connect(
-                'facebook/deauthorize',
-                array('action' => 'facebookdeauthorize')
-            );
-
-        }
+        $m->connect(
+            'main/facebooklogin',
+            array('action' => 'facebooklogin')
+        );
+        $m->connect(
+            'main/facebookfinishlogin',
+            array('action' => 'facebookfinishlogin')
+        );
+        $m->connect(
+            'settings/facebook',
+            array('action' => 'facebooksettings')
+        );
+        $m->connect(
+            'facebook/deauthorize',
+            array('action' => 'facebookdeauthorize')
+        );
 
         return true;
     }
@@ -186,11 +203,11 @@ class FacebookBridgePlugin extends Plugin
      * Add a login tab for Facebook, but only if there's a Facebook
      * application defined for the plugin to use.
      *
-     * @param Action &action the current action
+     * @param Action $action the current action
      *
      * @return void
      */
-    function onEndLoginGroupNav(&$action)
+    function onEndLoginGroupNav($action)
     {
         $action_name = $action->trimmed('action');
 
@@ -252,11 +269,11 @@ class FacebookBridgePlugin extends Plugin
      * Add a tab for user-level Facebook settings if the user
      * has a link to Facebook
      *
-     * @param Action &action the current action
+     * @param Action $action the current action
      *
      * @return void
      */
-    function onEndConnectSettingsNav(&$action)
+    function onEndConnectSettingsNav($action)
     {
         if ($this->hasApplication()) {
             $action_name = $action->trimmed('action');

@@ -1,5 +1,5 @@
 # Translation of StatusNet - LilUrl to Simplified Chinese (‪中文(简体)‬)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: ZhengYiFeng
 # --
@@ -9,24 +9,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - LilUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:11+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:28+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:46:15+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:44:47+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-lilurl\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: LilUrlPlugin.php:43
 msgid "A serviceUrl must be specified."
 msgstr "必须设置一个服务的地址 Url。"
 
-#: LilUrlPlugin.php:68
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
 msgstr "使用 <a href=\"http://%1$s/\">%1$s</a> 短链接服务"

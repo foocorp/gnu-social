@@ -1,5 +1,5 @@
 # Translation of StatusNet - OpenID to Dutch (Nederlands)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: McDutchie
 # Author: Siebrand
@@ -10,305 +10,70 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:30+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:49+0000\n"
 "Last-Translator: Siebrand Mazeland <s.mazeland@xs4all.nl>\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2010-11-30 20:43:49+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:46:02+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
 
-#: openidsettings.php:58 openidadminpanel.php:65
-msgid "OpenID settings"
-msgstr "OpenID-instellingen"
+msgid "OpenID Identity Verification"
+msgstr "OpenID-identiteitscontrole"
 
-#: openidsettings.php:69
+msgid ""
+"This page should only be reached during OpenID processing, not directly."
+msgstr ""
+"Deze pagina hoort alleen bezocht te worden tijdens het verwerken van een "
+"OpenID, en niet direct."
+
 #, php-format
 msgid ""
-"[OpenID](%%doc.openid%%) lets you log into many sites with the same user "
-"account. Manage your associated OpenIDs from here."
+"%s  has asked to verify your identity. Click Continue to verify your "
+"identity and login without creating a new password."
 msgstr ""
-"Met [OpenID](%%doc.openid%%) kunt u aanmelden bij veel websites met dezelfde "
-"gebruiker. U kunt hier uw gekoppelde OpenID's beheren."
+"%s heeft gevraagd uw identiteit te bevestigen. Klik op \"Doorgaan\" om uw "
+"indentiteit te controleren en aan te melden zonder een wachtwoord te hoeven "
+"invoeren."
 
-#: openidsettings.php:100
-msgid "Add OpenID"
-msgstr "OpenID toevoegen"
+msgid "Continue"
+msgstr "Doorgaan"
 
-#: openidsettings.php:103
-msgid ""
-"If you want to add an OpenID to your account, enter it in the box below and "
-"click \"Add\"."
-msgstr ""
-"Als u een OpenID aan uw gebruiker wilt toevoegen, voer deze dan hieronder in "
-"en klik op \"Toevoegen\"."
-
-#. TRANS: OpenID plugin logon form field label.
-#: openidsettings.php:108 OpenIDPlugin.php:681 openidlogin.php:161
-msgid "OpenID URL"
-msgstr "OpenID-URL"
-
-#: openidsettings.php:118
-msgid "Add"
-msgstr "Toevoegen"
-
-#: openidsettings.php:130
-msgid "Remove OpenID"
-msgstr "OpenID verwijderen"
-
-#: openidsettings.php:135
-msgid ""
-"Removing your only OpenID would make it impossible to log in! If you need to "
-"remove it, add another OpenID first."
-msgstr ""
-"Door uw enige OpenID te verwijderen zou het niet meer mogelijk zijn om aan "
-"te melden. Als u het wilt verwijderen, voeg dan eerst een andere OpenID toe."
-
-#: openidsettings.php:150
-msgid ""
-"You can remove an OpenID from your account by clicking the button marked "
-"\"Remove\"."
-msgstr ""
-"U kunt een OpenID van uw gebruiker verwijderen door te klikken op de knop "
-"\"Verwijderen\"."
-
-#: openidsettings.php:173 openidsettings.php:214
-msgid "Remove"
-msgstr "Verwijderen"
-
-#: openidsettings.php:187
-msgid "OpenID Trusted Sites"
-msgstr "Vertrouwde OpenID-sites"
-
-#: openidsettings.php:190
-msgid ""
-"The following sites are allowed to access your identity and log you in. You "
-"can remove a site from this list to deny it access to your OpenID."
-msgstr ""
-"De volgende sites hebben toegang tot uw indentiteit en kunnen u aanmelden. U "
-"kunt een site verwijderen uit deze lijst zodat deze niet langer toegang "
-"heeft tot uw OpenID."
-
-#. TRANS: Message given when there is a problem with the user's session token.
-#: openidsettings.php:232 finishopenidlogin.php:42 openidlogin.php:51
-msgid "There was a problem with your session token. Try again, please."
-msgstr "Er was een probleem met uw sessietoken. Probeer het opnieuw."
-
-#: openidsettings.php:239
-msgid "Can't add new providers."
-msgstr "Het niet is mogelijk nieuwe providers toe te voegen."
-
-#: openidsettings.php:252
-msgid "Something weird happened."
-msgstr "Er is iets vreemds gebeurd."
-
-#: openidsettings.php:276
-msgid "No such OpenID trustroot."
-msgstr "Die OpenID trustroot bestaat niet."
-
-#: openidsettings.php:280
-msgid "Trustroots removed"
-msgstr "De trustroots zijn verwijderd"
-
-#: openidsettings.php:303
-msgid "No such OpenID."
-msgstr "De OpenID bestaat niet."
-
-#: openidsettings.php:308
-msgid "That OpenID does not belong to you."
-msgstr "Die OpenID is niet van u."
-
-#: openidsettings.php:312
-msgid "OpenID removed."
-msgstr "OpenID verwijderd."
-
-#: openidadminpanel.php:54
-msgid "OpenID"
-msgstr "OpenID"
-
-#: openidadminpanel.php:147
-msgid "Invalid provider URL. Max length is 255 characters."
-msgstr "De URL voor de provider is ongeldig. De maximale lengte is 255 tekens."
-
-#: openidadminpanel.php:153
-msgid "Invalid team name. Max length is 255 characters."
-msgstr "De teamnaam is ongeldig. De maximale lengte is 255 tekens."
-
-#: openidadminpanel.php:210
-msgid "Trusted provider"
-msgstr "Vertrouwde provider"
-
-#: openidadminpanel.php:212
-msgid ""
-"By default, users are allowed to authenticate with any OpenID provider. If "
-"you are using your own OpenID service for shared sign-in, you can restrict "
-"access to only your own users here."
-msgstr ""
-"Gebruikers is het standaard toegestaan aan te melden via alle OpenID-"
-"providers. Als u uw eigen OpenID-dienst gebruikt voor gedeeld aanmelden, dan "
-"kunt u hier de toegang beperken tot alleen uw eigen gebruikers."
-
-#: openidadminpanel.php:220
-msgid "Provider URL"
-msgstr "URL van provider"
-
-#: openidadminpanel.php:221
-msgid ""
-"All OpenID logins will be sent to this URL; other providers may not be used."
-msgstr ""
-"Alle aanmeldpogingen voor OpenID worden naar deze URL gezonden. Andere "
-"providers kunnen niet gebruikt worden."
-
-#: openidadminpanel.php:228
-msgid "Append a username to base URL"
-msgstr "Gebruikersnaam aan basis-URL toevoegen"
-
-#: openidadminpanel.php:230
-msgid ""
-"Login form will show the base URL and prompt for a username to add at the "
-"end. Use when OpenID provider URL should be the profile page for individual "
-"users."
-msgstr ""
-"Het aanmeldformulier geeft de basis-URL weer en vraag om achteraan een "
-"gebruikersnaam toe te voegen. Gebruik deze instelling als de URL van een "
-"OpenID-provider de profielpagina van individuele gebruikers moet zijn."
-
-#: openidadminpanel.php:238
-msgid "Required team"
-msgstr "Vereist team"
-
-#: openidadminpanel.php:239
-msgid "Only allow logins from users in the given team (Launchpad extension)."
-msgstr ""
-"Alleen leden van een bepaald team toestaan aan te melden (uitbreiding van "
-"Launchpad)."
-
-#: openidadminpanel.php:251
-msgid "Options"
-msgstr "Opties"
-
-#: openidadminpanel.php:258
-msgid "Enable OpenID-only mode"
-msgstr "Alleen OpenID inschakelen"
-
-#: openidadminpanel.php:260
-msgid ""
-"Require all users to login via OpenID. Warning: disables password "
-"authentication for all users!"
-msgstr ""
-"Alle gebruikers verplichten aan te melden via OpenID. Waarschuwing: als deze "
-"instelling wordt gebruikt, kan geen enkele gebruiker met een wachtwoord "
-"aanmelden!"
-
-#: openidadminpanel.php:278
-msgid "Save OpenID settings"
-msgstr "OpenID-instellingen opslaan"
-
-#. TRANS: OpenID plugin server error.
-#: openid.php:138
-msgid "Cannot instantiate OpenID consumer object."
-msgstr "Het was niet mogelijk een OpenID-object aan te maken."
-
-#. TRANS: OpenID plugin message. Given when an OpenID is not valid.
-#: openid.php:150
-msgid "Not a valid OpenID."
-msgstr "Geen geldige OpenID."
-
-#. TRANS: OpenID plugin server error. Given when the OpenID authentication request fails.
-#. TRANS: %s is the failure message.
-#: openid.php:155
-#, php-format
-msgid "OpenID failure: %s"
-msgstr "OpenID-fout: %s"
-
-#. TRANS: OpenID plugin server error. Given when the OpenID authentication request cannot be redirected.
-#. TRANS: %s is the failure message.
-#: openid.php:205
-#, php-format
-msgid "Could not redirect to server: %s"
-msgstr "Het was niet mogelijk door te verwijzen naar de server: %s"
-
-#. TRANS: OpenID plugin user instructions.
-#: openid.php:244
-msgid ""
-"This form should automatically submit itself. If not, click the submit "
-"button to go to your OpenID provider."
-msgstr ""
-"Dit formulier hoort zichzelf automatisch op te slaan. Als dat niet gebeurt, "
-"klik dan op de knop \"Aanmelden\" om naar uw OpenID-provider te gaan."
-
-#. TRANS: OpenID plugin server error.
-#: openid.php:280
-msgid "Error saving the profile."
-msgstr "Fout bij het opslaan van het profiel."
-
-#. TRANS: OpenID plugin server error.
-#: openid.php:292
-msgid "Error saving the user."
-msgstr "Fout bij het opslaan van de gebruiker."
-
-#. TRANS: OpenID plugin client exception (403).
-#: openid.php:322
-msgid "Unauthorized URL used for OpenID login."
-msgstr "Ongeautoriseerde URL gebruikt voor aanmelden via OpenID"
-
-#. TRANS: Title
-#: openid.php:370
-msgid "OpenID Login Submission"
-msgstr "Aanmelden via OpenID"
-
-#. TRANS: OpenID plugin message used while requesting authorization user's OpenID login provider.
-#: openid.php:381
-msgid "Requesting authorization from your login provider..."
-msgstr "Bezig met het vragen van autorisatie van uw aanmeldprovider..."
-
-#. TRANS: OpenID plugin message. User instruction while requesting authorization user's OpenID login provider.
-#: openid.php:385
-msgid ""
-"If you are not redirected to your login provider in a few seconds, try "
-"pushing the button below."
-msgstr ""
-"Als u binnen een aantal seconden niet wordt doorverwezen naar uw "
-"aanmeldprovider, klik dan op de onderstaande knop."
+msgid "Cancel"
+msgstr "Annuleren"
 
 #. TRANS: Tooltip for main menu option "Login"
-#: OpenIDPlugin.php:218
 msgctxt "TOOLTIP"
 msgid "Login to the site"
 msgstr "Aanmelden bij de site"
 
 #. TRANS: Main menu option when not logged in to log in
-#: OpenIDPlugin.php:221
 msgctxt "MENU"
 msgid "Login"
 msgstr "Aanmelden"
 
 #. TRANS: Tooltip for main menu option "Help"
-#: OpenIDPlugin.php:226
 msgctxt "TOOLTIP"
 msgid "Help me!"
 msgstr "Help me"
 
 #. TRANS: Main menu option for help on the StatusNet site
-#: OpenIDPlugin.php:229
 msgctxt "MENU"
 msgid "Help"
 msgstr "Hulp"
 
 #. TRANS: Tooltip for main menu option "Search"
-#: OpenIDPlugin.php:235
 msgctxt "TOOLTIP"
 msgid "Search for people or text"
 msgstr "Zoeken naar mensen of tekst"
 
 #. TRANS: Main menu option when logged in or when the StatusNet instance is not private
-#: OpenIDPlugin.php:238
 msgctxt "MENU"
 msgid "Search"
 msgstr "Zoeken"
@@ -316,93 +81,75 @@ msgstr "Zoeken"
 #. TRANS: OpenID plugin menu item on site logon page.
 #. TRANS: OpenID plugin menu item on user settings page.
 #. TRANS: OpenID configuration menu item.
-#: OpenIDPlugin.php:295 OpenIDPlugin.php:331 OpenIDPlugin.php:605
 msgctxt "MENU"
 msgid "OpenID"
 msgstr "OpenID"
 
 #. TRANS: OpenID plugin tooltip for logon menu item.
-#: OpenIDPlugin.php:297
 msgid "Login or register with OpenID"
 msgstr "Aanmelden of registreren met OpenID"
 
 #. TRANS: OpenID plugin tooltip for user settings menu item.
-#: OpenIDPlugin.php:333
 msgid "Add or remove OpenIDs"
 msgstr "OpenID's toevoegen of verwijderen"
 
 #. TRANS: Tooltip for OpenID configuration menu item.
-#: OpenIDPlugin.php:607
 msgid "OpenID configuration"
 msgstr "OpenID-instellingen"
 
 #. TRANS: OpenID plugin description.
-#: OpenIDPlugin.php:631
 msgid "Use <a href=\"http://openid.net/\">OpenID</a> to login to the site."
 msgstr ""
 "Gebruik <a href=\"http://openid.net/\">OpenID</a> om aan te melden bij de "
 "site."
 
 #. TRANS: button label for OAuth authorization page when needing OpenID authentication first.
-#: OpenIDPlugin.php:641
 msgctxt "BUTTON"
 msgid "Continue"
 msgstr "Continue"
 
 #. TRANS: OpenID plugin logon form legend.
-#: OpenIDPlugin.php:658 openidlogin.php:140
 msgid "OpenID login"
 msgstr "Aanmelden via OpenID"
 
 #. TRANS: Field label.
-#: OpenIDPlugin.php:666 openidlogin.php:148
 msgid "OpenID provider"
 msgstr "OpenID-provider"
 
 #. TRANS: Form guide.
-#: OpenIDPlugin.php:675 openidlogin.php:156
 msgid "Enter your username."
 msgstr "Voer uw gebruikersnaam in"
 
 #. TRANS: Form guide.
-#: OpenIDPlugin.php:677 openidlogin.php:157
 msgid "You will be sent to the provider's site for authentication."
 msgstr "U wordt naar de site van de provider omgeleid om aan te melden."
 
+#. TRANS: OpenID plugin logon form field label.
+msgid "OpenID URL"
+msgstr "OpenID-URL"
+
 #. TRANS: OpenID plugin logon form field instructions.
-#: OpenIDPlugin.php:684 openidlogin.php:164
 msgid "Your OpenID URL"
 msgstr "Uw OpenID-URL"
 
-#. TRANS: OpenID plugin client error given trying to add an unauthorised OpenID to a user (403).
-#: openidserver.php:116
-#, php-format
-msgid "You are not authorized to use the identity %s."
-msgstr "U mag de identiteit %s niet gebruiken."
-
-#. TRANS: OpenID plugin client error given when not getting a response for a given OpenID provider (500).
-#: openidserver.php:137
-msgid "Just an OpenID provider. Nothing to see here, move along..."
-msgstr "Gewoon een OpenID-provider. Niets te zien hier..."
-
 #. TRANS: Client error message trying to log on with OpenID while already logged on.
-#: finishopenidlogin.php:37 openidlogin.php:33
 msgid "Already logged in."
 msgstr "U bent al aangemeld."
 
+#. TRANS: Message given when there is a problem with the user's session token.
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Er was een probleem met uw sessietoken. Probeer het opnieuw."
+
 #. TRANS: Message given if user does not agree with the site's license.
-#: finishopenidlogin.php:48
 msgid "You can't register if you don't agree to the license."
 msgstr "U kunt niet registreren als u niet akkoord gaat met de licentie."
 
 #. TRANS: Messag given on an unknown error.
-#: finishopenidlogin.php:57
 msgid "An unknown error has occured."
 msgstr "Er is een onbekende fout opgetreden."
 
 #. TRANS: Instructions given after a first successful logon using OpenID.
 #. TRANS: %s is the site name.
-#: finishopenidlogin.php:73
 #, php-format
 msgid ""
 "This is the first time you've logged into %s so we must connect your OpenID "
@@ -414,39 +161,31 @@ msgstr ""
 "koppelen met uw bestaande gebruiker als u die al hebt."
 
 #. TRANS: Title
-#: finishopenidlogin.php:80
 msgid "OpenID Account Setup"
 msgstr "Instellingen OpenID"
 
-#: finishopenidlogin.php:117
 msgid "Create new account"
 msgstr "Nieuwe gebruiker aanmaken"
 
-#: finishopenidlogin.php:119
 msgid "Create a new user with this nickname."
 msgstr "Nieuwe gebruiker met deze naam aanmaken."
 
-#: finishopenidlogin.php:122
 msgid "New nickname"
 msgstr "Nieuwe gebruiker"
 
-#: finishopenidlogin.php:124
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
 msgstr "1-64 kleine letters of getallen; geen leestekens of spaties"
 
 #. TRANS: Button label in form in which to create a new user on the site for an OpenID.
-#: finishopenidlogin.php:149
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Aanmaken"
 
 #. TRANS: Used as form legend for form in which to connect an OpenID to an existing user on the site.
-#: finishopenidlogin.php:163
 msgid "Connect existing account"
 msgstr "Koppelen met bestaande gebruiker"
 
 #. TRANS: User instructions for form in which to connect an OpenID to an existing user on the site.
-#: finishopenidlogin.php:166
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your OpenID."
@@ -455,35 +194,29 @@ msgstr ""
 "wachtwoord om de gebruiker te koppelen met uw OpenID."
 
 #. TRANS: Field label in form in which to connect an OpenID to an existing user on the site.
-#: finishopenidlogin.php:170
 msgid "Existing nickname"
 msgstr "Bestaande gebruiker"
 
 #. TRANS: Field label in form in which to connect an OpenID to an existing user on the site.
-#: finishopenidlogin.php:174
 msgid "Password"
 msgstr "Wachtwoord"
 
 #. TRANS: Button label in form in which to connect an OpenID to an existing user on the site.
-#: finishopenidlogin.php:178
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Koppelen"
 
 #. TRANS: Status message in case the response from the OpenID provider is that the logon attempt was cancelled.
-#: finishopenidlogin.php:191 finishaddopenid.php:90
 msgid "OpenID authentication cancelled."
 msgstr "De authenticatie via OpenID is afgebroken."
 
 #. TRANS: OpenID authentication failed; display the error message. %s is the error message.
 #. TRANS: OpenID authentication failed; display the error message.
 #. TRANS: %s is the error message.
-#: finishopenidlogin.php:195 finishaddopenid.php:95
 #, php-format
 msgid "OpenID authentication failed: %s"
 msgstr "De authenticatie via OpenID is mislukt: %s"
 
-#: finishopenidlogin.php:215 finishaddopenid.php:111
 msgid ""
 "OpenID authentication aborted: you are not allowed to login to this site."
 msgstr ""
@@ -491,49 +224,273 @@ msgstr ""
 
 #. TRANS: OpenID plugin message. No new user registration is allowed on the site.
 #. TRANS: OpenID plugin message. No new user registration is allowed on the site without an invitation code, and none was provided.
-#: finishopenidlogin.php:267 finishopenidlogin.php:277
 msgid "Registration not allowed."
 msgstr "Registreren is niet mogelijk."
 
 #. TRANS: OpenID plugin message. No new user registration is allowed on the site without an invitation code, and the one provided was not valid.
-#: finishopenidlogin.php:285
 msgid "Not a valid invitation code."
 msgstr "De uitnodigingscode is niet geldig."
 
 #. TRANS: OpenID plugin message. The entered new user name is blacklisted.
-#: finishopenidlogin.php:299
 msgid "Nickname not allowed."
 msgstr "Deze gebruikersnaam is niet toegestaan."
 
 #. TRANS: OpenID plugin message. The entered new user name is already used.
-#: finishopenidlogin.php:305
 msgid "Nickname already in use. Try another one."
 msgstr "Deze gebruikersnaam wordt al gebruikt. Kies een andere."
 
 #. TRANS: OpenID plugin server error. A stored OpenID cannot be retrieved.
 #. TRANS: OpenID plugin server error. A stored OpenID cannot be found.
-#: finishopenidlogin.php:313 finishopenidlogin.php:400
 msgid "Stored OpenID not found."
 msgstr "Het opgeslagen OpenID is niet aangetroffen."
 
 #. TRANS: OpenID plugin server error.
-#: finishopenidlogin.php:323
 msgid "Creating new account for OpenID that already has a user."
 msgstr "Poging tot aanmaken van een OpenID-account dat al een gebruiker heeft."
 
 #. TRANS: OpenID plugin message.
-#: finishopenidlogin.php:388
 msgid "Invalid username or password."
 msgstr "Ongeldige gebruikersnaam of wachtwoord."
 
 #. TRANS: OpenID plugin server error. The user or user profile could not be saved.
-#: finishopenidlogin.php:408
 msgid "Error connecting user to OpenID."
 msgstr "Fout bij het koppelen met OpenID."
 
+#. TRANS: OpenID plugin server error.
+msgid "Cannot instantiate OpenID consumer object."
+msgstr "Het was niet mogelijk een OpenID-object aan te maken."
+
+#. TRANS: OpenID plugin message. Given when an OpenID is not valid.
+msgid "Not a valid OpenID."
+msgstr "Geen geldige OpenID."
+
+#. TRANS: OpenID plugin server error. Given when the OpenID authentication request fails.
+#. TRANS: %s is the failure message.
+#, php-format
+msgid "OpenID failure: %s"
+msgstr "OpenID-fout: %s"
+
+#. TRANS: OpenID plugin server error. Given when the OpenID authentication request cannot be redirected.
+#. TRANS: %s is the failure message.
+#, php-format
+msgid "Could not redirect to server: %s"
+msgstr "Het was niet mogelijk door te verwijzen naar de server: %s"
+
+#. TRANS: OpenID plugin user instructions.
+msgid ""
+"This form should automatically submit itself. If not, click the submit "
+"button to go to your OpenID provider."
+msgstr ""
+"Dit formulier hoort zichzelf automatisch op te slaan. Als dat niet gebeurt, "
+"klik dan op de knop \"Aanmelden\" om naar uw OpenID-provider te gaan."
+
+#. TRANS: OpenID plugin server error.
+msgid "Error saving the profile."
+msgstr "Fout bij het opslaan van het profiel."
+
+#. TRANS: OpenID plugin server error.
+msgid "Error saving the user."
+msgstr "Fout bij het opslaan van de gebruiker."
+
+#. TRANS: OpenID plugin client exception (403).
+msgid "Unauthorized URL used for OpenID login."
+msgstr "Ongeautoriseerde URL gebruikt voor aanmelden via OpenID"
+
+#. TRANS: Title
+msgid "OpenID Login Submission"
+msgstr "Aanmelden via OpenID"
+
+#. TRANS: OpenID plugin message used while requesting authorization user's OpenID login provider.
+msgid "Requesting authorization from your login provider..."
+msgstr "Bezig met het vragen van autorisatie van uw aanmeldprovider..."
+
+#. TRANS: OpenID plugin message. User instruction while requesting authorization user's OpenID login provider.
+msgid ""
+"If you are not redirected to your login provider in a few seconds, try "
+"pushing the button below."
+msgstr ""
+"Als u binnen een aantal seconden niet wordt doorverwezen naar uw "
+"aanmeldprovider, klik dan op de onderstaande knop."
+
+msgid "OpenID"
+msgstr "OpenID"
+
+msgid "OpenID settings"
+msgstr "OpenID-instellingen"
+
+msgid "Invalid provider URL. Max length is 255 characters."
+msgstr "De URL voor de provider is ongeldig. De maximale lengte is 255 tekens."
+
+msgid "Invalid team name. Max length is 255 characters."
+msgstr "De teamnaam is ongeldig. De maximale lengte is 255 tekens."
+
+msgid "Trusted provider"
+msgstr "Vertrouwde provider"
+
+msgid ""
+"By default, users are allowed to authenticate with any OpenID provider. If "
+"you are using your own OpenID service for shared sign-in, you can restrict "
+"access to only your own users here."
+msgstr ""
+"Gebruikers is het standaard toegestaan aan te melden via alle OpenID-"
+"providers. Als u uw eigen OpenID-dienst gebruikt voor gedeeld aanmelden, dan "
+"kunt u hier de toegang beperken tot alleen uw eigen gebruikers."
+
+msgid "Provider URL"
+msgstr "URL van provider"
+
+msgid ""
+"All OpenID logins will be sent to this URL; other providers may not be used."
+msgstr ""
+"Alle aanmeldpogingen voor OpenID worden naar deze URL gezonden. Andere "
+"providers kunnen niet gebruikt worden."
+
+msgid "Append a username to base URL"
+msgstr "Gebruikersnaam aan basis-URL toevoegen"
+
+msgid ""
+"Login form will show the base URL and prompt for a username to add at the "
+"end. Use when OpenID provider URL should be the profile page for individual "
+"users."
+msgstr ""
+"Het aanmeldformulier geeft de basis-URL weer en vraag om achteraan een "
+"gebruikersnaam toe te voegen. Gebruik deze instelling als de URL van een "
+"OpenID-provider de profielpagina van individuele gebruikers moet zijn."
+
+msgid "Required team"
+msgstr "Vereist team"
+
+msgid "Only allow logins from users in the given team (Launchpad extension)."
+msgstr ""
+"Alleen leden van een bepaald team toestaan aan te melden (uitbreiding van "
+"Launchpad)."
+
+msgid "Options"
+msgstr "Opties"
+
+msgid "Enable OpenID-only mode"
+msgstr "Alleen OpenID inschakelen"
+
+msgid ""
+"Require all users to login via OpenID. Warning: disables password "
+"authentication for all users!"
+msgstr ""
+"Alle gebruikers verplichten aan te melden via OpenID. Waarschuwing: als deze "
+"instelling wordt gebruikt, kan geen enkele gebruiker met een wachtwoord "
+"aanmelden!"
+
+msgid "Save OpenID settings"
+msgstr "OpenID-instellingen opslaan"
+
+#. TRANS: Client error message
+msgid "Not logged in."
+msgstr "Niet aangemeld."
+
+#. TRANS: message in case a user tries to add an OpenID that is already connected to them.
+msgid "You already have this OpenID!"
+msgstr "U hebt deze OpenID al!"
+
+#. TRANS: message in case a user tries to add an OpenID that is already used by another user.
+msgid "Someone else already has this OpenID."
+msgstr "Iemand anders gebruikt deze OpenID al."
+
+#. TRANS: message in case the OpenID object cannot be connected to the user.
+msgid "Error connecting user."
+msgstr "Fout bij het verbinden met de gebruiker."
+
+#. TRANS: message in case the user or the user profile cannot be saved in StatusNet.
+msgid "Error updating profile"
+msgstr "Fout bij het bijwerken van het profiel."
+
+#. TRANS: Title after getting the status of the OpenID authorisation request.
+#. TRANS: OpenID plugin message. Title.
+msgid "OpenID Login"
+msgstr "Aanmelden via OpenID"
+
+#, php-format
+msgid ""
+"[OpenID](%%doc.openid%%) lets you log into many sites with the same user "
+"account. Manage your associated OpenIDs from here."
+msgstr ""
+"Met [OpenID](%%doc.openid%%) kunt u aanmelden bij veel websites met dezelfde "
+"gebruiker. U kunt hier uw gekoppelde OpenID's beheren."
+
+msgid "Add OpenID"
+msgstr "OpenID toevoegen"
+
+msgid ""
+"If you want to add an OpenID to your account, enter it in the box below and "
+"click \"Add\"."
+msgstr ""
+"Als u een OpenID aan uw gebruiker wilt toevoegen, voer deze dan hieronder in "
+"en klik op \"Toevoegen\"."
+
+msgid "Add"
+msgstr "Toevoegen"
+
+msgid "Remove OpenID"
+msgstr "OpenID verwijderen"
+
+msgid ""
+"Removing your only OpenID would make it impossible to log in! If you need to "
+"remove it, add another OpenID first."
+msgstr ""
+"Door uw enige OpenID te verwijderen zou het niet meer mogelijk zijn om aan "
+"te melden. Als u het wilt verwijderen, voeg dan eerst een andere OpenID toe."
+
+msgid ""
+"You can remove an OpenID from your account by clicking the button marked "
+"\"Remove\"."
+msgstr ""
+"U kunt een OpenID van uw gebruiker verwijderen door te klikken op de knop "
+"\"Verwijderen\"."
+
+msgid "Remove"
+msgstr "Verwijderen"
+
+msgid "OpenID Trusted Sites"
+msgstr "Vertrouwde OpenID-sites"
+
+msgid ""
+"The following sites are allowed to access your identity and log you in. You "
+"can remove a site from this list to deny it access to your OpenID."
+msgstr ""
+"De volgende sites hebben toegang tot uw indentiteit en kunnen u aanmelden. U "
+"kunt een site verwijderen uit deze lijst zodat deze niet langer toegang "
+"heeft tot uw OpenID."
+
+msgid "Can't add new providers."
+msgstr "Het niet is mogelijk nieuwe providers toe te voegen."
+
+msgid "Something weird happened."
+msgstr "Er is iets vreemds gebeurd."
+
+msgid "No such OpenID trustroot."
+msgstr "Die OpenID trustroot bestaat niet."
+
+msgid "Trustroots removed"
+msgstr "De trustroots zijn verwijderd"
+
+msgid "No such OpenID."
+msgstr "De OpenID bestaat niet."
+
+msgid "That OpenID does not belong to you."
+msgstr "Die OpenID is niet van u."
+
+msgid "OpenID removed."
+msgstr "OpenID verwijderd."
+
+#. TRANS: OpenID plugin client error given trying to add an unauthorised OpenID to a user (403).
+#, php-format
+msgid "You are not authorized to use the identity %s."
+msgstr "U mag de identiteit %s niet gebruiken."
+
+#. TRANS: OpenID plugin client error given when not getting a response for a given OpenID provider (500).
+msgid "Just an OpenID provider. Nothing to see here, move along..."
+msgstr "Gewoon een OpenID-provider. Niets te zien hier..."
+
 #. TRANS: OpenID plugin message. Rememberme logins have to reauthenticate before changing any profile settings.
 #. TRANS: "OpenID" is the display text for a link with URL "(%%doc.openid%%)".
-#: openidlogin.php:82
 #, php-format
 msgid ""
 "For security reasons, please re-login with your [OpenID](%%doc.openid%%) "
@@ -544,84 +501,20 @@ msgstr ""
 
 #. TRANS: OpenID plugin message.
 #. TRANS: "OpenID" is the display text for a link with URL "(%%doc.openid%%)".
-#: openidlogin.php:88
 #, php-format
 msgid "Login with an [OpenID](%%doc.openid%%) account."
 msgstr "Aanmelden met een [OpenID](%%doc.openid%%)-gebruiker."
 
-#. TRANS: OpenID plugin message. Title.
-#. TRANS: Title after getting the status of the OpenID authorisation request.
-#: openidlogin.php:122 finishaddopenid.php:187
-msgid "OpenID Login"
-msgstr "Aanmelden via OpenID"
-
 #. TRANS: OpenID plugin logon form checkbox label for setting to put the OpenID information in a cookie.
-#: openidlogin.php:169
 msgid "Remember me"
 msgstr "Aanmeldgegevens onthouden"
 
 #. TRANS: OpenID plugin logon form field instructions.
-#: openidlogin.php:171
 msgid "Automatically login in the future; not for shared computers!"
 msgstr ""
 "In het vervolg automatisch aanmelden. Niet gebruiken op gedeelde computers!"
 
 #. TRANS: OpenID plugin logon form button label to start logon with the data provided in the logon form.
-#: openidlogin.php:176
 msgctxt "BUTTON"
 msgid "Login"
 msgstr "Aanmelden"
-
-#: openidtrust.php:52
-msgid "OpenID Identity Verification"
-msgstr "OpenID-identiteitscontrole"
-
-#: openidtrust.php:70
-msgid ""
-"This page should only be reached during OpenID processing, not directly."
-msgstr ""
-"Deze pagina hoort alleen bezocht te worden tijdens het verwerken van een "
-"OpenID, en niet direct."
-
-#: openidtrust.php:118
-#, php-format
-msgid ""
-"%s  has asked to verify your identity. Click Continue to verify your "
-"identity and login without creating a new password."
-msgstr ""
-"%s heeft gevraagd uw identiteit te bevestigen. Klik op \"Doorgaan\" om uw "
-"indentiteit te controleren en aan te melden zonder een wachtwoord te hoeven "
-"invoeren."
-
-#: openidtrust.php:136
-msgid "Continue"
-msgstr "Doorgaan"
-
-#: openidtrust.php:137
-msgid "Cancel"
-msgstr "Annuleren"
-
-#. TRANS: Client error message
-#: finishaddopenid.php:68
-msgid "Not logged in."
-msgstr "Niet aangemeld."
-
-#. TRANS: message in case a user tries to add an OpenID that is already connected to them.
-#: finishaddopenid.php:122
-msgid "You already have this OpenID!"
-msgstr "U hebt deze OpenID al!"
-
-#. TRANS: message in case a user tries to add an OpenID that is already used by another user.
-#: finishaddopenid.php:125
-msgid "Someone else already has this OpenID."
-msgstr "Iemand anders gebruikt deze OpenID al."
-
-#. TRANS: message in case the OpenID object cannot be connected to the user.
-#: finishaddopenid.php:138
-msgid "Error connecting user."
-msgstr "Fout bij het verbinden met de gebruiker."
-
-#. TRANS: message in case the user or the user profile cannot be saved in StatusNet.
-#: finishaddopenid.php:145
-msgid "Error updating profile"
-msgstr "Fout bij het bijwerken van het profiel."

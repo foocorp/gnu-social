@@ -1,0 +1,35 @@
+# Translation of StatusNet - Xmpp to Portuguese (Português)
+# Exported from translatewiki.net
+#
+# Author: SandroHc
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Xmpp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-08 01:03+0000\n"
+"PO-Revision-Date: 2011-03-08 01:07:28+0000\n"
+"Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-06 02:19:41+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83429); Translate extension (2011-03-07)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: pt\n"
+"X-Message-Group: #out-statusnet-plugin-xmpp\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Send me a message to post a notice"
+msgstr "Envia-me uma mensagem para postar uma notícia"
+
+msgid "XMPP/Jabber/GTalk"
+msgstr "XMPP/Jabber/GTalk"
+
+msgid ""
+"The XMPP plugin allows users to send and receive notices over the XMPP/"
+"Jabber network."
+msgstr ""
+"O plugin XMPP permite aos utilizadores enviar e receber avisos sobre a rede "
+"XMPP/Jabber."

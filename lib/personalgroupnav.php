@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Base class for all actions (~views)
+ * Menu for personal group of actions
  *
  * PHP version 5
  *
@@ -19,11 +19,11 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @category  Action
+ * @category  Menu
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2008 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -32,91 +32,64 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/widget.php';
-
 /**
- * Base class for all actions
+ * Menu for personal group of actions
  *
- * This is the base class for all actions in the package. An action is
- * more or less a "view" in an MVC framework.
- *
- * Actions are responsible for extracting and validating parameters; using
- * model classes to read and write to the database; and doing ouput.
- *
- * @category Output
+ * @category Menu
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
  * @author   Sarven Capadisli <csarven@status.net>
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
- *
- * @see      HTMLOutputter
  */
 
-class PersonalGroupNav extends Widget
+class PersonalGroupNav extends Menu
 {
-    var $action = null;
-
-    /**
-     * Construction
-     *
-     * @param Action $action current action, used for output
-     */
-
-    function __construct($action=null)
-    {
-        parent::__construct($action);
-        $this->action = $action;
-    }
-
     /**
      * Show the menu
      *
      * @return void
      */
-
     function show()
     {
-        $user = null;
+        $user         = common_current_user();
 
-	// FIXME: we should probably pass this in
-
-        $action = $this->action->trimmed('action');
-        $nickname = $this->action->trimmed('nickname');
-
-        if ($nickname) {
-            $user = User::staticGet('nickname', $nickname);
-            $user_profile = $user->getProfile();
-            $name = $user_profile->getBestName();
-        } else {
-            // @fixme can this happen? is this valid?
-            $user_profile = false;
-            $name = $nickname;
+        if (empty($user)) {
+            throw new ServerException('Do not show personal group nav with no current user.');
         }
+
+        $user_profile = $user->getProfile();
+        $nickname     = $user->nickname;
+        $name         = $user_profile->getBestName();
+
+        $action = $this->actionName;
+        $mine = ($this->action->arg('nickname') == $nickname); // @fixme kinda vague
 
         $this->out->elementStart('ul', array('class' => 'nav'));
 
         if (Event::handle('StartPersonalGroupNav', array($this))) {
             $this->out->menuItem(common_local_url('all', array('nickname' =>
-                                                           $nickname)),
-                             _('Personal'),
-                             sprintf(_('%s and friends'), $name),
-                             $action == 'all', 'nav_timeline_personal');
-            $this->out->menuItem(common_local_url('replies', array('nickname' =>
-                                                                  $nickname)),
-                             _('Replies'),
-                             sprintf(_('Replies to %s'), $name),
-                             $action == 'replies', 'nav_timeline_replies');
+                                                               $nickname)),
+                                 _('Home'),
+                                 sprintf(_('%s and friends'), $name),
+                                 $mine && $action =='all', 'nav_timeline_personal');
             $this->out->menuItem(common_local_url('showstream', array('nickname' =>
-                                                                  $nickname)),
-                             _('Profile'),
-                             $name,
-                             $action == 'showstream', 'nav_profile');
+                                                                      $nickname)),
+                                 _('Profile'),
+                                 _('Your profile'),
+                                 $mine && $action =='showstream',
+                                 'nav_profile');
+            $this->out->menuItem(common_local_url('replies', array('nickname' =>
+                                                                   $nickname)),
+                                 _('Replies'),
+                                 sprintf(_('Replies to %s'), $name),
+                                 $mine && $action =='replies', 'nav_timeline_replies');
             $this->out->menuItem(common_local_url('showfavorites', array('nickname' =>
-                                                                  $nickname)),
-                             _('Favorites'),
-                             sprintf(_('%s\'s favorite notices'), ($user_profile) ? $name : _('User')),
-                             $action == 'showfavorites', 'nav_timeline_favorites');
+                                                                         $nickname)),
+                                 _('Favorites'),
+                                 sprintf(_('%s\'s favorite notices'), ($user_profile) ? $name : _('User')),
+                                 $mine && $action =='showfavorites', 'nav_timeline_favorites');
 
             $cur = common_current_user();
 
@@ -124,16 +97,12 @@ class PersonalGroupNav extends Widget
                 !common_config('singleuser', 'enabled')) {
 
                 $this->out->menuItem(common_local_url('inbox', array('nickname' =>
-                                                                         $nickname)),
-                                 _('Inbox'),
-                                 _('Your incoming messages'),
-                                 $action == 'inbox');
-                $this->out->menuItem(common_local_url('outbox', array('nickname' =>
-                                                                         $nickname)),
-                                 _('Outbox'),
-                                 _('Your sent messages'),
-                                 $action == 'outbox');
+                                                                     $nickname)),
+                                     _('Messages'),
+                                     _('Your incoming messages'),
+                                     $mine && $action =='inbox');
             }
+
             Event::handle('EndPersonalGroupNav', array($this));
         }
         $this->out->elementEnd('ul');

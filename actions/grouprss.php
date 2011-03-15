@@ -45,7 +45,6 @@ define('MEMBERS_PER_SECTION', 27);
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class groupRssAction extends Rss10Action
 {
     /** group we're viewing. */
@@ -56,7 +55,6 @@ class groupRssAction extends Rss10Action
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -71,7 +69,6 @@ class groupRssAction extends Rss10Action
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -88,6 +85,7 @@ class groupRssAction extends Rss10Action
         }
 
         if (!$nickname) {
+            // TRANS: Client error displayed when requesting a group RSS feed without providing a group nickname.
             $this->clientError(_('No nickname.'), 404);
             return false;
         }
@@ -95,6 +93,7 @@ class groupRssAction extends Rss10Action
         $local = Local_group::staticGet('nickname', $nickname);
 
         if (!$local) {
+            // TRANS: Client error displayed when requesting a group RSS feed for group that does not exist.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -102,6 +101,7 @@ class groupRssAction extends Rss10Action
         $this->group = User_group::staticGet('id', $local->group_id);
 
         if (!$this->group) {
+            // TRANS: Client error displayed when requesting a group RSS feed for an object that is not a group.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -112,7 +112,6 @@ class groupRssAction extends Rss10Action
 
     function getNotices($limit=0)
     {
-
         $group = $this->group;
 
         if (is_null($group)) {

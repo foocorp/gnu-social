@@ -40,10 +40,8 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class LicenseadminpanelAction extends AdminPanelAction
 {
-
     /**
      * Returns the page title
      *
@@ -61,9 +59,9 @@ class LicenseadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
+        // TRANS: Form instructions for the site license admin panel.
         return _('License for this StatusNet site');
     }
 
@@ -72,7 +70,6 @@ class LicenseadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new LicenseAdminPanelForm($this);
@@ -85,7 +82,6 @@ class LicenseadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         static $settings = array(
@@ -128,7 +124,6 @@ class LicenseadminpanelAction extends AdminPanelAction
      *
      * @return nothing
      */
-
     function validate(&$values)
     {
         // Validate license type (shouldn't have to do it, but just in case)
@@ -136,7 +131,8 @@ class LicenseadminpanelAction extends AdminPanelAction
         $types = array('private', 'allrightsreserved', 'cc');
 
         if (!in_array($values['license']['type'], $types)) {
-            $this->clientError(_("Invalid license selection."));
+            // TRANS: Client error displayed selecting an invalid license in the license admin panel.
+            $this->clientError(_('Invalid license selection.'));
         }
 
         // Make sure the user has set an owner if the site has a private
@@ -146,13 +142,15 @@ class LicenseadminpanelAction extends AdminPanelAction
             && empty($values['license']['owner'])
         ) {
             $this->clientError(
-                _("You must specify the owner of the content when using the All Rights Reserved license.")
+                // TRANS: Client error displayed when not specifying an owner for the all rights reserved license in the license admin panel.
+                _('You must specify the owner of the content when using the All Rights Reserved license.')
             );
         }
 
         // Make sure the license title is not too long
         if (mb_strlen($values['license']['type']) > 255) {
             $this->clientError(
+                // TRANS: Client error displayed selecting a too long license title in the license admin panel.
                 _('Invalid license title. Maximum length is 255 characters.')
             );
         }
@@ -165,10 +163,12 @@ class LicenseadminpanelAction extends AdminPanelAction
 
         if ($values['license']['type'] == 'cc') {
             if (!Validate::uri($values['license']['url'], $options)) {
-                $this->clientError(_("Invalid license URL."));
+                // TRANS: Client error displayed specifying an invalid license URL in the license admin panel.
+                $this->clientError(_('Invalid license URL.'));
             }
             if (!Validate::uri($values['license']['image'], $options)) {
-                $this->clientError(_("Invalid license image URL."));
+                // TRANS: Client error displayed specifying an invalid license image URL in the license admin panel.
+                $this->clientError(_('Invalid license image URL.'));
             }
         }
 
@@ -176,7 +176,8 @@ class LicenseadminpanelAction extends AdminPanelAction
 
         if (!empty($values['license']['url'])) {
             if (!Validate::uri($values['license']['url'], $options)) {
-                $this->clientError(_("License URL must be blank or a valid URL."));
+                // TRANS: Client error displayed specifying an invalid license URL in the license admin panel.
+                $this->clientError(_('License URL must be blank or a valid URL.'));
             }
         }
 
@@ -184,7 +185,8 @@ class LicenseadminpanelAction extends AdminPanelAction
 
         if (!empty($values['license']['image'])) {
             if (!Validate::uri($values['license']['image'], $options)) {
-                $this->clientError(_("License image must be blank or valid URL."));
+                // TRANS: Client error displayed specifying an invalid license image URL in the license admin panel.
+                $this->clientError(_('License image must be blank or valid URL.'));
             }
         }
     }
@@ -197,7 +199,6 @@ class LicenseAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'licenseadminpanel';
@@ -208,7 +209,6 @@ class LicenseAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -236,22 +236,28 @@ class LicenseAdminPanelForm extends AdminForm
         $this->out->elementStart(
             'fieldset', array('id' => 'settings_license-selection')
         );
+        // TRANS: Form legend in the license admin panel.
         $this->out->element('legend', null, _('License selection'));
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
 
         $types = array(
+            // TRANS: License option in the license admin panel.
             'private' => _('Private'),
+            // TRANS: License option in the license admin panel.
             'allrightsreserved' => _('All Rights Reserved'),
+            // TRANS: License option in the license admin panel.
             'cc' => _('Creative Commons')
         );
 
         $this->out->dropdown(
             'type',
+            // TRANS: Dropdown field label in the license admin panel.
             _('Type'),
             $types,
-            _('Select license'),
+            // TRANS: Dropdown field instructions in the license admin panel.
+            _('Select a license.'),
             false,
             $this->value('type', 'license')
         );
@@ -265,13 +271,16 @@ class LicenseAdminPanelForm extends AdminForm
             'fieldset',
             array('id' => 'settings_license-details')
         );
+        // TRANS: Form legend in the license admin panel.
         $this->out->element('legend', null, _('License details'));
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
         $this->input(
             'owner',
+            // TRANS: Field label in the license admin panel.
             _('Owner'),
+            // TRANS: Field title in the license admin panel.
             _('Name of the owner of the site\'s content (if applicable).'),
             'license'
         );
@@ -280,7 +289,9 @@ class LicenseAdminPanelForm extends AdminForm
         $this->li();
         $this->input(
             'title',
+            // TRANS: Field label in the license admin panel.
             _('License Title'),
+            // TRANS: Field title in the license admin panel.
             _('The title of the license.'),
             'license'
         );
@@ -289,7 +300,9 @@ class LicenseAdminPanelForm extends AdminForm
         $this->li();
         $this->input(
             'url',
+            // TRANS: Field label in the license admin panel.
             _('License URL'),
+            // TRANS: Field title in the license admin panel.
             _('URL for more information about the license.'),
             'license'
         );
@@ -297,7 +310,9 @@ class LicenseAdminPanelForm extends AdminForm
 
         $this->li();
         $this->input(
+            // TRANS: Field label in the license admin panel.
             'image', _('License Image URL'),
+            // TRANS: Field title in the license admin panel.
             _('URL for an image to display with the license.'),
             'license'
         );
@@ -312,11 +327,16 @@ class LicenseAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->submit(
-            'submit', _('Save'), 'submit', null, _('Save license settings')
+            'submit',
+            // TRANS: Button text in the license admin panel.
+            _m('BUTTON','Save'),
+            'submit',
+            null,
+            // TRANS: Button title in the license admin panel.
+            _('Save license settings.')
         );
     }
 }

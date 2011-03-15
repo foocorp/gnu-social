@@ -58,6 +58,7 @@ class MakeadminAction extends RedirectingAction
     {
         parent::prepare($args);
         if (!common_logged_in()) {
+            // TRANS: Client error displayed when trying to access the "make admin" page while not logged in.
             $this->clientError(_('Not logged in.'));
             return false;
         }
@@ -68,31 +69,38 @@ class MakeadminAction extends RedirectingAction
         }
         $id = $this->trimmed('profileid');
         if (empty($id)) {
+            // TRANS: Client error displayed when not providing a profile ID on the Make Admin page.
             $this->clientError(_('No profile specified.'));
             return false;
         }
         $this->profile = Profile::staticGet('id', $id);
         if (empty($this->profile)) {
+            // TRANS: Client error displayed when specifying an invalid profile ID on the Make Admin page.
             $this->clientError(_('No profile with that ID.'));
             return false;
         }
         $group_id = $this->trimmed('groupid');
         if (empty($group_id)) {
+            // TRANS: Client error displayed when not providing a group ID on the Make Admin page.
             $this->clientError(_('No group specified.'));
             return false;
         }
         $this->group = User_group::staticGet('id', $group_id);
         if (empty($this->group)) {
+            // TRANS: Client error displayed when providing an invalid group ID on the Make Admin page.
             $this->clientError(_('No such group.'));
             return false;
         }
         $user = common_current_user();
         if (!$user->isAdmin($this->group) &&
             !$user->hasRight(Right::MAKEGROUPADMIN)) {
+            // TRANS: Client error displayed when trying to make another user admin on the Make Admin page while not an admin.
             $this->clientError(_('Only an admin can make another user an admin.'), 401);
             return false;
         }
         if ($this->profile->isAdmin($this->group)) {
+            // TRANS: Client error displayed when trying to make another user admin on the Make Admin page who already is admin.
+            // TRANS: %1$s is the user that is already admin, %2$s is the group user is already admin for.
             $this->clientError(sprintf(_('%1$s is already an admin for group "%2$s".'),
                                        $this->profile->getBestName(),
                                        $this->group->getBestName()),
@@ -130,6 +138,9 @@ class MakeadminAction extends RedirectingAction
                                               'profile_id' => $this->profile->id));
 
         if (empty($member)) {
+            // TRANS: Server error displayed when trying to make another user admin on the Make Admin page fails
+            // TRANS: because the group membership record could not be gotten.
+            // TRANS: %1$s is the to be admin user, %2$s is the group user should be admin for.
             $this->serverError(_('Can\'t get membership record for %1$s in group %2$s.'),
                                $this->profile->getBestName(),
                                $this->group->getBestName());
@@ -143,6 +154,9 @@ class MakeadminAction extends RedirectingAction
 
         if (!$result) {
             common_log_db_error($member, 'UPDATE', __FILE__);
+            // TRANS: Server error displayed when trying to make another user admin on the Make Admin page fails
+            // TRANS: because the group adminship record coud not be saved properly.
+            // TRANS: %1$s is the to be admin user, %2$s is the group user is already admin for.
             $this->serverError(_('Can\'t make %1$s an admin for group %2$s.'),
                                $this->profile->getBestName(),
                                $this->group->getBestName());

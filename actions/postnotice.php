@@ -92,16 +92,18 @@ class PostnoticeAction extends Action
     {
         $content = common_shorten_links($_POST['omb_notice_content']);
         if (Notice::contentTooLong($content)) {
+            // TRANS: Client error displayed if the notice posted has too many characters.
             $this->clientError(_('Invalid notice content.'), 400);
             return false;
         }
         $license      = $_POST['omb_notice_license'];
         $site_license = common_config('license', 'url');
         if ($license && !common_compatible_license($license, $site_license)) {
-            throw new Exception(sprintf(_('Notice license ‘%1$s’ is not ' .
-                                          'compatible with site license ‘%2$s’.'),
+            // TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
+            // TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
+            throw new Exception(sprintf(_('Notice license "%1$s" is not ' .
+                                          'compatible with site license "%2$s".'),
                                         $license, $site_license));
         }
     }
 }
-?>

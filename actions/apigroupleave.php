@@ -116,22 +116,18 @@ class ApiGroupLeaveAction extends ApiAuthAction
             return;
         }
 
-        $result = $member->delete();
-
-        if (!$result) {
-            common_log_db_error($member, 'DELETE', __FILE__);
-            $this->serverError(
-                sprintf(
-                    // TRANS: Server error displayed when leaving a group fails.
-                    // TRANS: %1$s is a user nickname, $2$s is a group nickname.
-                    _('Could not remove user %1$s from group %2$s.'),
-                    $this->user->nickname,
-                    $this->group->nickname
-                )
-            );
+        try {
+            if (Event::handle('StartLeaveGroup', array($this->group,$this->user))) {
+                Group_member::leave($this->group->id, $this->user->id);
+                Event::handle('EndLeaveGroup', array($this->group, $this->user));
+            }
+        } catch (Exception $e) {
+            // TRANS: Server error displayed when leaving a group failed in the database.
+            // TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.
+            $this->serverError(sprintf(_('Could not remove user %1$s from group %2$s.'),
+                                       $cur->nickname, $this->group->nickname));
             return;
         }
-
         switch($this->format) {
         case 'xml':
             $this->showSingleXmlGroup($this->group);

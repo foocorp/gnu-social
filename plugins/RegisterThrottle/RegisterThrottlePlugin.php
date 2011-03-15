@@ -167,28 +167,24 @@ class RegisterThrottlePlugin extends Plugin
     }
 
     /**
-     * Called after someone registers.
+     * Called after someone registers, by any means.
      *
      * We record the successful registration and IP address.
      *
-     * @param Action $action Action that is being executed
+     * @param Profile $profile new user's profile
+     * @param User $user new user
      *
      * @return boolean hook value
      *
      */
 
-    function onEndRegistrationTry($action)
+    function onEndUserRegister($profile, $user)
     {
         $ipaddress = $this->_getIpAddress();
 
         if (empty($ipaddress)) {
-            throw new ServerException(_m('Cannot find IP address.'));
-        }
-
-        $user = common_current_user();
-
-        if (empty($user)) {
-            throw new ServerException(_m('Cannot find user after successful registration.'));
+            // User registration can happen from command-line scripts etc.
+            return true;
         }
 
         $reg = new Registration_ip();

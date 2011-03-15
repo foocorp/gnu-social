@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * Feed of group memberships for a user, in ActivityStreams format
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -46,7 +46,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class AtompubmembershipfeedAction extends ApiAuthAction
 {
     private $_profile     = null;
@@ -59,7 +58,6 @@ class AtompubmembershipfeedAction extends ApiAuthAction
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
@@ -67,8 +65,9 @@ class AtompubmembershipfeedAction extends ApiAuthAction
         $profileId = $this->trimmed('profile');
 
         $this->_profile = Profile::staticGet('id', $profileId);
-        
+
         if (empty($this->_profile)) {
+            // TRANS: Client exception.
             throw new ClientException(_('No such profile.'), 404);
         }
 
@@ -78,7 +77,7 @@ class AtompubmembershipfeedAction extends ApiAuthAction
         $this->_memberships = Group_member::byMember($this->_profile->id,
                                                      $offset,
                                                      $limit);
-        
+
         return true;
     }
 
@@ -89,7 +88,6 @@ class AtompubmembershipfeedAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         parent::handle($argarray);
@@ -103,6 +101,7 @@ class AtompubmembershipfeedAction extends ApiAuthAction
             $this->addMembership();
             break;
         default:
+            // TRANS: Client exception thrown when using an unsupported HTTP method.
             throw new ClientException(_('HTTP method not supported.'), 405);
             return;
         }
@@ -115,7 +114,6 @@ class AtompubmembershipfeedAction extends ApiAuthAction
      *
      * @return void
      */
-
     function showFeed()
     {
         header('Content-Type: application/atom+xml; charset=utf-8');
@@ -141,21 +139,25 @@ class AtompubmembershipfeedAction extends ApiAuthAction
         $feed->addAuthor($this->_profile->getBestName(),
                          $this->_profile->getURI());
 
+        // TRANS: Title for group membership feed.
+        // TRANS: %s is a username.
         $feed->setTitle(sprintf(_("%s group memberships"),
                                 $this->_profile->getBestName()));
 
-        $feed->setSubtitle(sprintf(_("Groups %s is a member of on %s"),
+        // TRANS: Subtitle for group membership feed.
+        // TRANS: %1$s is a username, %2$s is the StatusNet sitename.
+        $feed->setSubtitle(sprintf(_('Groups %1$s is a member of on %2$s'),
                                    $this->_profile->getBestName(),
                                    common_config('site', 'name')));
 
         $feed->addLink(common_local_url('usergroups',
-                                        array('nickname' => 
+                                        array('nickname' =>
                                               $this->_profile->nickname)));
 
         $feed->addLink($url,
                        array('rel' => 'self',
                              'type' => 'application/atom+xml'));
-                                        
+
         // If there's more...
 
         if ($this->page > 1) {
@@ -164,9 +166,9 @@ class AtompubmembershipfeedAction extends ApiAuthAction
                                  'type' => 'application/atom+xml'));
 
             $feed->addLink(common_local_url('AtomPubMembershipFeed',
-                                            array('profile' => 
+                                            array('profile' =>
                                                   $this->_profile->id),
-                                            array('page' => 
+                                            array('page' =>
                                                   $this->page - 1)),
                            array('rel' => 'prev',
                                  'type' => 'application/atom+xml'));
@@ -207,17 +209,17 @@ class AtompubmembershipfeedAction extends ApiAuthAction
      *
      * @return void
      */
-
     function addMembership()
     {
         // XXX: Refactor this; all the same for atompub
 
         if (empty($this->auth_user) ||
             $this->auth_user->id != $this->_profile->id) {
-            throw new ClientException(_("Can't add someone else's".
-                                        " membership"), 403);
+            // TRANS: Client exception thrown when trying subscribe someone else to a group.
+            throw new ClientException(_("Cannot add someone else's".
+                                        " membership."), 403);
         }
-        
+
         $xml = file_get_contents('php://input');
 
         $dom = DOMDocument::loadXML($xml);
@@ -234,25 +236,26 @@ class AtompubmembershipfeedAction extends ApiAuthAction
         $membership = null;
 
         if (Event::handle('StartAtomPubNewActivity', array(&$activity))) {
-
             if ($activity->verb != ActivityVerb::JOIN) {
                 // TRANS: Client error displayed when not using the POST verb.
                 // TRANS: Do not translate POST.
-                throw new ClientException(_('Can only handle Join activities.'));
+                throw new ClientException(_('Can only handle join activities.'));
                 return;
             }
 
             $groupObj = $activity->objects[0];
 
             if ($groupObj->type != ActivityObject::GROUP) {
+                // TRANS: Client exception thrown when trying favorite an object that is not a notice.
                 throw new ClientException(_('Can only fave notices.'));
                 return;
             }
 
             $group = User_group::staticGet('uri', $groupObj->id);
-            
+
             if (empty($group)) {
                 // XXX: import from listed URL or something
+                // TRANS: Client exception thrown when trying to subscribe to a non-existing group.
                 throw new ClientException(_('Unknown group.'));
             }
 
@@ -260,6 +263,7 @@ class AtompubmembershipfeedAction extends ApiAuthAction
                                                'group_id' => $group->id));
 
             if (!empty($old)) {
+                // TRANS: Client exception thrown when trying to subscribe to an already subscribed group.
                 throw new ClientException(_('Already a member.'));
             }
 
@@ -267,6 +271,7 @@ class AtompubmembershipfeedAction extends ApiAuthAction
 
             if (Group_block::isBlocked($group, $profile)) {
                 // XXX: import from listed URL or something
+                // TRANS: Client exception thrown when trying to subscribe to group while blocked from that group.
                 throw new ClientException(_('Blocked by admin.'));
             }
 
@@ -299,7 +304,6 @@ class AtompubmembershipfeedAction extends ApiAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||
@@ -331,7 +335,6 @@ class AtompubmembershipfeedAction extends ApiAuthAction
      *
      * @return string etag http header
      */
-
     function etag()
     {
         return null;
@@ -342,7 +345,6 @@ class AtompubmembershipfeedAction extends ApiAuthAction
      *
      * @return boolean true if delete, else false
      */
-
     function requiresAuth()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||

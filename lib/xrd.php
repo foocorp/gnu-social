@@ -26,7 +26,6 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class XRD
 {
     const XML_NS = 'http://www.w3.org/2000/xmlns/';
@@ -61,12 +60,12 @@ class XRD
 
         if (!$ok) {
             // TRANS: Exception.
-            throw new Exception(_m('Invalid XML.'));
+            throw new Exception(_('Invalid XML.'));
         }
         $xrd_element = $dom->getElementsByTagName('XRD')->item(0);
         if (!$xrd_element) {
             // TRANS: Exception.
-            throw new Exception(_m('Invalid XML, missing XRD root.'));
+            throw new Exception(_('Invalid XML, missing XRD root.'));
         }
 
         // Check for host-meta host
@@ -173,6 +172,13 @@ class XRD
                 switch($node->tagName) {
                 case 'Title':
                     $link['title'][] = $node->nodeValue;
+                    break;
+                case 'Property':
+                    $link['property'][] = array('type' => $node->getAttribute('type'),
+                                                'value' => $node->nodeValue);
+                    break;
+                default:
+                    common_log(LOG_NOTICE, "Unexpected tag name {$node->tagName} found in XRD file.");
                 }
             }
         }

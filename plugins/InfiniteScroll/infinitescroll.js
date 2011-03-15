@@ -16,6 +16,12 @@ jQuery(document).ready(function($){
     contentSelector : "#notices_primary ol.notices",
     itemSelector    : "#notices_primary ol.notices li"
     },function(){
-        SN.Init.Notices();
+        // Reply button and attachment magic need to be set up
+        // for each new notice.
+        // DO NOT run SN.Init.Notices() which will duplicate stuff.
+        $(this).find('.notice').each(function() {
+            SN.U.NoticeReplyTo($(this));
+            SN.U.NoticeWithAttachment($(this));
+        });
     });
 });

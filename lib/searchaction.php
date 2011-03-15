@@ -70,7 +70,7 @@ class SearchAction extends Action
      * @return void
      * @see SearchGroupNav
      */
-    function showLocalNav()
+    function showObjectNav()
     {
         $nav = new SearchGroupNav($this, $this->trimmed('q'));
         $nav->show();
@@ -165,12 +165,8 @@ You can also try your search on other engines:
 E_O_T
 ), $qe, $qe, $qe, $qe, $qe);
         }
-        $this->elementStart('dl', array('id' => 'help_search', 'class' => 'help'));
-        // TRANS: Definition list item with instructions on how to get (better) search results.
-        $this->element('dt', null, _('Search help'));
-        $this->elementStart('dd', 'instructions');
+        $this->elementStart('div', 'help instructions');
         $this->raw(common_markup_to_html($message));
-        $this->elementEnd('dd');
         $this->elementEnd('div');
     }
 }

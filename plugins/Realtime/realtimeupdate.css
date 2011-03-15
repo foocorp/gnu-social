@@ -17,13 +17,13 @@ max-width:451px;
 display:none;
 }
 
-.realtime-popup #form_notice label[for=notice_data-attach],
-.realtime-popup #form_notice #notice_data-attach,
-.realtime-popup #form_notice label[for=notice_data-geo] {
+.realtime-popup #form_notice label.notice_data-attach,
+.realtime-popup #form_notice input.notice_data-attach,
+.realtime-popup #form_notice label.notice_data-geo {
 top:0;
 }
 
-.realtime-popup #form_notice #notice_data-attach {
+.realtime-popup #form_notice input.notice_data-attach {
 left:auto;
 right:0;
 }

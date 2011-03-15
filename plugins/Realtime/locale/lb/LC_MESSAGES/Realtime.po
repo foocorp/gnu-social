@@ -1,0 +1,58 @@
+# Translation of StatusNet - Realtime to Luxembourgish (Lëtzebuergesch)
+# Expored from translatewiki.net
+#
+# Author: Robby
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Realtime\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-14 10:29+0000\n"
+"PO-Revision-Date: 2011-01-14 10:33:54+0000\n"
+"Language-Team: Luxembourgish <http://translatewiki.net/wiki/Portal:lb>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-01-10 18:26:07+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r80246); Translate extension (2010-09-17)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: lb\n"
+"X-Message-Group: #out-statusnet-plugin-realtime\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Text label for realtime view "play" button, usually replaced by an icon.
+#: RealtimePlugin.php:339
+msgctxt "BUTTON"
+msgid "Play"
+msgstr ""
+
+#. TRANS: Tooltip for realtime view "play" button.
+#: RealtimePlugin.php:341
+msgctxt "TOOLTIP"
+msgid "Play"
+msgstr ""
+
+#. TRANS: Text label for realtime view "pause" button
+#: RealtimePlugin.php:343
+msgctxt "BUTTON"
+msgid "Pause"
+msgstr "Paus"
+
+#. TRANS: Tooltip for realtime view "pause" button
+#: RealtimePlugin.php:345
+msgctxt "TOOLTIP"
+msgid "Pause"
+msgstr "Paus"
+
+#. TRANS: Text label for realtime view "popup" button, usually replaced by an icon.
+#: RealtimePlugin.php:347
+msgctxt "BUTTON"
+msgid "Pop up"
+msgstr ""
+
+#. TRANS: Tooltip for realtime view "popup" button.
+#: RealtimePlugin.php:349
+msgctxt "TOOLTIP"
+msgid "Pop up in a window"
+msgstr ""

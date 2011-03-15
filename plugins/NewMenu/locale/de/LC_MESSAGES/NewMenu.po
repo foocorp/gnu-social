@@ -1,0 +1,79 @@
+# Translation of StatusNet - NewMenu to German (Deutsch)
+# Exported from translatewiki.net
+#
+# Author: Fujnky
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - NewMenu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-29 21:45+0000\n"
+"PO-Revision-Date: 2011-03-06 01:37:41+0000\n"
+"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:45:38+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-newmenu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Home"
+msgstr "Startseite"
+
+msgid "Friends timeline"
+msgstr "Zeitstrahl deiner Freunde"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Your profile"
+msgstr "Ihr Profil"
+
+msgid "Public"
+msgstr "Öffentlich"
+
+msgid "Everyone on this site"
+msgstr "Jeder auf dieser Seite"
+
+msgid "Settings"
+msgstr "Einstellungen"
+
+msgid "Change your personal settings"
+msgstr "Persönliche Einstellungen ändern"
+
+msgid "Admin"
+msgstr "Administrator"
+
+msgid "Site configuration"
+msgstr "Seitenkonfiguration"
+
+msgid "Logout"
+msgstr "Abmelden"
+
+msgid "Logout from the site"
+msgstr "Von der Seite abmelden"
+
+msgid "Login"
+msgstr "Anmelden"
+
+msgid "Login to the site"
+msgstr "Auf der Seite anmelden"
+
+msgid "Search"
+msgstr "Suche"
+
+msgid "Search the site"
+msgstr "Seite durchsuchen"
+
+msgid "IM"
+msgstr "IM"
+
+msgid "SMS"
+msgstr "SMS"
+
+msgid "A preview of the new menu layout in StatusNet 1.0."
+msgstr "Eine Vorschau auf das neue Menü-Layout in StatusNet 1.0."

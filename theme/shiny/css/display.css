@@ -104,25 +104,22 @@ h6 {font-size: 1em;}
 	letter-spacing: 0.1em;
 	font-size: 0.8em;
 	background: url(../images/global_bg.png) repeat-x top left;
+    float: right;
     position: absolute;
     width: 893px;
     top: -20px;
     left: 0;
     margin-left: -21px; 
+    text-transform: uppercase;
+    padding-right: 10px;
 }
 
-#site_nav_global_primary ul.nav {
-	float: right;
-	text-transform: uppercase;
-	padding-right: 10px;
-}
-
-#site_nav_global_primary ul.nav li {
+#site_nav_global_primary li {
     margin-right: 0px;
     margin-left: 0px;
 }
 
-#site_nav_global_primary ul.nav a {
+#site_nav_global_primary a {
 	padding: 4px 8px;
 	line-height: 1.8em;
 	border-radius: 4px;
@@ -134,7 +131,7 @@ h6 {font-size: 1em;}
     border-left: 1px solid transparent;
 }
 
-#site_nav_global_primary ul.nav a:hover {
+#site_nav_global_primary a:hover {
 	color: #fff;
 	background-color: #000;
 	border-bottom: 1px solid #666;
@@ -233,19 +230,19 @@ h6 {font-size: 1em;}
     border: 1px solid #9495b7;
 }
 
-.form_notice label[for=notice_data-attach],
-.form_notice #notice_data-attach {
+.form_notice label.notice_data-attach,
+.form_notice input.notice_data-attach {
     top: 27px;
     right: 86px;
 }
 
-.form_notice #notice_data-geo_wrap label,
-.form_notice #notice_data-geo_wrap input {
+.form_notice .notice_data-geo_wrap label,
+.form_notice .notice_data-geo_wrap input {
     top: 50px;
     right: 86px;
 }
 
-.form_notice #notice_action-submit {
+.form_notice .submit {
     top: 79px;
     right: 0;
     width: 102px;
@@ -253,7 +250,7 @@ h6 {font-size: 1em;}
     height: 2.2em;
 }
 
-.entity_send-a-message .form_notice #notice_action-submit {
+.entity_send-a-message .form_notice .submit {
     color: #fff !important;
 }
 
@@ -296,7 +293,7 @@ h6 {font-size: 1em;}
 	position: relative;
 	z-index: 9;
 	float: right;
-    margin: 0px 0px 20px 0px;
+    margin: 0px;
     width: 290px;
 }
 
@@ -331,7 +328,7 @@ h6 {font-size: 1em;}
 }
 
 #site_nav_local_views li:first-child a {
-	border-radius-topright:4px;
+	border-top-right-radius:4px;
 	-moz-border-radius-topright:4px;
 	-webkit-border-top-right-radius:4px;
 }
@@ -368,7 +365,7 @@ h6 {font-size: 1em;}
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	-webkit-border-radius: 4px;
-	border-radius-topright: 0px;
+	border-top-right-radius: 0px;
 	-moz-border-radius-topright: 0px;
 	-webkit-border-top-right-radius: 0px;
     padding: 14px 10px 20px 10px;
@@ -382,9 +379,8 @@ h6 {font-size: 1em;}
 	padding: 0px;
     padding-top: 16px;
     padding-left: 10px;
-    margin-top: -20px;
     background-color: #262626;
-	border-radius-bottomright: 6px;
+	border-bottom-right-radius: 6px;
 	-moz-border-radius-bottomright: 6px;
 	-webkit-border-bottom-right-radius: 6px;
 }

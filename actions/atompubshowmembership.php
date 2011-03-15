@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * Show a single membership as an Activity Streams entry
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -46,7 +46,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class AtompubshowmembershipAction extends ApiAuthAction
 {
     private $_profile    = null;
@@ -60,7 +59,6 @@ class AtompubshowmembershipAction extends ApiAuthAction
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
@@ -68,8 +66,9 @@ class AtompubshowmembershipAction extends ApiAuthAction
         $profileId = $this->trimmed('profile');
 
         $this->_profile = Profile::staticGet('id', $profileId);
-        
+
         if (empty($this->_profile)) {
+            // TRANS: Client exception.
             throw new ClientException(_('No such profile.'), 404);
         }
 
@@ -78,7 +77,8 @@ class AtompubshowmembershipAction extends ApiAuthAction
         $this->_group = User_group::staticGet('id', $groupId);
 
         if (empty($this->_group)) {
-            throw new ClientException(_('No such group'), 404);
+            // TRANS: Client exception thrown when referencing a non-existing group.
+            throw new ClientException(_('No such group.'), 404);
         }
 
         $kv = array('group_id' => $groupId,
@@ -87,7 +87,8 @@ class AtompubshowmembershipAction extends ApiAuthAction
         $this->_membership = Group_member::pkeyGet($kv);
 
         if (empty($this->_membership)) {
-            throw new ClientException(_('Not a member'), 404);
+            // TRANS: Client exception thrown when trying to show membership of a non-subscribed group
+            throw new ClientException(_('Not a member.'), 404);
         }
 
         return true;
@@ -100,7 +101,6 @@ class AtompubshowmembershipAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         switch ($_SERVER['REQUEST_METHOD']) {
@@ -112,7 +112,8 @@ class AtompubshowmembershipAction extends ApiAuthAction
             $this->deleteMembership();
             break;
         default:
-            throw new ClientException(_('Method not supported'), 405);
+            // TRANS: Client exception thrown when using an unsupported HTTP method.
+            throw new ClientException(_('HTTP method not supported.'), 405);
             break;
         }
         return;
@@ -123,7 +124,6 @@ class AtompubshowmembershipAction extends ApiAuthAction
      *
      * @return void
      */
-
     function showMembership()
     {
         $activity = $this->_membership->asActivity();
@@ -142,13 +142,13 @@ class AtompubshowmembershipAction extends ApiAuthAction
      *
      * @return void
      */
-
     function deleteMembership()
     {
         if (empty($this->auth_user) ||
             $this->auth_user->id != $this->_profile->id) {
-            throw new ClientException(_("Can't delete someone else's".
-                                        " membership"), 403);
+            // TRANS: Client exception thrown when deleting someone else's membership.
+            throw new ClientException(_("Cannot delete someone else's".
+                                        " membership."), 403);
         }
 
         if (Event::handle('StartLeaveGroup', array($this->_group, $this->auth_user))) {
@@ -168,7 +168,6 @@ class AtompubshowmembershipAction extends ApiAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||
@@ -203,7 +202,6 @@ class AtompubshowmembershipAction extends ApiAuthAction
      *
      * @return string etag http header
      */
-
     function etag()
     {
         $ctime = strtotime($this->_membership->created);
@@ -222,7 +220,6 @@ class AtompubshowmembershipAction extends ApiAuthAction
      *
      * @return boolean true if delete, else false
      */
-
     function requiresAuth()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||

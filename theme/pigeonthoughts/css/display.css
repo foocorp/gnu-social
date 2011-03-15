@@ -43,14 +43,14 @@ background:none;
 }
 
 input.submit,
-#form_notice.warning #notice_text-count,
+#form_notice.warning .count,
 .form_settings .form_note,
 .entity_remote_subscribe {
 background-color:#8F0000;
 }
 
 input:focus, textarea:focus, select:focus,
-#form_notice.warning #notice_data-text {
+#form_notice.warning textarea {
 border-color:#8F0000;
 box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
 -moz-box-shadow:3px 3px 3px rgba(194, 194, 194, 0.3);
@@ -84,10 +84,10 @@ box-shadow:3px 3px 3px rgba(194, 194, 194, 0.1);
 text-shadow:none;
 }
 
-.form_notice label[for=notice_data-geo] {
+.form_notice label.notice_data-geo {
 background-position:0 -1780px;
 }
-.form_notice label[for=notice_data-geo].checked {
+.form_notice label.notice_data-geo.checked {
 background-position:0 -1846px;
 }
 
@@ -186,20 +186,20 @@ border-top-color:#87B4C8;
 background:url(../images/illustrations/illu_pigeons-02.png) no-repeat 10% 100%;
 }
 
-#notice_text-count {
+.form_notice .count {
 color:#333333;
 }
-#form_notice.warning #notice_text-count {
+#form_notice.warning .count {
 color:#000000;
 }
-#form_notice label[for=notice_data-attach] {
+#form_notice label.notice_data-attach {
 background-position:0 -328px;
 }
-#form_notice #notice_data-attach {
+#form_notice input.notice_data-attach {
 opacity:0;
 }
 
-.form_notice label[for=notice_data-attach],
+.form_notice label.notice_data-attach,
 #export_data li a.rss,
 #export_data li a.atom,
 #export_data li a.foaf,
@@ -233,7 +233,7 @@ button.close,
 .entity_silence input.submit,
 .entity_delete input.submit,
 .notice-options .repeated,
-.form_notice label[for=notice_data-geo],
+.form_notice label.notice_data-geo,
 button.minimize,
 .form_reset_key input.submit,
 .entity_clear input.submit,

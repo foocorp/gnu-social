@@ -241,7 +241,7 @@ class TwitterauthorizationAction extends Action
 
             $this->twuid = $twitter_user->id;
             $this->tw_fields = array("screen_name" => $twitter_user->screen_name,
-                                     "name" => $twitter_user->name);
+                                     "fullname" => $twitter_user->name);
             $this->access_token = $atok;
             $this->tryLogin();
         }
@@ -373,7 +373,7 @@ class TwitterauthorizationAction extends Action
         $this->hidden('access_token_secret', $this->access_token->secret);
         $this->hidden('twuid', $this->twuid);
         $this->hidden('tw_fields_screen_name', $this->tw_fields['screen_name']);
-        $this->hidden('tw_fields_name', $this->tw_fields['name']);
+        $this->hidden('tw_fields_name', $this->tw_fields['fullname']);
 
         $this->elementStart('fieldset');
         $this->hidden('token', common_session_token());
@@ -382,11 +382,24 @@ class TwitterauthorizationAction extends Action
         $this->element('p', null,
                        _m('Create a new user with this nickname.'));
         $this->elementStart('ul', 'form_data');
+
+        // Hook point for captcha etc
+        Event::handle('StartRegistrationFormData', array($this));
+
         $this->elementStart('li');
         $this->input('newname', _m('New nickname'),
                      ($this->username) ? $this->username : '',
                      _m('1-64 lowercase letters or numbers, no punctuation or spaces'));
         $this->elementEnd('li');
+        $this->elementStart('li');
+        $this->input('email', _('Email'), $this->getEmail(),
+                     _('Used only for updates, announcements, '.
+                       'and password recovery'));
+        $this->elementEnd('li');
+
+        // Hook point for captcha etc
+        Event::handle('EndRegistrationFormData', array($this));
+
         $this->elementEnd('ul');
         $this->submit('create', _m('Create'));
         $this->elementEnd('fieldset');
@@ -411,6 +424,32 @@ class TwitterauthorizationAction extends Action
         $this->elementEnd('form');
     }
 
+    /**
+     * Get specified e-mail from the form, or the invite code.
+     *
+     * @return string
+     */
+    function getEmail()
+    {
+        $email = $this->trimmed('email');
+        if (!empty($email)) {
+            return $email;
+        }
+
+        // Terrible hack for invites...
+        if (common_config('site', 'inviteonly')) {
+            $code = $_SESSION['invitecode'];
+            if ($code) {
+                $invite = Invitation::staticGet($code);
+
+                if ($invite && $invite->address_type == 'email') {
+                    return $invite->address;
+                }
+            }
+        }
+        return '';
+    }
+
     function message($msg)
     {
         $this->message_text = $msg;
@@ -419,6 +458,10 @@ class TwitterauthorizationAction extends Action
 
     function createNewUser()
     {
+        if (!Event::handle('StartRegistrationTry', array($this))) {
+            return;
+        }
+
         if (common_config('site', 'closed')) {
             $this->clientError(_m('Registration not allowed.'));
             return;
@@ -458,12 +501,17 @@ class TwitterauthorizationAction extends Action
             return;
         }
 
-        $fullname = trim($this->tw_fields['name']);
+        $fullname = trim($this->tw_fields['fullname']);
 
         $args = array('nickname' => $nickname, 'fullname' => $fullname);
 
         if (!empty($invite)) {
             $args['code'] = $invite->code;
+        }
+
+        $email = $this->getEmail();
+        if (!empty($email)) {
+            $args['email'] = $email;
         }
 
         $user = User::register($args);
@@ -489,6 +537,8 @@ class TwitterauthorizationAction extends Action
 
         common_debug('TwitterBridge Plugin - ' .
                      "Registered new user $user->id from Twitter user $this->twuid");
+
+        Event::handle('EndRegistrationTry', array($this));
 
         common_redirect(common_local_url('showstream', array('nickname' => $user->nickname)),
                         303);
@@ -596,8 +646,8 @@ class TwitterauthorizationAction extends Action
 
     function bestNewNickname()
     {
-        if (!empty($this->tw_fields['name'])) {
-            $nickname = $this->nicknamize($this->tw_fields['name']);
+        if (!empty($this->tw_fields['fullname'])) {
+            $nickname = $this->nicknamize($this->tw_fields['fullname']);
             if ($this->isNewNickname($nickname)) {
                 return $nickname;
             }

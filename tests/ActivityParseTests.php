@@ -382,6 +382,29 @@ class ActivityParseTests extends PHPUnit_Framework_TestCase
         }
     }
 
+    public function testExample10()
+    {
+        global $_example10;
+        $dom = new DOMDocument();
+        $dom->loadXML($_example10);
+
+        // example 10 is a PuSH item of a post on a group feed, as generated
+        // by 0.9.7 code after migration away from <activity:actor> to <author>
+        $feed = $dom->documentElement;
+        $entry = $dom->getElementsByTagName('entry')->item(0);
+        $expected = 'http://lazarus.local/mublog/user/557';
+
+        // Reading just the entry alone should pick up its own <author>
+        // as the actor.
+        $act = new Activity($entry);
+        $this->assertEquals($act->actor->id, $expected);
+
+        // Reading the entry in feed context used to be buggy, picking up
+        // the feed's <activity:subject> which referred to the group.
+        // It should now be returning the expected author entry...
+        $act = new Activity($entry, $feed);
+        $this->assertEquals($act->actor->id, $expected);
+    }
 }
 
 $_example1 = <<<EXAMPLE1
@@ -792,3 +815,93 @@ $_example9 = <<<EXAMPLE9
     </entry>
 </feed>
 EXAMPLE9;
+
+// Sample PuSH entry from a group feed in 0.9.7
+// Old <activity:actor> has been removed from entries in this version.
+// A bug in the order of input processing meant that we were incorrectly
+// reading the feed's <activity:subject> instead of the entry's <author>,
+// causing the entry to get rejected as malformed (groups can't post on
+// their own; we want to see the actual author's info here).
+$_example10 = <<<EXAMPLE10
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:georss="http://www.georss.org/georss" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:media="http://purl.org/syndication/atommedia" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:ostatus="http://ostatus.org/schema/1.0" xmlns:statusnet="http://status.net/schema/api/1/">
+ <generator uri="http://status.net" version="0.9.7alpha1">StatusNet</generator>
+ <id>http://lazarus.local/mublog/api/statusnet/groups/timeline/22.atom</id>
+ <title>grouptest316173 timeline</title>
+ <subtitle>Updates from grouptest316173 on Blaguette!</subtitle>
+ <logo>http://lazarus.local/mublog/theme/default/default-avatar-profile.png</logo>
+ <updated>2011-01-06T22:44:18+00:00</updated>
+<author>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/group</activity:object-type>
+ <uri>http://lazarus.local/mublog/group/22/id</uri>
+ <name>grouptest316173</name>
+ <link rel="alternate" type="text/html" href="http://lazarus.local/mublog/group/22/id"/>
+ <link rel="avatar" type="image/png" media:width="96" media:height="96" href="http://lazarus.local/mublog/theme/default/default-avatar-profile.png"/>
+ <link rel="avatar" type="image/png" media:width="48" media:height="48" href="http://lazarus.local/mublog/theme/default/default-avatar-stream.png"/>
+ <link rel="avatar" type="image/png" media:width="24" media:height="24" href="http://lazarus.local/mublog/theme/default/default-avatar-mini.png"/>
+ <poco:preferredUsername>grouptest316173</poco:preferredUsername>
+ <poco:displayName>grouptest316173</poco:displayName>
+</author>
+<activity:subject>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/group</activity:object-type>
+ <id>http://lazarus.local/mublog/group/22/id</id>
+ <title>grouptest316173</title>
+ <link rel="alternate" type="text/html" href="http://lazarus.local/mublog/group/22/id"/>
+ <link rel="avatar" type="image/png" media:width="96" media:height="96" href="http://lazarus.local/mublog/theme/default/default-avatar-profile.png"/>
+ <link rel="avatar" type="image/png" media:width="48" media:height="48" href="http://lazarus.local/mublog/theme/default/default-avatar-stream.png"/>
+ <link rel="avatar" type="image/png" media:width="24" media:height="24" href="http://lazarus.local/mublog/theme/default/default-avatar-mini.png"/>
+ <poco:preferredUsername>grouptest316173</poco:preferredUsername>
+ <poco:displayName>grouptest316173</poco:displayName>
+</activity:subject>
+ <link href="http://lazarus.local/mublog/group/grouptest316173" rel="alternate" type="text/html"/>
+ <link href="http://lazarus.local/mublog/main/push/hub" rel="hub"/>
+ <link href="http://lazarus.local/mublog/main/salmon/group/22" rel="salmon"/>
+ <link href="http://lazarus.local/mublog/main/salmon/group/22" rel="http://salmon-protocol.org/ns/salmon-replies"/>
+ <link href="http://lazarus.local/mublog/main/salmon/group/22" rel="http://salmon-protocol.org/ns/salmon-mention"/>
+ <link href="http://lazarus.local/mublog/api/statusnet/groups/timeline/22.atom" rel="self" type="application/atom+xml"/>
+ <statusnet:group_info member_count="2"></statusnet:group_info>
+<entry>
+ <activity:object-type>http://activitystrea.ms/schema/1.0/note</activity:object-type>
+ <id>http://lazarus.local/mublog/notice/1243</id>
+ <title>Group post from local to !grouptest316173, should go out over push.</title>
+ <content type="html">Group post from local to !&lt;span class=&quot;vcard&quot;&gt;&lt;a href=&quot;http://lazarus.local/mublog/group/22/id&quot; class=&quot;url&quot;&gt;&lt;span class=&quot;fn nickname&quot;&gt;grouptest316173&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;, should go out over push.</content>
+ <link rel="alternate" type="text/html" href="http://lazarus.local/mublog/notice/1243"/>
+ <activity:verb>http://activitystrea.ms/schema/1.0/post</activity:verb>
+ <published>2011-01-06T22:44:18+00:00</published>
+ <updated>2011-01-06T22:44:18+00:00</updated>
+ <author>
+  <activity:object-type>http://activitystrea.ms/schema/1.0/person</activity:object-type>
+  <uri>http://lazarus.local/mublog/user/557</uri>
+  <name>Pubtest316173 Smith</name>
+  <link rel="alternate" type="text/html" href="http://lazarus.local/mublog/pubtest316173"/>
+  <link rel="avatar" type="image/png" media:width="96" media:height="96" href="http://lazarus.local/mublog/theme/default/default-avatar-profile.png"/>
+  <link rel="avatar" type="image/png" media:width="48" media:height="48" href="http://lazarus.local/mublog/theme/default/default-avatar-stream.png"/>
+  <link rel="avatar" type="image/png" media:width="24" media:height="24" href="http://lazarus.local/mublog/theme/default/default-avatar-mini.png"/>
+  <poco:preferredUsername>pubtest316173</poco:preferredUsername>
+  <poco:displayName>Pubtest316173 Smith</poco:displayName>
+  <poco:note>Stub account for OStatus tests.</poco:note>
+  <poco:urls>
+   <poco:type>homepage</poco:type>
+   <poco:value>http://example.org/pubtest316173</poco:value>
+   <poco:primary>true</poco:primary>
+  </poco:urls>
+ </author>
+ <link rel="ostatus:conversation" href="http://lazarus.local/mublog/conversation/1131"/>
+ <link rel="ostatus:attention" href="http://lazarus.local/mublog/group/22/id"/>
+ <link rel="mentioned" href="http://lazarus.local/mublog/group/22/id"/>
+ <category term="grouptest316173"></category>
+ <source>
+  <id>http://lazarus.local/mublog/api/statuses/user_timeline/557.atom</id>
+  <title>Pubtest316173 Smith</title>
+  <link rel="alternate" type="text/html" href="http://lazarus.local/mublog/pubtest316173"/>
+  <link rel="self" type="application/atom+xml" href="http://lazarus.local/mublog/api/statuses/user_timeline/557.atom"/>
+  <link rel="license" href="http://creativecommons.org/licenses/by/3.0/"/>
+  <icon>http://lazarus.local/mublog/theme/default/default-avatar-profile.png</icon>
+  <updated>2011-01-06T22:44:18+00:00</updated>
+ </source>
+ <link rel="self" type="application/atom+xml" href="http://lazarus.local/mublog/api/statuses/show/1243.atom"/>
+ <link rel="edit" type="application/atom+xml" href="http://lazarus.local/mublog/api/statuses/show/1243.atom"/>
+ <statusnet:notice_info local_id="1243" source="api"></statusnet:notice_info>
+</entry>
+</feed>
+EXAMPLE10;

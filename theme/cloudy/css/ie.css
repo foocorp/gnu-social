@@ -18,14 +18,14 @@ background-color:#ddffcc;
 #form_notice {
 width:525px;
 }
-#form_notice .form_note {
+.form_notice .count {
 top:-5px;
 right:0;
 }
 #form_notice textarea {
 width:97.75%;
 }
-#form_notice .form_note + label {
+.form_notice .count + label {
 position:absolute;
 top:87px;
 left:77%;
@@ -34,12 +34,12 @@ height:16px;
 width:16px;
 display:block;
 }
-#form_notice #notice_data-attach {
+#form_notice input.notice_data-attach {
 filter: alpha(opacity = 0);
 left:33.5%;
 }
 
-#form_notice #notice_action-submit {
+#form_notice .submit {
 right:0;
 }
 

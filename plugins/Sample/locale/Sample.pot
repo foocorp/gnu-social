@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,30 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#: User_greeting_count.php:164
-#, php-format
-msgid "Could not save new greeting count for %d."
-msgstr ""
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#: User_greeting_count.php:177
-#, php-format
-msgid "Could not increment greeting count for %d."
-msgstr ""
-
-#: SamplePlugin.php:259 hello.php:111
+#: hello.php:111 SamplePlugin.php:270
 msgid "Hello"
-msgstr ""
-
-#: SamplePlugin.php:259
-msgid "A warm greeting"
-msgstr ""
-
-#: SamplePlugin.php:270
-msgid "A sample plugin to show basics of development for new hackers."
 msgstr ""
 
 #: hello.php:113
@@ -63,3 +41,25 @@ msgid "I have greeted you %d time."
 msgid_plural "I have greeted you %d times."
 msgstr[0] ""
 msgstr[1] ""
+
+#: SamplePlugin.php:270
+msgid "A warm greeting"
+msgstr ""
+
+#: SamplePlugin.php:281
+msgid "A sample plugin to show basics of development for new hackers."
+msgstr ""
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#: User_greeting_count.php:164
+#, php-format
+msgid "Could not save new greeting count for %d."
+msgstr ""
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#: User_greeting_count.php:177
+#, php-format
+msgid "Could not increment greeting count for %d."
+msgstr ""

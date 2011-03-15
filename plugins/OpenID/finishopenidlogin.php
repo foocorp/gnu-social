@@ -118,11 +118,24 @@ class FinishopenidloginAction extends Action
         $this->element('p', null,
                        _m('Create a new user with this nickname.'));
         $this->elementStart('ul', 'form_data');
+
+        // Hook point for captcha etc
+        Event::handle('StartRegistrationFormData', array($this));
+
         $this->elementStart('li');
         $this->input('newname', _m('New nickname'),
                      ($this->username) ? $this->username : '',
                      _m('1-64 lowercase letters or numbers, no punctuation or spaces'));
         $this->elementEnd('li');
+        $this->elementStart('li');
+        $this->input('email', _('Email'), $this->getEmail(),
+                     _('Used only for updates, announcements, '.
+                       'and password recovery'));
+        $this->elementEnd('li');
+
+        // Hook point for captcha etc
+        Event::handle('EndRegistrationFormData', array($this));
+
         $this->elementStart('li');
         $this->element('input', array('type' => 'checkbox',
                                       'id' => 'license',
@@ -178,6 +191,39 @@ class FinishopenidloginAction extends Action
         $this->submit('connect', _m('BUTTON', 'Connect'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
+    }
+
+    /**
+     * Get specified e-mail from the form, or the OpenID sreg info, or the
+     * invite code.
+     *
+     * @return string
+     */
+    function getEmail()
+    {
+        $email = $this->trimmed('email');
+        if (!empty($email)) {
+            return $email;
+        }
+
+        // Pull from openid thingy
+        list($display, $canonical, $sreg) = $this->getSavedValues();
+        if (!empty($sreg['email'])) {
+            return $sreg['email'];
+        }
+
+        // Terrible hack for invites...
+        if (common_config('site', 'inviteonly')) {
+            $code = $_SESSION['invitecode'];
+            if ($code) {
+                $invite = Invitation::staticGet($code);
+
+                if ($invite && $invite->address_type == 'email') {
+                    return $invite->address;
+                }
+            }
+        }
+        return '';
     }
 
     function tryLogin()
@@ -262,6 +308,10 @@ class FinishopenidloginAction extends Action
     {
         # FIXME: save invite code before redirect, and check here
 
+        if (!Event::handle('StartRegistrationTry', array($this))) {
+            return;
+        }
+
         if (common_config('site', 'closed')) {
             // TRANS: OpenID plugin message. No new user registration is allowed on the site.
             $this->clientError(_m('Registration not allowed.'));
@@ -343,11 +393,7 @@ class FinishopenidloginAction extends Action
             $fullname = '';
         }
 
-        if (!empty($sreg['email']) && Validate::email($sreg['email'], common_config('email', 'check_domain'))) {
-            $email = $sreg['email'];
-        } else {
-            $email = '';
-        }
+        $email = $this->getEmail();
 
         # XXX: add language
         # XXX: add timezone
@@ -374,6 +420,9 @@ class FinishopenidloginAction extends Action
             common_rememberme($user);
         }
         unset($_SESSION['openid_rememberme']);
+
+        Event::handle('EndRegistrationTry', array($this));
+
         common_redirect(common_local_url('showstream', array('nickname' => $user->nickname)),
                         303);
     }

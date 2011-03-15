@@ -1,5 +1,5 @@
 # Translation of StatusNet - Gravatar to Simplified Chinese (‪中文(简体)‬)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: ZhengYiFeng
 # --
@@ -9,64 +9,52 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Gravatar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:06+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:20+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:41:57+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:44:10+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-gravatar\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: GravatarPlugin.php:60
 msgid "Set Gravatar"
 msgstr "设置 Gravatar"
 
-#: GravatarPlugin.php:63
 msgid "If you want to use your Gravatar image, click \"Add\"."
 msgstr "如果你想使用你的 Gravatar 图像，点击“添加”"
 
-#: GravatarPlugin.php:68
 msgid "Add"
 msgstr "添加"
 
-#: GravatarPlugin.php:78
 msgid "Remove Gravatar"
 msgstr "删除 Gravatar"
 
-#: GravatarPlugin.php:81
 msgid "If you want to remove your Gravatar image, click \"Remove\"."
 msgstr "如果你想删除你的 Gravatar 图像，点击“删除”。"
 
-#: GravatarPlugin.php:86
 msgid "Remove"
 msgstr "删除"
 
-#: GravatarPlugin.php:91
 msgid "To use a Gravatar first enter in an email address."
 msgstr "要使用 Gravatar 先要填写一个 email 地址。"
 
-#: GravatarPlugin.php:140
 msgid "You do not have an email address set in your profile."
 msgstr "你的账号没有设置 email 地址。"
 
-#: GravatarPlugin.php:158
 msgid "Failed to save Gravatar to the database."
 msgstr "将 Gravatar 保存到数据库失败。"
 
-#: GravatarPlugin.php:162
 msgid "Gravatar added."
 msgstr "Gravatar 已添加。"
 
-#: GravatarPlugin.php:180
 msgid "Gravatar removed."
 msgstr "Gravatar 已删除。"
 
-#: GravatarPlugin.php:200
 msgid ""
 "The Gravatar plugin allows users to use their <a href=\"http://www.gravatar."
 "com/\">Gravatar</a> with StatusNet."

@@ -299,6 +299,10 @@ class oEmbedHelper
 
 class oEmbedHelper_Exception extends Exception
 {
+    public function __construct($message = "", $code = 0, $previous = null)
+    {
+        parent::__construct($message, $code);
+    }
 }
 
 class oEmbedHelper_BadHtmlException extends oEmbedHelper_Exception

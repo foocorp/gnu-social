@@ -226,26 +226,33 @@ address .poweredby {
     color: #333 !important;
 }
 
-.form_notice label[for=notice_data-attach],
-.form_notice #notice_data-attach {
+.form_notice label.notice_data-attach,
+.form_notice input.notice_data-attach {
     position:absolute;
-    top: 31px;
-    right: 88px;
     cursor:pointer;
 }
+.form_notice label.notice_data-attach {
+    top: 31px;
+    right: 88px;
+}
+.form_notice input.notice_data-attach {
+    /* Positioned inside the label */
+    top: 0;
+    right: 0;
+}
 
-.form_notice label[for=notice_data-attach] {
+.form_notice label.notice_data-attach {
     text-indent:-9999px;
     width:16px;
     height:16px;
 }
 
-.form_notice #notice_data-attach {
+.form_notice input.notice_data-attach {
     padding:0;
     height:16px;
 }
 
-.form_notice .form_note {
+.form_notice .count {
     position: absolute;
     bottom: 0px;
     right: 125px;
@@ -253,19 +260,19 @@ address .poweredby {
     font-size: 0.8em; 
 }
 
-.form_notice .form_note dt {
+.form_notice .count dt {
     display:none;
 }
 
-.form_notice #notice_text-count {
+.form_notice .count {
     color: #777;
 }
 
-.form_notice.warning #notice_text-count {
+.form_notice.warning .count {
     color: #ff0000;
 }        
 
-.form_notice #notice_action-submit {
+.form_notice .submit {
     padding:0;
     position:absolute;
     right:0;
@@ -291,7 +298,8 @@ address .poweredby {
 }
 
 .form_notice .error,
-.form_notice .success {
+.form_notice .success,
+.form_notice .notice-status {
     clear: left;
     float: left;
     overflow: auto;
@@ -302,7 +310,7 @@ address .poweredby {
     margin-left: -2px;
 }
 
-.form_notice #notice_data-attach_selected code {
+.form_notice .attach-status code {
     font-size: 1.2em;
 }
 
@@ -312,13 +320,14 @@ address .poweredby {
     padding: 6px 2px 6px 5px;
 }
 
-.form_notice #notice_data-attach_selected button.close {
+.form_notice .attach-status button.close,
+.form_notice .notice-status button.close {
     float:right;
     font-size:0.8em;
 }
 
-.form_notice #notice_data-geo_wrap label,
-.form_notice #notice_data-geo_wrap input {
+.form_notice .notice_data-geo_wrap label,
+.form_notice .notice_data-geo_wrap input {
     position:absolute;
     top: 55px;
     right: 88px;
@@ -329,11 +338,11 @@ address .poweredby {
     display:block;
 }
 
-.form_notice #notice_data-geo_wrap input {
+.form_notice .notice_data-geo_wrap input {
     visibility:hidden;
 }
 
-.form_notice #notice_data-geo_wrap label {
+.form_notice .notice_data-geo_wrap label {
     font-weight:normal;
     font-size:1em;
     margin-bottom:0;
@@ -348,7 +357,7 @@ address .poweredby {
     opacity: 1;
 }
 
-.form_notice #notice_data-attach {
+.form_notice input.notice_data-attach {
     opacity:0;
 }
 
@@ -919,7 +928,7 @@ outline:none;
 text-indent:-9999px;
 }
 
-.pagination {
+#pagination {
     background-color: #f2f2f2;
     clear: left;
     margin-top: 20px;
@@ -927,19 +936,15 @@ text-indent:-9999px;
     height: 1em;
 }
 
-.pagination dt {
-    display: none;
-}
-
-.pagination li {
+#pagination li {
     display: inline;
 }
 
-.pagination .nav_prev {
+#pagination .nav_prev {
     float: left;
 }
 
-.pagination .nav_next {
+#pagination .nav_next {
     float: right;
 }
 
@@ -1399,7 +1404,7 @@ display:block;
     padding: 4px 4px 4px 26px;
 }
 
-.entity_actions a, .entity_actions p, .entity_actions .entity_subscribe input, .entity_actions .entity_block input, .entity_actions .entity_moderation input, .entity_actions .entity_role input {
+.entity_actions a, .entity_actions p, .entity_actions .entity_subscribe input, .entity_actions .entity_block input, .entity_actions .entity_moderation input, .entity_actions .entity_role input, .entity_actions .entity_nudge input, .entity_actions .entity_delete input {
     background-color: #ccc !important;
     border: none;
 }
@@ -1408,7 +1413,7 @@ display:block;
     padding: 2px 4px 4px 28px;
 }
 
-.entity_actions a:hover, .entity_actions p:hover, .entity_actions .entity_subscribe input:hover, .entity_actions .entity_block input:hover, .entity_actions .entity_moderation input:hover, .entity_actions .entity_role input:hover {
+.entity_actions a:hover, .entity_actions p:hover, .entity_actions .entity_subscribe input:hover, .entity_actions .entity_block input:hover, .entity_actions .entity_moderation input:hover, .entity_actions .entity_role input:hover, .entity_actions .entity_nudge input:hover, .entity_actions .entity_delete input:hover {
     background-color: #f2f2f2 !important;
 }
 
@@ -1454,7 +1459,7 @@ margin-bottom:11px;
 .entity_send-a-message .form_notice select {
 display:none;
 }
-.entity_send-a-message .form_notice #notice_action-submit {
+.entity_send-a-message .form_notice .submit {
     position: absolute;
     top: 52px;
     right: 0px;
@@ -1717,24 +1722,24 @@ body.realtime-popup {
     width: 340px !important;
 }
 
-.realtime-popup .form_notice #notice_action-submit {
+.realtime-popup .form_notice .submit {
     top: 58px !important;
     height: 2em;
     font-size: 0.8em;
     width: 86px;
 }
 
-.realtime-popup .form_notice label[for=notice_data-attach], .form_notice #notice_data-attach {
+.realtime-popup .form_notice label.notice_data-attach {
     right: 70px;
 }
 
-.realtime-popup .form_notice #notice_data-geo_wrap label, .form_notice #notice_data-geo_wrap input {
+.realtime-popup .form_notice .notice_data-geo_wrap label, .realtime-popup .form_notice .notice_data-geo_wrap input {
     right: 2px;
 }
 
 /* icons */
 
-.form_notice label[for=notice_data-attach],
+.form_notice label.notice_data-attach,
 #export_data li a.rss,
 #export_data li a.atom,
 #export_data li a.foaf,
@@ -1754,8 +1759,8 @@ body.realtime-popup {
 .notice-options .notice_delete,
 .notice-options form.form_repeat input.submit,
 #new_group a,
-.pagination .nav_prev a,
-.pagination .nav_next a,
+#pagination .nav_prev a,
+#pagination .nav_next a,
 button.close,
 .form_group_leave input.submit,
 .form_user_unsubscribe input.submit,
@@ -1771,7 +1776,7 @@ button.close,
 .entity_role_administrator input.submit,
 .entity_role_moderator input.submit,
 .notice-options .repeated,
-.form_notice label[for=notice_data-geo],
+.form_notice label.notice_data-geo,
 button.minimize,
 .form_reset_key input.submit,
 .entity_clear input.submit,
@@ -1921,22 +1926,22 @@ background-position:0 -1648px;
 #new_group a {
 background-position:0 -1054px;
 }
-.form_notice label[for=notice_data-attach] {
+.form_notice label.notice_data-attach {
     background-position: 0 -328px;
 }
-.form_notice label[for=notice_data-geo] {
+.form_notice label.notice_data-geo {
     background-position: 0 -1780px;
 }
-.form_notice label[for=notice_data-geo].checked {
+.form_notice label.notice_data-geo.checked {
     background-position: 0 -1846px;
 }
 
-.pagination .nav_prev a {
+#pagination .nav_prev a {
     padding-top: 8px;
     padding-left: 25px;
     background-position:0 -187px;
 }
-.pagination .nav_next a { 
+#pagination .nav_next a { 
     padding-top: 9px;
     padding-right: 25px;
     background-position: 115% -252px;
@@ -1953,8 +1958,27 @@ margin-bottom:18px;
 padding-left:20px;
 }
 
+#input_form_nav { 
+    list-style-type: none;
+}
 
-}/*end of @media screen, projection, tv*/
+#input_form_nav li { 
+    display:inline;
+}
+
+.input_form_nav_tab.current {
+    text-decoration: underline;
+}
+
+.input_form { 
+    display: none;
+}
+
+.input_form.current { 
+    display: block;
+}
+
+/*end of @media screen, projection, tv*/
 
 
 @media print {

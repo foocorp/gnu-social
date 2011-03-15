@@ -47,7 +47,6 @@ require_once INSTALLDIR.'/lib/feedlist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class GroupbyidAction extends Action
 {
     /** group we're viewing. */
@@ -58,7 +57,6 @@ class GroupbyidAction extends Action
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -71,6 +69,7 @@ class GroupbyidAction extends Action
         $id = $this->arg('id');
 
         if (!$id) {
+            // TRANS: Client error displayed referring to a group's permalink without providing a group ID.
             $this->clientError(_('No ID.'));
             return false;
         }
@@ -80,6 +79,7 @@ class GroupbyidAction extends Action
         $this->group = User_group::staticGet('id', $id);
 
         if (!$this->group) {
+            // TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -95,7 +95,6 @@ class GroupbyidAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         common_redirect($this->group->homeUrl(), 303);

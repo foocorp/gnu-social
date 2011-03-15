@@ -42,13 +42,11 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class LoginAction extends Action
 {
     /**
      * Has there been an error?
      */
-
     var $error = null;
 
     /**
@@ -56,10 +54,30 @@ class LoginAction extends Action
      *
      * @return boolean false
      */
-
     function isReadOnly($args)
     {
         return false;
+    }
+
+    /**
+     * Prepare page to run
+     *
+     *
+     * @param $args
+     * @return string title
+     */
+    function prepare($args)
+    {
+        parent::prepare($args);
+
+        // @todo this check should really be in index.php for all sensitive actions
+        $ssl = common_config('site', 'ssl');
+        if (empty($_SERVER['HTTPS']) && ($ssl == 'always' || $ssl == 'sometimes')) {
+            common_redirect(common_local_url('login'));
+            // exit
+        }
+
+        return true;
     }
 
     /**
@@ -71,12 +89,12 @@ class LoginAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
 
         if (common_is_real_login()) {
+            // TRANS: Client error displayed when trying to log in while already logged in.
             $this->clientError(_('Already logged in.'));
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->checkLogin();
@@ -95,8 +113,7 @@ class LoginAction extends Action
      *
      * @return void
      */
-
-    function checkLogin($user_id=null)
+    function checkLogin($user_id=null, $token=null)
     {
         // XXX: login throttle
 
@@ -106,12 +123,14 @@ class LoginAction extends Action
         $user = common_check_user($nickname, $password);
 
         if (!$user) {
+            // TRANS: Form validation error displayed when trying to log in with incorrect credentials.
             $this->showForm(_('Incorrect username or password.'));
             return;
         }
 
         // success!
         if (!common_set_user($user)) {
+            // TRANS: Server error displayed when during login a server error occurs.
             $this->serverError(_('Error setting user. You are probably not authorized.'));
             return;
         }
@@ -147,7 +166,6 @@ class LoginAction extends Action
      *
      * @return void
      */
-
     function showForm($error=null)
     {
         $this->error = $error;
@@ -165,9 +183,9 @@ class LoginAction extends Action
      *
      * @return string title of the page
      */
-
     function title()
     {
+        // TRANS: Page title for login page.
         return _('Login');
     }
 
@@ -179,7 +197,6 @@ class LoginAction extends Action
      *
      * @return void
      */
-
     function showPageNotice()
     {
         if ($this->error) {
@@ -199,7 +216,6 @@ class LoginAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         $this->elementStart('form', array('method' => 'post',
@@ -207,25 +223,32 @@ class LoginAction extends Action
                                           'class' => 'form_settings',
                                           'action' => common_local_url('login')));
         $this->elementStart('fieldset');
+        // TRANS: Form legend on login page.
         $this->element('legend', null, _('Login to site'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
+        // TRANS: Field label on login page.
         $this->input('nickname', _('Nickname'));
         $this->elementEnd('li');
         $this->elementStart('li');
+        // TRANS: Field label on login page.
         $this->password('password', _('Password'));
         $this->elementEnd('li');
         $this->elementStart('li');
+        // TRANS: Checkbox label label on login page.
         $this->checkbox('rememberme', _('Remember me'), false,
+                        // TRANS: Checkbox title on login page.
                         _('Automatically login in the future; ' .
                           'not for shared computers!'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('submit', _('Login'));
+        // TRANS: Button text for log in on login page.
+        $this->submit('submit', _m('BUTTON','Login'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
         $this->elementStart('p');
         $this->element('a', array('href' => common_local_url('recoverpassword')),
+                       // TRANS: Link text for link to "reset password" on login page.
                        _('Lost or forgotten password?'));
         $this->elementEnd('p');
     }
@@ -238,20 +261,23 @@ class LoginAction extends Action
      *
      * @return void
      */
-
     function getInstructions()
     {
         if (common_logged_in() && !common_is_real_login() &&
             common_get_returnto()) {
             // rememberme logins have to reauthenticate before
             // changing any profile settings (cookie-stealing protection)
+            // TRANS: Form instructions on login page before being able to change user settings.
             return _('For security reasons, please re-enter your ' .
                      'user name and password ' .
                      'before changing your settings.');
         } else {
+            // TRANS: Form instructions on login page.
             $prompt = _('Login with your username and password.');
             if (!common_config('site', 'closed') && !common_config('site', 'inviteonly')) {
                 $prompt .= ' ';
+                // TRANS: Form instructions on login page. This message contains Markdown links in the form [Link text](Link).
+                // TRANS: %%action.register%% is a link to the registration page.
                 $prompt .= _('Don\'t have a username yet? ' .
                              '[Register](%%action.register%%) a new account.');
             }
@@ -266,10 +292,13 @@ class LoginAction extends Action
      *
      * @return void
      */
-
     function showLocalNav()
     {
         $nav = new LoginGroupNav($this);
         $nav->show();
+    }
+
+    function showNoticeForm()
+    {
     }
 }

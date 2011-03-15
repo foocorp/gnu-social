@@ -130,4 +130,80 @@ class ActivityContext
         common_log(LOG_ERR, "Ignoring bogus georss:point value $point");
         return null;
     }
+
+    /**
+     * Returns context (StatusNet stuff) as an array suitable for serializing
+     * in JSON. Right now context stuff is an extension to Activity.
+     *
+     * @return array the context
+     */
+
+    function asArray()
+    {
+        $context = array();
+
+        $context['inReplyTo']    = $this->getInReplyToArray();
+        $context['conversation'] = $this->conversation;
+        $context['forwardId']    = $this->forwardID;
+        $context['forwardUrl']   = $this->forwardUrl;
+
+        return array_filter($context);
+    }
+
+    /**
+     * Returns an array of arrays representing Activity Objects (intended to be
+     * serialized in JSON) that represent WHO the Activity is supposed to
+     * be received by. This is not really specified but appears in an example
+     * of the current spec as an extension. We might want to figure out a JSON
+     * serialization for OStatus and use that to express mentions instead.
+     *
+     * XXX: People's ideas on how to do this are all over the place
+     *
+     * @return array the array of recipients
+     */
+
+    function getToArray()
+    {
+        $tos = array();
+
+        foreach ($this->attention as $attnUrl) {
+            $to = array(
+                'objectType' => 'person',
+                'id'         => $attnUrl,
+                'url'        => $attnUrl
+            );
+            $tos[] = $to;
+        }
+
+        return $tos;
+    }
+
+    /**
+     * Return an array for the notices this notice is a reply to 
+     * suitable for serializing as JSON note objects.
+     *
+     * @return array the array of notes
+     */
+
+     function getInReplyToArray()
+     {
+         if (empty($this->replyToID) && empty($this->replyToUrl)) {
+             return null;
+         }
+
+         $replyToObj = array('objectType' => 'note');
+
+         // XXX: Possibly shorten this to just the numeric ID?
+         //      Currently, it's the full URI of the notice.
+         if (!empty($this->replyToID)) {
+             $replyToObj['id'] = $this->replyToID;
+         }
+         if (!empty($this->replyToUrl)) {
+             $replyToObj['url'] = $this->replyToUrl;
+         }
+
+         return $replyToObj;
+     }
+
 }
+

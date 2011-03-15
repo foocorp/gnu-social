@@ -49,12 +49,15 @@ class PeoplesearchAction extends SearchAction
 {
     function getInstructions()
     {
+        // TRANS: Instructions for the "People search" page.
+        // TRANS: %%site.name%% is the name of the StatusNet site.
         return _('Search for people on %%site.name%% by their name, location, or interests. ' .
                   'Separate the terms by spaces; they must be 3 characters or more.');
     }
 
     function title()
     {
+        // TRANS: Title of a page where users can search for other users.
         return _('People search');
     }
 
@@ -80,6 +83,7 @@ class PeoplesearchAction extends SearchAction
                           $page, 'peoplesearch', array('q' => $q));
 
         } else {
+            // TRANS: Message on the "People search" page where a query has no results.
             $this->element('p', 'error', _('No results.'));
             $this->searchSuggestions($q);
             $profile->free();
@@ -136,4 +140,3 @@ class PeopleSearchResultItem extends ProfileListItem
         return preg_replace($this->pattern, '<strong>\\1</strong>', htmlspecialchars($text));
     }
 }
-

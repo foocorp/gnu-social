@@ -1,5 +1,5 @@
-# Translation of StatusNet - Disqus to Belarusian (Taraškievica orthography) (Беларуская (тарашкевіца))
-# Expored from translatewiki.net
+# Translation of StatusNet - Disqus to Belarusian (Taraškievica orthography) (‪Беларуская (тарашкевіца)‬)
+# Exported from translatewiki.net
 #
 # Author: EugeneZelenko
 # Author: Jim-by
@@ -10,20 +10,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Disqus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:41+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:03+0000\n"
 "Language-Team: Belarusian (Taraškievica orthography) <http://translatewiki."
 "net/wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:43:16+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: be-tarask\n"
 "X-Message-Group: #out-statusnet-plugin-disqus\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: DisqusPlugin.php:142
+#. TRANS: User notification that JavaScript is required for Disqus comment display.
 #, php-format
 msgid ""
 "Please enable JavaScript to view the [comments powered by Disqus](http://"
@@ -32,15 +32,15 @@ msgstr ""
 "Калі ласка, дазвольце JavaScript каб праглядзець [камэнтары Disqus](http://"
 "disqus.com/?ref_noscript=%s)."
 
-#: DisqusPlugin.php:149
+#. TRANS: This message is followed by a Disqus logo. Alt text is "Disqus".
 msgid "Comments powered by "
 msgstr "Камэнтары працуюць з дапамогай "
 
-#: DisqusPlugin.php:201
+#. TRANS: Plugin supplied feature for Disqus comments to notices.
 msgid "Comments"
 msgstr "Камэнтары"
 
-#: DisqusPlugin.php:241
+#. TRANS: Plugin description.
 msgid ""
 "Use <a href=\"http://disqus.com/\">Disqus</a> to add commenting to notice "
 "pages."

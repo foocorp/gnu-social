@@ -122,7 +122,7 @@ class SitemapPlugin extends Plugin
                           'day' => '[0123][0-9]',
                           'index' => '[1-9][0-9]*'));
 
-        $m->connect('admin/sitemap',
+        $m->connect('panel/sitemap',
                     array('action' => 'sitemapadminpanel'));
 
         return true;

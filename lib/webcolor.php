@@ -45,7 +45,6 @@ class WebColor {
      *
      * @return nothing
      */
-
     function __construct($color = null)
     {
         if (isset($color)) {
@@ -77,7 +76,9 @@ class WebColor {
             if (preg_match('/(#([0-9A-Fa-f]{3,6})\b)/u', $color) > 0) {
                 $this->setHexColor($color);
             } else {
-                $errmsg = _('%s is not a valid color!');
+                // TRANS: Web color exception thrown when a hexadecimal color code does not validate.
+                // TRANS: %s is the provided (invalid) color code.
+                $errmsg = _('%s is not a valid color! Use 3 or 6 hex characters.');
                 throw new WebColorException(sprintf($errmsg, $color));
             }
         }
@@ -115,8 +116,8 @@ class WebColor {
                                      $hexcolor[1].$hexcolor[1],
                                      $hexcolor[2].$hexcolor[2]);
         } else {
-            // TRANS: Validation error for a web colour.
-            // TRANS: %s is the provided (invalid) text for colour.
+            // TRANS: Web color exception thrown when a hexadecimal color code does not validate.
+            // TRANS: %s is the provided (invalid) color code.
             $errmsg = _('%s is not a valid color! Use 3 or 6 hex characters.');
             throw new WebColorException(sprintf($errmsg, $hexcolor));
         }

@@ -35,6 +35,7 @@ require_once INSTALLDIR.'/extlib/libomb/service_provider.php';
 require_once INSTALLDIR.'/extlib/libomb/profile.php';
 define('TIMESTAMP_THRESHOLD', 300);
 
+// @todo FIXME: Missing documentation.
 class UserauthorizationAction extends Action
 {
     var $error;
@@ -69,6 +70,8 @@ class UserauthorizationAction extends Action
             $profile = $user->getProfile();
             if (!$profile) {
                 common_log_db_error($user, 'SELECT', __FILE__);
+                // TRANS: Server error displayed when trying to authorise a remote subscription request
+                // TRANS: while the user has no profile.
                 $this->serverError(_('User without matching profile.'));
                 return;
             }
@@ -102,16 +105,18 @@ class UserauthorizationAction extends Action
 
     function title()
     {
+        // TRANS: Page title.
         return _('Authorize subscription');
     }
 
     function showPageNotice()
     {
+        // TRANS: Page notice on "Auhtorize subscription" page.
         $this->element('p', null, _('Please check these details to make sure '.
                                     'that you want to subscribe to this ' .
                                     'user’s notices. If you didn’t just ask ' .
                                     'to subscribe to someone’s notices, '.
-                                    'click “Reject”.'));
+                                    'click "Reject".'));
     }
 
     function showContent()
@@ -128,79 +133,56 @@ class UserauthorizationAction extends Action
         $avatar   = $params->getAvatarURL();
 
         $this->elementStart('div', 'entity_profile vcard');
-        $this->elementStart('dl', 'entity_depiction');
-        $this->element('dt', null, _('Photo'));
-        $this->elementStart('dd');
+
         if ($avatar) {
             $this->element('img', array('src' => $avatar,
-                                        'class' => 'photo avatar',
+                                        'class' => 'photo avatar entity_depiction',
                                         'width' => AVATAR_PROFILE_SIZE,
                                         'height' => AVATAR_PROFILE_SIZE,
                                         'alt' => $nickname));
         }
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
 
-        $this->elementStart('dl', 'entity_nickname');
-        $this->element('dt', null, _('Nickname'));
-        $this->elementStart('dd');
+        $this->element('div', 'entity_nickname', _('Nickname'));
+
         $hasFN = ($fullname !== '') ? 'nickname' : 'fn nickname';
+
+        // XXX: why are these raw() instead of escaped...?
+
         $this->elementStart('a', array('href' => $profile,
                                        'class' => 'url '.$hasFN));
         $this->raw($nickname);
         $this->elementEnd('a');
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
 
         if (!is_null($fullname)) {
-            $this->elementStart('dl', 'entity_fn');
-            $this->elementStart('dd');
-            $this->elementStart('span', 'fn');
+            $this->elementStart('div', 'fn entity_fn');
             $this->raw($fullname);
-            $this->elementEnd('span');
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
+            $this->elementEnd('div');
         }
+
         if (!is_null($location)) {
-            $this->elementStart('dl', 'entity_location');
-            $this->element('dt', null, _('Location'));
-            $this->elementStart('dd', 'label');
+            $this->elementStart('div', 'label entity_location');
             $this->raw($location);
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
         }
 
         if (!is_null($homepage)) {
-            $this->elementStart('dl', 'entity_url');
-            $this->element('dt', null, _('URL'));
-            $this->elementStart('dd');
             $this->elementStart('a', array('href' => $homepage,
-                                                'class' => 'url'));
+                                           'class' => 'url entity_url'));
             $this->raw($homepage);
             $this->elementEnd('a');
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
         }
 
         if (!is_null($bio)) {
-            $this->elementStart('dl', 'entity_note');
-            $this->element('dt', null, _('Note'));
-            $this->elementStart('dd', 'note');
+            $this->elementStart('div', 'note entity_note');
             $this->raw($bio);
             $this->elementEnd('dd');
-            $this->elementEnd('dl');
         }
 
         if (!is_null($license)) {
-            $this->elementStart('dl', 'entity_license');
-            $this->element('dt', null, _('License'));
-            $this->elementStart('dd', 'license');
             $this->element('a', array('href' => $license,
-                                      'class' => 'license'),
+                                      'class' => 'license entity_license'),
                            $license);
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
         }
+
         $this->elementEnd('div');
 
         $this->elementStart('div', 'entity_actions');
@@ -214,10 +196,14 @@ class UserauthorizationAction extends Action
                                                          'userauthorization')));
         $this->hidden('token', common_session_token());
 
-        $this->submit('accept', _('Accept'), 'submit accept', null,
-                      _('Subscribe to this user'));
-        $this->submit('reject', _('Reject'), 'submit reject', null,
-                      _('Reject this subscription'));
+        // TRANS: Button text on Authorise Subscription page.
+        $this->submit('accept', _m('BUTTON','Accept'), 'submit accept', null,
+                      // TRANS: Title for button on Authorise Subscription page.
+                      _('Subscribe to this user.'));
+        // TRANS: Button text on Authorise Subscription page.
+        $this->submit('reject', _m('BUTTON','Reject'), 'submit reject', null,
+                      // TRANS: Title for button on Authorise Subscription page.
+                      _('Reject this subscription.'));
         $this->elementEnd('form');
         $this->elementEnd('li');
         $this->elementEnd('ul');
@@ -229,6 +215,7 @@ class UserauthorizationAction extends Action
         $srv = $this->getStoredParams();
 
         if (is_null($srv)) {
+            // TRANS: Client error displayed for an empty authorisation request.
             $this->clientError(_('No authorization request!'));
             return;
         }
@@ -251,7 +238,9 @@ class UserauthorizationAction extends Action
 
     function showAcceptMessage($tok)
     {
+        // TRANS: Accept message header from Authorise subscription page.
         common_show_header(_('Subscription authorized'));
+        // TRANS: Accept message text from Authorise subscription page.
         $this->element('p', null,
                        _('The subscription has been authorized, but no '.
                          'callback URL was passed. Check with the site’s ' .
@@ -263,7 +252,9 @@ class UserauthorizationAction extends Action
 
     function showRejectMessage()
     {
+        // TRANS: Reject message header from Authorise subscription page.
         common_show_header(_('Subscription rejected'));
+        // TRANS: Reject message from Authorise subscription page.
         $this->element('p', null,
                        _('The subscription has been rejected, but no '.
                          'callback URL was passed. Check with the site’s ' .
@@ -300,18 +291,24 @@ class UserauthorizationAction extends Action
 
         $user = User::staticGet('uri', $listener);
         if (!$user) {
-            throw new Exception(sprintf(_('Listener URI ‘%s’ not found here.'),
+            // TRANS: Exception thrown when no valid user is found for an authorisation request.
+            // TRANS: %s is a listener URI.
+            throw new Exception(sprintf(_('Listener URI "%s" not found here.'),
                                         $listener));
         }
 
         if (strlen($listenee) > 255) {
-            throw new Exception(sprintf(_('Listenee URI ‘%s’ is too long.'),
+            // TRANS: Exception thrown when listenee URI is too long for an authorisation request.
+            // TRANS: %s is a listenee URI.
+            throw new Exception(sprintf(_('Listenee URI "%s" is too long.'),
                                         $listenee));
         }
 
         $other = User::staticGet('uri', $listenee);
         if ($other) {
-            throw new Exception(sprintf(_('Listenee URI ‘%s’ is a local user.'),
+            // TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
+            // TRANS: %s is a listenee URI.
+            throw new Exception(sprintf(_('Listenee URI "%s" is a local user.'),
                                         $listenee));
         }
 
@@ -321,12 +318,15 @@ class UserauthorizationAction extends Action
             $sub->subscriber = $user->id;
             $sub->subscribed = $remote->id;
             if ($sub->find(true)) {
+                // TRANS: Exception thrown when already subscribed.
                 throw new Exception('You are already subscribed to this user.');
             }
         }
 
         if ($profile == common_profile_url($nickname)) {
-            throw new Exception(sprintf(_('Profile URL ‘%s’ is for a local user.'),
+            // TRANS: Exception thrown when profile URL is a local user for an authorisation request.
+            // TRANS: %s is a profile URL.
+            throw new Exception(sprintf(_('Profile URL "%s" is for a local user.'),
                                         $profile));
 
         }
@@ -334,26 +334,34 @@ class UserauthorizationAction extends Action
         $license      = $_GET['omb_listenee_license'];
         $site_license = common_config('license', 'url');
         if (!common_compatible_license($license, $site_license)) {
-            throw new Exception(sprintf(_('Listenee stream license ‘%1$s’ is not ' .
-                                          'compatible with site license ‘%2$s’.'),
+            // TRANS: Exception thrown when licenses are not compatible for an authorisation request.
+            // TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
+            throw new Exception(sprintf(_('Listenee stream license "%1$s" is not ' .
+                                          'compatible with site license "%2$s".'),
                                         $license, $site_license));
         }
 
         $avatar = $_GET['omb_listenee_avatar'];
         if ($avatar) {
             if (!common_valid_http_url($avatar) || strlen($avatar) > 255) {
-                throw new Exception(sprintf(_('Avatar URL ‘%s’ is not valid.'),
+                // TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
+                // TRANS: %s is an avatar URL.
+                throw new Exception(sprintf(_('Avatar URL "%s" is not valid.'),
                                             $avatar));
             }
             $size = @getimagesize($avatar);
             if (!$size) {
-                throw new Exception(sprintf(_('Can’t read avatar URL ‘%s’.'),
+                // TRANS: Exception thrown when avatar URL could not be read for an authorisation request.
+                // TRANS: %s is an avatar URL.
+                throw new Exception(sprintf(_('Cannot read avatar URL "%s".'),
                                             $avatar));
             }
             if (!in_array($size[2], array(IMAGETYPE_GIF, IMAGETYPE_JPEG,
                                           IMAGETYPE_PNG))) {
+                // TRANS: Exception thrown when avatar URL return an invalid image type for an authorisation request.
+                // TRANS: %s is an avatar URL.
                 throw new Exception(sprintf(_('Wrong image type for avatar URL '.
-                                              '‘%s’.'), $avatar));
+                                              '"%s".'), $avatar));
             }
         }
     }

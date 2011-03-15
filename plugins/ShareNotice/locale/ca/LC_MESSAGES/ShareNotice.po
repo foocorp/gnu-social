@@ -1,0 +1,50 @@
+# Translation of StatusNet - ShareNotice to Catalan (Català)
+# Exported from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ShareNotice\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:11+0000\n"
+"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:47:12+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-sharenotice\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Leave this message unchanged.
+#. TRANS: %s is notice content that is shared on Twitter, Facebook or another platform.
+#, php-format
+msgid "\"%s\""
+msgstr "«%s»"
+
+#. TRANS: Tooltip for image to share a notice on Twitter.
+msgid "Share on Twitter"
+msgstr "Comparteix al Twitter"
+
+#. TRANS: Tooltip for image to share a notice on another platform (other than Twitter or Facebook).
+#. TRANS: %s is a host name.
+#, php-format
+msgid "Share on %s"
+msgstr "Comparteix a %s"
+
+#. TRANS: Tooltip for image to share a notice on Facebook.
+msgid "Share on Facebook"
+msgstr "Comparteix al Facebook"
+
+#. TRANS: Plugin description.
+msgid ""
+"This plugin allows sharing of notices to Twitter, Facebook and other "
+"platforms."
+msgstr ""
+"Aquest connector permet compartir avisos al Twitter, al Facebook i a altres "
+"plataformes."

@@ -1,0 +1,10 @@
+.poll-block {
+    float: left;
+    height: 16px;
+    background: #8aa;
+    margin-right: 8px;
+}
+
+.poll-winner {
+    background: #4af;
+}

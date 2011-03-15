@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class RobotstxtAction extends Action
 {
     /**
@@ -53,7 +52,6 @@ class RobotstxtAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         if (Event::handle('StartRobotsTxt', array($this))) {
@@ -65,9 +63,7 @@ class RobotstxtAction extends Action
             if (common_config('site', 'private')) {
 
                 print "Disallow: /\n";
-
             } else {
-
                 $disallow = common_config('robotstxt', 'disallow');
 
                 foreach ($disallow as $dir) {
@@ -92,7 +88,6 @@ class RobotstxtAction extends Action
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;

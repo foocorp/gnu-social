@@ -42,6 +42,21 @@ class HashTagDetectionTests extends PHPUnit_Framework_TestCase
                            'say {#<span class="tag"><a href="' . common_local_url('tag', array('tag' => common_canonical_tag('hello'))) . '" rel="tag">hello</a></span>} people'),
                      array('say \'#hello\' people',
                            'say \'#<span class="tag"><a href="' . common_local_url('tag', array('tag' => common_canonical_tag('hello'))) . '" rel="tag">hello</a></span>\' people'),
+
+                     // Unicode legit letters
+                     array('#éclair yummy',
+                           '#<span class="tag"><a href="' . common_local_url('tag', array('tag' => common_canonical_tag('éclair'))) . '" rel="tag">éclair</a></span> yummy'),
+                     array('#维基百科 zh.wikipedia!',
+                           '#<span class="tag"><a href="' . common_local_url('tag', array('tag' => common_canonical_tag('维基百科'))) . '" rel="tag">维基百科</a></span> zh.wikipedia!'),
+                     array('#Россия russia',
+                           '#<span class="tag"><a href="' . common_local_url('tag', array('tag' => common_canonical_tag('Россия'))) . '" rel="tag">Россия</a></span> russia'),
+
+                     // Unicode punctuators -- the ideographic "，" separates the tag, just as "," does
+                     array('#维基百科,zh.wikipedia!',
+                           '#<span class="tag"><a href="' . common_local_url('tag', array('tag' => common_canonical_tag('维基百科'))) . '" rel="tag">维基百科</a></span>,zh.wikipedia!'),
+                     array('#维基百科，zh.wikipedia!',
+                           '#<span class="tag"><a href="' . common_local_url('tag', array('tag' => common_canonical_tag('维基百科'))) . '" rel="tag">维基百科</a></span>，zh.wikipedia!'),
+
                      );
     }
 }

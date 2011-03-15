@@ -37,6 +37,9 @@
  * @license  GNU Affero General Public License http://www.gnu.org/licenses/
  */
 
+$_startTime = microtime(true);
+$_perfCounters = array();
+
 define('INSTALLDIR', dirname(__FILE__));
 define('STATUSNET', true);
 define('LACONICA', true); // compatibility
@@ -219,7 +222,7 @@ function main()
 {
     // fake HTTP redirects using lighttpd's 404 redirects
     if (strpos($_SERVER['SERVER_SOFTWARE'], 'lighttpd') !== false) {
-        $_lighty_url = $base_url.$_SERVER['REQUEST_URI'];
+        $_lighty_url = $_SERVER['REQUEST_URI'];
         $_lighty_url = @parse_url($_lighty_url);
 
         if ($_lighty_url['path'] != '/index.php' && $_lighty_url['path'] != '/') {

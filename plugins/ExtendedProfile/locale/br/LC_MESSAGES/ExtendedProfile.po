@@ -1,0 +1,97 @@
+# Translation of StatusNet - ExtendedProfile to Breton (Brezhoneg)
+# Exported from translatewiki.net
+#
+# Author: Y-M D
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ExtendedProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:09+0000\n"
+"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 20:42:39+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: br\n"
+"X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "UI extensions for additional profile fields."
+msgstr ""
+
+#. TRANS: Link description in user account settings menu.
+msgid "Details"
+msgstr "Munudoù"
+
+msgid "More details..."
+msgstr "Muoic'h a vunudoù..."
+
+msgid "Personal"
+msgstr "Personel"
+
+msgid "Full name"
+msgstr "Anv klok"
+
+msgid "Title"
+msgstr "Titl"
+
+msgid "Manager"
+msgstr "Merour"
+
+msgid "Location"
+msgstr "Lec'hiadur"
+
+msgid "Bio"
+msgstr "Buhezskrid"
+
+msgid "Tags"
+msgstr "Balizennoù"
+
+msgid "Contact"
+msgstr "Darempred"
+
+msgid "Phone"
+msgstr "Pellgomz"
+
+msgid "IM"
+msgstr "IM"
+
+msgid "Websites"
+msgstr "Lec'hiennoù web"
+
+msgid "Birthday"
+msgstr "Deiz-ha-bloaz"
+
+msgid "Spouse's name"
+msgstr ""
+
+msgid "Kids' names"
+msgstr "Anv ar vugale"
+
+msgid "Work experience"
+msgstr "Skiant-prenet"
+
+msgid "Employer"
+msgstr ""
+
+msgid "Education"
+msgstr "Deskadurezh"
+
+msgid "Institution"
+msgstr "Ensavadur"
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Aozañ arventennoù ledanet ar profil"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Aozañ"
+
+msgid "Extended profile settings"
+msgstr "Arventennoù ledanet ar profil"

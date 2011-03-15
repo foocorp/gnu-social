@@ -47,15 +47,26 @@
 			return true;
 		return false;
 	};
-	$(document).ready(function(){
-		var tArea = $("#notice_data-text");
-		var tCleaner = new RegExp('@[^ ]+|![^ ]+|#[^ ]+|^RT[: ]{1}| RT | RT: |^RD[: ]{1}| RD | RD: |[♺♻:]+', 'g')
-		tArea.keyup(function(){
-			var cleaned = tArea.val().replace(tCleaner, '').replace(/^[ ]+/, '');
-			if($().isRTL(cleaned))
-				tArea.css('direction', 'rtl');
-			else
-				tArea.css('direction', 'ltr');
-		});
-	});
+    var origInit = SN.Init.NoticeFormSetup;
+    SN.Init.NoticeFormSetup = function(form) {
+        origInit(form);
+        var tArea = form.find(".notice_data-text:first");
+        if (tArea.length > 0) {
+            var tCleaner = new RegExp('@[^ ]+|![^ ]+|#[^ ]+|^RT[: ]{1}| RT | RT: |^RD[: ]{1}| RD | RD: |[♺♻:]+', 'g')
+            var ping = function(){
+                var cleaned = tArea.val().replace(tCleaner, '').replace(/^[ ]+/, '');
+                if($().isRTL(cleaned))
+                    tArea.css('direction', 'rtl');
+                else
+                    tArea.css('direction', 'ltr');
+            };
+            tArea.bind('keyup cut paste', function() {
+                // cut/paste trigger before the change
+                window.setTimeout(ping, 0);
+            });
+            form.bind('reset', function() {
+                tArea.css('direction', 'ltr');
+            });
+        }
+    };
 })(jQuery);

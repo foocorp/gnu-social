@@ -30,12 +30,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/mailbox.php';
-
 /**
  * Show a single message
- *
- * // XXX: It is totally weird how this works!
  *
  * @category Personal
  * @package  StatusNet
@@ -43,7 +39,8 @@ require_once INSTALLDIR.'/lib/mailbox.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ShowmessageAction extends MailboxAction
+
+class ShowmessageAction extends Action
 {
     /**
      * Message object to show
@@ -82,22 +79,20 @@ class ShowmessageAction extends MailboxAction
 
         $this->user = common_current_user();
 
+        if (empty($this->user) ||
+            ($this->user->id != $this->message->from_profile &&
+             $this->user->id != $this->message->to_profile)) {
+            // TRANS: Client error displayed requesting a single direct message the requesting user was not a party in.
+            throw new ClientException(_('Only the sender and recipient ' .
+                                        'may read this message.'), 403);
+        }
+
         return true;
     }
 
     function handle($args)
     {
-        Action::handle($args);
-
-        if ($this->user && ($this->user->id == $this->message->from_profile ||
-            $this->user->id == $this->message->to_profile)) {
-                $this->showPage();
-        } else {
-            // TRANS: Client error displayed requesting a single direct message the requesting user was not a party in.
-            $this->clientError(_('Only the sender and recipient ' .
-                'may read this message.'), 403);
-            return;
-        }
+        $this->showPage();
     }
 
     function title()
@@ -121,12 +116,38 @@ class ShowmessageAction extends MailboxAction
         }
     }
 
-    function getMessages()
+
+    function showContent()
     {
-        $message     = new Message();
-        $message->id = $this->message->id;
-        $message->find();
-        return $message;
+        $this->elementStart('ul', 'notices messages');
+        $ml = new ShowMessageListItem($this, $this->message, $this->user);
+        $ml->show();
+        $this->elementEnd('ul');
+    }
+
+    function isReadOnly($args)
+    {
+        return true;
+    }
+
+    /**
+     * Don't show aside
+     *
+     * @return void
+     */
+
+    function showAside() {
+    }
+}
+
+class ShowMessageListItem extends MessageListItem
+{
+    var $user;
+
+    function __construct($out, $message, $user)
+    {
+        parent::__construct($out, $message);
+        $this->user = $user;
     }
 
     function getMessageProfile()
@@ -139,47 +160,5 @@ class ShowmessageAction extends MailboxAction
             // This shouldn't happen
             return null;
         }
-    }
-
-    /**
-     * Don't show local navigation
-     *
-     * @return void
-     */
-    function showLocalNavBlock()
-    {
-    }
-
-    /**
-     * Don't show page notice
-     *
-     * @return void
-     */
-    function showPageNoticeBlock()
-    {
-    }
-
-    /**
-     * Don't show aside
-     *
-     * @return void
-     */
-    function showAside()
-    {
-    }
-
-    /**
-     * Don't show any instructions
-     *
-     * @return string
-     */
-    function getInstructions()
-    {
-        return '';
-    }
-
-    function isReadOnly($args)
-    {
-        return true;
     }
 }

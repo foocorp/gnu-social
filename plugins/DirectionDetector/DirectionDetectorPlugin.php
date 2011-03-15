@@ -129,7 +129,7 @@ class DirectionDetectorPlugin extends Plugin {
      */
     function onEndShowScripts($action){
         if (common_logged_in()) {
-            $action->script('plugins/DirectionDetector/jquery.DirectionDetector.js');
+            $action->script($this->path('jquery.DirectionDetector.js'));
         }
     }
 

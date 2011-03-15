@@ -141,7 +141,7 @@ class ApiDirectMessageNewAction extends ApiAuthAction
         } else if (!$this->user->mutuallySubscribed($this->other)) {
             $this->clientError(
                 // TRANS: Client error displayed trying to direct message another user who's not a friend (403).
-                _('Can\'t send direct messages to users who aren\'t your friend.'),
+                _('Cannot send direct messages to users who aren\'t your friend.'),
                 403,
                 $this->format
             );

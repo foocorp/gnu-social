@@ -1,0 +1,108 @@
+Facebook Bridge Plugin
+
+The Facebook Bridge plugin allows you to integrate your StatusNet site
+with Facebook. It uses Facebook's new SDKs, the Graph API and OAuth
+2.0, and supercedes the previous "Facebook" plugin, which relied on the
+Facebook's now deprecated "Old REST API". The other major difference is
+the troublesome and confusing Facebook Canvas Application has been
+removed.
+
+Note: Do NOT try to run the old Facebook plugin and this plugin at the same
+time. It won't work.
+
+Features for the new Facebook Bridge Plugin:
+
+- "Login with Facebook" (AKA single-sign-on using Facebook Connect for
+  authentication).
+
+- Registration with Facebook Connect, including automatic profile creation
+  based on users' Facebook accounts.
+
+- Post mirroring -- posting a notice on StatusNet automatically creates a post
+  on Facebook, deleting it on StatusNet deletes it on Facebook, and faving it
+  "likes" it on Facebook.
+
+
+Upgrading from the old Facebook plugin
+======================================
+
+Remove the addPlugin('Facebook') statement for the old Facebook plugin
+from your config.php and adjust your existing Facebook application using
+the setup instructions below as a guide, then enable the new plugin (also
+described below). Existing users who have setup post mirroring shouldn't
+have to do anything. The new Facebook Bridge plugin will keep their notices
+flowing to Facebook.
+
+Setup
+=====
+
+There are two parts configuring the Facebook Bridge plugin -- setup on the
+Facebook side, and setup on the StatusNet side.
+
+Setup (Facebook side)
+=====================
+
+The first step is to login to Facebook and register a Facebook application
+to get an application ID and secret.
+
+Use the handy Facebook application setup wizard:
+
+http://developers.facebook.com/setup/
+
+Once you've set up your application, you'll need to enter the Facebook Developer
+dashboard (http://www.facebook.com/developers/editapp.php?app_id=YOUR_APPLICATION_ID)
+and customize a few things:
+
+About tab
+---------
+
+Set your logos, application description, etc. as you see fit.
+
+Web Site tab
+------------
+
+Make a note of the "Application ID" and "Application Secret" Facebook generated
+for your application. You'll need both of those later.
+
+Make sure "Site URL" points to your StatusNet installation
+(e.g.: http://example.net/).
+
+- Special Note for multi-site Status Networks: enter your domain (SLD and TLD)
+  in the "Site Domain" field. (e.g.: status.net). This will allow a single
+  Facebook Application to work with all your network subdomains (*.status.net).
+
+Facebook Integration tab
+------------------------
+
+Use the default settings.
+
+Mobile and Devices tab
+----------------------
+
+Use the default settings.
+
+Advanced tab
+------------
+
+In the Authentication section, set the "Deauthorize Callback" to
+http://YOURSITE/facebook/deauthorize (e.g.: http://example.net/facebook/deauthorize).
+
+In the Migrations section, ensure that "OAuth 2.0 for Canvas" is set to
+"Enabled". It probably already will be, but double check.
+
+The default settings should suffice for everything else.
+
+Setup (StatusNet side)
+======================
+
+To enable the Facebook Bridge plugin, add
+
+    addPlugin('FacebookBridge');
+
+to you config.php.
+
+Next login to your StatusNet site as a user with the administrator role, and
+navigate to the admin menu. You should see a new tab for the Facebook admin
+panel, titled "Facebook".  Enter your Facebook application ID and secret in
+that admin panel and hit save. After that, the Facebook Bridge Plugin should
+be ready to use.

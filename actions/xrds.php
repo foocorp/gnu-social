@@ -1,5 +1,4 @@
 <?php
-
 /**
  * XRDS for OpenMicroBlogging
  *
@@ -61,13 +60,14 @@ class XrdsAction extends Action
     {
         return true;
     }
-    
+
     function prepare($args)
     {
         parent::prepare($args);
         $nickname = $this->trimmed('nickname');
         $this->user     = User::staticGet('nickname', $nickname);
         if (!$this->user) {
+            // TRANS: Client error displayed providing a non-existing nickname.
             $this->clientError(_('No such user.'));
             return;
         }
@@ -110,7 +110,7 @@ class XrdsAction extends Action
                             null,
                             array(OAUTH_AUTH_HEADER, OAUTH_POST_BODY, OAUTH_HMAC_SHA1));
         $xrdsOutputter->elementEnd('XRD');
-        
+
         //omb
         $xrdsOutputter->elementStart('XRD', array('xmlns' => 'xri://$xrd*($v*2.0)',
                                           'xml:id' => 'omb',
@@ -122,7 +122,7 @@ class XrdsAction extends Action
         $xrdsOutputter->showXrdsService(OMB_ENDPOINT_UPDATEPROFILE,
                             common_local_url('updateprofile'));
         $xrdsOutputter->elementEnd('XRD');
-        
+
         Event::handle('EndUserXRDS', array($this,&$xrdsOutputter));
 
         //misc
@@ -135,7 +135,5 @@ class XrdsAction extends Action
         $xrdsOutputter->elementEnd('XRD');
 
         $xrdsOutputter->endXRDS();
-        
     }
 }
-?>

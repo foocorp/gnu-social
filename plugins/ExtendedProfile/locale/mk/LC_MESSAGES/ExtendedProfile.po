@@ -1,0 +1,97 @@
+# Translation of StatusNet - ExtendedProfile to Macedonian (Македонски)
+# Exported from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ExtendedProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:09+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 20:42:39+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+msgid "UI extensions for additional profile fields."
+msgstr "Посреднички дадатоци за дополнителни полиња во профилот."
+
+#. TRANS: Link description in user account settings menu.
+msgid "Details"
+msgstr "Подробности"
+
+msgid "More details..."
+msgstr "Поподробно..."
+
+msgid "Personal"
+msgstr "Лично"
+
+msgid "Full name"
+msgstr "Име и презиме"
+
+msgid "Title"
+msgstr "Звање"
+
+msgid "Manager"
+msgstr "Раководител"
+
+msgid "Location"
+msgstr "Место"
+
+msgid "Bio"
+msgstr "Био"
+
+msgid "Tags"
+msgstr "Ознаки"
+
+msgid "Contact"
+msgstr "Контакт"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "IM"
+msgstr "IM"
+
+msgid "Websites"
+msgstr "Мрежни места"
+
+msgid "Birthday"
+msgstr "Роденден"
+
+msgid "Spouse's name"
+msgstr "Име на сопружникот"
+
+msgid "Kids' names"
+msgstr "Имиња на децата"
+
+msgid "Work experience"
+msgstr "Работно искуство"
+
+msgid "Employer"
+msgstr "Работодавач"
+
+msgid "Education"
+msgstr "Образование"
+
+msgid "Institution"
+msgstr "Установа"
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Уреди проширени профилни нагодувања"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Уреди"
+
+msgid "Extended profile settings"
+msgstr "Проширени профилни нагодувања"

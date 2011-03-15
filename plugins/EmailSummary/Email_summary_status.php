@@ -82,10 +82,10 @@ class Email_summary_status extends Memcached_DataObject
     function table()
     {
         return array('user_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-		     'send_summary' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
-		     'last_summary_id' => DB_DATAOBJECT_INT,
-		     'created' => DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
-		     'modified' => DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
+                     'send_summary' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
+                     'last_summary_id' => DB_DATAOBJECT_INT,
+                     'created' => DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
+                     'modified' => DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
     }
 
     /**
@@ -139,11 +139,11 @@ class Email_summary_status extends Memcached_DataObject
     {
         $ess = Email_summary_status::staticGet('user_id', $user_id);
 
-	if (!empty($ess)) {
-	    return $ess->send_summary;
-	} else {
-	    return 1;
-	}
+        if (!empty($ess)) {
+            return $ess->send_summary;
+        } else {
+            return 1;
+        }
     }
 
     /**
@@ -158,10 +158,10 @@ class Email_summary_status extends Memcached_DataObject
     {
         $ess = Email_summary_status::staticGet('user_id', $user_id);
 	
-	if (!empty($ess)) {
-	    return $ess->last_summary_id;
-	} else {
-	    return null;
-	}
+        if (!empty($ess)) {
+            return $ess->last_summary_id;
+        } else {
+            return null;
+        }
     }
 }

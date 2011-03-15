@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Menu for search actions
+ * Menu for search group of actions
  *
  * PHP version 5
  *
@@ -22,7 +22,7 @@
  * @category  Menu
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2008 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -31,12 +31,10 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/widget.php';
-
 /**
  * Menu for public group of actions
  *
- * @category Output
+ * @category Menu
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
@@ -45,9 +43,8 @@ require_once INSTALLDIR.'/lib/widget.php';
  * @see      Widget
  */
 
-class SearchGroupNav extends Widget
+class SearchGroupNav extends Menu
 {
-    var $action = null;
     var $q = null;
 
     /**
@@ -59,7 +56,6 @@ class SearchGroupNav extends Widget
     function __construct($action=null, $q = null)
     {
         parent::__construct($action);
-        $this->action = $action;
         $this->q = $q;
     }
 

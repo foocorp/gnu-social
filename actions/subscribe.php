@@ -53,7 +53,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 class SubscribeAction extends Action
 {
     var $user;
@@ -66,7 +65,6 @@ class SubscribeAction extends Action
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -74,6 +72,8 @@ class SubscribeAction extends Action
         // Only allow POST requests
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            // TRANS: Client error displayed trying to perform any request method other than POST.
+            // TRANS: Do not translate POST.
             $this->clientError(_('This action only accepts POST requests.'));
             return false;
         }
@@ -83,6 +83,7 @@ class SubscribeAction extends Action
         $token = $this->trimmed('token');
 
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token is not okay.
             $this->clientError(_('There was a problem with your session token.'.
                                  ' Try again, please.'));
             return false;
@@ -93,6 +94,7 @@ class SubscribeAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed trying to subscribe when not logged in.
             $this->clientError(_('Not logged in.'));
             return false;
         }
@@ -104,6 +106,7 @@ class SubscribeAction extends Action
         $this->other = Profile::staticGet('id', $other_id);
 
         if (empty($this->other)) {
+            // TRANS: Client error displayed trying to subscribe to a non-existing profile.
             $this->clientError(_('No such profile.'));
             return false;
         }
@@ -114,6 +117,7 @@ class SubscribeAction extends Action
         $omb01 = Remote_profile::staticGet('id', $other_id);
 
         if (!empty($omb01)) {
+            // TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
             $this->clientError(_('You cannot subscribe to an OMB 0.1'.
                                  ' remote profile with this action.'));
             return false;
@@ -131,7 +135,6 @@ class SubscribeAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         // Throws exception on error
@@ -142,6 +145,7 @@ class SubscribeAction extends Action
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
+            // TRANS: Page title when subscription succeeded.
             $this->element('title', null, _('Subscribed'));
             $this->elementEnd('head');
             $this->elementStart('body');

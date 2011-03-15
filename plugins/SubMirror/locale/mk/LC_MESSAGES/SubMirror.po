@@ -1,5 +1,5 @@
 # Translation of StatusNet - SubMirror to Macedonian (Македонски)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Bjankuloski06
 # --
@@ -9,131 +9,109 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:59+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:18+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:46:18+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:23+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
-#: SubMirrorPlugin.php:90
-msgid "Pull feeds into your timeline!"
-msgstr "Повлекувајте каналски емитувања во Вашата хронологија!"
-
-#. TRANS: SubMirror plugin menu item on user settings page.
-#: SubMirrorPlugin.php:109
-msgctxt "MENU"
-msgid "Mirroring"
-msgstr "Отсликување"
-
-#. TRANS: SubMirror plugin tooltip for user settings menu item.
-#: SubMirrorPlugin.php:111
-msgid "Configure mirroring of posts from other feeds"
-msgstr "Нагодување на отсликувањето на објавите од други канали"
-
-#: lib/editmirrorform.php:83
-msgctxt "LABEL"
-msgid "Remote feed:"
-msgstr "Далечински канал:"
-
-#: lib/editmirrorform.php:87
-msgctxt "LABEL"
-msgid "Local user"
-msgstr "Локален корисник"
-
-#: lib/editmirrorform.php:93
-msgid "Mirroring style"
-msgstr "Стил на отсликување"
-
-#: lib/editmirrorform.php:95
-msgid ""
-"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
-msgstr ""
-"Повторување: наведете ја објавата на изворниот корисник (понекогаш се "
-"прикажува како „RT @blah“)"
-
-#: lib/editmirrorform.php:96
-msgid "Repost the content under my account"
-msgstr "Објави ја содржината под мојата сметка"
-
-#: lib/editmirrorform.php:115
-msgid "Save"
-msgstr "Зачувај"
-
-#: lib/editmirrorform.php:117
-msgid "Stop mirroring"
-msgstr "Престани со отсликување"
-
-#: lib/addmirrorform.php:59
-msgid "Web page or feed URL:"
-msgstr "Мреж. страница или URL на каналот:"
-
-#: lib/addmirrorform.php:64
-msgctxt "BUTTON"
-msgid "Add feed"
-msgstr "Додај канал"
-
-#: actions/basemirror.php:71
 msgid "Invalid feed URL."
 msgstr "Неважечка URL-адреса за каналот."
 
 #. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
-#: actions/basemirror.php:83
 msgid "Invalid profile for mirroring."
 msgstr "Неважечки профил за отсликување."
 
-#: actions/basemirror.php:101
 msgid "Can't mirror a StatusNet group at this time."
 msgstr "Моментално не можам да отсликам група од StatusNet."
 
-#: actions/basemirror.php:115
 msgid "This action only accepts POST requests."
 msgstr "Оваа постапка прифаќа само POST-барања."
 
-#: actions/basemirror.php:123
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Се појави проблем со жетонот на Вашата сесија. Обидете се подоцна."
 
-#: actions/basemirror.php:133
 msgid "Not logged in."
 msgstr "Не сте најавени."
 
-#: actions/basemirror.php:156
 msgid "Subscribed"
 msgstr "Претплатено"
 
-#: actions/editmirror.php:68
 msgid "Requested invalid profile to edit."
 msgstr "Побаран е неважечки профил за уредување."
 
-#: actions/editmirror.php:86
 msgid "Bad form data."
 msgstr "Неисправни податоци за образецот."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
-#: actions/editmirror.php:95
 msgid "Requested edit of missing mirror."
 msgstr "Побаравте уредување на отсликување што недостасува."
 
-#: actions/addmirror.php:72
 msgid "Could not subscribe to feed."
 msgstr "Не можев да Ве претплатам на каналот."
 
 #. TRANS: Title.
-#: actions/mirrorsettings.php:42
 msgid "Feed mirror settings"
 msgstr "Нагодувања на каналското отсликување"
 
 #. TRANS: Instructions.
-#: actions/mirrorsettings.php:54
 msgid ""
 "You can mirror updates from many RSS and Atom feeds into your StatusNet "
 "timeline!"
 msgstr ""
 "Можете да отсликувате поднови од многу RSS- и Atom-канали во Вашата "
 "хронологија на StatusNet!"
+
+msgid "Pull feeds into your timeline!"
+msgstr "Повлекувајте каналски емитувања во Вашата хронологија!"
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+msgctxt "MENU"
+msgid "Mirroring"
+msgstr "Отсликување"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+msgid "Configure mirroring of posts from other feeds"
+msgstr "Нагодување на отсликувањето на објавите од други канали"
+
+msgid "Mirrored feeds"
+msgstr "Огледални канали"
+
+msgid "Web page or feed URL:"
+msgstr "Мреж. страница или URL на каналот:"
+
+msgctxt "BUTTON"
+msgid "Add feed"
+msgstr "Додај канал"
+
+msgctxt "LABEL"
+msgid "Remote feed:"
+msgstr "Далечински канал:"
+
+msgctxt "LABEL"
+msgid "Local user"
+msgstr "Локален корисник"
+
+msgid "Mirroring style"
+msgstr "Стил на отсликување"
+
+msgid ""
+"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+msgstr ""
+"Повторување: наведете ја објавата на изворниот корисник (понекогаш се "
+"прикажува како „RT @blah“)"
+
+msgid "Repost the content under my account"
+msgstr "Објави ја содржината под мојата сметка"
+
+msgid "Save"
+msgstr "Зачувај"
+
+msgid "Stop mirroring"
+msgstr "Престани со отсликување"

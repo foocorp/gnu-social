@@ -122,7 +122,7 @@ class BlockedfromgroupAction extends GroupDesignAction
                        _('A list of the users blocked from joining this group.'));
     }
 
-    function showLocalNav()
+    function showObjectNav()
     {
         $nav = new GroupNav($this, $this->group);
         $nav->show();

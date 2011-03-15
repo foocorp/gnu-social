@@ -1,5 +1,5 @@
 # Translation of StatusNet - Sitemap to Russian (Русский)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: MaxSem
 # --
@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Sitemap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:56+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:13+0000\n"
 "Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-07 21:21:54+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:15+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-sitemap\n"
@@ -23,68 +23,55 @@ msgstr ""
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
 #. TRANS: Title for sitemap.
-#: sitemapadminpanel.php:53
 msgid "Sitemap"
 msgstr "Карта сайта"
 
 #. TRANS: Instructions for sitemap.
-#: sitemapadminpanel.php:64
 msgid "Sitemap settings for this StatusNet site"
 msgstr "Настройки карты этого сайта на движке StatusNet"
 
 #. TRANS: Field label.
-#: sitemapadminpanel.php:167
 msgid "Google key"
 msgstr "Ключ Google"
 
 #. TRANS: Title for field label.
-#: sitemapadminpanel.php:169
 msgid "Google Webmaster Tools verification key."
 msgstr "Ключ для подтверждения в инструментах вебмастера Google."
 
 #. TRANS: Field label.
-#: sitemapadminpanel.php:175
 msgid "Yahoo key"
 msgstr "Ключ Yahoo"
 
 #. TRANS: Title for field label.
-#: sitemapadminpanel.php:177
 msgid "Yahoo! Site Explorer verification key."
 msgstr "Ключ для подтверждения в Yahoo! Site Explorer."
 
 #. TRANS: Field label.
-#: sitemapadminpanel.php:183
 msgid "Bing key"
 msgstr "Ключ Bing"
 
 #. TRANS: Title for field label.
-#: sitemapadminpanel.php:185
 msgid "Bing Webmaster Tools verification key."
 msgstr "Ключ для подтверждения в инструментах вебмастера Bing."
 
 #. TRANS: Submit button text to save sitemap settings.
-#: sitemapadminpanel.php:200
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Сохранить"
 
 #. TRANS: Submit button title to save sitemap settings.
-#: sitemapadminpanel.php:204
 msgid "Save sitemap settings."
 msgstr "Сохранить настройки карты сайта."
 
 #. TRANS: Menu item title/tooltip
-#: SitemapPlugin.php:211
 msgid "Sitemap configuration"
 msgstr "Настройки карты сайта"
 
 #. TRANS: Menu item for site administration
-#: SitemapPlugin.php:213
 msgctxt "MENU"
 msgid "Sitemap"
 msgstr "Карта сайта"
 
 #. TRANS: Plugin description.
-#: SitemapPlugin.php:238
 msgid "This plugin allows creation of sitemaps for Bing, Yahoo! and Google."
 msgstr "Этот плагин позволяет создавать карты сайта для Bing, Yahoo! и Google."

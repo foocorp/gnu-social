@@ -1,0 +1,70 @@
+# Translation of StatusNet - BitlyUrl to Catalan (Català)
+# Exported from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - BitlyUrl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:52+0000\n"
+"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:42:52+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "bit.ly URL shortening"
+msgstr "Escurçament d'URL bit.ly"
+
+msgid ""
+"URL shortening with bit.ly requires [a bit.ly account and API key](http://"
+"bit.ly/a/your_api_key). This verifies that this is an authorized account, "
+"and allow you to use bit.ly's tracking features and custom domains."
+msgstr ""
+"L'escurçament d'URL amb bit.ly necessita [un compte i clau API de bit.ly]"
+"(http://bit.ly/a/your_api_key). Això verifica que és un compte autoritzat, i "
+"permet fer servir les característiques de seguiment de bit.ly i els dominis "
+"personalitzats."
+
+msgid "Invalid login. Max length is 255 characters."
+msgstr "Inici de sessió no vàlid. La longitud màxima és de 255 caràcters."
+
+msgid "Invalid API key. Max length is 255 characters."
+msgstr "Clau API no vàlida. La longitud màxima és de 255 caràcters."
+
+msgid "Credentials"
+msgstr "Credencials"
+
+msgid "Leave these empty to use global default credentials."
+msgstr "Deixa-ho en blanc i fes servir les credencials per defecte globals."
+
+msgid "If you leave these empty, bit.ly will be unavailable to users."
+msgstr "Si ho deixeu en blanc, el bit.ly no serà disponible per als usuaris."
+
+msgid "Login name"
+msgstr "Nom de sessió"
+
+msgid "API key"
+msgstr "Clau API"
+
+msgid "Save bit.ly settings"
+msgstr "Desa els paràmetres de bit.ly"
+
+msgid "You must specify a serviceUrl for bit.ly shortening."
+msgstr "Heu d'especificar un URL de servei per a l'escurçament de bit.ly"
+
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr ""
+"Fa servir el servei d'escurçament d'URL <a href=\"http://%1$s/\">%1$s</a>."
+
+msgid "bit.ly"
+msgstr "bit.ly"

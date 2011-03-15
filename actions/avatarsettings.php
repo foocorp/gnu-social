@@ -32,7 +32,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/accountsettingsaction.php';
+
 
 define('MAX_ORIGINAL', 480);
 
@@ -49,7 +49,7 @@ define('MAX_ORIGINAL', 480);
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class AvatarsettingsAction extends AccountSettingsAction
+class AvatarsettingsAction extends SettingsAction
 {
     var $mode = null;
     var $imagefile = null;
@@ -157,13 +157,13 @@ class AvatarsettingsAction extends AccountSettingsAction
             }
 
             $this->elementStart('li', array ('id' => 'settings_attach'));
-            $this->element('input', array('name' => 'avatarfile',
-                                          'type' => 'file',
-                                          'id' => 'avatarfile'));
             $this->element('input', array('name' => 'MAX_FILE_SIZE',
                                           'type' => 'hidden',
                                           'id' => 'MAX_FILE_SIZE',
                                           'value' => ImageFile::maxFileSizeInt()));
+            $this->element('input', array('name' => 'avatarfile',
+                                          'type' => 'file',
+                                          'id' => 'avatarfile'));
             $this->elementEnd('li');
             $this->elementEnd('ul');
 
@@ -211,7 +211,7 @@ class AvatarsettingsAction extends AccountSettingsAction
                             array('id' => 'avatar_original',
                                   'class' => 'avatar_view'));
         // TRANS: Header on avatar upload crop form for thumbnail of originally uploaded avatar (h2).
-        $this->element('h2', null, _("Original"));
+        $this->element('h2', null, _('Original'));
         $this->elementStart('div', array('id'=>'avatar_original_view'));
         $this->element('img', array('src' => Avatar::url($this->filedata['filename']),
                                     'width' => $this->filedata['width'],
@@ -224,7 +224,7 @@ class AvatarsettingsAction extends AccountSettingsAction
                             array('id' => 'avatar_preview',
                                   'class' => 'avatar_view'));
         // TRANS: Header on avatar upload crop form for thumbnail of to be used rendition of uploaded avatar (h2).
-        $this->element('h2', null, _("Preview"));
+        $this->element('h2', null, _('Preview'));
         $this->elementStart('div', array('id'=>'avatar_preview_view'));
         $this->element('img', array('src' => Avatar::url($this->filedata['filename']),
                                     'width' => AVATAR_PROFILE_SIZE,
@@ -320,21 +320,20 @@ class AvatarsettingsAction extends AccountSettingsAction
         }
 
         $cur = common_current_user();
-
+        $type = $imagefile->preferredType();
         $filename = Avatar::filename($cur->id,
-                                     image_type_to_extension($imagefile->type),
+                                     image_type_to_extension($type),
                                      null,
                                      'tmp'.common_timestamp());
 
         $filepath = Avatar::path($filename);
-
-        move_uploaded_file($imagefile->filepath, $filepath);
+        $imagefile->copyTo($filepath);
 
         $filedata = array('filename' => $filename,
                           'filepath' => $filepath,
                           'width' => $imagefile->width,
                           'height' => $imagefile->height,
-                          'type' => $imagefile->type);
+                          'type' => $type);
 
         $_SESSION['FILEDATA'] = $filedata;
 
@@ -342,8 +341,8 @@ class AvatarsettingsAction extends AccountSettingsAction
 
         $this->mode = 'crop';
 
-        // TRANS: Avatar upload form unstruction after uploading a file.
-        $this->showForm(_('Pick a square area of the image to be your avatar'),
+        // TRANS: Avatar upload form instruction after uploading a file.
+        $this->showForm(_('Pick a square area of the image to be your avatar.'),
                         true);
     }
 

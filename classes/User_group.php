@@ -476,7 +476,18 @@ class User_group extends Memcached_DataObject
     }
 
     static function register($fields) {
+        if (!empty($fields['userid'])) {
+            $profile = Profile::staticGet('id', $fields['userid']);
+            if ($profile && !$profile->hasRight(Right::CREATEGROUP)) {
+                common_log(LOG_WARNING, "Attempted group creation from banned user: " . $profile->nickname);
+
+                // TRANS: Client exception thrown when a user tries to create a group while banned.
+                throw new ClientException(_('You are not allowed to create groups on this site.'), 403);
+            }
+        }
+
         // MAGICALLY put fields into current scope
+        // @fixme kill extract(); it makes debugging absurdly hard
 
         extract($fields);
 
@@ -488,6 +499,9 @@ class User_group extends Memcached_DataObject
             // fill in later...
             $uri = null;
         }
+        if (empty($mainpage)) {
+            $mainpage = common_local_url('showgroup', array('nickname' => $nickname));
+        }
 
         $group->nickname    = $nickname;
         $group->fullname    = $fullname;
@@ -498,64 +512,70 @@ class User_group extends Memcached_DataObject
         $group->mainpage    = $mainpage;
         $group->created     = common_sql_now();
 
-        $result = $group->insert();
+        if (Event::handle('StartGroupSave', array(&$group))) {
 
-        if (!$result) {
-            common_log_db_error($group, 'INSERT', __FILE__);
-            // TRANS: Server exception thrown when creating a group failed.
-            throw new ServerException(_('Could not create group.'));
-        }
-
-        if (!isset($uri) || empty($uri)) {
-            $orig = clone($group);
-            $group->uri = common_local_url('groupbyid', array('id' => $group->id));
-            $result = $group->update($orig);
-            if (!$result) {
-                common_log_db_error($group, 'UPDATE', __FILE__);
-                // TRANS: Server exception thrown when updating a group URI failed.
-                throw new ServerException(_('Could not set group URI.'));
-            }
-        }
-
-        $result = $group->setAliases($aliases);
-
-        if (!$result) {
-            // TRANS: Server exception thrown when creating group aliases failed.
-            throw new ServerException(_('Could not create aliases.'));
-        }
-
-        $member = new Group_member();
-
-        $member->group_id   = $group->id;
-        $member->profile_id = $userid;
-        $member->is_admin   = 1;
-        $member->created    = $group->created;
-
-        $result = $member->insert();
-
-        if (!$result) {
-            common_log_db_error($member, 'INSERT', __FILE__);
-            // TRANS: Server exception thrown when setting group membership failed.
-            throw new ServerException(_('Could not set group membership.'));
-        }
-
-        if ($local) {
-            $local_group = new Local_group();
-
-            $local_group->group_id = $group->id;
-            $local_group->nickname = $nickname;
-            $local_group->created  = common_sql_now();
-
-            $result = $local_group->insert();
+            $result = $group->insert();
 
             if (!$result) {
-                common_log_db_error($local_group, 'INSERT', __FILE__);
-                // TRANS: Server exception thrown when saving local group information failed.
-                throw new ServerException(_('Could not save local group info.'));
+                common_log_db_error($group, 'INSERT', __FILE__);
+                // TRANS: Server exception thrown when creating a group failed.
+                throw new ServerException(_('Could not create group.'));
             }
+
+            if (!isset($uri) || empty($uri)) {
+                $orig = clone($group);
+                $group->uri = common_local_url('groupbyid', array('id' => $group->id));
+                $result = $group->update($orig);
+                if (!$result) {
+                    common_log_db_error($group, 'UPDATE', __FILE__);
+                    // TRANS: Server exception thrown when updating a group URI failed.
+                    throw new ServerException(_('Could not set group URI.'));
+                }
+            }
+
+            $result = $group->setAliases($aliases);
+
+            if (!$result) {
+                // TRANS: Server exception thrown when creating group aliases failed.
+                throw new ServerException(_('Could not create aliases.'));
+            }
+
+            $member = new Group_member();
+
+            $member->group_id   = $group->id;
+            $member->profile_id = $userid;
+            $member->is_admin   = 1;
+            $member->created    = $group->created;
+
+            $result = $member->insert();
+
+            if (!$result) {
+                common_log_db_error($member, 'INSERT', __FILE__);
+                // TRANS: Server exception thrown when setting group membership failed.
+                throw new ServerException(_('Could not set group membership.'));
+            }
+
+            if ($local) {
+                $local_group = new Local_group();
+
+                $local_group->group_id = $group->id;
+                $local_group->nickname = $nickname;
+                $local_group->created  = common_sql_now();
+
+                $result = $local_group->insert();
+
+                if (!$result) {
+                    common_log_db_error($local_group, 'INSERT', __FILE__);
+                    // TRANS: Server exception thrown when saving local group information failed.
+                    throw new ServerException(_('Could not save local group info.'));
+                }
+            }
+
+            $group->query('COMMIT');
+
+            Event::handle('EndGroupSave', array($group));
         }
 
-        $group->query('COMMIT');
         return $group;
     }
 

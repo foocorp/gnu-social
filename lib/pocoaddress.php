@@ -43,14 +43,30 @@ class PoCoAddress
 
     function asString()
     {
-        if (!empty($this->formatted)) {
-            $xs = new XMLStringer(true);
-            $xs->elementStart('poco:address');
-            $xs->element('poco:formatted', null, common_xml_safe_str($this->formatted));
-            $xs->elementEnd('poco:address');
-            return $xs->getString();
-        }
+        $xs = new XMLStringer(true);
+        $this->outputTo($xs);
+        return $xs->getString();
+    }
 
-        return null;
+    function outputTo($xo)
+    {
+        if (!empty($this->formatted)) {
+            $xo->elementStart('poco:address');
+            $xo->element('poco:formatted', null, common_xml_safe_str($this->formatted));
+            $xo->elementEnd('poco:address');
+        }
+    }
+
+    /**
+     * Return this PoCo address as an array suitable for serializing in JSON
+     *
+     * @return array the address
+     */
+
+    function asArray()
+    {
+        if (!empty($this->formatted)) {
+            return array('formatted' => $this->formatted);
+        }
     }
 }

@@ -19,6 +19,7 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
+// @todo FIXME: documentation needed.
 class SupAction extends Action
 {
     function handle($args)

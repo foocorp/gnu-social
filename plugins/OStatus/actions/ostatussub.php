@@ -163,65 +163,41 @@ class OStatusSubAction extends Action
         }
 
         $this->elementStart('div', 'entity_profile vcard');
-        $this->elementStart('dl', 'entity_depiction');
-        $this->element('dt', null, _m('Photo'));
-        $this->elementStart('dd');
         $this->element('img', array('src' => $avatar,
-                                    'class' => 'photo avatar',
+                                    'class' => 'photo avatar entity_depiction',
                                     'width' => AVATAR_PROFILE_SIZE,
                                     'height' => AVATAR_PROFILE_SIZE,
                                     'alt' => $nickname));
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
 
-        $this->elementStart('dl', 'entity_nickname');
-        $this->element('dt', null, _m('Nickname'));
-        $this->elementStart('dd');
-        $hasFN = ($fullname !== '') ? 'nickname' : 'fn nickname';
+        $hasFN = ($fullname !== '') ? 'nickname' : 'fn nickname entity_nickname';
         $this->elementStart('a', array('href' => $profile,
                                        'class' => 'url '.$hasFN));
         $this->raw($nickname);
         $this->elementEnd('a');
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
 
         if (!is_null($fullname)) {
-            $this->elementStart('dl', 'entity_fn');
-            $this->elementStart('dd');
-            $this->elementStart('span', 'fn');
+            $this->elementStart('div', 'fn entity_fn');
             $this->raw($fullname);
-            $this->elementEnd('span');
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
+            $this->elementEnd('div');
         }
+
         if (!is_null($location)) {
-            $this->elementStart('dl', 'entity_location');
-            $this->element('dt', null, _m('Location'));
-            $this->elementStart('dd', 'label');
+            $this->elementStart('div', 'label entity_location');
             $this->raw($location);
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
+            $this->elementEnd('div');
         }
 
         if (!is_null($homepage)) {
-            $this->elementStart('dl', 'entity_url');
-            $this->element('dt', null, _m('URL'));
-            $this->elementStart('dd');
             $this->elementStart('a', array('href' => $homepage,
-                                                'class' => 'url'));
+                                           'class' => 'url entity_url'));
             $this->raw($homepage);
             $this->elementEnd('a');
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
         }
 
         if (!is_null($note)) {
-            $this->elementStart('dl', 'entity_note');
-            $this->element('dt', null, _m('Note'));
-            $this->elementStart('dd', 'note');
+            $this->elementStart('div', 'note entity_note');
             $this->raw($note);
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
+            $this->elementEnd('div');
         }
         $this->elementEnd('div');
     }

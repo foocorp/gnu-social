@@ -737,6 +737,12 @@ statusnet.ini (since this is the recommended database name). If you
 have a line in your config.php pointing to the old name, you'll need
 to update it.
 
+NOTE: the 1.0.0 version of StatusNet changed the URLs for all admin
+panels from /admin/* to /panel/*. This now allows the (popular)
+username 'admin', but blocks the considerably less popular username
+'panel'. If you have an existing user named 'panel', you should rename
+them before upgrading.
+
 Notice inboxes
 --------------
 
@@ -1274,6 +1280,12 @@ Profile management.
 
 biolimit: max character length of bio; 0 means no limit; null means to use
     the site text limit default.
+backup: whether users can backup their own profiles. Defaults to true.
+restore: whether users can restore their profiles from backup files. Defaults
+	 to true.
+delete: whether users can delete their own accounts. Defaults to false.
+move: whether users can move their accounts to another server. Defaults
+      to true.	 
 
 newuser
 -------
@@ -1564,6 +1576,39 @@ cache: whether to cache the router in memcache (or another caching
     router cached) or others who see strange behavior. You're unlikely
     to need this unless you're a developer.
 
+http
+----
+
+Settings for the HTTP client.
+
+ssl_cafile: location of the CA file for SSL. If not set, won't verify
+	    SSL peers. Default unset.
+curl: Use cURL <http://curl.haxx.se/> for doing HTTP calls. You must
+      have the PHP curl extension installed for this to work.
+proxy_host: Host to use for proxying HTTP requests. If unset, doesn't
+	    do any HTTP proxy stuff. Default unset.
+proxy_port: Port to use to connect to HTTP proxy host. Default null.
+proxy_user: Username to use for authenticating to the HTTP proxy. Default null.
+proxy_password: Password to use for authenticating to the HTTP proxy. Default null.
+proxy_auth_scheme: Scheme to use for authenticating to the HTTP proxy. Default null.
+
+plugins
+-------
+
+default: associative array mapping plugin name to array of arguments. To disable
+	 a default plugin, unset its value in this array.
+locale_path: path for finding plugin locale files. In the plugin's directory
+	     by default.
+server: Server to find static files for a plugin when the page is plain old HTTP.
+	Defaults to site/server (same as pages). Use this to move plugin CSS and
+	JS files to a CDN.
+sslserver: Server to find static files for a plugin when the page is HTTPS. Defaults
+	   to site/server (same as pages). Use this to move plugin CSS and JS files
+	   to a CDN.
+path: Path to the plugin files. defaults to site/path + '/plugins/'. Expects that
+      each plugin will have a subdirectory at plugins/NameOfPlugin. Change this
+      if you're using a CDN.
+sslpath: Path to use on the SSL server. Same as plugins/path.
 
 Plugins
 =======

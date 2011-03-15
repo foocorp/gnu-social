@@ -297,7 +297,7 @@ class BlacklistPlugin extends Plugin
      */
     function onRouterInitialized($m)
     {
-        $m->connect('admin/blacklist', array('action' => 'blacklistadminpanel'));
+        $m->connect('panel/blacklist', array('action' => 'blacklistadminpanel'));
         return true;
     }
 

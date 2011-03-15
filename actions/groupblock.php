@@ -40,7 +40,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class GroupblockAction extends RedirectingAction
 {
     var $profile = null;
@@ -53,11 +52,11 @@ class GroupblockAction extends RedirectingAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
         if (!common_logged_in()) {
+            // TRANS: Client error displayed trying to block a user from a group while not logged in.
             $this->clientError(_('Not logged in.'));
             return false;
         }
@@ -68,35 +67,42 @@ class GroupblockAction extends RedirectingAction
         }
         $id = $this->trimmed('blockto');
         if (empty($id)) {
+            // TRANS: Client error displayed trying to block a user from a group while not specifying a to be blocked user profile.
             $this->clientError(_('No profile specified.'));
             return false;
         }
         $this->profile = Profile::staticGet('id', $id);
         if (empty($this->profile)) {
+            // TRANS: Client error displayed trying to block a user from a group while specifying a non-existing profile.
             $this->clientError(_('No profile with that ID.'));
             return false;
         }
         $group_id = $this->trimmed('blockgroup');
         if (empty($group_id)) {
+            // TRANS: Client error displayed trying to block a user from a group while not specifying a group to block a profile from.
             $this->clientError(_('No group specified.'));
             return false;
         }
         $this->group = User_group::staticGet('id', $group_id);
         if (empty($this->group)) {
+            // TRANS: Client error displayed trying to block a user from a group while specifying a non-existing group.
             $this->clientError(_('No such group.'));
             return false;
         }
         $user = common_current_user();
         if (!$user->isAdmin($this->group)) {
+            // TRANS: Client error displayed trying to block a user from a group while not being an admin user.
             $this->clientError(_('Only an admin can block group members.'), 401);
             return false;
         }
         if (Group_block::isBlocked($this->group, $this->profile)) {
+            // TRANS: Client error displayed trying to block a user from a group while user is already blocked from the given group.
             $this->clientError(_('User is already blocked from group.'));
             return false;
         }
         // XXX: could have proactive blocks, but we don't have UI for it.
         if (!$this->profile->isMember($this->group)) {
+            // TRANS: Client error displayed trying to block a user from a group while user is not a member of given group.
             $this->clientError(_('User is not a member of group.'));
             return false;
         }
@@ -131,6 +137,7 @@ class GroupblockAction extends RedirectingAction
     }
 
     function title() {
+        // TRANS: Title for block user from group page.
         return _('Block user from group');
     }
 
@@ -145,7 +152,6 @@ class GroupblockAction extends RedirectingAction
      *
      * @return void
      */
-
     function areYouSureForm()
     {
         $id = $this->profile->id;
@@ -155,8 +161,11 @@ class GroupblockAction extends RedirectingAction
                                            'action' => common_local_url('groupblock')));
         $this->elementStart('fieldset');
         $this->hidden('token', common_session_token());
+        // TRANS: Fieldset legend for block user from group form.
         $this->element('legend', _('Block user'));
         $this->element('p', null,
+                       // TRANS: Explanatory text for block user from group form before setting the block.
+                       // TRANS: %1$s is that to be blocked user, %2$s is the group the user will be blocked from.
                        sprintf(_('Are you sure you want to block user "%1$s" from the group "%2$s"? '.
                                  'They will be removed from the group, unable to post, and '.
                                  'unable to subscribe to the group in the future.'),
@@ -179,14 +188,14 @@ class GroupblockAction extends RedirectingAction
                       'submit form_action-primary',
                       'no',
                       // TRANS: Submit button title for 'No' when blocking a user from a group.
-                      _('Do not block this user from this group'));
+                      _('Do not block this user from this group.'));
         $this->submit('form_action-yes',
                       // TRANS: Button label on the form to block a user from a group.
                       _m('BUTTON','Yes'),
                       'submit form_action-secondary',
                       'yes',
                       // TRANS: Submit button title for 'Yes' when blocking a user from a group.
-                      _('Block this user from this group'));
+                      _('Block this user from this group.'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }
@@ -196,24 +205,24 @@ class GroupblockAction extends RedirectingAction
      *
      * @return void
      */
-
     function blockProfile()
     {
         $block = Group_block::blockProfile($this->group, $this->profile,
                                            common_current_user());
 
         if (empty($block)) {
+            // TRANS: Server error displayed when trying to block a user from a group fails because of an application error.
             $this->serverError(_("Database error blocking user from group."));
             return false;
         }
-        
+
         $this->returnToPrevious();
     }
 
     /**
      * If we reached this form without returnto arguments, default to
      * the top of the group's member list.
-     * 
+     *
      * @return string URL
      */
     function defaultReturnTo()
@@ -227,6 +236,4 @@ class GroupblockAction extends RedirectingAction
         parent::showScripts();
         $this->autofocus('form_action-yes');
     }
-
 }
-

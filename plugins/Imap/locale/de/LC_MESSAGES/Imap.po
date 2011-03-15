@@ -1,0 +1,52 @@
+# Translation of StatusNet - Imap to German (Deutsch)
+# Exported from translatewiki.net
+#
+# Author: Fujnky
+# Author: Michael
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Imap\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:23+0000\n"
+"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:44:35+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-imap\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid ""
+"ImapManager should be created using its constructor, not the using the "
+"static get method."
+msgstr ""
+"ImapManager sollte durch seinen Konstruktor erstellt werden, nicht durch die "
+"statische get-Methode."
+
+msgid "A mailbox must be specified."
+msgstr "Ein Postfach muss angegeben werden."
+
+msgid "A user must be specified."
+msgstr "Ein Benutzer muss angegeben werden."
+
+msgid "A password must be specified."
+msgstr "Ein Passwort muss angegeben werden."
+
+msgid "A poll_frequency must be specified."
+msgstr "Eine Abfragefrequenz muss angegeben werden."
+
+msgid ""
+"The IMAP plugin allows for StatusNet to check a POP or IMAP mailbox for "
+"incoming mail containing user posts."
+msgstr ""
+"Das IMAP-Plugin ermöglicht es StatusNet, ein POP- oder IMAP-Postfach auf "
+"empfangene E-Mails mit Benutzer-Posts zu überprüfen."

@@ -21,6 +21,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 require_once(INSTALLDIR.'/actions/shownotice.php');
 
+// @todo FIXME: Add documentation.
 class FileAction extends Action
 {
     var $id = null;
@@ -31,14 +32,17 @@ class FileAction extends Action
         parent::prepare($args);
         $this->id = $this->trimmed('notice');
         if (empty($this->id)) {
+            // TRANS: Client error displayed when no notice ID was given trying do display a file.
             $this->clientError(_('No notice ID.'));
         }
         $notice = Notice::staticGet('id', $this->id);
         if (empty($notice)) {
+            // TRANS: Client error displayed when an invalid notice ID was given trying do display a file.
             $this->clientError(_('No notice.'));
         }
         $atts = $notice->attachments();
         if (empty($atts)) {
+            // TRANS: Client error displayed when trying do display a file for a notice without a file attachement.
             $this->clientError(_('No attachments.'));
         }
         foreach ($atts as $att) {
@@ -48,6 +52,9 @@ class FileAction extends Action
             }
         }
         if (empty($this->filerec)) {
+            // XXX: Is this translation hint correct? If yes, please remove comment, if no, please correct and remove comment.
+            // TRANS: Client error displayed when trying do display a file for a notice with file attachements
+            // TRANS: that could not be found.
             $this->clientError(_('No uploaded attachments.'));
         }
         return true;
@@ -62,11 +69,8 @@ class FileAction extends Action
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
     }
-
 }
-

@@ -68,13 +68,11 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class RsdAction extends Action
 {
     /**
      * Optional attribute for the personal rsd.xml file.
      */
-
     var $user = null;
 
     /**
@@ -87,7 +85,6 @@ class RsdAction extends Action
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -132,7 +129,6 @@ class RsdAction extends Action
      *
      * @return nothing
      */
-
     function handle($args)
     {
         header('Content-Type: application/rsd+xml');
@@ -195,7 +191,6 @@ class RsdAction extends Action
      *
      * @return string date of last change of this page
      */
-
     function lastModified()
     {
         if (!empty($this->user)) {
@@ -214,7 +209,6 @@ class RsdAction extends Action
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -228,7 +222,6 @@ class RsdAction extends Action
      *
      * @return string API root URI for this site
      */
-
     private function _apiRoot()
     {
         if (common_config('site', 'fancy')) {

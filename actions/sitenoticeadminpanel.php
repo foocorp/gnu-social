@@ -98,7 +98,7 @@ class SitenoticeadminpanelAction extends AdminPanelAction
 
         if (!$result) {
             // TRANS: Server error displayed when saving a site-wide notice was impossible.
-            $this->ServerError(_("Unable to save site notice."));
+            $this->ServerError(_('Unable to save site notice.'));
         }
     }
 
@@ -198,7 +198,7 @@ class SiteNoticeAdminPanelForm extends AdminForm
             'submit',
             null,
             // TRANS: Title for button to save site notice in admin panel.
-            _('Save site notice')
+            _('Save site notice.')
         );
     }
 }

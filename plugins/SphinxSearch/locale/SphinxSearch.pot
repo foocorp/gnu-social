@@ -8,13 +8,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"POT-Creation-Date: 2011-03-11 18:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#. TRANS: Server exception thrown when a database name cannot be identified.
+#: sphinxsearch.php:126
+msgid "Sphinx search could not identify database name."
+msgstr ""
 
 #. TRANS: Server exception.
 #: SphinxSearchPlugin.php:87
@@ -24,9 +29,4 @@ msgstr ""
 #. TRANS: Plugin description.
 #: SphinxSearchPlugin.php:118
 msgid "Plugin for Sphinx search backend."
-msgstr ""
-
-#. TRANS: Server exception thrown when a database name cannot be identified.
-#: sphinxsearch.php:96
-msgid "Sphinx search could not identify database name."
 msgstr ""

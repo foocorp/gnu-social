@@ -1,0 +1,115 @@
+# Translation of StatusNet - SubMirror to German (Deutsch)
+# Exported from translatewiki.net
+#
+# Author: Fujnky
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SubMirror\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:18+0000\n"
+"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:47:23+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-submirror\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Invalid feed URL."
+msgstr "Ungültige Feed-URL."
+
+#. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
+msgid "Invalid profile for mirroring."
+msgstr "Ungültiges Profil für das Spiegeln."
+
+msgid "Can't mirror a StatusNet group at this time."
+msgstr "Kann im Moment keine StatusNet-Gruppe spiegeln."
+
+msgid "This action only accepts POST requests."
+msgstr "Diese Aktion nimmt nur POST-Requests."
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Es gab ein Problem mit deinem Sitzungstoken. Bitte versuche es erneut."
+
+msgid "Not logged in."
+msgstr "Nicht angemeldet."
+
+msgid "Subscribed"
+msgstr "Abonniert"
+
+msgid "Requested invalid profile to edit."
+msgstr "Ungültiges Profil zum Bearbeiten angefordert."
+
+msgid "Bad form data."
+msgstr "Ungültige Formulardaten."
+
+#. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
+msgid "Requested edit of missing mirror."
+msgstr "Bearbeitung eines fehlenden Spiegels angefordert."
+
+msgid "Could not subscribe to feed."
+msgstr "Konnte den Feed nicht abonnieren."
+
+#. TRANS: Title.
+msgid "Feed mirror settings"
+msgstr "Feed-Spiegel-Einstellungen"
+
+#. TRANS: Instructions.
+msgid ""
+"You can mirror updates from many RSS and Atom feeds into your StatusNet "
+"timeline!"
+msgstr ""
+
+msgid "Pull feeds into your timeline!"
+msgstr "Ziehe Feeds in deine Zeitleiste!"
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+msgctxt "MENU"
+msgid "Mirroring"
+msgstr "Spiegeln"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+msgid "Configure mirroring of posts from other feeds"
+msgstr "Konfiguration des Spiegelns von Posts von anderen Feeds"
+
+msgid "Mirrored feeds"
+msgstr "Gespiegelte Feeds"
+
+msgid "Web page or feed URL:"
+msgstr "Webseiten- oder Feed-URL:"
+
+msgctxt "BUTTON"
+msgid "Add feed"
+msgstr "Feed hinzufügen"
+
+msgctxt "LABEL"
+msgid "Remote feed:"
+msgstr "Remote-Feed:"
+
+msgctxt "LABEL"
+msgid "Local user"
+msgstr "Lokaler Benutzer"
+
+msgid "Mirroring style"
+msgstr "Spiegelungs-Stil"
+
+msgid ""
+"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+msgstr ""
+"Wiederholen: Auf den Post des ursprünglichen Benutzers beziehen (manchmal "
+"als „RT @blah“ dargestellt)"
+
+msgid "Repost the content under my account"
+msgstr "Den Inhalt mit meinem Konto erneut posten"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Stop mirroring"
+msgstr "Mit dem Spiegeln aufhören"

@@ -68,7 +68,7 @@ class GeocodeAction extends Action
      *
      * @return nothing
      *
-     **/
+     */
     function handle($args)
     {
         header('Content-Type: application/json; charset=utf-8');
@@ -89,7 +89,6 @@ class GeocodeAction extends Action
      *
      * @return boolean true
      */
-
     function isReadOnly($args)
     {
         return true;

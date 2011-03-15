@@ -1,5 +1,5 @@
 # Translation of StatusNet - Adsense to Dutch (Nederlands)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Siebrand
 # --
@@ -9,93 +9,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:26+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:45+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:24+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:42:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Menu item title/tooltip
-#: AdsensePlugin.php:194
 msgid "AdSense configuration"
 msgstr "AdSense-instellingen"
 
 #. TRANS: Menu item for site administration
-#: AdsensePlugin.php:196
 msgid "AdSense"
 msgstr "AdSense"
 
-#: AdsensePlugin.php:209
 msgid "Plugin to add Google AdSense to StatusNet sites."
 msgstr "Plug-in om Google AdSense toe te voegen aan Statusnetsites."
 
-#: adsenseadminpanel.php:52
 msgctxt "TITLE"
 msgid "AdSense"
 msgstr "AdSense"
 
-#: adsenseadminpanel.php:62
 msgid "AdSense settings for this StatusNet site"
 msgstr "AdSense-instellingen voor deze StatusNet-website"
 
-#: adsenseadminpanel.php:164
 msgid "Client ID"
 msgstr "Client-ID"
 
-#: adsenseadminpanel.php:165
 msgid "Google client ID"
 msgstr "Google client-ID"
 
-#: adsenseadminpanel.php:170
 msgid "Ad script URL"
 msgstr "URL voor advertentiescript"
 
-#: adsenseadminpanel.php:171
 msgid "Script URL (advanced)"
 msgstr "URL voor script (gevorderd)"
 
-#: adsenseadminpanel.php:176
 msgid "Medium rectangle"
 msgstr "Middelgrote rechthoek"
 
-#: adsenseadminpanel.php:177
 msgid "Medium rectangle slot code"
 msgstr "Slotcode voor gemiddelde rechthoek"
 
-#: adsenseadminpanel.php:182
 msgid "Rectangle"
 msgstr "Rechthoek"
 
-#: adsenseadminpanel.php:183
 msgid "Rectangle slot code"
 msgstr "Slotcode voor rechthoek"
 
-#: adsenseadminpanel.php:188
 msgid "Leaderboard"
 msgstr "Breedbeeldbanner"
 
-#: adsenseadminpanel.php:189
 msgid "Leaderboard slot code"
 msgstr "Slotcode voor breedbeeldbanner"
 
-#: adsenseadminpanel.php:194
 msgid "Skyscraper"
 msgstr "Skyscraper"
 
-#: adsenseadminpanel.php:195
 msgid "Wide skyscraper slot code"
 msgstr "Slotcode voor brede skyscraper"
 
-#: adsenseadminpanel.php:208
 msgid "Save"
 msgstr "Opslaan"
 
-#: adsenseadminpanel.php:208
 msgid "Save AdSense settings"
 msgstr "AdSense-instellingen opslaan"

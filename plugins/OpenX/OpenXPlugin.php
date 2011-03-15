@@ -175,7 +175,7 @@ ENDOFSCRIPT;
 
     function onRouterInitialized($m)
     {
-        $m->connect('admin/openx',
+        $m->connect('panel/openx',
                     array('action' => 'openxadminpanel'));
 
         return true;

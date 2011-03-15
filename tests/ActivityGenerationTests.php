@@ -194,7 +194,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
         $actor  = ActivityUtils::child($element, 'actor', Activity::SPEC);
 
         $this->assertFalse(is_null($author));
-        $this->assertFalse(is_null($actor));
+        $this->assertTrue(is_null($actor)); // <activity:actor> is obsolete, no longer added
     }
 
     public function testAuthorContent()
@@ -213,6 +213,9 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
         $this->assertEquals($this->author1->uri, ActivityUtils::childContent($author, 'uri'));
     }
 
+    /**
+     * We no longer create <activity:actor> entries, they have merged to <atom:author>
+     */
     public function testActorContent()
     {
         $notice = $this->_fakeNotice();
@@ -225,8 +228,7 @@ class ActivityGenerationTests extends PHPUnit_Framework_TestCase
 
         $actor = ActivityUtils::child($element, 'actor', Activity::SPEC);
 
-        $this->assertEquals($this->author1->uri, ActivityUtils::childContent($actor, 'id'));
-        $this->assertEquals($this->author1->nickname, ActivityUtils::childContent($actor, 'title'));
+        $this->assertEquals($actor, null);
     }
 
     public function testReplyLink()

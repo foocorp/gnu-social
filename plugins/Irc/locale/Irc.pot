@@ -1,0 +1,35 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: IrcPlugin.php:79
+msgid "IRC"
+msgstr ""
+
+#: IrcPlugin.php:393
+msgid ""
+"The IRC plugin allows users to send and receive notices over an IRC network."
+msgstr ""
+
+#: Irc_waiting_message.php:127
+#, php-format
+msgid "Could not increment attempts count for %d"
+msgstr ""
+
+#: ircmanager.php:234
+msgid "Your nickname is not registered so IRC connectivity cannot be enabled"
+msgstr ""

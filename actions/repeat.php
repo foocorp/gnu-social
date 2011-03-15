@@ -41,7 +41,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class RepeatAction extends Action
 {
     var $user = null;
@@ -73,7 +72,7 @@ class RepeatAction extends Action
         }
 
         if ($this->user->id == $this->notice->profile_id) {
-            $this->clientError(_("You can't repeat your own notice."));
+            $this->clientError(_('You cannot repeat your own notice.'));
             return false;
         }
 
@@ -101,7 +100,6 @@ class RepeatAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         $repeat = $this->notice->repeat($this->user->id, 'web');

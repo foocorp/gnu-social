@@ -107,7 +107,7 @@ class Design extends Memcached_DataObject
 
     static function toWebColor($color)
     {
-        if ($color == null) {
+        if ($color === null || $color === '') {
             return null;
         }
 

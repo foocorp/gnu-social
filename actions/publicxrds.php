@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Public XRDS for OpenID
  *

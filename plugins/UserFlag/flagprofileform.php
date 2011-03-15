@@ -54,7 +54,7 @@ class FlagProfileForm extends ProfileActionForm
      */
     function formClass()
     {
-        return 'form_entity_flag';
+        return 'form_entity_flag ajax';
     }
 
     /**

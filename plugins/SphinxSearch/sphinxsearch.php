@@ -73,9 +73,39 @@ class SphinxSearch extends SearchEngine
 
     function set_sort_mode($mode)
     {
-        if ('chron' === $mode) {
+        switch ($mode) {
+        case 'chron':
             $this->sphinx->SetSortMode(SPH_SORT_ATTR_DESC, 'created_ts');
             return $this->target->orderBy('id desc');
+            break;
+        case 'reverse_chron':
+            $this->sphinx->SetSortMode(SPH_SORT_ATTR_ASC, 'created_ts');
+            return $this->target->orderBy('id asc');
+            break;
+        case 'nickname_desc':
+            if ($this->table != 'profile') {
+                throw new Exception(
+                    'nickname_desc sort mode can only be use when searching profile.'
+                );
+            } else {
+                $this->sphinx->SetSortMode(SPH_SORT_ATTR_DESC, 'nickname');
+                return $this->target->orderBy('id desc');
+            }
+            break;
+        case 'nickname_asc':
+            if ($this->table != 'profile') {
+                throw new Exception(
+                    'nickname_desc sort mode can only be use when searching profile.'
+                );
+            } else {
+                $this->sphinx->SetSortMode(SPH_SORT_ATTR_ASC, 'nickname');
+                return $this->target->orderBy('id asc');
+            }
+            break;
+        default:
+            $this->sphinx->SetSortMode(SPH_SORT_ATTR_DESC, 'created_ts');
+            return $this->target->orderBy('id desc');
+            break;
         }
     }
 

@@ -316,7 +316,10 @@ function common_set_user($user)
 
     if ($user) {
         if (Event::handle('StartSetUser', array(&$user))) {
-            if($user){
+            if (!empty($user)) {
+                if (!$user->hasRight(Right::WEBLOGIN)) {
+                    throw new AuthorizationException(_('Not allowed to log in.'));
+                }
                 common_ensure_session();
                 $_SESSION['userid'] = $user->id;
                 $_cur = $user;
@@ -800,7 +803,7 @@ function common_render_text($text)
 
     $r = preg_replace('/[\x{0}-\x{8}\x{b}-\x{c}\x{e}-\x{19}]/', '', $r);
     $r = common_replace_urls_callback($r, 'common_linkify');
-    $r = preg_replace('/(^|\&quot\;|\'|\(|\[|\{|\s+)#([\pL\pN_\-\.]{1,64})/e', "'\\1#'.common_tag_link('\\2')", $r);
+    $r = preg_replace('/(^|\&quot\;|\'|\(|\[|\{|\s+)#([\pL\pN_\-\.]{1,64})/ue', "'\\1#'.common_tag_link('\\2')", $r);
     // XXX: machine tags
     return $r;
 }
@@ -938,11 +941,11 @@ function common_linkify($url) {
     // functions
     $url = htmlspecialchars_decode($url);
 
-   if(strpos($url, '@') !== false && strpos($url, ':') === false) {
-       //url is an email address without the mailto: protocol
-       $canon = "mailto:$url";
-       $longurl = "mailto:$url";
-   }else{
+    if (strpos($url, '@') !== false && strpos($url, ':') === false && Validate::email($url)) {
+        //url is an email address without the mailto: protocol
+        $canon = "mailto:$url";
+        $longurl = "mailto:$url";
+    } else {
 
         $canon = File_redirection::_canonUrl($url);
 
@@ -2073,6 +2076,7 @@ function common_shorten_url($long_url, User $user=null, $force = false)
     common_debug("maxUrlLength = $maxUrlLength");
 
     // $force forces shortening even if it's not strictly needed
+    // I doubt URL shortening is ever 'strictly' needed. - ESP
 
     if (mb_strlen($long_url) < $maxUrlLength && !$force) {
         common_debug("Skipped shortening URL.");
@@ -2083,9 +2087,20 @@ function common_shorten_url($long_url, User $user=null, $force = false)
 
     common_debug("Shortener name = '$shortenerName'");
 
-    if (Event::handle('StartShortenUrl', array($long_url, $shortenerName, &$shortenedUrl))) {
-        //URL wasn't shortened, so return the long url
-        return $long_url;
+    if (Event::handle('StartShortenUrl', 
+                      array($long_url, $shortenerName, &$shortenedUrl))) {
+        if ($shortenerName == 'internal') {
+            $f = File::processNew($long_url);
+            if (empty($f)) {
+                return $long_url;
+            } else {
+                $shortenedUrl = common_local_url('redirecturl',
+                                                 array('id' => $f->id));
+                return $shortenedUrl;
+            }
+        } else {
+            return $long_url;
+        }
     } else {
         //URL was shortened, so return the result
         return trim($shortenedUrl);
@@ -2188,4 +2203,41 @@ function common_nicknamize($str)
 {
     $str = preg_replace('/\W/', '', $str);
     return strtolower($str);
+}
+
+function common_perf_counter($key, $val=null)
+{
+    global $_perfCounters;
+    if (isset($_perfCounters)) {
+        if (common_config('site', 'logperf')) {
+            if (array_key_exists($key, $_perfCounters)) {
+                $_perfCounters[$key][] = $val;
+            } else {
+                $_perfCounters[$key] = array($val);
+            }
+            if (common_config('site', 'logperf_detail')) {
+                common_log(LOG_DEBUG, "PERF COUNTER HIT: $key $val");
+            }
+        }
+    }
+}
+
+function common_log_perf_counters()
+{
+    if (common_config('site', 'logperf')) {
+        global $_startTime, $_perfCounters;
+
+        if (isset($_startTime)) {
+            $endTime = microtime(true);
+            $diff = round(($endTime - $_startTime) * 1000);
+            common_log(LOG_DEBUG, "PERF runtime: ${diff}ms");
+        }
+        $counters = $_perfCounters;
+        ksort($counters);
+        foreach ($counters as $key => $values) {
+            $count = count($values);
+            $unique = count(array_unique($values));
+            common_log(LOG_DEBUG, "PERF COUNTER: $key $count ($unique unique)");
+        }
+    }
 }

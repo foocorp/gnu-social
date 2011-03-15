@@ -234,7 +234,7 @@ p.instructions {
 
 /*-- FORMS --*/
 
-.form_notice label[for=notice_data-attach],
+.form_notice label.notice_data-attach,
 #export_data li a.rss,
 #export_data li a.atom,
 #export_data li a.foaf,
@@ -271,7 +271,7 @@ button.close,
 .entity_role_administrator input.submit,
 .entity_role_moderator input.submit,
 .notice-options .repeated,
-.form_notice label[for=notice_data-geo],
+.form_notice label.notice_data-geo,
 button.minimize,
 .form_reset_key input.submit,
 .entity_clear input.submit,
@@ -286,13 +286,13 @@ button.minimize,
     background-color:transparent;
 }
 
-.form_notice label[for=notice_data-geo] {
+.form_notice label.notice_data-geo {
     background-position:0 -1780px;
 }
-.form_notice label[for=notice_data-geo].checked {
+.form_notice label.notice_data-geo.checked {
     background-position:0 -1846px;
 }
-.form_notice label[for=notice_data-attach] {
+.form_notice label.notice_data-attach {
     background-position:0 -328px;
 }
 button.close {
@@ -937,39 +937,39 @@ z-index:2;
 .form_notice label {
 float:left;
 }
-.form_notice label[for=notice_data-attach],
-.form_notice #notice_data-attach {
+.form_notice label.notice_data-attach,
+.form_notice input.notice_data-attach {
 position:absolute;
 top:2em;
 right: 3em;
 cursor:pointer;
 }
-.form_notice label[for=notice_data-attach] {
+.form_notice label.notice_data-attach {
 text-indent:-9999px;
 width:16px;
 height:16px;
 }
-.form_notice #notice_data-attach {
+.form_notice input.notice_data-attach {
 opacity: 0;
 padding:0;
 height:1.6em;
 }
-.form_notice .form_note {
+.form_notice .count {
 position:absolute;
 bottom:2px;
 right:21.715%;
 z-index:9;
 }
-.form_notice .form_note dt {
+.form_notice .count dt {
 font-weight:bold;
 display:none;
 }
-.form_notice #notice_text-count {
+.form_notice .count {
 font-family: 'TeXGyreHerosBold', sans-serif;
 line-height:1.15;
 padding:1px 2px;
 }
-.form_notice #notice_action-submit {
+.form_notice .submit {
 width:14%;
 height:47px;
 padding:0;
@@ -992,7 +992,7 @@ width:81.5%;
 margin-bottom:0;
 line-height:1.618;
 }
-.form_notice #notice_data-attach_selected code {
+.form_notice .attach-status code {
 float:left;
 width:80%;
 display:block;
@@ -1000,13 +1000,13 @@ overflow:auto;
 margin-right:2.5%;
 font-size:1.1em;
 }
-.form_notice #notice_data-attach_selected button.close {
+.form_notice .attach-status button.close {
 float:right;
 font-size:0.8em;
 }
 
-.form_notice #notice_data-geo_wrap label,
-.form_notice #notice_data-geo_wrap input {
+.form_notice .notice_data-geo_wrap label,
+.form_notice .notice_data-geo_wrap input {
 position:absolute;
 top:3.25em;
 right:0.4em;
@@ -1016,10 +1016,10 @@ width:1.6em;
 height:1.6em;
 display:block;
 }
-.form_notice #notice_data-geo_wrap input {
+.form_notice .notice_data-geo_wrap input {
 visibility:hidden;
 }
-.form_notice #notice_data-geo_wrap label {
+.form_notice .notice_data-geo_wrap label {
 font-weight:normal;
 font-size:1em;
 margin-bottom:0;

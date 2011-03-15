@@ -61,7 +61,9 @@ class OembedAction extends Action
             $proxy_args = $r->map($path);
 
             if (!$proxy_args) {
-                $this->serverError(_("$path not found."), 404);
+                // TRANS: Server error displayed in oEmbed action when path not found.
+                // TRANS: %s is a path.
+                $this->serverError(sprintf(_('"%s" not found.'),$path), 404);
             }
             $oembed=array();
             $oembed['version']='1.0';
@@ -73,13 +75,17 @@ class OembedAction extends Action
                     $id = $proxy_args['notice'];
                     $notice = Notice::staticGet($id);
                     if(empty($notice)){
-                        $this->serverError(_("Notice $id not found."), 404);
+                        // TRANS: Server error displayed in oEmbed action when notice not found.
+                        // TRANS: %s is a notice.
+                        $this->serverError(sprintf(_("Notice %s not found."),$id), 404);
                     }
                     $profile = $notice->getProfile();
                     if (empty($profile)) {
+                        // TRANS: Server error displayed in oEmbed action when notice has not profile.
                         $this->serverError(_('Notice has no profile.'), 500);
                     }
                     $authorname = $profile->getFancyName();
+                    // TRANS: oEmbed title. %1$s is the author name, %2$s is the creation date.
                     $oembed['title'] = sprintf(_('%1$s\'s status on %2$s'),
                         $authorname,
                         common_exact_date($notice->created));
@@ -92,7 +98,9 @@ class OembedAction extends Action
                     $id = $proxy_args['attachment'];
                     $attachment = File::staticGet($id);
                     if(empty($attachment)){
-                        $this->serverError(_("Attachment $id not found."), 404);
+                        // TRANS: Server error displayed in oEmbed action when attachment not found.
+                        // TRANS: %d is an attachment ID.
+                        $this->serverError(sprintf(_('Attachment %s not found.'),$id), 404);
                     }
                     if(empty($attachment->filename) && $file_oembed = File_oembed::staticGet('file_id', $attachment->id)){
                         // Proxy the existing oembed information
@@ -133,7 +141,9 @@ class OembedAction extends Action
                     if($attachment->title) $oembed['title']=$attachment->title;
                     break;
                 default:
-                    $this->serverError(_("$path not supported for oembed requests."), 501);
+                    // TRANS: Server error displayed in oEmbed request when a path is not supported.
+                    // TRANS: %s is a path.
+                    $this->serverError(sprintf(_('"%s" not supported for oembed requests.'),$path), 501);
             }
             switch($args['format']){
                 case 'xml':
@@ -190,6 +200,7 @@ class OembedAction extends Action
             }
             break;
         default:
+            // TRANS: Server error displayed in oEmbed action when request specifies an unsupported data format.
             $this->serverError(_('Not a supported data format.'), 501);
             break;
         }
@@ -209,6 +220,7 @@ class OembedAction extends Action
             }
             break;
         default:
+            // TRANS: Server error displayed in oEmbed action when request specifies an unsupported data format.
             $this->serverError(_('Not a supported data format.'), 501);
             break;
         }

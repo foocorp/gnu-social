@@ -118,7 +118,7 @@ $schema['user'] = array(
         'smsemail' => array('type' => 'varchar', 'length' => 255, 'description' => 'built from sms and carrier'),
         'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
         'autosubscribe' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'automatically subscribe to users who subscribe to us'),
-        'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'ur1.ca', 'description' => 'service to use for auto-shortening URLs'),
+        'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'internal', 'description' => 'service to use for auto-shortening URLs'),
         'inboxed' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'has an inbox been created for this user?'),
         'design_id' => array('type' => 'int', 'description' => 'id of a design'),
         'viewdesigns' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'whether to view user-provided designs'),
@@ -201,6 +201,7 @@ $schema['notice'] = array(
         'location_id' => array('type' => 'int', 'description' => 'location id if possible'),
         'location_ns' => array('type' => 'int', 'description' => 'namespace for location'),
         'repeat_of' => array('type' => 'int', 'description' => 'notice this is a repeat of'),
+        'object_type' => array('type' => 'varchar', 'length' => 255, 'description' => 'URI representing activity streams object type', 'default' => 'http://activitystrea.ms/schema/1.0/note'),
     ),
     'primary key' => array('id'),
     'unique keys' => array(
@@ -1002,7 +1003,7 @@ $schema['local_group'] = array(
 $schema['user_urlshortener_prefs'] = array(
     'fields' => array(
         'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user'),
-        'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'ur1.ca', 'description' => 'service to use for auto-shortening URLs'),
+        'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'internal', 'description' => 'service to use for auto-shortening URLs'),
         'maxurllength' => array('type' => 'int', 'not null' => true, 'description' => 'urls greater than this length will be shortened, 0 = always, null = never'),
         'maxnoticelength' => array('type' => 'int', 'not null' => true, 'description' => 'notices with content greater than this value will have all urls shortened, 0 = always, null = never'),
         

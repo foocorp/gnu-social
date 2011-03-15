@@ -44,7 +44,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  */
 class LogoutAction extends Action
 {
-
     /**
      * This is read only.
      *
@@ -66,6 +65,7 @@ class LogoutAction extends Action
     {
         parent::handle($args);
         if (!common_logged_in()) {
+            // TRANS: Client error displayed trying to log out when not logged in.
             $this->clientError(_('Not logged in.'));
         } else {
             if (Event::handle('StartLogout', array($this))) {
@@ -83,5 +83,4 @@ class LogoutAction extends Action
         common_real_login(false); // not logged in
         common_forgetme(); // don't log back in!
     }
-
 }

@@ -111,6 +111,19 @@ class Action extends HTMLOutputter // lawsuit
         }
     }
 
+    function endHTML()
+    {
+        global $_startTime;
+
+        if (isset($_startTime)) {
+            $endTime = microtime(true);
+            $diff = round(($endTime - $_startTime) * 1000);
+            $this->raw("<!-- ${diff}ms -->");
+        }
+
+        return parent::endHTML();
+    }
+
     /**
      * Show head, a template method.
      *
@@ -254,9 +267,16 @@ class Action extends HTMLOutputter // lawsuit
 
     function primaryCssLink($mainTheme=null, $media=null)
     {
+        $theme = new Theme($mainTheme);
+
+        // Some themes may have external stylesheets, such as using the
+        // Google Font APIs to load webfonts.
+        foreach ($theme->getExternals() as $url) {
+            $this->cssLink($url, $mainTheme, $media);
+        }
+
         // If the currently-selected theme has dependencies on other themes,
         // we'll need to load their display.css files as well in order.
-        $theme = new Theme($mainTheme);
         $baseThemes = $theme->getDeps();
         foreach ($baseThemes as $baseTheme) {
             $this->cssLink('css/display.css', $baseTheme, $media);
@@ -273,16 +293,30 @@ class Action extends HTMLOutputter // lawsuit
     {
         if (Event::handle('StartShowScripts', array($this))) {
             if (Event::handle('StartShowJQueryScripts', array($this))) {
-                $this->script('jquery.min.js');
-                $this->script('jquery.form.min.js');
-                $this->script('jquery.cookie.min.js');
-                $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.min.js').'"); }');
-                $this->script('jquery.joverlay.min.js');
+                if (common_config('site', 'minify')) {
+                    $this->script('jquery.min.js');
+                    $this->script('jquery.form.min.js');
+                    $this->script('jquery.cookie.min.js');
+                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.min.js').'"); }');
+                    $this->script('jquery.joverlay.min.js');
+                } else {
+                    $this->script('jquery.js');
+                    $this->script('jquery.form.js');
+                    $this->script('jquery.cookie.js');
+                    $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.js').'"); }');
+                    $this->script('jquery.joverlay.js');
+                }
                 Event::handle('EndShowJQueryScripts', array($this));
             }
             if (Event::handle('StartShowStatusNetScripts', array($this)) &&
                 Event::handle('StartShowLaconicaScripts', array($this))) {
-                $this->script('util.min.js');
+                if (common_config('site', 'minify')) {
+                    $this->script('util.min.js');
+                } else {
+                    $this->script('util.js');
+                    $this->script('xbImportNode.js');
+                    $this->script('geometa.js');
+                }
                 $this->showScriptMessages();
                 // Frame-busting code to avoid clickjacking attacks.
                 $this->inlineScript('if (window.top !== window.self) { window.top.location.href = window.self.location.href; }');
@@ -300,26 +334,32 @@ class Action extends HTMLOutputter // lawsuit
      * events and appending to the array. Try to avoid adding strings that won't be used, as
      * they'll be added to HTML output.
      */
-    
+
     function showScriptMessages()
     {
         $messages = array();
-	
+
         if (Event::handle('StartScriptMessages', array($this, &$messages))) {
             // Common messages needed for timeline views etc...
 
             // TRANS: Localized tooltip for '...' expansion button on overlong remote messages.
             $messages['showmore_tooltip'] = _m('TOOLTIP', 'Show more');
 
+            // TRANS: Inline reply form submit button: submits a reply comment.
+            $messages['reply_submit'] = _m('BUTTON', 'Reply');
+
+            // TRANS: Placeholder text for inline reply form. Clicking in this box will turn it into a mini notice form.
+            $messages['reply_placeholder'] = _m('Write a reply...');
+
             $messages = array_merge($messages, $this->getScriptMessages());
-	    
+
 	    Event::handle('EndScriptMessages', array($this, &$messages));
         }
-	
+
         if (!empty($messages)) {
             $this->inlineScript('SN.messages=' . json_encode($messages));
         }
-	
+
         return $messages;
     }
 
@@ -451,14 +491,7 @@ class Action extends HTMLOutputter // lawsuit
 
             Event::handle('EndShowSiteNotice', array($this));
         }
-        if (common_logged_in()) {
-            if (Event::handle('StartShowNoticeForm', array($this))) {
-                $this->showNoticeForm();
-                Event::handle('EndShowNoticeForm', array($this));
-            }
-        } else {
-            $this->showAnonymousMessage();
-        }
+
         $this->elementEnd('div');
     }
 
@@ -476,9 +509,13 @@ class Action extends HTMLOutputter // lawsuit
                 $user = User::singleUser();
                 $url = common_local_url('showstream',
                                         array('nickname' => $user->nickname));
+            } else if (common_logged_in()) {
+                $cur = common_current_user();
+                $url = common_local_url('all', array('nickname' => $cur->nickname));
             } else {
                 $url = common_local_url('public');
             }
+
             $this->elementStart('a', array('class' => 'url home bookmark',
                                            'href' => $url));
 
@@ -513,6 +550,7 @@ class Action extends HTMLOutputter // lawsuit
             $this->text(' ');
             $this->element('span', array('class' => 'fn org'), common_config('site', 'name'));
             $this->elementEnd('a');
+
             Event::handle('EndAddressData', array($this));
         }
         $this->elementEnd('address');
@@ -525,83 +563,10 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showPrimaryNav()
     {
-        $user = common_current_user();
-        $this->elementStart('dl', array('id' => 'site_nav_global_primary'));
-        // TRANS: DT element for primary navigation menu. String is hidden in default CSS.
-        $this->element('dt', null, _('Primary site navigation'));
-        $this->elementStart('dd');
-        $this->elementStart('ul', array('class' => 'nav'));
-        if (Event::handle('StartPrimaryNav', array($this))) {
-            if ($user) {
-                // TRANS: Tooltip for main menu option "Personal"
-                $tooltip = _m('TOOLTIP', 'Personal profile and friends timeline');
-                $this->menuItem(common_local_url('all', array('nickname' => $user->nickname)),
-                                // TRANS: Main menu option when logged in for access to personal profile and friends timeline
-                                _m('MENU', 'Personal'), $tooltip, false, 'nav_home');
-                // TRANS: Tooltip for main menu option "Account"
-                $tooltip = _m('TOOLTIP', 'Change your email, avatar, password, profile');
-                $this->menuItem(common_local_url('profilesettings'),
-                                // TRANS: Main menu option when logged in for access to user settings
-                                _('Account'), $tooltip, false, 'nav_account');
-                // TRANS: Tooltip for main menu option "Services"
-                $tooltip = _m('TOOLTIP', 'Connect to services');
-                $this->menuItem(common_local_url('oauthconnectionssettings'),
-                                // TRANS: Main menu option when logged in and connection are possible for access to options to connect to other services
-                                _('Connect'), $tooltip, false, 'nav_connect');
-                if ($user->hasRight(Right::CONFIGURESITE)) {
-                    // TRANS: Tooltip for menu option "Admin"
-                    $tooltip = _m('TOOLTIP', 'Change site configuration');
-                    $this->menuItem(common_local_url('siteadminpanel'),
-                                    // TRANS: Main menu option when logged in and site admin for access to site configuration
-                                    _m('MENU', 'Admin'), $tooltip, false, 'nav_admin');
-                }
-                if (common_config('invite', 'enabled')) {
-                    // TRANS: Tooltip for main menu option "Invite"
-                    $tooltip = _m('TOOLTIP', 'Invite friends and colleagues to join you on %s');
-                    $this->menuItem(common_local_url('invite'),
-                                    // TRANS: Main menu option when logged in and invitations are allowed for inviting new users
-                                    _m('MENU', 'Invite'),
-                                    sprintf($tooltip,
-                                            common_config('site', 'name')),
-                                    false, 'nav_invitecontact');
-                }
-                // TRANS: Tooltip for main menu option "Logout"
-                $tooltip = _m('TOOLTIP', 'Logout from the site');
-                $this->menuItem(common_local_url('logout'),
-                                // TRANS: Main menu option when logged in to log out the current user
-                                _m('MENU', 'Logout'), $tooltip, false, 'nav_logout');
-            }
-            else {
-                if (!common_config('site', 'closed') && !common_config('site', 'inviteonly')) {
-                    // TRANS: Tooltip for main menu option "Register"
-                    $tooltip = _m('TOOLTIP', 'Create an account');
-                    $this->menuItem(common_local_url('register'),
-                                    // TRANS: Main menu option when not logged in to register a new account
-                                    _m('MENU', 'Register'), $tooltip, false, 'nav_register');
-                }
-                // TRANS: Tooltip for main menu option "Login"
-                $tooltip = _m('TOOLTIP', 'Login to the site');
-                $this->menuItem(common_local_url('login'),
-                                // TRANS: Main menu option when not logged in to log in
-                                _m('MENU', 'Login'), $tooltip, false, 'nav_login');
-            }
-            // TRANS: Tooltip for main menu option "Help"
-            $tooltip = _m('TOOLTIP', 'Help me!');
-            $this->menuItem(common_local_url('doc', array('title' => 'help')),
-                            // TRANS: Main menu option for help on the StatusNet site
-                            _m('MENU', 'Help'), $tooltip, false, 'nav_help');
-            if ($user || !common_config('site', 'private')) {
-                // TRANS: Tooltip for main menu option "Search"
-                $tooltip = _m('TOOLTIP', 'Search for people or text');
-                $this->menuItem(common_local_url('peoplesearch'),
-                                // TRANS: Main menu option when logged in or when the StatusNet instance is not private
-                                _m('MENU', 'Search'), $tooltip, false, 'nav_search');
-            }
-            Event::handle('EndPrimaryNav', array($this));
-        }
-        $this->elementEnd('ul');
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
+        $this->elementStart('div', array('id' => 'site_nav_global_primary'));
+        $pn = new PrimaryNav($this);
+        $pn->show();
+        $this->elementEnd('div');
     }
 
     /**
@@ -614,14 +579,10 @@ class Action extends HTMLOutputter // lawsuit
         // Revist. Should probably do an hAtom pattern here
         $text = common_config('site', 'notice');
         if ($text) {
-            $this->elementStart('dl', array('id' => 'site_notice',
+            $this->elementStart('div', array('id' => 'site_notice',
                                             'class' => 'system_notice'));
-            // TRANS: DT element for site notice. String is hidden in default CSS.
-            $this->element('dt', null, _('Site notice'));
-            $this->elementStart('dd', null);
             $this->raw($text);
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
+            $this->elementEnd('div');
         }
     }
 
@@ -634,8 +595,68 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showNoticeForm()
     {
-        $notice_form = new NoticeForm($this);
-        $notice_form->show();
+        $tabs = array('status' => _('Status'));
+
+        $this->elementStart('div', 'input_forms');
+
+        if (Event::handle('StartShowEntryForms', array(&$tabs))) {
+
+            $this->elementStart('ul', array('class' => 'nav',
+                                            'id' => 'input_form_nav'));
+
+            foreach ($tabs as $tag => $title) {
+
+                $attrs = array('id' => 'input_form_nav_'.$tag,
+                               'class' => 'input_form_nav_tab');
+
+                if ($tag == 'status') {
+                    // We're actually showing the placeholder form,
+                    // but we special-case the 'Status' tab as if
+                    // it were a small version of it.
+                    $attrs['class'] .= ' current';
+                }
+                $this->elementStart('li', $attrs);
+
+                $this->element('a',
+                               array('href' => 'javascript:SN.U.switchInputFormTab("'.$tag.'")'),
+                               $title);
+                $this->elementEnd('li');
+            }
+
+            $this->elementEnd('ul');
+
+            $attrs = array('class' => 'input_form current',
+                           'id' => 'input_form_placeholder');
+            $this->elementStart('div', $attrs);
+            $form = new NoticePlaceholderForm($this);
+            $form->show();
+            $this->elementEnd('div');
+
+            foreach ($tabs as $tag => $title) {
+
+                $attrs = array('class' => 'input_form',
+                               'id' => 'input_form_'.$tag);
+
+                $this->elementStart('div', $attrs);
+
+                $form = null;
+
+                if (Event::handle('StartMakeEntryForm', array($tag, $this, &$form))) {
+                    if ($tag == 'status') {
+                        $form = new NoticeForm($this);
+                    }
+                    Event::handle('EndMakeEntryForm', array($tag, $this, $form));
+                }
+
+                if (!empty($form)) {
+                    $form->show();
+                }
+
+                $this->elementEnd('div');
+            }
+        }
+
+        $this->elementEnd('div');
     }
 
     /**
@@ -660,6 +681,9 @@ class Action extends HTMLOutputter // lawsuit
     function showCore()
     {
         $this->elementStart('div', array('id' => 'core'));
+        $this->elementStart('div', array('id' => 'aside_primary_wrapper'));
+        $this->elementStart('div', array('id' => 'content_wrapper'));
+        $this->elementStart('div', array('id' => 'site_nav_local_views_wrapper'));
         if (Event::handle('StartShowLocalNavBlock', array($this))) {
             $this->showLocalNavBlock();
             Event::handle('EndShowLocalNavBlock', array($this));
@@ -673,6 +697,9 @@ class Action extends HTMLOutputter // lawsuit
             Event::handle('EndShowAside', array($this));
         }
         $this->elementEnd('div');
+        $this->elementEnd('div');
+        $this->elementEnd('div');
+        $this->elementEnd('div');
     }
 
     /**
@@ -682,13 +709,11 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showLocalNavBlock()
     {
-        $this->elementStart('dl', array('id' => 'site_nav_local_views'));
-        // TRANS: DT element for local views block. String is hidden in default CSS.
-        $this->element('dt', null, _('Local views'));
-        $this->elementStart('dd');
+        // Need to have this ID for CSS; I'm too lazy to add it to
+        // all menus
+        $this->elementStart('div', array('id' => 'site_nav_local_views'));
         $this->showLocalNav();
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
+        $this->elementEnd('div');
     }
 
     /**
@@ -700,7 +725,43 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showLocalNav()
     {
-        // does nothing by default
+        $nav = new DefaultLocalNav($this);
+        $nav->show();
+    }
+
+    /**
+     * Show menu for an object (group, profile)
+     *
+     * This block will only show if a subclass has overridden
+     * the showObjectNav() method.
+     *
+     * @return nothing
+     */
+    function showObjectNavBlock()
+    {
+        $rmethod = new ReflectionMethod($this, 'showObjectNav');
+        $dclass = $rmethod->getDeclaringClass()->getName();
+
+        if ($dclass != 'Action') {
+            // Need to have this ID for CSS; I'm too lazy to add it to
+            // all menus
+            $this->elementStart('div', array('id' => 'site_nav_object',
+                                             'class' => 'section'));
+            $this->showObjectNav();
+            $this->elementEnd('div');
+        }
+    }
+
+    /**
+     * Show object navigation.
+     *
+     * If there are things to do with this object, show it here.
+     *
+     * @return nothing
+     */
+    function showObjectNav()
+    {
+        /* Nothing here. */
     }
 
     /**
@@ -711,6 +772,12 @@ class Action extends HTMLOutputter // lawsuit
     function showContentBlock()
     {
         $this->elementStart('div', array('id' => 'content'));
+        if (common_logged_in()) {
+            if (Event::handle('StartShowNoticeForm', array($this))) {
+                $this->showNoticeForm();
+                Event::handle('EndShowNoticeForm', array($this));
+            }
+        }
         if (Event::handle('StartShowPageTitle', array($this))) {
             $this->showPageTitle();
             Event::handle('EndShowPageTitle', array($this));
@@ -751,17 +818,13 @@ class Action extends HTMLOutputter // lawsuit
 
         if ($dclass != 'Action' || Event::hasHandler('StartShowPageNotice')) {
 
-            $this->elementStart('dl', array('id' => 'page_notice',
+            $this->elementStart('div', array('id' => 'page_notice',
                                             'class' => 'system_notice'));
-            // TRANS: DT element for page notice. String is hidden in default CSS.
-            $this->element('dt', null, _('Page notice'));
-            $this->elementStart('dd');
             if (Event::handle('StartShowPageNotice', array($this))) {
                 $this->showPageNotice();
                 Event::handle('EndShowPageNotice', array($this));
             }
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
+            $this->elementEnd('div');
         }
     }
 
@@ -796,6 +859,10 @@ class Action extends HTMLOutputter // lawsuit
     {
         $this->elementStart('div', array('id' => 'aside_primary',
                                          'class' => 'aside'));
+        if (Event::handle('StartShowObjectNavBlock', array($this))) {
+            $this->showObjectNavBlock();
+            Event::handle('EndShowObjectNavBlock', array($this));
+        }
         if (Event::handle('StartShowSections', array($this))) {
             $this->showSections();
             Event::handle('EndShowSections', array($this));
@@ -841,8 +908,11 @@ class Action extends HTMLOutputter // lawsuit
     function showFooter()
     {
         $this->elementStart('div', array('id' => 'footer'));
-        $this->showSecondaryNav();
-        $this->showLicenses();
+        if (Event::handle('StartShowInsideFooter', array($this))) {
+            $this->showSecondaryNav();
+            $this->showLicenses();
+            Event::handle('EndShowInsideFooter', array($this));
+        }
         $this->elementEnd('div');
     }
 
@@ -853,48 +923,8 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showSecondaryNav()
     {
-        $this->elementStart('dl', array('id' => 'site_nav_global_secondary'));
-        // TRANS: DT element for secondary navigation menu. String is hidden in default CSS.
-        $this->element('dt', null, _('Secondary site navigation'));
-        $this->elementStart('dd', null);
-        $this->elementStart('ul', array('class' => 'nav'));
-        if (Event::handle('StartSecondaryNav', array($this))) {
-            $this->menuItem(common_local_url('doc', array('title' => 'help')),
-                            // TRANS: Secondary navigation menu option leading to help on StatusNet.
-                            _('Help'));
-            $this->menuItem(common_local_url('doc', array('title' => 'about')),
-                            // TRANS: Secondary navigation menu option leading to text about StatusNet site.
-                            _('About'));
-            $this->menuItem(common_local_url('doc', array('title' => 'faq')),
-                            // TRANS: Secondary navigation menu option leading to Frequently Asked Questions.
-                            _('FAQ'));
-            $bb = common_config('site', 'broughtby');
-            if (!empty($bb)) {
-                $this->menuItem(common_local_url('doc', array('title' => 'tos')),
-                                // TRANS: Secondary navigation menu option leading to Terms of Service.
-                                _('TOS'));
-            }
-            $this->menuItem(common_local_url('doc', array('title' => 'privacy')),
-                            // TRANS: Secondary navigation menu option leading to privacy policy.
-                            _('Privacy'));
-            $this->menuItem(common_local_url('doc', array('title' => 'source')),
-                            // TRANS: Secondary navigation menu option. Leads to information about StatusNet and its license.
-                            _('Source'));
-            $this->menuItem(common_local_url('version'),
-                            // TRANS: Secondary navigation menu option leading to version information on the StatusNet site.
-                            _('Version'));
-            $this->menuItem(common_local_url('doc', array('title' => 'contact')),
-                            // TRANS: Secondary navigation menu option leading to e-mail contact information on the
-                            // TRANS: StatusNet site, where to report bugs, ...
-                            _('Contact'));
-            $this->menuItem(common_local_url('doc', array('title' => 'badge')),
-                            // TRANS: Secondary navigation menu option. Leads to information about embedding a timeline widget.
-                            _('Badge'));
-            Event::handle('EndSecondaryNav', array($this));
-        }
-        $this->elementEnd('ul');
-        $this->elementEnd('dd');
-        $this->elementEnd('dl');
+        $sn = new SecondaryNav($this);
+        $sn->show();
     }
 
     /**
@@ -904,10 +934,8 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showLicenses()
     {
-        $this->elementStart('dl', array('id' => 'licenses'));
         $this->showStatusNetLicense();
         $this->showContentLicense();
-        $this->elementEnd('dl');
     }
 
     /**
@@ -917,9 +945,6 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showStatusNetLicense()
     {
-        // TRANS: DT element for StatusNet software license.
-        $this->element('dt', array('id' => 'site_statusnet_license'), _('StatusNet software license'));
-        $this->elementStart('dd', null);
         if (common_config('site', 'broughtby')) {
             // TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is set.
             // TRANS: Text between [] is a link description, text between () is the link itself.
@@ -938,7 +963,6 @@ class Action extends HTMLOutputter // lawsuit
         $instr .= sprintf(_('It runs on [GNU social](http://www.gnu.org/software/social/), version %s, available under the [GNU Affero General Public License](http://www.fsf.org/licensing/licenses/agpl-3.0.html).'), STATUSNET_VERSION);
         $output = common_markup_to_html($instr);
         $this->raw($output);
-        $this->elementEnd('dd');
         // do it
     }
 
@@ -950,10 +974,6 @@ class Action extends HTMLOutputter // lawsuit
     function showContentLicense()
     {
         if (Event::handle('StartShowContentLicense', array($this))) {
-            // TRANS: DT element for StatusNet site content license.
-            $this->element('dt', array('id' => 'site_content_license'), _('Site content license'));
-            $this->elementStart('dd', array('id' => 'site_content_license_cc'));
-
             switch (common_config('license', 'type')) {
             case 'private':
                 // TRANS: Content license displayed when license is set to 'private'.
@@ -1014,7 +1034,6 @@ class Action extends HTMLOutputter // lawsuit
                 break;
             }
 
-            $this->elementEnd('dd');
             Event::handle('EndShowContentLicense', array($this));
         }
     }
@@ -1335,11 +1354,8 @@ class Action extends HTMLOutputter // lawsuit
     {
         // Does a little before-after block for next/prev page
         if ($have_before || $have_after) {
-            $this->elementStart('dl', 'pagination');
-            // TRANS: DT element for pagination (previous/next, etc.).
-            $this->element('dt', null, _('Pagination'));
-            $this->elementStart('dd', null);
-            $this->elementStart('ul', array('class' => 'nav'));
+            $this->elementStart('ul', array('class' => 'nav',
+                                            'id' => 'pagination'));
         }
         if ($have_before) {
             $pargs   = array('page' => $page-1);
@@ -1363,8 +1379,6 @@ class Action extends HTMLOutputter // lawsuit
         }
         if ($have_before || $have_after) {
             $this->elementEnd('ul');
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
         }
     }
 

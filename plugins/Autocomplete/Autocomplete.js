@@ -1,4 +1,15 @@
-$(document).ready(function(){
+(function(SN, $) {
+
+var origInit = SN.Init.NoticeFormSetup;
+SN.Init.NoticeFormSetup = function(form) {
+    origInit(form);
+
+    // Only attach to traditional-style forms
+    var textarea = form.find('.notice_data-text:first');
+    if (textarea.length == 0) {
+        return;
+    }
+
     function fullName(row) {
         if (typeof row.fullname == "string" && row.fullname != '') {
             return row.nickname + ' (' + row.fullname + ')';
@@ -6,7 +17,9 @@ $(document).ready(function(){
             return row.nickname;
         }
     }
-    $('#notice_data-text').autocomplete($('address .url')[0].href+'main/autocomplete/suggest', {
+
+    var apiUrl = $('#autocomplete-api').attr('data-url');
+    textarea.autocomplete(apiUrl, {
         multiple: true,
         multipleSeparator: " ",
         minChars: 1,
@@ -35,4 +48,6 @@ $(document).ready(function(){
             }
         }
     });
-});
+};
+
+})(SN, jQuery);

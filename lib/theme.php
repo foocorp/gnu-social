@@ -56,6 +56,9 @@ class Theme
     var $name = null;
     var $dir  = null;
     var $path = null;
+    protected $metadata = null; // access via getMetadata() lazy-loader
+    protected $externals = null;
+    protected $deps = null;
 
     /**
      * Constructor
@@ -199,9 +202,12 @@ class Theme
      */
     function getDeps()
     {
-        $chain = $this->doGetDeps(array($this->name));
-        array_pop($chain); // Drop us back off
-        return $chain;
+        if ($this->deps === null) {
+            $chain = $this->doGetDeps(array($this->name));
+            array_pop($chain); // Drop us back off
+            $this->deps = $chain;
+        }
+        return $this->deps;
     }
 
     protected function doGetDeps($chain)
@@ -234,12 +240,52 @@ class Theme
      */
     function getMetadata()
     {
+        if ($this->metadata == null) {
+            $this->metadata = $this->doGetMetadata();
+        }
+        return $this->metadata;
+    }
+
+    /**
+     * Pull data from the theme's theme.ini file.
+     * @fixme calling getFile will fall back to default theme, this may be unsafe.
+     *
+     * @return associative array of strings
+     */
+    private function doGetMetadata()
+    {
         $iniFile = $this->getFile('theme.ini');
         if (file_exists($iniFile)) {
             return parse_ini_file($iniFile);
         } else {
             return array();
         }
+    }
+
+    /**
+     * Get list of any external URLs required by this theme and any
+     * dependencies. These are lazy-loaded from theme.ini.
+     *
+     * @return array of URL strings
+     */
+    function getExternals()
+    {
+        if ($this->externals == null) {
+            $data = $this->getMetadata();
+            if (!empty($data['external'])) {
+                $ext = (array)$data['external'];
+            } else {
+                $ext = array();
+            }
+
+            if (!empty($data['include'])) {
+                $theme = new Theme($data['include']);
+                $ext = array_merge($ext, $theme->getExternals());
+            }
+
+            $this->externals = array_unique($ext);
+        }
+        return $this->externals;
     }
 
     /**

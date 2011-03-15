@@ -115,10 +115,15 @@ class OStatusInitAction extends Action
 
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li', array('id' => 'ostatus_nickname'));
-        // TRANS: Field label.
-        $this->input('nickname', _m('User nickname'), $this->nickname,
-                     _m('Nickname of the user you want to follow.'));
-        $this->hidden('group', $this->group); // pass-through for magic links
+        if ($this->group) {
+            // TRANS: Field label.
+            $this->input('group', _m('Group nickname'), $this->group,
+                         _m('Nickname of the group you want to join.'));
+        } else {
+            // TRANS: Field label.
+            $this->input('nickname', _m('User nickname'), $this->nickname,
+                         _m('Nickname of the user you want to follow.'));
+        }
         $this->elementEnd('li');
         $this->elementStart('li', array('id' => 'ostatus_profile'));
         // TRANS: Field label.

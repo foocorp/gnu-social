@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * Show a single favorite in Atom Activity Streams format
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -48,7 +48,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class AtompubshowfavoriteAction extends ApiAuthAction
 {
     private $_profile = null;
@@ -62,7 +61,6 @@ class AtompubshowfavoriteAction extends ApiAuthAction
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
@@ -73,12 +71,14 @@ class AtompubshowfavoriteAction extends ApiAuthAction
         $this->_profile = Profile::staticGet('id', $profileId);
 
         if (empty($this->_profile)) {
+            // TRANS: Client exception.
             throw new ClientException(_('No such profile.'), 404);
         }
 
         $this->_notice = Notice::staticGet('id', $noticeId);
 
         if (empty($this->_notice)) {
+            // TRANS: Client exception thrown when referencing a non-existing notice.
             throw new ClientException(_('No such notice.'), 404);
         }
 
@@ -86,6 +86,7 @@ class AtompubshowfavoriteAction extends ApiAuthAction
                                            'notice_id' => $noticeId));
 
         if (empty($this->_fave)) {
+            // TRANS: Client exception thrown when referencing a non-existing favorite.
             throw new ClientException(_('No such favorite.'), 404);
         }
 
@@ -99,7 +100,6 @@ class AtompubshowfavoriteAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         parent::handle($argarray);
@@ -113,6 +113,7 @@ class AtompubshowfavoriteAction extends ApiAuthAction
             $this->deleteFave();
             break;
         default:
+            // TRANS: Client exception thrown using an unsupported HTTP method.
             throw new ClientException(_('HTTP method not supported.'),
                                       405);
         }
@@ -121,10 +122,9 @@ class AtompubshowfavoriteAction extends ApiAuthAction
 
     /**
      * Show a single favorite, in ActivityStreams format
-     * 
+     *
      * @return void
      */
-
     function showFave()
     {
         $activity = $this->_fave->asActivity();
@@ -140,16 +140,16 @@ class AtompubshowfavoriteAction extends ApiAuthAction
 
     /**
      * Delete the favorite
-     * 
+     *
      * @return void
      */
-
     function deleteFave()
     {
         if (empty($this->auth_user) ||
             $this->auth_user->id != $this->_profile->id) {
-            throw new ClientException(_("Can't delete someone else's".
-                                        " favorite"), 403);
+            // TRANS: Client exception thrown when trying to remove a favorite notice of another user.
+            throw new ClientException(_("Cannot delete someone else's".
+                                        " favorite."), 403);
         }
 
         $this->_fave->delete();
@@ -166,7 +166,6 @@ class AtompubshowfavoriteAction extends ApiAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||
@@ -184,7 +183,6 @@ class AtompubshowfavoriteAction extends ApiAuthAction
      *
      * @return string last modified http header
      */
-
     function lastModified()
     {
         return max(strtotime($this->_profile->modified),
@@ -199,7 +197,6 @@ class AtompubshowfavoriteAction extends ApiAuthAction
      *
      * @return string etag http header
      */
-
     function etag()
     {
         $mtime = strtotime($this->_fave->modified);
@@ -215,7 +212,6 @@ class AtompubshowfavoriteAction extends ApiAuthAction
      *
      * @return boolean true if delete, else false
      */
-
     function requiresAuth()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||

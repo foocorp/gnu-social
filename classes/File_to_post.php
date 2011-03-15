@@ -52,6 +52,12 @@ class File_to_post extends Memcached_DataObject
                 $f2p->file_id = $file_id;
                 $f2p->post_id = $notice_id;
                 $f2p->insert();
+                
+                $f = File::staticGet($file_id);
+
+                if (!empty($f)) {
+                    $f->blowCache();
+                }
             }
 
             if (empty($seen[$notice_id])) {
@@ -65,5 +71,14 @@ class File_to_post extends Memcached_DataObject
     function pkeyGet($kv)
     {
         return Memcached_DataObject::pkeyGet('File_to_post', $kv);
+    }
+
+    function delete()
+    {
+        $f = File::staticGet('id', $this->file_id);
+        if (!empty($f)) {
+            $f->blowCache();
+        }
+        return parent::delete();
     }
 }

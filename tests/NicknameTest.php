@@ -33,9 +33,14 @@ class NicknameTest extends PHPUnit_Framework_TestCase
 
         if ($expected === false) {
             if ($expectedException) {
+                if ($exception) {
+                    $stuff = get_class($exception) . ': ' . $exception->getMessage();
+                } else {
+                    $stuff = var_export($exception, true);
+                }
                 $this->assertTrue($exception && $exception instanceof $expectedException,
                         "invalid input '$input' expected to fail with $expectedException, " .
-                        "got " . get_class($exception) . ': ' . $exception->getMessage());
+                        "got $stuff");
             } else {
                 $this->assertTrue($normalized == false,
                         "invalid input '$input' expected to fail");
@@ -104,7 +109,7 @@ class NicknameTest extends PHPUnit_Framework_TestCase
                      array('', false, 'NicknameEmptyException'),
                      array('___', false, 'NicknameEmptyException'),
                      array('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'), // 64 chars
-                     array('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee_', 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee'), // the _ will be trimmed off, remaining valid
+                     array('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee_', false, 'NicknameTooLongException'), // the _ is too long...
                      array('eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee', false, 'NicknameTooLongException'), // 65 chars -- too long
                      );
     }

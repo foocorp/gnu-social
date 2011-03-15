@@ -1,5 +1,4 @@
 <?php
-
 /**
  * RSS feed for user favorites action class.
  *
@@ -50,7 +49,6 @@ require_once INSTALLDIR.'/lib/rssaction.php';
  */
 class FavoritesrssAction extends Rss10Action
 {
-
     /** The user whose favorites to display */
 
     var $user = null;
@@ -62,7 +60,6 @@ class FavoritesrssAction extends Rss10Action
      *
      * @return boolean success
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -71,6 +68,7 @@ class FavoritesrssAction extends Rss10Action
         $this->user = User::staticGet('nickname', $nickname);
 
         if (!$this->user) {
+            // TRANS: Client error displayed when trying to get the RSS feed with favorites of a user that does not exist.
             $this->clientError(_('No such user.'));
             return false;
         } else {
@@ -108,10 +106,14 @@ class FavoritesrssAction extends Rss10Action
         $c    = array('url' => common_local_url('favoritesrss',
                                         array('nickname' =>
                                         $user->nickname)),
+                   // TRANS: Title of RSS feed with favourite notices of a user.
+                   // TRANS: %s is a user's nickname.
                    'title' => sprintf(_("%s's favorite notices"), $user->nickname),
                    'link' => common_local_url('showfavorites',
                                         array('nickname' =>
                                         $user->nickname)),
+                   // TRANS: Desciption of RSS feed with favourite notices of a user.
+                   // TRANS: %1$s is a user's nickname, %2$s is the name of the StatusNet site.
                    'description' => sprintf(_('Updates favored by %1$s on %2$s!'),
                                         $user->nickname, common_config('site', 'name')));
         return $c;

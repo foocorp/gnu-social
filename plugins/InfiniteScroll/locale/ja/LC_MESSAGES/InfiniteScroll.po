@@ -1,5 +1,5 @@
 # Translation of StatusNet - InfiniteScroll to Japanese (日本語)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: 青子守歌
 # --
@@ -9,19 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - InfiniteScroll\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:09+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:24+0000\n"
 "Language-Team: Japanese <http://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-10-29 16:12:49+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:44:13+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-plugin-infinitescroll\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: InfiniteScrollPlugin.php:54
 msgid ""
 "Infinite Scroll adds the following functionality to your StatusNet "
 "installation: When a user scrolls towards the bottom of the page, the next "

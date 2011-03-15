@@ -36,7 +36,7 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 try {
     $user = getUser();
-    $actstr = new UserActivityStream($user);
+    $actstr = new UserActivityStream($user, true, UserActivityStream::OUTPUT_RAW);
     print $actstr->getString();
 } catch (Exception $e) {
     print $e->getMessage()."\n";

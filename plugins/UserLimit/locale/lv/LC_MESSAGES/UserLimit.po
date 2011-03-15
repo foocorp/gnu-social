@@ -1,5 +1,5 @@
 # Translation of StatusNet - UserLimit to Latvian (Latviešu)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Geimeris
 # --
@@ -9,19 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserLimit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:13:13+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:29+0000\n"
 "Language-Team: Latvian <http://translatewiki.net/wiki/Portal:lv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:46:19+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:36+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: lv\n"
 "X-Message-Group: #out-statusnet-plugin-userlimit\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n != "
 "0) ? 1 : 2 );\n"
 
-#: UserLimitPlugin.php:89
 msgid "Limit the number of users who can register."
 msgstr "Ierobežotais lietotāju skaits, kuri var reģistrēties."

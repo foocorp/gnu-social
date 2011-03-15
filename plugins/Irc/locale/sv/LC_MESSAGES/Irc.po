@@ -1,0 +1,39 @@
+# Translation of StatusNet - Irc to Swedish (Svenska)
+# Exported from translatewiki.net
+#
+# Author: WikiPhoenix
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Irc\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-11 18:15+0000\n"
+"PO-Revision-Date: 2011-03-11 18:18:23+0000\n"
+"Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-08 01:22:54+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83703); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: sv\n"
+"X-Message-Group: #out-statusnet-plugin-irc\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "IRC"
+msgstr "IRC"
+
+msgid ""
+"The IRC plugin allows users to send and receive notices over an IRC network."
+msgstr ""
+"IRC-tillägget tillåter användare skicka och ta emot meddelanden över IRC-"
+"nätverket."
+
+#, php-format
+msgid "Could not increment attempts count for %d"
+msgstr ""
+
+msgid "Your nickname is not registered so IRC connectivity cannot be enabled"
+msgstr ""
+"Ditt smeknamn är inte registrerat, så IRC-anslutningar kan inte aktiveras"

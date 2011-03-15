@@ -1,0 +1,80 @@
+# Translation of StatusNet - NewMenu to Ukrainian (Українська)
+# Exported from translatewiki.net
+#
+# Author: Boogie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - NewMenu\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-29 21:45+0000\n"
+"PO-Revision-Date: 2011-03-06 01:37:41+0000\n"
+"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:45:38+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: uk\n"
+"X-Message-Group: #out-statusnet-plugin-newmenu\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+msgid "Home"
+msgstr "Дім"
+
+msgid "Friends timeline"
+msgstr "Стрічка друзів"
+
+msgid "Profile"
+msgstr "Профіль"
+
+msgid "Your profile"
+msgstr "Ваш профіль"
+
+msgid "Public"
+msgstr "Загал"
+
+msgid "Everyone on this site"
+msgstr "Всі на цьому сайті"
+
+msgid "Settings"
+msgstr "Параметри"
+
+msgid "Change your personal settings"
+msgstr "Змінити налаштування профілю"
+
+msgid "Admin"
+msgstr "Адмін"
+
+msgid "Site configuration"
+msgstr "Конфігурація сайту"
+
+msgid "Logout"
+msgstr "Вийти"
+
+msgid "Logout from the site"
+msgstr "Вийти з сайту"
+
+msgid "Login"
+msgstr "Увійти"
+
+msgid "Login to the site"
+msgstr "Увійти на сайт"
+
+msgid "Search"
+msgstr "Пошук"
+
+msgid "Search the site"
+msgstr "Пошук на сайті"
+
+msgid "IM"
+msgstr "ІМ"
+
+msgid "SMS"
+msgstr "СМС"
+
+msgid "A preview of the new menu layout in StatusNet 1.0."
+msgstr "Попередній перегляд нового макета меню в StatusNet 1.0"

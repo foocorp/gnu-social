@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ExtendedProfilePlugin.php:40
+msgid "UI extensions for additional profile fields."
+msgstr ""
+
+#. TRANS: Link description in user account settings menu.
+#: ExtendedProfilePlugin.php:108
+msgid "Details"
+msgstr ""
+
+#: ExtendedProfilePlugin.php:116
+msgid "More details..."
+msgstr ""
+
+#: extendedprofile.php:49 extendedprofile.php:103
+msgid "Personal"
+msgstr ""
+
+#: extendedprofile.php:52
+msgid "Full name"
+msgstr ""
+
+#: extendedprofile.php:57
+msgid "Title"
+msgstr ""
+
+#: extendedprofile.php:61
+msgid "Manager"
+msgstr ""
+
+#: extendedprofile.php:66
+msgid "Location"
+msgstr ""
+
+#: extendedprofile.php:70
+msgid "Bio"
+msgstr ""
+
+#: extendedprofile.php:75
+msgid "Tags"
+msgstr ""
+
+#: extendedprofile.php:82
+msgid "Contact"
+msgstr ""
+
+#: extendedprofile.php:85
+msgid "Phone"
+msgstr ""
+
+#: extendedprofile.php:91
+msgid "IM"
+msgstr ""
+
+#: extendedprofile.php:96
+msgid "Websites"
+msgstr ""
+
+#: extendedprofile.php:106
+msgid "Birthday"
+msgstr ""
+
+#: extendedprofile.php:111
+msgid "Spouse's name"
+msgstr ""
+
+#: extendedprofile.php:115
+msgid "Kids' names"
+msgstr ""
+
+#: extendedprofile.php:120
+msgid "Work experience"
+msgstr ""
+
+#: extendedprofile.php:124
+msgid "Employer"
+msgstr ""
+
+#: extendedprofile.php:129
+msgid "Education"
+msgstr ""
+
+#: extendedprofile.php:133
+msgid "Institution"
+msgstr ""
+
+#. TRANS: Link title for link on user profile.
+#: profiledetailaction.php:61
+msgid "Edit extended profile settings"
+msgstr ""
+
+#. TRANS: Link text for link on user profile.
+#: profiledetailaction.php:63
+msgid "Edit"
+msgstr ""
+
+#: profiledetailsettingsaction.php:29
+msgid "Extended profile settings"
+msgstr ""

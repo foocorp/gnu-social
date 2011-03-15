@@ -1,0 +1,26 @@
+# Translation of StatusNet - AccountManager to Afrikaans (Afrikaans)
+# Exported from translatewiki.net
+#
+# Author: Naudefj
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AccountManager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:43+0000\n"
+"Language-Team: Afrikaans <http://translatewiki.net/wiki/Portal:af>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 20:42:06+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: af\n"
+"X-Message-Group: #out-statusnet-plugin-accountmanager\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid ""
+"The Account Manager plugin implements the Account Manager specification."
+msgstr "Implementeer die \"Account Manager\"-spesifikasie."

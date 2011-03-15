@@ -182,6 +182,9 @@ class Activity
         $actorEl = $this->_child($entry, self::ACTOR);
 
         if (!empty($actorEl)) {
+            // Standalone <activity:actor> elements are a holdover from older
+            // versions of ActivityStreams. Newer feeds should have this data
+            // integrated straight into <atom:author>.
 
             $this->actor = new ActivityObject($actorEl);
 
@@ -196,18 +199,24 @@ class Activity
                     $this->actor->id = $authorObj->id;
                 }
             }
+        } else if ($authorEl = $this->_child($entry, self::AUTHOR, self::ATOM)) {
+
+            // An <atom:author> in the entry overrides any author info on
+            // the surrounding feed.
+            $this->actor = new ActivityObject($authorEl);
+
         } else if (!empty($feed) &&
                    $subjectEl = $this->_child($feed, self::SUBJECT)) {
 
+            // Feed subject is used for things like groups.
+            // Should actually possibly not be interpreted as an actor...?
             $this->actor = new ActivityObject($subjectEl);
-
-        } else if ($authorEl = $this->_child($entry, self::AUTHOR, self::ATOM)) {
-
-            $this->actor = new ActivityObject($authorEl);
 
         } else if (!empty($feed) && $authorEl = $this->_child($feed, self::AUTHOR,
                                                               self::ATOM)) {
 
+            // If there's no <atom:author> on the entry, it's safe to assume
+            // the containing feed's authorship info applies.
             $this->actor = new ActivityObject($authorEl);
         }
 
@@ -322,15 +331,172 @@ class Activity
      *
      * @return DOMElement Atom entry
      */
+
     function toAtomEntry()
     {
         return null;
     }
 
+    /**
+     * Returns an array based on this activity suitable
+     * for encoding as a JSON object
+     *
+     * @return array $activity
+     */
+
+    function asArray()
+    {
+        $activity = array();
+
+        // actor
+        $activity['actor'] = $this->actor->asArray();
+
+        // body
+        $activity['body'] = $this->content;
+
+        // generator <-- We could use this when we know a notice is created
+        //               locally. Or if we know the upstream Generator.
+
+        // icon <-- I've decided to use the posting user's stream avatar here
+        //          for now (also included in the avatarLinks extension)
+
+
+        // object
+        if ($this->verb == ActivityVerb::POST && count($this->objects) == 1) {
+            $activity['object'] = $this->objects[0]->asArray();
+
+            // Context stuff. For now I'm just sticking most of it
+            // in a property called "context"
+
+            if (!empty($this->context)) {
+
+                if (!empty($this->context->location)) {
+                    $loc = $this->context->location;
+
+                    // GeoJSON
+
+                    $activity['geopoint'] = array(
+                        'type'        => 'Point',
+                        'coordinates' => array($loc->lat, $loc->lon)
+                    );
+
+                }
+
+                $activity['to']      = $this->context->getToArray();
+                $activity['context'] = $this->context->asArray();
+            }
+
+            // Instead of adding enclosures as an extension to JSON
+            // Activities, it seems like we should be using the
+            // attachedObjects property of ActivityObject
+
+            $attachedObjects = array();
+
+            // XXX: OK, this is kinda cheating. We should probably figure out
+            // what kind of objects these are based on mime-type and then
+            // create specific object types. Right now this rely on
+            // duck-typing.  Also, we should include an embed code for
+            // video attachments.
+
+            foreach ($this->enclosures as $enclosure) {
+
+                if (is_string($enclosure)) {
+
+                    $attachedObjects[]['id']  = $enclosure;
+
+                } else {
+
+                    $attachedObjects[]['id']  = $enclosure->url;
+
+                    $mediaLink = new ActivityStreamsMediaLink(
+                        $enclosure->url,
+                        null,
+                        null,
+                        $enclosure->mimetype
+                        // XXX: Add 'size' as an extension to MediaLink?
+                    );
+
+                    $attachedObjects[]['mediaLink'] = $mediaLink->asArray(); // extension
+
+                    if ($enclosure->title) {
+                        $attachedObjects[]['displayName'] = $enclosure->title;
+                    }
+               }
+            }
+
+            if (!empty($attachedObjects)) {
+                $activity['object']['attachedObjects'] = $attachedObjects;
+            }
+
+        } else {
+            $activity['object'] = array();
+            foreach($this->objects as $object) {
+                $activity['object'][] = $object->asArray();
+            }
+        }
+
+        $activity['postedTime'] = self::iso8601Date($this->time); // Change to exactly be RFC3339?
+
+        // provider
+        $provider = array(
+            'objectType' => 'service',
+            'displayName' => common_config('site', 'name'),
+            'url' => common_root_url()
+        );
+
+        $activity['provider'] = $provider;
+
+        // target
+        if (!empty($this->target)) {
+            $activity['target'] = $this->target->asArray();
+        }
+
+        // title
+        $activity['title'] = $this->title;
+
+        // updatedTime <-- Should we use this to indicate the time we received
+        //                 a remote notice? Probably not.
+
+        // verb
+        //
+        // We can probably use the whole schema URL here but probably the
+        // relative simple name is easier to parse
+        $activity['verb'] = substr($this->verb, strrpos($this->verb, '/') + 1);
+
+        /* Purely extensions hereafter */
+
+        $tags = array();
+
+        // Use an Activity Object for term? Which object? Note?
+        foreach ($this->categories as $cat) {
+            $tags[] = $cat->term;
+        }
+
+        $activity['tags'] = $tags;
+
+        // XXX: a bit of a hack... Since JSON isn't namespaced we probably
+        // shouldn't be using 'statusnet:notice_info', but this will work
+        // for the moment.
+
+        foreach ($this->extra as $e) {
+            list($objectName, $props, $txt) = $e;
+            if (!empty($objectName)) {
+                $activity[$objectName] = $props;
+            }
+        }
+
+        return array_filter($activity);
+    }
+
     function asString($namespace=false, $author=true, $source=false)
     {
         $xs = new XMLStringer(true);
+        $this->outputTo($xs, $namespace, $author, $source);
+        return $xs->getString();
+    }
 
+    function outputTo($xs, $namespace=false, $author=true, $source=false)
+    {
         if ($namespace) {
             $attrs = array('xmlns' => 'http://www.w3.org/2005/Atom',
                            'xmlns:thr' => 'http://purl.org/syndication/thread/1.0',
@@ -349,43 +515,18 @@ class Activity
         if ($this->verb == ActivityVerb::POST && count($this->objects) == 1) {
 
             $obj = $this->objects[0];
-
-            $xs->element('id', null, $obj->id);
-            $xs->element('activity:object-type', null, $obj->type);
-            
-            if (!empty($obj->title)) {
-                $xs->element('title', null, $obj->title);
-            } else {
-                // XXX need a better default title
-                $xs->element('title', null, _('Post'));
-            }
-
-            if (!empty($obj->content)) {
-                $xs->element('content', array('type' => 'html'), $obj->content);
-            }
-            
-            if (!empty($obj->summary)) {
-                $xs->element('summary', null, $obj->summary);
-            }
-            
-            if (!empty($obj->link)) {
-                $xs->element('link', array('rel' => 'alternate',
-                                           'type' => 'text/html'),
-                             $obj->link);
-            }
-
-            // XXX: some object types might have other values here.
+			$obj->outputTo($xs, null);
 
         } else {
             $xs->element('id', null, $this->id);
             $xs->element('title', null, $this->title);
 
             $xs->element('content', array('type' => 'html'), $this->content);
-            
+
             if (!empty($this->summary)) {
                 $xs->element('summary', null, $this->summary);
             }
-            
+
             if (!empty($this->link)) {
                 $xs->element('link', array('rel' => 'alternate',
                                            'type' => 'text/html'),
@@ -397,23 +538,29 @@ class Activity
         $xs->element('activity:verb', null, $this->verb);
 
         $published = self::iso8601Date($this->time);
-            
+
         $xs->element('published', null, $published);
         $xs->element('updated', null, $published);
-            
+
         if ($author) {
-            $xs->elementStart('author');
-            $xs->element('uri', array(), $this->actor->id);
-            if ($this->actor->title) {
-                $xs->element('name', array(), $this->actor->title);
-            }
-            $xs->elementEnd('author');
-            $xs->raw($this->actor->asString('activity:actor'));
+            $this->actor->outputTo($xs, 'author');
+
+            // XXX: Remove <activity:actor> ASAP! Author information
+            // has been moved to the author element in the Activity
+            // Streams spec. We're outputting actor only for backward
+            // compatibility with clients that can only parse
+            // activities based on older versions of the spec.
+
+            $depMsg = 'Deprecation warning: activity:actor is present '
+                . 'only for backward compatibility. It will be '
+                . 'removed in the next version of StatusNet.';
+            $xs->comment($depMsg);
+            $this->actor->outputTo($xs, 'activity:actor');
         }
 
         if ($this->verb != ActivityVerb::POST || count($this->objects) != 1) {
             foreach($this->objects as $object) {
-                $xs->raw($object->asString());
+                $object->outputTo($xs, 'activity:object');
             }
         }
 
@@ -467,15 +614,15 @@ class Activity
         }
 
         if ($this->target) {
-            $xs->raw($this->target->asString('activity:target'));
+            $this->target->outputTo($xs, 'activity:target');
         }
 
         foreach ($this->categories as $cat) {
-            $xs->raw($cat->asString());
+            $cat->outputTo($xs);
         }
 
         // can be either URLs or enclosure objects
-        
+
         foreach ($this->enclosures as $enclosure) {
             if (is_string($enclosure)) {
                 $xs->element('link', array('rel' => 'enclosure',
@@ -496,7 +643,7 @@ class Activity
 
         if ($source && !empty($this->source)) {
             $xs->elementStart('source');
-	    
+
             $xs->element('id', null, $this->source->id);
             $xs->element('title', null, $this->source->title);
 
@@ -505,7 +652,7 @@ class Activity
                                            'type' => 'text/html',
                                            'href' => $this->source->links['alternate']));
             }
-	    
+
             if (array_key_exists('self', $this->source->links)) {
                 $xs->element('link', array('rel' => 'self',
                                            'type' => 'application/atom+xml',
@@ -524,7 +671,7 @@ class Activity
             if (!empty($this->source->updated)) {
                 $xs->element('updated', null, $this->source->updated);
             }
-	    
+
             $xs->elementEnd('source');
         }
 
@@ -541,7 +688,7 @@ class Activity
         }
 
         // For throwing in extra elements; used for statusnet:notice_info
-	
+
         foreach ($this->extra as $el) {
             list($tag, $attrs, $content) = $el;
             $xs->element($tag, $attrs, $content);
@@ -549,9 +696,7 @@ class Activity
 
         $xs->elementEnd('entry');
 
-        $str = $xs->getString();
-	
-        return $str;
+        return;
     }
 
     private function _child($element, $tag, $namespace=self::SPEC)

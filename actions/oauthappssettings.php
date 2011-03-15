@@ -31,9 +31,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR . '/lib/settingsaction.php';
-require_once INSTALLDIR . '/lib/applicationlist.php';
-
 /**
  * Show a user's registered OAuth applications
  *
@@ -166,6 +163,5 @@ class OauthappssettingsAction extends SettingsAction
                               'Try again, please.'));
             return;
         }
-
     }
 }

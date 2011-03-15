@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Documentation action.
  *
@@ -83,7 +82,6 @@ class DocAction extends Action
      *
      * @return void
      */
-
     function showPageTitle()
     {
         $this->element('h1', array('class' => 'entry-title'), $this->title());
@@ -96,7 +94,6 @@ class DocAction extends Action
      *
      * @return void.
      */
-
     function showContentBlock()
     {
         $this->elementStart('div', array('id' => 'content', 'class' => 'hentry'));
@@ -117,7 +114,6 @@ class DocAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         $this->raw($this->output);
@@ -142,7 +138,6 @@ class DocAction extends Action
      *
      * @return boolean read-only flag (false)
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -155,7 +150,9 @@ class DocAction extends Action
             $this->filename = $this->getFilename();
 
             if (empty($this->filename)) {
-                throw new ClientException(sprintf(_('No such document "%s"'), $this->title), 404);
+                // TRANS: Client exception thrown when requesting a document from the documentation that does not exist.
+                // TRANS: %s is the non-existing document.
+                throw new ClientException(sprintf(_('No such document "%s".'), $this->title), 404);
             }
 
             $c = file_get_contents($this->filename);

@@ -45,7 +45,7 @@ require_once INSTALLDIR.'/plugins/OpenID/openid.php';
  * @link     http://status.net/
  */
 
-class OpenidsettingsAction extends AccountSettingsAction
+class OpenidsettingsAction extends SettingsAction
 {
     /**
      * Title of the page

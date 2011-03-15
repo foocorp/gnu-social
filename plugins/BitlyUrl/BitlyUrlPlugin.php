@@ -184,7 +184,7 @@ class BitlyUrlPlugin extends UrlShortenerPlugin
      */
     function onRouterInitialized($m)
     {
-        $m->connect('admin/bitly',
+        $m->connect('panel/bitly',
                     array('action' => 'bitlyadminpanel'));
         return true;
     }

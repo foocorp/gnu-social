@@ -1,0 +1,93 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-29 21:45+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: NewMenuPlugin.php:74
+msgid "Home"
+msgstr ""
+
+#: NewMenuPlugin.php:75
+msgid "Friends timeline"
+msgstr ""
+
+#: NewMenuPlugin.php:80
+msgid "Profile"
+msgstr ""
+
+#: NewMenuPlugin.php:81
+msgid "Your profile"
+msgstr ""
+
+#: NewMenuPlugin.php:85 NewMenuPlugin.php:108
+msgid "Public"
+msgstr ""
+
+#: NewMenuPlugin.php:86 NewMenuPlugin.php:109
+msgid "Everyone on this site"
+msgstr ""
+
+#: NewMenuPlugin.php:90
+msgid "Settings"
+msgstr ""
+
+#: NewMenuPlugin.php:91
+msgid "Change your personal settings"
+msgstr ""
+
+#: NewMenuPlugin.php:96
+msgid "Admin"
+msgstr ""
+
+#: NewMenuPlugin.php:97
+msgid "Site configuration"
+msgstr ""
+
+#: NewMenuPlugin.php:102
+msgid "Logout"
+msgstr ""
+
+#: NewMenuPlugin.php:103
+msgid "Logout from the site"
+msgstr ""
+
+#: NewMenuPlugin.php:113
+msgid "Login"
+msgstr ""
+
+#: NewMenuPlugin.php:114
+msgid "Login to the site"
+msgstr ""
+
+#: NewMenuPlugin.php:121
+msgid "Search"
+msgstr ""
+
+#: NewMenuPlugin.php:122
+msgid "Search the site"
+msgstr ""
+
+#: NewMenuPlugin.php:307
+msgid "IM"
+msgstr ""
+
+#: NewMenuPlugin.php:314
+msgid "SMS"
+msgstr ""
+
+#: NewMenuPlugin.php:406
+msgid "A preview of the new menu layout in StatusNet 1.0."
+msgstr ""

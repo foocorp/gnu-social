@@ -45,7 +45,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 class OtpAction extends Action
 {
     var $user;
@@ -59,6 +58,7 @@ class OtpAction extends Action
         parent::prepare($args);
 
         if (common_is_real_login()) {
+            // TRANS: Client error displayed trying to use "one time password login" when already logged in.
             $this->clientError(_('Already logged in.'));
             return false;
         }
@@ -66,6 +66,7 @@ class OtpAction extends Action
         $id = $this->trimmed('user_id');
 
         if (empty($id)) {
+            // TRANS: Client error displayed trying to use "one time password login" without specifying a user.
             $this->clientError(_('No user ID specified.'));
             return false;
         }
@@ -73,6 +74,7 @@ class OtpAction extends Action
         $this->user = User::staticGet('id', $id);
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed trying to use "one time password login" without using an existing user.
             $this->clientError(_('No such user.'));
             return false;
         }
@@ -80,6 +82,7 @@ class OtpAction extends Action
         $this->token = $this->trimmed('token');
 
         if (empty($this->token)) {
+            // TRANS: Client error displayed trying to use "one time password login" without specifying a login token.
             $this->clientError(_('No login token specified.'));
             return false;
         }
@@ -87,11 +90,13 @@ class OtpAction extends Action
         $this->lt = Login_token::staticGet('user_id', $id);
 
         if (empty($this->lt)) {
+            // TRANS: Client error displayed trying to use "one time password login" without requesting a login token.
             $this->clientError(_('No login token requested.'));
             return false;
         }
 
         if ($this->lt->token != $this->token) {
+            // TRANS: Client error displayed trying to use "one time password login" while specifying an invalid login token.
             $this->clientError(_('Invalid login token specified.'));
             return false;
         }
@@ -101,6 +106,7 @@ class OtpAction extends Action
             //delete the token as it is useless
             $this->lt->delete();
             $this->lt = null;
+            // TRANS: Client error displayed trying to use "one time password login" while specifying an expired login token.
             $this->clientError(_('Login token expired.'));
             return false;
         }
@@ -111,12 +117,13 @@ class OtpAction extends Action
         return true;
     }
 
-	function handle($args)
+    function handle($args)
     {
         parent::handle($args);
 
         // success!
         if (!common_set_user($this->user)) {
+            // TRANS: Server error displayed when a user object could not be created trying to login using "one time password login".
             $this->serverError(_('Error setting user. You are probably not authorized.'));
             return;
         }

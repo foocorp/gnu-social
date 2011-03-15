@@ -1,0 +1,36 @@
+# Translation of StatusNet - Bookmark to Burmese (မြန်မာဘာသာ)
+# Exported from translatewiki.net
+#
+# Author: Erikoo
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Bookmark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-08 01:03+0000\n"
+"PO-Revision-Date: 2011-03-08 01:05:50+0000\n"
+"Language-Team: Burmese <http://translatewiki.net/wiki/Portal:my>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-06 02:12:57+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83429); Translate extension (2011-03-07)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: my\n"
+"X-Message-Group: #out-statusnet-plugin-bookmark\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Simple extension for supporting bookmarks."
+msgstr ""
+
+msgid "Bookmark"
+msgstr ""
+
+msgctxt "BUTTON"
+msgid "Upload"
+msgstr "Upload တင်ရန်"
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "သိမ်းရန်"

@@ -95,11 +95,20 @@ class SchemaUpdater
     {
         $checksums = array();
 
-        $sv = new Schema_version();
-        $sv->find();
-        while ($sv->fetch()) {
-            $checksums[$sv->table_name] = $sv->checksum;
+        PEAR::pushErrorHandling(PEAR_ERROR_EXCEPTION);
+        try {
+            $sv = new Schema_version();
+            $sv->find();
+            while ($sv->fetch()) {
+                $checksums[$sv->table_name] = $sv->checksum;
+            }
+
+            return $checksums;
+        } catch (Exception $e) {
+            // no dice!
+            common_log(LOG_DEBUG, "Possibly schema_version table doesn't exist yet.");
         }
+        PEAR::popErrorHandling();
 
         return $checksums;
     }
@@ -112,15 +121,22 @@ class SchemaUpdater
      */
     protected function saveChecksum($table, $checksum)
     {
-        $sv = new Schema_version();
-        $sv->table_name = $table;
-        $sv->checksum = $checksum;
-        $sv->modified = common_sql_now();
-        if (isset($this->checksums[$table])) {
-            $sv->update();
-        } else {
-            $sv->insert();
+        PEAR::pushErrorHandling(PEAR_ERROR_EXCEPTION);
+        try {
+            $sv = new Schema_version();
+            $sv->table_name = $table;
+            $sv->checksum = $checksum;
+            $sv->modified = common_sql_now();
+            if (isset($this->checksums[$table])) {
+                $sv->update();
+            } else {
+                $sv->insert();
+            }
+        } catch (Exception $e) {
+            // no dice!
+            common_log(LOG_DEBUG, "Possibly schema_version table doesn't exist yet.");
         }
+        PEAR::popErrorHandling();
         $this->checksums[$table] = $checksum;
     }
 }

@@ -26,7 +26,6 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
-
 if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
@@ -43,7 +42,6 @@ require_once INSTALLDIR.'/lib/mailbox.php';
  * @link     http://status.net/
  * @see      MailboxAction
  */
-
 class OutboxAction extends MailboxAction
 {
     /**
@@ -51,13 +49,15 @@ class OutboxAction extends MailboxAction
      *
      * @return string page title
      */
-
     function title()
     {
         if ($this->page > 1) {
+            // TRANS: Title for outbox for any but the fist page.
+            // TRANS: %1$s is the user nickname, %2$d is the page number.
             return sprintf(_('Outbox for %1$s - page %2$d'),
                 $this->user->nickname, $page);
         } else {
+            // TRANS: Title for first page of outbox.
             return sprintf(_('Outbox for %s'), $this->user->nickname);
         }
     }
@@ -71,7 +71,6 @@ class OutboxAction extends MailboxAction
      *
      * @see MailboxAction::getMessages()
      */
-
     function getMessages()
     {
         $message = new Message();
@@ -88,21 +87,9 @@ class OutboxAction extends MailboxAction
         }
     }
 
-    /**
-     * returns the profile we want to show with the message
-     *
-     * For outboxes, we show the recipient.
-     *
-     * @param Message $message The message to get the profile for
-     *
-     * @return Profile The profile of the message recipient
-     *
-     * @see MailboxAction::getMessageProfile()
-     */
-
-    function getMessageProfile($message)
+    function getMessageList($message)
     {
-        return $message->getTo();
+        return new OutboxMessageList($this, $message);
     }
 
     /**
@@ -110,9 +97,30 @@ class OutboxAction extends MailboxAction
      *
      * @return string localised instructions for using the page
      */
-
     function getInstructions()
     {
+        // TRANS: Instructions for outbox.
         return _('This is your outbox, which lists private messages you have sent.');
+    }
+}
+
+class OutboxMessageList extends MessageList
+{
+    function newItem($message)
+    {
+        return new OutboxMessageListItem($this->out, $message);
+    }
+}
+
+class OutboxMessageListItem extends MessageListItem
+{
+    /**
+     * Returns the profile we want to show with the message
+     *
+     * @return Profile The profile that matches the message
+     */
+    function getMessageProfile()
+    {
+        return $this->message->getTo();
     }
 }

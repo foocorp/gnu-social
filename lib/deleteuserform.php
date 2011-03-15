@@ -41,7 +41,6 @@ if (!defined('STATUSNET')) {
  * @link     http://status.net/
  *
  */
-
 class DeleteUserForm extends ProfileActionForm
 {
     /**
@@ -49,7 +48,6 @@ class DeleteUserForm extends ProfileActionForm
      *
      * @return string Name of the action, lowercased.
      */
-
     function target()
     {
         return 'deleteuser';
@@ -60,9 +58,9 @@ class DeleteUserForm extends ProfileActionForm
      *
      * @return string Title of the form, internationalized
      */
-
     function title()
     {
+        // TRANS: Title of form for deleting a user.
         return _('Delete');
     }
 
@@ -71,9 +69,9 @@ class DeleteUserForm extends ProfileActionForm
      *
      * @return string description of the form, internationalized
      */
-
     function description()
     {
+        // TRANS: Description of form for deleting a user.
         return _('Delete this user');
     }
 }

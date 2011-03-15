@@ -1,5 +1,5 @@
 # Translation of StatusNet - Disqus to Simplified Chinese (‪中文(简体)‬)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: ZhengYiFeng
 # --
@@ -9,20 +9,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Disqus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:42+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:04+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:43:16+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-disqus\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: DisqusPlugin.php:142
+#. TRANS: User notification that JavaScript is required for Disqus comment display.
 #, php-format
 msgid ""
 "Please enable JavaScript to view the [comments powered by Disqus](http://"
@@ -31,15 +31,15 @@ msgstr ""
 "请启用 JavaScript 来查看 [通过 Disqus 的评论](http://disqus.com/?"
 "ref_noscript=%s)。"
 
-#: DisqusPlugin.php:149
+#. TRANS: This message is followed by a Disqus logo. Alt text is "Disqus".
 msgid "Comments powered by "
 msgstr "通过 Disqus 的评论"
 
-#: DisqusPlugin.php:201
+#. TRANS: Plugin supplied feature for Disqus comments to notices.
 msgid "Comments"
 msgstr "评论"
 
-#: DisqusPlugin.php:241
+#. TRANS: Plugin description.
 msgid ""
 "Use <a href=\"http://disqus.com/\">Disqus</a> to add commenting to notice "
 "pages."

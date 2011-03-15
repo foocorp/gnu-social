@@ -48,12 +48,11 @@ require_once INSTALLDIR.'/lib/rssaction.php';
  */
 class NoticesearchrssAction extends Rss10Action
 {
-
     function init()
     {
         return true;
     }
-    
+
     function prepare($args)
     {
         parent::prepare($args);
@@ -63,7 +62,6 @@ class NoticesearchrssAction extends Rss10Action
 
     function getNotices($limit=0)
     {
-
         $q = $this->trimmed('q');
         $notices = array();
 
@@ -93,9 +91,12 @@ class NoticesearchrssAction extends Rss10Action
     {
         $q = $this->trimmed('q');
         $c = array('url' => common_local_url('noticesearchrss', array('q' => $q)),
+                   // TRANS: RSS notice search feed title. %s is the query.
                    'title' => sprintf(_('Updates with "%s"'), $q),
                    'link' => common_local_url('noticesearch', array('q' => $q)),
-                   'description' => sprintf(_('Updates matching search term "%1$s" on %2$s!'),
+                   // TRANS: RSS notice search feed description.
+                   // TRANS: %1$s is the query, %2$s is the StatusNet site name.
+                   'description' => sprintf(_('Updates matching search term "%1$s" on %2$s.'),
                                             $q, common_config('site', 'name')));
         return $c;
     }

@@ -75,7 +75,7 @@ class DeletenoticeAction extends Action
         if ($this->notice->profile_id != $this->user_profile->id &&
                    !$this->user->hasRight(Right::DELETEOTHERSNOTICE)) {
             // TRANS: Error message displayed trying to delete a notice that was not made by the current user.
-            common_user_error(_('Can\'t delete this notice.'));
+            common_user_error(_('Cannot delete this notice.'));
             exit;
         }
         // XXX: Ajax!
@@ -156,14 +156,14 @@ class DeletenoticeAction extends Action
                       'submit form_action-primary',
                       'no',
                       // TRANS: Submit button title for 'No' when deleting a notice.
-                      _("Do not delete this notice"));
+                      _('Do not delete this notice.'));
         $this->submit('form_action-yes',
                       // TRANS: Button label on the delete notice form.
                       _m('BUTTON','Yes'),
                       'submit form_action-secondary',
                       'yes',
                       // TRANS: Submit button title for 'Yes' when deleting a notice.
-                      _('Delete this notice'));
+                      _('Delete this notice.'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }

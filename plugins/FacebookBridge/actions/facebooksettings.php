@@ -41,7 +41,7 @@ if (!defined('STATUSNET')) {
  *
  * @see      SettingsAction
  */
-class FacebooksettingsAction extends ConnectSettingsAction {
+class FacebooksettingsAction extends SettingsAction {
     private $facebook; // Facebook PHP-SDK client obj
     private $flink;
     private $user;

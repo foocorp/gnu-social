@@ -96,7 +96,7 @@ class MessageForm extends Form
 
     function formClass()
     {
-        return 'form_notice';
+        return 'form_notice ajax-notice';
     }
 
     /**
@@ -153,7 +153,7 @@ class MessageForm extends Form
         $this->out->dropdown('to', _('To'), $mutual, null, false,
                              ($this->to) ? $this->to->id : null);
 
-        $this->out->element('textarea', array('id' => 'notice_data-text',
+        $this->out->element('textarea', array('class' => 'notice_data-text',
                                               'cols' => 35,
                                               'rows' => 4,
                                               'name' => 'content'),
@@ -162,11 +162,9 @@ class MessageForm extends Form
         $contentLimit = Message::maxContent();
 
         if ($contentLimit > 0) {
-            $this->out->elementStart('dl', 'form_note');
-            $this->out->element('dt', null, _('Available characters'));
-            $this->out->element('dd', array('id' => 'notice_text-count'),
+            $this->out->element('span',
+                                array('class' => 'count'),
                                 $contentLimit);
-            $this->out->elementEnd('dl');
         }
     }
 

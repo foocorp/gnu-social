@@ -1,5 +1,5 @@
 # Translation of StatusNet - AnonymousFave to Breton (Brezhoneg)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Y-M D
 # --
@@ -9,77 +9,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AnonymousFave\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:28+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:47+0000\n"
 "Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:38:21+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:42:38+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#. TRANS: Label for tally for number of times a notice was favored.
-#: AnonymousFavePlugin.php:207
-msgid "Favored"
-msgstr "Karetañ"
-
-#. TRANS: Server exception.
-#: AnonymousFavePlugin.php:240 AnonymousFavePlugin.php:251
-msgid "Couldn't create anonymous user session."
-msgstr "Dibosupl eo krouiñ un dalc'h implijer dizanv."
-
-#. TRANS: Plugin description.
-#: AnonymousFavePlugin.php:326
-msgid "Allow anonymous users to favorite notices."
-msgstr "Aotreañ an implijerien dizanv da gavout gwelloc'h kemennoù."
-
-#. TRANS: Client error.
-#: anonfavor.php:60
-msgid ""
-"Could not favor notice! Please make sure your browser has cookies enabled."
-msgstr ""
-"Dibosupl eo merkañ ar c'hemenn-mañ evel pennroll ! Mar plij gwiriekait e "
-"tegemer ho urzhiataer an toupinoù."
-
-#. TRANS: Client error.
-#: anonfavor.php:71 anondisfavor.php:72
-msgid "There was a problem with your session token. Try again, please."
-msgstr "Ur gudenn 'zo bet gant ho jedaouer dalc'h. Mar plij adklaskit."
-
-#. TRANS: Client error.
-#: anonfavor.php:78
-msgid "This notice is already a favorite!"
-msgstr "Ouzhpennet eo bet ar c'hemenn-mañ d'ho pennrolloù dija !"
-
-#. TRANS: Server error.
-#: anonfavor.php:85
-msgid "Could not create favorite."
-msgstr "Diposupl eo krouiñ ar pennroll-mañ."
-
-#. TRANS: Title.
-#: anonfavor.php:95
-msgid "Disfavor favorite"
-msgstr "Tennañ ar pennroll"
-
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
-#: Fave_tally.php:155 Fave_tally.php:184
 #, php-format
 msgid "Couldn't update favorite tally for notice ID %d."
 msgstr "Dibosupl eo hizivaat ar skor penndibaboù evit ar c'hemenn %d."
 
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
-#: Fave_tally.php:215
 #, php-format
 msgid "Couldn't create favorite tally for notice ID %d."
 msgstr "Dibosupl eo krouiñ ar skor penndibaboù evit ar c'hemenn %d."
 
 #. TRANS: Client error.
-#: anondisfavor.php:61
 msgid ""
 "Could not disfavor notice! Please make sure your browser has cookies enabled."
 msgstr ""
@@ -87,16 +41,48 @@ msgstr ""
 "e tegemer ho urzhiataer an toupinoù."
 
 #. TRANS: Client error.
-#: anondisfavor.php:82
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Ur gudenn 'zo bet gant ho jedaouer dalc'h. Mar plij adklaskit."
+
+#. TRANS: Client error.
 msgid "This notice is not a favorite!"
 msgstr "N'eo ket ar c'hemenn-mañ ur pennroll !"
 
 #. TRANS: Server error.
-#: anondisfavor.php:91
 msgid "Could not delete favorite."
 msgstr "Diposupl eo dilemel ar pennroll-mañ."
 
 #. TRANS: Title.
-#: anondisfavor.php:101
 msgid "Add to favorites"
 msgstr "Ouzhpennañ d'ar pennrolloù"
+
+#. TRANS: Label for tally for number of times a notice was favored.
+msgid "Favored"
+msgstr "Karetañ"
+
+#. TRANS: Server exception.
+msgid "Couldn't create anonymous user session."
+msgstr "Dibosupl eo krouiñ un dalc'h implijer dizanv."
+
+#. TRANS: Plugin description.
+msgid "Allow anonymous users to favorite notices."
+msgstr "Aotreañ an implijerien dizanv da gavout gwelloc'h kemennoù."
+
+#. TRANS: Client error.
+msgid ""
+"Could not favor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+"Dibosupl eo merkañ ar c'hemenn-mañ evel pennroll ! Mar plij gwiriekait e "
+"tegemer ho urzhiataer an toupinoù."
+
+#. TRANS: Client error.
+msgid "This notice is already a favorite!"
+msgstr "Ouzhpennet eo bet ar c'hemenn-mañ d'ho pennrolloù dija !"
+
+#. TRANS: Server error.
+msgid "Could not create favorite."
+msgstr "Diposupl eo krouiñ ar pennroll-mañ."
+
+#. TRANS: Title.
+msgid "Disfavor favorite"
+msgstr "Tennañ ar pennroll"

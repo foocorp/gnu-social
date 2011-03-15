@@ -49,9 +49,8 @@ require_once INSTALLDIR.'/lib/widget.php';
  * @see      HTMLOutputter
  */
 
-class GroupNav extends Widget
+class GroupNav extends Menu
 {
-    var $action = null;
     var $group = null;
 
     /**
@@ -63,7 +62,6 @@ class GroupNav extends Widget
     function __construct($action=null, $group=null)
     {
         parent::__construct($action);
-        $this->action = $action;
         $this->group = $group;
     }
 

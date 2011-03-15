@@ -152,8 +152,11 @@ class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
                 );
             }
 
-            // check to see if we have previously issued an access token for this application
-            // and profile
+            // Check to see if we have previously issued an access token for
+            // this application and profile; if so we can just return the
+            // existing access token. That seems to be the best practice. It
+            // makes it so users only have to authorize the app once per
+            // machine.
 
             $appUser = new Oauth_application_user();
 
@@ -172,19 +175,40 @@ class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
                      )
                 );
 
-                $at = new Token();
+                $at = null;
 
-                // fetch the full access token
-                $at->consumer_key = $consumer->key;
-                $at->tok          = $appUser->token;
+                // Special case: we used to store request tokens in the
+                // Oauth_application_user record, and the access_type would
+                // always be 0 (no access) as a failsafe until an access
+                // token was issued and replaced the request token. There could
+                // be a few old Oauth_application_user records storing request
+                // tokens still around, and we don't want to accidentally
+                // return a useless request token instead of a new access
+                // token. So if we find one, we generate a new access token
+                // and update the existing Oauth_application_user record before
+                // returning the new access token. This should be rare.
 
-                $result = $at->find(true);
+                if ($appUser->access_type == 0) {
 
-                if (!$result) {
-                    throw new Exception(
-                        // TRANS: Exception thrown when no access token can be issued.
-                        _('Could not issue access token.')
-                    );
+                    $at = $this->generateNewAccessToken($consumer, $rt, $verifier);
+                    $this->updateAppUser($appUser, $app, $at);
+
+                } else {
+
+                    $at = new Token();
+
+                    // fetch the full access token
+                    $at->consumer_key = $consumer->key;
+                    $at->tok          = $appUser->token;
+
+                    $result = $at->find(true);
+
+                    if (!$result) {
+                        throw new Exception(
+                            // TRANS: Exception thrown when no access token can be issued.
+                            _('Could not issue access token.')
+                        );
+                    }
                 }
 
                 // Yay, we can re-issue the access token
@@ -200,48 +224,8 @@ class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
                      )
                 );
 
-                // make a brand new access token
-                $at = new Token();
-
-                $at->consumer_key      = $consumer->key;
-                $at->tok               = common_good_rand(16);
-                $at->secret            = common_good_rand(16);
-                $at->type              = 1; // access
-                $at->verifier          = $verifier;
-                $at->verified_callback = $rt->verified_callback; // 1.0a
-                $at->created           = common_sql_now();
-
-                if (!$at->insert()) {
-                    $e = $at->_lastError;
-                    common_debug('access token "' . $at->tok . '" not inserted: "' . $e->message . '"', __FILE__);
-                    return null;
-                } else {
-                    common_debug('access token "' . $at->tok . '" inserted', __FILE__);
-                    // burn the old one
-                    $orig_rt   = clone($rt);
-                    $rt->state = 2; // used
-                    if (!$rt->update($orig_rt)) {
-                        return null;
-                    }
-                    common_debug('request token "' . $rt->tok . '" updated', __FILE__);
-                }
-
-                // insert a new Oauth_application_user record w/access token
-                $appUser = new Oauth_application_user();
-
-                $appUser->profile_id     = $tokenAssoc->profile_id;;
-                $appUser->application_id = $app->id;
-                $appUser->access_type    = $app->access_type;
-                $appUser->token          = $at->tok;
-                $appUser->created        = common_sql_now();
-
-                $result = $appUser->insert();
-
-                if (!$result) {
-                    common_log_db_error($appUser, 'INSERT', __FILE__);
-                    // TRANS: Server error displayed when a database error occurs.
-                    $this->serverError(_('Database error inserting OAuth application user.'));
-                }
+                $at = $this->generateNewAccessToken($consumer, $rt, $verifier);
+                $this->newAppUser($tokenAssoc, $app, $at);
 
                 // Okay, good
                 return new OAuthToken($at->tok, $at->secret);
@@ -258,6 +242,108 @@ class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
                 )
             );
             return null;
+        }
+    }
+
+    /*
+     * Generate a new access token and save it to the database
+     *
+     * @param Consumer $consumer the OAuth consumer
+     * @param Token    $rt       the authorized request token
+     * @param string   $verifier the OAuth 1.0a verifier
+     *
+     * @access private
+     *
+     * @return Token   $at       the new access token
+     */
+    private function generateNewAccessToken($consumer, $rt, $verifier)
+    {
+        $at = new Token();
+
+        $at->consumer_key      = $consumer->key;
+        $at->tok               = common_good_rand(16);
+        $at->secret            = common_good_rand(16);
+        $at->type              = 1; // access
+        $at->verifier          = $verifier;
+        $at->verified_callback = $rt->verified_callback; // 1.0a
+        $at->created           = common_sql_now();
+
+        if (!$at->insert()) {
+            $e = $at->_lastError;
+            common_debug('access token "' . $at->tok . '" not inserted: "' . $e->message . '"', __FILE__);
+            return null;
+        } else {
+            common_debug('access token "' . $at->tok . '" inserted', __FILE__);
+            // burn the old one
+            $orig_rt   = clone($rt);
+            $rt->state = 2; // used
+            if (!$rt->update($orig_rt)) {
+                return null;
+            }
+            common_debug('request token "' . $rt->tok . '" updated', __FILE__);
+        }
+
+        return $at;
+    }
+
+   /*
+    * Add a new app user (Oauth_application_user) record
+    *
+    * @param Oauth_token_association $tokenAssoc token-to-app association
+    * @param Oauth_application       $app        the OAuth client app
+    * @param Token                   $at         the access token
+    *
+    * @access private
+    *
+    * @return void
+    */
+    private function newAppUser($tokenAssoc, $app, $at)
+    {
+        $appUser = new Oauth_application_user();
+
+        $appUser->profile_id     = $tokenAssoc->profile_id;
+        $appUser->application_id = $app->id;
+        $appUser->access_type    = $app->access_type;
+        $appUser->token          = $at->tok;
+        $appUser->created        = common_sql_now();
+
+        $result = $appUser->insert();
+
+        if (!$result) {
+            common_log_db_error($appUser, 'INSERT', __FILE__);
+
+            // TRANS: Server error displayed when a database error occurs.
+            throw new Exception(
+                _('Database error inserting OAuth application user.')
+            );
+        }
+    }
+
+   /*
+    * Update an existing app user (Oauth_application_user) record
+    *
+    * @param Oauth_application_user $appUser existing app user rec
+    * @param Oauth_application      $app     the OAuth client app
+    * @param Token                  $at      the access token
+    *
+    * @access private
+    *
+    * @return void
+    */
+    private function updateAppUser($appUser, $app, $at)
+    {
+        $original = clone($appUser);
+        $appUser->access_type = $app->access_type;
+        $appUser->token       = $at->tok;
+
+        $result = $appUser->update($original);
+
+        if (!$result) {
+            common_log_db_error($appUser, 'UPDATE', __FILE__);
+            // TRANS: Server error displayed when a database error occurs.
+            throw new Exception(
+                _('Database error updating OAuth application user.')
+            );
         }
     }
 

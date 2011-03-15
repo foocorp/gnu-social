@@ -1,5 +1,5 @@
 # Translation of StatusNet - RSSCloud to Interlingua (Interlingua)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: McDutchie
 # --
@@ -9,33 +9,35 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RSSCloud\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:52+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:08+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:54+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:07+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-rsscloud\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: RSSCloudRequestNotify.php:90
+msgid "This resource requires an HTTP GET."
+msgstr "Iste ressource require un HTTP GET."
+
+msgid "This resource requires an HTTP POST."
+msgstr "Iste ressource require un HTTP POST."
+
 msgid "Request must be POST."
 msgstr "Requesta debe esser POST."
 
-#: RSSCloudRequestNotify.php:107
 msgid "Only http-post notifications are supported at this time."
 msgstr "Solmente le notificationes http-post es presentemente supportate."
 
 #. TRANS: %s is a comma separated list of parameters.
-#: RSSCloudRequestNotify.php:118
 #, php-format
 msgid "The following parameters were missing from the request body: %s."
 msgstr "Le sequente parametros mancava del corpore del requesta: %s."
 
-#: RSSCloudRequestNotify.php:124
 msgid ""
 "You must provide at least one valid profile feed url (url1, url2, url3 ... "
 "urlN)."
@@ -43,18 +45,15 @@ msgstr ""
 "Tu debe fornir al minus un URL de syndication de profilo valide (url1, url2, "
 "url3 ... urlN)."
 
-#: RSSCloudRequestNotify.php:141
 msgid "Feed subscription failed: Not a valid feed."
 msgstr "Le subscription al syndication ha fallite: Non un syndication valide."
 
-#: RSSCloudRequestNotify.php:147
 msgid ""
 "Feed subscription failed - notification handler doesn't respond correctly."
 msgstr ""
 "Le subscription al syndication ha fallite - le gestor de notification non "
 "responde correctemente."
 
-#: RSSCloudRequestNotify.php:161
 msgid ""
 "Thanks for the subscription. When the feed(s) update(s), you will be "
 "notified."
@@ -62,15 +61,6 @@ msgstr ""
 "Gratias pro le subscription. Quando le syndication(es) se actualisa, tu "
 "recipera notification."
 
-#: LoggingAggregator.php:93
-msgid "This resource requires an HTTP GET."
-msgstr "Iste ressource require un HTTP GET."
-
-#: LoggingAggregator.php:104
-msgid "This resource requires an HTTP POST."
-msgstr "Iste ressource require un HTTP POST."
-
-#: RSSCloudPlugin.php:248
 msgid ""
 "The RSSCloud plugin enables your StatusNet instance to publish real-time "
 "updates for profile RSS feeds using the <a href=\"http://rsscloud.org/"

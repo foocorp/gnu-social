@@ -94,7 +94,7 @@ class GalleryAction extends OwnerDesignAction
         $this->showPage();
     }
 
-    function showLocalNav()
+    function showObjectNav()
     {
         $nav = new SubGroupNav($this, $this->user);
         $nav->show();
@@ -117,9 +117,6 @@ class GalleryAction extends OwnerDesignAction
             $content[$t] = $t;
         }
         if ($tags) {
-            $this->elementStart('dl', array('id'=>'filter_tags'));
-            $this->element('dt', null, _('Filter tags'));
-            $this->elementStart('dd');
             $this->elementStart('ul');
             $this->elementStart('li', array('id' => 'filter_tags_all',
                                              'class' => 'child_1'));
@@ -133,7 +130,7 @@ class GalleryAction extends OwnerDesignAction
             $this->elementStart('li', array('id'=>'filter_tags_item'));
             $this->elementStart('form', array('name' => 'bytag',
                                                'id' => 'form_filter_bytag',
-                                               'action' => common_path('?action=' . $this->trimmed('action')),
+                                              'action' => common_path('?action=' . $this->trimmed('action')),
                                                'method' => 'post'));
             $this->elementStart('fieldset');
             $this->element('legend', null, _('Select tag to filter'));
@@ -145,8 +142,6 @@ class GalleryAction extends OwnerDesignAction
             $this->elementEnd('form');
             $this->elementEnd('li');
             $this->elementEnd('ul');
-            $this->elementEnd('dd');
-            $this->elementEnd('dl');
         }
     }
 

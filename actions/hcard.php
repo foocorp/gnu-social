@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link     http://status.net/
  */
-
 class HcardAction extends Action
 {
     var $user;
@@ -64,6 +63,7 @@ class HcardAction extends Action
         $this->user = User::staticGet('nickname', $nickname);
 
         if (!$this->user) {
+            // TRANS: Client error displayed when trying to get a user hCard for a non-existing user.
             $this->clientError(_('No such user.'), 404);
             return false;
         }
@@ -71,6 +71,7 @@ class HcardAction extends Action
         $this->profile = $this->user->getProfile();
 
         if (!$this->profile) {
+            // TRANS: Server error displayed when trying to get a user hCard for a user without a profile.
             $this->serverError(_('User has no profile.'));
             return false;
         }

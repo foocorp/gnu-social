@@ -1,0 +1,97 @@
+# Translation of StatusNet - ExtendedProfile to Interlingua (Interlingua)
+# Exported from translatewiki.net
+#
+# Author: McDutchie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ExtendedProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:09+0000\n"
+"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 20:42:39+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ia\n"
+"X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "UI extensions for additional profile fields."
+msgstr "Extensiones del IU pro additional campos de profilo."
+
+#. TRANS: Link description in user account settings menu.
+msgid "Details"
+msgstr "Detalios"
+
+msgid "More details..."
+msgstr "Plus detalios..."
+
+msgid "Personal"
+msgstr "Personal"
+
+msgid "Full name"
+msgstr "Nomine complete"
+
+msgid "Title"
+msgstr "Titulo"
+
+msgid "Manager"
+msgstr "Gerente"
+
+msgid "Location"
+msgstr "Loco"
+
+msgid "Bio"
+msgstr "Bio"
+
+msgid "Tags"
+msgstr "Etiquettas"
+
+msgid "Contact"
+msgstr "Contacto"
+
+msgid "Phone"
+msgstr "Telephono"
+
+msgid "IM"
+msgstr "MI"
+
+msgid "Websites"
+msgstr "Sitos web"
+
+msgid "Birthday"
+msgstr "Anniversario"
+
+msgid "Spouse's name"
+msgstr "Nomine del sposo/-a"
+
+msgid "Kids' names"
+msgstr "Nomines del infantes"
+
+msgid "Work experience"
+msgstr "Experientia professional"
+
+msgid "Employer"
+msgstr "Empleator"
+
+msgid "Education"
+msgstr "Education"
+
+msgid "Institution"
+msgstr "Institution"
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Modificar configuration extendite del profilo"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Modificar"
+
+msgid "Extended profile settings"
+msgstr "Configuration extendite del profilo"

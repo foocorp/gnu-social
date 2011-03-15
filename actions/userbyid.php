@@ -1,5 +1,4 @@
 <?php
-
 /**
  * User by ID action class.
  *
@@ -67,10 +66,12 @@ class UserbyidAction extends Action
         parent::handle($args);
         $id = $this->trimmed('id');
         if (!$id) {
+            // TRANS: Client error displayed trying to find a user by ID without providing an ID.
             $this->clientError(_('No ID.'));
         }
         $user = User::staticGet($id);
         if (!$user) {
+            // TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
             $this->clientError(_('No such user.'));
         }
 

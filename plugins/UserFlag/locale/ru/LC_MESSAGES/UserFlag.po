@@ -1,0 +1,97 @@
+# Translation of StatusNet - UserFlag to Russian (Русский)
+# Exported from translatewiki.net
+#
+# Author: Byulent
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - UserFlag\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:29+0000\n"
+"Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:47:33+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ru\n"
+"X-Message-Group: #out-statusnet-plugin-userflag\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: AJAX form title for a flagged profile.
+msgid "Flagged for review"
+msgstr "Помечен для просмотра"
+
+#. TRANS: Body text for AJAX form when a profile has been flagged for review.
+#. TRANS: Message added to a profile if it has been flagged for review.
+msgid "Flagged"
+msgstr "Отмеченные"
+
+#. TRANS: Plugin description.
+msgid ""
+"This plugin allows flagging of profiles for review and reviewing flagged "
+"profiles."
+msgstr ""
+"Этот плагин позволяет отмечать профили для осмотра и просматривать "
+"отмеченные профили."
+
+#. TRANS: Form title for flagging a profile for review.
+msgid "Flag"
+msgstr "Отметить"
+
+#. TRANS: Form description.
+msgid "Flag profile for review."
+msgstr "Профиль помечен для просмотра"
+
+#. TRANS: Form title for action on a profile.
+msgid "Clear"
+msgstr "Очистить"
+
+msgid "Clear all flags"
+msgstr "Очистить все флаги"
+
+#. TRANS: Title for page with a list of profiles that were flagged for review.
+msgid "Flagged profiles"
+msgstr "Отмеченные профили"
+
+#. TRANS: Header for moderation menu with action buttons for flagged profiles (like 'sandbox', 'silence', ...).
+msgid "Moderate"
+msgstr "Модерировать"
+
+#. TRANS: Message displayed on a profile if it has been flagged.
+#. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
+#, php-format
+msgid "Flagged by %1$s and %2$d other"
+msgid_plural "Flagged by %1$s and %2$d others"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#. TRANS: Message displayed on a profile if it has been flagged.
+#. TRANS: %s is a comma separated list of at most 5 user nicknames that flagged.
+#, php-format
+msgid "Flagged by %s"
+msgstr "Отмечено %s"
+
+#. TRANS: Server exception given when flags could not be cleared.
+#, php-format
+msgid "Couldn't clear flags for profile \"%s\"."
+msgstr "Не снимать отметки для профиля %s"
+
+#. TRANS: Title for AJAX form to indicated that flags were removed.
+msgid "Flags cleared"
+msgstr "Отметки сняты"
+
+#. TRANS: Body element for "flags cleared" form.
+msgid "Cleared"
+msgstr "Снято"
+
+#. TRANS: Server exception.
+#, php-format
+msgid "Couldn't flag profile \"%d\" for review."
+msgstr "Невозможно отметить профиль %d для просмотра."

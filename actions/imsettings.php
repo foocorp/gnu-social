@@ -43,17 +43,16 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @see      SettingsAction
  */
 
-class ImsettingsAction extends ConnectSettingsAction
+class ImsettingsAction extends SettingsAction
 {
     /**
      * Title of the page
      *
      * @return string Title of the page
      */
-
     function title()
     {
-        // TRANS: Title for instance messaging settings.
+        // TRANS: Title for Instant Messaging settings.
         return _('IM settings');
     }
 
@@ -62,7 +61,6 @@ class ImsettingsAction extends ConnectSettingsAction
      *
      * @return instructions for use
      */
-
     function getInstructions()
     {
         // TRANS: Instant messaging settings page instructions.
@@ -82,7 +80,6 @@ class ImsettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function showContent()
     {
         $transports = array();
@@ -210,7 +207,6 @@ class ImsettingsAction extends ConnectSettingsAction
      *
      * @return Confirm_address address object for this user
      */
-
     function getConfirmation($transport)
     {
         $user = common_current_user();
@@ -237,7 +233,6 @@ class ImsettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function handlePost()
     {
         // CSRF protection
@@ -257,7 +252,7 @@ class ImsettingsAction extends ConnectSettingsAction
         } else if ($this->arg('remove')) {
             $this->removeAddress();
         } else {
-            // TRANS: Message given submitting a form with an unknown action in IM settings.
+            // TRANS: Message given submitting a form with an unknown action in Instant Messaging settings.
             $this->showForm(_('Unexpected form submission.'));
         }
     }
@@ -270,7 +265,6 @@ class ImsettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function savePreferences()
     {
         $user = common_current_user();
@@ -312,7 +306,6 @@ class ImsettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function addAddress()
     {
         $user = common_current_user();
@@ -365,8 +358,8 @@ class ImsettingsAction extends ConnectSettingsAction
 
         if ($result === false) {
             common_log_db_error($confirm, 'INSERT', __FILE__);
-            // TRANS: Server error thrown on database error adding IM confirmation code.
-            $this->serverError(_('Couldn\'t insert confirmation code.'));
+            // TRANS: Server error thrown on database error adding Instant Messaging confirmation code.
+            $this->serverError(_('Could not insert confirmation code.'));
             return;
         }
 
@@ -386,7 +379,6 @@ class ImsettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function cancelConfirmation()
     {
         $screenname = $this->trimmed('screenname');
@@ -395,7 +387,7 @@ class ImsettingsAction extends ConnectSettingsAction
         $confirm = $this->getConfirmation($transport);
 
         if (!$confirm) {
-            // TRANS: Message given canceling IM address confirmation that is not pending.
+            // TRANS: Message given canceling Instant Messaging address confirmation that is not pending.
             $this->showForm(_('No pending confirmation to cancel.'));
             return;
         }
@@ -425,7 +417,6 @@ class ImsettingsAction extends ConnectSettingsAction
      *
      * @return void
      */
-
     function removeAddress()
     {
         $user = common_current_user();
@@ -456,7 +447,7 @@ class ImsettingsAction extends ConnectSettingsAction
 
         // XXX: unsubscribe to the old address
 
-        // TRANS: Message given after successfully removing a registered IM address.
+        // TRANS: Message given after successfully removing a registered Instant Messaging address.
         $this->showForm(_('The IM address was removed.'), true);
     }
 

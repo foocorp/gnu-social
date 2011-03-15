@@ -70,27 +70,27 @@ class SiteEmailSummaryHandler extends QueueHandler
     
     function handle($object)
     {
-	$qm = QueueManager::get();
+        $qm = QueueManager::get();
 
-	try {
-	    // Enqueue a summary for all users
+        try {
+            // Enqueue a summary for all users
 	    
-	    $user = new User();
-	    $user->find();
+            $user = new User();
+            $user->find();
 	    
-	    while ($user->fetch()) {
-		try {
-		    $qm->enqueue($user->id, 'usersum');
-		} catch (Exception $e) {
-		    common_log(LOG_WARNING, $e->getMessage());
-		    continue;
-		}
-	    }
-	} catch (Exception $e) {
-	    common_log(LOG_WARNING, $e->getMessage());
-	}
+            while ($user->fetch()) {
+                try {
+                    $qm->enqueue($user->id, 'usersum');
+                } catch (Exception $e) {
+                    common_log(LOG_WARNING, $e->getMessage());
+                    continue;
+                }
+            }
+        } catch (Exception $e) {
+            common_log(LOG_WARNING, $e->getMessage());
+        }
 	
-	return true;
+        return true;
     }
 }
 

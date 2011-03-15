@@ -1,0 +1,242 @@
+# Translation of StatusNet - FacebookBridge to Simplified Chinese (‪中文(简体)‬)
+# Exported from translatewiki.net
+#
+# Author: Hydra
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - FacebookBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:13+0000\n"
+"Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
+"hans>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-03 17:43:42+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: zh-hans\n"
+"X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Already logged in."
+msgstr "已登录。"
+
+#. TRANS: Instructions.
+msgid "Login with your Facebook Account"
+msgstr "与您的 Facebook 帐户登录"
+
+#. TRANS: Page title.
+msgid "Login with Facebook"
+msgstr "使用 Facebook 登录"
+
+msgid "Facebook"
+msgstr "Facebook"
+
+msgid "Facebook integration settings"
+msgstr "Facebook 集成设置"
+
+msgid "Invalid Facebook ID. Max length is 255 characters."
+msgstr "无效的 Facebook ID。最大长度为 255 个字符。"
+
+msgid "Invalid Facebook secret. Max length is 255 characters."
+msgstr "无效的 Facebook 秘密。最大长度为 255 个字符。"
+
+msgid "Facebook application settings"
+msgstr "Facebook 应用程序设置"
+
+msgid "Application ID"
+msgstr "应用程序 ID"
+
+msgid "ID of your Facebook application"
+msgstr "Facebook 应用程序的 ID"
+
+msgid "Secret"
+msgstr "秘密"
+
+msgid "Application secret"
+msgstr "应用程序的秘密"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Save Facebook settings"
+msgstr "保存的 Facebook 设置"
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr "有一个与您的会话令牌的问题。请再次尝试。"
+
+#. TRANS: Page title for Facebook settings.
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Facebook settings"
+msgstr "Facebook 的设置"
+
+msgid "Connected Facebook user"
+msgstr "已连接的 Facebook 用户"
+
+msgid "Publish my notices to Facebook."
+msgstr "将我的通知发布到 Facebook。"
+
+msgid "Send \"@\" replies to Facebook."
+msgstr "发送 \"@\" Facebook 的答复。"
+
+#. TRANS: Submit button to save synchronisation settings.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "保存"
+
+#. TRANS: Legend.
+msgid "Disconnect my account from Facebook"
+msgstr "从 Facebook 拔下我的账户"
+
+#, php-format
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please [set "
+"a password](%s) first."
+msgstr ""
+
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
+"password to log in."
+msgstr ""
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr ""
+
+msgid "There was a problem saving your sync preferences."
+msgstr ""
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the system.
+msgid "Sync preferences saved."
+msgstr ""
+
+msgid "Couldn't delete link to Facebook."
+msgstr ""
+
+msgid "You have disconnected from Facebook."
+msgstr ""
+
+msgid ""
+"You must be logged into Facebook to register a local account using Facebook."
+msgstr "您必须登录到 Facebook 注册使用 Facebook 的本地帐户。"
+
+msgid "There is already a local account linked with that Facebook account."
+msgstr "已存在与该 Facebook 帐户相关的本地帐户。"
+
+msgid "You can't register if you don't agree to the license."
+msgstr "如果您不同意该许可，您不能注册。"
+
+msgid "An unknown error has occured."
+msgstr "出现了一个未知的错误。"
+
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your "
+"Facebook to a local account. You can either create a new local account, or "
+"connect with an existing local account."
+msgstr ""
+
+#. TRANS: Page title.
+msgid "Facebook Setup"
+msgstr "Facebook 安装程序"
+
+#. TRANS: Legend.
+msgid "Connection options"
+msgstr "连接选项"
+
+#. TRANS: %s is the name of the license used by the user for their status updates.
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+
+#. TRANS: Legend.
+msgid "Create new account"
+msgstr "创建新的帐户"
+
+msgid "Create a new user with this nickname."
+msgstr "此别名与创建新用户。"
+
+#. TRANS: Field label.
+msgid "New nickname"
+msgstr "新的昵称"
+
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+msgstr "1-64 个小写字母或没有标点符号或空格的数字"
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Create"
+msgstr "创建"
+
+msgid "Connect existing account"
+msgstr "连接现有的帐户"
+
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Facebook."
+msgstr "如果您已经有一个的帐户使用您的用户名和密码以连接到在 Facebook 的登录。"
+
+#. TRANS: Field label.
+msgid "Existing nickname"
+msgstr "现有的昵称"
+
+msgid "Password"
+msgstr "密码"
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Connect"
+msgstr "连接"
+
+#. TRANS: Client error trying to register with registrations not allowed.
+#. TRANS: Client error trying to register with registrations 'invite only'.
+msgid "Registration not allowed."
+msgstr "不允许注册。"
+
+#. TRANS: Client error trying to register with an invalid invitation code.
+msgid "Not a valid invitation code."
+msgstr "不是一个有效的邀请代码。"
+
+msgid "Nickname not allowed."
+msgstr "不允许使用的昵称。"
+
+msgid "Nickname already in use. Try another one."
+msgstr "别名已在使用中。请尝试另一个。"
+
+msgid "Error connecting user to Facebook."
+msgstr "Facebook 中连接用户时出错。"
+
+msgid "Invalid username or password."
+msgstr "无效的用户名或密码。"
+
+#. TRANS: Menu item.
+#. TRANS: Menu item tab.
+msgctxt "MENU"
+msgid "Facebook"
+msgstr "Facebook"
+
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Login or register using Facebook"
+msgstr "登入或使用 Facebook 的注册"
+
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Facebook integration configuration"
+msgstr "Facebook 整合配置"
+
+msgid "A plugin for integrating StatusNet with Facebook."
+msgstr "StatusNet 与结合 Facebook 的插件。"
+
+msgid "Your Facebook connection has been removed"
+msgstr "Facebook 的连接已被删除"
+
+#, php-format
+msgid "Contact the %s administrator to retrieve your account"
+msgstr "与 %s 管理员联系，以检索您的帐户"

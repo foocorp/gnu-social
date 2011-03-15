@@ -68,6 +68,9 @@ class MobileProfilePlugin extends WAP20Plugin
             $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'])) {
 
             $this->serveMobile = true;
+        } else if (isset($_COOKIE['MobileOverride'])) {
+            // Cookie override is controlled by link at bottom.
+            $this->serveMobile = (bool)$_COOKIE['MobileOverride'];
         } else {
             // If they like the WAP 2.0 mimetype, serve them MP
             // @fixme $type is undefined, making this if case useless and spewing errors.
@@ -241,13 +244,13 @@ class MobileProfilePlugin extends WAP20Plugin
         if (file_exists(Theme::file('css/mp-screen.css'))) {
             $action->cssLink('css/mp-screen.css', null, 'screen');
         } else {
-            $action->cssLink('plugins/MobileProfile/mp-screen.css',null,'screen');
+            $action->cssLink($this->path('mp-screen.css'),null,'screen');
         }
 
         if (file_exists(Theme::file('css/mp-handheld.css'))) {
             $action->cssLink('css/mp-handheld.css', null, 'handheld');
         } else {
-            $action->cssLink('plugins/MobileProfile/mp-handheld.css',null,'handheld');
+            $action->cssLink($this->path('mp-handheld.css'),null,'handheld');
         }
 
         // Allow other plugins to load their styles.
@@ -352,18 +355,18 @@ class MobileProfilePlugin extends WAP20Plugin
         $contentLimit = Notice::maxContent();
 
         if ($contentLimit > 0) {
-            $form->out->element('div', array('id' => 'notice_text-count'),
+            $form->out->element('div', array('class' => 'count'),
                                 $contentLimit);
         }
 
         if (common_config('attachments', 'uploads')) {
             if ($this->mobileFeatures['inputfiletype']) {
+                $form->out->hidden('MAX_FILE_SIZE', common_config('attachments', 'file_quota'));
                 $form->out->element('label', array('for' => 'notice_data-attach'), _m('Attach'));
                 $form->out->element('input', array('id' => 'notice_data-attach',
                                                    'type' => 'file',
                                                    'name' => 'attach',
                                                    'title' => _m('Attach a file')));
-                $form->out->hidden('MAX_FILE_SIZE', common_config('attachments', 'file_quota'));
             }
         }
         if ($form->action) {
@@ -381,9 +384,40 @@ class MobileProfilePlugin extends WAP20Plugin
         }
     }
 
-    function onStartShowScripts($action)
+    function onEndShowScripts($action)
     {
+        $action->inlineScript('
+            $(function() {
+                $("#mobile-toggle-disable").click(function() {
+                    $.cookie("MobileOverride", "0", {path: "/"});
+                    window.location.reload();
+                    return false;
+                });
+                $("#mobile-toggle-enable").click(function() {
+                    $.cookie("MobileOverride", "1", {path: "/"});
+                    window.location.reload();
+                    return false;
+                });
+            });'
+        );
+    }
 
+
+    function onEndShowInsideFooter($action)
+    {
+        if ($this->serveMobile) {
+            // TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
+            $linkText = _m('Switch to desktop site layout.');
+            $key = 'mobile-toggle-disable';
+        } else {
+            // TRANS: Link to switch site layout from desktop to mobile mode. Appears at very bottom of page.
+            $linkText = _m('Switch to mobile site layout.');
+            $key = 'mobile-toggle-enable';
+        }
+        $action->elementStart('p');
+        $action->element('a', array('href' => '#', 'id' => $key), $linkText);
+        $action->elementEnd('p');
+        return true;
     }
 
     function _common_path($relative, $ssl=false)

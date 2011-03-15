@@ -51,7 +51,14 @@ class Facebookclient
     function __construct($notice)
     {
         $this->facebook = self::getFacebook();
-        $this->notice   = $notice;
+
+        if (empty($this->facebook)) {
+            throw new FacebookApiException(
+                "Could not create Facebook client! Bad application ID or secret?"
+            );
+        }
+
+        $this->notice = $notice;
 
         $this->flink = Foreign_link::getByUserID(
             $notice->profile_id,
@@ -89,6 +96,22 @@ class Facebookclient
             $secret = common_config('facebook', 'global_secret');
         }
 
+        if (empty($appId)) {
+            common_log(
+                LOG_WARNING,
+                "Couldn't find Facebook application ID!",
+                __FILE__
+            );
+        }
+
+        if (empty($secret)) {
+            common_log(
+                LOG_WARNING,
+                "Couldn't find Facebook application ID!",
+                __FILE__
+            );
+        }
+
         return new Facebook(
             array(
                'appId'  => $appId,
@@ -115,14 +138,7 @@ class Facebookclient
     function isFacebookBound() {
 
         if (empty($this->flink)) {
-            common_log(
-                LOG_WARN,
-                sprintf(
-                    "No Foreign_link to Facebook for the author of notice %d.",
-                    $this->notice->id
-                ),
-                __FILE__
-            );
+            // User hasn't setup bridging
             return false;
         }
 
@@ -180,16 +196,10 @@ class Facebookclient
                 // Otherwise we most likely have an access token
                 return $this->sendGraph();
             }
-
-        } else {
-            common_debug(
-                sprintf(
-                    "Skipping notice %d - not bound for Facebook",
-                    $this->notice->id,
-                    __FILE__
-                )
-            );
         }
+
+        // dequeue
+        return true;
     }
 
     /*

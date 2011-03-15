@@ -1,5 +1,5 @@
 # Translation of StatusNet - SubMirror to Interlingua (Interlingua)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: McDutchie
 # --
@@ -9,131 +9,109 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:59+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:18+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:46:18+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:23+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: SubMirrorPlugin.php:90
-msgid "Pull feeds into your timeline!"
-msgstr "Importar syndicationes in tu chronologia!"
-
-#. TRANS: SubMirror plugin menu item on user settings page.
-#: SubMirrorPlugin.php:109
-msgctxt "MENU"
-msgid "Mirroring"
-msgstr "Republication"
-
-#. TRANS: SubMirror plugin tooltip for user settings menu item.
-#: SubMirrorPlugin.php:111
-msgid "Configure mirroring of posts from other feeds"
-msgstr "Configurar le republication de messages de altere syndicationes"
-
-#: lib/editmirrorform.php:83
-msgctxt "LABEL"
-msgid "Remote feed:"
-msgstr "Syndication remote:"
-
-#: lib/editmirrorform.php:87
-msgctxt "LABEL"
-msgid "Local user"
-msgstr "Usator local"
-
-#: lib/editmirrorform.php:93
-msgid "Mirroring style"
-msgstr "Stilo de republication"
-
-#: lib/editmirrorform.php:95
-msgid ""
-"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
-msgstr ""
-"Repeter: referer al message del usator original (monstrate a vices como 'RT "
-"@pseudonymo')"
-
-#: lib/editmirrorform.php:96
-msgid "Repost the content under my account"
-msgstr "Republicar le contento sub mi conto"
-
-#: lib/editmirrorform.php:115
-msgid "Save"
-msgstr "Salveguardar"
-
-#: lib/editmirrorform.php:117
-msgid "Stop mirroring"
-msgstr "Cessar le republication"
-
-#: lib/addmirrorform.php:59
-msgid "Web page or feed URL:"
-msgstr "URL de pagina web o syndication:"
-
-#: lib/addmirrorform.php:64
-msgctxt "BUTTON"
-msgid "Add feed"
-msgstr "Adder syndication"
-
-#: actions/basemirror.php:71
 msgid "Invalid feed URL."
 msgstr "URL de syndication invalide."
 
 #. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
-#: actions/basemirror.php:83
 msgid "Invalid profile for mirroring."
 msgstr "Profilo invalide pro republication."
 
-#: actions/basemirror.php:101
 msgid "Can't mirror a StatusNet group at this time."
 msgstr "Al presente il es impossibile republicar un gruppo StatusNet."
 
-#: actions/basemirror.php:115
 msgid "This action only accepts POST requests."
 msgstr "Iste action accepta solmente le requestas de typo POST."
 
-#: actions/basemirror.php:123
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Occurreva un problema con le indicio de tu session. Per favor reproba."
 
-#: actions/basemirror.php:133
 msgid "Not logged in."
 msgstr "Tu non ha aperite un session."
 
-#: actions/basemirror.php:156
 msgid "Subscribed"
 msgstr "Subscribite"
 
-#: actions/editmirror.php:68
 msgid "Requested invalid profile to edit."
 msgstr "Requestava un profilo invalide a modificar."
 
-#: actions/editmirror.php:86
 msgid "Bad form data."
 msgstr "Mal datos de formulario."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
-#: actions/editmirror.php:95
 msgid "Requested edit of missing mirror."
 msgstr "Requestava le modification de un speculo mancante."
 
-#: actions/addmirror.php:72
 msgid "Could not subscribe to feed."
 msgstr "Non poteva subscriber al syndication."
 
 #. TRANS: Title.
-#: actions/mirrorsettings.php:42
 msgid "Feed mirror settings"
 msgstr "Configuration de speculo de syndication"
 
 #. TRANS: Instructions.
-#: actions/mirrorsettings.php:54
 msgid ""
 "You can mirror updates from many RSS and Atom feeds into your StatusNet "
 "timeline!"
 msgstr ""
 "Tu pote republicar actualisationes de multe syndicationes RSS e Atom in tu "
 "chronologia de StatusNet!"
+
+msgid "Pull feeds into your timeline!"
+msgstr "Importar syndicationes in tu chronologia!"
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+msgctxt "MENU"
+msgid "Mirroring"
+msgstr "Republication"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+msgid "Configure mirroring of posts from other feeds"
+msgstr "Configurar le republication de messages de altere syndicationes"
+
+msgid "Mirrored feeds"
+msgstr "Speculos de syndicationes"
+
+msgid "Web page or feed URL:"
+msgstr "URL de pagina web o syndication:"
+
+msgctxt "BUTTON"
+msgid "Add feed"
+msgstr "Adder syndication"
+
+msgctxt "LABEL"
+msgid "Remote feed:"
+msgstr "Syndication remote:"
+
+msgctxt "LABEL"
+msgid "Local user"
+msgstr "Usator local"
+
+msgid "Mirroring style"
+msgstr "Stilo de republication"
+
+msgid ""
+"Repeat: reference the original user's post (sometimes shows as 'RT @blah')"
+msgstr ""
+"Repeter: referer al message del usator original (monstrate a vices como 'RT "
+"@pseudonymo')"
+
+msgid "Repost the content under my account"
+msgstr "Republicar le contento sub mi conto"
+
+msgid "Save"
+msgstr "Salveguardar"
+
+msgid "Stop mirroring"
+msgstr "Cessar le republication"

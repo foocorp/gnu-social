@@ -293,6 +293,7 @@ class Ostatus_profile extends Managed_DataObject
      * an acceptable response from the remote site.
      *
      * @param mixed $entry XML string, Notice, or Activity
+     * @param Profile $actor
      * @return boolean success
      */
     public function notifyActivity($entry, $actor)
@@ -419,7 +420,8 @@ class Ostatus_profile extends Managed_DataObject
     {
         $activity = new Activity($entry, $feed);
 
-        if (Event::handle('StartHandleFeedEntry', array($activity))) {
+        if (Event::handle('StartHandleFeedEntryWithProfile', array($activity, $this)) &&
+            Event::handle('StartHandleFeedEntry', array($activity))) {
 
             // @todo process all activity objects
             switch ($activity->objects[0]->type) {
@@ -441,6 +443,7 @@ class Ostatus_profile extends Managed_DataObject
             }
 
             Event::handle('EndHandleFeedEntry', array($activity));
+            Event::handle('EndHandleFeedEntryWithProfile', array($activity, $this));
         }
     }
 
@@ -453,36 +456,10 @@ class Ostatus_profile extends Managed_DataObject
      */
     public function processPost($activity, $method)
     {
-        if ($this->isGroup()) {
-            // A group feed will contain posts from multiple authors.
-            // @fixme validate these profiles in some way!
-            $oprofile = self::ensureActorProfile($activity);
-            if ($oprofile->isGroup()) {
-                // Groups can't post notices in StatusNet.
-                common_log(LOG_WARNING, "OStatus: skipping post with group listed as author: $oprofile->uri in feed from $this->uri");
-                return false;
-            }
-        } else {
-            $actor = $activity->actor;
+        $oprofile = $this->checkAuthorship($activity);
 
-            if (empty($actor)) {
-                // OK here! assume the default
-            } else if ($actor->id == $this->uri || $actor->link == $this->uri) {
-                $this->updateFromActivityObject($actor);
-            } else if ($actor->id) {
-                // We have an ActivityStreams actor with an explicit ID that doesn't match the feed owner.
-                // This isn't what we expect from mainline OStatus person feeds!
-                // Group feeds go down another path, with different validation...
-                // Most likely this is a plain ol' blog feed of some kind which
-                // doesn't match our expectations. We'll take the entry, but ignore
-                // the <author> info.
-                common_log(LOG_WARNING, "Got an actor '{$actor->title}' ({$actor->id}) on single-user feed for {$this->uri}");
-            } else {
-                // Plain <author> without ActivityStreams actor info.
-                // We'll just ignore this info for now and save the update under the feed's identity.
-            }
-
-            $oprofile = $this;
+        if (empty($oprofile)) {
+            return false;
         }
 
         // It's not always an ActivityObject::NOTE, but... let's just say it is.
@@ -897,54 +874,19 @@ class Ostatus_profile extends Managed_DataObject
      * @return Ostatus_profile
      * @throws Exception
      */
+
     public static function ensureAtomFeed($feedEl, $hints)
     {
-        // Try to get a profile from the feed activity:subject
+        $author = ActivityUtils::getFeedAuthor($feedEl);
 
-        $subject = ActivityUtils::child($feedEl, Activity::SUBJECT, Activity::SPEC);
-
-        if (!empty($subject)) {
-            $subjObject = new ActivityObject($subject);
-            return self::ensureActivityObjectProfile($subjObject, $hints);
+        if (empty($author)) {
+            // XXX: make some educated guesses here
+            // TRANS: Feed sub exception.
+            throw new FeedSubException(_m('Can\'t find enough profile '.
+                                          'information to make a feed.'));
         }
 
-        // Otherwise, try the feed author
-
-        $author = ActivityUtils::child($feedEl, Activity::AUTHOR, Activity::ATOM);
-
-        if (!empty($author)) {
-            $authorObject = new ActivityObject($author);
-            return self::ensureActivityObjectProfile($authorObject, $hints);
-        }
-
-        // Sheesh. Not a very nice feed! Let's try fingerpoken in the
-        // entries.
-
-        $entries = $feedEl->getElementsByTagNameNS(Activity::ATOM, 'entry');
-
-        if (!empty($entries) && $entries->length > 0) {
-
-            $entry = $entries->item(0);
-
-            $actor = ActivityUtils::child($entry, Activity::ACTOR, Activity::SPEC);
-
-            if (!empty($actor)) {
-                $actorObject = new ActivityObject($actor);
-                return self::ensureActivityObjectProfile($actorObject, $hints);
-
-            }
-
-            $author = ActivityUtils::child($entry, Activity::AUTHOR, Activity::ATOM);
-
-            if (!empty($author)) {
-                $authorObject = new ActivityObject($author);
-                return self::ensureActivityObjectProfile($authorObject, $hints);
-            }
-        }
-
-        // XXX: make some educated guesses here
-        // TRANS: Feed sub exception.
-        throw new FeedSubException(_m('Can\'t find enough profile information to make a feed.'));
+        return self::ensureActivityObjectProfile($author, $hints);
     }
 
     /**
@@ -1132,7 +1074,8 @@ class Ostatus_profile extends Managed_DataObject
                 return $url;
             }
         }
-        return common_path('plugins/OStatus/images/96px-Feed-icon.svg.png');
+
+        return Plugin::staticPath('OStatus', 'images/96px-Feed-icon.svg.png');
     }
 
     /**
@@ -1373,7 +1316,17 @@ class Ostatus_profile extends Managed_DataObject
     {
         $orig = clone($profile);
 
-        $profile->nickname = self::getActivityObjectNickname($object, $hints);
+        // Existing nickname is better than nothing.
+
+        if (!array_key_exists('nickname', $hints)) {
+            $hints['nickname'] = $profile->nickname;
+        }
+
+        $nickname = self::getActivityObjectNickname($object, $hints);
+
+        if (!empty($nickname)) {
+            $profile->nickname = $nickname;
+        }
 
         if (!empty($object->title)) {
             $profile->fullname = $object->title;
@@ -1389,9 +1342,23 @@ class Ostatus_profile extends Managed_DataObject
             $profile->profileurl = $object->id;
         }
 
-        $profile->bio      = self::getActivityObjectBio($object, $hints);
-        $profile->location = self::getActivityObjectLocation($object, $hints);
-        $profile->homepage = self::getActivityObjectHomepage($object, $hints);
+        $bio = self::getActivityObjectBio($object, $hints);
+
+        if (!empty($bio)) {
+            $profile->bio = $bio;
+        }
+
+        $location = self::getActivityObjectLocation($object, $hints);
+
+        if (!empty($location)) {
+            $profile->location = $location;
+        }
+
+        $homepage = self::getActivityObjectHomepage($object, $hints);
+
+        if (!empty($homepage)) {
+            $profile->homepage = $homepage;
+        }
 
         if (!empty($object->geopoint)) {
             $location = ActivityContext::locationFromPoint($object->geopoint);
@@ -1799,12 +1766,55 @@ class Ostatus_profile extends Managed_DataObject
                 case 'mailto':
                     $rest = $match[2];
                     $oprofile = Ostatus_profile::ensureWebfinger($rest);
+                    break;
                 default:
-                    common_log("Unrecognized URI protocol for profile: $protocol ($uri)");
+                    throw new ServerException("Unrecognized URI protocol for profile: $protocol ($uri)");
                     break;
                 }
+            } else {
+                throw new ServerException("No URI protocol for profile: ($uri)");
             }
         }
+
+        return $oprofile;
+    }
+
+    function checkAuthorship($activity)
+    {
+        if ($this->isGroup()) {
+            // A group feed will contain posts from multiple authors.
+            // @fixme validate these profiles in some way!
+            $oprofile = self::ensureActorProfile($activity);
+            if ($oprofile->isGroup()) {
+                // Groups can't post notices in StatusNet.
+                common_log(LOG_WARNING, 
+                           "OStatus: skipping post with group listed as author: ".
+                           "$oprofile->uri in feed from $this->uri");
+                return false;
+            }
+        } else {
+            $actor = $activity->actor;
+
+            if (empty($actor)) {
+                // OK here! assume the default
+            } else if ($actor->id == $this->uri || $actor->link == $this->uri) {
+                $this->updateFromActivityObject($actor);
+            } else if ($actor->id) {
+                // We have an ActivityStreams actor with an explicit ID that doesn't match the feed owner.
+                // This isn't what we expect from mainline OStatus person feeds!
+                // Group feeds go down another path, with different validation...
+                // Most likely this is a plain ol' blog feed of some kind which
+                // doesn't match our expectations. We'll take the entry, but ignore
+                // the <author> info.
+                common_log(LOG_WARNING, "Got an actor '{$actor->title}' ({$actor->id}) on single-user feed for {$this->uri}");
+            } else {
+                // Plain <author> without ActivityStreams actor info.
+                // We'll just ignore this info for now and save the update under the feed's identity.
+            }
+
+            $oprofile = $this;
+        }
+
         return $oprofile;
     }
 }

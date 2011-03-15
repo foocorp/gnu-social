@@ -114,17 +114,17 @@ address {
     height: 54px;
 }
 
-.form_notice label[for=notice_data-attach],
-.form_notice #notice_data-attach {
+.form_notice label.notice_data-attach,
+.form_notice input.notice_data-attach {
     top: 27px;
 }
 
-.form_notice #notice_data-geo_wrap label,
-.form_notice #notice_data-geo_wrap input {
+.form_notice .notice_data-geo_wrap label,
+.form_notice .notice_data-geo_wrap input {
     top: 52px;
 }
 
-.form_notice #notice_action-submit {
+.form_notice .submit {
     font-size: 0.9em;
     top: 80px;
     right:0;

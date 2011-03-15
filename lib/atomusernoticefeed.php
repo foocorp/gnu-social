@@ -59,9 +59,29 @@ class AtomUserNoticeFeed extends AtomNoticeFeed
         parent::__construct($cur, $indent);
         $this->user = $user;
         if (!empty($user)) {
+
             $profile = $user->getProfile();
-            $this->addAuthor($profile->nickname, $user->uri);
-            $this->setActivitySubject($profile->asActivityNoun('subject'));
+
+            $ao = ActivityObject::fromProfile($profile);
+
+            array_push($ao->extra, $profile->profileInfo($cur));
+
+            // XXX: For users, we generate an author _AND_ an <activity:subject>
+            // This is for backward compatibility with clients (especially
+            // StatusNet's clients) that assume the Atom will conform to an
+            // older version of the Activity Streams API. Subject should be
+            // removed in future versions of StatusNet.
+
+            $this->addAuthorRaw($ao->asString('author'));
+
+            $depMsg = 'Deprecation warning: activity:subject is present '
+                . 'only for backward compatibility. It will be '
+                . 'removed in the next version of StatusNet.';
+
+            $this->addAuthorRaw(
+                "<!--$depMsg-->\n"
+                . $ao->asString('activity:subject')
+            );
         }
 
         // TRANS: Title in atom user notice feed. %s is a user name.

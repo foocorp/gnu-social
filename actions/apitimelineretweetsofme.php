@@ -93,9 +93,27 @@ class ApiTimelineRetweetsOfMeAction extends ApiAuthAction
         $offset = ($this->page-1) * $this->cnt;
         $limit  = $this->cnt;
 
-        $strm = $this->auth_user->repeatsOfMe($offset, $limit, $this->since_id, $this->max_id);
+        // TRANS: Title of list of repeated notices of the logged in user.
+        // TRANS: %s is the nickname of the logged in user.
+        $title      = sprintf(_("Repeats of %s"), $this->auth_user->nickname);
+        $sitename   = common_config('site', 'name');
 
-        common_debug(var_export($strm, true));
+        $profile = $this->auth_user->getProfile();
+
+        $subtitle   = sprintf(
+            _('%1$s notices that %2$s / %3$s has repeated.'),
+            $sitename, $this->auth_user->nickname, $profile->getBestName()
+        );
+
+        $taguribase = TagURI::base();
+        $id         = "tag:$taguribase:RepeatsOfMe:" . $this->auth_user->id;
+
+        $link = common_local_url(
+            'all',
+             array('nickname' => $this->auth_user->nickname)
+        );
+
+        $strm = $this->auth_user->repeatsOfMe($offset, $limit, $this->since_id, $this->max_id);
 
         switch ($this->format) {
         case 'xml':
@@ -105,49 +123,28 @@ class ApiTimelineRetweetsOfMeAction extends ApiAuthAction
             $this->showJsonTimeline($strm);
             break;
         case 'atom':
-            $profile    = $this->auth_user->getProfile();
-
-            // TRANS: Title of list of repeated notices of the logged in user.
-            // TRANS: %s is the nickname of the logged in user.
-            $title      = sprintf(_("Repeats of %s"), $this->auth_user->nickname);
-            $taguribase = TagURI::base();
-            $id         = "tag:$taguribase:RepeatsOfMe:" . $this->auth_user->id;
-
             header('Content-Type: application/atom+xml; charset=utf-8');
-
             $atom = new AtomNoticeFeed($this->auth_user);
-
             $atom->setId($id);
             $atom->setTitle($title);
             $atom->setSubtitle($subtitle);
             $atom->setUpdated('now');
-
-            $atom->addLink(
-                common_local_url(
-                    'showstream',
-                    array('nickname' => $this->auth_user->nickname)
-                )
-            );
-
-            $id = $this->arg('id');
-            $aargs = array('format' => 'atom');
-            if (!empty($id)) {
-                $aargs['id'] = $id;
-            }
-
-            $atom->addLink(
-                $this->getSelfUri('ApiTimelineRetweetsOfMe', $aargs),
-                array('rel' => 'self', 'type' => 'application/atom+xml')
-            );
-
+            $atom->addLink($link);
+            $atom->setSelfLink($this->getSelfUri());
             $atom->addEntryFromNotices($strm);
-
             $this->raw($atom->getString());
-
+            break;
+        case 'as':
+            header('Content-Type: application/json; charset=utf-8');
+            $doc = new ActivityStreamJSONDocument($this->auth_user);
+            $doc->setTitle($title);
+            $doc->addLink($link, 'alternate', 'text/html');
+            $doc->addItemsFromNotices($strm);
+            $this->raw($doc->asString());
             break;
         default:
             // TRANS: Client error displayed when trying to handle an unknown API method.
-            $this->clientError(_('API method not found.'), $code = 404);
+            $this->clientError(_('API method not found.'), 404);
             break;
         }
     }

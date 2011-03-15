@@ -32,19 +32,40 @@ Commands
 You can do some minor management of your account through Jabber. These are the
 currently-implemented commands:
 
-* **on**: Turn on notifications. You'll receive copies of messages by people
-  you subscribe to.
-* **off**: Turn off notifications. You'll no longer receive Jabber
-  notifications.
-* **stop**: Same as 'off'
-* **quit**: Same as 'off'
-* **help**: Show this help. List available Jabber/XMPP commands
-* **follow &lt;nickname&gt;**: Subscribe to &lt;nickname&gt;
-* **sub &lt;nickname&gt;**: Same as follow
-* **leave &lt;nickname&gt;**: Unsubscribe from &lt;nickname&gt;
-* **unsub &lt;nickname&gt;**: Same as leave
-* **d &lt;nickname&gt; &lt;text&gt;**: Send direct message to &lt;nickname&gt; with message body &lt;text&gt;
-* **get &lt;nickname&gt;**: Get last notice from &lt;nickname&gt;
-* **last &lt;nickname&gt;**: Same as 'get'
-* **whois &lt;nickname&gt;**: Get Profile info on &lt;nickname&gt;
-* **fav &lt;nickname&gt;**: Add user's last notice as a favorite
+* **on** - turn on notifications
+* **off** - turn off notifications
+* **help** - show this help
+* **follow &lt;nickname&gt;** - subscribe to user
+* **groups** - lists the groups you have joined
+* **subscriptions** - list the people you follow
+* **subscribers** - list the people that follow you
+* **leave &lt;nickname&gt;** - unsubscribe from user
+* **d &lt;nickname&gt; &lt;text&gt;** - direct message to user
+* **get &lt;nickname&gt;** - get last notice from user
+* **whois &lt;nickname&gt;** - get profile info on user
+* **lose &lt;nickname&gt;** - force user to stop following you
+* **fav &lt;nickname&gt;** - add user's last notice as a 'fave'
+* **fav #&lt;notice_id&gt;** - add notice with the given id as a 'fave'
+* **repeat #&lt;notice_id&gt;** - repeat a notice with a given id
+* **repeat &lt;nickname&gt;** - repeat the last notice from user
+* **reply #&lt;notice_id&gt;** - reply to notice with a given id
+* **reply &lt;nickname&gt;** - reply to the last notice from user
+* **join &lt;group&gt;** - join group
+* **login** - Get a link to login to the web interface
+* **drop &lt;group&gt;** - leave group
+* **stats** - get your stats
+* **stop** - same as 'off'
+* **quit** - same as 'off'
+* **sub &lt;nickname&gt;** - same as 'follow'
+* **unsub &lt;nickname&gt;** - same as 'leave'
+* **last &lt;nickname&gt;** - same as 'get'
+* **on &lt;nickname&gt;** - not yet implemented.
+* **off &lt;nickname&gt;** - not yet implemented.
+* **nudge &lt;nickname&gt;** - remind a user to update.
+* **invite &lt;phone number&gt;** - not yet implemented.
+* **track &lt;word&gt;** - not yet implemented.
+* **untrack &lt;word&gt;** - not yet implemented.
+* **track off** - not yet implemented.
+* **untrack all** - not yet implemented.
+* **tracks** - not yet implemented.
+* **tracking** - not yet implemented.

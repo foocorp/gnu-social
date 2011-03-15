@@ -176,12 +176,12 @@ class YammeradminpanelAction extends AdminPanelAction
     function showStylesheets()
     {
         parent::showStylesheets();
-        $this->cssLink('plugins/YammerImport/css/admin.css', null, 'screen, projection, tv');
+        $this->cssLink(Plugin::staticPath('YammerImport', 'css/admin.css'), null, 'screen, projection, tv');
     }
 
     function showScripts()
     {
         parent::showScripts();
-        $this->script('plugins/YammerImport/js/yammer-admin.js');
+        $this->script(Plugin::staticPath('YammerImport', 'js/yammer-admin.js'));
     }
 }

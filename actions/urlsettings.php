@@ -32,7 +32,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once INSTALLDIR.'/lib/accountsettingsaction.php';
+
 
 /**
  * Miscellaneous settings actions
@@ -47,7 +47,7 @@ require_once INSTALLDIR.'/lib/accountsettingsaction.php';
  * @link     http://status.net/
  */
 
-class UrlsettingsAction extends AccountSettingsAction
+class UrlsettingsAction extends SettingsAction
 {
     /**
      * Title of the page
@@ -99,23 +99,30 @@ class UrlsettingsAction extends AccountSettingsAction
         $this->hidden('token', common_session_token());
         $this->elementStart('ul', 'form_data');
 
-        $shorteners = array(_('[none]') => array('freeService' => false));
+        $shorteners = array();
 
         Event::handle('GetUrlShorteners', array(&$shorteners));
 
         $services = array();
-        foreach($shorteners as $name=>$value)
+
+        foreach ($shorteners as $name => $value)
         {
-            $services[$name]=$name;
-            if($value['freeService']){
+            $services[$name] = $name;
+            if ($value['freeService']) {
                 // TRANS: Used as a suffix for free URL shorteners in a dropdown list in the tab "Other" of a
                 // TRANS: user's profile settings. This message has one space at the beginning. Use your
                 // TRANS: language's word separator here if it has one (most likely a single space).
-                $services[$name].=_(' (free service)');
+                $services[$name] .= _(' (free service)');
             }
         }
-        if($services)
-        {
+
+        // Include default values
+
+        $services['none']     = _('[none]');
+        $services['internal'] = _('[internal]');
+
+        if ($services) {
+
             asort($services);
 
             $this->elementStart('li');
@@ -201,7 +208,7 @@ class UrlsettingsAction extends AccountSettingsAction
         if ($result === false) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
-            $this->serverError(_('Couldn\'t update user.'));
+            $this->serverError(_('Could not update user.'));
             return;
         }
 
@@ -233,6 +240,7 @@ class UrlsettingsAction extends AccountSettingsAction
 
         $user->query('COMMIT');
 
+        // TRANS: Confirmation message after saving preferences.
         $this->showForm(_('Preferences saved.'), true);
     }
 }

@@ -25,18 +25,52 @@
  * We extend atomusernoticefeed since it does some nice setup for us.
  *
  */
-
 class UserActivityStream extends AtomUserNoticeFeed
 {
-    function __construct($user, $indent = true)
+    public $activities = array();
+
+    const OUTPUT_STRING = 1;
+    const OUTPUT_RAW = 2;
+    public $outputMode = self::OUTPUT_STRING;
+
+    /**
+     *
+     * @param User $user
+     * @param boolean $indent
+     * @param boolean $outputMode: UserActivityStream::OUTPUT_STRING to return a string,
+     *                           or UserActivityStream::OUTPUT_RAW to go to raw output.
+     *                           Raw output mode will attempt to stream, keeping less
+     *                           data in memory but will leave $this->activities incomplete.
+     */
+    function __construct($user, $indent = true, $outputMode = UserActivityStream::OUTPUT_STRING)
     {
         parent::__construct($user, null, $indent);
 
+        $this->outputMode = $outputMode;
+        if ($this->outputMode == self::OUTPUT_STRING) {
+            // String buffering? Grab all the notices now.
+            $notices = $this->getNotices();
+        } elseif ($this->outputMode == self::OUTPUT_RAW) {
+            // Raw output... need to restructure from the stringer init.
+            $this->xw = new XMLWriter();
+            $this->xw->openURI('php://output');
+            if(is_null($indent)) {
+                $indent = common_config('site', 'indent');
+            }
+            $this->xw->setIndent($indent);
+
+            // We'll fetch notices later.
+            $notices = array();
+        } else {
+            throw new Exception('Invalid outputMode provided to ' . __METHOD__);
+        }
+
+        // Assume that everything but notices is feasible
+        // to pull at once and work with in memory...
         $subscriptions = $this->getSubscriptions();
         $subscribers   = $this->getSubscribers();
         $groups        = $this->getGroups();
         $faves         = $this->getFaves();
-        $notices       = $this->getNotices();
 
         $objs = array_merge($subscriptions, $subscribers, $groups, $faves, $notices);
 
@@ -44,11 +78,44 @@ class UserActivityStream extends AtomUserNoticeFeed
 
         usort($objs, 'UserActivityStream::compareObject');
 
+        // We'll keep these around for later, and interleave them into
+        // the output stream with the user's notices.
         foreach ($objs as $obj) {
-            $act = $obj->asActivity();
+            $this->activities[] = $obj->asActivity();
+        }
+    }
+
+    /**
+     * Interleave the pre-sorted subs/groups/faves with the user's
+     * notices, all in reverse chron order.
+     */
+    function renderEntries()
+    {
+        $end = time() + 1;
+        foreach ($this->activities as $act) {
+            $start = $act->time;
+
+            if ($this->outputMode == self::OUTPUT_RAW && $start != $end) {
+                // In raw mode, we haven't pre-fetched notices.
+                // Grab the chunks of notices between other activities.
+                $notices = $this->getNoticesBetween($start, $end);
+                foreach ($notices as $noticeAct) {
+                    $noticeAct->asActivity()->outputTo($this, false, false);
+                }
+            }
+
             // Only show the author sub-element if it's different from default user
-            $str = $act->asString(false, ($act->actor->id != $this->user->uri));
-            $this->addEntryRaw($str);
+            $act->outputTo($this, false, ($act->actor->id != $this->user->uri));
+
+            $end = $start;
+        }
+
+        if ($this->outputMode == self::OUTPUT_RAW) {
+            // Grab anything after the last pre-sorted activity.
+            $notices = $this->getNoticesBetween(0, $end);
+            foreach ($notices as $noticeAct) {
+                $noticeAct->asActivity()->outputTo($this, false, false);
+            }
         }
     }
 
@@ -115,13 +182,30 @@ class UserActivityStream extends AtomUserNoticeFeed
         return $faves;
     }
 
-    function getNotices()
+    /**
+     *
+     * @param int $start unix timestamp for earliest
+     * @param int $end unix timestamp for latest
+     * @return array of Notice objects
+     */
+    function getNoticesBetween($start=0, $end=0)
     {
         $notices = array();
 
         $notice = new Notice();
 
         $notice->profile_id = $this->user->id;
+
+        if ($start) {
+            $tsstart = common_sql_date($start);
+            $notice->whereAdd("created >= '$tsstart'");
+        }
+        if ($end) {
+            $tsend = common_sql_date($end);
+            $notice->whereAdd("created < '$tsend'");
+        }
+
+        $notice->orderBy('created DESC');
 
         if ($notice->find()) {
             while ($notice->fetch()) {
@@ -130,6 +214,11 @@ class UserActivityStream extends AtomUserNoticeFeed
         }
 
         return $notices;
+    }
+
+    function getNotices()
+    {
+        return $this->getNoticesBetween();
     }
 
     function getGroups()

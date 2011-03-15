@@ -43,7 +43,6 @@ require_once INSTALLDIR.'/lib/publicgroupnav.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class GroupmembersAction extends GroupDesignAction
 {
     var $page = null;
@@ -73,6 +72,7 @@ class GroupmembersAction extends GroupDesignAction
         }
 
         if (!$nickname) {
+            // TRANS: Client error displayed when trying to view group members without providing a group nickname.
             $this->clientError(_('No nickname.'), 404);
             return false;
         }
@@ -80,6 +80,7 @@ class GroupmembersAction extends GroupDesignAction
         $local = Local_group::staticGet('nickname', $nickname);
 
         if (!$local) {
+            // TRANS: Client error displayed when trying to view group members for a non-existing group.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -87,6 +88,7 @@ class GroupmembersAction extends GroupDesignAction
         $this->group = User_group::staticGet('id', $local->group_id);
 
         if (!$this->group) {
+            // TRANS: Client error displayed when trying to view group members for an object that is not a group.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -119,10 +121,11 @@ class GroupmembersAction extends GroupDesignAction
     function showPageNotice()
     {
         $this->element('p', 'instructions',
+                       // TRANS: Page notice for group members page.
                        _('A list of the users in this group.'));
     }
 
-    function showLocalNav()
+    function showObjectNav()
     {
         $nav = new GroupNav($this, $this->group);
         $nav->show();
@@ -182,7 +185,8 @@ class GroupMemberListItem extends ProfileListItem
     {
         parent::showFullName();
         if ($this->profile->isAdmin($this->group)) {
-            $this->out->text(' ');
+            $this->out->text(' '); // for separating the classes.
+            // TRANS: Indicator in group members list that this user is a group administrator.
             $this->out->element('span', 'role', _('Admin'));
         }
     }
@@ -254,7 +258,7 @@ class GroupMemberListItem extends ProfileListItem
     /**
      * Fetch necessary return-to arguments for the profile forms
      * to return to this list when they're done.
-     * 
+     *
      * @return array
      */
     protected function returnToArgs()
@@ -281,7 +285,6 @@ class GroupMemberListItem extends ProfileListItem
  *
  * @see      BlockForm
  */
-
 class GroupBlockForm extends Form
 {
     /**
@@ -310,7 +313,6 @@ class GroupBlockForm extends Form
      * @param User_group    $group   group to block user from
      * @param array         $args    return-to args
      */
-
     function __construct($out=null, $profile=null, $group=null, $args=null)
     {
         parent::__construct($out);
@@ -325,7 +327,6 @@ class GroupBlockForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         // This should be unique for the page.
@@ -337,7 +338,6 @@ class GroupBlockForm extends Form
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_group_block';
@@ -348,7 +348,6 @@ class GroupBlockForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('groupblock');
@@ -361,6 +360,7 @@ class GroupBlockForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend for form to block user from a group.
         $this->out->element('legend', null, _('Block user from group'));
     }
 
@@ -369,7 +369,6 @@ class GroupBlockForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->hidden('blockto-' . $this->profile->id,
@@ -390,7 +389,6 @@ class GroupBlockForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->submit(
@@ -414,25 +412,21 @@ class GroupBlockForm extends Form
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class MakeAdminForm extends Form
 {
     /**
      * Profile of user to block
      */
-
     var $profile = null;
 
     /**
      * Group to block the user from
      */
-
     var $group = null;
 
     /**
      * Return-to args
      */
-
     var $args = null;
 
     /**
@@ -443,7 +437,6 @@ class MakeAdminForm extends Form
      * @param User_group    $group   group to block user from
      * @param array         $args    return-to args
      */
-
     function __construct($out=null, $profile=null, $group=null, $args=null)
     {
         parent::__construct($out);
@@ -458,7 +451,6 @@ class MakeAdminForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         // This should be unique for the page.
@@ -470,7 +462,6 @@ class MakeAdminForm extends Form
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_make_admin';
@@ -481,7 +472,6 @@ class MakeAdminForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('makeadmin', array('nickname' => $this->group->nickname));
@@ -492,9 +482,9 @@ class MakeAdminForm extends Form
      *
      * @return void
      */
-
     function formLegend()
     {
+        // TRANS: Form legend for form to make a user a group admin.
         $this->out->element('legend', null, _('Make user an admin of the group'));
     }
 
@@ -503,7 +493,6 @@ class MakeAdminForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->hidden('profileid-' . $this->profile->id,
@@ -524,7 +513,6 @@ class MakeAdminForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->submit(

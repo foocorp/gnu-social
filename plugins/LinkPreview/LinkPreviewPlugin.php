@@ -51,7 +51,12 @@ class LinkPreviewPlugin extends Plugin
     {
         $user = common_current_user();
         if ($user && common_config('attachments', 'process_links')) {
-            $action->script('plugins/LinkPreview/linkpreview.min.js');
+            if (common_config('site', 'minify')) {
+                $js = 'linkpreview.min.js';
+            } else {
+                $js = 'linkpreview.js';
+            }
+            $action->script($this->path($js));
             $data = json_encode(array(
                 'api' => common_local_url('oembedproxy'),
                 'width' => common_config('attachments', 'thumbwidth'),

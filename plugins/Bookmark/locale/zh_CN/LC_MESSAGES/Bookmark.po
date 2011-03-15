@@ -1,0 +1,37 @@
+# Translation of StatusNet - Bookmark to Simplified Chinese (‪中文(简体)‬)
+# Exported from translatewiki.net
+#
+# Author: Hydra
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Bookmark\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-08 01:03+0000\n"
+"PO-Revision-Date: 2011-03-08 01:05:50+0000\n"
+"Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
+"hans>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-06 02:12:57+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83429); Translate extension (2011-03-07)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: zh-hans\n"
+"X-Message-Group: #out-statusnet-plugin-bookmark\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Simple extension for supporting bookmarks."
+msgstr "支持书签的简单扩展。"
+
+msgid "Bookmark"
+msgstr ""
+
+msgctxt "BUTTON"
+msgid "Upload"
+msgstr "上载"
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "保存"

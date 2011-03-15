@@ -56,7 +56,7 @@ class UserxrdAction extends XrdAction
         }
 
         if (!$this->user) {
-            $this->clientError(_m('No such user.'), 404);
+            $this->clientError(_('No such user.'), 404);
             return false;
         }
 

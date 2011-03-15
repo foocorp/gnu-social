@@ -161,18 +161,6 @@ class RepliesAction extends OwnerDesignAction
     }
 
     /**
-     * show the personal group nav
-     *
-     * @return void
-     */
-
-    function showLocalNav()
-    {
-        $nav = new PersonalGroupNav($this);
-        $nav->show();
-    }
-
-    /**
      * Show the content
      *
      * A list of notices that are replies to the user, plus pagination.

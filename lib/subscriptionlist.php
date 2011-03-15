@@ -98,8 +98,6 @@ class SubscriptionListItem extends ProfileListItem
     {
         $tags = Profile_tag::getTags($this->owner->id, $this->profile->id);
 
-        $this->out->elementStart('dl', 'entity_tags');
-        $this->out->elementStart('dt');
         if ($this->isOwn()) {
             $this->out->element('a', array('href' => common_local_url('tagother',
                                                                       array('id' => $this->profile->id))),
@@ -107,10 +105,8 @@ class SubscriptionListItem extends ProfileListItem
         } else {
             $this->out->text(_('Tags'));
         }
-        $this->out->elementEnd('dt');
-        $this->out->elementStart('dd');
         if ($tags) {
-            $this->out->elementStart('ul', 'tags xoxo');
+            $this->out->elementStart('ul', 'tags xoxo entity_tags');
             foreach ($tags as $tag) {
                 $this->out->elementStart('li');
                 // Avoid space by using raw output.
@@ -126,7 +122,5 @@ class SubscriptionListItem extends ProfileListItem
         } else {
             $this->out->text(_('(None)'));
         }
-        $this->out->elementEnd('dd');
-        $this->out->elementEnd('dl');
     }
 }

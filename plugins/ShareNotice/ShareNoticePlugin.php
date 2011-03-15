@@ -33,7 +33,7 @@ class ShareNoticePlugin extends Plugin
     );
 
     function onEndShowStatusNetStyles($action) {
-        $action->cssLink('plugins/ShareNotice/css/sharenotice.css');
+        $action->cssLink($this->path('css/sharenotice.css'));
         return true;
     }
 

@@ -27,6 +27,7 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
+// @todo XXX: Documentation missing.
 class FoafGroupAction extends Action
 {
     function isReadOnly($args)
@@ -41,6 +42,7 @@ class FoafGroupAction extends Action
         $nickname_arg = $this->arg('nickname');
 
         if (empty($nickname_arg)) {
+            // TRANS: Client error displayed when requesting Friends of a Friend feed without providing a group nickname.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -59,6 +61,7 @@ class FoafGroupAction extends Action
         $local = Local_group::staticGet('nickname', $this->nickname);
 
         if (!$local) {
+            // TRANS: Client error displayed when requesting Friends of a Friend feed for a non-local group.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -66,6 +69,7 @@ class FoafGroupAction extends Action
         $this->group = User_group::staticGet('id', $local->group_id);
 
         if (!$this->group) {
+            // TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.
             $this->clientError(_('No such group.'), 404);
             return false;
         }

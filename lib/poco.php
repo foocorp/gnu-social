@@ -211,30 +211,72 @@ class PoCo
     function asString()
     {
         $xs = new XMLStringer(true);
-        $xs->element(
+        $this->outputTo($xs);
+        return $xs->getString();
+    }
+
+    function outputTo($xo)
+    {
+        $xo->element(
             'poco:preferredUsername',
             null,
             $this->preferredUsername
         );
 
-        $xs->element(
+        $xo->element(
             'poco:displayName',
             null,
             $this->displayName
         );
 
         if (!empty($this->note)) {
-            $xs->element('poco:note', null, common_xml_safe_str($this->note));
+            $xo->element('poco:note', null, common_xml_safe_str($this->note));
         }
 
         if (!empty($this->address)) {
-            $xs->raw($this->address->asString());
+            $this->address->outputTo($xo);
         }
 
         foreach ($this->urls as $url) {
-            $xs->raw($url->asString());
+            $url->outputTo($xo);
+        }
+    }
+
+    /**
+     * Output a Portable Contact as an array suitable for serializing
+     * as JSON
+     *
+     * @return $array the PoCo array
+     */
+
+    function asArray()
+    {
+        $poco = array();
+
+        $poco['preferredUsername'] = $this->preferredUsername;
+        $poco['displayName']       = $this->displayName;
+
+        if (!empty($this->note)) {
+            $poco['note'] = $this->note;
         }
 
-        return $xs->getString();
+        if (!empty($this->address)) {
+            $poco['addresses'] = $this->address->asArray();
+        }
+
+        if (!empty($this->urls)) {
+
+            $urls = array();
+
+            foreach ($this->urls as $url) {
+                $urls[] = $url->asArray();
+            }
+
+            $poco['urls'] = $urls;
+        }
+
+        return $poco;
     }
+
 }
+

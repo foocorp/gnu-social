@@ -1,0 +1,34 @@
+# Translation of StatusNet - Aim to Swedish (Svenska)
+# Exported from translatewiki.net
+#
+# Author: WikiPhoenix
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Aim\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-11 18:15+0000\n"
+"PO-Revision-Date: 2011-03-11 18:17:36+0000\n"
+"Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-08 01:22:52+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83703); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: sv\n"
+"X-Message-Group: #out-statusnet-plugin-aim\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Send me a message to post a notice"
+msgstr ""
+
+msgid "AIM"
+msgstr "AIM"
+
+msgid ""
+"The AIM plugin allows users to send and receive notices over the AIM network."
+msgstr ""
+"AIM-tillägget tillåter användare skicka och ta emot meddelanden över AIM-"
+"nätverket."

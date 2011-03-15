@@ -46,13 +46,11 @@ require_once INSTALLDIR.'/lib/form.php';
  *
  * @see      FavorForm
  */
-
 class DisfavorForm extends Form
 {
     /**
      * Notice to disfavor
      */
-
     var $notice = null;
 
     /**
@@ -61,7 +59,6 @@ class DisfavorForm extends Form
      * @param HTMLOutputter $out    output channel
      * @param Notice        $notice notice to disfavor
      */
-
     function __construct($out=null, $notice=null)
     {
         parent::__construct($out);
@@ -74,7 +71,6 @@ class DisfavorForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'disfavor-' . $this->notice->id;
@@ -85,7 +81,6 @@ class DisfavorForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('disfavor');
@@ -96,13 +91,11 @@ class DisfavorForm extends Form
      *
      * @return void
      */
-
     function sessionToken()
     {
         $this->out->hidden('token-' . $this->notice->id,
                            common_session_token());
     }
-
 
     /**
      * Legend of the Form
@@ -111,9 +104,9 @@ class DisfavorForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend for removing the favourite status for a favourite notice.
         $this->out->element('legend', null, _('Disfavor this notice'));
     }
-
 
     /**
      * Data elements
@@ -129,7 +122,6 @@ class DisfavorForm extends Form
                                'notice');
             Event::handle('EndDisFavorNoticeForm', array($this, $this->notice));
         }
-
     }
 
     /**
@@ -137,22 +129,24 @@ class DisfavorForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->submit('disfavor-submit-' . $this->notice->id,
-                           _('Disfavor favorite'), 'submit', null, _('Disfavor this notice'));
+                           // TRANS: Button text for removing the favourite status for a favourite notice.
+                           _m('BUTTON','Disfavor favorite'),
+                           'submit',
+                           null,
+                           // TRANS: Title for button text for removing the favourite status for a favourite notice.
+                           _('Disfavor this notice'));
     }
-    
+
     /**
      * Class of the form.
      *
      * @return string the form's class
      */
-
     function formClass()
     {
-        return 'form_disfavor';
+        return 'form_disfavor ajax';
     }
-
 }

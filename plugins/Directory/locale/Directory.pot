@@ -1,0 +1,58 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-11 18:15+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: actions/userdirectory.php:94
+#, php-format
+msgid "User Directory, page %d"
+msgstr ""
+
+#: actions/userdirectory.php:96
+msgid "User directory"
+msgstr ""
+
+#: actions/userdirectory.php:99
+#, php-format
+msgid "User directory - %s"
+msgstr ""
+
+#: actions/userdirectory.php:104
+#, php-format
+msgid "User directory - %s, page %d"
+msgstr ""
+
+#: actions/userdirectory.php:265
+msgctxt "BUTTON"
+msgid "Search"
+msgstr ""
+
+#: actions/userdirectory.php:370
+#, php-format
+msgid "No users starting with %s"
+msgstr ""
+
+#: DirectoryPlugin.php:187
+msgid "Add a user directory."
+msgstr ""
+
+#: lib/sortablesubscriptionlist.php:66
+msgid "Nickname"
+msgstr ""
+
+#: lib/sortablesubscriptionlist.php:67
+msgid "Created"
+msgstr ""

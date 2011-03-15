@@ -61,5 +61,12 @@ class Right
     const GRANTROLE          = 'grantrole';
     const REVOKEROLE         = 'revokerole';
     const DELETEGROUP        = 'deletegroup';
+    const BACKUPACCOUNT      = 'backupaccount';
+    const RESTOREACCOUNT     = 'restoreaccount';
+    const DELETEACCOUNT      = 'deleteaccount';
+    const MOVEACCOUNT        = 'moveaccount';
+    const CREATEGROUP        = 'creategroup';
+    const WEBLOGIN           = 'weblogin';
+    const API                = 'api';
 }
 

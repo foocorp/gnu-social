@@ -1,5 +1,5 @@
 # Translation of StatusNet - RequireValidatedEmail to Ukrainian (Українська)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Boogie
 # --
@@ -9,30 +9,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:51+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:07+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:44:34+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:02+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-#: RequireValidatedEmailPlugin.php:92
 msgid "You must validate your email address before posting."
 msgstr ""
 "Ви повинні підтвердити свою адресу електронної пошти до того, як почнете "
 "надсилати дописи поштою."
 
-#: RequireValidatedEmailPlugin.php:112
 msgid "You must provide an email address to register."
 msgstr "Ви повинні зазначити свою адресу електронної пошти для реєстрації."
 
-#: RequireValidatedEmailPlugin.php:216
 msgid "Disables posting without a validated email address."
 msgstr ""
 "Забороняє надсилання дописів, якщо користувач не має підтвердженої "

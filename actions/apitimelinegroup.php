@@ -106,6 +106,11 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
 
         $self = $this->getSelfUri();
 
+        $link = common_local_url(
+            'ApiTimelineGroup',
+            array('nickname' => $this->group->nickname)
+        );
+
         switch($this->format) {
         case 'xml':
             $this->showXmlTimeline($this->notices);
@@ -123,27 +128,19 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
             break;
         case 'atom':
             header('Content-Type: application/atom+xml; charset=utf-8');
-
-            try {
-                $atom->addAuthorRaw($this->group->asAtomAuthor());
-                $atom->setActivitySubject($this->group->asActivitySubject());
-                $atom->setId($self);
-                $atom->setSelfLink($self);
                 $atom->addEntryFromNotices($this->notices);
                 $this->raw($atom->getString());
-            } catch (Atom10FeedException $e) {
-                $this->serverError(
-                    // TRANS: Server error displayed when generating an Atom feed fails.
-                    // TRANS: %s is the error.
-                    sprintf(_('Could not generate feed for group - %s'),$e->getMessage()),
-		    400,
-		    $this->format
-                );
-                return;
-            }
             break;
         case 'json':
             $this->showJsonTimeline($this->notices);
+            break;
+        case 'as':
+            header('Content-Type: application/json; charset=utf-8');
+            $doc = new ActivityStreamJSONDocument($this->auth_user);
+            $doc->setTitle($atom->title);
+            $doc->addLink($link, 'alternate', 'text/html');
+            $doc->addItemsFromNotices($this->notices);
+            $this->raw($doc->asString());
             break;
         default:
             $this->clientError(

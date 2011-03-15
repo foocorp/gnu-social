@@ -100,7 +100,7 @@ class ApiGroupListAction extends ApiBareAuthAction
         );
 
         $subtitle   = sprintf(
-            // TRANS: Used as subtitle in check for group membership. %1$s is a user name, %2$s is the site name.
+            // TRANS: Used as subtitle in check for group membership. %1$s is the site name, %2$s is a user name.
             _('%1$s groups %2$s is a member of.'),
             $sitename,
             $this->user->nickname

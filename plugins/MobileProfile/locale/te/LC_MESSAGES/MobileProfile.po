@@ -1,5 +1,5 @@
 # Translation of StatusNet - MobileProfile to Telugu (తెలుగు)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Veeven
 # --
@@ -9,70 +9,64 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:19+0000\n"
+"POT-Creation-Date: 2011-03-11 18:15+0000\n"
+"PO-Revision-Date: 2011-03-11 18:18:38+0000\n"
 "Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:45+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-08 01:22:09+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83703); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: MobileProfilePlugin.php:193
 msgid "This page is not available in a media type you accept."
 msgstr ""
 
-#: MobileProfilePlugin.php:310
 msgid "Home"
 msgstr "ముంగిలి"
 
-#: MobileProfilePlugin.php:312
 msgid "Account"
 msgstr "ఖాతా"
 
-#: MobileProfilePlugin.php:314
 msgid "Connect"
 msgstr ""
 
-#: MobileProfilePlugin.php:317
 msgid "Admin"
 msgstr ""
 
-#: MobileProfilePlugin.php:317
 msgid "Change site configuration"
 msgstr ""
 
-#: MobileProfilePlugin.php:321
 msgid "Invite"
 msgstr "ఆహ్వానించు"
 
-#: MobileProfilePlugin.php:324
 msgid "Logout"
 msgstr "నిష్క్రమించండి"
 
-#: MobileProfilePlugin.php:328
 msgid "Register"
 msgstr "నమోదవ్వండి"
 
-#: MobileProfilePlugin.php:331
 msgid "Login"
 msgstr "ప్రవేశించండి"
 
-#: MobileProfilePlugin.php:335
 msgid "Search"
 msgstr "వెతుకు"
 
-#: MobileProfilePlugin.php:361
 msgid "Attach"
-msgstr ""
+msgstr "జోడించు"
 
-#: MobileProfilePlugin.php:365
 msgid "Attach a file"
+msgstr "ఒక దస్త్రాన్ని జోడించండి"
+
+#. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
+msgid "Switch to desktop site layout."
 msgstr ""
 
-#: MobileProfilePlugin.php:417
+#. TRANS: Link to switch site layout from desktop to mobile mode. Appears at very bottom of page.
+msgid "Switch to mobile site layout."
+msgstr ""
+
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr ""

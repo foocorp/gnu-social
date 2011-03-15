@@ -44,10 +44,8 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class DesignadminpanelAction extends AdminPanelAction
 {
-
     /* The default site design */
     var $design = null;
 
@@ -56,7 +54,6 @@ class DesignadminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
         // TRANS: Message used as title for design settings for the site.
@@ -68,9 +65,9 @@ class DesignadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
+        // TRANS: Instructions for design adminsitration panel.
         return _('Design settings for this StatusNet site');
     }
 
@@ -79,7 +76,6 @@ class DesignadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $this->design = Design::siteDesign();
@@ -93,7 +89,6 @@ class DesignadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         if ($this->arg('save')) {
@@ -101,6 +96,7 @@ class DesignadminpanelAction extends AdminPanelAction
         } else if ($this->arg('defaults')) {
             $this->restoreDefaults();
         } else {
+            // TRANS: Client error displayed when the submitted form contains unexpected data.
             $this->clientError(_('Unexpected form submission.'));
         }
     }
@@ -110,7 +106,6 @@ class DesignadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveDesignSettings()
     {
         // Workaround for PHP returning empty $_POST and $_FILES when POST
@@ -225,11 +220,10 @@ class DesignadminpanelAction extends AdminPanelAction
     }
 
     /**
-      * Restore the default design
-      *
-      * @return void
-      */
-
+     * Restore the default design
+     *
+     * @return void
+     */
     function restoreDefaults()
     {
         $this->deleteSetting('site', 'logo');
@@ -257,7 +251,6 @@ class DesignadminpanelAction extends AdminPanelAction
      *
      * @return string $filename the filename of the image
      */
-
     function saveBackgroundImage()
     {
         $filename = null;
@@ -302,7 +295,6 @@ class DesignadminpanelAction extends AdminPanelAction
      * @throws ClientException for invalid theme archives
      * @throws ServerException if trouble saving the theme files
      */
-
     function saveCustomTheme()
     {
         if (common_config('theme_upload', 'enabled') &&
@@ -327,21 +319,24 @@ class DesignadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function validate(&$values)
     {
         if (!empty($values['logo']) &&
             !Validate::uri($values['logo'], array('allowed_schemes' => array('http', 'https')))) {
+            // TRANS: Client error displayed when a logo URL does is not valid.
             $this->clientError(_('Invalid logo URL.'));
         }
 
         if (!empty($values['ssllogo']) &&
             !Validate::uri($values['ssllogo'], array('allowed_schemes' => array('https')))) {
+            // TRANS: Client error displayed when an SSL logo URL is invalid.
             $this->clientError(_('Invalid SSL logo URL.'));
         }
 
         if (!in_array($values['theme'], Theme::listAvailable())) {
-            $this->clientError(sprintf(_("Theme not available: %s."), $values['theme']));
+            // TRANS: Client error displayed when a theme is submitted through the form that is not in the theme list.
+            // TRANS: %s is the chosen unavailable theme.
+            $this->clientError(sprintf(_('Theme not available: %s.'), $values['theme']));
         }
     }
 
@@ -350,7 +345,6 @@ class DesignadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showStylesheets()
     {
         parent::showStylesheets();
@@ -362,7 +356,6 @@ class DesignadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showScripts()
     {
         parent::showScripts();
@@ -383,7 +376,6 @@ class DesignAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'form_design_admin_panel';
@@ -394,7 +386,6 @@ class DesignAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -408,7 +399,6 @@ class DesignAdminPanelForm extends AdminForm
      *
      * @return string the method to use for submitting
      */
-
     function method()
     {
         $this->enctype = 'multipart/form-data';
@@ -421,7 +411,6 @@ class DesignAdminPanelForm extends AdminForm
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('designadminpanel');
@@ -432,7 +421,6 @@ class DesignAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formData()
     {
         $this->showLogo();
@@ -445,16 +433,25 @@ class DesignAdminPanelForm extends AdminForm
     function showLogo()
     {
         $this->out->elementStart('fieldset', array('id' => 'settings_design_logo'));
+        // TRANS: Fieldset legend for form to change logo.
         $this->out->element('legend', null, _('Change logo'));
 
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
-        $this->input('logo', _('Site logo'), 'Logo for the site (full URL)');
+        $this->input('logo',
+                     // TRANS: Field label for StatusNet site logo.
+                     _('Site logo'),
+                     // TRANS: Title for field label for StatusNet site logo.
+                     'Logo for the site (full URL).');
         $this->unli();
 
         $this->li();
-        $this->input('ssllogo', _('SSL logo'), 'Logo to show on SSL pages');
+        $this->input('ssllogo',
+                     // TRANS: Field label for SSL StatusNet site logo.
+                     _('SSL logo'),
+                     // TRANS: Title for field label for SSL StatusNet site logo.
+                     'Logo to show on SSL pages.');
         $this->unli();
 
         $this->out->elementEnd('ul');
@@ -466,6 +463,7 @@ class DesignAdminPanelForm extends AdminForm
     function showTheme()
     {
         $this->out->elementStart('fieldset', array('id' => 'settings_design_theme'));
+        // TRANS: Fieldset legend for form change StatusNet site's theme.
         $this->out->element('legend', null, _('Change theme'));
 
         $this->out->elementStart('ul', 'form_data');
@@ -483,17 +481,21 @@ class DesignAdminPanelForm extends AdminForm
         $themes = array_combine($themes, $themes);
 
         $this->li();
+        // TRANS: Field label for dropdown to choose site theme.
         $this->out->dropdown('theme', _('Site theme'),
+                             // TRANS: Title for field label for dropdown to choose site theme.
                              $themes, _('Theme for the site.'),
                              false, $this->value('theme'));
         $this->unli();
 
         if (common_config('theme_upload', 'enabled')) {
             $this->li();
+            // TRANS: Field label for uploading a cutom theme.
             $this->out->element('label', array('for' => 'design_upload_theme'), _('Custom theme'));
             $this->out->element('input', array('id' => 'design_upload_theme',
                                                'name' => 'design_upload_theme',
                                                'type' => 'file'));
+            // TRANS: Form instructions for uploading a cutom StatusNet theme.
             $this->out->element('p', 'form_guide', _('You can upload a custom StatusNet theme as a .ZIP archive.'));
             $this->unli();
         }
@@ -509,22 +511,25 @@ class DesignAdminPanelForm extends AdminForm
 
         $this->out->elementStart('fieldset', array('id' =>
             'settings_design_background-image'));
+        // TRANS: Fieldset legend for theme background image.
         $this->out->element('legend', null, _('Change background image'));
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
+        $this->out->element('input', array('name' => 'MAX_FILE_SIZE',
+                                          'type' => 'hidden',
+                                          'id' => 'MAX_FILE_SIZE',
+                                          'value' => ImageFile::maxFileSizeInt()));
         $this->out->element('label', array('for' => 'design_background-image_file'),
+                               // TRANS: Field label for background image on theme designer page.
                                 _('Background'));
         $this->out->element('input', array('name' => 'design_background-image_file',
                                      'type' => 'file',
                                      'id' => 'design_background-image_file'));
         $this->out->element('p', 'form_guide',
+            // TRANS: Form guide for background image upload form on theme designer page.
             sprintf(_('You can upload a background image for the site. ' .
               'The maximum file size is %1$s.'), ImageFile::maxFileSize()));
-        $this->out->element('input', array('name' => 'MAX_FILE_SIZE',
-                                          'type' => 'hidden',
-                                          'id' => 'MAX_FILE_SIZE',
-                                          'value' => ImageFile::maxFileSizeInt()));
         $this->unli();
 
         if (!empty($design->backgroundimage)) {
@@ -568,11 +573,13 @@ class DesignAdminPanelForm extends AdminForm
                                           'class' => 'radio'),
                                           // TRANS: Used as radio button label to not add a background image.
                                           _('Off'));
+            // TRANS: Form guide for turning background image on or off on theme designer page.
             $this->out->element('p', 'form_guide', _('Turn background image on or off.'));
             $this->unli();
 
             $this->li();
             $this->out->checkbox('design_background-image_repeat',
+                            // TRANS: Checkbox label to title background image on theme designer page.
                             _('Tile background image'),
                             ($design->disposition & BACKGROUND_TILE) ? true : false);
             $this->unli();
@@ -587,7 +594,8 @@ class DesignAdminPanelForm extends AdminForm
         $design = $this->out->design;
 
         $this->out->elementStart('fieldset', array('id' => 'settings_design_color'));
-        $this->out->element('legend', null, _('Change colours'));
+        // TRANS: Fieldset legend for theme colors.
+        $this->out->element('legend', null, _('Change colors'));
 
         $this->out->elementStart('ul', 'form_data');
 
@@ -597,6 +605,7 @@ class DesignAdminPanelForm extends AdminForm
             $bgcolor = new WebColor($design->backgroundcolor);
 
             $this->li();
+            // TRANS: Field label for background color selector.
             $this->out->element('label', array('for' => 'swatch-1'), _('Background'));
             $this->out->element('input', array('name' => 'design_background',
                                           'type' => 'text',
@@ -610,6 +619,7 @@ class DesignAdminPanelForm extends AdminForm
             $ccolor = new WebColor($design->contentcolor);
 
             $this->li();
+            // TRANS: Field label for content color selector.
             $this->out->element('label', array('for' => 'swatch-2'), _('Content'));
             $this->out->element('input', array('name' => 'design_content',
                                           'type' => 'text',
@@ -623,6 +633,7 @@ class DesignAdminPanelForm extends AdminForm
             $sbcolor = new WebColor($design->sidebarcolor);
 
             $this->li();
+            // TRANS: Field label for sidebar color selector.
             $this->out->element('label', array('for' => 'swatch-3'), _('Sidebar'));
             $this->out->element('input', array('name' => 'design_sidebar',
                                         'type' => 'text',
@@ -636,6 +647,7 @@ class DesignAdminPanelForm extends AdminForm
             $tcolor = new WebColor($design->textcolor);
 
             $this->li();
+            // TRANS: Field label for text color selector.
             $this->out->element('label', array('for' => 'swatch-4'), _('Text'));
             $this->out->element('input', array('name' => 'design_text',
                                         'type' => 'text',
@@ -649,6 +661,7 @@ class DesignAdminPanelForm extends AdminForm
             $lcolor = new WebColor($design->linkcolor);
 
             $this->li();
+            // TRANS: Field label for link color selector.
             $this->out->element('label', array('for' => 'swatch-5'), _('Links'));
             $this->out->element('input', array('name' => 'design_links',
                                          'type' => 'text',
@@ -674,10 +687,12 @@ class DesignAdminPanelForm extends AdminForm
     {
         if (common_config('custom_css', 'enabled')) {
             $this->out->elementStart('fieldset', array('id' => 'settings_design_advanced'));
+            // TRANS: Fieldset legend for advanced theme design settings.
             $this->out->element('legend', null, _('Advanced'));
             $this->out->elementStart('ul', 'form_data');
 
             $this->li();
+            // TRANS: Field label for custom CSS.
             $this->out->element('label', array('for' => 'css'), _('Custom CSS'));
             $this->out->element('textarea', array('name' => 'css',
                                             'id' => 'css',
@@ -699,17 +714,25 @@ class DesignAdminPanelForm extends AdminForm
 
     function formActions()
     {
-        $this->out->submit('defaults', _('Use defaults'), 'submit form_action-default',
-                'defaults', _('Restore default designs'));
+        // TRANS: Button text for resetting theme settings.
+        $this->out->submit('defaults', _m('BUTTON','Use defaults'), 'submit form_action-default',
+                // TRANS: Title for button for resetting theme settings.
+                'defaults', _('Restore default designs.'));
 
         $this->out->element('input', array('id' => 'settings_design_reset',
                                          'type' => 'reset',
+                                         // TRANS: Button text for resetting theme settings.
                                          'value' => 'Reset',
                                          'class' => 'submit form_action-primary',
-                                         'title' => _('Reset back to default')));
+                                         // TRANS: Title for button for resetting theme settings.
+                                         'title' => _('Reset back to default.')));
 
-        $this->out->submit('save', _('Save'), 'submit form_action-secondary',
-                'save', _('Save design'));
+        $this->out->submit('save',
+                           // TRANS: Button text for saving theme settings.
+                           _m('BUTTON','Save'),
+                           'submit form_action-secondary',
+                           'save',
+                           // TRANS: Title for button for saving theme settings.
+                           _('Save design.'));
     }
-
 }

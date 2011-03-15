@@ -1,5 +1,5 @@
 # Translation of StatusNet - Mapstraction to Simplified Chinese (‪中文(简体)‬)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: ZhengYiFeng
 # --
@@ -9,29 +9,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Mapstraction\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:14+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:32+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:44:52+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-mapstraction\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: MapstractionPlugin.php:187
 msgid "Map"
 msgstr "地图"
 
 #. TRANS: Clickable item to allow opening the map in full size.
-#: MapstractionPlugin.php:199
 msgid "Full size"
 msgstr "完整尺寸"
 
-#: MapstractionPlugin.php:211
 msgid ""
 "Show maps of users' and friends' notices with <a href=\"http://www."
 "mapstraction.com/\">Mapstraction</a>."
@@ -39,29 +36,24 @@ msgstr ""
 "使用 <a href=\"http://www.mapstraction.com/\">Mapstraction</a> 显示用户和好友"
 "的消息地图。"
 
-#: map.php:72
-msgid "No such user."
-msgstr "没有这个用户。"
-
-#: map.php:79
-msgid "User has no profile."
-msgstr "用户没有个人信息。"
-
 #. TRANS: Page title.
 #. TRANS: %s is a user nickname.
-#: allmap.php:69
 #, php-format
 msgid "%s friends map"
 msgstr "%s 好友地图"
 
 #. TRANS: Page title.
 #. TRANS: %1$s is a user nickname, %2$d is a page number.
-#: allmap.php:75
 #, php-format
 msgid "%1$s friends map, page %2$d"
 msgstr "%1$s 好友地图，第 %2$d 页。"
 
-#: usermap.php:68
+msgid "No such user."
+msgstr "没有这个用户。"
+
+msgid "User has no profile."
+msgstr "用户没有个人信息。"
+
 #, php-format
 msgid "%s map, page %d"
 msgstr "%s 地图，第 %d 页"

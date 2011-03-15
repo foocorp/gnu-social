@@ -100,7 +100,7 @@ width:60%;
 height:20px;
 }
 
-#notice_text-count {
+.form_notice .count {
 position:absolute;
 bottom:2px;
 right:40%;
@@ -110,11 +110,11 @@ z-index:9;
 /*input type=file no good in
 iPhone/iPod Touch, Android, Opera Mini Simulator
 */
-#form_notice #notice_text-count + label,
+.form_notice .count + label,
 #form_notice label[for="notice_data-attach"] {
 display:none;
 }
-#form_notice #notice_data-attach {
+#form_notice input.notice_data-attach {
 position:static;
 clear:both;
 width:65%;
@@ -127,7 +127,7 @@ background:none;
 opacity:1;
 }
 
-#form_notice #notice_action-submit {
+#form_notice .submit {
 width:20%;
 right:2%;
 text-align:center;

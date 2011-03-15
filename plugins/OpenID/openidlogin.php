@@ -174,4 +174,8 @@ class OpenidloginAction extends Action
         $nav = new LoginGroupNav($this);
         $nav->show();
     }
+
+    function showNoticeForm()
+    {
+    }
 }

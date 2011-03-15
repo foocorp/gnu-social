@@ -163,7 +163,7 @@ class UseradminpanelAction extends AdminPanelAction
                     sprintf(
                         // TRANS: Client error displayed when trying to set a non-existing user as default subscription for new
                         // TRANS: users in user admin panel. %1$s is the invalid nickname.
-                        _('Invalid default subscripton: \'%1$s\' is not a user.'),
+                        _('Invalid default subscripton: "%1$s" is not a user.'),
                         $values['newuser']['default']
                     )
                 );
@@ -299,6 +299,6 @@ class UserAdminPanelForm extends AdminForm
                            'submit',
                            null,
                            // TRANS: Title for button to save user settings in user admin panel.
-                           _('Save user settings'));
+                           _('Save user settings.'));
     }
 }

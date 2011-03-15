@@ -79,6 +79,7 @@ class GroupunblockAction extends Action
         }
         $group_id = $this->trimmed('unblockgroup');
         if (empty($group_id)) {
+            // TRANS: Client error displayed when trying to unblock a user from a group without providing a group.
             $this->clientError(_('No group specified.'));
             return false;
         }

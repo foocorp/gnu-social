@@ -1,5 +1,5 @@
 # Translation of StatusNet - YammerImport to French (Français)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Peter17
 # --
@@ -9,262 +9,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - YammerImport\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:13:25+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:36+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:46:21+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:55+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-yammerimport\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: YammerImportPlugin.php:98
-msgid "Yammer"
-msgstr "Yammer"
-
-#: YammerImportPlugin.php:99 actions/yammeradminpanel.php:135
-msgid "Yammer import"
-msgstr "Import Yammer"
-
-#: lib/yammerauthinitform.php:48 lib/yammerauthverifyform.php:56
-#: lib/yammerprogressform.php:68 actions/yammerauth.php:71
 msgid "Connect to Yammer"
 msgstr "Connexion à Yammer"
 
-#: lib/yammerauthinitform.php:62
-msgid "Start authentication"
-msgstr "Démarrer l’identification"
-
-#: lib/yammerauthinitform.php:62
-msgid "Request authorization to connect to Yammer account"
-msgstr "Demander l’autorisation de se connecter à un compte Yammer"
-
-#: lib/yammerauthinitform.php:63
-msgid "Change API key"
-msgstr "Changer la clé de l’API"
-
-#: lib/yammerimporter.php:230
-msgid "Expertise:"
-msgstr "Expertise :"
-
-#: lib/yammerimporter.php:433
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr "URL d’avatar invalide : %s."
-
-#: lib/yammerimporter.php:441
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Impossible de récupérer l’avatar depuis « %s »."
-
-#: lib/yammerapikeyform.php:56
-msgid "Yammer API registration"
-msgstr "Enregistrement de l’API Yammer"
-
-#: lib/yammerapikeyform.php:72
-msgid ""
-"Before we can connect to your Yammer network, you will need to register the "
-"importer as an application authorized to pull data on your behalf. This "
-"registration will work only for your own network. Follow this link to "
-"register the app at Yammer; you will be prompted to log in if necessary:"
-msgstr ""
-"Avant de pouvoir nous connecter à votre réseau Yammer, vous devez "
-"enregistrer l’application d’import comme étant autorisée à recueillir des "
-"données en votre nom. Cet enregistrement ne sera valable que pour votre "
-"propre réseau. Suivez ce lien pour enregistrer l’application sur Yammer ; si "
-"cela est nécessaire, il vous sera demandé de vous identifier :"
-
-#: lib/yammerapikeyform.php:84
-msgid "Open Yammer application registration form"
-msgstr "Ouvrir le formulaire d’enregistrement de l’application Yammer"
-
-#: lib/yammerapikeyform.php:87
-msgid "Copy the consumer key and secret you are given into the form below:"
-msgstr ""
-"Copiez dans le formulaire ci-dessous la clé et le secret utilisateur qui "
-"vous sont donnés :"
-
-#: lib/yammerapikeyform.php:91
-msgid "Consumer key:"
-msgstr "Clé de l'utilisateur :"
-
-#: lib/yammerapikeyform.php:94
-msgid "Consumer secret:"
-msgstr "Secret de l'utilisateur :"
-
-#: lib/yammerapikeyform.php:98
-msgid "Save"
-msgstr "Sauvegarder"
-
-#: lib/yammerapikeyform.php:98
-msgid "Save these consumer keys"
-msgstr "Enregistrer ces clés utilisateur"
-
-#: lib/yammerauthverifyform.php:72
-msgid ""
-"Follow this link to confirm authorization at Yammer; you will be prompted to "
-"log in if necessary:"
-msgstr ""
-"Suivez ce lien pour confirmer l’autorisation sur Yammer ; il vous sera "
-"demandé de vous identifier si nécessaire :"
-
-#: lib/yammerauthverifyform.php:87
-msgid "Open Yammer authentication window"
-msgstr "Ouvrir la fenêtre d’identification Yammer"
-
-#: lib/yammerauthverifyform.php:90
-msgid "Copy the verification code you are given below:"
-msgstr "Copiez ci-dessous le code de vérification qui vous est donné :"
-
-#: lib/yammerauthverifyform.php:94
-msgid "Verification code:"
-msgstr "Code de vérification :"
-
-#: lib/yammerauthverifyform.php:98 lib/yammerprogressform.php:164
-msgid "Continue"
-msgstr "Continuer"
-
-#: lib/yammerauthverifyform.php:98
-msgid "Save code and begin import"
-msgstr "Enregistrer le code et commencer l’import"
-
-#: lib/yammerprogressform.php:63
-msgid "Initialize"
-msgstr "Initialiser"
-
-#: lib/yammerprogressform.php:64
-msgid "No import running"
-msgstr "Aucun import en cours d’exécution"
-
-#: lib/yammerprogressform.php:65
-msgid "Initiated Yammer server connection..."
-msgstr "Connexion au serveur Yammer initiée..."
-
-#: lib/yammerprogressform.php:69
-msgid "Awaiting authorization..."
-msgstr "En attente d’autorisation..."
-
-#: lib/yammerprogressform.php:70
-msgid "Connected."
-msgstr "Connecté."
-
-#: lib/yammerprogressform.php:73
-msgid "Import user accounts"
-msgstr "Importer des comptes utilisateur"
-
-#: lib/yammerprogressform.php:74
-#, php-format
-msgid "Importing %d user..."
-msgid_plural "Importing %d users..."
-msgstr[0] "Import de %d utilisateur..."
-msgstr[1] "Import de %d utilisateurs..."
-
-#: lib/yammerprogressform.php:75
-#, php-format
-msgid "Imported %d user."
-msgid_plural "Imported %d users."
-msgstr[0] "%d utilisateur importé."
-msgstr[1] "%d utilisateurs importés."
-
-#: lib/yammerprogressform.php:78
-msgid "Import user groups"
-msgstr "Importer des groupes utilisateur"
-
-#: lib/yammerprogressform.php:79
-#, php-format
-msgid "Importing %d group..."
-msgid_plural "Importing %d groups..."
-msgstr[0] "Import de %d groupe..."
-msgstr[1] "Import de %d groupes..."
-
-#: lib/yammerprogressform.php:80
-#, php-format
-msgid "Imported %d group."
-msgid_plural "Imported %d groups."
-msgstr[0] "%d groupe importé."
-msgstr[1] "%d groupes importés."
-
-#: lib/yammerprogressform.php:83
-msgid "Prepare public notices for import"
-msgstr "Préparation de l’import d’avis publiques"
-
-#: lib/yammerprogressform.php:84
-#, php-format
-msgid "Preparing %d notice..."
-msgid_plural "Preparing %d notices..."
-msgstr[0] "Préparation de %d avis..."
-msgstr[1] "Préparation de %d avis..."
-
-#: lib/yammerprogressform.php:85
-#, php-format
-msgid "Prepared %d notice."
-msgid_plural "Prepared %d notices."
-msgstr[0] "%d avis prépara."
-msgstr[1] "%d avis préparés."
-
-#: lib/yammerprogressform.php:88
-msgid "Import public notices"
-msgstr "Import d’avis publiques"
-
-#: lib/yammerprogressform.php:89
-#, php-format
-msgid "Importing %d notice..."
-msgid_plural "Importing %d notices..."
-msgstr[0] "Import de %d avis..."
-msgstr[1] "Import de %d avis..."
-
-#: lib/yammerprogressform.php:90
-#, php-format
-msgid "Imported %d notice."
-msgid_plural "Imported %d notices."
-msgstr[0] "%d avis importé."
-msgstr[1] "%d avis importés."
-
-#: lib/yammerprogressform.php:93
-msgid "Done"
-msgstr "Fait"
-
-#: lib/yammerprogressform.php:94 lib/yammerprogressform.php:95
-msgid "Import is complete!"
-msgstr "L’import est terminé !"
-
-#: lib/yammerprogressform.php:108
-msgid "Import status"
-msgstr "État de l’import"
-
-#: lib/yammerprogressform.php:132
-msgid "Waiting..."
-msgstr "Attente..."
-
-#: lib/yammerprogressform.php:146
-msgid "Reset import state"
-msgstr "Réinitialiser l’état de l’import"
-
-#: lib/yammerprogressform.php:151
-msgid "Pause import"
-msgstr "Mettre l’import en pause"
-
-#: lib/yammerprogressform.php:160
-#, php-format
-msgid "Encountered error \"%s\""
-msgstr "L’erreur « %s » est survenue"
-
-#: lib/yammerprogressform.php:162
-msgid "Paused"
-msgstr "En pause"
-
-#: lib/yammerprogressform.php:165
-msgid "Abort import"
-msgstr "Abandonner l’import"
-
-#: actions/yammeradminpanel.php:45
 msgid "Yammer Import"
 msgstr "Import Yammer"
 
-#: actions/yammeradminpanel.php:55
 msgid ""
 "This Yammer import tool is still undergoing testing, and is incomplete in "
 "some areas. Currently user subscriptions and group memberships are not "
@@ -277,6 +39,191 @@ msgstr ""
 "le futur pour les imports réalisés par les administrateurs autorisés du côté "
 "de Yammer."
 
-#: actions/yammeradminpanel.php:102
 msgid "Paused from admin panel."
 msgstr "Mis en pause depuis le panneau d’administration"
+
+msgid "Yammer import"
+msgstr "Import Yammer"
+
+msgid "Yammer"
+msgstr "Yammer"
+
+msgid "Expertise:"
+msgstr "Expertise :"
+
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "URL d’avatar invalide : %s."
+
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Impossible de récupérer l’avatar depuis « %s »."
+
+msgid "Start authentication"
+msgstr "Démarrer l’identification"
+
+msgid "Request authorization to connect to Yammer account"
+msgstr "Demander l’autorisation de se connecter à un compte Yammer"
+
+msgid "Change API key"
+msgstr "Changer la clé de l’API"
+
+msgid "Initialize"
+msgstr "Initialiser"
+
+msgid "No import running"
+msgstr "Aucun import en cours d’exécution"
+
+msgid "Initiated Yammer server connection..."
+msgstr "Connexion au serveur Yammer initiée..."
+
+msgid "Awaiting authorization..."
+msgstr "En attente d’autorisation..."
+
+msgid "Connected."
+msgstr "Connecté."
+
+msgid "Import user accounts"
+msgstr "Importer des comptes utilisateur"
+
+#, php-format
+msgid "Importing %d user..."
+msgid_plural "Importing %d users..."
+msgstr[0] "Import de %d utilisateur..."
+msgstr[1] "Import de %d utilisateurs..."
+
+#, php-format
+msgid "Imported %d user."
+msgid_plural "Imported %d users."
+msgstr[0] "%d utilisateur importé."
+msgstr[1] "%d utilisateurs importés."
+
+msgid "Import user groups"
+msgstr "Importer des groupes utilisateur"
+
+#, php-format
+msgid "Importing %d group..."
+msgid_plural "Importing %d groups..."
+msgstr[0] "Import de %d groupe..."
+msgstr[1] "Import de %d groupes..."
+
+#, php-format
+msgid "Imported %d group."
+msgid_plural "Imported %d groups."
+msgstr[0] "%d groupe importé."
+msgstr[1] "%d groupes importés."
+
+msgid "Prepare public notices for import"
+msgstr "Préparation de l’import d’avis publiques"
+
+#, php-format
+msgid "Preparing %d notice..."
+msgid_plural "Preparing %d notices..."
+msgstr[0] "Préparation de %d avis..."
+msgstr[1] "Préparation de %d avis..."
+
+#, php-format
+msgid "Prepared %d notice."
+msgid_plural "Prepared %d notices."
+msgstr[0] "%d avis prépara."
+msgstr[1] "%d avis préparés."
+
+msgid "Import public notices"
+msgstr "Import d’avis publiques"
+
+#, php-format
+msgid "Importing %d notice..."
+msgid_plural "Importing %d notices..."
+msgstr[0] "Import de %d avis..."
+msgstr[1] "Import de %d avis..."
+
+#, php-format
+msgid "Imported %d notice."
+msgid_plural "Imported %d notices."
+msgstr[0] "%d avis importé."
+msgstr[1] "%d avis importés."
+
+msgid "Done"
+msgstr "Fait"
+
+msgid "Import is complete!"
+msgstr "L’import est terminé !"
+
+msgid "Import status"
+msgstr "État de l’import"
+
+msgid "Waiting..."
+msgstr "Attente..."
+
+msgid "Reset import state"
+msgstr "Réinitialiser l’état de l’import"
+
+msgid "Pause import"
+msgstr "Mettre l’import en pause"
+
+#, php-format
+msgid "Encountered error \"%s\""
+msgstr "L’erreur « %s » est survenue"
+
+msgid "Paused"
+msgstr "En pause"
+
+msgid "Continue"
+msgstr "Continuer"
+
+msgid "Abort import"
+msgstr "Abandonner l’import"
+
+msgid ""
+"Follow this link to confirm authorization at Yammer; you will be prompted to "
+"log in if necessary:"
+msgstr ""
+"Suivez ce lien pour confirmer l’autorisation sur Yammer ; il vous sera "
+"demandé de vous identifier si nécessaire :"
+
+msgid "Open Yammer authentication window"
+msgstr "Ouvrir la fenêtre d’identification Yammer"
+
+msgid "Copy the verification code you are given below:"
+msgstr "Copiez ci-dessous le code de vérification qui vous est donné :"
+
+msgid "Verification code:"
+msgstr "Code de vérification :"
+
+msgid "Save code and begin import"
+msgstr "Enregistrer le code et commencer l’import"
+
+msgid "Yammer API registration"
+msgstr "Enregistrement de l’API Yammer"
+
+msgid ""
+"Before we can connect to your Yammer network, you will need to register the "
+"importer as an application authorized to pull data on your behalf. This "
+"registration will work only for your own network. Follow this link to "
+"register the app at Yammer; you will be prompted to log in if necessary:"
+msgstr ""
+"Avant de pouvoir nous connecter à votre réseau Yammer, vous devez "
+"enregistrer l’application d’import comme étant autorisée à recueillir des "
+"données en votre nom. Cet enregistrement ne sera valable que pour votre "
+"propre réseau. Suivez ce lien pour enregistrer l’application sur Yammer ; si "
+"cela est nécessaire, il vous sera demandé de vous identifier :"
+
+msgid "Open Yammer application registration form"
+msgstr "Ouvrir le formulaire d’enregistrement de l’application Yammer"
+
+msgid "Copy the consumer key and secret you are given into the form below:"
+msgstr ""
+"Copiez dans le formulaire ci-dessous la clé et le secret utilisateur qui "
+"vous sont donnés :"
+
+msgid "Consumer key:"
+msgstr "Clé de l'utilisateur :"
+
+msgid "Consumer secret:"
+msgstr "Secret de l'utilisateur :"
+
+msgid "Save"
+msgstr "Sauvegarder"
+
+msgid "Save these consumer keys"
+msgstr "Enregistrer ces clés utilisateur"

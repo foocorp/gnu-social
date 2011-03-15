@@ -52,7 +52,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link      http://status.net/
  */
-
 class PluginDisableAction extends PluginEnableAction
 {
     /**
@@ -74,5 +73,3 @@ class PluginDisableAction extends PluginEnableAction
         return new EnablePluginForm($this, $this->plugin);
     }
 }
-
-

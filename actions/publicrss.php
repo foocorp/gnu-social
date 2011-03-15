@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Public RSS action class.
  *
@@ -55,7 +54,6 @@ class PublicrssAction extends Rss10Action
      * @param array $args Arguments from $_REQUEST
      * @return boolean success
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -98,11 +96,14 @@ class PublicrssAction extends Rss10Action
      */
     function getChannel()
     {
+        $sitename = common_config('site', 'name');
         $c = array(
-              'url' => common_local_url('publicrss')
-            , 'title' => sprintf(_('%s public timeline'), common_config('site', 'name'))
-            , 'link' => common_local_url('public')
-            , 'description' => sprintf(_('%s updates from everyone!'), common_config('site', 'name')));
+              'url' => common_local_url('publicrss'),
+            // TRANS: Public RSS feed title. %s is the StatusNet site name.
+              'title' => sprintf(_('%s public timeline'), $sitename),
+              'link' => common_local_url('public'),
+            // TRANS: Public RSS feed description. %s is the StatusNet site name.
+              'description' => sprintf(_('%s updates from everyone.'), $sitename));
         return $c;
     }
 
@@ -110,7 +111,7 @@ class PublicrssAction extends Rss10Action
      * Get image.
      *
      * @return nothing
-    */
+     */
     function getImage()
     {
         // nop
@@ -121,4 +122,3 @@ class PublicrssAction extends Rss10Action
         return true;
     }
 }
-

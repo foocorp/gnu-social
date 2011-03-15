@@ -362,7 +362,9 @@ class MediaFile
         // we'll try detecting a type from its extension...
         $unclearTypes = array('application/octet-stream',
                               'application/vnd.ms-office',
-                              'application/zip');
+                              'application/zip',
+                              // TODO: for XML we could do better content-based sniffing too
+                              'text/xml');
 
         if ($originalFilename && (!$filetype || in_array($filetype, $unclearTypes))) {
             $type = $mte->getMIMEType($originalFilename);

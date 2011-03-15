@@ -8,13 +8,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: MinifyPlugin.php:179
+msgid ""
+"The Minify plugin minifies StatusNet's CSS and JavaScript, removing "
+"whitespace and comments."
+msgstr ""
 
 #: minify.php:49
 msgid "The parameter \"f\" is not a valid path."
@@ -26,10 +32,4 @@ msgstr ""
 
 #: minify.php:111
 msgid "File type not supported."
-msgstr ""
-
-#: MinifyPlugin.php:179
-msgid ""
-"The Minify plugin minifies StatusNet's CSS and JavaScript, removing "
-"whitespace and comments."
 msgstr ""

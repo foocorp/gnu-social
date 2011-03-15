@@ -257,12 +257,20 @@ class FacebookfinishloginAction extends Action
         $this->element('p', null,
                        _m('Create a new user with this nickname.'));
         $this->elementStart('ul', 'form_data');
+
+        // Hook point for captcha etc
+        Event::handle('StartRegistrationFormData', array($this));
+
         $this->elementStart('li');
         // TRANS: Field label.
         $this->input('newname', _m('New nickname'),
                      ($this->username) ? $this->username : '',
                      _m('1-64 lowercase letters or numbers, no punctuation or spaces'));
         $this->elementEnd('li');
+
+        // Hook point for captcha etc
+        Event::handle('EndRegistrationFormData', array($this));
+
         $this->elementEnd('ul');
         // TRANS: Submit button.
         $this->submit('create', _m('BUTTON','Create'));
@@ -299,6 +307,10 @@ class FacebookfinishloginAction extends Action
 
     function createNewUser()
     {
+        if (!Event::handle('StartRegistrationTry', array($this))) {
+            return;
+        }
+
         if (common_config('site', 'closed')) {
             // TRANS: Client error trying to register with registrations not allowed.
             $this->clientError(_m('Registration not allowed.'));
@@ -388,6 +400,8 @@ class FacebookfinishloginAction extends Action
             ),
             __FILE__
         );
+
+        Event::handle('EndRegistrationTry', array($this));
 
         $this->goHome($user->nickname);
     }

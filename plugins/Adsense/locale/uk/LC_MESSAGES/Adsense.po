@@ -1,5 +1,5 @@
 # Translation of StatusNet - Adsense to Ukrainian (Українська)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Boogie
 # --
@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:27+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:45+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:24+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:42:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
@@ -23,80 +23,61 @@ msgstr ""
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
 #. TRANS: Menu item title/tooltip
-#: AdsensePlugin.php:194
 msgid "AdSense configuration"
 msgstr "Конфігурація AdSense"
 
 #. TRANS: Menu item for site administration
-#: AdsensePlugin.php:196
 msgid "AdSense"
 msgstr "AdSense"
 
-#: AdsensePlugin.php:209
 msgid "Plugin to add Google AdSense to StatusNet sites."
 msgstr "Додаток для відображення Google AdSense на сторінці сайту StatusNet."
 
-#: adsenseadminpanel.php:52
 msgctxt "TITLE"
 msgid "AdSense"
 msgstr "AdSense"
 
-#: adsenseadminpanel.php:62
 msgid "AdSense settings for this StatusNet site"
 msgstr "Налаштування AdSense на даному сайті StatusNet"
 
-#: adsenseadminpanel.php:164
 msgid "Client ID"
 msgstr "ІД клієнта"
 
-#: adsenseadminpanel.php:165
 msgid "Google client ID"
 msgstr "ІД клієнта Google"
 
-#: adsenseadminpanel.php:170
 msgid "Ad script URL"
 msgstr "Адреса скрипту AdSense"
 
-#: adsenseadminpanel.php:171
 msgid "Script URL (advanced)"
 msgstr "Адреса скрипту (розширена опція)"
 
-#: adsenseadminpanel.php:176
 msgid "Medium rectangle"
 msgstr "Середній прямокутник"
 
-#: adsenseadminpanel.php:177
 msgid "Medium rectangle slot code"
 msgstr "Слот-код середнього прямокутника"
 
-#: adsenseadminpanel.php:182
 msgid "Rectangle"
 msgstr "Прямокутник"
 
-#: adsenseadminpanel.php:183
 msgid "Rectangle slot code"
 msgstr "Слот-код прямокутника"
 
-#: adsenseadminpanel.php:188
 msgid "Leaderboard"
 msgstr "Банер"
 
-#: adsenseadminpanel.php:189
 msgid "Leaderboard slot code"
 msgstr "Слот-код банеру"
 
-#: adsenseadminpanel.php:194
 msgid "Skyscraper"
 msgstr "Хмарочос"
 
-#: adsenseadminpanel.php:195
 msgid "Wide skyscraper slot code"
 msgstr "Слот-код хмарочосу"
 
-#: adsenseadminpanel.php:208
 msgid "Save"
 msgstr "Зберегти"
 
-#: adsenseadminpanel.php:208
 msgid "Save AdSense settings"
 msgstr "Зберегти налаштування AdSense"

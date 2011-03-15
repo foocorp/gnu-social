@@ -1,5 +1,5 @@
 # Translation of StatusNet - TightUrl to Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Nghtwlkr
 # --
@@ -9,19 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TightUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:13:03+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:38:21+0000\n"
 "Language-Team: Norwegian (bokmål)‬ <http://translatewiki.net/wiki/Portal:no>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:46:18+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:47:28+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: no\n"
 "X-Message-Group: #out-statusnet-plugin-tighturl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: TightUrlPlugin.php:68
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
 msgstr "Bruker URL-forkortertjenesten <a href=\"http://%1$s/\">%1$s</a>."

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Request token action class.
  *
@@ -77,4 +76,3 @@ class RequesttokenAction extends Action
         }
     }
 }
-?>

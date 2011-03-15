@@ -44,7 +44,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  *
  * @see      Action
  */
-
 class PeopletagAction extends Action
 {
 
@@ -65,6 +64,8 @@ class PeopletagAction extends Action
         $this->tag = $this->trimmed('tag');
 
         if (!common_valid_profile_tag($this->tag)) {
+            // TRANS: Client error displayed when trying to tag a profile with an invalid tag.
+            // TRANS: %s is the invalid tag.
             $this->clientError(sprintf(_('Not a valid people tag: %s.'),
                 $this->tag));
             return;
@@ -139,10 +140,11 @@ class PeopletagAction extends Action
      */
     function title()
     {
+        // TRANS: Page title for users with a certain self-tag.
+        // TRANS: %1$s is the tag, %2$s is the page number.
         return sprintf(_('Users self-tagged with %1$s - page %2$d'),
             $this->tag, $this->page);
     }
-
 }
 
 class PeopleTagList extends ProfileList
@@ -177,4 +179,3 @@ class PeopleTagListItem extends ProfileListItem
         return $aAttrs;
     }
 }
-

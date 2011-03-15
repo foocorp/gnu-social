@@ -1,5 +1,5 @@
 # Translation of StatusNet - Adsense to Portuguese (Português)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Waldir
 # --
@@ -9,93 +9,74 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:26+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:36:45+0000\n"
 "Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:24+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:42:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: pt\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Menu item title/tooltip
-#: AdsensePlugin.php:194
 msgid "AdSense configuration"
 msgstr "Configuração do AdSense"
 
 #. TRANS: Menu item for site administration
-#: AdsensePlugin.php:196
 msgid "AdSense"
 msgstr "AdSense"
 
-#: AdsensePlugin.php:209
 msgid "Plugin to add Google AdSense to StatusNet sites."
 msgstr "Plugin para adicionar Google AdSense aos sites StatusNet."
 
-#: adsenseadminpanel.php:52
 msgctxt "TITLE"
 msgid "AdSense"
 msgstr "AdSense"
 
-#: adsenseadminpanel.php:62
 msgid "AdSense settings for this StatusNet site"
 msgstr "Configurações do AdSense para este site StatusNet"
 
-#: adsenseadminpanel.php:164
 msgid "Client ID"
 msgstr "Identificação do cliente"
 
-#: adsenseadminpanel.php:165
 msgid "Google client ID"
 msgstr "ID de cliente Google"
 
-#: adsenseadminpanel.php:170
 msgid "Ad script URL"
 msgstr "URL do script do anúncio"
 
-#: adsenseadminpanel.php:171
 msgid "Script URL (advanced)"
 msgstr "URL do script (avançado)"
 
-#: adsenseadminpanel.php:176
 msgid "Medium rectangle"
 msgstr "Retângulo médio"
 
-#: adsenseadminpanel.php:177
 msgid "Medium rectangle slot code"
 msgstr ""
 
-#: adsenseadminpanel.php:182
 msgid "Rectangle"
 msgstr "Retângulo"
 
-#: adsenseadminpanel.php:183
 msgid "Rectangle slot code"
 msgstr ""
 
-#: adsenseadminpanel.php:188
 msgid "Leaderboard"
 msgstr ""
 
-#: adsenseadminpanel.php:189
 msgid "Leaderboard slot code"
 msgstr ""
 
-#: adsenseadminpanel.php:194
 msgid "Skyscraper"
 msgstr ""
 
-#: adsenseadminpanel.php:195
 msgid "Wide skyscraper slot code"
 msgstr ""
 
-#: adsenseadminpanel.php:208
 msgid "Save"
 msgstr "Gravar"
 
-#: adsenseadminpanel.php:208
 msgid "Save AdSense settings"
 msgstr "Gravar as configurações do AdSense"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -31,14 +31,6 @@ msgid ""
 "mapstraction.com/\">Mapstraction</a>."
 msgstr ""
 
-#: map.php:72
-msgid "No such user."
-msgstr ""
-
-#: map.php:79
-msgid "User has no profile."
-msgstr ""
-
 #. TRANS: Page title.
 #. TRANS: %s is a user nickname.
 #: allmap.php:69
@@ -51,6 +43,14 @@ msgstr ""
 #: allmap.php:75
 #, php-format
 msgid "%1$s friends map, page %2$d"
+msgstr ""
+
+#: map.php:72
+msgid "No such user."
+msgstr ""
+
+#: map.php:79
+msgid "User has no profile."
 msgstr ""
 
 #: usermap.php:68

@@ -46,7 +46,7 @@ class MicrosummaryAction extends Action
 {
     /**
      * Class handler.
-     * 
+     *
      * @param array $args array of arguments
      *
      * @return nothing
@@ -59,18 +59,20 @@ class MicrosummaryAction extends Action
         $user     = User::staticGet('nickname', $nickname);
 
         if (!$user) {
+            // TRANS: Client error displayed trying to make a micro summary without providing a valid user.
             $this->clientError(_('No such user.'), 404);
             return;
         }
-        
+
         $notice = $user->getCurrentNotice();
-        
+
         if (!$notice) {
+            // TRANS: Client error displayed trying to make a micro summary without providing a status.
             $this->clientError(_('No current status.'), 404);
         }
-        
+
         header('Content-Type: text/plain');
-        
+
         print $user->nickname . ': ' . $notice->content;
     }
 

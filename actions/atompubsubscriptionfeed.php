@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * AtomPub subscription feed
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * Subscription feed class for AtomPub
  *
  * Generates a list of the user's subscriptions
- * 
+ *
  * @category  AtomPub
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
@@ -48,7 +48,6 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class AtompubsubscriptionfeedAction extends ApiAuthAction
 {
     private $_profile       = null;
@@ -61,17 +60,18 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
-        
+
         $subscriber = $this->trimmed('subscriber');
 
         $this->_profile = Profile::staticGet('id', $subscriber);
 
         if (empty($this->_profile)) {
-            throw new ClientException(sprintf(_('No such profile id: %d'),
+            // TRANS: Client exception thrown when trying to display a subscription for a non-existing profile ID.
+            // TRANS: %d is the non-existing profile ID number.
+            throw new ClientException(sprintf(_('No such profile id: %d.'),
                                               $subscriber), 404);
         }
 
@@ -93,7 +93,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         parent::handle($argarray);
@@ -106,6 +105,7 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
             $this->addSubscription();
             break;
         default:
+            // TRANS: Client exception thrown when using an unsupported HTTP method.
             $this->clientError(_('HTTP method not supported.'), 405);
             return;
         }
@@ -118,7 +118,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
      *
      * @return void
      */
-
     function showFeed()
     {
         header('Content-Type: application/atom+xml; charset=utf-8');
@@ -144,21 +143,25 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
         $feed->addAuthor($this->_profile->getBestName(),
                          $this->_profile->getURI());
 
+        // TRANS: Title for Atom subscription feed.
+        // TRANS: %s is a user nickname.
         $feed->setTitle(sprintf(_("%s subscriptions"),
                                 $this->_profile->getBestName()));
 
-        $feed->setSubtitle(sprintf(_("People %s has subscribed to on %s"),
+        // TRANS: Subtitle for Atom subscription feed.
+        // TRANS: %1$s is a user nickname, %s$s is the StatusNet sitename.
+        $feed->setSubtitle(sprintf(_("People %1\$s has subscribed to on %2\$s"),
                                    $this->_profile->getBestName(),
                                    common_config('site', 'name')));
 
         $feed->addLink(common_local_url('subscriptions',
-                                        array('nickname' => 
+                                        array('nickname' =>
                                               $this->_profile->nickname)));
 
         $feed->addLink($url,
                        array('rel' => 'self',
                              'type' => 'application/atom+xml'));
-                                        
+
         // If there's more...
 
         if ($this->page > 1) {
@@ -167,9 +170,9 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
                                  'type' => 'application/atom+xml'));
 
             $feed->addLink(common_local_url('AtomPubSubscriptionFeed',
-                                            array('subscriber' => 
+                                            array('subscriber' =>
                                                   $this->_profile->id),
-                                            array('page' => 
+                                            array('page' =>
                                                   $this->page - 1)),
                            array('rel' => 'prev',
                                  'type' => 'application/atom+xml'));
@@ -214,15 +217,15 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
      *
      * @return void
      */
-
     function addSubscription()
     {
         if (empty($this->auth_user) ||
             $this->auth_user->id != $this->_profile->id) {
-            throw new ClientException(_("Can't add someone else's".
-                                        " subscription"), 403);
+            // TRANS: Client exception thrown when trying to subscribe another user.
+            throw new ClientException(_("Cannot add someone else's".
+                                        " subscription."), 403);
         }
-        
+
         $xml = file_get_contents('php://input');
 
         $dom = DOMDocument::loadXML($xml);
@@ -241,8 +244,7 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
         if (Event::handle('StartAtomPubNewActivity', array(&$activity))) {
 
             if ($activity->verb != ActivityVerb::FOLLOW) {
-                // TRANS: Client error displayed when not using the POST verb.
-                // TRANS: Do not translate POST.
+                // TRANS: Client error displayed when not using the follow verb.
                 $this->clientError(_('Can only handle Follow activities.'));
                 return;
             }
@@ -250,6 +252,7 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
             $person = $activity->objects[0];
 
             if ($person->type != ActivityObject::PERSON) {
+                // TRANS: Client exception thrown when subscribing to an object that is not a person.
                 $this->clientError(_('Can only follow people.'));
                 return;
             }
@@ -259,7 +262,19 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
             $profile = Profile::fromURI($person->id);
 
             if (empty($profile)) {
-                $this->clientError(sprintf(_('Unknown profile %s'), $person->id));
+                // TRANS: Client exception thrown when subscribing to a non-existing profile.
+                // TRANS: %s is the unknown profile ID.
+                $this->clientError(sprintf(_('Unknown profile %s.'), $person->id));
+                return;
+            }
+
+            if (Subscription::exists($this->_profile, $profile)) {
+                // 409 Conflict
+                // TRANS: Client error displayed trying to subscribe to an already subscribed profile.
+                // TRANS: %s is the profile the user already has a subscription on.
+                $this->clientError(sprintf(_('Already subscribed to %s.'),
+                                           $person->id),
+                                   409);
                 return;
             }
 
@@ -290,7 +305,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return $_SERVER['REQUEST_METHOD'] != 'POST';
@@ -301,7 +315,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
      *
      * @return string last modified http header
      */
-
     function lastModified()
     {
         return null;
@@ -312,7 +325,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
      *
      * @return string etag http header
      */
-
     function etag()
     {
         return null;
@@ -323,7 +335,6 @@ class AtompubsubscriptionfeedAction extends ApiAuthAction
      *
      * @return boolean true if delete, else false
      */
-
     function requiresAuth()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {

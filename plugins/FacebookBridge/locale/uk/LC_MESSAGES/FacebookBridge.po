@@ -1,5 +1,5 @@
 # Translation of StatusNet - FacebookBridge to Ukrainian (Українська)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Boogie
 # --
@@ -9,80 +9,139 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:11:56+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:13+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:40:35+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:43:42+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-#. TRANS: Menu item.
-#. TRANS: Menu item tab.
-#: FacebookBridgePlugin.php:201 FacebookBridgePlugin.php:240
-#: FacebookBridgePlugin.php:281
-msgctxt "MENU"
+msgid "Already logged in."
+msgstr "Ви вже увійшли."
+
+#. TRANS: Instructions.
+msgid "Login with your Facebook Account"
+msgstr "Увійти з акаунтом Facebook"
+
+#. TRANS: Page title.
+msgid "Login with Facebook"
+msgstr "Увійти з Facebook"
+
 msgid "Facebook"
 msgstr "Facebook"
 
-#. TRANS: Tooltip for menu item "Facebook".
-#: FacebookBridgePlugin.php:203
-msgid "Login or register using Facebook"
-msgstr "Увійти або зареєструватись з Facebook"
-
-#. TRANS: Tooltip for menu item "Facebook".
-#: FacebookBridgePlugin.php:242
-msgid "Facebook integration configuration"
+msgid "Facebook integration settings"
 msgstr "Налаштування інтеграції з Facebook"
 
-#. TRANS: Tooltip for menu item "Facebook".
+msgid "Invalid Facebook ID. Max length is 255 characters."
+msgstr ""
+"Неприпустимий ідентифікатор Facebook. Максимальна довжина — 255 символів."
+
+msgid "Invalid Facebook secret. Max length is 255 characters."
+msgstr "Помилковий секретний код Facebook. Максимальна довжина — 255 символів."
+
+msgid "Facebook application settings"
+msgstr "Налаштування додатку для Facebook"
+
+msgid "Application ID"
+msgstr "Ідентифікатор додатку"
+
+msgid "ID of your Facebook application"
+msgstr "Ідентифікатор вашого додатку Facebook"
+
+msgid "Secret"
+msgstr "Секретний код"
+
+msgid "Application secret"
+msgstr "Секретний код додатку"
+
+msgid "Save"
+msgstr "Зберегти"
+
+msgid "Save Facebook settings"
+msgstr "Зберегти налаштування Facebook"
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Виникла проблема з вашим токеном сесії. Спробуйте пізніше, будь ласка."
+
 #. TRANS: Page title for Facebook settings.
-#: FacebookBridgePlugin.php:283 actions/facebooksettings.php:105
+#. TRANS: Tooltip for menu item "Facebook".
 msgid "Facebook settings"
 msgstr "Налаштування Facebook"
 
-#: FacebookBridgePlugin.php:547
-msgid "A plugin for integrating StatusNet with Facebook."
-msgstr "Додаток для інтеграції StatusNet з Facebook."
+msgid "Connected Facebook user"
+msgstr "Під’єднаний користувач Facebook"
 
-#: lib/facebookclient.php:776
-msgid "Your Facebook connection has been removed"
-msgstr "З’єднання з Facebook було видалено"
+msgid "Publish my notices to Facebook."
+msgstr "Публікувати мої дописи у Facebook."
 
-#: lib/facebookclient.php:835
+msgid "Send \"@\" replies to Facebook."
+msgstr "Надсилати «@» відповіді до Facebook."
+
+#. TRANS: Submit button to save synchronisation settings.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Зберегти"
+
+#. TRANS: Legend.
+msgid "Disconnect my account from Facebook"
+msgstr "Від’єднати мій акаунт від Facebook"
+
 #, php-format
-msgid "Contact the %s administrator to retrieve your account"
-msgstr "Зверніться до адміністратора %s, аби відновити свій обліковий запис"
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please [set "
+"a password](%s) first."
+msgstr ""
+"Якщо від’єднати ваш акаунт від Faceboook зараз, то це унеможливить вхід до "
+"сервісу у майбутньому! Будь ласка, спочатку [встановіть пароль](%s)."
 
-#: actions/facebookfinishlogin.php:88
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
+"password to log in."
+msgstr ""
+"Зберегти ваш акаунт %1$s, але від’єднати його від Facebook. Ви можете "
+"використовувати пароль від %1$s для входу на сайт."
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "Від’єднати"
+
+msgid "There was a problem saving your sync preferences."
+msgstr "Виникла проблема при збереженні параметрів синхронізації."
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the system.
+msgid "Sync preferences saved."
+msgstr "Параметри синхронізації збережено."
+
+msgid "Couldn't delete link to Facebook."
+msgstr "Не можу видалити посилання на Facebook."
+
+msgid "You have disconnected from Facebook."
+msgstr "Ви від’єдналися від Facebook."
+
 msgid ""
 "You must be logged into Facebook to register a local account using Facebook."
 msgstr ""
 "Спочатку ви маєте увійти до Facebook, аби мати змогу зареєструвати акаунт на "
 "цьому сервісі за допомогою Facebook."
 
-#: actions/facebookfinishlogin.php:118
 msgid "There is already a local account linked with that Facebook account."
 msgstr "Один з тутешніх акаунтів вже прив’язаний до цього профілю у Facebook."
 
-#: actions/facebookfinishlogin.php:141 actions/facebooksettings.php:86
-msgid "There was a problem with your session token. Try again, please."
-msgstr "Виникла проблема з вашим токеном сесії. Спробуйте пізніше, будь ласка."
-
-#: actions/facebookfinishlogin.php:150
 msgid "You can't register if you don't agree to the license."
 msgstr "Ви не зможете зареєструватись, якщо не погодитесь з умовами ліцензії."
 
-#: actions/facebookfinishlogin.php:167
 msgid "An unknown error has occured."
 msgstr "Сталася невідома помилка."
 
-#: actions/facebookfinishlogin.php:185
 #, php-format
 msgid ""
 "This is the first time you've logged into %s so we must connect your "
@@ -94,17 +153,14 @@ msgstr ""
 "використати такий, що вже існує."
 
 #. TRANS: Page title.
-#: actions/facebookfinishlogin.php:195
 msgid "Facebook Setup"
 msgstr "Установки Facebook"
 
 #. TRANS: Legend.
-#: actions/facebookfinishlogin.php:229
 msgid "Connection options"
 msgstr "Опції з’єднання"
 
 #. TRANS: %s is the name of the license used by the user for their status updates.
-#: actions/facebookfinishlogin.php:239
 #, php-format
 msgid ""
 "My text and files are available under %s except this private data: password, "
@@ -114,35 +170,28 @@ msgstr ""
 "електронна адреса, адреса IM, телефонний номер."
 
 #. TRANS: Legend.
-#: actions/facebookfinishlogin.php:256
 msgid "Create new account"
 msgstr "Створити новий акаунт"
 
-#: actions/facebookfinishlogin.php:258
 msgid "Create a new user with this nickname."
 msgstr "Створити нового користувача з цим нікнеймом."
 
 #. TRANS: Field label.
-#: actions/facebookfinishlogin.php:262
 msgid "New nickname"
 msgstr "Новий псевдонім"
 
-#: actions/facebookfinishlogin.php:264
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
 msgstr ""
 "1-64 літери нижнього регістру і цифри, ніякої пунктуації або інтервалів"
 
 #. TRANS: Submit button.
-#: actions/facebookfinishlogin.php:268
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Створити"
 
-#: actions/facebookfinishlogin.php:274
 msgid "Connect existing account"
 msgstr "Приєднати акаунт, який вже існує"
 
-#: actions/facebookfinishlogin.php:276
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your Facebook."
@@ -151,166 +200,58 @@ msgstr ""
 "приєднати їх до Facebook."
 
 #. TRANS: Field label.
-#: actions/facebookfinishlogin.php:280
 msgid "Existing nickname"
 msgstr "Нікнейм, який вже існує"
 
-#: actions/facebookfinishlogin.php:283
 msgid "Password"
 msgstr "Пароль"
 
 #. TRANS: Submit button.
-#: actions/facebookfinishlogin.php:287
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Під’єднати"
 
 #. TRANS: Client error trying to register with registrations not allowed.
 #. TRANS: Client error trying to register with registrations 'invite only'.
-#: actions/facebookfinishlogin.php:304 actions/facebookfinishlogin.php:314
 msgid "Registration not allowed."
 msgstr "Реєстрацію не дозволено."
 
 #. TRANS: Client error trying to register with an invalid invitation code.
-#: actions/facebookfinishlogin.php:322
 msgid "Not a valid invitation code."
 msgstr "Це не дійсний код запрошення."
 
-#: actions/facebookfinishlogin.php:335
 msgid "Nickname not allowed."
 msgstr "Нікнейм не допускається."
 
-#: actions/facebookfinishlogin.php:340
 msgid "Nickname already in use. Try another one."
 msgstr "Це ім’я вже використовується. Спробуйте інше."
 
-#: actions/facebookfinishlogin.php:368 actions/facebookfinishlogin.php:505
 msgid "Error connecting user to Facebook."
 msgstr "Помилка при підключенні до Facebook."
 
-#: actions/facebookfinishlogin.php:468
 msgid "Invalid username or password."
 msgstr "Недійсне ім’я або пароль."
 
-#: actions/facebooklogin.php:43
-msgid "Already logged in."
-msgstr "Ви вже увійшли."
-
-#. TRANS: Instructions.
-#: actions/facebooklogin.php:52
-msgid "Login with your Facebook Account"
-msgstr "Увійти з акаунтом Facebook"
-
-#. TRANS: Page title.
-#: actions/facebooklogin.php:67
-msgid "Login with Facebook"
-msgstr "Увійти з Facebook"
-
-#: actions/facebookadminpanel.php:52
+#. TRANS: Menu item.
+#. TRANS: Menu item tab.
+msgctxt "MENU"
 msgid "Facebook"
 msgstr "Facebook"
 
-#: actions/facebookadminpanel.php:62
-msgid "Facebook integration settings"
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Login or register using Facebook"
+msgstr "Увійти або зареєструватись з Facebook"
+
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Facebook integration configuration"
 msgstr "Налаштування інтеграції з Facebook"
 
-#: actions/facebookadminpanel.php:123
-msgid "Invalid Facebook ID. Max length is 255 characters."
-msgstr ""
-"Неприпустимий ідентифікатор Facebook. Максимальна довжина — 255 символів."
+msgid "A plugin for integrating StatusNet with Facebook."
+msgstr "Додаток для інтеграції StatusNet з Facebook."
 
-#: actions/facebookadminpanel.php:129
-msgid "Invalid Facebook secret. Max length is 255 characters."
-msgstr "Помилковий секретний код Facebook. Максимальна довжина — 255 символів."
+msgid "Your Facebook connection has been removed"
+msgstr "З’єднання з Facebook було видалено"
 
-#: actions/facebookadminpanel.php:178
-msgid "Facebook application settings"
-msgstr "Налаштування додатку для Facebook"
-
-#: actions/facebookadminpanel.php:184
-msgid "Application ID"
-msgstr "Ідентифікатор додатку"
-
-#: actions/facebookadminpanel.php:185
-msgid "ID of your Facebook application"
-msgstr "Ідентифікатор вашого додатку Facebook"
-
-#: actions/facebookadminpanel.php:193
-msgid "Secret"
-msgstr "Секретний код"
-
-#: actions/facebookadminpanel.php:194
-msgid "Application secret"
-msgstr "Секретний код додатку"
-
-#: actions/facebookadminpanel.php:210
-msgid "Save"
-msgstr "Зберегти"
-
-#: actions/facebookadminpanel.php:210
-msgid "Save Facebook settings"
-msgstr "Зберегти налаштування Facebook"
-
-#: actions/facebooksettings.php:137
-msgid "Connected Facebook user"
-msgstr "Під’єднаний користувач Facebook"
-
-#: actions/facebooksettings.php:164
-msgid "Publish my notices to Facebook."
-msgstr "Публікувати мої дописи у Facebook."
-
-#: actions/facebooksettings.php:174
-msgid "Send \"@\" replies to Facebook."
-msgstr "Надсилати «@» відповіді до Facebook."
-
-#. TRANS: Submit button to save synchronisation settings.
-#: actions/facebooksettings.php:183
-msgctxt "BUTTON"
-msgid "Save"
-msgstr "Зберегти"
-
-#. TRANS: Legend.
-#: actions/facebooksettings.php:192
-msgid "Disconnect my account from Facebook"
-msgstr "Від’єднати мій акаунт від Facebook"
-
-#: actions/facebooksettings.php:199
 #, php-format
-msgid ""
-"Disconnecting your Faceboook would make it impossible to log in! Please [set "
-"a password](%s) first."
-msgstr ""
-"Якщо від’єднати ваш акаунт від Faceboook зараз, то це унеможливить вхід до "
-"сервісу у майбутньому! Будь ласка, спочатку [встановіть пароль](%s)."
-
-#: actions/facebooksettings.php:213
-#, fuzzy, php-format
-msgid ""
-"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
-"password to log in."
-msgstr ""
-"Зберегти ваш акаунт %1$s, але від’єднати його від Facebook. Ви можете "
-"використовувати пароль від %1$s для входу на сайт."
-
-#. TRANS: Submit button.
-#: actions/facebooksettings.php:220
-msgctxt "BUTTON"
-msgid "Disconnect"
-msgstr "Від’єднати"
-
-#: actions/facebooksettings.php:243
-msgid "There was a problem saving your sync preferences."
-msgstr "Виникла проблема при збереженні параметрів синхронізації."
-
-#. TRANS: Confirmation that synchronisation settings have been saved into the system.
-#: actions/facebooksettings.php:246
-msgid "Sync preferences saved."
-msgstr "Параметри синхронізації збережено."
-
-#: actions/facebooksettings.php:260
-msgid "Couldn't delete link to Facebook."
-msgstr "Не можу видалити посилання на Facebook."
-
-#: actions/facebooksettings.php:264
-msgid "You have disconnected from Facebook."
-msgstr "Ви від’єдналися від Facebook."
+msgid "Contact the %s administrator to retrieve your account"
+msgstr "Зверніться до адміністратора %s, аби відновити свій обліковий запис"

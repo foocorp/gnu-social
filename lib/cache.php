@@ -164,6 +164,7 @@ class Cache
     {
         $value = false;
 
+        common_perf_counter('Cache::get', $key);
         if (Event::handle('StartCacheGet', array(&$key, &$value))) {
             if (array_key_exists($key, $this->_items)) {
                 $value = unserialize($this->_items[$key]);
@@ -188,6 +189,7 @@ class Cache
     {
         $success = false;
 
+        common_perf_counter('Cache::set', $key);
         if (Event::handle('StartCacheSet', array(&$key, &$value, &$flag,
                                                  &$expiry, &$success))) {
 
@@ -214,6 +216,7 @@ class Cache
     function increment($key, $step=1)
     {
         $value = false;
+        common_perf_counter('Cache::increment', $key);
         if (Event::handle('StartCacheIncrement', array(&$key, &$step, &$value))) {
             // Fallback is not guaranteed to be atomic,
             // and may original expiry value.
@@ -239,6 +242,7 @@ class Cache
     {
         $success = false;
 
+        common_perf_counter('Cache::delete', $key);
         if (Event::handle('StartCacheDelete', array(&$key, &$success))) {
             if (array_key_exists($key, $this->_items)) {
                 unset($this->_items[$key]);

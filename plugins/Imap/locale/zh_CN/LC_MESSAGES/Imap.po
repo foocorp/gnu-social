@@ -1,6 +1,7 @@
 # Translation of StatusNet - Imap to Simplified Chinese (‪中文(简体)‬)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
+# Author: Hydra
 # Author: ZhengYiFeng
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,47 +10,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Imap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:08+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:23+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:42:07+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:44:35+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-imap\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: imapmailhandler.php:30
 msgid "Error"
 msgstr "错误"
 
-#: imapmanager.php:51
 msgid ""
 "ImapManager should be created using its constructor, not the using the "
 "static get method."
 msgstr "ImapManager 应该使用它的生成器来创建，而不是使用固定的 get 方法。"
 
-#: ImapPlugin.php:54
 msgid "A mailbox must be specified."
 msgstr "必须指定一个邮箱。"
 
-#: ImapPlugin.php:57
 msgid "A user must be specified."
 msgstr "必须设定一个用户。"
 
-#: ImapPlugin.php:60
 msgid "A password must be specified."
 msgstr "必须设定一个密码。"
 
-#: ImapPlugin.php:63
 msgid "A poll_frequency must be specified."
 msgstr "必须设定一个抓取频率。"
 
-#: ImapPlugin.php:103
 msgid ""
 "The IMAP plugin allows for StatusNet to check a POP or IMAP mailbox for "
 "incoming mail containing user posts."
-msgstr ""
+msgstr "IMAP 插件允许你检查传入邮件包含用户公告一 POP 或 IMAP 邮箱。"

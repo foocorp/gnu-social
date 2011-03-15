@@ -1,5 +1,5 @@
 # Translation of StatusNet - OpenX to Ukrainian (Українська)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Boogie
 # --
@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:32+0000\n"
+"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"PO-Revision-Date: 2011-03-06 01:37:51+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-29 19:44:24+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-03-03 17:45:43+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-openx\n"
@@ -23,89 +23,72 @@ msgstr ""
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
 #. TRANS: Menu item title/tooltip
-#: OpenXPlugin.php:201
 msgid "OpenX configuration"
 msgstr "Конфігурація OpenX"
 
 #. TRANS: Menu item for site administration
-#: OpenXPlugin.php:203
 msgid "OpenX"
 msgstr "OpenX"
 
 #. TRANS: Plugin description.
-#: OpenXPlugin.php:224
 msgid "Plugin for <a href=\"http://www.openx.org/\">OpenX Ad Server</a>."
 msgstr ""
 "Додаток для <a href=\"http://www.openx.org/\">рекламного сервера OpenX</a>."
 
 #. TRANS: Page title for OpenX admin panel.
-#: openxadminpanel.php:53
 msgctxt "TITLE"
 msgid "OpenX"
 msgstr "OpenX"
 
 #. TRANS: Instructions for OpenX admin panel.
-#: openxadminpanel.php:64
 msgid "OpenX settings for this StatusNet site"
 msgstr "Налаштування OpenX для даного сайту StatusNet"
 
 #. TRANS: Form label in OpenX admin panel.
-#: openxadminpanel.php:167
 msgid "Ad script URL"
 msgstr "URL-адреса рекламного скрипту"
 
 #. TRANS: Tooltip for form label in OpenX admin panel.
-#: openxadminpanel.php:169
 msgid "Script URL"
 msgstr "URL-адреса скрипту"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
-#: openxadminpanel.php:175
 msgid "Medium rectangle"
 msgstr "Середній прямокутник"
 
 #. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
-#: openxadminpanel.php:177
 msgid "Medium rectangle zone"
 msgstr "Зона середнього прямокутника"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
-#: openxadminpanel.php:183
 msgid "Rectangle"
 msgstr "Прямокутник"
 
 #. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
-#: openxadminpanel.php:185
 msgid "Rectangle zone"
 msgstr "Зона прямокутника"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
-#: openxadminpanel.php:191
 msgid "Leaderboard"
 msgstr "Банер"
 
 #. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
-#: openxadminpanel.php:193
 msgid "Leaderboard zone"
 msgstr "Зона банеру"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
-#: openxadminpanel.php:199
 msgid "Skyscraper"
 msgstr "Хмарочос"
 
 #. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
-#: openxadminpanel.php:201
 msgid "Wide skyscraper zone"
 msgstr "Зона широкого хмарочосу"
 
 #. TRANS: Submit button text in OpenX admin panel.
-#: openxadminpanel.php:216
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зберегти"
 
 #. TRANS: Submit button title in OpenX admin panel.
-#: openxadminpanel.php:220
 msgid "Save OpenX settings"
 msgstr "Зберегти налаштування OpenX"

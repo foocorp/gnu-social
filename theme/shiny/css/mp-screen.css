@@ -80,7 +80,7 @@ float:left;
     padding: 4px;
 }
 
-#notice_text-count {
+.form_notice .count {
 position:absolute;
 bottom:2px;
     left: 175px;
@@ -88,18 +88,18 @@ bottom:2px;
 z-index:9;
 }
 
-#form_notice-direct.form_notice #notice_text-count {
+#form_notice-direct.form_notice .count {
     left: -185px;
 }
 
 /*input type=file no good in
 iPhone/iPod Touch, Android, Opera Mini Simulator
 */
-.form_notice #notice_text-count + label,
+.form_notice .count + label,
 .form_notice label[for="notice_data-attach"] {
 display:none;
 }
-.form_notice #notice_data-attach {
+.form_notice input.notice_data-attach {
 position:static;
 clear:both;
 width:65%;
@@ -112,7 +112,7 @@ background:none;
 opacity:1;
 }
 
-.form_notice #notice_action-submit {
+.form_notice .submit {
     text-align: center;
     left: 230px;
     top: 34px;
@@ -120,7 +120,7 @@ opacity:1;
     font-size: 0.8em;
 }
 
-#form_notice-direct.form_notice #notice_action-submit {
+#form_notice-direct.form_notice .submit {
     top: 64px;
 }
 

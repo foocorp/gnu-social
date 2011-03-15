@@ -51,7 +51,6 @@ define('MAX_PUBLIC_PAGE', 100);
  * @see      PublicrssAction
  * @see      PublicxrdsAction
  */
-
 class PublicAction extends Action
 {
     /**
@@ -73,14 +72,15 @@ class PublicAction extends Action
      *
      * @return boolean success value
      */
-
     function prepare($args)
     {
         parent::prepare($args);
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
 
         if ($this->page > MAX_PUBLIC_PAGE) {
-            $this->clientError(sprintf(_("Beyond the page limit (%s)."), MAX_PUBLIC_PAGE));
+            // TRANS: Client error displayed when requesting a public timeline page beyond the page limit.
+            // TRANS: %s is the page limit.
+            $this->clientError(sprintf(_('Beyond the page limit (%s).'), MAX_PUBLIC_PAGE));
         }
 
         common_set_returnto($this->selfUrl());
@@ -89,12 +89,13 @@ class PublicAction extends Action
                                        NOTICES_PER_PAGE + 1);
 
         if (!$this->notice) {
+            // TRANS: Server error displayed when a public timeline cannot be retrieved.
             $this->serverError(_('Could not retrieve public stream.'));
             return;
         }
 
         if($this->page > 1 && $this->notice->N == 0){
-            // TRANS: Server error when page not found (404)
+            // TRANS: Server error when page not found (404).
             $this->serverError(_('No such page.'),$code=404);
         }
 
@@ -110,7 +111,6 @@ class PublicAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -123,12 +123,14 @@ class PublicAction extends Action
      *
      * @return page title, including page number if over 1
      */
-
     function title()
     {
         if ($this->page > 1) {
+            // TRANS: Title for all public timeline pages but the first.
+            // TRANS: %d is the page number.
             return sprintf(_('Public timeline, page %d'), $this->page);
         } else {
+            // TRANS: Title for the first public timeline page.
             return _('Public timeline');
         }
     }
@@ -153,48 +155,38 @@ class PublicAction extends Action
      *
      * @return void
      */
-
     function getFeeds()
     {
         return array(new Feed(Feed::RSS1, common_local_url('publicrss'),
+                              // TRANS: Link description for public timeline feed.
                               _('Public Stream Feed (RSS 1.0)')),
                      new Feed(Feed::RSS2,
                               common_local_url('ApiTimelinePublic',
                                                array('format' => 'rss')),
+                              // TRANS: Link description for public timeline feed.
                               _('Public Stream Feed (RSS 2.0)')),
                      new Feed(Feed::ATOM,
                               common_local_url('ApiTimelinePublic',
                                                array('format' => 'atom')),
+                              // TRANS: Link description for public timeline feed.
                               _('Public Stream Feed (Atom)')));
-    }
-
-    /**
-     * Show tabset for this page
-     *
-     * Uses the PublicGroupNav widget
-     *
-     * @return void
-     * @see PublicGroupNav
-     */
-
-    function showLocalNav()
-    {
-        $nav = new PublicGroupNav($this);
-        $nav->show();
     }
 
     function showEmptyList()
     {
+        // TRANS: Text displayed for public feed when there are no public notices.
         $message = _('This is the public timeline for %%site.name%% but no one has posted anything yet.') . ' ';
 
         if (common_logged_in()) {
+            // TRANS: Additional text displayed for public feed when there are no public notices for a logged in user.
             $message .= _('Be the first to post!');
         }
         else {
             if (! (common_config('site','closed') || common_config('site','inviteonly'))) {
+                // TRANS: Additional text displayed for public feed when there are no public notices for a not logged in user.
                 $message .= _('Why not [register an account](%%action.register%%) and be the first to post!');
             }
-	}
+        }
 
         $this->elementStart('div', 'guide');
         $this->raw(common_markup_to_html($message));
@@ -209,10 +201,9 @@ class PublicAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
-        $nl = new NoticeList($this->notice, $this);
+        $nl = new ThreadedNoticeList($this->notice, $this);
 
         $cnt = $nl->show();
 
@@ -239,11 +230,17 @@ class PublicAction extends Action
     function showAnonymousMessage()
     {
         if (! (common_config('site','closed') || common_config('site','inviteonly'))) {
-            $m = _('This is %%site.name%%, a social networking site. ' .
+            // TRANS: Message for not logged in users at an invite-only site trying to view the public feed of notices.
+            // TRANS: This message contains Markdown links. Please mind the formatting.
+            $m = _('This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
+                   'based on the Free Software [StatusNet](http://status.net/) tool. ' .
                    '[Join now](%%action.register%%) to share notices about yourself with friends, family, and colleagues! ' .
                    '([Read more](%%doc.help%%))');
         } else {
-            $m = _('This is %%site.name%%, a social networking site.');
+            // TRANS: Message for not logged in users at a closed site trying to view the public feed of notices.
+            // TRANS: This message contains Markdown links. Please mind the formatting.
+            $m = _('This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
+                   'based on the Free Software [StatusNet](http://status.net/) tool.');
         }
         $this->elementStart('div', array('id' => 'anon_notice'));
         $this->raw(common_markup_to_html($m));
