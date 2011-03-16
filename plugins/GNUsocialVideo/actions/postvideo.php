@@ -32,52 +32,55 @@ if (!defined('STATUSNET')) {
 
 class PostvideoAction extends Action {
     var $user = null;
+    var $url = null;
 
     function prepare($args)
     {
         parent::prepare($args);
         $this->user = common_current_user();
+
+        if(empty($this->user)){
+            throw new ClientException(_('Must be logged in to post a video'),
+                403);
+        }
+
+        if($this->isPost()){
+            $this->checkSessionToken();
+        }
+
+        $this->url = filter_var($this->trimmed('url'), FILTER_SANITIZE_URL);
+        $this->url = filter_var($this->url, FILTER_VALIDATE_URL);
+
         return true;
     }
    
     function handle($args)
     {
         parent::handle($args);
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        if ($this->isPost()) {
             $this->handlePost($args);
+        } else {
+            $this->showPage();
         }
-        $this->showPage();
     }
 
     function handlePost($args)
     {
-        if (!$this->arg('post')) {
-            return;
+        if (empty($this->url)) {
+            throw new ClientException(_('Bad URL.'));
         }
-        if (empty($_POST['video_uri'])) {
-            return;
-        }
-        $uri = $_POST['video_uri'];
-        $uri = filter_var($uri, FILTER_SANITIZE_URL);
-        $uri = filter_var($uri, FILTER_VALIDATE_URL);
-        if($uri) { 
-            $rend = sprintf('<video src="%s", controls="controls">Sorry, your browser doesn\'t support the video tag.</video>', $uri);
-            Notice::saveNew($this->user->id, 'video : ' . $uri, 'web', array('rendered' => $rend));
-        }
+
+        $profile = $this->user->getProfile();
+
+        $vid = Video::saveNew($profile, $this->url, array());
+
+        common_redirect($vid->uri, 303);
     }
  
     function showContent()
     {
-        if(empty($this->user)) {
-            $this->element('p', array(), 'You are not logged in.');
-        } else {
-            $this->elementStart('form', array('method' => 'post',
-                                              'action' => common_local_url('postvideo')));
-            $this->element('input', array('name' => 'video_uri',
-                                          'type' => 'text',
-                                          'id' => 'video_uri'));
-            $this->submit('post', _('Post'));
-            $this->elementEnd('form');
-        }
+        $form  = new VideoForm();
+        $form->show();
     }
 }

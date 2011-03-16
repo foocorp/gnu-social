@@ -30,8 +30,18 @@ if (!defined('STATUSNET')) {
     exit(1);
 }
 
-class GNUsocialVideoPlugin extends Plugin
+class GNUsocialVideoPlugin extends MicroAppPlugin
 {
+
+    function onCheckSchema()
+    {
+        $schema = Schema::get();
+
+        $schema->ensureTable('video', Video::schemaDef());
+
+        return true;
+    }
+
     function onAutoload($cls)
     {
         $dir = dirname(__FILE__);
@@ -39,6 +49,15 @@ class GNUsocialVideoPlugin extends Plugin
         {
         case 'PostvideoAction':
             include_once $dir . '/actions/postvideo.php';
+            break;
+        case 'Video':
+            include_once $dir . '/Video.php';
+            break;
+        case 'VideoForm':
+            include_once $dir . '/videoform.php';
+            break;
+        case 'ShowvideoAction':
+            include_once $dir . '/showvideo.php';
             break;
         default:
             break;
@@ -49,6 +68,81 @@ class GNUsocialVideoPlugin extends Plugin
     function onRouterInitialized($m)
     {
         $m->connect('main/postvideo', array('action' => 'postvideo'));
+        $m->connect('showvideo/:id', array('action' => 'showvideo'));
         return true;
+    }
+
+    function entryForm($out)
+    {
+        return new VideoForm($out);
+    }
+
+    function appTitle()
+    {
+        return _('video');
+    }
+
+    function tag()
+    {
+        return 'GNUsocialVideo';
+    }
+
+    function types()
+    {
+        return array(Video::OBJECT_TYPE);
+    }
+
+    function saveNoticeFromActivity($activity, $actor, $options=array())
+    {
+        if(count($activity->objects) != 1) {
+            throw new Exception('Too many activity objects.');
+        }
+
+        $videoObj = $activity->objects[0];
+
+        if ($videoObj->type != Video::OBJECT_TYPE) {
+            throw new Exception('Wrong type for object.');
+        }
+
+        // For now we read straight from the xml tree, no other way to get this information.
+        // When there's a better API for this, we should change to it.
+        $uri = ActivityUtils::getLink($activity->entry, 'enclosure');
+
+        $options['object_type'] = Video::OBJECT_TYPE;
+
+        Video::saveNew($actor, $uri, $options);
+   
+    }
+
+    function activityObjectFromNotice($notice)
+    {
+        $object = new ActivityObject();
+        $object->id = $notice->uri;
+        $object->type = Video::OBJECT_TYPE;
+        $object->title = $notice->content;
+        $object->summary = $notice->content;
+        $object->link = $notice->bestUrl();
+
+        $vid = Video::getByNotice($notice);
+
+        if ($vid) {
+            $object->extra[] = array('link', array('rel' => 'enclosure', 'href' => $vid->url), array());
+        }
+        
+        return $object;
+        
+    }
+
+    function showNotice($notice, $out)
+    {
+        $vid = Video::getByNotice($notice);
+        if ($vid) {
+            $out->element('video', array('src' => $vid->url));
+        }
+    }
+
+    function deleteRelated($notice)
+    {
+        exit(1); // TODO: implement
     }
 }
