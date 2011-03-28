@@ -246,11 +246,11 @@ class EventPlugin extends MicroappPlugin
 
         $obj->extra[] = array('dtstart',
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
-                              common_date_iso8601($happening->start_date));
+                              common_date_iso8601($happening->start_time));
 
         $obj->extra[] = array('dtend',
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
-                              common_date_iso8601($happening->end_date));
+                              common_date_iso8601($happening->end_time));
 
         // XXX: probably need other stuff here
 
@@ -324,7 +324,11 @@ class EventPlugin extends MicroappPlugin
 
     function showRSVPNotice($notice, $out)
     {
-        $out->raw($notice->rendered);
+        $rsvp = RSVP::fromNotice($notice);
+
+        $out->elementStart('div', 'rsvp');
+        $out->raw($rsvp->asHTML());
+        $out->elementEnd('div');
         return;
     }
 
@@ -336,7 +340,7 @@ class EventPlugin extends MicroappPlugin
         assert(!empty($event));
         assert(!empty($profile));
 
-        $out->elementStart('div', 'vevent'); // VEVENT IN
+        $out->elementStart('div', 'vevent event'); // VEVENT IN
 
         $out->elementStart('h3');  // VEVENT/H3 IN
 
@@ -351,39 +355,63 @@ class EventPlugin extends MicroappPlugin
 
         $out->elementEnd('h3'); // VEVENT/H3 OUT
 
+        $startDate = strftime("%x", strtotime($event->start_time));
+        $startTime = strftime("%R", strtotime($event->start_time));
+
+        $endDate = strftime("%x", strtotime($event->end_time));
+        $endTime = strftime("%R", strtotime($event->end_time));
+
         // FIXME: better dates
 
         $out->elementStart('div', 'event-times'); // VEVENT/EVENT-TIMES IN
+
+        $out->element('strong', null, _('Time:'));
+
         $out->element('abbr', array('class' => 'dtstart',
                                     'title' => common_date_iso8601($event->start_time)),
-                      common_exact_date($event->start_time));
+                      $startDate . ' ' . $startTime);
         $out->text(' - ');
-        $out->element('span', array('class' => 'dtend',
-                                    'title' => common_date_iso8601($event->end_time)),
-                      common_exact_date($event->end_time));
-        $out->elementEnd('div'); // VEVENT/EVENT-TIMES OUT
-
-        if (!empty($event->description)) {
-            $out->element('div', 'description', $event->description);
+        if ($startDate == $endDate) {
+            $out->element('span', array('class' => 'dtend',
+                                        'title' => common_date_iso8601($event->end_time)),
+                          $endTime);
+        } else {
+            $out->element('span', array('class' => 'dtend',
+                                        'title' => common_date_iso8601($event->end_time)),
+                          $endDate . ' ' . $endTime);
         }
 
+        $out->elementEnd('div'); // VEVENT/EVENT-TIMES OUT
+
         if (!empty($event->location)) {
-            $out->element('div', 'location', $event->location);
+            $out->elementStart('div', 'event-location');
+            $out->element('strong', null, _('Location: '));
+            $out->element('span', 'location', $event->location);
+            $out->elementEnd('div');
+        }
+
+        if (!empty($event->description)) {
+            $out->elementStart('div', 'event-description');
+            $out->element('strong', null, _('Description: '));
+            $out->element('span', 'description', $event->description);
+            $out->elementEnd('div');
         }
 
         $rsvps = $event->getRSVPs();
 
-        $out->element('div', 'event-rsvps',
+        $out->elementStart('div', 'event-rsvps');
+        $out->element('strong', null, _('Attending: '));
+        $out->element('span', 'event-rsvps',
                       sprintf(_('Yes: %d No: %d Maybe: %d'),
                               count($rsvps[RSVP::POSITIVE]),
                               count($rsvps[RSVP::NEGATIVE]),
                               count($rsvps[RSVP::POSSIBLE])));
+        $out->elementEnd('div');
 
         $user = common_current_user();
 
         if (!empty($user)) {
             $rsvp = $event->getRSVP($user->getProfile());
-            common_log(LOG_DEBUG, "RSVP is: " . ($rsvp ? $rsvp->id : 'none'));
 
             if (empty($rsvp)) {
                 $form = new RSVPForm($event, $out);
@@ -434,5 +462,16 @@ class EventPlugin extends MicroappPlugin
         default:
             common_log(LOG_DEBUG, "Not deleting related, wtf...");
         }
+    }
+
+    function onEndShowScripts($action)
+    {
+        $action->inlineScript('$(document).ready(function() { $("#startdate").datepicker(); $("#enddate").datepicker(); });');
+    }
+
+    function onEndShowStyles($action)
+    {
+        $action->cssLink($this->path('event.css'));
+        return true;
     }
 }

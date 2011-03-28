@@ -146,9 +146,9 @@ class Subscription extends Memcached_DataObject
 
     function notify()
     {
-        # XXX: add other notifications (Jabber, SMS) here
-        # XXX: queue this and handle it offline
-        # XXX: Whatever happens, do it in Twitter-like API, too
+        // XXX: add other notifications (Jabber, SMS) here
+        // XXX: queue this and handle it offline
+        // XXX: Whatever happens, do it in Twitter-like API, too
 
         $this->notifyEmail();
     }

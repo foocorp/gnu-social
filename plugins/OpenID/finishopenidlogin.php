@@ -266,9 +266,9 @@ class FinishopenidloginAction extends Action
 
             if ($user) {
                 oid_set_last($display);
-                # XXX: commented out at @edd's request until better
-                # control over how data flows from OpenID provider.
-                # oid_update_user($user, $sreg);
+                // XXX: commented out at @edd's request until better
+                // control over how data flows from OpenID provider.
+                // oid_update_user($user, $sreg);
                 common_set_user($user);
                 common_real_login(true);
                 if (isset($_SESSION['openid_rememberme']) && $_SESSION['openid_rememberme']) {
@@ -306,7 +306,7 @@ class FinishopenidloginAction extends Action
 
     function createNewUser()
     {
-        # FIXME: save invite code before redirect, and check here
+        // FIXME: save invite code before redirect, and check here
 
         if (!Event::handle('StartRegistrationTry', array($this))) {
             return;
@@ -364,7 +364,7 @@ class FinishopenidloginAction extends Action
             return;
         }
 
-        # Possible race condition... let's be paranoid
+        // Possible race condition... let's be paranoid
 
         $other = oid_get_user($canonical);
 
@@ -379,8 +379,8 @@ class FinishopenidloginAction extends Action
         $location = '';
         if (!empty($sreg['country'])) {
             if ($sreg['postcode']) {
-                # XXX: use postcode to get city and region
-                # XXX: also, store postcode somewhere -- it's valuable!
+                // XXX: use postcode to get city and region
+                // XXX: also, store postcode somewhere -- it's valuable!
                 $location = $sreg['postcode'] . ', ' . $sreg['country'];
             } else {
                 $location = $sreg['country'];
@@ -395,8 +395,8 @@ class FinishopenidloginAction extends Action
 
         $email = $this->getEmail();
 
-        # XXX: add language
-        # XXX: add timezone
+        // XXX: add language
+        // XXX: add timezone
 
         $args = array('nickname' => $nickname,
                       'email' => $email,
@@ -438,7 +438,7 @@ class FinishopenidloginAction extends Action
             return;
         }
 
-        # They're legit!
+        // They're legit!
 
         $user = User::staticGet('nickname', $nickname);
 
@@ -477,7 +477,7 @@ class FinishopenidloginAction extends Action
     {
         $url = common_get_returnto();
         if ($url) {
-            # We don't have to return to it again
+            // We don't have to return to it again
             common_set_returnto(null);
 	    $url = common_inject_session($url);
         } else {
@@ -491,7 +491,7 @@ class FinishopenidloginAction extends Action
     function bestNewNickname($display, $sreg)
     {
 
-        # Try the passed-in nickname
+        // Try the passed-in nickname
 
         if (!empty($sreg['nickname'])) {
             $nickname = $this->nicknamize($sreg['nickname']);
@@ -500,7 +500,7 @@ class FinishopenidloginAction extends Action
             }
         }
 
-        # Try the full name
+        // Try the full name
 
         if (!empty($sreg['fullname'])) {
             $fullname = $this->nicknamize($sreg['fullname']);
@@ -509,7 +509,7 @@ class FinishopenidloginAction extends Action
             }
         }
 
-        # Try the URL
+        // Try the URL
 
         $from_url = $this->openidToNickname($display);
 
@@ -517,7 +517,7 @@ class FinishopenidloginAction extends Action
             return $from_url;
         }
 
-        # XXX: others?
+        // XXX: others?
 
         return null;
     }
@@ -545,10 +545,10 @@ class FinishopenidloginAction extends Action
         }
     }
 
-    # We try to use an OpenID URL as a legal StatusNet user name in this order
-    # 1. Plain hostname, like http://evanp.myopenid.com/
-    # 2. One element in path, like http://profile.typekey.com/EvanProdromou/
-    #    or http://getopenid.com/evanprodromou
+    // We try to use an OpenID URL as a legal StatusNet user name in this order
+    // 1. Plain hostname, like http://evanp.myopenid.com/
+    // 2. One element in path, like http://profile.typekey.com/EvanProdromou/
+    //    or http://getopenid.com/evanprodromou
 
     function urlToNickname($openid)
     {
@@ -562,8 +562,8 @@ class FinishopenidloginAction extends Action
         if (!$base) {
             return null;
         } else {
-            # =evan.prodromou
-            # or @gratis*evan.prodromou
+            // =evan.prodromou
+            // or @gratis*evan.prodromou
             $parts = explode('*', substr($base, 1));
             return $this->nicknamize(array_pop($parts));
         }
@@ -578,7 +578,7 @@ class FinishopenidloginAction extends Action
         }
     }
 
-    # Given a string, try to make it work as a nickname
+    // Given a string, try to make it work as a nickname
 
     function nicknamize($str)
     {

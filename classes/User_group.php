@@ -5,6 +5,9 @@
 
 class User_group extends Memcached_DataObject
 {
+    const JOIN_POLICY_OPEN = 0;
+    const JOIN_POLICY_MODERATE = 1;
+
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
 
@@ -24,6 +27,7 @@ class User_group extends Memcached_DataObject
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
     public $uri;                             // varchar(255)  unique_key
     public $mainpage;                        // varchar(255)
+    public $join_policy;                     // tinyint
 
     /* Static get */
     function staticGet($k,$v=NULL) { return DB_DataObject::staticGet('User_group',$k,$v); }
@@ -83,42 +87,11 @@ class User_group extends Memcached_DataObject
 
     function getNotices($offset, $limit, $since_id=null, $max_id=null)
     {
-        $ids = Notice::stream(array($this, '_streamDirect'),
-                              array(),
-                              'user_group:notice_ids:' . $this->id,
-                              $offset, $limit, $since_id, $max_id);
+        $stream = new GroupNoticeStream($this);
 
-        return Notice::getStreamByIds($ids);
+        return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
-    function _streamDirect($offset, $limit, $since_id, $max_id)
-    {
-        $inbox = new Group_inbox();
-
-        $inbox->group_id = $this->id;
-
-        $inbox->selectAdd();
-        $inbox->selectAdd('notice_id');
-
-        Notice::addWhereSinceId($inbox, $since_id, 'notice_id');
-        Notice::addWhereMaxId($inbox, $max_id, 'notice_id');
-
-        $inbox->orderBy('created DESC, notice_id DESC');
-
-        if (!is_null($offset)) {
-            $inbox->limit($offset, $limit);
-        }
-
-        $ids = array();
-
-        if ($inbox->find()) {
-            while ($inbox->fetch()) {
-                $ids[] = $inbox->notice_id;
-            }
-        }
-
-        return $ids;
-    }
 
     function allowedNickname($nickname)
     {
@@ -134,6 +107,36 @@ class User_group extends Memcached_DataObject
           'ON profile.id = group_member.profile_id ' .
           'WHERE group_member.group_id = %d ' .
           'ORDER BY group_member.created DESC ';
+
+        if ($limit != null) {
+            if (common_config('db','type') == 'pgsql') {
+                $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
+            } else {
+                $qry .= ' LIMIT ' . $offset . ', ' . $limit;
+            }
+        }
+
+        $members = new Profile();
+
+        $members->query(sprintf($qry, $this->id));
+        return $members;
+    }
+
+    /**
+     * Get pending members, who have not yet been approved.
+     *
+     * @param int $offset
+     * @param int $limit
+     * @return Profile
+     */
+    function getRequests($offset=0, $limit=null)
+    {
+        $qry =
+          'SELECT profile.* ' .
+          'FROM profile JOIN group_join_queue '.
+          'ON profile.id = group_join_queue.profile_id ' .
+          'WHERE group_join_queue.group_id = %d ' .
+          'ORDER BY group_join_queue.created DESC ';
 
         if ($limit != null) {
             if (common_config('db','type') == 'pgsql') {
@@ -272,11 +275,11 @@ class User_group extends Memcached_DataObject
 
         $oldaliases = $this->getAliases();
 
-        # Delete stuff that's old that not in new
+        // Delete stuff that's old that not in new
 
         $to_delete = array_diff($oldaliases, $newaliases);
 
-        # Insert stuff that's in new and not in old
+        // Insert stuff that's in new and not in old
 
         $to_insert = array_diff($newaliases, $oldaliases);
 
@@ -511,6 +514,11 @@ class User_group extends Memcached_DataObject
         $group->uri         = $uri;
         $group->mainpage    = $mainpage;
         $group->created     = common_sql_now();
+        if (isset($fields['join_policy'])) {
+            $group->join_policy = intval($fields['join_policy']);
+        } else {
+            $group->join_policy = 0;
+        }
 
         if (Event::handle('StartGroupSave', array(&$group))) {
 

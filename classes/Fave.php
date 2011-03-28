@@ -44,6 +44,7 @@ class Fave extends Memcached_DataObject
                 common_log_db_error($fave, 'INSERT', __FILE__);
                 return false;
             }
+            self::blow('fave:by_notice:%d', $fave->notice_id);
 
             Event::handle('EndFavorNotice', array($profile, $notice));
         }
@@ -61,6 +62,7 @@ class Fave extends Memcached_DataObject
         if (Event::handle('StartDisfavorNotice', array($profile, $notice, &$result))) {
 
             $result = parent::delete();
+            self::blow('fave:by_notice:%d', $this->notice_id);
 
             if ($result) {
                 Event::handle('EndDisfavorNotice', array($profile, $notice));
@@ -77,70 +79,16 @@ class Fave extends Memcached_DataObject
 
     function stream($user_id, $offset=0, $limit=NOTICES_PER_PAGE, $own=false, $since_id=0, $max_id=0)
     {
-        $ids = Notice::stream(array('Fave', '_streamDirect'),
-                              array($user_id, $own),
-                              ($own) ? 'fave:ids_by_user_own:'.$user_id :
-                              'fave:ids_by_user:'.$user_id,
-                              $offset, $limit, $since_id, $max_id);
-        return $ids;
+        $stream = new FaveNoticeStream($user_id, $own);
+
+        return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 
-    /**
-     * Note that the sorting for this is by order of *fave* not order of *notice*.
-     *
-     * @fixme add since_id, max_id support?
-     *
-     * @param <type> $user_id
-     * @param <type> $own
-     * @param <type> $offset
-     * @param <type> $limit
-     * @param <type> $since_id
-     * @param <type> $max_id
-     * @return <type>
-     */
-    function _streamDirect($user_id, $own, $offset, $limit, $since_id, $max_id)
+    function idStream($user_id, $offset=0, $limit=NOTICES_PER_PAGE, $own=false, $since_id=0, $max_id=0)
     {
-        $fav = new Fave();
-        $qry = null;
+        $stream = new FaveNoticeStream($user_id, $own);
 
-        if ($own) {
-            $qry  = 'SELECT fave.* FROM fave ';
-            $qry .= 'WHERE fave.user_id = ' . $user_id . ' ';
-        } else {
-             $qry =  'SELECT fave.* FROM fave ';
-             $qry .= 'INNER JOIN notice ON fave.notice_id = notice.id ';
-             $qry .= 'WHERE fave.user_id = ' . $user_id . ' ';
-             $qry .= 'AND notice.is_local != ' . Notice::GATEWAY . ' ';
-        }
-
-        if ($since_id != 0) {
-            $qry .= 'AND notice_id > ' . $since_id . ' ';
-        }
-
-        if ($max_id != 0) {
-            $qry .= 'AND notice_id <= ' . $max_id . ' ';
-        }
-
-        // NOTE: we sort by fave time, not by notice time!
-
-        $qry .= 'ORDER BY modified DESC ';
-
-        if (!is_null($offset)) {
-            $qry .= "LIMIT $limit OFFSET $offset";
-        }
-
-        $fav->query($qry);
-
-        $ids = array();
-
-        while ($fav->fetch()) {
-            $ids[] = $fav->notice_id;
-        }
-
-        $fav->free();
-        unset($fav);
-
-        return $ids;
+        return $stream->getNoticeIds($offset, $limit, $since_id, $max_id);
     }
 
     function asActivity()
@@ -207,5 +155,32 @@ class Fave extends Memcached_DataObject
         $fav->find();
 
         return $fav;
+    }
+
+    /**
+     * Grab a list of profile who have favored this notice.
+     *
+     * @return ArrayWrapper masquerading as a Fave
+     */
+    static function byNotice($noticeId)
+    {
+        $c = self::memcache();
+        $key = Cache::key('fave:by_notice:' . $noticeId);
+
+        $wrapper = $c->get($key);
+        if (!$wrapper) {
+            // @fixme caching & scalability!
+            $fave = new Fave();
+            $fave->notice_id = $noticeId;
+            $fave->find();
+
+            $list = array();
+            while ($fave->fetch()) {
+                $list[] = clone($fave);
+            }
+            $wrapper = new ArrayWrapper($list);
+            $c->set($key, $wrapper);
+        }
+        return $wrapper;
     }
 }

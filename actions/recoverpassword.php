@@ -19,7 +19,7 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-# You have 24 hours to claim your password
+// You have 24 hours to claim your password
 
 define('MAX_RECOVERY_TIME', 24 * 60 * 60);
 
@@ -81,7 +81,7 @@ class RecoverpasswordAction extends Action
         $touched = strtotime($confirm->modified);
         $email = $confirm->address;
 
-        # Burn this code
+        // Burn this code
 
         $result = $confirm->delete();
 
@@ -92,8 +92,8 @@ class RecoverpasswordAction extends Action
             return;
         }
 
-        # These should be reaped, but for now we just check mod time
-        # Note: it's still deleted; let's avoid a second attempt!
+        // These should be reaped, but for now we just check mod time
+        // Note: it's still deleted; let's avoid a second attempt!
 
         if ((time() - $touched) > MAX_RECOVERY_TIME) {
             common_log(LOG_WARNING,
@@ -105,8 +105,8 @@ class RecoverpasswordAction extends Action
             return;
         }
 
-        # If we used an outstanding confirmation to send the email,
-        # it's been confirmed at this point.
+        // If we used an outstanding confirmation to send the email,
+        // it's been confirmed at this point.
 
         if (!$user->email) {
             $orig = clone($user);
@@ -120,7 +120,7 @@ class RecoverpasswordAction extends Action
             }
         }
 
-        # Success!
+        // Success!
 
         $this->setTempUser($user);
         $this->showPasswordForm();
@@ -162,8 +162,8 @@ class RecoverpasswordAction extends Action
                                  ' the email address you have stored' .
                                  ' in your account.'));
             } else if ($this->mode == 'reset') {
-                // TRANS: Page notice for password change page.
                 $this->element('p', null,
+                               // TRANS: Page notice for password change page.
                                _('You have been identified. Enter a' .
                                  ' new password below.'));
             }
@@ -289,7 +289,7 @@ class RecoverpasswordAction extends Action
             }
         }
 
-        # See if it's an unconfirmed email address
+        // See if it's an unconfirmed email address
 
         if (!$user) {
             // Warning: it may actually be legit to have multiple folks
@@ -314,7 +314,7 @@ class RecoverpasswordAction extends Action
             return;
         }
 
-        # Try to get an unconfirmed email address if they used a user name
+        // Try to get an unconfirmed email address if they used a user name
 
         if (!$user->email && !$confirm_email) {
             $confirm_email = new Confirm_address();
@@ -332,7 +332,7 @@ class RecoverpasswordAction extends Action
             return;
         }
 
-        # Success! We have a valid user and a confirmed or unconfirmed email address
+        // Success! We have a valid user and a confirmed or unconfirmed email address
 
         $confirm = new Confirm_address();
         $confirm->code = common_confirmation_code(128);
@@ -380,7 +380,7 @@ class RecoverpasswordAction extends Action
 
     function resetPassword()
     {
-        # CSRF protection
+        // CSRF protection
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
             // TRANS: Form validation error message.
@@ -410,7 +410,7 @@ class RecoverpasswordAction extends Action
             return;
         }
 
-        # OK, we're ready to go
+        // OK, we're ready to go
 
         $original = clone($user);
 

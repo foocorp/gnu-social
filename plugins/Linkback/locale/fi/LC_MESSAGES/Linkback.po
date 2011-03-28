@@ -1,0 +1,33 @@
+# Translation of StatusNet - Linkback to Finnish (Suomi)
+# Exported from translatewiki.net
+#
+# Author: Nike
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Linkback\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-18 19:46+0000\n"
+"PO-Revision-Date: 2011-03-18 19:48:57+0000\n"
+"Language-Team: Finnish <http://translatewiki.net/wiki/Portal:fi>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-08 01:22:08+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fi\n"
+"X-Message-Group: #out-statusnet-plugin-linkback\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid ""
+"Notify blog authors when their posts have been linked in microblog notices "
+"using <a href=\"http://www.hixie.ch/specs/pingback/pingback\">Pingback</a> "
+"or <a href=\"http://www.movabletype.org/docs/mttrackback.html\">Trackback</"
+"a> protocols."
+msgstr ""
+"Ilmoita blogien kirjoittajille, kun heidän viestiin on linkitetty microblog-"
+"ilmoituksissa käyttäen <a href=\"http://www.hixie.ch/specs/pingback/pingback"
+"\">Pingback</a> tai <a href=\"http://www.movabletype.org/docs/mttrackback."
+"html\">Trackback</a> -protokollia."

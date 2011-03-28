@@ -1,0 +1,54 @@
+# Translation of StatusNet - Directory to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Directory\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"PO-Revision-Date: 2011-03-24 11:13:28+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-17 10:24:35+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-directory\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, php-format
+msgid "User Directory, page %d"
+msgstr "Direktoryo ng Tagagamit, pahina %d"
+
+msgid "User directory"
+msgstr "Direktoryo ng tagagamit"
+
+#, php-format
+msgid "User directory - %s"
+msgstr "Direktoryo ng tagagamit - %s"
+
+#, php-format
+msgid "User directory - %s, page %d"
+msgstr "Direktoryo ng tagagamit - %s, pahina %d"
+
+msgctxt "BUTTON"
+msgid "Search"
+msgstr "Hanapin"
+
+#, php-format
+msgid "No users starting with %s"
+msgstr "Walang mga tagagamit na nagsisimula sa %s"
+
+msgid "Add a user directory."
+msgstr "Magdagdag ng isang direktoryo ng tagagamit."
+
+msgid "Nickname"
+msgstr "Palayaw"
+
+msgid "Created"
+msgstr "Nalikha na"

@@ -9,27 +9,123 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 02:34+0100\n"
-"PO-Revision-Date: 2011-03-06 01:37:09+0000\n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"PO-Revision-Date: 2011-03-24 11:13:37+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-03 20:42:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-POT-Import-Date: 2011-03-18 20:07:05+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
+msgid "Extended profile settings"
+msgstr "Проширени профилни нагодувања"
+
+#. TRANS: Usage instructions for profile settings.
+msgid ""
+"You can update your personal profile info here so people know more about you."
+msgstr ""
+"Тука можете да си ги подновите податоците во личниот профил, и така луѓето "
+"да дознаат повеќе за Вас."
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Се појави проблем со жетонот на Вашата сесија. Обидете се повторно."
+
+#. TRANS: Message given submitting a form with an unknown action.
+msgid "Unexpected form submission."
+msgstr "Неочекувано поднесување на образец."
+
+msgid "Details saved."
+msgstr "Податоците се зачувани."
+
+#. TRANS: Exception thrown when no date was entered in a required date field.
+#. TRANS: %s is the field name.
+#, php-format
+msgid "You must supply a date for \"%s\"."
+msgstr "Мора да наведете датум за „%s“."
+
+#. TRANS: Exception thrown on incorrect data input.
+#. TRANS: %1$s is a field name, %2$s is the incorrect input.
+#, php-format
+msgid "Invalid date entered for \"%1$s\": %2$s."
+msgstr "Наведен е неважечки датум за „%1$s“: %2$s."
+
+#. TRANS: Exception thrown when entering an invalid URL.
+#. TRANS: %s is the invalid URL.
+#, php-format
+msgid "Invalid URL: %s."
+msgstr "Неважечка URL-адреса: %s."
+
+msgid "Could not save profile details."
+msgstr "Не можев да ги зачувам рофилните податоци."
+
+#. TRANS: Validation error in form for profile settings.
+#. TRANS: %s is an invalid tag.
+#, php-format
+msgid "Invalid tag: \"%s\"."
+msgstr "Неважчка ознака: „%s“."
+
+#. TRANS: Server error thrown when user profile settings could not be saved.
+msgid "Could not save profile."
+msgstr "Не можев да го зачувам профилот."
+
+#. TRANS: Server error thrown when user profile settings tags could not be saved.
+msgid "Could not save tags."
+msgstr "Не можев да ги зачувам ознаките."
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Уреди проширени профилни нагодувања"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Уреди"
+
 msgid "UI extensions for additional profile fields."
 msgstr "Посреднички дадатоци за дополнителни полиња во профилот."
 
-#. TRANS: Link description in user account settings menu.
-msgid "Details"
-msgstr "Подробности"
-
 msgid "More details..."
 msgstr "Поподробно..."
+
+msgid "Company"
+msgstr "Фирма"
+
+msgid "Start"
+msgstr "Почеток"
+
+msgid "End"
+msgstr "Завршеток"
+
+msgid "Current"
+msgstr "Тековно"
+
+msgid "Institution"
+msgstr "Установа"
+
+msgid "Degree"
+msgstr "Диплома"
+
+msgid "Description"
+msgstr "Опис"
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Зачувај"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "IM"
+msgstr "IM"
+
+msgid "Website"
+msgstr "Мреж. место"
+
+msgid "Employer"
+msgstr "Работодавач"
 
 msgid "Personal"
 msgstr "Лично"
@@ -55,15 +151,6 @@ msgstr "Ознаки"
 msgid "Contact"
 msgstr "Контакт"
 
-msgid "Phone"
-msgstr "Телефон"
-
-msgid "IM"
-msgstr "IM"
-
-msgid "Websites"
-msgstr "Мрежни места"
-
 msgid "Birthday"
 msgstr "Роденден"
 
@@ -76,22 +163,5 @@ msgstr "Имиња на децата"
 msgid "Work experience"
 msgstr "Работно искуство"
 
-msgid "Employer"
-msgstr "Работодавач"
-
 msgid "Education"
 msgstr "Образование"
-
-msgid "Institution"
-msgstr "Установа"
-
-#. TRANS: Link title for link on user profile.
-msgid "Edit extended profile settings"
-msgstr "Уреди проширени профилни нагодувања"
-
-#. TRANS: Link text for link on user profile.
-msgid "Edit"
-msgstr "Уреди"
-
-msgid "Extended profile settings"
-msgstr "Проширени профилни нагодувања"

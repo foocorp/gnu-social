@@ -9,28 +9,123 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-08 01:03+0000\n"
-"PO-Revision-Date: 2011-03-08 01:06:03+0000\n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"PO-Revision-Date: 2011-03-18 19:48:38+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83429); Translate extension (2011-03-07)\n"
+"X-POT-Import-Date: 2011-03-17 13:01:04+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+msgid "Extended profile settings"
+msgstr "Розширені налаштування профілю"
+
+#. TRANS: Usage instructions for profile settings.
+msgid ""
+"You can update your personal profile info here so people know more about you."
+msgstr ""
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Message given submitting a form with an unknown action.
+msgid "Unexpected form submission."
+msgstr ""
+
+msgid "Details saved."
+msgstr ""
+
+#. TRANS: Exception thrown when no date was entered in a required date field.
+#. TRANS: %s is the field name.
+#, php-format
+msgid "You must supply a date for \"%s\"."
+msgstr ""
+
+#. TRANS: Exception thrown on incorrect data input.
+#. TRANS: %1$s is a field name, %2$s is the incorrect input.
+#, php-format
+msgid "Invalid date entered for \"%1$s\": %2$s."
+msgstr ""
+
+#. TRANS: Exception thrown when entering an invalid URL.
+#. TRANS: %s is the invalid URL.
+#, php-format
+msgid "Invalid URL: %s."
+msgstr ""
+
+msgid "Could not save profile details."
+msgstr ""
+
+#. TRANS: Validation error in form for profile settings.
+#. TRANS: %s is an invalid tag.
+#, php-format
+msgid "Invalid tag: \"%s\"."
+msgstr ""
+
+#. TRANS: Server error thrown when user profile settings could not be saved.
+msgid "Could not save profile."
+msgstr ""
+
+#. TRANS: Server error thrown when user profile settings tags could not be saved.
+msgid "Could not save tags."
+msgstr ""
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Змінити розширені налаштування профілю"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Змінити"
+
 msgid "UI extensions for additional profile fields."
 msgstr "Розширення інтерфейсу для додаткових полів у профілі."
 
-#. TRANS: Link description in user account settings menu.
-msgid "Details"
-msgstr "Деталі"
-
 msgid "More details..."
 msgstr "Детальніше..."
+
+msgid "Company"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Current"
+msgstr ""
+
+msgid "Institution"
+msgstr "Установа"
+
+msgid "Degree"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr ""
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "IM"
+msgstr "ІМ"
+
+#, fuzzy
+msgid "Website"
+msgstr "Сайти"
+
+msgid "Employer"
+msgstr "Роботодавець"
 
 msgid "Personal"
 msgstr "Профіль"
@@ -56,15 +151,6 @@ msgstr "Теґи"
 msgid "Contact"
 msgstr "Контакти"
 
-msgid "Phone"
-msgstr "Телефон"
-
-msgid "IM"
-msgstr "ІМ"
-
-msgid "Websites"
-msgstr "Сайти"
-
 msgid "Birthday"
 msgstr "День народження"
 
@@ -77,22 +163,5 @@ msgstr "Імена дітей"
 msgid "Work experience"
 msgstr "Досвід роботи"
 
-msgid "Employer"
-msgstr "Роботодавець"
-
 msgid "Education"
 msgstr "Освіта"
-
-msgid "Institution"
-msgstr "Установа"
-
-#. TRANS: Link title for link on user profile.
-msgid "Edit extended profile settings"
-msgstr "Змінити розширені налаштування профілю"
-
-#. TRANS: Link text for link on user profile.
-msgid "Edit"
-msgstr "Змінити"
-
-msgid "Extended profile settings"
-msgstr "Розширені налаштування профілю"

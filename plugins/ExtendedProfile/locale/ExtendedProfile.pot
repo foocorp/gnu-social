@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,101 +16,189 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ExtendedProfilePlugin.php:40
-msgid "UI extensions for additional profile fields."
+#: actions/profiledetailsettings.php:29
+msgid "Extended profile settings"
 msgstr ""
 
-#. TRANS: Link description in user account settings menu.
-#: ExtendedProfilePlugin.php:108
-msgid "Details"
+#. TRANS: Usage instructions for profile settings.
+#: actions/profiledetailsettings.php:40
+msgid ""
+"You can update your personal profile info here so people know more about you."
 msgstr ""
 
-#: ExtendedProfilePlugin.php:116
-msgid "More details..."
+#: actions/profiledetailsettings.php:63
+msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 
-#: extendedprofile.php:49 extendedprofile.php:103
-msgid "Personal"
+#. TRANS: Message given submitting a form with an unknown action.
+#: actions/profiledetailsettings.php:74
+msgid "Unexpected form submission."
 msgstr ""
 
-#: extendedprofile.php:52
-msgid "Full name"
+#: actions/profiledetailsettings.php:136
+msgid "Details saved."
 msgstr ""
 
-#: extendedprofile.php:57
-msgid "Title"
+#. TRANS: Exception thrown when no date was entered in a required date field.
+#. TRANS: %s is the field name.
+#: actions/profiledetailsettings.php:147
+#, php-format
+msgid "You must supply a date for \"%s\"."
 msgstr ""
 
-#: extendedprofile.php:61
-msgid "Manager"
+#. TRANS: Exception thrown on incorrect data input.
+#. TRANS: %1$s is a field name, %2$s is the incorrect input.
+#: actions/profiledetailsettings.php:159
+#, php-format
+msgid "Invalid date entered for \"%1$s\": %2$s."
 msgstr ""
 
-#: extendedprofile.php:66
-msgid "Location"
+#. TRANS: Exception thrown when entering an invalid URL.
+#. TRANS: %s is the invalid URL.
+#: actions/profiledetailsettings.php:275
+#, php-format
+msgid "Invalid URL: %s."
 msgstr ""
 
-#: extendedprofile.php:70
-msgid "Bio"
+#: actions/profiledetailsettings.php:523 actions/profiledetailsettings.php:535
+msgid "Could not save profile details."
 msgstr ""
 
-#: extendedprofile.php:75
-msgid "Tags"
+#. TRANS: Validation error in form for profile settings.
+#. TRANS: %s is an invalid tag.
+#: actions/profiledetailsettings.php:580
+#, php-format
+msgid "Invalid tag: \"%s\"."
 msgstr ""
 
-#: extendedprofile.php:82
-msgid "Contact"
+#. TRANS: Server error thrown when user profile settings could not be saved.
+#: actions/profiledetailsettings.php:622
+msgid "Could not save profile."
 msgstr ""
 
-#: extendedprofile.php:85
-msgid "Phone"
-msgstr ""
-
-#: extendedprofile.php:91
-msgid "IM"
-msgstr ""
-
-#: extendedprofile.php:96
-msgid "Websites"
-msgstr ""
-
-#: extendedprofile.php:106
-msgid "Birthday"
-msgstr ""
-
-#: extendedprofile.php:111
-msgid "Spouse's name"
-msgstr ""
-
-#: extendedprofile.php:115
-msgid "Kids' names"
-msgstr ""
-
-#: extendedprofile.php:120
-msgid "Work experience"
-msgstr ""
-
-#: extendedprofile.php:124
-msgid "Employer"
-msgstr ""
-
-#: extendedprofile.php:129
-msgid "Education"
-msgstr ""
-
-#: extendedprofile.php:133
-msgid "Institution"
+#. TRANS: Server error thrown when user profile settings tags could not be saved.
+#: actions/profiledetailsettings.php:631
+msgid "Could not save tags."
 msgstr ""
 
 #. TRANS: Link title for link on user profile.
-#: profiledetailaction.php:61
+#: actions/profiledetail.php:52
 msgid "Edit extended profile settings"
 msgstr ""
 
 #. TRANS: Link text for link on user profile.
-#: profiledetailaction.php:63
+#: actions/profiledetail.php:54
 msgid "Edit"
 msgstr ""
 
-#: profiledetailsettingsaction.php:29
-msgid "Extended profile settings"
+#: ExtendedProfilePlugin.php:41
+msgid "UI extensions for additional profile fields."
+msgstr ""
+
+#: ExtendedProfilePlugin.php:123
+msgid "More details..."
+msgstr ""
+
+#: lib/extendedprofilewidget.php:317 lib/extendedprofilewidget.php:359
+msgid "Company"
+msgstr ""
+
+#: lib/extendedprofilewidget.php:322 lib/extendedprofilewidget.php:366
+#: lib/extendedprofilewidget.php:407 lib/extendedprofilewidget.php:457
+msgid "Start"
+msgstr ""
+
+#: lib/extendedprofilewidget.php:329 lib/extendedprofilewidget.php:373
+#: lib/extendedprofilewidget.php:414 lib/extendedprofilewidget.php:464
+msgid "End"
+msgstr ""
+
+#: lib/extendedprofilewidget.php:341 lib/extendedprofilewidget.php:387
+msgid "Current"
+msgstr ""
+
+#: lib/extendedprofilewidget.php:399 lib/extendedprofilewidget.php:435
+#: lib/extendedprofile.php:242 lib/extendedprofile.php:254
+msgid "Institution"
+msgstr ""
+
+#: lib/extendedprofilewidget.php:403 lib/extendedprofilewidget.php:442
+msgid "Degree"
+msgstr ""
+
+#: lib/extendedprofilewidget.php:405 lib/extendedprofilewidget.php:449
+msgid "Description"
+msgstr ""
+
+#: lib/extendedprofilewidget.php:618
+msgctxt "BUTTON"
+msgid "Save"
+msgstr ""
+
+#: lib/extendedprofile.php:119 lib/extendedprofile.php:129
+msgid "Phone"
+msgstr ""
+
+#: lib/extendedprofile.php:150 lib/extendedprofile.php:156
+msgid "IM"
+msgstr ""
+
+#: lib/extendedprofile.php:176 lib/extendedprofile.php:182
+msgid "Website"
+msgstr ""
+
+#: lib/extendedprofile.php:205 lib/extendedprofile.php:216
+msgid "Employer"
+msgstr ""
+
+#: lib/extendedprofile.php:278 lib/extendedprofile.php:319
+msgid "Personal"
+msgstr ""
+
+#: lib/extendedprofile.php:281
+msgid "Full name"
+msgstr ""
+
+#: lib/extendedprofile.php:286
+msgid "Title"
+msgstr ""
+
+#: lib/extendedprofile.php:290
+msgid "Manager"
+msgstr ""
+
+#: lib/extendedprofile.php:295
+msgid "Location"
+msgstr ""
+
+#: lib/extendedprofile.php:299
+msgid "Bio"
+msgstr ""
+
+#: lib/extendedprofile.php:304
+msgid "Tags"
+msgstr ""
+
+#: lib/extendedprofile.php:311
+msgid "Contact"
+msgstr ""
+
+#: lib/extendedprofile.php:322
+msgid "Birthday"
+msgstr ""
+
+#: lib/extendedprofile.php:327
+msgid "Spouse's name"
+msgstr ""
+
+#: lib/extendedprofile.php:331
+msgid "Kids' names"
+msgstr ""
+
+#: lib/extendedprofile.php:336
+msgid "Work experience"
+msgstr ""
+
+#: lib/extendedprofile.php:342
+msgid "Education"
 msgstr ""

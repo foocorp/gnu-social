@@ -525,8 +525,6 @@ abstract class MicroAppPlugin extends Plugin
 
     function onStartMakeEntryForm($tag, $out, &$form)
     {
-        $this->log(LOG_INFO, "onStartMakeEntryForm() called for tag '$tag'");
-
         if ($tag == $this->tag()) {
             $form = $this->entryForm($out);
             return false;

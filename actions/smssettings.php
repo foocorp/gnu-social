@@ -409,7 +409,7 @@ class SmssettingsAction extends SettingsAction
         if (!$result) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
             // TRANS: Server error thrown on database error canceling SMS phone number confirmation.
-            $this->serverError(_('Could not delete email confirmation.'));
+            $this->serverError(_('Could not delete SMS confirmation.'));
             return;
         }
 

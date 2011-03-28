@@ -46,9 +46,9 @@ class Queue_item extends Memcached_DataObject
         $cnt = $qi->find(true);
 
         if ($cnt) {
-            # XXX: potential race condition
-            # can we force it to only update if claimed is still null
-            # (or old)?
+            // XXX: potential race condition
+            // can we force it to only update if claimed is still null
+            // (or old)?
             common_log(LOG_INFO, 'claiming queue item id = ' . $qi->id .
                 ' for transport ' . $qi->transport);
             $orig = clone($qi);

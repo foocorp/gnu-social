@@ -267,7 +267,7 @@ class PollPlugin extends MicroAppPlugin
     {
         $object = new ActivityObject();
         $object->id      = $notice->uri;
-        $object->type    = self::POLL_OBJECT;
+        $object->type    = self::POLL_RESPONSE_OBJECT;
         $object->title   = $notice->content;
         $object->summary = $notice->content;
         $object->link    = $notice->bestUrl();
@@ -290,7 +290,7 @@ class PollPlugin extends MicroAppPlugin
     {
         $object = new ActivityObject();
         $object->id      = $notice->uri;
-        $object->type    = self::POLL_RESPONSE_OBJECT;
+        $object->type    = self::POLL_OBJECT;
         $object->title   = $notice->content;
         $object->summary = $notice->content;
         $object->link    = $notice->bestUrl();

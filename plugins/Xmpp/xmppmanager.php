@@ -81,7 +81,7 @@ class XmppManager extends ImManager
      */
     public function handleInput($socket)
     {
-        # Process the queue for as long as needed
+        // Process the queue for as long as needed
         try {
             common_log(LOG_DEBUG, "Servicing the XMPP queue.");
             $this->stats('xmpp_process');

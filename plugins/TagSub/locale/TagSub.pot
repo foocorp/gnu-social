@@ -1,0 +1,98 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: tagunsubform.php:96 tagunsubform.php:107
+msgid "Unsubscribe from this tag"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: TagSubPlugin.php:128
+msgid "Plugin to allow following all messages with a given tag."
+msgstr ""
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+#: TagSubPlugin.php:202
+msgctxt "MENU"
+msgid "Tags"
+msgstr ""
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+#: TagSubPlugin.php:204
+msgid "Configure tag subscriptions"
+msgstr ""
+
+#: TagSubPlugin.php:225
+msgid "Tag subscriptions"
+msgstr ""
+
+#: tagsubform.php:116 tagsubform.php:140
+msgid "Subscribe to this tag"
+msgstr ""
+
+#. TRANS: Page title when tag unsubscription succeeded.
+#: tagunsubaction.php:76
+msgid "Unsubscribed"
+msgstr ""
+
+#. TRANS: Page title when tag subscription succeeded.
+#: tagsubaction.php:136
+msgid "Subscribed"
+msgstr ""
+
+#. TRANS: Header for subscriptions overview for a user (first page).
+#. TRANS: %s is a user nickname.
+#: tagsubsaction.php:51
+#, php-format
+msgid "%s's tag subscriptions"
+msgstr ""
+
+#. TRANS: Header for subscriptions overview for a user (not first page).
+#. TRANS: %1$s is a user nickname, %2$d is the page number.
+#: tagsubsaction.php:55
+#, php-format
+msgid "%1$s's tag subscriptions, page %2$d"
+msgstr ""
+
+#. TRANS: Page notice for page with an overview of all tag subscriptions
+#. TRANS: of the logged in user's own profile.
+#: tagsubsaction.php:68
+msgid ""
+"You have subscribed to receive all notices on this site containing the "
+"following tags:"
+msgstr ""
+
+#. TRANS: Page notice for page with an overview of all subscriptions of a user other
+#. TRANS: than the logged in user. %s is the user nickname.
+#: tagsubsaction.php:73
+#, php-format
+msgid ""
+"%s has subscribed to receive all notices on this site containing the "
+"following tags:"
+msgstr ""
+
+#. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
+#. TRANS: as an anonymous user. %s is the user nickname.
+#: tagsubsaction.php:130
+#, php-format
+msgid "%s is not listening to any tags."
+msgstr ""
+
+#: tagsubsaction.php:168
+#, php-format
+msgid "#<a href=\"%s\">%s</a> since %s"
+msgstr ""

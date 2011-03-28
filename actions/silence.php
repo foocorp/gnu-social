@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class SilenceAction extends ProfileFormAction
 {
     /**
@@ -50,7 +49,6 @@ class SilenceAction extends ProfileFormAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         if (!parent::prepare($args)) {
@@ -62,6 +60,7 @@ class SilenceAction extends ProfileFormAction
         assert(!empty($cur)); // checked by parent
 
         if (!$cur->hasRight(Right::SILENCEUSER)) {
+            // TRANS: Client error displayed trying to silence a user on a site where the feature is not enabled.
             $this->clientError(_('You cannot silence users on this site.'));
             return false;
         }
@@ -69,6 +68,7 @@ class SilenceAction extends ProfileFormAction
         assert(!empty($this->profile)); // checked by parent
 
         if ($this->profile->isSilenced()) {
+            // TRANS: Client error displayed trying to silence an already silenced user.
             $this->clientError(_('User is already silenced.'));
             return false;
         }
@@ -81,7 +81,6 @@ class SilenceAction extends ProfileFormAction
      *
      * @return void
      */
-
     function handlePost()
     {
         $this->profile->silence();

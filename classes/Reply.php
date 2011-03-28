@@ -38,35 +38,8 @@ class Reply extends Memcached_DataObject
 
     function stream($user_id, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
     {
-        $ids = Notice::stream(array('Reply', '_streamDirect'),
-                              array($user_id),
-                              'reply:stream:' . $user_id,
-                              $offset, $limit, $since_id, $max_id);
-        return $ids;
-    }
+        $stream = new ReplyNoticeStream($user_id);
 
-    function _streamDirect($user_id, $offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $max_id=0)
-    {
-        $reply = new Reply();
-        $reply->profile_id = $user_id;
-
-        Notice::addWhereSinceId($reply, $since_id, 'notice_id', 'modified');
-        Notice::addWhereMaxId($reply, $max_id, 'notice_id', 'modified');
-
-        $reply->orderBy('modified DESC, notice_id DESC');
-
-        if (!is_null($offset)) {
-            $reply->limit($offset, $limit);
-        }
-
-        $ids = array();
-
-        if ($reply->find()) {
-            while ($reply->fetch()) {
-                $ids[] = $reply->notice_id;
-            }
-        }
-
-        return $ids;
+        return $stream->getNotices($offset, $limit, $since_id, $max_id);
     }
 }

@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class SandboxAction extends ProfileFormAction
 {
     /**
@@ -50,7 +49,6 @@ class SandboxAction extends ProfileFormAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         if (!parent::prepare($args)) {
@@ -62,6 +60,7 @@ class SandboxAction extends ProfileFormAction
         assert(!empty($cur)); // checked by parent
 
         if (!$cur->hasRight(Right::SANDBOXUSER)) {
+            // TRANS: Client error displayed trying to sandbox users on a site where the feature is not enabled.
             $this->clientError(_('You cannot sandbox users on this site.'));
             return false;
         }
@@ -69,6 +68,7 @@ class SandboxAction extends ProfileFormAction
         assert(!empty($this->profile)); // checked by parent
 
         if ($this->profile->isSandboxed()) {
+            // TRANS: Client error displayed trying to sandbox an already sandboxed user.
             $this->clientError(_('User is already sandboxed.'));
             return false;
         }
@@ -81,7 +81,6 @@ class SandboxAction extends ProfileFormAction
      *
      * @return void
      */
-
     function handlePost()
     {
         $this->profile->sandbox();

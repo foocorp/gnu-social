@@ -1,0 +1,9 @@
+.event-tags li { display: inline; }
+.event-mentions li { display: inline; }
+.event-avatar { float: left; }
+.event-notice-count { float: right; }
+.event-info { float: left; }
+.event-title { margin-left: 0px; }
+#content .event .entry-title { margin-left: 0px; }
+#content .event .entry-content { margin-left: 0px; }
+

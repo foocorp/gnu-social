@@ -28,6 +28,7 @@ class Group_member extends Memcached_DataObject
 
     /**
      * Method to add a user to a group.
+     * In most cases, you should call Profile->joinGroup() instead.
      *
      * @param integer $group_id   Group to add to
      * @param integer $profile_id Profile being added
@@ -160,5 +161,14 @@ class Group_member extends Memcached_DataObject
         $act->editLink = $url;
 
         return $act;
+    }
+
+    /**
+     * Send notifications via email etc to group administrators about
+     * this exciting new membership!
+     */
+    public function notify()
+    {
+        mail_notify_group_join($this->getGroup(), $this->getMember());
     }
 }

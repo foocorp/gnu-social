@@ -71,6 +71,7 @@ class UserDesignSettingsAction extends DesignSettingsAction
      */
     function title()
     {
+        // TRANS: Title for profile design page.
         return _('Profile design');
     }
 
@@ -81,6 +82,7 @@ class UserDesignSettingsAction extends DesignSettingsAction
      */
     function getInstructions()
     {
+        // TRANS: Instructions for Profile design page.
         return _('Customize the way your profile looks ' .
         'with a background image and a colour palette of your choice.');
     }
@@ -193,6 +195,7 @@ class UserDesignSettingsAction extends DesignSettingsAction
 
             if ($result === false) {
                 common_log_db_error($design, 'UPDATE', __FILE__);
+                // TRANS: Form validation error on Profile design page when updating design settings has failed.
                 $this->showForm(_('Could not update your design.'));
                 return;
             }
@@ -215,6 +218,7 @@ class UserDesignSettingsAction extends DesignSettingsAction
 
             if (empty($id)) {
                 common_log_db_error($id, 'INSERT', __FILE__);
+                // TRANS: Form validation error on Profile design page when saving design settings has failed.
                 $this->showForm(_('Unable to save your design settings.'));
                 return;
             }
@@ -225,6 +229,7 @@ class UserDesignSettingsAction extends DesignSettingsAction
 
             if (empty($result)) {
                 common_log_db_error($original, 'UPDATE', __FILE__);
+                // TRANS: Form validation error on Profile design page when saving design settings has failed.
                 $this->showForm(_('Unable to save your design settings.'));
                 $user->query('ROLLBACK');
                 return;
@@ -236,6 +241,7 @@ class UserDesignSettingsAction extends DesignSettingsAction
 
         $this->saveBackgroundImage($design);
 
+        // TRANS: Confirmation message on Profile design page when saving design settings has succeeded.
         $this->showForm(_('Design preferences saved.'), true);
     }
 
@@ -246,7 +252,6 @@ class UserDesignSettingsAction extends DesignSettingsAction
      */
     function sethd()
     {
-
         $user   = common_current_user();
         $design = $user->getDesign();
 
@@ -267,6 +272,7 @@ class UserDesignSettingsAction extends DesignSettingsAction
 
         if (empty($id)) {
             common_log_db_error($id, 'INSERT', __FILE__);
+            // TRANS: Form validation error on Profile design page when saving design settings has failed.
             $this->showForm(_('Unable to save your design settings.'));
             return;
         }
@@ -277,6 +283,7 @@ class UserDesignSettingsAction extends DesignSettingsAction
 
         if (empty($result)) {
             common_log_db_error($original, 'UPDATE', __FILE__);
+            // TRANS: Form validation error on Profile design page when updating design settings has failed.
             $this->showForm(_('Unable to save your design settings.'));
             $user->query('ROLLBACK');
             return;
@@ -286,6 +293,7 @@ class UserDesignSettingsAction extends DesignSettingsAction
 
         $this->saveBackgroundImage($design);
 
+        // TRANS: Succes message on Profile design page when finding an easter egg.
         $this->showForm(_('Enjoy your hotdog!'), true);
     }
 
@@ -303,7 +311,8 @@ class UserDesignSettingsAction extends DesignSettingsAction
 
         if ($result === false) {
             common_log_db_error($user, 'UPDATE', __FILE__);
-            throw new ServerException(_('Couldn\'t update user.'));
+            // TRANS: Server exception thrown on Profile design page when updating design settings fails.
+            throw new ServerException(_('Could not update user.'));
         }
     }
 }
@@ -322,6 +331,7 @@ class UserDesignForm extends DesignForm
      */
     function formLegend()
     {
+        // TRANS: Form legend on Profile design page.
         $this->out->element('legend', null, _('Design settings'));
     }
 
@@ -337,7 +347,9 @@ class UserDesignForm extends DesignForm
 
         $this->out->elementStart('ul', 'form_data');
         $this->out->elementStart('li');
+        // TRANS: Checkbox label on Profile design page.
         $this->out->checkbox('viewdesigns', _('View profile designs'),
+                                                  // TRANS: Title for checkbox on Profile design page.
                          -                        $user->viewdesigns, _('Show or hide profile designs.'));
         $this->out->elementEnd('li');
         $this->out->elementEnd('ul');
@@ -345,6 +357,7 @@ class UserDesignForm extends DesignForm
         $this->out->elementEnd('fieldset');
 
         $this->out->elementStart('fieldset');
+        // TRANS: Form legend on Profile design page for form to choose a background image.
         $this->out->element('legend', null, _('Background file'));
 
         parent::formData();

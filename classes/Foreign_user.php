@@ -65,7 +65,7 @@ class Foreign_user extends Memcached_DataObject
             }
         }
         if (count($parts) == 0) {
-            # No changes
+            // No changes
             return true;
         }
         $toupdate = implode(', ', $parts);

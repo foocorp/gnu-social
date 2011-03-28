@@ -93,7 +93,13 @@ class InfoAction extends Action
     function showCore()
     {
         $this->elementStart('div', array('id' => 'core'));
+        $this->elementStart('div', array('id' => 'aside_primary_wrapper'));
+        $this->elementStart('div', array('id' => 'content_wrapper'));
+        $this->elementStart('div', array('id' => 'site_nav_local_views_wrapper'));
         $this->showContentBlock();
+        $this->elementEnd('div');
+        $this->elementEnd('div');
+        $this->elementEnd('div');
         $this->elementEnd('div');
     }
 

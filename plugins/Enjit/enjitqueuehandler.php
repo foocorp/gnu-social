@@ -45,7 +45,7 @@ class EnjitQueueHandler extends QueueHandler
         }
 
         #
-        # Build an Atom message from the notice
+        // Build an Atom message from the notice
         #
         $noticeurl = common_local_url('shownotice', array('notice' => $notice->id));
         $msg = $profile->nickname . ': ' . $notice->content;
@@ -73,7 +73,7 @@ class EnjitQueueHandler extends QueueHandler
         );
 
         #
-        # POST the message to $config['enjit']['apiurl']
+        // POST the message to $config['enjit']['apiurl']
         #
         $request = HTTPClient::start();
         $response = $request->post($url, null, $data);

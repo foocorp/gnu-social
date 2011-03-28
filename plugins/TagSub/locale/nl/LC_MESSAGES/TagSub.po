@@ -1,0 +1,95 @@
+# Translation of StatusNet - TagSub to Dutch (Nederlands)
+# Exported from translatewiki.net
+#
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TagSub\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"PO-Revision-Date: 2011-03-24 11:14:54+0000\n"
+"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-18 20:10:04+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-tagsub\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Unsubscribe from this tag"
+msgstr "Abonnement op dit label beëindigen"
+
+#. TRANS: Plugin description.
+msgid "Plugin to allow following all messages with a given tag."
+msgstr ""
+"Een plug-in die het mogelijk maakt alle berichten met een bepaald label te "
+"volgen."
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+msgctxt "MENU"
+msgid "Tags"
+msgstr "Labels"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+msgid "Configure tag subscriptions"
+msgstr "Labelabonnementen instellen"
+
+msgid "Tag subscriptions"
+msgstr "Labelabonnementen"
+
+msgid "Subscribe to this tag"
+msgstr "Op dit label abonneren"
+
+#. TRANS: Page title when tag unsubscription succeeded.
+msgid "Unsubscribed"
+msgstr "Het abonnement is opgezegd"
+
+#. TRANS: Page title when tag subscription succeeded.
+msgid "Subscribed"
+msgstr "Geabonneerd"
+
+#. TRANS: Header for subscriptions overview for a user (first page).
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "%s's tag subscriptions"
+msgstr "Labelabonnementen van %s"
+
+#. TRANS: Header for subscriptions overview for a user (not first page).
+#. TRANS: %1$s is a user nickname, %2$d is the page number.
+#, php-format
+msgid "%1$s's tag subscriptions, page %2$d"
+msgstr "Labelabonnementen van %1$s, pagina %2$d"
+
+#. TRANS: Page notice for page with an overview of all tag subscriptions
+#. TRANS: of the logged in user's own profile.
+msgid ""
+"You have subscribed to receive all notices on this site containing the "
+"following tags:"
+msgstr ""
+"U hebt een abonnement op alle mededelingen van deze site die de volgende "
+"labels bevatten:"
+
+#. TRANS: Page notice for page with an overview of all subscriptions of a user other
+#. TRANS: than the logged in user. %s is the user nickname.
+#, php-format
+msgid ""
+"%s has subscribed to receive all notices on this site containing the "
+"following tags:"
+msgstr ""
+"%s heeft een abonnement genomen op alle mededelingen van deze site die de "
+"volgende labels bevatten:"
+
+#. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
+#. TRANS: as an anonymous user. %s is the user nickname.
+#, php-format
+msgid "%s is not listening to any tags."
+msgstr "%s heeft geen labelabonnementen."
+
+#, php-format
+msgid "#<a href=\"%s\">%s</a> since %s"
+msgstr "#<a href=\"%s\">%s</a> sinds %s"

@@ -116,7 +116,7 @@ class ActivityMover extends QueueHandler
             $sink->postActivity($act);
             $group = User_group::staticGet('uri', $act->objects[0]->id);
             if (!empty($group)) {
-                Group_member::leave($group->id, $user->id);
+                $user->leaveGroup($group);
             }
             break;
         case ActivityVerb::FOLLOW:

@@ -9,27 +9,122 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-11 18:15+0000\n"
-"PO-Revision-Date: 2011-03-11 18:18:04+0000\n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"PO-Revision-Date: 2011-03-18 19:48:38+0000\n"
 "Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-08 01:22:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83703); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-03-17 13:01:04+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Extended profile settings"
+msgstr "Utökade profilinställningar"
+
+#. TRANS: Usage instructions for profile settings.
+msgid ""
+"You can update your personal profile info here so people know more about you."
+msgstr ""
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Message given submitting a form with an unknown action.
+msgid "Unexpected form submission."
+msgstr ""
+
+msgid "Details saved."
+msgstr ""
+
+#. TRANS: Exception thrown when no date was entered in a required date field.
+#. TRANS: %s is the field name.
+#, php-format
+msgid "You must supply a date for \"%s\"."
+msgstr ""
+
+#. TRANS: Exception thrown on incorrect data input.
+#. TRANS: %1$s is a field name, %2$s is the incorrect input.
+#, php-format
+msgid "Invalid date entered for \"%1$s\": %2$s."
+msgstr ""
+
+#. TRANS: Exception thrown when entering an invalid URL.
+#. TRANS: %s is the invalid URL.
+#, php-format
+msgid "Invalid URL: %s."
+msgstr ""
+
+msgid "Could not save profile details."
+msgstr ""
+
+#. TRANS: Validation error in form for profile settings.
+#. TRANS: %s is an invalid tag.
+#, php-format
+msgid "Invalid tag: \"%s\"."
+msgstr ""
+
+#. TRANS: Server error thrown when user profile settings could not be saved.
+msgid "Could not save profile."
+msgstr ""
+
+#. TRANS: Server error thrown when user profile settings tags could not be saved.
+msgid "Could not save tags."
+msgstr ""
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Redigera utökade profilinställningar"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Redigera"
+
 msgid "UI extensions for additional profile fields."
 msgstr ""
 
-#. TRANS: Link description in user account settings menu.
-msgid "Details"
-msgstr "Detaljer"
-
 msgid "More details..."
 msgstr "Mer detaljer..."
+
+msgid "Company"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Current"
+msgstr ""
+
+msgid "Institution"
+msgstr "Institution"
+
+msgid "Degree"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr ""
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "IM"
+msgstr ""
+
+#, fuzzy
+msgid "Website"
+msgstr "Webbsidor"
+
+msgid "Employer"
+msgstr "Arbetsgivare"
 
 msgid "Personal"
 msgstr "Personlig"
@@ -55,15 +150,6 @@ msgstr "Taggar"
 msgid "Contact"
 msgstr "Kontakt"
 
-msgid "Phone"
-msgstr "Telefon"
-
-msgid "IM"
-msgstr ""
-
-msgid "Websites"
-msgstr "Webbsidor"
-
 msgid "Birthday"
 msgstr "Födelsedag"
 
@@ -76,22 +162,5 @@ msgstr "Barnens namn"
 msgid "Work experience"
 msgstr "Arbetserfarenhet"
 
-msgid "Employer"
-msgstr "Arbetsgivare"
-
 msgid "Education"
 msgstr "Utbildning"
-
-msgid "Institution"
-msgstr "Institution"
-
-#. TRANS: Link title for link on user profile.
-msgid "Edit extended profile settings"
-msgstr "Redigera utökade profilinställningar"
-
-#. TRANS: Link text for link on user profile.
-msgid "Edit"
-msgstr "Redigera"
-
-msgid "Extended profile settings"
-msgstr "Utökade profilinställningar"

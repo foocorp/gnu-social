@@ -9,26 +9,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 02:34+0100\n"
-"PO-Revision-Date: 2011-03-06 01:38:18+0000\n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"PO-Revision-Date: 2011-03-24 11:14:51+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-03 17:47:23+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-POT-Import-Date: 2011-03-18 20:10:00+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Invalid feed URL."
-msgstr "URL de syndication invalide."
+#. TRANS: Client error displayed when entering an invalid URL for a feed.
+#. TRANS: %s is the invalid feed URL.
+#, php-format
+msgid "Invalid feed URL: %s."
+msgstr "URL de syndication invalide: %s."
 
-#. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
+#. TRANS: Error message returned to user when setting up feed mirroring,
+#. TRANS: but we were unable to resolve the given URL to a working feed.
 msgid "Invalid profile for mirroring."
 msgstr "Profilo invalide pro republication."
 
-msgid "Can't mirror a StatusNet group at this time."
+msgid "Cannot mirror a StatusNet group at this time."
 msgstr "Al presente il es impossibile republicar un gruppo StatusNet."
 
 msgid "This action only accepts POST requests."
@@ -90,6 +94,9 @@ msgctxt "BUTTON"
 msgid "Add feed"
 msgstr "Adder syndication"
 
+msgid "Twitter username:"
+msgstr "Nomine de usator de Twitter:"
+
 msgctxt "LABEL"
 msgid "Remote feed:"
 msgstr "Syndication remote:"
@@ -115,3 +122,12 @@ msgstr "Salveguardar"
 
 msgid "Stop mirroring"
 msgstr "Cessar le republication"
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "RSS or Atom feed"
+msgstr "Syndication RSS o Atom"
+
+msgid "Select a feed provider"
+msgstr "Selige un fornitor de syndicationes"

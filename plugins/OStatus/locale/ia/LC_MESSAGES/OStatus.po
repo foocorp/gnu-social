@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 02:34+0100\n"
-"PO-Revision-Date: 2011-03-06 01:37:59+0000\n"
+"POT-Creation-Date: 2011-03-26 11:02+0000\n"
+"PO-Revision-Date: 2011-03-26 11:06:52+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-03 17:49:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-POT-Import-Date: 2011-03-24 15:25:40+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -283,10 +283,6 @@ msgstr "Ja membro!"
 #. TRANS: OStatus remote group subscription dialog error.
 msgid "Remote group join failed!"
 msgstr "Le adhesion al gruppo remote ha fallite!"
-
-#. TRANS: OStatus remote group subscription dialog error.
-msgid "Remote group join aborted!"
-msgstr "Le adhesion al gruppo remote ha essite abortate!"
 
 #. TRANS: Page title for OStatus remote group join form
 msgid "Confirm joining remote group"

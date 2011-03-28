@@ -1,0 +1,41 @@
+# Translation of StatusNet - Irc to Finnish (Suomi)
+# Exported from translatewiki.net
+#
+# Author: Nike
+# Author: XTL
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Irc\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"PO-Revision-Date: 2011-03-24 11:13:52+0000\n"
+"Language-Team: Finnish <http://translatewiki.net/wiki/Portal:fi>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-18 20:08:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fi\n"
+"X-Message-Group: #out-statusnet-plugin-irc\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "IRC"
+msgstr "IRC"
+
+msgid ""
+"The IRC plugin allows users to send and receive notices over an IRC network."
+msgstr ""
+"IRC-liitännäinen mahdollistaa viestien lähettämisen ja vastaanottamisen IRC-"
+"verkkoa käyttäen."
+
+#, php-format
+msgid "Could not increment attempts count for %d"
+msgstr ""
+
+msgid "Your nickname is not registered so IRC connectivity cannot be enabled"
+msgstr ""
+"IRC-nimimerkkiäsi ei ole rekisteröity, joten IRC-yhteyttä ei voida ottaa "
+"käyttöön"

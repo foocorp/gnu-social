@@ -53,7 +53,7 @@ if (have_option('i', 'id')) {
 
 if (!empty($user)) {
     if (empty($user->email)) {
-        # Check for unconfirmed emails
+        // Check for unconfirmed emails
         $unconfirmed_email = new Confirm_address();
         $unconfirmed_email->user_id = $user->id;
         $unconfirmed_email->address_type = 'email';
@@ -75,7 +75,7 @@ if (have_option('e', 'email')) {
     $user->email = get_option_value('e', 'email');
     $user->find(false);
     if (!$user->fetch()) {
-        # Check unconfirmed emails
+        // Check unconfirmed emails
         $unconfirmed_email = new Confirm_address();
         $unconfirmed_email->address = $user->email;
         $unconfirmed_email->address_type = 'email';

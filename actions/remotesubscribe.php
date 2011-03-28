@@ -55,6 +55,7 @@ class RemotesubscribeAction extends Action
         parent::prepare($args);
 
         if (common_logged_in()) {
+            // TRANS: Client error displayed when using remote subscribe for a local entity.
             $this->clientError(_('You can use the local subscription!'));
             return false;
         }
@@ -94,6 +95,8 @@ class RemotesubscribeAction extends Action
         if ($this->err) {
             $this->element('div', 'error', $this->err);
         } else {
+            // TRANS: Page notice for remote subscribe. This message contains Markdown links.
+            // TRANS: Ensure to keep the correct markup of [link description](link).
             $inst = _('To subscribe, you can [login](%%action.login%%),' .
                       ' or [register](%%action.register%%) a new ' .
                       ' account. If you already have an account ' .
@@ -108,6 +111,7 @@ class RemotesubscribeAction extends Action
 
     function title()
     {
+        // TRANS: Page title for Remote subscribe.
         return _('Remote subscribe');
     }
 
@@ -120,20 +124,26 @@ class RemotesubscribeAction extends Action
                                           'class' => 'form_settings',
                                           'action' => common_local_url('remotesubscribe')));
         $this->elementStart('fieldset');
+        // TRANS: Field legend on page for remote subscribe.
         $this->element('legend', _('Subscribe to a remote user'));
         $this->hidden('token', common_session_token());
 
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
+        // TRANS: Field label on page for remote subscribe.
         $this->input('nickname', _('User nickname'), $this->nickname,
+                     // TRANS: Field title on page for remote subscribe.
                      _('Nickname of the user you want to follow.'));
         $this->elementEnd('li');
         $this->elementStart('li');
+        // TRANS: Field label on page for remote subscribe.
         $this->input('profile_url', _('Profile URL'), $this->profile_url,
+                     // TRANS: Field title on page for remote subscribe.
                      _('URL of your profile on another compatible microblogging service.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->submit('submit', _('Subscribe'));
+        // TRANS: Button text on page for remote subscribe.
+        $this->submit('submit', _m('BUTTON','Subscribe'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }
@@ -141,6 +151,7 @@ class RemotesubscribeAction extends Action
     function remoteSubscription()
     {
         if (!$this->nickname) {
+            // TRANS: Form validation error on page for remote subscribe when no user was provided.
             $this->showForm(_('No such user.'));
             return;
         }
@@ -150,11 +161,13 @@ class RemotesubscribeAction extends Action
         $this->profile_url = $this->trimmed('profile_url');
 
         if (!$this->profile_url) {
+            // TRANS: Form validation error on page for remote subscribe when no user profile was found.
             $this->showForm(_('No such user.'));
             return;
         }
 
         if (!common_valid_http_url($this->profile_url)) {
+            // TRANS: Form validation error on page for remote subscribe when an invalid profile URL was provided.
             $this->showForm(_('Invalid profile URL (bad format).'));
             return;
         }
@@ -164,6 +177,8 @@ class RemotesubscribeAction extends Action
                                                 common_root_url(),
                                                 omb_oauth_datastore());
         } catch (OMB_InvalidYadisException $e) {
+            // TRANS: Form validation error on page for remote subscribe when no the provided profile URL
+            // TRANS: does not contain expected data.
             $this->showForm(_('Not a valid profile URL (no YADIS document or ' .
                               'invalid XRDS defined).'));
             return;
@@ -172,6 +187,7 @@ class RemotesubscribeAction extends Action
         if ($service->getServiceURI(OAUTH_ENDPOINT_REQUEST) ==
             common_local_url('requesttoken') ||
             User::staticGet('uri', $service->getRemoteUserURI())) {
+            // TRANS: Form validation error on page for remote subscribe.
             $this->showForm(_('That is a local profile! Login to subscribe.'));
             return;
         }
@@ -179,6 +195,7 @@ class RemotesubscribeAction extends Action
         try {
             $service->requestToken();
         } catch (OMB_RemoteServiceException $e) {
+            // TRANS: Form validation error on page for remote subscribe when the remote service is not providing a request token.
             $this->showForm(_('Could not get a request token.'));
             return;
         }
@@ -187,6 +204,7 @@ class RemotesubscribeAction extends Action
         $profile = $user->getProfile();
         if (!$profile) {
             common_log_db_error($user, 'SELECT', __FILE__);
+            // TRANS: Server error displayed on page for remote subscribe when user does not have a matching profile.
             $this->serverError(_('User without matching profile.'));
             return;
         }

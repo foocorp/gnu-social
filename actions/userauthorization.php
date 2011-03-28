@@ -142,6 +142,7 @@ class UserauthorizationAction extends Action
                                         'alt' => $nickname));
         }
 
+        // TRANS: Label for nickname on user authorisation page.
         $this->element('div', 'entity_nickname', _('Nickname'));
 
         $hasFN = ($fullname !== '') ? 'nickname' : 'fn nickname';
@@ -196,12 +197,14 @@ class UserauthorizationAction extends Action
                                                          'userauthorization')));
         $this->hidden('token', common_session_token());
 
-        // TRANS: Button text on Authorise Subscription page.
-        $this->submit('accept', _m('BUTTON','Accept'), 'submit accept', null,
+        $this->submit('accept',
+                      // TRANS: Button text on Authorise Subscription page.
+                      _m('BUTTON','Accept'), 'submit accept', null,
                       // TRANS: Title for button on Authorise Subscription page.
                       _('Subscribe to this user.'));
-        // TRANS: Button text on Authorise Subscription page.
-        $this->submit('reject', _m('BUTTON','Reject'), 'submit reject', null,
+        $this->submit('reject',
+                      // TRANS: Button text on Authorise Subscription page.
+                      _m('BUTTON','Reject'), 'submit reject', null,
                       // TRANS: Title for button on Authorise Subscription page.
                       _('Reject this subscription.'));
         $this->elementEnd('form');

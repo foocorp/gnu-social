@@ -35,6 +35,9 @@ class SubMirrorPlugin extends Plugin
     {
         $m->connect('settings/mirror',
                     array('action' => 'mirrorsettings'));
+        $m->connect('settings/mirror/add/:provider',
+                    array('action' => 'mirrorsettings'),
+                    array('provider' => '[A-Za-z0-9_-]+'));
         $m->connect('settings/mirror/add',
                     array('action' => 'addmirror'));
         $m->connect('settings/mirror/edit',

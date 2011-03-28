@@ -156,9 +156,7 @@ class Group_message_profile extends Memcached_DataObject
 
         // TRANS: Subject for direct-message notification email.
         // TRANS: %s is the sending user's nickname.
-        $subject = sprintf(_('New private message from %s to group %s'), $from->nickname, $group->nickname);
-
-        $from_profile = $from->getProfile();
+        $subject = sprintf(_('New private message from %s to group %s'), $from_profile->nickname, $group->nickname);
 
         // TRANS: Body for direct-message notification email.
         // TRANS: %1$s is the sending user's long name, %2$s is the sending user's nickname,
@@ -174,13 +172,13 @@ class Group_message_profile extends Memcached_DataObject
                           "With kind regards,\n".
                           "%6\$s\n"),
                         $from_profile->getBestName(),
-                        $from->nickname,
+                        $from_profile->nickname,
                         $group->nickname,
-                        $this->content,
-                        common_local_url('newmessage', array('to' => $from->id)),
+                        $gm->content,
+                        common_local_url('newmessage', array('to' => $from_profile->id)),
                         common_config('site', 'name'));
 
-        $headers = _mail_prepare_headers('message', $to->nickname, $from->nickname);
+        $headers = _mail_prepare_headers('message', $to->nickname, $from_profile->nickname);
 
         common_switch_locale();
 

@@ -314,7 +314,7 @@ class CommandInterpreter
                 $result = false;
             }
                 
-            Event::handle('EndInterpretCommand', array($cmd, $arg, $user, $result));
+            Event::handle('EndInterpretCommand', array($cmd, $arg, $user, &$result));
         }
 
         return $result;

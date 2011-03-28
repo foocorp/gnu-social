@@ -123,10 +123,7 @@ class LeavegroupAction extends Action
         $cur = common_current_user();
 
         try {
-            if (Event::handle('StartLeaveGroup', array($this->group, $cur))) {
-                Group_member::leave($this->group->id, $cur->id);
-                Event::handle('EndLeaveGroup', array($this->group, $cur));
-            }
+            $cur->leaveGroup($this->group);
         } catch (Exception $e) {
             // TRANS: Server error displayed when leaving a group failed in the database.
             // TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.

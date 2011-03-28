@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"POT-Creation-Date: 2011-03-26 11:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -338,11 +338,15 @@ msgstr ""
 msgid "Sign in with Twitter"
 msgstr ""
 
-#: twitter.php:409
-msgid "Your Twitter bridge has been disabled."
+#. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
+#: twitter.php:428
+msgid "Your Twitter bridge has been disabled"
 msgstr ""
 
-#: twitter.php:413
+#. TRANS: Mail body after forwarding notices to Twitter has stopped working.
+#. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the
+#. TRANS: Twitter settings, %3$s is the StatusNet sitename.
+#: twitter.php:435
 #, php-format
 msgid ""
 "Hi, %1$s. We're sorry to inform you that your link to Twitter has been "

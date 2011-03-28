@@ -27,7 +27,7 @@ require_once('Auth/OpenID/Server.php');
 require_once('Auth/OpenID/SReg.php');
 require_once('Auth/OpenID/MySQLStore.php');
 
-# About one year cookie expiry
+// About one year cookie expiry
 
 define('OPENID_COOKIE_EXPIRY', round(365.25 * 24 * 60 * 60));
 define('OPENID_COOKIE_KEY', 'lastusedopenid');
@@ -36,7 +36,7 @@ function oid_store()
 {
     static $store = null;
     if (!$store) {
-        # Can't be called statically
+        // Can't be called statically
         $user = new User();
         $conn = $user->getDatabaseConnection();
         $store = new Auth_OpenID_MySQLStore($conn);
@@ -213,8 +213,8 @@ function oid_authenticate($openid_url, $returnto, $immediate=false)
         $form_html = $auth_request->formMarkup($trust_root, $process_url,
                                                $immediate, array('id' => $form_id));
 
-        # XXX: This is cheap, but things choke if we don't escape ampersands
-        # in the HTML attributes
+        // XXX: This is cheap, but things choke if we don't escape ampersands
+        // in the HTML attributes
 
         $form_html = preg_replace('/&/', '&amp;', $form_html);
 
@@ -235,7 +235,7 @@ function oid_authenticate($openid_url, $returnto, $immediate=false)
     */
 }
 
-# Half-assed attempt at a module-private function
+// Half-assed attempt at a module-private function
 
 function _oid_print_instructions()
 {
@@ -264,16 +264,16 @@ function oid_update_user($user, $sreg)
 
     if (!empty($sreg['country'])) {
         if ($sreg['postcode']) {
-            # XXX: use postcode to get city and region
-            # XXX: also, store postcode somewhere -- it's valuable!
+            // XXX: use postcode to get city and region
+            // XXX: also, store postcode somewhere -- it's valuable!
             $profile->location = $sreg['postcode'] . ', ' . $sreg['country'];
         } else {
             $profile->location = $sreg['country'];
         }
     }
 
-    # XXX save language if it's passed
-    # XXX save timezone if it's passed
+    // XXX save language if it's passed
+    // XXX save timezone if it's passed
 
     if (!$profile->update($orig_profile)) {
         // TRANS: OpenID plugin server error.

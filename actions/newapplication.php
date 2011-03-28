@@ -294,8 +294,9 @@ class NewApplicationAction extends OwnerDesignAction
             $app->uploadLogo();
         } catch (Exception $e) {
             $app->query('ROLLBACK');
+            // TRANS: Form validation error on New application page when providing an invalid image upload.
             $this->showForm(_('Invalid image.'));
-	    return;	 
+	    return;
 	}
 
         $app->query('COMMIT');

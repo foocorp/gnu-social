@@ -131,6 +131,7 @@ class NewgroupAction extends Action
             $description = $this->trimmed('description');
             $location    = $this->trimmed('location');
             $aliasstring = $this->trimmed('aliases');
+            $join_policy = intval($this->arg('join_policy'));
 
             if ($this->nicknameExists($nickname)) {
                 // TRANS: Group create form validation error.
@@ -215,6 +216,7 @@ class NewgroupAction extends Action
                                                 'location' => $location,
                                                 'aliases'  => $aliases,
                                                 'userid'   => $cur->id,
+                                                'join_policy' => $join_policy,
                                                 'local'    => true));
 
             $this->group = $group;

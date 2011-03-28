@@ -39,6 +39,8 @@ define('NOTICES_PER_SECTION', 6);
  * These are the widgets that show interesting data about a person
  * group, or site.
  *
+ * @todo migrate this to use a variant of NoticeList
+ *
  * @category Widget
  * @package  StatusNet
  * @author   Evan Prodromou <evan@status.net>
@@ -97,38 +99,13 @@ class NoticeSection extends Section
 
         $this->out->elementStart('p', 'entry-content');
         $this->out->raw($notice->rendered);
-
-        $notice_link_cfg = common_config('site', 'notice_link');
-        if ('direct' === $notice_link_cfg) {
-            $this->out->text(' (');
-            $this->out->element('a', array('href' => $notice->uri), 'see');
-            $this->out->text(')');
-        } elseif ('attachment' === $notice_link_cfg) {
-            if ($count = $notice->hasAttachments()) {
-            // link to attachment(s) pages
-                if (1 === $count) {
-                    $f2p = File_to_post::staticGet('post_id', $notice->id);
-                    $href = common_local_url('attachment', array('attachment' => $f2p->file_id));
-                    $att_class = 'attachment';
-                } else {
-                    $href = common_local_url('attachments', array('notice' => $notice->id));
-                    $att_class = 'attachments';
-                }
-
-                $clip = Theme::path('images/icons/clip.png', 'base');
-                $this->out->elementStart('a', array('class' => $att_class, 'style' => "font-style: italic;", 'href' => $href, 'title' => "# of attachments: $count"));
-                $this->out->raw(" ($count&nbsp");
-                $this->out->element('img', array('style' => 'display: inline', 'align' => 'top', 'width' => 20, 'height' => 20, 'src' => $clip, 'alt' => 'alt'));
-                $this->out->text(')');
-                $this->out->elementEnd('a');
-            } else {
-                $this->out->text(' (');
-                $this->out->element('a', array('href' => $notice->uri), 'see');
-                $this->out->text(')');
-            }
-        }
-
         $this->out->elementEnd('p');
+
+        $this->out->elementStart('div', 'entry_content');
+        $nli = new NoticeListItem($notice, $this->out);
+        $nli->showNoticeLink();
+        $this->out->elementEnd('div');
+
         if (!empty($notice->value)) {
             $this->out->elementStart('p');
             $this->out->text($notice->value);

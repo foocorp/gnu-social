@@ -48,7 +48,7 @@ class NewrsvpAction extends Action
 {
     protected $user  = null;
     protected $event = null;
-    protected $type  = null;
+    protected $verb  = null;
 
     /**
      * Returns the title of the action
@@ -94,13 +94,22 @@ class NewrsvpAction extends Action
             throw new ClientException(_('You must be logged in to RSVP for an event.'));
         }
 
-        if ($this->arg('yes')) {
-            $this->type = RSVP::POSITIVE;
-        } else if ($this->arg('no')) {
-            $this->type = RSVP::NEGATIVE;
-        } else {
-            $this->type = RSVP::POSSIBLE;
+        common_debug(print_r($this->args, true));
+
+        switch (strtolower($this->trimmed('submitvalue'))) {
+        case 'yes':
+            $this->verb = RSVP::POSITIVE;
+            break;
+        case 'no':
+            $this->verb = RSVP::NEGATIVE;
+            break;
+        case 'maybe':
+            $this->verb = RSVP::POSSIBLE;
+            break;
+        default:
+            throw new ClientException('Unknown submit value.');
         }
+
         return true;
     }
 
@@ -136,7 +145,7 @@ class NewrsvpAction extends Action
         try {
             $saved = RSVP::saveNew($this->user->getProfile(),
                                    $this->event,
-                                   $this->type);
+                                   $this->verb);
         } catch (ClientException $ce) {
             $this->error = $ce->getMessage();
             $this->showPage();

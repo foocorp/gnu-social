@@ -1,0 +1,38 @@
+# Translation of StatusNet - Irc to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Irc\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-26 11:02+0000\n"
+"PO-Revision-Date: 2011-03-26 11:06:11+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-24 15:25:05+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-irc\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "IRC"
+msgstr "IRC"
+
+msgid ""
+"The IRC plugin allows users to send and receive notices over an IRC network."
+msgstr ""
+"Ang pampasak na IRC ay nagpapahintulot sa mga tagagamit na makapagpadala at "
+"makatanggap ng mga pabatid sa ibabaw ng kalambatan ng IRC."
+
+#, php-format
+msgid "Could not increment attempts count for %d"
+msgstr "Hindi masudlungan ang bilang ng pagtatangka para sa %d"
+
+msgid "Your nickname is not registered so IRC connectivity cannot be enabled"
+msgstr "Hindi nakatala ang palayaw mo kaya mapagana ang ugnayan ng IRC"

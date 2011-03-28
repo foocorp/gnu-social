@@ -84,7 +84,7 @@ class ModPlusPlugin extends Plugin
     }
 
     /**
-     * Add OpenID-related paths to the router table
+     * Add ModPlus-related paths to the router table
      *
      * Hook for RouterInitialized event.
      *
@@ -101,16 +101,45 @@ class ModPlusPlugin extends Plugin
         return true;
     }
 
+    /**
+     * Add per-profile info popup menu for author on notice lists.
+     *
+     * @param NoticeListItem $item
+     * @return boolean hook value
+     */
     function onStartShowNoticeItem($item)
     {
-        $profile = $item->profile;
+        $this->showProfileOptions($item->out, $item->profile);
+        return true;
+    }
+
+    /**
+     * Add per-profile info popup menu on profile lists.
+     *
+     * @param ProfileListItem $item
+     */
+    function onStartProfileListItemProfile($item)
+    {
+        $this->showProfileOptions($item->out, $item->profile);
+        return true;
+    }
+
+    /**
+     * Build common remote-profile options structure.
+     * Currently only adds output for remote profiles, nothing for local users.
+     *
+     * @param HTMLOutputter $out
+     * @param Profile $profile (may also be an ArrayWrapper... sigh)
+     */
+    protected function showProfileOptions(HTMLOutputter $out, $profile)
+    {
         $isRemote = !(User::staticGet('id', $profile->id));
         if ($isRemote) {
             $target = common_local_url('remoteprofile', array('id' => $profile->id));
             $label = _m('Remote profile options...');
-            $item->out->elementStart('div', 'remote-profile-options');
-            $item->out->element('a', array('href' => $target), $label);
-            $item->out->elementEnd('div');
+            $out->elementStart('div', 'remote-profile-options');
+            $out->element('a', array('href' => $target), $label);
+            $out->elementEnd('div');
         }
     }
 }

@@ -1,0 +1,116 @@
+<?php
+/**
+ * StatusNet - the distributed open-source microblogging tool
+ * Copyright (C) 2011, StatusNet, Inc.
+ *
+ * Superclass for profile blocks
+ * 
+ * PHP version 5
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @category  Widget
+ * @package   StatusNet
+ * @author    Evan Prodromou <evan@status.net>
+ * @copyright 2011 StatusNet, Inc.
+ * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
+ * @link      http://status.net/
+ */
+
+if (!defined('STATUSNET')) {
+    // This check helps protect against security problems;
+    // your code file can't be executed directly from the web.
+    exit(1);
+}
+
+/**
+ * Class comment
+ *
+ * @category  General
+ * @package   StatusNet
+ * @author    Evan Prodromou <evan@status.net>
+ * @copyright 2011 StatusNet, Inc.
+ * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
+ * @link      http://status.net/
+ */
+
+abstract class ProfileBlock extends Widget
+{
+    abstract function avatar();
+    abstract function name();
+    abstract function url();
+    abstract function location();
+    abstract function homepage();
+    abstract function description();
+
+    function show()
+    {
+        $this->out->elementStart('div', 'profile_block section');
+
+        $size = $this->avatarSize();
+
+        $this->out->element('img', array('src' => $this->avatar(),
+                                         'class' => 'profile_block_avatar',
+                                         'alt' => $this->name(),
+                                         'width' => $size,
+                                         'height' => $size));
+
+        $name = $this->name();
+
+        if (!empty($name)) {
+            $this->out->elementStart('p', 'profile_block_name');
+            $url = $this->url();
+            if (!empty($url)) {
+                $this->out->element('a', array('href' => $url),
+                                    $name);
+            } else {
+                $this->out->text($name);
+            }
+            $this->out->elementEnd('p');
+        }
+
+        $location = $this->location();
+
+        if (!empty($location)) {
+            $this->out->element('p', 'profile_block_location', $location);
+        }
+
+        $homepage = $this->homepage();
+
+        if (!empty($homepage)) {
+            $this->out->element('a', 'profile_block_homepage', $homepage);
+        }
+
+        $description = $this->description();
+
+        if (!empty($description)) {
+            $this->out->element('p',
+                                'profile_block_description',
+                                $description);
+        }
+
+        $this->showActions();
+
+        $this->out->elementEnd('div');
+    }
+
+    function avatarSize()
+    {
+        return AVATAR_PROFILE_SIZE;
+    }
+
+    function showActions()
+    {
+    }
+}

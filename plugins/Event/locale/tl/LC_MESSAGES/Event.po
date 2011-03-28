@@ -1,0 +1,48 @@
+# Translation of StatusNet - Event to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Event\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"PO-Revision-Date: 2011-03-24 11:13:34+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-17 10:24:36+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-event\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "BUTTON"
+msgid "Cancel"
+msgstr "Huwag ituloy"
+
+msgctxt "BUTTON"
+msgid "Yes"
+msgstr "Oo"
+
+msgctxt "BUTTON"
+msgid "No"
+msgstr "Hindi"
+
+msgctxt "BUTTON"
+msgid "Maybe"
+msgstr "Siguro"
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Sagipin"
+
+msgid "Event invitations and RSVPs."
+msgstr "Mga paanyaya sa kaganapan at mga paghingi ng tugon."
+
+msgid "Event"
+msgstr "Kaganapan"

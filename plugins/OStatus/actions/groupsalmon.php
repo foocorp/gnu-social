@@ -149,14 +149,7 @@ class GroupsalmonAction extends SalmonAction
         }
 
         try {
-            // @fixme that event currently passes a user from main UI
-            // Event should probably move into Group_member::join
-            // and take a Profile object.
-            //
-            //if (Event::handle('StartJoinGroup', array($this->group, $profile))) {
-                Group_member::join($this->group->id, $profile->id);
-                //Event::handle('EndJoinGroup', array($this->group, $profile));
-            //}
+            $profile->joinGroup($this->group);
         } catch (Exception $e) {
             // TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
             $this->serverError(sprintf(_m('Could not join remote user %1$s to group %2$s.'),
@@ -181,11 +174,7 @@ class GroupsalmonAction extends SalmonAction
         $profile = $oprofile->localProfile();
 
         try {
-            // @fixme event needs to be refactored as above
-            //if (Event::handle('StartLeaveGroup', array($this->group, $profile))) {
-                Group_member::leave($this->group->id, $profile->id);
-                //Event::handle('EndLeaveGroup', array($this->group, $profile));
-            //}
+            $profile->leaveGroup($this->group);
         } catch (Exception $e) {
             // TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
             $this->serverError(sprintf(_m('Could not remove remote user %1$s from group %2$s.'),

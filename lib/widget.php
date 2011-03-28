@@ -79,4 +79,17 @@ class Widget
     function show()
     {
     }
+
+    /**
+     * Delegate output methods to the outputter attribute.
+     *
+     * @param string $name      Name of the method
+     * @param array  $arguments Arguments called
+     *
+     * @return mixed Return value of the method.
+     */
+    function __call($name, $arguments)
+    {
+        return call_user_func_array(array($this->out, $name), $arguments);
+    }
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-11 18:15+0000\n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,17 +21,17 @@ msgctxt "BUTTON"
 msgid "Cancel"
 msgstr ""
 
-#: rsvpform.php:116
+#: rsvpform.php:117
 msgctxt "BUTTON"
 msgid "Yes"
 msgstr ""
 
-#: rsvpform.php:117
+#: rsvpform.php:118
 msgctxt "BUTTON"
 msgid "No"
 msgstr ""
 
-#: rsvpform.php:118
+#: rsvpform.php:119
 msgctxt "BUTTON"
 msgid "Maybe"
 msgstr ""

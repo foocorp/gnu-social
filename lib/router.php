@@ -333,6 +333,9 @@ class Router
             $m->connect('conversation/:id',
                         array('action' => 'conversation'),
                         array('id' => '[0-9]+'));
+            $m->connect('conversation/:id/replies',
+                        array('action' => 'conversationreplies'),
+                        array('id' => '[0-9]+'));
 
             $m->connect('message/new', array('action' => 'newmessage'));
             $m->connect('message/new?to=:to', array('action' => 'newmessage'), array('to' => Nickname::DISPLAY_FMT));
@@ -363,7 +366,7 @@ class Router
 
             $m->connect('group/new', array('action' => 'newgroup'));
 
-            foreach (array('edit', 'join', 'leave', 'delete') as $v) {
+            foreach (array('edit', 'join', 'leave', 'delete', 'cancel', 'approve') as $v) {
                 $m->connect('group/:nickname/'.$v,
                             array('action' => $v.'group'),
                             array('nickname' => Nickname::DISPLAY_FMT));
@@ -388,6 +391,10 @@ class Router
 
             $m->connect('group/:nickname/makeadmin',
                         array('action' => 'makeadmin'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
+
+            $m->connect('group/:nickname/members/pending',
+                        array('action' => 'groupqueue'),
                         array('nickname' => Nickname::DISPLAY_FMT));
 
             $m->connect('group/:id/id',

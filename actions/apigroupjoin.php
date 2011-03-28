@@ -126,10 +126,7 @@ class ApiGroupJoinAction extends ApiAuthAction
         }
 
         try {
-            if (Event::handle('StartJoinGroup', array($this->group, $this->user))) {
-                Group_member::join($this->group->id, $this->user->id);
-                Event::handle('EndJoinGroup', array($this->group, $this->user));
-            }
+            $this->user->joinGroup($this->group);
         } catch (Exception $e) {
             // TRANS: Server error displayed when joining a group failed in the database.
             // TRANS: %1$s is the joining user's nickname, $2$s is the group nickname for which the join failed.

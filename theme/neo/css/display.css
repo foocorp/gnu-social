@@ -27,6 +27,8 @@ input, textarea, select, option {
 a {color: #3e3e8c;}
 a:hover {color: blue;}
 
+abbr {border-bottom: none;}
+
 h1 {font-size: 1.6em;}
 h2 {font-size: 1.6em;}
 h3 {font-size: 1.4em;}
@@ -258,9 +260,9 @@ address {
     line-height: 1.4em;
     text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.9);
     background: #ececf2;
-    background: -moz-linear-gradient(top, #fff , #ececf2);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#ececf2));
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fff', endColorstr='#ececf2',GradientType=0 );
+    background: -moz-linear-gradient(top, #ffffff , #ececf2);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#ececf2));
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ececf2',GradientType=0 );
 }
 
 #input_form_nav li:hover a, #input_form_nav li.current a {
@@ -302,11 +304,22 @@ address {
     display: none; /* XXX move into input with js */
 }
 
-.form_notice textarea,
 .form_notice_placeholder .placeholder {
     width: 473px;
+    padding: 4px 10px 4px 10px;
+    border: 1px solid #a6a6a6;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    z-index: 97;
+    font-size: 1em;
 }
+
 .form_notice textarea {
+    width: 473px;
     height: 42px;
     padding: 6px 10px 18px 10px;
     border: 1px solid #a6a6a6;
@@ -362,7 +375,7 @@ address {
     float: none;
     clear: none;
     margin-left: 0px;
-    margin-top: 5px;
+    margin-top: 10px;
     padding: 5px 5px 5px 10px;
     border: 1px solid #ccc;
 }
@@ -413,13 +426,40 @@ address {
     text-transform: uppercase;
 }
 
+.profile_block_name {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.profile_block_location {
+    font-weight: bold;
+}
+
+.profile_block_description {
+    line-height: 1.2em;
+}
+
+.profile_block .entity_actions {
+    float: left;
+    margin-left: 0px;
+}
+
+.profile_block .entity_moderation:hover ul,
+.profile_block .entity_role:hover ul {
+    left: 20px;
+}
+
+.profile_block a.profiledetail {
+    display: block;
+}
+
 .section ul.entities {
-    width: 220px;
+    width: 240px;
 }
 
 .section .entities li {
-    margin-right: 17px;
-    margin-bottom: 10px;
+    margin-right: 23px;
+    margin-bottom: 12px;
     width: 24px;
 }
 
@@ -522,7 +562,10 @@ div.entry-content a.response:after {
     font-size: 1em;
 }
 
-#content .notice .threaded-replies .notice {
+#content .notice .threaded-replies .notice,
+#content .notice .threaded-replies .notice-data {
+    width: 440px;
+    min-height: 1px;
     padding-bottom: 14px;
     padding-top: 5px;
     border-bottom: 2px dotted #eee;
@@ -554,7 +597,7 @@ div.entry-content a.response:after {
     clear:left;
     float:left;
     margin-left: 35px;
-    margin-top: 10px;
+    margin-top: 4px !important;
 }
 
 .threaded-replies li {
@@ -605,6 +648,26 @@ div.entry-content a.response:after {
 .threaded-replies .form_notice .success,
 .threaded-replies .form_notice .notice-status {
     width: 390px; 
+}
+
+#content .notice .notice {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 16px;
+    margin-bottom: 10px;
+}
+
+.notice .notice {
+background-color:rgba(200, 200, 200, 0.050);
+}
+.notice .notice .notice {
+background-color:rgba(200, 200, 200, 0.100);
+}
+.notice .notice .notice .notice {
+background-color:rgba(200, 200, 200, 0.150);
+}
+.notice .notice .notice .notice .notice {
+background-color:rgba(200, 200, 200, 0.300);
 }
 
 .pagination {
@@ -835,6 +898,18 @@ padding-right:0;
     padding-left: 4px !important;
     padding-right: 4px !important;
     margin-right: 0px;
+    left: 0;
+    right: 0;
+    width: 400px;
+    overflow: visible;
+}
+
+.realtime-popup .threaded-replies {
+    margin-left: 10px;
+}
+
+.realtime-popup .input_forms {
+    display: none; /* XXX fixme! */
 }
 
 .realtime-popup .form_notice textarea {
@@ -917,7 +992,7 @@ ul.bookmark-tags a {
     background: #f2f2f2;
     color: #3e3e8c !important;
     text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
-    font-size: 0.9em;
+    font-size: 0.88em;
 }
 
 ul.bookmark-tags a:hover {
@@ -932,7 +1007,7 @@ ul.bookmark-tags a:hover {
 }
 
 .bookmark div.entry-content {
-    font-size: 0.9em;
+    font-size: 0.88em;
     line-height: 1.2em;
     margin-top: 6px;
     opacity: 0.6;
@@ -995,6 +1070,9 @@ ul.bookmark-tags a:hover {
 /* Onboard specific styles */
 
 .onboard-flash {
+    position: relative;
+    right: -800px;
+    top: 10px;
     border-radius: 6px;
  	-moz-border-radius: 6px;
    	-webkit-border-radius: 6px;
@@ -1117,5 +1195,55 @@ table.profile_list tr.alt {
     font-size: 0em;
 }
 
+/* Event specific styles */
+
+.notice .vevent div {
+    margin-bottom: 8px;
+}
+
+.event-info {
+    margin-left: 0px !important;
+    margin-top: 2px !important;
+}
+
+.notice .event-info + .notice-options {
+    margin-top: 14px;
+}
+
+.notice .threaded-replies .event-info + .notice-options {
+    margin-top: 20px;
+}
+
+#form_event_rsvp #new_rsvp_data {
+    display: inline;
+    margin: 10px 0px;
+}
+
+#form_event_rsvp input.submit {
+    height: auto;
+    padding: 0px 10px;
+    margin-left: 10px;
+    color:#fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 1.1em;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
+    border: 1px solid #d7621c;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background: #FB6104;
+    background: -moz-linear-gradient(top, #ff9d63 , #FB6104);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ff9d63), color-stop(100%,#FB6104)); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9d63', endColorstr='#FB6104',GradientType=0 );
+}
+
+#form_event_rsvp input.submit:hover {
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.6);
+    background: #ff9d63;
+    background: -moz-linear-gradient(top, #FB6104 , #fc8035);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FB6104), color-stop(100%,#fc8035));
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FB6104', endColorstr='#fc8035',GradientType=0 );
+}
 
 }/*end of @media screen, projection, tv*/

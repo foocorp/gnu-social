@@ -101,6 +101,7 @@ class RSVPForm extends Form
         $this->out->text(_('RSVP: '));
 
         $this->out->hidden('event', $this->event->id);
+        $this->out->hidden('submitvalue', '');
 
         $this->out->elementEnd('fieldset');
     }
@@ -113,8 +114,19 @@ class RSVPForm extends Form
 
     function formActions()
     {
-        $this->out->submit('yes', _m('BUTTON', 'Yes'));
-        $this->out->submit('no', _m('BUTTON', 'No'));
-        $this->out->submit('maybe', _m('BUTTON', 'Maybe'));
+        $this->submitButton('yes', _m('BUTTON', 'Yes'));
+        $this->submitButton('no', _m('BUTTON', 'No'));
+        $this->submitButton('maybe', _m('BUTTON', 'Maybe'));
+    }
+    
+    function submitButton($id, $label)
+    {
+        $this->out->element('input', array('type' => 'submit',
+                                           'id' => $id,
+                                           'name' => $id,
+                                           'class' => 'submit',
+                                           'value' => $label,
+                                           'title' => $label,
+                                           'onClick' => 'this.form.submitvalue.value = this.name; return true;'));
     }
 }

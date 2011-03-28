@@ -1,0 +1,48 @@
+# Translation of StatusNet - Event to Macedonian (Македонски)
+# Exported from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Event\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"PO-Revision-Date: 2011-03-18 19:48:35+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-17 10:24:36+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-event\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+msgctxt "BUTTON"
+msgid "Cancel"
+msgstr "Откажи"
+
+msgctxt "BUTTON"
+msgid "Yes"
+msgstr "Да"
+
+msgctxt "BUTTON"
+msgid "No"
+msgstr "Не"
+
+msgctxt "BUTTON"
+msgid "Maybe"
+msgstr "Можеби"
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Зачувај"
+
+msgid "Event invitations and RSVPs."
+msgstr "Покани и одговори за настани"
+
+msgid "Event"
+msgstr "Настан"

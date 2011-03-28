@@ -451,6 +451,10 @@ address .poweredby {
 overflow:visible;
 }
 
+.notice .automatic { 
+font-style:italic;
+}
+
 #showstream h1 { 
     display:none;
 }

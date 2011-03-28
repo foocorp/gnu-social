@@ -83,6 +83,11 @@ class Action extends HTMLOutputter // lawsuit
     function prepare($argarray)
     {
         $this->args =& common_copy_args($argarray);
+
+        if ($this->boolean('ajax')) {
+            StatusNet::setAjax(true);
+        }
+
         return true;
     }
 
@@ -95,10 +100,12 @@ class Action extends HTMLOutputter // lawsuit
     {
         if (Event::handle('StartShowHTML', array($this))) {
             $this->startHTML();
+            $this->flush();
             Event::handle('EndShowHTML', array($this));
         }
         if (Event::handle('StartShowHead', array($this))) {
             $this->showHead();
+            $this->flush();
             Event::handle('EndShowHead', array($this));
         }
         if (Event::handle('StartShowBody', array($this))) {
@@ -222,6 +229,8 @@ class Action extends HTMLOutputter // lawsuit
                 Event::handle('EndShowLaconicaStyles', array($this));
             }
 
+            $this->cssLink(common_path('js/css/smoothness/jquery-ui.css'));
+
             if (Event::handle('StartShowUAStyles', array($this))) {
                 $this->comment('[if IE]><link rel="stylesheet" type="text/css" '.
                                'href="'.Theme::path('css/ie.css', 'base').'?version='.STATUSNET_VERSION.'" /><![endif]');
@@ -296,12 +305,14 @@ class Action extends HTMLOutputter // lawsuit
                 if (common_config('site', 'minify')) {
                     $this->script('jquery.min.js');
                     $this->script('jquery.form.min.js');
+                    $this->script('jquery-ui.min.js');
                     $this->script('jquery.cookie.min.js');
                     $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.min.js').'"); }');
                     $this->script('jquery.joverlay.min.js');
                 } else {
                     $this->script('jquery.js');
                     $this->script('jquery.form.js');
+                    $this->script('jquery-ui.min.js');
                     $this->script('jquery.cookie.js');
                     $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.js').'"); }');
                     $this->script('jquery.joverlay.js');
@@ -462,11 +473,14 @@ class Action extends HTMLOutputter // lawsuit
         $this->elementStart('div', array('id' => 'wrap'));
         if (Event::handle('StartShowHeader', array($this))) {
             $this->showHeader();
+            $this->flush();
             Event::handle('EndShowHeader', array($this));
         }
         $this->showCore();
+        $this->flush();
         if (Event::handle('StartShowFooter', array($this))) {
             $this->showFooter();
+            $this->flush();
             Event::handle('EndShowFooter', array($this));
         }
         $this->elementEnd('div');
@@ -686,14 +700,17 @@ class Action extends HTMLOutputter // lawsuit
         $this->elementStart('div', array('id' => 'site_nav_local_views_wrapper'));
         if (Event::handle('StartShowLocalNavBlock', array($this))) {
             $this->showLocalNavBlock();
+            $this->flush();
             Event::handle('EndShowLocalNavBlock', array($this));
         }
         if (Event::handle('StartShowContentBlock', array($this))) {
             $this->showContentBlock();
+            $this->flush();
             Event::handle('EndShowContentBlock', array($this));
         }
         if (Event::handle('StartShowAside', array($this))) {
             $this->showAside();
+            $this->flush();
             Event::handle('EndShowAside', array($this));
         }
         $this->elementEnd('div');
@@ -712,8 +729,23 @@ class Action extends HTMLOutputter // lawsuit
         // Need to have this ID for CSS; I'm too lazy to add it to
         // all menus
         $this->elementStart('div', array('id' => 'site_nav_local_views'));
+        // Cheat cheat cheat!
         $this->showLocalNav();
         $this->elementEnd('div');
+    }
+
+    /**
+     * If there's a logged-in user, show a bit of login context
+     *
+     * @return nothing
+     */
+
+    function showProfileBlock()
+    {
+        if (common_logged_in()) {
+            $block = new DefaultProfileBlock($this);
+            $block->show();
+        }
     }
 
     /**
@@ -859,6 +891,7 @@ class Action extends HTMLOutputter // lawsuit
     {
         $this->elementStart('div', array('id' => 'aside_primary',
                                          'class' => 'aside'));
+        $this->showProfileBlock();
         if (Event::handle('StartShowObjectNavBlock', array($this))) {
             $this->showObjectNavBlock();
             Event::handle('EndShowObjectNavBlock', array($this));

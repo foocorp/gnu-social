@@ -301,4 +301,8 @@ class LoginAction extends Action
     function showNoticeForm()
     {
     }
+
+    function showProfileBlock()
+    {
+    }
 }

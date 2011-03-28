@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Repeat action.
  *
@@ -53,6 +52,7 @@ class RepeatAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when trying to repeat a notice while not logged in.
             $this->clientError(_('Only logged-in users can repeat notices.'));
             return false;
         }
@@ -60,6 +60,7 @@ class RepeatAction extends Action
         $id = $this->trimmed('notice');
 
         if (empty($id)) {
+            // TRANS: Client error displayed when trying to repeat a notice while not providing a notice ID.
             $this->clientError(_('No notice specified.'));
             return false;
         }
@@ -67,11 +68,13 @@ class RepeatAction extends Action
         $this->notice = Notice::staticGet('id', $id);
 
         if (empty($this->notice)) {
+            // TRANS: Client error displayed when trying to repeat a non-existing notice.
             $this->clientError(_('No notice specified.'));
             return false;
         }
 
         if ($this->user->id == $this->notice->profile_id) {
+            // TRANS: Client error displayed when trying to repeat an own notice.
             $this->clientError(_('You cannot repeat your own notice.'));
             return false;
         }
@@ -86,6 +89,7 @@ class RepeatAction extends Action
         $profile = $this->user->getProfile();
 
         if ($profile->hasRepeated($id)) {
+            // TRANS: Client error displayed when trying to repeat an already repeated notice.
             $this->clientError(_('You already repeated that notice.'));
             return false;
         }
@@ -104,21 +108,21 @@ class RepeatAction extends Action
     {
         $repeat = $this->notice->repeat($this->user->id, 'web');
 
-
-
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
+            // TRANS: Title after repeating a notice.
             $this->element('title', null, _('Repeated'));
             $this->elementEnd('head');
             $this->elementStart('body');
             $this->element('p', array('id' => 'repeat_response',
                                       'class' => 'repeated'),
+                                // TRANS: Confirmation text after repeating a notice.
                                 _('Repeated!'));
             $this->elementEnd('body');
             $this->elementEnd('html');
         } else {
-            // FIXME!
+            // @todo FIXME!
         }
     }
 }

@@ -53,7 +53,7 @@ class NoticeForm extends Form
     /**
      * Current action, used for returning to this page.
      */
-    var $action = null;
+    var $actionName = null;
 
     /**
      * Pre-filled content of the form
@@ -82,26 +82,43 @@ class NoticeForm extends Form
     /**
      * Constructor
      *
-     * @param HTMLOutputter $out     output channel
-     * @param string        $action  action to return to, if any
-     * @param string        $content content to pre-fill
+     * @param Action $action  Action we're being embedded into
+     * @param array  $options Array of optional parameters
+     *                        'user' a user instead of current
+     *                        'content' notice content
+     *                        'inreplyto' ID of notice to reply to
+     *                        'lat' Latitude
+     *                        'lon' Longitude
+     *                        'location_id' ID of location
+     *                        'location_ns' Namespace of location
      */
-    function __construct($out=null, $action=null, $content=null, $user=null, $inreplyto=null, $lat=null, $lon=null, $location_id=null, $location_ns=null)
+    function __construct($action, $options=null)
     {
+        // XXX: ??? Is this to keep notice forms distinct?
+        // Do we have to worry about sub-second race conditions?
+        // XXX: Needs to be above the parent::__construct() call...?
+
         $this->id_suffix = time();
 
-        parent::__construct($out);
+        parent::__construct($action);
 
-        $this->action  = $action;
-        $this->content = $content;
-        $this->inreplyto = $inreplyto;
-        $this->lat = $lat;
-        $this->lon = $lon;
-        $this->location_id = $location_id;
-        $this->location_ns = $location_ns;
+        if (is_null($options)) {
+            $options = array();
+        }
 
-        if ($user) {
-            $this->user = $user;
+        $this->actionName  = $action->trimmed('action');
+
+        $prefill = array('content', 'inreplyto', 'lat', 
+                         'lon', 'location_id', 'location_ns');
+
+        foreach ($prefill as $fieldName) {
+            if (array_key_exists($fieldName, $options)) {
+                $this->$fieldName = $options[$fieldName];
+            }
+        }
+
+        if (array_key_exists('user', $options)) {
+            $this->user = $options['user'];
         } else {
             $this->user = common_current_user();
         }
@@ -196,8 +213,8 @@ class NoticeForm extends Form
                                                    'title' => _('Attach a file.')));
                 $this->out->elementEnd('label');
             }
-            if ($this->action) {
-                $this->out->hidden('notice_return-to', $this->action, 'returnto');
+            if (!empty($this->actionName)) {
+                $this->out->hidden('notice_return-to', $this->actionName, 'returnto');
             }
             $this->out->hidden('notice_in-reply-to', $this->inreplyto, 'inreplyto');
 

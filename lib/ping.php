@@ -24,7 +24,7 @@ function ping_broadcast_notice($notice) {
         return true;
     }
 
-    # Array of servers, URL => type
+    // Array of servers, URL => type
     $notify = common_config('ping', 'notify');
     try {
         $profile = $notice->getProfile();

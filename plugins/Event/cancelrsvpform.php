@@ -100,7 +100,7 @@ class CancelRSVPForm extends Form
 
         $this->out->hidden('rsvp', $this->rsvp->id);
 
-        switch (RSVP::verbFor($this->rsvp->result)) {
+        switch (RSVP::verbFor($this->rsvp->response)) {
         case RSVP::POSITIVE:
             $this->out->text(_('You will attend this event.'));
             break;

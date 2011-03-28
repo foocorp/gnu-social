@@ -318,6 +318,7 @@ function common_set_user($user)
         if (Event::handle('StartSetUser', array(&$user))) {
             if (!empty($user)) {
                 if (!$user->hasRight(Right::WEBLOGIN)) {
+                    // TRANS: Authorisation exception thrown when a user a not allowed to login.
                     throw new AuthorizationException(_('Not allowed to log in.'));
                 }
                 common_ensure_session();
@@ -867,7 +868,7 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
  * @param callable $callback
  * @param mixed $arg optional argument to pass on as second param to callback
  * @return string
- * 
+ *
  * @access private
  */
 function callback_helper($matches, $callback, $arg=null) {
@@ -1031,19 +1032,13 @@ function common_linkify($url) {
  */
 function common_shorten_links($text, $always = false, User $user=null)
 {
-    common_debug("common_shorten_links() called");
-
     $user = common_current_user();
 
     $maxLength = User_urlshortener_prefs::maxNoticeLength($user);
 
-    common_debug("maxLength = $maxLength");
-
     if ($always || mb_strlen($text) > $maxLength) {
-        common_debug("Forcing shortening");
         return common_replace_urls_callback($text, array('File_redirection', 'forceShort'), $user);
     } else {
-        common_debug("Not forcing shortening");
         return common_replace_urls_callback($text, array('File_redirection', 'makeShort'), $user);
     }
 }
@@ -1341,28 +1336,28 @@ function common_date_string($dt)
     } else if ($diff < 3300) {
         $minutes = round($diff/60);
         // TRANS: Used in notices to indicate when the notice was made compared to now.
-        return sprintf( ngettext('about one minute ago', 'about %d minutes ago', $minutes), $minutes);
+        return sprintf( _m('about one minute ago', 'about %d minutes ago', $minutes), $minutes);
     } else if ($diff < 5400) {
         // TRANS: Used in notices to indicate when the notice was made compared to now.
         return _('about an hour ago');
     } else if ($diff < 22 * 3600) {
         $hours = round($diff/3600);
         // TRANS: Used in notices to indicate when the notice was made compared to now.
-        return sprintf( ngettext('about one hour ago', 'about %d hours ago', $hours), $hours);
+        return sprintf( _m('about one hour ago', 'about %d hours ago', $hours), $hours);
     } else if ($diff < 37 * 3600) {
         // TRANS: Used in notices to indicate when the notice was made compared to now.
         return _('about a day ago');
     } else if ($diff < 24 * 24 * 3600) {
         $days = round($diff/(24*3600));
         // TRANS: Used in notices to indicate when the notice was made compared to now.
-        return sprintf( ngettext('about one day ago', 'about %d days ago', $days), $days);
+        return sprintf( _m('about one day ago', 'about %d days ago', $days), $days);
     } else if ($diff < 46 * 24 * 3600) {
         // TRANS: Used in notices to indicate when the notice was made compared to now.
         return _('about a month ago');
     } else if ($diff < 330 * 24 * 3600) {
         $months = round($diff/(30*24*3600));
         // TRANS: Used in notices to indicate when the notice was made compared to now.
-        return sprintf( ngettext('about one month ago', 'about %d months ago',$months), $months);
+        return sprintf( _m('about one month ago', 'about %d months ago',$months), $months);
     } else if ($diff < 480 * 24 * 3600) {
         // TRANS: Used in notices to indicate when the notice was made compared to now.
         return _('about a year ago');
@@ -2066,28 +2061,22 @@ function common_database_tablename($tablename)
  */
 function common_shorten_url($long_url, User $user=null, $force = false)
 {
-    common_debug("Shortening URL '$long_url' (force = $force)");
-
     $long_url = trim($long_url);
 
     $user = common_current_user();
 
     $maxUrlLength = User_urlshortener_prefs::maxUrlLength($user);
-    common_debug("maxUrlLength = $maxUrlLength");
 
     // $force forces shortening even if it's not strictly needed
     // I doubt URL shortening is ever 'strictly' needed. - ESP
 
     if (mb_strlen($long_url) < $maxUrlLength && !$force) {
-        common_debug("Skipped shortening URL.");
         return $long_url;
     }
 
     $shortenerName = User_urlshortener_prefs::urlShorteningService($user);
 
-    common_debug("Shortener name = '$shortenerName'");
-
-    if (Event::handle('StartShortenUrl', 
+    if (Event::handle('StartShortenUrl',
                       array($long_url, $shortenerName, &$shortenedUrl))) {
         if ($shortenerName == 'internal') {
             $f = File::processNew($long_url);
@@ -2148,7 +2137,7 @@ function common_url_to_nickname($url)
 
     $parts = parse_url($url);
 
-    # If any of these parts exist, this won't work
+    // If any of these parts exist, this won't work
 
     foreach ($bad as $badpart) {
         if (array_key_exists($badpart, $parts)) {
@@ -2156,15 +2145,15 @@ function common_url_to_nickname($url)
         }
     }
 
-    # We just have host and/or path
+    // We just have host and/or path
 
-    # If it's just a host...
+    // If it's just a host...
     if (array_key_exists('host', $parts) &&
         (!array_key_exists('path', $parts) || strcmp($parts['path'], '/') == 0))
     {
         $hostparts = explode('.', $parts['host']);
 
-        # Try to catch common idiom of nickname.service.tld
+        // Try to catch common idiom of nickname.service.tld
 
         if ((count($hostparts) > 2) &&
             (strlen($hostparts[count($hostparts) - 2]) > 3) && # try to skip .co.uk, .com.au
@@ -2172,12 +2161,12 @@ function common_url_to_nickname($url)
         {
             return common_nicknamize($hostparts[0]);
         } else {
-            # Do the whole hostname
+            // Do the whole hostname
             return common_nicknamize($parts['host']);
         }
     } else {
         if (array_key_exists('path', $parts)) {
-            # Strip starting, ending slashes
+            // Strip starting, ending slashes
             $path = preg_replace('@/$@', '', $parts['path']);
             $path = preg_replace('@^/@', '', $path);
             $path = basename($path);

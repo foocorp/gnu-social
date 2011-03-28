@@ -99,7 +99,7 @@ class ConfirmaddressAction extends Action
         if (in_array($type, array('email', 'sms')))
         {
             if ($cur->$type == $confirm->address) {
-            //     TRANS: Client error for an already confirmed email/jabber/sms address.
+                // TRANS: Client error for an already confirmed email/jabber/sms address.
                 $this->clientError(_('That address has already been confirmed.'));
                 return;
             }
@@ -118,7 +118,8 @@ class ConfirmaddressAction extends Action
 
             if (!$result) {
                 common_log_db_error($cur, 'UPDATE', __FILE__);
-                $this->serverError(_('Couldn\'t update user.'));
+                // TRANS: Server error displayed when confirming an e-mail address or IM address fails.
+                $this->serverError(_('Could not update user.'));
                 return;
             }
 
@@ -133,6 +134,7 @@ class ConfirmaddressAction extends Action
             $user_im_prefs->user_id = $cur->id;
             if ($user_im_prefs->find() && $user_im_prefs->fetch()) {
                 if($user_im_prefs->screenname == $confirm->address){
+                    // TRANS: Client error for an already confirmed IM address.
                     $this->clientError(_('That address has already been confirmed.'));
                     return;
                 }
@@ -141,7 +143,8 @@ class ConfirmaddressAction extends Action
 
                 if (!$result) {
                     common_log_db_error($user_im_prefs, 'UPDATE', __FILE__);
-                    $this->serverError(_('Couldn\'t update user im preferences.'));
+                    // TRANS: Server error displayed when updating IM preferences fails.
+                    $this->serverError(_('Could not update user IM preferences.'));
                     return;
                 }
             }else{
@@ -153,7 +156,8 @@ class ConfirmaddressAction extends Action
 
                 if (!$result) {
                     common_log_db_error($user_im_prefs, 'INSERT', __FILE__);
-                    $this->serverError(_('Couldn\'t insert user im preferences.'));
+                    // TRANS: Server error displayed when adding IM preferences fails.
+                    $this->serverError(_('Could not insert user IM preferences.'));
                     return;
                 }
             }

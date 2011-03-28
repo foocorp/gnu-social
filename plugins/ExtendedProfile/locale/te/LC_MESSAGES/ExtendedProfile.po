@@ -9,27 +9,100 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-11 18:15+0000\n"
-"PO-Revision-Date: 2011-03-11 18:18:04+0000\n"
+"POT-Creation-Date: 2011-03-17 09:47+0000\n"
+"PO-Revision-Date: 2011-03-17 09:50:37+0000\n"
 "Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-08 01:22:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83703); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-03-11 18:53:18+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84120); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Extended profile settings"
+msgstr ""
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Message given submitting a form with an unknown action
+msgid "Unexpected form submission."
+msgstr ""
+
+#, php-format
+msgid "You must supply a date for \"%s\"."
+msgstr ""
+
+#, php-format
+msgid "Invalid date entered for \"%s\": %s"
+msgstr ""
+
+#, php-format
+msgid "Invalid URL: %s"
+msgstr ""
+
+msgid "Could not save profile details."
+msgstr ""
+
+#. TRANS: Validation error in form for profile settings.
+#. TRANS: %s is an invalid tag.
+#, php-format
+msgid "Invalid tag: \"%s\"."
+msgstr ""
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr ""
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "మార్చు"
+
 msgid "UI extensions for additional profile fields."
 msgstr ""
 
-#. TRANS: Link description in user account settings menu.
-msgid "Details"
-msgstr "వివరాలు"
-
 msgid "More details..."
 msgstr "మరిన్ని వివరాలు..."
+
+msgid "Company"
+msgstr ""
+
+msgid "Start"
+msgstr ""
+
+msgid "End"
+msgstr ""
+
+msgid "Current"
+msgstr ""
+
+msgid "Institution"
+msgstr ""
+
+msgid "Degree"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr ""
+
+msgid "Phone"
+msgstr ""
+
+msgid "IM"
+msgstr ""
+
+#, fuzzy
+msgid "Website"
+msgstr "జాలగూళ్ళు"
+
+msgid "Employer"
+msgstr ""
 
 msgid "Personal"
 msgstr "వ్యక్తిగతం"
@@ -55,15 +128,6 @@ msgstr "ట్యాగులు"
 msgid "Contact"
 msgstr "సంప్రదించండి"
 
-msgid "Phone"
-msgstr ""
-
-msgid "IM"
-msgstr ""
-
-msgid "Websites"
-msgstr "జాలగూళ్ళు"
-
 msgid "Birthday"
 msgstr "పుట్టినరోజు"
 
@@ -76,22 +140,8 @@ msgstr "పిల్లల పేర్లు"
 msgid "Work experience"
 msgstr "ఉద్యోగ అనుభవం"
 
-msgid "Employer"
-msgstr ""
-
 msgid "Education"
 msgstr "చదువు"
 
-msgid "Institution"
-msgstr ""
-
-#. TRANS: Link title for link on user profile.
-msgid "Edit extended profile settings"
-msgstr ""
-
-#. TRANS: Link text for link on user profile.
-msgid "Edit"
-msgstr "మార్చు"
-
-msgid "Extended profile settings"
-msgstr ""
+#~ msgid "Details"
+#~ msgstr "వివరాలు"

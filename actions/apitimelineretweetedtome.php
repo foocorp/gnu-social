@@ -95,6 +95,9 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
         // TRANS: Title for Atom feed "repeated to me". %s is the user nickname.
         $title      = sprintf(_("Repeated to %s"), $this->auth_user->nickname);
         $subtitle   = sprintf(
+            // @todo FIXME: $profile is not defined.
+            // TRANS: Subtitle for API action that shows most recent notices that are repeats in user's inbox.
+            // TRANS: %1$s is the sitename, %2$s is a user nickname, %3$s is a user profile name.
             _('%1$s notices that were to repeated to %2$s / %3$s.'),
             $sitename, $this->user->nickname, $profile->getBestName()
         );

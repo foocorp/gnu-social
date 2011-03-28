@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -317,22 +317,17 @@ msgid "Already a member!"
 msgstr ""
 
 #. TRANS: OStatus remote group subscription dialog error.
-#: actions/ostatusgroup.php:151
+#: actions/ostatusgroup.php:148
 msgid "Remote group join failed!"
 msgstr ""
 
-#. TRANS: OStatus remote group subscription dialog error.
-#: actions/ostatusgroup.php:155
-msgid "Remote group join aborted!"
-msgstr ""
-
 #. TRANS: Page title for OStatus remote group join form
-#: actions/ostatusgroup.php:167
+#: actions/ostatusgroup.php:161
 msgid "Confirm joining remote group"
 msgstr ""
 
 #. TRANS: Instructions.
-#: actions/ostatusgroup.php:178
+#: actions/ostatusgroup.php:172
 msgid ""
 "You can subscribe to groups from other supported sites. Paste the group's "
 "profile URI below:"
@@ -396,7 +391,7 @@ msgid "Can't read profile to set up group membership."
 msgstr ""
 
 #. TRANS: Client error.
-#: actions/groupsalmon.php:134 actions/groupsalmon.php:177
+#: actions/groupsalmon.php:134 actions/groupsalmon.php:170
 msgid "Groups can't join groups."
 msgstr ""
 
@@ -405,17 +400,17 @@ msgid "You have been blocked from that group by the admin."
 msgstr ""
 
 #. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
-#: actions/groupsalmon.php:162
+#: actions/groupsalmon.php:155
 #, php-format
 msgid "Could not join remote user %1$s to group %2$s."
 msgstr ""
 
-#: actions/groupsalmon.php:174
+#: actions/groupsalmon.php:167
 msgid "Can't read profile to cancel group membership."
 msgstr ""
 
 #. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
-#: actions/groupsalmon.php:191
+#: actions/groupsalmon.php:180
 #, php-format
 msgid "Could not remove remote user %1$s from group %2$s."
 msgstr ""

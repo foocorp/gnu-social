@@ -4,20 +4,36 @@
  */
 
 $(function() {
-    function ModPlus_setup(notice) {
-        if ($(notice).find('.remote-profile-options').size()) {
-            var $options = $(notice).find('.remote-profile-options');
-            $options.prepend($())
-            $(notice).find('.author').mouseenter(function(event) {
-                $(notice).find('.remote-profile-options').fadeIn();
-            });
-            $(notice).mouseleave(function(event) {
-                $(notice).find('.remote-profile-options').fadeOut();
-            });
+    // Notice lists...
+    $('.notice .author').live('mouseenter', function(e) {
+        var notice = $(this).closest('.notice');
+        var popup = notice.find('.remote-profile-options');
+        if (popup.length) {
+            popup.fadeIn();
         }
-    }
-
-    $('.notice').each(function() {
-        ModPlus_setup(this);
     });
+    $('.notice').live('mouseleave', function(e) {
+        var notice = $(this);
+        var popup = notice.find('.remote-profile-options');
+        if (popup.length) {
+            popup.fadeOut();
+        }
+    });
+
+    // Profile lists...
+    $('.profile .avatar').live('mouseenter', function(e) {
+        var profile = $(this).closest('.profile');
+        var popup = profile.find('.remote-profile-options');
+        if (popup.length) {
+            popup.fadeIn();
+        }
+    });
+    $('.profile').live('mouseleave', function(e) {
+        var profile = $(this);
+        var popup = profile.find('.remote-profile-options');
+        if (popup.length) {
+            popup.fadeOut();
+        }
+    });
+
 });

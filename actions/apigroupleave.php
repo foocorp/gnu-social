@@ -117,10 +117,7 @@ class ApiGroupLeaveAction extends ApiAuthAction
         }
 
         try {
-            if (Event::handle('StartLeaveGroup', array($this->group,$this->user))) {
-                Group_member::leave($this->group->id, $this->user->id);
-                Event::handle('EndLeaveGroup', array($this->group, $this->user));
-            }
+            $this->user->leaveGroup($this->group);
         } catch (Exception $e) {
             // TRANS: Server error displayed when leaving a group failed in the database.
             // TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.

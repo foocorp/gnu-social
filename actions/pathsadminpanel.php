@@ -485,8 +485,8 @@ class PathsAdminPanelForm extends AdminForm
                       // TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
                      'always' => _('Always'));
 
-        // TRANS: Drop down label in Paths admin panel.
         $this->out->dropdown('site-ssl',
+                             // TRANS: Drop down label in Paths admin panel.
                              _('Use SSL'),
                              // TRANS: Tooltip for field label in Paths admin panel.
                              $ssl, _('When to use SSL.'),

@@ -264,8 +264,8 @@ class StatusNetOAuthDataStore extends OAuthDataStore
                 $profile = Profile::staticGet($remote->id);
                 $orig_remote = clone($remote);
                 $orig_profile = clone($profile);
-                # XXX: compare current postNotice and updateProfile URLs to the ones
-                # stored in the DB to avoid (possibly...) above attack
+                // XXX: compare current postNotice and updateProfile URLs to the ones
+                // stored in the DB to avoid (possibly...) above attack
             } else {
                 $exists = false;
                 $remote = new Remote_profile();

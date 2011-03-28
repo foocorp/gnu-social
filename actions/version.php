@@ -46,7 +46,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPLv3
  * @link     http://status.net/
  */
-
 class VersionAction extends Action
 {
     var $pluginVersions = array();
@@ -58,7 +57,6 @@ class VersionAction extends Action
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -69,9 +67,9 @@ class VersionAction extends Action
      *
      * @return string page title
      */
-
     function title()
     {
+        // TRANS: Title for version page. %s is the StatusNet version.
         return sprintf(_("StatusNet %s"), STATUSNET_VERSION);
     }
 
@@ -85,7 +83,6 @@ class VersionAction extends Action
      *
      * @return boolean true
      */
-
     function prepare($args)
     {
         parent::prepare($args);
@@ -105,7 +102,6 @@ class VersionAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
@@ -131,7 +127,6 @@ class VersionAction extends Action
          $this->elementEnd('div');
      }
 
-
     /*
     * Overrride to add entry-title class
     *
@@ -147,38 +142,46 @@ class VersionAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         $this->elementStart('p');
 
+        // TRANS: Content part of StatusNet version page.
+        // TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
         $this->raw(sprintf(_('This site is powered by %1$s version %2$s, '.
                              'Copyright 2008-2010 StatusNet, Inc. '.
                              'and contributors.'),
                            XMLStringer::estring('a', array('href' => 'http://status.net/'),
+                                                // TRANS: Engine name.
                                                 _('StatusNet')),
                            STATUSNET_VERSION));
         $this->elementEnd('p');
 
+        // TRANS: Header for StatusNet contributors section on the version page.
         $this->element('h2', null, _('Contributors'));
 
         $this->element('p', null, implode(', ', $this->contributors));
 
+        // TRANS: Header for StatusNet license section on the version page.
         $this->element('h2', null, _('License'));
 
         $this->element('p', null,
+                       // TRANS: Content part of StatusNet version page.
                        _('StatusNet is free software: you can redistribute it and/or modify '.
                          'it under the terms of the GNU Affero General Public License as published by '.
                          'the Free Software Foundation, either version 3 of the License, or '.
                          '(at your option) any later version. '));
 
         $this->element('p', null,
+                       // TRANS: Content part of StatusNet version page.
                        _('This program is distributed in the hope that it will be useful, '.
                          'but WITHOUT ANY WARRANTY; without even the implied warranty of '.
                          'MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the '.
                          'GNU Affero General Public License for more details. '));
 
         $this->elementStart('p');
+        // TRANS: Content part of StatusNet version page.
+        // TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
         $this->raw(sprintf(_('You should have received a copy of the GNU Affero General Public License '.
                              'along with this program.  If not, see %s.'),
                            XMLStringer::estring('a', array('href' => 'http://www.gnu.org/licenses/agpl.html'),
@@ -188,16 +191,21 @@ class VersionAction extends Action
         // XXX: Theme information?
 
         if (count($this->pluginVersions)) {
+            // TRANS: Header for StatusNet plugins section on the version page.
             $this->element('h2', null, _('Plugins'));
 
             $this->elementStart('table', array('id' => 'plugins_enabled'));
 
             $this->elementStart('thead');
             $this->elementStart('tr');
-            $this->element('th', array('id' => 'plugin_name'), _('Name'));
-            $this->element('th', array('id' => 'plugin_version'), _('Version'));
-            $this->element('th', array('id' => 'plugin_authors'), _('Author(s)'));
-            $this->element('th', array('id' => 'plugin_description'), _('Description'));
+            // TRANS: Column header for plugins table on version page.
+            $this->element('th', array('id' => 'plugin_name'), _m('HEADER','Name'));
+            // TRANS: Column header for plugins table on version page.
+            $this->element('th', array('id' => 'plugin_version'), _m('HEADER','Version'));
+            // TRANS: Column header for plugins table on version page.
+            $this->element('th', array('id' => 'plugin_authors'), _m('HEADER','Author(s)'));
+            // TRANS: Column header for plugins table on version page.
+            $this->element('th', array('id' => 'plugin_description'), _m('HEADER','Description'));
             $this->elementEnd('tr');
             $this->elementEnd('thead');
 
@@ -269,5 +277,6 @@ class VersionAction extends Action
                               'mEDI',
                               'Brett Taylor',
                               'Brigitte Schuster',
-                              'Brion Vibber');
+                              'Brion Vibber',
+                              'Siebrand Mazeland');
 }

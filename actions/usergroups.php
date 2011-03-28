@@ -45,7 +45,6 @@ require_once INSTALLDIR.'/lib/grouplist.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class UsergroupsAction extends OwnerDesignAction
 {
     var $page = null;
@@ -59,10 +58,12 @@ class UsergroupsAction extends OwnerDesignAction
     function title()
     {
         if ($this->page == 1) {
-            // TRANS: Message is used as a page title. %s is a nick name.
+            // TRANS: Page title for first page of groups for a user.
+            // TRANS: %s is a nickname.
             return sprintf(_('%s groups'), $this->user->nickname);
         } else {
-            // TRANS: Message is used as a page title. %1$s is a nick name, %2$d is a page number.
+            // TRANS: Page title for all but the first page of groups for a user.
+            // TRANS: %1$s is a nickname, %2$d is a page number.
             return sprintf(_('%1$s groups, page %2$d'),
                            $this->user->nickname,
                            $this->page);
@@ -90,6 +91,7 @@ class UsergroupsAction extends OwnerDesignAction
         $this->user = User::staticGet('nickname', $nickname);
 
         if (!$this->user) {
+            // TRANS: Client error displayed requesting groups for a non-existing user.
             $this->clientError(_('No such user.'), 404);
             return false;
         }
@@ -97,6 +99,7 @@ class UsergroupsAction extends OwnerDesignAction
         $this->profile = $this->user->getProfile();
 
         if (!$this->profile) {
+            // TRANS: Server error displayed requesting groups for a user without a profile.
             $this->serverError(_('User has no profile.'));
             return false;
         }
@@ -123,12 +126,14 @@ class UsergroupsAction extends OwnerDesignAction
         $this->elementStart('p', array('id' => 'new_group'));
         $this->element('a', array('href' => common_local_url('newgroup'),
                                   'class' => 'more'),
+                       // TRANS: Link text on group page to create a new group.
                        _('Create a new group'));
         $this->elementEnd('p');
 
         $this->elementStart('p', array('id' => 'group_search'));
         $this->element('a', array('href' => common_local_url('groupsearch'),
                                   'class' => 'more'),
+                       // TRANS: Link text on group page to search for groups.
                        _('Search for more groups'));
         $this->elementEnd('p');
 
@@ -156,16 +161,26 @@ class UsergroupsAction extends OwnerDesignAction
 
     function showEmptyListMessage()
     {
+        // TRANS: Text on group page for a user that is not a member of any group.
+        // TRANS: %s is a user nickname.
         $message = sprintf(_('%s is not a member of any group.'), $this->user->nickname) . ' ';
 
         if (common_logged_in()) {
             $current_user = common_current_user();
             if ($this->user->id === $current_user->id) {
+                // TRANS: Text on group page for a user that is not a member of any group. This message contains
+                // TRANS: a Markdown link in the form [link text](link) and a variable that should not be changed.
                 $message .= _('Try [searching for groups](%%action.groupsearch%%) and joining them.');
             }
         }
         $this->elementStart('div', 'guide');
         $this->raw(common_markup_to_html($message));
         $this->elementEnd('div');
+    }
+
+    function showProfileBlock()
+    {
+        $block = new AccountProfileBlock($this, $this->profile);
+        $block->show();
     }
 }

@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      SilenceForm
  */
-
 class UnSilenceForm extends ProfileActionForm
 {
     /**
@@ -50,7 +49,6 @@ class UnSilenceForm extends ProfileActionForm
      *
      * @return string Name of the action, lowercased.
      */
-
     function target()
     {
         return 'unsilence';
@@ -61,9 +59,9 @@ class UnSilenceForm extends ProfileActionForm
      *
      * @return string Title of the form, internationalized
      */
-
     function title()
     {
+        // TRANS: Title for unsilence form.
         return _('Unsilence');
     }
 
@@ -72,9 +70,9 @@ class UnSilenceForm extends ProfileActionForm
      *
      * @return string description of the form, internationalized
      */
-
     function description()
     {
+        // TRANS: Form description for unsilence form.
         return _('Unsilence this user');
     }
 }

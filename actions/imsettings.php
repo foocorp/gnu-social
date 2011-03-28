@@ -111,8 +111,8 @@ class ImsettingsAction extends SettingsAction
             if ($user_im_prefs = User_im_prefs::pkeyGet( array('transport' => $transport, 'user_id' => $user->id) )) {
                 $user_im_prefs_by_transport[$transport] = $user_im_prefs;
                 $this->element('p', 'form_confirmed', $user_im_prefs->screenname);
-                // TRANS: Form note in IM settings form.
                 $this->element('p', 'form_note',
+                               // TRANS: Form note in IM settings form. %s is the type of IM address that was confirmed.
                                sprintf(_('Current confirmed %s address.'),$transport_info['display']));
                 $this->hidden('screenname', $user_im_prefs->screenname);
                 // TRANS: Button label to remove a confirmed IM address.
@@ -124,11 +124,11 @@ class ImsettingsAction extends SettingsAction
                     // TRANS: Form note in IM settings form.
                     $this->element('p', 'form_note',
                                    // TRANS: Form note in IM settings form.
-                                   // TRANS: %s is the IM address set for the site.
+                                   // TRANS: %s is the IM service name, %2$s is the IM address set.
                                    sprintf(_('Awaiting confirmation on this address. '.
-                                             'Check your %s account for a '.
+                                             'Check your %1$s account for a '.
                                              'message with further instructions. '.
-                                             '(Did you add %s to your buddy list?)'),
+                                             '(Did you add %2$s to your buddy list?)'),
                                              $transport_info['display'],
                                              $transport_info['daemonScreenname']));
                     $this->hidden('screenname', $confirm->address);
@@ -137,8 +137,10 @@ class ImsettingsAction extends SettingsAction
                 } else {
                     $this->elementStart('ul', 'form_data');
                     $this->elementStart('li');
+                    // TRANS: Field label for IM address.
                     $this->input('screenname', _('IM address'),
                                  ($this->arg('screenname')) ? $this->arg('screenname') : null,
+                                 // TRANS: Field title for IM address. %s is the IM service name.
                                  sprintf(_('%s screenname.'),
                                          $transport_info['display']));
                     $this->elementEnd('li');
@@ -288,7 +290,7 @@ class ImsettingsAction extends SettingsAction
                 if ($result === false) {
                     common_log_db_error($user, 'UPDATE', __FILE__);
                     // TRANS: Server error thrown on database error updating IM preferences.
-                    $this->serverError(_('Couldn\'t update IM preferences.'));
+                    $this->serverError(_('Could not update IM preferences.'));
                     return;
                 }
             }while($user_im_prefs->fetch());
@@ -322,6 +324,7 @@ class ImsettingsAction extends SettingsAction
         }
 
         if (!$transport) {
+            // TRANS: Form validation error when no transport is available setting an IM address.
             $this->showForm(_('No transport.'));
             return;
         }
@@ -330,14 +333,14 @@ class ImsettingsAction extends SettingsAction
 
         if (!$screenname) {
             // TRANS: Message given saving IM address that cannot be normalised.
-            $this->showForm(_('Cannot normalize that screenname'));
+            $this->showForm(_('Cannot normalize that screenname.'));
             return;
         }
         $valid = false;
         Event::handle('ValidateImScreenname', array($transport, $screenname, &$valid));
         if (!$valid) {
             // TRANS: Message given saving IM address that not valid.
-            $this->showForm(_('Not a valid screenname'));
+            $this->showForm(_('Not a valid screenname.'));
             return;
         } else if ($this->screennameExists($transport, $screenname)) {
             // TRANS: Message given saving IM address that is already set for another user.
@@ -402,7 +405,7 @@ class ImsettingsAction extends SettingsAction
         if (!$result) {
             common_log_db_error($confirm, 'DELETE', __FILE__);
             // TRANS: Server error thrown on database error canceling IM address confirmation.
-            $this->serverError(_('Couldn\'t delete confirmation.'));
+            $this->serverError(_('Could not delete confirmation.'));
             return;
         }
 
@@ -440,8 +443,7 @@ class ImsettingsAction extends SettingsAction
         if (!$result) {
             common_log_db_error($user, 'UPDATE', __FILE__);
             // TRANS: Server error thrown on database error removing a registered IM address.
-            $this->serverError(_('Couldn\'t update user im prefs.'));
-            $this->serverError(_('Couldn\'t update user.'));
+            $this->serverError(_('Could not update user IM preferences.'));
             return;
         }
 

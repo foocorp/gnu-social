@@ -9,27 +9,125 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 02:34+0100\n"
-"PO-Revision-Date: 2011-03-06 01:37:09+0000\n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"PO-Revision-Date: 2011-03-18 19:48:38+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-03 20:42:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-POT-Import-Date: 2011-03-17 13:01:04+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Extended profile settings"
+msgstr "Uitgebreide profielinstellingen"
+
+#. TRANS: Usage instructions for profile settings.
+msgid ""
+"You can update your personal profile info here so people know more about you."
+msgstr ""
+"Hier kunt u uw persoonlijke profiel bijwerken met informatie over uzelf voor "
+"andere gebruikers."
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Er is een probleem ontstaan met uw sessie. Probeer het nog een keer, "
+"alstublieft."
+
+#. TRANS: Message given submitting a form with an unknown action.
+msgid "Unexpected form submission."
+msgstr "Het formulier is onverwacht ingezonden."
+
+msgid "Details saved."
+msgstr "De gegevens zijn opgeslagen."
+
+#. TRANS: Exception thrown when no date was entered in a required date field.
+#. TRANS: %s is the field name.
+#, php-format
+msgid "You must supply a date for \"%s\"."
+msgstr "U moet een datum opgeven voor \"%s\"."
+
+#. TRANS: Exception thrown on incorrect data input.
+#. TRANS: %1$s is a field name, %2$s is the incorrect input.
+#, php-format
+msgid "Invalid date entered for \"%1$s\": %2$s."
+msgstr "Er is een ongeldige datum opgegeven voor \"%1$s\": %2$s."
+
+#. TRANS: Exception thrown when entering an invalid URL.
+#. TRANS: %s is the invalid URL.
+#, php-format
+msgid "Invalid URL: %s."
+msgstr "Ongeldige URL: %s."
+
+msgid "Could not save profile details."
+msgstr "Het was niet mogelijk de profielgegevens op te slaan."
+
+#. TRANS: Validation error in form for profile settings.
+#. TRANS: %s is an invalid tag.
+#, php-format
+msgid "Invalid tag: \"%s\"."
+msgstr "Ongeldig label: \"%s\"."
+
+#. TRANS: Server error thrown when user profile settings could not be saved.
+msgid "Could not save profile."
+msgstr "Het was niet mogelijk het profiel op te slaan."
+
+#. TRANS: Server error thrown when user profile settings tags could not be saved.
+msgid "Could not save tags."
+msgstr "Het was niet mogelijk de labels op te slaan."
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Uitgebreide profielinstellingen bewerken"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Bewerken"
+
 msgid "UI extensions for additional profile fields."
 msgstr "UI-uitbreidingen voor extra profielvelden."
 
-#. TRANS: Link description in user account settings menu.
-msgid "Details"
-msgstr "Details"
-
 msgid "More details..."
 msgstr "Meer details..."
+
+msgid "Company"
+msgstr "Bedrijf"
+
+msgid "Start"
+msgstr "Begin"
+
+msgid "End"
+msgstr "Eind"
+
+msgid "Current"
+msgstr "Huidig"
+
+msgid "Institution"
+msgstr "Instelling"
+
+msgid "Degree"
+msgstr "Graad"
+
+msgid "Description"
+msgstr "Beschrijving"
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Opslaan"
+
+msgid "Phone"
+msgstr "Telefoonnummer"
+
+msgid "IM"
+msgstr "IM"
+
+msgid "Website"
+msgstr "Website"
+
+msgid "Employer"
+msgstr "Werkgever"
 
 msgid "Personal"
 msgstr "Persoonlijk"
@@ -55,15 +153,6 @@ msgstr "Labels"
 msgid "Contact"
 msgstr "Contact"
 
-msgid "Phone"
-msgstr "Telefoonnummer"
-
-msgid "IM"
-msgstr "IM"
-
-msgid "Websites"
-msgstr "Websites"
-
 msgid "Birthday"
 msgstr "Geboortedatum"
 
@@ -76,22 +165,5 @@ msgstr "Namen van kinderen"
 msgid "Work experience"
 msgstr "Werkervaring"
 
-msgid "Employer"
-msgstr "Werkgever"
-
 msgid "Education"
 msgstr "Opleiding"
-
-msgid "Institution"
-msgstr "Instelling"
-
-#. TRANS: Link title for link on user profile.
-msgid "Edit extended profile settings"
-msgstr "Uitgebreide profielinstellingen bewerken"
-
-#. TRANS: Link text for link on user profile.
-msgid "Edit"
-msgstr "Bewerken"
-
-msgid "Extended profile settings"
-msgstr "Uitgebreide profielinstellingen"

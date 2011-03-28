@@ -245,49 +245,81 @@ function mail_subscribe_notify_profile($listenee, $other)
                                       $other->getBestName(),
                                       common_config('site', 'name'));
 
-        // TRANS: This is a paragraph in a new-subscriber e-mail.
-        // TRANS: %s is a URL where the subscriber can be reported as abusive.
-        $blocklink = sprintf(_("If you believe this account is being used abusively, " .
-                               "you can block them from your subscribers list and " .
-                               "report as spam to site administrators at %s"),
-                             common_local_url('block', array('profileid' => $other->id)));
-
         // TRANS: Main body of new-subscriber notification e-mail.
-        // TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename,
-        // TRANS: %3$s is the subscriber's profile URL, %4$s is the subscriber's location (or empty)
-        // TRANS: %5$s is the subscriber's homepage URL (or empty), %6%s is the subscriber's bio (or empty)
-        // TRANS: %7$s is a link to the addressed user's e-mail settings.
-        $body = sprintf(_('%1$s is now listening to your notices on %2$s.'."\n\n".
-                          "\t".'%3$s'."\n\n".
-                          '%4$s'.
-                          '%5$s'.
-                          '%6$s'.
-                          "\n".'Faithfully yours,'."\n".'%2$s.'."\n\n".
-                          "----\n".
-                          "Change your email address or ".
-                          "notification options at ".'%7$s' ."\n"),
+        // TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
+        $body = sprintf(_('%1$s is now listening to your notices on %2$s.'),
                         $long_name,
-                        common_config('site', 'name'),
-                        $other->profileurl,
-                        ($other->location) ?
-                        // TRANS: Profile info line in new-subscriber notification e-mail.
-                        // TRANS: %s is a location.
-                        sprintf(_("Location: %s"), $other->location) . "\n" : '',
-                        ($other->homepage) ?
-                        // TRANS: Profile info line in new-subscriber notification e-mail.
-                        // TRANS: %s is a homepage.
-                        sprintf(_("Homepage: %s"), $other->homepage) . "\n" : '',
-                        (($other->bio) ?
-                            // TRANS: Profile info line in new-subscriber notification e-mail.
-                            // TRANS: %s is biographical information.
-                            sprintf(_("Bio: %s"), $other->bio) . "\n" : '') .
-                            "\n\n" . $blocklink . "\n",
-                        common_local_url('emailsettings'));
+                        common_config('site', 'name')) .
+                mail_profile_block($other) .
+                mail_footer_block();
 
         // reset localization
         common_switch_locale();
         mail_send($recipients, $headers, $body);
     }
+}
+
+function mail_footer_block()
+{
+    // TRANS: Common footer block for StatusNet notification emails.
+    // TRANS: %1$s is the StatusNet sitename,
+    // TRANS: %2$s is a link to the addressed user's e-mail settings.
+    return "\n\n" . sprintf(_('Faithfully yours,'.
+                              "\n".'%1$s.'."\n\n".
+                              "----\n".
+                              "Change your email address or ".
+                              "notification options at ".'%2$s'),
+                            common_config('site', 'name'),
+                            common_local_url('emailsettings')) . "\n";
+}
+
+/**
+ * Format a block of profile info for a plaintext notification email.
+ *
+ * @param Profile $profile
+ * @return string
+ */
+function mail_profile_block($profile)
+{
+    // TRANS: Layout for
+    // TRANS: %1$s is the subscriber's profile URL, %2$s is the subscriber's location (or empty)
+    // TRANS: %3$s is the subscriber's homepage URL (or empty), %4%s is the subscriber's bio (or empty)
+    $out = array();
+    $out[] = "";
+    $out[] = "";
+    // TRANS: Profile info line in notification e-mail.
+    // TRANS: %s is a URL.
+    $out[] = sprintf(_("Profile: %s"), $profile->profileurl);
+    if ($profile->location) {
+        // TRANS: Profile info line in notification e-mail.
+        // TRANS: %s is a location.
+        $out[] = sprintf(_("Location: %s"), $profile->location);
+    }
+    if ($profile->homepage) {
+        // TRANS: Profile info line in notification e-mail.
+        // TRANS: %s is a homepage.
+        $out[] = sprintf(_("Homepage: %s"), $profile->homepage);
+    }
+    if ($profile->bio) {
+        // TRANS: Profile info line in notification e-mail.
+        // TRANS: %s is biographical information.
+        $out[] = sprintf(_("Bio: %s"), $profile->bio);
+    }
+
+    $blocklink = common_local_url('block', array('profileid' => $profile->id));
+    // This'll let ModPlus add the remote profile info so it's possible
+    // to block remote users directly...
+    Event::handle('MailProfileInfoBlockLink', array($profile, &$blocklink));
+
+    // TRANS: This is a paragraph in a new-subscriber e-mail.
+    // TRANS: %s is a URL where the subscriber can be reported as abusive.
+    $out[] = sprintf(_('If you believe this account is being used abusively, ' .
+                       'you can block them from your subscribers list and ' .
+                       'report as spam to site administrators at %s.'),
+                     $blocklink);
+    $out[] = "";
+
+    return implode("\n", $out);
 }
 
 /**
@@ -317,11 +349,11 @@ function mail_new_incoming_notify($user)
     // TRANS: to to post by e-mail, %3$s is a URL to more instructions.
     $body = sprintf(_("You have a new posting address on %1\$s.\n\n".
                       "Send email to %2\$s to post new messages.\n\n".
-                      "More email instructions at %3\$s.\n\n".
-                      "Faithfully yours,\n%1\$s"),
+                      "More email instructions at %3\$s."),
                     common_config('site', 'name'),
                     $user->incomingemail,
-                    common_local_url('doc', array('title' => 'email')));
+                    common_local_url('doc', array('title' => 'email'))) .
+            mail_footer_block();
 
     mail_send($user->email, $headers, $body);
 }
@@ -466,7 +498,7 @@ function mail_confirm_sms($code, $nickname, $address)
 
     // TRANS: Main body heading for SMS-by-email address confirmation message.
     // TRANS: %s is the addressed user's nickname.
-    $body  = sprintf(_("%s: confirm you own this phone number with this code:"), $nickname);
+    $body  = sprintf(_('%s: confirm you own this phone number with this code:'), $nickname);
     $body .= "\n\n";
     $body .= $code;
     $body .= "\n\n";
@@ -493,18 +525,16 @@ function mail_notify_nudge($from, $to)
 
     // TRANS: Body for 'nudge' notification email.
     // TRANS: %1$s is the nuding user's long name, $2$s is the nudging user's nickname,
-    // TRANS: %3$s is a URL to post notices at, %4$s is the StatusNet sitename.
+    // TRANS: %3$s is a URL to post notices at.
     $body = sprintf(_("%1\$s (%2\$s) is wondering what you are up to ".
                       "these days and is inviting you to post some news.\n\n".
                       "So let's hear from you :)\n\n".
                       "%3\$s\n\n".
-                      "Don't reply to this email; it won't get to them.\n\n".
-                      "With kind regards,\n".
-                      "%4\$s\n"),
+                      "Don't reply to this email; it won't get to them."),
                     $from_profile->getBestName(),
                     $from->nickname,
-                    common_local_url('all', array('nickname' => $to->nickname)),
-                    common_config('site', 'name'));
+                    common_local_url('all', array('nickname' => $to->nickname))) .
+            mail_footer_block();
     common_switch_locale();
 
     $headers = _mail_prepare_headers('nudge', $to->nickname, $from->nickname);
@@ -548,21 +578,18 @@ function mail_notify_message($message, $from=null, $to=null)
     // TRANS: Body for direct-message notification email.
     // TRANS: %1$s is the sending user's long name, %2$s is the sending user's nickname,
     // TRANS: %3$s is the message content, %4$s a URL to the message,
-    // TRANS: %5$s is the StatusNet sitename.
     $body = sprintf(_("%1\$s (%2\$s) sent you a private message:\n\n".
                       "------------------------------------------------------\n".
                       "%3\$s\n".
                       "------------------------------------------------------\n\n".
                       "You can reply to their message here:\n\n".
                       "%4\$s\n\n".
-                      "Don't reply to this email; it won't get to them.\n\n".
-                      "With kind regards,\n".
-                      "%5\$s\n"),
+                      "Don't reply to this email; it won't get to them."),
                     $from_profile->getBestName(),
                     $from->nickname,
                     $message->content,
-                    common_local_url('newmessage', array('to' => $from->id)),
-                    common_config('site', 'name'));
+                    common_local_url('newmessage', array('to' => $from->id))) .
+            mail_footer_block();
 
     $headers = _mail_prepare_headers('message', $to->nickname, $from->nickname);
 
@@ -615,9 +642,7 @@ function mail_notify_fave($other, $user, $notice)
                       "The text of your notice is:\n\n" .
                       "%4\$s\n\n" .
                       "You can see the list of %1\$s's favorites here:\n\n" .
-                      "%5\$s\n\n" .
-                      "Faithfully yours,\n" .
-                      "%6\$s\n"),
+                      "%5\$s"),
                     $bestname,
                     common_exact_date($notice->created),
                     common_local_url('shownotice',
@@ -626,7 +651,8 @@ function mail_notify_fave($other, $user, $notice)
                     common_local_url('showfavorites',
                                      array('nickname' => $user->nickname)),
                     common_config('site', 'name'),
-                    $user->nickname);
+                    $user->nickname) .
+            mail_footer_block();
 
     $headers = _mail_prepare_headers('fave', $other->nickname, $user->nickname);
 
@@ -677,12 +703,11 @@ function mail_notify_attn($user, $notice)
     $subject = sprintf(_('%1$s (@%2$s) sent a notice to your attention'), $bestname, $sender->nickname);
 
         // TRANS: Body of @-reply notification e-mail.
-        // TRANS: %1$s is the sending user's long name, $2$s is the StatusNet sitename,
+        // TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
         // TRANS: %3$s is a URL to the notice, %4$s is the notice text,
         // TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
-        // TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replied for the addressed user,
-        // TRANS: %8$s is a URL to the addressed user's e-mail settings, %9$s is the sender's nickname.
-        $body = sprintf(_("%1\$s (@%9\$s) just sent a notice to your attention (an '@-reply') on %2\$s.\n\n".
+        // TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
+        $body = sprintf(_("%1\$s just sent a notice to your attention (an '@-reply') on %2\$s.\n\n".
                       "The notice is here:\n\n".
                       "\t%3\$s\n\n" .
                       "It reads:\n\n".
@@ -691,11 +716,8 @@ function mail_notify_attn($user, $notice)
                       "You can reply back here:\n\n".
                       "\t%6\$s\n\n" .
                       "The list of all @-replies for you here:\n\n" .
-                      "%7\$s\n\n" .
-                      "Faithfully yours,\n" .
-                      "%2\$s\n\n" .
-                      "P.S. You can turn off these email notifications here: %8\$s\n"),
-                    $bestname,//%1
+                      "%7\$s"),
+                    $sender->getFancyName(),//%1
                     common_config('site', 'name'),//%2
                     common_local_url('shownotice',
                                      array('notice' => $notice->id)),//%3
@@ -704,10 +726,8 @@ function mail_notify_attn($user, $notice)
                     common_local_url('newnotice',
                                      array('replyto' => $sender->nickname, 'inreplyto' => $notice->id)),//%6
                     common_local_url('replies',
-                                     array('nickname' => $user->nickname)),//%7
-                    common_local_url('emailsettings'), //%8
-                    $sender->nickname); //%9
-
+                                     array('nickname' => $user->nickname))) . //%7
+                mail_footer_block();
     $headers = _mail_prepare_headers('mention', $user->nickname, $sender->nickname);
 
     common_switch_locale();
@@ -733,4 +753,98 @@ function _mail_prepare_headers($msg_type, $to, $from)
     );
 
     return $headers;
+}
+
+/**
+ * Send notification emails to group administrator.
+ *
+ * @param User_group $group
+ * @param Profile $joiner
+ */
+function mail_notify_group_join($group, $joiner)
+{
+    // This returns a Profile query...
+    $admin = $group->getAdmins();
+    while ($admin->fetch()) {
+        // We need a local user for email notifications...
+        $adminUser = User::staticGet('id', $admin->id);
+        // @fixme check for email preference?
+        if ($adminUser && $adminUser->email) {
+            // use the recipient's localization
+            common_switch_locale($adminUser->language);
+
+            $headers = _mail_prepare_headers('join', $admin->nickname, $joiner->nickname);
+            $headers['From']    = mail_notify_from();
+            $headers['To']      = $admin->getBestName() . ' <' . $adminUser->email . '>';
+            // TRANS: Subject of group join notification e-mail.
+            // TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
+            $headers['Subject'] = sprintf(_('%1$s has joined '.
+                                            'your group %2$s on %3$s.'),
+                                          $joiner->getBestName(),
+                                          $group->getBestName(),
+                                          common_config('site', 'name'));
+
+            // TRANS: Main body of group join notification e-mail.
+            // TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
+            // TRANS: %4$s is a block of profile info about the subscriber.
+            // TRANS: %5$s is a link to the addressed user's e-mail settings.
+            $body = sprintf(_('%1$s has joined your group %2$s on %3$s.'),
+                            $joiner->getFancyName(),
+                            $group->getFancyName(),
+                            common_config('site', 'name')) .
+                    mail_profile_block($joiner) .
+                    mail_footer_block();
+
+            // reset localization
+            common_switch_locale();
+            mail_send($adminUser->email, $headers, $body);
+        }
+    }
+}
+
+
+/**
+ * Send notification emails to group administrator.
+ *
+ * @param User_group $group
+ * @param Profile $joiner
+ */
+function mail_notify_group_join_pending($group, $joiner)
+{
+    $admin = $group->getAdmins();
+    while ($admin->fetch()) {
+        // We need a local user for email notifications...
+        $adminUser = User::staticGet('id', $admin->id);
+        // @fixme check for email preference?
+        if ($adminUser && $adminUser->email) {
+            // use the recipient's localization
+            common_switch_locale($adminUser->language);
+
+            $headers = _mail_prepare_headers('join', $admin->nickname, $joiner->nickname);
+            $headers['From']    = mail_notify_from();
+            $headers['To']      = $admin->getBestName() . ' <' . $adminUser->email . '>';
+            // TRANS: Subject of pending group join request notification e-mail.
+            // TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
+            $headers['Subject'] = sprintf(_('%1$s wants to join your group %2$s on %3$s.'),
+                                          $joiner->getBestName(),
+                                          $group->getBestName(),
+                                          common_config('site', 'name'));
+
+            // TRANS: Main body of pending group join request notification e-mail.
+            // TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
+            // TRANS: %4$s is the URL to the moderation queue page.
+            $body = sprintf(_('%1$s would like to join your group %2$s on %3$s. ' .
+                              'You may approve or reject their group membership at %4$s'),
+                            $joiner->getFancyName(),
+                            $group->getFancyName(),
+                            common_config('site', 'name'),
+                            common_local_url('groupqueue', array('nickname' => $group->nickname))) .
+                    mail_profile_block($joiner) .
+                    mail_footer_block();
+
+            // reset localization
+            common_switch_locale();
+            mail_send($adminUser->email, $headers, $body);
+        }
+    }
 }

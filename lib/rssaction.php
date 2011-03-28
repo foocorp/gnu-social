@@ -34,7 +34,7 @@ define('DEFAULT_RSS_LIMIT', 48);
 
 class Rss10Action extends Action
 {
-    # This will contain the details of each feed item's author and be used to generate SIOC data.
+    // This will contain the details of each feed item's author and be used to generate SIOC data.
 
     var $creators = array();
     var $limit = DEFAULT_RSS_LIMIT;
@@ -88,10 +88,10 @@ class Rss10Action extends Action
         if (common_config('site', 'private')) {
             if (!isset($_SERVER['PHP_AUTH_USER'])) {
 
-                # This header makes basic auth go
+                // This header makes basic auth go
                 header('WWW-Authenticate: Basic realm="StatusNet RSS"');
 
-                # If the user hits cancel -- bam!
+                // If the user hits cancel -- bam!
                 $this->show_basic_auth_error();
                 return;
             } else {
@@ -99,7 +99,7 @@ class Rss10Action extends Action
                 $password = $_SERVER['PHP_AUTH_PW'];
 
                 if (!common_check_user($nickname, $password)) {
-                    # basic authentication failed
+                    // basic authentication failed
                     list($proxy, $ip) = common_client_ip();
 
                     common_log(LOG_WARNING, "Failed RSS auth attempt, nickname = $nickname, proxy = $proxy, ip = $ip.");

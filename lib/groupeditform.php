@@ -112,6 +112,7 @@ class GroupEditForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend for group edit form.
         $this->out->element('legend', null, _('Create a new group'));
     }
 
@@ -142,50 +143,75 @@ class GroupEditForm extends Form
         if (Event::handle('StartGroupEditFormData', array($this))) {
             $this->out->elementStart('li');
             $this->out->hidden('groupid', $id);
+            // TRANS: Field label on group edit form.
             $this->out->input('nickname', _('Nickname'),
                               ($this->out->arg('nickname')) ? $this->out->arg('nickname') : $nickname,
-                              _('1-64 lowercase letters or numbers, no punctuation or spaces'));
+                              // TRANS: Field title on group edit form.
+                              _('1-64 lowercase letters or numbers, no punctuation or spaces.'));
             $this->out->elementEnd('li');
             $this->out->elementStart('li');
+            // TRANS: Field label on group edit form.
             $this->out->input('fullname', _('Full name'),
                               ($this->out->arg('fullname')) ? $this->out->arg('fullname') : $fullname);
             $this->out->elementEnd('li');
             $this->out->elementStart('li');
+            // TRANS: Field label on group edit form; points to "more info" for a group.
             $this->out->input('homepage', _('Homepage'),
                               ($this->out->arg('homepage')) ? $this->out->arg('homepage') : $homepage,
+                              // TRANS: Field title on group edit form.
                               _('URL of the homepage or blog of the group or topic.'));
             $this->out->elementEnd('li');
             $this->out->elementStart('li');
             $desclimit = User_group::maxDescription();
             if ($desclimit == 0) {
-                $descinstr = _('Describe the group or topic');
+                // TRANS: Text area title for group description when there is no text limit.
+                $descinstr = _('Describe the group or topic.');
             } else {
-                $descinstr = sprintf(_m('Describe the group or topic in %d character or less',
-                                        'Describe the group or topic in %d characters or less',
+                // TRANS: Text area title for group description.
+                // TRANS: %d is the number of characters available for the description.
+                $descinstr = sprintf(_m('Describe the group or topic in %d character or less.',
+                                        'Describe the group or topic in %d characters or less.',
                                         $desclimit),
                                      $desclimit);
             }
+            // TRANS: Text area label on group edit form; contains description of group.
             $this->out->textarea('description', _('Description'),
                                  ($this->out->arg('description')) ? $this->out->arg('description') : $description,
                                  $descinstr);
             $this->out->elementEnd('li');
             $this->out->elementStart('li');
+            // TRANS: Field label on group edit form.
             $this->out->input('location', _('Location'),
                               ($this->out->arg('location')) ? $this->out->arg('location') : $location,
+                              // TRANS: Field title on group edit form.
                               _('Location for the group, if any, like "City, State (or Region), Country".'));
             $this->out->elementEnd('li');
             if (common_config('group', 'maxaliases') > 0) {
                 $aliases = (empty($this->group)) ? array() : $this->group->getAliases();
                 $this->out->elementStart('li');
+                // TRANS: Field label on group edit form.
                 $this->out->input('aliases', _('Aliases'),
                                   ($this->out->arg('aliases')) ? $this->out->arg('aliases') :
                                   (!empty($aliases)) ? implode(' ', $aliases) : '',
+                                  // TRANS: Input field title for group aliases.
+                                  // TRANS: %d is the maximum number of group aliases available.
                                   sprintf(_m('Extra nicknames for the group, separated with commas or spaces. Maximum %d alias allowed.',
                                              'Extra nicknames for the group, separated with commas or spaces. Maximum %d aliases allowed.',
                                              common_config('group', 'maxaliases')),
                                           common_config('group', 'maxaliases')));;
                 $this->out->elementEnd('li');
             }
+            $this->out->elementStart('li');
+            $this->out->dropdown('join_policy',
+                                 // TRANS: Dropdown fieldd label on group edit form.
+                                 _('Membership policy'),
+                                 array(User_group::JOIN_POLICY_OPEN     => _('Open to all'),
+                                       User_group::JOIN_POLICY_MODERATE => _('Admin must approve all members')),
+                                 // TRANS: Dropdown field title on group edit form.
+                                 _('Whether admin approval is required to join this group.'),
+                                 false,
+                                 (empty($this->group->join_policy)) ? User_group::JOIN_POLICY_OPEN : $this->group->join_policy);
+            $this->out->elementEnd('li');
             Event::handle('EndGroupEditFormData', array($this));
         }
         $this->out->elementEnd('ul');
@@ -198,6 +224,7 @@ class GroupEditForm extends Form
      */
     function formActions()
     {
+        // TRANS: Text for save button on group edit form.
         $this->out->submit('submit', _m('BUTTON','Save'));
     }
 }

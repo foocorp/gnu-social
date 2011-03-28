@@ -100,7 +100,7 @@ class PublictagcloudAction extends Action
 
     function showContent()
     {
-        # This should probably be cached rather than recalculated
+        // This should probably be cached rather than recalculated
         $tags = new Notice_tag();
 
         #Need to clear the selection and then only re-add the field

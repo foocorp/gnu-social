@@ -155,6 +155,10 @@ RealtimeUpdate = {
         }
 
         RealtimeUpdate.makeNoticeItem(data, function(noticeItem) {
+            // Check again in case it got shown while we were waiting for data...
+            if (RealtimeUpdate.isNoticeVisible(data.id)) {
+                return;
+            }
             var noticeItemID = $(noticeItem).attr('id');
 
             var list = $("#notices_primary .notices:first")
@@ -177,6 +181,7 @@ RealtimeUpdate = {
                     if (list.length == 0) {
                         list = $('<ul class="notices threaded-replies xoxo"></ul>');
                         parent.append(list);
+                        SN.U.NoticeInlineReplyPlaceholder(parent);
                     }
                     prepend = false;
                 }
@@ -191,7 +196,6 @@ RealtimeUpdate = {
                     newNotice.insertBefore(placeholder)
                 } else {
                     newNotice.appendTo(list);
-                    SN.U.NoticeInlineReplyPlaceholder(parent);
                 }
             }
             newNotice.css({display:"none"}).fadeIn(1000);

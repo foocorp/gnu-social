@@ -1,0 +1,168 @@
+# Translation of StatusNet - ExtendedProfile to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ExtendedProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-26 11:02+0000\n"
+"PO-Revision-Date: 2011-03-26 11:05:50+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-24 15:25:02+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Extended profile settings"
+msgstr "Dinugtungang mga katakdaan ng balangkas"
+
+#. TRANS: Usage instructions for profile settings.
+msgid ""
+"You can update your personal profile info here so people know more about you."
+msgstr ""
+"Maisasapanahon mo rito ang kabatiran sa iyong pansariling balangkas upang "
+"makaalam pa ng mas marami ang mga tao tungkol sa iyo."
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"May isang suliranin sa iyong sesyon ng kahalip.  Mangyaring subukan uli."
+
+#. TRANS: Message given submitting a form with an unknown action.
+msgid "Unexpected form submission."
+msgstr "Hindi inaasahang pagpapasa ng pormularyo."
+
+msgid "Details saved."
+msgstr "Nasagip na ang mga detalye."
+
+#. TRANS: Exception thrown when no date was entered in a required date field.
+#. TRANS: %s is the field name.
+#, php-format
+msgid "You must supply a date for \"%s\"."
+msgstr "Dapat kang magbigay ng isang petsa para sa \"%s\"."
+
+#. TRANS: Exception thrown on incorrect data input.
+#. TRANS: %1$s is a field name, %2$s is the incorrect input.
+#, php-format
+msgid "Invalid date entered for \"%1$s\": %2$s."
+msgstr "Hindi katanggap-tanggap na ipinasok na petsa para sa \"%1$s\": %2$s."
+
+#. TRANS: Exception thrown when entering an invalid URL.
+#. TRANS: %s is the invalid URL.
+#, php-format
+msgid "Invalid URL: %s."
+msgstr "Hindi katanggap-tanggap na URL: %s."
+
+msgid "Could not save profile details."
+msgstr "Hindi masagip ang mga detalye ng balangkas."
+
+#. TRANS: Validation error in form for profile settings.
+#. TRANS: %s is an invalid tag.
+#, php-format
+msgid "Invalid tag: \"%s\"."
+msgstr "Hindi katanggap-tanggap na tatak: \"%s\"."
+
+#. TRANS: Server error thrown when user profile settings could not be saved.
+msgid "Could not save profile."
+msgstr "Hindi masagip ang balangkas."
+
+#. TRANS: Server error thrown when user profile settings tags could not be saved.
+msgid "Could not save tags."
+msgstr "Hindi masagip ang mga tatak."
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Baguhin ang mga katakdaan ng dinugtungang balangkas."
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Baguhin"
+
+msgid "UI extensions for additional profile fields."
+msgstr "Mga dutong ng UI para sa mga kahanayan ng karagdagang balangkas."
+
+msgid "More details..."
+msgstr "Marami pang mga detalye..."
+
+msgid "Company"
+msgstr "Kumpanya"
+
+msgid "Start"
+msgstr "Magsimula"
+
+msgid "End"
+msgstr "Tapusin"
+
+msgid "Current"
+msgstr "Pangkasalukuyan"
+
+msgid "Institution"
+msgstr "Institusyon"
+
+msgid "Degree"
+msgstr "Antas"
+
+msgid "Description"
+msgstr "Paglalarawan"
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Sagipin"
+
+msgid "Phone"
+msgstr "Telepono"
+
+msgid "IM"
+msgstr "Biglaang Mensahe"
+
+msgid "Website"
+msgstr "Websayt"
+
+msgid "Employer"
+msgstr "Tagapagpahanapbuhay"
+
+msgid "Personal"
+msgstr "Pansarili"
+
+msgid "Full name"
+msgstr "Buong pangalan"
+
+msgid "Title"
+msgstr "Pamagat"
+
+msgid "Manager"
+msgstr "Tagapamahala"
+
+msgid "Location"
+msgstr "Kinalalagyan"
+
+msgid "Bio"
+msgstr "Talambuhay"
+
+msgid "Tags"
+msgstr "Mga tatak"
+
+msgid "Contact"
+msgstr "Kaugnayan"
+
+msgid "Birthday"
+msgstr "Kaarawan"
+
+msgid "Spouse's name"
+msgstr "Pangalan ng asawa"
+
+msgid "Kids' names"
+msgstr "Pangalan ng mga anak"
+
+msgid "Work experience"
+msgstr "Karanasan sa hanapbuhay"
+
+msgid "Education"
+msgstr "Pag-aaral"

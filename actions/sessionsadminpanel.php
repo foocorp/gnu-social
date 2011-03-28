@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class SessionsadminpanelAction extends AdminPanelAction
 {
     /**
@@ -48,10 +47,10 @@ class SessionsadminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
-        return _('Sessions');
+        // TRANS: Title for the sessions administration panel.
+        return _m('TITLE','Sessions');
     }
 
     /**
@@ -59,9 +58,9 @@ class SessionsadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
+        // TRANS: Instructions for the sessions administration panel.
         return _('Session settings for this StatusNet site');
     }
 
@@ -70,7 +69,6 @@ class SessionsadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new SessionsAdminPanelForm($this);
@@ -83,7 +81,6 @@ class SessionsadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         static $booleans = array('sessions' => array('handle', 'debug'));
@@ -123,6 +120,7 @@ class SessionsadminpanelAction extends AdminPanelAction
     }
 }
 
+// @todo FIXME: Class documentation missing.
 class SessionsAdminPanelForm extends AdminForm
 {
     /**
@@ -130,7 +128,6 @@ class SessionsAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'sessionsadminpanel';
@@ -141,7 +138,6 @@ class SessionsAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -152,7 +148,6 @@ class SessionsAdminPanelForm extends AdminForm
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('sessionsadminpanel');
@@ -163,24 +158,31 @@ class SessionsAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->elementStart('fieldset', array('id' => 'settings_user_sessions'));
-        $this->out->element('legend', null, _('Sessions'));
+        // TRANS: Fieldset legend on the sessions administration panel.
+        $this->out->element('legend', null, _m('LEGEND','Sessions'));
 
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
+        // TRANS: Checkbox title on the sessions administration panel.
+        // TRANS: Indicates if StatusNet should handle session administration.
         $this->out->checkbox('handle', _('Handle sessions'),
                               (bool) $this->value('handle', 'sessions'),
-                              _('Whether to handle sessions ourselves.'));
+                              // TRANS: Checkbox title on the sessions administration panel.
+                              // TRANS: Indicates if StatusNet should handle session administration.
+                              _('Handle sessions ourselves.'));
         $this->unli();
 
         $this->li();
+        // TRANS: Checkbox label on the sessions administration panel.
+        // TRANS: Indicates if StatusNet should write session debugging output.
         $this->out->checkbox('debug', _('Session debugging'),
                               (bool) $this->value('debug', 'sessions'),
-                              _('Turn on debugging output for sessions.'));
+                              // TRANS: Checkbox title on the sessions administration panel.
+                              _('Enable debugging output for sessions.'));
         $this->unli();
 
         $this->out->elementEnd('ul');
@@ -193,9 +195,14 @@ class SessionsAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Save'), 'submit', null, _('Save site settings'));
+        $this->out->submit('submit',
+                           // TRANS: Submit button text on the sessions administration panel.
+                           _m('BUTTON','Save'),
+                           'submit',
+                           null,
+                           // TRANS: Title for submit button on the sessions administration panel.
+                           _('Save session settings'));
     }
 }

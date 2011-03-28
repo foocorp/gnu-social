@@ -2995,8 +2995,37 @@ X-OIM-Sequence-Num: 1
 
         // no ticket found!
         if (count($matches) == 0) {
-            $this->debug_message('*** Could not get passport ticket!');
-            return false;
+            // Since 2011/2/15, the return value will be Compact2, not PPToken2
+
+            // we need ticket and secret code
+            // RST1: messengerclear.live.com
+            // <wsse:BinarySecurityToken Id="Compact1">t=tick&p=</wsse:BinarySecurityToken>
+            // <wst:BinarySecret>binary secret</wst:BinarySecret>
+            // RST2: messenger.msn.com
+            // <wsse:BinarySecurityToken Id="PPToken2">t=tick</wsse:BinarySecurityToken>
+            // RST3: contacts.msn.com
+            // <wsse:BinarySecurityToken Id="Compact3">t=tick&p=</wsse:BinarySecurityToken>
+            // RST4: messengersecure.live.com
+            // <wsse:BinarySecurityToken Id="Compact4">t=tick&p=</wsse:BinarySecurityToken>
+            // RST5: spaces.live.com
+            // <wsse:BinarySecurityToken Id="Compact5">t=tick&p=</wsse:BinarySecurityToken>
+            // RST6: storage.msn.com
+            // <wsse:BinarySecurityToken Id="Compact6">t=tick&p=</wsse:BinarySecurityToken>
+            preg_match("#".
+                       "<wsse\:BinarySecurityToken Id=\"Compact1\">(.*)</wsse\:BinarySecurityToken>(.*)".
+                       "<wst\:BinarySecret>(.*)</wst\:BinarySecret>(.*)".
+                       "<wsse\:BinarySecurityToken Id=\"Compact2\">(.*)</wsse\:BinarySecurityToken>(.*)".
+                       "<wsse\:BinarySecurityToken Id=\"Compact3\">(.*)</wsse\:BinarySecurityToken>(.*)".
+                       "<wsse\:BinarySecurityToken Id=\"Compact4\">(.*)</wsse\:BinarySecurityToken>(.*)".
+                       "<wsse\:BinarySecurityToken Id=\"Compact5\">(.*)</wsse\:BinarySecurityToken>(.*)".
+                       "<wsse\:BinarySecurityToken Id=\"Compact6\">(.*)</wsse\:BinarySecurityToken>(.*)".
+                       "#",
+                       $data, $matches);
+            // no ticket found!
+            if (count($matches) == 0) {
+                $this->debug_message("*** Can't get passport ticket!");
+                return false;
+            }
         }
 
         //$this->debug_message(var_export($matches, true));

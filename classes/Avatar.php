@@ -27,7 +27,7 @@ class Avatar extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    # We clean up the file, too
+    // We clean up the file, too
 
     function delete()
     {

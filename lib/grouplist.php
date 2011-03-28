@@ -137,7 +137,7 @@ class GroupList extends Widget
             $this->out->elementEnd('p');
         }
 
-        # If we're on a list with an owner (subscriptions or subscribers)...
+        // If we're on a list with an owner (subscriptions or subscribers)...
 
         if (!empty($user) && !empty($this->owner) && $user->id == $this->owner->id) {
             $this->showOwnerControls();
@@ -149,8 +149,8 @@ class GroupList extends Widget
             $this->out->elementStart('div', 'entity_actions');
             $this->out->elementStart('ul');
             $this->out->elementStart('li', 'entity_subscribe');
-            # XXX: special-case for user looking at own
-            # subscriptions page
+            // XXX: special-case for user looking at own
+            // subscriptions page
             if ($user->isMember($this->group)) {
                 $lf = new LeaveForm($this->out, $this->group);
                 $lf->show();

@@ -1,0 +1,30 @@
+# Translation of StatusNet - Geonames to Finnish (Suomi)
+# Exported from translatewiki.net
+#
+# Author: Nike
+# Author: XTL
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Geonames\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"PO-Revision-Date: 2011-03-24 11:13:44+0000\n"
+"Language-Team: Finnish <http://translatewiki.net/wiki/Portal:fi>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-18 20:07:09+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fi\n"
+"X-Message-Group: #out-statusnet-plugin-geonames\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid ""
+"Uses <a href=\"http://geonames.org/\">Geonames</a> service to get human-"
+"readable names for locations based on user-provided lat/long pairs."
+msgstr ""
+"Käyttää <a href=\"http://geonames.org/\">Geonames</a>-palvelua käyttäjän "
+"antamia koordinaatteja vastaavien paikannimien hakemiseen."

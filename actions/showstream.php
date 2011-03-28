@@ -33,7 +33,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 }
 
 require_once INSTALLDIR.'/lib/personalgroupnav.php';
-require_once INSTALLDIR.'/lib/userprofile.php';
 require_once INSTALLDIR.'/lib/noticelist.php';
 require_once INSTALLDIR.'/lib/profileminilist.php';
 require_once INSTALLDIR.'/lib/groupminilist.php';
@@ -66,7 +65,8 @@ class ShowstreamAction extends ProfileAction
         $base = $this->profile->getFancyName();
         if (!empty($this->tag)) {
             if ($this->page == 1) {
-                // TRANS: Page title showing tagged notices in one user's stream. %1$s is the username, %2$s is the hash tag.
+                // TRANS: Page title showing tagged notices in one user's stream.
+                // TRANS: %1$s is the username, %2$s is the hash tag.
                 return sprintf(_('%1$s tagged %2$s'), $base, $this->tag);
             } else {
                 // TRANS: Page title showing tagged notices in one user's stream.
@@ -100,7 +100,6 @@ class ShowstreamAction extends ProfileAction
 
     function showContent()
     {
-        $this->showProfile();
         $this->showNotices();
     }
 
@@ -108,6 +107,12 @@ class ShowstreamAction extends ProfileAction
     {
         $nav = new SubGroupNav($this, $this->user);
         $nav->show();
+    }
+
+    function showProfileBlock()
+    {
+        $block = new AccountProfileBlock($this, $this->profile);
+        $block->show();
     }
 
     function showPageNoticeBlock()
@@ -149,6 +154,8 @@ class ShowstreamAction extends ProfileAction
                                                array(
                                                     'id' => $this->user->id,
                                                     'format' => 'atom')),
+                              // TRANS: Title for link to notice feed.
+                              // TRANS: %s is a user nickname.
                               sprintf(_('Notice feed for %s (Atom)'),
                                       $this->user->nickname)),
                      new Feed(Feed::FOAF,
@@ -191,12 +198,6 @@ class ShowstreamAction extends ProfileAction
         $this->element('link', array('rel' => 'EditURI',
                                      'type' => 'application/rsd+xml',
                                      'href' => $rsd));
-    }
-
-    function showProfile()
-    {
-        $profile = new UserProfile($this, $this->user, $this->profile);
-        $profile->show();
     }
 
     function showEmptyListMessage()
@@ -281,6 +282,18 @@ class ShowstreamAction extends ProfileAction
 
 // We don't show the author for a profile, since we already know who it is!
 
+/**
+ * Slightly modified from standard list; the author & avatar are hidden
+ * in CSS. We used to remove them here too, but as it turns out that
+ * confuses the inline reply code... and we hide them in CSS anyway
+ * since realtime updates come through in original form.
+ *
+ * Remaining customization right now is for the repeat marker, where
+ * it'll list who the original poster was instead of who did the repeat
+ * (since the repeater is you, and the repeatee isn't shown!)
+ * This will remain inconsistent if realtime updates come through,
+ * since those'll get rendered as a regular NoticeListItem.
+ */
 class ProfileNoticeList extends NoticeList
 {
     function newListItem($notice)
@@ -291,11 +304,6 @@ class ProfileNoticeList extends NoticeList
 
 class ProfileNoticeListItem extends DoFollowListItem
 {
-    function showAuthor()
-    {
-        return;
-    }
-
     /**
      * show a link to the author of repeat
      *

@@ -31,6 +31,7 @@ class StatusNet
 {
     protected static $have_config;
     protected static $is_api;
+    protected static $is_ajax;
     protected static $plugins = array();
 
     /**
@@ -228,6 +229,16 @@ class StatusNet
     public function setApi($mode)
     {
         self::$is_api = $mode;
+    }
+
+    public function isAjax()
+    {
+        return self::$is_ajax;
+    }
+
+    public function setAjax($mode)
+    {
+        self::$is_ajax = $mode;
     }
 
     /**

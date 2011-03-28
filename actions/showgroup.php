@@ -180,8 +180,6 @@ class ShowgroupAction extends GroupDesignAction
      */
     function showContent()
     {
-        $this->showGroupProfile();
-        $this->showGroupActions();
         $this->showGroupNotices();
     }
 
@@ -203,121 +201,6 @@ class ShowgroupAction extends GroupDesignAction
                           $this->page,
                           'showgroup',
                           array('nickname' => $this->group->nickname));
-    }
-
-    /**
-     * Show the group profile
-     *
-     * Information about the group
-     *
-     * @return void
-     */
-    function showGroupProfile()
-    {
-        $this->elementStart('div', array('id' => 'i',
-                                         'class' => 'entity_profile vcard author'));
-
-        $logo = ($this->group->homepage_logo) ?
-          $this->group->homepage_logo : User_group::defaultLogo(AVATAR_PROFILE_SIZE);
-
-        $this->element('img', array('src' => $logo,
-                                    'class' => 'photo avatar entity_depiction',
-                                    'width' => AVATAR_PROFILE_SIZE,
-                                    'height' => AVATAR_PROFILE_SIZE,
-                                    'alt' => $this->group->nickname));
-
-        $hasFN = ($this->group->fullname) ? 'entity_nickname nickname url uid' :
-            'entity_nickname fn org nickname url uid';
-        $this->element('a', array('href' => $this->group->homeUrl(),
-                                  'rel' => 'me', 'class' => $hasFN),
-                            $this->group->nickname);
-
-        if ($this->group->fullname) {
-            $this->element('div', 'entity_fn fn org', $this->group->fullname);
-        }
-
-        if ($this->group->location) {
-            $this->element('div', 'entity_location label', $this->group->location);
-        }
-
-        if ($this->group->homepage) {
-            $this->element('a', array('href' => $this->group->homepage,
-                                      'rel' => 'me',
-                                      'class' => 'url entity_url'),
-                           $this->group->homepage);
-        }
-
-        if ($this->group->description) {
-            $this->element('div', 'note entity_note', $this->group->description);
-        }
-
-        if (common_config('group', 'maxaliases') > 0) {
-            $aliases = $this->group->getAliases();
-
-            if (!empty($aliases)) {
-                $this->element('div',
-                               'aliases entity_aliases',
-                               implode(' ', $aliases));
-            }
-
-            if ($this->group->description) {
-                $this->elementStart('dl', 'entity_note');
-                // TRANS: Label for group description or group note (dt). Text hidden by default.
-                $this->element('dt', null, _('Note'));
-                $this->element('dd', 'note', $this->group->description);
-                $this->elementEnd('dl');
-            }
-
-            if (common_config('group', 'maxaliases') > 0) {
-                $aliases = $this->group->getAliases();
-
-                if (!empty($aliases)) {
-                    $this->elementStart('dl', 'entity_aliases');
-                    // TRANS: Label for group aliases (dt). Text hidden by default.
-                    $this->element('dt', null, _('Aliases'));
-                    $this->element('dd', 'aliases', implode(' ', $aliases));
-                    $this->elementEnd('dl');
-                }
-            }
-
-            Event::handle('EndGroupProfileElements', array($this, $this->group));
-        }
-
-        $this->elementEnd('div');
-    }
-
-    function showGroupActions()
-    {
-        $cur = common_current_user();
-        $this->elementStart('div', 'entity_actions');
-        // TRANS: Group actions header (h2). Text hidden by default.
-        $this->element('h2', null, _('Group actions'));
-        $this->elementStart('ul');
-        if (Event::handle('StartGroupActionsList', array($this, $this->group))) {
-            $this->elementStart('li', 'entity_subscribe');
-            if (Event::handle('StartGroupSubscribe', array($this, $this->group))) {
-                if ($cur) {
-                    if ($cur->isMember($this->group)) {
-                        $lf = new LeaveForm($this, $this->group);
-                        $lf->show();
-                    } else if (!Group_block::isBlocked($this->group, $cur->getProfile())) {
-                        $jf = new JoinForm($this, $this->group);
-                        $jf->show();
-                    }
-                }
-                Event::handle('EndGroupSubscribe', array($this, $this->group));
-            }
-            $this->elementEnd('li');
-            if ($cur && $cur->hasRight(Right::DELETEGROUP)) {
-                $this->elementStart('li', 'entity_delete');
-                $df = new DeleteGroupForm($this, $this->group);
-                $df->show();
-                $this->elementEnd('li');
-            }
-            Event::handle('EndGroupActionsList', array($this, $this->group));
-        }
-        $this->elementEnd('ul');
-        $this->elementEnd('div');
     }
 
     /**
@@ -440,7 +323,9 @@ class ShowgroupAction extends GroupDesignAction
         // TRANS: Header for group statistics on a group page (h2).
         $this->element('h2', null, _('Statistics'));
 
-        $this->elementEnd('dl');
+        $this->elementStart('dl');
+
+        // TRANS: Label for group creation date.
         $this->element('dt', null, _m('LABEL','Created'));
         $this->element('dd', 'entity_created', date('j M Y',
                                                  strtotime($this->group->created)));
@@ -499,8 +384,8 @@ class GroupAdminSection extends ProfileSection
 
     function title()
     {
-        // TRANS: Header for list of group administrators on a group page (h2).
-        return _('Admins');
+        // TRANS: Title for list of group administrators on a group page.
+        return _m('TITLE','Admins');
     }
 
     function divId()

@@ -174,4 +174,8 @@ class SettingsAction extends CurrentUserDesignAction
     {
         return;
     }
+
+    function showProfileBlock()
+    {
+    }
 }

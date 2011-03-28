@@ -111,7 +111,9 @@ class CometPlugin extends RealtimePlugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Comet',
                             'rawdescription' =>
-                            _m('Plugin to do "real time" updates using Comet/Bayeux.'));
+                            // TRANS: Plugin description message. Bayeux is a protocol for transporting asynchronous messages
+                            // TRANS: and Comet is a web application model.
+                            _m('Plugin to make updates using Comet and Bayeux.'));
         return true;
     }
 }

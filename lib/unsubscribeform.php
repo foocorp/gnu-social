@@ -46,7 +46,6 @@ require_once INSTALLDIR.'/lib/form.php';
  *
  * @see      SubscribeForm
  */
-
 class UnsubscribeForm extends Form
 {
     /**
@@ -61,7 +60,6 @@ class UnsubscribeForm extends Form
      * @param HTMLOutputter $out     output channel
      * @param Profile       $profile profile of user to unsub from
      */
-
     function __construct($out=null, $profile=null)
     {
         parent::__construct($out);
@@ -74,7 +72,6 @@ class UnsubscribeForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'unsubscribe-' . $this->profile->id;
@@ -86,7 +83,6 @@ class UnsubscribeForm extends Form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         return 'form_user_unsubscribe ajax';
@@ -97,7 +93,6 @@ class UnsubscribeForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('unsubscribe');
@@ -110,6 +105,7 @@ class UnsubscribeForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend on unsubscribe form.
         $this->out->element('legend', null, _('Unsubscribe from this user'));
     }
 
@@ -118,7 +114,6 @@ class UnsubscribeForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->hidden('unsubscribeto-' . $this->profile->id,
@@ -131,9 +126,11 @@ class UnsubscribeForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Unsubscribe'), 'submit', null, _('Unsubscribe from this user'));
+        // TRANS: Button text on unsubscribe form.
+        $this->out->submit('submit', _m('BUTTON','Unsubscribe'), 'submit', null,
+                           // TRANS: Button title on unsubscribe form.
+                           _('Unsubscribe from this user'));
     }
 }

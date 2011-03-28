@@ -1,0 +1,246 @@
+# Translation of StatusNet - FacebookBridge to Arabic (العربية)
+# Exported from translatewiki.net
+#
+# Author: OsamaK
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - FacebookBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"PO-Revision-Date: 2011-03-24 11:13:40+0000\n"
+"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-18 20:07:06+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ar\n"
+"X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
+"2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
+"99) ? 4 : 5 ) ) ) );\n"
+
+msgid "Already logged in."
+msgstr ""
+
+#. TRANS: Instructions.
+msgid "Login with your Facebook Account"
+msgstr ""
+
+#. TRANS: Page title.
+msgid "Login with Facebook"
+msgstr ""
+
+msgid "Facebook"
+msgstr ""
+
+msgid "Facebook integration settings"
+msgstr ""
+
+msgid "Invalid Facebook ID. Max length is 255 characters."
+msgstr ""
+
+msgid "Invalid Facebook secret. Max length is 255 characters."
+msgstr ""
+
+msgid "Facebook application settings"
+msgstr ""
+
+msgid "Application ID"
+msgstr ""
+
+msgid "ID of your Facebook application"
+msgstr ""
+
+msgid "Secret"
+msgstr ""
+
+msgid "Application secret"
+msgstr ""
+
+msgid "Save"
+msgstr "احفظ"
+
+msgid "Save Facebook settings"
+msgstr "احفظ إعدادات فيسبك"
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Page title for Facebook settings.
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Facebook settings"
+msgstr "إعدادات فيسبك"
+
+msgid "Connected Facebook user"
+msgstr ""
+
+msgid "Publish my notices to Facebook."
+msgstr "انشر إشعاراتي على فيسبك."
+
+msgid "Send \"@\" replies to Facebook."
+msgstr "أرسل الردود \"@\" إلى فيسبك."
+
+#. TRANS: Submit button to save synchronisation settings.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "احفظ"
+
+#. TRANS: Legend.
+msgid "Disconnect my account from Facebook"
+msgstr "اقطع اتصال حسابي بفيسبك."
+
+#, php-format
+msgid ""
+"Disconnecting your Faceboook would make it impossible to log in! Please [set "
+"a password](%s) first."
+msgstr ""
+"قطع اتصال حسابك بفيسبك سيجعل دخولك مستحيلا! الرجاء [ضبط كلمة سر](%s) أولا."
+
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
+"password to log in."
+msgstr ""
+"أبقِ حسابك على %1$s واقطع الاتصال بفيسبك. سوف يتعين عليك استخدام كلمة السر "
+"على %1$s للدخول."
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Disconnect"
+msgstr "اقطع الاتصال"
+
+msgid "There was a problem saving your sync preferences."
+msgstr ""
+
+#. TRANS: Confirmation that synchronisation settings have been saved into the system.
+msgid "Sync preferences saved."
+msgstr "حُفظت تفضيلات المزامنة."
+
+msgid "Couldn't delete link to Facebook."
+msgstr "تعذر حذف وصلة فيسبك."
+
+msgid "You have disconnected from Facebook."
+msgstr "لقد قطعت الاتصال من فيسبك."
+
+msgid ""
+"You must be logged into Facebook to register a local account using Facebook."
+msgstr ""
+
+msgid "There is already a local account linked with that Facebook account."
+msgstr ""
+
+msgid "You can't register if you don't agree to the license."
+msgstr ""
+
+msgid "An unknown error has occured."
+msgstr ""
+
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your "
+"Facebook to a local account. You can either create a new local account, or "
+"connect with an existing local account."
+msgstr ""
+
+#. TRANS: Page title.
+msgid "Facebook Setup"
+msgstr "ضبط فيسبك"
+
+#. TRANS: Legend.
+msgid "Connection options"
+msgstr "خيارات الاتصال"
+
+#. TRANS: %s is the name of the license used by the user for their status updates.
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+
+#. TRANS: Legend.
+msgid "Create new account"
+msgstr ""
+
+msgid "Create a new user with this nickname."
+msgstr ""
+
+#. TRANS: Field label.
+msgid "New nickname"
+msgstr ""
+
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+msgstr ""
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Create"
+msgstr ""
+
+msgid "Connect existing account"
+msgstr ""
+
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Facebook."
+msgstr ""
+
+#. TRANS: Field label.
+msgid "Existing nickname"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+#. TRANS: Submit button.
+msgctxt "BUTTON"
+msgid "Connect"
+msgstr ""
+
+#. TRANS: Client error trying to register with registrations not allowed.
+#. TRANS: Client error trying to register with registrations 'invite only'.
+msgid "Registration not allowed."
+msgstr ""
+
+#. TRANS: Client error trying to register with an invalid invitation code.
+msgid "Not a valid invitation code."
+msgstr ""
+
+msgid "Nickname not allowed."
+msgstr ""
+
+msgid "Nickname already in use. Try another one."
+msgstr "الاسم المستعار مستخدم بالفعل. جرّب اسمًا آخرًا."
+
+msgid "Error connecting user to Facebook."
+msgstr "خطأ في ربط المستخدم بفيسبك."
+
+msgid "Invalid username or password."
+msgstr "اسم مستخدم أو كلمة سر غير صالحة."
+
+#. TRANS: Menu item.
+#. TRANS: Menu item tab.
+msgctxt "MENU"
+msgid "Facebook"
+msgstr "فيسبك"
+
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Login or register using Facebook"
+msgstr "لُج أو سجّل باستخدام فيسبك"
+
+#. TRANS: Tooltip for menu item "Facebook".
+msgid "Facebook integration configuration"
+msgstr "ضبط تكامل فيسبك"
+
+msgid "A plugin for integrating StatusNet with Facebook."
+msgstr ""
+
+msgid "Your Facebook connection has been removed"
+msgstr ""
+
+#, php-format
+msgid "Contact the %s administrator to retrieve your account"
+msgstr ""

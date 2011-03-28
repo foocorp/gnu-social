@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-11 18:15+0000\n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,24 +72,24 @@ msgid "Simple extension for supporting basic polls."
 msgstr ""
 
 #. TRANS: Exception thrown trying to respond to a poll without a poll reference.
-#: PollPlugin.php:234
+#: PollPlugin.php:230
 msgid "Invalid poll response: no poll reference."
 msgstr ""
 
 #. TRANS: Exception thrown trying to respond to a non-existing poll.
-#: PollPlugin.php:239
+#: PollPlugin.php:235
 msgid "Invalid poll response: poll is unknown."
 msgstr ""
 
 #. TRANS: Exception thrown when performing an unexpected action on a poll.
 #. TRANS: %s is the unpexpected object type.
-#: PollPlugin.php:266 PollPlugin.php:371
+#: PollPlugin.php:262 PollPlugin.php:420
 #, php-format
 msgid "Unexpected type for poll plugin: %s."
 msgstr ""
 
 #. TRANS: Application title.
-#: PollPlugin.php:432
+#: PollPlugin.php:481
 msgctxt "APPTITLE"
 msgid "Poll"
 msgstr ""

@@ -91,7 +91,7 @@ class Foreign_link extends Memcached_DataObject
         $this->profilesync = 0;
     }
 
-    # Convenience methods
+    // Convenience methods
     function getForeignUser()
     {
         $fuser = new Foreign_user();

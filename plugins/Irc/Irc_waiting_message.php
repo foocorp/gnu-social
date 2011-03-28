@@ -94,9 +94,9 @@ class Irc_waiting_message extends Memcached_DataObject {
         $cnt = $wm->find(true);
 
         if ($cnt) {
-            # XXX: potential race condition
-            # can we force it to only update if claimed is still null
-            # (or old)?
+            // XXX: potential race condition
+            // can we force it to only update if claimed is still null
+            // (or old)?
             common_log(LOG_INFO, 'claiming IRC waiting message id = ' . $wm->id);
             $orig = clone($wm);
             $wm->claimed = common_sql_now();

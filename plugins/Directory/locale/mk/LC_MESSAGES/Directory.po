@@ -1,0 +1,54 @@
+# Translation of StatusNet - Directory to Macedonian (Македонски)
+# Exported from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Directory\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-18 19:46+0000\n"
+"PO-Revision-Date: 2011-03-18 19:48:29+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-17 10:24:35+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-directory\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#, php-format
+msgid "User Directory, page %d"
+msgstr "Кориснички именик, стр. %d"
+
+msgid "User directory"
+msgstr "Кориснички именик"
+
+#, php-format
+msgid "User directory - %s"
+msgstr "Кориснички именик - %s"
+
+#, php-format
+msgid "User directory - %s, page %d"
+msgstr "Кориснички именик - %s, стр. %d"
+
+msgctxt "BUTTON"
+msgid "Search"
+msgstr "Пребарај"
+
+#, php-format
+msgid "No users starting with %s"
+msgstr "Нема корисници што почнуваат на %s"
+
+msgid "Add a user directory."
+msgstr "Додај кориснички именик."
+
+msgid "Nickname"
+msgstr "Прекар"
+
+msgid "Created"
+msgstr "Создадено"

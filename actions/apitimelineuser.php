@@ -322,8 +322,11 @@ class ApiTimelineUserAction extends ApiBareAuthAction
             $this->clientError(_('Atom post must not be empty.'));
         }
 
-        $dom = DOMDocument::loadXML($xml);
-        if (!$dom) {
+        $old = error_reporting(error_reporting() & ~(E_WARNING | E_NOTICE));
+        $dom = new DOMDocument();
+        $ok = $dom->loadXML($xml);
+        error_reporting($old);
+        if (!$ok) {
             // TRANS: Client error displayed attempting to post an API that is not well-formed XML.
             $this->clientError(_('Atom post must be well-formed XML.'));
         }

@@ -68,10 +68,7 @@ class ForceGroupPlugin extends Plugin
             $group = User_group::getForNickname($nickname);
             if ($group && !$profile->isMember($group)) {
                 try {
-                    if (Event::handle('StartJoinGroup', array($group, $user))) {
-                        Group_member::join($group->id, $user->id);
-                        Event::handle('EndJoinGroup', array($group, $user));
-                    }
+                    $profile->joinGroup($group);
                 } catch (Exception $e) {
                     // TRANS: Server exception.
                     // TRANS: %1$s is a user nickname, %2$s is a group nickname.

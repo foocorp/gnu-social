@@ -52,8 +52,8 @@ class NeweventAction extends Action
     protected $title       = null;
     protected $location    = null;
     protected $description = null;
-    protected $start_time  = null;
-    protected $end_time    = null;
+    protected $startTime  = null;
+    protected $endTime    = null;
 
     /**
      * Returns the title of the action
@@ -90,17 +90,60 @@ class NeweventAction extends Action
         }
 
         $this->title       = $this->trimmed('title');
+
+        if (empty($this->title)) {
+            throw new ClientException(_('Title required.'));
+        }
+
         $this->location    = $this->trimmed('location');
         $this->url         = $this->trimmed('url');
         $this->description = $this->trimmed('description');
 
-        $start_date = $this->trimmed('start_date');
-        $start_time = $this->trimmed('start_time');
-        $end_date   = $this->trimmed('end_date');
-        $end_time   = $this->trimmed('end_time');
+        $startDate = $this->trimmed('startdate');
 
-        $this->start_time = strtotime($start_date . ' ' . $start_time);
-        $this->end_time   = strtotime($end_date . ' ' . $end_time);
+        if (empty($startDate)) {
+            throw new ClientException(_('Start date required.'));
+        }
+
+        $startTime = $this->trimmed('starttime');
+
+        if (empty($startTime)) {
+            $startTime = '00:00';
+        }
+
+        $endDate   = $this->trimmed('enddate');
+
+        if (empty($endDate)) {
+            throw new ClientException(_('End date required.'));
+        }
+
+        $endTime   = $this->trimmed('endtime');
+
+        if (empty($endTime)) {
+            $endTime = '00:00';
+        }
+
+        $start = $startDate . ' ' . $startTime;
+
+        common_debug("Event start: '$start'");
+
+        $end = $endDate . ' ' . $endTime;
+
+        common_debug("Event start: '$end'");
+
+        $this->startTime = strtotime($start);
+        $this->endTime   = strtotime($end);
+
+        if ($this->startTime == 0) {
+            throw new Exception(sprintf(_('Could not parse date "%s"'),
+                                        $start));
+        }
+
+
+        if ($this->endTime == 0) {
+            throw new Exception(sprintf(_('Could not parse date "%s"'),
+                                        $end));
+        }
 
         return true;
     }
@@ -139,19 +182,19 @@ class NeweventAction extends Action
                 throw new ClientException(_('Event must have a title.'));
             }
 
-            if (empty($this->start_time)) {
+            if (empty($this->startTime)) {
                 throw new ClientException(_('Event must have a start time.'));
             }
 
-            if (empty($this->end_time)) {
+            if (empty($this->endTime)) {
                 throw new ClientException(_('Event must have an end time.'));
             }
 
             $profile = $this->user->getProfile();
 
             $saved = Happening::saveNew($profile,
-                                        $this->start_time,
-                                        $this->end_time,
+                                        $this->startTime,
+                                        $this->endTime,
                                         $this->title,
                                         $this->location,
                                         $this->description,

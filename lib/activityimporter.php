@@ -163,10 +163,7 @@ class ActivityImporter extends QueueHandler
             throw new ClientException(_("User is already a member of this group."));
         }
 
-        if (Event::handle('StartJoinGroup', array($group, $user))) {
-            Group_member::join($group->id, $user->id);
-            Event::handle('EndJoinGroup', array($group, $user));
-        }
+        $user->joinGroup($group);
     }
 
     // XXX: largely cadged from Ostatus_profile::processNote()

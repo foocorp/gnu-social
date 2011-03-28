@@ -28,6 +28,7 @@ END_OF_FLUSHROUTER_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
-Cache::delete(Router::cacheKey());
+$cache = Cache::instance();
+$cache->delete(Router::cacheKey());
 
 print "OK.\n";

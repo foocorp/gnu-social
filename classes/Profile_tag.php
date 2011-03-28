@@ -25,7 +25,7 @@ class Profile_tag extends Memcached_DataObject
     static function getTags($tagger, $tagged) {
         $tags = array();
 
-        # XXX: store this in memcached
+        // XXX: store this in memcached
 
         $profile_tag = new Profile_tag();
         $profile_tag->tagger = $tagger;
@@ -46,11 +46,11 @@ class Profile_tag extends Memcached_DataObject
         $newtags = array_unique($newtags);
         $oldtags = Profile_tag::getTags($tagger, $tagged);
 
-        # Delete stuff that's old that not in new
+        // Delete stuff that's old that not in new
 
         $to_delete = array_diff($oldtags, $newtags);
 
-        # Insert stuff that's in new and not in old
+        // Insert stuff that's in new and not in old
 
         $to_insert = array_diff($newtags, $oldtags);
 
@@ -84,7 +84,7 @@ class Profile_tag extends Memcached_DataObject
         return true;
     }
 
-    # Return profiles with a given tag
+    // Return profiles with a given tag
     static function getTagged($tagger, $tag) {
         $profile = new Profile();
         $profile->query('SELECT profile.* ' .

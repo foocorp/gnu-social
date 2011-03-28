@@ -21,8 +21,8 @@ require_once(INSTALLDIR . '/lib/mail.php');
 require_once(INSTALLDIR . '/lib/mediafile.php');
 require_once('Mail/mimeDecode.php');
 
-# FIXME: we use both Mail_mimeDecode and mailparse
-# Need to move everything to mailparse
+// FIXME: we use both Mail_mimeDecode and mailparse
+// Need to move everything to mailparse
 
 class MailHandler
 {

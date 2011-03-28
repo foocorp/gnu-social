@@ -1,0 +1,165 @@
+/* Note the #content is only needed to override weird crap in default styles */
+
+#profiledetail .entity_actions {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#profiledetail #content h3 {
+    margin-bottom: 5px;
+}
+
+#content table.extended-profile {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0px 8px;
+    margin-bottom: 10px;
+}
+
+#content table.extended-profile th {
+    color: #777;
+    background-color: #ECECF2;
+    width: 150px;
+    text-align: right;
+    padding: 2px 8px 2px 0px;
+}
+
+#content table.extended-profile th.employer, #content table.extended-profile th.institution {
+    display: none;
+}
+
+#content table.extended-profile td {
+    padding: 2px 0px 2px 8px;        
+}
+
+.experience-item, .education-item {
+    float: left;
+    padding-bottom: 4px;
+}
+
+.experience-item .label, .education-item .label {
+    float: left;
+    clear: left;
+    position: relative;
+    left: -8px;
+    margin-right: 2px;
+    margin-bottom: 8px;
+    color: #777;
+    background-color: #ECECF2;
+    width: 150px;
+    text-align: right;
+    padding: 2px 8px 2px 0px;
+}
+
+.experience-item .field, .education-item .field {
+    float: left;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    max-width: 350px;
+}
+
+#profiledetailsettings #content table.extended-profile td {
+    padding: 0px 0px 0px 8px;
+}
+
+#profiledetailsettings input {
+    margin-right: 8px;
+}
+
+.form_settings .extended-profile label {
+    display: none;
+}
+
+.extended-profile textarea {
+    width: 280px;
+}
+
+.extended-profile input[type=text] {
+    width: 280px;
+}
+
+.extended-profile .phone-item input[type=text], .extended-profile .im-item input[type=text], .extended-profile .website-item input[type=text] {
+    width: 175px;
+}
+
+.extended-profile input.hasDatepicker {
+    width: 100px;
+}
+
+.experience-item input[type=text], .education-item input[type=text] {
+    float: left;
+}
+
+.extended-profile .current-checkbox {
+    float: left;
+    position: relative;
+    top: 2px;
+}
+
+.form_settings .extended-profile input.checkbox {
+    margin-left: 0px;
+    left: 0px;
+    top: 2px;
+}
+
+.form_settings .extended-profile label.checkbox {
+    max-width: 100%;
+    float: none;
+    display: inline;
+    left: -20px;
+}
+
+.extended-profile select {
+    padding-right: 2px;
+    font-size: 0.88em;
+}
+
+.extended-profile a.add_row, .extended-profile a.remove_row {
+    display: block;
+    height: 16px;
+    width: 16px;
+    overflow: hidden;
+    background-image: url('../../../theme/rebase/images/icons/icons-01.gif');
+    background-repeat: no-repeat;
+}
+
+.extended-profile a.remove_row {
+    background-position: 0px -1252px;
+    float: right;
+    position: relative;
+    top: 6px;
+    line-height: 4em;
+}
+
+.extended-profile a.add_row {
+    clear: both;
+    position: relative;
+    top: 6px;
+    left: 2px; 
+    background-position: 0px -1186px;
+    width: 120px;
+    padding-left: 20px;
+    line-height: 1.2em;
+}
+
+#content table.extended-profile .supersizeme th {
+    border-bottom: 28px solid #fff;
+}
+
+#profiledetailsettings .experience-item, #profiledetailsettings .education-item {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#profiledetailsettings .education-item textarea {
+    float: left;
+    margin-bottom: 8px;
+}
+
+#profiledetailsettings tr:last-child .experience-item, #profiledetailsettings tr:last-child .education-item {
+    margin-bottom: 0px;
+}
+
+#profiledetailsettings .experience-item a.add_row, #profiledetailsettings .education-item a.add_row {
+    left: 160px;
+}

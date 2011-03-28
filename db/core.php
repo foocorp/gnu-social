@@ -649,6 +649,7 @@ $schema['user_group'] = array(
 
         'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universal identifier'),
         'mainpage' => array('type' => 'varchar', 'length' => 255, 'description' => 'page for group info to link to'),
+        'join_policy' => array('type' => 'int', 'size' => 'tiny', 'description' => '0=open; 1=requires admin approval'),
     ),
     'primary key' => array('id'),
     'unique keys' => array(
@@ -1025,3 +1026,5 @@ $schema['schema_version'] = array(
     ),
     'primary key' => array('table_name'),
 );
+
+$schema['group_join_queue'] = Group_join_queue::schemaDef();

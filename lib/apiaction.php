@@ -292,7 +292,7 @@ class ApiAction extends Action
         if ($get_notice) {
             $notice = $profile->getCurrentNotice();
             if ($notice) {
-                # don't get user!
+                // don't get user!
                 $twitter_user['status'] = $this->twitterStatusArray($notice, false);
             }
         }
@@ -397,7 +397,7 @@ class ApiAction extends Action
         }
 
         if ($include_user && $profile) {
-            # Don't get notice (recursive!)
+            // Don't get notice (recursive!)
             $twitter_user = $this->twitterUserArray($profile, false);
             $twitter_status['user'] = $twitter_user;
         }
@@ -698,7 +698,7 @@ class ApiAction extends Action
         $this->element('guid', null, $entry['guid']);
         $this->element('link', null, $entry['link']);
 
-        # RSS only supports 1 enclosure per item
+        // RSS only supports 1 enclosure per item
         if(array_key_exists('enclosures', $entry) and !empty($entry['enclosures'])){
             $enclosure = $entry['enclosures'][0];
             $this->element('enclosure', array('url'=>$enclosure['url'],'type'=>$enclosure['mimetype'],'length'=>$enclosure['size']), null);
@@ -833,7 +833,7 @@ class ApiAction extends Action
         }
 
         if (!is_null($suplink)) {
-            # For FriendFeed's SUP protocol
+            // For FriendFeed's SUP protocol
             $this->element('link', array('rel' => 'http://api.friendfeed.com/2008/03#sup',
                                          'href' => $suplink,
                                          'type' => 'application/json'));

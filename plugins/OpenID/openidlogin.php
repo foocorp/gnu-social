@@ -178,4 +178,8 @@ class OpenidloginAction extends Action
     function showNoticeForm()
     {
     }
+
+    function showProfileBlock()
+    {
+    }
 }

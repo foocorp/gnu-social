@@ -112,7 +112,7 @@ class UserrssAction extends Rss10Action
         return ($avatar) ? $avatar->url : null;
     }
 
-    # override parent to add X-SUP-ID URL
+    // override parent to add X-SUP-ID URL
 
     function initRss($limit=0)
     {

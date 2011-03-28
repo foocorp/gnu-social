@@ -93,6 +93,7 @@ abstract class Managed_DataObject extends Memcached_DataObject
     function keyTypes()
     {
         $table = call_user_func(array(get_class($this), 'schemaDef'));
+        $keys = array();
 
         if (!empty($table['unique keys'])) {
             foreach ($table['unique keys'] as $idx => $fields) {

@@ -18,7 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-# Abort if called from a web server
+// Abort if called from a web server
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
 

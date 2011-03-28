@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 02:34+0100\n"
-"PO-Revision-Date: 2011-03-06 01:38:27+0000\n"
+"POT-Creation-Date: 2011-03-26 11:02+0000\n"
+"PO-Revision-Date: 2011-03-26 11:07:31+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-03 17:47:31+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-POT-Import-Date: 2011-03-18 20:10:06+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -291,9 +291,14 @@ msgstr "Connexion avec votre compte Twitter"
 msgid "Sign in with Twitter"
 msgstr "S’inscrire avec Twitter"
 
-msgid "Your Twitter bridge has been disabled."
+#. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
+#, fuzzy
+msgid "Your Twitter bridge has been disabled"
 msgstr "Votre passerelle Twitter a été désactivée."
 
+#. TRANS: Mail body after forwarding notices to Twitter has stopped working.
+#. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the
+#. TRANS: Twitter settings, %3$s is the StatusNet sitename.
 #, php-format
 msgid ""
 "Hi, %1$s. We're sorry to inform you that your link to Twitter has been "

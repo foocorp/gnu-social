@@ -1,6 +1,7 @@
 # Translation of StatusNet - Bookmark to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Crochet.david
 # Author: IAlex
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Bookmark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-08 01:03+0000\n"
-"PO-Revision-Date: 2011-03-08 01:05:50+0000\n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"PO-Revision-Date: 2011-03-24 11:13:21+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:12:57+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83429); Translate extension (2011-03-07)\n"
+"X-POT-Import-Date: 2011-03-18 20:06:05+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-bookmark\n"
@@ -25,7 +26,7 @@ msgid "Simple extension for supporting bookmarks."
 msgstr "Simple extension pour supporter les signets."
 
 msgid "Bookmark"
-msgstr ""
+msgstr "Favoris"
 
 msgctxt "BUTTON"
 msgid "Upload"

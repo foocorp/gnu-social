@@ -68,7 +68,9 @@ abstract class BaseMirrorAction extends Action
         if (common_valid_http_url($url)) {
             return $url;
         } else {
-            $this->clientError(_m("Invalid feed URL."));
+            // TRANS: Client error displayed when entering an invalid URL for a feed.
+            // TRANS: %s is the invalid feed URL.
+            $this->clientError(sprintf(_m("Invalid feed URL: %s."), $url));
         }
     }
 
@@ -79,8 +81,9 @@ abstract class BaseMirrorAction extends Action
         if ($profile && $profile->id != $this->user->id) {
             return $profile;
         }
-        // TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
-        $this->clientError(_m("Invalid profile for mirroring."));
+        // TRANS: Error message returned to user when setting up feed mirroring,
+        // TRANS: but we were unable to resolve the given URL to a working feed.
+        $this->clientError(_m('Invalid profile for mirroring.'));
     }
 
     /**
@@ -98,7 +101,7 @@ abstract class BaseMirrorAction extends Action
             $oprofile = Ostatus_profile::ensureFeedURL($url);
         }
         if ($oprofile->isGroup()) {
-            $this->clientError(_m("Can't mirror a StatusNet group at this time."));
+            $this->clientError(_m("Cannot mirror a StatusNet group at this time."));
         }
         $this->oprofile = $oprofile; // @fixme ugly side effect :D
         return $oprofile->localProfile();

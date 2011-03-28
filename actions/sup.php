@@ -61,8 +61,8 @@ class SupAction extends Action
     {
         $notice = new Notice();
 
-        # XXX: cache this. Depends on how big this protocol becomes;
-        # Re-doing this query every 15 seconds isn't the end of the world.
+        // XXX: cache this. Depends on how big this protocol becomes;
+        // Re-doing this query every 15 seconds isn't the end of the world.
 
         $divider = common_sql_date(time() - $seconds);
 

@@ -482,9 +482,12 @@ abstract class ImPlugin extends Plugin
         $body = trim(strip_tags($body));
         $content_shortened = common_shorten_links($body);
         if (Notice::contentTooLong($content_shortened)) {
-          $this->sendFromSite($screenname, sprintf(_('Message too long - maximum is %1$d characters, you sent %2$d.'),
-                                          Notice::maxContent(),
-                                          mb_strlen($content_shortened)));
+          $this->sendFromSite($screenname,
+                              sprintf(_m('Message too long - maximum is %1$d character, you sent %2$d.',
+                                         'Message too long - maximum is %1$d characters, you sent %2$d.',
+                                         Notice::maxContent()),
+                                      Notice::maxContent(),
+                                      mb_strlen($content_shortened)));
           return;
         }
 

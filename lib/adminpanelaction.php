@@ -290,4 +290,8 @@ class AdminPanelAction extends Action
 
         return $isOK;
     }
+
+    function showProfileBlock()
+    {
+    }
 }

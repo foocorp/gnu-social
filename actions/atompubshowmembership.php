@@ -151,10 +151,7 @@ class AtompubshowmembershipAction extends ApiAuthAction
                                         " membership."), 403);
         }
 
-        if (Event::handle('StartLeaveGroup', array($this->_group, $this->auth_user))) {
-            Group_member::leave($this->_group->id, $this->auth_user->id);
-            Event::handle('EndLeaveGroup', array($this->_group, $this->auth_user));
-        }
+        $this->auth_user->leaveGroup($this->_group);
 
         return;
     }

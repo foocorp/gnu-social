@@ -9,27 +9,123 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 02:34+0100\n"
-"PO-Revision-Date: 2011-03-06 01:37:09+0000\n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"PO-Revision-Date: 2011-03-18 19:48:38+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-03 20:42:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-POT-Import-Date: 2011-03-17 13:01:04+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Extended profile settings"
+msgstr "Configuration extendite del profilo"
+
+#. TRANS: Usage instructions for profile settings.
+msgid ""
+"You can update your personal profile info here so people know more about you."
+msgstr ""
+"Tu pote actualisar hic le informationes personal de tu profilo a fin que le "
+"gente pote saper plus de te."
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Occurreva un problema con le indicio de tu session. Per favor reproba."
+
+#. TRANS: Message given submitting a form with an unknown action.
+msgid "Unexpected form submission."
+msgstr "Submission de formulario inexpectate."
+
+msgid "Details saved."
+msgstr "Detalios salveguardate."
+
+#. TRANS: Exception thrown when no date was entered in a required date field.
+#. TRANS: %s is the field name.
+#, php-format
+msgid "You must supply a date for \"%s\"."
+msgstr "Tu debe fornir un data pro \"%s\"."
+
+#. TRANS: Exception thrown on incorrect data input.
+#. TRANS: %1$s is a field name, %2$s is the incorrect input.
+#, php-format
+msgid "Invalid date entered for \"%1$s\": %2$s."
+msgstr "Data invalide entrate pro \"%1$s\": %2$s."
+
+#. TRANS: Exception thrown when entering an invalid URL.
+#. TRANS: %s is the invalid URL.
+#, php-format
+msgid "Invalid URL: %s."
+msgstr "URL invalide: %s."
+
+msgid "Could not save profile details."
+msgstr "Non poteva salveguardar le detalios del profilo."
+
+#. TRANS: Validation error in form for profile settings.
+#. TRANS: %s is an invalid tag.
+#, php-format
+msgid "Invalid tag: \"%s\"."
+msgstr "Etiquetta invalide: \"%s\"."
+
+#. TRANS: Server error thrown when user profile settings could not be saved.
+msgid "Could not save profile."
+msgstr "Non poteva salveguardar le profilo."
+
+#. TRANS: Server error thrown when user profile settings tags could not be saved.
+msgid "Could not save tags."
+msgstr "Non poteva salveguardar etiquettas."
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Modificar configuration extendite del profilo"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Modificar"
+
 msgid "UI extensions for additional profile fields."
 msgstr "Extensiones del IU pro additional campos de profilo."
 
-#. TRANS: Link description in user account settings menu.
-msgid "Details"
-msgstr "Detalios"
-
 msgid "More details..."
 msgstr "Plus detalios..."
+
+msgid "Company"
+msgstr "Compania"
+
+msgid "Start"
+msgstr "Initio"
+
+msgid "End"
+msgstr "Fin"
+
+msgid "Current"
+msgstr "Actual"
+
+msgid "Institution"
+msgstr "Institution"
+
+msgid "Degree"
+msgstr "Grado"
+
+msgid "Description"
+msgstr "Description"
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Salveguardar"
+
+msgid "Phone"
+msgstr "Telephono"
+
+msgid "IM"
+msgstr "MI"
+
+msgid "Website"
+msgstr "Sito web"
+
+msgid "Employer"
+msgstr "Empleator"
 
 msgid "Personal"
 msgstr "Personal"
@@ -55,15 +151,6 @@ msgstr "Etiquettas"
 msgid "Contact"
 msgstr "Contacto"
 
-msgid "Phone"
-msgstr "Telephono"
-
-msgid "IM"
-msgstr "MI"
-
-msgid "Websites"
-msgstr "Sitos web"
-
 msgid "Birthday"
 msgstr "Anniversario"
 
@@ -76,22 +163,5 @@ msgstr "Nomines del infantes"
 msgid "Work experience"
 msgstr "Experientia professional"
 
-msgid "Employer"
-msgstr "Empleator"
-
 msgid "Education"
 msgstr "Education"
-
-msgid "Institution"
-msgstr "Institution"
-
-#. TRANS: Link title for link on user profile.
-msgid "Edit extended profile settings"
-msgstr "Modificar configuration extendite del profilo"
-
-#. TRANS: Link text for link on user profile.
-msgid "Edit"
-msgstr "Modificar"
-
-msgid "Extended profile settings"
-msgstr "Configuration extendite del profilo"

@@ -344,7 +344,9 @@ class NewnoticeAction extends Action
             $inreplyto = null;
         }
 
-        $notice_form = new NoticeForm($this, '', $content, null, $inreplyto);
+        $notice_form = new NoticeForm($this, array('content' => $content, 
+                                                   'inreplyto' => $inreplyto));
+
         $notice_form->show();
     }
 

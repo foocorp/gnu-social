@@ -59,9 +59,25 @@ class AddMirrorAction extends BaseMirrorAction
     function prepare($args)
     {
         parent::prepare($args);
-        $this->feedurl = $this->validateFeedUrl($this->trimmed('feedurl'));
+        $feedurl = $this->getFeedUrl();
+        $this->feedurl = $this->validateFeedUrl($feedurl);
         $this->profile = $this->profileForFeed($this->feedurl);
         return true;
+    }
+
+    function getFeedUrl()
+    {
+        $provider = $this->trimmed('provider');
+        switch ($provider) {
+        case 'feed':
+            return $this->trimmed('feedurl');
+        case 'twitter':
+            $screenie = $this->trimmed('screen_name');
+            $base = 'http://api.twitter.com/1/statuses/user_timeline.atom?screen_name=';
+            return $base . urlencode($screenie);
+        default:
+            throw new Exception('Internal form error: unrecognized feed provider.');
+        }
     }
 
     function saveMirror()

@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * Redirect to the given URL
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -59,21 +59,23 @@ class RedirecturlAction extends Action
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
 
         $this->id = $this->trimmed('id');
-        
+
         if (empty($this->id)) {
-            throw new ClientException(_('No id parameter'));
+            // TRANS: Client exception thrown when no ID parameter was provided.
+            throw new ClientException(_('No id parameter.'));
         }
 
         $this->file = File::staticGet('id', $this->id);
-        
+
         if (empty($this->file)) {
-            throw new ClientException(sprintf(_('No such file "%d"'),
+            // TRANS: Client exception thrown when an invalid ID parameter was provided for a file.
+            // TRANS: %d is the provided ID for which the file is not present (number).
+            throw new ClientException(sprintf(_('No such file "%d".'),
                                               $this->id),
                                       404);
         }
@@ -88,7 +90,6 @@ class RedirecturlAction extends Action
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         common_redirect($this->file->url, 307);
@@ -104,7 +105,6 @@ class RedirecturlAction extends Action
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -117,7 +117,6 @@ class RedirecturlAction extends Action
      *
      * @return string last modified http header
      */
-
     function lastModified()
     {
         // For comparison with If-Last-Modified
@@ -133,7 +132,6 @@ class RedirecturlAction extends Action
      *
      * @return string etag http header
      */
-
     function etag()
     {
         return 'W/"' . implode(':', array($this->arg('action'),

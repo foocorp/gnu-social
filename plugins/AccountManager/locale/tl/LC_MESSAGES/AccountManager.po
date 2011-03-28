@@ -1,0 +1,28 @@
+# Translation of StatusNet - AccountManager to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AccountManager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-26 11:02+0000\n"
+"PO-Revision-Date: 2011-03-26 11:05:16+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-24 15:23:13+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-accountmanager\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid ""
+"The Account Manager plugin implements the Account Manager specification."
+msgstr ""
+"Ipinatutupad ng pampasak na Tagapamahala ng Akawnt ang mga pagtutukoy ng "
+"Tagapamahala ng Akawnt."

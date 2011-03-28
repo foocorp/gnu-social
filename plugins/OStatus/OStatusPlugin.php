@@ -228,7 +228,7 @@ class OStatusPlugin extends Plugin
         return false;
     }
 
-    function onStartGroupSubscribe($output, $group)
+    function onStartGroupSubscribe($widget, $group)
     {
         $cur = common_current_user();
 
@@ -236,7 +236,7 @@ class OStatusPlugin extends Plugin
             // Add an OStatus subscribe
             $url = common_local_url('ostatusinit',
                                     array('group' => $group->nickname));
-            $output->element('a', array('href' => $url,
+            $widget->out->element('a', array('href' => $url,
                                         'class' => 'entity_remote_subscribe'),
                                 // TRANS: Link description for link to join a remote group.
                                 _m('Join'));
@@ -675,7 +675,7 @@ class OStatusPlugin extends Plugin
      * it'll be left with a stray membership record.
      *
      * @param User_group $group
-     * @param User $user
+     * @param Profile $user
      *
      * @return mixed hook return value
      */

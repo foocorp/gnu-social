@@ -54,7 +54,7 @@ class RSVP extends Managed_DataObject
     public $uri;               // varchar(255)
     public $profile_id;        // int
     public $event_id;          // varchar(36) UUID
-    public $result;            // tinyint
+    public $response;            // tinyint
     public $created;           // datetime
 
     /**
@@ -119,8 +119,9 @@ class RSVP extends Managed_DataObject
                               'length' => 36,
                               'not null' => true,
                               'description' => 'UUID'),
-                'result' => array('type' => 'tinyint',
-                                  'description' => '1, 0, or null for three-state yes, no, maybe'),
+                'response' => array('type' => 'char',
+                                  'length' => '1',
+                                  'description' => 'Y, N, or ? for three-state yes, no, maybe'),
                 'created' => array('type' => 'datetime',
                                    'not null' => true),
             ),
@@ -135,8 +136,10 @@ class RSVP extends Managed_DataObject
         );
     }
 
-    function saveNew($profile, $event, $result, $options=array())
+    function saveNew($profile, $event, $verb, $options=array())
     {
+        common_debug("RSVP::saveNew({$profile->id}, {$event->id}, '$verb', 'some options');");
+
         if (array_key_exists('uri', $options)) {
             $other = RSVP::staticGet('uri', $options['uri']);
             if (!empty($other)) {
@@ -156,7 +159,9 @@ class RSVP extends Managed_DataObject
         $rsvp->id          = UUID::gen();
         $rsvp->profile_id  = $profile->id;
         $rsvp->event_id    = $event->id;
-        $rsvp->result      = self::codeFor($result);
+        $rsvp->response      = self::codeFor($verb);
+
+        common_debug("Got value {$rsvp->response} for verb {$verb}");
 
         if (array_key_exists('created', $options)) {
             $rsvp->created = $options['created'];
@@ -175,13 +180,11 @@ class RSVP extends Managed_DataObject
 
         // XXX: come up with something sexier
 
-        $content = sprintf(_('RSVPed %s for an event.'),
-                           ($result == RSVP::POSITIVE) ? _('positively') :
-                           ($result == RSVP::NEGATIVE) ? _('negatively') : _('possibly'));
+        $content = $rsvp->asString();
         
-        $rendered = $content;
+        $rendered = $rsvp->asHTML();
 
-        $options = array_merge(array('object_type' => $result),
+        $options = array_merge(array('object_type' => $verb),
                                $options);
 
         if (!array_key_exists('uri', $options)) {
@@ -205,14 +208,36 @@ class RSVP extends Managed_DataObject
 
     function codeFor($verb)
     {
-        return ($verb == RSVP::POSITIVE) ? 1 :
-            ($verb == RSVP::NEGATIVE) ? 0 : null;
+        switch ($verb) {
+        case RSVP::POSITIVE:
+            return 'Y';
+            break;
+        case RSVP::NEGATIVE:
+            return 'N';
+            break;
+        case RSVP::POSSIBLE:
+            return '?';
+            break;
+        default:
+            throw new Exception("Unknown verb {$verb}");
+        }
     }
 
     static function verbFor($code)
     {
-        return ($code == 1) ? RSVP::POSITIVE :
-            ($code == 0) ? RSVP::NEGATIVE : null;
+        switch ($code) {
+        case 'Y':
+            return RSVP::POSITIVE;
+            break;
+        case 'N':
+            return RSVP::NEGATIVE;
+            break;
+        case '?':
+            return RSVP::POSSIBLE;
+            break;
+        default:
+            throw new Exception("Unknown code {$code}");
+        }
     }
 
     function getNotice()
@@ -231,7 +256,9 @@ class RSVP extends Managed_DataObject
 
     static function forEvent($event)
     {
-        $rsvps = array(RSVP::POSITIVE => array(), RSVP::NEGATIVE => array(), RSVP::POSSIBLE => array());
+        $rsvps = array(RSVP::POSITIVE => array(),
+                       RSVP::NEGATIVE => array(),
+                       RSVP::POSSIBLE => array());
 
         $rsvp = new RSVP();
 
@@ -239,11 +266,113 @@ class RSVP extends Managed_DataObject
 
         if ($rsvp->find()) {
             while ($rsvp->fetch()) {
-                $verb = self::verbFor($rsvp->result);
+                $verb = self::verbFor($rsvp->response);
                 $rsvps[$verb][] = clone($rsvp);
             }
         }
 
         return $rsvps;
+    }
+
+    function getProfile()
+    {
+        $profile = Profile::staticGet('id', $this->profile_id);
+        if (empty($profile)) {
+            throw new Exception("No profile with ID {$this->profile_id}");
+        }
+        return $profile;
+    }
+
+    function getEvent()
+    {
+        $event = Happening::staticGet('id', $this->event_id);
+        if (empty($event)) {
+            throw new Exception("No event with ID {$this->event_id}");
+        }
+        return $event;
+    }
+
+    function asHTML()
+    {
+        $event = Happening::staticGet('id', $this->event_id);
+
+        return self::toHTML($this->getProfile(),
+                            $event,
+                            $this->response);
+    }
+
+    function asString()
+    {
+        $event = Happening::staticGet('id', $this->event_id);
+
+        return self::toString($this->getProfile(),
+                              $event,
+                              $this->response);
+    }
+
+    static function toHTML($profile, $event, $response)
+    {
+        $fmt = null;
+
+        switch ($response) {
+        case 'Y':
+            $fmt = _("<span class='automatic event-rsvp'><a href='%1s'>%2s</a> is attending <a href='%3s'>%4s</a>.</span>");
+            break;
+        case 'N':
+            $fmt = _("<span class='automatic event-rsvp'><a href='%1s'>%2s</a> is not attending <a href='%3s'>%4s</a>.</span>");
+            break;
+        case '?':
+            $fmt = _("<span class='automatic event-rsvp'><a href='%1s'>%2s</a> might attend <a href='%3s'>%4s</a>.</span>");
+            break;
+        default:
+            throw new Exception("Unknown response code {$response}");
+            break;
+        }
+
+        if (empty($event)) {
+            $eventUrl = '#';
+            $eventTitle = _('an unknown event');
+        } else {
+            $notice = $event->getNotice();
+            $eventUrl = $notice->bestUrl();
+            $eventTitle = $event->title;
+        }
+
+        return sprintf($fmt,
+                       htmlspecialchars($profile->profileurl),
+                       htmlspecialchars($profile->getBestName()),
+                       htmlspecialchars($eventUrl),
+                       htmlspecialchars($eventTitle));
+    }
+
+    static function toString($profile, $event, $response)
+    {
+        $fmt = null;
+
+        switch ($response) {
+        case 'Y':
+            $fmt = _("%1s is attending %2s.");
+            break;
+        case 'N':
+            $fmt = _("%1s is not attending %2s.");
+            break;
+        case '?':
+            $fmt = _("%1s might attend %2s.>");
+            break;
+        default:
+            throw new Exception("Unknown response code {$response}");
+            break;
+        }
+
+        if (empty($event)) {
+            $eventTitle = _('an unknown event');
+        } else {
+            $notice = $event->getNotice();
+            $eventTitle = $event->title;
+        }
+
+        return sprintf($fmt,
+                       $profile->getBestName(),
+                       $eventTitle);
     }
 }

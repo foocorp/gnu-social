@@ -49,6 +49,7 @@ class AddMirrorForm extends Form
      */
     function formData()
     {
+        $this->out->hidden('provider', 'feed');
         $this->out->elementStart('fieldset');
 
         $this->out->elementStart('ul');
@@ -67,7 +68,7 @@ class AddMirrorForm extends Form
         $this->out->elementEnd('fieldset');
     }
 
-    private function doInput($id, $name, $label, $value=null, $instructions=null)
+    protected function doInput($id, $name, $label, $value=null, $instructions=null)
     {
         $this->out->element('label', array('for' => $id), $label);
         $attrs = array('name' => $name,

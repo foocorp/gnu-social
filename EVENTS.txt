@@ -742,19 +742,19 @@ EndUnsubscribe: when an unsubscribe is done
 
 StartJoinGroup: when a user is joining a group
 - $group: the group being joined
-- $user: the user joining
+- $profile: the local or remote user joining
 
 EndJoinGroup: when a user finishes joining a group
 - $group: the group being joined
-- $user: the user joining
+- $profile: the local or remote user joining
 
 StartLeaveGroup: when a user is leaving a group
 - $group: the group being left
-- $user: the user leaving
+- $profile: the local or remote user leaving
 
 EndLeaveGroup: when a user has left a group
 - $group: the group being left
-- $user: the user leaving
+- $profile: the local or remote user leaving
 
 StartShowContentLicense: Showing the default license for content
 - $action: the current action
@@ -1131,3 +1131,11 @@ StartActivityObjectOutputJson: Called at start of JSON output generation for Act
 EndActivityObjectOutputJson: Called at end of JSON output generation for ActivityObject chunks: the array has not yet been filled out.
 - $obj ActivityObject
 - &$out: array to be serialized; you're free to modify it
+
+StartNoticeWhoGets: Called at start of inbox delivery prep; plugins can schedule notices to go to particular profiles that would otherwise not have reached them. Canceling will take over the entire addressing operation. Be aware that output can be cached or used several times, so should remain idempotent.
+- $notice Notice
+- &$ni: in/out array mapping profile IDs to constants: NOTICE_INBOX_SOURCE_SUB etc
+
+EndNoticeWhoGets: Called at end of inbox delivery prep; plugins can filter out profiles from receiving inbox delivery here.  Be aware that output can be cached or used several times, so should remain idempotent.
+- $notice Notice
+- &$ni: in/out array mapping profile IDs to constants: NOTICE_INBOX_SOURCE_SUB etc

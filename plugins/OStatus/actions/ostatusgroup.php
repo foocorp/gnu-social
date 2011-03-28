@@ -141,18 +141,12 @@ class OStatusGroupAction extends OStatusSubAction
             return;
         }
 
-        if (Event::handle('StartJoinGroup', array($group, $user))) {
-            $ok = Group_member::join($this->oprofile->group_id, $user->id);
-            if ($ok) {
-                Event::handle('EndJoinGroup', array($group, $user));
-                $this->success();
-            } else {
-                // TRANS: OStatus remote group subscription dialog error.
-                $this->showForm(_m('Remote group join failed!'));
-            }
-        } else {
+        try {
+            $user->joinGroup($group);
+        } catch (Exception $e) {
             // TRANS: OStatus remote group subscription dialog error.
-            $this->showForm(_m('Remote group join aborted!'));
+            $this->showForm(_m('Remote group join failed!'));
+            return;
         }
     }
 

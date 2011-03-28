@@ -110,6 +110,7 @@ class RsdAction extends Action
             $this->user = User::staticGet('nickname', $nickname);
 
             if (empty($this->user)) {
+                // TRANS: Client error.
                 $this->clientError(_('No such user.'), 404);
                 return false;
             }
@@ -139,6 +140,7 @@ class RsdAction extends Action
         $this->elementStart('rsd', array('version' => '1.0',
                                          'xmlns' => $rsdNS));
         $this->elementStart('service');
+        // TRANS: Engine name for RSD.
         $this->element('engineName', null, _('StatusNet'));
         $this->element('engineLink', null, 'http://status.net/');
         $this->elementStart('apis');

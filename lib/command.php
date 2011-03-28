@@ -352,10 +352,7 @@ class JoinCommand extends Command
         }
 
         try {
-            if (Event::handle('StartJoinGroup', array($group, $cur))) {
-                Group_member::join($group->id, $cur->id);
-                Event::handle('EndJoinGroup', array($group, $cur));
-            }
+            $cur->joinGroup($group);
         } catch (Exception $e) {
             // TRANS: Message given having failed to add a user to a group.
             // TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
@@ -400,10 +397,7 @@ class DropCommand extends Command
         }
 
         try {
-            if (Event::handle('StartLeaveGroup', array($group, $cur))) {
-                Group_member::leave($group->id, $cur->id);
-                Event::handle('EndLeaveGroup', array($group, $cur));
-            }
+            $cur->leaveGroup($group);
         } catch (Exception $e) {
             // TRANS: Message given having failed to remove a user from a group.
             // TRANS: %1$s is the nickname of the user, %2$s is the nickname of the group.
@@ -911,45 +905,88 @@ class HelpCommand extends Command
 {
     function handle($channel)
     {
-        $channel->output($this->user,
-                         // TRANS: Help text for commands. Do not translate the command names themselves; they are fixed strings.
-                         _("Commands:\n".
-                           "on - turn on notifications\n".
-                           "off - turn off notifications\n".
-                           "help - show this help\n".
-                           "follow <nickname> - subscribe to user\n".
-                           "groups - lists the groups you have joined\n".
-                           "subscriptions - list the people you follow\n".
-                           "subscribers - list the people that follow you\n".
-                           "leave <nickname> - unsubscribe from user\n".
-                           "d <nickname> <text> - direct message to user\n".
-                           "get <nickname> - get last notice from user\n".
-                           "whois <nickname> - get profile info on user\n".
-                           "lose <nickname> - force user to stop following you\n".
-                           "fav <nickname> - add user's last notice as a 'fave'\n".
-                           "fav #<notice_id> - add notice with the given id as a 'fave'\n".
-                           "repeat #<notice_id> - repeat a notice with a given id\n".
-                           "repeat <nickname> - repeat the last notice from user\n".
-                           "reply #<notice_id> - reply to notice with a given id\n".
-                           "reply <nickname> - reply to the last notice from user\n".
-                           "join <group> - join group\n".
-                           "login - Get a link to login to the web interface\n".
-                           "drop <group> - leave group\n".
-                           "stats - get your stats\n".
-                           "stop - same as 'off'\n".
-                           "quit - same as 'off'\n".
-                           "sub <nickname> - same as 'follow'\n".
-                           "unsub <nickname> - same as 'leave'\n".
-                           "last <nickname> - same as 'get'\n".
-                           "on <nickname> - not yet implemented.\n".
-                           "off <nickname> - not yet implemented.\n".
-                           "nudge <nickname> - remind a user to update.\n".
-                           "invite <phone number> - not yet implemented.\n".
-                           "track <word> - not yet implemented.\n".
-                           "untrack <word> - not yet implemented.\n".
-                           "track off - not yet implemented.\n".
-                           "untrack all - not yet implemented.\n".
-                           "tracks - not yet implemented.\n".
-                           "tracking - not yet implemented.\n"));
+        // TRANS: Header line of help text for commands.
+        $out = array(_m('COMMANDHELP', "Commands:"));
+        $commands = array(// TRANS: Help message for IM/SMS command "on"
+                          "on" => _m('COMMANDHELP', "turn on notifications"),
+                          // TRANS: Help message for IM/SMS command "off"
+                          "off" => _m('COMMANDHELP', "turn off notifications"),
+                          // TRANS: Help message for IM/SMS command "help"
+                          "help" => _m('COMMANDHELP', "show this help"),
+                          // TRANS: Help message for IM/SMS command "follow <nickname>"
+                          "follow <nickname>" => _m('COMMANDHELP', "subscribe to user"),
+                          // TRANS: Help message for IM/SMS command "groups"
+                          "groups" => _m('COMMANDHELP', "lists the groups you have joined"),
+                          // TRANS: Help message for IM/SMS command "subscriptions"
+                          "subscriptions" => _m('COMMANDHELP', "list the people you follow"),
+                          // TRANS: Help message for IM/SMS command "subscribers"
+                          "subscribers" => _m('COMMANDHELP', "list the people that follow you"),
+                          // TRANS: Help message for IM/SMS command "leave <nickname>"
+                          "leave <nickname>" => _m('COMMANDHELP', "unsubscribe from user"),
+                          // TRANS: Help message for IM/SMS command "d <nickname> <text>"
+                          "d <nickname> <text>" => _m('COMMANDHELP', "direct message to user"),
+                          // TRANS: Help message for IM/SMS command "get <nickname>"
+                          "get <nickname>" => _m('COMMANDHELP', "get last notice from user"),
+                          // TRANS: Help message for IM/SMS command "whois <nickname>"
+                          "whois <nickname>" => _m('COMMANDHELP', "get profile info on user"),
+                          // TRANS: Help message for IM/SMS command "lose <nickname>"
+                          "lose <nickname>" => _m('COMMANDHELP', "force user to stop following you"),
+                          // TRANS: Help message for IM/SMS command "fav <nickname>"
+                          "fav <nickname>" => _m('COMMANDHELP', "add user's last notice as a 'fave'"),
+                          // TRANS: Help message for IM/SMS command "fav #<notice_id>"
+                          "fav #<notice_id>" => _m('COMMANDHELP', "add notice with the given id as a 'fave'"),
+                          // TRANS: Help message for IM/SMS command "repeat #<notice_id>"
+                          "repeat #<notice_id>" => _m('COMMANDHELP', "repeat a notice with a given id"),
+                          // TRANS: Help message for IM/SMS command "repeat <nickname>"
+                          "repeat <nickname>" => _m('COMMANDHELP', "repeat the last notice from user"),
+                          // TRANS: Help message for IM/SMS command "reply #<notice_id>"
+                          "reply #<notice_id>" => _m('COMMANDHELP', "reply to notice with a given id"),
+                          // TRANS: Help message for IM/SMS command "reply <nickname>"
+                          "reply <nickname>" => _m('COMMANDHELP', "reply to the last notice from user"),
+                          // TRANS: Help message for IM/SMS command "join <group>"
+                          "join <group>" => _m('COMMANDHELP', "join group"),
+                          // TRANS: Help message for IM/SMS command "login"
+                          "login" => _m('COMMANDHELP', "Get a link to login to the web interface"),
+                          // TRANS: Help message for IM/SMS command "drop <group>"
+                          "drop <group>" => _m('COMMANDHELP', "leave group"),
+                          // TRANS: Help message for IM/SMS command "stats"
+                          "stats" => _m('COMMANDHELP', "get your stats"),
+                          // TRANS: Help message for IM/SMS command "stop"
+                          "stop" => _m('COMMANDHELP', "same as 'off'"),
+                          // TRANS: Help message for IM/SMS command "quit"
+                          "quit" => _m('COMMANDHELP', "same as 'off'"),
+                          // TRANS: Help message for IM/SMS command "sub <nickname>"
+                          "sub <nickname>" => _m('COMMANDHELP', "same as 'follow'"),
+                          // TRANS: Help message for IM/SMS command "unsub <nickname>"
+                          "unsub <nickname>" => _m('COMMANDHELP', "same as 'leave'"),
+                          // TRANS: Help message for IM/SMS command "last <nickname>"
+                          "last <nickname>" => _m('COMMANDHELP', "same as 'get'"),
+                          // TRANS: Help message for IM/SMS command "on <nickname>"
+                          "on <nickname>" => _m('COMMANDHELP', "not yet implemented."),
+                          // TRANS: Help message for IM/SMS command "off <nickname>"
+                          "off <nickname>" => _m('COMMANDHELP', "not yet implemented."),
+                          // TRANS: Help message for IM/SMS command "nudge <nickname>"
+                          "nudge <nickname>" => _m('COMMANDHELP', "remind a user to update."),
+                          // TRANS: Help message for IM/SMS command "invite <phone number>"
+                          "invite <phone number>" => _m('COMMANDHELP', "not yet implemented."),
+                          // TRANS: Help message for IM/SMS command "track <word>"
+                          "track <word>" => _m('COMMANDHELP', "not yet implemented."),
+                          // TRANS: Help message for IM/SMS command "untrack <word>"
+                          "untrack <word>" => _m('COMMANDHELP', "not yet implemented."),
+                          // TRANS: Help message for IM/SMS command "track off"
+                          "track off" => _m('COMMANDHELP', "not yet implemented."),
+                          // TRANS: Help message for IM/SMS command "untrack all"
+                          "untrack all" => _m('COMMANDHELP', "not yet implemented."),
+                          // TRANS: Help message for IM/SMS command "tracks"
+                          "tracks" => _m('COMMANDHELP', "not yet implemented."),
+                          // TRANS: Help message for IM/SMS command "tracking"
+                          "tracking" => _m('COMMANDHELP', "not yet implemented."));
+
+        // Give plugins a chance to add or override...
+        Event::handle('HelpCommandMessages', array($this, &$commands));
+        foreach ($commands as $command => $help) {
+            $out[] = "$command - $help";
+        }
+        $channel->output($this->user, implode("\n", $out));
     }
 }

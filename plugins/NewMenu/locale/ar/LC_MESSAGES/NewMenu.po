@@ -10,12 +10,12 @@ msgstr ""
 "Project-Id-Version: StatusNet - NewMenu\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-01-29 21:45+0000\n"
-"PO-Revision-Date: 2011-03-06 01:37:41+0000\n"
+"PO-Revision-Date: 2011-03-24 11:14:09+0000\n"
 "Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-03 17:45:38+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r83348); Translate extension (2011-03-04)\n"
+"X-POT-Import-Date: 2011-03-18 20:08:23+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-newmenu\n"
@@ -24,46 +24,46 @@ msgstr ""
 "99) ? 4 : 5 ) ) ) );\n"
 
 msgid "Home"
-msgstr ""
+msgstr "الرئيسية"
 
 msgid "Friends timeline"
-msgstr ""
+msgstr "مسار الأصدقاء الزمني"
 
 msgid "Profile"
-msgstr ""
+msgstr "الملف الشخصي"
 
 msgid "Your profile"
-msgstr ""
+msgstr "ملفك الشخصي"
 
 msgid "Public"
 msgstr ""
 
 msgid "Everyone on this site"
-msgstr ""
+msgstr "كل من هم على هذا الموقع"
 
 msgid "Settings"
-msgstr ""
+msgstr "إعدادات"
 
 msgid "Change your personal settings"
-msgstr ""
+msgstr "غيرّ إعدادتك الشخصية"
 
 msgid "Admin"
-msgstr ""
+msgstr "إدارة"
 
 msgid "Site configuration"
-msgstr ""
+msgstr "ضبط الموقع"
 
 msgid "Logout"
-msgstr ""
+msgstr "اخرج"
 
 msgid "Logout from the site"
-msgstr ""
+msgstr "اخرج من الموقع"
 
 msgid "Login"
-msgstr "ادخل"
+msgstr "لُج"
 
 msgid "Login to the site"
-msgstr "ادخل الموقع"
+msgstr "لُج في الموقع"
 
 msgid "Search"
 msgstr "ابحث"

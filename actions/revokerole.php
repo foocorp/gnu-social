@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class RevokeRoleAction extends ProfileFormAction
 {
     /**
@@ -50,19 +49,20 @@ class RevokeRoleAction extends ProfileFormAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         if (!parent::prepare($args)) {
             return false;
         }
-        
+
         $this->role = $this->arg('role');
         if (!Profile_role::isValid($this->role)) {
+            // TRANS: Client error displayed when trying to revoke an invalid role.
             $this->clientError(_('Invalid role.'));
             return false;
         }
         if (!Profile_role::isSettable($this->role)) {
+            // TRANS: Client error displayed when trying to revoke a reserved role.
             $this->clientError(_('This role is reserved and cannot be set.'));
             return false;
         }
@@ -72,6 +72,7 @@ class RevokeRoleAction extends ProfileFormAction
         assert(!empty($cur)); // checked by parent
 
         if (!$cur->hasRight(Right::REVOKEROLE)) {
+            // TRANS: Client error displayed when trying to revoke a role without having the right to do that.
             $this->clientError(_('You cannot revoke user roles on this site.'));
             return false;
         }
@@ -79,7 +80,8 @@ class RevokeRoleAction extends ProfileFormAction
         assert(!empty($this->profile)); // checked by parent
 
         if (!$this->profile->hasRole($this->role)) {
-            $this->clientError(_("User doesn't have this role."));
+            // TRANS: Client error displayed when trying to revoke a role that is not set.
+            $this->clientError(_('User does not have this role.'));
             return false;
         }
 
@@ -91,7 +93,6 @@ class RevokeRoleAction extends ProfileFormAction
      *
      * @return void
      */
-
     function handlePost()
     {
         $this->profile->revokeRole($this->role);

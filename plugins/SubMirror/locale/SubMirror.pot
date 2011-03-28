@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-06 02:34+0100\n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,32 +16,36 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: actions/basemirror.php:71
-msgid "Invalid feed URL."
+#. TRANS: Client error displayed when entering an invalid URL for a feed.
+#. TRANS: %s is the invalid feed URL.
+#: actions/basemirror.php:73
+#, php-format
+msgid "Invalid feed URL: %s."
 msgstr ""
 
-#. TRANS: Error message returned to user when setting up feed mirroring, but we were unable to resolve the given URL to a working feed.
-#: actions/basemirror.php:83
+#. TRANS: Error message returned to user when setting up feed mirroring,
+#. TRANS: but we were unable to resolve the given URL to a working feed.
+#: actions/basemirror.php:86
 msgid "Invalid profile for mirroring."
 msgstr ""
 
-#: actions/basemirror.php:101
-msgid "Can't mirror a StatusNet group at this time."
+#: actions/basemirror.php:104
+msgid "Cannot mirror a StatusNet group at this time."
 msgstr ""
 
-#: actions/basemirror.php:115
+#: actions/basemirror.php:118
 msgid "This action only accepts POST requests."
 msgstr ""
 
-#: actions/basemirror.php:123
+#: actions/basemirror.php:126
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 
-#: actions/basemirror.php:133
+#: actions/basemirror.php:136
 msgid "Not logged in."
 msgstr ""
 
-#: actions/basemirror.php:156
+#: actions/basemirror.php:159
 msgid "Subscribed"
 msgstr ""
 
@@ -58,7 +62,7 @@ msgstr ""
 msgid "Requested edit of missing mirror."
 msgstr ""
 
-#: actions/addmirror.php:72
+#: actions/addmirror.php:88
 msgid "Could not subscribe to feed."
 msgstr ""
 
@@ -74,32 +78,36 @@ msgid ""
 "timeline!"
 msgstr ""
 
-#: SubMirrorPlugin.php:90
+#: SubMirrorPlugin.php:93
 msgid "Pull feeds into your timeline!"
 msgstr ""
 
 #. TRANS: SubMirror plugin menu item on user settings page.
-#: SubMirrorPlugin.php:110
+#: SubMirrorPlugin.php:113
 msgctxt "MENU"
 msgid "Mirroring"
 msgstr ""
 
 #. TRANS: SubMirror plugin tooltip for user settings menu item.
-#: SubMirrorPlugin.php:112
+#: SubMirrorPlugin.php:115
 msgid "Configure mirroring of posts from other feeds"
 msgstr ""
 
-#: SubMirrorPlugin.php:183
+#: SubMirrorPlugin.php:186
 msgid "Mirrored feeds"
 msgstr ""
 
-#: lib/addmirrorform.php:59
+#: lib/addmirrorform.php:60
 msgid "Web page or feed URL:"
 msgstr ""
 
-#: lib/addmirrorform.php:64
+#: lib/addmirrorform.php:65 lib/addtwittermirrorform.php:55
 msgctxt "BUTTON"
 msgid "Add feed"
+msgstr ""
+
+#: lib/addtwittermirrorform.php:50
+msgid "Twitter username:"
 msgstr ""
 
 #: lib/editmirrorform.php:83
@@ -131,4 +139,16 @@ msgstr ""
 
 #: lib/editmirrorform.php:117
 msgid "Stop mirroring"
+msgstr ""
+
+#: lib/addmirrorwizard.php:76
+msgid "Twitter"
+msgstr ""
+
+#: lib/addmirrorwizard.php:109
+msgid "RSS or Atom feed"
+msgstr ""
+
+#: lib/addmirrorwizard.php:119
+msgid "Select a feed provider"
 msgstr ""

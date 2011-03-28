@@ -1,0 +1,48 @@
+# Translation of StatusNet - Event to Telugu (తెలుగు)
+# Exported from translatewiki.net
+#
+# Author: Veeven
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Event\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"PO-Revision-Date: 2011-03-18 19:48:35+0000\n"
+"Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-17 10:24:36+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: te\n"
+"X-Message-Group: #out-statusnet-plugin-event\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "BUTTON"
+msgid "Cancel"
+msgstr "రద్దుచేయి"
+
+msgctxt "BUTTON"
+msgid "Yes"
+msgstr "అవును"
+
+msgctxt "BUTTON"
+msgid "No"
+msgstr "కాదు"
+
+msgctxt "BUTTON"
+msgid "Maybe"
+msgstr "కావొచ్చు"
+
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "భద్రపరచు"
+
+msgid "Event invitations and RSVPs."
+msgstr ""
+
+msgid "Event"
+msgstr ""

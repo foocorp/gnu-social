@@ -48,7 +48,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @see      NoticeListItem
  * @see      ProfileNoticeList
  */
-
 class ThreadedNoticeList extends NoticeList
 {
     /**
@@ -59,11 +58,11 @@ class ThreadedNoticeList extends NoticeList
      *
      * @return int count of notices listed.
      */
-
     function show()
     {
         $this->out->elementStart('div', array('id' =>'notices_primary'));
-        $this->out->element('h2', null, _('Notices'));
+        // TRANS: Header for Notices section.
+        $this->out->element('h2', null, _m('HEADER','Notices'));
         $this->out->elementStart('ol', array('class' => 'notices threaded-notices xoxo'));
 
         $cnt = 0;
@@ -75,7 +74,15 @@ class ThreadedNoticeList extends NoticeList
                 break;
             }
 
-            $convo = $this->notice->conversation;
+            // Collapse repeats into their originals...
+            $notice = $this->notice;
+            if ($notice->repeat_of) {
+                $orig = Notice::staticGet('id', $notice->repeat_of);
+                if ($orig) {
+                    $notice = $orig;
+                }
+            }
+            $convo = $notice->conversation;
             if (!empty($conversations[$convo])) {
                 // Seen this convo already -- skip!
                 continue;
@@ -83,14 +90,10 @@ class ThreadedNoticeList extends NoticeList
             $conversations[$convo] = true;
 
             // Get the convo's root notice
-            // @fixme stream goes in wrong direction, this needs sane caching
-            //$notice = Notice::conversationStream($convo, 0, 1);
-            //$notice->fetch();
-            $notice = new Notice();
-            $notice->conversation = $this->notice->conversation;
-            $notice->orderBy('CREATED');
-            $notice->limit(1);
-            $notice->find(true);
+            $root = $notice->conversationRoot();
+            if ($root) {
+                $notice = $root;
+            }
 
             try {
                 $item = $this->newListItem($notice);
@@ -118,7 +121,6 @@ class ThreadedNoticeList extends NoticeList
      *
      * @return NoticeListItem a list item for displaying the notice
      */
-
     function newListItem($notice)
     {
         return new ThreadedNoticeListItem($notice, $this->out);
@@ -142,10 +144,12 @@ class ThreadedNoticeList extends NoticeList
  * @see      NoticeList
  * @see      ProfileNoticeListItem
  */
-
 class ThreadedNoticeListItem extends NoticeListItem
 {
-    const INITIAL_ITEMS = 3;
+    function initialItems()
+    {
+        return 3;
+    }
 
     function showContext()
     {
@@ -159,11 +163,11 @@ class ThreadedNoticeListItem extends NoticeListItem
      *
      * @return void
      */
-
     function showEnd()
     {
+        $max = $this->initialItems();
         if (!$this->repeat) {
-            $notice = Notice::conversationStream($this->notice->conversation, 0, self::INITIAL_ITEMS + 2);
+            $notice = Notice::conversationStream($this->notice->conversation, 0, $max + 2);
             $notices = array();
             $cnt = 0;
             $moreCutoff = null;
@@ -173,7 +177,7 @@ class ThreadedNoticeListItem extends NoticeListItem
                     continue;
                 }
                 $cnt++;
-                if ($cnt > self::INITIAL_ITEMS) {
+                if ($cnt > $max) {
                     // boo-yah
                     $moreCutoff = clone($notice);
                     break;
@@ -181,8 +185,15 @@ class ThreadedNoticeListItem extends NoticeListItem
                 $notices[] = clone($notice); // *grumble* inefficient as hell
             }
 
+            $this->out->elementStart('ul', 'notices threaded-replies xoxo');
+
+            $item = new ThreadedNoticeListFavesItem($this->notice, $this->out);
+            $hasFaves = $item->show();
+
+            $item = new ThreadedNoticeListRepeatsItem($this->notice, $this->out);
+            $hasRepeats = $item->show();
+
             if ($notices) {
-                $this->out->elementStart('ul', 'notices threaded-replies xoxo');
                 if ($moreCutoff) {
                     $item = new ThreadedNoticeListMoreItem($moreCutoff, $this->out);
                     $item->show();
@@ -191,23 +202,25 @@ class ThreadedNoticeListItem extends NoticeListItem
                     $item = new ThreadedNoticeListSubItem($notice, $this->out);
                     $item->show();
                 }
+            }
+            if ($notices || $hasFaves || $hasRepeats) {
                 // @fixme do a proper can-post check that's consistent
                 // with the JS side
                 if (common_current_user()) {
-                    $item = new ThreadedNoticeListReplyItem($notice, $this->out);
+                    $item = new ThreadedNoticeListReplyItem($this->notice, $this->out);
                     $item->show();
                 }
-                $this->out->elementEnd('ul');
             }
+            $this->out->elementEnd('ul');
         }
 
         parent::showEnd();
     }
 }
 
+// @todo FIXME: needs documentation.
 class ThreadedNoticeListSubItem extends NoticeListItem
 {
-
     function avatarSize()
     {
         return AVATAR_STREAM_SIZE; // @fixme would like something in between
@@ -227,6 +240,13 @@ class ThreadedNoticeListSubItem extends NoticeListItem
     {
         //
     }
+
+    function showEnd()
+    {
+        $item = new ThreadedNoticeListInlineFavesItem($this->notice, $this->out);
+        $hasFaves = $item->show();
+        parent::showEnd();
+    }
 }
 
 /**
@@ -234,7 +254,6 @@ class ThreadedNoticeListSubItem extends NoticeListItem
  */
 class ThreadedNoticeListMoreItem extends NoticeListItem
 {
-
     /**
      * recipe function for displaying a single notice.
      *
@@ -243,7 +262,6 @@ class ThreadedNoticeListMoreItem extends NoticeListItem
      *
      * @return void
      */
-
     function show()
     {
         $this->showStart();
@@ -256,7 +274,6 @@ class ThreadedNoticeListMoreItem extends NoticeListItem
      *
      * @return void
      */
-
     function showStart()
     {
         $this->out->elementStart('li', array('class' => 'notice-reply-comments'));
@@ -265,17 +282,18 @@ class ThreadedNoticeListMoreItem extends NoticeListItem
     function showMiniForm()
     {
         $id = $this->notice->conversation;
-        $url = common_local_url('conversation', array('id' => $id)) . '#notice-' . $this->notice->id;
+        $url = common_local_url('conversationreplies', array('id' => $id));
 
         $notice = new Notice();
         $notice->conversation = $id;
         $n = $notice->count() - 1;
-        $msg = sprintf(_m('Show %d reply', 'Show all %d replies', $n), $n);
+        // TRANS: Link to show replies for a notice.
+        // TRANS: %d is the number of replies to a notice and used for plural.
+        $msg = sprintf(_m('Show reply', 'Show all %d replies', $n), $n);
 
         $this->out->element('a', array('href' => $url), $msg);
     }
 }
-
 
 /**
  * Placeholder for reply form...
@@ -283,7 +301,6 @@ class ThreadedNoticeListMoreItem extends NoticeListItem
  */
 class ThreadedNoticeListReplyItem extends NoticeListItem
 {
-
     /**
      * recipe function for displaying a single notice.
      *
@@ -292,7 +309,6 @@ class ThreadedNoticeListReplyItem extends NoticeListItem
      *
      * @return void
      */
-
     function show()
     {
         $this->showStart();
@@ -305,7 +321,6 @@ class ThreadedNoticeListReplyItem extends NoticeListItem
      *
      * @return void
      */
-
     function showStart()
     {
         $this->out->elementStart('li', array('class' => 'notice-reply-placeholder'));
@@ -314,6 +329,174 @@ class ThreadedNoticeListReplyItem extends NoticeListItem
     function showMiniForm()
     {
         $this->out->element('input', array('class' => 'placeholder',
+                                            // TRANS: Field label for reply mini form.
                                            'value' => _('Write a reply...')));
+    }
+}
+
+/**
+ * Placeholder for showing faves...
+ */
+abstract class NoticeListActorsItem extends NoticeListItem
+{
+    /**
+     * @return array of profile IDs
+     */
+    abstract function getProfiles();
+
+    abstract function getListMessage($count, $you);
+
+    function show()
+    {
+        $links = array();
+        $you = false;
+        $cur = common_current_user();
+        foreach ($this->getProfiles() as $id) {
+            if ($cur && $cur->id == $id) {
+                $you = true;
+                // TRANS: Reference to the logged in user in favourite list.
+                array_unshift($links, _m('FAVELIST', 'You'));
+            } else {
+                $profile = Profile::staticGet('id', $id);
+                if ($profile) {
+                    $links[] = sprintf('<a href="%s" title="%s">%s</a>',
+                                       htmlspecialchars($profile->profileurl),
+                                       htmlspecialchars($profile->getBestName()),
+                                       htmlspecialchars($profile->nickname));
+                }
+            }
+        }
+
+        if ($links) {
+            $count = count($links);
+            $msg = $this->getListMessage($count, $you);
+            $out = sprintf($msg, $this->magicList($links));
+
+            $this->showStart();
+            $this->out->raw($out);
+            $this->showEnd();
+            return $count;
+        } else {
+            return 0;
+        }
+    }
+
+    function magicList($items)
+    {
+        if (count($items) == 0) {
+            return '';
+        } else if (count($items) == 1) {
+            return $items[0];
+        } else {
+            $first = array_slice($items, 0, -1);
+            $last = array_slice($items, -1, 1);
+            // TRANS: Separator in list of user names like "You, Bob, Mary".
+            $separator = _(', ');
+            // TRANS: For building a list such as "You, bob, mary and 5 others have favored this notice".
+            // TRANS: %1$s is a list of users, separated by a separator (default: ", "), %2$s is the last user in the list.
+            return sprintf(_m('FAVELIST', '%1$s and %2$s'), implode($separator, $first), implode($separator, $last));
+        }
+    }
+}
+
+/**
+ * Placeholder for showing faves...
+ */
+class ThreadedNoticeListFavesItem extends NoticeListActorsItem
+{
+    function getProfiles()
+    {
+        $fave = Fave::byNotice($this->notice->id);
+        $profiles = array();
+        while ($fave->fetch()) {
+            $profiles[] = $fave->user_id;
+        }
+        return $profiles;
+    }
+
+    function getListMessage($count, $you)
+    {
+        if ($count == 1 && $you) {
+            // darn first person being different from third person!
+            // TRANS: List message for notice favoured by logged in user.
+            return _m('FAVELIST', 'You have favored this notice.');
+        } else {
+            // TRANS: List message for favoured notices.
+            // TRANS: %d is the number of users that have favoured a notice.
+            return sprintf(_m('FAVELIST',
+                              'One person has favored this notice.',
+                              '%d people have favored this notice.',
+                              $count),
+                           $count);
+        }
+    }
+
+    function showStart()
+    {
+        $this->out->elementStart('li', array('class' => 'notice-data notice-faves'));
+    }
+
+    function showEnd()
+    {
+        $this->out->elementEnd('li');
+    }
+
+}
+
+// @todo FIXME: needs documentation.
+class ThreadedNoticeListInlineFavesItem extends ThreadedNoticeListFavesItem
+{
+    function showStart()
+    {
+        $this->out->elementStart('div', array('class' => 'entry-content notice-faves'));
+    }
+
+    function showEnd()
+    {
+        $this->out->elementEnd('div');
+    }
+}
+
+/**
+ * Placeholder for showing faves...
+ */
+class ThreadedNoticeListRepeatsItem extends NoticeListActorsItem
+{
+    function getProfiles()
+    {
+        $rep = $this->notice->repeatStream();
+
+        $profiles = array();
+        while ($rep->fetch()) {
+            $profiles[] = $rep->profile_id;
+        }
+        return $profiles;
+    }
+
+    function getListMessage($count, $you)
+    {
+        if ($count == 1 && $you) {
+            // darn first person being different from third person!
+            // TRANS: List message for notice repeated by logged in user.
+            return _m('REPEATLIST', 'You have repeated this notice.');
+        } else {
+            // TRANS: List message for repeated notices.
+            // TRANS: %d is the number of users that have repeated a notice.
+            return sprintf(_m('REPEATLIST',
+                              'One person has repeated this notice.',
+                              '%d people have repeated this notice.',
+                              $count),
+                           $count);
+        }
+    }
+
+    function showStart()
+    {
+        $this->out->elementStart('li', array('class' => 'notice-data notice-repeats'));
+    }
+
+    function showEnd()
+    {
+        $this->out->elementEnd('li');
     }
 }

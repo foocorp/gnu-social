@@ -68,4 +68,10 @@ class GroupDesignAction extends Action {
         }
         return parent::getDesign();
     }
+
+    function showProfileBlock()
+    {
+        $block = new GroupProfileBlock($this, $this->group);
+        $block->show();
+    }
 }

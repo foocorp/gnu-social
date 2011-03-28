@@ -34,7 +34,7 @@ class Memcached_DataObject extends Safe_DataObject
     {
         if (is_null($v)) {
             $v = $k;
-            # XXX: HACK!
+            // XXX: HACK!
             $i = new $cls;
             $keys = $i->keys();
             $k = $keys[0];

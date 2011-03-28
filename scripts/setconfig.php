@@ -46,7 +46,7 @@ if (empty($args)) {
         foreach ($config as $section => $section_value) {
             foreach ($section_value as $setting => $value) {
                 if (have_option('v', 'verbose') || !is_array($value)) {
-                    # Don't print array's without the verbose flag
+                    // Don't print array's without the verbose flag
                     printf("%-20s %-20s %s\n", $section, $setting, var_export($value, true));
                 }
             }

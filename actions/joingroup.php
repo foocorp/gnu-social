@@ -129,10 +129,7 @@ class JoingroupAction extends Action
         $cur = common_current_user();
 
         try {
-            if (Event::handle('StartJoinGroup', array($this->group, $cur))) {
-                Group_member::join($this->group->id, $cur->id);
-                Event::handle('EndJoinGroup', array($this->group, $cur));
-            }
+            $result = $cur->joinGroup($this->group);
         } catch (Exception $e) {
             // TRANS: Server error displayed when joining a group failed in the database.
             // TRANS: %1$s is the joining user's nickname, $2$s is the group nickname for which the join failed.
@@ -150,8 +147,17 @@ class JoingroupAction extends Action
                                                   $this->group->nickname));
             $this->elementEnd('head');
             $this->elementStart('body');
-            $lf = new LeaveForm($this, $this->group);
-            $lf->show();
+
+            if ($result instanceof Group_member) {
+                $form = new LeaveForm($this, $this->group);
+            } else if ($result instanceof Group_join_queue) {
+                $form = new CancelGroupForm($this, $this->group);
+            } else {
+                // wtf?
+                // TRANS: Exception thrown when there is an unknown error joining a group.
+                throw new Exception(_("Unknown error joining group."));
+            }
+            $form->show();
             $this->elementEnd('body');
             $this->elementEnd('html');
         } else {

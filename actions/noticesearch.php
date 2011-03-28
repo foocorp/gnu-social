@@ -138,11 +138,14 @@ class NoticesearchAction extends SearchAction
             $this->elementEnd('div');
             return;
         }
-        $terms = preg_split('/[\s,]+/', $q);
-        $nl = new SearchNoticeList($notice, $this, $terms);
-        $cnt = $nl->show();
-        $this->pagination($page > 1, $cnt > NOTICES_PER_PAGE,
-                          $page, 'noticesearch', array('q' => $q));
+        if (Event::handle('StartNoticeSearchShowResults', array($this, $q, $notice))) {
+            $terms = preg_split('/[\s,]+/', $q);
+            $nl = new SearchNoticeList($notice, $this, $terms);
+            $cnt = $nl->show();
+            $this->pagination($page > 1, $cnt > NOTICES_PER_PAGE,
+                              $page, 'noticesearch', array('q' => $q));
+            Event::handle('EndNoticeSearchShowResults', array($this, $q, $notice));
+        }
     }
 
     function showScripts()

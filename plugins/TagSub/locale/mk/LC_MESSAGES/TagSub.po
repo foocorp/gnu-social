@@ -1,0 +1,93 @@
+# Translation of StatusNet - TagSub to Macedonian (Македонски)
+# Exported from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TagSub\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"PO-Revision-Date: 2011-03-24 11:14:54+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-18 20:10:04+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-tagsub\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+msgid "Unsubscribe from this tag"
+msgstr "Отпиши се од ознакава"
+
+#. TRANS: Plugin description.
+msgid "Plugin to allow following all messages with a given tag."
+msgstr "Приклучок што овозможува да ги следите сите пораки со извесна ознака."
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+msgctxt "MENU"
+msgid "Tags"
+msgstr "Ознаки"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+msgid "Configure tag subscriptions"
+msgstr "Нагоди претплата на ознаки"
+
+msgid "Tag subscriptions"
+msgstr "Претплати на ознаки"
+
+msgid "Subscribe to this tag"
+msgstr "Претплати се на ознакава"
+
+#. TRANS: Page title when tag unsubscription succeeded.
+msgid "Unsubscribed"
+msgstr "Претплатено"
+
+#. TRANS: Page title when tag subscription succeeded.
+msgid "Subscribed"
+msgstr "Претплатата е откажана"
+
+#. TRANS: Header for subscriptions overview for a user (first page).
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "%s's tag subscriptions"
+msgstr "претплатени ознаки на %s"
+
+#. TRANS: Header for subscriptions overview for a user (not first page).
+#. TRANS: %1$s is a user nickname, %2$d is the page number.
+#, php-format
+msgid "%1$s's tag subscriptions, page %2$d"
+msgstr "Претплатени ознаки на %1$s, страница %2$d"
+
+#. TRANS: Page notice for page with an overview of all tag subscriptions
+#. TRANS: of the logged in user's own profile.
+msgid ""
+"You have subscribed to receive all notices on this site containing the "
+"following tags:"
+msgstr ""
+"Се претплативте да ги примате сите забелешки на ова мреж. место што ги "
+"содржат слендиве ознаки:"
+
+#. TRANS: Page notice for page with an overview of all subscriptions of a user other
+#. TRANS: than the logged in user. %s is the user nickname.
+#, php-format
+msgid ""
+"%s has subscribed to receive all notices on this site containing the "
+"following tags:"
+msgstr ""
+"%s се претплати да ги прима сите забелешки на ова мреж. место што ги содржат "
+"слендиве ознаки:"
+
+#. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
+#. TRANS: as an anonymous user. %s is the user nickname.
+#, php-format
+msgid "%s is not listening to any tags."
+msgstr "%s не слуша никакви ознаки."
+
+#, php-format
+msgid "#<a href=\"%s\">%s</a> since %s"
+msgstr "#<a href=\"%s\">%s</a> од %s"

@@ -242,4 +242,15 @@ class XMLOutputter
     {
         $this->xw->writeComment($txt);
     }
+
+    /**
+     * Flush output buffers
+     *
+     * @return void
+     */
+
+    function flush()
+    {
+        $this->xw->flush();
+    }
 }

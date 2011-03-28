@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class SiteadminpanelAction extends AdminPanelAction
 {
     /**
@@ -52,10 +51,10 @@ class SiteadminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
-        return _('Site');
+        // TRANS: Title for site administration panel.
+        return _m('TITLE','Site');
     }
 
     /**
@@ -63,9 +62,9 @@ class SiteadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
+        // TRANS: Instructions for site administration panel.
         return _('Basic settings for this StatusNet site');
     }
 
@@ -74,7 +73,6 @@ class SiteadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new SiteAdminPanelForm($this);
@@ -87,7 +85,6 @@ class SiteadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         static $settings = array(
@@ -130,6 +127,7 @@ class SiteadminpanelAction extends AdminPanelAction
         // Validate site name
 
         if (empty($values['site']['name'])) {
+            // TRANS: Client error displayed trying to save an empty site name.
             $this->clientError(_('Site name must have non-zero length.'));
         }
 
@@ -138,9 +136,11 @@ class SiteadminpanelAction extends AdminPanelAction
         $values['site']['email'] = common_canonical_email($values['site']['email']);
 
         if (empty($values['site']['email'])) {
+            // TRANS: Client error displayed trying to save site settings without a contact address.
             $this->clientError(_('You must have a valid contact email address.'));
         }
         if (!Validate::email($values['site']['email'], common_config('email', 'check_domain'))) {
+            // TRANS: Client error displayed trying to save site settings without a valid contact address.
             $this->clientError(_('Not a valid email address.'));
         }
 
@@ -148,6 +148,7 @@ class SiteadminpanelAction extends AdminPanelAction
 
         if (is_null($values['site']['timezone']) ||
             !in_array($values['site']['timezone'], DateTimeZone::listIdentifiers())) {
+            // TRANS: Client error displayed trying to save site settings without a timezone.
             $this->clientError(_('Timezone not selected.'));
             return;
         }
@@ -156,24 +157,28 @@ class SiteadminpanelAction extends AdminPanelAction
 
         if (!is_null($values['site']['language']) &&
             !in_array($values['site']['language'], array_keys(get_nice_language_list()))) {
+            // TRANS: Client error displayed trying to save site settings with an invalid language code.
+            // TRANS: %s is the invalid language code.
             $this->clientError(sprintf(_('Unknown language "%s".'), $values['site']['language']));
         }
 
         // Validate text limit
 
         if (!Validate::number($values['site']['textlimit'], array('min' => 0))) {
-            $this->clientError(_("Minimum text limit is 0 (unlimited)."));
+            // TRANS: Client error displayed trying to save site settings with a text limit below 0.
+            $this->clientError(_('Minimum text limit is 0 (unlimited).'));
         }
 
         // Validate dupe limit
 
         if (!Validate::number($values['site']['dupelimit'], array('min' => 1))) {
+            // TRANS: Client error displayed trying to save site settings with a text limit below 1.
             $this->clientError(_("Dupe limit must be one or more seconds."));
         }
-
     }
 }
 
+// @todo FIXME: Class documentation missing.
 class SiteAdminPanelForm extends AdminForm
 {
     /**
@@ -181,7 +186,6 @@ class SiteAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'form_site_admin_panel';
@@ -192,7 +196,6 @@ class SiteAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -203,7 +206,6 @@ class SiteAdminPanelForm extends AdminForm
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('siteadminpanel');
@@ -214,35 +216,44 @@ class SiteAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->elementStart('fieldset', array('id' => 'settings_admin_general'));
-        $this->out->element('legend', null, _('General'));
+        // TRANS: Fieldset legend on site settings panel.
+        $this->out->element('legend', null, _m('LEGEND','General'));
         $this->out->elementStart('ul', 'form_data');
         $this->li();
-        $this->input('name', _('Site name'),
-                     _('The name of your site, like "Yourcompany Microblog"'));
+        // TRANS: Field label on site settings panel.
+        $this->input('name', _m('LABEL','Site name'),
+                     // TRANS: Field title on site settings panel.
+                     _('The name of your site, like "Yourcompany Microblog".'));
         $this->unli();
 
         $this->li();
+        // TRANS: Field label on site settings panel.
         $this->input('broughtby', _('Brought by'),
-                     _('Text used for credits link in footer of each page'));
+                     // TRANS: Field title on site settings panel.
+                     _('Text used for credits link in footer of each page.'));
         $this->unli();
 
         $this->li();
+        // TRANS: Field label on site settings panel.
         $this->input('broughtbyurl', _('Brought by URL'),
-                     _('URL used for credits link in footer of each page'));
+                     // TRANS: Field title on site settings panel.
+                     _('URL used for credits link in footer of each page.'));
         $this->unli();
         $this->li();
+        // TRANS: Field label on site settings panel.
         $this->input('email', _('Email'),
-                     _('Contact email address for your site'));
+                     // TRANS: Field title on site settings panel.
+                     _('Contact email address for your site.'));
         $this->unli();
         $this->out->elementEnd('ul');
         $this->out->elementEnd('fieldset');
 
         $this->out->elementStart('fieldset', array('id' => 'settings_admin_local'));
-        $this->out->element('legend', null, _('Local'));
+        // TRANS: Fieldset legend on site settings panel.
+        $this->out->element('legend', null, _m('LEGEND','Local'));
         $this->out->elementStart('ul', 'form_data');
         $timezones = array();
 
@@ -253,14 +264,20 @@ class SiteAdminPanelForm extends AdminForm
         asort($timezones);
 
         $this->li();
+        // TRANS: Dropdown label on site settings panel.
         $this->out->dropdown('timezone', _('Default timezone'),
+                             // TRANS: Dropdown title on site settings panel.
                              $timezones, _('Default timezone for the site; usually UTC.'),
                              true, $this->value('timezone'));
         $this->unli();
 
         $this->li();
-        $this->out->dropdown('language', _('Default language'),
-                             get_nice_language_list(), _('Site language when autodetection from browser settings is not available'),
+        $this->out->dropdown('language',
+                             // TRANS: Dropdown label on site settings panel.
+                             _('Default language'),
+                             get_nice_language_list(),
+                             // TRANS: Dropdown title on site settings panel.
+                             _('Site language when autodetection from browser settings is not available'),
                              false, $this->value('language'));
         $this->unli();
 
@@ -268,14 +285,23 @@ class SiteAdminPanelForm extends AdminForm
         $this->out->elementEnd('fieldset');
 
         $this->out->elementStart('fieldset', array('id' => 'settings_admin_limits'));
-        $this->out->element('legend', null, _('Limits'));
+        // TRANS: Fieldset legend on site settings panel.
+        $this->out->element('legend', null, _m('LEGEND','Limits'));
         $this->out->elementStart('ul', 'form_data');
         $this->li();
-        $this->input('textlimit', _('Text limit'), _('Maximum number of characters for notices.'));
+        $this->input('textlimit',
+                     // TRANS: Field label on site settings panel.
+                     _('Text limit'),
+                     // TRANS: Field title on site settings panel.
+                     _('Maximum number of characters for notices.'));
         $this->unli();
 
         $this->li();
-        $this->input('dupelimit', _('Dupe limit'), _('How long users must wait (in seconds) to post the same thing again.'));
+        $this->input('dupelimit',
+                     // TRANS: Field label on site settings panel.
+                     _('Dupe limit'),
+                     // TRANS: Field title on site settings panel.
+                     _('How long users must wait (in seconds) to post the same thing again.'));
         $this->unli();
         $this->out->elementEnd('ul');
         $this->out->elementEnd('fieldset');
@@ -286,9 +312,14 @@ class SiteAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Save'), 'submit', null, _('Save site settings'));
+        $this->out->submit('submit',
+                           // TRANS: Button text for saving site settings.
+                           _m('BUTTON','Save'),
+                           'submit',
+                           null,
+                           // TRANS: Button title for saving site settings.
+                           _('Save site settings'));
     }
 }

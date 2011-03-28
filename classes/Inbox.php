@@ -233,7 +233,7 @@ class Inbox extends Memcached_DataObject
         // Do a bulk lookup for the first $limit items
         // Fast path when nothing's deleted.
         $firstChunk = array_slice($ids, 0, $offset + $limit);
-        $notices = Notice::getStreamByIds($firstChunk);
+        $notices = NoticeStream::getStreamByIds($firstChunk);
 
         assert($notices instanceof ArrayWrapper);
         $items = $notices->_items;
@@ -292,7 +292,7 @@ class Inbox extends Memcached_DataObject
         // Do a bulk lookup for the first $limit items
         // Fast path when nothing's deleted.
         $firstChunk = array_slice($ids, 0, $limit);
-        $notices = Notice::getStreamByIds($firstChunk);
+        $notices = NoticeStream::getStreamByIds($firstChunk);
 
         $wanted = count($firstChunk); // raw entry count in the inbox up to our $limit
         if ($notices->N >= $wanted) {

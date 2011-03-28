@@ -95,9 +95,9 @@ class WebChannel extends Channel
 
     function output($user, $text)
     {
-        # XXX: buffer all output and send it at the end
-        # XXX: even better, redirect to appropriate page
-        #      depending on what command was run
+        // XXX: buffer all output and send it at the end
+        // XXX: even better, redirect to appropriate page
+        //      depending on what command was run
         $this->out->startHTML();
         $this->out->elementStart('head');
         // TRANS: Title for command results.

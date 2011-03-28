@@ -348,14 +348,15 @@ class GroupPrivateMessagePlugin extends Plugin
     /**
      * To add a "Message" button to the group profile page
      *
-     * @param Action     $action The showgroup action being shown
+     * @param Widget     $widget The showgroup action being shown
      * @param User_group $group  The current group
      * 
      * @return boolean hook value
      */
-    function onEndGroupActionsList($action, $group)
+    function onEndGroupActionsList($widget, $group)
     {
         $cur = common_current_user();
+        $action = $widget->out;
 
         if (empty($cur)) {
             return true;
@@ -402,6 +403,7 @@ class GroupPrivateMessagePlugin extends Plugin
         $ignored = array();
 
         $forcePrivate = false;
+        $profile = $notice->getProfile();
 
         if ($count > 0) {
 
