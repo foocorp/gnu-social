@@ -137,7 +137,9 @@ class GNUsocialVideoPlugin extends MicroAppPlugin
     {
         $vid = Video::getByNotice($notice);
         if ($vid) {
-            $out->element('video', array('src' => $vid->url));
+            $out->element('video', array('src' => $vid->url,
+                'width' => '100%',
+                'controls' => 'controls'));
         }
     }
 
