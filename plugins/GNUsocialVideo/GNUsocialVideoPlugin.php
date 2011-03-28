@@ -143,6 +143,9 @@ class GNUsocialVideoPlugin extends MicroAppPlugin
 
     function deleteRelated($notice)
     {
-        exit(1); // TODO: implement
+        $vid = Video::getByNotice($notice);
+        if ($vid) {
+            $vid->delete();
+        }
     }
 }
