@@ -141,7 +141,7 @@ class WhitelistInviteForm extends Form
             'a',
             array(
                 'class' => 'remove_row',
-                'href' => 'javascript://',
+                'href'  => 'javascript://',
             ),
             '-'
         );
@@ -150,21 +150,12 @@ class WhitelistInviteForm extends Form
             'a',
             array(
                 'class' => 'add_row',
-                'href' => 'javascript://',
+                'href'  => 'javascript://',
             ),
-            '+'
+            _m('Add another item')
         );
     }
-    
-    function getUsersDomain()
-    {
-        $user = common_current_user();
         
-        assert(!empty($user));
-        
-        
-    }
-    
     /**
      * Action elements
      *
