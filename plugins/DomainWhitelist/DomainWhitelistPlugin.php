@@ -231,8 +231,9 @@ class DomainWhitelistPlugin extends Plugin
                 )
             );
 
-            array_unshift($orderedWhitelist, $userDomain);
-
+            if (in_array($userDomain, $whitelist)) {
+                array_unshift($orderedWhitelist, $userDomain);
+            }
             return $orderedWhitelist;
         }
 
