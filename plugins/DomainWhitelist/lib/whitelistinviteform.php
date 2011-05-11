@@ -142,6 +142,7 @@ class WhitelistInviteForm extends Form
             array(
                 'class' => 'remove_row',
                 'href'  => 'javascript://',
+                'style' => 'display: none;'
             ),
             '-'
         );
@@ -151,6 +152,7 @@ class WhitelistInviteForm extends Form
             array(
                 'class' => 'add_row',
                 'href'  => 'javascript://',
+                'style' => 'display: none;'
             ),
             _m('Add another item')
         );

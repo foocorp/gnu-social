@@ -2,12 +2,16 @@
 var SN_WHITELIST = SN_WHITELIST || {};
 
 SN_WHITELIST.updateButtons = function() {
+   $("ul > li > a.remove_row").show();
+   $("ul > li > a.add_row").hide();
+
     var lis = $('ul > li > input[name^="username[]"]');
     if (lis.length === 1) {
         $("ul > li > a.remove_row").hide();
     } else {
         $("ul > li > a.remove_row:first").show();
     }
+    $("ul > li > a.add_row:last").show();
 };
 
 SN_WHITELIST.resetRow = function(row) {
@@ -27,7 +31,6 @@ SN_WHITELIST.addRow = function() {
 };
 
 SN_WHITELIST.removeRow = function() {
-
     var that = this;
 
     $("#confirm-dialog").dialog({
@@ -56,7 +59,6 @@ SN_WHITELIST.removeRow = function() {
 };
 
 $(document).ready(function() {
-
     $("#confirm-dialog").dialog({
         autoOpen: false,
         modal: true
@@ -64,4 +66,6 @@ $(document).ready(function() {
 
     $('.add_row').live('click', SN_WHITELIST.addRow);
     $('.remove_row').live('click', SN_WHITELIST.removeRow);
+
+    SN_WHITELIST.updateButtons();
 });
