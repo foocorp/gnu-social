@@ -66,16 +66,6 @@ class InviteForm extends Form
     }
 
     /**
-     * class of the form
-     *
-     * @return string of the form class
-     */
-    function formClass()
-    {
-        return 'form_settings';
-    }
-
-    /**
      * Action of the form
      *
      * @return string URL of the action
