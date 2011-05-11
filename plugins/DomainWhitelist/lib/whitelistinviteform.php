@@ -134,7 +134,7 @@ class WhitelistInviteForm extends Form
         $this->showMultiControls();
         $this->out->elementEnd('li');
     }
-    
+
     function showMultiControls()
     {
         $this->out->element(

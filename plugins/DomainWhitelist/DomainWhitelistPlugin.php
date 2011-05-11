@@ -248,9 +248,23 @@ class DomainWhitelistPlugin extends Plugin
      */
     function onStartShowInviteForm($action)
     {
+        $this->showConfirmDialog($action);
         $form = new WhitelistInviteForm($action, $this->getWhitelist());
         $form->show();
         return false;
+    }
+
+    function showConfirmDialog($action)
+    {
+        // For JQuery UI modal dialog
+        $action->elementStart(
+            'div',
+            // TRANS: Title for invitiation deletion dialog.
+            array('id' => 'confirm-dialog', 'title' => _m('Confirmation Required'))
+        );
+        // TRANS: Confirmation text for invitation deletion dialog.
+        $action->text(_m('Really delete this invitation?'));
+        $action->elementEnd('div');
     }
 
     /**
