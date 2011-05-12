@@ -24,8 +24,9 @@ SN_WHITELIST.resetRow = function(row) {
 SN_WHITELIST.addRow = function() {
     var row = $(this).closest("li");
     var newRow = row.clone();
+    $(row).find('a.add_row').hide();
     SN_WHITELIST.resetRow(newRow);
-        $(newRow).insertAfter(row).show("blind", "slow", function() {
+        $(newRow).insertAfter(row).show("blind", "fast", function() {
             SN_WHITELIST.updateButtons();
         });
 };
@@ -37,7 +38,7 @@ SN_WHITELIST.removeRow = function() {
         buttons : {
             "Confirm" : function() {
                 $(this).dialog("close");
-                $(that).closest("li").hide("blind", "slow", function() {
+                $(that).closest("li").hide("blind", "fast", function() {
                     $(this).remove();
                     SN_WHITELIST.updateButtons();
                 });
@@ -51,7 +52,7 @@ SN_WHITELIST.removeRow = function() {
     if ($(this).closest('li').find(':input[name^=username]').val()) {
         $("#confirm-dialog").dialog("open");
     } else {
-        $(that).closest("li").hide("blind", "slow", function() {
+        $(that).closest("li").hide("blind", "fast", function() {
             $(this).remove();
             SN_WHITELIST.updateButtons();
         });
