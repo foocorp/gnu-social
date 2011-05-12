@@ -1168,6 +1168,39 @@ background-color:rgba(200, 200, 200, 0.300);
     height: 48px;
 }
 
+#form_invite a.add_row, #form_invite a.remove_row {
+    display: block;
+    height: 16px;
+    width: 16px;
+    overflow: hidden;
+    background-image: url('../../base/images/icons/icons-01.gif');
+    background-repeat: no-repeat;
+}
+
+#form_invite a.remove_row {
+    background-position: 0px -1252px;
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    left: 10px;
+    line-height: 4em;
+}
+
+#form_invite a.add_row {
+    clear: both;
+    position: relative;
+    top: 10px;
+    background-position: 0px -1186px;
+    width: 120px;
+    padding-left: 20px;
+    line-height: 1.2em;
+}
+
+#form_invite label[for=personal] {
+    display: block;
+    margin-top: 25px;
+}
+
 #content thead th {
 text-align:left;
 }
