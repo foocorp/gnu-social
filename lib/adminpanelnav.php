@@ -61,6 +61,7 @@ class AdminPanelNav extends Menu
 
         // Stub section w/ home link
         $this->action->elementStart('ul');
+        $this->action->elementStart('li');
         // TRANS: Header in administrator navigation panel.
         $this->action->element('h3', null, _m('HEADER','Home'));
         $this->action->elementStart('ul', 'nav');
@@ -74,9 +75,11 @@ class AdminPanelNav extends Menu
                              $this->action == 'all', 'nav_timeline_personal');
 
         $this->action->elementEnd('ul');
+        $this->action->elementEnd('li');
         $this->action->elementEnd('ul');
 
         $this->action->elementStart('ul');
+        $this->action->elementStart('li');
         // TRANS: Header in administrator navigation panel.
         $this->action->element('h3', null, _m('HEADER','Admin'));
         $this->action->elementStart('ul', array('class' => 'nav'));
@@ -166,6 +169,7 @@ class AdminPanelNav extends Menu
             Event::handle('EndAdminPanelNav', array($this));
         }
         $this->action->elementEnd('ul');
+        $this->action->elementEnd('li');
         $this->action->elementEnd('ul');
     }
 }
