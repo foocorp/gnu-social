@@ -309,6 +309,14 @@ class MobileProfilePlugin extends WAP20Plugin
         }
     }
 
+    function onStartShowLocalNavBlock($action)
+    {
+        if ($this->serveMobile) {
+        $action->element('a', array('href' => '#', 'id' => 'navtoggle'), 'Show Navigation');
+        return true;
+        }
+    }
+
     function onEndShowScripts($action)
     {
         $action->inlineScript('
@@ -322,6 +330,12 @@ class MobileProfilePlugin extends WAP20Plugin
                     $.cookie("MobileOverride", "1", {path: "/"});
                     window.location.reload();
                     return false;
+                });
+                $("#navtoggle").click(function () {
+                          $("#site_nav_local_views").fadeToggle();
+                          var text = $("#navtoggle").text();
+                          $("#navtoggle").text(
+                          text == "Show Navigation" ? "Hide Navigation" : "Show Navigation");
                 });
             });'
         );
