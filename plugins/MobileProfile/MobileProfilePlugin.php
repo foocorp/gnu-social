@@ -277,10 +277,7 @@ class MobileProfilePlugin extends WAP20Plugin
 
         $action->elementStart('div', array('id' => 'header'));
         $this->_showLogo($action);
-        $this->_showPrimaryNav($action);
-        if (common_logged_in()) {
-            $action->showNoticeForm();
-        }
+        $action->showPrimaryNav();
         $action->elementEnd('div');
 
         return false;
@@ -303,91 +300,6 @@ class MobileProfilePlugin extends WAP20Plugin
         $action->element('span', array('class' => 'fn org'), common_config('site', 'name'));
         $action->elementEnd('a');
         $action->elementEnd('address');
-    }
-
-    function _showPrimaryNav($action)
-    {
-        $user    = common_current_user();
-        $action->elementStart('ul', array('id' => 'site_nav_global_primary'));
-        if ($user) {
-            $action->menuItem(common_local_url('all', array('nickname' => $user->nickname)),
-                            // TRANS: Menu item in mobile profile to go to start page of site.
-                            _m('Home'));
-            $action->menuItem(common_local_url('profilesettings'),
-                            // TRANS: Menu item in mobile profile to go to user account settings.
-                            _m('Account'));
-            $action->menuItem(common_local_url('oauthconnectionssettings'),
-                            // TRANS: Menu item in mobile profile to connect to other services.
-                            _m('Connect'));
-            if ($user->hasRight(Right::CONFIGURESITE)) {
-                $action->menuItem(common_local_url('siteadminpanel'),
-                                // TRANS: Menu item in mobile profile to manage site settings.
-                                _m('Admin'),
-                                _m('Change site configuration'), false, 'nav_admin');
-            }
-            if (common_config('invite', 'enabled')) {
-                $action->menuItem(common_local_url('invite'),
-                                // TRANS: Menu item in mobile profile to invite other people.
-                                _m('Invite'));
-            }
-            $action->menuItem(common_local_url('logout'),
-                            // TRANS: Menu item in mobile profile log the current user off.
-                            _m('Logout'));
-        } else {
-            if (!common_config('site', 'closed')) {
-                $action->menuItem(common_local_url('register'),
-                                // TRANS: Menu item in mobile profile to register with the site.
-                                _m('Register'));
-            }
-            $action->menuItem(common_local_url('login'),
-                            // TRANS: Menu item in mobile profile to log in.
-                            _m('Login'));
-        }
-        if ($user || !common_config('site', 'private')) {
-            $action->menuItem(common_local_url('peoplesearch'),
-                            // TRANS: Menu item in mobile profile to search the site.
-                            _m('Search'));
-        }
-        $action->elementEnd('ul');
-    }
-
-    function onStartShowNoticeFormData($form)
-    {
-        if (!$this->serveMobile) {
-            return true;
-        }
-
-        $form->out->element('textarea', array('id' => 'notice_data-text',
-                                              'cols' => 15,
-                                              'rows' => 4,
-                                              'name' => 'status_textarea'),
-                            ($form->content) ? $form->content : '');
-
-        $contentLimit = Notice::maxContent();
-
-        if ($contentLimit > 0) {
-            $form->out->element('div', array('class' => 'count'),
-                                $contentLimit);
-        }
-
-        if (common_config('attachments', 'uploads')) {
-            if ($this->mobileFeatures['inputfiletype']) {
-                $form->out->hidden('MAX_FILE_SIZE', common_config('attachments', 'file_quota'));
-                // TRANS: Field label in mobile profile to attach a file to a status.
-                $form->out->element('label', array('for' => 'notice_data-attach'), _m('Attach'));
-                $form->out->element('input', array('id' => 'notice_data-attach',
-                                                   'type' => 'file',
-                                                   'name' => 'attach',
-                                                   // TRANS: Field title in mobile profile to attach a file to a status.
-                                                   'title' => _m('Attach a file.')));
-            }
-        }
-        if ($form->action) {
-            $form->out->hidden('notice_return-to', $form->action, 'returnto');
-        }
-        $form->out->hidden('notice_in-reply-to', $form->inreplyto, 'inreplyto');
-
-        return false;
     }
 
     function onStartShowAside($action)
