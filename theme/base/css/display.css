@@ -414,6 +414,14 @@ address .poweredby {
     margin-right: 8px;
 }
 
+.notice .addressees:before {
+    content: '\25B8';
+}
+
+.notice .addressees:empty:before {
+    content: none;
+}
+
 .fn {
     overflow: hidden;
 }
