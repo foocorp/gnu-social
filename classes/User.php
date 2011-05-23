@@ -263,6 +263,8 @@ class User extends Memcached_DataObject
 
         $user->nickname = $nickname;
 
+        $invite = null;
+
         // Users who respond to invite email have proven their ownership of that address
 
         if (!empty($code)) {
@@ -351,6 +353,12 @@ class User extends Memcached_DataObject
             if (!$result) {
                 common_log_db_error($subscription, 'INSERT', __FILE__);
                 return false;
+            }
+
+            // Mark that this invite was converted
+
+            if (!empty($invite)) {
+                $invite->convert($user);
             }
 
             if (!empty($email) && !$user->email) {

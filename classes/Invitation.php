@@ -23,4 +23,11 @@ class Invitation extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    function convert($user)
+    {
+        $orig = clone($this);
+        $this->registered_user_id = $user->id;
+        return $this->update($orig);
+    }
 }
