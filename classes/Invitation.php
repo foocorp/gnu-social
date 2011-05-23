@@ -14,6 +14,7 @@ class Invitation extends Memcached_DataObject
     public $user_id;                         // int(4)   not_null
     public $address;                         // varchar(255)  multiple_key not_null
     public $address_type;                    // varchar(8)  multiple_key not_null
+    public $registered_user_id;              // int(4)   not_null
     public $created;                         // datetime()   not_null
 
     /* Static get */
