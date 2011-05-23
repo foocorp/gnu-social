@@ -77,7 +77,8 @@ class OStatusGroupAction extends OStatusSubAction
                      // TRANS: Field label.
                      _m('Join group'),
                      $this->profile_uri,
-                     // TRANS: Tooltip for field label "Join group".
+                     // TRANS: Tooltip for field label "Join group". Do not translate the "example.net"
+                     // TRANS: domain name in the URL, as it is an official standard domain name for examples.
                      _m("OStatus group's address, like http://example.net/group/nickname."));
         $this->elementEnd('li');
         $this->elementEnd('ul');

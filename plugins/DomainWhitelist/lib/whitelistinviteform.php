@@ -46,7 +46,7 @@ require_once INSTALLDIR . '/lib/form.php';
 class WhitelistInviteForm extends Form
 {
     private $whitelist = null;
-    
+
     /**
      * Constructor
      *
@@ -86,7 +86,7 @@ class WhitelistInviteForm extends Form
     function formLegend()
     {
         // TRANS: Form legend.
-        $this->out->element('legend', null, _('Invite collegues'));
+        $this->out->element('legend', null, _m('Invite collegues'));
     }
 
     /**
@@ -101,17 +101,17 @@ class WhitelistInviteForm extends Form
             $this->showEmailLI();
         }
         $this->out->elementStart('li');
-        // TRANS: Field label for a personal message to send to invitees.
         $this->out->textarea(
-            'personal', _('Personal message'),
+            // TRANS: Field label for a personal message to send to invitees.
+            'personal', _m('Personal message'),
             $this->out->trimmed('personal'),
-            // TRANS: Tooltip for field label for a personal message to send to invitees.
-            _('Optionally add a personal message to the invitation.')
+            // TRANS: Field title for a personal message to send to invitees.
+            _m('Optionally add a personal message to the invitation.')
         );
         $this->out->elementEnd('li');
         $this->out->elementEnd('ul');
     }
-    
+
     function showEmailLI()
     {
         $this->out->elementStart('li');
@@ -119,8 +119,8 @@ class WhitelistInviteForm extends Form
         $this->out->text('@');
         if (count($this->whitelist) == 1) {
             $this->out->element(
-                'span', 
-                array('class' => 'email_invite'), 
+                'span',
+                array('class' => 'email_invite'),
                 $this->whitelist[0]
            );
            $this->out->hidden('domain[]', $this->whitelist[0]);
@@ -154,10 +154,11 @@ class WhitelistInviteForm extends Form
                 'href'  => 'javascript://',
                 'style' => 'display: none;'
             ),
+            // TRANS: Link description to action to add another item to a list.
             _m('Add another item')
         );
     }
-        
+
     /**
      * Action elements
      *
@@ -165,13 +166,13 @@ class WhitelistInviteForm extends Form
      */
     function formActions()
     {
-        // TRANS: Send button for inviting friends
         $this->out->submit(
             'send',
+            // TRANS: Send button for inviting friends.
             _m('BUTTON','Send'), 'submit form_action-primary',
-            // TRANS: Submit button title.
             'send',
-            _('Send')
+            // TRANS: Submit button title.
+            _m('Send invitations.')
         );
     }
 }

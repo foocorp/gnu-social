@@ -312,13 +312,15 @@ class MobileProfilePlugin extends WAP20Plugin
     function onStartShowLocalNavBlock($action)
     {
         if ($this->serveMobile) {
-        $action->element('a', array('href' => '#', 'id' => 'navtoggle'), 'Show Navigation');
+            // @todo FIXME: "Show Navigation" / "Hide Navigation" needs i18n
+            $action->element('a', array('href' => '#', 'id' => 'navtoggle'), 'Show Navigation');
         return true;
         }
     }
 
     function onEndShowScripts($action)
     {
+        // @todo FIXME: "Show Navigation" / "Hide Navigation" needs i18n
         $action->inlineScript('
             $(function() {
                 $("#mobile-toggle-disable").click(function() {

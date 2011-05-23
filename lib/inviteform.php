@@ -41,7 +41,6 @@ require_once INSTALLDIR . '/lib/form.php';
  * @author   Zach Copley <zach@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
- *
  */
 class InviteForm extends Form
 {
@@ -95,21 +94,21 @@ class InviteForm extends Form
     {
         $this->out->elementStart('ul', 'form_data');
         $this->out->elementStart('li');
-        // TRANS: Field label for a list of e-mail addresses.
         $this->out->textarea(
             'addresses',
+            // TRANS: Field label for a list of e-mail addresses.
             _('Email addresses'),
             $this->out->trimmed('addresses'),
-            // TRANS: Tooltip for field label for a list of e-mail addresses.
+            // TRANS: Field title for a list of e-mail addresses.
             _('Addresses of friends to invite (one per line).')
         );
         $this->out->elementEnd('li');
         $this->out->elementStart('li');
-        // TRANS: Field label for a personal message to send to invitees.
         $this->out->textarea(
+            // TRANS: Field label for a personal message to send to invitees.
             'personal', _('Personal message'),
             $this->out->trimmed('personal'),
-            // TRANS: Tooltip for field label for a personal message to send to invitees.
+            // TRANS: Field title for a personal message to send to invitees.
             _('Optionally add a personal message to the invitation.')
         );
         $this->out->elementEnd('li');
@@ -123,13 +122,13 @@ class InviteForm extends Form
      */
     function formActions()
     {
-        // TRANS: Send button for inviting friends
         $this->out->submit(
             'send',
+            // TRANS: Send button for inviting friends
             _m('BUTTON','Send'), 'submit form_action-primary',
-            // TRANS: Submit button title.
             'send',
-            _('Send')
+            // TRANS: Submit button title.
+            _('Send invitations.')
         );
     }
 }

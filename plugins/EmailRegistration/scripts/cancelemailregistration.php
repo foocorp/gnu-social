@@ -27,7 +27,7 @@ $helptext = <<<END_OF_REGISTEREMAILUSER_HELP
 cancelemailregistration.php [options] <email address>
 
 Options:
--d --dryrun   Don't actually delete the email registration and confirmation code
+-d --dryrun   Do not actually delete the email registration and confirmation code
 
 Cancel an email registration code
 

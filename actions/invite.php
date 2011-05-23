@@ -60,7 +60,6 @@ class InviteAction extends CurrentUserDesignAction
     function sendInvitations()
     {
         if (Event::handle('StartSendInvitations', array(&$this))) {
-
             // CSRF protection
             $token = $this->trimmed('token');
             if (!$token || $token != common_session_token()) {
@@ -162,7 +161,6 @@ class InviteAction extends CurrentUserDesignAction
     function showInvitationSuccess()
     {
         if (Event::handle('StartShowInvitationSuccess', array($this))) {
-
             if ($this->already) {
                 // TRANS: Message displayed inviting users to use a StatusNet site while the inviting user
                 // TRANS: is already subscribed to one or more users with the given e-mail address(es).

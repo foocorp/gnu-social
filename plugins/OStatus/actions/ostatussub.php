@@ -228,14 +228,16 @@ class OStatusSubAction extends Action
             } else if (Validate::uri($this->profile_uri)) {
                 $this->oprofile = Ostatus_profile::ensureProfileURL($this->profile_uri);
             } else {
-                // TRANS: Error text.
+                // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+                // TRANS: and example.net, as these are official standard domain names for use in examples.
                 $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
                 common_debug('Invalid address format.', __FILE__);
                 return false;
             }
             return true;
         } catch (FeedSubBadURLException $e) {
-            // TRANS: Error text.
+                // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+                // TRANS: and example.net, as these are official standard domain names for use in examples.
             $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
             common_debug('Invalid URL or could not reach server.', __FILE__);
         } catch (FeedSubBadResponseException $e) {
@@ -260,7 +262,8 @@ class OStatusSubAction extends Action
             common_debug('Not a recognized feed type.', __FILE__);
         } catch (Exception $e) {
             // Any new ones we forgot about
-            // TRANS: Error text.
+                // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+                // TRANS: and example.net, as these are official standard domain names for use in examples.
             $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
             common_debug(sprintf('Bad feed URL: %s %s', get_class($e), $e->getMessage()), __FILE__);
         }
