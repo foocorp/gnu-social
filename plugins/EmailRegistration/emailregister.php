@@ -107,7 +107,11 @@ class EmailregisterAction extends Action
 
                 $this->invitation = Invitation::staticGet('code', $this->code);
 
-                if (empty($this->invitation)) {
+                if (!empty($this->invitation)) {
+                    if (!empty($this->invitation->registered_user_id)) {
+                        throw new ClientException(_m('Invitation already used.'), 403);
+                    }
+                } else {
 
                     $this->confirmation = Confirm_address::staticGet('code', $this->code);
 
@@ -133,6 +137,9 @@ class EmailregisterAction extends Action
             } else {
                 $this->invitation = Invitation::staticGet('code', $this->code);
                 if (!empty($this->invitation)) {
+                    if (!empty($this->invitation->registered_user_id)) {
+                        throw new ClientException(_m('Invitation already used.'), 403);
+                    }
                     $this->state = self::CONFIRMINVITE;
                 } else {
                     $this->state = self::CONFIRMREGISTER;
@@ -283,10 +290,15 @@ class EmailregisterAction extends Action
             $nickname = $this->nicknameFromEmail($email);
 
             try {
-                $this->user = User::register(array('nickname' => $nickname,
-                                                   'email' => $email,
-                                                   'password' => $this->password1,
-                                                   'email_confirmed' => true));
+                $fields = array('nickname' => $nickname,
+                                'email' => $email,
+                                'password' => $this->password1,
+                                'email_confirmed' => true);
+
+                if (!empty($this->invitation)) {
+                    $fields['code'] = $this->invitation->code;
+                }
+                $this->user = User::register($fields);
             } catch (ClientException $e) {
                 $this->error = $e->getMessage();
                 $nickname = $this->nicknameFromEmail($email);
@@ -306,18 +318,8 @@ class EmailregisterAction extends Action
             // Re-init language env in case it changed (not yet, but soon)
             common_init_language();
 
-            if (!empty($this->invitation)) {
-                $inviter = User::staticGet('id', $this->invitation->user_id);
-                if (!empty($inviter)) {
-                    Subscription::start($inviter->getProfile(),
-                                        $this->user->getProfile());
-                }
-
-                $this->invitation->delete();
-            } else if (!empty($this->confirmation)) {
+            if (!empty($this->confirmation)) {
                 $this->confirmation->delete();
-            } else {
-                throw new Exception('No confirmation thing.');
             }
 
             Event::handle('EndRegistrationTry', array($this));

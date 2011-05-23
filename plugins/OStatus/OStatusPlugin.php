@@ -327,7 +327,8 @@ class OStatusPlugin extends Plugin
                 return false;
 
             } catch (Exception $e) {
-                // TRANS: Error message in OStatus plugin.
+                // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+                // TRANS: and example.net, as these are official standard domain names for use in examples.
                 $err = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
             }
 
@@ -360,7 +361,8 @@ class OStatusPlugin extends Plugin
                     return $this->filter(array($oprofile->localProfile()));
 
                 } catch (Exception $e) {
-                    // TRANS: Error message in OStatus plugin.
+                // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+                // TRANS: and example.net, as these are official standard domain names for use in examples.
                     $this->msg = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
                     return array();
                 }

@@ -542,14 +542,17 @@ $schema['invitation'] = array(
         'address' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'invitation sent to'),
         'address_type' => array('type' => 'varchar', 'length' => 8, 'not null' => true, 'description' => 'address type ("email", "xmpp", "sms")'),
         'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+        'registered_user_id' => array('type' => 'int', 'not null' => false, 'description' => 'if the invitation is converted, who the new user is'),
     ),
     'primary key' => array('code'),
     'foreign keys' => array(
         'invitation_user_id_fkey' => array('user', array('user_id' => 'id')),
+        'invitation_registered_user_id_fkey' => array('user', array('registered_user_id' => 'id')),
     ),
     'indexes' => array(
         'invitation_address_idx' => array('address', 'address_type'),
         'invitation_user_id_idx' => array('user_id'),
+        'invitation_registered_user_id_idx' => array('registered_user_id'),
     ),
 );
 

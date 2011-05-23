@@ -61,6 +61,7 @@ class SettingsNav extends Menu
 
         // Stub section w/ home link
         $this->action->elementStart('ul');
+        $this->action->elementStart('li');
         // TRANS: Header in settings navigation panel.
         $this->action->element('h3', null, _m('HEADER','Home'));
         $this->action->elementStart('ul', 'nav');
@@ -72,11 +73,12 @@ class SettingsNav extends Menu
                              // TRANS: %s is a username.
                              sprintf(_('%s and friends'), $name),
                              $this->action == 'all', 'nav_timeline_personal');
-
         $this->action->elementEnd('ul');
+        $this->action->elementEnd('li');
         $this->action->elementEnd('ul');
 
         $this->action->elementStart('ul');
+        $this->action->elementStart('li');
         // TRANS: Header in settings navigation panel.
         $this->action->element('h3', null, _m('HEADER','Settings'));
         $this->action->elementStart('ul', array('class' => 'nav'));
@@ -155,6 +157,7 @@ class SettingsNav extends Menu
         }
 
         $this->action->elementEnd('ul');
+        $this->action->elementEnd('li');
         $this->action->elementEnd('ul');
     }
 }

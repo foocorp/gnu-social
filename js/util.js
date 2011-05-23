@@ -735,7 +735,7 @@ var SN = { // StatusNet
                 list = notice.find('ul.threaded-replies');
             }
             var placeholder = $('<li class="notice-reply-placeholder">' +
-                                    '<input class="placeholder">' +
+                                    '<input class="placeholder" />' +
                                 '</li>');
             placeholder.find('input')
                 .val(SN.msg('reply_placeholder'));

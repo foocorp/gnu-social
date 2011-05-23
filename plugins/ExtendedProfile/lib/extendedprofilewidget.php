@@ -328,7 +328,7 @@ class ExtendedProfileWidget extends Form
         if (!empty($field['company'])) {
             $this->out->element('div', 'field', $field['company']);
 
-            // TRANS: Field label in experience area of extended profile (when did one start a position).
+            // TRANS: Field label in extended profile (when did one start a position or education).
             $this->out->element('div', 'label', _m('Start'));
             $this->out->element(
                 'div',
@@ -336,7 +336,7 @@ class ExtendedProfileWidget extends Form
                 date('j M Y', strtotime($field['start'])
                 )
             );
-            // TRANS: Field label in experience area of extended profile (when did one end a position).
+            // TRANS: Field label in extended profile (when did one end a position or education).
             $this->out->element('div', 'label', _m('End'));
             $this->out->element(
                 'div',
@@ -376,7 +376,7 @@ class ExtendedProfileWidget extends Form
             isset($field['company']) ? $field['company'] : null
         );
 
-        // TRANS: Field label in experience edit area of extended profile (when did one start at a company).
+        // TRANS: Field label in extended profile (when did one start a position or education).
         $this->out->element('div', 'label', _m('Start'));
         $this->out->input(
             $id . '-start',
@@ -384,7 +384,7 @@ class ExtendedProfileWidget extends Form
             isset($field['start']) ? date('j M Y', strtotime($field['start'])) : null
         );
 
-        // TRANS: Field label in experience edit area of extended profile (when did one terminate at a company).
+            // TRANS: Field label in extended profile (when did one end a position or education).
         $this->out->element('div', 'label', _m('End'));
 
         $this->out->input(
@@ -416,13 +416,13 @@ class ExtendedProfileWidget extends Form
         $this->out->element('div', 'label', _m('Institution'));
         if (!empty($field['school'])) {
             $this->out->element('div', 'field', $field['school']);
-            // TRANS: Field label in education area of extended profile.
+            // TRANS: Field label in extended profile for specifying an academic degree.
             $this->out->element('div', 'label', _m('Degree'));
             $this->out->element('div', 'field', $field['degree']);
             // TRANS: Field label in education area of extended profile.
             $this->out->element('div', 'label', _m('Description'));
             $this->out->element('div', 'field', $field['description']);
-            // TRANS: Field label in education area of extended profile (when did one start an education).
+            // TRANS: Field label in extended profile (when did one start a position or education).
             $this->out->element('div', 'label', _m('Start'));
             $this->out->element(
                 'div',
@@ -430,7 +430,7 @@ class ExtendedProfileWidget extends Form
                 date('j M Y', strtotime($field['start'])
                 )
             );
-            // TRANS: Field label in education area of extended profile (when did one end a education).
+            // TRANS: Field label in extended profile (when did one end a position or education).
             $this->out->element('div', 'label', _m('End'));
             $this->out->element(
                 'div',
@@ -460,7 +460,7 @@ class ExtendedProfileWidget extends Form
             isset($field['school']) ? $field['school'] : null
         );
 
-        // TRANS: Field label in education edit area of extended profile.
+        // TRANS: Field label in extended profile for specifying an academic degree.
         $this->out->element('div', 'label', _m('Degree'));
         $this->out->input(
             $id . '-degree',
@@ -477,7 +477,7 @@ class ExtendedProfileWidget extends Form
             isset($field['description']) ? $field['description'] : null
         );
 
-        // TRANS: Field label in education edit area of extended profile (when did one start an education).
+        // TRANS: Field label in extended profile (when did one start a position or education).
         $this->out->element('div', 'label', _m('Start'));
         $this->out->input(
             $id . '-start',
@@ -486,7 +486,7 @@ class ExtendedProfileWidget extends Form
             isset($field['start']) ? date('j M Y', strtotime($field['start'])) : null
         );
 
-        // TRANS: Field label in education edit area of extended profile (when did one end an education).
+        // TRANS: Field label in extended profile (when did one end a position or education).
         $this->out->element('div', 'label', _m('End'));
         $this->out->input(
             $id . '-end',
