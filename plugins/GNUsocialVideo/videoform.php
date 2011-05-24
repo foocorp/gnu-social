@@ -41,6 +41,11 @@ class VideoForm extends Form
         return common_local_url('postvideo');
     }
 
+    function formClass()
+    {
+        return 'form_settings ajax-notice';
+    }
+
     function formData()
     {
         $this->out->elementStart('fieldset', array('id' => 'new_video_data'));
