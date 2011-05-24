@@ -73,7 +73,11 @@ class PostvideoAction extends Action {
 
         $profile = $this->user->getProfile();
 
-        $vid = Video::saveNew($profile, $this->url, array());
+        $options = array();
+        
+        ToSelector::fillOptions($this, $options);
+
+        $vid = Video::saveNew($profile, $this->url, $options);
 
         common_redirect($vid->uri, 303);
     }

@@ -51,6 +51,12 @@ class VideoForm extends Form
         $this->unli();
 
         $this->out->elementEnd('ul');
+
+        $toWidget = new ToSelector($this->out,
+                                   common_current_user(),
+                                   null);
+        $toWidget->show();
+
         $this->out->elementEnd('fieldset');
     }
 
