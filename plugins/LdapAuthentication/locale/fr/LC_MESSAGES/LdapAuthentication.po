@@ -1,6 +1,7 @@
 # Translation of StatusNet - LdapAuthentication to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Crochet.david
 # Author: McDutchie
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,18 +10,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - LdapAuthentication\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:54+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:49+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:33+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:00+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-ldapauthentication\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+msgid "You must specify a nickname attribute."
+msgstr ""
+
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+msgid ""
+"If password_changeable is set, the password attribute and password_encoding "
+"must also be specified."
+msgstr ""
+"Si password_changeable est définie, l’attribut de mot de passe et "
+"password_encoding doivent également être précisés."
+
+#. TRANS: Instructions for LDAP authentication.
+msgid "Do you have an LDAP account? Use your standard username and password."
+msgstr ""
+"Avez-vous un compte LDAP ? Utilisez votre nom d’utilisateur et mot de passe "
+"standard."
+
+#. TRANS: Plugin description.
 msgid ""
 "The LDAP Authentication plugin allows for StatusNet to handle authentication "
 "through LDAP."

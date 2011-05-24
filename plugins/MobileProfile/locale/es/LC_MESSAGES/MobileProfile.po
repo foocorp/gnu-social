@@ -1,7 +1,8 @@
 # Translation of StatusNet - MobileProfile to Spanish (Español)
-# Expored from translatewiki.net
+# Exported from translatewiki.net
 #
 # Author: Locos epraix
+# Author: Od1n
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,70 +10,77 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-12-16 15:08+0000\n"
-"PO-Revision-Date: 2010-12-16 15:12:18+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:07+0000\n"
 "Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2010-11-30 20:43:45+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r78478); Translate extension (2010-09-17)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:27+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: MobileProfilePlugin.php:193
+#. TRANS: Client exception thrown when requesting a not supported media type.
 msgid "This page is not available in a media type you accept."
 msgstr ""
 
-#: MobileProfilePlugin.php:310
+#. TRANS: Menu item in mobile profile to go to start page of site.
 msgid "Home"
 msgstr ""
 
-#: MobileProfilePlugin.php:312
+#. TRANS: Menu item in mobile profile to go to user account settings.
 msgid "Account"
 msgstr "Cuenta"
 
-#: MobileProfilePlugin.php:314
+#. TRANS: Menu item in mobile profile to connect to other services.
 msgid "Connect"
 msgstr "Conectar"
 
-#: MobileProfilePlugin.php:317
+#. TRANS: Menu item in mobile profile to manage site settings.
 msgid "Admin"
 msgstr ""
 
-#: MobileProfilePlugin.php:317
 msgid "Change site configuration"
 msgstr ""
 
-#: MobileProfilePlugin.php:321
+#. TRANS: Menu item in mobile profile to invite other people.
 msgid "Invite"
 msgstr "Invitar"
 
-#: MobileProfilePlugin.php:324
+#. TRANS: Menu item in mobile profile log the current user off.
 msgid "Logout"
 msgstr "Cerrar sesión"
 
-#: MobileProfilePlugin.php:328
+#. TRANS: Menu item in mobile profile to register with the site.
 msgid "Register"
 msgstr ""
 
-#: MobileProfilePlugin.php:331
+#. TRANS: Menu item in mobile profile to log in.
 msgid "Login"
-msgstr ""
+msgstr "Iniciar sesión"
 
-#: MobileProfilePlugin.php:335
+#. TRANS: Menu item in mobile profile to search the site.
 msgid "Search"
-msgstr ""
+msgstr "Buscar"
 
-#: MobileProfilePlugin.php:361
+#. TRANS: Field label in mobile profile to attach a file to a status.
 msgid "Attach"
 msgstr ""
 
-#: MobileProfilePlugin.php:365
-msgid "Attach a file"
+#. TRANS: Field title in mobile profile to attach a file to a status.
+msgid "Attach a file."
 msgstr ""
 
-#: MobileProfilePlugin.php:417
+#. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
+msgid "Switch to desktop site layout."
+msgstr ""
+
+#. TRANS: Link to switch site layout from desktop to mobile mode. Appears at very bottom of page.
+msgid "Switch to mobile site layout."
+msgstr ""
+
+#. TRANS: Plugin description.
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr ""

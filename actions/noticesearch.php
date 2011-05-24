@@ -48,9 +48,35 @@ require_once INSTALLDIR.'/lib/searchaction.php';
  */
 class NoticesearchAction extends SearchAction
 {
+    protected $q = null;
+
     function prepare($args)
     {
         parent::prepare($args);
+
+        $this->q = $this->trimmed('q');
+
+        // FIXME: very dependent on tag format
+        if (preg_match('/^#([\pL\pN_\-\.]{1,64})/ue', $this->q)) {
+            common_redirect(common_local_url('tag',
+                                             array('tag' => common_canonical_tag(substr($this->q, 1)))),
+                            303);
+        }
+
+        if (!empty($this->q)) {
+
+            $profile = Profile::current();
+            $stream  = new SearchNoticeStream($this->q, $profile);
+            $page    = $this->trimmed('page');
+
+            if (empty($page)) {
+                $page = 1;
+            } else {
+                $page = (int)$page;
+            }
+
+            $this->notice = $stream->getNotices((($page-1)*NOTICES_PER_PAGE), NOTICES_PER_PAGE + 1);
+        }
 
         common_set_returnto($this->selfUrl());
 
@@ -106,18 +132,25 @@ class NoticesearchAction extends SearchAction
      */
     function showResults($q, $page)
     {
-        $notice        = new Notice();
-
-        $search_engine = $notice->getSearchEngine('notice');
-        $search_engine->set_sort_mode('chron');
-        // Ask for an extra to see if there's more.
-        $search_engine->limit((($page-1)*NOTICES_PER_PAGE), NOTICES_PER_PAGE + 1);
-        if (false === $search_engine->query($q)) {
-            $cnt = 0;
-        } else {
-            $cnt = $notice->find();
+        if (Event::handle('StartNoticeSearchShowResults', array($this, $q, $this->notice))) {
+            if ($this->notice->N === 0) {
+                $this->showEmptyResults($q, $page);
+            } else {
+                $terms = preg_split('/[\s,]+/', $q);
+                $nl = new SearchNoticeList($this->notice, $this, $terms);
+                $cnt = $nl->show();
+                $this->pagination($page > 1,
+                                  $cnt > NOTICES_PER_PAGE,
+                                  $page,
+                                  'noticesearch',
+                                  array('q' => $q));
+            }
+            Event::handle('EndNoticeSearchShowResults', array($this, $q, $this->notice));
         }
-        if ($cnt === 0) {
+    }
+
+    function showEmptyResults($q, $page)
+    {
             // TRANS: Text for notice search results is the query had no results.
             $this->element('p', 'error', _('No results.'));
 
@@ -137,15 +170,6 @@ class NoticesearchAction extends SearchAction
             $this->raw(common_markup_to_html($message));
             $this->elementEnd('div');
             return;
-        }
-        if (Event::handle('StartNoticeSearchShowResults', array($this, $q, $notice))) {
-            $terms = preg_split('/[\s,]+/', $q);
-            $nl = new SearchNoticeList($notice, $this, $terms);
-            $cnt = $nl->show();
-            $this->pagination($page > 1, $cnt > NOTICES_PER_PAGE,
-                              $page, 'noticesearch', array('q' => $q));
-            Event::handle('EndNoticeSearchShowResults', array($this, $q, $notice));
-        }
     }
 
     function showScripts()

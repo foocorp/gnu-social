@@ -140,6 +140,7 @@ ENDOFSCRIPT;
                 $action->elementStart('noscript');
 
                 // TRANS: User notification that JavaScript is required for Disqus comment display.
+                // TRANS: This message contains Markdown links in the form [description](link).
                 $noScriptMsg = sprintf(_m("Please enable JavaScript to view the [comments powered by Disqus](http://disqus.com/?ref_noscript=%s)."), $this->shortname);
                 $output = common_markup_to_html($noScriptMsg);
                 $action->raw($output);

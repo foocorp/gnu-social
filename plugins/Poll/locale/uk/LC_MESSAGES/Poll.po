@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Poll\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:32+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:49+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-17 10:19:34+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:49+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-poll\n"
@@ -29,14 +29,6 @@ msgstr "Немає такого опитування."
 #. TRANS: Client exception thrown trying to view a non-existing poll notice.
 msgid "No such poll notice."
 msgstr "Немає допису щодо опитування."
-
-#. TRANS: Client exception thrown trying to view a poll of a non-existing user.
-msgid "No such user."
-msgstr "Такого користувача немає."
-
-#. TRANS: Server exception thrown trying to view a poll for a user for which the profile could not be loaded.
-msgid "User without a profile."
-msgstr "Користувач без профілю."
 
 #. TRANS: Page title for a poll.
 #. TRANS: %1$s is the nickname of the user that created the poll, %2$s is the poll question.
@@ -68,18 +60,24 @@ msgid "Simple extension for supporting basic polls."
 msgstr "Простий додаток для підтримки проведення опитувань."
 
 #. TRANS: Exception thrown trying to respond to a poll without a poll reference.
-msgid "Invalid poll response: no poll reference."
+#, fuzzy
+msgid "Invalid poll response: No poll reference."
 msgstr "Невірна відповідь: відсутнє посилання на опитування."
 
 #. TRANS: Exception thrown trying to respond to a non-existing poll.
-msgid "Invalid poll response: poll is unknown."
+#, fuzzy
+msgid "Invalid poll response: Poll is unknown."
 msgstr "Неправильна відповідь на опитування: невідоме опитування."
 
 #. TRANS: Exception thrown when performing an unexpected action on a poll.
-#. TRANS: %s is the unpexpected object type.
+#. TRANS: %s is the unexpected object type.
 #, php-format
 msgid "Unexpected type for poll plugin: %s."
 msgstr "Неочікувана дія для додатку опитувань: %s."
+
+#. TRANS: Error text displayed if no poll data could be found.
+msgid "Poll data is missing"
+msgstr "Дані опитування відсутні"
 
 #. TRANS: Application title.
 msgctxt "APPTITLE"
@@ -111,7 +109,7 @@ msgid "Poll: %1$s %2$s"
 msgstr "Опитування: %1$s %2$s"
 
 #. TRANS: Rendered version of the notice content creating a poll.
-#. TRANS: %s a link to the poll with the question as link description.
+#. TRANS: %s is a link to the poll with the question as link description.
 #, php-format
 msgid "Poll: %s"
 msgstr "Опитування: %s"

@@ -44,7 +44,6 @@ require_once INSTALLDIR.'/plugins/OpenID/openid.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class FinishaddopenidAction extends Action
 {
     var $msg = null;
@@ -59,12 +58,11 @@ class FinishaddopenidAction extends Action
      *
      * @return void
      */
-
     function handle($args)
     {
         parent::handle($args);
         if (!common_logged_in()) {
-            // TRANS: Client error message
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_m('Not logged in.'));
         } else {
             $this->tryLogin();
@@ -78,7 +76,6 @@ class FinishaddopenidAction extends Action
      *
      * @return void
      */
-
     function tryLogin()
     {
         $consumer = oid_consumer();
@@ -92,7 +89,7 @@ class FinishaddopenidAction extends Action
         } else if ($response->status == Auth_OpenID_FAILURE) {
             // TRANS: OpenID authentication failed; display the error message.
             // TRANS: %s is the error message.
-            $this->message(sprintf(_m('OpenID authentication failed: %s'),
+            $this->message(sprintf(_m('OpenID authentication failed: %s.'),
                                    $response->message));
         } else if ($response->status == Auth_OpenID_SUCCESS) {
 
@@ -108,7 +105,8 @@ class FinishaddopenidAction extends Action
 
             // Launchpad teams extension
             if (!oid_check_teams($response)) {
-                $this->message(_m('OpenID authentication aborted: you are not allowed to login to this site.'));
+                // TRANS: OpenID authentication error.
+                $this->message(_m('OpenID authentication aborted: You are not allowed to login to this site.'));
                 return;
             }
 
@@ -118,10 +116,10 @@ class FinishaddopenidAction extends Action
 
             if ($other) {
                 if ($other->id == $cur->id) {
-                    // TRANS: message in case a user tries to add an OpenID that is already connected to them.
+                    // TRANS: Message in case a user tries to add an OpenID that is already connected to them.
                     $this->message(_m('You already have this OpenID!'));
                 } else {
-                    // TRANS: message in case a user tries to add an OpenID that is already used by another user.
+                    // TRANS: Message in case a user tries to add an OpenID that is already used by another user.
                     $this->message(_m('Someone else already has this OpenID.'));
                 }
                 return;
@@ -134,15 +132,15 @@ class FinishaddopenidAction extends Action
             $result = oid_link_user($cur->id, $canonical, $display);
 
             if (!$result) {
-                // TRANS: message in case the OpenID object cannot be connected to the user.
+                // TRANS: Message in case the OpenID object cannot be connected to the user.
                 $this->message(_m('Error connecting user.'));
                 return;
             }
             if (Event::handle('StartOpenIDUpdateUser', array($cur, $canonical, &$sreg))) {
                 if ($sreg) {
                     if (!oid_update_user($cur, $sreg)) {
-                        // TRANS: message in case the user or the user profile cannot be saved in StatusNet.
-                        $this->message(_m('Error updating profile'));
+                        // TRANS: Message in case the user or the user profile cannot be saved in StatusNet.
+                        $this->message(_m('Error updating profile.'));
                         return;
                     }
                 }
@@ -168,7 +166,6 @@ class FinishaddopenidAction extends Action
      *
      * @return void
      */
-
     function message($msg)
     {
         $this->message = $msg;
@@ -180,7 +177,6 @@ class FinishaddopenidAction extends Action
      *
      * @return string title
      */
-
     function title()
     {
         // TRANS: Title after getting the status of the OpenID authorisation request.
@@ -192,7 +188,6 @@ class FinishaddopenidAction extends Action
      *
      * @return void
      */
-
     function showPageNotice()
     {
         if ($this->message) {

@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Show a single group message
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class ShowgroupmessageAction extends Action
 {
     var $gm;
@@ -59,7 +58,6 @@ class ShowgroupmessageAction extends Action
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
@@ -67,7 +65,8 @@ class ShowgroupmessageAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            throw new ClientException(_('Only logged-in users can view private messages.'),
+            // TRANS: Client exception thrown when trying to view group private messages without being logged in.
+            throw new ClientException(_m('Only logged-in users can view private messages.'),
                                       403);
         }
 
@@ -76,23 +75,27 @@ class ShowgroupmessageAction extends Action
         $this->gm = Group_message::staticGet('id', $id);
 
         if (empty($this->gm)) {
-            throw new ClientException(_('No such message'), 404);
+            // TRANS: Client exception thrown when trying to view a non-existing group private message.
+            throw new ClientException(_m('No such message.'), 404);
         }
 
         $this->group = User_group::staticGet('id', $this->gm->to_group);
 
         if (empty($this->group)) {
-            throw new ServerException(_('Group not found.'));
+            // TRANS: Server exception thrown when trying to view group private messages for a non-exsting group.
+            throw new ServerException(_m('Group not found.'));
         }
 
         if (!$this->user->isMember($this->group)) {
-            throw new ClientException(_('Cannot read message.'), 403);
+            // TRANS: Client exception thrown when trying to view a group private message without being a group member.
+            throw new ClientException(_m('Cannot read message.'), 403);
         }
 
         $this->sender = Profile::staticGet('id', $this->gm->from_profile);
 
         if (empty($this->sender)) {
-            throw new ServerException(_('No sender found.'));
+            // TRANS: Server exception thrown when trying to view a group private message without a sender.
+            throw new ServerException(_m('No sender found.'));
         }
 
         return true;
@@ -105,7 +108,6 @@ class ShowgroupmessageAction extends Action
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         $this->showPage();
@@ -114,10 +116,11 @@ class ShowgroupmessageAction extends Action
     /**
      * Title of the page
      */
-
     function title()
     {
-        return sprintf(_('Message from %1$s to group %2$s on %3$s'),
+        // TRANS: Title for private group message.
+        // TRANS: %1$s is the sender name, %2$s is the group name, %3$s is a timestamp.
+        return sprintf(_m('Message from %1$s to group %2$s on %3$s'),
                        $this->sender->nickname,
                        $this->group->nickname,
                        common_exact_date($this->gm->created));
@@ -126,7 +129,6 @@ class ShowgroupmessageAction extends Action
     /**
      * Show the content area.
      */
-
     function showContent()
     {
         $this->elementStart('ul', 'notices messages');
@@ -144,7 +146,6 @@ class ShowgroupmessageAction extends Action
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;

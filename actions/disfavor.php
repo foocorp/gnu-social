@@ -57,7 +57,7 @@ class DisfavorAction extends Action
     {
         parent::handle($args);
         if (!common_logged_in()) {
-            // TRANS: Client error displayed when trying to remove a favorite while not logged in.
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
             return;
         }

@@ -74,7 +74,10 @@ class Status_network extends Safe_DataObject
 
         $config['db']['database_'.$dbname] = "mysqli://$dbuser:$dbpass@$dbhost/$dbname";
         $config['db']['ini_'.$dbname] = INSTALLDIR.'/classes/status_network.ini';
-        $config['db']['table_status_network'] = $dbname;
+
+        foreach (array('status_network', 'status_network_tag', 'unavailable_status_network') as $table) {
+            $config['db']['table_'.$table] = $dbname;
+        }
 
         if (class_exists('Memcache')) {
             self::$cache = new Memcache();

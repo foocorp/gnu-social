@@ -81,7 +81,7 @@ class AvatarbynicknameAction extends Action
         }
         $profile = $user->getProfile();
         if (!$profile) {
-            // TRANS: Client error displayed trying to get an avatar for a user without a profile.
+            // TRANS: Error message displayed when referring to a user without a profile.
             $this->clientError(_('User has no profile.'));
             return;
         }

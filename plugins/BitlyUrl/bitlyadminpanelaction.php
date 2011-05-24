@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class BitlyadminpanelAction extends AdminPanelAction
 {
     /**
@@ -48,9 +47,9 @@ class BitlyadminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
+        // TRANS: Title of administration panel.
         return _m('bit.ly URL shortening');
     }
 
@@ -59,9 +58,10 @@ class BitlyadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
+        // TRANS: Instructions for administration panel.
+        // TRANS: This message contains Markdown links in the form [decsription](link).
         return _m('URL shortening with bit.ly requires ' .
                   '[a bit.ly account and API key](http://bit.ly/a/your_api_key). ' .
                   'This verifies that this is an authorized account, and ' .
@@ -73,7 +73,6 @@ class BitlyadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new BitlyAdminPanelForm($this);
@@ -86,7 +85,6 @@ class BitlyadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         static $settings = array(
@@ -129,13 +127,15 @@ class BitlyadminpanelAction extends AdminPanelAction
 
         if (mb_strlen($values['bitly']['default_apikey']) > 255) {
             $this->clientError(
-                _m("Invalid login. Max length is 255 characters.")
+                // TRANS: Client error displayed when using too long a key.
+                _m('Invalid login. Maximum length is 255 characters.')
             );
         }
 
         if (mb_strlen($values['bitly']['default_apikey']) > 255) {
             $this->clientError(
-                _m("Invalid API key. Max length is 255 characters.")
+                // TRANS: Client error displayed when using too long a key.
+                _m('Invalid API key. Maximum length is 255 characters.')
             );
         }
     }
@@ -148,7 +148,6 @@ class BitlyAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'bitlyadminpanel';
@@ -159,7 +158,6 @@ class BitlyAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -170,7 +168,6 @@ class BitlyAdminPanelForm extends AdminForm
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('bitlyadminpanel');
@@ -181,14 +178,14 @@ class BitlyAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->elementStart(
             'fieldset',
             array('id' => 'settings_bitly')
         );
-        $this->out->element('legend', null, _m('Credentials'));
+        // TRANS: Fieldset legend in administration panel for bit.ly username and API key.
+        $this->out->element('legend', null, _m('LEGEND','Credentials'));
 
         // Do we have global defaults to fall back on?
         $login = $apiKey = false;
@@ -196,9 +193,11 @@ class BitlyAdminPanelForm extends AdminForm
         $haveGlobalDefaults = ($login && $apiKey);
         if ($login && $apiKey) {
             $this->out->element('p', 'form_guide',
+                // TRANS: Form guide in administration panel for bit.ly URL shortening.
                 _m('Leave these empty to use global default credentials.'));
         } else {
             $this->out->element('p', 'form_guide',
+                // TRANS: Form guide in administration panel for bit.ly URL shortening.
                 _m('If you leave these empty, bit.ly will be unavailable to users.'));
         }
         $this->out->elementStart('ul', 'form_data');
@@ -206,6 +205,7 @@ class BitlyAdminPanelForm extends AdminForm
         $this->li();
         $this->input(
             'default_login',
+            // TRANS: Field label in administration panel for bit.ly URL shortening.
             _m('Login name'),
             null,
             'bitly'
@@ -215,6 +215,7 @@ class BitlyAdminPanelForm extends AdminForm
         $this->li();
         $this->input(
             'default_apikey',
+            // TRANS: Field label in administration panel for bit.ly URL shortening.
              _m('API key'),
             null,
             'bitly'
@@ -230,9 +231,14 @@ class BitlyAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Save'), 'submit', null, _m('Save bit.ly settings'));
+        $this->out->submit('submit',
+                           // TRANS: Button text to save setting in administration panel for bit.ly URL shortening.
+                           _m('BUTTON','Save'),
+                           'submit',
+                           null,
+                           // TRANS: Button title to save setting in administration panel for bit.ly URL shortening.
+                           _m('Save bit.ly settings'));
     }
 }

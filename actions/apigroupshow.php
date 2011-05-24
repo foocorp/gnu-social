@@ -110,7 +110,7 @@ class ApiGroupShowAction extends ApiPrivateAuthAction
             $this->showSingleJsonGroup($this->group);
             break;
         default:
-            // TRANS: Client error displayed trying to execute an unknown API method showing a group.
+            // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), 404, $this->format);
             break;
         }

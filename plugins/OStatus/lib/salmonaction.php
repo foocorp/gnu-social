@@ -44,7 +44,7 @@ class SalmonAction extends Action
         }
 
         if (empty($_SERVER['CONTENT_TYPE']) || $_SERVER['CONTENT_TYPE'] != 'application/magic-envelope+xml') {
-            // TRANS: Client error. Do not translate "application/magic-envelope+xml"
+            // TRANS: Client error. Do not translate "application/magic-envelope+xml".
             $this->clientError(_m('Salmon requires "application/magic-envelope+xml".'));
         }
 
@@ -112,12 +112,18 @@ class SalmonAction extends Action
             case ActivityVerb::LEAVE:
                 $this->handleLeave();
                 break;
+            case ActivityVerb::TAG:
+                $this->handleTag();
+                break;
+            case ActivityVerb::UNTAG:
+                $this->handleUntag();
+                break;
             case ActivityVerb::UPDATE_PROFILE:
                 $this->handleUpdateProfile();
                 break;
             default:
                 // TRANS: Client exception.
-                throw new ClientException(_m("Unrecognized activity type."));
+                throw new ClientException(_m('Unrecognized activity type.'));
             }
             Event::handle('EndHandleSalmon', array($this->activity));
             Event::handle('EndHandleSalmonTarget', array($this->activity, $this->target));
@@ -127,49 +133,61 @@ class SalmonAction extends Action
     function handlePost()
     {
         // TRANS: Client exception.
-        throw new ClientException(_m("This target doesn't understand posts."));
+        throw new ClientException(_m('This target does not understand posts.'));
     }
 
     function handleFollow()
     {
         // TRANS: Client exception.
-        throw new ClientException(_m("This target doesn't understand follows."));
+        throw new ClientException(_m('This target does not understand follows.'));
     }
 
     function handleUnfollow()
     {
         // TRANS: Client exception.
-        throw new ClientException(_m("This target doesn't understand unfollows."));
+        throw new ClientException(_m('This target does not understand unfollows.'));
     }
 
     function handleFavorite()
     {
         // TRANS: Client exception.
-        throw new ClientException(_m("This target doesn't understand favorites."));
+        throw new ClientException(_m('This target does not understand favorites.'));
     }
 
     function handleUnfavorite()
     {
         // TRANS: Client exception.
-        throw new ClientException(_m("This target doesn't understand unfavorites."));
+        throw new ClientException(_m('This target does not understand unfavorites.'));
     }
 
     function handleShare()
     {
         // TRANS: Client exception.
-        throw new ClientException(_m("This target doesn't understand share events."));
+        throw new ClientException(_m('This target does not understand share events.'));
     }
 
     function handleJoin()
     {
         // TRANS: Client exception.
-        throw new ClientException(_m("This target doesn't understand joins."));
+        throw new ClientException(_m('This target does not understand joins.'));
     }
 
     function handleLeave()
     {
         // TRANS: Client exception.
-        throw new ClientException(_m("This target doesn't understand leave events."));
+        throw new ClientException(_m('This target does not understand leave events.'));
+    }
+
+    function handleTag()
+    {
+        // TRANS: Client exception.
+        throw new ClientException(_m('This target does not understand tag events.'));
+    }
+
+    function handleUntag()
+    {
+        // TRANS: Client exception.
+        throw new ClientException(_m('This target does not understand untag events.'));
     }
 
     /**

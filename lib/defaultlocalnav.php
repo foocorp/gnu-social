@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Default local nav
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,22 +44,44 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class DefaultLocalNav extends Menu
 {
     function show()
     {
-        $this->action->elementStart('ul', array('id' => 'nav_local_default'));
-
         $user = common_current_user();
 
-        if (!empty($user)) {
-            $pn = new PersonalGroupNav($this->action);
-            $this->submenu(_m('Home'), $pn);
-        }
+        $this->action->elementStart('ul', array('id' => 'nav_local_default'));
 
-        $bn = new PublicGroupNav($this->action);
-        $this->submenu(_('Public'), $bn);
+        if (Event::handle('StartDefaultLocalNav', array($this, $user))) {
+
+            if (!empty($user)) {
+                $pn = new PersonalGroupNav($this->action);
+                // TRANS: Menu item in default local navigation panel.
+                $this->submenu(_m('MENU','Home'), $pn);
+            }
+
+            $bn = new PublicGroupNav($this->action);
+            // TRANS: Menu item in default local navigation panel.
+            $this->submenu(_m('MENU','Public'), $bn);
+
+            if (!empty($user)) {
+                $sn = new GroupsNav($this->action, $user);
+                if ($sn->haveGroups()) {
+                    // TRANS: Menu item in default local navigation panel.
+                    $this->submenu(_m('MENU', 'Groups'), $sn);
+                }
+            }
+
+            if (!empty($user)) {
+                $sn = new ListsNav($this->action, $user->getProfile());
+                if ($sn->hasLists()) {
+                    // TRANS: Menu item in default local navigation panel.
+                    $this->submenu(_m('MENU', 'Lists'), $sn);
+                }
+            }
+
+            Event::handle('EndDefaultLocalNav', array($this, $user));
+        }
 
         $this->action->elementEnd('ul');
     }

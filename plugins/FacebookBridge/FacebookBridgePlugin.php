@@ -101,7 +101,6 @@ class FacebookBridgePlugin extends Plugin
      */
     function onAutoload($cls)
     {
-
         $dir = dirname(__FILE__);
 
         //common_debug("class = " . $cls);
@@ -128,7 +127,6 @@ class FacebookBridgePlugin extends Plugin
         default:
             return true;
         }
-
     }
 
     /**
@@ -214,10 +212,11 @@ class FacebookBridgePlugin extends Plugin
         if ($this->hasApplication()) {
 
             $action->menuItem(
+                // TRANS: Menu item for "Facebook" login.
                 common_local_url('facebooklogin'),
                 _m('MENU', 'Facebook'),
-                // TRANS: Tooltip for menu item "Facebook".
-                _m('Login or register using Facebook'),
+                // TRANS: Menu title for "Facebook" login.
+                _m('Login or register using Facebook.'),
                'facebooklogin' === $action_name
             );
         }
@@ -253,10 +252,10 @@ class FacebookBridgePlugin extends Plugin
 
             $nav->out->menuItem(
                 common_local_url('facebookadminpanel'),
-                // TRANS: Menu item.
+                // TRANS: Menu item for "Facebook" in administration panel.
                 _m('MENU','Facebook'),
-                // TRANS: Tooltip for menu item "Facebook".
-                _m('Facebook integration configuration'),
+                // TRANS: Menu title for "Facebook" in administration panel.
+                _m('Facebook integration configuration.'),
                 $action_name == 'facebookadminpanel',
                 'nav_facebook_admin_panel'
             );
@@ -294,16 +293,14 @@ class FacebookBridgePlugin extends Plugin
 
                 $action->menuItem(
                     common_local_url('facebooksettings'),
-                    // TRANS: Menu item tab.
+                    // TRANS: Menu item for "Facebook" in user settings.
                     _m('MENU','Facebook'),
-                    // TRANS: Tooltip for menu item "Facebook".
-                    _m('Facebook settings'),
+                    // TRANS: Menu title for "Facebook" in user settings.
+                    _m('Facebook settings.'),
                     $action_name === 'facebooksettings'
                 );
-
             }
         }
-
     }
 
     /*
@@ -324,7 +321,6 @@ class FacebookBridgePlugin extends Plugin
             if (!empty($appId) && !empty($secret)) {
                 return true;
             }
-
         }
 
         return false;
@@ -420,7 +416,6 @@ ENDOFSCRIPT;
                 common_debug("LOGOUT URL = $logoutUrl");
                 common_redirect($logoutUrl, 303);
             }
-
         }
     }
 
@@ -455,7 +450,7 @@ ENDOFSCRIPT;
      */
     function onStartEnqueueNotice($notice, &$transports)
     {
-        if (self::hasApplication() && $notice->isLocal()) {
+        if (self::hasApplication() && $notice->isLocal() && $notice->inScope(null)) {
             array_push($transports, 'facebook');
         }
         return true;
@@ -526,7 +521,7 @@ ENDOFSCRIPT;
      */
     function onEndFavorNotice(Profile $profile, Notice $notice)
     {
-        $client = new Facebookclient($notice);
+        $client = new Facebookclient($notice, $profile);
         $client->like();
 
         return true;
@@ -542,7 +537,7 @@ ENDOFSCRIPT;
      */
     function onEndDisfavorNotice(Profile $profile, Notice $notice)
     {
-        $client = new Facebookclient($notice);
+        $client = new Facebookclient($notice, $profile);
         $client->unLike();
 
         return true;
@@ -561,6 +556,7 @@ ENDOFSCRIPT;
             'author' => 'Craig Andrews, Zach Copley',
             'homepage' => 'http://status.net/wiki/Plugin:FacebookBridge',
             'rawdescription' =>
+             // TRANS: Plugin description.
             _m('A plugin for integrating StatusNet with Facebook.')
         );
 

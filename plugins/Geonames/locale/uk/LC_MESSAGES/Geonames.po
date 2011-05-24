@@ -9,19 +9,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Geonames\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:35+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:26+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:27:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-geonames\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Exception thrown when a geo names service is not used because of a recent timeout.
+msgid "Skipping due to recent web service timeout."
+msgstr "Пропустити у зв'язку з перевершенням часу очікування."
+
+#. TRANS: Exception thrown when a geo names service does not return an expected response.
+#. TRANS: %s is an HTTP error code.
+#, php-format
+msgid "HTTP error code %s."
+msgstr "Код помилки HTTP %s."
+
+#. TRANS: Exception thrown when a geo names service returns an empty body.
+msgid "Empty HTTP body in response."
+msgstr "Тіло HTTP порожнє у відповіді."
+
+#. TRANS: Exception thrown when a geo names service return a specific error number and error text.
+#. TRANS: %1$s is an error code, %2$s is an error message.
+#, php-format
+msgid "Error #%1$s (\"%2$s\")."
+msgstr "Помилка #%1$s («%2$s»)."
+
+#. TRANS: Plugin description.
 msgid ""
 "Uses <a href=\"http://geonames.org/\">Geonames</a> service to get human-"
 "readable names for locations based on user-provided lat/long pairs."

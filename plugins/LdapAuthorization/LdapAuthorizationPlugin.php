@@ -38,10 +38,12 @@ class LdapAuthorizationPlugin extends AuthorizationPlugin
 
     function onInitializePlugin(){
         if(!isset($this->provider_name)){
-            throw new Exception("provider_name must be set. Use the provider_name from the LDAP Authentication plugin.");
+            // TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+            throw new Exception(_m('provider_name must be set. Use the provider_name from the LDAP Authentication plugin.'));
         }
         if(!isset($this->uniqueMember_attribute)){
-            throw new Exception("uniqueMember_attribute must be set.");
+            // TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+            throw new Exception(_m('uniqueMember_attribute must be set.'));
         }
         $this->ldapCommon = new LdapCommon(get_object_vars($this));
     }
@@ -121,6 +123,7 @@ class LdapAuthorizationPlugin extends AuthorizationPlugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:LdapAuthorization',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The LDAP Authorization plugin allows for StatusNet to handle authorization through LDAP.'));
         return true;
     }

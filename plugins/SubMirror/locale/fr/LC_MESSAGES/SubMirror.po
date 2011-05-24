@@ -2,6 +2,8 @@
 # Exported from translatewiki.net
 #
 # Author: IAlex
+# Author: Od1n
+# Author: Peter17
 # Author: Verdy p
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -10,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:51+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:30+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-17 13:01:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:22+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
@@ -24,16 +26,15 @@ msgstr ""
 
 #. TRANS: Client error displayed when entering an invalid URL for a feed.
 #. TRANS: %s is the invalid feed URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid feed URL: %s."
-msgstr "Adresse URL de flux invalide."
+msgstr "Adresse URL de flux invalide : %s."
 
 #. TRANS: Error message returned to user when setting up feed mirroring,
 #. TRANS: but we were unable to resolve the given URL to a working feed.
 msgid "Invalid profile for mirroring."
 msgstr "Profil invalide pour la mise en miroir."
 
-#, fuzzy
 msgid "Cannot mirror a StatusNet group at this time."
 msgstr "Impossible de mettre en miroir un groupe StatusNet actuellement."
 
@@ -45,6 +46,7 @@ msgstr ""
 "Un problème est survenu avec votre jeton de session. Veuillez essayer à "
 "nouveau."
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
 msgstr "Non connecté."
 
@@ -76,6 +78,9 @@ msgstr ""
 "Vous pouvez mettre en miroir dans votre agenda StatusNet les mises à jour de "
 "nombreux flux RSS et Atom !"
 
+msgid "Provider add"
+msgstr "Ajout de fournisseurs"
+
 msgid "Pull feeds into your timeline!"
 msgstr "Importez des flux d’information dans votre agenda !"
 
@@ -99,7 +104,7 @@ msgid "Add feed"
 msgstr "Ajouter le flux"
 
 msgid "Twitter username:"
-msgstr ""
+msgstr "Nom d’utilisateur Twitter :"
 
 msgctxt "LABEL"
 msgid "Remote feed:"
@@ -128,10 +133,10 @@ msgid "Stop mirroring"
 msgstr "Arrêter le miroir"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "RSS or Atom feed"
-msgstr ""
+msgstr "Flux RSS ou Atom"
 
 msgid "Select a feed provider"
-msgstr ""
+msgstr "Sélectionner un fournisseur de flux"

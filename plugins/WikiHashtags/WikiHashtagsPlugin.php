@@ -81,16 +81,16 @@ class WikiHashtagsPlugin extends Plugin
                     $action->raw($html);
                     $action->elementStart('p');
                     $action->element('a', array('href' => $editurl,
-                                                'title' => sprintf(_('Edit the article for #%s on WikiHashtags'), $tag)),
-                                     _('Edit'));
+                                                'title' => sprintf(_m('Edit the article for #%s on WikiHashtags'), $tag)),
+                                     _m('Edit'));
                     $action->element('a', array('href' => 'http://www.gnu.org/copyleft/fdl.html',
-                                                'title' => _('Shared under the terms of the GNU Free Documentation License'),
+                                                'title' => _m('Shared under the terms of the GNU Free Documentation License'),
                                                 'rel' => 'license'),
                                      'GNU FDL');
                     $action->elementEnd('p');
                 } else {
                     $action->element('a', array('href' => $editurl),
-                                     sprintf(_('Start the article for #%s on WikiHashtags'), $tag));
+                                     sprintf(_m('Start the article for #%s on WikiHashtags'), $tag));
                 }
 
                 $action->elementEnd('div');

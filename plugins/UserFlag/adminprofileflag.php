@@ -61,7 +61,8 @@ class AdminprofileflagAction extends Action
         // User must be logged in.
 
         if (!common_logged_in()) {
-            $this->clientError(_('Not logged in.'));
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+            $this->clientError(_m('Not logged in.'));
             return;
         }
 
@@ -85,7 +86,7 @@ class AdminprofileflagAction extends Action
         // User must have the right to review flags
 
         if (!$user->hasRight(UserFlagPlugin::REVIEWFLAGS)) {
-            $this->clientError(_('You cannot review profile flags.'));
+            $this->clientError(_m('You cannot review profile flags.'));
             return false;
         }
 

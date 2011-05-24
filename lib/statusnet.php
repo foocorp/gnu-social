@@ -108,6 +108,8 @@ class StatusNet
      */
     public static function init($server=null, $path=null, $conffile=null)
     {
+        Router::clear();
+
         StatusNet::initDefaults($server, $path);
         StatusNet::loadConfigFile($conffile);
 

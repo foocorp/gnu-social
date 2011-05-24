@@ -10,30 +10,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - PoweredByStatusNet\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:33+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:52+0000\n"
 "Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:38+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-16 23:18:51+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-poweredbystatusnet\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-#. TRANS: %s is a URL to status.net with "StatusNet" (localised) as link text.
-#, php-format
-msgid "powered by %s"
-msgstr "при поддержке %s"
+#. TRANS: Text output after site name.
+#, fuzzy
+msgid "powered by <a href=\"http://status.net/\">StatusNet</a>"
+msgstr ""
+"Выводит «при поддержке <a href=\"http://status.net/\">StatusNet</a>» после "
+"названия сайта."
 
-msgid "StatusNet"
-msgstr "StatusNet"
-
+#. TRANS: Plugin description.
 msgid ""
 "Outputs \"powered by <a href=\"http://status.net/\">StatusNet</a>\" after "
 "site name."
 msgstr ""
 "Выводит «при поддержке <a href=\"http://status.net/\">StatusNet</a>» после "
 "названия сайта."
+
+#~ msgid "powered by %s"
+#~ msgstr "при поддержке %s"
+
+#~ msgid "StatusNet"
+#~ msgstr "StatusNet"

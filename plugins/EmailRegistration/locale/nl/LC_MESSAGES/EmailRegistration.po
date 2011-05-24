@@ -1,0 +1,182 @@
+# Translation of StatusNet - EmailRegistration to Dutch (Nederlands)
+# Exported from translatewiki.net
+#
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailRegistration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:14+0000\n"
+"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:26:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-emailregistration\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception thrown when no confirmation code was provided.
+msgid "No confirmation code."
+msgstr "Geen bevestigingscode."
+
+#. TRANS: Client exception thrown when given confirmation code was not issued.
+msgid "No such confirmation code."
+msgstr "De bevestigingscode bestaat niet."
+
+#. TRANS: Title for registration page.
+msgctxt "TITLE"
+msgid "Register"
+msgstr "Registreren"
+
+#. TRANS: Title for page where to register with a confirmation code.
+msgctxt "TITLE"
+msgid "Complete registration"
+msgstr "Registratie afronden"
+
+#. TRANS: Confirmation text after initial registration.
+#. TRANS: %s an e-mail address.
+#, php-format
+msgid ""
+"An email was sent to %s to confirm that address. Check your email inbox for "
+"instructions."
+msgstr ""
+"Er is een e-mail verzonden naar %s om dat adres te bevestigen. Controleer uw "
+"e-mail voor instructies."
+
+#. TRANS: Error text when trying to register without agreeing to the terms.
+msgid "You must accept the terms of service and privacy policy to register."
+msgstr ""
+"U moet de gebruiksvoorwaarden en het privacybeleid accepteren om te kunnen "
+"registreren."
+
+#. TRANS: Error text when trying to register without a password.
+msgid "You must set a password"
+msgstr "U moet een wachtwoord instellen"
+
+#. TRANS: Error text when trying to register with too short a password.
+msgid "Password must be 6 or more characters."
+msgstr "Het wachtwoord moet zes of meer tekens bevatten."
+
+#. TRANS: Error text when trying to register without providing the same password twice.
+msgid "Passwords do not match."
+msgstr "De wachtwoorden komen niet overeen."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Confirm your registration on %s"
+msgstr "Bevestig uw registratie op %s"
+
+#. TRANS: Body for confirmation e-mail.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
+#, php-format
+msgid ""
+"Someone (probably you) has requested an account on %1$s using this email "
+"address.\n"
+"To confirm the address, click the following URL or copy it into the address "
+"bar of your browser.\n"
+"%2$s\n"
+"If it was not you, you can safely ignore this message."
+msgstr ""
+"Iemand (waarschijnlijk uzelf) heeft een gebruiker geregistreerd op %1$s met "
+"dit e-mailadres.\n"
+"Klik op de volgende URL om dit adres te bevestigen of plak het in de "
+"adresbalk van uw browser.\n"
+"%2$s\n"
+"Als u hier niet om hebt gevraagd, negeer dit bericht dan."
+
+#. TRANS: Form instructions.
+msgid "Enter your email address to register for an account."
+msgstr "Voer uw e-mailadres in om een gebruiker te registreren."
+
+#. TRANS: Field label on form for registering an account.
+msgctxt "LABEL"
+msgid "E-mail address"
+msgstr "E-mailadres"
+
+#. TRANS: Button text for registering an account.
+#. TRANS: Button text for action to register.
+msgctxt "BUTTON"
+msgid "Register"
+msgstr "Registreren"
+
+#. TRANS: Form instructions.
+msgid "Enter a password to confirm your new account."
+msgstr "Voer een wachtwoord in om uw nieuwe gebruiker te bevestigen."
+
+#. TRANS: Field label in e-mail registration form.
+msgctxt "LABEL"
+msgid "User name"
+msgstr "Gebruikersnaam"
+
+#. TRANS: Field label.
+msgid "Email address"
+msgstr "E-mailadres:"
+
+#. TRANS: Field label on account registration page.
+msgid "Password"
+msgstr "Wachtwoord"
+
+#. TRANS: Field title on account registration page.
+msgid "6 or more characters."
+msgstr "Zes of meer tekens."
+
+#. TRANS: Field label on account registration page. In this field the password has to be entered a second time.
+msgctxt "PASSWORD"
+msgid "Confirm"
+msgstr "Bevestigen"
+
+#. TRANS: Field title on account registration page.
+msgid "Same as password above."
+msgstr "Gelijk aan het wachtwoord hierboven."
+
+#. TRANS: Checkbox title for terms of service and privacy policy.
+#, php-format
+msgid ""
+"I agree to the <a href=\"%1$s\">Terms of service</a> and <a href=\"%1$s"
+"\">Privacy policy</a> of this site."
+msgstr ""
+"Ik ga akkoord met de <a href=\"%1$s\">Gebruiksvoorwaarden</a> en het <a href="
+"\"%1$s\">Privacybeleid</a> van deze site."
+
+#. TRANS: Error text when trying to register with an already registered e-mail address.
+#. TRANS: %s is the URL to recover password at.
+#, php-format
+msgid ""
+"A user with that email address already exists. You can use the <a href=\"%s"
+"\">password recovery</a> tool to recover a missing password."
+msgstr ""
+"Er bestaat al een gebruiker met dat e-mailadres. U kunt een <a href=\"%s"
+"\">vergeten wachtwoord</a> opnieuw opvragen."
+
+#. TRANS: Error text when trying to register with an invalid e-mail address.
+msgid "Not a valid email address."
+msgstr "Geen geldig e-mailadres."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Welcome to %s"
+msgstr ""
+
+#. TRANS: Plugin description.
+msgid "Use email only for registration."
+msgstr "Alleen registeren per e-mail gebruiken."
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not save new greeting count for %d."
+msgstr "Het was niet mogelijk het aantal begroetingen op te slaan voor %d."
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not increment greeting count for %d."
+msgstr "Het was niet mogelijk het aantal begroetingen op te hogen voor %d."

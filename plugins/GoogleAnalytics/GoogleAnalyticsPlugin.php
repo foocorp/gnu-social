@@ -77,6 +77,7 @@ class GoogleAnalyticsPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:GoogleAnalytics',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Use <a href="http://www.google.com/analytics/">Google Analytics</a>'.
                                ' to track web access.'));
         return true;

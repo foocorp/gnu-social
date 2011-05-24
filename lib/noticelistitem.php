@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * An item in a notice list
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -51,19 +51,15 @@ if (!defined('STATUSNET')) {
  * @see      NoticeList
  * @see      ProfileNoticeListItem
  */
-
 class NoticeListItem extends Widget
 {
     /** The notice this item will show. */
-
     var $notice = null;
 
     /** The notice that was repeated. */
-
     var $repeat = null;
 
     /** The profile of the author of the notice, extracted once for convenience. */
-
     var $profile = null;
 
     /**
@@ -73,7 +69,6 @@ class NoticeListItem extends Widget
      *
      * @param Notice $notice The notice we'll display
      */
-
     function __construct($notice, $out=null)
     {
         parent::__construct($out);
@@ -99,7 +94,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function show()
     {
         if (empty($this->notice)) {
@@ -165,12 +159,15 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showStart()
     {
         if (Event::handle('StartOpenNoticeListItemElement', array($this))) {
             $id = (empty($this->repeat)) ? $this->notice->id : $this->repeat->id;
-            $this->out->elementStart('li', array('class' => 'hentry notice',
+            $class = 'hentry notice';
+            if ($this->notice->scope != 0 && $this->notice->scope != 1) {
+                $class .= ' limited-scope';
+            }
+            $this->out->elementStart('li', array('class' => $class,
                                                  'id' => 'notice-' . $id));
             Event::handle('EndOpenNoticeListItemElement', array($this));
         }
@@ -181,7 +178,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showFaveForm()
     {
         if (Event::handle('StartShowFaveForm', array($this))) {
@@ -209,18 +205,86 @@ class NoticeListItem extends Widget
 
     function showAuthor()
     {
+        $this->out->elementStart('div', 'author');
+
         $this->out->elementStart('span', 'vcard author');
+
         $attrs = array('href' => $this->profile->profileurl,
-                       'class' => 'url');
-        if (!empty($this->profile->fullname)) {
-            $attrs['title'] = $this->profile->getFancyName();
-        }
+                       'class' => 'url',
+                       'title' => $this->profile->nickname);
+
         $this->out->elementStart('a', $attrs);
         $this->showAvatar();
         $this->out->text(' ');
-        $this->showNickname();
+        $this->out->element('span',array('class' => 'fn'),
+                            $this->profile->getBestName());
         $this->out->elementEnd('a');
+
         $this->out->elementEnd('span');
+
+        $this->showAddressees();
+
+        $this->out->elementEnd('div');
+    }
+
+    function showAddressees()
+    {
+        $this->out->elementStart('span', 'addressees');
+
+        $cnt = $this->showGroupAddressees(true);
+        $cnt = $this->showProfileAddressees($cnt == 0);
+
+        $this->out->elementEnd('span', 'addressees');
+    }
+
+    function showGroupAddressees($first)
+    {
+        $groups = $this->getGroups();
+
+        foreach ($groups as $group) {
+            if (!$first) {
+                $this->out->text( _m('SEPARATOR',', '));
+            } else {
+                $first = false;
+            }
+            $this->out->element('a', array('href' => $group->homeUrl(),
+                                           'title' => $group->nickname,
+                                           'class' => 'addressee group'),
+                                $group->getBestName());
+        }
+
+        return count($groups);
+    }
+
+    function getGroups()
+    {
+        return $this->notice->getGroups();
+    }
+
+    function showProfileAddressees($first)
+    {
+        $replies = $this->getReplyProfiles();
+
+        foreach ($replies as $reply) {
+            if (!$first) {
+                // TRANS: Separator in profile addressees list.
+                $this->out->text(_m('SEPARATOR',', '));
+            } else {
+                // TRANS: Start of profile addressees list.
+                $first = false;
+            }
+            $this->out->element('a', array('href' => $reply->profileurl,
+                                           'title' => $reply->nickname,
+                                           'class' => 'addressee account'),
+                                $reply->getBestName());
+        }
+
+        return count($replies);
+    }
+
+    function getReplyProfiles()
+    {
+        return $this->notice->getReplyProfiles();
     }
 
     /**
@@ -231,7 +295,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showAvatar()
     {
         $avatar_size = $this->avatarSize();
@@ -262,7 +325,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showNickname()
     {
         $this->out->raw('<span class="nickname fn">' .
@@ -279,7 +341,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showContent()
     {
         // FIXME: URL, image, video, audio
@@ -310,7 +371,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showNoticeLink()
     {
         $noticeurl = $this->notice->bestUrl();
@@ -338,7 +398,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showNoticeLocation()
     {
         $id = $this->notice->id;
@@ -358,15 +417,20 @@ class NoticeListItem extends Widget
         if (empty($name)) {
             $latdms = $this->decimalDegreesToDMS(abs($lat));
             $londms = $this->decimalDegreesToDMS(abs($lon));
-            // TRANS: Used in coordinates as abbreviation of north
+            // TRANS: Used in coordinates as abbreviation of north.
             $north = _('N');
-            // TRANS: Used in coordinates as abbreviation of south
+            // TRANS: Used in coordinates as abbreviation of south.
             $south = _('S');
-            // TRANS: Used in coordinates as abbreviation of east
+            // TRANS: Used in coordinates as abbreviation of east.
             $east = _('E');
-            // TRANS: Used in coordinates as abbreviation of west
+            // TRANS: Used in coordinates as abbreviation of west.
             $west = _('W');
             $name = sprintf(
+                // TRANS: Coordinates message.
+                // TRANS: %1$s is lattitude degrees, %2$s is lattitude minutes,
+                // TRANS: %3$s is lattitude seconds, %4$s is N (north) or S (south) depending on lattitude,
+                // TRANS: %5$s is longitude degrees, %6$s is longitude minutes,
+                // TRANS: %7$s is longitude seconds, %8$s is E (east) or W (west) depending on longitude,
                 _('%1$u°%2$u\'%3$u"%4$s %5$u°%6$u\'%7$u"%8$s'),
                 $latdms['deg'],$latdms['min'], $latdms['sec'],($lat>0? $north:$south),
                 $londms['deg'],$londms['min'], $londms['sec'],($lon>0? $east:$west));
@@ -376,6 +440,7 @@ class NoticeListItem extends Widget
 
         $this->out->text(' ');
         $this->out->elementStart('span', array('class' => 'location'));
+        // TRANS: Followed by geo location.
         $this->out->text(_('at'));
         $this->out->text(' ');
         if (empty($url)) {
@@ -419,16 +484,17 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showNoticeSource()
     {
         $ns = $this->notice->getSource();
 
         if ($ns) {
-            $source_name = (empty($ns->name)) ? ($ns->code ? _($ns->code) : _('web')) : _($ns->name);
+            // TRANS: A possible notice source (web interface).
+            $source_name = (empty($ns->name)) ? ($ns->code ? _($ns->code) : _m('SOURCE','web')) : _($ns->name);
             $this->out->text(' ');
             $this->out->elementStart('span', 'source');
-            // FIXME: probably i18n issue. If "from" is followed by text, that should be a parameter to "from" (from %s).
+            // @todo FIXME: probably i18n issue. If "from" is followed by text, that should be a parameter to "from" (from %s).
+            // TRANS: Followed by notice source.
             $this->out->text(_('from'));
             $this->out->text(' ');
 
@@ -445,7 +511,6 @@ class NoticeListItem extends Widget
             // if $ns->name and $ns->url are populated we have
             // configured a source attr somewhere
             if (!empty($name) && !empty($url)) {
-
                 $this->out->elementStart('span', 'device');
 
                 $attrs = array(
@@ -475,7 +540,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showContext()
     {
         if ($this->notice->hasConversation()) {
@@ -491,6 +555,7 @@ class NoticeListItem extends Widget
                     array(
                     'href' => $convurl.'#notice-'.$this->notice->id,
                     'class' => 'response'),
+                    // TRANS: Addition in notice list item if notice is part of a conversation.
                     _('in context')
                 );
             } else {
@@ -510,7 +575,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showRepeat()
     {
         if (!empty($this->repeat)) {
@@ -526,6 +590,7 @@ class NoticeListItem extends Widget
 
             $this->out->elementStart('span', 'repeat vcard');
 
+            // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
             $this->out->raw(_('Repeated by'));
 
             $this->out->elementStart('a', $attrs);
@@ -544,7 +609,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showReplyLink()
     {
         if (common_logged_in()) {
@@ -553,7 +617,9 @@ class NoticeListItem extends Widget
                                           array('replyto' => $this->profile->nickname, 'inreplyto' => $this->notice->id));
             $this->out->elementStart('a', array('href' => $reply_url,
                                                 'class' => 'notice_reply',
+                                                // TRANS: Link title in notice list item to reply to a notice.
                                                 'title' => _('Reply to this notice')));
+            // TRANS: Link text in notice list item to reply to a notice.
             $this->out->text(_('Reply'));
             $this->out->text(' ');
             $this->out->element('span', 'notice_id', $this->notice->id);
@@ -566,7 +632,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showDeleteLink()
     {
         $user = common_current_user();
@@ -580,7 +645,10 @@ class NoticeListItem extends Widget
                                           array('notice' => $todel->id));
             $this->out->element('a', array('href' => $deleteurl,
                                            'class' => 'notice_delete',
-                                           'title' => _('Delete this notice')), _('Delete'));
+                                           // TRANS: Link title in notice list item to delete a notice.
+                                           'title' => _('Delete this notice')),
+                                           // TRANS: Link text in notice list item to delete a notice.
+                                           _('Delete'));
         }
     }
 
@@ -589,20 +657,25 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showRepeatForm()
     {
-        $user = common_current_user();
-        if ($user && $user->id != $this->notice->profile_id) {
-            $this->out->text(' ');
-            $profile = $user->getProfile();
-            if ($profile->hasRepeated($this->notice->id)) {
-                $this->out->element('span', array('class' => 'repeated',
-                                                  'title' => _('Notice repeated')),
-                                            _('Repeated'));
-            } else {
-                $rf = new RepeatForm($this->out, $this->notice);
-                $rf->show();
+        if ($this->notice->scope == Notice::PUBLIC_SCOPE ||
+            $this->notice->scope == Notice::SITE_SCOPE) {
+            $user = common_current_user();
+            if (!empty($user) &&
+                $user->id != $this->notice->profile_id) {
+                $this->out->text(' ');
+                $profile = $user->getProfile();
+                if ($profile->hasRepeated($this->notice->id)) {
+                    $this->out->element('span', array('class' => 'repeated',
+                                                      // TRANS: Title for repeat form status in notice list when a notice has been repeated.
+                                                      'title' => _('Notice repeated.')),
+                                        // TRANS: Repeat form status in notice list when a notice has been repeated.
+                                        _('Repeated'));
+                } else {
+                    $rf = new RepeatForm($this->out, $this->notice);
+                    $rf->show();
+                }
             }
         }
     }
@@ -614,7 +687,6 @@ class NoticeListItem extends Widget
      *
      * @return void
      */
-
     function showEnd()
     {
         if (Event::handle('StartCloseNoticeListItemElement', array($this))) {

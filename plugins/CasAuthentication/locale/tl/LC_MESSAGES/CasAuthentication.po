@@ -1,0 +1,72 @@
+# Translation of StatusNet - CasAuthentication to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - CasAuthentication\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:56+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:26:35+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-casauthentication\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Menu item. CAS is Central Authentication Service.
+msgid "CAS"
+msgstr "CAS"
+
+#. TRANS: Tooltip for menu item. CAS is Central Authentication Service.
+msgid "Login or register with CAS."
+msgstr "Lumagda o magpatala na may CAS."
+
+#. TRANS: Invitation to users with a CAS account to log in using the service.
+#. TRANS: "[CAS login]" is a link description. (%%action.caslogin%%) is the URL.
+#. TRANS: These two elements may not be separated.
+#, php-format
+msgid "(Have an account with CAS? Try our [CAS login](%%action.caslogin%%)!)"
+msgstr ""
+"(May isang akawnt sa CAS? Subukan ang aming [Paglagdang may CAS] (%%action."
+"caslogin%%)!)"
+
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
+msgid "Specifying a server is required."
+msgstr "Kailangan ang pagtukoy ng isang tagapaghain."
+
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
+msgid "Specifying a port is required."
+msgstr "Kailangan ang pagtukoy ng isang daungan."
+
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
+msgid "Specifying a path is required."
+msgstr "Kailangan ang pagtukoy ng isang landas."
+
+#. TRANS: Plugin description. CAS is Central Authentication Service.
+msgid ""
+"The CAS Authentication plugin allows for StatusNet to handle authentication "
+"through CAS (Central Authentication Service)."
+msgstr ""
+"Nagpapahintulot ang pampasak na Pagpapatunay ng CAS para mapanghawakan ng "
+"StatusNet ang pagpapatunay sa pamamagitan ng Lunduyan ng Palingkuran ng "
+"Pagpapatunay (Central Authentication Service o CAS)."
+
+#. TRANS: Client error displayed when trying to log in while already logged on.
+msgid "Already logged in."
+msgstr "Nakalagda na."
+
+#. TRANS: Server error displayed when trying to log in with incorrect username or password.
+msgid "Incorrect username or password."
+msgstr "Hindi tamang pangalan ng tagagamit o hudyat."
+
+#. TRANS: Server error displayed when login fails in CAS authentication plugin.
+msgid "Error setting user. You are probably not authorized."
+msgstr "Kamalian sa pagtatakda ng tagagamit.  Maaaring wala kang pahintulot."

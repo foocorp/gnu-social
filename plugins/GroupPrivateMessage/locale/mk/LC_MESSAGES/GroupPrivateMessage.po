@@ -9,29 +9,182 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GroupPrivateMessage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:50+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:43+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-08 01:22:07+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:27:30+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
+#. TRANS: Client exception thrown when trying to send a private group message while not logged in.
+msgid "Must be logged in."
+msgstr "Мора да се најавени."
+
+#. TRANS: Exception thrown when user %s is not allowed to send a private group message.
+#. TRANS: Exception thrown when trying to send group private message without having the right to do that.
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "User %s is not allowed to send private messages."
+msgstr "На корисникот %s не му е дозволено да испраќа приватни пораки."
+
+#. TRANS: Client exception thrown when trying to send a private group message to a non-existing group.
+#. TRANS: Client exception thrown when trying to view group inbox for non-existing group.
+msgid "No such group."
+msgstr "Нема таква група."
+
+#. TRANS: Title after sending a private group message.
+msgid "Message sent"
+msgstr "Пораката е испратена"
+
+#. TRANS: Succes text after sending a direct message to group %s.
+#, php-format
+msgid "Direct message to %s sent."
+msgstr "Непосредната порака до %s е испратена."
+
+#. TRANS: Title of form for new private group message.
+#, php-format
+msgid "New message to group %s"
+msgstr "Приватни пораки за групата %s"
+
+#. TRANS: Subject for direct-message notification email.
+#. TRANS: %1$s is the sending user's nickname, %2$s is the group nickname.
+#, php-format
+msgid "New private message from %1$s to group %2$s"
+msgstr "Нова приватна порака од %1$s за групата %2$s"
+
+#. TRANS: Body for direct-message notification email.
+#. TRANS: %1$s is the sending user's long name, %2$s is the sending user's nickname,
+#. TRANS: %3$s is the message content, %4$s a URL to the message,
+#. TRANS: %5$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"%1$s (%2$s) sent a private message to group %3$s:\n"
+"\n"
+"------------------------------------------------------\n"
+"%4$s\n"
+"------------------------------------------------------\n"
+"\n"
+"You can reply to their message here:\n"
+"\n"
+"%5$s\n"
+"\n"
+"Do not reply to this email; it will not get to them.\n"
+"\n"
+"With kind regards,\n"
+"%6$s"
+msgstr ""
+"%1$s (%2$s) ѝ испрати приватна порака на групата %3$s:\n"
+"\n"
+"------------------------------------------------------\n"
+"%4$s\n"
+"------------------------------------------------------\n"
+"\n"
+"Можете да одговорите на пораката тука:\n"
+"\n"
+"%5$s\n"
+"\n"
+"Не одговарајте на ова писмо; никој нема да го добие одговорот.\n"
+"\n"
+"Со почит,\n"
+"%6$s"
+
+#. TRANS: Menu item in group page.
+msgctxt "MENU"
 msgid "Inbox"
 msgstr "Примени"
 
-msgid "Private messages for this group"
-msgstr "Приватни пораки за групава"
+#. TRANS: Menu title in group page.
+msgid "Private messages for this group."
+msgstr "Приватни пораки за групава."
 
-msgid "Allow posting DMs to a group."
-msgstr "Дозволи испраќање НП на група."
+#. TRANS: Dropdown label in group settings page for if group allows private messages.
+msgid "Private messages"
+msgstr "Приватни пораки"
 
+#. TRANS: Dropdown option in group settings page for allowing private messages.
+msgid "Sometimes"
+msgstr "Понекогаш"
+
+#. TRANS: Dropdown option in group settings page for allowing private messages.
+msgid "Always"
+msgstr "Секогаш"
+
+#. TRANS: Dropdown option in group settings page for allowing private messages.
+msgid "Never"
+msgstr "Никогаш"
+
+#. TRANS: Dropdown title in group settings page for if group allows private messages.
+msgid "Whether to allow private messages to this group."
+msgstr "Дали да се дозволени приватни пораки за групава."
+
+#. TRANS: Dropdown label in group settings page for who can send private messages to the group.
+msgid "Private senders"
+msgstr "Приватни испраќачи"
+
+#. TRANS: Dropdown option in group settings page for who can send private messages.
+msgid "Everyone"
+msgstr "Сите"
+
+#. TRANS: Dropdown option in group settings page for who can send private messages.
+msgid "Member"
+msgstr "Член"
+
+#. TRANS: Dropdown option in group settings page for who can send private messages.
+msgid "Admin"
+msgstr "Админ"
+
+#. TRANS: Dropdown title in group settings page for who can send private messages to the group.
+msgid "Who can send private messages to the group."
+msgstr "Кој може да ѝ испраќа приватни пораки на групава."
+
+#. TRANS: Title for action in group actions list.
+msgid "Send a direct message to this group."
+msgstr "Испрати ѝ непосредна порака на групава."
+
+#. TRANS: Link text for action in group actions list to send a private message to a group.
+msgctxt "LINKTEXT"
+msgid "Message"
+msgstr "Порака"
+
+#. TRANS: Client exception thrown when a private group message has to be forced.
+msgid "Forced notice to private group message."
+msgstr "Ја наметнав забелешката што известува за приватната порака за групата."
+
+#. TRANS: Indicator on the group page that the group is (essentially) private.
+msgid "Private"
+msgstr "Приватна"
+
+#. TRANS: Plugin description.
+msgid "Allow posting private messages to groups."
+msgstr "Дозволи испраќање приватни пораки на групи."
+
+#. TRANS: Client exception thrown when trying to view group inbox while not logged in.
+msgid "Only for logged-in users."
+msgstr "Само за најавени корисници."
+
+#. TRANS: Client exception thrown when trying to view group inbox while not a member.
+msgid "Only for members."
+msgstr "Само за членови."
+
+#. TRANS: Text of group inbox if no private messages were sent to it.
 msgid "This group has not received any private messages."
 msgstr "Оваа група нема примено приватни пораки."
+
+#. TRANS: Title of inbox for group %s.
+#, php-format
+msgid "%s group inbox"
+msgstr "Примени пораки на групата %s"
+
+#. TRANS: Page title for any but first group page.
+#. TRANS: %1$s is a group name, $2$s is a page number.
+#, php-format
+msgid "%1$s group inbox, page %2$d"
+msgstr "Примени пораки на групата %1$s, страница %2$d"
 
 #. TRANS: Instructions for user inbox page.
 msgid ""
@@ -41,12 +194,97 @@ msgstr ""
 "Ова се примените пораки на групата кајшто се заведуваат сите дојдовни "
 "приватни пораки за оваа група."
 
+#. TRANS: Form legend for sending private message to group %s.
+#, php-format
+msgid "Message to %s"
+msgstr "Порака за %s"
+
+#. TRANS: Field label for private group message to group %s.
+#, php-format
+msgid "Direct message to %s"
+msgstr "Непосредна порака за %s"
+
+#. TRANS: Indicator for number of chatacters still available for notice.
+msgid "Available characters"
+msgstr "Знаци на располагање"
+
+#. TRANS: Send button text for sending private group notice.
 msgctxt "Send button for sending notice"
 msgid "Send"
 msgstr "Испрати"
 
+#. TRANS: Exception thrown when trying to set group privacy setting if group %s does not allow private messages.
+#, php-format
+msgid "Group %s does not allow private messages."
+msgstr "Групата %s не дозволува приватни поаки."
+
+#. TRANS: Exception thrown when trying to send group private message while blocked from that group.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#, php-format
+msgid "User %1$s is blocked from group %2$s."
+msgstr "Корисникот %1$s е блокиран на групата %2$s."
+
+#. TRANS: Exception thrown when trying to send group private message while not a member.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#, php-format
+msgid "User %1$s is not a member of group %2$s."
+msgstr "Корисникот %1$s не членува во групата %2$s."
+
+#. TRANS: Exception thrown when trying to send group private message while not a group administrator.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#, php-format
+msgid "User %1$s is not an administrator of group %2$s."
+msgstr "Корисникот %1$s не е администратор на групата %2$s."
+
+#. TRANS: Exception thrown when encountering undefined group privacy settings.
+#. TRANS: %s is a group nickname.
+#, php-format
+msgid "Unknown privacy settings for group %s."
+msgstr "Непознати нагодувања за приватност на групата %s."
+
+#. TRANS: Exception thrown when trying to send group private message that is too long.
+#. TRANS: %d is the maximum meggage length.
 #, php-format
 msgid "That's too long. Maximum message size is %d character."
 msgid_plural "That's too long. Maximum message size is %d characters."
 msgstr[0] "Ова е предолго. Дозволен е само %d знак."
 msgstr[1] "Ова е предолго. Дозволени се највеќе %d знаци."
+
+#. TRANS: Exception thrown when trying to send group private message to a non-existing group.
+msgid "No group for group message."
+msgstr "Нема група за групната порака."
+
+#. TRANS: Exception thrown when trying to send group private message without having a sender.
+msgid "No sender for group message."
+msgstr "Нема испраќач за групната порака."
+
+#. TRANS: Client exception thrown when trying to view group private messages without being logged in.
+msgid "Only logged-in users can view private messages."
+msgstr "Само најавени корисници можат да гледаат приватни пораки."
+
+#. TRANS: Client exception thrown when trying to view a non-existing group private message.
+msgid "No such message."
+msgstr "Нема таква порака."
+
+#. TRANS: Server exception thrown when trying to view group private messages for a non-exsting group.
+msgid "Group not found."
+msgstr "Групата не е пронајдена."
+
+#. TRANS: Client exception thrown when trying to view a group private message without being a group member.
+msgid "Cannot read message."
+msgstr "Пораката не може да се чита."
+
+#. TRANS: Server exception thrown when trying to view a group private message without a sender.
+msgid "No sender found."
+msgstr "Не пронајдов испраќач."
+
+#. TRANS: Title for private group message.
+#. TRANS: %1$s is the sender name, %2$s is the group name, %3$s is a timestamp.
+#, php-format
+msgid "Message from %1$s to group %2$s on %3$s"
+msgstr "Порака од %1$s за групата %2$s на %3$s"
+
+#. TRANS: Succes message after sending private group message to group %s.
+#, php-format
+msgid "Direct message to group %s sent."
+msgstr "Испратена е непосрредна порака за групата %s."

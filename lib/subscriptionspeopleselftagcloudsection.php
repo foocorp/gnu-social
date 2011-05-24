@@ -40,22 +40,19 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class SubscriptionsPeopleSelfTagCloudSection extends SubPeopleTagCloudSection
 {
     function title()
     {
+        // TRANS: Title of personal tag cloud section.
         return _('People Tagcloud as self-tagged');
     }
 
     function query() {
 //        return 'select tag, count(tag) as weight from subscription left join profile_tag on tagger = subscriber where subscribed=%d and subscriber != subscribed and tagger = tagged group by tag order by weight desc';
 
-
-
-        return 'select tag, count(tag) as weight from subscription left join profile_tag on tagger = subscribed where subscriber=%d and subscribed != subscriber and tagger = tagged and tag is not null group by tag order by weight desc';
+        return 'select profile_tag.tag, count(profile_tag.tag) as weight from subscription left join (profile_tag, profile_list) on profile_tag.tagger = subscribed and profile_tag.tag = profile_list.tag and profile_tag.tagger = profile_tag.tagger where subscriber=%d and subscribed != subscriber and profile_tag.tagger = profile_tag.tagged and profile_list.private = false and profile_tag.tag is not null group by profile_tag.tag order by weight desc';
 
 //        return 'select tag, count(tag) as weight from subscription left join profile_tag on tagger = subscriber where subscribed=%d and subscribed != subscriber and tagger = tagged and tag is not null group by tag order by weight desc';
     }
 }
-

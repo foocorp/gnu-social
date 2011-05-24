@@ -36,7 +36,8 @@ class LinkPreviewPlugin extends Plugin
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:LinkPreview',
                             'rawdescription' =>
-                            _m('UI extensions previewing thumbnails from links.'));
+                            // TRANS: Plugin description.
+                            _m('UI extension for previewing thumbnails from links.'));
 
         return true;
     }

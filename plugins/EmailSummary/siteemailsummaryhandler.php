@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * 
+ *
  * Handler for queue items of type 'sitesum', sends email summaries
  * to all users on the site.
  *
@@ -31,7 +31,7 @@ if (!defined('STATUSNET')) {
 }
 
 /**
- * 
+ *
  * Handler for queue items of type 'sitesum', sends email summaries
  * to all users on the site.
  *
@@ -42,10 +42,8 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class SiteEmailSummaryHandler extends QueueHandler
 {
-
     /**
      * Return transport keyword which identifies items this queue handler
      * services; must be defined for all subclasses.
@@ -55,7 +53,6 @@ class SiteEmailSummaryHandler extends QueueHandler
      *
      * @return string
      */
-    
     function transport()
     {
         return 'sitesum';
@@ -63,21 +60,20 @@ class SiteEmailSummaryHandler extends QueueHandler
 
     /**
      * Handle the site
-     * 
+     *
      * @param mixed $object
      * @return boolean true on success, false on failure
      */
-    
     function handle($object)
     {
         $qm = QueueManager::get();
 
         try {
             // Enqueue a summary for all users
-	    
+
             $user = new User();
             $user->find();
-	    
+
             while ($user->fetch()) {
                 try {
                     $qm->enqueue($user->id, 'usersum');
@@ -89,8 +85,7 @@ class SiteEmailSummaryHandler extends QueueHandler
         } catch (Exception $e) {
             common_log(LOG_WARNING, $e->getMessage());
         }
-	
+
         return true;
     }
 }
-

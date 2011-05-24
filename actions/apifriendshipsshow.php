@@ -120,7 +120,7 @@ class ApiFriendshipsShowAction extends ApiBareAuthAction
         parent::handle($args);
 
         if (!in_array($this->format, array('xml', 'json'))) {
-            // TRANS: Client error displayed trying to execute an unknown API method showing friendship.
+            // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), 404);
             return;
         }

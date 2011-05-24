@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,14 +20,14 @@ msgstr ""
 #. TRANS: %d is the notice ID (number).
 #: Fave_tally.php:155 Fave_tally.php:184
 #, php-format
-msgid "Couldn't update favorite tally for notice ID %d."
+msgid "Could not update favorite tally for notice ID %d."
 msgstr ""
 
 #. TRANS: Server exception.
 #. TRANS: %d is the notice ID (number).
 #: Fave_tally.php:215
 #, php-format
-msgid "Couldn't create favorite tally for notice ID %d."
+msgid "Could not create favorite tally for notice ID %d."
 msgstr ""
 
 #. TRANS: Client error.
@@ -57,17 +57,17 @@ msgid "Add to favorites"
 msgstr ""
 
 #. TRANS: Label for tally for number of times a notice was favored.
-#: AnonymousFavePlugin.php:207
+#: AnonymousFavePlugin.php:205
 msgid "Favored"
 msgstr ""
 
 #. TRANS: Server exception.
-#: AnonymousFavePlugin.php:240 AnonymousFavePlugin.php:251
-msgid "Couldn't create anonymous user session."
+#: AnonymousFavePlugin.php:238 AnonymousFavePlugin.php:249
+msgid "Could not create anonymous user session."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: AnonymousFavePlugin.php:326
+#: AnonymousFavePlugin.php:324
 msgid "Allow anonymous users to favorite notices."
 msgstr ""
 

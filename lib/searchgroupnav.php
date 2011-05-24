@@ -42,7 +42,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  *
  * @see      Widget
  */
-
 class SearchGroupNav extends Menu
 {
     var $q = null;
@@ -52,7 +51,6 @@ class SearchGroupNav extends Menu
      *
      * @param Action $action current action, used for output
      */
-
     function __construct($action=null, $q = null)
     {
         parent::__construct($action);
@@ -64,7 +62,6 @@ class SearchGroupNav extends Menu
      *
      * @return void
      */
-
     function show()
     {
         $action_name = $this->action->trimmed('action');
@@ -73,13 +70,18 @@ class SearchGroupNav extends Menu
         if ($this->q) {
             $args['q'] = $this->q;
         }
-        $this->out->menuItem(common_local_url('peoplesearch', $args), _('People'),
+        // TRANS: Menu item in search group navigation panel.
+        $this->out->menuItem(common_local_url('peoplesearch', $args), _m('MENU','People'),
+            // TRANS: Menu item title in search group navigation panel.
             _('Find people on this site'), $action_name == 'peoplesearch', 'nav_search_people');
-        $this->out->menuItem(common_local_url('noticesearch', $args), _('Notices'),
+        // TRANS: Menu item in search group navigation panel.
+        $this->out->menuItem(common_local_url('noticesearch', $args), _m('MENU','Notices'),
+            // TRANS: Menu item title in search group navigation panel.
             _('Find content of notices'), $action_name == 'noticesearch', 'nav_search_notice');
-        $this->out->menuItem(common_local_url('groupsearch', $args), _('Groups'),
+        // TRANS: Menu item in search group navigation panel.
+        $this->out->menuItem(common_local_url('groupsearch', $args), _m('MENU','Groups'),
+            // TRANS: Menu item title in search group navigation panel.
             _('Find groups on this site'), $action_name == 'groupsearch', 'nav_search_group');
         $this->action->elementEnd('ul');
     }
 }
-

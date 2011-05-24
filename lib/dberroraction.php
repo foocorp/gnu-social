@@ -56,6 +56,7 @@ class DBErrorAction extends ServerErrorAction
 
     function title()
     {
+        // TRANS: Page title for when a database error occurs.
         return _('Database error');
     }
 

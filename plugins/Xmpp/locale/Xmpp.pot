@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,13 @@ msgstr ""
 msgid "XMPP/Jabber/GTalk"
 msgstr ""
 
-#: XmppPlugin.php:429
+#. TRANS: %s is a notice ID.
+#: XmppPlugin.php:359
+#, php-format
+msgid "[%s]"
+msgstr ""
+
+#: XmppPlugin.php:430
 msgid ""
 "The XMPP plugin allows users to send and receive notices over the XMPP/"
 "Jabber network."

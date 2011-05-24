@@ -126,7 +126,9 @@ class BlacklistPlugin extends Plugin
         } else if (is_string($config)) {
             return explode("\r\n", $config);
         } else {
-            throw new Exception("Unknown data type for config $section + $setting");
+            // TRANS: Exception thrown if the Blacklist plugin configuration is incorrect.
+            // TRANS: %1$s is a configuration section, %2$s is a configuration setting.
+            throw new Exception(sprintf(_m('Unknown data type for config %1$s + %2$s.'),$section, $setting));
         }
     }
 
@@ -139,9 +141,9 @@ class BlacklistPlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onStartRegistrationTry($action)
+    function onStartRegisterUser(&$user, &$profile)
     {
-        $homepage = strtolower($action->trimmed('homepage'));
+        $homepage = strtolower($profile->homepage);
 
         if (!empty($homepage)) {
             if (!$this->_checkUrl($homepage)) {
@@ -152,7 +154,7 @@ class BlacklistPlugin extends Plugin
             }
         }
 
-        $nickname = strtolower($action->trimmed('nickname'));
+        $nickname = strtolower($profile->nickname);
 
         if (!empty($nickname)) {
             if (!$this->_checkNickname($nickname)) {
@@ -340,6 +342,7 @@ class BlacklistPlugin extends Plugin
                             'homepage' =>
                             'http://status.net/wiki/Plugin:Blacklist',
                             'description' =>
+                            // TRANS: Plugin description.
                             _m('Keeps a blacklist of forbidden nickname '.
                                'and URL patterns.'));
         return true;
@@ -380,7 +383,7 @@ class BlacklistPlugin extends Plugin
                                 // TRANS: Menu item in admin panel.
                                 _m('MENU','Blacklist'),
                                 // TRANS: Tooltip for menu item in admin panel.
-                                _m('TOOLTIP','Blacklist configuration'),
+                                _m('TOOLTIP','Blacklist configuration.'),
                                 $action_name == 'blacklistadminpanel',
                                 'nav_blacklist_admin_panel');
         }
@@ -406,7 +409,7 @@ class BlacklistPlugin extends Plugin
         $action->elementStart('li');
         $this->checkboxAndText($action,
                                'blacklistnickname',
-                               // TRANS: Checkbox with text label in the delete user form.
+                               // TRANS: Checkbox label in the blacklist user form.
                                _m('Add this nickname pattern to blacklist'),
                                'blacklistnicknamepattern',
                                $this->patternizeNickname($user->nickname));
@@ -416,7 +419,7 @@ class BlacklistPlugin extends Plugin
             $action->elementStart('li');
             $this->checkboxAndText($action,
                                    'blacklisthomepage',
-                                   // TRANS: Checkbox with text label in the delete user form.
+                                   // TRANS: Checkbox label in the blacklist user form.
                                    _m('Add this homepage pattern to blacklist'),
                                    'blacklisthomepagepattern',
                                    $this->patternizeHomepage($profile->homepage));
@@ -496,7 +499,7 @@ class BlacklistPlugin extends Plugin
         if (!empty($homepage)) {
             if (!$this->_checkUrl($homepage)) {
                 // TRANS: Exception thrown trying to post a notice while having set a blocked homepage URL. %s is the blocked URL.
-                $msg = sprintf(_m("Users from \"%s\" blocked."),
+                $msg = sprintf(_m("Users from \"%s\" are blocked."),
                                $homepage);
                 throw new ClientException($msg);
             }
@@ -507,7 +510,7 @@ class BlacklistPlugin extends Plugin
         if (!empty($nickname)) {
             if (!$this->_checkNickname($nickname)) {
                 // TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
-                $msg = sprintf(_m("Posts from nickname \"%s\" disallowed."),
+                $msg = sprintf(_m("Notices from nickname \"%s\" disallowed."),
                                $nickname);
                 throw new ClientException($msg);
             }
@@ -531,7 +534,7 @@ class BlacklistPlugin extends Plugin
 
             if (!$this->_checkUrl($url)) {
                 // TRANS: Client exception thrown trying to subscribe to a person with a blocked homepage or site URL. %s is the blocked URL.
-                $msg = sprintf(_m("Users from \"%s\" blocked."),
+                $msg = sprintf(_m("Users from \"%s\" are blocked."),
                                $url);
                 throw new ClientException($msg);
             }
@@ -542,7 +545,7 @@ class BlacklistPlugin extends Plugin
         if (!empty($nickname)) {
             if (!$this->_checkNickname($nickname)) {
                 // TRANS: Client exception thrown trying to subscribe to a person with a blocked nickname. %s is the blocked nickname.
-                $msg = sprintf(_m("Can't subscribe to nickname \"%s\"."),
+                $msg = sprintf(_m("Cannot subscribe to nickname \"%s\"."),
                                $nickname);
                 throw new ClientException($msg);
             }

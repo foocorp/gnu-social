@@ -47,8 +47,12 @@ require_once INSTALLDIR.'/lib/noticelist.php';
  */
 class ConversationAction extends Action
 {
-    var $id   = null;
-    var $page = null;
+    var $id          = null;
+    var $page        = null;
+    var $notices     = null;
+    var $userProfile = null;
+
+    const MAX_NOTICES = 500;
 
     /**
      * Initialization.
@@ -69,6 +73,19 @@ class ConversationAction extends Action
         if (empty($this->page)) {
             $this->page = 1;
         }
+
+        $cur = common_current_user();
+
+        if (empty($cur)) {
+            $this->userProfile = null;
+        } else {
+            $this->userProfile = $cur->getProfile();
+        }
+
+        $stream = new ConversationNoticeStream($this->id, $this->userProfile);
+
+        $this->notices = $stream->getNotices(0, self::MAX_NOTICES);
+
         return true;
     }
 
@@ -106,185 +123,13 @@ class ConversationAction extends Action
      */
     function showContent()
     {
-        $notices = Notice::conversationStream($this->id, null, null);
+        $tnl = new FullThreadedNoticeList($this->notices, $this, $this->userProfile);
 
-        $ct = new ConversationTree($notices, $this);
-
-        $cnt = $ct->show();
+        $cnt = $tnl->show();
     }
 
     function isReadOnly()
     {
         return true;
-    }
-}
-
-/**
- * Conversation tree
- *
- * The widget class for displaying a hierarchical list of notices.
- *
- * @category Widget
- * @package  StatusNet
- * @author   Evan Prodromou <evan@status.net>
- * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
- * @link     http://status.net/
- */
-class ConversationTree extends NoticeList
-{
-    var $tree  = null;
-    var $table = null;
-
-    /**
-     * Show the tree of notices
-     *
-     * @return void
-     */
-    function show()
-    {
-        $cnt = $this->_buildTree();
-
-        $this->out->elementStart('div', array('id' =>'notices_primary'));
-        // TRANS: Header on conversation page. Hidden by default (h2).
-        $this->out->element('h2', null, _('Notices'));
-        $this->out->elementStart('ol', array('class' => 'notices xoxo'));
-
-        if (array_key_exists('root', $this->tree)) {
-            $rootid = $this->tree['root'][0];
-            $this->showNoticePlus($rootid);
-        }
-
-        $this->out->elementEnd('ol');
-        $this->out->elementEnd('div');
-
-        return $cnt;
-    }
-
-    function _buildTree()
-    {
-        $cnt = 0;
-
-        $this->tree  = array();
-        $this->table = array();
-
-        while ($this->notice->fetch()) {
-
-            $cnt++;
-
-            $id     = $this->notice->id;
-            $notice = clone($this->notice);
-
-            $this->table[$id] = $notice;
-
-            if (is_null($notice->reply_to)) {
-                $this->tree['root'] = array($notice->id);
-            } else if (array_key_exists($notice->reply_to, $this->tree)) {
-                $this->tree[$notice->reply_to][] = $notice->id;
-            } else {
-                $this->tree[$notice->reply_to] = array($notice->id);
-            }
-        }
-
-        return $cnt;
-    }
-
-    /**
-     * Shows a notice plus its list of children.
-     *
-     * @param integer $id ID of the notice to show
-     *
-     * @return void
-     */
-    function showNoticePlus($id)
-    {
-        $notice = $this->table[$id];
-
-        // We take responsibility for doing the li
-
-        $this->out->elementStart('li', array('class' => 'hentry notice',
-                                             'id' => 'notice-' . $id));
-
-        $item = $this->newListItem($notice);
-        $item->show();
-
-        if (array_key_exists($id, $this->tree)) {
-            $children = $this->tree[$id];
-
-            $this->out->elementStart('ol', array('class' => 'notices'));
-
-            sort($children);
-
-            foreach ($children as $child) {
-                $this->showNoticePlus($child);
-            }
-
-            $this->out->elementEnd('ol');
-        }
-
-        $this->out->elementEnd('li');
-    }
-
-    /**
-     * Override parent class to return our preferred item.
-     *
-     * @param Notice $notice Notice to display
-     *
-     * @return NoticeListItem a list item to show
-     */
-    function newListItem($notice)
-    {
-        return new ConversationTreeItem($notice, $this->out);
-    }
-}
-
-/**
- * Conversation tree list item
- *
- * Special class of NoticeListItem for use inside conversation trees.
- *
- * @category Widget
- * @package  StatusNet
- * @author   Evan Prodromou <evan@status.net>
- * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
- * @link     http://status.net/
- */
-class ConversationTreeItem extends NoticeListItem
-{
-    /**
-     * start a single notice.
-     *
-     * The default creates the <li>; we skip, since the ConversationTree
-     * takes care of that.
-     *
-     * @return void
-     */
-    function showStart()
-    {
-        return;
-    }
-
-    /**
-     * finish the notice
-     *
-     * The default closes the <li>; we skip, since the ConversationTree
-     * takes care of that.
-     *
-     * @return void
-     */
-    function showEnd()
-    {
-        return;
-    }
-
-    /**
-     * show link to notice conversation page
-     *
-     * Since we're only used on the conversation page, we skip this
-     *
-     * @return void
-     */
-    function showContext()
-    {
-        return;
     }
 }

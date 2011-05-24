@@ -52,12 +52,13 @@ class ShortenAction extends Action
         $this->users=array();
         $this->text = $this->arg('text');
         if(is_null($this->text)){
-            throw new ClientException(_m('\'text\' argument must be specified.'));
+            // TRANS: Client exception thrown when a text argument is not present.
+            throw new ClientException(_m('"text" argument must be specified.'));
         }
         return true;
     }
 
-    function handle($args)
+    function handle($args=null)
     {
         parent::handle($args);
         header('Content-Type: text/plain');

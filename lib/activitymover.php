@@ -81,7 +81,8 @@ class ActivityMover extends QueueHandler
     function moveActivity($act, $sink, $user, $remote)
     {
         if (empty($user)) {
-            throw new Exception(sprintf(_("No such user %s."),$act->actor->id));
+            // TRANS: Exception thrown if a non-existing user is provided. %s is a user ID.
+            throw new Exception(sprintf(_('No such user "%s".'),$act->actor->id));
         }
 
         switch ($act->verb) {

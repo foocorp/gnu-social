@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      UnSilenceForm
  */
-
 class SilenceForm extends ProfileActionForm
 {
     /**
@@ -50,7 +49,6 @@ class SilenceForm extends ProfileActionForm
      *
      * @return string Name of the action, lowercased.
      */
-
     function target()
     {
         return 'silence';
@@ -61,10 +59,10 @@ class SilenceForm extends ProfileActionForm
      *
      * @return string Title of the form, internationalized
      */
-
     function title()
     {
-        return _('Silence');
+        // TRANS: Title of form to silence a user.
+        return _m('TITLE','Silence');
     }
 
     /**
@@ -72,9 +70,9 @@ class SilenceForm extends ProfileActionForm
      *
      * @return string description of the form, internationalized
      */
-
     function description()
     {
+        // TRANS: Description of form to silence a user.
         return _('Silence this user');
     }
 }

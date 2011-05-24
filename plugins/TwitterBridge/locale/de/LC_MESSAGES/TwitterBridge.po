@@ -1,0 +1,343 @@
+# Translation of StatusNet - TwitterBridge to German (Deutsch)
+# Exported from translatewiki.net
+#
+# Author: George Animal
+# Author: Giftpflanze
+# Author: Habi
+# Author: Michael
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TwitterBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:44+0000\n"
+"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Twitter settings"
+msgstr "Twittereinstellungen"
+
+msgid ""
+"Connect your Twitter account to share your updates with your Twitter friends "
+"and vice-versa."
+msgstr ""
+"Verbinde dein Twitterkonto, um deine Aktualisierungen mit Twitterfreunden "
+"und umgekehrt zu teilen."
+
+msgid "Twitter account"
+msgstr "Twitterkonto"
+
+msgid "Connected Twitter account"
+msgstr "Verbundenes Twitterkonto"
+
+msgid "Disconnect my account from Twitter"
+msgstr "Trenne mein Konto von Twitter"
+
+msgid "Disconnecting your Twitter could make it impossible to log in! Please "
+msgstr ""
+"Die Trennung von Twitter könnte es unmöglich machen, sich anzumelden! Bitte "
+
+msgid "set a password"
+msgstr "setze ein Passwort"
+
+msgid " first."
+msgstr "bevor du das tust."
+
+#. TRANS: %1$s is the current website name.
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
+"password to log in."
+msgstr ""
+"Behalte dein Konto auf %1$s, aber trenne von Twitter. Du kannst dein %1$s-"
+"Passwort benutzen, um dich anzumelden."
+
+msgid "Disconnect"
+msgstr "Trennen"
+
+msgid "Preferences"
+msgstr "Einstellungen"
+
+msgid "Automatically send my notices to Twitter."
+msgstr "Sende meine Nachrichten automatisch zu Twitter."
+
+msgid "Send local \"@\" replies to Twitter."
+msgstr "Sende lokale @-Antworten zu Twitter."
+
+msgid "Subscribe to my Twitter friends here."
+msgstr "Abonniere meine Twitterfreunde hier."
+
+msgid "Import my friends timeline."
+msgstr "Importiere meine Freundezeitleiste."
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Add"
+msgstr "Hinzufügen"
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Es gab ein Problem mit deinem Sitzungstoken. Bitte noch einmal versuchen."
+
+msgid "Unexpected form submission."
+msgstr "Unerwartete Formulareingabe."
+
+msgid "No Twitter connection to remove."
+msgstr "Keine Twitterverbindung zu entfernen."
+
+msgid "Couldn't remove Twitter user."
+msgstr "Konnte Twitterbenutzer nicht entfernen."
+
+msgid "Twitter account disconnected."
+msgstr "Twitterkonto getrennt."
+
+msgid "Couldn't save Twitter preferences."
+msgstr "Konnte Twittereinstellungen nicht speichern."
+
+msgid "Twitter preferences saved."
+msgstr "Twittereinstellungen gespeichert."
+
+msgid "You cannot register if you do not agree to the license."
+msgstr "Du kannst dich nicht registrieren, wenn du der Lizenz nicht zustimmst."
+
+msgid "Something weird happened."
+msgstr "Etwas merkwürdiges ist passiert."
+
+msgid "Could not link your Twitter account."
+msgstr "Konnte nicht mit deinem Twitterkonto verbinden."
+
+msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr ""
+"Konnte nicht mit deinem Twitterkonto verbinden: oauth_token passt nicht "
+"zusammen."
+
+msgid "Couldn't link your Twitter account."
+msgstr "Konnte dein Twitterkonto nicht verbinden."
+
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your Twitter "
+"account to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
+msgstr ""
+"Dies ist das erste Mal, dass du dich bei %s angemeldet hast, sodass wir dein "
+"Twitterkonto mit einem lokalen Konto verbinden müssen. Du kannst entweder "
+"ein neues Konto einrichten, oder mit einem bereits vorhandenen Konto "
+"verbinden, wenn du eines hast."
+
+msgid "Twitter Account Setup"
+msgstr "Einrichten des Twitterkontos"
+
+msgid "Connection options"
+msgstr "Verbindungsoptionen"
+
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"Meine Daten, außer Passwort, E-Mail-Adresse, IM-Adresse und Telefonnummer, "
+"sind unter %s verfügbar."
+
+msgid "Create new account"
+msgstr "Neues Konto erstellen"
+
+msgid "Create a new user with this nickname."
+msgstr "Erstelle einen neuen Benutzer mit diesem Namen."
+
+msgid "New nickname"
+msgstr "Neuer Benutzername"
+
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr ""
+"1–64 Kleinbuchstaben oder Ziffern, keine Interpunktion oder Leerzeichen."
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr "E-Mail"
+
+msgid "Used only for updates, announcements, and password recovery"
+msgstr ""
+"Nur für Updates, Bekanntmachungen und Passwortwiederherstellung verwendet"
+
+msgid "Create"
+msgstr "Erstellen"
+
+msgid "Connect existing account"
+msgstr "Bereits vorhandenes Konto verbinden"
+
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Twitter account."
+msgstr ""
+"Wenn du bereits ein Konto hast, melde dich mit deinem Benutzernamen und "
+"Passwort an um es mit deinem Twitterkonto zu verbinden."
+
+msgid "Existing nickname"
+msgstr "Bereits vorhandener Benutzername"
+
+msgid "Password"
+msgstr "Passwort"
+
+msgid "Connect"
+msgstr "Verbinden"
+
+msgid "Registration not allowed."
+msgstr "Registrierung nicht erlaubt."
+
+msgid "Not a valid invitation code."
+msgstr "Kein gültiger Einladungscode."
+
+msgid "Nickname not allowed."
+msgstr "Benutzername nicht erlaubt."
+
+msgid "Nickname already in use. Try another one."
+msgstr "Benutzername bereits in Verwendung. Versuche einen anderen."
+
+msgid "Error registering user."
+msgstr "Fehler bei der Benutzerregistrierung."
+
+msgid "Error connecting user to Twitter."
+msgstr "Fehler bei der Verbindung des Benutzers zu Twitter."
+
+msgid "Invalid username or password."
+msgstr "Ungültiger Benutzername oder ungültiges Passwort."
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "Twitter bridge settings"
+msgstr "Einstellungen für Twitterüberbrückung"
+
+msgid "Invalid consumer key. Max length is 255 characters."
+msgstr "Ungültiger Verbraucherschlüssel. Maximallänge beträgt 255 Zeichen."
+
+msgid "Invalid consumer secret. Max length is 255 characters."
+msgstr "Ungültiges Verbrauchergeheimnis. Maximallänge beträgt 255 Zeichen."
+
+msgid "Twitter application settings"
+msgstr "Einstellungen für Twitteranwendung"
+
+msgid "Consumer key"
+msgstr "Verbraucherschlüssel"
+
+msgid "Consumer key assigned by Twitter"
+msgstr "Von Twitter vergebener Verbraucherschlüssel"
+
+msgid "Consumer secret"
+msgstr "Verbrauchergeheimnis"
+
+msgid "Consumer secret assigned by Twitter"
+msgstr "Von Twitter vergebenes Verbrauchergeheimnis"
+
+msgid "Note: a global consumer key and secret are set."
+msgstr ""
+"Hinweis: Globaler Verbraucherschlüssel und globals Verbrauchergeheimnis "
+"gesetzt."
+
+msgid "Integration source"
+msgstr "Integrationsquelle"
+
+msgid "Name of your Twitter application"
+msgstr "Name deiner Twitteranwendung"
+
+msgid "Options"
+msgstr "Optionen"
+
+msgid "Enable \"Sign-in with Twitter\""
+msgstr "Ermögliche „Anmelden mit Twitter“"
+
+msgid "Allow users to login with their Twitter credentials"
+msgstr "Ermögliche Benutzern, sich mit ihren Twitteranmeldedaten anzumelden"
+
+msgid "Enable Twitter import"
+msgstr "Ermögliche Twitterimport"
+
+msgid ""
+"Allow users to import their Twitter friends' timelines. Requires daemons to "
+"be manually configured."
+msgstr ""
+"Ermögliche Benutzern, ihre Twitterfreunde-Zeitleisten zu importieren. "
+"Erfordert, dass Dämons manuell konfiguriert werden."
+
+msgid "Save Twitter settings"
+msgstr "Speichere Twittereinstellungen"
+
+msgid "Login or register using Twitter"
+msgstr "Anmeldung oder Registrierung, um Twitter zu benutzen"
+
+msgid "Twitter integration options"
+msgstr "Twitterintegrationsoptionen"
+
+msgid "Twitter bridge configuration"
+msgstr "Konfiguration der Twitterüberbrückung"
+
+msgid ""
+"The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
+"with <a href=\"http://twitter.com/\">Twitter</a>."
+msgstr ""
+"Das Twitterüberbrückungsplugin ermöglicht die Integration einer StatusNet-"
+"Instanz mit <a href=\"http://twitter.com/\">Twitter</a>."
+
+msgid "Already logged in."
+msgstr "Schon angemeldet."
+
+msgid "Twitter Login"
+msgstr "Twitter Login"
+
+msgid "Login with your Twitter account"
+msgstr "Melden Sie sich mit Ihrem Twitter-Account an"
+
+msgid "Sign in with Twitter"
+msgstr "Mit Twitter anmelden"
+
+#. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
+msgid "Your Twitter bridge has been disabled"
+msgstr "Deine Twitterüberbrückung wurde deaktiviert"
+
+#. TRANS: Mail body after forwarding notices to Twitter has stopped working.
+#. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the
+#. TRANS: Twitter settings, %3$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"Hi, %1$s. We're sorry to inform you that your link to Twitter has been "
+"disabled. We no longer seem to have permission to update your Twitter "
+"status. Did you maybe revoke %3$s's access?\n"
+"\n"
+"You can re-enable your Twitter bridge by visiting your Twitter settings "
+"page:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"Regards,\n"
+"%3$s"
+msgstr ""
+"Hallo, %1$s. Es tut uns leid, Ihnen mitzuteilen, dass Ihr Link auf Twitter "
+"deaktiviert wurde. Wir scheinen nicht mehr die Berechtigung zum "
+"aktualisieren Ihres Twitter-Status zu haben. Vielleicht haben Sie %3$s's "
+"Zugriff deaktiviert?\n"
+"\n"
+"Ihre Twitter-Brücke kann durch den Besuch Ihrer Twitter-Einstellungen-Seite "
+"wieder aktiviert werden.\n"
+"\n"
+"%2$s\n"
+"\n"
+"mit freundlichen Grüssen\n"
+"%3$s"
+
+#. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
+#. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
+#, php-format
+msgid "RT @%1$s %2$s"
+msgstr "RT @%1$s %2$s"

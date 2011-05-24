@@ -217,6 +217,6 @@ class OpenXAdminPanelForm extends AdminForm
                     'submit',
                     null,
                     // TRANS: Submit button title in OpenX admin panel.
-                    _m('Save OpenX settings'));
+                    _m('Save OpenX settings.'));
     }
 }

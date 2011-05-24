@@ -46,16 +46,18 @@ class MinifyAction extends Action
             if(file_exists($this->file)) {
                 return true;
             } else {
+                // TRANS: Client error displayed when not providing a valid path in parameter "f".
                 $this->clientError(_m('The parameter "f" is not a valid path.'),404);
                 return false;
             }
         }else{
+            // TRANS: Client error displayed when not providing parameter "f".
             $this->clientError(_m('The parameter "f" is required but missing.'),500);
             return false;
         }
     }
 
-    function etag() 
+    function etag()
     {
         if(isset($this->v)) {
             return "\"" . crc32($this->file . $this->v) . "\"";
@@ -73,7 +75,7 @@ class MinifyAction extends Action
     function handle($args)
     {
         parent::handle($args);
-        
+
         $c = Cache::instance();
         if (!empty($c)) {
             $cacheKey = Cache::key(MinifyPlugin::cacheKey . ':' . $this->file . '?v=' . empty($this->v)?'':$this->v);
@@ -108,6 +110,7 @@ class MinifyAction extends Action
                 header('Content-Type: ' . self::TYPE_CSS);
                 break;
             default:
+                // TRANS: Client error displayed when trying to minify an unsupported file type.
                 $this->clientError(_m('File type not supported.'),500);
                 return false;
         }

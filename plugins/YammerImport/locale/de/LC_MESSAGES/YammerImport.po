@@ -1,0 +1,230 @@
+# Translation of StatusNet - YammerImport to German (Deutsch)
+# Exported from translatewiki.net
+#
+# Author: George Animal
+# Author: Giftpflanze
+# Author: Habi
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - YammerImport\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:52:00+0000\n"
+"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:56+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-yammerimport\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Connect to Yammer"
+msgstr "Verbinden mit Yammer"
+
+msgid "Yammer Import"
+msgstr "Yammer-Import"
+
+msgid ""
+"This Yammer import tool is still undergoing testing, and is incomplete in "
+"some areas. Currently user subscriptions and group memberships are not "
+"transferred; in the future this may be supported for imports done by "
+"verified administrators on the Yammer side."
+msgstr ""
+"Dieses Yammer-Importwerkzeug ist immer noch im Testen inbegriffen, und ist "
+"in manchen Bereichen fertiggestellt. Zur Zeit werden Benutzerabonnements und "
+"Gruppenmitgliedschaften werden nicht übertragen; zukünftig mag dies für "
+"Importe unterstützt werden, die von beglaubigten Administratoren auf Seiten "
+"von Yammer getätigt werden."
+
+msgid "Paused from admin panel."
+msgstr "Angehalten über das Admin-Panel."
+
+msgid "Yammer import"
+msgstr "Yammer-Import"
+
+msgid "Yammer"
+msgstr "Yammer"
+
+msgid "Expertise:"
+msgstr "Expertise:"
+
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Ungültige Avatar-URL %s."
+
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Kann Avatar nicht von %s holen."
+
+msgid "Start authentication"
+msgstr "Starte Authentifikation"
+
+msgid "Request authorization to connect to Yammer account"
+msgstr "Beantrage Authentifizierung, um mit Yammerkonto zu verbinden"
+
+msgid "Change API key"
+msgstr "Ändere API-Schlüssel"
+
+msgid "Initialize"
+msgstr "Initialisieren"
+
+msgid "No import running"
+msgstr "Zur Zeit kein Import"
+
+msgid "Initiated Yammer server connection..."
+msgstr "Yammer-Server-Verbindung initiiert …"
+
+msgid "Awaiting authorization..."
+msgstr "Authentifizierung wird abgewartet …"
+
+msgid "Connected."
+msgstr "Verbunden."
+
+msgid "Import user accounts"
+msgstr "Benutzerkonten importieren"
+
+#, php-format
+msgid "Importing %d user..."
+msgid_plural "Importing %d users..."
+msgstr[0] "Importiere %d Benutzer …"
+msgstr[1] "Importiere %d Benutzer …"
+
+#, php-format
+msgid "Imported %d user."
+msgid_plural "Imported %d users."
+msgstr[0] "Importierte %d Benutzer."
+msgstr[1] "Importierte %d Benutzer."
+
+msgid "Import user groups"
+msgstr "Importiere Benutzergruppen"
+
+#, php-format
+msgid "Importing %d group..."
+msgid_plural "Importing %d groups..."
+msgstr[0] "Importiere %d Gruppe …"
+msgstr[1] "Importiere %d Gruppen …"
+
+#, php-format
+msgid "Imported %d group."
+msgid_plural "Imported %d groups."
+msgstr[0] "Importierte %d Gruppe."
+msgstr[1] "Importierte %d Gruppen."
+
+msgid "Prepare public notices for import"
+msgstr "Bereite öffentliche Nachrichten für Import vor"
+
+#, php-format
+msgid "Preparing %d notice..."
+msgid_plural "Preparing %d notices..."
+msgstr[0] "Bereite %d Nachricht vor …"
+msgstr[1] "Bereite %d Nachrichten vor …"
+
+#, php-format
+msgid "Prepared %d notice."
+msgid_plural "Prepared %d notices."
+msgstr[0] "%d Nachricht vorbereitet."
+msgstr[1] "%d Nachrichten vorbereitet."
+
+msgid "Import public notices"
+msgstr "Importiere öffentliche Nachrichten"
+
+#, php-format
+msgid "Importing %d notice..."
+msgid_plural "Importing %d notices..."
+msgstr[0] "Importiere %d Nachricht …"
+msgstr[1] "Importiere %d Nachrichten …"
+
+#, php-format
+msgid "Imported %d notice."
+msgid_plural "Imported %d notices."
+msgstr[0] "Importierte %d Nachricht."
+msgstr[1] "Importierte %d Nachrichten."
+
+msgid "Done"
+msgstr "Erledigt"
+
+msgid "Import is complete!"
+msgstr "Import abgeschlossen!"
+
+msgid "Import status"
+msgstr "Import-Status"
+
+msgid "Waiting..."
+msgstr "Warten..."
+
+msgid "Reset import state"
+msgstr "Import-Status zurücksetzen"
+
+msgid "Pause import"
+msgstr "Import pausieren"
+
+#, php-format
+msgid "Encountered error \"%s\""
+msgstr "Fehler \"%s\" ist aufgetreten"
+
+msgid "Paused"
+msgstr "Angehalten"
+
+msgid "Continue"
+msgstr "Fortfahren"
+
+msgid "Abort import"
+msgstr "Import abbrechen"
+
+msgid ""
+"Follow this link to confirm authorization at Yammer; you will be prompted to "
+"log in if necessary:"
+msgstr ""
+"Folge diesem Link, um die Authentifikation bei Yammer zu bestätigen; "
+"nötigenfalls wirst du aufgefordert, dich anzumelden:"
+
+msgid "Open Yammer authentication window"
+msgstr "Öffne Yammer-Authentifizierungsfenster"
+
+msgid "Copy the verification code you are given below:"
+msgstr "Kopiere den untenstehenden Bestätigungscode"
+
+msgid "Verification code:"
+msgstr "Bestätigunts-Code:"
+
+msgid "Save code and begin import"
+msgstr "Speichere Code und starte Import"
+
+msgid "Yammer API registration"
+msgstr "Yammer-API-Registrierung"
+
+msgid ""
+"Before we can connect to your Yammer network, you will need to register the "
+"importer as an application authorized to pull data on your behalf. This "
+"registration will work only for your own network. Follow this link to "
+"register the app at Yammer; you will be prompted to log in if necessary:"
+msgstr ""
+"Bevor wir zu Ihrem Yammer-Netzwerk verbinden können, müssen Sie das Import-"
+"Skript als eine Anwendung autorisieren, die Daten in Ihrem Namen beziehen "
+"darf. Diese Autorisation funktioniert nur für Ihr eigenes Netzwerk. Folgen "
+"Sie diesem Link, um diese Applikation bei Yammer zu registrieren; Sie werden "
+"gegebenenfalls aufgefordert, sich anzumelden:"
+
+msgid "Open Yammer application registration form"
+msgstr "Öffne Yammer-Anwendungsregistrierungsformular"
+
+msgid "Copy the consumer key and secret you are given into the form below:"
+msgstr ""
+"Kopiere den Verbraucherschlüssel und das Geheimnis, beide untenstehend:"
+
+msgid "Consumer key:"
+msgstr "Verbraucherschlüssel:"
+
+msgid "Consumer secret:"
+msgstr "Verbrauchergeheimnis:"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Save these consumer keys"
+msgstr "Speichere diese Verbraucherschlüssel"

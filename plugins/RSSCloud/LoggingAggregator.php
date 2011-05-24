@@ -82,7 +82,7 @@ class LoggingAggregatorAction extends Action
         parent::handle($args);
 
         if (empty($this->url)) {
-            $this->showError(_('A URL parameter is required.'));
+            $this->showError(_m('A URL parameter is required.'));
             return;
         }
 

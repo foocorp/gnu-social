@@ -34,7 +34,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 /**
  * Encapsulation of the validation-and-save process when dealing with
  * a user-uploaded StatusNet theme archive...
- * 
+ *
  * @todo extract theme metadata from css/display.css
  * @todo allow saving multiple themes
  */
@@ -47,7 +47,8 @@ class ThemeUploader
     public function __construct($filename)
     {
         if (!class_exists('ZipArchive')) {
-            throw new Exception(_("This server cannot handle theme uploads without ZIP support."));
+            // TRANS: Exception thrown when a compressed theme is uploaded while no support present in PHP configuration.
+            throw new Exception(_('This server cannot handle theme uploads without ZIP support.'));
         }
         $this->sourceFile = $filename;
     }
@@ -55,10 +56,12 @@ class ThemeUploader
     public static function fromUpload($name)
     {
         if (!isset($_FILES[$name]['error'])) {
-            throw new ServerException(_("The theme file is missing or the upload failed."));
+            // TRANS: Server exception thrown when uploading a theme fails.
+            throw new ServerException(_('The theme file is missing or the upload failed.'));
         }
         if ($_FILES[$name]['error'] != UPLOAD_ERR_OK) {
-            throw new ServerException(_("The theme file is missing or the upload failed."));
+            // TRANS: Server exception thrown when uploading a theme fails.
+            throw new ServerException(_('The theme file is missing or the upload failed.'));
         }
         return new ThemeUploader($_FILES[$name]['tmp_name']);
     }
@@ -88,7 +91,8 @@ class ThemeUploader
             $this->loud();
             if (!$ok) {
                 common_log(LOG_ERR, "Could not move old custom theme from $destDir to $killDir");
-                throw new ServerException(_("Failed saving theme."));
+                // TRANS: Server exception thrown when saving an uploaded theme after decompressing it fails.
+                throw new ServerException(_('Failed saving theme.'));
             }
         } else {
             $killDir = false;
@@ -99,7 +103,8 @@ class ThemeUploader
         $this->loud();
         if (!$ok) {
             common_log(LOG_ERR, "Could not move saved theme from $tmpDir to $destDir");
-            throw new ServerException(_("Failed saving theme."));
+            // TRANS: Server exception thrown when saving an uploaded theme after decompressing it fails.
+            throw new ServerException(_('Failed saving theme.'));
         }
 
         if ($killDir) {
@@ -108,7 +113,7 @@ class ThemeUploader
     }
 
     /**
-     * 
+     *
      */
     protected function traverseArchive($zip, $outdir=false)
     {
@@ -144,7 +149,8 @@ class ThemeUploader
                 $commonBaseDir = $baseDir;
             } else {
                 if ($commonBaseDir != $baseDir) {
-                    throw new ClientException(_("Invalid theme: bad directory structure."));
+                    // TRANS: Server exception thrown when an uploaded theme has an incorrect structure.
+                    throw new ClientException(_('Invalid theme: Bad directory structure.'));
                 }
             }
 
@@ -158,11 +164,13 @@ class ThemeUploader
             if ($localFile == 'css/display.css') {
                 $hasMain = true;
             }
-            
+
             $size = $data['size'];
             $estSize = $blockSize * max(1, intval(ceil($size / $blockSize)));
             $totalSize += $estSize;
             if ($totalSize > $sizeLimit) {
+                // TRANS: Client exception thrown when an uploaded theme is larger than the limit.
+                // TRANS: %d is the number of bytes of the uncompressed theme.
                 $msg = sprintf(_m('Uploaded theme is too large; must be less than %d byte uncompressed.',
                                   'Uploaded theme is too large; must be less than %d bytes uncompressed.',
                                   $sizeLimit),
@@ -176,8 +184,9 @@ class ThemeUploader
         }
 
         if (!$hasMain) {
-            throw new ClientException(_("Invalid theme archive: " .
-                                        "missing file css/display.css"));
+            // TRANS: Server exception thrown when an uploaded theme is incomplete.
+            throw new ClientException(_('Invalid theme archive: ' .
+                                        "Missing file css/display.css"));
         }
     }
 
@@ -216,13 +225,15 @@ class ThemeUploader
     {
         if (!preg_match('/^[a-z0-9_\.-]+$/i', $name)) {
             common_log(LOG_ERR, "Bad theme filename: $name");
+            // TRANS: Server exception thrown when an uploaded theme has an incorrect file or folder name.
             $msg = _("Theme contains invalid file or folder name. " .
-                     "Stick with ASCII letters, digits, underscore, and minus sign.");
+                     'Stick with ASCII letters, digits, underscore, and minus sign.');
             throw new ClientException($msg);
         }
         if (preg_match('/\.(php|cgi|asp|aspx|js|vb)\w/i', $name)) {
             common_log(LOG_ERR, "Unsafe theme filename: $name");
-            $msg = _("Theme contains unsafe file extension names; may be unsafe.");
+            // TRANS: Server exception thrown when an uploaded theme contains files with unsafe file extensions.
+            $msg = _('Theme contains unsafe file extension names; may be unsafe.');
             throw new ClientException($msg);
         }
         return true;
@@ -239,8 +250,9 @@ class ThemeUploader
                 // theme.ini exception
                 return true;
             }
-            $msg = sprintf(_("Theme contains file of type '.%s', " .
-                             "which is not allowed."),
+            // TRANS: Server exception thrown when an uploaded theme contains a file type that is not allowed.
+            // TRANS: %s is the file type that is not allowed.
+            $msg = sprintf(_('Theme contains file of type ".%s", which is not allowed.'),
                            $ext);
             throw new ClientException($msg);
         }
@@ -253,11 +265,12 @@ class ThemeUploader
     protected function openArchive()
     {
         $zip = new ZipArchive;
-        $ok = $zip->open($this->sourceFile); 
+        $ok = $zip->open($this->sourceFile);
         if ($ok !== true) {
             common_log(LOG_ERR, "Error opening theme zip archive: " .
                                 "{$this->sourceFile} code: {$ok}");
-            throw new Exception(_("Error opening theme archive."));
+            // TRANS: Server exception thrown when an uploaded compressed theme cannot be opened.
+            throw new Exception(_('Error opening theme archive.'));
         }
         return $zip;
     }
@@ -276,11 +289,13 @@ class ThemeUploader
             $this->loud();
             if (!$ok) {
                 common_log(LOG_ERR, "Failed to mkdir $dir while uploading theme");
-                throw new ServerException(_("Failed saving theme."));
+                // TRANS: Server exception thrown when an uploaded theme cannot be saved during extraction.
+                throw new ServerException(_('Failed saving theme.'));
             }
         } else if (!is_dir($dir)) {
             common_log(LOG_ERR, "Output directory $dir not a directory while uploading theme");
-            throw new ServerException(_("Failed saving theme."));
+            // TRANS: Server exception thrown when an uploaded theme cannot be saved during extraction.
+            throw new ServerException(_('Failed saving theme.'));
         }
 
         // ZipArchive::extractTo would be easier, but won't let us alter
@@ -288,14 +303,16 @@ class ThemeUploader
         $in = $zip->getStream($from);
         if (!$in) {
             common_log(LOG_ERR, "Couldn't open archived file $from while uploading theme");
-            throw new ServerException(_("Failed saving theme."));
+            // TRANS: Server exception thrown when an uploaded theme cannot be saved during extraction.
+            throw new ServerException(_('Failed saving theme.'));
         }
         $this->quiet();
         $out = fopen($to, "wb");
         $this->loud();
         if (!$out) {
             common_log(LOG_ERR, "Couldn't open output file $to while uploading theme");
-            throw new ServerException(_("Failed saving theme."));
+            // TRANS: Server exception thrown when an uploaded theme cannot be saved during extraction.
+            throw new ServerException(_('Failed saving theme.'));
         }
         while (!feof($in)) {
             $buffer = fread($in, 65536);
@@ -333,5 +350,4 @@ class ThemeUploader
         $list->close();
         rmdir($dir);
     }
-
 }

@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:51+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:30+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-17 13:01:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:22+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
@@ -23,25 +23,25 @@ msgstr ""
 
 #. TRANS: Client error displayed when entering an invalid URL for a feed.
 #. TRANS: %s is the invalid feed URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid feed URL: %s."
-msgstr "Hindi tanggap na URL ng pakain."
+msgstr "Hindi tanggap na URL ng pasubo: %s."
 
 #. TRANS: Error message returned to user when setting up feed mirroring,
 #. TRANS: but we were unable to resolve the given URL to a working feed.
 msgid "Invalid profile for mirroring."
 msgstr "Hindi tanggap na balangkas para sa pagsasalamin."
 
-#, fuzzy
 msgid "Cannot mirror a StatusNet group at this time."
 msgstr "Hindi maisalamin sa ngayon ang isang pangkat ng StatusNet."
 
 msgid "This action only accepts POST requests."
-msgstr "Ang galaw na ito ay tumatanggap lamang ng mga kahilingang POST."
+msgstr "Ang galaw na ito ay tumatanggap lamang ng mga kahilingan ng PAGPASKIL."
 
 msgid "There was a problem with your session token. Try again, please."
 msgstr "May isang suliranin sa iyong token ng sesyon. Pakisubukan uli."
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
 msgstr "Hindi nakalagda."
 
@@ -73,6 +73,9 @@ msgstr ""
 "Maisasalamin mo ang mga pagsasapanahon mula sa maraming mga pakain ng RSS at "
 "Atom sa iyong guhit ng panahon ng StatusNet!"
 
+msgid "Provider add"
+msgstr "Dagdag ng tagapagbigay"
+
 msgid "Pull feeds into your timeline!"
 msgstr "Hilahin ang mga pakain papasok sa iyong guhit ng panahon!"
 
@@ -86,7 +89,7 @@ msgid "Configure mirroring of posts from other feeds"
 msgstr "Iayos ang pagsasalamin ng mga pagpapaskil mula sa ibang mga pakain"
 
 msgid "Mirrored feeds"
-msgstr ""
+msgstr "Naisalaming mga pasubo"
 
 msgid "Web page or feed URL:"
 msgstr "URL ng pahina sa web o pakain:"
@@ -96,7 +99,7 @@ msgid "Add feed"
 msgstr "Idagdag ang pakain"
 
 msgid "Twitter username:"
-msgstr ""
+msgstr "Pangalan ng tagagamit sa Twitter:"
 
 msgctxt "LABEL"
 msgid "Remote feed:"
@@ -125,10 +128,10 @@ msgid "Stop mirroring"
 msgstr "Ihinto ang pagsasalamin"
 
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 msgid "RSS or Atom feed"
-msgstr ""
+msgstr "RSS o pasubong Atom"
 
 msgid "Select a feed provider"
-msgstr ""
+msgstr "Pumili ng isang tagapagbigay ng pasubo"

@@ -1,6 +1,7 @@
 # Translation of StatusNet - BitlyUrl to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: Giftpflanze
 # Author: Michael
 # Author: The Evil IP address
 # --
@@ -10,21 +11,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - BitlyUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:18+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:44+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:12:53+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:26:00+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Title of administration panel.
 msgid "bit.ly URL shortening"
 msgstr "bit.ly-URL-Kürzung"
 
+#. TRANS: Instructions for administration panel.
+#. TRANS: This message contains Markdown links in the form [decsription](link).
 msgid ""
 "URL shortening with bit.ly requires [a bit.ly account and API key](http://"
 "bit.ly/a/your_api_key). This verifies that this is an authorized account, "
@@ -35,37 +39,63 @@ msgstr ""
 "Benutzerkonto ist und ermöglicht bit.lys Tracking-Funktionen und "
 "benutzerdefinierte Domains."
 
-msgid "Invalid login. Max length is 255 characters."
+#. TRANS: Client error displayed when using too long a key.
+#, fuzzy
+msgid "Invalid login. Maximum length is 255 characters."
 msgstr "Ungültige Anmeldung. Maximale Länge sind 255 Zeichen."
 
-msgid "Invalid API key. Max length is 255 characters."
+#. TRANS: Client error displayed when using too long a key.
+#, fuzzy
+msgid "Invalid API key. Maximum length is 255 characters."
 msgstr "Ungültiger API-Schlüssel. Maximale Länge sind 255 Zeichen."
 
+#. TRANS: Fieldset legend in administration panel for bit.ly username and API key.
+#, fuzzy
+msgctxt "LEGEND"
 msgid "Credentials"
 msgstr "Anmeldeinformationen"
 
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
 msgid "Leave these empty to use global default credentials."
 msgstr "Lass dies leer, um globale Standard-Anmeldeinformationen zu benutzen."
 
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
 msgid "If you leave these empty, bit.ly will be unavailable to users."
 msgstr ""
 "Wenn du dies leer lässt, wird bit.ly nicht für Benutzer verfügbar sein."
 
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
 msgid "Login name"
 msgstr "Benutzername"
 
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
 msgid "API key"
 msgstr "API-Schlüssel"
 
+#. TRANS: Button text to save setting in administration panel for bit.ly URL shortening.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Speichern"
+
+#. TRANS: Button title to save setting in administration panel for bit.ly URL shortening.
 msgid "Save bit.ly settings"
 msgstr "bit.ly-Einstellungen speichern"
 
-msgid "You must specify a serviceUrl for bit.ly shortening."
+#. TRANS: Exception thrown when bit.ly URL shortening plugin was configured incorrectly.
+#, fuzzy
+msgid "You must specify a serviceUrl for bit.ly URL shortening."
 msgstr "Du musst eine „serviceUrl“ zur bit.ly-URL-Kürzung angeben."
 
+#. TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
 msgstr "Benutzung des <a href=\"http://%1$s/\">%1$s</a>-URL-Kürzungsdienstes."
 
+#. TRANS: Menu item in administration menus for bit.ly URL shortening settings.
 msgid "bit.ly"
 msgstr "bit.ly"
+
+#. TRANS: Title for menu item in administration menus for bit.ly URL shortening settings.
+#, fuzzy
+msgid "bit.ly URL shortening."
+msgstr "bit.ly-URL-Kürzung"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 11:02+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,20 +119,23 @@ msgid "Twitter preferences saved."
 msgstr ""
 
 #: twitterauthorization.php:126
-msgid "You can't register if you don't agree to the license."
+msgid "You cannot register if you do not agree to the license."
 msgstr ""
 
 #: twitterauthorization.php:135
 msgid "Something weird happened."
 msgstr ""
 
-#: twitterauthorization.php:181 twitterauthorization.php:229
-#: twitterauthorization.php:300
-msgid "Couldn't link your Twitter account."
+#: twitterauthorization.php:181
+msgid "Could not link your Twitter account."
 msgstr ""
 
 #: twitterauthorization.php:201
 msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr ""
+
+#: twitterauthorization.php:229 twitterauthorization.php:300
+msgid "Couldn't link your Twitter account."
 msgstr ""
 
 #: twitterauthorization.php:312
@@ -171,7 +174,16 @@ msgid "New nickname"
 msgstr ""
 
 #: twitterauthorization.php:392
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr ""
+
+#: twitterauthorization.php:395
+msgctxt "LABEL"
+msgid "Email"
+msgstr ""
+
+#: twitterauthorization.php:396
+msgid "Used only for updates, announcements, and password recovery"
 msgstr ""
 
 #: twitterauthorization.php:404

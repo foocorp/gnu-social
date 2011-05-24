@@ -133,6 +133,7 @@ abstract class BaseMirrorAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_m('Not logged in.'));
             return false;
         }

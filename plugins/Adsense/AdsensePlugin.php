@@ -193,7 +193,7 @@ class AdsensePlugin extends UAPPlugin
             // TRANS: Menu item title/tooltip
             $menu_title = _m('AdSense configuration');
             // TRANS: Menu item for site administration
-            $menu->out->menuItem(common_local_url('adsenseadminpanel'), _m('AdSense'),
+            $menu->out->menuItem(common_local_url('adsenseadminpanel'), _m('MENU','AdSense'),
                                  $menu_title, $action_name == 'adsenseadminpanel', 'nav_adsense_admin_panel');
         }
         return true;
@@ -206,6 +206,7 @@ class AdsensePlugin extends UAPPlugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Adsense',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Plugin to add Google AdSense to StatusNet sites.'));
         return true;
     }

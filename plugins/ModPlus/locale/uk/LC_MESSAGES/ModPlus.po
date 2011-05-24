@@ -9,31 +9,41 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ModPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:07+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:12+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:33+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:31+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-modplus\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-#, php-format
-msgid "%s on %s"
-msgstr "%s на %s"
+#. TRANS: Error message displayed when referring to a user without a profile.
+msgid "User has no profile."
+msgstr "Користувач не має профілю."
 
+#. TRANS: Remote profile action page title.
+#. TRANS: %1$s is a username, %2$s is a hostname.
+#, php-format
+msgid "%1$s on %2$s"
+msgstr "%1$s на %2$s"
+
+#. TRANS: Message on remote profile page.
+#. TRANS: This message contains Markdown links in the form [description](link).
+#. TRANS: %1$s is a profile nickname, %2$s is a hostname, %3$s is a URL.
 #, php-format
 msgid ""
-"This remote profile is registered on another site; see [%s's original "
-"profile page on %s](%s)."
+"This remote profile is registered on another site; see [%1$s's original "
+"profile page on %2$s](%3$s)."
 msgstr ""
 "Це віддалений профіль, зареєстрований на іншому сайті; див. [справжній "
-"профіль %s на сайті %s](%s)."
+"профіль %1$s на сайті %2$s](%3$s)."
 
+#. TRANS: Message on blocked remote profile page.
 msgid ""
 "Site moderators have silenced this profile, which prevents delivery of new "
 "messages to any users on this site."
@@ -41,8 +51,10 @@ msgstr ""
 "Модератори сайту позбавили права голосу даний профіль, що перешкоджає "
 "доставці нових повідомлень для всіх користувачів на цьому сайті."
 
-msgid "UI extensions for profile moderation actions."
+#. TRANS: Plugin description.
+msgid "UI extension for profile moderation actions."
 msgstr "Розширення користувацького інтерфейсу для модерування профілю."
 
+#. TRANS: Label for access to remote profile options.
 msgid "Remote profile options..."
 msgstr "Опції віддаленого профілю..."

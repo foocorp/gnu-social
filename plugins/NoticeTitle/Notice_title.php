@@ -44,7 +44,6 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-
 class Notice_title extends Memcached_DataObject
 {
     const MAXCHARS = 255;
@@ -64,7 +63,6 @@ class Notice_title extends Memcached_DataObject
      * @return Notice_title object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Notice_title', $k, $v);
@@ -78,7 +76,6 @@ class Notice_title extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('notice_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
@@ -90,7 +87,6 @@ class Notice_title extends Memcached_DataObject
      *
      * @return array list of key field names
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -101,7 +97,6 @@ class Notice_title extends Memcached_DataObject
      *
      * @return array list mapping field names to key types
      */
-
     function keyTypes()
     {
         return array('notice_id' => 'K');
@@ -112,7 +107,6 @@ class Notice_title extends Memcached_DataObject
      *
      * @return array magic three-false array that stops auto-incrementing.
      */
-
     function sequenceKey()
     {
         return array(false, false, false);
@@ -125,7 +119,6 @@ class Notice_title extends Memcached_DataObject
      *
      * @return string title of the notice, or null if none
      */
-
     static function fromNotice($notice)
     {
         $nt = Notice_title::staticGet('notice_id', $notice->id);

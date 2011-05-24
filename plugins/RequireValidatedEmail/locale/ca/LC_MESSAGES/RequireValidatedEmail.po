@@ -1,0 +1,81 @@
+# Translation of StatusNet - RequireValidatedEmail to Catalan (Català)
+# Exported from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - RequireValidatedEmail\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:06+0000\n"
+"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "You must validate your email address before posting."
+msgstr ""
+
+msgid "You must provide an email address to register."
+msgstr ""
+
+msgid "Disables posting without a validated email address."
+msgstr ""
+
+msgid "You are already logged in."
+msgstr ""
+
+msgid "Confirmation code not found."
+msgstr ""
+
+msgid "No user for that confirmation code."
+msgstr ""
+
+#, php-format
+msgid "Unrecognized address type %s."
+msgstr ""
+
+#. TRANS: Client error for an already confirmed email/jabber/sms address.
+msgid "That address has already been confirmed."
+msgstr ""
+
+msgid "Password too short."
+msgstr ""
+
+msgid "Passwords do not match."
+msgstr ""
+
+#, php-format
+msgid ""
+"You have confirmed the email address for your new user account %s. Use the "
+"form below to set your new password."
+msgstr ""
+
+msgid "Set a password"
+msgstr "Definiu una contrasenya"
+
+msgid "Confirm email"
+msgstr "Confirmeu l'adreça electrònica"
+
+msgid "New password"
+msgstr "Contrasenya nova"
+
+msgid "6 or more characters."
+msgstr "6 o més caràcters."
+
+msgid "Confirm"
+msgstr "Confirma"
+
+msgid "Same as password above."
+msgstr "La mateixa que la contrasenya de dalt."
+
+msgid "Save"
+msgstr "Desa"

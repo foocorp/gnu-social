@@ -52,9 +52,15 @@ class Profile extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+    protected $_user = -1;  // Uninitialized value distinct from null
+
     function getUser()
     {
-        return User::staticGet('id', $this->id);
+        if (is_int($this->_user) && $this->_user == -1) {
+            $this->_user = User::staticGet('id', $this->id);
+        }
+
+        return $this->_user;
     }
 
     function getAvatar($width, $height=null)
@@ -62,9 +68,17 @@ class Profile extends Memcached_DataObject
         if (is_null($height)) {
             $height = $width;
         }
-        return Avatar::pkeyGet(array('profile_id' => $this->id,
-                                     'width' => $width,
-                                     'height' => $height));
+
+        $avatar = null;
+
+        if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
+            $avatar = Avatar::pkeyGet(array('profile_id' => $this->id,
+                                            'width' => $width,
+                                            'height' => $height));
+            Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
+        }
+
+        return $avatar;
     }
 
     function getOriginalAvatar()
@@ -168,7 +182,7 @@ class Profile extends Memcached_DataObject
     function getFancyName()
     {
         if ($this->fullname) {
-            // TRANS: Full name of a profile or group followed by nickname in parens
+            // TRANS: Full name of a profile or group (%1$s) followed by nickname (%2$s) in parentheses.
             return sprintf(_m('FANCYNAME','%1$s (%2$s)'), $this->fullname, $this->nickname);
         } else {
             return $this->nickname;
@@ -180,7 +194,6 @@ class Profile extends Memcached_DataObject
      *
      * @return mixed Notice or null
      */
-
     function getCurrentNotice()
     {
         $notice = $this->getNotices(0, 1);
@@ -212,31 +225,16 @@ class Profile extends Memcached_DataObject
 
     function isMember($group)
     {
-        $mem = new Group_member();
-
-        $mem->group_id = $group->id;
-        $mem->profile_id = $this->id;
-
-        if ($mem->find()) {
-            return true;
-        } else {
-            return false;
-        }
+        $gm = Group_member::pkeyGet(array('profile_id' => $this->id,
+                                          'group_id' => $group->id));
+        return (!empty($gm));
     }
 
     function isAdmin($group)
     {
-        $mem = new Group_member();
-
-        $mem->group_id = $group->id;
-        $mem->profile_id = $this->id;
-        $mem->is_admin = 1;
-
-        if ($mem->find()) {
-            return true;
-        } else {
-            return false;
-        }
+        $gm = Group_member::pkeyGet(array('profile_id' => $this->id,
+                                          'group_id' => $group->id));
+        return (!empty($gm) && $gm->is_admin);
     }
 
     function isPendingMember($group)
@@ -246,30 +244,247 @@ class Profile extends Memcached_DataObject
         return !empty($request);
     }
 
-    function getGroups($offset=0, $limit=null)
+    function getGroups($offset=0, $limit=PROFILES_PER_PAGE)
     {
-        $qry =
-          'SELECT user_group.* ' .
-          'FROM user_group JOIN group_member '.
-          'ON user_group.id = group_member.group_id ' .
-          'WHERE group_member.profile_id = %d ' .
-          'ORDER BY group_member.created DESC ';
+        $ids = array();
 
-        if ($offset>0 && !is_null($limit)) {
-            if ($offset) {
-                if (common_config('db','type') == 'pgsql') {
-                    $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-                } else {
-                    $qry .= ' LIMIT ' . $offset . ', ' . $limit;
+        $keypart = sprintf('profile:groups:%d', $this->id);
+
+        $idstring = self::cacheGet($keypart);
+
+        if ($idstring !== false) {
+            $ids = explode(',', $idstring);
+        } else {
+            $gm = new Group_member();
+
+            $gm->profile_id = $this->id;
+
+            if ($gm->find()) {
+                while ($gm->fetch()) {
+                    $ids[] = $gm->group_id;
                 }
+            }
+
+            self::cacheSet($keypart, implode(',', $ids));
+        }
+
+        $groups = array();
+
+        foreach ($ids as $id) {
+            $group = User_group::staticGet('id', $id);
+            if (!empty($group)) {
+                $groups[] = $group;
             }
         }
 
-        $groups = new User_group();
+        return new ArrayWrapper($groups);
+    }
 
-        $cnt = $groups->query(sprintf($qry, $this->id));
+    function isTagged($peopletag)
+    {
+        $tag = Profile_tag::pkeyGet(array('tagger' => $peopletag->tagger,
+                                          'tagged' => $this->id,
+                                          'tag'    => $peopletag->tag));
+        return !empty($tag);
+    }
 
-        return $groups;
+    function canTag($tagged)
+    {
+        if (empty($tagged)) {
+            return false;
+        }
+
+        if ($tagged->id == $this->id) {
+            return true;
+        }
+
+        $all = common_config('peopletag', 'allow_tagging', 'all');
+        $local = common_config('peopletag', 'allow_tagging', 'local');
+        $remote = common_config('peopletag', 'allow_tagging', 'remote');
+        $subs = common_config('peopletag', 'allow_tagging', 'subs');
+
+        if ($all) {
+            return true;
+        }
+
+        $tagged_user = $tagged->getUser();
+        if (!empty($tagged_user)) {
+            if ($local) {
+                return true;
+            }
+        } else if ($subs) {
+            return (Subscription::exists($this, $tagged) ||
+                    Subscription::exists($tagged, $this));
+        } else if ($remote) {
+            return true;
+        }
+        return false;
+    }
+
+    function getLists($auth_user, $offset=0, $limit=null, $since_id=0, $max_id=0)
+    {
+        $ids = array();
+
+        $keypart = sprintf('profile:lists:%d', $this->id);
+
+        $idstr = self::cacheGet($keypart);
+
+        if ($idstr !== false) {
+            $ids = explode(',', $idstr);
+        } else {
+            $list = new Profile_list();
+            $list->selectAdd();
+            $list->selectAdd('id');
+            $list->tagger = $this->id;
+            $list->selectAdd('id as "cursor"');
+
+            if ($since_id>0) {
+               $list->whereAdd('id > '.$since_id);
+            }
+
+            if ($max_id>0) {
+                $list->whereAdd('id <= '.$max_id);
+            }
+
+            if($offset>=0 && !is_null($limit)) {
+                $list->limit($offset, $limit);
+            }
+
+            $list->orderBy('id DESC');
+
+            if ($list->find()) {
+                while ($list->fetch()) {
+                    $ids[] = $list->id;
+                }
+            }
+
+            self::cacheSet($keypart, implode(',', $ids));
+        }
+
+        $showPrivate = (($auth_user instanceof User ||
+                            $auth_user instanceof Profile) &&
+                        $auth_user->id === $this->id);
+
+        $lists = array();
+
+        foreach ($ids as $id) {
+            $list = Profile_list::staticGet('id', $id);
+            if (!empty($list) &&
+                ($showPrivate || !$list->private)) {
+
+                if (!isset($list->cursor)) {
+                    $list->cursor = $list->id;
+                }
+
+                $lists[] = $list;
+            }
+        }
+
+        return new ArrayWrapper($lists);
+    }
+
+    function getOtherTags($auth_user=null, $offset=0, $limit=null, $since_id=0, $max_id=0)
+    {
+        $lists = new Profile_list();
+
+        $tags = new Profile_tag();
+        $tags->tagged = $this->id;
+
+        $lists->joinAdd($tags);
+        #@fixme: postgres (round(date_part('epoch', my_date)))
+        $lists->selectAdd('unix_timestamp(profile_tag.modified) as "cursor"');
+
+        if ($auth_user instanceof User || $auth_user instanceof Profile) {
+            $lists->whereAdd('( ( profile_list.private = false ) ' .
+                             'OR ( profile_list.tagger = ' . $auth_user->id . ' AND ' .
+                             'profile_list.private = true ) )');
+        } else {
+            $lists->private = false;
+        }
+
+        if ($since_id>0) {
+           $lists->whereAdd('cursor > '.$since_id);
+        }
+
+        if ($max_id>0) {
+            $lists->whereAdd('cursor <= '.$max_id);
+        }
+
+        if($offset>=0 && !is_null($limit)) {
+            $lists->limit($offset, $limit);
+        }
+
+        $lists->orderBy('profile_tag.modified DESC');
+        $lists->find();
+
+        return $lists;
+    }
+
+    function getPrivateTags($offset=0, $limit=null, $since_id=0, $max_id=0)
+    {
+        $tags = new Profile_list();
+        $tags->private = true;
+        $tags->tagger = $this->id;
+
+        if ($since_id>0) {
+           $tags->whereAdd('id > '.$since_id);
+        }
+
+        if ($max_id>0) {
+            $tags->whereAdd('id <= '.$max_id);
+        }
+
+        if($offset>=0 && !is_null($limit)) {
+            $tags->limit($offset, $limit);
+        }
+
+        $tags->orderBy('id DESC');
+        $tags->find();
+
+        return $tags;
+    }
+
+    function hasLocalTags()
+    {
+        $tags = new Profile_tag();
+
+        $tags->joinAdd(array('tagger', 'user:id'));
+        $tags->whereAdd('tagged  = '.$this->id);
+        $tags->whereAdd('tagger != '.$this->id);
+
+        $tags->limit(0, 1);
+        $tags->fetch();
+
+        return ($tags->N == 0) ? false : true;
+    }
+
+    function getTagSubscriptions($offset=0, $limit=null, $since_id=0, $max_id=0)
+    {
+        $lists = new Profile_list();
+        $subs = new Profile_tag_subscription();
+
+        $lists->joinAdd($subs);
+        #@fixme: postgres (round(date_part('epoch', my_date)))
+        $lists->selectAdd('unix_timestamp(profile_tag_subscription.created) as "cursor"');
+
+        $lists->whereAdd('profile_tag_subscription.profile_id = '.$this->id);
+
+        if ($since_id>0) {
+           $lists->whereAdd('cursor > '.$since_id);
+        }
+
+        if ($max_id>0) {
+            $lists->whereAdd('cursor <= '.$max_id);
+        }
+
+        if($offset>=0 && !is_null($limit)) {
+            $lists->limit($offset, $limit);
+        }
+
+        $lists->orderBy('"cursor" DESC');
+        $lists->find();
+
+        return $lists;
     }
 
     /**
@@ -287,54 +502,12 @@ class Profile extends Memcached_DataObject
         } else {
             if (Event::handle('StartJoinGroup', array($group, $this))) {
                 $join = Group_member::join($group->id, $this->id);
+                self::blow('profile:groups:%d', $this->id);
                 Event::handle('EndJoinGroup', array($group, $this));
             }
         }
         if ($join) {
             // Send any applicable notifications...
-            $join->notify();
-        }
-        return $join;
-    }
-
-    /**
-     * Cancel a pending group join...
-     *
-     * @param User_group $group
-     */
-    function cancelJoinGroup(User_group $group)
-    {
-        $request = Group_join_queue::pkeyGet(array('profile_id' => $this->id,
-                                                   'group_id' => $group->id));
-        if ($request) {
-            if (Event::handle('StartCancelJoinGroup', array($group, $this))) {
-                $request->delete();
-                Event::handle('EndCancelJoinGroup', array($group, $this));
-            }
-        }
-    }
-
-    /**
-     * Complete a pending group join on our end...
-     *
-     * @param User_group $group
-     */
-    function completeJoinGroup(User_group $group)
-    {
-        $join = null;
-        $request = Group_join_queue::pkeyGet(array('profile_id' => $this->id,
-                                                   'group_id' => $group->id));
-        if ($request) {
-            if (Event::handle('StartJoinGroup', array($group, $this))) {
-                $join = Group_member::join($group->id, $this->id);
-                $request->delete();
-                Event::handle('EndJoinGroup', array($group, $this));
-            }
-        } else {
-            // TRANS: Exception thrown trying to approve a non-existing group join request.
-            throw new Exception(_('Invalid group join approval: not pending.'));
-        }
-        if ($join) {
             $join->notify();
         }
         return $join;
@@ -349,6 +522,7 @@ class Profile extends Memcached_DataObject
     {
         if (Event::handle('StartLeaveGroup', array($group, $this))) {
             Group_member::leave($group->id, $this->id);
+            self::blow('profile:groups:%d', $this->id);
             Event::handle('EndLeaveGroup', array($group, $this));
         }
     }
@@ -397,6 +571,61 @@ class Profile extends Memcached_DataObject
         }
 
         return new ArrayWrapper($profiles);
+    }
+
+    function getTaggedSubscribers($tag)
+    {
+        $qry =
+          'SELECT profile.* ' .
+          'FROM profile JOIN (subscription, profile_tag, profile_list) ' .
+          'ON profile.id = subscription.subscriber ' .
+          'AND profile.id = profile_tag.tagged ' .
+          'AND profile_tag.tagger = profile_list.tagger AND profile_tag.tag = profile_list.tag ' .
+          'WHERE subscription.subscribed = %d ' .
+          'AND subscription.subscribed != subscription.subscriber ' .
+          'AND profile_tag.tagger = %d AND profile_tag.tag = "%s" ' .
+          'AND profile_list.private = false ' .
+          'ORDER BY subscription.created DESC';
+
+        $profile = new Profile();
+        $tagged = array();
+
+        $cnt = $profile->query(sprintf($qry, $this->id, $this->id, $tag));
+
+        while ($profile->fetch()) {
+            $tagged[] = clone($profile);
+        }
+        return $tagged;
+    }
+
+    /**
+     * Get pending subscribers, who have not yet been approved.
+     *
+     * @param int $offset
+     * @param int $limit
+     * @return Profile
+     */
+    function getRequests($offset=0, $limit=null)
+    {
+        $qry =
+          'SELECT profile.* ' .
+          'FROM profile JOIN subscription_queue '.
+          'ON profile.id = subscription_queue.subscriber ' .
+          'WHERE subscription_queue.subscribed = %d ' .
+          'ORDER BY subscription_queue.created DESC ';
+
+        if ($limit != null) {
+            if (common_config('db','type') == 'pgsql') {
+                $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
+            } else {
+                $qry .= ' LIMIT ' . $offset . ', ' . $limit;
+            }
+        }
+
+        $members = new Profile();
+
+        $members->query(sprintf($qry, $this->id));
+        return $members;
     }
 
     function subscriptionCount()
@@ -458,6 +687,17 @@ class Profile extends Memcached_DataObject
     }
 
     /**
+     * Check if a pending subscription request is outstanding for this...
+     *
+     * @param Profile $other
+     * @return boolean
+     */
+    function hasPendingSubscription($other)
+    {
+        return Subscription_queue::exists($this, $other);
+    }
+
+    /**
      * Are these two profiles subscribed to each other?
      *
      * @param Profile $other
@@ -471,34 +711,6 @@ class Profile extends Memcached_DataObject
 
     function hasFave($notice)
     {
-        $cache = Cache::instance();
-
-        // XXX: Kind of a hack.
-
-        if (!empty($cache)) {
-            // This is the stream of favorite notices, in rev chron
-            // order. This forces it into cache.
-
-            $ids = Fave::idStream($this->id, 0, CachingNoticeStream::CACHE_WINDOW);
-
-            // If it's in the list, then it's a fave
-
-            if (in_array($notice->id, $ids)) {
-                return true;
-            }
-
-            // If we're not past the end of the cache window,
-            // then the cache has all available faves, so this one
-            // is not a fave.
-
-            if (count($ids) < CachingNoticeStream::CACHE_WINDOW) {
-                return false;
-            }
-
-            // Otherwise, cache doesn't have all faves;
-            // fall through to the default
-        }
-
         $fave = Fave::pkeyGet(array('user_id' => $this->id,
                                     'notice_id' => $notice->id));
         return ((is_null($fave)) ? false : true);
@@ -1089,5 +1301,73 @@ class Profile extends Memcached_DataObject
         }
 
         return $profile;
+    }
+
+    function canRead(Notice $notice)
+    {
+        if ($notice->scope & Notice::SITE_SCOPE) {
+            $user = $this->getUser();
+            if (empty($user)) {
+                return false;
+            }
+        }
+
+        if ($notice->scope & Notice::ADDRESSEE_SCOPE) {
+            $replies = $notice->getReplies();
+
+            if (!in_array($this->id, $replies)) {
+                $groups = $notice->getGroups();
+
+                $foundOne = false;
+
+                foreach ($groups as $group) {
+                    if ($this->isMember($group)) {
+                        $foundOne = true;
+                        break;
+                    }
+                }
+
+                if (!$foundOne) {
+                    return false;
+                }
+            }
+        }
+
+        if ($notice->scope & Notice::FOLLOWER_SCOPE) {
+            $author = $notice->getProfile();
+            if (!Subscription::exists($this, $author)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    static function current()
+    {
+        $user = common_current_user();
+        if (empty($user)) {
+            $profile = null;
+        } else {
+            $profile = $user->getProfile();
+        }
+        return $profile;
+    }
+
+    /**
+     * Magic function called at serialize() time.
+     *
+     * We use this to drop a couple process-specific references
+     * from DB_DataObject which can cause trouble in future
+     * processes.
+     *
+     * @return array of variable names to include in serialization.
+     */
+
+    function __sleep()
+    {
+        $vars = parent::__sleep();
+        $skip = array('_user');
+        return array_diff($vars, $skip);
     }
 }

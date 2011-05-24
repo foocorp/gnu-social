@@ -28,6 +28,7 @@ create table status_network_tag (
     tag varchar(64) comment 'tag name',
     created datetime not null comment 'date the record was created',
 
-    constraint primary key (site_id, tag)
+    constraint primary key (site_id, tag),
+    index status_network_tag_tag_idx (tag)
 ) ENGINE=InnoDB CHARACTER SET utf8 COLLATE utf8_general_ci;
 

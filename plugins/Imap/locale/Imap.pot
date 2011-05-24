@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,33 +16,41 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: imapmailhandler.php:30
+#. TRANS: E-mail subject in case of an error.
+#: imapmailhandler.php:31
 msgid "Error"
 msgstr ""
 
-#: imapmanager.php:51
+#. TRANS: Exception thrown when the ImapManager is used incorrectly in the code.
+#: imapmanager.php:52
 msgid ""
-"ImapManager should be created using its constructor, not the using the "
-"static get method."
+"ImapManager should be created using its constructor, not using the static "
+"\"get()\" method."
 msgstr ""
 
-#: ImapPlugin.php:54
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+#: ImapPlugin.php:55
 msgid "A mailbox must be specified."
 msgstr ""
 
-#: ImapPlugin.php:57
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+#: ImapPlugin.php:59
 msgid "A user must be specified."
 msgstr ""
 
-#: ImapPlugin.php:60
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+#: ImapPlugin.php:63
 msgid "A password must be specified."
 msgstr ""
 
-#: ImapPlugin.php:63
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+#. TRANS: poll_frequency is a setting that should not be translated.
+#: ImapPlugin.php:68
 msgid "A poll_frequency must be specified."
 msgstr ""
 
-#: ImapPlugin.php:103
+#. TRANS: Plugin description.
+#: ImapPlugin.php:109
 msgid ""
 "The IMAP plugin allows for StatusNet to check a POP or IMAP mailbox for "
 "incoming mail containing user posts."

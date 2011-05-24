@@ -76,7 +76,7 @@ class RepliesAction extends OwnerDesignAction
         $profile = $this->user->getProfile();
 
         if (!$profile) {
-            // TRANS: Server error displayed when trying to reply to a user without a profile.
+            // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'));
             return false;
         }

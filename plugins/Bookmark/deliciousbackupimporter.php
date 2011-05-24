@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * Importer class for Delicious.com backups
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class DeliciousBackupImporter extends QueueHandler
 {
     /**
@@ -52,7 +51,6 @@ class DeliciousBackupImporter extends QueueHandler
      *
      * @return string transport string
      */
-
     function transport()
     {
         return 'dlcsback';
@@ -72,17 +70,23 @@ class DeliciousBackupImporter extends QueueHandler
      *
      * @return boolean success value
      */
-
     function handle($data)
     {
         list($user, $body) = $data;
 
         $doc = $this->importHTML($body);
 
+        // If we can't parse it, it's no good
+
+        if (empty($doc)) {
+            return true;
+        }
+
         $dls = $doc->getElementsByTagName('dl');
 
         if ($dls->length != 1) {
-            throw new ClientException(_("Bad import file."));
+            // TRANS: Client exception thrown when a file upload is incorrect.
+            throw new ClientException(_m('Bad import file.'));
         }
 
         $dl = $dls->item(0);
@@ -112,9 +116,11 @@ class DeliciousBackupImporter extends QueueHandler
                 case 'dd':
                     $dd = $child;
 
-                    // This <dd> contains a description for the bookmark in
-                    // the preceding <dt> node.
-                    $saved = $this->importBookmark($user, $dt, $dd);
+                    if (!empty($dt)) {
+                        // This <dd> contains a description for the bookmark in
+                        // the preceding <dt> node.
+                        $saved = $this->importBookmark($user, $dt, $dd);
+                    }
 
                     $dt = null;
                     $dd = null;
@@ -123,7 +129,7 @@ class DeliciousBackupImporter extends QueueHandler
                     common_log(LOG_INFO, 'Skipping the <p> in the <dl>.');
                     break;
                 default:
-                    common_log(LOG_WARNING, 
+                    common_log(LOG_WARNING,
                                "Unexpected element $child->tagName ".
                                " found in import.");
                 }
@@ -146,12 +152,12 @@ class DeliciousBackupImporter extends QueueHandler
 
     /**
      * Import a single bookmark
-     * 
+     *
      * Takes a <dt>/<dd> pair. The <dt> has a single
      * <a> in it with some non-standard attributes.
-     * 
+     *
      * A <dt><dt><dd> sequence will appear as a <dt> with
-     * anothe <dt> as a child. We handle this case recursively. 
+     * anothe <dt> as a child. We handle this case recursively.
      *
      * @param User       $user User to import data as
      * @param DOMElement $dt   <dt> element
@@ -159,13 +165,13 @@ class DeliciousBackupImporter extends QueueHandler
      *
      * @return Notice imported notice
      */
-
     function importBookmark($user, $dt, $dd = null)
     {
         $as = $dt->getElementsByTagName('a');
 
         if ($as->length == 0) {
-            throw new ClientException(_("No <A> tag in a <DT>."));
+            // TRANS: Client exception thrown when a bookmark in an import file is incorrectly formatted.
+            throw new ClientException(_m("No <A> tag in a <DT>."));
         }
 
         $a = $as->item(0);
@@ -173,7 +179,8 @@ class DeliciousBackupImporter extends QueueHandler
         $private = $a->getAttribute('private');
 
         if ($private != 0) {
-            throw new ClientException(_('Skipping private bookmark.'));
+            // TRANS: Client exception thrown when a bookmark in an import file is private.
+            throw new ClientException(_m('Skipping private bookmark.'));
         }
 
         if (!empty($dd)) {
@@ -306,5 +313,4 @@ class DeliciousBackupImporter extends QueueHandler
             $this->fixListItem($node);
         }
     }
-
 }

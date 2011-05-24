@@ -84,6 +84,7 @@ class PluginEnableAction extends Action
         $token = $this->trimmed('token');
 
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token.'.
                                  ' Try again, please.'));
             return false;
@@ -94,7 +95,7 @@ class PluginEnableAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            // TRANS: Client error displayed when trying to enable or disable a plugin while not logged in.
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
             return false;
         }

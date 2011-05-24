@@ -104,6 +104,6 @@ class SearchUnsubForm extends SearchSubForm
 
     function formActions()
     {
-        $this->out->submit('submit', _('Unsubscribe'), 'submit', null, _m('Unsubscribe from this search'));
+        $this->out->submit('submit', _m('BUTTON','Unsubscribe'), 'submit', null, _m('Unsubscribe from this search'));
     }
 }

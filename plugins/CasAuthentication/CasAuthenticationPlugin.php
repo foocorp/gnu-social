@@ -125,12 +125,15 @@ class CasAuthenticationPlugin extends AuthenticationPlugin
     function onInitializePlugin(){
         parent::onInitializePlugin();
         if(!isset($this->server)){
+            // TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
             throw new Exception(_m("Specifying a server is required."));
         }
         if(!isset($this->port)){
+            // TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
             throw new Exception(_m("Specifying a port is required."));
         }
         if(!isset($this->path)){
+            // TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
             throw new Exception(_m("Specifying a path is required."));
         }
         //These values need to be accessible to a action object

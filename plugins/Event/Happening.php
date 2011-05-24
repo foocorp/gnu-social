@@ -47,7 +47,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      Managed_DataObject
  */
-
 class Happening extends Managed_DataObject
 {
     const OBJECT_TYPE = 'http://activitystrea.ms/schema/1.0/event';
@@ -122,7 +121,8 @@ class Happening extends Managed_DataObject
         if (array_key_exists('uri', $options)) {
             $other = Happening::staticGet('uri', $options['uri']);
             if (!empty($other)) {
-                throw new ClientException(_('Event already exists.'));
+                // TRANS: Client exception thrown when trying to create an event that already exists.
+                throw new ClientException(_m('Event already exists.'));
             }
         }
 
@@ -154,25 +154,30 @@ class Happening extends Managed_DataObject
 
         // XXX: does this get truncated?
 
-        $content = sprintf(_('"%s" %s - %s (%s): %s'),
+        // TRANS: Event description. %1$s is a title, %2$s is start time, %3$s is end time,
+	// TRANS: %4$s is location, %5$s is a description.
+        $content = sprintf(_m('"%1$s" %2$s - %3$s (%4$s): %5$s'),
                            $title,
-                           common_exact_date($start_time),
-                           common_exact_date($end_time),
+                           common_exact_date($ev->start_time),
+                           common_exact_date($ev->end_time),
                            $location,
                            $description);
 
-        $rendered = sprintf(_('<span class="vevent">'.
-                              '<span class="summary">%s</span> '.
-                              '<abbr class="dtstart" title="%s">%s</a> - '.
-                              '<abbr class="dtend" title="%s">%s</a> '.
-                              '(<span class="location">%s</span>): '.
-                              '<span class="description">%s</span> '.
+        // TRANS: Rendered event description. %1$s is a title, %2$s is start time, %3$s is start time,
+	// TRANS: %4$s is end time, %5$s is end time, %6$s is location, %7$s is description.
+	// TRANS: Class names should not be translated.
+        $rendered = sprintf(_m('<span class="vevent">'.
+                              '<span class="summary">%1$s</span> '.
+                              '<abbr class="dtstart" title="%2$s">%3$s</a> - '.
+                              '<abbr class="dtend" title="%4$s">%5$s</a> '.
+                              '(<span class="location">%6$s</span>): '.
+                              '<span class="description">%7$s</span> '.
                               '</span>'),
                             htmlspecialchars($title),
-                            htmlspecialchars(common_date_iso8601($start_time)),
-                            htmlspecialchars(common_exact_date($start_time)),
-                            htmlspecialchars(common_date_iso8601($end_time)),
-                            htmlspecialchars(common_exact_date($end_time)),
+                            htmlspecialchars(common_date_iso8601($ev->start_time)),
+                            htmlspecialchars(common_exact_date($ev->start_time)),
+                            htmlspecialchars(common_date_iso8601($ev->end_time)),
+                            htmlspecialchars(common_exact_date($ev->end_time)),
                             htmlspecialchars($location),
                             htmlspecialchars($description));
 
@@ -213,7 +218,6 @@ class Happening extends Managed_DataObject
 
     function getRSVP($profile)
     {
-        common_log(LOG_DEBUG, "Finding RSVP for " . $profile->id . ', ' . $this->id);
         return RSVP::pkeyGet(array('profile_id' => $profile->id,
                                    'event_id' => $this->id));
     }

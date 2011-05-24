@@ -43,7 +43,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class EmailSummaryPlugin extends Plugin
 {
     /**
@@ -51,13 +50,11 @@ class EmailSummaryPlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onCheckSchema()
     {
         $schema = Schema::get();
 
         // For storing user-submitted flags on profiles
-
         $schema->ensureTable('email_summary_status',
                              array(new ColumnDef('user_id', 'integer', null,
                                                  false, 'PRI'),
@@ -80,9 +77,8 @@ class EmailSummaryPlugin extends Plugin
      * @param string $cls Name of the class to be loaded
      *
      * @return boolean hook value; true means continue processing, false means stop.
-     * 
+     *
      */
-    
     function onAutoload($cls)
     {
         $dir = dirname(__FILE__);
@@ -107,9 +103,7 @@ class EmailSummaryPlugin extends Plugin
      * @param array &$versions array of version data
      *
      * @return boolean hook value; true means continue processing, false means stop.
-     * 
      */
-    
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'EmailSummary',
@@ -117,86 +111,84 @@ class EmailSummaryPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:EmailSummary',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Send an email summary of the inbox to users.'));
         return true;
     }
 
     /**
      * Register our queue handlers
-     * 
+     *
      * @param QueueManager $qm Current queue manager
-     * 
+     *
      * @return boolean hook value
      */
-    
     function onEndInitializeQueueManager($qm)
     {
         $qm->connect('sitesum', 'SiteEmailSummaryHandler');
         $qm->connect('usersum', 'UserEmailSummaryHandler');
         return true;
     }
-    
+
     /**
      * Add a checkbox to turn off email summaries
-     * 
+     *
      * @param Action $action Action being executed (emailsettings)
-     * 
+     *
      * @return boolean hook value
      */
-    
     function onEndEmailFormData($action)
     {
         $user = common_current_user();
-	
+
         $action->elementStart('li');
         $action->checkbox('emailsummary',
                           // TRANS: Checkbox label in e-mail preferences form.
-                          _('Send me a periodic summary of updates from my network.'),
+                          _m('Send me a periodic summary of updates from my network'),
                           Email_summary_status::getSendSummary($user->id));
         $action->elementEnd('li');
         return true;
     }
-    
+
     /**
      * Add a checkbox to turn off email summaries
-     * 
+     *
      * @param Action $action Action being executed (emailsettings)
-     * 
+     *
      * @return boolean hook value
      */
-    
     function onEndEmailSaveForm($action)
     {
         $sendSummary = $action->boolean('emailsummary');
-	
+
         $user = common_current_user();
-	
+
         if (!empty($user)) {
-	    
+
             $ess = Email_summary_status::staticGet('user_id', $user->id);
-	    
+
             if (empty($ess)) {
-		
+
                 $ess = new Email_summary_status();
 
                 $ess->user_id      = $user->id;
                 $ess->send_summary = $sendSummary;
                 $ess->created      = common_sql_now();
                 $ess->modified     = common_sql_now();
-		
+
                 $ess->insert();
-		
+
             } else {
-		
+
                 $orig = clone($ess);
-		
+
                 $ess->send_summary = $sendSummary;
                 $ess->modified     = common_sql_now();
-		
+
                 $ess->update($orig);
             }
         }
-	
+
         return true;
     }
 }

@@ -1,0 +1,10 @@
+Welcome to %%site.name%%. 
+
+From here, you may want to...
+
+* Go to [your profile](%%user.profileurl%%) and post your first message.
+* [Search for people](%%action.peoplesearch%%) that you may know or that share your interests.
+* Update your [profile settings](%%action.profilesettings%%) to tell others more about you.
+* Read over the [online docs](%%doc.help%%) for features you may have missed.
+
+Thanks for signing up and we hope you enjoy using this service.

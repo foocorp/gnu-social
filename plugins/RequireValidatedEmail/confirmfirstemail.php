@@ -66,7 +66,7 @@ class ConfirmfirstemailAction extends Action
         $user = common_current_user();
 
         if (!empty($user)) {
-            throw new ClientException(_('You are already logged in.'));
+            throw new ClientException(_m('You are already logged in.'));
         }
 
         $this->code = $this->trimmed('code');
@@ -74,25 +74,25 @@ class ConfirmfirstemailAction extends Action
         $this->confirm = Confirm_address::staticGet('code', $this->code);
 
         if (empty($this->confirm)) {
-            throw new ClientException(_('Confirmation code not found.'));
+            throw new ClientException(_m('Confirmation code not found.'));
             return;
         }
 
         $this->user = User::staticGet('id', $this->confirm->user_id);
 
         if (empty($this->user)) {
-            throw new ServerException(_('No user for that confirmation code.'));
+            throw new ServerException(_m('No user for that confirmation code.'));
         }
 
         $type = $this->confirm->address_type;
 
         if ($type != 'email') {
-            throw new ServerException(sprintf(_('Unrecognized address type %s.'), $type));
+            throw new ServerException(sprintf(_m('Unrecognized address type %s.'), $type));
         }
 
         if (!empty($this->user->email) && $this->user->email == $confirm->address) {
             // TRANS: Client error for an already confirmed email/jabber/sms address.
-            throw new ClientException(_('That address has already been confirmed.'));
+            throw new ClientException(_m('That address has already been confirmed.'));
         }
 
         if ($this->isPost()) {
@@ -103,10 +103,10 @@ class ConfirmfirstemailAction extends Action
             $confirm  = $this->trimmed('confirm');
 
             if (strlen($password) < 6) {
-                throw new ClientException(_('Password too short.'));
+                throw new ClientException(_m('Password too short.'));
                 return;
             } else if (0 != strcmp($password, $confirm)) {
-                throw new ClientException(_("Passwords don't match."));
+                throw new ClientException(_m("Passwords do not match."));
                 return;
             }
 
@@ -162,7 +162,7 @@ class ConfirmfirstemailAction extends Action
     function showContent()
     {
         $this->element('p', 'instructions',
-                       sprintf(_('You have confirmed the email address for your new user account %s. '.
+                       sprintf(_m('You have confirmed the email address for your new user account %s. '.
                                  'Use the form below to set your new password.'),
                                $this->user->nickname));
 
@@ -172,7 +172,7 @@ class ConfirmfirstemailAction extends Action
 
     function title()
     {
-        return _('Set a password');
+        return _m('Set a password');
     }
 }
 
@@ -188,7 +188,7 @@ class ConfirmFirstEmailForm extends Form
 
     function formLegend()
     {
-        return _('Confirm email');
+        return _m('Confirm email');
     }
 
     function action()
@@ -206,18 +206,18 @@ class ConfirmFirstEmailForm extends Form
     {
         $this->out->elementStart('ul', 'form_data');
         $this->out->elementStart('li');
-        $this->out->password('password', _('New password'),
-                             _('6 or more characters.'));
+        $this->out->password('password', _m('New password'),
+                             _m('6 or more characters.'));
         $this->out->elementEnd('li');
         $this->out->elementStart('li');
-        $this->out->password('confirm', _('Confirm'),
-                             _('Same as password above.'));
+        $this->out->password('confirm', _m('Confirm'),
+                             _m('Same as password above.'));
         $this->out->elementEnd('li');
         $this->out->elementEnd('ul');
     }
 
     function formActions()
     {
-        $this->out->submit('save', _('Save'));
+        $this->out->submit('save', _m('Save'));
     }
 }

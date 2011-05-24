@@ -44,10 +44,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
-
 class OembedproxyAction extends OembedAction
 {
-
     function handle($args)
     {
         // Trigger short error responses; not a human-readable web page.
@@ -56,18 +54,21 @@ class OembedproxyAction extends OembedAction
         // We're not a general oEmbed proxy service; limit to valid sessions.
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
-            $this->clientError(_('There was a problem with your session token. '.
+            // TRANS: Client error displayed when the session token does not match or is not given.
+            $this->clientError(_m('There was a problem with your session token. '.
                                  'Try again, please.'));
         }
 
         $format = $this->arg('format');
         if ($format && $format != 'json') {
-            throw new ClientException('Invalid format; only JSON supported.');
+            // TRANS: Client exception thrown when requesting a different format than JSON.
+            throw new ClientException(_m('Invalid format; only JSON supported.'));
         }
 
         $url = $this->arg('url');
         if (!common_valid_http_url($url)) {
-            throw new ClientException('Invalid URL.');
+            // TRANS: Client exception thrown when not providing a valid URL.
+            throw new ClientException(_m('Invalid URL.'));
         }
 
         $params = array();
@@ -83,5 +84,4 @@ class OembedproxyAction extends OembedAction
         $this->init_document('json');
         print json_encode($data);
     }
-
 }

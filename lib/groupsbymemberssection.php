@@ -68,7 +68,7 @@ class GroupsByMembersSection extends GroupSection
     function title()
     {
         // TRANS: Title for groups with the most members section.
-        return _('Groups with most members');
+        return _('Popular groups');
     }
 
     function divId()

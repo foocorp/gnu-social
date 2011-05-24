@@ -129,7 +129,7 @@ class MirrorSettingsAction extends SettingsAction
             header('Content-Type: text/html;charset=utf-8');
             $this->elementStart('html');
             $this->elementStart('head');
-            $this->element('title', null, _('Provider add'));
+            $this->element('title', null, _m('Provider add'));
             $this->elementEnd('head');
             $this->elementStart('body');
 

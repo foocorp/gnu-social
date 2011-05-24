@@ -47,6 +47,7 @@ class PushCallbackAction extends Action
         $feedid = $this->arg('feed');
         common_log(LOG_INFO, "POST for feed id $feedid");
         if (!$feedid) {
+            // TRANS: Server exception thrown when referring to a non-existing or empty feed.
             throw new ServerException(_m('Empty or invalid feed id.'), 400);
         }
 

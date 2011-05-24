@@ -285,7 +285,7 @@ class TemplateAction extends Action
       header('WWW-Authenticate: Basic realm="StatusNet API"');
 
       // cancelled the browser login form
-      $this->clientError(_('Authentication error!'), $code = 401);
+      $this->clientError(_m('Authentication error!'), $code = 401);
 
     } else {
 
@@ -299,7 +299,7 @@ class TemplateAction extends Action
 
         // verify that user is admin
         if (!($user->id == 1))
-          $this->clientError(_('Only User #1 can update the template.'), $code = 401);
+          $this->clientError(_m('Only User #1 can update the template.'), $code = 401);
 
         // open the old template
         $tpl_file = $this->templateFolder() . '/index.html';
@@ -316,7 +316,7 @@ class TemplateAction extends Action
       } else {
 
         // bad username and password
-        $this->clientError(_('Authentication error!'), $code = 401);
+        $this->clientError(_m('Authentication error!'), $code = 401);
 
       }
 

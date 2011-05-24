@@ -21,9 +21,9 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 require_once 'libomb/datastore.php';
 
+// @todo FIXME: Class documentation missing.
 class StatusNetOAuthDataStore extends OAuthDataStore
 {
-
     // We keep a record of who's contacted us
     function lookup_consumer($consumer_key)
     {
@@ -69,9 +69,7 @@ class StatusNetOAuthDataStore extends OAuthDataStore
     // http://oauth.net/core/1.0/#nonce
     // "The Consumer SHALL then generate a Nonce value that is unique for
     // all requests with that timestamp."
-
     // XXX: It's not clear why the token is here
-
     function lookup_nonce($consumer, $token, $nonce, $timestamp)
     {
         $n = new Nonce();
@@ -104,7 +102,6 @@ class StatusNetOAuthDataStore extends OAuthDataStore
     }
 
     // defined in OAuthDataStore, but not implemented anywhere
-
     function fetch_request_token($consumer)
     {
         return $this->new_request_token($consumer);
@@ -161,7 +158,6 @@ class StatusNetOAuthDataStore extends OAuthDataStore
     }
 
     // defined in OAuthDataStore, but not implemented anywhere
-
     function fetch_access_token($consumer)
     {
         return $this->new_access_token($consumer);
@@ -232,7 +228,7 @@ class StatusNetOAuthDataStore extends OAuthDataStore
      **/
     public function getProfile($identifier_uri) {
         /* getProfile is only used for remote profiles by libomb.
-           TODO: Make it work with local ones anyway. */
+           @TODO: Make it work with local ones anyway. */
         $remote = Remote_profile::staticGet('uri', $identifier_uri);
         if (!$remote) throw new Exception('No such remote profile');
         $profile = Profile::staticGet('id', $remote->id);
@@ -291,6 +287,7 @@ class StatusNetOAuthDataStore extends OAuthDataStore
                 $profile->created = DB_DataObject_Cast::dateTime(); # current time
                 $id = $profile->insert();
                 if (!$id) {
+                    // TRANS: Exception thrown when creating a new profile fails in OAuth store.
                     throw new Exception(_('Error inserting new profile.'));
                 }
                 $remote->id = $id;
@@ -299,6 +296,7 @@ class StatusNetOAuthDataStore extends OAuthDataStore
             $avatar_url = $omb_profile->getAvatarURL();
             if ($avatar_url) {
                 if (!$this->add_avatar($profile, $avatar_url)) {
+                    // TRANS: Exception thrown when creating a new avatar fails in OAuth store.
                     throw new Exception(_('Error inserting avatar.'));
                 }
             } else {
@@ -314,11 +312,13 @@ class StatusNetOAuthDataStore extends OAuthDataStore
 
             if ($exists) {
                 if (!$remote->update($orig_remote)) {
+                    // TRANS: Exception thrown when updating a remote profile fails in OAuth store.
                     throw new Exception(_('Error updating remote profile.'));
                 }
             } else {
                 $remote->created = DB_DataObject_Cast::dateTime(); # current time
                 if (!$remote->insert()) {
+                    // TRANS: Exception thrown when creating a remote profile fails in OAuth store.
                     throw new Exception(_('Error inserting remote profile.'));
                 }
             }
@@ -479,6 +479,7 @@ class StatusNetOAuthDataStore extends OAuthDataStore
 
         if (!$subscriber->hasRight(Right::SUBSCRIBE)) {
             common_log(LOG_INFO, __METHOD__ . ": remote subscriber banned ($subscriber_uri subbing to $subscribed_user_uri)");
+            // TRANS: Error message displayed to a banned user when they try to subscribe.
             return _('You have been banned from subscribing.');
         }
 
@@ -504,7 +505,8 @@ class StatusNetOAuthDataStore extends OAuthDataStore
 
         if (!$result) {
             common_log_db_error($sub, ($sub_exists) ? 'UPDATE' : 'INSERT', __FILE__);
-            throw new Exception(_('Couldn\'t insert new subscription.'));
+            // TRANS: Exception thrown when creating a new subscription fails in OAuth store.
+            throw new Exception(_('Could not insert new subscription.'));
             return;
         }
 
@@ -516,4 +518,3 @@ class StatusNetOAuthDataStore extends OAuthDataStore
         }
     }
 }
-?>

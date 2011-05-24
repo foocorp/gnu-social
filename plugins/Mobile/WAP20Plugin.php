@@ -31,7 +31,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-
 /**
  * Superclass for plugin to output XHTML Mobile Profile
  *
@@ -44,13 +43,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class WAP20Plugin extends Plugin
 {
-
     function onStartShowHTML($action)
     {
 
     }
-
 }
-
-
-?>

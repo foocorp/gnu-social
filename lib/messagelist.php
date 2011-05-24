@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * The message list widget
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 abstract class MessageList extends Widget
 {
     var $message;
@@ -60,10 +59,10 @@ abstract class MessageList extends Widget
         parent::__construct($out);
         $this->message = $message;
     }
-    
+
     /**
      * Show the widget
-     * 
+     *
      * Uses newItem() to create each new item.
      *
      * @return integer count of messages seen.
@@ -74,6 +73,7 @@ abstract class MessageList extends Widget
 
             $this->out->elementStart('div', array('id' =>'notices_primary'));
 
+            // TRANS: Header in message list.
             $this->out->element('h2', null, _('Messages'));
 
             $this->out->elementStart('ul', 'notices messages');
@@ -85,7 +85,7 @@ abstract class MessageList extends Widget
                 if ($cnt > MESSAGES_PER_PAGE) {
                     break;
                 }
-                
+
                 $mli = $this->newItem($this->message);
 
                 $mli->show();

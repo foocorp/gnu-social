@@ -78,22 +78,6 @@ class ApiStatusesRetweetAction extends ApiAuthAction
 
         $this->user = $this->auth_user;
 
-        if ($this->user->id == $this->original->profile_id) {
-            // TRANS: Client error displayed trying to repeat an own notice through the API.
-            $this->clientError(_('Cannot repeat your own notice.'),
-                               400, $this->format);
-            return false;
-        }
-
-        $profile = $this->user->getProfile();
-
-        if ($profile->hasRepeated($id)) {
-            // TRANS: Client error displayed trying to re-repeat a notice through the API.
-            $this->clientError(_('Already repeated that notice.'),
-                               400, $this->format);
-            return false;
-        }
-
         return true;
     }
 

@@ -55,17 +55,15 @@ class AllAction extends ProfileAction
     function prepare($args)
     {
         parent::prepare($args);
-        $cur = common_current_user();
 
-        if (!empty($cur) && $cur->id == $this->user->id) {
-            $this->notice = $this->user->noticeInboxThreaded(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
-        } else {
-            $this->notice = $this->user->noticesWithFriendsThreaded(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
-        }
+        $stream = new ThreadingInboxNoticeStream($this->user, Profile::current());
+
+        $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
+                                            NOTICES_PER_PAGE + 1);
 
         if ($this->page > 1 && $this->notice->N == 0) {
             // TRANS: Server error when page not found (404).
-            $this->serverError(_('No such page.'), $code = 404);
+            $this->serverError(_('No such page.'), 404);
         }
 
         return true;
@@ -86,12 +84,15 @@ class AllAction extends ProfileAction
 
     function title()
     {
-        if ($this->page > 1) {
-            // TRANS: Page title. %1$s is user nickname, %2$d is page number
-            return sprintf(_('%1$s and friends, page %2$d'), $this->user->nickname, $this->page);
+        $user = common_current_user();
+        if ($user->id == $this->user->id) {
+            // TRANS: Title of a user's own start page.
+            return _('Home timeline');
         } else {
-            // TRANS: Page title. %s is user nickname
-            return sprintf(_("%s and friends"), $this->user->nickname);
+            $profile = $this->user->getProfile();
+            // TRANS: Title of another user's start page.
+            // TRANS: %s is the other user's name.
+            return sprintf(_("%s's home timeline"), $profile->getBestName());
         }
     }
 
@@ -157,7 +158,16 @@ class AllAction extends ProfileAction
     function showContent()
     {
         if (Event::handle('StartShowAllContent', array($this))) {
-            $nl = new ThreadedNoticeList($this->notice, $this);
+
+            $profile = null;
+
+            $current_user = common_current_user();
+
+            if (!empty($current_user)) {
+                $profile = $current_user->getProfile();
+            }
+
+            $nl = new ThreadedNoticeList($this->notice, $this, $profile);
 
             $cnt = $nl->show();
 
@@ -174,15 +184,21 @@ class AllAction extends ProfileAction
         }
     }
 
-    function showPageTitle()
+    function showSections()
     {
-        $user = common_current_user();
-        if ($user && ($user->id == $this->user->id)) {
-            // TRANS: H1 text for page when viewing a list for self.
-            $this->element('h1', null, _("You and friends"));
-        } else {
-            // TRANS: H1 text for page. %s is a user nickname.
-            $this->element('h1', null, sprintf(_('%s and friends'), $this->user->nickname));
-        }
+        $ibs = new InviteButtonSection($this);
+        $ibs->show();
+        $pop = new PopularNoticeSection($this);
+        $pop->show();
+        //        $pop = new InboxTagCloudSection($this, $this->user);
+        //        $pop->show();
+    }
+}
+
+class ThreadingInboxNoticeStream extends ThreadingNoticeStream
+{
+    function __construct($user, $profile)
+    {
+        parent::__construct(new InboxNoticeStream($user, $profile));
     }
 }

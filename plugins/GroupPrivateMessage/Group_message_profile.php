@@ -44,7 +44,6 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-
 class Group_message_profile extends Memcached_DataObject
 {
     public $__table = 'group_message_profile'; // table name
@@ -61,7 +60,6 @@ class Group_message_profile extends Memcached_DataObject
      * @param mixed  $v Value to lookup
      *
      * @return Group_message object found, or null for no hits
-     *
      */
     function staticGet($k, $v=null)
     {
@@ -120,14 +118,17 @@ class Group_message_profile extends Memcached_DataObject
     function send($gm, $profile)
     {
         $gmp = new Group_message_profile();
-        
+
         $gmp->group_message_id = $gm->id;
         $gmp->to_profile       = $profile->id;
         $gmp->created          = common_sql_now();
 
         $gmp->insert();
 
-        $gmp->notify();
+        // If it's not for the author, send email notification
+        if ($gm->from_profile != $profile->id) {
+            $gmp->notify();
+        }
 
         return $gmp;
     }
@@ -138,7 +139,7 @@ class Group_message_profile extends Memcached_DataObject
         $this->notifyByMail();
     }
 
-    function notifyByMail() 
+    function notifyByMail()
     {
         $to = User::staticGet('id', $this->to_profile);
 
@@ -155,28 +156,28 @@ class Group_message_profile extends Memcached_DataObject
         common_switch_locale($to->language);
 
         // TRANS: Subject for direct-message notification email.
-        // TRANS: %s is the sending user's nickname.
-        $subject = sprintf(_('New private message from %s to group %s'), $from_profile->nickname, $group->nickname);
+        // TRANS: %1$s is the sending user's nickname, %2$s is the group nickname.
+        $subject = sprintf(_m('New private message from %1$s to group %2$s'), $from_profile->nickname, $group->nickname);
 
         // TRANS: Body for direct-message notification email.
         // TRANS: %1$s is the sending user's long name, %2$s is the sending user's nickname,
         // TRANS: %3$s is the message content, %4$s a URL to the message,
         // TRANS: %5$s is the StatusNet sitename.
-        $body = sprintf(_("%1\$s (%2\$s) sent a private message to group %3\$s:\n\n".
-                          "------------------------------------------------------\n".
-                          "%4\$s\n".
-                          "------------------------------------------------------\n\n".
-                          "You can reply to their message here:\n\n".
-                          "%5\$s\n\n".
-                          "Don't reply to this email; it won't get to them.\n\n".
-                          "With kind regards,\n".
-                          "%6\$s\n"),
+        $body = sprintf(_m("%1\$s (%2\$s) sent a private message to group %3\$s:\n\n".
+                           "------------------------------------------------------\n".
+                           "%4\$s\n".
+                           "------------------------------------------------------\n\n".
+                           "You can reply to their message here:\n\n".
+                           "%5\$s\n\n".
+                           "Do not reply to this email; it will not get to them.\n\n".
+                           "With kind regards,\n".
+                           "%6\$s"),
                         $from_profile->getBestName(),
                         $from_profile->nickname,
                         $group->nickname,
                         $gm->content,
                         common_local_url('newmessage', array('to' => $from_profile->id)),
-                        common_config('site', 'name'));
+                        common_config('site', 'name')) . "\n";
 
         $headers = _mail_prepare_headers('message', $to->nickname, $from_profile->nickname);
 

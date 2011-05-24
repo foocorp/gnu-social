@@ -68,7 +68,7 @@ class GroupsByPostsSection extends GroupSection
     function title()
     {
         // TRANS: Title for groups with the most posts section.
-        return _('Groups with most posts');
+        return _('Active groups');
     }
 
     function divId()

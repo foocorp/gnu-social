@@ -1,0 +1,304 @@
+# Translation of StatusNet - TwitterBridge to Friulian (Furlan)
+# Exported from translatewiki.net
+#
+# Author: Klenje
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TwitterBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:45+0000\n"
+"Language-Team: Friulian <http://translatewiki.net/wiki/Portal:fur>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fur\n"
+"X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Twitter settings"
+msgstr "Impuestazions di Twitter"
+
+msgid ""
+"Connect your Twitter account to share your updates with your Twitter friends "
+"and vice-versa."
+msgstr ""
+
+msgid "Twitter account"
+msgstr "Identitât su Twitter"
+
+msgid "Connected Twitter account"
+msgstr "Identitât su Twitter conetude"
+
+msgid "Disconnect my account from Twitter"
+msgstr ""
+
+msgid "Disconnecting your Twitter could make it impossible to log in! Please "
+msgstr ""
+
+msgid "set a password"
+msgstr ""
+
+msgid " first."
+msgstr ""
+
+#. TRANS: %1$s is the current website name.
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
+"password to log in."
+msgstr ""
+
+msgid "Disconnect"
+msgstr "Disconetiti"
+
+msgid "Preferences"
+msgstr "Preferencis"
+
+msgid "Automatically send my notices to Twitter."
+msgstr "Mande in automatic i miei avîs su Twitter."
+
+msgid "Send local \"@\" replies to Twitter."
+msgstr "Mande lis rispuestis locâls cun \"@\" a Twitter."
+
+msgid "Subscribe to my Twitter friends here."
+msgstr ""
+
+msgid "Import my friends timeline."
+msgstr "Impuarte la ativitât dai miei amîs."
+
+msgid "Save"
+msgstr "Salve"
+
+msgid "Add"
+msgstr "Zonte"
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+msgid "Unexpected form submission."
+msgstr ""
+
+msgid "No Twitter connection to remove."
+msgstr ""
+
+msgid "Couldn't remove Twitter user."
+msgstr ""
+
+msgid "Twitter account disconnected."
+msgstr ""
+
+msgid "Couldn't save Twitter preferences."
+msgstr ""
+
+msgid "Twitter preferences saved."
+msgstr "Preferencis di Twitter salvadis."
+
+msgid "You cannot register if you do not agree to the license."
+msgstr "No tu puedis regjistrâti se no tu sês dacuardi cu la licence."
+
+msgid "Something weird happened."
+msgstr ""
+
+msgid "Could not link your Twitter account."
+msgstr ""
+
+msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr ""
+
+msgid "Couldn't link your Twitter account."
+msgstr ""
+
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your Twitter "
+"account to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
+msgstr ""
+
+msgid "Twitter Account Setup"
+msgstr ""
+
+msgid "Connection options"
+msgstr "Opzions di conession"
+
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+
+msgid "Create new account"
+msgstr "Cree une gnove identitât"
+
+msgid "Create a new user with this nickname."
+msgstr "Cree un gnûf utent cun chest sorenon."
+
+msgid "New nickname"
+msgstr "Gnûf sorenon"
+
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr "1-64 letaris minusculis o numars, cence segns di puntuazion o spazis."
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr "Pueste eletroniche"
+
+msgid "Used only for updates, announcements, and password recovery"
+msgstr "Doprât dome par inzornaments, comunicazions e recupar de password.ì"
+
+msgid "Create"
+msgstr "Cree"
+
+msgid "Connect existing account"
+msgstr "Conet une identitât che esist za"
+
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Twitter account."
+msgstr ""
+
+msgid "Existing nickname"
+msgstr "Sorenon esistint"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "Connect"
+msgstr "Conetiti"
+
+msgid "Registration not allowed."
+msgstr "Regjistrazion no permitude."
+
+msgid "Not a valid invitation code."
+msgstr ""
+
+msgid "Nickname not allowed."
+msgstr "Il sorenon nol è permetût."
+
+msgid "Nickname already in use. Try another one."
+msgstr "Il sorenon al è za doprât. Provent un altri."
+
+msgid "Error registering user."
+msgstr ""
+
+msgid "Error connecting user to Twitter."
+msgstr ""
+
+msgid "Invalid username or password."
+msgstr "Il non utent o la password no son valits."
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "Twitter bridge settings"
+msgstr ""
+
+msgid "Invalid consumer key. Max length is 255 characters."
+msgstr ""
+
+msgid "Invalid consumer secret. Max length is 255 characters."
+msgstr ""
+
+msgid "Twitter application settings"
+msgstr ""
+
+msgid "Consumer key"
+msgstr ""
+
+msgid "Consumer key assigned by Twitter"
+msgstr ""
+
+msgid "Consumer secret"
+msgstr ""
+
+msgid "Consumer secret assigned by Twitter"
+msgstr ""
+
+msgid "Note: a global consumer key and secret are set."
+msgstr ""
+
+msgid "Integration source"
+msgstr ""
+
+msgid "Name of your Twitter application"
+msgstr "Non de tô aplicazion Twitter"
+
+msgid "Options"
+msgstr "Opzions"
+
+msgid "Enable \"Sign-in with Twitter\""
+msgstr ""
+
+msgid "Allow users to login with their Twitter credentials"
+msgstr ""
+
+msgid "Enable Twitter import"
+msgstr ""
+
+msgid ""
+"Allow users to import their Twitter friends' timelines. Requires daemons to "
+"be manually configured."
+msgstr ""
+
+msgid "Save Twitter settings"
+msgstr "Salve lis impuestazions di Twitter"
+
+msgid "Login or register using Twitter"
+msgstr ""
+
+msgid "Twitter integration options"
+msgstr ""
+
+msgid "Twitter bridge configuration"
+msgstr ""
+
+msgid ""
+"The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
+"with <a href=\"http://twitter.com/\">Twitter</a>."
+msgstr ""
+
+msgid "Already logged in."
+msgstr "Tu sês za jentrât."
+
+msgid "Twitter Login"
+msgstr ""
+
+msgid "Login with your Twitter account"
+msgstr ""
+
+msgid "Sign in with Twitter"
+msgstr ""
+
+#. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
+msgid "Your Twitter bridge has been disabled"
+msgstr ""
+
+#. TRANS: Mail body after forwarding notices to Twitter has stopped working.
+#. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the
+#. TRANS: Twitter settings, %3$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"Hi, %1$s. We're sorry to inform you that your link to Twitter has been "
+"disabled. We no longer seem to have permission to update your Twitter "
+"status. Did you maybe revoke %3$s's access?\n"
+"\n"
+"You can re-enable your Twitter bridge by visiting your Twitter settings "
+"page:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"Regards,\n"
+"%3$s"
+msgstr ""
+
+#. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
+#. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
+#, php-format
+msgid "RT @%1$s %2$s"
+msgstr "RT @%1$s %2$s"

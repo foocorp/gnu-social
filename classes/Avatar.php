@@ -102,7 +102,7 @@ class Avatar extends Memcached_DataObject
     function displayUrl()
     {
         $server = common_config('avatar', 'server');
-        if ($server) {
+        if ($server && !empty($this->filename)) {
             return Avatar::url($this->filename);
         } else {
             return $this->url;

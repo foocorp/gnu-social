@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class OpenidadminpanelAction extends AdminPanelAction
 {
     /**
@@ -48,10 +47,10 @@ class OpenidadminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
-        return _m('OpenID');
+        // TRANS: Title for OpenID bridge administration page.
+        return _m('TITLE','OpenID Settings');
     }
 
     /**
@@ -59,9 +58,9 @@ class OpenidadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
+        // TRANS: Page instructions.
         return _m('OpenID settings');
     }
 
@@ -70,7 +69,6 @@ class OpenidadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new OpenIDAdminPanelForm($this);
@@ -83,7 +81,6 @@ class OpenidadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         static $settings = array(
@@ -144,13 +141,15 @@ class OpenidadminpanelAction extends AdminPanelAction
 
         if (mb_strlen($values['openid']['trusted_provider']) > 255) {
             $this->clientError(
-                _m("Invalid provider URL. Max length is 255 characters.")
+                // TRANS: Client error displayed when OpenID provider URL is too long.
+                _m('Invalid provider URL. Maximum length is 255 characters.')
             );
         }
 
         if (mb_strlen($values['openid']['required_team']) > 255) {
             $this->clientError(
-                _m("Invalid team name. Max length is 255 characters.")
+                // TRANS: Client error displayed when Launchpad team name is too long.
+                _m('Invalid team name. Maximum length is 255 characters.')
             );
         }
     }
@@ -163,7 +162,6 @@ class OpenIDAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'openidadminpanel';
@@ -174,7 +172,6 @@ class OpenIDAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -185,7 +182,6 @@ class OpenIDAdminPanelForm extends AdminForm
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('openidadminpanel');
@@ -200,15 +196,16 @@ class OpenIDAdminPanelForm extends AdminForm
      *       Make sure that the acting administrator has a valid OpenID matching,
      *       or more carefully warn folks.
      */
-
     function formData()
     {
         $this->out->elementStart(
             'fieldset',
             array('id' => 'settings_openid')
         );
-        $this->out->element('legend', null, _m('Trusted provider'));
+        // TRANS: Fieldset legend.
+        $this->out->element('legend', null, _m('LEGEND','Trusted provider'));
         $this->out->element('p', 'form_guide',
+            // TRANS: Form guide.
             _m('By default, users are allowed to authenticate with any OpenID provider. ' .
                'If you are using your own OpenID service for shared sign-in, ' .
                'you can restrict access to only your own users here.'));
@@ -217,7 +214,9 @@ class OpenIDAdminPanelForm extends AdminForm
         $this->li();
         $this->input(
             'trusted_provider',
+            // TRANS: Field label.
             _m('Provider URL'),
+            // TRANS: Field title.
             _m('All OpenID logins will be sent to this URL; other providers may not be used.'),
             'openid'
         );
@@ -225,8 +224,10 @@ class OpenIDAdminPanelForm extends AdminForm
 
         $this->li();
         $this->out->checkbox(
+            // TRANS: Checkbox label.
             'append_username', _m('Append a username to base URL'),
             (bool) $this->value('append_username', 'openid'),
+            // TRANS: Checkbox title.
             _m('Login form will show the base URL and prompt for a username to add at the end. Use when OpenID provider URL should be the profile page for individual users.'),
             'true'
         );
@@ -235,7 +236,9 @@ class OpenIDAdminPanelForm extends AdminForm
         $this->li();
         $this->input(
             'required_team',
-             _m('Required team'),
+            // TRANS: Field label.
+            _m('Required team'),
+            // TRANS: Field title.
             _m('Only allow logins from users in the given team (Launchpad extension).'),
             'openid'
         );
@@ -248,15 +251,18 @@ class OpenIDAdminPanelForm extends AdminForm
             'fieldset',
             array('id' => 'settings_openid-options')
         );
-        $this->out->element('legend', null, _m('Options'));
+        // TRANS: Fieldset legend.
+        $this->out->element('legend', null, _m('LEGEND','Options'));
 
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
 
         $this->out->checkbox(
+            // TRANS: Checkbox label.
             'openidonly', _m('Enable OpenID-only mode'),
             (bool) $this->value('openidonly', 'site'),
+            // TRANS: Checkbox title.
             _m('Require all users to login via OpenID. Warning: disables password authentication for all users!'),
             'true'
         );
@@ -272,9 +278,11 @@ class OpenIDAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Save'), 'submit', null, _m('Save OpenID settings'));
+        // TRANS: Button text to save OpenID settings.
+        $this->out->submit('submit', _m('BUTTON','Save'), 'submit', null,
+                           // TRANS: Button title to save OpenID settings.
+                           _m('Save OpenID settings.'));
     }
 }

@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:11+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:33+0000\n"
 "Language-Team: Georgian <http://translatewiki.net/wiki/Portal:ka>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:12:47+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:25:53+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ka\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
@@ -26,57 +26,81 @@ msgid "AdSense configuration"
 msgstr "AdSense კონფიგურაცია"
 
 #. TRANS: Menu item for site administration
+#, fuzzy
+msgctxt "MENU"
 msgid "AdSense"
 msgstr "AdSense"
 
+#. TRANS: Plugin description.
 msgid "Plugin to add Google AdSense to StatusNet sites."
 msgstr ""
 
+#. TRANS: Title of AdSense administrator panel.
 msgctxt "TITLE"
 msgid "AdSense"
 msgstr "AdSense"
 
+#. TRANS: Instructions for AdSense administrator panel.
 msgid "AdSense settings for this StatusNet site"
 msgstr "AdSense პარამეტრები ამ საიტისათვის."
 
+#. TRANS: Field label in AdSense administration panel.
 msgid "Client ID"
 msgstr "კლიენტის ID"
 
-msgid "Google client ID"
+#. TRANS: Field title in AdSense administration panel.
+#, fuzzy
+msgid "Google client ID."
 msgstr "Google კლიენტის ID"
 
+#. TRANS: Field label in AdSense administration panel.
 msgid "Ad script URL"
 msgstr "სარეკლამო სკრიპტის URL"
 
-msgid "Script URL (advanced)"
+#. TRANS: Field title in AdSense administration panel.
+#, fuzzy
+msgid "Script URL (advanced)."
 msgstr "სკრიპტის URL (გაფართოებული)"
 
+#. TRANS: Field label in AdSense administration panel.
 msgid "Medium rectangle"
 msgstr "საშუალო მართკუთხედი"
 
-msgid "Medium rectangle slot code"
-msgstr ""
+#. TRANS: Field title in AdSense administration panel.
+#, fuzzy
+msgid "Medium rectangle slot code."
+msgstr "საშუალო მართკუთხედი"
 
+#. TRANS: Field label in AdSense administration panel.
 msgid "Rectangle"
 msgstr "მართკუთხედი"
 
-msgid "Rectangle slot code"
-msgstr ""
+#. TRANS: Field title in AdSense administration panel.
+#, fuzzy
+msgid "Rectangle slot code."
+msgstr "მართკუთხედი"
 
+#. TRANS: Field label in AdSense administration panel.
 msgid "Leaderboard"
 msgstr ""
 
-msgid "Leaderboard slot code"
+#. TRANS: Field title in AdSense administration panel.
+msgid "Leaderboard slot code."
 msgstr ""
 
+#. TRANS: Field label in AdSense administration panel.
 msgid "Skyscraper"
 msgstr ""
 
-msgid "Wide skyscraper slot code"
+#. TRANS: Field title in AdSense administration panel.
+msgid "Wide skyscraper slot code."
 msgstr ""
 
+#. TRANS: Button text to save settings in AdSense administration panel.
+msgctxt "BUTTON"
 msgid "Save"
 msgstr ""
 
-msgid "Save AdSense settings"
+#. TRANS: Button title to save settings in AdSense administration panel.
+msgid "Save AdSense settings."
 msgstr ""

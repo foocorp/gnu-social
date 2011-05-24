@@ -44,53 +44,30 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class ShowbookmarkAction extends ShownoticeAction
 {
     protected $bookmark = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-
-    function prepare($argarray)
+    function getNotice()
     {
-        OwnerDesignAction::prepare($argarray);
-
         $this->id = $this->trimmed('id');
 
         $this->bookmark = Bookmark::staticGet('id', $this->id);
 
         if (empty($this->bookmark)) {
-            throw new ClientException(_('No such bookmark.'), 404);
+            // TRANS: Client exception thrown when referring to a non-existing bookmark.
+            throw new ClientException(_m('No such bookmark.'), 404);
         }
 
-        $this->notice = Notice::staticGet('uri', $this->bookmark->uri);
+        $notice = Notice::staticGet('uri', $this->bookmark->uri);
 
-        if (empty($this->notice)) {
+        if (empty($notice)) {
             // Did we used to have it, and it got deleted?
-            throw new ClientException(_('No such bookmark.'), 404);
+            // TRANS: Client exception thrown when referring to a non-existing bookmark.
+            throw new ClientException(_m('No such bookmark.'), 404);
         }
 
-        $this->user = User::staticGet('id', $this->bookmark->profile_id);
-
-        if (empty($this->user)) {
-            throw new ClientException(_('No such user.'), 404);
-        }
-
-        $this->profile = $this->user->getProfile();
-
-        if (empty($this->profile)) {
-            throw new ServerException(_('User without a profile.'));
-        }
-
-        $this->avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
-
-        return true;
+        return $notice;
     }
 
     /**
@@ -100,10 +77,11 @@ class ShowbookmarkAction extends ShownoticeAction
      *
      * @return string page tile
      */
-
     function title()
     {
-        return sprintf(_('%s\'s bookmark for "%s"'),
+        // TRANS: Title for bookmark.
+        // TRANS: %1$s is a user nickname, %2$s is a bookmark title.
+        return sprintf(_m('%1$s\'s bookmark for "%2$s"'),
                        $this->user->nickname,
                        $this->bookmark->title);
     }
@@ -113,7 +91,6 @@ class ShowbookmarkAction extends ShownoticeAction
      *
      * @return void
      */
-
     function showPageTitle()
     {
         $this->elementStart('h1');

@@ -81,7 +81,7 @@ class RespondPollAction extends Action
 
         if (empty($this->user)) {
             // TRANS: Client exception thrown trying to respond to a poll while not logged in.
-            throw new ClientException(_m("You must be logged in to respond to a poll."),
+            throw new ClientException(_m('You must be logged in to respond to a poll.'),
                                       403);
         }
 

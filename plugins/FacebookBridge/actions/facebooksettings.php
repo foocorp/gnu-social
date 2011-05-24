@@ -83,6 +83,7 @@ class FacebooksettingsAction extends SettingsAction {
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
             $this->showForm(
+                // TRANS: Client error displayed when the session token does not match or is not given.
                 _m('There was a problem with your session token. Try again, please.')
             );
             return;
@@ -102,7 +103,7 @@ class FacebooksettingsAction extends SettingsAction {
      */
     function title() {
         // TRANS: Page title for Facebook settings.
-        return _m('Facebook settings');
+        return _m('TITLE','Facebook settings');
     }
 
     /**
@@ -111,7 +112,8 @@ class FacebooksettingsAction extends SettingsAction {
      * @return instructions for use
      */
     function getInstructions() {
-        return _('Facebook settings');
+        // TRANS: Instructions for Facebook settings.
+        return _m('Facebook settings');
     }
 
     /*
@@ -134,6 +136,7 @@ class FacebooksettingsAction extends SettingsAction {
 
             $this->hidden('token', common_session_token());
 
+            // TRANS: Form note. User is connected to facebook.
             $this->element('p', 'form_note', _m('Connected Facebook user'));
 
             $this->elementStart('p', array('class' => 'facebook-user-display'));
@@ -161,6 +164,7 @@ class FacebooksettingsAction extends SettingsAction {
 
             $this->checkbox(
                 'noticesync',
+                // TRANS: Checkbox label in Facebook settings.
                 _m('Publish my notices to Facebook.'),
                 ($this->flink) ? ($this->flink->noticesync & FOREIGN_NOTICE_SEND) : true
             );
@@ -171,6 +175,7 @@ class FacebooksettingsAction extends SettingsAction {
 
             $this->checkbox(
                     'replysync',
+                    // TRANS: Checkbox label in Facebook settings.
                     _m('Send "@" replies to Facebook.'),
                     ($this->flink) ? ($this->flink->noticesync & FOREIGN_NOTICE_SEND_REPLY) : true
             );
@@ -188,13 +193,14 @@ class FacebooksettingsAction extends SettingsAction {
 
             $this->elementStart('fieldset');
 
-            // TRANS: Legend.
+            // TRANS: Fieldset legend for form to disconnect from Facebook.
             $this->element('legend', null, _m('Disconnect my account from Facebook'));
 
             if (empty($this->user->password)) {
                 $this->elementStart('p', array('class' => 'form_guide'));
 
                 $msg = sprintf(
+                    // TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
                     _m(
                         'Disconnecting your Faceboook would make it impossible to '
                             . 'log in! Please [set a password](%s) first.'
@@ -206,14 +212,11 @@ class FacebooksettingsAction extends SettingsAction {
                 $this->elementEnd('p');
             } else {
                 // @todo FIXME: i18n: This message is not being used.
-                $msg = sprintf(
-                    // TRANS: Message displayed when initiating disconnect of a StatusNet user
-                    // TRANS: from a Facebook account. %1$s is the StatusNet site name.
-                    _m(
-                        'Keep your %1$s account but disconnect from Facebook. ' .
-                        'You\'ll use your %1$s password to log in.'
-                    ),
-                    common_config('site', 'name')
+                // TRANS: Message displayed when initiating disconnect of a StatusNet user
+                // TRANS: from a Facebook account. %1$s is the StatusNet site name.
+                $msg = sprintf(_m('Keep your %1$s account but disconnect from Facebook. ' .
+                                  'You\'ll use your %1$s password to log in.'),
+                               common_config('site', 'name')
                 );
 
                 // TRANS: Submit button.
@@ -240,6 +243,7 @@ class FacebooksettingsAction extends SettingsAction {
         $result = $this->flink->update($original);
 
         if ($result === false) {
+            // TRANS: Notice in case saving of synchronisation preferences fail.
             $this->showForm(_m('There was a problem saving your sync preferences.'));
         } else {
             // TRANS: Confirmation that synchronisation settings have been saved into the system.
@@ -257,10 +261,12 @@ class FacebooksettingsAction extends SettingsAction {
 
         if ($result === false) {
             common_log_db_error($user, 'DELETE', __FILE__);
-            $this->serverError(_m('Couldn\'t delete link to Facebook.'));
+            // TRANS: Server error displayed when deleting the link to a Facebook account fails.
+            $this->serverError(_m('Could not delete link to Facebook.'));
             return;
         }
 
+        // TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
         $this->showForm(_m('You have disconnected from Facebook.'), true);
     }
 }

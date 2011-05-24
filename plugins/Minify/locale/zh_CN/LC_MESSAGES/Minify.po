@@ -9,29 +9,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Minify\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:04+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:05+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:31+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-03-18 20:08:19+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-minify\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. TRANS: Plugin description.
 msgid ""
 "The Minify plugin minifies StatusNet's CSS and JavaScript, removing "
 "whitespace and comments."
 msgstr "Minify 插件通过删除空白和注释缩小 StatusNet 的 CSS 和 JavaScript。"
 
+#. TRANS: Client error displayed when not providing a valid path in parameter "f".
 msgid "The parameter \"f\" is not a valid path."
 msgstr "参数 \"f\" 不是个有效的路径。"
 
+#. TRANS: Client error displayed when not providing parameter "f".
 msgid "The parameter \"f\" is required but missing."
 msgstr "需要参数 \"f\" 但是丢失了。"
 
+#. TRANS: Client error displayed when trying to minify an unsupported file type.
 msgid "File type not supported."
 msgstr "文件类型不支持。"

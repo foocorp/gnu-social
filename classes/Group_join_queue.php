@@ -56,6 +56,71 @@ class Group_join_queue extends Managed_DataObject
         return $rq;
     }
 
+    function getMember()
+    {
+        $member = Profile::staticGet('id', $this->profile_id);
+
+        if (empty($member)) {
+            // TRANS: Exception thrown providing an invalid profile ID.
+            // TRANS: %s is the invalid profile ID.
+            throw new Exception(sprintf(_('Profile ID %s is invalid.'),$this->profile_id));
+        }
+
+        return $member;
+    }
+
+    function getGroup()
+    {
+        $group  = User_group::staticGet('id', $this->group_id);
+
+        if (empty($group)) {
+            // TRANS: Exception thrown providing an invalid group ID.
+            // TRANS: %s is the invalid group ID.
+            throw new Exception(sprintf(_('Group ID %s is invalid.'),$this->group_id));
+        }
+
+        return $group;
+    }
+
+    /**
+     * Abort the pending group join...
+     *
+     * @param User_group $group
+     */
+    function abort()
+    {
+        $profile = $this->getMember();
+        $group = $this->getGroup();
+        if ($request) {
+            if (Event::handle('StartCancelJoinGroup', array($profile, $group))) {
+                $this->delete();
+                Event::handle('EndCancelJoinGroup', array($profile, $group));
+            }
+        }
+    }
+
+    /**
+     * Complete a pending group join...
+     *
+     * @return Group_member object on success
+     */
+    function complete()
+    {
+        $join = null;
+        $profile = $this->getMember();
+        $group = $this->getGroup();
+        if (Event::handle('StartJoinGroup', array($profile, $group))) {
+            $join = Group_member::join($group->id, $profile->id);
+            $this->delete();
+            Event::handle('EndJoinGroup', array($profile, $group));
+        }
+        if (!$join) {
+            throw new Exception('Internal error: group join failed.');
+        }
+        $join->notify();
+        return $join;
+    }
+
     /**
      * Send notifications via email etc to group administrators about
      * this exciting new pending moderation queue item!

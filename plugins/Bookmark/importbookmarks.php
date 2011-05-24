@@ -4,7 +4,7 @@
  * Copyright (C) 2010 StatusNet, Inc.
  *
  * Import a bookmarks file as notices
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 /**
  * Get the bookmarks file as a string
- * 
+ *
  * Uses the -f or --file parameter to open and read a
  * a bookmarks file
  *
@@ -63,19 +63,25 @@ function getBookmarksFile()
     }
 
     if (!file_exists($filename)) {
-        throw new Exception("No such file '$filename'.");
+        // TRANS: Exception thrown when a file upload cannot be found.
+        // TRANS: %s is the file that could not be found.
+        throw new Exception(sprintf(_m('No such file "%s".'),$filename));
     }
 
     if (!is_file($filename)) {
-        throw new Exception("Not a regular file: '$filename'.");
+        // TRANS: Exception thrown when a file upload is incorrect.
+        // TRANS: %s is the irregular file.
+        throw new Exception(sprintf(_m('Not a regular file: "%s".'),$filename));
     }
 
     if (!is_readable($filename)) {
-        throw new Exception("File '$filename' not readable.");
+        // TRANS: Exception thrown when a file upload is not readable.
+        // TRANS: %s is the file that could not be read.
+        throw new Exception(sprintf(_m('File "%s" not readable.'),$filename));
     }
 
     // TRANS: %s is the filename that contains a backup for a user.
-    printfv(_("Getting backup from file '%s'.")."\n", $filename);
+    printfv(_m('Getting backup from file "%s".')."\n", $filename);
 
     $html = file_get_contents($filename);
 
@@ -87,7 +93,7 @@ try {
     $html = getBookmarksFile();
 
     $qm = QueueManager::get();
-    
+
     $qm->enqueue(array($user, $html), 'dlcsback');
 
 } catch (Exception $e) {

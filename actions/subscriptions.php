@@ -152,16 +152,6 @@ class SubscriptionsAction extends GalleryAction
         $this->elementEnd('div');
     }
 
-    function showSections()
-    {
-        parent::showSections();
-        $cloud = new SubscriptionsPeopleTagCloudSection($this);
-        $cloud->show();
-
-        $cloud2 = new SubscriptionsPeopleSelfTagCloudSection($this);
-        $cloud2->show();
-    }
-
     /**
      * Link to feeds of subscriptions
      *
@@ -237,8 +227,8 @@ class SubscriptionsListItem extends SubscriptionListItem
             }
 
             $this->out->element('input', $attrs);
-            // TRANS: Checkbox label for enabling Jabber messages for a profile in a subscriptions list.
-            $this->out->element('label', array('for' => 'jabber-'.$this->profile->id), _('IM'));
+            // TRANS: Checkbox label for enabling IM messages for a profile in a subscriptions list.
+            $this->out->element('label', array('for' => 'jabber-'.$this->profile->id), _m('LABEL','IM'));
         } else {
             $this->out->hidden('jabber', $sub->jabber);
         }

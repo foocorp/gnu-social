@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Action for showing profiles self-tagged with a given tag
+ * Lists by a user
  *
  * PHP version 5
  *
@@ -16,13 +16,16 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
+ * PHP version 5
+ *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @category  Action
+ * @category  Personal
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @author    Zach Copley <zach@status.net>
+ * @author    Shashi Gowda <connect2shashi@gmail.com>
  * @copyright 2009 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
@@ -32,150 +35,131 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-/**
- * This class outputs a paginated list of profiles self-tagged with a given tag
- *
- * @category Output
- * @package  StatusNet
- * @author   Evan Prodromou <evan@status.net>
- * @author   Zach Copley <zach@status.net>
- * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
- * @link     http://status.net/
- *
- * @see      Action
- */
+require_once INSTALLDIR.'/lib/peopletaglist.php';
+// cache 3 pages
+define('PEOPLETAG_CACHE_WINDOW', PEOPLETAGS_PER_PAGE*3 + 1);
+
 class PeopletagAction extends Action
 {
-
-    var $tag  = null;
     var $page = null;
+    var $tag = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    function isReadOnly($args)
     {
-        parent::prepare($argarray);
+        return true;
+    }
 
-        $this->tag = $this->trimmed('tag');
-
-        if (!common_valid_profile_tag($this->tag)) {
-            // TRANS: Client error displayed when trying to tag a profile with an invalid tag.
-            // TRANS: %s is the invalid tag.
-            $this->clientError(sprintf(_('Not a valid people tag: %s.'),
-                $this->tag));
-            return;
+    function title()
+    {
+        if ($this->page == 1) {
+            // TRANS: Title for list page.
+            // TRANS: %s is a list.
+            return sprintf(_('Public list %s'), $this->tag);
+        } else {
+            // TRANS: Title for list page.
+            // TRANS: %1$s is a list, %2$d is a page number.
+            return sprintf(_('Public list %1$s, page %2$d'), $this->tag, $this->page);
         }
+    }
 
-        $this->page = ($this->arg('page')) ? $this->arg('page') : 1;
+    function prepare($args)
+    {
+        parent::prepare($args);
+        $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
 
-        common_set_returnto($this->selfUrl());
+        $tag_arg = $this->arg('tag');
+        $tag = common_canonical_tag($tag_arg);
+
+        // Permanent redirect on non-canonical nickname
+
+        if ($tag_arg != $tag) {
+            $args = array('tag' => $nickname);
+            if ($this->page && $this->page != 1) {
+                $args['page'] = $this->page;
+            }
+            common_redirect(common_local_url('peopletag', $args), 301);
+            return false;
+        }
+        $this->tag = $tag;
 
         return true;
     }
 
-    /**
-     * Handler method
-     *
-     * @param array $argarray is ignored since it's now passed in in prepare()
-     *
-     * @return boolean is read only action?
-     */
-    function handle($argarray)
+    function handle($args)
     {
-        parent::handle($argarray);
+        parent::handle($args);
         $this->showPage();
     }
 
-    /**
-     * Whips up a query to get a list of profiles based on the provided
-     * people tag and page, initalizes a ProfileList widget, and displays
-     * it to the user.
-     *
-     * @return nothing
-     */
+    function showLocalNav()
+    {
+        $nav = new PublicGroupNav($this);
+        $nav->show();
+    }
+
+    function showAnonymousMessage()
+    {
+        $notice =
+          // TRANS: Message for anonymous users on list page.
+          // TRANS: This message contains Markdown links in the form [description](link).
+          _('Lists are how you sort similar ' .
+            'people on %%site.name%%, a [micro-blogging]' .
+            '(http://en.wikipedia.org/wiki/Micro-blogging) service ' .
+            'based on the Free Software [StatusNet](http://status.net/) tool. ' .
+            'You can then easily keep track of what they ' .
+            'are doing by subscribing to the list\'s timeline.' );
+        $this->elementStart('div', array('id' => 'anon_notice'));
+        $this->raw(common_markup_to_html($notice));
+        $this->elementEnd('div');
+    }
+
     function showContent()
     {
+        $offset = ($this->page-1) * PEOPLETAGS_PER_PAGE;
+        $limit  = PEOPLETAGS_PER_PAGE + 1;
 
-        $profile = new Profile();
+        $ptags = new Profile_list();
+        $ptags->tag = $this->tag;
 
-        $offset = ($this->page - 1) * PROFILES_PER_PAGE;
-        $limit  = PROFILES_PER_PAGE + 1;
+        $user = common_current_user();
 
-        if (common_config('db', 'type') == 'pgsql') {
-            $lim = ' LIMIT ' . $limit . ' OFFSET ' . $offset;
+        if (empty($user)) {
+            $ckey = sprintf('profile_list:tag:%s', $this->tag);
+            $ptags->private = false;
+            $ptags->orderBy('profile_list.modified DESC');
+
+            $c = Cache::instance();
+            if ($offset+$limit <= PEOPLETAG_CACHE_WINDOW && !empty($c)) {
+                $cached_ptags = Profile_list::getCached($ckey, $offset, $limit);
+                if ($cached_ptags === false) {
+                    $ptags->limit(0, PEOPLETAG_CACHE_WINDOW);
+                    $ptags->find();
+
+                    Profile_list::setCache($ckey, $ptags, $offset, $limit);
+                } else {
+                    $ptags = clone($cached_ptags);
+                }
+            } else {
+                $ptags->limit($offset, $limit);
+                $ptags->find();
+            }
         } else {
-            $lim = ' LIMIT ' . $offset . ', ' . $limit;
+            $ptags->whereAdd('(profile_list.private = false OR (' .
+                             ' profile_list.tagger =' . $user->id .
+                             ' AND profile_list.private = true) )');
+
+            $ptags->orderBy('profile_list.modified DESC');
+            $ptags->find();
         }
 
-        // XXX: memcached this
+        $pl = new PeopletagList($ptags, $this);
+        $cnt = $pl->show();
 
-        $qry =  'SELECT profile.* ' .
-                'FROM profile JOIN profile_tag ' .
-                'ON profile.id = profile_tag.tagger ' .
-                'WHERE profile_tag.tagger = profile_tag.tagged ' .
-                "AND tag = '%s' " .
-                'ORDER BY profile_tag.modified DESC%s';
-
-        $profile->query(sprintf($qry, $this->tag, $lim));
-
-        $ptl = new PeopleTagList($profile, $this); // pass the ammunition
-        $cnt = $ptl->show();
-
-        $this->pagination($this->page > 1,
-                          $cnt > PROFILES_PER_PAGE,
-                          $this->page,
-                          'peopletag',
-                          array('tag' => $this->tag));
+        $this->pagination($this->page > 1, $cnt > PEOPLETAGS_PER_PAGE,
+                          $this->page, 'peopletag', array('tag' => $this->tag));
     }
 
-    /**
-     * Returns the page title
-     *
-     * @return string page title
-     */
-    function title()
+    function showSections()
     {
-        // TRANS: Page title for users with a certain self-tag.
-        // TRANS: %1$s is the tag, %2$s is the page number.
-        return sprintf(_('Users self-tagged with %1$s - page %2$d'),
-            $this->tag, $this->page);
-    }
-}
-
-class PeopleTagList extends ProfileList
-{
-    function newListItem($profile)
-    {
-        return new PeopleTagListItem($profile, $this->action);
-    }
-}
-
-class PeopleTagListItem extends ProfileListItem
-{
-    function linkAttributes()
-    {
-        $aAttrs = parent::linkAttributes();
-
-        if (common_config('nofollow', 'peopletag')) {
-            $aAttrs['rel'] .= ' nofollow';
-        }
-
-        return $aAttrs;
-    }
-
-    function homepageAttributes()
-    {
-        $aAttrs = parent::linkAttributes();
-
-        if (common_config('nofollow', 'peopletag')) {
-            $aAttrs['rel'] = 'nofollow';
-        }
-
-        return $aAttrs;
     }
 }

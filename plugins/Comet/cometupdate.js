@@ -1,6 +1,4 @@
 // update the local timeline from a Comet server
-//
-
 var CometUpdate = function()
 {
      var _server;
@@ -27,4 +25,3 @@ var CometUpdate = function()
           }
      }
 }();
-

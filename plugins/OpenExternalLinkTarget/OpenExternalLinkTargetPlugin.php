@@ -56,6 +56,7 @@ class OpenExternalLinkTargetPlugin extends Plugin
                             'author' => 'Sarven Capadisli',
                             'homepage' => 'http://status.net/wiki/Plugin:OpenExternalLinkTarget',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Opens external links (i.e. with rel=external) on a new window or tab.'));
         return true;
     }

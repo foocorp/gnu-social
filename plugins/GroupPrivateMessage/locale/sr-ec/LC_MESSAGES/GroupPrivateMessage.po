@@ -9,18 +9,67 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GroupPrivateMessage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:51+0000\n"
+"POT-Creation-Date: 2011-03-31 21:06+0000\n"
+"PO-Revision-Date: 2011-03-31 21:09:31+0000\n"
 "Language-Team: Serbian Cyrillic ekavian <http://translatewiki.net/wiki/"
 "Portal:sr-ec>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-08 01:22:07+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-03-26 16:23:18+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r85082); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: sr-ec\n"
 "X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Must be logged in."
+msgstr ""
+
+#, php-format
+msgid "User %s not allowed to send private messages."
+msgstr ""
+
+msgid "No such group."
+msgstr ""
+
+msgid "Message sent"
+msgstr ""
+
+#, php-format
+msgid "Direct message to %s sent."
+msgstr ""
+
+#, fuzzy, php-format
+msgid "New message to group %s"
+msgstr "Приватне поруке ове групе"
+
+#. TRANS: Subject for direct-message notification email.
+#. TRANS: %s is the sending user's nickname.
+#, fuzzy, php-format
+msgid "New private message from %1$s to group %2$s"
+msgstr "Приватне поруке ове групе"
+
+#. TRANS: Body for direct-message notification email.
+#. TRANS: %1$s is the sending user's long name, %2$s is the sending user's nickname,
+#. TRANS: %3$s is the message content, %4$s a URL to the message,
+#. TRANS: %5$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"%1$s (%2$s) sent a private message to group %3$s:\n"
+"\n"
+"------------------------------------------------------\n"
+"%4$s\n"
+"------------------------------------------------------\n"
+"\n"
+"You can reply to their message here:\n"
+"\n"
+"%5$s\n"
+"\n"
+"Do not reply to this email; it will not get to them.\n"
+"\n"
+"With kind regards,\n"
+"%6$s"
+msgstr ""
 
 msgid "Inbox"
 msgstr "Примљене"
@@ -28,10 +77,72 @@ msgstr "Примљене"
 msgid "Private messages for this group"
 msgstr "Приватне поруке ове групе"
 
+#, fuzzy
+msgid "Private messages"
+msgstr "Приватне поруке ове групе"
+
+msgid "Sometimes"
+msgstr ""
+
+msgid "Always"
+msgstr ""
+
+msgid "Never"
+msgstr ""
+
+#, fuzzy
+msgid "Whether to allow private messages to this group"
+msgstr "Приватне поруке ове групе"
+
+msgid "Private sender"
+msgstr ""
+
+msgid "Everyone"
+msgstr ""
+
+msgid "Member"
+msgstr ""
+
+msgid "Admin"
+msgstr ""
+
+#, fuzzy
+msgid "Who can send private messages to the group"
+msgstr "Приватне поруке ове групе"
+
+#, fuzzy
+msgid "Send a direct message to this group"
+msgstr "Приватне поруке ове групе"
+
+msgid "Message"
+msgstr ""
+
+msgid "Forced notice to private group message."
+msgstr ""
+
+msgid "Private"
+msgstr ""
+
 msgid "Allow posting DMs to a group."
 msgstr ""
 
+msgid "Only for logged-in users."
+msgstr ""
+
+msgid "Only for members."
+msgstr ""
+
 msgid "This group has not received any private messages."
+msgstr ""
+
+#, php-format
+msgid "%s group inbox"
+msgstr ""
+
+#. TRANS: Page title for any but first group page.
+#. TRANS: %1$s is a group name, $2$s is a page number.
+#, php-format
+msgid "%1$s group inbox, page %2$d"
 msgstr ""
 
 #. TRANS: Instructions for user inbox page.
@@ -40,12 +151,76 @@ msgid ""
 "group."
 msgstr ""
 
+#, php-format
+msgid "Message to %s"
+msgstr ""
+
+#, php-format
+msgid "Direct message to %s"
+msgstr ""
+
+msgid "Available characters"
+msgstr ""
+
 msgctxt "Send button for sending notice"
 msgid "Send"
 msgstr "Пошаљи"
+
+#, php-format
+msgid "Group %s does not allow private messages."
+msgstr ""
+
+#, php-format
+msgid "User %1$s is blocked from group %2$s."
+msgstr ""
+
+#, php-format
+msgid "User %1$s is not a member of group %2$s."
+msgstr ""
+
+#, php-format
+msgid "User %1$s is not an administrator of group %2$s."
+msgstr ""
+
+#, php-format
+msgid "Unknown privacy settings for group %s."
+msgstr ""
+
+#, php-format
+msgid "User %s is not allowed to send private messages."
+msgstr ""
 
 #, php-format
 msgid "That's too long. Maximum message size is %d character."
 msgid_plural "That's too long. Maximum message size is %d characters."
 msgstr[0] "%d знак"
 msgstr[1] "%d знака"
+
+msgid "No group for group message"
+msgstr ""
+
+msgid "No sender for group message"
+msgstr ""
+
+msgid "Only logged-in users can view private messages."
+msgstr ""
+
+msgid "No such message."
+msgstr ""
+
+msgid "Group not found."
+msgstr ""
+
+msgid "Cannot read message."
+msgstr ""
+
+msgid "No sender found."
+msgstr ""
+
+#, php-format
+msgid "Message from %1$s to group %2$s on %3$s"
+msgstr ""
+
+#, php-format
+msgid "Direct message to group %s sent."
+msgstr ""

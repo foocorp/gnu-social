@@ -153,7 +153,7 @@ class ApiDirectMessageAction extends ApiAuthAction
             $this->showJsonDirectMessages();
             break;
         default:
-            // TRANS: Client error given when an API method was not found (404).
+            // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), $code = 404);
             break;
         }

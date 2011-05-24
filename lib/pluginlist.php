@@ -43,7 +43,6 @@ require INSTALLDIR . "/lib/plugindisableform.php";
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class PluginList extends Widget
 {
     var $plugins = array();
@@ -116,7 +115,7 @@ class PluginListItem extends Widget
             $this->out->elementEnd('a');
         }
         $this->out->elementEnd('div');
-        
+
         $form = $this->getControlForm();
         $form->show();
 
@@ -192,6 +191,7 @@ class PluginListItem extends Widget
             return $found;
         } else {
             return array('name' => $this->plugin,
+                         // TRANS: Plugin description for a disabled plugin.
                          'rawdescription' => _m('plugin-description',
                                                 '(Plugin descriptions unavailable when disabled.)'));
         }

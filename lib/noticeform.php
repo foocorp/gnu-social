@@ -79,6 +79,15 @@ class NoticeForm extends Form
     var $location_id;
     var $location_ns;
 
+    /** select this group from the drop-down by default. */
+    var $to_group;
+
+    /** select this user from the drop-down by default. */
+    var $to_profile;
+
+    /** Pre-click the private checkbox. */
+    var $private;
+
     /**
      * Constructor
      *
@@ -109,11 +118,22 @@ class NoticeForm extends Form
         $this->actionName  = $action->trimmed('action');
 
         $prefill = array('content', 'inreplyto', 'lat', 
-                         'lon', 'location_id', 'location_ns');
+                         'lon', 'location_id', 'location_ns',
+                         'to_group', 'to_profile', 'private');
 
         foreach ($prefill as $fieldName) {
             if (array_key_exists($fieldName, $options)) {
                 $this->$fieldName = $options[$fieldName];
+            }
+        }
+
+        // Prefill the profile if we're replying
+
+        if (empty($this->to_profile) &&
+            !empty($this->inreplyto)) {
+            $notice = Notice::staticGet('id', $this->inreplyto);
+            if (!empty($notice)) {
+                $this->to_profile = $notice->getProfile();
             }
         }
 
@@ -218,6 +238,14 @@ class NoticeForm extends Form
             }
             $this->out->hidden('notice_in-reply-to', $this->inreplyto, 'inreplyto');
 
+            $this->out->elementStart('div', 'to-selector');
+            $toWidget = new ToSelector($this->out,
+                                       $this->user,
+                                       (!empty($this->to_group) ? $this->to_group : $this->to_profile));
+
+            $toWidget->show();
+            $this->out->elementEnd('div');
+
             if ($this->user->shareLocation()) {
                 $this->out->hidden('notice_data-lat', empty($this->lat) ? (empty($this->profile->lat) ? null : $this->profile->lat) : $this->lat, 'lat');
                 $this->out->hidden('notice_data-lon', empty($this->lon) ? (empty($this->profile->lon) ? null : $this->profile->lon) : $this->lon, 'lon');
@@ -228,6 +256,7 @@ class NoticeForm extends Form
                                                       'data-api' => common_local_url('geocode')));
 
                 // @fixme checkbox method allows no way to change the id without changing the name
+                //// TRANS: Checkbox label to allow sharing geo location in notices.
                 //$this->out->checkbox('notice_data-geo', _('Share my location'), true);
                 $this->out->elementStart('label', 'notice_data-geo');
                 $this->out->element('input', array(

@@ -52,8 +52,8 @@ class PersonalTagCloudSection extends TagCloudSection
 
     function title()
     {
-        // TRANS: Title for personal tag cloud section. %s is a user nickname.
-        return sprintf(_('Tags in %s\'s notices'), $this->user->nickname);
+        // TRANS: Title for personal tag cloud section.
+        return _m('TITLE','Tags');
     }
 
     function getTags()

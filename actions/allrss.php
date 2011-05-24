@@ -83,16 +83,9 @@ class AllrssAction extends Rss10Action
      */
     function getNotices($limit=0)
     {
-        $cur = common_current_user();
-        $user = $this->user;
+        $stream = new InboxNoticeStream($this->user);
+        $notice = $stream->getNotices(0, $limit, null, null);
 
-        if (!empty($cur) && $cur->id == $user->id) {
-            $notice = $this->user->noticeInbox(0, $limit);
-        } else {
-            $notice = $this->user->noticesWithFriends(0, $limit);
-        }
-
-        $notice  = $user->noticesWithFriends(0, $limit);
         $notices = array();
 
         while ($notice->fetch()) {

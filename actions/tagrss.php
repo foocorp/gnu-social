@@ -22,7 +22,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 require_once(INSTALLDIR.'/lib/rssaction.php');
 
 // Formatting of RSS handled by Rss10Action
-
 class TagrssAction extends Rss10Action
 {
     var $tag;
@@ -32,6 +31,7 @@ class TagrssAction extends Rss10Action
         $tag = common_canonical_tag($this->trimmed('tag'));
         $this->tag = Notice_tag::staticGet('tag', $tag);
         if (!$this->tag) {
+            // TRANS: Client error when requesting a tag feed for a non-existing tag.
             $this->clientError(_('No such tag.'));
             return false;
         } else {
@@ -62,6 +62,8 @@ class TagrssAction extends Rss10Action
         $c = array('url' => common_local_url('tagrss', array('tag' => $tagname)),
                'title' => $tagname,
                'link' => common_local_url('tagrss', array('tag' => $tagname)),
+               // TRANS: Tag feed description.
+               // TRANS: %1$s is the tag name, %2$s is the StatusNet sitename.
                'description' => sprintf(_('Updates tagged with %1$s on %2$s!'),
                                         $tagname, common_config('site', 'name')));
         return $c;

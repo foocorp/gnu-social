@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Primary nav, show on all pages
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -54,34 +54,44 @@ class PrimaryNav extends Menu
         if (Event::handle('StartPrimaryNav', array($this->action))) {
             if (!empty($user)) {
                 $this->action->menuItem(common_local_url('profilesettings'),
-                                _m('Settings'),
-                                _m('Change your personal settings'),
+                                // TRANS: Menu item in primary navigation panel.
+                                _m('MENU','Settings'),
+                                // TRANS: Menu item title in primary navigation panel.
+                                _('Change your personal settings.'),
                                 false,
                                 'nav_account');
                 if ($user->hasRight(Right::CONFIGURESITE)) {
                     $this->action->menuItem(common_local_url('siteadminpanel'),
-                                    _m('Admin'), 
-                                    _m('Site configuration'),
+                                    // TRANS: Menu item in primary navigation panel.
+                                    _m('MENU','Admin'),
+                                    // TRANS: Menu item title in primary navigation panel.
+                                    _('Site configuration.'),
                                     false,
                                     'nav_admin');
                 }
                 $this->action->menuItem(common_local_url('logout'),
-                                _m('Logout'), 
-                                _m('Logout from the site'),
+                                // TRANS: Menu item in primary navigation panel.
+                                _m('MENU','Logout'),
+                                // TRANS: Menu item title in primary navigation panel.
+                                _('Logout from the site.'),
                                 false,
                                 'nav_logout');
             } else {
                 $this->action->menuItem(common_local_url('login'),
-                                _m('Login'), 
-                                _m('Login to the site'),
+                                // TRANS: Menu item in primary navigation panel.
+                                _m('MENU','Login'),
+                                // TRANS: Menu item title in primary navigation panel.
+                                _('Login to the site.'),
                                 false,
                                 'nav_login');
             }
 
             if (!empty($user) || !common_config('site', 'private')) {
                 $this->action->menuItem(common_local_url('noticesearch'),
-                                _m('Search'),
-                                _m('Search the site'),
+                                // TRANS: Menu item in primary navigation panel.
+                                _m('MENU','Search'),
+                                // TRANS: Menu item title in primary navigation panel.
+                                _('Search the site.'),
                                 false,
                                 'nav_search');
             }

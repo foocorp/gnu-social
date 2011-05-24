@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -15,7 +15,8 @@ class RemoteProfileAction extends ShowstreamAction
         $this->profile = Profile::staticGet('id', $id);
 
         if (!$this->profile) {
-            $this->serverError(_('User has no profile.'));
+            // TRANS: Error message displayed when referring to a user without a profile.
+            $this->serverError(_m('User has no profile.'));
             return false;
         }
 
@@ -41,14 +42,11 @@ class RemoteProfileAction extends ShowstreamAction
 
     function title()
     {
-        // maybe fixed in 0.9.x
-        if (!empty($this->profile->fullname)) {
-            $base = $this->profile->fullname . ' (' . $this->profile->nickname . ') ';
-        } else {
-            $base = $this->profile->nickname;
-        }
+        $base = $this->profile->getBestName();
         $host = parse_url($this->profile->profileurl, PHP_URL_HOST);
-        return sprintf(_m('%s on %s'), $base, $host);
+        // TRANS: Remote profile action page title.
+        // TRANS: %1$s is a username, %2$s is a hostname.
+        return sprintf(_m('%1$s on %2$s'), $base, $host);
     }
 
     /**
@@ -59,7 +57,10 @@ class RemoteProfileAction extends ShowstreamAction
         $url = $this->profile->profileurl;
         $host = parse_url($url, PHP_URL_HOST);
         $markdown = sprintf(
-                _m('This remote profile is registered on another site; see [%s\'s original profile page on %s](%s).'),
+                // TRANS: Message on remote profile page.
+                // TRANS: This message contains Markdown links in the form [description](link).
+                // TRANS: %1$s is a profile nickname, %2$s is a hostname, %3$s is a URL.
+                _m('This remote profile is registered on another site; see [%1$s\'s original profile page on %2$s](%3$s).'),
                 $this->profile->nickname,
                 $host,
                 $url);
@@ -67,6 +68,7 @@ class RemoteProfileAction extends ShowstreamAction
         $this->raw($html);
 
         if ($this->profile->hasRole(Profile_role::SILENCED)) {
+            // TRANS: Message on blocked remote profile page.
             $markdown = _m('Site moderators have silenced this profile, which prevents delivery of new messages to any users on this site.');
             $this->raw(common_markup_to_html($markdown));
         }
@@ -102,5 +104,4 @@ class RemoteProfileAction extends ShowstreamAction
     {
         // skip
     }
-
 }

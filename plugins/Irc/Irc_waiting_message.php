@@ -2,6 +2,7 @@
 /**
  * Table Definition for irc_waiting_message
  */
+
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
 class Irc_waiting_message extends Memcached_DataObject {
@@ -124,7 +125,9 @@ class Irc_waiting_message extends Memcached_DataObject {
         $result = $this->update($orig);
 
         if (!$result) {
-            throw Exception(sprintf(_m("Could not increment attempts count for %d"), $this->id));
+            // TRANS: Exception thrown when an IRC attempts count could not be updated.
+            // TRANS: %d is the object ID for which the count could not be updated.
+            throw Exception(sprintf(_m('Could not increment attempts count for %d.'), $this->id));
         }
     }
 

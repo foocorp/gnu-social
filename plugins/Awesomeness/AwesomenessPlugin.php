@@ -42,7 +42,7 @@ if (!defined('STATUSNET')) {
 
 class AwesomenessPlugin extends Plugin
 {
-	const VERSION = '0.0.42';
+    const VERSION = '0.0.42';
 
     public function onPluginVersion(&$versions)
     {
@@ -72,22 +72,22 @@ class AwesomenessPlugin extends Plugin
         $action->elementStart('div', array('id' => 'cornify_section',
                                          'class' => 'section'));
 
-    	$action->raw(
-    	<<<EOT
-    		<a href="http://www.cornify.com" onclick="cornify_add();return false;">
-    		<img src="http://www.cornify.com/assets/cornify.gif" width="61" height="16" border="0" alt="Cornify" />
-    		</a>
-    	<script type="text/javascript">(function() {
-	var js = document.createElement('script');
-	js.type = 'text/javascript';
-	js.async = true;
-	js.src = 'http://www.cornify.com/js/cornify.js';
-	(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(js);
+        $action->raw(
+        <<<EOT
+                <a href="http://www.cornify.com" onclick="cornify_add();return false;">
+                <img src="http://www.cornify.com/assets/cornify.gif" width="61" height="16" border="0" alt="Cornify" />
+                </a>
+        <script type="text/javascript">(function() {
+        var js = document.createElement('script');
+        js.type = 'text/javascript';
+        js.async = true;
+        js.src = 'http://www.cornify.com/js/cornify.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(js);
 })();</script>
 EOT
-    	);
+        );
 
-    	$action->elementEnd('div');
+        $action->elementEnd('div');
     }
 
     /**
@@ -102,7 +102,7 @@ EOT
      */
     function onStartSaveNewNoticeWeb($action, $user, &$content, &$options)
     {
-    	$content = htmlspecialchars($content);
-    	$options['rendered'] = preg_replace("/(^|\s|-)((?:awesome|awesomeness)[\?!\.\,]?)(\s|$)/i", " <b>$2</b> ", $content);
+        $content = htmlspecialchars($content);
+        $options['rendered'] = preg_replace("/(^|\s|-)((?:awesome|awesomeness)[\?!\.\,]?)(\s|$)/i", " <b>$2</b> ", $content);
     }
 }

@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Plugin to add a StatusNet Facebook application
+ * IMAP plugin to allow StatusNet to grab incoming emails and handle them as new user posts
  *
  * PHP version 5
  *
@@ -51,16 +51,21 @@ class ImapPlugin extends Plugin
 
     function initialize(){
         if(!isset($this->mailbox)){
-            throw new Exception(_m("A mailbox must be specified."));
+            // TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+            throw new Exception(_m('A mailbox must be specified.'));
         }
         if(!isset($this->user)){
-            throw new Exception(_m("A user must be specified."));
+            // TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+            throw new Exception(_m('A user must be specified.'));
         }
         if(!isset($this->password)){
-            throw new Exception(_m("A password must be specified."));
+            // TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+            throw new Exception(_m('A password must be specified.'));
         }
         if(!isset($this->poll_frequency)){
-            throw new Exception(_m("A poll_frequency must be specified."));
+            // TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+            // TRANS: poll_frequency is a setting that should not be translated.
+            throw new Exception(_m('A poll_frequency must be specified.'));
         }
 
         return true;
@@ -100,6 +105,7 @@ class ImapPlugin extends Plugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:IMAP',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The IMAP plugin allows for StatusNet to check a POP or IMAP mailbox for incoming mail containing user posts.'));
         return true;
     }

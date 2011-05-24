@@ -106,20 +106,20 @@ function handleError($error)
             $_cur = null;
 
             $msg = sprintf(
-                _(
-                    'The database for %s isn\'t responding correctly, '.
-                    'so the site won\'t work properly. '.
-                    'The site admins probably know about the problem, '.
-                    'but you can contact them at %s to make sure. '.
-                    'Otherwise, wait a few minutes and try again.'
+                // TRANS: Database error message.
+                _('The database for %1$s is not responding correctly, '.
+                  'so the site will not work properly. '.
+                  'The site admins probably know about the problem, '.
+                  'but you can contact them at %2$s to make sure. '.
+                  'Otherwise, wait a few minutes and try again.'
                 ),
                 common_config('site', 'name'),
                 common_config('site', 'email')
             );
         } else {
-            $msg = _(
-                'An important error occured, probably related to email setup. '.
-                'Check logfiles for more info..'
+            // TRANS: Error message.
+            $msg = _('An important error occured, probably related to email setup. '.
+                'Check logfiles for more info.'
             );
         }
 
@@ -127,6 +127,7 @@ function handleError($error)
         $dac->showPage();
 
     } catch (Exception $e) {
+        // TRANS: Error message.
         echo _('An error occurred.');
     }
     exit(-1);
@@ -174,15 +175,24 @@ function setupRW()
 
     static $alwaysRW = array('session', 'remember_me');
 
-    // We ensure that these tables always are used
-    // on the master DB
+    $rwdb = $config['db']['database'];
 
-    $config['db']['database_rw'] = $config['db']['database'];
-    $config['db']['ini_rw'] = INSTALLDIR.'/classes/statusnet.ini';
+    if (Event::handle('StartReadWriteTables', array(&$alwaysRW, &$rwdb))) {
 
-    foreach ($alwaysRW as $table) {
-        $config['db']['table_'.$table] = 'rw';
+        // We ensure that these tables always are used
+        // on the master DB
+
+        $config['db']['database_rw'] = $rwdb;
+        $config['db']['ini_rw'] = INSTALLDIR.'/classes/statusnet.ini';
+
+        foreach ($alwaysRW as $table) {
+            $config['db']['table_'.$table] = 'rw';
+        }
+
+        Event::handle('EndReadWriteTables', array($alwaysRW, $rwdb));
     }
+
+    return;
 }
 
 function checkMirror($action_obj, $args)
@@ -250,9 +260,9 @@ function main()
 
     if (!_have_config()) {
         $msg = sprintf(
-            _(
-                "No configuration file found. Try running ".
-                "the installation program first."
+            // TRANS: Error message displayed when there is no StatusNet configuration file.
+            _("No configuration file found. Try running ".
+              "the installation program first."
             )
         );
         $sac = new ServerErrorAction($msg);
@@ -281,6 +291,7 @@ function main()
     $args = $r->map($path);
 
     if (!$args) {
+        // TRANS: Error message displayed when trying to access a non-existing page.
         $cac = new ClientErrorAction(_('Unknown page'), 404);
         $cac->showPage();
         return;
@@ -335,6 +346,7 @@ function main()
     $action_class = ucfirst($action).'Action';
 
     if (!class_exists($action_class)) {
+        // TRANS: Error message displayed when trying to perform an undefined action.
         $cac = new ClientErrorAction(_('Unknown action'), 404);
         $cac->showPage();
     } else {

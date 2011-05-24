@@ -1,6 +1,7 @@
 # Translation of StatusNet - UserFlag to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: Giftpflanze
 # Author: Habi
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserFlag\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:50:02+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:48+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-11 18:53:48+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-userflag\n"
@@ -53,6 +54,13 @@ msgstr "Löschen"
 msgid "Clear all flags"
 msgstr "Alle Markierungen löschen"
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "Nicht angemeldet."
+
+msgid "You cannot review profile flags."
+msgstr "Du  kannst die Profilflags nicht überprüfen."
+
 #. TRANS: Title for page with a list of profiles that were flagged for review.
 msgid "Flagged profiles"
 msgstr "Markierte Profile"
@@ -83,13 +91,13 @@ msgstr "Konnte Markierung für Profil \"%s\" nicht entfernen."
 
 #. TRANS: Title for AJAX form to indicated that flags were removed.
 msgid "Flags cleared"
-msgstr ""
+msgstr "Flags gelöscht"
 
 #. TRANS: Body element for "flags cleared" form.
 msgid "Cleared"
-msgstr ""
+msgstr "Gelöscht"
 
 #. TRANS: Server exception.
 #, php-format
 msgid "Couldn't flag profile \"%d\" for review."
-msgstr ""
+msgstr "Konnte Profil „%d“ nicht zur Überprüfung flaggen."

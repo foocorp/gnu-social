@@ -111,7 +111,7 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
-                // TRANS: Client error displayed trying to execute an unknown API method updating profile colours.
+                // TRANS: Client error displayed when coming across a non-supported API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -179,7 +179,7 @@ class ApiAccountUpdateProfileColorsAction extends ApiAuthAction
         $profile = $this->user->getProfile();
 
         if (empty($profile)) {
-            // TRANS: Client error displayed a user has no profile updating profile colours.
+            // TRANS: Error message displayed when referring to a user without a profile.
             $this->clientError(_('User has no profile.'));
             return;
         }

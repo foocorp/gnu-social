@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Widget for showing list of group messages
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify

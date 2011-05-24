@@ -9,17 +9,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailSummary\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:34+0000\n"
+"POT-Creation-Date: 2011-03-31 21:06+0000\n"
+"PO-Revision-Date: 2011-03-31 21:09:12+0000\n"
 "Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:21+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-03-18 20:07:04+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r85082); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-emailsummary\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#, php-format
+msgid "Recent updates from %1s for %2s:"
+msgstr ""
+
+msgid "in context"
+msgstr ""
+
+#, php-format
+msgid "<p><a href=\"%1s\">change your email settings for %2s</a></p>"
+msgstr ""
+
+msgid "Updates from your network"
+msgstr ""
+
 msgid "Send an email summary of the inbox to users."
+msgstr "Kas d'an implijerien, dre bostel, un diverrañ eus ar voest degemer."
+
+#. TRANS: Checkbox label in e-mail preferences form.
+#, fuzzy
+msgid "Send me a periodic summary of updates from my network."
 msgstr "Kas d'an implijerien, dre bostel, un diverrañ eus ar voest degemer."

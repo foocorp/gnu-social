@@ -60,7 +60,7 @@ class NudgeAction extends Action
         parent::handle($args);
 
         if (!common_logged_in()) {
-            // TRANS: Client error displayed trying to nudge a user without being logged in.
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
             return;
         }
@@ -78,6 +78,7 @@ class NudgeAction extends Action
         $token = $this->trimmed('token');
 
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. Try again, please.'));
             return;
         }

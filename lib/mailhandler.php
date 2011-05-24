@@ -21,7 +21,7 @@ require_once(INSTALLDIR . '/lib/mail.php');
 require_once(INSTALLDIR . '/lib/mediafile.php');
 require_once('Mail/mimeDecode.php');
 
-// FIXME: we use both Mail_mimeDecode and mailparse
+// @todo FIXME: we use both Mail_mimeDecode and mailparse
 // Need to move everything to mailparse
 
 class MailHandler
@@ -34,19 +34,23 @@ class MailHandler
     {
         list($from, $to, $msg, $attachments) = $this->parse_message($rawmessage);
         if (!$from || !$to || !$msg) {
+            // TRANS: Error message in incoming mail handler used when an incoming e-mail cannot be processed.
             $this->error(null, _('Could not parse message.'));
         }
         common_log(LOG_INFO, "Mail from $from to $to with ".count($attachments) .' attachment(s): ' .substr($msg, 0, 20));
         $user = $this->user_from_header($from);
         if (!$user) {
+            // TRANS: Error message in incoming mail handler used when an incoming e-mail is not from a registered user.
             $this->error($from, _('Not a registered user.'));
             return false;
         }
         if (!$this->user_match_to($user, $to)) {
+            // TRANS: Error message in incoming mail handler used when an incoming e-mail is not from a user's incoming e-mail address.
             $this->error($from, _('Sorry, that is not your incoming email address.'));
             return false;
         }
         if (!$user->emailpost) {
+            // TRANS: Error message in incoming mail handler used when no incoming e-mail is allowed.
             $this->error($from, _('Sorry, no incoming email allowed.'));
             return false;
         }
@@ -57,7 +61,8 @@ class MailHandler
         $msg = $this->cleanup_msg($msg);
         $msg = $user->shortenLinks($msg);
         if (Notice::contentTooLong($msg)) {
-            $this->error($from, sprintf(_('That\'s too long. Maximum notice size is %d character.',
+            // TRANS: Error message in incoming mail handler used when an incoming e-mail contains too many characters.
+            $this->error($from, sprintf(_m('That\'s too long. Maximum notice size is %d character.',
                                           'That\'s too long. Maximum notice size is %d characters.',
                                           Notice::maxContent()),
                                         Notice::maxContent()));
@@ -66,7 +71,6 @@ class MailHandler
         $mediafiles = array();
 
         foreach($attachments as $attachment){
-
             $mf = null;
 
             try {
@@ -137,9 +141,9 @@ class MailHandler
 
     function respond($from, $to, $response)
     {
-
         $headers['From'] = $to;
         $headers['To'] = $from;
+        // TRANS: E-mail subject for reply to an e-mail command.
         $headers['Subject'] = _('Command complete');
 
         return mail_send(array($from), $headers, $response);
@@ -226,7 +230,9 @@ class MailHandler
 
     function unsupported_type($type)
     {
-        $this->error(null, sprintf(_('Unsupported message type: %s'), $type));
+        // TRANS: Error message in incoming mail handler used when an incoming e-mail is of an unsupported type.
+        // TRANS: %s is the unsupported type.
+        $this->error(null, sprintf(_('Unsupported message type: %s.'), $type));
     }
 
     function cleanup_msg($msg)

@@ -53,7 +53,6 @@ require_once INSTALLDIR.'/lib/attachmentlist.php';
  * @see      NoticeListItem
  * @see      ProfileNoticeList
  */
-
 class NoticeList extends Widget
 {
     /** the current stream of notices being displayed. */
@@ -65,7 +64,6 @@ class NoticeList extends Widget
      *
      * @param Notice $notice stream of notices from DB_DataObject
      */
-
     function __construct($notice, $out=null)
     {
         parent::__construct($out);
@@ -80,11 +78,9 @@ class NoticeList extends Widget
      *
      * @return int count of notices listed.
      */
-
     function show()
     {
         $this->out->elementStart('div', array('id' =>'notices_primary'));
-        $this->out->element('h2', null, _('Notices'));
         $this->out->elementStart('ol', array('class' => 'notices xoxo'));
 
         $cnt = 0;
@@ -122,10 +118,8 @@ class NoticeList extends Widget
      *
      * @return NoticeListItem a list item for displaying the notice
      */
-
     function newListItem($notice)
     {
         return new NoticeListItem($notice, $this->out);
     }
 }
-

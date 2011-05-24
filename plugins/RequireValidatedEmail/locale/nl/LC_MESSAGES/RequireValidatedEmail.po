@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:38+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:06+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:42+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
@@ -29,3 +29,55 @@ msgstr "U moet een e-mailadres opgeven om te kunnen registreren."
 
 msgid "Disables posting without a validated email address."
 msgstr "Schakelt berichten plaatsen zonder gevalideerd e-mailadres uit."
+
+msgid "You are already logged in."
+msgstr "U bent al aangemeld."
+
+msgid "Confirmation code not found."
+msgstr "De bevestigingscode is niet gevonden."
+
+msgid "No user for that confirmation code."
+msgstr "Er is geen gebruiker voor die bevestigingscode."
+
+#, php-format
+msgid "Unrecognized address type %s."
+msgstr "Onbekend adrestype %s."
+
+#. TRANS: Client error for an already confirmed email/jabber/sms address.
+msgid "That address has already been confirmed."
+msgstr "Dit adres is al bevestigd."
+
+msgid "Password too short."
+msgstr "Het wachtwoord is te kort."
+
+msgid "Passwords do not match."
+msgstr "De wachtwoorden komen niet overeen."
+
+#, php-format
+msgid ""
+"You have confirmed the email address for your new user account %s. Use the "
+"form below to set your new password."
+msgstr ""
+"U hebt het e-mailadres bevestigd voor uw nieuwe gebruiker %s. Gebruik het "
+"formulier hieronder om uw nieuwe wachtwoord in te stellen."
+
+msgid "Set a password"
+msgstr "Stel een wachtwoord in"
+
+msgid "Confirm email"
+msgstr "E-mailadres bevestigen"
+
+msgid "New password"
+msgstr "Nieuw wachtwoord"
+
+msgid "6 or more characters."
+msgstr "Zes of meer tekens."
+
+msgid "Confirm"
+msgstr "Bevestigen"
+
+msgid "Same as password above."
+msgstr "Gelijk aan het wachtwoord hierboven."
+
+msgid "Save"
+msgstr "Opslaan"

@@ -228,7 +228,7 @@ class LoginAction extends Action
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
         // TRANS: Field label on login page.
-        $this->input('nickname', _('Nickname'));
+        $this->input('nickname', _('Username or email address'));
         $this->elementEnd('li');
         $this->elementStart('li');
         // TRANS: Field label on login page.

@@ -28,4 +28,36 @@ class Confirm_address extends Memcached_DataObject
 
     function sequenceKey()
     { return array(false, false); }
+
+    static function getAddress($address, $addressType)
+    {
+        $ca = new Confirm_address();
+
+        $ca->address      = $address;
+        $ca->address_type = $addressType;
+
+        if ($ca->find(true)) {
+            return $ca;
+        }
+
+        return null;
+    }
+
+    static function saveNew($user, $address, $addressType, $extra=null)
+    {
+        $ca = new Confirm_address();
+
+        if (!empty($user)) {
+            $ca->user_id = $user->id;
+        }
+
+        $ca->address       = $address;
+        $ca->address_type  = $addressType;
+        $ca->address_extra = $extra;
+        $ca->code          = common_confirmation_code(64);
+
+        $ca->insert();
+
+        return $ca;
+    }
 }

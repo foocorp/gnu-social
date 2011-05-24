@@ -48,7 +48,6 @@ define('NOTICE_TITLE_PLUGIN_VERSION', '0.1');
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class NoticeTitlePlugin extends Plugin
 {
 
@@ -67,7 +66,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onCheckSchema()
     {
         $schema = Schema::get();
@@ -95,7 +93,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onAutoload($cls)
     {
         $dir = dirname(__FILE__);
@@ -119,7 +116,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onPluginVersion(&$versions)
     {
         $url = 'http://status.net/wiki/Plugin:NoticeTitle';
@@ -129,6 +125,7 @@ class NoticeTitlePlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => $url,
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Adds optional titles to notices.'));
         return true;
     }
@@ -140,7 +137,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onStartShowNoticeFormData($form)
     {
         if ($this->isAllowedRichEdit()) {
@@ -166,14 +162,17 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onStartNoticeSaveWeb($action, &$authorId, &$text, &$options)
     {
         $title = $action->trimmed('notice_title');
         if (!empty($title) && $this->isAllowedRichEdit()) {
             if (mb_strlen($title) > Notice_title::MAXCHARS) {
-                throw new Exception(sprintf(_m("The notice title is too long (max %d characters).",
-                                               Notice_title::MAXCHARS)));
+                // TRANS: Exception thrown when a notice title is too long.
+                // TRANS: %d is the maximum number of characters allowed in a title (used for plural).
+                throw new Exception(sprintf(_m('The notice title is too long (maximum %d character).',
+                                               'The notice title is too long (maximum %d characters).',
+                                               Notice_title::MAXCHARS),
+                                            Notice_title::MAXCHARS));
             }
         }
         return true;
@@ -187,7 +186,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onEndNoticeSaveWeb($action, $notice)
     {
         if (!empty($notice)) {
@@ -215,7 +213,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onStartShowNoticeItem($nli)
     {
         $title = Notice_title::fromNotice($nli->notice);
@@ -237,7 +234,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onEndRssEntryArray($notice, &$entry)
     {
         $title = Notice_title::fromNotice($notice);
@@ -258,7 +254,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onEndNoticeAsActivity($notice, &$activity)
     {
         $title = Notice_title::fromNotice($notice);
@@ -282,7 +277,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onNoticeDeleteRelated($notice)
     {
         $nt = Notice_title::staticGet('notice_id', $notice->id);
@@ -301,7 +295,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onStartShowHeadTitle($action)
     {
         $actionName = $action->trimmed('action');
@@ -327,7 +320,6 @@ class NoticeTitlePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onStartShowPageTitle($action)
     {
         $actionName = $action->trimmed('action');
@@ -348,7 +340,7 @@ class NoticeTitlePlugin extends Plugin
      * Always true unless the plugin's "restricted" setting is on, in which
      * case it's limited to users with the "richedit" role.
      *
-     * @fixme make that more sanely configurable :)
+     * @todo FIXME: make that more sanely configurable :)
      *
      * @return boolean
      */
@@ -361,5 +353,4 @@ class NoticeTitlePlugin extends Plugin
             return true;
         }
     }
-
 }

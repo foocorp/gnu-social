@@ -80,6 +80,7 @@ class TagSubPlugin extends Plugin
         case 'TagunsubAction':
         case 'TagsubsAction':
         case 'TagSubForm':
+        case 'TagSubMenu':
         case 'TagUnsubForm':
             include_once $dir.'/'.strtolower($cls).'.php';
             return false;
@@ -207,36 +208,21 @@ class TagSubPlugin extends Plugin
         return true;
     }
 
-    /**
-     * Add a count of mirrored feeds into a user's profile sidebar stats.
-     *
-     * @param Profile $profile
-     * @param array $stats
-     * @return boolean hook return value
-     */
-    function onProfileStats($profile, &$stats)
+    function onEndDefaultLocalNav($menu, $user)
     {
-        $cur = common_current_user();
-        if (!empty($cur) && $cur->id == $profile->id) {
-            $tagsub = new TagSub();
-            $tagsub->profile_id = $profile->id;
-            $entry = array(
-                'id' => 'tagsubs',
-                'label' => _m('Tag subscriptions'),
-                'link' => common_local_url('tagsubs', array('nickname' => $profile->nickname)),
-                'value' => $tagsub->count(),
-            );
+        $user = common_current_user();
 
-            $insertAt = count($stats);
-            foreach ($stats as $i => $row) {
-                if ($row['id'] == 'groups') {
-                    // Slip us in after them.
-                    $insertAt = $i + 1;
-                    break;
-                }
+        if (!empty($user)) {
+
+            $tags = TagSub::forProfile($user->getProfile());
+
+            if (!empty($tags) && count($tags) > 0) {
+                $tagSubMenu = new TagSubMenu($menu->out, $user, $tags);
+                $menu->submenu(_m('Tags'), $tagSubMenu);
             }
-            array_splice($stats, $insertAt, 0, array($entry));
         }
+
         return true;
     }
+
 }

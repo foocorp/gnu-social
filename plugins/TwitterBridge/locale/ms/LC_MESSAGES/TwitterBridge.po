@@ -1,0 +1,311 @@
+# Translation of StatusNet - TwitterBridge to Malay (Bahasa Melayu)
+# Exported from translatewiki.net
+#
+# Author: Anakmalaysia
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TwitterBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:45+0000\n"
+"Language-Team: Malay <http://translatewiki.net/wiki/Portal:ms>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ms\n"
+"X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Twitter settings"
+msgstr "Tetapan Twitter"
+
+msgid ""
+"Connect your Twitter account to share your updates with your Twitter friends "
+"and vice-versa."
+msgstr ""
+"Sambungkan akaun Twitter anda untuk berkongsi kemaskini dengan rakan-rakan "
+"Twitter anda."
+
+msgid "Twitter account"
+msgstr "Akaun Twitter"
+
+msgid "Connected Twitter account"
+msgstr "Akaun Twitter disambungkan"
+
+msgid "Disconnect my account from Twitter"
+msgstr "Putuskan akaun saya dari Twitter"
+
+msgid "Disconnecting your Twitter could make it impossible to log in! Please "
+msgstr "Jika Twitter anda diputuskan, mungkin tak boleh log masuk! Tolong "
+
+msgid "set a password"
+msgstr "tetapkan kata laluan"
+
+msgid " first."
+msgstr " terlebih dahulu."
+
+#. TRANS: %1$s is the current website name.
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
+"password to log in."
+msgstr ""
+
+msgid "Disconnect"
+msgstr "Putuskan"
+
+msgid "Preferences"
+msgstr "Keutamaan"
+
+msgid "Automatically send my notices to Twitter."
+msgstr "Hantarkan notis saya secara automatik ke Twitter."
+
+msgid "Send local \"@\" replies to Twitter."
+msgstr "Hantarkan balasan \"@\" setempat ke Twitter."
+
+msgid "Subscribe to my Twitter friends here."
+msgstr "Langgan kawan-kawan Twitter saya di sini."
+
+msgid "Import my friends timeline."
+msgstr "Import garis masa kawan-kawan saya."
+
+msgid "Save"
+msgstr "Simpan"
+
+msgid "Add"
+msgstr "Tambahkan"
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+msgid "Unexpected form submission."
+msgstr ""
+
+msgid "No Twitter connection to remove."
+msgstr "Tiada sambungan Twitter untuk digugurkan."
+
+msgid "Couldn't remove Twitter user."
+msgstr "Pengguna Twitter tidak dapat digugurkan."
+
+msgid "Twitter account disconnected."
+msgstr ""
+
+msgid "Couldn't save Twitter preferences."
+msgstr ""
+
+msgid "Twitter preferences saved."
+msgstr ""
+
+msgid "You cannot register if you do not agree to the license."
+msgstr ""
+
+msgid "Something weird happened."
+msgstr ""
+
+#, fuzzy
+msgid "Could not link your Twitter account."
+msgstr "Log masuk dengan akaun Twitter anda"
+
+msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr ""
+
+msgid "Couldn't link your Twitter account."
+msgstr ""
+
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your Twitter "
+"account to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
+msgstr ""
+
+msgid "Twitter Account Setup"
+msgstr "Persediaan Akaun Twitter"
+
+msgid "Connection options"
+msgstr "Opsyen sambungan"
+
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+
+msgid "Create new account"
+msgstr "Buka akaun baru"
+
+msgid "Create a new user with this nickname."
+msgstr ""
+
+msgid "New nickname"
+msgstr ""
+
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr ""
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr "E-mel"
+
+msgid "Used only for updates, announcements, and password recovery"
+msgstr ""
+
+msgid "Create"
+msgstr "Cipta"
+
+msgid "Connect existing account"
+msgstr "Sambungkan akaun yang sedia ada"
+
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Twitter account."
+msgstr ""
+
+msgid "Existing nickname"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Connect"
+msgstr ""
+
+msgid "Registration not allowed."
+msgstr ""
+
+msgid "Not a valid invitation code."
+msgstr ""
+
+msgid "Nickname not allowed."
+msgstr ""
+
+msgid "Nickname already in use. Try another one."
+msgstr ""
+
+msgid "Error registering user."
+msgstr ""
+
+msgid "Error connecting user to Twitter."
+msgstr ""
+
+msgid "Invalid username or password."
+msgstr ""
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "Twitter bridge settings"
+msgstr "Tetapan pengantara Twitter"
+
+msgid "Invalid consumer key. Max length is 255 characters."
+msgstr "Kunci pengguna tidak sah. Panjang maksimum 255 aksara."
+
+msgid "Invalid consumer secret. Max length is 255 characters."
+msgstr "Rahsia pengguna tidak sah. Panjang maksimum 255 aksara."
+
+msgid "Twitter application settings"
+msgstr ""
+
+msgid "Consumer key"
+msgstr "Kunci pengguna"
+
+msgid "Consumer key assigned by Twitter"
+msgstr "Kunci pengguna yang diperuntukkan oleh Twitter"
+
+msgid "Consumer secret"
+msgstr "Rahsia pengguna"
+
+msgid "Consumer secret assigned by Twitter"
+msgstr "Rahsia pengguna yang diperuntukkan oleh Twitter"
+
+msgid "Note: a global consumer key and secret are set."
+msgstr "Perhatian: kunci dan rahsia pengguna global telah ditetapkan."
+
+msgid "Integration source"
+msgstr "Sumber penyepaduan"
+
+msgid "Name of your Twitter application"
+msgstr "Nama aplikasi Twitter anda"
+
+msgid "Options"
+msgstr "Opsyen"
+
+msgid "Enable \"Sign-in with Twitter\""
+msgstr "Hidupkan \"Daftar masuk dengan Twitter\""
+
+msgid "Allow users to login with their Twitter credentials"
+msgstr "Benarkan pengguna log masuk dengan watikah Twitter"
+
+msgid "Enable Twitter import"
+msgstr "Bolehkan import dari Twitter"
+
+msgid ""
+"Allow users to import their Twitter friends' timelines. Requires daemons to "
+"be manually configured."
+msgstr ""
+"Benarkan pengguna mengimport garis masa kawan-kawannya di Twitter. Untuk "
+"itu, daemon perlu ditataletak secara manual."
+
+msgid "Save Twitter settings"
+msgstr "Simpan tetapan Twitter"
+
+msgid "Login or register using Twitter"
+msgstr "Log masuk atau berdaftar dengan menggunakan Twitter"
+
+msgid "Twitter integration options"
+msgstr "Opsyen penyepaduan Twitter"
+
+msgid "Twitter bridge configuration"
+msgstr "Tatarajah pengantara Twitter"
+
+msgid ""
+"The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
+"with <a href=\"http://twitter.com/\">Twitter</a>."
+msgstr ""
+"Pemalam \"penghubung\" Twitter membolehkan penyepaduan peristiwa StatusNet "
+"dengan <a href=\"http://twitter.com/\">Twitter</a>."
+
+msgid "Already logged in."
+msgstr "Sudah log masuk."
+
+msgid "Twitter Login"
+msgstr "Log masuk Twitter"
+
+msgid "Login with your Twitter account"
+msgstr "Log masuk dengan akaun Twitter anda"
+
+msgid "Sign in with Twitter"
+msgstr "Daftar masuk dengan Twitter"
+
+#. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
+msgid "Your Twitter bridge has been disabled"
+msgstr ""
+
+#. TRANS: Mail body after forwarding notices to Twitter has stopped working.
+#. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the
+#. TRANS: Twitter settings, %3$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"Hi, %1$s. We're sorry to inform you that your link to Twitter has been "
+"disabled. We no longer seem to have permission to update your Twitter "
+"status. Did you maybe revoke %3$s's access?\n"
+"\n"
+"You can re-enable your Twitter bridge by visiting your Twitter settings "
+"page:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"Regards,\n"
+"%3$s"
+msgstr ""
+
+#. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
+#. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
+#, php-format
+msgid "RT @%1$s %2$s"
+msgstr "RT @%1$s %2$s"

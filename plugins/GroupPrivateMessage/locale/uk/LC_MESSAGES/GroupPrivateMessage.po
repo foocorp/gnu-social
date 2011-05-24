@@ -9,30 +9,183 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GroupPrivateMessage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:51+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:44+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-08 01:22:07+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:27:30+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Client exception thrown when trying to send a private group message while not logged in.
+msgid "Must be logged in."
+msgstr "Мусите увійти до системи."
+
+#. TRANS: Exception thrown when user %s is not allowed to send a private group message.
+#. TRANS: Exception thrown when trying to send group private message without having the right to do that.
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "User %s is not allowed to send private messages."
+msgstr "Користувач %s заборонив надсилання приватних повідомлень."
+
+#. TRANS: Client exception thrown when trying to send a private group message to a non-existing group.
+#. TRANS: Client exception thrown when trying to view group inbox for non-existing group.
+msgid "No such group."
+msgstr "Такої спільноти немає."
+
+#. TRANS: Title after sending a private group message.
+msgid "Message sent"
+msgstr "Повідомлення надіслано"
+
+#. TRANS: Succes text after sending a direct message to group %s.
+#, php-format
+msgid "Direct message to %s sent."
+msgstr "Пряме повідомлення для %s надіслано."
+
+#. TRANS: Title of form for new private group message.
+#, php-format
+msgid "New message to group %s"
+msgstr "Нове повідомлення для спільноти %s"
+
+#. TRANS: Subject for direct-message notification email.
+#. TRANS: %1$s is the sending user's nickname, %2$s is the group nickname.
+#, php-format
+msgid "New private message from %1$s to group %2$s"
+msgstr "Нове приватне повідомлення від %1$s до спільноти %2$s"
+
+#. TRANS: Body for direct-message notification email.
+#. TRANS: %1$s is the sending user's long name, %2$s is the sending user's nickname,
+#. TRANS: %3$s is the message content, %4$s a URL to the message,
+#. TRANS: %5$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"%1$s (%2$s) sent a private message to group %3$s:\n"
+"\n"
+"------------------------------------------------------\n"
+"%4$s\n"
+"------------------------------------------------------\n"
+"\n"
+"You can reply to their message here:\n"
+"\n"
+"%5$s\n"
+"\n"
+"Do not reply to this email; it will not get to them.\n"
+"\n"
+"With kind regards,\n"
+"%6$s"
+msgstr ""
+"%1$s (%2$s) надіслав приватне повідомлення до спільноти %3$s:\n"
+"\n"
+"------------------------------------------------------\n"
+"%4$s\n"
+"------------------------------------------------------\n"
+"\n"
+"Ви можете відповісти на це повідомлення тут:\n"
+"\n"
+"%5$s\n"
+"\n"
+"Не відповідайте на цей лист; вашої відповіді на нього ніхто не отримає.\n"
+"\n"
+"З найкращими побажаннями,\n"
+"%6$s"
+
+#. TRANS: Menu item in group page.
+msgctxt "MENU"
 msgid "Inbox"
 msgstr "Вхідні"
 
-msgid "Private messages for this group"
-msgstr "Приватні повідомлення для цієї спільноти"
+#. TRANS: Menu title in group page.
+msgid "Private messages for this group."
+msgstr "Приватні повідомлення для цієї спільноти."
 
-msgid "Allow posting DMs to a group."
-msgstr "Дозволити надсилання «прямих» повідомлень до спільноти."
+#. TRANS: Dropdown label in group settings page for if group allows private messages.
+msgid "Private messages"
+msgstr "Приватні повідомлення"
 
+#. TRANS: Dropdown option in group settings page for allowing private messages.
+msgid "Sometimes"
+msgstr "Іноді"
+
+#. TRANS: Dropdown option in group settings page for allowing private messages.
+msgid "Always"
+msgstr "Завжди"
+
+#. TRANS: Dropdown option in group settings page for allowing private messages.
+msgid "Never"
+msgstr "Ніколи"
+
+#. TRANS: Dropdown title in group settings page for if group allows private messages.
+msgid "Whether to allow private messages to this group."
+msgstr "Чи дозволити надсилання приватних повідомлень до цієї спільноти."
+
+#. TRANS: Dropdown label in group settings page for who can send private messages to the group.
+msgid "Private senders"
+msgstr "Відправники приватних повідомлень"
+
+#. TRANS: Dropdown option in group settings page for who can send private messages.
+msgid "Everyone"
+msgstr "Всі"
+
+#. TRANS: Dropdown option in group settings page for who can send private messages.
+msgid "Member"
+msgstr "Учасники"
+
+#. TRANS: Dropdown option in group settings page for who can send private messages.
+msgid "Admin"
+msgstr "Адміністратор"
+
+#. TRANS: Dropdown title in group settings page for who can send private messages to the group.
+msgid "Who can send private messages to the group."
+msgstr "Хто може надсилати приватні повідомлення до спільноти."
+
+#. TRANS: Title for action in group actions list.
+msgid "Send a direct message to this group."
+msgstr "Надіслати пряме повідомлення до цієї спільноти."
+
+#. TRANS: Link text for action in group actions list to send a private message to a group.
+msgctxt "LINKTEXT"
+msgid "Message"
+msgstr "Повідомлення"
+
+#. TRANS: Client exception thrown when a private group message has to be forced.
+msgid "Forced notice to private group message."
+msgstr "Обов’язковий допис у приватному повідомленні до спільноти."
+
+#. TRANS: Indicator on the group page that the group is (essentially) private.
+msgid "Private"
+msgstr "Приватні"
+
+#. TRANS: Plugin description.
+msgid "Allow posting private messages to groups."
+msgstr "Дозволити надсилання приватних повідомлень до спільноти."
+
+#. TRANS: Client exception thrown when trying to view group inbox while not logged in.
+msgid "Only for logged-in users."
+msgstr "Лише користувачам, що знаходяться в системі."
+
+#. TRANS: Client exception thrown when trying to view group inbox while not a member.
+msgid "Only for members."
+msgstr "Лише учасникам."
+
+#. TRANS: Text of group inbox if no private messages were sent to it.
 msgid "This group has not received any private messages."
 msgstr "До цієї спільноти не надходило ніяких приватних повідомлень."
+
+#. TRANS: Title of inbox for group %s.
+#, php-format
+msgid "%s group inbox"
+msgstr "Вхідні спільноти %s"
+
+#. TRANS: Page title for any but first group page.
+#. TRANS: %1$s is a group name, $2$s is a page number.
+#, php-format
+msgid "%1$s group inbox, page %2$d"
+msgstr "Вхідні спільноти %1$s, сторінка %2$d"
 
 #. TRANS: Instructions for user inbox page.
 msgid ""
@@ -41,13 +194,100 @@ msgid ""
 msgstr ""
 "Тут містяться всі вхідні повідомлення цієї спільноти, надіслані приватно."
 
+#. TRANS: Form legend for sending private message to group %s.
+#, php-format
+msgid "Message to %s"
+msgstr "Повідомлення для %s"
+
+#. TRANS: Field label for private group message to group %s.
+#, php-format
+msgid "Direct message to %s"
+msgstr "Пряме повідомлення для %s"
+
+#. TRANS: Indicator for number of chatacters still available for notice.
+msgid "Available characters"
+msgstr "Залишилось символів"
+
+#. TRANS: Send button text for sending private group notice.
 msgctxt "Send button for sending notice"
 msgid "Send"
 msgstr "Надіслати"
 
+#. TRANS: Exception thrown when trying to set group privacy setting if group %s does not allow private messages.
+#, php-format
+msgid "Group %s does not allow private messages."
+msgstr "До спільноти %s заборонено надсилати приватні повідомлення."
+
+#. TRANS: Exception thrown when trying to send group private message while blocked from that group.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#, php-format
+msgid "User %1$s is blocked from group %2$s."
+msgstr "Користувача %1$s заблоковано у спільноті %2$s."
+
+#. TRANS: Exception thrown when trying to send group private message while not a member.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#, php-format
+msgid "User %1$s is not a member of group %2$s."
+msgstr "Користувач %1$s не є учасником спільноти %2$s."
+
+#. TRANS: Exception thrown when trying to send group private message while not a group administrator.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#, php-format
+msgid "User %1$s is not an administrator of group %2$s."
+msgstr "Користувач %1$s не є адміністратором спільноти %2$s."
+
+#. TRANS: Exception thrown when encountering undefined group privacy settings.
+#. TRANS: %s is a group nickname.
+#, php-format
+msgid "Unknown privacy settings for group %s."
+msgstr "Невідомі параметри конфіденційності для спільноти %s."
+
+#. TRANS: Exception thrown when trying to send group private message that is too long.
+#. TRANS: %d is the maximum meggage length.
 #, php-format
 msgid "That's too long. Maximum message size is %d character."
 msgid_plural "That's too long. Maximum message size is %d characters."
 msgstr[0] "Допис надто довгий. Максимальна довжина повідомлення — %d символ."
 msgstr[1] "Допис надто довгий. Максимальна довжина повідомлення — %d символів."
 msgstr[2] "Допис надто довгий. Максимальна довжина повідомлення — %d символів."
+
+#. TRANS: Exception thrown when trying to send group private message to a non-existing group.
+msgid "No group for group message."
+msgstr "Не зазначено спільноти для для надсилання групового повідомлення."
+
+#. TRANS: Exception thrown when trying to send group private message without having a sender.
+msgid "No sender for group message."
+msgstr "Не зазначено відправника для групового повідомлення."
+
+#. TRANS: Client exception thrown when trying to view group private messages without being logged in.
+msgid "Only logged-in users can view private messages."
+msgstr ""
+"Лише користувачі, які знаходяться в системі, можуть читати приватні "
+"повідомлення."
+
+#. TRANS: Client exception thrown when trying to view a non-existing group private message.
+msgid "No such message."
+msgstr "Немає такого повідомлення."
+
+#. TRANS: Server exception thrown when trying to view group private messages for a non-exsting group.
+msgid "Group not found."
+msgstr "Спільноту не знайдено."
+
+#. TRANS: Client exception thrown when trying to view a group private message without being a group member.
+msgid "Cannot read message."
+msgstr "Не вдалося прочитати повідомлення."
+
+#. TRANS: Server exception thrown when trying to view a group private message without a sender.
+msgid "No sender found."
+msgstr "Відправника не знайдено."
+
+#. TRANS: Title for private group message.
+#. TRANS: %1$s is the sender name, %2$s is the group name, %3$s is a timestamp.
+#, php-format
+msgid "Message from %1$s to group %2$s on %3$s"
+msgstr "Повідомлення від %1$s до спільноти %2$s на %3$s"
+
+#. TRANS: Succes message after sending private group message to group %s.
+#, php-format
+msgid "Direct message to group %s sent."
+msgstr "Пряме повідомлення для спільноти %s надіслано."

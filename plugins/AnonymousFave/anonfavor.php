@@ -57,7 +57,7 @@ class AnonFavorAction extends RedirectingAction
 
         if (empty($profile) || $_SERVER['REQUEST_METHOD'] != 'POST') {
             // TRANS: Client error.
-            $this->clientError( _m('Could not favor notice! Please make sure your browser has cookies enabled.')
+            $this->clientError(_m('Could not favor notice! Please make sure your browser has cookies enabled.')
             );
             return;
         }

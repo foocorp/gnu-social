@@ -201,7 +201,9 @@ class LinkbackPlugin extends Plugin
     {
         $profile = $this->notice->getProfile();
 
-        $args = array('title' => sprintf(_('%1$s\'s status on %2$s'),
+        // TRANS: Trackback title.
+        // TRANS: %1$s is a profile nickname, %2$s is a timestamp.
+        $args = array('title' => sprintf(_m('%1$s\'s status on %2$s'),
                                          $profile->nickname,
                                          common_exact_date($this->notice->created)),
                       'excerpt' => $this->notice->content,
@@ -238,6 +240,7 @@ class LinkbackPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Linkback',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Notify blog authors when their posts have been linked in '.
                                'microblog notices using '.
                                '<a href="http://www.hixie.ch/specs/pingback/pingback">Pingback</a> '.

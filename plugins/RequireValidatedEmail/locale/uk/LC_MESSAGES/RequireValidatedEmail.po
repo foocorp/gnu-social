@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:38+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:07+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:42+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
@@ -34,3 +34,55 @@ msgid "Disables posting without a validated email address."
 msgstr ""
 "Забороняє надсилання дописів, якщо користувач не має підтвердженої "
 "електронної адреси."
+
+msgid "You are already logged in."
+msgstr "Ви вже увійшли."
+
+msgid "Confirmation code not found."
+msgstr "Код підтвердження не знайдено."
+
+msgid "No user for that confirmation code."
+msgstr "Немає користувача для цього коду підтвердження."
+
+#, php-format
+msgid "Unrecognized address type %s."
+msgstr "Невизначений тип адреси %s."
+
+#. TRANS: Client error for an already confirmed email/jabber/sms address.
+msgid "That address has already been confirmed."
+msgstr "Цю адресу вже було підтверджено."
+
+msgid "Password too short."
+msgstr "Пароль занадто короткий."
+
+msgid "Passwords do not match."
+msgstr "Паролі не збігаються."
+
+#, php-format
+msgid ""
+"You have confirmed the email address for your new user account %s. Use the "
+"form below to set your new password."
+msgstr ""
+"Ви підтвердили електронну адресу для свого нового акаунту %s. Скористайтеся "
+"формою нижче, щоб встановити новий пароль."
+
+msgid "Set a password"
+msgstr "Встановити пароль"
+
+msgid "Confirm email"
+msgstr "Підтвердити адресу електронної пошти"
+
+msgid "New password"
+msgstr "Новий пароль"
+
+msgid "6 or more characters."
+msgstr "6 або більше знаків."
+
+msgid "Confirm"
+msgstr "Підтвердити"
+
+msgid "Same as password above."
+msgstr "Такий само, як і пароль вище."
+
+msgid "Save"
+msgstr "Зберегти"

@@ -137,6 +137,6 @@ class TagSubForm extends Form
 
     function formActions()
     {
-        $this->out->submit('submit', _('Subscribe'), 'submit', null, _m('Subscribe to this tag'));
+        $this->out->submit('submit', _m('BUTTON','Subscribe'), 'submit', null, _m('Subscribe to this tag'));
     }
 }

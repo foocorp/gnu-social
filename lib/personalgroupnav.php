@@ -43,7 +43,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class PersonalGroupNav extends Menu
 {
     /**
@@ -56,7 +55,7 @@ class PersonalGroupNav extends Menu
         $user         = common_current_user();
 
         if (empty($user)) {
-            throw new ServerException('Do not show personal group nav with no current user.');
+            throw new ServerException('Cannot show personal group navigation without a current user.');
         }
 
         $user_profile = $user->getProfile();
@@ -71,24 +70,38 @@ class PersonalGroupNav extends Menu
         if (Event::handle('StartPersonalGroupNav', array($this))) {
             $this->out->menuItem(common_local_url('all', array('nickname' =>
                                                                $nickname)),
-                                 _('Home'),
+                                 // TRANS: Menu item in personal group navigation menu.
+                                 _m('MENU','Home'),
+                                 // TRANS: Menu item title in personal group navigation menu.
+                                 // TRANS: %s is a username.
                                  sprintf(_('%s and friends'), $name),
                                  $mine && $action =='all', 'nav_timeline_personal');
             $this->out->menuItem(common_local_url('showstream', array('nickname' =>
                                                                       $nickname)),
-                                 _('Profile'),
+                                 // TRANS: Menu item in personal group navigation menu.
+                                 _m('MENU','Profile'),
+                                 // TRANS: Menu item title in personal group navigation menu.
                                  _('Your profile'),
                                  $mine && $action =='showstream',
                                  'nav_profile');
             $this->out->menuItem(common_local_url('replies', array('nickname' =>
                                                                    $nickname)),
-                                 _('Replies'),
+                                 // TRANS: Menu item in personal group navigation menu.
+                                 _m('MENU','Replies'),
+                                 // TRANS: Menu item title in personal group navigation menu.
+                                 // TRANS: %s is a username.
                                  sprintf(_('Replies to %s'), $name),
                                  $mine && $action =='replies', 'nav_timeline_replies');
             $this->out->menuItem(common_local_url('showfavorites', array('nickname' =>
                                                                          $nickname)),
-                                 _('Favorites'),
-                                 sprintf(_('%s\'s favorite notices'), ($user_profile) ? $name : _('User')),
+                                 // TRANS: Menu item in personal group navigation menu.
+                                 _m('MENU','Favorites'),
+                                 // @todo i18n FIXME: Need to make this two messages.
+                                 // TRANS: Menu item title in personal group navigation menu.
+                                 // TRANS: %s is a username.
+                                 sprintf(_('%s\'s favorite notices'),
+                                         // TRANS: Replaces %s in '%s\'s favorite notices'. (Yes, we know we need to fix this.)
+                                         ($user_profile) ? $name : _m('FIXME','User')),
                                  $mine && $action =='showfavorites', 'nav_timeline_favorites');
 
             $cur = common_current_user();
@@ -98,7 +111,9 @@ class PersonalGroupNav extends Menu
 
                 $this->out->menuItem(common_local_url('inbox', array('nickname' =>
                                                                      $nickname)),
-                                     _('Messages'),
+                                     // TRANS: Menu item in personal group navigation menu.
+                                     _m('MENU','Messages'),
+                                     // TRANS: Menu item title in personal group navigation menu.
                                      _('Your incoming messages'),
                                      $mine && $action =='inbox');
             }

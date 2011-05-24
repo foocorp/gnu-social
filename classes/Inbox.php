@@ -157,168 +157,11 @@ class Inbox extends Memcached_DataObject
         }
     }
 
-    function stream($user_id, $offset, $limit, $since_id, $max_id, $own=false)
-    {
-        $inbox = Inbox::staticGet('user_id', $user_id);
-
-        if (empty($inbox)) {
-            $inbox = Inbox::fromNoticeInbox($user_id);
-            if (empty($inbox)) {
-                return array();
-            } else {
-                $inbox->encache();
-            }
-        }
-
-        $ids = $inbox->unpack();
-
-        if (!empty($since_id)) {
-            $newids = array();
-            foreach ($ids as $id) {
-                if ($id > $since_id) {
-                    $newids[] = $id;
-                }
-            }
-            $ids = $newids;
-        }
-
-        if (!empty($max_id)) {
-            $newids = array();
-            foreach ($ids as $id) {
-                if ($id <= $max_id) {
-                    $newids[] = $id;
-                }
-            }
-            $ids = $newids;
-        }
-
-        $ids = array_slice($ids, $offset, $limit);
-
-        return $ids;
-    }
-
-    /**
-     * Wrapper for Inbox::stream() and Notice::getStreamByIds() returning
-     * additional items up to the limit if we were short due to deleted
-     * notices still being listed in the inbox.
-     *
-     * This is meant to assist threaded views, and optimizes paging for
-     * threadness. Not ideal for very late pages, as we have to bump about
-     * through all previous items.
-     *
-     * Should avoid duplicates in paging, though.
-     *
-     * @param int $user_id
-     * @param int $offset skip past the most recent N notices (after since_id checks)
-     * @param int $limit
-     * @param mixed $since_id return only notices after but not including this id
-     * @param mixed $max_id return only notices up to and including this id
-     * @param mixed $own ignored?
-     * @return array of Notice objects
-     *
-     * @todo consider repacking the inbox when this happens?
-     * @fixme reimplement $own if we need it?
-     */
-    function streamNoticesThreaded($user_id, $offset, $limit, $since_id, $max_id, $own=false)
-    {
-        // So what we want is:
-        // * slurp in the beginning of the notice list
-        // * filter out deleted notices
-        // * replace any reply notices with their conversation roots
-        // * filter out any duplicate conversations
-        // * return $limit notices after skipping $offset from the most recent
-
-        $ids = self::stream($user_id, 0, self::MAX_NOTICES, $since_id, $max_id, $own);
-
-        // Do a bulk lookup for the first $limit items
-        // Fast path when nothing's deleted.
-        $firstChunk = array_slice($ids, 0, $offset + $limit);
-        $notices = NoticeStream::getStreamByIds($firstChunk);
-
-        assert($notices instanceof ArrayWrapper);
-        $items = $notices->_items;
-
-        // Extract the latest non-deleted item in each convo
-        $noticeByConvo = array();
-        foreach ($items as $notice) {
-            if (empty($noticeByConvo[$notice->conversation])) {
-                $noticeByConvo[$notice->conversation] = $notice;
-            }
-        }
-
-        $wanted = count($firstChunk); // raw entry count in the inbox up to our $limit
-        // There were deleted notices, we'll need to look for more.
-        $remainder = array_slice($ids, $limit);
-
-        for ($i = $offset + $limit; count($noticeByConvo) < $wanted && $i < count($ids); $i++) {
-            $notice = Notice::staticGet($ids[$i]);
-            if ($notice && empty($noticeByConvo[$notice->conversation])) {
-                $noticeByConvo[$notice->conversation] = $notice;
-            }
-        }
-
-        $slice = array_slice($noticeByConvo, $offset, $limit, false);
-        return new ArrayWrapper($slice);
-    }
-
-    /**
-     * Wrapper for Inbox::stream() and Notice::getStreamByIds() returning
-     * additional items up to the limit if we were short due to deleted
-     * notices still being listed in the inbox.
-     *
-     * The fast path (when no items are deleted) should be just as fast; the
-     * offset parameter is applied *before* lookups for maximum efficiency.
-     *
-     * This means offset-based paging may show duplicates, but similar behavior
-     * already exists when new notices are posted between page views, so we
-     * think people will be ok with this until id-based paging is introduced
-     * to the user interface.
-     *
-     * @param int $user_id
-     * @param int $offset skip past the most recent N notices (after since_id checks)
-     * @param int $limit
-     * @param mixed $since_id return only notices after but not including this id
-     * @param mixed $max_id return only notices up to and including this id
-     * @param mixed $own ignored?
-     * @return array of Notice objects
-     *
-     * @todo consider repacking the inbox when this happens?
-     * @fixme reimplement $own if we need it?
-     */
-    function streamNotices($user_id, $offset, $limit, $since_id, $max_id, $own=false)
-    {
-        $ids = self::stream($user_id, $offset, self::MAX_NOTICES, $since_id, $max_id, $own);
-
-        // Do a bulk lookup for the first $limit items
-        // Fast path when nothing's deleted.
-        $firstChunk = array_slice($ids, 0, $limit);
-        $notices = NoticeStream::getStreamByIds($firstChunk);
-
-        $wanted = count($firstChunk); // raw entry count in the inbox up to our $limit
-        if ($notices->N >= $wanted) {
-            return $notices;
-        }
-
-        // There were deleted notices, we'll need to look for more.
-        assert($notices instanceof ArrayWrapper);
-        $items = $notices->_items;
-        $remainder = array_slice($ids, $limit);
-
-        while (count($items) < $wanted && count($remainder) > 0) {
-            $notice = Notice::staticGet(array_shift($remainder));
-            if ($notice) {
-                $items[] = $notice;
-            } else {
-            }
-        }
-        return new ArrayWrapper($items);
-    }
-
     /**
      * Saves a list of integer notice_ids into a packed blob in this object.
      * @param array $ids list of integer notice_ids
      */
-    protected function pack(array $ids)
+    function pack(array $ids)
     {
         $this->notice_ids = call_user_func_array('pack', array_merge(array('N*'), $ids));
     }
@@ -326,7 +169,7 @@ class Inbox extends Memcached_DataObject
     /**
      * @return array of integer notice_ids
      */
-    protected function unpack()
+    function unpack()
     {
         return unpack('N*', $this->notice_ids);
     }

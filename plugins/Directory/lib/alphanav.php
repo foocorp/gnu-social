@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      HTMLOutputter
  */
-
 class AlphaNav extends Widget
 {
     protected $action  = null;
@@ -89,7 +88,6 @@ class AlphaNav extends Widget
      *
      * @return void
      */
-
     function show()
     {
         $actionName = $this->action->trimmed('action');
@@ -108,10 +106,15 @@ class AlphaNav extends Widget
                 $classes .= 'last ';  // last filter in the list
             }
 
-            $href = common_local_url(
-                $actionName,
-                array('filter' => strtolower($filter))
-            );
+            // hack to get around $m->connect(array('action' => 'all, 'nickname' => $nickname));
+            if (strtolower($filter) == 'all') {
+                $href = common_local_url($actionName);
+            } else {
+                $href = common_local_url(
+                    $actionName,
+                    array('filter' => strtolower($filter))
+                );
+            }
 
             $params  = array('href' => $href);
 
@@ -143,5 +146,4 @@ class AlphaNav extends Widget
 
         $this->action->elementEnd('div');
     }
-
 }

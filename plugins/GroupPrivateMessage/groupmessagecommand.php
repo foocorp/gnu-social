@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Command object for messages to groups
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class GroupMessageCommand extends Command
 {
     /** User sending the message. */
@@ -61,7 +60,6 @@ class GroupMessageCommand extends Command
      * @param string $nickname Nickname of the group
      * @param string $text     Text of message
      */
-
     function __construct($user, $nickname, $text)
     {
         $this->user     = $user;
@@ -76,8 +74,9 @@ class GroupMessageCommand extends Command
 
         $gm = Group_message::send($this->user, $group, $this->text);
 
-        $channel->output($this->user, 
-                         sprintf(_('Direct message to group %s sent.'), 
+        $channel->output($this->user,
+                         // TRANS: Succes message after sending private group message to group %s.
+                         sprintf(_m('Direct message to group %s sent.'),
                                  $group->nickname));
 
         return true;

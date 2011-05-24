@@ -227,12 +227,12 @@ class PollPlugin extends MicroAppPlugin
 
                 if (!$pollUri) {
                     // TRANS: Exception thrown trying to respond to a poll without a poll reference.
-                    throw new Exception(_m('Invalid poll response: no poll reference.'));
+                    throw new Exception(_m('Invalid poll response: No poll reference.'));
                 }
                 $poll = Poll::staticGet('uri', $pollUri);
                 if (!$poll) {
                     // TRANS: Exception thrown trying to respond to a non-existing poll.
-                    throw new Exception(_m('Invalid poll response: poll is unknown.'));
+                    throw new Exception(_m('Invalid poll response: Poll is unknown.'));
                 }
                 try {
                     $notice = Poll_response::saveNew($profile, $poll, $selection, $options);
@@ -258,7 +258,7 @@ class PollPlugin extends MicroAppPlugin
             return $this->activityObjectFromNoticePollResponse($notice);
         default:
             // TRANS: Exception thrown when performing an unexpected action on a poll.
-            // TRANS: %s is the unpexpected object type.
+            // TRANS: %s is the unexpected object type.
             throw new Exception(sprintf(_m('Unexpected type for poll plugin: %s.'), $notice->object_type));
         }
     }
@@ -416,7 +416,7 @@ class PollPlugin extends MicroAppPlugin
             return $this->showNoticePollResponse($notice, $out);
         default:
             // TRANS: Exception thrown when performing an unexpected action on a poll.
-            // TRANS: %s is the unpexpected object type.
+            // TRANS: %s is the unexpected object type.
             throw new Exception(sprintf(_m('Unexpected type for poll plugin: %s.'), $notice->object_type));
         }
     }
@@ -444,7 +444,8 @@ class PollPlugin extends MicroAppPlugin
                 $form->show();
             }
         } else {
-            $out->text(_('Poll data is missing'));
+            // TRANS: Error text displayed if no poll data could be found.
+            $out->text(_m('Poll data is missing'));
         }
         $out->elementEnd('div');
 
@@ -479,5 +480,15 @@ class PollPlugin extends MicroAppPlugin
     {
         // TRANS: Application title.
         return _m('APPTITLE','Poll');
+    }
+
+    function onStartAddNoticeReply($nli, $parent, $child)
+    {
+        // Filter out any poll responses
+        if ($parent->object_type == self::POLL_OBJECT &&
+            $child->object_type == self::POLL_RESPONSE_OBJECT) {
+            return false;
+        }
+        return true;
     }
 }

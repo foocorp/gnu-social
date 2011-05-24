@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      UnSandboxForm
  */
-
 class SandboxForm extends ProfileActionForm
 {
     /**
@@ -50,7 +49,6 @@ class SandboxForm extends ProfileActionForm
      *
      * @return string Name of the action, lowercased.
      */
-
     function target()
     {
         return 'sandbox';
@@ -61,10 +59,10 @@ class SandboxForm extends ProfileActionForm
      *
      * @return string Title of the form, internationalized
      */
-
     function title()
     {
-        return _('Sandbox');
+        // TRANS: Title of form to sandbox a user.
+        return _m('TITLE','Sandbox');
     }
 
     /**
@@ -72,9 +70,9 @@ class SandboxForm extends ProfileActionForm
      *
      * @return string description of the form, internationalized
      */
-
     function description()
     {
+        // TRANS: Description of form to sandbox a user.
         return _('Sandbox this user');
     }
 }

@@ -1,0 +1,40 @@
+# Translation of StatusNet - Xmpp to Malay (Bahasa Melayu)
+# Exported from translatewiki.net
+#
+# Author: Anakmalaysia
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Xmpp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:56+0000\n"
+"Language-Team: Malay <http://translatewiki.net/wiki/Portal:ms>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:55+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ms\n"
+"X-Message-Group: #out-statusnet-plugin-xmpp\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Send me a message to post a notice"
+msgstr "Hantarkan pesanan kepada saya untuk mengirim notis"
+
+msgid "XMPP/Jabber/GTalk"
+msgstr "XMPP/Jabber/GTalk"
+
+#. TRANS: %s is a notice ID.
+#, php-format
+msgid "[%s]"
+msgstr "[%s]"
+
+msgid ""
+"The XMPP plugin allows users to send and receive notices over the XMPP/"
+"Jabber network."
+msgstr ""
+"Pemalam XMPP membolehkan pengguna menghantar dan menerima notis menerusi "
+"rangkaian XMPP/Jabber."

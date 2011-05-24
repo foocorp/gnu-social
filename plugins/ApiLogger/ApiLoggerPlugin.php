@@ -74,4 +74,16 @@ class ApiLoggerPlugin extends Plugin
         }
         return true;
     }
+
+    function onPluginVersion(&$versions)
+    {
+        $versions[] = array('name' => 'ApiLogger',
+                            'version' => STATUSNET_VERSION,
+                            'author' => 'Brion Vibber',
+                            'homepage' => 'http://status.net/wiki/Plugin:ApiLogger',
+                            'rawdescription' =>
+                            // TRANS: Plugin description.
+                            _m('Allows random sampling of API requests.'));
+        return true;
+    }
 }

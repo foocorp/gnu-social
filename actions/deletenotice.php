@@ -48,7 +48,7 @@ class DeletenoticeAction extends Action
         $this->user   = common_current_user();
 
         if (!$this->user) {
-            // TRANS: Error message displayed trying to delete a notice while not logged in.
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             common_user_error(_('Not logged in.'));
             exit;
         }
@@ -174,6 +174,7 @@ class DeletenoticeAction extends Action
         $token = $this->trimmed('token');
 
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->showForm(_('There was a problem with your session token. ' .
                               'Try again, please.'));
             return;

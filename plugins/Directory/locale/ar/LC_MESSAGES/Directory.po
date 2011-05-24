@@ -1,0 +1,149 @@
+# Translation of StatusNet - Directory to Arabic (العربية)
+# Exported from translatewiki.net
+#
+# Author: Mutarjem horr
+# Author: OsamaK
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Directory\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:02+0000\n"
+"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-05-05 11:55:22+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ar\n"
+"X-Message-Group: #out-statusnet-plugin-directory\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
+"2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
+"99) ? 4 : 5 ) ) ) );\n"
+
+#, php-format
+msgid "User Directory, page %d"
+msgstr "دليل المستخدمين، الصفحة %d"
+
+msgid "User directory"
+msgstr "دليل المستخدمين"
+
+#, php-format
+msgid "User directory - %s"
+msgstr "دليل المستخدمين - %s"
+
+#, php-format
+msgid "User directory - %s, page %d"
+msgstr "دليل المستخدمين - %s، الصفحة %d"
+
+#, php-format
+msgid ""
+"Search for people on %%site.name%% by their name, location, or interests. "
+"Separate the terms by spaces;  they must be 3 characters or more."
+msgstr ""
+"ابحث عن أشخاص على %%site.name%% بدلالة الاسم أو الموقع أو الاهتمامات. افصل "
+"عبارات البحث بمسافات؛ ويجب أن تتكون تلك العبارات من 3 أحرف أو أكثر."
+
+msgid "Search site"
+msgstr "ابحث في الموقع"
+
+#. TRANS: Field label for input of one or more keywords.
+msgid "Keyword(s)"
+msgstr "الكلمات المفتاحية"
+
+#. TRANS: Button text for searching group directory.
+msgctxt "BUTTON"
+msgid "Search"
+msgstr "ابحث"
+
+#, php-format
+msgid "No users starting with %s"
+msgstr "لا يوجد مستخدمون يبدؤون ب%s"
+
+#. TRANS: Empty list message for searching group directory.
+msgid "No results."
+msgstr "لا توجد نتائج."
+
+#. TRANS: Title for group directory page. %d is a page number.
+#, php-format
+msgid "Group Directory, page %d"
+msgstr "دليل المجموعات، الصفحة %d"
+
+#. TRANS: Title for group directory page.
+msgid "Group directory"
+msgstr "دليل المجموعات"
+
+#. TRANS: Title for group directory page when it is filtered.
+#. TRANS: %s is the filter string.
+#, php-format
+msgid "Group directory - %s"
+msgstr "دليل المجموعات - %s"
+
+#. TRANS: Title for group directory page when it is filtered.
+#. TRANS: %1$s is the filter string, %2$d is a page number.
+#, php-format
+msgid "Group directory - %1$s, page %2$d"
+msgstr "دليل المجموعات- %1$s، الصفحة %2$d"
+
+#. TRANS: Page instructions.
+msgid ""
+"After you join a group you can send messages to all other members\n"
+"using the syntax \"!groupname\".\n"
+"\n"
+"Browse groups, or search for groups on by their name, location or topic.\n"
+"Separate the terms by spaces; they must be three characters or more."
+msgstr ""
+
+#. TRANS: Link to create a new group on the group list page.
+msgid "Create a new group"
+msgstr "أنشئ مجموعة جديدة"
+
+#. TRANS: Fieldset legend.
+msgid "Search groups"
+msgstr "ابحث في المجموعات"
+
+#. TRANS: Empty list message for searching group directory.
+#. TRANS: %s is the search string.
+#, php-format
+msgid "No groups starting with %s."
+msgstr "لا توجد مجموعات تبدء بــ %s."
+
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* تأكد من أن كل الكلمات صحيحة التهجئة.\n"
+"*حاول بكلمات متعددة.\n"
+"* حاول بكلمات أكثر عموماّ.\n"
+"* حاول بكلمات أقل."
+
+#. TRANS: Menu item text for user directory.
+msgctxt "MENU"
+msgid "Directory"
+msgstr "الدليل"
+
+#. TRANS: Menu item title for user directory.
+msgid "User Directory."
+msgstr "دليل المستخدمين."
+
+#. TRANS: Plugin description.
+msgid "Add a user directory."
+msgstr "إضافة دليل مستخدمين."
+
+#. TRANS: Column header in table for user nickname.
+msgid "Nickname"
+msgstr "الاسم المستعار"
+
+#. TRANS: Column header in table for timestamp when user was created.
+msgid "Created"
+msgstr "تم إنشاءه"
+
+#. TRANS: Column header in table for members of a group.
+msgid "Members"
+msgstr "الأعضاء"

@@ -36,7 +36,8 @@ class ModPlusPlugin extends Plugin
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:ModPlus',
                             'rawdescription' =>
-                            _m('UI extensions for profile moderation actions.'));
+                            // TRANS: Plugin description.
+                            _m('UI extension for profile moderation actions.'));
 
         return true;
     }
@@ -136,6 +137,7 @@ class ModPlusPlugin extends Plugin
         $isRemote = !(User::staticGet('id', $profile->id));
         if ($isRemote) {
             $target = common_local_url('remoteprofile', array('id' => $profile->id));
+            // TRANS: Label for access to remote profile options.
             $label = _m('Remote profile options...');
             $out->elementStart('div', 'remote-profile-options');
             $out->element('a', array('href' => $target), $label);

@@ -1,7 +1,8 @@
 The Email Authentication plugin allows users to login using their email address.
 
-The provided email address is used to lookup the user's nickname, then that nickname and the provided password is checked.
+The provided email address is used to lookup the user's nickname, then that
+nickname and the provided password is checked.
 
 Installation
 ============
-add "addPlugin('emailAuthentication');" to the bottom of your config.php
+add "addPlugin('emailAuthentication');" to the bottom of your config.php.

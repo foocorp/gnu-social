@@ -73,24 +73,11 @@ class RepeatAction extends Action
             return false;
         }
 
-        if ($this->user->id == $this->notice->profile_id) {
-            // TRANS: Client error displayed when trying to repeat an own notice.
-            $this->clientError(_('You cannot repeat your own notice.'));
-            return false;
-        }
-
         $token  = $this->trimmed('token-'.$id);
 
         if (empty($token) || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. Try again, please.'));
-            return false;
-        }
-
-        $profile = $this->user->getProfile();
-
-        if ($profile->hasRepeated($id)) {
-            // TRANS: Client error displayed when trying to repeat an already repeated notice.
-            $this->clientError(_('You already repeated that notice.'));
             return false;
         }
 

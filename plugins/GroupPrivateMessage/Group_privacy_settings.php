@@ -44,16 +44,15 @@ if (!defined('STATUSNET')) {
  *
  * @see      DB_DataObject
  */
-
 class Group_privacy_settings extends Memcached_DataObject
 {
     public $__table = 'group_privacy_settings';
     /** ID of the group. */
-    public $group_id;      
+    public $group_id;
     /** When to allow privacy: always, sometimes, or never. */
     public $allow_privacy;
     /** Who can send private messages: everyone, member, admin */
-    public $allow_sender; 
+    public $allow_sender;
     /** row creation timestamp */
     public $created;
     /** Last-modified timestamp */
@@ -81,7 +80,6 @@ class Group_privacy_settings extends Memcached_DataObject
      *
      * @return User_greeting_count object found, or null for no hits
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Group_privacy_settings', $k, $v);
@@ -95,7 +93,6 @@ class Group_privacy_settings extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('group_id' => DB_DATAOBJECT_INT + DB_DATAOBJECT_NOTNULL,
@@ -103,7 +100,7 @@ class Group_privacy_settings extends Memcached_DataObject
                      'allow_sender' => DB_DATAOBJECT_INT,
                      'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL,
                      'modified' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
-                     
+
     }
 
     /**
@@ -115,7 +112,6 @@ class Group_privacy_settings extends Memcached_DataObject
      *
      * @return array list of key field names
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -128,7 +124,6 @@ class Group_privacy_settings extends Memcached_DataObject
      *         'K' for primary key: for compound keys, add an entry for each component;
      *         'U' for unique keys: compound keys are not well supported here.
      */
-
     function keyTypes()
     {
         return array('group_id' => 'K');
@@ -139,7 +134,6 @@ class Group_privacy_settings extends Memcached_DataObject
      *
      * @return array magic three-false array that stops auto-incrementing.
      */
-
     function sequenceKey()
     {
         return array(false, false, false);
@@ -164,7 +158,8 @@ class Group_privacy_settings extends Memcached_DataObject
         $gps = self::forGroup($group);
 
         if ($gps->allow_privacy == Group_privacy_settings::NEVER) {
-            throw new Exception(sprintf(_('Group %s does not allow private messages.'),
+            // TRANS: Exception thrown when trying to set group privacy setting if group %s does not allow private messages.
+            throw new Exception(sprintf(_m('Group %s does not allow private messages.'),
                                         $group->nickname));
         }
 
@@ -172,27 +167,35 @@ class Group_privacy_settings extends Memcached_DataObject
         case Group_privacy_settings::EVERYONE:
             $profile = $user->getProfile();
             if (Group_block::isBlocked($group, $profile)) {
-                throw new Exception(sprintf(_('User %s is blocked from group %s.'),
+                // TRANS: Exception thrown when trying to send group private message while blocked from that group.
+                // TRANS: %1$s is a user nickname, %2$s is a group nickname.
+                throw new Exception(sprintf(_m('User %1$s is blocked from group %2$s.'),
                                             $user->nickname,
                                             $group->nickname));
             }
             break;
         case Group_privacy_settings::MEMBER:
             if (!$user->isMember($group)) {
-                throw new Exception(sprintf(_('User %s is not a member of group %s.'),
+                // TRANS: Exception thrown when trying to send group private message while not a member.
+                // TRANS: %1$s is a user nickname, %2$s is a group nickname.
+                throw new Exception(sprintf(_m('User %1$s is not a member of group %2$s.'),
                                             $user->nickname,
                                             $group->nickname));
             }
             break;
         case Group_privacy_settings::ADMIN:
             if (!$user->isAdmin($group)) {
-                throw new Exception(sprintf(_('User %s is not an administrator of group %s.'),
+                // TRANS: Exception thrown when trying to send group private message while not a group administrator.
+                // TRANS: %1$s is a user nickname, %2$s is a group nickname.
+                throw new Exception(sprintf(_m('User %1$s is not an administrator of group %2$s.'),
                                             $user->nickname,
                                             $group->nickname));
             }
             break;
         default:
-            throw new Exception(sprintf(_('Unknown privacy settings for group %s.'),
+            // TRANS: Exception thrown when encountering undefined group privacy settings.
+            // TRANS: %s is a group nickname.
+            throw new Exception(sprintf(_m('Unknown privacy settings for group %s.'),
                                         $group->nickname));
         }
 

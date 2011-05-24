@@ -9,19 +9,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Mapstraction\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:00+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:58+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:16+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-mapstraction\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. TRANS: Header for Map widget that displays a map with geodata for notices.
 msgid "Map"
 msgstr "地图"
 
@@ -29,6 +30,7 @@ msgstr "地图"
 msgid "Full size"
 msgstr "完整尺寸"
 
+#. TRANS: Plugin description.
 msgid ""
 "Show maps of users' and friends' notices with <a href=\"http://www."
 "mapstraction.com/\">Mapstraction</a>."
@@ -48,12 +50,16 @@ msgstr "%s 好友地图"
 msgid "%1$s friends map, page %2$d"
 msgstr "%1$s 好友地图，第 %2$d 页。"
 
+#. TRANS: Client error displayed when referring to a non-existing user.
 msgid "No such user."
 msgstr "没有这个用户。"
 
+#. TRANS: Error message displayed when referring to a user without a profile.
 msgid "User has no profile."
 msgstr "用户没有个人信息。"
 
-#, php-format
-msgid "%s map, page %d"
-msgstr "%s 地图，第 %d 页"
+#. TRANS: Title for map widget.
+#. TRANS: %s is a user name.
+#, fuzzy, php-format
+msgid "%s map"
+msgstr "%s 好友地图"

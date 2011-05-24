@@ -1,0 +1,207 @@
+# Translation of StatusNet - YammerImport to Malay (Bahasa Melayu)
+# Exported from translatewiki.net
+#
+# Author: Anakmalaysia
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - YammerImport\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:52:00+0000\n"
+"Language-Team: Malay <http://translatewiki.net/wiki/Portal:ms>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:56+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ms\n"
+"X-Message-Group: #out-statusnet-plugin-yammerimport\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Connect to Yammer"
+msgstr ""
+
+msgid "Yammer Import"
+msgstr "Import dari Yammer"
+
+msgid ""
+"This Yammer import tool is still undergoing testing, and is incomplete in "
+"some areas. Currently user subscriptions and group memberships are not "
+"transferred; in the future this may be supported for imports done by "
+"verified administrators on the Yammer side."
+msgstr ""
+
+msgid "Paused from admin panel."
+msgstr "Berhenti dari panel pentadbir."
+
+msgid "Yammer import"
+msgstr "Import dari Yammer"
+
+msgid "Yammer"
+msgstr "Yammer"
+
+msgid "Expertise:"
+msgstr "Kepakaran:"
+
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "URL avatar %s tidak sah."
+
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Avatar tidak dapat diambil dari %s."
+
+msgid "Start authentication"
+msgstr "Mulakan pengesahan"
+
+msgid "Request authorization to connect to Yammer account"
+msgstr "Minta kebenaran untuk bersambung dengan akaun Yammer"
+
+msgid "Change API key"
+msgstr "Tukar kunci API"
+
+msgid "Initialize"
+msgstr "Mulakan"
+
+msgid "No import running"
+msgstr "Proses import tidak berjalan"
+
+msgid "Initiated Yammer server connection..."
+msgstr "Sambungan pelayan Yammer dimulakan..."
+
+msgid "Awaiting authorization..."
+msgstr "Menunggu kebenaran..."
+
+msgid "Connected."
+msgstr "Bersambung."
+
+msgid "Import user accounts"
+msgstr "Import akaun pengguna"
+
+#, php-format
+msgid "Importing %d user..."
+msgid_plural "Importing %d users..."
+msgstr[0] ""
+
+#, php-format
+msgid "Imported %d user."
+msgid_plural "Imported %d users."
+msgstr[0] ""
+
+msgid "Import user groups"
+msgstr ""
+
+#, php-format
+msgid "Importing %d group..."
+msgid_plural "Importing %d groups..."
+msgstr[0] ""
+
+#, php-format
+msgid "Imported %d group."
+msgid_plural "Imported %d groups."
+msgstr[0] ""
+
+msgid "Prepare public notices for import"
+msgstr ""
+
+#, php-format
+msgid "Preparing %d notice..."
+msgid_plural "Preparing %d notices..."
+msgstr[0] ""
+
+#, php-format
+msgid "Prepared %d notice."
+msgid_plural "Prepared %d notices."
+msgstr[0] ""
+
+msgid "Import public notices"
+msgstr ""
+
+#, php-format
+msgid "Importing %d notice..."
+msgid_plural "Importing %d notices..."
+msgstr[0] ""
+
+#, php-format
+msgid "Imported %d notice."
+msgid_plural "Imported %d notices."
+msgstr[0] ""
+
+msgid "Done"
+msgstr "Siap"
+
+msgid "Import is complete!"
+msgstr "Proses import selesai!"
+
+msgid "Import status"
+msgstr ""
+
+msgid "Waiting..."
+msgstr "Menunggu..."
+
+msgid "Reset import state"
+msgstr ""
+
+msgid "Pause import"
+msgstr "Hentikan import"
+
+#, php-format
+msgid "Encountered error \"%s\""
+msgstr ""
+
+msgid "Paused"
+msgstr "Terhenti"
+
+msgid "Continue"
+msgstr "Sambung"
+
+msgid "Abort import"
+msgstr ""
+
+msgid ""
+"Follow this link to confirm authorization at Yammer; you will be prompted to "
+"log in if necessary:"
+msgstr ""
+
+msgid "Open Yammer authentication window"
+msgstr ""
+
+msgid "Copy the verification code you are given below:"
+msgstr ""
+
+msgid "Verification code:"
+msgstr ""
+
+msgid "Save code and begin import"
+msgstr ""
+
+msgid "Yammer API registration"
+msgstr ""
+
+msgid ""
+"Before we can connect to your Yammer network, you will need to register the "
+"importer as an application authorized to pull data on your behalf. This "
+"registration will work only for your own network. Follow this link to "
+"register the app at Yammer; you will be prompted to log in if necessary:"
+msgstr ""
+
+msgid "Open Yammer application registration form"
+msgstr ""
+
+msgid "Copy the consumer key and secret you are given into the form below:"
+msgstr ""
+
+msgid "Consumer key:"
+msgstr "Kunci pengguna:"
+
+msgid "Consumer secret:"
+msgstr "Rahsia pengguna:"
+
+msgid "Save"
+msgstr "Simpan"
+
+msgid "Save these consumer keys"
+msgstr "Simpan kunci pengguna ini"

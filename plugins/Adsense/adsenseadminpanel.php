@@ -49,6 +49,7 @@ class AdsenseadminpanelAction extends AdminPanelAction
      */
     function title()
     {
+        // TRANS: Title of AdSense administrator panel.
         return _m('TITLE', 'AdSense');
     }
 
@@ -59,6 +60,7 @@ class AdsenseadminpanelAction extends AdminPanelAction
      */
     function getInstructions()
     {
+        // TRANS: Instructions for AdSense administrator panel.
         return _m('AdSense settings for this StatusNet site');
     }
 
@@ -161,38 +163,50 @@ class AdsenseAdminPanelForm extends AdminForm
         $this->out->elementStart('ul', 'form_data');
         $this->li();
         $this->input('client',
+                     // TRANS: Field label in AdSense administration panel.
                      _m('Client ID'),
-                     _m('Google client ID'),
+                     // TRANS: Field title in AdSense administration panel.
+                     _m('Google client ID.'),
                      'adsense');
         $this->unli();
         $this->li();
         $this->input('adScript',
+                     // TRANS: Field label in AdSense administration panel.
                      _m('Ad script URL'),
-                     _m('Script URL (advanced)'),
+                     // TRANS: Field title in AdSense administration panel.
+                     _m('Script URL (advanced).'),
                      'adsense');
         $this->unli();
         $this->li();
         $this->input('mediumRectangle',
+                     // TRANS: Field label in AdSense administration panel.
                      _m('Medium rectangle'),
-                     _m('Medium rectangle slot code'),
+                     // TRANS: Field title in AdSense administration panel.
+                     _m('Medium rectangle slot code.'),
                      'adsense');
         $this->unli();
         $this->li();
         $this->input('rectangle',
+                     // TRANS: Field label in AdSense administration panel.
                      _m('Rectangle'),
-                     _m('Rectangle slot code'),
+                     // TRANS: Field title in AdSense administration panel.
+                     _m('Rectangle slot code.'),
                      'adsense');
         $this->unli();
         $this->li();
         $this->input('leaderboard',
+                     // TRANS: Field label in AdSense administration panel.
                      _m('Leaderboard'),
-                     _m('Leaderboard slot code'),
+                     // TRANS: Field title in AdSense administration panel.
+                     _m('Leaderboard slot code.'),
                      'adsense');
         $this->unli();
         $this->li();
         $this->input('wideSkyscraper',
+                     // TRANS: Field label in AdSense administration panel.
                      _m('Skyscraper'),
-                     _m('Wide skyscraper slot code'),
+                     // TRANS: Field title in AdSense administration panel.
+                     _m('Wide skyscraper slot code.'),
                      'adsense');
         $this->unli();
         $this->out->elementEnd('ul');
@@ -205,6 +219,9 @@ class AdsenseAdminPanelForm extends AdminForm
      */
     function formActions()
     {
-        $this->out->submit('submit', _m('Save'), 'submit', null, _m('Save AdSense settings'));
+        // TRANS: Button text to save settings in AdSense administration panel.
+        $this->out->submit('submit', _m('BUTTON','Save'),
+        // TRANS: Button title to save settings in AdSense administration panel.
+        'submit', null, _m('Save AdSense settings.'));
     }
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,11 +16,38 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. TRANS: MSN bot status message.
+#: msnmanager.php:112
+msgid "Send me a message to post a notice"
+msgstr ""
+
+#. TRANS: Server exception thrown when a message to be sent through MSN cannot be added to the database queue.
+#: msnmanager.php:244
+msgid "Database error inserting queue item."
+msgstr ""
+
+#. TRANS: Display name of the MSN instant messaging service.
 #: MsnPlugin.php:62
 msgid "MSN"
 msgstr ""
 
-#: MsnPlugin.php:212
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+#: MsnPlugin.php:188
+msgid "Must specify a user."
+msgstr ""
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+#: MsnPlugin.php:192
+msgid "Must specify a password."
+msgstr ""
+
+#. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+#: MsnPlugin.php:196
+msgid "Must specify a nickname."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: MsnPlugin.php:216
 msgid ""
 "The MSN plugin allows users to send and receive notices over the MSN network."
 msgstr ""

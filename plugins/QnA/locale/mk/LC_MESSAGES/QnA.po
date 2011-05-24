@@ -1,0 +1,239 @@
+# Translation of StatusNet - QnA to Macedonian (Македонски)
+# Exported from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - QnA\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:58+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:28:49+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-qna\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#. TRANS: Title for Question page.
+msgid "New question"
+msgstr "Ново прашање"
+
+msgid "You must be logged in to post a question."
+msgstr "Мора да сте најавени за да поставувате прашања."
+
+#. TRANS: Client exception thrown trying to create a question without a title.
+msgid "Question must have a title."
+msgstr "Прашањето мора да има наслов."
+
+#. TRANS: Page title after sending a notice.
+msgid "Question posted"
+msgstr "Прашањето е поставено"
+
+msgid "No such answer."
+msgstr "Нема таков одговор."
+
+msgid "No question for this answer."
+msgstr "Нема прашање за овој одговор."
+
+#. TRANS: Client exception thrown trying to view a question of a non-existing user.
+msgid "No such user."
+msgstr "Нема таков корисник."
+
+#. TRANS: Server exception thrown trying to view a question for a user for which the profile could not be loaded.
+msgid "User without a profile."
+msgstr "Корисникот е без профил."
+
+#. TRANS: Page title.
+#. TRANS: %1$s is the user who answered a question, %2$s is the question.
+#, php-format
+msgid "%1$s's answer to \"%2$s\""
+msgstr "Одговорот на %1$s на прашањето „%2$s“"
+
+#. TRANS: Page title for revising a question
+msgid "Revise answer"
+msgstr "Прегледајте го одговорот"
+
+#. TRANS: Client exception thrown trying to answer a question while not logged in.
+msgid "You must be logged in to answer to a question."
+msgstr "Мора да сте најавени за да одговарате на прашања."
+
+msgid "Invalid or missing answer."
+msgstr "Неважечки или непостоечки одговор."
+
+#. TRANS: Page title after sending an answer.
+#. TRANS: Page title for and answer to a question.
+#. TRANS: Form legend for showing the answer.
+msgid "Answer"
+msgstr "Одговор"
+
+#. TRANS: Client exception thrown trying to view a non-existing question.
+msgid "No such question."
+msgstr "Нема такво прашање."
+
+#. TRANS: Client exception thrown trying to view a non-existing question notice.
+msgid "No such question notice."
+msgstr "Нема таква забелешка со прашање."
+
+#, php-format
+msgid "%1$s's question: %2$s"
+msgstr "Прашање на %1$s: %2$s"
+
+#. TRANS: Page title for close a question
+msgid "Close question"
+msgstr "Затворете го прашањето"
+
+msgid "You must be logged in to close a question."
+msgstr "Мора да сте најавени за да затворате прашања."
+
+#. TRANS: Client exception thrown trying to respond to a non-existing question.
+msgid "Invalid or missing question."
+msgstr "Неважечко или непостоечко прашање."
+
+msgid "You didn't ask this question."
+msgstr "Вие не го поставивте ова прашање."
+
+#. TRANS: Page title after sending an answer.
+msgid "Answers"
+msgstr "Одговори"
+
+#. TRANS: Page title after an AJAX error occurs on the post answer page.
+msgid "Ajax Error"
+msgstr "Ajax-грешка"
+
+#. TRANS: Title for form to send answer to a question.
+msgctxt "TITLE"
+msgid "Your answer"
+msgstr "Вашиот одговор"
+
+msgid "Answer data is missing."
+msgstr "Податоците за одговор недостасуваат."
+
+#. TRANS: Plugin description.
+msgid "Question and Answers micro-app."
+msgstr "Приложен микропрограм за прашања и одговори."
+
+#. TRANS: Application title.
+#. TRANS: Form legend for revising the answer.
+msgid "Question"
+msgstr "Прашање"
+
+msgid "Too many activity objects."
+msgstr "Премногу објекти на активност."
+
+msgid "Wrong type for object."
+msgstr "Погрешен тип на објект."
+
+msgid "Answer to unknown question."
+msgstr "Одговор на непознато прашање."
+
+msgid "Unknown object type received by QnA Plugin."
+msgstr "Од приклучокот QnA Plugin добив објект од непознат тип."
+
+msgid "Unknown object type."
+msgstr "Непознат тип на објект."
+
+msgid "Unknown question notice."
+msgstr "Непозната забелешка со прашање."
+
+#. TRANS: Exception thrown when performing an unexpected action on a question.
+#. TRANS: %s is the unpexpected object type.
+#, php-format
+msgid "Unexpected type for QnA plugin: %s."
+msgstr "Неочекуван тип на приклучок за прашања и одговори: %s."
+
+msgid "Question data is missing."
+msgstr "Прашалните податоци недостасуваат."
+
+msgid "Your answer..."
+msgstr "Вашиот одговор..."
+
+#. TRANS: Link to full notice text if it is longer than what will be dispplayed.
+#. TRANS: %s a notice URI.
+#, php-format
+msgid "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
+msgstr "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
+
+msgid "more..."
+msgstr "!повеќе..."
+
+#, php-format
+msgid "%s revisions"
+msgstr "%s ревизии"
+
+#, php-format
+msgid "%1$s answered the question \"%2$s\": %3$s"
+msgstr "%1$s одговори на прашањето „%2$s“: %3$s"
+
+#. TRANS: Rendered version of the notice content answering a question.
+#. TRANS: %s a link to the question with question title as the link content.
+#, php-format
+msgid "answered \"%s\""
+msgstr "одговори на „%s“"
+
+#, php-format
+msgid "%s answers"
+msgstr "%s одговори"
+
+msgid "This question is closed."
+msgstr "Ова прашање е затворено."
+
+#. TRANS: Rendered version of the notice content creating a question.
+#. TRANS: %s a link to the question as link description.
+#, php-format
+msgid "Question: %s"
+msgstr "Прашање: %s"
+
+#. TRANS: Button text for submitting a poll response.
+msgctxt "BUTTON"
+msgid "Submit"
+msgstr "Поднеси"
+
+msgid "Enter your answer"
+msgstr "Внесете го Вашиот одговор"
+
+#. TRANS: Button text for submitting a poll response.
+msgctxt "BUTTON"
+msgid "Answer"
+msgstr "Одговори"
+
+msgid "Title"
+msgstr "Наслов"
+
+msgid "Title of your question"
+msgstr "Наслов на прашањето"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Your question in detail"
+msgstr "Вашето прашање поподробно"
+
+#. TRANS: Button text for saving a new question.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Зачувај"
+
+#. TRANS: Button text for closing a question
+msgctxt "BUTTON"
+msgid "Close"
+msgstr "Затвори"
+
+#. TRANS: Title for button text for closing a question
+msgid "Close the question"
+msgstr "Затвори го прашањето"
+
+#. TRANS: Button text for marking an answer as "best"
+msgctxt "BUTTON"
+msgid "Best"
+msgstr "Најдобар"
+
+#. TRANS: Title for button text marking an answer as "best"
+msgid "Mark as best answer"
+msgstr "Означи како најдобар одговор"

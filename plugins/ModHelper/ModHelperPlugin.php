@@ -34,6 +34,7 @@ class ModHelperPlugin extends Plugin
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:ModHelper',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Lets users who have been manually marked as "modhelper"s silence accounts.'));
 
         return true;

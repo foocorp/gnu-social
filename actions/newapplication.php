@@ -109,6 +109,7 @@ class NewApplicationAction extends OwnerDesignAction
         // CSRF protection
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token.'));
             return;
         }
@@ -294,9 +295,8 @@ class NewApplicationAction extends OwnerDesignAction
             $app->uploadLogo();
         } catch (Exception $e) {
             $app->query('ROLLBACK');
-            // TRANS: Form validation error on New application page when providing an invalid image upload.
             $this->showForm(_('Invalid image.'));
-	    return;
+	        return;	 
 	}
 
         $app->query('COMMIT');

@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Add a new event
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
+
 if (!defined('STATUSNET')) {
     // This check helps protect against security problems;
     // your code file can't be executed directly from the web.
@@ -43,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class NeweventAction extends Action
 {
     protected $user        = null;
@@ -60,10 +60,10 @@ class NeweventAction extends Action
      *
      * @return string Action title
      */
-
     function title()
     {
-        return _('New event');
+        // TRANS: Title for new event form.
+        return _m('TITLE','New event');
     }
 
     /**
@@ -73,7 +73,6 @@ class NeweventAction extends Action
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
@@ -81,7 +80,8 @@ class NeweventAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            throw new ClientException(_("Must be logged in to post a event."),
+            // TRANS: Client exception thrown when trying to post an event while not logged in.
+            throw new ClientException(_m('Must be logged in to post a event.'),
                                       403);
         }
 
@@ -92,7 +92,8 @@ class NeweventAction extends Action
         $this->title       = $this->trimmed('title');
 
         if (empty($this->title)) {
-            throw new ClientException(_('Title required.'));
+            // TRANS: Client exception thrown when trying to post an event without providing a title.
+            throw new ClientException(_m('Title required.'));
         }
 
         $this->location    = $this->trimmed('location');
@@ -102,7 +103,8 @@ class NeweventAction extends Action
         $startDate = $this->trimmed('startdate');
 
         if (empty($startDate)) {
-            throw new ClientException(_('Start date required.'));
+            // TRANS: Client exception thrown when trying to post an event without providing a start date.
+            throw new ClientException(_m('Start date required.'));
         }
 
         $startTime = $this->trimmed('starttime');
@@ -114,7 +116,8 @@ class NeweventAction extends Action
         $endDate   = $this->trimmed('enddate');
 
         if (empty($endDate)) {
-            throw new ClientException(_('End date required.'));
+            // TRANS: Client exception thrown when trying to post an event without providing an end date.
+            throw new ClientException(_m('End date required.'));
         }
 
         $endTime   = $this->trimmed('endtime');
@@ -135,13 +138,17 @@ class NeweventAction extends Action
         $this->endTime   = strtotime($end);
 
         if ($this->startTime == 0) {
-            throw new Exception(sprintf(_('Could not parse date "%s"'),
+            // TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
+            // TRANS: %s is the data that could not be processed.
+            throw new Exception(sprintf(_m('Could not parse date "%s".'),
                                         $start));
         }
 
 
         if ($this->endTime == 0) {
-            throw new Exception(sprintf(_('Could not parse date "%s"'),
+            // TRANS: Client exception thrown when trying to post an event with a date that cannot be processed.
+            // TRANS: %s is the data that could not be processed.
+            throw new Exception(sprintf(_m('Could not parse date "%s".'),
                                         $end));
         }
 
@@ -155,7 +162,6 @@ class NeweventAction extends Action
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         parent::handle($argarray);
@@ -174,21 +180,29 @@ class NeweventAction extends Action
      *
      * @return void
      */
-
     function newEvent()
     {
         try {
             if (empty($this->title)) {
-                throw new ClientException(_('Event must have a title.'));
+                // TRANS: Client exception thrown when trying to post an event without providing a title.
+                throw new ClientException(_m('Event must have a title.'));
             }
 
             if (empty($this->startTime)) {
-                throw new ClientException(_('Event must have a start time.'));
+                // TRANS: Client exception thrown when trying to post an event without providing a start time.
+                throw new ClientException(_m('Event must have a start time.'));
             }
 
             if (empty($this->endTime)) {
-                throw new ClientException(_('Event must have an end time.'));
+                // TRANS: Client exception thrown when trying to post an event without providing an end time.
+                throw new ClientException(_m('Event must have an end time.'));
             }
+
+            $options = array();
+
+            // Does the heavy-lifting for getting "To:" information
+
+            ToSelector::fillOptions($this, $options);
 
             $profile = $this->user->getProfile();
 
@@ -198,7 +212,8 @@ class NeweventAction extends Action
                                         $this->title,
                                         $this->location,
                                         $this->description,
-                                        $this->url);
+                                        $this->url,
+                                        $options);
 
             $event = Happening::fromNotice($saved);
 
@@ -216,7 +231,7 @@ class NeweventAction extends Action
             $this->elementStart('html');
             $this->elementStart('head');
             // TRANS: Page title after sending a notice.
-            $this->element('title', null, _('Event saved'));
+            $this->element('title', null, _m('Event saved'));
             $this->elementEnd('head');
             $this->elementStart('body');
             $this->showNotice($saved);
@@ -232,7 +247,6 @@ class NeweventAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         if (!empty($this->error)) {
@@ -255,7 +269,6 @@ class NeweventAction extends Action
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||

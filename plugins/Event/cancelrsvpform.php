@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Form to RSVP for an event
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class CancelRSVPForm extends Form
 {
     protected $rsvp = null;
@@ -60,7 +59,6 @@ class CancelRSVPForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'form_event_rsvp';
@@ -71,7 +69,6 @@ class CancelRSVPForm extends Form
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'ajax';
@@ -82,7 +79,6 @@ class CancelRSVPForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('cancelrsvp');
@@ -93,22 +89,24 @@ class CancelRSVPForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->elementStart('fieldset', array('id' => 'new_rsvp_data'));
 
-        $this->out->hidden('rsvp', $this->rsvp->id);
+        $this->out->hidden('rsvp-id', $this->rsvp->id, 'rsvp');
 
         switch (RSVP::verbFor($this->rsvp->response)) {
         case RSVP::POSITIVE:
-            $this->out->text(_('You will attend this event.'));
+            // TRANS: Possible status for RSVP ("please respond") item.
+            $this->out->text(_m('You will attend this event.'));
             break;
         case RSVP::NEGATIVE:
-            $this->out->text(_('You will not attend this event.'));
+            // TRANS: Possible status for RSVP ("please respond") item.
+            $this->out->text(_m('You will not attend this event.'));
             break;
         case RSVP::POSSIBLE:
-            $this->out->text(_('You might attend this event.'));
+            // TRANS: Possible status for RSVP ("please respond") item.
+            $this->out->text(_m('You might attend this event.'));
             break;
         }
 
@@ -120,9 +118,9 @@ class CancelRSVPForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('cancel', _m('BUTTON', 'Cancel'));
+        // TRANS: Button text to cancel responding to an RSVP ("please respond") item.
+        $this->out->submit('rsvp-cancel', _m('BUTTON', 'Cancel'));
     }
 }

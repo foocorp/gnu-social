@@ -249,6 +249,7 @@ class FeedSub extends Memcached_DataObject
                 // We'll never actually get updates in this mode.
                 return true;
             } else {
+                // TRANS: Server exception.
                 throw new ServerException(_m('Attempting to start PuSH subscription for feed with no hub.'));
             }
         }
@@ -279,6 +280,7 @@ class FeedSub extends Memcached_DataObject
                 // We'll never actually get updates in this mode.
                 return true;
             } else {
+                // TRANS: Server exception.
                 throw new ServerException(_m('Attempting to end PuSH subscription for feed with no hub.'));
             }
         }

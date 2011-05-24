@@ -26,7 +26,6 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class MagicEnvelope
 {
     const ENCODING = 'base64url';
@@ -327,4 +326,3 @@ class MagicEnvelopeCompat extends MagicEnvelope {
         return $env['data'];
     }
 }
-

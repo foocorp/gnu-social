@@ -1,0 +1,239 @@
+# Translation of StatusNet - QnA to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - QnA\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:58+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:28:49+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-qna\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Title for Question page.
+msgid "New question"
+msgstr "Bagong tanong"
+
+msgid "You must be logged in to post a question."
+msgstr "Dapat na nakalagda ka upang makapagpaskil ng isang tanong."
+
+#. TRANS: Client exception thrown trying to create a question without a title.
+msgid "Question must have a title."
+msgstr "Dapat na may isang pamagat ang katanungan."
+
+#. TRANS: Page title after sending a notice.
+msgid "Question posted"
+msgstr "Naipaskil ang tanong"
+
+msgid "No such answer."
+msgstr "Walang ganyang sagot."
+
+msgid "No question for this answer."
+msgstr "Walang katanungan para sa kasagutang ito."
+
+#. TRANS: Client exception thrown trying to view a question of a non-existing user.
+msgid "No such user."
+msgstr "Walang ganyang tagagamit."
+
+#. TRANS: Server exception thrown trying to view a question for a user for which the profile could not be loaded.
+msgid "User without a profile."
+msgstr "Tagagamit na walang balangkas."
+
+#. TRANS: Page title.
+#. TRANS: %1$s is the user who answered a question, %2$s is the question.
+#, php-format
+msgid "%1$s's answer to \"%2$s\""
+msgstr "Ang sagot ni %1$s sa \"%2$s\""
+
+#. TRANS: Page title for revising a question
+msgid "Revise answer"
+msgstr "Baguhin ang sagot"
+
+#. TRANS: Client exception thrown trying to answer a question while not logged in.
+msgid "You must be logged in to answer to a question."
+msgstr "Dapat na nakalagda ka upang makasagot ng isang tanong."
+
+msgid "Invalid or missing answer."
+msgstr "Hindi katanggap-tanggap o nawawalang kasagutan."
+
+#. TRANS: Page title after sending an answer.
+#. TRANS: Page title for and answer to a question.
+#. TRANS: Form legend for showing the answer.
+msgid "Answer"
+msgstr "Kasagutan"
+
+#. TRANS: Client exception thrown trying to view a non-existing question.
+msgid "No such question."
+msgstr "Walang ganyang tanong."
+
+#. TRANS: Client exception thrown trying to view a non-existing question notice.
+msgid "No such question notice."
+msgstr "Walang ganyang pabatid ng tanong."
+
+#, php-format
+msgid "%1$s's question: %2$s"
+msgstr "Katanungan ni %1$s: %2$s"
+
+#. TRANS: Page title for close a question
+msgid "Close question"
+msgstr "Isara ang katanungan"
+
+msgid "You must be logged in to close a question."
+msgstr "Dapat na nakalagda ka upang makapagsara ng isang tanong."
+
+#. TRANS: Client exception thrown trying to respond to a non-existing question.
+msgid "Invalid or missing question."
+msgstr "Hindi katanggap-tanggap o nawawalang katanungan."
+
+msgid "You didn't ask this question."
+msgstr "Hindi ka nagtanong ng tanong na ito."
+
+#. TRANS: Page title after sending an answer.
+msgid "Answers"
+msgstr "Mga kasagutan"
+
+#. TRANS: Page title after an AJAX error occurs on the post answer page.
+msgid "Ajax Error"
+msgstr "Kamalian ng Ajax"
+
+#. TRANS: Title for form to send answer to a question.
+msgctxt "TITLE"
+msgid "Your answer"
+msgstr "Ang sagot mo"
+
+msgid "Answer data is missing."
+msgstr "Nawawala ang dato ng kasagutan."
+
+#. TRANS: Plugin description.
+msgid "Question and Answers micro-app."
+msgstr "Mikro-aplikasyon ng Tanong at mga Sagot."
+
+#. TRANS: Application title.
+#. TRANS: Form legend for revising the answer.
+msgid "Question"
+msgstr "Katanungan"
+
+msgid "Too many activity objects."
+msgstr "Masyadong maraming mga bagay ng gawain."
+
+msgid "Wrong type for object."
+msgstr "Maling uri para sa bagay."
+
+msgid "Answer to unknown question."
+msgstr "Sagot sa hindi nalalamang katanungan."
+
+msgid "Unknown object type received by QnA Plugin."
+msgstr "Hindi nalalamang uri ng bagay ang natanggap ng Pampasak ng QnA."
+
+msgid "Unknown object type."
+msgstr "Hindi nalalamang uri ng bagay."
+
+msgid "Unknown question notice."
+msgstr "Hindi nalalamang pabatid ng katanungan."
+
+#. TRANS: Exception thrown when performing an unexpected action on a question.
+#. TRANS: %s is the unpexpected object type.
+#, php-format
+msgid "Unexpected type for QnA plugin: %s."
+msgstr "Hindi inaasahang uri para sa pampasak na QnA: %s."
+
+msgid "Question data is missing."
+msgstr "Nawawala ang dato ng tanong."
+
+msgid "Your answer..."
+msgstr "Ang sagot mo..."
+
+#. TRANS: Link to full notice text if it is longer than what will be dispplayed.
+#. TRANS: %s a notice URI.
+#, php-format
+msgid "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
+msgstr "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
+
+msgid "more..."
+msgstr "marami pa..."
+
+#, php-format
+msgid "%s revisions"
+msgstr "%s mga pagbabago"
+
+#, php-format
+msgid "%1$s answered the question \"%2$s\": %3$s"
+msgstr "Si %1$s ay sumagot sa tanong na \"%2$s\": %3$s"
+
+#. TRANS: Rendered version of the notice content answering a question.
+#. TRANS: %s a link to the question with question title as the link content.
+#, php-format
+msgid "answered \"%s\""
+msgstr "sumagot sa \"%s\""
+
+#, php-format
+msgid "%s answers"
+msgstr "%s mga kasagutan"
+
+msgid "This question is closed."
+msgstr "Nakasara na ang katanungang ito."
+
+#. TRANS: Rendered version of the notice content creating a question.
+#. TRANS: %s a link to the question as link description.
+#, php-format
+msgid "Question: %s"
+msgstr "Tanong: %s"
+
+#. TRANS: Button text for submitting a poll response.
+msgctxt "BUTTON"
+msgid "Submit"
+msgstr "Ipasa"
+
+msgid "Enter your answer"
+msgstr "Ipasok ang sagot mo"
+
+#. TRANS: Button text for submitting a poll response.
+msgctxt "BUTTON"
+msgid "Answer"
+msgstr "Kasagutan"
+
+msgid "Title"
+msgstr "Pamagat"
+
+msgid "Title of your question"
+msgstr "Pamagat ng katanungan mo"
+
+msgid "Description"
+msgstr "Paglalarawan"
+
+msgid "Your question in detail"
+msgstr "Nakadetalyeng katanungan mo"
+
+#. TRANS: Button text for saving a new question.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Sagipin"
+
+#. TRANS: Button text for closing a question
+msgctxt "BUTTON"
+msgid "Close"
+msgstr "Isara"
+
+#. TRANS: Title for button text for closing a question
+msgid "Close the question"
+msgstr "Isara na ang katanungan"
+
+#. TRANS: Button text for marking an answer as "best"
+msgctxt "BUTTON"
+msgid "Best"
+msgstr "Pinakamahusay"
+
+#. TRANS: Title for button text marking an answer as "best"
+msgid "Mark as best answer"
+msgstr "Markahan bilang pinakamahusay na kasagutan"

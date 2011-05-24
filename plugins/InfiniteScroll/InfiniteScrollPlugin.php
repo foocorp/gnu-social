@@ -40,6 +40,7 @@ class InfiniteScrollPlugin extends Plugin
 
     function onEndShowScripts($action)
     {
+        $action->inlineScript('var infinite_scroll_on_next_only = ' . ($this->on_next_only?'true':'false') . ';');
         $action->script($this->path('jquery.infinitescroll.js'));
         $action->script($this->path('infinitescroll.js'));
     }
@@ -51,6 +52,7 @@ class InfiniteScrollPlugin extends Plugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:InfiniteScroll',
                             'rawdescription' =>
+                            // TRANS: Plugin dscription.
                             _m('Infinite Scroll adds the following functionality to your StatusNet installation: When a user scrolls towards the bottom of the page, the next page of notices is automatically retrieved and appended. This means they never need to click "Next Page", which dramatically increases stickiness.'));
         return true;
     }

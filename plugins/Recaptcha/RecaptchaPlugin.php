@@ -71,9 +71,9 @@ class RecaptchaPlugin extends Plugin
         if (isset($action->recaptchaPluginNeedsOutput) && $action->recaptchaPluginNeedsOutput) {
             // Load the AJAX API
             if (StatusNet::isHTTPS()) {
-                $url = "https://api-secure.recaptcha.net/js/recaptcha_ajax.js";
+                $url = "https://www.google.com/recaptcha/api/js/recaptcha_ajax.js";
             } else {
-                $url = "http://api.recaptcha.net/js/recaptcha_ajax.js";
+                $url = "http://www.google.com/recaptcha/api/js/recaptcha_ajax.js";
             }
             $action->script($url);
 
@@ -93,7 +93,7 @@ class RecaptchaPlugin extends Plugin
 
         if (!$resp->is_valid) {
             if($this->display_errors) {
-                $action->showForm(sprintf(_("(reCAPTCHA error: %s)", $resp->error)));
+                $action->showForm(sprintf(_m("(reCAPTCHA error: %s)", $resp->error)));
             }
             $action->showForm(_m("Captcha does not match!"));
             return false;

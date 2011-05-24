@@ -1,0 +1,181 @@
+# Translation of StatusNet - EmailRegistration to Macedonian (Македонски)
+# Exported from translatewiki.net
+#
+# Author: Bjankuloski06
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailRegistration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:13+0000\n"
+"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:26:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: mk\n"
+"X-Message-Group: #out-statusnet-plugin-emailregistration\n"
+"Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
+
+#. TRANS: Client exception thrown when no confirmation code was provided.
+msgid "No confirmation code."
+msgstr "Нема потврден код."
+
+#. TRANS: Client exception thrown when given confirmation code was not issued.
+msgid "No such confirmation code."
+msgstr "Нема таков потврден код."
+
+#. TRANS: Title for registration page.
+msgctxt "TITLE"
+msgid "Register"
+msgstr "Регистрација"
+
+#. TRANS: Title for page where to register with a confirmation code.
+msgctxt "TITLE"
+msgid "Complete registration"
+msgstr "Довршете ја регистрацијата"
+
+#. TRANS: Confirmation text after initial registration.
+#. TRANS: %s an e-mail address.
+#, php-format
+msgid ""
+"An email was sent to %s to confirm that address. Check your email inbox for "
+"instructions."
+msgstr ""
+"Ви испративме порака на адресата %s за да ја потврдите. Погледнете во "
+"дојдовната пошта и проследете ги напатствијата."
+
+#. TRANS: Error text when trying to register without agreeing to the terms.
+msgid "You must accept the terms of service and privacy policy to register."
+msgstr ""
+"Мора да ги прифатите условите на употреба и правилата за заштита на личните "
+"податоци за да можете да се регистрирате."
+
+#. TRANS: Error text when trying to register without a password.
+msgid "You must set a password"
+msgstr "Мора да зададете лозинка."
+
+#. TRANS: Error text when trying to register with too short a password.
+msgid "Password must be 6 or more characters."
+msgstr "Лозинката мора да содржи барем 6 знаци."
+
+#. TRANS: Error text when trying to register without providing the same password twice.
+msgid "Passwords do not match."
+msgstr "Лозинките не се совпаѓаат."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Confirm your registration on %s"
+msgstr "Потврдете ја Вашата регистрација на %s"
+
+#. TRANS: Body for confirmation e-mail.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
+#, php-format
+msgid ""
+"Someone (probably you) has requested an account on %1$s using this email "
+"address.\n"
+"To confirm the address, click the following URL or copy it into the address "
+"bar of your browser.\n"
+"%2$s\n"
+"If it was not you, you can safely ignore this message."
+msgstr ""
+"Некој (веројатно Вие) побарал сметка на %1$s преку оваа е-поштенска адреса.\n"
+"За да ја потврдите адресата, стиснете на следнава URL или ископирајте ја во "
+"адресната лента на прелистувачот.\n"
+"%2$s\n"
+"Ако Вие не сте тој што го побарал ова, тогаш слободно занемарете ја поракава."
+
+#. TRANS: Form instructions.
+msgid "Enter your email address to register for an account."
+msgstr "Внесете ја Вашата е-пошта за да регистрирате сметка."
+
+#. TRANS: Field label on form for registering an account.
+msgctxt "LABEL"
+msgid "E-mail address"
+msgstr "Е-пошта"
+
+#. TRANS: Button text for registering an account.
+#. TRANS: Button text for action to register.
+msgctxt "BUTTON"
+msgid "Register"
+msgstr "Регистрирај"
+
+#. TRANS: Form instructions.
+msgid "Enter a password to confirm your new account."
+msgstr "Внесете лозинка за да ја потврдите Вашата нова сметка."
+
+#. TRANS: Field label in e-mail registration form.
+msgctxt "LABEL"
+msgid "User name"
+msgstr "Корисничко име"
+
+#. TRANS: Field label.
+msgid "Email address"
+msgstr "Е-пошта"
+
+#. TRANS: Field label on account registration page.
+msgid "Password"
+msgstr "Лозинка"
+
+#. TRANS: Field title on account registration page.
+msgid "6 or more characters."
+msgstr "барем 6 знаци."
+
+#. TRANS: Field label on account registration page. In this field the password has to be entered a second time.
+msgctxt "PASSWORD"
+msgid "Confirm"
+msgstr "Потврди"
+
+#. TRANS: Field title on account registration page.
+msgid "Same as password above."
+msgstr "Исто како лозинката погоре."
+
+#. TRANS: Checkbox title for terms of service and privacy policy.
+#, php-format
+msgid ""
+"I agree to the <a href=\"%1$s\">Terms of service</a> and <a href=\"%1$s"
+"\">Privacy policy</a> of this site."
+msgstr ""
+"Се согласувам со <a href=\"%1$s\">Условите на употреба</a> и правилата за <a "
+"href=\"%1$s\">Заштита на личните податоци</a> на ова мрежно место."
+
+#. TRANS: Error text when trying to register with an already registered e-mail address.
+#. TRANS: %s is the URL to recover password at.
+#, php-format
+msgid ""
+"A user with that email address already exists. You can use the <a href=\"%s"
+"\">password recovery</a> tool to recover a missing password."
+msgstr ""
+"Веќе постои корисник со таква е-поштенска адреса. Можете да си ја повратите "
+"лозинката со алатката за <a href=\"%s\">повраќање на лозинка</a>."
+
+#. TRANS: Error text when trying to register with an invalid e-mail address.
+msgid "Not a valid email address."
+msgstr "Ова не е важечка е-пошта."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Welcome to %s"
+msgstr ""
+
+#. TRANS: Plugin description.
+msgid "Use email only for registration."
+msgstr "Користи ја е-поштата само за регистрација."
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not save new greeting count for %d."
+msgstr "Не можев да го зачувам бројот на нови поздрави за %d."
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not increment greeting count for %d."
+msgstr "Не можев да го дополнам бројот на поздрави за %d."

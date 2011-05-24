@@ -62,20 +62,6 @@ class SearchAction extends Action
         $this->showPage();
     }
 
-    /**
-     * Show tabset for this page
-     *
-     * Uses the SearchGroupNav widget
-     *
-     * @return void
-     * @see SearchGroupNav
-     */
-    function showObjectNav()
-    {
-        $nav = new SearchGroupNav($this, $this->trimmed('q'));
-        $nav->show();
-    }
-
     function showTop($arr=null)
     {
         $error = null;
@@ -138,32 +124,27 @@ class SearchAction extends Action
     }
 
     function searchSuggestions($q) {
-        // @todo FIXME: i18n issue: This formatting does not make this string get picked up by gettext.
-            // TRANS: Standard search suggestions shown when a search does not give any results.
-        $message = _(<<<E_O_T
-* Make sure all words are spelled correctly.
+        // Don't change these long strings to HEREDOC; xgettext won't pick them up.
+        // TRANS: Standard search suggestions shown when a search does not give any results.
+        $message = _("* Make sure all words are spelled correctly.
 * Try different keywords.
 * Try more general keywords.
-* Try fewer keywords.
+* Try fewer keywords.");
+            $message .= "\n";
 
-E_O_T
-);
         if (!common_config('site', 'private')) {
             $qe = urlencode($q);
-            // @todo FIXME: i18n issue: This formatting does not make this string get picked up by gettext.
+            $message .= "\n";
+            // Don't change these long strings to HEREDOC; xgettext won't pick them up.
             // TRANS: Standard search suggestions shown when a search does not give any results.
-            $message .= sprintf(_(<<<E_O_T
-
-You can also try your search on other engines:
+            $message .= sprintf(_("You can also try your search on other engines:
 
 * [Twingly](http://www.twingly.com/search?q=%s&content=microblog&site=%%%%site.server%%%%)
 * [Tweet scan](http://www.tweetscan.com/indexi.php?s=%s)
 * [Google](http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)
 * [Yahoo](http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)
-* [Collecta](http://collecta.com/#q=%s)
-
-E_O_T
-), $qe, $qe, $qe, $qe, $qe);
+* [Collecta](http://collecta.com/#q=%s)"), $qe, $qe, $qe, $qe, $qe);
+            $message .= "\n";
         }
         $this->elementStart('div', 'help instructions');
         $this->raw(common_markup_to_html($message));

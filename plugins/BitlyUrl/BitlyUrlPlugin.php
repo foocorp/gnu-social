@@ -43,7 +43,8 @@ class BitlyUrlPlugin extends UrlShortenerPlugin
     function onInitializePlugin(){
         parent::onInitializePlugin();
         if(!isset($this->serviceUrl)){
-            throw new Exception(_m("You must specify a serviceUrl for bit.ly shortening."));
+            // TRANS: Exception thrown when bit.ly URL shortening plugin was configured incorrectly.
+            throw new Exception(_m('You must specify a serviceUrl for bit.ly URL shortening.'));
         }
     }
 
@@ -170,6 +171,7 @@ class BitlyUrlPlugin extends UrlShortenerPlugin
                             'author' => 'Craig Andrews, Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:BitlyUrl',
                             'rawdescription' =>
+                            // TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
                             sprintf(_m('Uses <a href="http://%1$s/">%1$s</a> URL-shortener service.'),
                                     $this->shortenerName));
 
@@ -211,8 +213,10 @@ class BitlyUrlPlugin extends UrlShortenerPlugin
             $action_name = $nav->action->trimmed('action');
 
             $nav->out->menuItem(common_local_url('bitlyadminpanel'),
+                                // TRANS: Menu item in administration menus for bit.ly URL shortening settings.
                                 _m('bit.ly'),
-                                _m('bit.ly URL shortening'),
+                                // TRANS: Title for menu item in administration menus for bit.ly URL shortening settings.
+                                _m('bit.ly URL shortening.'),
                                 $action_name == 'bitlyadminpanel',
                                 'nav_bitly_admin_panel');
         }

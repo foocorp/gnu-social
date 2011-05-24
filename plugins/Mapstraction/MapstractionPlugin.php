@@ -164,7 +164,7 @@ class MapstractionPlugin extends Plugin
                                   ' var user = null; '.
                                   (($actionName == 'showstream') ? ' user = scrapeUser(); ' : '') .
                                   ' var notices = scrapeNotices(user); ' .
-				  ' var canvas = $("#map_canvas")[0]; ' .
+                                  ' var canvas = $("#map_canvas")[0]; ' .
                                   ' if (typeof(canvas) != "undefined") { showMapstraction(canvas, notices); } '.
                                   '});');
         }
@@ -184,6 +184,7 @@ class MapstractionPlugin extends Plugin
         $action->elementStart('div', array('id' => 'entity_map',
                                          'class' => 'section'));
 
+        // TRANS: Header for Map widget that displays a map with geodata for notices.
         $action->element('h2', null, _m('Map'));
 
         $action->element('div', array('id' => 'map_canvas',
@@ -196,7 +197,7 @@ class MapstractionPlugin extends Plugin
 
         $action->element('a', array('href' => $mapUrl),
                          // TRANS: Clickable item to allow opening the map in full size.
-                         _m("Full size"));
+                         _m('Full size'));
 
         $action->elementEnd('div');
     }
@@ -208,6 +209,7 @@ class MapstractionPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Mapstraction',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Show maps of users\' and friends\' notices '.
                                'with <a href="http://www.mapstraction.com/">Mapstraction</a>.'));
         return true;

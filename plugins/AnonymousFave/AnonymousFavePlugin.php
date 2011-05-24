@@ -56,10 +56,8 @@ define('ANONYMOUS_FAVE_PLUGIN_VERSION', '0.1');
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class AnonymousFavePlugin extends Plugin
 {
-
     // Array of users who should not have anon faving. The default is
     // that anonymous faving is allowed for all users.
     public $restricted = array();
@@ -237,7 +235,7 @@ class AnonymousFavePlugin extends Plugin
 
         if (!$id) {
             // TRANS: Server exception.
-            throw new ServerException(_m("Couldn't create anonymous user session."));
+            throw new ServerException(_m("Could not create anonymous user session."));
         }
 
         // Stick the Profile ID into the nickname
@@ -248,7 +246,7 @@ class AnonymousFavePlugin extends Plugin
 
         if (!$result) {
             // TRANS: Server exception.
-            throw new ServerException(_m("Couldn't create anonymous user session."));
+            throw new ServerException(_m("Could not create anonymous user session."));
         }
 
         common_log(
@@ -327,5 +325,4 @@ class AnonymousFavePlugin extends Plugin
 
         return true;
     }
-
 }

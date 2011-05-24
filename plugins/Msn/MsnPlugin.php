@@ -46,7 +46,6 @@ set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/ext
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class MsnPlugin extends ImPlugin {
     public $user = null;
     public $password = null;
@@ -59,6 +58,7 @@ class MsnPlugin extends ImPlugin {
      * @return string Name of service
      */
     public function getDisplayName() {
+        // TRANS: Display name of the MSN instant messaging service.
         return _m('MSN');
     }
 
@@ -184,13 +184,16 @@ class MsnPlugin extends ImPlugin {
     */
     public function initialize() {
         if (!isset($this->user)) {
-            throw new Exception("Must specify a user");
+            // TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+            throw new Exception(_m('Must specify a user.'));
         }
         if (!isset($this->password)) {
-            throw new Exception("Must specify a password");
+            // TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+            throw new Exception(_m('Must specify a password.'));
         }
         if (!isset($this->nickname)) {
-            throw new Exception("Must specify a nickname");
+            // TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
+            throw new Exception(_m('Must specify a nickname.'));
         }
 
         return true;
@@ -209,6 +212,7 @@ class MsnPlugin extends ImPlugin {
             'author' => 'Luke Fitzgerald',
             'homepage' => 'http://status.net/wiki/Plugin:MSN',
             'rawdescription' =>
+            // TRANS: Plugin description.
             _m('The MSN plugin allows users to send and receive notices over the MSN network.')
         );
         return true;

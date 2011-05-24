@@ -239,8 +239,8 @@ class ApiStatusesUpdateAction extends ApiAuthAction
 
             $this->clientError(
                 sprintf(
-                    // TRANS: Client error displayed when the parameter "status" is missing.
-                    // TRANS: %d is the maximum number of character for a notice.
+                    // TRANS: Client error displayed exceeding the maximum notice length.
+                    // TRANS: %d is the maximum length for a notice.
                     _m('That\'s too long. Maximum notice size is %d character.',
                       'That\'s too long. Maximum notice size is %d characters.',
                       Notice::maxContent()),

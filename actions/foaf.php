@@ -65,7 +65,7 @@ class FoafAction extends Action
         $this->profile = $this->user->getProfile();
 
         if (!$this->profile) {
-            // TRANS: Server error displayed when requesting Friends of a Friend feed for a user for which the profile could not be found.
+            // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'), 500);
             return false;
         }

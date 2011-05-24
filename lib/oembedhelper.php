@@ -43,6 +43,13 @@ class oEmbedHelper
     protected static $apiMap = array(
         'flickr.com' => 'http://www.flickr.com/services/oembed/',
         'yfrog.com' => 'http://www.yfrog.com/api/oembed',
+        'youtube.com' => 'http://www.youtube.com/oembed',
+        'viddler.com' => 'http://lab.viddler.com/services/oembed/',
+        'qik.com' => 'http://qik.com/api/oembed.json',
+        'revision3.com' => 'http://revision3.com/api/oembed/',
+        'hulu.com' => 'http://www.hulu.com/api/oembed.json',
+        'vimeo.com' => 'http://www.vimeo.com/api/oembed.json',
+        'my.opera.com' => 'http://my.opera.com/service/oembed',
     );
     protected static $functionMap = array(
         'twitpic.com' => 'oEmbedHelper::twitPic',
@@ -74,30 +81,60 @@ class oEmbedHelper
             $host = substr($host, 4);
         }
 
-        // Blacklist: systems with no oEmbed API of their own, which are
-        // either missing from or broken on oohembed.com's proxy.
-        // we know how to look data up in another way...
-        if (array_key_exists($host, self::$functionMap)) {
-            $func = self::$functionMap[$host];
-            return call_user_func($func, $url, $params);
-        }
+        common_log(LOG_INFO, 'Checking for oEmbed data for ' . $url);
 
-        // Whitelist: known API endpoints for sites that don't provide discovery...
-        if (array_key_exists($host, self::$apiMap)) {
-            $api = self::$apiMap[$host];
-        } else {
-            try {
-                $api = self::discover($url);
-            } catch (Exception $e) {
-                // Discovery failed... fall back to oohembed if enabled.
-                $oohembed = common_config('oohembed', 'endpoint');
-                if ($oohembed) {
-                    $api = $oohembed;
-                } else {
-                    throw $e;
+        // You can fiddle with the order of discovery -- either skipping
+        // some types or re-ordering them.
+
+        $order = common_config('oembed', 'order');
+
+        foreach ($order as $method) {
+
+            switch ($method) {
+            case 'built-in':
+                common_log(LOG_INFO, 'Considering built-in oEmbed methods...');
+                // Blacklist: systems with no oEmbed API of their own, which are
+                // either missing from or broken on oohembed.com's proxy.
+                // we know how to look data up in another way...
+                if (array_key_exists($host, self::$functionMap)) {
+                    common_log(LOG_INFO, 'We have a built-in method for ' . $host);
+                    $func = self::$functionMap[$host];
+                    return call_user_func($func, $url, $params);
                 }
+                break;
+            case 'well-known':
+                common_log(LOG_INFO, 'Considering well-known oEmbed endpoints...');
+                // Whitelist: known API endpoints for sites that don't provide discovery...
+                if (array_key_exists($host, self::$apiMap)) {
+                    $api = self::$apiMap[$host];
+                    common_log(LOG_INFO, 'Using well-known endpoint "' . $api . '" for "' . $host . '"');
+                    break 2;
+                }
+                break;
+            case 'discovery':
+                try {
+                    common_log(LOG_INFO, 'Trying to discover an oEmbed endpoint using link headers.');
+                    $api = self::discover($url);
+                    common_log(LOG_INFO, 'Found API endpoint ' . $api . ' for URL ' . $url);
+                    break 2;
+                } catch (Exception $e) {
+                    common_log(LOG_INFO, 'Could not find an oEmbed endpoint using link headers.');
+                    // Just ignore it!
+                }
+                break;
+            case 'service':
+                $api = common_config('oembed', 'endpoint');
+                common_log(LOG_INFO, 'Using service API endpoint ' . $api);
+                break 2;
+                break;
             }
         }
+
+        if (empty($api)) {
+            // TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
+            throw new ServerException(_('No oEmbed API endpoint available.'));
+        }
+
         return self::getObjectFrom($api, $url, $params);
     }
 

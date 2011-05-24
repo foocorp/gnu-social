@@ -45,7 +45,6 @@ require_once INSTALLDIR.'/plugins/Realtime/RealtimePlugin.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://laconi.ca/
  */
-
 class OrbitedPlugin extends RealtimePlugin
 {
     public $webserver   = null;
@@ -107,7 +106,8 @@ class OrbitedPlugin extends RealtimePlugin
             $this->log(LOG_INFO, "Connected.");
         } else {
             $this->log(LOG_ERR, 'Failed to connect to queue server');
-            throw new ServerException('Failed to connect to queue server');
+            // TRANS: Server exception thrown when no connection can be made to a queue server.
+            throw new ServerException(_m('Failed to connect to queue server.'));
         }
     }
 
@@ -117,7 +117,7 @@ class OrbitedPlugin extends RealtimePlugin
                                    json_encode($message));
 
         return $result;
-        // TODO: parse and deal with result
+        // @todo Parse and deal with result.
     }
 
     function _disconnect()
@@ -150,5 +150,24 @@ class OrbitedPlugin extends RealtimePlugin
         $server = $this->_getStompServer();
         $port   = $this->_getStompPort();
         return "tcp://$server:$port/";
+    }
+
+    /**
+     * Add our version information to output
+     *
+     * @param array &$versions Array of version-data arrays
+     *
+     * @return boolean hook value
+     */
+    function onPluginVersion(&$versions)
+    {
+        $versions[] = array('name' => 'Orbited',
+                            'version' => STATUSNET_VERSION,
+                            'author' => 'Evan Prodromou',
+                            'homepage' => 'http://status.net/wiki/Plugin:Orbited',
+                            'rawdescription' =>
+                            // TRANS: Plugin description.
+                            _m('Plugin to make updates using Orbited and STOMP.'));
+        return true;
     }
 }

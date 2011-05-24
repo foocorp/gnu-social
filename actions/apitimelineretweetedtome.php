@@ -146,7 +146,7 @@ class ApiTimelineRetweetedToMeAction extends ApiAuthAction
             $this->raw($doc->asString());
             break;
         default:
-            // TRANS: Client error displayed when trying to handle an unknown API method.
+            // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), $code = 404);
             break;
         }

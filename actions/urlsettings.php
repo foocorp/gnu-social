@@ -32,8 +32,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-
-
 /**
  * Miscellaneous settings actions
  *
@@ -46,7 +44,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class UrlsettingsAction extends SettingsAction
 {
     /**
@@ -54,9 +51,9 @@ class UrlsettingsAction extends SettingsAction
      *
      * @return string Title of the page
      */
-
     function title()
     {
+        // TRANS: Title of URL settings tab in profile settings.
         return _('URL settings');
     }
 
@@ -65,7 +62,6 @@ class UrlsettingsAction extends SettingsAction
      *
      * @return instructions for use
      */
-
     function getInstructions()
     {
         // TRANS: Instructions for tab "Other" in user profile settings.
@@ -85,7 +81,6 @@ class UrlsettingsAction extends SettingsAction
      *
      * @return void
      */
-
     function showContent()
     {
         $user = common_current_user();
@@ -118,11 +113,12 @@ class UrlsettingsAction extends SettingsAction
 
         // Include default values
 
+        // TRANS: Default value for URL shortening settings.
         $services['none']     = _('[none]');
+        // TRANS: Default value for URL shortening settings.
         $services['internal'] = _('[internal]');
 
         if ($services) {
-
             asort($services);
 
             $this->elementStart('li');
@@ -135,16 +131,20 @@ class UrlsettingsAction extends SettingsAction
         }
         $this->elementStart('li');
         $this->input('maxurllength',
+                     // TRANS: Field label in URL settings in profile.
                      _('URL longer than'),
                      (!is_null($this->arg('maxurllength'))) ?
                      $this->arg('maxurllength') : User_urlshortener_prefs::maxUrlLength($user),
+                     // TRANS: Field title in URL settings in profile.
                      _('URLs longer than this will be shortened, 0 means always shorten.'));
         $this->elementEnd('li');
         $this->elementStart('li');
         $this->input('maxnoticelength',
+                     // TRANS: Field label in URL settings in profile.
                      _('Text longer than'),
                      (!is_null($this->arg('maxnoticelength'))) ?
                      $this->arg('maxnoticelength') : User_urlshortener_prefs::maxNoticeLength($user),
+                     // TRANS: Field title in URL settings in profile.
                      _('URLs in notices longer than this will be shortened, 0 means always shorten.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
@@ -162,12 +162,12 @@ class UrlsettingsAction extends SettingsAction
      *
      * @return void
      */
-
     function handlePost()
     {
         // CSRF protection
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->showForm(_('There was a problem with your session token. '.
                               'Try again, please.'));
             return;
@@ -184,13 +184,15 @@ class UrlsettingsAction extends SettingsAction
         $maxurllength = $this->trimmed('maxurllength');
 
         if (!Validate::number($maxurllength, array('min' => 0))) {
-            throw new ClientException(_('Invalid number for max url length.'));
+            // TRANS: Client exception thrown when the maximum URL settings value is invalid in profile URL settings.
+            throw new ClientException(_('Invalid number for maximum URL length.'));
         }
 
         $maxnoticelength = $this->trimmed('maxnoticelength');
 
         if (!Validate::number($maxnoticelength, array('min' => 0))) {
-            throw new ClientException(_('Invalid number for max notice length.'));
+            // TRANS: Client exception thrown when the maximum notice length settings value is invalid in profile URL settings.
+            throw new ClientException(_('Invalid number for maximum notice length.'));
         }
 
         $user = common_current_user();
@@ -235,6 +237,7 @@ class UrlsettingsAction extends SettingsAction
         }
 
         if (!$result) {
+            // TRANS: Server exception thrown in profile URL settings when preferences could not be saved.
             throw new ServerException(_('Error saving user URL shortening preferences.'));
         }
 

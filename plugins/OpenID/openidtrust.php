@@ -35,7 +35,6 @@ class OpenidtrustAction extends Action
      *
      * @return boolean false
      */
-
     function isReadOnly($args)
     {
         return false;
@@ -46,9 +45,9 @@ class OpenidtrustAction extends Action
      *
      * @return string title of the page
      */
-
     function title()
     {
+        // TRANS: Title for identity verification page.
         return _m('OpenID Identity Verification');
     }
 
@@ -67,6 +66,7 @@ class OpenidtrustAction extends Action
         $this->allowUrl = $_SESSION['openid_allow_url'];
         $this->denyUrl = $_SESSION['openid_deny_url'];
         if(empty($this->trust_root) || empty($this->allowUrl) || empty($this->denyUrl)){
+            // TRANS: Client error when visiting page directly.
             $this->clientError(_m('This page should only be reached during OpenID processing, not directly.'));
             return;
         }
@@ -112,10 +112,10 @@ class OpenidtrustAction extends Action
      *
      * @return void
      */
-
     function showPageNotice()
     {
-        $this->element('p',null,sprintf(_m('%s  has asked to verify your identity. Click Continue to verify your identity and login without creating a new password.'),$this->trust_root));
+        // TRANS: Page notice. %s is a trustroot name.
+        $this->element('p',null,sprintf(_m('%s has asked to verify your identity. Click Continue to verify your identity and login without creating a new password.'),$this->trust_root));
     }
 
     /**
@@ -125,7 +125,6 @@ class OpenidtrustAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         $this->elementStart('form', array('method' => 'post',
@@ -133,8 +132,10 @@ class OpenidtrustAction extends Action
                                    'class' => 'form_settings',
                                    'action' => common_local_url('openidtrust')));
         $this->elementStart('fieldset');
-        $this->submit('allow', _m('Continue'));
-        $this->submit('deny', _m('Cancel'));
+        // TRANS: Button text to continue OpenID identity verification.
+        $this->submit('allow', _m('BUTTON','Continue'));
+        // TRANS: Button text to cancel OpenID identity verification.
+        $this->submit('deny', _m('BUTTON','Cancel'));
 
         $this->elementEnd('fieldset');
         $this->elementEnd('form');

@@ -1089,13 +1089,13 @@ EndGroupSave: After saving a group, aliases, and first member
 - $group: group that was saved
 
 StartInterpretCommand: Before running a command
-- $cmd: First word in the string, 'foo' in 'foo argument' 
+- $cmd: First word in the string, 'foo' in 'foo argument'
 - $arg: Argument, if any, like 'argument' in 'foo argument'
 - $user: User who issued the command
 - &$result: Resulting command; you can set this!
 
 EndInterpretCommand: Before running a command
-- $cmd: First word in the string, 'foo' in 'foo argument' 
+- $cmd: First word in the string, 'foo' in 'foo argument'
 - $arg: Argument, if any, like 'argument' in 'foo argument'
 - $user: User who issued the command
 - $result: Resulting command
@@ -1111,10 +1111,160 @@ EndGroupActionsList: End the list of actions on a group profile page (before </u
 StartGroupProfileElements: Start showing stuff about the group on its profile page
 - $action: action being executed (for output and params)
 - $group: group for the page
-			   
+
 EndGroupProfileElements: Start showing stuff about the group on its profile page
 - $action: action being executed (for output and params)
 - $group: group for the page
+
+StartShowProfileTagContent: When showing a people tag page
+- $action: action being executed (for output and params)
+
+EndShowProfileTagContent: After showing the contents of a people tag page
+- $action: action being executed (for output and params)
+
+StartShowTaggedProfilesMiniList: at the start of mini list of tagged profiles
+- $action: action being executed (for output and params)
+
+EndShowTaggedProfilesMiniList: at the end of mini list of tagged profiles
+- $action: action being executed (for output and params)
+
+StartShowProfileTagSubscribersMiniList: at the start of mini list of people tag subscribers
+- $action: action being executed (for output and params)
+
+EndShowProfileTagSubscribersMiniList: at the end of mini list of people tag subscribers
+- $action: action being executed (for output and params)
+
+StartTagProfileAction: When starting to show profile tagging page
+- $action: action being executed (for output and params)
+- $profile: profile being tagged
+
+EndTagProfileAction: After showing profile tagging page
+- $action: action being executed (for output and params)
+- $profile: profile being tagged
+
+StartProfileCompletionSearch: When starting a profile search for autocompletion
+- $action: action being executed (for output and params)
+- &$profile: result Profile objects
+- $search_engine: the search engine
+
+EndProfileCompletionSearch: After search results for profile autocompletion have been found
+- $action: profilec completion action
+- &$profile: current result Profile objects
+- $search_engine: The search engine object
+
+StartShowTagProfileForm: When showing people tagging form
+- $action: action being executed (for output and params)
+- $profile: profile being tagged
+
+EndShowTagProfileForm: After showing people tagging form
+- $action: action being executed (for output and params)
+- $profile: profile being tagged
+
+StartSavePeopletags: When starting to save people tags
+- $action: action being executed (for output and params)
+- $tagstring: string input, a list of tags
+
+EndSavePeopletags: After saving people tags
+- $action: action being executed (for output and params)
+- $tagstring: string input, a list of tags
+
+StartProfiletagGetUri: when generating the Uri for a people tag
+- $profile_list: the people tag, a Profile_list object
+- &$uri: the URI
+
+EndProfiletagGetUri: after generating the uri for a people tag
+- $profile_list: the people tag, a Profile_list object
+- &$uri: the URI
+
+StartUserPeopletagHomeUrl: when generating the homepage url for a people tag
+- $profile_list: the people tag, a Profile_list object
+- &$url: the URL
+
+EndUserPeopletagHomeUrl: after generating the homepage url for a people tag
+- $profile_list: the people tag, a Profile_list object
+- &$url: the URL
+
+StartProfiletagPermalink: when generating the permalink url for a people tag
+- $profile_list: the people tag, a Profile_list object
+- &$url: the URL
+
+EndProfiletagPermalink: after generating the permalink url for a people tag
+- $profile_list: the people tag, a Profile_list object
+- &$url: the URL
+
+StartTagProfile: when tagging a profile
+- $tagger: profile tagging
+- $tagged: profile being tagged
+- $tag: the tag
+
+EndTagProfile: after tagging a profile
+- $newtag: the newly created Profile_tag object
+
+StartUntagProfile: when deleting a people tag
+- $ptag: the Profile_tag object being deleted
+
+EndUntagProfile: after deleting a people tag
+- $orig: a copy of the deleted Profile_tag object
+
+StartSubscribePeopletag: when subscribing to a people tag
+- $peopletag: Profile_list object being subscribed to
+- $profile: subscriber's profile
+
+EndSubscribePeopletag: after subscribing to a people tag
+- $profile_list: the people tag, a Profile_list object: Profile_list object being subscribed to
+- $profile: subscriber's profile
+
+StartUnsubscribePeopletag: when unsubscribing to a people tag
+- $profile_list: the people tag, a Profile_list object: Profile_list object being subscribed to
+- $profile: subscriber's profile
+
+EndUnsubscribePeopletag: after unsubscribing to a people tag
+- $peopletag: Profile_list object being subscribed to
+- $profile: subscriber's profile
+
+StartActivityObjectFromPeopletag: while starting to create an ActivityObject from a people tag
+- $profile_list: the people tag, a Profile_list object
+- &$object: activity object
+
+EndActivityObjectFromPeopletag: after making an ActivityObject from a people tag
+- $profile_list: the people tag, a Profile_list object
+- &$object: activity object
+
+StartPeopletagGroupNav: Showing the people tag nav menu
+- $menu: the menu widget; use $menu->action for output
+
+EndPeopletagGroupNav: after showing the people tag nav menu
+- $menu: the menu widget; use $menu->action for output
+
+StartShowPeopletagItem: when showing a people tag
+- $widget: PeopletagListItem widget
+
+EndShowPeopletagItem: after showing a people tag
+- $widget: PeopletagListItem widget
+
+StartSubscribePeopletagForm: when showing people tag subscription form
+- $action: action being executed (for output and params)
+- $peopletag: people tag being subscribed to
+
+EndSubscribePeopletagForm: after showing the people tag subscription form
+- $action: action being executed (for output and params)
+- $peopletag: people tag being subscribed to
+
+StartShowPeopletags: when showing a textual list of people tags
+- $widget: PeopletagsWidget; use $widget->out for output
+- $tagger: profile of the tagger
+- $tagged: profile tagged
+
+EndShowPeopletags: after showing a textual list of people tags
+- $widget: PeopletagsWidget; use $widget->out for output
+- $tagger: profile of the tagger
+- $tagged: profile tagged
+
+StartProfileListItemTags: when showing people tags in a profile list item widget
+- $widget: ProfileListItem widget
+
+EndProfileListItemTags: after showing people tags in a profile list item widget
+- $widget: ProfileListItem widget
 
 StartActivityObjectOutputAtom: Called at start of Atom XML output generation for ActivityObject chunks, just inside the <activity:object>. Cancel the event to take over its output completely (you're responsible for calling the matching End event if so)
 - $obj: ActivityObject
@@ -1139,3 +1289,132 @@ StartNoticeWhoGets: Called at start of inbox delivery prep; plugins can schedule
 EndNoticeWhoGets: Called at end of inbox delivery prep; plugins can filter out profiles from receiving inbox delivery here.  Be aware that output can be cached or used several times, so should remain idempotent.
 - $notice Notice
 - &$ni: in/out array mapping profile IDs to constants: NOTICE_INBOX_SOURCE_SUB etc
+
+StartDefaultLocalNav: When showing the default local nav
+- $menu: the menu
+- $user: current user
+
+EndDefaultLocalNav: When showing the default local nav
+- $menu: the menu
+- $user: current user
+
+StartShowAccountProfileBlock: When showing the profile block for an account
+- $out: XMLOutputter to append custom output
+- $profile: the profile being shown
+
+EndShowAccountProfileBlock: After showing the profile block for an account
+- $out: XMLOutputter to append custom output
+- $profile: the profile being shown
+
+StartShowGroupProfileBlock: When showing the profile block for a group
+- $out: XMLOutputter to append custom output
+- $profile: the profile being shown
+
+EndShowGroupProfileBlock: After showing the profile block for a group
+- $out: XMLOutputter to append custom output
+- $group: the group being shown
+
+StartShowThreadedNoticeTail: when showing the replies etc. to a notice
+- $nli: parent noticelistitem
+- $notice: parent notice
+- &$children: list of children
+
+EndShowThreadedNoticeTail: when showing the replies etc. to a notice
+- $nli: parent noticelistitem
+- $notice: parent notice
+- $children: list of children
+
+StartShowThreadedNoticeSub: when showing a reply to a notice
+- $nli: parent noticelistitem
+- $parent: parent notice
+- $child: child notice
+
+EndShowThreadedNoticeSub: when showing a reply to a notice
+- $nli: parent noticelistitem
+- $parent: parent notice
+- $child: child notice
+
+StartAddEmailAddress: when adding an email address through the Web UI
+- $user: user getting the new address
+- $email: email being added
+
+EndAddEmailAddress: done adding an email address through the Web UI
+- $user: user getting the new address
+- $email: email being added
+
+StartValidateEmailInvite: when validating an email address for invitations
+- $user: user doing the invite
+- $email: email address
+- &$valid: flag for if it's valid; can be modified
+
+EndValidateEmailInvite: after validating an email address for invitations
+- $user: user doing the invite
+- $email: email address
+- &$valid: flag for if it's valid; can be modified
+
+StartLocalURL: before resolving a local url for an action
+- &$action: action to find a path for
+- &$paramsi: parameters to pass to the action
+- &$fragment: any url fragement
+- &$addSession: whether to add session variable
+- &$url: resulting URL to local resource
+
+EndLocalURL: before resolving a local url for an action
+- &$action: action to find a path for
+- &$paramsi: parameters to pass to the action
+- &$fragment: any url fragement
+- &$addSession: whether to add session variable
+- &$url: resulting URL to local resource
+
+StartProfileGetAvatar: When getting an avatar for a profile
+- $profile: profile
+- $size: size of the avatar
+- &$avatar: avatar
+
+EndProfileGetAvatar: After getting an avatar for a profile
+- $profile: profile
+- $size: size of the avatar
+- &$avatar: avatar
+
+StartRegisterSuccess: Before showing the registration success message
+- $action: the registration action
+
+StartRegisterSuccess: After showing the registration success message
+- $action: the registration action
+
+StartDocFileForTitle: Before searching for a doc or mail template
+- $title: Title we're looking for
+- &$paths: Paths we're searching
+- &$filename: Filename so far (set this if you want)
+
+EndDocFileForTitle: After searching for a doc or mail template
+- $title: Title we looked for
+- $paths: Paths we searched
+- &$filename: Filename so far (set this if you want)
+
+StartReadWriteTables: when noting which tables must be read-write, even on read-only actions
+- &$tables: list of table names
+- &$rwdb: read-write database URI
+
+EndReadWriteTables: after noting which tables must be read-write, even on read-only actions
+- $tables: list of table names
+- $rwdb: read-write database URI
+
+StartShowInviteForm: Right before displaying the invitations form
+- $action: invitation action
+
+EndShowInviteForm: After displaying the invitations form
+- $action: invitation action
+
+StartSendInvitations: Right before sending invitations
+- $action: invitation action
+
+EndSendInvitations: Right after sending invitations
+- $action: invitation action
+
+StartShowInvitationSuccess: Right before showing invitations success msg
+- $action: invitation action
+
+EndShowInvitationSuccess: After showing invitations success msg
+- $action: invitation action
+

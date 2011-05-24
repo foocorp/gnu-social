@@ -113,6 +113,7 @@ class OpenidserverAction extends Action
             } else {
                 //invalid
                 // TRANS: OpenID plugin client error given trying to add an unauthorised OpenID to a user (403).
+                // TRANS: %s is a request identity.
                 $this->clientError(sprintf(_m('You are not authorized to use the identity %s.'),$request->identity),$code=403);
             }
         } else {
@@ -140,7 +141,7 @@ class OpenidserverAction extends Action
 
     function generateAllowResponse($request, $user){
         $response = $request->answer(true, null, common_profile_url($user->nickname));
-        
+
         $profile = $user->getProfile();
         $sreg_data = array(
             'fullname' => $profile->fullname,

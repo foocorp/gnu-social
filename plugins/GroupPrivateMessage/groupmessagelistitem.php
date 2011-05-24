@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Widget for showing an individual group message
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -69,13 +69,13 @@ class GroupMessageListItem extends Widget
     {
         $group  = $this->gm->getGroup();
         $sender = $this->gm->getSender();
- 
+
         $this->out->elementStart('li', array('class' => 'hentry notice message group-message',
                                          'id' => 'message-' . $this->gm->id));
 
         $this->out->elementStart('div', 'entry-title');
         $this->out->elementStart('span', 'vcard author');
-        $this->out->elementStart('a', 
+        $this->out->elementStart('a',
                                  array('href' => $sender->profileurl,
                                        'class' => 'url'));
         $avatar = $sender->getAvatar(AVATAR_STREAM_SIZE);

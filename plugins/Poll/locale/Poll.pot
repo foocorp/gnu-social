@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,28 +17,18 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: Client exception thrown trying to view a non-existing poll.
-#: showpoll.php:68
+#: showpoll.php:59
 msgid "No such poll."
 msgstr ""
 
 #. TRANS: Client exception thrown trying to view a non-existing poll notice.
-#: showpoll.php:76
+#: showpoll.php:67
 msgid "No such poll notice."
-msgstr ""
-
-#. TRANS: Client exception thrown trying to view a poll of a non-existing user.
-#: showpoll.php:83
-msgid "No such user."
-msgstr ""
-
-#. TRANS: Server exception thrown trying to view a poll for a user for which the profile could not be loaded.
-#: showpoll.php:90
-msgid "User without a profile."
 msgstr ""
 
 #. TRANS: Page title for a poll.
 #. TRANS: %1$s is the nickname of the user that created the poll, %2$s is the poll question.
-#: showpoll.php:109
+#: showpoll.php:84
 #, php-format
 msgid "%1$s's poll: %2$s"
 msgstr ""
@@ -61,7 +51,7 @@ msgid "Option %d"
 msgstr ""
 
 #. TRANS: Button text for saving a new poll.
-#: newpollform.php:145
+#: newpollform.php:153
 msgctxt "BUTTON"
 msgid "Save"
 msgstr ""
@@ -73,23 +63,28 @@ msgstr ""
 
 #. TRANS: Exception thrown trying to respond to a poll without a poll reference.
 #: PollPlugin.php:230
-msgid "Invalid poll response: no poll reference."
+msgid "Invalid poll response: No poll reference."
 msgstr ""
 
 #. TRANS: Exception thrown trying to respond to a non-existing poll.
 #: PollPlugin.php:235
-msgid "Invalid poll response: poll is unknown."
+msgid "Invalid poll response: Poll is unknown."
 msgstr ""
 
 #. TRANS: Exception thrown when performing an unexpected action on a poll.
-#. TRANS: %s is the unpexpected object type.
+#. TRANS: %s is the unexpected object type.
 #: PollPlugin.php:262 PollPlugin.php:420
 #, php-format
 msgid "Unexpected type for poll plugin: %s."
 msgstr ""
 
+#. TRANS: Error text displayed if no poll data could be found.
+#: PollPlugin.php:448
+msgid "Poll data is missing"
+msgstr ""
+
 #. TRANS: Application title.
-#: PollPlugin.php:481
+#: PollPlugin.php:482
 msgctxt "APPTITLE"
 msgid "Poll"
 msgstr ""
@@ -123,7 +118,7 @@ msgid "Poll: %1$s %2$s"
 msgstr ""
 
 #. TRANS: Rendered version of the notice content creating a poll.
-#. TRANS: %s a link to the poll with the question as link description.
+#. TRANS: %s is a link to the poll with the question as link description.
 #: Poll.php:246
 #, php-format
 msgid "Poll: %s"
@@ -150,7 +145,7 @@ msgid "Poll must have at least two options."
 msgstr ""
 
 #. TRANS: Page title after sending a notice.
-#: newpoll.php:157
+#: newpoll.php:166
 msgid "Notice posted"
 msgstr ""
 

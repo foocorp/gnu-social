@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-24 11:10+0000\n"
-"PO-Revision-Date: 2011-03-24 11:13:37+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:24+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:07:05+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84667); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
@@ -84,84 +84,153 @@ msgstr "Уреди проширени профилни нагодувања"
 msgid "Edit"
 msgstr "Уреди"
 
+#. TRANS: Plugin description.
 msgid "UI extensions for additional profile fields."
 msgstr "Посреднички дадатоци за дополнителни полиња во профилот."
 
+#. TRANS: Link text on user profile page leading to extended profile page.
 msgid "More details..."
 msgstr "Поподробно..."
 
+#. TRANS: Title for extended profile entry deletion dialog.
+msgid "Confirmation Required"
+msgstr "Се бара потврда"
+
+#. TRANS: Confirmation text for extended profile entry deletion dialog.
+msgid "Really delete this entry?"
+msgstr "Дали навистина да го избришам овој запис?"
+
+#. TRANS: Value between parentheses (phone number, website, or IM address).
+#, php-format
+msgid "(%s)"
+msgstr "(%s)"
+
+#. TRANS: Field label in experience area of extended profile.
+#. TRANS: Field label in experience edit area of extended profile (which company does one work for).
 msgid "Company"
 msgstr "Фирма"
 
+#. TRANS: Field label in experience area of extended profile (when did one start a position).
+#. TRANS: Field label in experience edit area of extended profile (when did one start at a company).
+#. TRANS: Field label in education area of extended profile (when did one start an education).
+#. TRANS: Field label in education edit area of extended profile (when did one start an education).
 msgid "Start"
 msgstr "Почеток"
 
+#. TRANS: Field label in experience area of extended profile (when did one end a position).
+#. TRANS: Field label in experience edit area of extended profile (when did one terminate at a company).
+#. TRANS: Field label in education area of extended profile (when did one end a education).
+#. TRANS: Field label in education edit area of extended profile (when did one end an education).
 msgid "End"
 msgstr "Завршеток"
 
+#. TRANS: Field value in experience area of extended profile (one still holds a position).
+msgid "(Current)"
+msgstr "(Тековно)"
+
+#. TRANS: Checkbox label in experience edit area of extended profile (one still works at a company).
 msgid "Current"
 msgstr "Тековно"
 
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
+#. TRANS: Field label for extended profile properties.
 msgid "Institution"
 msgstr "Установа"
 
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
 msgid "Degree"
 msgstr "Диплома"
 
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
 msgid "Description"
 msgstr "Опис"
 
+#. TRANS: Link description in extended profile page to add another profile element.
+msgid "Add another item"
+msgstr "Додај друга ставка"
+
+#. TRANS: Field label for undefined field in extended profile.
+#, php-format
+msgid "TYPE: %s"
+msgstr "ТИП: %s"
+
+#. TRANS: Button text for saving extended profile properties.
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зачувај"
 
+#. TRANS: .
+#. TRANS: Button title for saving extended profile properties.
+msgid "Save details"
+msgstr "Зачувај податоци"
+
+#. TRANS: Field label for extended profile properties.
 msgid "Phone"
 msgstr "Телефон"
 
+#. TRANS: Field label for extended profile properties (Instant Messaging).
 msgid "IM"
-msgstr "IM"
+msgstr "НП"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Website"
 msgstr "Мреж. место"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Employer"
 msgstr "Работодавач"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Personal"
 msgstr "Лично"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Full name"
 msgstr "Име и презиме"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Title"
 msgstr "Звање"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Manager"
 msgstr "Раководител"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Location"
 msgstr "Место"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Bio"
 msgstr "Био"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Tags"
 msgstr "Ознаки"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Contact"
 msgstr "Контакт"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Birthday"
 msgstr "Роденден"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Spouse's name"
 msgstr "Име на сопружникот"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Kids' names"
 msgstr "Имиња на децата"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Work experience"
 msgstr "Работно искуство"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Education"
 msgstr "Образование"

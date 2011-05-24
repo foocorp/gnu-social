@@ -121,6 +121,7 @@ class ApprovegroupAction extends Action
 
         if (empty($this->request)) {
             // TRANS: Client error displayed trying to approve group membership for a non-existing request.
+            // TRANS: %s is a nickname.
             $this->clientError(sprintf(_('%s is not in the moderation queue for this group.'), $this->profile->nickname), 403);
         }
 
@@ -152,12 +153,12 @@ class ApprovegroupAction extends Action
 
         try {
             if ($this->approve) {
-                $this->profile->completeJoinGroup($this->group);
+                $this->request->complete();
             } elseif ($this->cancel) {
-                $this->profile->cancelJoinGroup($this->group);
+                $this->request->abort();
             }
         } catch (Exception $e) {
-            common_log(LOG_ERROR, "Exception canceling group sub: " . $e->getMessage());
+            common_log(LOG_ERR, "Exception canceling group sub: " . $e->getMessage());
             // TRANS: Server error displayed when cancelling a queued group join request fails.
             // TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.
             $this->serverError(sprintf(_('Could not cancel request for user %1$s to join group %2$s.'),
@@ -176,10 +177,10 @@ class ApprovegroupAction extends Action
             $this->elementEnd('head');
             $this->elementStart('body');
             if ($this->approve) {
-                // TRANS: Message on page for group admin after approving a join request. 
+                // TRANS: Message on page for group admin after approving a join request.
                 $this->element('p', 'success', _('Join request approved.'));
             } elseif ($this->cancel) {
-                // TRANS: Message on page for group admin after rejecting a join request. 
+                // TRANS: Message on page for group admin after rejecting a join request.
                 $this->element('p', 'success', _('Join request canceled.'));
             }
             $this->elementEnd('body');

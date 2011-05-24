@@ -38,6 +38,7 @@ class LilUrlPlugin extends UrlShortenerPlugin
     function onInitializePlugin(){
         parent::onInitializePlugin();
         if(!isset($this->serviceUrl)){
+            // TRANS: Exception thrown when URL shortening plugin was configured incorrectly.
             throw new Exception(_m('A serviceUrl must be specified.'));
         }
     }
@@ -63,6 +64,8 @@ class LilUrlPlugin extends UrlShortenerPlugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:LilUrl',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
+                            // TRANS: %1$s is the service URL.
                             sprintf(_m('Uses <a href="http://%1$s/">%1$s</a> URL-shortener service.'),
                                     $this->shortenerName));
 

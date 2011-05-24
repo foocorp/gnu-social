@@ -9,32 +9,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AutoSandbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:17+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:42+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:12:51+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:25:59+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-autosandbox\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. TRANS: Plugin description.
 msgid "Automatically sandboxes newly registered members."
 msgstr "自动将新注册用户添加至沙盒中。"
 
+#. TRANS: User instructions after registration.
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline."
 msgstr "注意：最初你将被添加至“沙盒”中，你的消息将不会在公共的时间线上显示。"
 
-#. TRANS: $contactlink is a clickable e-mailaddress.
+#. TRANS: User instructions after registration.
+#. TRANS: %s is a clickable e-mailaddress.
+#, fuzzy, php-format
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
-"the public timeline. Send a message to $contactlink to speed up the "
-"unsandboxing process."
+"the public timeline. Send a message to %s to speed up the unsandboxing "
+"process."
 msgstr ""
 "注意：最初你将被添加至“沙盒”中，你的消息将不会在公共的时间线上显示。给"
 "$contactlink发消息可以加快你被移出沙盒的速度。"

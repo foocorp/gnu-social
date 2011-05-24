@@ -28,7 +28,7 @@
  */
 
 $default =
-  array('site' =>
+    array('site' =>
         array('name' => 'Just another StatusNet microblog',
               'nickname' => 'statusnet',
               'wildcard' => null,
@@ -52,8 +52,8 @@ $default =
               'timezone' => 'UTC',
               'broughtbyurl' => null,
               'closed' => false,
-              'inviteonly' => false,
-              'private' => false,
+              'inviteonly' => true,
+              'private' => true,
               'ssl' => 'never',
               'sslserver' => null,
               'shorturllength' => 30,
@@ -156,7 +156,8 @@ $default =
         'javascript' =>
         array('server' => null,
               'path'=> null,
-              'ssl' => null),
+              'ssl' => null,
+              'bustframes' => true),
         'local' => // To override path/server for themes in 'local' dir (not currently applied to local plugins)
         array('server' => null,
               'dir' => null,
@@ -190,9 +191,9 @@ $default =
               'user' => false,
               'group' => false),
         'emailpost' =>
-        array('enabled' => true),
+        array('enabled' => false),
         'sms' =>
-        array('enabled' => true),
+        array('enabled' => false),
         'twitterimport' =>
         array('enabled' => false),
         'integration' =>
@@ -268,10 +269,19 @@ $default =
         array('desclimit' => null),
         'group' =>
         array('maxaliases' => 3,
+              'desclimit' => null,
+              'addtag' => false),
+        'peopletag' =>
+        array('maxtags' => 100, // maximum number of tags a user can create.
+              'maxpeople' => 500, // maximum no. of people with the same tag by the same user
+              'allow_tagging' => array('all' => true), // equivalent to array('local' => true, 'remote' => true)
               'desclimit' => null),
-        'oohembed' => array('endpoint' => 'http://oohembed.com/oohembed/'),
+        'oembed' =>
+        array('endpoint' => 'http://oohembed.com/oohembed/',
+              'order' => array('built-in', 'well-known', 'service', 'discovery'),
+        ),
         'search' =>
-        array('type' => 'fulltext'),
+        array('type' => 'like'),
         'sessions' =>
         array('handle' => false,   // whether to handle sessions ourselves
               'debug' => false,    // debugging output for sessions
@@ -288,7 +298,8 @@ $default =
         array('enabled' => true,
               'css' => ''),
         'notice' =>
-        array('contentlimit' => null),
+        array('contentlimit' => null,
+              'defaultscope' => 0), // set to 0 for default open
         'message' =>
         array('contentlimit' => null),
         'location' =>
@@ -300,13 +311,17 @@ $default =
         array('disabled' => true),
         'plugins' =>
         array('default' => array('Geonames' => null,
-                                 'Mapstraction' => null,
-                                 'OStatus' => null,
-                                 'WikiHashtags' => null,
-                                 'RSSCloud' => null,
                                  'ClientSideShorten' => null,
                                  'StrictTransportSecurity' => null,
-                                 'OpenID' => null),
+                                 'Bookmark' => null,
+                                 'Event' => null,
+                                 'Poll' => null,
+                                 'QnA' => null,
+                                 'SearchSub' => null,
+                                 'TagSub' => null,
+                                 'OpenID' => null,
+                                 'Directory' => null,
+                                 'ExtendedProfile' => null),
               'locale_path' => false, // Set to a path to use *instead of* each plugin's own locale subdirectories
               'server' => null,
               'sslserver' => null,
@@ -343,6 +358,6 @@ $default =
               'proxy_password' => null,
               'proxy_auth_scheme' => null,
               ),
-	'router' =>
-	array('cache' => true), // whether to cache the router object. Defaults to true, turn off for devel
-        );
+        'router' =>
+        array('cache' => true), // whether to cache the router object. Defaults to true, turn off for devel
+    );

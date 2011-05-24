@@ -176,6 +176,7 @@ class MinifyPlugin extends Plugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:Minify',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The Minify plugin minifies StatusNet\'s CSS and JavaScript, removing whitespace and comments.'));
         return true;
     }

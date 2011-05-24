@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,51 +16,8 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: GravatarPlugin.php:60
-msgid "Set Gravatar"
-msgstr ""
-
-#: GravatarPlugin.php:63
-msgid "If you want to use your Gravatar image, click \"Add\"."
-msgstr ""
-
-#: GravatarPlugin.php:68
-msgid "Add"
-msgstr ""
-
-#: GravatarPlugin.php:78
-msgid "Remove Gravatar"
-msgstr ""
-
-#: GravatarPlugin.php:81
-msgid "If you want to remove your Gravatar image, click \"Remove\"."
-msgstr ""
-
-#: GravatarPlugin.php:86
-msgid "Remove"
-msgstr ""
-
-#: GravatarPlugin.php:91
-msgid "To use a Gravatar first enter in an email address."
-msgstr ""
-
-#: GravatarPlugin.php:140
-msgid "You do not have an email address set in your profile."
-msgstr ""
-
-#: GravatarPlugin.php:158
-msgid "Failed to save Gravatar to the database."
-msgstr ""
-
-#: GravatarPlugin.php:162
-msgid "Gravatar added."
-msgstr ""
-
-#: GravatarPlugin.php:180
-msgid "Gravatar removed."
-msgstr ""
-
-#: GravatarPlugin.php:200
+#. TRANS: Plugin decsription.
+#: GravatarPlugin.php:66
 msgid ""
 "The Gravatar plugin allows users to use their <a href=\"http://www.gravatar."
 "com/\">Gravatar</a> with StatusNet."

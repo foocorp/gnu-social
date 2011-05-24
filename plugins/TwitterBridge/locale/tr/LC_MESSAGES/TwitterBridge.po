@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 11:02+0000\n"
-"PO-Revision-Date: 2011-03-26 11:07:31+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:46+0000\n"
 "Language-Team: Turkish <http://translatewiki.net/wiki/Portal:tr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:10:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tr\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -101,16 +101,21 @@ msgstr "Twitter tercihleri kaydedilemedi."
 msgid "Twitter preferences saved."
 msgstr "Twitter tercihleriniz kaydedildi."
 
-msgid "You can't register if you don't agree to the license."
+#, fuzzy
+msgid "You cannot register if you do not agree to the license."
 msgstr "Eğer lisansı kabul etmezseniz kayıt olamazsınız."
 
 msgid "Something weird happened."
 msgstr "Garip bir şeyler oldu."
 
-msgid "Couldn't link your Twitter account."
-msgstr ""
+#, fuzzy
+msgid "Could not link your Twitter account."
+msgstr "Twitter hesabınızla giriş yapın"
 
 msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr ""
+
+msgid "Couldn't link your Twitter account."
 msgstr ""
 
 #, php-format
@@ -146,10 +151,18 @@ msgstr "Bu kullanıcı adıyla yeni bir kullanıcı oluştur."
 msgid "New nickname"
 msgstr "Yeni kullanıcı adı"
 
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+#, fuzzy
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
 msgstr ""
 "1-64 tane küçük harf veya rakam, noktalama işaretlerine ve boşluklara izin "
 "verilmez"
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr ""
+
+msgid "Used only for updates, announcements, and password recovery"
+msgstr ""
 
 msgid "Create"
 msgstr "Oluştur"

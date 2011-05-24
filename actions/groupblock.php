@@ -56,12 +56,13 @@ class GroupblockAction extends RedirectingAction
     {
         parent::prepare($args);
         if (!common_logged_in()) {
-            // TRANS: Client error displayed trying to block a user from a group while not logged in.
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
             return false;
         }
         $token = $this->trimmed('token');
         if (empty($token) || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_('There was a problem with your session token. Try again, please.'));
             return;
         }

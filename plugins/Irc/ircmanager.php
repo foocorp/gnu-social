@@ -28,7 +28,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  * In a multi-site queuedaemon.php run, one connection will be instantiated
  * for each site being handled by the current process that has IRC enabled.
  */
-
 class IrcManager extends ImManager {
     protected $conn = null;
     protected $lastPing = null;
@@ -231,7 +230,8 @@ class IrcManager extends ImManager {
                 // Send message
                 $this->plugin->sendConfirmationCode($screenname, $nickdata['code'], $nickdata['user'], true);
             } else {
-                $this->plugin->sendMessage($screenname, _m('Your nickname is not registered so IRC connectivity cannot be enabled'));
+                // TRANS: Message given when using an unregistered IRC nickname.
+                $this->plugin->sendMessage($screenname, _m('Your nickname is not registered so IRC connectivity cannot be enabled.'));
 
                 $confirm = new Confirm_address();
 
@@ -243,8 +243,8 @@ class IrcManager extends ImManager {
 
                     if (!$result) {
                         common_log_db_error($confirm, 'DELETE', __FILE__);
-                        // TRANS: Server error thrown on database error canceling IM address confirmation.
-                        $this->serverError(_('Couldn\'t delete confirmation.'));
+                        // TRANS: Server error thrown on database error when deleting IRC nickname confirmation.
+                        $this->serverError(_m('Could not delete confirmation.'));
                         return;
                     }
                 }
@@ -285,7 +285,8 @@ class IrcManager extends ImManager {
 
         if (!$result) {
             common_log_db_error($wm, 'INSERT', __FILE__);
-            throw new ServerException('DB error inserting IRC waiting queue item');
+            // TRANS: Server exception thrown when an IRC waiting queue item could not be added to the database.
+            throw new ServerException(_m('Database error inserting IRC waiting queue item.'));
         }
 
         return true;

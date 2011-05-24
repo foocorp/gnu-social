@@ -261,6 +261,7 @@ class DirectionDetectorPlugin extends Plugin {
             'version' => DIRECTIONDETECTORPLUGIN_VERSION,
             'author' => 'Behrooz Shabani',
             'homepage' => $url,
+            // TRANS: Plugin description.
             'rawdescription' => _m('Shows notices with right-to-left content in correct direction.')
         );
         return true;

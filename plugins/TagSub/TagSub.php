@@ -120,6 +120,7 @@ class TagSub extends Managed_DataObject
         $ts->profile_id = $profile->id;
         $ts->created = common_sql_now();
         $ts->insert();
+        self::blow('tagsub:by_profile:%d', $profile->id);
         return $ts;
     }
 
@@ -135,6 +136,34 @@ class TagSub extends Managed_DataObject
                                     'profile_id' => $profile->id));
         if ($ts) {
             $ts->delete();
+            self::blow('tagsub:by_profile:%d', $profile->id);
         }
+    }
+
+    static function forProfile(Profile $profile)
+    {
+        $tags = array();
+
+        $keypart = sprintf('tagsub:by_profile:%d', $profile->id);
+        $tagstring = self::cacheGet($keypart);
+        
+        if ($tagstring !== false && !empty($tagstring)) {
+            $tags = explode(',', $tagstring);
+        } else {
+            $tagsub = new TagSub();
+            $tagsub->profile_id = $profile->id;
+
+            if ($tagsub->find()) {
+                while ($tagsub->fetch()) {
+                    if (!empty($tagsub->tag)) {
+                        $tags[] = $tagsub->tag;
+                    }
+                }
+            }
+
+            self::cacheSet($keypart, implode(',', $tags));
+        }
+
+        return $tags;
     }
 }

@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  */
 class DirectoryPlugin extends Plugin
 {
-
     private $dir = null;
 
     /**
@@ -86,6 +85,7 @@ class DirectoryPlugin extends Plugin
         switch ($cls)
         {
         case 'UserdirectoryAction':
+        case 'GroupdirectoryAction':
             include_once $dir
                 . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
@@ -94,6 +94,7 @@ class DirectoryPlugin extends Plugin
                 . '/lib/' . strtolower($cls) . '.php';
             return false;
         case 'SortableSubscriptionList':
+        case 'SortableGroupList':
             include_once $dir
                 . '/lib/' . strtolower($cls) . '.php';
             return false;
@@ -112,6 +113,7 @@ class DirectoryPlugin extends Plugin
      */
     function onRouterInitialized($m)
     {
+
         $m->connect(
             'directory/users',
             array('action' => 'userdirectory'),
@@ -124,6 +126,54 @@ class DirectoryPlugin extends Plugin
             array('filter' => '([0-9a-zA-Z_]{1,64}|0-9)')
         );
 
+        $m->connect(
+            'groups/:filter',
+            array('action' => 'groupdirectory'),
+            array('filter' => '([0-9a-zA-Z_]{1,64}|0-9)')
+        );
+
+        return true;
+    }
+
+    /**
+     * Hijack the routing (URL -> Action) for the normal directory page
+     * and substitute our group directory action
+     *
+     * @param string $path     path to connect
+     * @param array  $defaults path defaults
+     * @param array  $rules    path rules
+     * @param array  $result   unused
+     *
+     * @return boolean hook return
+     */
+    function onStartConnectPath(&$path, &$defaults, &$rules, &$result)
+    {
+        if (in_array($path, array('group', 'group/', 'groups', 'groups/'))) {
+            $defaults['action'] = 'groupdirectory';
+            return true;
+        }
+        return true;
+    }
+
+    // The following three function are to replace the existing groups
+    // list page with the directory plugin's group directory page
+
+    /**
+     * Hijack the mapping (Action -> URL) and return the URL to our
+     * group directory page instead of the normal groups page
+     *
+     * @param Action    $action     action to find a path for
+     * @param array     $params     parameters to pass to the action
+     * @param string    $fragment   any url fragement
+     * @param boolean   $addSession whether to add session variable
+     * @param string    $url        resulting URL to local resource
+     *
+     * @return string the local URL
+     */
+    function onEndLocalURL(&$action, &$params, &$fragment, &$addSession, &$url) {
+        if (in_array($action, array('group', 'group/', 'groups', 'groups/'))) {
+                $url = common_local_url('groupdirectory');
+        }
         return true;
     }
 
@@ -138,11 +188,29 @@ class DirectoryPlugin extends Plugin
     {
         if (in_array(
             $action->trimmed('action'),
-            array('userdirectory'))
+            array('userdirectory', 'groupdirectory'))
         ) {
             $action->cssLink($this->path('css/directory.css'));
         }
 
+        return true;
+    }
+
+    /**
+     * Fool the public nav into thinking it's on the regular
+     * group page when it's actually on our injected group
+     * directory page. This way "Groups" gets hilighted when
+     * when we're on the groups directory page.
+     *
+     * @param type $action the current action
+     *
+     * @return boolean hook flag
+     */
+    function onStartPublicGroupNav($action)
+    {
+        if ($action->trimmed('action') == 'groupdirectory') {
+            $action->actionName = 'groups';
+        }
         return true;
     }
 
@@ -165,8 +233,10 @@ class DirectoryPlugin extends Plugin
 
         $nav->out->menuItem(
             common_local_url('userdirectory'),
-            _('Directory'),
-            _('User Directory'),
+            // TRANS: Menu item text for user directory.
+            _m('MENU','Directory'),
+            // TRANS: Menu item title for user directory.
+            _m('User Directory.'),
             $actionName == 'userdirectory',
             'nav_directory'
         );
@@ -184,6 +254,7 @@ class DirectoryPlugin extends Plugin
             'version' => STATUSNET_VERSION,
             'author' => 'Zach Copley',
             'homepage' => 'http://status.net/wiki/Plugin:Directory',
+            // TRANS: Plugin description.
             'rawdescription' => _m('Add a user directory.')
         );
 

@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * RSVP for an event
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
+
 if (!defined('STATUSNET')) {
     // This check helps protect against security problems;
     // your code file can't be executed directly from the web.
@@ -43,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class NewrsvpAction extends Action
 {
     protected $user  = null;
@@ -55,10 +55,10 @@ class NewrsvpAction extends Action
      *
      * @return string Action title
      */
-
     function title()
     {
-        return _('New RSVP');
+        // TRANS: Title for RSVP ("please respond") action.
+        return _m('TITLE','New RSVP');
     }
 
     /**
@@ -68,7 +68,6 @@ class NewrsvpAction extends Action
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
@@ -79,19 +78,22 @@ class NewrsvpAction extends Action
         $eventId = $this->trimmed('event');
 
         if (empty($eventId)) {
-            throw new ClientException(_('No such event.'));
+            // TRANS: Client exception thrown when requesting a non-exsting event.
+            throw new ClientException(_m('No such event.'));
         }
 
         $this->event = Happening::staticGet('id', $eventId);
 
         if (empty($this->event)) {
-            throw new ClientException(_('No such event.'));
+            // TRANS: Client exception thrown when requesting a non-exsting event.
+            throw new ClientException(_m('No such event.'));
         }
 
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            throw new ClientException(_('You must be logged in to RSVP for an event.'));
+            // TRANS: Client exception thrown when trying to RSVP ("please respond") while not logged in.
+            throw new ClientException(_m('You must be logged in to RSVP for an event.'));
         }
 
         common_debug(print_r($this->args, true));
@@ -107,7 +109,8 @@ class NewrsvpAction extends Action
             $this->verb = RSVP::POSSIBLE;
             break;
         default:
-            throw new ClientException('Unknown submit value.');
+            // TRANS: Client exception thrown when using an invalid value for RSVP ("please respond").
+            throw new ClientException(_m('Unknown submit value.'));
         }
 
         return true;
@@ -120,7 +123,6 @@ class NewrsvpAction extends Action
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         parent::handle($argarray);
@@ -139,7 +141,6 @@ class NewrsvpAction extends Action
      *
      * @return void
      */
-
     function newRSVP()
     {
         try {
@@ -158,8 +159,8 @@ class NewrsvpAction extends Action
             $this->xw->startDocument('1.0', 'UTF-8');
             $this->elementStart('html');
             $this->elementStart('head');
-            // TRANS: Page title after sending a notice.
-            $this->element('title', null, _('Event saved'));
+            // TRANS: Page title after creating an event.
+            $this->element('title', null, _m('Event saved'));
             $this->elementEnd('head');
             $this->elementStart('body');
             $this->elementStart('body');
@@ -178,7 +179,6 @@ class NewrsvpAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         if (!empty($this->error)) {
@@ -201,7 +201,6 @@ class NewrsvpAction extends Action
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||

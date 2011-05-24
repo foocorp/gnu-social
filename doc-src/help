@@ -28,8 +28,9 @@ Here are some documents that you might find helpful in understanding
 * [Contact](%%doc.contact%%) - who to contact with questions about the service
 * [IM](%%doc.im%%) - using the instant-message (IM) features of %%site.name%%
 * [SMS](%%doc.sms%%) - tying your cellphone to %%site.name%%
-* [tags](%%doc.tags%%) - different ways to use tagging
+* [Tags](%%doc.tags%%) - different ways to use tagging
 * [Groups](%%doc.groups%%) - joining together in groups
+* [Lists](%%doc.lists%%) - organize your contacts
 * [OpenMicroBlogging](%%doc.openmublog%%) - subscribing to remote users
 * [Privacy](%%doc.privacy%%) - %%site.name%%'s privacy policy
 * [Source](%%doc.source%%) - How to get the StatusNet source code

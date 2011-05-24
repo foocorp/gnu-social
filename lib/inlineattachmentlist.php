@@ -58,11 +58,20 @@ class InlineAttachmentList extends AttachmentList
 
 class InlineAttachmentListItem extends AttachmentListItem
 {
+    protected $thumb;
+
     function show()
     {
-        if ($this->attachment->isEnclosure()) {
+        $this->thumb = parent::getThumbInfo();
+        if (!empty($this->thumb)) {
             parent::show();
         }
+
+    }
+
+    function getThumbInfo()
+    {
+        return $this->thumb;
     }
 
     function showLink() {

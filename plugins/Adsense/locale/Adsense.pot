@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,74 +23,93 @@ msgstr ""
 
 #. TRANS: Menu item for site administration
 #: AdsensePlugin.php:196
+msgctxt "MENU"
 msgid "AdSense"
 msgstr ""
 
-#: AdsensePlugin.php:209
+#. TRANS: Plugin description.
+#: AdsensePlugin.php:210
 msgid "Plugin to add Google AdSense to StatusNet sites."
 msgstr ""
 
-#: adsenseadminpanel.php:52
+#. TRANS: Title of AdSense administrator panel.
+#: adsenseadminpanel.php:53
 msgctxt "TITLE"
 msgid "AdSense"
 msgstr ""
 
-#: adsenseadminpanel.php:62
+#. TRANS: Instructions for AdSense administrator panel.
+#: adsenseadminpanel.php:64
 msgid "AdSense settings for this StatusNet site"
 msgstr ""
 
-#: adsenseadminpanel.php:164
+#. TRANS: Field label in AdSense administration panel.
+#: adsenseadminpanel.php:167
 msgid "Client ID"
 msgstr ""
 
-#: adsenseadminpanel.php:165
-msgid "Google client ID"
+#. TRANS: Field title in AdSense administration panel.
+#: adsenseadminpanel.php:169
+msgid "Google client ID."
 msgstr ""
 
-#: adsenseadminpanel.php:170
+#. TRANS: Field label in AdSense administration panel.
+#: adsenseadminpanel.php:175
 msgid "Ad script URL"
 msgstr ""
 
-#: adsenseadminpanel.php:171
-msgid "Script URL (advanced)"
+#. TRANS: Field title in AdSense administration panel.
+#: adsenseadminpanel.php:177
+msgid "Script URL (advanced)."
 msgstr ""
 
-#: adsenseadminpanel.php:176
+#. TRANS: Field label in AdSense administration panel.
+#: adsenseadminpanel.php:183
 msgid "Medium rectangle"
 msgstr ""
 
-#: adsenseadminpanel.php:177
-msgid "Medium rectangle slot code"
+#. TRANS: Field title in AdSense administration panel.
+#: adsenseadminpanel.php:185
+msgid "Medium rectangle slot code."
 msgstr ""
 
-#: adsenseadminpanel.php:182
+#. TRANS: Field label in AdSense administration panel.
+#: adsenseadminpanel.php:191
 msgid "Rectangle"
 msgstr ""
 
-#: adsenseadminpanel.php:183
-msgid "Rectangle slot code"
+#. TRANS: Field title in AdSense administration panel.
+#: adsenseadminpanel.php:193
+msgid "Rectangle slot code."
 msgstr ""
 
-#: adsenseadminpanel.php:188
+#. TRANS: Field label in AdSense administration panel.
+#: adsenseadminpanel.php:199
 msgid "Leaderboard"
 msgstr ""
 
-#: adsenseadminpanel.php:189
-msgid "Leaderboard slot code"
+#. TRANS: Field title in AdSense administration panel.
+#: adsenseadminpanel.php:201
+msgid "Leaderboard slot code."
 msgstr ""
 
-#: adsenseadminpanel.php:194
+#. TRANS: Field label in AdSense administration panel.
+#: adsenseadminpanel.php:207
 msgid "Skyscraper"
 msgstr ""
 
-#: adsenseadminpanel.php:195
-msgid "Wide skyscraper slot code"
+#. TRANS: Field title in AdSense administration panel.
+#: adsenseadminpanel.php:209
+msgid "Wide skyscraper slot code."
 msgstr ""
 
-#: adsenseadminpanel.php:208
+#. TRANS: Button text to save settings in AdSense administration panel.
+#: adsenseadminpanel.php:223
+msgctxt "BUTTON"
 msgid "Save"
 msgstr ""
 
-#: adsenseadminpanel.php:208
-msgid "Save AdSense settings"
+#. TRANS: Button title to save settings in AdSense administration panel.
+#: adsenseadminpanel.php:225
+msgid "Save AdSense settings."
 msgstr ""

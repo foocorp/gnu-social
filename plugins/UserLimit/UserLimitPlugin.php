@@ -71,7 +71,8 @@ class UserLimitPlugin extends Plugin
             $cnt = $cls->count();
 
             if ($cnt >= $this->maxUsers) {
-                $msg = sprintf(_('Cannot register; maximum number of users (%d) reached.'),
+                // @todo FIXME: i18n issue. Needs plural.
+                $msg = sprintf(_m('Cannot register; maximum number of users (%d) reached.'),
                                $this->maxUsers);
 
                 throw new ClientException($msg);

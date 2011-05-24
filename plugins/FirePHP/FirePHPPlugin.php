@@ -1,11 +1,11 @@
 <?php
 /*
-StatusNet Plugin: 0.9
-Plugin Name: FirePHP
-Description: Sends StatusNet log output to FirePHP
-Version: 0.1
-Author: Craig Andrews <candrews@integralblue.com>
-Author URI: http://candrews.integralblue.com/
+ * StatusNet Plugin: 0.9
+ * Plugin Name: FirePHP
+ * Description: Sends StatusNet log output to FirePHP
+ * Version: 0.1
+ * Author: Craig Andrews <candrews@integralblue.com>
+ * Author URI: http://candrews.integralblue.com/
 */
 
 /*
@@ -65,6 +65,7 @@ class FirePHPPlugin extends Plugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:FirePHP',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The FirePHP plugin writes StatusNet\'s log output to FirePHP.'));
         return true;
     }

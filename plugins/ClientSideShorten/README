@@ -1,4 +1,5 @@
-ClientSideShorten causes the web interface's notice form to automatically shorten urls as they entered, and before the notice is submitted.
+ClientSideShorten causes the web interface's notice form to automatically
+shorten URLs as they entered, and before the notice is submitted.
 
 Installation
 ============

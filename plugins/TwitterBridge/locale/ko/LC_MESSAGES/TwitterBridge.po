@@ -1,0 +1,327 @@
+# Translation of StatusNet - TwitterBridge to Korean (한국어)
+# Exported from translatewiki.net
+#
+# Author: Changwoo
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TwitterBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:45+0000\n"
+"Language-Team: Korean <http://translatewiki.net/wiki/Portal:ko>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ko\n"
+"X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid "Twitter settings"
+msgstr "트위터 설정"
+
+msgid ""
+"Connect your Twitter account to share your updates with your Twitter friends "
+"and vice-versa."
+msgstr ""
+"트위터 계정을 연결합니다. 내 글을 트위터 친구들과 공유할 수 있고 반대로 할 수"
+"도 있습니다."
+
+msgid "Twitter account"
+msgstr "트위터 계정"
+
+msgid "Connected Twitter account"
+msgstr "연결한 트위터 계정"
+
+msgid "Disconnect my account from Twitter"
+msgstr "내 계정에서 트위터 연결을 해제합니다."
+
+msgid "Disconnecting your Twitter could make it impossible to log in! Please "
+msgstr "트위터 연결을 해제하면 로그인이 불가능해질 수 있습니다!"
+
+msgid "set a password"
+msgstr "비밀 번호를 설정하십시오"
+
+msgid " first."
+msgstr "."
+
+#. TRANS: %1$s is the current website name.
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
+"password to log in."
+msgstr ""
+"내 %1$s 계정을 유지하지만 트위터에서 연결을 해제합니다. 로그인에 %1$s 비밀 번"
+"호를 사용할 수 있습니다."
+
+msgid "Disconnect"
+msgstr "연결 끊기"
+
+msgid "Preferences"
+msgstr "기본 설정"
+
+msgid "Automatically send my notices to Twitter."
+msgstr "내 글을 자동으로 트위터로 보내기"
+
+msgid "Send local \"@\" replies to Twitter."
+msgstr "로컬 \"@\" 답장을 트위터로 보내기."
+
+msgid "Subscribe to my Twitter friends here."
+msgstr "여기 있는 내 트위터 친구들에 구독."
+
+msgid "Import my friends timeline."
+msgstr "내 친구 타임라인 가져오기."
+
+msgid "Save"
+msgstr "저장"
+
+msgid "Add"
+msgstr "추가"
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr "세션 토큰에 문제가 있습니다. 다시 시도해 보십시오."
+
+msgid "Unexpected form submission."
+msgstr "예상치 못한 폼 제출."
+
+msgid "No Twitter connection to remove."
+msgstr "제거할 트위터 연결이 없습니다."
+
+msgid "Couldn't remove Twitter user."
+msgstr "트위터 사용자를 제거할 수 없습니다."
+
+msgid "Twitter account disconnected."
+msgstr "트위터 계정 연결을 끊었습니다."
+
+msgid "Couldn't save Twitter preferences."
+msgstr "트위터 기본 설정을 저장할 수 없습니다."
+
+msgid "Twitter preferences saved."
+msgstr "트위터 기본 설정을 저장했습니다."
+
+msgid "You cannot register if you do not agree to the license."
+msgstr "라이선스에 동의하지 않으면 가입할 수 없습니다."
+
+msgid "Something weird happened."
+msgstr "이상한 일이 발생했습니다."
+
+msgid "Could not link your Twitter account."
+msgstr "트위터 계정을 연결할 수 없습니다."
+
+msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr "트위터 계정을 연결할 수 없습니다: oauth_token 일치하지 않습니다."
+
+msgid "Couldn't link your Twitter account."
+msgstr "트위터 계정을 연결할 수 없습니다."
+
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your Twitter "
+"account to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
+msgstr ""
+"처음으로 %s 사이트에 로그인했으므로 트위터를 로컬 계정에 연결해야 합니다. 새 "
+"계정을 만들거나, 계정이 있으면 기존 계정을 트위터에 연결할 수 있습니다."
+
+msgid "Twitter Account Setup"
+msgstr "트위터 계정 준비"
+
+msgid "Connection options"
+msgstr "연결 옵션"
+
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"내 글과 파일은 %s 조건에 따릅니다. 다음 개인 데이터는 제외합니다: 비밀 번호, "
+"메일 주소, 메신저 주소, 전화 번호."
+
+msgid "Create new account"
+msgstr "새 계정 만들기"
+
+msgid "Create a new user with this nickname."
+msgstr "이 이름으로 새 사용자 만들기"
+
+msgid "New nickname"
+msgstr "새 이름"
+
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr ""
+"1-64자 사이에 영문 소문자, 숫자로만 씁니다. 기호나 공백을 쓰면 안 됩니다."
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr "메일"
+
+msgid "Used only for updates, announcements, and password recovery"
+msgstr "업데이트, 공지 사항, 비밀번호 찾기에만 사용합니다."
+
+msgid "Create"
+msgstr "만들기"
+
+msgid "Connect existing account"
+msgstr "기존 계정에 연결"
+
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Twitter account."
+msgstr "계정이 있으면, 아이디와 비밀 번호로 로그인해서 트위터에 연결하십시오."
+
+msgid "Existing nickname"
+msgstr "기존 이름"
+
+msgid "Password"
+msgstr "비밀 번호"
+
+msgid "Connect"
+msgstr "연결"
+
+msgid "Registration not allowed."
+msgstr "가입이 허용되지 않습니다."
+
+msgid "Not a valid invitation code."
+msgstr "초대 코드가 잘못되었습니다."
+
+msgid "Nickname not allowed."
+msgstr "허용되지 않는 이름입니다."
+
+msgid "Nickname already in use. Try another one."
+msgstr "이름이 이미 사용 중입니다. 다른 이름을 사용해 보십시오."
+
+msgid "Error registering user."
+msgstr "사용자 등록에 오류."
+
+msgid "Error connecting user to Twitter."
+msgstr "사용자를 트위터에 연결하는데 오류."
+
+msgid "Invalid username or password."
+msgstr "사용자 이름이나 비밀 번호가 틀렸습니다."
+
+msgid "Twitter"
+msgstr "트위터"
+
+msgid "Twitter bridge settings"
+msgstr "트위터 브리지 설정"
+
+msgid "Invalid consumer key. Max length is 255 characters."
+msgstr "컨수머 키가 잘못되었습니다. 최대값은 255자입니다."
+
+msgid "Invalid consumer secret. Max length is 255 characters."
+msgstr "컨수머 비밀값이 잘못되었습니다. 최대값은 255자입니다."
+
+msgid "Twitter application settings"
+msgstr "트위터 응용 프로그램 설정"
+
+msgid "Consumer key"
+msgstr "컨수머 키"
+
+msgid "Consumer key assigned by Twitter"
+msgstr "트위터가 할당한 컨수머 키"
+
+msgid "Consumer secret"
+msgstr "컨수머 비밀 값"
+
+msgid "Consumer secret assigned by Twitter"
+msgstr "트위터가 할당한 컨수머 비밀 값"
+
+msgid "Note: a global consumer key and secret are set."
+msgstr "참고: 전체 컨수머 키와 비밀값을 설정했습니다."
+
+msgid "Integration source"
+msgstr "통합 소스"
+
+msgid "Name of your Twitter application"
+msgstr "내 트위터 응용 프로그램의 이름"
+
+msgid "Options"
+msgstr "설정"
+
+msgid "Enable \"Sign-in with Twitter\""
+msgstr "\"트위터로 로그인\" 사용"
+
+msgid "Allow users to login with their Twitter credentials"
+msgstr "사용자가 트위터 로그인을 통해 로그인하도록 허용"
+
+msgid "Enable Twitter import"
+msgstr "트위터 가져오기 사용"
+
+msgid ""
+"Allow users to import their Twitter friends' timelines. Requires daemons to "
+"be manually configured."
+msgstr ""
+"사용자가 트위터 친구의 타임라인을 가져오도록 허용합니다. 데몬을 수동으로 설정"
+"해야 합니다."
+
+msgid "Save Twitter settings"
+msgstr "트위터 설정 저장"
+
+msgid "Login or register using Twitter"
+msgstr "트위터를 사용해 로그인 또는 가입"
+
+msgid "Twitter integration options"
+msgstr "트위터 통합 옵션"
+
+msgid "Twitter bridge configuration"
+msgstr "트위터 브릿지 설정"
+
+msgid ""
+"The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
+"with <a href=\"http://twitter.com/\">Twitter</a>."
+msgstr ""
+"트위터 \"브릿지\" 플러그인을 통해 StatusNet 인스턴스를 <a href=\"http://"
+"twitter.com/\">트위터</a>와 연결할 수 있습니다."
+
+msgid "Already logged in."
+msgstr "이미 로그인헀습니다."
+
+msgid "Twitter Login"
+msgstr "트위터 로그인"
+
+msgid "Login with your Twitter account"
+msgstr "트위터 계정으로 로그인"
+
+msgid "Sign in with Twitter"
+msgstr "트위터로 로그인"
+
+#. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
+msgid "Your Twitter bridge has been disabled"
+msgstr "트위터 브릿지 기능을 사용하지 않고 있습니다."
+
+#. TRANS: Mail body after forwarding notices to Twitter has stopped working.
+#. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the
+#. TRANS: Twitter settings, %3$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"Hi, %1$s. We're sorry to inform you that your link to Twitter has been "
+"disabled. We no longer seem to have permission to update your Twitter "
+"status. Did you maybe revoke %3$s's access?\n"
+"\n"
+"You can re-enable your Twitter bridge by visiting your Twitter settings "
+"page:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"Regards,\n"
+"%3$s"
+msgstr ""
+"%1$s님 안녕하세요. 아쉽지만 귀하의 트위터 연결이 끊겼음을 알려드립니다. 트위"
+"터 상태를 업데이트할 권한이 이제 없습니다. %3$s의 접근 권한을 철회하셨습니"
+"까?\n"
+"\n"
+"다음 트위터 설정 페이지에서 트위터 브릿지를 다시 사용할 수 있습니다:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"그럼 이만,\n"
+"%3$s"
+
+#. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
+#. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
+#, php-format
+msgid "RT @%1$s %2$s"
+msgstr "RT @%1$s %2$s"

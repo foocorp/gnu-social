@@ -1,0 +1,141 @@
+# Translation of StatusNet - Directory to Breton (Brezhoneg)
+# Exported from translatewiki.net
+#
+# Author: Y-M D
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Directory\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-04-16 22:54+0000\n"
+"PO-Revision-Date: 2011-04-16 22:57:23+0000\n"
+"Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-11 13:14:46+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r86243); Translate extension (2011-04-13)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: br\n"
+"X-Message-Group: #out-statusnet-plugin-directory\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#, php-format
+msgid "User Directory, page %d"
+msgstr ""
+
+msgid "User directory"
+msgstr ""
+
+#, php-format
+msgid "User directory - %s"
+msgstr ""
+
+#, php-format
+msgid "User directory - %s, page %d"
+msgstr ""
+
+#, php-format
+msgid ""
+"Search for people on %%site.name%% by their name, location, or interests. "
+"Separate the terms by spaces;  they must be 3 characters or more."
+msgstr ""
+
+msgid "Search site"
+msgstr "Klask el lec'hienn"
+
+#. TRANS: Field label for input of one or more keywords.
+msgid "Keyword(s)"
+msgstr "Ger(ioù) alc'hwez"
+
+#. TRANS: Button text for searching group directory.
+msgctxt "BUTTON"
+msgid "Search"
+msgstr "Klask"
+
+#, php-format
+msgid "No users starting with %s"
+msgstr "N'eus implijer ebet o kregiñ gant %s"
+
+#. TRANS: Empty list message for searching group directory.
+msgid "No results."
+msgstr "Disoc'h ebet."
+
+#. TRANS: Title for group directory page. %d is a page number.
+#, php-format
+msgid "Group Directory, page %d"
+msgstr ""
+
+#. TRANS: Title for group directory page.
+msgid "Group directory"
+msgstr ""
+
+#. TRANS: Title for group directory page when it is filtered.
+#. TRANS: %s is the filter string.
+#, php-format
+msgid "Group directory - %s"
+msgstr ""
+
+#. TRANS: Title for group directory page when it is filtered.
+#. TRANS: %1$s is the filter string, %2$d is a page number.
+#, php-format
+msgid "Group directory - %1$s, page %2$d"
+msgstr ""
+
+#. TRANS: Page instructions.
+msgid ""
+"After you join a group you can send messages to all other members\n"
+"using the syntax \"!groupname\".\n"
+"\n"
+"Browse groups, or search for groups on by their name, location or topic.\n"
+"Separate the terms by spaces; they must be three characters or more.\n"
+msgstr ""
+
+#. TRANS: Link to create a new group on the group list page.
+msgid "Create a new group"
+msgstr ""
+
+#. TRANS: Fieldset legend.
+#, fuzzy
+msgid "Search groups"
+msgstr "Klask el lec'hienn"
+
+#. TRANS: Empty list message for searching group directory.
+#. TRANS: %s is the search string.
+#, fuzzy, php-format
+msgid "No groups starting with %s."
+msgstr "N'eus implijer ebet o kregiñ gant %s"
+
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+
+#. TRANS: Menu item text for user directory.
+msgctxt "MENU"
+msgid "Directory"
+msgstr ""
+
+#. TRANS: Menu item title for user directory.
+msgid "User Directory."
+msgstr ""
+
+#. TRANS: Plugin description.
+msgid "Add a user directory."
+msgstr ""
+
+#. TRANS: Column header in table for user nickname.
+msgid "Nickname"
+msgstr "Lesanv"
+
+#. TRANS: Column header in table for timestamp when user was created.
+msgid "Created"
+msgstr "Krouet"
+
+#. TRANS: Column header in table for members of a group.
+msgid "Members"
+msgstr ""

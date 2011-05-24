@@ -152,7 +152,7 @@ class Fave_tally extends Memcached_DataObject
             $msg = sprintf(
                 // TRANS: Server exception.
                 // TRANS: %d is the notice ID (number).
-                _m("Couldn't update favorite tally for notice ID %d."),
+                _m("Could not update favorite tally for notice ID %d."),
                 $noticeID
             );
             throw new ServerException($msg);
@@ -181,7 +181,7 @@ class Fave_tally extends Memcached_DataObject
                 $msg = sprintf(
                     // TRANS: Server exception.
                     // TRANS: %d is the notice ID (number).
-                    _m("Couldn't update favorite tally for notice ID %d."),
+                    _m("Could not update favorite tally for notice ID %d."),
                     $noticeID
                 );
                 throw new ServerException($msg);
@@ -212,7 +212,7 @@ class Fave_tally extends Memcached_DataObject
                 $msg = sprintf(
                     // TRANS: Server exception.
                     // TRANS: %d is the notice ID (number).
-                    _m("Couldn't create favorite tally for notice ID %d."),
+                    _m("Could not create favorite tally for notice ID %d."),
                     $noticeID
                 );
                 throw new ServerException($msg);

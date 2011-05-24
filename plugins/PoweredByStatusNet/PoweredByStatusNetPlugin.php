@@ -40,17 +40,14 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class PoweredByStatusNetPlugin extends Plugin
 {
     function onEndAddressData($action)
     {
         $action->text(' ');
         $action->elementStart('span', 'poweredby');
-        // TRANS: %s is a URL to status.net with "StatusNet" (localised) as link text.
-        $action->raw(sprintf(_m('powered by %s'),
-                     sprintf('<a href="http://status.net/">%s</a>',
-                             _m('StatusNet'))));
+        // TRANS: Text output after site name.
+        $action->raw(_m('powered by <a href="http://status.net/">StatusNet</a>'));
         $action->elementEnd('span');
 
         return true;
@@ -63,6 +60,7 @@ class PoweredByStatusNetPlugin extends Plugin
                             'author' => 'Sarven Capadisli',
                             'homepage' => 'http://status.net/wiki/Plugin:PoweredByStatusNet',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Outputs "powered by <a href="http://status.net/">StatusNet</a>" after site name.'));
         return true;
     }

@@ -16,3 +16,5 @@ export WILDCARD=example.net
 export MAILTEMPLATE=/etc/statusnet/newsite-mail.txt
 export MAILSUBJECT="Your new StatusNet site"
 export POSTINSTALL=/etc/statusnet/morestuff.sh
+export WEBUSER=www-data
+export WEBGROUP=www-data

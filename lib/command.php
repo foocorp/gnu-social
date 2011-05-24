@@ -180,7 +180,7 @@ class UnimplementedCommand extends Command
     function handle($channel)
     {
         // TRANS: Error text shown when an unimplemented command is given.
-        $channel->error($this->user, _("Sorry, this command is not yet implemented."));
+        $channel->error($this->user, _('Sorry, this command is not yet implemented.'));
     }
 }
 
@@ -295,7 +295,7 @@ class FavCommand extends Command
 
         if ($fave->fetch()) {
             // TRANS: Error message text shown when a favorite could not be set because it has already been favorited.
-            $channel->error($this->user, _('Could not create favorite: already favorited.'));
+            $channel->error($this->user, _('Could not create favorite: Already favorited.'));
             return;
         }
 
@@ -411,6 +411,127 @@ class DropCommand extends Command
         $channel->output($cur, sprintf(_('%1$s left group %2$s.'),
                                               $cur->nickname,
                                               $group->nickname));
+    }
+}
+
+class TagCommand extends Command
+{
+    var $other = null;
+    var $tags = null;
+    function __construct($user, $other, $tags)
+    {
+        parent::__construct($user);
+        $this->other = $other;
+        $this->tags = $tags;
+    }
+
+    function handle($channel)
+    {
+        $profile = $this->getProfile($this->other);
+        $cur     = $this->user->getProfile();
+
+        if (!$profile) {
+            // TRANS: Client error displayed trying to perform an action related to a non-existing profile.
+            $channel->error($cur, _('No such profile.'));
+            return;
+        }
+        if (!$cur->canTag($profile)) {
+            // TRANS: Error displayed when trying to tag a user that cannot be tagged.
+            $channel->error($cur, _('You cannot tag this user.'));
+            return;
+        }
+
+        $privs = array();
+        $tags = preg_split('/[\s,]+/', $this->tags);
+        $clean_tags = array();
+
+        foreach ($tags as $tag) {
+            $private = @$tag[0] === '.';
+            $tag = $clean_tags[] = common_canonical_tag($tag);
+
+            if (!common_valid_profile_tag($tag)) {
+                // TRANS: Error displayed if a given tag is invalid.
+                // TRANS: %s is the invalid tag.
+                $channel->error($cur, sprintf(_('Invalid tag: "%s".'), $tag));
+                return;
+            }
+            $privs[$tag] = $private;
+        }
+
+        try {
+            foreach ($clean_tags as $tag) {
+                Profile_tag::setTag($cur->id, $profile->id, $tag, null, $privs[$tag]);
+            }
+        } catch (Exception $e) {
+            // TRANS: Error displayed if tagging a user fails.
+            // TRANS: %1$s is the tagged user, %2$s is the error message (no punctuation).
+            $channel->error($cur, sprintf(_('Error tagging %1$s: %2$s'),
+                                          $profile->nickname, $e->getMessage()));
+            return;
+        }
+
+        // TRANS: Succes message displayed if tagging a user succeeds.
+        // TRANS: %1$s is the tagged user's nickname, %2$s is a list of tags.
+        // TRANS: Plural is decided based on the number of tags added (not part of message).
+        $channel->output($cur, sprintf(_m('%1$s was tagged %2$s',
+                                          '%1$s was tagged %2$s',
+                                          count($clean_tags)),
+                                       $profile->nickname,
+                                       // TRANS: Separator for list of tags.
+                                       implode(_(', '), $clean_tags)));
+    }
+}
+
+class UntagCommand extends TagCommand
+{
+    function handle($channel)
+    {
+        $profile = $this->getProfile($this->other);
+        $cur     = $this->user->getProfile();
+
+        if (!$profile) {
+            // TRANS: Client error displayed trying to perform an action related to a non-existing profile.
+            $channel->error($cur, _('No such profile.'));
+            return;
+        }
+        if (!$cur->canTag($profile)) {
+            // TRANS: Error displayed when trying to tag a user that cannot be tagged.
+            $channel->error($cur, _('You cannot tag this user.'));
+            return;
+        }
+
+        $tags = array_map('common_canonical_tag', preg_split('/[\s,]+/', $this->tags));
+
+        foreach ($tags as $tag) {
+            if (!common_valid_profile_tag($tag)) {
+                // TRANS: Error displayed if a given tag is invalid.
+                // TRANS: %s is the invalid tag.
+                $channel->error($cur, sprintf(_('Invalid tag: "%s"'), $tag));
+                return;
+            }
+        }
+
+        try {
+            foreach ($tags as $tag) {
+                Profile_tag::unTag($cur->id, $profile->id, $tag);
+            }
+        } catch (Exception $e) {
+            // TRANS: Error displayed if untagging a user fails.
+            // TRANS: %1$s is the untagged user, %2$s is the error message (no punctuation).
+            $channel->error($cur, sprintf(_('Error untagging %1$s: %2$s'),
+                                          $profile->nickname, $e->getMessage()));
+            return;
+        }
+
+        // TRANS: Succes message displayed if untagging a user succeeds.
+        // TRANS: %1$s is the untagged user's nickname, %2$s is a list of tags.
+        // TRANS: Plural is decided based on the number of tags removed (not part of message).
+        $channel->output($cur, sprintf(_m('The following tag was removed from user %1$s: %2$s.',
+                                         'The following tags were removed from user %1$s: %2$s.',
+                                         count($tags)),
+                                       $profile->nickname,
+                                       // TRANS: Separator for list of tags.
+                                       implode(_(', '), $tags)));
     }
 }
 
@@ -537,29 +658,15 @@ class RepeatCommand extends Command
     {
         $notice = $this->getNotice($this->other);
 
-        if($this->user->id == $notice->profile_id)
-        {
-            // TRANS: Error text shown when trying to repeat an own notice.
-            $channel->error($this->user, _('Cannot repeat your own notice.'));
-            return;
-        }
-
-        if ($this->user->getProfile()->hasRepeated($notice->id)) {
-            // TRANS: Error text shown when trying to repeat an notice that was already repeated by the user.
-            $channel->error($this->user, _('Already repeated that notice.'));
-            return;
-        }
-
-        $repeat = $notice->repeat($this->user->id, $channel->source);
-
-        if ($repeat) {
+        try {
+            $repeat = $notice->repeat($this->user->id, $channel->source());
+            $recipient = $notice->getProfile();
 
             // TRANS: Message given having repeated a notice from another user.
             // TRANS: %s is the name of the user for which the notice was repeated.
             $channel->output($this->user, sprintf(_('Notice from %s repeated.'), $recipient->nickname));
-        } else {
-            // TRANS: Error text shown when repeating a notice fails with an unknown reason.
-            $channel->error($this->user, _('Error repeating notice.'));
+        } catch (Exception $e) {
+            $channel->error($this->user, $e->getMessage());
         }
     }
 }
@@ -838,7 +945,7 @@ class SubscriptionsCommand extends Command
             // TRANS: Text shown after requesting other users a user is subscribed to.
             // TRANS: This message supports plural forms. This message is followed by a
             // TRANS: hard coded space and a comma separated list of subscribed users.
-            $out = ngettext('You are subscribed to this person:',
+            $out = _m('You are subscribed to this person:',
                 'You are subscribed to these people:',
                 count($nicknames));
             $out .= ' ';
@@ -865,7 +972,7 @@ class SubscribersCommand extends Command
             // TRANS: Text shown after requesting other users that are subscribed to a user (followers).
             // TRANS: This message supports plural forms. This message is followed by a
             // TRANS: hard coded space and a comma separated list of subscribing users.
-            $out = ngettext('This person is subscribed to you:',
+            $out = _m('This person is subscribed to you:',
                 'These people are subscribed to you:',
                 count($nicknames));
             $out .= ' ';
@@ -892,7 +999,7 @@ class GroupsCommand extends Command
             // TRANS: Text shown after requesting groups a user is subscribed to.
             // TRANS: This message supports plural forms. This message is followed by a
             // TRANS: hard coded space and a comma separated list of subscribed groups.
-            $out = ngettext('You are a member of this group:',
+            $out = _m('You are a member of this group:',
                 'You are a member of these groups:',
                 count($nicknames));
             $out.=implode(', ',$groups);
@@ -907,79 +1014,83 @@ class HelpCommand extends Command
     {
         // TRANS: Header line of help text for commands.
         $out = array(_m('COMMANDHELP', "Commands:"));
-        $commands = array(// TRANS: Help message for IM/SMS command "on"
+        $commands = array(// TRANS: Help message for IM/SMS command "on".
                           "on" => _m('COMMANDHELP', "turn on notifications"),
-                          // TRANS: Help message for IM/SMS command "off"
+                          // TRANS: Help message for IM/SMS command "off".
                           "off" => _m('COMMANDHELP', "turn off notifications"),
-                          // TRANS: Help message for IM/SMS command "help"
+                          // TRANS: Help message for IM/SMS command "help".
                           "help" => _m('COMMANDHELP', "show this help"),
-                          // TRANS: Help message for IM/SMS command "follow <nickname>"
+                          // TRANS: Help message for IM/SMS command "follow <nickname>".
                           "follow <nickname>" => _m('COMMANDHELP', "subscribe to user"),
-                          // TRANS: Help message for IM/SMS command "groups"
+                          // TRANS: Help message for IM/SMS command "groups".
                           "groups" => _m('COMMANDHELP', "lists the groups you have joined"),
-                          // TRANS: Help message for IM/SMS command "subscriptions"
+                          // TRANS: Help message for IM/SMS command "tag".
+                          "tag <nickname> <tags>" => _m('COMMANDHELP',"tag a user"),
+                          // TRANS: Help message for IM/SMS command "untag".
+                          "untag <nickname> <tags>" => _m('COMMANDHELP',"untag a user"),
+                          // TRANS: Help message for IM/SMS command "subscriptions".
                           "subscriptions" => _m('COMMANDHELP', "list the people you follow"),
-                          // TRANS: Help message for IM/SMS command "subscribers"
+                          // TRANS: Help message for IM/SMS command "subscribers".
                           "subscribers" => _m('COMMANDHELP', "list the people that follow you"),
-                          // TRANS: Help message for IM/SMS command "leave <nickname>"
+                          // TRANS: Help message for IM/SMS command "leave <nickname>".
                           "leave <nickname>" => _m('COMMANDHELP', "unsubscribe from user"),
-                          // TRANS: Help message for IM/SMS command "d <nickname> <text>"
+                          // TRANS: Help message for IM/SMS command "d <nickname> <text>".
                           "d <nickname> <text>" => _m('COMMANDHELP', "direct message to user"),
-                          // TRANS: Help message for IM/SMS command "get <nickname>"
+                          // TRANS: Help message for IM/SMS command "get <nickname>".
                           "get <nickname>" => _m('COMMANDHELP', "get last notice from user"),
-                          // TRANS: Help message for IM/SMS command "whois <nickname>"
+                          // TRANS: Help message for IM/SMS command "whois <nickname>".
                           "whois <nickname>" => _m('COMMANDHELP', "get profile info on user"),
-                          // TRANS: Help message for IM/SMS command "lose <nickname>"
+                          // TRANS: Help message for IM/SMS command "lose <nickname>".
                           "lose <nickname>" => _m('COMMANDHELP', "force user to stop following you"),
-                          // TRANS: Help message for IM/SMS command "fav <nickname>"
+                          // TRANS: Help message for IM/SMS command "fav <nickname>".
                           "fav <nickname>" => _m('COMMANDHELP', "add user's last notice as a 'fave'"),
-                          // TRANS: Help message for IM/SMS command "fav #<notice_id>"
+                          // TRANS: Help message for IM/SMS command "fav #<notice_id>".
                           "fav #<notice_id>" => _m('COMMANDHELP', "add notice with the given id as a 'fave'"),
-                          // TRANS: Help message for IM/SMS command "repeat #<notice_id>"
+                          // TRANS: Help message for IM/SMS command "repeat #<notice_id>".
                           "repeat #<notice_id>" => _m('COMMANDHELP', "repeat a notice with a given id"),
-                          // TRANS: Help message for IM/SMS command "repeat <nickname>"
+                          // TRANS: Help message for IM/SMS command "repeat <nickname>".
                           "repeat <nickname>" => _m('COMMANDHELP', "repeat the last notice from user"),
-                          // TRANS: Help message for IM/SMS command "reply #<notice_id>"
+                          // TRANS: Help message for IM/SMS command "reply #<notice_id>".
                           "reply #<notice_id>" => _m('COMMANDHELP', "reply to notice with a given id"),
-                          // TRANS: Help message for IM/SMS command "reply <nickname>"
+                          // TRANS: Help message for IM/SMS command "reply <nickname>".
                           "reply <nickname>" => _m('COMMANDHELP', "reply to the last notice from user"),
-                          // TRANS: Help message for IM/SMS command "join <group>"
+                          // TRANS: Help message for IM/SMS command "join <group>".
                           "join <group>" => _m('COMMANDHELP', "join group"),
-                          // TRANS: Help message for IM/SMS command "login"
+                          // TRANS: Help message for IM/SMS command "login".
                           "login" => _m('COMMANDHELP', "Get a link to login to the web interface"),
-                          // TRANS: Help message for IM/SMS command "drop <group>"
+                          // TRANS: Help message for IM/SMS command "drop <group>".
                           "drop <group>" => _m('COMMANDHELP', "leave group"),
-                          // TRANS: Help message for IM/SMS command "stats"
+                          // TRANS: Help message for IM/SMS command "stats".
                           "stats" => _m('COMMANDHELP', "get your stats"),
-                          // TRANS: Help message for IM/SMS command "stop"
+                          // TRANS: Help message for IM/SMS command "stop".
                           "stop" => _m('COMMANDHELP', "same as 'off'"),
-                          // TRANS: Help message for IM/SMS command "quit"
+                          // TRANS: Help message for IM/SMS command "quit".
                           "quit" => _m('COMMANDHELP', "same as 'off'"),
-                          // TRANS: Help message for IM/SMS command "sub <nickname>"
+                          // TRANS: Help message for IM/SMS command "sub <nickname>".
                           "sub <nickname>" => _m('COMMANDHELP', "same as 'follow'"),
-                          // TRANS: Help message for IM/SMS command "unsub <nickname>"
+                          // TRANS: Help message for IM/SMS command "unsub <nickname>".
                           "unsub <nickname>" => _m('COMMANDHELP', "same as 'leave'"),
-                          // TRANS: Help message for IM/SMS command "last <nickname>"
+                          // TRANS: Help message for IM/SMS command "last <nickname>".
                           "last <nickname>" => _m('COMMANDHELP', "same as 'get'"),
-                          // TRANS: Help message for IM/SMS command "on <nickname>"
+                          // TRANS: Help message for IM/SMS command "on <nickname>".
                           "on <nickname>" => _m('COMMANDHELP', "not yet implemented."),
-                          // TRANS: Help message for IM/SMS command "off <nickname>"
+                          // TRANS: Help message for IM/SMS command "off <nickname>".
                           "off <nickname>" => _m('COMMANDHELP', "not yet implemented."),
-                          // TRANS: Help message for IM/SMS command "nudge <nickname>"
+                          // TRANS: Help message for IM/SMS command "nudge <nickname>".
                           "nudge <nickname>" => _m('COMMANDHELP', "remind a user to update."),
-                          // TRANS: Help message for IM/SMS command "invite <phone number>"
+                          // TRANS: Help message for IM/SMS command "invite <phone number>".
                           "invite <phone number>" => _m('COMMANDHELP', "not yet implemented."),
-                          // TRANS: Help message for IM/SMS command "track <word>"
+                          // TRANS: Help message for IM/SMS command "track <word>".
                           "track <word>" => _m('COMMANDHELP', "not yet implemented."),
-                          // TRANS: Help message for IM/SMS command "untrack <word>"
+                          // TRANS: Help message for IM/SMS command "untrack <word>".
                           "untrack <word>" => _m('COMMANDHELP', "not yet implemented."),
-                          // TRANS: Help message for IM/SMS command "track off"
+                          // TRANS: Help message for IM/SMS command "track off".
                           "track off" => _m('COMMANDHELP', "not yet implemented."),
-                          // TRANS: Help message for IM/SMS command "untrack all"
+                          // TRANS: Help message for IM/SMS command "untrack all".
                           "untrack all" => _m('COMMANDHELP', "not yet implemented."),
-                          // TRANS: Help message for IM/SMS command "tracks"
+                          // TRANS: Help message for IM/SMS command "tracks".
                           "tracks" => _m('COMMANDHELP', "not yet implemented."),
-                          // TRANS: Help message for IM/SMS command "tracking"
+                          // TRANS: Help message for IM/SMS command "tracking".
                           "tracking" => _m('COMMANDHELP', "not yet implemented."));
 
         // Give plugins a chance to add or override...

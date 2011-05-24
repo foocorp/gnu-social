@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Superclass for profile blocks
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -56,16 +56,33 @@ abstract class ProfileBlock extends Widget
 
     function show()
     {
-        $this->out->elementStart('div', 'profile_block section');
+        $this->showActions();
+        $this->showAvatar();
+        $this->showName();
+        $this->showLocation();
+        $this->showHomepage();
+        $this->showDescription();
+        $this->showTags();
+    }
 
+    function showAvatar()
+    {
         $size = $this->avatarSize();
 
-        $this->out->element('img', array('src' => $this->avatar(),
-                                         'class' => 'profile_block_avatar',
-                                         'alt' => $this->name(),
-                                         'width' => $size,
-                                         'height' => $size));
+        $this->out->element(
+            'img',
+            array(
+                'src'  => $this->avatar(),
+                'class'  => 'ur_face',
+                'alt'    => $this->name(),
+                'width'  => $size,
+                'height' => $size
+            )
+        );
+    }
 
+    function showName()
+    {
         $name = $this->name();
 
         if (!empty($name)) {
@@ -79,35 +96,44 @@ abstract class ProfileBlock extends Widget
             }
             $this->out->elementEnd('p');
         }
+    }
 
+    function showDescription()
+    {
+        $description = $this->description();
+
+        if (!empty($description)) {
+            $this->out->element(
+                'p',
+                'profile_block_description',
+                $description
+            );
+        }
+    }
+
+    function showLocation()
+    {
         $location = $this->location();
 
         if (!empty($location)) {
             $this->out->element('p', 'profile_block_location', $location);
         }
+    }
 
-        $homepage = $this->homepage();
-
+    function showHomepage()
+    {
         if (!empty($homepage)) {
             $this->out->element('a', 'profile_block_homepage', $homepage);
         }
-
-        $description = $this->description();
-
-        if (!empty($description)) {
-            $this->out->element('p',
-                                'profile_block_description',
-                                $description);
-        }
-
-        $this->showActions();
-
-        $this->out->elementEnd('div');
     }
 
     function avatarSize()
     {
         return AVATAR_PROFILE_SIZE;
+    }
+
+    function showTags()
+    {
     }
 
     function showActions()

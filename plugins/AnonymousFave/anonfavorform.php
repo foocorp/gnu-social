@@ -46,7 +46,6 @@ require_once INSTALLDIR.'/lib/form.php';
  */
 class AnonFavorForm extends FavorForm
 {
-
     /**
      * Constructor
      *
@@ -67,5 +66,4 @@ class AnonFavorForm extends FavorForm
     {
         return common_local_url('AnonFavor');
     }
-
 }

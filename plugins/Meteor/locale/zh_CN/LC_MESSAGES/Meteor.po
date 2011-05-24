@@ -9,28 +9,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Meteor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:03+0000\n"
+"POT-Creation-Date: 2011-04-27 12:36+0000\n"
+"PO-Revision-Date: 2011-04-27 12:37:40+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:31+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-03-18 20:08:18+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87008); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-meteor\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. TRANS: Exception. %1$s is the control server, %2$s is the control port.
-#, php-format
-msgid "Couldn't connect to %1$s on %2$s."
+#, fuzzy, php-format
+msgid "Could not connect to %1$s on %2$s."
 msgstr "无法连在 %2$s 端口连接到 %1$s。"
 
 #. TRANS: Exception. %s is the Meteor message that could not be added.
-#, php-format
-msgid "Error adding meteor message \"%s\""
+#, fuzzy, php-format
+msgid "Error adding meteor message \"%s\"."
 msgstr "添加 meteor 消息“%s”出错。"
 
+#. TRANS: Plugin description.
 msgid "Plugin to do \"real time\" updates using Comet/Bayeux."
 msgstr "通过 Comet/Bayeux 实现“实时更新”的插件。"

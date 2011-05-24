@@ -92,7 +92,8 @@ SN.U.DialogBox = {
 };
 
 SN.Init.Subscribe = function() {
-    $('.entity_subscribe .entity_remote_subscribe').live('click', function() { SN.U.DialogBox.Subscribe($(this)); return false; });
+    $('.entity_subscribe .entity_remote_subscribe, .entity_tag .entity_remote_tag')
+        .live('click', function() { SN.U.DialogBox.Subscribe($(this)); return false; });
 };
 
 $(document).ready(function() {

@@ -57,6 +57,7 @@ class EmailAuthenticationPlugin extends Plugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:EmailAuthentication',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The Email Authentication plugin allows users to login using their email address.'));
         return true;
     }

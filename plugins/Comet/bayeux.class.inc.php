@@ -1,6 +1,5 @@
 <?php
 /*
- *
  * Phomet: a php comet client
  *
  * Copyright (C) 2008 Morgan 'ARR!' Allen <morganrallen@gmail.com> http://morglog.alleycatracing.com

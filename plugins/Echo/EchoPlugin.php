@@ -108,6 +108,7 @@ class EchoPlugin extends Plugin
                             'author' => 'Zach Copley',
                             'homepage' => 'http://status.net/wiki/Plugin:Echo',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Use <a href="http://aboutecho.com/">Echo</a>'.
                                ' to add commenting to notice pages.'));
         return true;

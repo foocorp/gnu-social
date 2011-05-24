@@ -20,7 +20,7 @@
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 define('STATUSNET_BASE_VERSION', '1.0.0');
-define('STATUSNET_LIFECYCLE', 'dev'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
+define('STATUSNET_LIFECYCLE', 'alpha2'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
 define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . STATUSNET_LIFECYCLE);
 
 define('LACONICA_VERSION', STATUSNET_VERSION); // compatibility
@@ -46,6 +46,7 @@ define('NOTICE_INBOX_SOURCE_SUB', 1);
 define('NOTICE_INBOX_SOURCE_GROUP', 2);
 define('NOTICE_INBOX_SOURCE_REPLY', 3);
 define('NOTICE_INBOX_SOURCE_FORWARD', 4);
+define('NOTICE_INBOX_SOURCE_PROFILE_TAG', 5);
 define('NOTICE_INBOX_SOURCE_GATEWAY', -1);
 
 // append our extlib dir as the last-resort place to find libs

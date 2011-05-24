@@ -36,6 +36,7 @@ class OwnerxrdAction extends XrdAction
         $this->user = User::siteOwner();
 
         if (!$this->user) {
+            // TRANS: Client error displayed when referring to a non-existing user.
             $this->clientError(_m('No such user.'), 404);
             return false;
         }

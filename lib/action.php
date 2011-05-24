@@ -165,7 +165,7 @@ class Action extends HTMLOutputter // lawsuit
     {
         $this->element('title', null,
                        // TRANS: Page title. %1$s is the title, %2$s is the site name.
-                       sprintf(_("%1\$s - %2\$s"),
+                       sprintf(_('%1$s - %2$s'),
                                $this->title(),
                                common_config('site', 'name')));
     }
@@ -181,7 +181,7 @@ class Action extends HTMLOutputter // lawsuit
     function title()
     {
         // TRANS: Page title for a page without a title set.
-        return _("Untitled page");
+        return _('Untitled page');
     }
 
     /**
@@ -309,6 +309,7 @@ class Action extends HTMLOutputter // lawsuit
                     $this->script('jquery.cookie.min.js');
                     $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.min.js').'"); }');
                     $this->script('jquery.joverlay.min.js');
+                    $this->script('jquery.infieldlabel.min.js');
                 } else {
                     $this->script('jquery.js');
                     $this->script('jquery.form.js');
@@ -316,7 +317,9 @@ class Action extends HTMLOutputter // lawsuit
                     $this->script('jquery.cookie.js');
                     $this->inlineScript('if (typeof window.JSON !== "object") { $.getScript("'.common_path('js/json2.js').'"); }');
                     $this->script('jquery.joverlay.js');
+                    $this->script('jquery.infieldlabel.js');
                 }
+
                 Event::handle('EndShowJQueryScripts', array($this));
             }
             if (Event::handle('StartShowStatusNetScripts', array($this)) &&
@@ -328,9 +331,13 @@ class Action extends HTMLOutputter // lawsuit
                     $this->script('xbImportNode.js');
                     $this->script('geometa.js');
                 }
+                $this->inlineScript('var _peopletagAC = "' .
+                    common_local_url('peopletagautocomplete') . '";');
                 $this->showScriptMessages();
                 // Frame-busting code to avoid clickjacking attacks.
-                $this->inlineScript('if (window.top !== window.self) { window.top.location.href = window.self.location.href; }');
+                if (common_config('javascript', 'bustframes')) {
+                    $this->inlineScript('if (window.top !== window.self) { window.top.location.href = window.self.location.href; }');
+                }
                 Event::handle('EndShowStatusNetScripts', array($this));
                 Event::handle('EndShowLaconicaScripts', array($this));
             }
@@ -345,7 +352,6 @@ class Action extends HTMLOutputter // lawsuit
      * events and appending to the array. Try to avoid adding strings that won't be used, as
      * they'll be added to HTML output.
      */
-
     function showScriptMessages()
     {
         $messages = array();
@@ -609,17 +615,16 @@ class Action extends HTMLOutputter // lawsuit
      */
     function showNoticeForm()
     {
-        $tabs = array('status' => _('Status'));
+        // TRANS: Tab on the notice form.
+        $tabs = array('status' => _m('TAB','Status'));
 
         $this->elementStart('div', 'input_forms');
 
         if (Event::handle('StartShowEntryForms', array(&$tabs))) {
-
             $this->elementStart('ul', array('class' => 'nav',
                                             'id' => 'input_form_nav'));
 
             foreach ($tabs as $tag => $title) {
-
                 $attrs = array('id' => 'input_form_nav_'.$tag,
                                'class' => 'input_form_nav_tab');
 
@@ -647,7 +652,6 @@ class Action extends HTMLOutputter // lawsuit
             $this->elementEnd('div');
 
             foreach ($tabs as $tag => $title) {
-
                 $attrs = array('class' => 'input_form',
                                'id' => 'input_form_'.$tag);
 
@@ -657,7 +661,8 @@ class Action extends HTMLOutputter // lawsuit
 
                 if (Event::handle('StartMakeEntryForm', array($tag, $this, &$form))) {
                     if ($tag == 'status') {
-                        $form = new NoticeForm($this);
+                        $options = $this->noticeFormOptions();
+                        $form = new NoticeForm($this, $options);
                     }
                     Event::handle('EndMakeEntryForm', array($tag, $this, $form));
                 }
@@ -671,6 +676,11 @@ class Action extends HTMLOutputter // lawsuit
         }
 
         $this->elementEnd('div');
+    }
+
+    function noticeFormOptions()
+    {
+        return array();
     }
 
     /**
@@ -739,7 +749,6 @@ class Action extends HTMLOutputter // lawsuit
      *
      * @return nothing
      */
-
     function showProfileBlock()
     {
         if (common_logged_in()) {
@@ -1349,13 +1358,16 @@ class Action extends HTMLOutputter // lawsuit
      *
      * @return nothing
      */
-    function menuItem($url, $text, $title=null, $is_selected=false, $id=null)
+    function menuItem($url, $text, $title=null, $is_selected=false, $id=null, $class=null)
     {
         // Added @id to li for some control.
         // XXX: We might want to move this to htmloutputter.php
         $lattrs = array();
-        if ($is_selected) {
-            $lattrs['class'] = 'current';
+        if ($class !== null) {
+            $lattrs['class'] = $class;
+            if ($is_selected) {
+                $lattrs['class'] = trim('current ' . $lattrs['class']);
+            }
         }
 
         (is_null($id)) ? $lattrs : $lattrs['id'] = $id;

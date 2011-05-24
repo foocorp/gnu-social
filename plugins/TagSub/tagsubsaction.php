@@ -115,13 +115,13 @@ class TagSubsAction extends GalleryAction
             $current_user = common_current_user();
             if ($this->user->id === $current_user->id) {
                 // TRANS: Tag subscription list text when the logged in user has no tag subscriptions.
-                $message = _('You\'re not listening to any hash tags right now. You can push the "Subscribe" button ' .
+                $message = _m('You are not listening to any hash tags right now. You can push the "Subscribe" button ' .
                              'on any hashtag page to automatically receive any public messages on this site that use that ' .
-                             'tag, even if you\'re not subscribed to the poster.');
+                             'tag, even if you are not subscribed to the poster.');
             } else {
                 // TRANS: Tag subscription list text when looking at the subscriptions for a of a user other
                 // TRANS: than the logged in user that has no tag subscriptions. %s is the user nickname.
-                $message = sprintf(_('%s is not listening to any tags.'), $this->user->nickname);
+                $message = sprintf(_m('%s is not listening to any tags.'), $this->user->nickname);
             }
         }
         else {

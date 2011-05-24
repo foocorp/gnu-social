@@ -50,6 +50,8 @@ class ShowgroupAction extends GroupDesignAction
 {
     /** page we're viewing. */
     var $page = null;
+    var $userProfile = null;
+    var $notice = null;
 
     /**
      * Is this page read-only?
@@ -144,6 +146,13 @@ class ShowgroupAction extends GroupDesignAction
             return false;
         }
 
+        $this->userProfile = Profile::current();
+
+        $stream = new ThreadingGroupNoticeStream($this->group, $this->userProfile);
+
+        $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
+                                            NOTICES_PER_PAGE + 1);
+
         common_set_returnto($this->selfUrl());
 
         return true;
@@ -190,10 +199,7 @@ class ShowgroupAction extends GroupDesignAction
      */
     function showGroupNotices()
     {
-        $notice = $this->group->getNotices(($this->page-1)*NOTICES_PER_PAGE,
-                                           NOTICES_PER_PAGE + 1);
-
-        $nl = new ThreadedNoticeList($notice, $this);
+        $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);
         $cnt = $nl->show();
 
         $this->pagination($this->page > 1,
@@ -365,6 +371,18 @@ class ShowgroupAction extends GroupDesignAction
         $this->raw(common_markup_to_html($m));
         $this->elementEnd('div');
     }
+
+    function noticeFormOptions()
+    {
+        $options = parent::noticeFormOptions();
+        $cur = common_current_user();
+
+        if (!empty($cur) && $cur->isMember($this->group)) {
+            $options['to_group'] =  $this->group;
+        }
+
+        return $options;
+    }
 }
 
 class GroupAdminSection extends ProfileSection
@@ -418,5 +436,13 @@ class GroupMembersMiniListItem extends ProfileMiniListItem
         }
 
         return $aAttrs;
+    }
+}
+
+class ThreadingGroupNoticeStream extends ThreadingNoticeStream
+{
+    function __construct($group, $profile)
+    {
+        parent::__construct(new GroupNoticeStream($group, $profile));
     }
 }

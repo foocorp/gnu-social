@@ -45,7 +45,6 @@ require_once INSTALLDIR.'/extlib/libomb/service_provider.php';
  */
 class UpdateprofileAction extends Action
 {
-
     /**
      * For initializing members of the class.
      *
@@ -61,8 +60,10 @@ class UpdateprofileAction extends Action
         $license      = $_POST['omb_listenee_license'];
         $site_license = common_config('license', 'url');
         if (!common_compatible_license($license, $site_license)) {
-            $this->clientError(sprintf(_('Listenee stream license ‘%1$s’ is not '.
-                                         'compatible with site license ‘%2$s’.'),
+            // TRANS: Client error displayed when trying to update profile with an incompatible license.
+            // TRANS: %1$s is the license incompatible with site license %2$s.
+            $this->clientError(sprintf(_('Listenee stream license "%1$s" is not '.
+                                         'compatible with site license "%2$s".'),
                                        $license, $site_license));
             return false;
         }

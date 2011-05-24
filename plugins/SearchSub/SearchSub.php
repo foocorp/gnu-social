@@ -120,6 +120,7 @@ class SearchSub extends Managed_DataObject
         $ts->profile_id = $profile->id;
         $ts->created = common_sql_now();
         $ts->insert();
+        self::blow('searchsub:by_profile:%d', $profile->id);
         return $ts;
     }
 
@@ -135,6 +136,34 @@ class SearchSub extends Managed_DataObject
                                     'profile_id' => $profile->id));
         if ($ts) {
             $ts->delete();
+            self::blow('searchsub:by_profile:%d', $profile->id);
         }
+    }
+
+    static function forProfile(Profile $profile)
+    {
+        $searches = array();
+
+        $keypart = sprintf('searchsub:by_profile:%d', $profile->id);
+        $searchstring = self::cacheGet($keypart);
+        
+        if ($searchstring !== false && !empty($searchstring)) {
+            $searches = explode(',', $searchstring);
+        } else {
+            $searchsub = new SearchSub();
+            $searchsub->profile_id = $profile->id;
+
+            if ($searchsub->find()) {
+                while ($searchsub->fetch()) {
+                    if (!empty($searchsub->search)) {
+                        $searches[] = $searchsub->search;
+                    }
+                }
+            }
+
+            self::cacheSet($keypart, implode(',', $searches));
+        }
+
+        return $searches;
     }
 }

@@ -20,11 +20,17 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/../../..'));
 
+$longoptions = array('unsub');
+$shortoptions = 'u';
+
 $helptext = <<<END_OF_HELP
 resub-feed.php [options] http://example.com/atom-feed-url
 Reinitialize the PuSH subscription for the given feed. This may help get
 things restarted if we and the hub have gotten our states out of sync.
 
+Options:
+
+   -u --unsub  Unsubscribe instead of subscribing.
 
 END_OF_HELP;
 
@@ -48,8 +54,14 @@ print "Old state:\n";
 showSub($sub);
 
 print "\n";
-print "Pinging hub $sub->huburi with new subscription for $sub->uri\n";
-$ok = $sub->subscribe();
+
+if (have_option('u') || have_option('--unsub')) {
+    print "Pinging hub $sub->huburi with unsubscription for $sub->uri\n";
+    $ok = $sub->unsubscribe();
+} else {
+    print "Pinging hub $sub->huburi with new subscription for $sub->uri\n";
+    $ok = $sub->subscribe();
+}
 
 if ($ok) {
     print "ok\n";

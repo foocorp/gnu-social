@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item title.
 #: OpenXPlugin.php:201
-msgid "OpenX configuration"
+msgid "OpenX configuration."
 msgstr ""
 
 #. TRANS: Menu item for site administration
@@ -100,5 +100,5 @@ msgstr ""
 
 #. TRANS: Submit button title in OpenX admin panel.
 #: openxadminpanel.php:220
-msgid "Save OpenX settings"
+msgid "Save OpenX settings."
 msgstr ""

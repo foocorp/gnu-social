@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,32 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: GeonamesPlugin.php:491
+#. TRANS: Exception thrown when a geo names service is not used because of a recent timeout.
+#: GeonamesPlugin.php:439
+msgid "Skipping due to recent web service timeout."
+msgstr ""
+
+#. TRANS: Exception thrown when a geo names service does not return an expected response.
+#. TRANS: %s is an HTTP error code.
+#: GeonamesPlugin.php:457
+#, php-format
+msgid "HTTP error code %s."
+msgstr ""
+
+#. TRANS: Exception thrown when a geo names service returns an empty body.
+#: GeonamesPlugin.php:464
+msgid "Empty HTTP body in response."
+msgstr ""
+
+#. TRANS: Exception thrown when a geo names service return a specific error number and error text.
+#. TRANS: %1$s is an error code, %2$s is an error message.
+#: GeonamesPlugin.php:482
+#, php-format
+msgid "Error #%1$s (\"%2$s\")."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: GeonamesPlugin.php:498
 msgid ""
 "Uses <a href=\"http://geonames.org/\">Geonames</a> service to get human-"
 "readable names for locations based on user-provided lat/long pairs."

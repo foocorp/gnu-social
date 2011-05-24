@@ -124,6 +124,6 @@ class PollResponseForm extends Form
     function formActions()
     {
         // TRANS: Button text for submitting a poll response.
-        $this->out->submit('submit', _m('BUTTON', 'Submit'));
+        $this->out->submit('poll-response-submit', _m('BUTTON', 'Submit'), 'submit', 'submit');
     }
 }

@@ -198,7 +198,7 @@ class ApplicationEditForm extends Form
         if ($maxDesc > 0) {
             // TRANS: Form input field instructions.
             // TRANS: %d is the number of available characters for the description.
-            $descInstr = sprintf(ngettext('Describe your application in %d character','Describe your application in %d characters',$maxDesc),
+            $descInstr = sprintf(_m('Describe your application in %d character','Describe your application in %d characters',$maxDesc),
                                  $maxDesc);
         } else {
             // TRANS: Form input field instructions.

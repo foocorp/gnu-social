@@ -129,4 +129,15 @@ class Status_network_tag extends Safe_DataObject
         $this->decache();
         return $ret;
     }
+
+    static function withTag($tag)
+    {
+        $snt = new Status_network_tag();
+
+        $snt->tag = $tag;
+
+        $snt->find();
+
+        return $snt;
+    }
 }

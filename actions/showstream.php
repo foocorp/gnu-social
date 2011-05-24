@@ -67,11 +67,11 @@ class ShowstreamAction extends ProfileAction
             if ($this->page == 1) {
                 // TRANS: Page title showing tagged notices in one user's stream.
                 // TRANS: %1$s is the username, %2$s is the hash tag.
-                return sprintf(_('%1$s tagged %2$s'), $base, $this->tag);
+                return sprintf(_('Notices by %1$s tagged %2$s'), $base, $this->tag);
             } else {
                 // TRANS: Page title showing tagged notices in one user's stream.
                 // TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
-                return sprintf(_('%1$s tagged %2$s, page %3$d'), $base, $this->tag, $this->page);
+                return sprintf(_('Notices by %1$s tagged %2$s, page %3$d'), $base, $this->tag, $this->page);
             }
         } else {
             if ($this->page == 1) {
@@ -79,7 +79,7 @@ class ShowstreamAction extends ProfileAction
             } else {
                 // TRANS: Extended page title showing tagged notices in one user's stream.
                 // TRANS: %1$s is the username, %2$d is the page number.
-                return sprintf(_('%1$s, page %2$d'),
+                return sprintf(_('Notices by %1$s, page %2$d'),
                                $base,
                                $this->page);
             }
@@ -101,12 +101,6 @@ class ShowstreamAction extends ProfileAction
     function showContent()
     {
         $this->showNotices();
-    }
-
-    function showObjectNav()
-    {
-        $nav = new SubGroupNav($this, $this->user);
-        $nav->show();
     }
 
     function showProfileBlock()
@@ -277,6 +271,18 @@ class ShowstreamAction extends ProfileAction
         parent::showSections();
         $cloud = new PersonalTagCloudSection($this, $this->user);
         $cloud->show();
+    }
+
+    function noticeFormOptions()
+    {
+        $options = parent::noticeFormOptions();
+        $cur = common_current_user();
+
+        if (empty($cur) || $cur->id != $this->profile->id) {
+            $options['to_profile'] =  $this->profile;
+        }
+
+        return $options;
     }
 }
 

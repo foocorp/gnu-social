@@ -64,9 +64,6 @@ define('MOLLOM_REDIRECT', 1200);
  *
  * @see      Event
  */
-
-
-
 class MollomPlugin extends Plugin
 {
     public $public_key;
@@ -86,7 +83,8 @@ class MollomPlugin extends Plugin
         );
         $response = $this->mollom('mollom.checkContent', $data);
         if ($response['spam'] == MOLLOM_ANALYSIS_SPAM) {
-          throw new ClientException(_("Spam Detected"), 400);
+          // TRANS: Client exception thrown when notice content triggers the spam filter.
+          throw new ClientException(_m('Spam Detected.'), 400);
         }
         if ($response['spam'] == MOLLOM_ANALYSIS_UNSURE) {
           //if unsure, let through
@@ -95,7 +93,7 @@ class MollomPlugin extends Plugin
           // all good! :-)
         }
       }
-   
+
       return true;
     }
 
@@ -110,38 +108,39 @@ class MollomPlugin extends Plugin
         }
         return '127.0.0.1';
     }
+
     /**
-      * Call a remote procedure at the Mollom server.  This function will
-      * automatically add the information required to authenticate against
-      * Mollom.
-      */
+     * Call a remote procedure at the Mollom server.  This function will
+     * automatically add the information required to authenticate against
+     * Mollom.
+     */
     function mollom($method, $data = array()) {
         if (!extension_loaded('xmlrpc')) {
             if (!dl('xmlrpc.so')) {
                 common_log(LOG_ERR, "Can't pingback; xmlrpc extension not available.");
             }
         }
-    
+
       // Construct the server URL:
       $public_key = $this->public_key;
       // Retrieve the list of Mollom servers from the database:
       $servers = $this->servers;
-    
+
       if ($servers == NULL) {
         // Retrieve a list of valid Mollom servers from mollom.com:
         $servers = $this->xmlrpc('http://xmlrpc.mollom.com/'. MOLLOM_API_VERSION, 'mollom.getServerList', $this->authentication());
-        
+
         // Store the list of servers in the database:
-    // TODO!    variable_set('mollom_servers', $servers);
+        // TODO!    variable_set('mollom_servers', $servers);
       }
-      
+
       if (is_array($servers)) {
         // Send the request to the first server, if that fails, try the other servers in the list:
-        foreach ($servers as $server) { 
+        foreach ($servers as $server) {
           $auth = $this->authentication();
           $data = array_merge($data, $auth);
           $result = $this->xmlrpc($server .'/'. MOLLOM_API_VERSION, $method, $data);
-    
+
           // Debug output:
           if (isset($data['session_id'])) {
             common_debug("called $method at server $server with session ID '". $data['session_id'] ."'");
@@ -149,14 +148,14 @@ class MollomPlugin extends Plugin
           else {
             common_debug("called $method at server $server with no session ID");
           }
-          
+
           if ($errno = $this->xmlrpc_errno()) {
             common_log(LOG_ERR, sprintf('Error @errno: %s - %s - %s - <pre>%s</pre>', $this->xmlrpc_errno(), $server, $this->xmlrpc_error_msg(), $method, print_r($data, TRUE)));
-    
+
             if ($errno == MOLLOM_REFRESH) {
               // Retrieve a list of valid Mollom servers from mollom.com:
               $servers = $this->xmlrpc('http://xmlrpc.mollom.com/'. MOLLOM_API_VERSION, 'mollom.getServerList', $this->authentication());
-    
+
               // Store the updated list of servers in the database:
               //tODO variable_set('mollom_servers', $servers);
             }
@@ -166,7 +165,7 @@ class MollomPlugin extends Plugin
             else if ($errno == MOLLOM_REDIRECT) {
               // Do nothing, we select the next client automatically.
             }
-    
+
             // Reset the XMLRPC error:
             $this->xmlrpc_error(0);  // FIXME: this is crazy.
           }
@@ -176,74 +175,73 @@ class MollomPlugin extends Plugin
           }
         }
       }
-    
+
       // If none of the servers worked, activate the fallback mechanism:
       common_debug("none of the servers worked");
-    //   _mollom_fallback();
-      
+      //   _mollom_fallback();
+
       // If everything failed, we reset the server list to force Mollom to request a new list:
       //TODO variable_set('mollom_servers', array());
     }
 
     /**
-    * This function generate an array with all the information required to
-    * authenticate against Mollom. To prevent that requests are forged and
-    * that you are impersonated, each request is signed with a hash computed
-    * based on a private key and a timestamp.
-    *
-    * Both the client and the server share the secret key that is used to
-    * create the authentication hash based on a timestamp.  They both hash
-    * the timestamp with the secret key, and if the hashes match, the
-    * authenticity of the message has been validated.
-    *
-    * To avoid that someone can intercept a (hash, timestamp)-pair and
-    * use that to impersonate a client, Mollom will reject the request
-    * when the timestamp is more than 15 minutes off.
-    *
-    * Make sure your server's time is synchronized with the world clocks,
-    * and that you don't share your private key with anyone else.
-    */
+     * This function generate an array with all the information required to
+     * authenticate against Mollom. To prevent that requests are forged and
+     * that you are impersonated, each request is signed with a hash computed
+     * based on a private key and a timestamp.
+     *
+     * Both the client and the server share the secret key that is used to
+     * create the authentication hash based on a timestamp.  They both hash
+     * the timestamp with the secret key, and if the hashes match, the
+     * authenticity of the message has been validated.
+     *
+     * To avoid that someone can intercept a (hash, timestamp)-pair and
+     * use that to impersonate a client, Mollom will reject the request
+     * when the timestamp is more than 15 minutes off.
+     *
+     * Make sure your server's time is synchronized with the world clocks,
+     * and that you don't share your private key with anyone else.
+     */
     private function authentication() {
-    
+
       $public_key = $this->public_key;
       $private_key = $this->private_key;
-    
+
       // Generate a timestamp according to the dateTime format (http://www.w3.org/TR/xmlschema-2/#dateTime):
       $time = gmdate("Y-m-d\TH:i:s.\\0\\0\\0O", time());
-    
+
       // Calculate a HMAC-SHA1 according to RFC2104 (http://www.ietf.org/rfc/rfc2104.txt):
       $hash =  base64_encode(
       pack("H*", sha1((str_pad($private_key, 64, chr(0x00)) ^ (str_repeat(chr(0x5c), 64))) .
       pack("H*", sha1((str_pad($private_key, 64, chr(0x00)) ^ (str_repeat(chr(0x36), 64))) .
       $time))))
       );
-    
+
       // Store everything in an array. Elsewhere in the code, we'll add the
       // acutal data before we pass it onto the XML-RPC library:
       $data['public_key'] = $public_key;
       $data['time'] = $time;
       $data['hash'] = $hash;
-    
+
       return $data;
     }
-    
 
     function xmlrpc($url) {
       //require_once './includes/xmlrpc.inc';
       $args = func_get_args();
       return call_user_func_array(array('MollomPlugin', '_xmlrpc'), $args);
     }
-    
+
     /**
-    * Recursively turn a data structure into objects with 'data' and 'type' attributes.
-    *
-    * @param $data
-    *   The data structure.
-    * @param  $type
-    *   Optional type assign to $data.
-    * @return
-    *   Object.
-    */
+     * Recursively turn a data structure into objects with 'data' and 'type' attributes.
+     *
+     * @param $data
+     *   The data structure.
+     * @param  $type
+     *   Optional type assign to $data.
+     * @return
+     *   Object.
+     */
     function xmlrpc_value($data, $type = FALSE) {
       $xmlrpc_value = new stdClass();
       $xmlrpc_value->data = $data;
@@ -266,15 +264,15 @@ class MollomPlugin extends Plugin
     }
 
     /**
-    * Map PHP type to XML-RPC type.
-    *
-    * @param $xmlrpc_value
-    *   Variable whose type should be mapped.
-    * @return
-    *   XML-RPC type as string.
-    * @see
-    *   http://www.xmlrpc.com/spec#scalars
-    */
+     * Map PHP type to XML-RPC type.
+     *
+     * @param $xmlrpc_value
+     *   Variable whose type should be mapped.
+     * @return
+     *   XML-RPC type as string.
+     * @see
+     *   http://www.xmlrpc.com/spec#scalars
+     */
     function xmlrpc_value_calculate_type(&$xmlrpc_value) {
       // http://www.php.net/gettype: Never use gettype() to test for a certain type [...] Instead, use the is_* functions.
       if (is_bool($xmlrpc_value->data)) {
@@ -304,95 +302,95 @@ class MollomPlugin extends Plugin
       return 'string';
     }
 
-/**
- * Generate XML representing the given value.
- *
- * @param $xmlrpc_value
- * @return
- *   XML representation of value.
- */
-function xmlrpc_value_get_xml($xmlrpc_value) {
-  switch ($xmlrpc_value->type) {
-    case 'boolean':
-      return '<boolean>'. (($xmlrpc_value->data) ? '1' : '0') .'</boolean>';
-      break;
-    case 'int':
-      return '<int>'. $xmlrpc_value->data .'</int>';
-      break;
-    case 'double':
-      return '<double>'. $xmlrpc_value->data .'</double>';
-      break;
-    case 'string':
-      // Note: we don't escape apostrophes because of the many blogging clients
-      // that don't support numerical entities (and XML in general) properly.
-      return '<string>'. htmlspecialchars($xmlrpc_value->data) .'</string>';
-      break;
-    case 'array':
-      $return = '<array><data>'."\n";
-      foreach ($xmlrpc_value->data as $item) {
-        $return .= '  <value>'. $this->xmlrpc_value_get_xml($item) ."</value>\n";
+    /**
+     * Generate XML representing the given value.
+     *
+     * @param $xmlrpc_value
+     * @return
+     *   XML representation of value.
+     */
+    function xmlrpc_value_get_xml($xmlrpc_value) {
+      switch ($xmlrpc_value->type) {
+        case 'boolean':
+          return '<boolean>'. (($xmlrpc_value->data) ? '1' : '0') .'</boolean>';
+          break;
+        case 'int':
+          return '<int>'. $xmlrpc_value->data .'</int>';
+          break;
+        case 'double':
+          return '<double>'. $xmlrpc_value->data .'</double>';
+          break;
+        case 'string':
+          // Note: we don't escape apostrophes because of the many blogging clients
+          // that don't support numerical entities (and XML in general) properly.
+          return '<string>'. htmlspecialchars($xmlrpc_value->data) .'</string>';
+          break;
+        case 'array':
+          $return = '<array><data>'."\n";
+          foreach ($xmlrpc_value->data as $item) {
+            $return .= '  <value>'. $this->xmlrpc_value_get_xml($item) ."</value>\n";
+          }
+          $return .= '</data></array>';
+          return $return;
+          break;
+        case 'struct':
+          $return = '<struct>'."\n";
+          foreach ($xmlrpc_value->data as $name => $value) {
+            $return .= "  <member><name>". htmlentities($name) ."</name><value>";
+            $return .= $this->xmlrpc_value_get_xml($value) ."</value></member>\n";
+          }
+          $return .= '</struct>';
+          return $return;
+          break;
+        case 'date':
+          return $this->xmlrpc_date_get_xml($xmlrpc_value->data);
+          break;
+        case 'base64':
+          return $this->xmlrpc_base64_get_xml($xmlrpc_value->data);
+          break;
       }
-      $return .= '</data></array>';
-      return $return;
-      break;
-    case 'struct':
-      $return = '<struct>'."\n";
-      foreach ($xmlrpc_value->data as $name => $value) {
-        $return .= "  <member><name>". htmlentities($name) ."</name><value>";
-        $return .= $this->xmlrpc_value_get_xml($value) ."</value></member>\n";
-      }
-      $return .= '</struct>';
-      return $return;
-      break;
-    case 'date':
-      return $this->xmlrpc_date_get_xml($xmlrpc_value->data);
-      break;
-    case 'base64':
-      return $this->xmlrpc_base64_get_xml($xmlrpc_value->data);
-      break;
-  }
-  return FALSE;
-}
+      return FALSE;
+    }
 
     /**
-    * Perform an HTTP request.
-    *
-    * This is a flexible and powerful HTTP client implementation. Correctly handles
-    * GET, POST, PUT or any other HTTP requests. Handles redirects.
-    *
-    * @param $url
-    *   A string containing a fully qualified URI.
-    * @param $headers
-    *   An array containing an HTTP header => value pair.
-    * @param $method
-    *   A string defining the HTTP request to use.
-    * @param $data
-    *   A string containing data to include in the request.
-    * @param $retry
-    *   An integer representing how many times to retry the request in case of a
-    *   redirect.
-    * @return
-    *   An object containing the HTTP request headers, response code, headers,
-    *   data and redirect status.
-    */
+     * Perform an HTTP request.
+     *
+     * This is a flexible and powerful HTTP client implementation. Correctly handles
+     * GET, POST, PUT or any other HTTP requests. Handles redirects.
+     *
+     * @param $url
+     *   A string containing a fully qualified URI.
+     * @param $headers
+     *   An array containing an HTTP header => value pair.
+     * @param $method
+     *   A string defining the HTTP request to use.
+     * @param $data
+     *   A string containing data to include in the request.
+     * @param $retry
+     *   An integer representing how many times to retry the request in case of a
+     *   redirect.
+     * @return
+     *   An object containing the HTTP request headers, response code, headers,
+     *   data and redirect status.
+     */
     function http_request($url, $headers = array(), $method = 'GET', $data = NULL, $retry = 3) {
       global $db_prefix;
-    
+
       $result = new stdClass();
-    
+
       // Parse the URL and make sure we can handle the schema.
       $uri = parse_url($url);
-    
+
       if ($uri == FALSE) {
         $result->error = 'unable to parse URL';
         return $result;
       }
-    
+
       if (!isset($uri['scheme'])) {
         $result->error = 'missing schema';
         return $result;
       }
-    
+
       switch ($uri['scheme']) {
         case 'http':
           $port = isset($uri['port']) ? $uri['port'] : 80;
@@ -409,29 +407,29 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
           $result->error = 'invalid schema '. $uri['scheme'];
           return $result;
       }
-    
+
       // Make sure the socket opened properly.
       if (!$fp) {
         // When a network error occurs, we use a negative number so it does not
         // clash with the HTTP status codes.
         $result->code = -$errno;
         $result->error = trim($errstr);
-    
+
         // Mark that this request failed. This will trigger a check of the web
         // server's ability to make outgoing HTTP requests the next time that
         // requirements checking is performed.
         // @see system_requirements()
         //TODO variable_set('drupal_http_request_fails', TRUE);
-    
+
         return $result;
       }
-    
+
       // Construct the path to act on.
       $path = isset($uri['path']) ? $uri['path'] : '/';
       if (isset($uri['query'])) {
         $path .= '?'. $uri['query'];
       }
-    
+
       // Create HTTP request.
       $defaults = array(
         // RFC 2616: "non-standard ports MUST, default ports MAY be included".
@@ -441,12 +439,12 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
         'User-Agent' => 'User-Agent: Drupal (+http://drupal.org/)',
         'Content-Length' => 'Content-Length: '. strlen($data)
       );
-    
+
       // If the server url has a user then attempt to use basic authentication
       if (isset($uri['user'])) {
         $defaults['Authorization'] = 'Authorization: Basic '. base64_encode($uri['user'] . (!empty($uri['pass']) ? ":". $uri['pass'] : ''));
       }
-    
+
       // If the database prefix is being used by SimpleTest to run the tests in a copied
       // database then set the user-agent header to the database prefix so that any
       // calls to other Drupal pages will run the SimpleTest prefixed database. The
@@ -456,34 +454,34 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
       if (is_string($db_prefix) && preg_match("/^simpletest\d+$/", $db_prefix, $matches)) {
         $defaults['User-Agent'] = 'User-Agent: ' . $matches[0];
       }
-    
+
       foreach ($headers as $header => $value) {
         $defaults[$header] = $header .': '. $value;
       }
-    
+
       $request = $method .' '. $path ." HTTP/1.0\r\n";
       $request .= implode("\r\n", $defaults);
       $request .= "\r\n\r\n";
       $request .= $data;
-    
+
       $result->request = $request;
-    
+
       fwrite($fp, $request);
-    
+
       // Fetch response.
       $response = '';
       while (!feof($fp) && $chunk = fread($fp, 1024)) {
         $response .= $chunk;
       }
       fclose($fp);
-    
+
       // Parse response.
       list($split, $result->data) = explode("\r\n\r\n", $response, 2);
       $split = preg_split("/\r\n|\n|\r/", $split);
-    
+
       list($protocol, $code, $text) = explode(' ', trim(array_shift($split)), 3);
       $result->headers = array();
-    
+
       // Parse headers.
       while ($line = trim(array_shift($split))) {
         list($header, $value) = explode(':', $line, 2);
@@ -496,7 +494,7 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
           $result->headers[$header] = trim($value);
         }
       }
-    
+
       $responses = array(
         100 => 'Continue', 101 => 'Switching Protocols',
         200 => 'OK', 201 => 'Created', 202 => 'Accepted', 203 => 'Non-Authoritative Information', 204 => 'No Content', 205 => 'Reset Content', 206 => 'Partial Content',
@@ -509,7 +507,7 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
       if (!isset($responses[$code])) {
         $code = floor($code / 100) * 100;
       }
-    
+
       switch ($code) {
         case 200: // OK
         case 304: // Not modified
@@ -518,30 +516,30 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
         case 302: // Moved temporarily
         case 307: // Moved temporarily
           $location = $result->headers['Location'];
-    
+
           if ($retry) {
             $result = drupal_http_request($result->headers['Location'], $headers, $method, $data, --$retry);
             $result->redirect_code = $result->code;
           }
           $result->redirect_url = $location;
-    
+
           break;
         default:
           $result->error = $text;
       }
-    
+
       $result->code = $code;
       return $result;
     }
-    
+
     /**
-    * Construct an object representing an XML-RPC message.
-    *
-    * @param $message
-    *   String containing XML as defined at http://www.xmlrpc.com/spec
-    * @return
-    *   Object
-    */
+     * Construct an object representing an XML-RPC message.
+     *
+     * @param $message
+     *   String containing XML as defined at http://www.xmlrpc.com/spec
+     * @return
+     *   Object
+     */
     function xmlrpc_message($message) {
       $xmlrpc_message = new stdClass();
       $xmlrpc_message->array_structs = array();   // The stack used to keep track of the current array/struct
@@ -552,14 +550,14 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
     }
 
     /**
-    * Parse an XML-RPC message. If parsing fails, the faultCode and faultString
-    * will be added to the message object.
-    *
-    * @param $xmlrpc_message
-    *   Object generated by xmlrpc_message()
-    * @return
-    *   TRUE if parsing succeeded; FALSE otherwise
-    */
+     * Parse an XML-RPC message. If parsing fails, the faultCode and faultString
+     * will be added to the message object.
+     *
+     * @param $xmlrpc_message
+     *   Object generated by xmlrpc_message()
+     * @return
+     *   TRUE if parsing succeeded; FALSE otherwise
+     */
     function xmlrpc_message_parse(&$xmlrpc_message) {
       // First remove the XML declaration
       $xmlrpc_message->message = preg_replace('/<\?xml(.*)?\?'.'>/', '', $xmlrpc_message->message);
@@ -587,13 +585,13 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
     }
 
     /**
-    * Store a copy of the $xmlrpc_message object temporarily.
-    *
-    * @param $value
-    *   Object
-    * @return
-    *   The most recently stored $xmlrpc_message
-    */
+     * Store a copy of the $xmlrpc_message object temporarily.
+     *
+     * @param $value
+     *   Object
+     * @return
+     *   The most recently stored $xmlrpc_message
+     */
     function xmlrpc_message_set($value = NULL) {
       static $xmlrpc_message;
       if ($value) {
@@ -691,6 +689,7 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
           $xmlrpc_message->methodname = trim($xmlrpc_message->current_tag_contents);
           break;
       }
+
       if ($value_flag) {
         if (count($xmlrpc_message->array_structs ) > 0) {
           // Add value to struct or array
@@ -715,15 +714,15 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
     }
 
     /**
-    * Construct an object representing an XML-RPC request
-    *
-    * @param $method
-    *   The name of the method to be called
-    * @param $args
-    *   An array of parameters to send with the method.
-    * @return
-    *   Object
-    */
+     * Construct an object representing an XML-RPC request
+     *
+     * @param $method
+     *   The name of the method to be called
+     * @param $args
+     *   An array of parameters to send with the method.
+     * @return
+     *   Object
+     */
     function xmlrpc_request($method, $args) {
       $xmlrpc_request = new stdClass();
       $xmlrpc_request->method = $method;
@@ -733,8 +732,9 @@ function xmlrpc_value_get_xml($xmlrpc_value) {
     <methodCall>
     <methodName>{$xmlrpc_request->method}</methodName>
     <params>
-    
+
 EOD;
+
       foreach ($xmlrpc_request->args as $arg) {
         $xmlrpc_request->xml .= '<param><value>';
         $v = $this->xmlrpc_value($arg);
@@ -778,7 +778,7 @@ EOD;
       </value>
       </fault>
     </methodResponse>
-    
+
 EOD;
     }
 
@@ -868,26 +868,25 @@ EOD;
     }
 
     /**
-    * Returns the last XML-RPC client error number
-    */
+     * Returns the last XML-RPC client error number
+     */
     function xmlrpc_errno() {
       $error = $this->xmlrpc_error();
       return ($error != NULL ? $error->code : NULL);
     }
-    
+
     /**
-    * Returns the last XML-RPC client error message
-    */
+     * Returns the last XML-RPC client error message
+     */
     function xmlrpc_error_msg() {
       $error = xmlrpc_error();
       return ($error != NULL ? $error->message : NULL);
     }
 
-  /**
-  * Clears any previous error.
-  */
-  function xmlrpc_clear_error() {
-    $this->xmlrpc_error(NULL, NULL, TRUE);
-  }
-
+    /**
+     * Clears any previous error.
+     */
+    function xmlrpc_clear_error() {
+      $this->xmlrpc_error(NULL, NULL, TRUE);
+    }
 }

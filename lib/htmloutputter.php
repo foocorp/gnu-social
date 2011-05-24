@@ -170,20 +170,21 @@ class HTMLOutputter extends XMLOutputter
      * @param string $label        text of label for the element
      * @param string $value        value of the element, default null
      * @param string $instructions instructions for valid input
+     * @param string $name         name of the element; if null, the id will
+     *                             be used
      *
-     * @todo add a $name parameter
      * @todo add a $maxLength parameter
      * @todo add a $size parameter
      *
      * @return void
      */
 
-    function input($id, $label, $value=null, $instructions=null)
+    function input($id, $label, $value=null, $instructions=null, $name=null)
     {
         $this->element('label', array('for' => $id), $label);
-        $attrs = array('name' => $id,
-                       'type' => 'text',
-                       'id' => $id);
+        $attrs = array('type' => 'text',
+                       'id'   => $id);
+        $attrs['name'] = is_null($name) ? $id : $name;
         if (!is_null($value)) { // value can be 0 or ''
             $attrs['value'] = $value;
         }
@@ -516,28 +517,48 @@ class HTMLOutputter extends XMLOutputter
      * @param string $label        text of label for the element
      * @param string $content      content of the textarea, default none
      * @param string $instructions instructions for valid input
+     * @param string $name         name of textarea; if null, $id will be used
+     * @param int    $cols         number of columns
+     * @param int    $rows         number of rows
      *
      * @return void
-     *
-     * @todo add a $name parameter
-     * @todo add a $cols parameter
-     * @todo add a $rows parameter
      */
 
-    function textarea($id, $label, $content=null, $instructions=null)
-    {
+    function textarea(
+        $id,
+        $label,
+        $content      = null,
+        $instructions = null,
+        $name         = null,
+        $cols         = null,
+        $rows         = null
+    ) {
         $this->element('label', array('for' => $id), $label);
-        $this->element('textarea', array('rows' => 3,
-                                         'cols' => 40,
-                                         'name' => $id,
-                                         'id' => $id),
-                       ($content) ? $content : '');
+        $attrs = array(
+            'rows' => 3,
+            'cols' => 40,
+            'id' => $id
+        );
+        $attrs['name'] = is_null($name) ? $id : $name;
+
+        if ($cols != null) {
+            $attrs['cols'] = $cols;
+
+        }
+        if ($rows != null) {
+            $attrs['rows'] = $rows;
+        }
+        $this->element(
+            'textarea',
+            $attrs,
+            is_null($content) ? '' : $content
+        );
         if ($instructions) {
             $this->element('p', 'form_guide', $instructions);
         }
     }
 
-    /**
+   /**
     * Internal script to autofocus the given element on page onload.
     *
     * @param string $id element ID, must refer to an existing element

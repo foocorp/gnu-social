@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * Show a single RSVP
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,60 +44,40 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class ShowrsvpAction extends ShownoticeAction
 {
     protected $rsvp = null;
     protected $event = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-
-    function prepare($argarray)
+    function getNotice()
     {
-        OwnerDesignAction::prepare($argarray);
-
         $this->id = $this->trimmed('id');
 
         $this->rsvp = RSVP::staticGet('id', $this->id);
 
         if (empty($this->rsvp)) {
-            throw new ClientException(_('No such RSVP.'), 404);
+            // TRANS: Client exception thrown when referring to a non-existing RSVP.
+            // TRANS: RSVP stands for "Please reply".
+            throw new ClientException(_m('No such RSVP.'), 404);
         }
 
         $this->event = $this->rsvp->getEvent();
 
         if (empty($this->event)) {
-            throw new ClientException(_('No such Event.'), 404);
+            // TRANS: Client exception thrown when referring to a non-existing event.
+            throw new ClientException(_m('No such event.'), 404);
         }
 
-        $this->notice = $this->rsvp->getNotice();
+        $notice = $this->rsvp->getNotice();
 
-        if (empty($this->notice)) {
+        if (empty($notice)) {
             // Did we used to have it, and it got deleted?
-            throw new ClientException(_('No such RSVP.'), 404);
+            // TRANS: Client exception thrown when referring to a non-existing RSVP.
+            // TRANS: RSVP stands for "Please reply".
+            throw new ClientException(_m('No such RSVP.'), 404);
         }
 
-        $this->user = User::staticGet('id', $this->rsvp->profile_id);
-
-        if (empty($this->user)) {
-            throw new ClientException(_('No such user.'), 404);
-        }
-
-        $this->profile = $this->user->getProfile();
-
-        if (empty($this->profile)) {
-            throw new ServerException(_('User without a profile.'));
-        }
-
-        $this->avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
-
-        return true;
+        return $notice;
     }
 
     /**
@@ -107,10 +87,11 @@ class ShowrsvpAction extends ShownoticeAction
      *
      * @return string page tile
      */
-
     function title()
     {
-        return sprintf(_('%s\'s RSVP for "%s"'),
+        // TRANS: Title for event.
+	// TRANS: %1$s is a user nickname, %2$s is an event title.
+        return sprintf(_m('%1$s\'s RSVP for "%2$s"'),
                        $this->user->nickname,
                        $this->event->title);
     }

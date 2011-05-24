@@ -9,22 +9,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AutoSandbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:17+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:42+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:12:51+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:25:59+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-autosandbox\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Plugin description.
 msgid "Automatically sandboxes newly registered members."
 msgstr "Автоматично відсилати до «пісочниці» усіх нових користувачів."
 
+#. TRANS: User instructions after registration.
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline."
@@ -32,12 +34,14 @@ msgstr ""
 "Зауважте, що спочатку вас буде відправлено до «пісочниці», отже ваші дописи "
 "не з’являтимуться у загальній стрічці дописів."
 
-#. TRANS: $contactlink is a clickable e-mailaddress.
+#. TRANS: User instructions after registration.
+#. TRANS: %s is a clickable e-mailaddress.
+#, php-format
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
-"the public timeline. Send a message to $contactlink to speed up the "
-"unsandboxing process."
+"the public timeline. Send a message to %s to speed up the unsandboxing "
+"process."
 msgstr ""
 "Зауважте, що спочатку вас буде відправлено до «пісочниці», отже ваші дописи "
-"не з’являтимуться у загальній стрічці дописів. Надішліть повідомлення до "
-"$contactlink аби прискорити процес вашого «виходу в люди»."
+"не з’являтимуться у загальній стрічці дописів. Надішліть повідомлення до %s, "
+"аби прискорити процес вашого «виходу в люди»."

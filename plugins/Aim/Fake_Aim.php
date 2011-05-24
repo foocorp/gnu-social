@@ -40,4 +40,3 @@ class Fake_Aim extends Aim
         $this->would_be_sent = array($sflap_type, $sflap_data, $no_null, $formatted);
     }
 }
-

@@ -243,6 +243,7 @@ class MemcachePlugin extends Plugin
                             'author' => 'Evan Prodromou, Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:Memcache',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Use <a href="http://memcached.org/">Memcached</a> to cache query results.'));
         return true;
     }

@@ -1,0 +1,350 @@
+# Translation of StatusNet - TwitterBridge to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TwitterBridge\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:46+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Twitter settings"
+msgstr "Mga katakdaan ng Twitter"
+
+msgid ""
+"Connect your Twitter account to share your updates with your Twitter friends "
+"and vice-versa."
+msgstr ""
+"Iugnay ang akawnt mo ng Twitter upang maibagi ang mga pagsasapanahon mo sa "
+"iyong mga kaibigan sa Twitter at pabalik din."
+
+msgid "Twitter account"
+msgstr "Akawnt sa Twitter"
+
+msgid "Connected Twitter account"
+msgstr "Nakaugnay na akawnt ng Twitter"
+
+msgid "Disconnect my account from Twitter"
+msgstr "Huwag iugnay ang akawnt ko na mula sa Twitter"
+
+msgid "Disconnecting your Twitter could make it impossible to log in! Please "
+msgstr ""
+"Ang pagkalas ng Twitter mo ay maaaring makapagdulot ng hindi makalagda!  "
+"Mangyaring "
+
+msgid "set a password"
+msgstr "magtakda ng isang hudyat"
+
+msgid " first."
+msgstr "muna."
+
+#. TRANS: %1$s is the current website name.
+#, php-format
+msgid ""
+"Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
+"password to log in."
+msgstr ""
+"Panatilihin ang akawnt mong %1$s subalit kumalas mula sa Twitter.  Maaari "
+"mong gamitin ang hudyat mo sa %1$s upang lumagdang papasok."
+
+msgid "Disconnect"
+msgstr "Huwag umugnay"
+
+msgid "Preferences"
+msgstr "Mga nais"
+
+msgid "Automatically send my notices to Twitter."
+msgstr "Kusang ipadala ang mga pabatid ko sa Twitter."
+
+msgid "Send local \"@\" replies to Twitter."
+msgstr "Ipadala ang katutubong mga tugon na \"@\" sa Twitter."
+
+msgid "Subscribe to my Twitter friends here."
+msgstr "Tumanggap ng mga pagsipi sa aking mga kaibigan sa Twitter dito."
+
+msgid "Import my friends timeline."
+msgstr "Angkatin ang guhit ng panahon ng mga kaibigan ko."
+
+msgid "Save"
+msgstr "Sagipin"
+
+msgid "Add"
+msgstr "Idagdag"
+
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Nagkaroon ng isang suliranin sa kahalip ng sesyon mo.  Pakisubukan uli."
+
+msgid "Unexpected form submission."
+msgstr "Hindi inaasahang pagpapasa ng pormularyo."
+
+msgid "No Twitter connection to remove."
+msgstr "Walang matatanggal na ugnay sa Twitter."
+
+msgid "Couldn't remove Twitter user."
+msgstr "Hindi matanggal ang tagagamit ng Twitter."
+
+msgid "Twitter account disconnected."
+msgstr "Nawala ang ugnay sa akawnt ng Twitter."
+
+msgid "Couldn't save Twitter preferences."
+msgstr "Hindi masagip ang mga nais na pang-Twitter."
+
+msgid "Twitter preferences saved."
+msgstr "Nasagip ang mga nais na pang-Twitter."
+
+msgid "You cannot register if you do not agree to the license."
+msgstr "Hindi ka makakapagpatala kung hindi ka sasang-ayon sa lisensiya."
+
+msgid "Something weird happened."
+msgstr "May nangyaring kakaiba."
+
+msgid "Could not link your Twitter account."
+msgstr "Hindi maikawing ang iyong akawnt ng Twitter."
+
+msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr ""
+"Hindi maikawing ang iyong akawnt ng Twitter: hindi magkatugma ang "
+"oauth_token."
+
+msgid "Couldn't link your Twitter account."
+msgstr "Hindi maikawing ang iyong akawnt ng Twitter."
+
+#, php-format
+msgid ""
+"This is the first time you've logged into %s so we must connect your Twitter "
+"account to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
+msgstr ""
+"Ito ang iyong unang pagkakataon ng paglagda sa %s kaya't kailangan naming "
+"iugnay ang iyong akawnt ng Twitter papunta sa isang katutubong akawnt.  "
+"Maaari kang lumikha ng isang bagong akawnt, o umugnay sa pamamagitan ng "
+"umiiral mong akawnt, kung mayroon ka."
+
+msgid "Twitter Account Setup"
+msgstr "Pagkakahanda ng Akawnt ng Twitter"
+
+msgid "Connection options"
+msgstr "Mga mapagpipilian ng ugnay"
+
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"Makukuha ang teksto at mga talaksan ko sa ilalim ng %s maliban na lamang ang "
+"pribadong datong ito: hudyat, tirahan ng e-liham, tirahan ng IM, at numero "
+"ng telepono."
+
+msgid "Create new account"
+msgstr "Lumikha ng bagong akawnt"
+
+msgid "Create a new user with this nickname."
+msgstr "Lumikha ng isang bagong tagagamit na may ganitong palayaw."
+
+msgid "New nickname"
+msgstr "Bagong palayaw"
+
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr ""
+"1 hanggang 64 maliliit na mga titik o mga bilang, walang bantas o mga "
+"patlang."
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr "E-liham"
+
+msgid "Used only for updates, announcements, and password recovery"
+msgstr ""
+"Ginagamit lamang para sa mga pagsasapanahon, mga pagpapahayag, at pagbawi ng "
+"hudyat"
+
+msgid "Create"
+msgstr "Likhain"
+
+msgid "Connect existing account"
+msgstr "Iugnay ang umiiral na akawnt"
+
+msgid ""
+"If you already have an account, login with your username and password to "
+"connect it to your Twitter account."
+msgstr ""
+"Kung mayroon ka nang akawnt, lumagda sa pamamagitan ng iyong pangalan ng "
+"tagagamit at hudyat upang iugnay ito sa iyong akawnt ng Twitter."
+
+msgid "Existing nickname"
+msgstr "Umiiral na palayaw"
+
+msgid "Password"
+msgstr "Hudyat"
+
+msgid "Connect"
+msgstr "Umugnay"
+
+msgid "Registration not allowed."
+msgstr "Hindi pinayagan ang pagpapatala."
+
+msgid "Not a valid invitation code."
+msgstr "Hindi isang tanggap na kodigo ng paanyaya."
+
+msgid "Nickname not allowed."
+msgstr "Hindi pinayagan ang palayaw."
+
+msgid "Nickname already in use. Try another one."
+msgstr "Ginagamit na ang palayaw.  Sumubok ng iba."
+
+msgid "Error registering user."
+msgstr "May kamalian sa pagpapatala ng tagagamit."
+
+msgid "Error connecting user to Twitter."
+msgstr "May kamalian sa pag-ugnay ng tagagamit sa Twitter."
+
+msgid "Invalid username or password."
+msgstr "Hindi katanggap-tanggap na pangalan ng tagagamit o hudyat."
+
+msgid "Twitter"
+msgstr "Twitter"
+
+msgid "Twitter bridge settings"
+msgstr "Mga katakdaan sa tulay ng Twitter"
+
+msgid "Invalid consumer key. Max length is 255 characters."
+msgstr ""
+"Hindi katanggap-tanggap na susi ng tagaubos.  Ang pinakamataas na haba ay "
+"255 mga panitik."
+
+msgid "Invalid consumer secret. Max length is 255 characters."
+msgstr ""
+"Hindi katanggap-tanggap na lihim ng tagaubos.  Ang pinakamataas na haba ay "
+"255 mga panitik."
+
+msgid "Twitter application settings"
+msgstr "Mga katakdaan ng aplikasyong Twitter"
+
+msgid "Consumer key"
+msgstr "Susi ng tagaubos"
+
+msgid "Consumer key assigned by Twitter"
+msgstr "Susi ng tagaubos na itinalaga ng Twitter"
+
+msgid "Consumer secret"
+msgstr "Lihim ng tagaubos"
+
+msgid "Consumer secret assigned by Twitter"
+msgstr "Lihim ng tagaubos na itinalaga ng Twitter"
+
+msgid "Note: a global consumer key and secret are set."
+msgstr "Paunawa: nakatakda ang isang pandaigdigang susi at lihim ng tagaubos."
+
+msgid "Integration source"
+msgstr "Pinagmulan ng pagsasama"
+
+msgid "Name of your Twitter application"
+msgstr "Pangalan ng iyong aplikasyong Twitter"
+
+msgid "Options"
+msgstr "Mga mapagpipilian"
+
+msgid "Enable \"Sign-in with Twitter\""
+msgstr "Paganahin ang \"Lumagdang may Twitter\""
+
+msgid "Allow users to login with their Twitter credentials"
+msgstr ""
+"Pahintulutan ang mga tagagamit na lumagdang papasok sa pamamagitan ng "
+"kanilang mga katangian sa Twitter"
+
+msgid "Enable Twitter import"
+msgstr "Paganahin ang pang-angkat ng Twitter"
+
+msgid ""
+"Allow users to import their Twitter friends' timelines. Requires daemons to "
+"be manually configured."
+msgstr ""
+"Pahintulutan ang mga tagagamit na maangkat ang mga guhit ng panahon ng "
+"kanilang mga kaibigang nasa Twitter.  Nangangailangan ng kinakamay na "
+"pagsasaayos ng mga daemon."
+
+msgid "Save Twitter settings"
+msgstr "Sagipin ang mga katakdaan ng Twitter"
+
+msgid "Login or register using Twitter"
+msgstr "Lumagda o magpatala na ginagamit ang Twitter"
+
+msgid "Twitter integration options"
+msgstr "Mga pagpipilian ng pagsasama ng Twitter"
+
+msgid "Twitter bridge configuration"
+msgstr "Pagkakaayos ng tulay ng Twitter"
+
+msgid ""
+"The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
+"with <a href=\"http://twitter.com/\">Twitter</a>."
+msgstr ""
+"Ang pampasak na \"tulay\" ng Twitter ay nagpapahintulot na pagsasama ng "
+"isang pagkakataon ng StatusNet sa <a href=\"http://twitter.com/\">Twitter</"
+"a>."
+
+msgid "Already logged in."
+msgstr "Nakalagda na."
+
+msgid "Twitter Login"
+msgstr "Paglagda sa Twitter"
+
+msgid "Login with your Twitter account"
+msgstr "Lumagda sa pamamagitan ng akawnt mo sa Twitter"
+
+msgid "Sign in with Twitter"
+msgstr "Lumagda sa pamamagitan ng Twitter"
+
+#. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
+msgid "Your Twitter bridge has been disabled"
+msgstr "Hindi pinagana ang iyong tulay ng Twitter"
+
+#. TRANS: Mail body after forwarding notices to Twitter has stopped working.
+#. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the
+#. TRANS: Twitter settings, %3$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"Hi, %1$s. We're sorry to inform you that your link to Twitter has been "
+"disabled. We no longer seem to have permission to update your Twitter "
+"status. Did you maybe revoke %3$s's access?\n"
+"\n"
+"You can re-enable your Twitter bridge by visiting your Twitter settings "
+"page:\n"
+"\n"
+"\t%2$s\n"
+"\n"
+"Regards,\n"
+"%3$s"
+msgstr ""
+"Kumusta, %1$s.  Ikinalulungkot naming ipaalam sa iyon na hindi pinagagana "
+"ang kawing mo sa Twitter.  Tila wala na kaming pahintulot upang isapanahon "
+"ang katayuan mo sa Twitter.  Maaari kayang binawi mo ang kakayahang "
+"makapunta ni %3$s?\n"
+"\n"
+"Maaari mong paganahin ulit ang tulay mo ng Twitter sa pamamagitan ng "
+"pagdalaw sa iyong pahina ng mga katakdaan sa Twitter:\n"
+"\n"
+"%2$s\n"
+"\n"
+"Namimitagan,\n"
+"%3$s"
+
+#. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
+#. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
+#, php-format
+msgid "RT @%1$s %2$s"
+msgstr "Ulitin ang pag-tweet ng @%1$s %2$s"

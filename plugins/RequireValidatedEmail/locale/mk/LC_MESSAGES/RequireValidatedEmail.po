@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:38+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:06+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:42+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
@@ -31,3 +31,55 @@ msgstr "За да се регистрирате, ќе мора да наведе
 
 msgid "Disables posting without a validated email address."
 msgstr "Оневозможува објавување без потврдена е-пошта."
+
+msgid "You are already logged in."
+msgstr "Веќе сте најавени."
+
+msgid "Confirmation code not found."
+msgstr "Потврдниот код не е пронајден."
+
+msgid "No user for that confirmation code."
+msgstr "Нема корисник за тој потврден код."
+
+#, php-format
+msgid "Unrecognized address type %s."
+msgstr "Непознат тип на адреса %s."
+
+#. TRANS: Client error for an already confirmed email/jabber/sms address.
+msgid "That address has already been confirmed."
+msgstr "Таа адреса е веќе потврдена."
+
+msgid "Password too short."
+msgstr "Лозинката е прекратка."
+
+msgid "Passwords do not match."
+msgstr "Лозинките не се совпаѓаат."
+
+#, php-format
+msgid ""
+"You have confirmed the email address for your new user account %s. Use the "
+"form below to set your new password."
+msgstr ""
+"Ја потврдивте е-поштата за Вашата нова корисничка сметка %s. Задајте нова "
+"лозинка во образецот подолу."
+
+msgid "Set a password"
+msgstr "Задајте лозинка"
+
+msgid "Confirm email"
+msgstr "Потврдете е-пошта"
+
+msgid "New password"
+msgstr "Нова лозинка"
+
+msgid "6 or more characters."
+msgstr "барем 6 знаци."
+
+msgid "Confirm"
+msgstr "Потврди"
+
+msgid "Same as password above."
+msgstr "Исто како лозинката погоре."
+
+msgid "Save"
+msgstr "Зачувај"

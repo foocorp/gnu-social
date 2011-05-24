@@ -50,7 +50,6 @@ $config['feedsub']['nohub']
     and we have no polling backend. (The fallback hub option can be used
     with a 3rd-party service to provide such polling.)
 
-
 Todo:
 * better support for feeds that aren't natively oriented at social networking
 * make use of tags/categories from feeds

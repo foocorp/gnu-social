@@ -108,8 +108,8 @@ class Atom10Feed extends XMLStringer
         if (!empty($name)) {
             $xs->element('name', null, $name);
         } else {
-            // TRANS: Atom feed exception thrown when an author element does not contain a name element.
             throw new Atom10FeedException(
+                // TRANS: Atom feed exception thrown when an author element does not contain a name element.
                 _('Author element must contain a name element.')
             );
         }

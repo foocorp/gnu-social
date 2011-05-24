@@ -77,21 +77,19 @@ class ShownoticeAction extends OwnerDesignAction
             StatusNet::setApi(true);
         }
 
-        $id = $this->arg('notice');
+        $this->notice = $this->getNotice();
 
-        $this->notice = Notice::staticGet($id);
+        $cur = common_current_user();
 
-        if (empty($this->notice)) {
-            // Did we used to have it, and it got deleted?
-            $deleted = Deleted_notice::staticGet($id);
-            if (!empty($deleted)) {
-                // TRANS: Client error displayed trying to show a deleted notice.
-                $this->clientError(_('Notice deleted.'), 410);
-            } else {
-                // TRANS: Client error displayed trying to show a non-existing notice.
-                $this->clientError(_('No such notice.'), 404);
-            }
-            return false;
+        if (!empty($cur)) {
+            $curProfile = $cur->getProfile();
+        } else {
+            $curProfile = null;
+        }
+
+        if (!$this->notice->inScope($curProfile)) {
+            // TRANS: Client exception thrown when trying a view a notice the user has no access to.
+            throw new ClientException(_('Not available.'), 403);
         }
 
         $this->profile = $this->notice->getProfile();
@@ -107,6 +105,33 @@ class ShownoticeAction extends OwnerDesignAction
         $this->avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
 
         return true;
+    }
+
+    /**
+     * Fetch the notice to show. This may be overridden by child classes to
+     * customize what we fetch without duplicating all of the prepare() method.
+     *
+     * @return Notice
+     */
+    function getNotice()
+    {
+        $id = $this->arg('notice');
+
+        $notice = Notice::staticGet('id', $id);
+
+        if (empty($notice)) {
+            // Did we used to have it, and it got deleted?
+            $deleted = Deleted_notice::staticGet($id);
+            if (!empty($deleted)) {
+                // TRANS: Client error displayed trying to show a deleted notice.
+                $this->clientError(_('Notice deleted.'), 410);
+            } else {
+                // TRANS: Client error displayed trying to show a non-existing notice.
+                $this->clientError(_('No such notice.'), 404);
+            }
+            return false;
+        }
+        return $notice;
     }
 
     /**
@@ -209,15 +234,6 @@ class ShownoticeAction extends OwnerDesignAction
     }
 
     /**
-     * Don't show local navigation
-     *
-     * @return void
-     */
-    function showLocalNavBlock()
-    {
-    }
-
-    /**
      * Fill the content area of the page
      *
      * Shows a single notice list item.
@@ -317,58 +333,8 @@ class ShownoticeAction extends OwnerDesignAction
 // @todo FIXME: Class documentation missing.
 class SingleNoticeItem extends DoFollowListItem
 {
-    /**
-     * Recipe function for displaying a single notice.
-     *
-     * We overload to show attachments.
-     *
-     * @return void
-     */
-    function show()
+    function avatarSize()
     {
-        $this->showStart();
-        if (Event::handle('StartShowNoticeItem', array($this))) {
-            $this->showNotice();
-            $this->showNoticeAttachments();
-            $this->showNoticeInfo();
-            $this->showNoticeOptions();
-            Event::handle('EndShowNoticeItem', array($this));
-        }
-
-        $this->showEnd();
-    }
-
-    /**
-     * For our zoomed-in special case we'll use a fuller list
-     * for the attachment info.
-     */
-    function showNoticeAttachments() {
-        $al = new AttachmentList($this->notice, $this->out);
-        $al->show();
-    }
-
-    /**
-     * show the avatar of the notice's author
-     *
-     * We use the larger size for single notice page.
-     *
-     * @return void
-     */
-    function showAvatar()
-    {
-	$avatar_size = AVATAR_PROFILE_SIZE;
-
-        $avatar = $this->profile->getAvatar($avatar_size);
-
-        $this->out->element('img', array('src' => ($avatar) ?
-                                         $avatar->displayUrl() :
-                                         Avatar::defaultImage($avatar_size),
-                                         'class' => 'avatar photo',
-                                         'width' => $avatar_size,
-                                         'height' => $avatar_size,
-                                         'alt' =>
-                                         ($this->profile->fullname) ?
-                                         $this->profile->fullname :
-                                         $this->profile->nickname));
+        return AVATAR_STREAM_SIZE;
     }
 }

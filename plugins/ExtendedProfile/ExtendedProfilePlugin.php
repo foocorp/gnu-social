@@ -29,7 +29,6 @@ if (!defined('STATUSNET')) {
  */
 class ExtendedProfilePlugin extends Plugin
 {
-
     function onPluginVersion(&$versions)
     {
         $versions[] = array(
@@ -37,8 +36,8 @@ class ExtendedProfilePlugin extends Plugin
             'version' => STATUSNET_VERSION,
             'author' => 'Brion Vibber, Samantha Doherty, Zach Copley',
             'homepage' => 'http://status.net/wiki/Plugin:ExtendedProfile',
-            'rawdescription' => _m(
-                'UI extensions for additional profile fields.')
+            // TRANS: Plugin description.
+            'rawdescription' => _m('UI extensions for additional profile fields.')
         );
 
         return true;
@@ -116,13 +115,12 @@ class ExtendedProfilePlugin extends Plugin
         return true;
     }
 
-    function onStartProfilePageActionsSection(HTMLOutputter $out, Profile $profile) {
+    function onEndShowAccountProfileBlock(HTMLOutputter $out, Profile $profile) {
         $user = User::staticGet('id', $profile->id);
         if ($user) {
             $url = common_local_url('profiledetail', array('nickname' => $user->nickname));
+            // TRANS: Link text on user profile page leading to extended profile page.
             $out->element('a', array('href' => $url, 'class' => 'profiledetail'), _m('More details...'));
         }
-        return true;
     }
-
 }

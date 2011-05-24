@@ -1,0 +1,37 @@
+# Translation of StatusNet - WikiHowProfile to Malay (Bahasa Melayu)
+# Exported from translatewiki.net
+#
+# Author: Anakmalaysia
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - WikiHowProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:52+0000\n"
+"Language-Team: Malay <http://translatewiki.net/wiki/Portal:ms>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:54+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ms\n"
+"X-Message-Group: #out-statusnet-plugin-wikihowprofile\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+msgid ""
+"Fetches avatar and other profile information for WikiHow users when setting "
+"up an account via OpenID."
+msgstr ""
+"Mengambil avatar dan maklumat profil yang lain untuk pengguna WikiHow "
+"apabila membuka akaun melalui OpenID."
+
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "URL avatar %s tidak sah."
+
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Avatar tidak dapat diambil dari %s."

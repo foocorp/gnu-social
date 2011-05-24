@@ -1,6 +1,7 @@
 # Translation of StatusNet - ExtendedProfile to Swedish (Svenska)
 # Exported from translatewiki.net
 #
+# Author: Lokal Profil
 # Author: WikiPhoenix
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:38+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:24+0000\n"
 "Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-17 13:01:04+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
@@ -37,7 +38,7 @@ msgid "Unexpected form submission."
 msgstr ""
 
 msgid "Details saved."
-msgstr ""
+msgstr "Detaljer sparade."
 
 #. TRANS: Exception thrown when no date was entered in a required date field.
 #. TRANS: %s is the field name.
@@ -82,85 +83,153 @@ msgstr "Redigera utökade profilinställningar"
 msgid "Edit"
 msgstr "Redigera"
 
+#. TRANS: Plugin description.
 msgid "UI extensions for additional profile fields."
 msgstr ""
 
+#. TRANS: Link text on user profile page leading to extended profile page.
 msgid "More details..."
 msgstr "Mer detaljer..."
 
+#. TRANS: Title for extended profile entry deletion dialog.
+msgid "Confirmation Required"
+msgstr ""
+
+#. TRANS: Confirmation text for extended profile entry deletion dialog.
+msgid "Really delete this entry?"
+msgstr ""
+
+#. TRANS: Value between parentheses (phone number, website, or IM address).
+#, php-format
+msgid "(%s)"
+msgstr ""
+
+#. TRANS: Field label in experience area of extended profile.
+#. TRANS: Field label in experience edit area of extended profile (which company does one work for).
 msgid "Company"
-msgstr ""
+msgstr "Företag"
 
+#. TRANS: Field label in experience area of extended profile (when did one start a position).
+#. TRANS: Field label in experience edit area of extended profile (when did one start at a company).
+#. TRANS: Field label in education area of extended profile (when did one start an education).
+#. TRANS: Field label in education edit area of extended profile (when did one start an education).
 msgid "Start"
-msgstr ""
+msgstr "Start"
 
+#. TRANS: Field label in experience area of extended profile (when did one end a position).
+#. TRANS: Field label in experience edit area of extended profile (when did one terminate at a company).
+#. TRANS: Field label in education area of extended profile (when did one end a education).
+#. TRANS: Field label in education edit area of extended profile (when did one end an education).
 msgid "End"
+msgstr "Slut"
+
+#. TRANS: Field value in experience area of extended profile (one still holds a position).
+msgid "(Current)"
 msgstr ""
 
+#. TRANS: Checkbox label in experience edit area of extended profile (one still works at a company).
 msgid "Current"
 msgstr ""
 
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
+#. TRANS: Field label for extended profile properties.
 msgid "Institution"
 msgstr "Institution"
 
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
 msgid "Degree"
 msgstr ""
 
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
 msgid "Description"
 msgstr ""
 
-msgctxt "BUTTON"
-msgid "Save"
+#. TRANS: Link description in extended profile page to add another profile element.
+msgid "Add another item"
 msgstr ""
 
+#. TRANS: Field label for undefined field in extended profile.
+#, php-format
+msgid "TYPE: %s"
+msgstr ""
+
+#. TRANS: Button text for saving extended profile properties.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Spara"
+
+#. TRANS: .
+#. TRANS: Button title for saving extended profile properties.
+msgid "Save details"
+msgstr "Spara detaljer"
+
+#. TRANS: Field label for extended profile properties.
 msgid "Phone"
 msgstr "Telefon"
 
+#. TRANS: Field label for extended profile properties (Instant Messaging).
 msgid "IM"
 msgstr ""
 
-#, fuzzy
+#. TRANS: Field label for extended profile properties.
 msgid "Website"
-msgstr "Webbsidor"
+msgstr "Webbplats"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Employer"
 msgstr "Arbetsgivare"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Personal"
 msgstr "Personlig"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Full name"
 msgstr "Fullt namn"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Title"
 msgstr "Titel"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Manager"
 msgstr ""
 
+#. TRANS: Field label for extended profile properties.
 msgid "Location"
 msgstr "Ort"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Bio"
 msgstr ""
 
+#. TRANS: Field label for extended profile properties.
 msgid "Tags"
 msgstr "Taggar"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Contact"
 msgstr "Kontakt"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Birthday"
 msgstr "Födelsedag"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Spouse's name"
 msgstr "Partnerns namn"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Kids' names"
 msgstr "Barnens namn"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Work experience"
 msgstr "Arbetserfarenhet"
 
+#. TRANS: Field label for extended profile properties.
 msgid "Education"
 msgstr "Utbildning"

@@ -49,7 +49,8 @@ class BlacklistadminpanelAction extends AdminPanelAction
      */
     function title()
     {
-        return _m('Blacklist');
+        // TRANS: Title of blacklist plugin administration panel.
+        return _m('TITLE','Blacklist');
     }
 
     /**
@@ -59,6 +60,7 @@ class BlacklistadminpanelAction extends AdminPanelAction
      */
     function getInstructions()
     {
+        // TRANS: Instructions for blacklist plugin administration panel.
         return _m('Blacklisted URLs and nicknames');
     }
 
@@ -171,17 +173,21 @@ class BlacklistAdminPanelForm extends Form
 
         $nickPatterns = Nickname_blacklist::getPatterns();
 
+        // TRANS: Field label in blacklist plugin administration panel.
         $this->out->textarea('blacklist-nicknames', _m('Nicknames'),
                              implode("\r\n", $nickPatterns),
-                             _m('Patterns of nicknames to block, one per line'));
+                             // TRANS: Field title in blacklist plugin administration panel.
+                             _m('Patterns of nicknames to block, one per line.'));
         $this->out->elementEnd('li');
 
         $urlPatterns = Homepage_blacklist::getPatterns();
 
         $this->out->elementStart('li');
+        // TRANS: Field label in blacklist plugin administration panel.
         $this->out->textarea('blacklist-urls', _m('URLs'),
                              implode("\r\n", $urlPatterns),
-                             _m('Patterns of URLs to block, one per line'));
+                             // TRANS: Field title in blacklist plugin administration panel.
+                             _m('Patterns of URLs to block, one per line.'));
         $this->out->elementEnd('li');
 
         $this->out->elementEnd('ul');
@@ -195,9 +201,11 @@ class BlacklistAdminPanelForm extends Form
     function formActions()
     {
         $this->out->submit('submit',
-                           _m('Save'),
+                           // TRANS: Button text in blacklist plugin administration panel to save settings.
+                           _m('BUTTON','Save'),
                            'submit',
                            null,
-                           _m('Save site settings'));
+                           // TRANS: Button title in blacklist plugin administration panel to save settings.
+                           _m('Save site settings.'));
     }
 }

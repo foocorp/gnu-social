@@ -233,7 +233,13 @@ function common_check_user($nickname, $password)
     $authenticatedUser = false;
 
     if (Event::handle('StartCheckPassword', array($nickname, $password, &$authenticatedUser))) {
-        $user = User::staticGet('nickname', common_canonical_nickname($nickname));
+
+        if (common_is_email($nickname)) {
+            $user = User::staticGet('email', common_canonical_email($nickname));
+        } else {
+            $user = User::staticGet('nickname', common_canonical_nickname($nickname));
+        }
+
         if (!empty($user)) {
             if (!empty($password)) { // never allow login with blank password
                 if (0 == strcmp(common_munge_password($password, $user->id),
@@ -638,7 +644,7 @@ function common_linkify_mention($mention)
 
         $xs->elementStart('span', 'vcard');
         $xs->elementStart('a', $attrs);
-        $xs->element('span', 'fn nickname', $mention['text']);
+        $xs->element('span', 'fn nickname mention', $mention['text']);
         $xs->elementEnd('a');
         $xs->elementEnd('span');
 
@@ -754,17 +760,19 @@ function common_find_mentions($text, $notice)
         foreach ($hmatches[1] as $hmatch) {
 
             $tag = common_canonical_tag($hmatch[0]);
+            $plist = Profile_list::getByTaggerAndTag($sender->id, $tag);
+            if (!empty($plist) && !$plist->private) {
+                $tagged = $sender->getTaggedSubscribers($tag);
 
-            $tagged = Profile_tag::getTagged($sender->id, $tag);
+                $url = common_local_url('showprofiletag',
+                                        array('tagger' => $sender->nickname,
+                                              'tag' => $tag));
 
-            $url = common_local_url('subscriptions',
-                                    array('nickname' => $sender->nickname,
-                                          'tag' => $tag));
-
-            $mentions[] = array('mentioned' => $tagged,
-                                'text' => $hmatch[0],
-                                'position' => $hmatch[1],
-                                'url' => $url);
+                $mentions[] = array('mentioned' => $tagged,
+                                    'text' => $hmatch[0],
+                                    'position' => $hmatch[1],
+                                    'url' => $url);
+            }
         }
 
         Event::handle('EndFindMentions', array($sender, $text, &$mentions));
@@ -1148,7 +1156,7 @@ function common_group_link($sender_id, $nickname)
         $xs = new XMLStringer();
         $xs->elementStart('span', 'vcard');
         $xs->elementStart('a', $attrs);
-        $xs->element('span', 'fn nickname', $nickname);
+        $xs->element('span', 'fn nickname group', $nickname);
         $xs->elementEnd('a');
         $xs->elementEnd('span');
         return $xs->getString();
@@ -1219,19 +1227,22 @@ function common_relative_profile($sender, $nickname, $dt=null)
 
 function common_local_url($action, $args=null, $params=null, $fragment=null, $addSession=true)
 {
-    $r = Router::get();
-    $path = $r->build($action, $args, $params, $fragment);
+    if (Event::handle('StartLocalURL', array(&$action, &$params, &$fragment, &$addSession, &$url))) {
+        $r = Router::get();
+        $path = $r->build($action, $args, $params, $fragment);
 
-    $ssl = common_is_sensitive($action);
+        $ssl = common_is_sensitive($action);
 
-    if (common_config('site','fancy')) {
-        $url = common_path(mb_substr($path, 1), $ssl, $addSession);
-    } else {
-        if (mb_strpos($path, '/index.php') === 0) {
+        if (common_config('site','fancy')) {
             $url = common_path(mb_substr($path, 1), $ssl, $addSession);
         } else {
-            $url = common_path('index.php'.$path, $ssl, $addSession);
+            if (mb_strpos($path, '/index.php') === 0) {
+                $url = common_path(mb_substr($path, 1), $ssl, $addSession);
+            } else {
+                $url = common_path('index.php'.$path, $ssl, $addSession);
+            }
         }
+        Event::handle('EndLocalURL', array(&$action, &$params, &$fragment, &$addSession, &$url));
     }
     return $url;
 }
@@ -1855,6 +1866,30 @@ function common_config($main, $sub)
             array_key_exists($sub, $config[$main])) ? $config[$main][$sub] : false;
 }
 
+function common_config_set($main, $sub, $value)
+{
+    global $config;
+    if (!array_key_exists($main, $config)) {
+        $config[$main] = array();
+    }
+    $config[$main][$sub] = $value;
+}
+
+function common_config_append($main, $sub, $value)
+{
+    global $config;
+    if (!array_key_exists($main, $config)) {
+        $config[$main] = array();
+    }
+    if (!array_key_exists($sub, $config[$main])) {
+        $config[$main][$sub] = array();
+    }
+    if (!is_array($config[$main][$sub])) {
+        $config[$main][$sub] = array($config[$main][$sub]);
+    }
+    array_push($config[$main][$sub], $value);
+}
+
 /**
  * Pull arguments from a GET/POST/REQUEST array with first-level input checks:
  * strips "magic quotes" slashes if necessary, and kills invalid UTF-8 strings.
@@ -1926,12 +1961,50 @@ function common_confirmation_code($bits)
 
 // convert markup to HTML
 
-function common_markup_to_html($c)
+function common_markup_to_html($c, $args=null)
 {
+    if (is_null($args)) {
+        $args = array();
+    }
+
+    // XXX: not very efficient
+
+    foreach ($args as $name => $value) {
+        $c = preg_replace('/%%arg.'.$name.'%%/', $value, $c);
+    }
+
+    $c = preg_replace('/%%user.(\w+)%%/e', "common_user_property('\\1')", $c);
     $c = preg_replace('/%%action.(\w+)%%/e', "common_local_url('\\1')", $c);
     $c = preg_replace('/%%doc.(\w+)%%/e', "common_local_url('doc', array('title'=>'\\1'))", $c);
     $c = preg_replace('/%%(\w+).(\w+)%%/e', 'common_config(\'\\1\', \'\\2\')', $c);
     return Markdown($c);
+}
+
+function common_user_property($property)
+{
+    $profile = Profile::current();
+
+    if (empty($profile)) {
+        return null;
+    }
+
+    switch ($property) {
+    case 'profileurl':
+    case 'nickname':
+    case 'fullname':
+    case 'location':
+    case 'bio':
+        return $profile->$property;
+        break;
+    case 'avatar':
+        return $profile->getAvatar(AVATAR_STREAM_SIZE);
+        break;
+    case 'bestname':
+        return $profile->getBestName();
+        break;
+    default:
+        return null;
+    }
 }
 
 function common_profile_uri($profile)
@@ -2229,4 +2302,9 @@ function common_log_perf_counters()
             common_log(LOG_DEBUG, "PERF COUNTER: $key $count ($unique unique)");
         }
     }
+}
+
+function common_is_email($str)
+{
+    return (strpos($str, '@') !== false);
 }

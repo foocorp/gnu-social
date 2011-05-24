@@ -135,7 +135,7 @@ class OpenIDPlugin extends Plugin
                     common_redirect(common_local_url('openidsettings'));
                     exit(0);
                 } else if ($action == 'recoverpassword') {
-                    throw new ClientException('Unavailable action');
+                    throw new ClientException('Unavailable action.');
                 }
             }
         }
@@ -215,7 +215,7 @@ class OpenIDPlugin extends Plugin
     {
         if (common_config('site', 'openidonly') && !common_logged_in()) {
             // TRANS: Tooltip for main menu option "Login"
-            $tooltip = _m('TOOLTIP', 'Login to the site');
+            $tooltip = _m('TOOLTIP', 'Login to the site.');
             $action->menuItem(common_local_url('openidlogin'),
                               // TRANS: Main menu option when not logged in to log in
                               _m('MENU', 'Login'),
@@ -232,7 +232,7 @@ class OpenIDPlugin extends Plugin
                               'nav_help');
             if (!common_config('site', 'private')) {
                 // TRANS: Tooltip for main menu option "Search"
-                $tooltip = _m('TOOLTIP', 'Search for people or text');
+                $tooltip = _m('TOOLTIP', 'Search for people or text.');
                 $action->menuItem(common_local_url('peoplesearch'),
                                   // TRANS: Main menu option when logged in or when the StatusNet instance is not private
                                   _m('MENU', 'Search'), $tooltip, false, 'nav_search');
@@ -294,7 +294,7 @@ class OpenIDPlugin extends Plugin
                           // TRANS: OpenID plugin menu item on site logon page.
                           _m('MENU', 'OpenID'),
                           // TRANS: OpenID plugin tooltip for logon menu item.
-                          _m('Login or register with OpenID'),
+                          _m('Login or register with OpenID.'),
                           $action_name === 'openidlogin');
     }
 
@@ -330,7 +330,7 @@ class OpenIDPlugin extends Plugin
                           // TRANS: OpenID plugin menu item on user settings page.
                           _m('MENU', 'OpenID'),
                           // TRANS: OpenID plugin tooltip for user settings menu item.
-                          _m('Add or remove OpenIDs'),
+                          _m('Add or remove OpenIDs.'),
                           $action_name === 'openidsettings');
 
         return true;
@@ -532,7 +532,8 @@ class OpenIDPlugin extends Plugin
     function onEndLoadDoc($title, &$output)
     {
         if ($title == 'help') {
-            $menuitem = '* [OpenID](%%doc.openid%%) - what OpenID is and how to use it with this service';
+            // TRANS: Item on help page. This message contains Markdown links in the form [description](link).
+            $menuitem = _m('* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this service.');
 
             $output .= common_markup_to_html($menuitem);
         }
@@ -604,7 +605,7 @@ class OpenIDPlugin extends Plugin
                 // TRANS: OpenID configuration menu item.
                 _m('MENU','OpenID'),
                 // TRANS: Tooltip for OpenID configuration menu item.
-                _m('OpenID configuration'),
+                _m('OpenID configuration.'),
                 $action_name == 'openidadminpanel',
                 'nav_openid_admin_panel'
             );
@@ -649,7 +650,7 @@ class OpenIDPlugin extends Plugin
                             'author' => 'Evan Prodromou, Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:OpenID',
                             'rawdescription' =>
-                            // TRANS: OpenID plugin description.
+                            // TRANS: Plugin description.
                             _m('Use <a href="http://openid.net/">OpenID</a> to login to the site.'));
         return true;
     }
@@ -677,7 +678,7 @@ class OpenIDPlugin extends Plugin
     {
         $action->elementStart('fieldset');
         // TRANS: OpenID plugin logon form legend.
-        $action->element('legend', null, _m('OpenID login'));
+        $action->element('legend', null, _m('LEGEND','OpenID login'));
 
         $action->elementStart('ul', 'form_data');
         $action->elementStart('li');
@@ -703,7 +704,7 @@ class OpenIDPlugin extends Plugin
             $action->input('openid_url', _m('OpenID URL'),
                          '',
                         // TRANS: OpenID plugin logon form field instructions.
-                         _m('Your OpenID URL'));
+                         _m('Your OpenID URL.'));
         }
         $action->elementEnd('li');
         $action->elementEnd('ul');
@@ -760,26 +761,26 @@ class OpenIDPlugin extends Plugin
 
     /**
      * Add link in user's XRD file to allow OpenID login.
-     * 
+     *
      * This link in the XRD should let users log in with their
      * Webfinger identity to services that support it. See
      * http://webfinger.org/login for an example.
      *
      * @param XRD  &$xrd Currently-displaying XRD object
      * @param User $user The user that it's for
-     * 
+     *
      * @return boolean hook value (always true)
      */
 
     function onEndXrdActionLinks(&$xrd, $user)
     {
         $profile = $user->getProfile();
-	
+
         if (!empty($profile)) {
             $xrd->links[] = array('rel' => 'http://specs.openid.net/auth/2.0/provider',
                                   'href' => $profile->profileurl);
         }
-	
+
         return true;
     }
 }

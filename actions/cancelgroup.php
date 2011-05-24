@@ -139,9 +139,9 @@ class CancelgroupAction extends Action
         parent::handle($args);
 
         try {
-            $this->profile->cancelJoinGroup($this->group);
+            $this->request->abort();
         } catch (Exception $e) {
-            common_log(LOG_ERROR, "Exception canceling group sub: " . $e->getMessage());
+            common_log(LOG_ERR, "Exception canceling group sub: " . $e->getMessage());
             // TRANS: Server error displayed when cancelling a queued group join request fails.
             // TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.
             $this->serverError(sprintf(_('Could not cancel request for user %1$s to join group %2$s.'),

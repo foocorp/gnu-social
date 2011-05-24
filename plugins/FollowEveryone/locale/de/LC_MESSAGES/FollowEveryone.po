@@ -1,6 +1,7 @@
 # Translation of StatusNet - FollowEveryone to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: Giftpflanze
 # Author: The Evil IP address
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,18 +10,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FollowEveryone\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:43+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:32+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:24+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:27:28+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-followeveryone\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Checkbox label in form for profile settings.
+msgid "Follow everyone"
+msgstr "Jedem folgen"
+
+#. TRANS: Plugin description.
 msgid "New users follow everyone at registration and are followed in return."
 msgstr ""
 "Neue Benutzer folgen jedem nach der Registrierung und werden im Gegenzug "

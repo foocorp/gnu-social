@@ -236,10 +236,11 @@ var SN = { // StatusNet
          * @fixme can't submit file uploads
          *
          * @param {jQuery} form: jQuery object whose first element is a form
+         * @param function onSuccess: something extra to do on success
          *
          * @access public
          */
-        FormXHR: function(form) {
+        FormXHR: function(form, onSuccess) {
             $.ajax({
                 type: 'POST',
                 dataType: 'xml',
@@ -261,7 +262,7 @@ var SN = { // StatusNet
                         errorReported = $('#error', xhr.responseXML).text();
                     }
                     alert(errorReported || errorThrown || textStatus);
-                    
+
                     // Restore the form to original state.
                     // Hopefully. :D
                     form
@@ -274,9 +275,15 @@ var SN = { // StatusNet
                     if (typeof($('form', data)[0]) != 'undefined') {
                         form_new = document._importNode($('form', data)[0], true);
                         form.replaceWith(form_new);
+                        if (onSuccess) {
+                            onSuccess();
+                        }
                     }
                     else if (typeof($('p', data)[0]) != 'undefined') {
                         form.replaceWith(document._importNode($('p', data)[0], true));
+                        if (onSuccess) {
+                            onSuccess();
+                        }
                     }
                     else {
                         alert('Unknown error.');
@@ -476,6 +483,74 @@ var SN = { // StatusNet
             });
         },
 
+        FormProfileSearchXHR: function(form) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'xml',
+                url: form.attr('action'),
+                data: form.serialize() + '&ajax=1',
+                beforeSend: function(xhr) {
+                    form
+                        .addClass(SN.C.S.Processing)
+                        .find('.submit')
+                            .addClass(SN.C.S.Disabled)
+                            .attr(SN.C.S.Disabled, SN.C.S.Disabled);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(errorThrown || textStatus);
+                },
+                success: function(data, textStatus) {
+                    var results_placeholder = $('#profile_search_results');
+                    if (typeof($('ul', data)[0]) != 'undefined') {
+                        var list = document._importNode($('ul', data)[0], true);
+                        results_placeholder.replaceWith(list);
+                    }
+                    else {
+                        var _error = $('<li/>').append(document._importNode($('p', data)[0], true));
+                        results_placeholder.html(_error);
+                    }
+                    form
+                        .removeClass(SN.C.S.Processing)
+                        .find('.submit')
+                            .removeClass(SN.C.S.Disabled)
+                            .attr(SN.C.S.Disabled, false);
+                }
+            });
+        },
+
+        FormPeopletagsXHR: function(form) {
+            $.ajax({
+                type: 'POST',
+                dataType: 'xml',
+                url: form.attr('action'),
+                data: form.serialize() + '&ajax=1',
+                beforeSend: function(xhr) {
+                    form.find('.submit')
+                            .addClass(SN.C.S.Processing)
+                            .addClass(SN.C.S.Disabled)
+                            .attr(SN.C.S.Disabled, SN.C.S.Disabled);
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    alert(errorThrown || textStatus);
+                },
+                success: function(data, textStatus) {
+                    var results_placeholder = form.parents('.entity_tags');
+                    if (typeof($('.entity_tags', data)[0]) != 'undefined') {
+                        var tags = document._importNode($('.entity_tags', data)[0], true);
+                        $(tags).find('.editable').append($('<button class="peopletags_edit_button"/>'));
+                        results_placeholder.replaceWith(tags);
+                    } else {
+                        results_placeholder.find('p').remove();
+                        results_placeholder.append(document._importNode($('p', data)[0], true));
+                        form.removeClass(SN.C.S.Processing)
+                            .find('.submit')
+                                .removeClass(SN.C.S.Disabled)
+                                .attr(SN.C.S.Disabled, false);
+                    }
+                }
+            });
+        },
+
         normalizeGeoData: function(form) {
             SN.C.I.NoticeDataGeo.NLat = form.find('[name=lat]').val();
             SN.C.I.NoticeDataGeo.NLon = form.find('[name=lon]').val();
@@ -505,6 +580,7 @@ var SN = { // StatusNet
             }
 
         },
+
         /**
          * Fetch an XML DOM from an XHR's response data.
          *
@@ -540,8 +616,7 @@ var SN = { // StatusNet
             $('#content .notice_reply').live('click', function(e) {
                 e.preventDefault();
                 var notice = $(this).closest('li.notice');
-                var nickname = ($('.author .nickname', notice).length > 0) ? $($('.author .nickname', notice)[0]) : $('.author .nickname.uid');
-                SN.U.NoticeInlineReplyTrigger(notice, '@' + nickname.text());
+                SN.U.NoticeInlineReplyTrigger(notice);
                 return false;
             });
         },
@@ -575,8 +650,13 @@ var SN = { // StatusNet
                 // and we'll add on the end of it. Will add if needed.
                 list = $('ul.threaded-replies', notice);
                 if (list.length == 0) {
-                    list = $('<ul class="notices threaded-replies xoxo"></ul>');
-                    notice.append(list);
+                    SN.U.NoticeInlineReplyPlaceholder(notice);
+                    list = $('ul.threaded-replies', notice);
+                } else {
+                    var placeholder = $('li.notice-reply-placeholder', notice);
+                    if (placeholder.length == 0) {
+                        SN.U.NoticeInlineReplyPlaceholder(notice);
+                    }
                 }
             }
 
@@ -586,6 +666,10 @@ var SN = { // StatusNet
             var nextStep = function() {
                 // Override...?
                 replyForm.find('input[name=inreplyto]').val(id);
+                replyForm.find('#notice_to').attr('disabled', 'disabled').hide();
+                replyForm.find('#notice_private').attr('disabled', 'disabled').hide();
+                replyForm.find('label[for=notice_to]').hide();
+                replyForm.find('label[for=notice_private]').hide();
 
                 // Set focus...
                 var text = replyForm.find('textarea');
@@ -645,8 +729,13 @@ var SN = { // StatusNet
 
         NoticeInlineReplyPlaceholder: function(notice) {
             var list = notice.find('ul.threaded-replies');
+            if (list.length == 0) {
+                list = $('<ul class="notices threaded-replies xoxo"></ul>');
+                notice.append(list);
+                list = notice.find('ul.threaded-replies');
+            }
             var placeholder = $('<li class="notice-reply-placeholder">' +
-                                    '<input class="placeholder">' +
+                                    '<input class="placeholder" />' +
                                 '</li>');
             placeholder.find('input')
                 .val(SN.msg('reply_placeholder'));
@@ -687,6 +776,7 @@ var SN = { // StatusNet
          * popout before submitting.
          *
          * Uses 'live' rather than 'bind', so applies to future as well as present items.
+         *
          */
         NoticeRepeat: function() {
             $('.form_repeat').live('click', function(e) {
@@ -1316,6 +1406,14 @@ var SN = { // StatusNet
                 $('#input_form_nav_'+tag).addClass('current');
             }
 
+            // Don't remove 'current' if we also have the "nonav" class.
+            // An example would be the message input form. removing
+            // 'current' will cause the form to vanish from the page.
+            var nonav = $('.input_form.current.nonav');
+            if (nonav.length > 0) {
+                return;
+            }
+
 	    $('.input_form.current').removeClass('current');
 	    $('#input_form_'+tag)
                 .addClass('current')
@@ -1323,7 +1421,7 @@ var SN = { // StatusNet
                     var form = $(this);
                     SN.Init.NoticeFormSetup(form);
                 })
-                .find('textarea:first').focus();
+                .find('.notice_data-text').focus();
 	}
     },
 
@@ -1382,6 +1480,10 @@ var SN = { // StatusNet
                         });
                     }
                 });
+
+                // Infield labels for notice form inputs.
+                $('.input_forms fieldset fieldset label').inFieldLabels({ fadeOpacity:0 });
+
             }
         },
 
@@ -1430,7 +1532,25 @@ var SN = { // StatusNet
          */
         EntityActions: function() {
             if ($('body.user_in').length > 0) {
+                $('.form_user_subscribe').live('click', function() { SN.U.FormXHR($(this)); return false; });
+                $('.form_user_unsubscribe').live('click', function() { SN.U.FormXHR($(this)); return false; });
+                $('.form_group_join').live('click', function() { SN.U.FormXHR($(this)); return false; });
+                $('.form_group_leave').live('click', function() { SN.U.FormXHR($(this)); return false; });
+                $('.form_user_nudge').live('click', function() { SN.U.FormXHR($(this)); return false; });
+                $('.form_peopletag_subscribe').live('click', function() { SN.U.FormXHR($(this)); return false; });
+                $('.form_peopletag_unsubscribe').live('click', function() { SN.U.FormXHR($(this)); return false; });
+                $('.form_user_add_peopletag').live('click', function() { SN.U.FormXHR($(this)); return false; });
+                $('.form_user_remove_peopletag').live('click', function() { SN.U.FormXHR($(this)); return false; });
+
                 SN.U.NewDirectMessage();
+            }
+        },
+
+        ProfileSearch: function() {
+            if ($('body.user_in').length > 0) {
+                $('.form_peopletag_edit_user_search input.submit').live('click', function() {
+                    SN.U.FormProfileSearchXHR($(this).parents('form')); return false;
+                });
             }
         },
 
@@ -1453,6 +1573,100 @@ var SN = { // StatusNet
             $('#form_login').bind('submit', function() {
                 SN.U.StatusNetInstance.Set({Nickname: $('#form_login #nickname').val()});
                 return true;
+            });
+        },
+
+        /**
+         * Called when a people tag edit box is shown in the interface
+         *
+         * - loads the jQuery UI autocomplete plugin
+         * - sets event handlers for tag completion
+         *
+         */
+        PeopletagAutocomplete: function(txtBox) {
+            var split = function(val) {
+                return val.split( /\s+/ );
+            }
+            var extractLast = function(term) {
+                return split(term).pop();
+            }
+
+            // don't navigate away from the field on tab when selecting an item
+            txtBox.live( "keydown", function( event ) {
+                if ( event.keyCode === $.ui.keyCode.TAB &&
+                        $(this).data( "autocomplete" ).menu.active ) {
+                    event.preventDefault();
+                }
+            }).autocomplete({
+                minLength: 0,
+                source: function(request, response) {
+		            // delegate back to autocomplete, but extract the last term
+		            response($.ui.autocomplete.filter(
+			            SN.C.PtagACData, extractLast(request.term)));
+	            },
+	            focus: function() {
+	                return false;
+                },
+	            select: function(event, ui) {
+		            var terms = split(this.value);
+		            terms.pop();
+		            terms.push(ui.item.value);
+		            terms.push("");
+		            this.value = terms.join(" ");
+		            return false;
+	            }
+            }).data('autocomplete')._renderItem = function(ul, item) {
+                    // FIXME: with jQuery UI you cannot have it highlight the match
+                    var _l = '<a class="ptag-ac-line-tag">' + item.tag
+                          + ' <em class="privacy_mode">' + item.mode + '</em>'
+                          + '<span class="freq">' + item.freq + '</span></a>'
+
+		            return $("<li/>")
+	                        .addClass('mode-' + item.mode)
+                            .addClass('ptag-ac-line')
+                            .data("item.autocomplete", item)
+                            .append(_l)
+                            .appendTo(ul);
+	            }
+        },
+
+        /**
+         * Run setup for the ajax people tags editor
+         *
+         * - show edit button
+         * - set event handle for click on edit button
+         *   - loads people tag autocompletion data if not already present
+         *     or if it is stale.
+         *
+         */
+        PeopleTags: function() {
+            $('.user_profile_tags .editable').append($('<button class="peopletags_edit_button"/>'));
+
+            $('.peopletags_edit_button').live('click', function() {
+                var form = $(this).parents('dd').eq(0).find('form');
+                // We can buy time from the above animation
+
+                $.ajax({
+                    url: _peopletagAC,
+                    dataType: 'json',
+                    data: {token: $('#token').val()},
+                    ifModified: true,
+                    success: function(data) {
+                        // item.label is used to match
+                        for (i=0; i < data.length; i++) {
+                            data[i].label = data[i].tag;
+                        }
+
+                        SN.C.PtagACData = data;
+                        SN.Init.PeopletagAutocomplete(form.find('#tags'));
+                    }
+                });
+
+                $(this).parents('ul').eq(0).fadeOut(200, function() {form.fadeIn(200).find('input#tags')});
+            });
+
+            $('.user_profile_tags form .submit').live('click', function() {
+                SN.U.FormPeopletagsXHR($(this).parents('form')); return false;
             });
         },
 
@@ -1502,7 +1716,26 @@ var SN = { // StatusNet
                     }
                 }
             });
-        }
+        },
+
+	CheckBoxes: function() {
+	    $("span[class='checkbox-wrapper']").addClass("unchecked");
+	    $(".checkbox-wrapper").click(function(){
+	        if($(this).children("input").attr("checked")){
+		    // uncheck
+		    $(this).children("input").attr({checked: ""});
+		    $(this).removeClass("checked");
+		    $(this).addClass("unchecked");
+		    $(this).children("label").text("Private?");
+		}else{
+		    // check
+		    $(this).children("input").attr({checked: "checked"});
+		    $(this).removeClass("unchecked");
+		    $(this).addClass("checked");
+		    $(this).children("label").text("Private");
+		}
+	    });
+	}
     }
 };
 
@@ -1516,6 +1749,7 @@ var SN = { // StatusNet
 $(document).ready(function(){
     SN.Init.AjaxForms();
     SN.Init.UploadForms();
+    SN.Init.CheckBoxes();
     if ($('.'+SN.C.S.FormNotice).length > 0) {
         SN.Init.NoticeForm();
     }
@@ -1528,4 +1762,11 @@ $(document).ready(function(){
     if ($('#form_login').length > 0) {
         SN.Init.Login();
     }
+    if ($('#profile_search_results').length > 0) {
+        SN.Init.ProfileSearch();
+    }
+    if ($('.user_profile_tags .editable').length > 0) {
+        SN.Init.PeopleTags();
+    }
 });
+

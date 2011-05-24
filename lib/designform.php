@@ -45,7 +45,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @link     http://status.net/
  *
  */
-
 class DesignForm extends Form
 {
     /**
@@ -62,7 +61,6 @@ class DesignForm extends Form
      * @param Design        $design    initial design
      * @param Design        $actionurl url of action (for form posting)
      */
-
     function __construct($out, $design, $actionurl)
     {
         parent::__construct($out);
@@ -76,7 +74,6 @@ class DesignForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'design';
@@ -87,7 +84,6 @@ class DesignForm extends Form
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_design';
@@ -98,7 +94,6 @@ class DesignForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return $this->actionurl;
@@ -111,6 +106,7 @@ class DesignForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend of form for changing the page design.
         $this->out->element('legend', null, _('Change design'));
     }
 
@@ -119,7 +115,6 @@ class DesignForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->backgroundData();
@@ -137,7 +132,7 @@ class DesignForm extends Form
         // TRANS: Button text on profile design page to immediately reset all colour settings to default.
         $this->out->submit('defaults', _('Use defaults'), 'submit form_action-default',
                            // TRANS: Title for button on profile design page to reset all colour settings to default.
-                           'defaults', _('Restore default designs'));
+                           'defaults', _('Restore default designs.'));
 
         $this->out->element('input', array('id' => 'settings_design_reset',
                                            'type' => 'reset',
@@ -145,7 +140,7 @@ class DesignForm extends Form
                                            'value' => _m('BUTTON', 'Reset'),
                                            'class' => 'submit form_action-primary',
                                            // TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-                                           'title' => _('Reset back to default')));
+                                           'title' => _('Reset back to default.')));
     }
 
     function backgroundData()
@@ -161,7 +156,7 @@ class DesignForm extends Form
                                            'id' => 'design_background-image_file'));
         // TRANS: Instructions for form on profile design page.
         $this->out->element('p', 'form_guide', _('You can upload your personal ' .
-                                                 'background image. The maximum file size is 2Mb.'));
+                                                 'background image. The maximum file size is 2MB.'));
         $this->out->element('input', array('name' => 'MAX_FILE_SIZE',
                                            'type' => 'hidden',
                                            'id' => 'MAX_FILE_SIZE',
@@ -319,6 +314,6 @@ class DesignForm extends Form
         // TRANS: Button text on profile design page to save settings.
         $this->out->submit('save', _m('BUTTON','Save'), 'submit form_action-secondary',
                            // TRANS: Title for button on profile design page to save settings.
-                           'save', _('Save design'));
+                           'save', _('Save design.'));
     }
 }

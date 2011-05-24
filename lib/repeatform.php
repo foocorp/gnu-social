@@ -40,13 +40,11 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class RepeatForm extends Form
 {
     /**
      * Notice to repeat
      */
-
     var $notice = null;
 
     /**
@@ -55,7 +53,6 @@ class RepeatForm extends Form
      * @param HTMLOutputter $out    output channel
      * @param Notice        $notice notice to repeat
      */
-
     function __construct($out=null, $notice=null)
     {
         parent::__construct($out);
@@ -68,7 +65,6 @@ class RepeatForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'repeat-' . $this->notice->id;
@@ -79,7 +75,6 @@ class RepeatForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('repeat');
@@ -90,7 +85,6 @@ class RepeatForm extends Form
      *
      * @return void
      */
-
     function sessionToken()
     {
         $this->out->hidden('token-' . $this->notice->id,
@@ -104,6 +98,7 @@ class RepeatForm extends Form
      */
     function formLegend()
     {
+        // TRANS: For legend for notice repeat form.
         $this->out->element('legend', null, _('Repeat this notice?'));
     }
 
@@ -112,7 +107,6 @@ class RepeatForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->hidden('notice-n'.$this->notice->id,
@@ -125,11 +119,13 @@ class RepeatForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->submit('repeat-submit-' . $this->notice->id,
-                           _('Yes'), 'submit', null, _('Repeat this notice'));
+                           // TRANS: Button text to repeat a notice on notice repeat form.
+                           _m('BUTTON','Yes'), 'submit', null,
+                           // TRANS: Button title to repeat a notice on notice repeat form.
+                           _('Repeat this notice.'));
     }
 
     /**
@@ -137,7 +133,6 @@ class RepeatForm extends Form
      *
      * @return string the form's class
      */
-
     function formClass()
     {
         return 'form_repeat';

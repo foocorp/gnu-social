@@ -59,9 +59,9 @@ class Salmon
                 common_log(LOG_ERR, "Salmon unable to sign: " . $e->getMessage());
                 return false;
             }
-    
+
             $headers = array('Content-Type: application/magic-envelope+xml');
-    
+
             try {
                 $client = new HTTPClient();
                 $client->setBody($envelope);

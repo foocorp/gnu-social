@@ -64,7 +64,7 @@ class NewnoticeAction extends Action
     function title()
     {
         // TRANS: Page title for sending a new notice.
-        return _('New notice');
+        return _m('TITLE','New notice');
     }
 
     /**
@@ -83,7 +83,7 @@ class NewnoticeAction extends Action
     function handle($args)
     {
         if (!common_logged_in()) {
-            // TRANS: Client error displayed trying to send a notice while not logged in.
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // check for this before token since all POST and FILES data
@@ -101,6 +101,7 @@ class NewnoticeAction extends Action
             // CSRF protection
             $token = $this->trimmed('token');
             if (!$token || $token != common_session_token()) {
+                // TRANS: Client error displayed when the session token does not match or is not given.
                 $this->clientError(_('There was a problem with your session token. '.
                                      'Try again, please.'));
             }
@@ -180,6 +181,8 @@ class NewnoticeAction extends Action
 
             if (Notice::contentTooLong($content_shortened)) {
                 $upload->delete();
+                // TRANS: Client error displayed exceeding the maximum notice length.
+                // TRANS: %d is the maximum length for a notice.
                 $this->clientError(sprintf(_m('Maximum notice size is %d character, including attachment URL.',
                                               'Maximum notice size is %d characters, including attachment URL.',
                                               Notice::maxContent()),
@@ -208,6 +211,10 @@ class NewnoticeAction extends Action
 
         $author_id = $user->id;
         $text      = $content_shortened;
+
+        // Does the heavy-lifting for getting "To:" information
+
+        ToSelector::fillOptions($this, $options);
 
         if (Event::handle('StartNoticeSaveWeb', array($this, &$author_id, &$text, &$options))) {
 
@@ -282,7 +289,8 @@ class NewnoticeAction extends Action
     {
         $this->startHTML('text/xml;charset=utf-8', true);
         $this->elementStart('head');
-        $this->element('title', null, _('New notice'));
+        // TRANS: Title for form to send a new notice.
+        $this->element('title', null, _m('TITLE','New notice'));
         $this->elementEnd('head');
         $this->elementStart('body');
 
@@ -323,6 +331,8 @@ class NewnoticeAction extends Action
     }
 
     /**
+     * // XXX: Should we be showing the notice form with microapps here?
+     *
      * Overload for replies or bad results
      *
      * We show content in the notice form if there were replies or results.
@@ -344,10 +354,27 @@ class NewnoticeAction extends Action
             $inreplyto = null;
         }
 
-        $notice_form = new NoticeForm($this, array('content' => $content, 
-                                                   'inreplyto' => $inreplyto));
+        $this->elementStart('div', 'input_forms');
+        $this->elementStart(
+            'div',
+            array(
+                'id'    => 'input_form_status',
+                'class' => 'input_form current nonav'
+            )
+        );
+
+        $notice_form = new NoticeForm(
+            $this,
+            array(
+                'content' => $content,
+                'inreplyto' => $inreplyto
+            )
+        );
 
         $notice_form->show();
+
+        $this->elementEnd('div');
+        $this->elementEnd('div');
     }
 
     /**

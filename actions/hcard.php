@@ -71,7 +71,7 @@ class HcardAction extends Action
         $this->profile = $this->user->getProfile();
 
         if (!$this->profile) {
-            // TRANS: Server error displayed when trying to get a user hCard for a user without a profile.
+            // TRANS: Error message displayed when referring to a user without a profile.
             $this->serverError(_('User has no profile.'));
             return false;
         }

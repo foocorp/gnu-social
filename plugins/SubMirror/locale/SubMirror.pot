@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,11 +41,12 @@ msgstr ""
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 
-#: actions/basemirror.php:136
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+#: actions/basemirror.php:137
 msgid "Not logged in."
 msgstr ""
 
-#: actions/basemirror.php:159
+#: actions/basemirror.php:160
 msgid "Subscribed"
 msgstr ""
 
@@ -76,6 +77,10 @@ msgstr ""
 msgid ""
 "You can mirror updates from many RSS and Atom feeds into your StatusNet "
 "timeline!"
+msgstr ""
+
+#: actions/mirrorsettings.php:132
+msgid "Provider add"
 msgstr ""
 
 #: SubMirrorPlugin.php:93

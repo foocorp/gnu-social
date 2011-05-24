@@ -42,7 +42,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 abstract class ImPlugin extends Plugin
 {
     //name of this IM transport
@@ -249,7 +248,7 @@ abstract class ImPlugin extends Plugin
     }
 
     /**
-     * send a confirmation code to a user
+     * Send a confirmation code to a user
      *
      * @param string $screenname screenname sending to
      * @param string $code the confirmation code
@@ -259,12 +258,16 @@ abstract class ImPlugin extends Plugin
      */
     function sendConfirmationCode($screenname, $code, $user)
     {
-        $body = sprintf(_('User "%s" on %s has said that your %s screenname belongs to them. ' .
-          'If that\'s true, you can confirm by clicking on this URL: ' .
-          '%s' .
+        // @todo FIXME: parameter 4 is not being used. Should para3 and para4 be a markdown link?
+        // TRANS: Body text for confirmation code e-mail.
+        // TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename,
+        // TRANS: %3$s is the display name of an IM plugin.
+        $body = sprintf(_('User "%1$s" on %2$s has said that your %3$s screenname belongs to them. ' .
+          'If that is true, you can confirm by clicking on this URL: ' .
+          '%4$s' .
           ' . (If you cannot click it, copy-and-paste it into the ' .
-          'address bar of your browser). If that user isn\'t you, ' .
-          'or if you didn\'t request this confirmation, just ignore this message.'),
+          'address bar of your browser). If that user is not you, ' .
+          'or if you did not request this confirmation, just ignore this message.'),
           $user->nickname, common_config('site', 'name'), $this->getDisplayName(), common_local_url('confirmaddress', array('code' => $code)));
 
         return $this->sendMessage($screenname, $body);
@@ -316,7 +319,6 @@ abstract class ImPlugin extends Plugin
 
     function broadcastNotice($notice)
     {
-
         $ni = $notice->whoGets();
 
         foreach ($ni as $user_id => $reason) {
@@ -346,7 +348,9 @@ abstract class ImPlugin extends Plugin
             case NOTICE_INBOX_SOURCE_GROUP:
                 break;
             default:
-                throw new Exception(sprintf(_("Unknown inbox source %d."), $reason));
+                // TRANS: Exception thrown when trying to deliver a notice to an unknown inbox.
+                // TRANS: %d is the unknown inbox ID (number).
+                throw new Exception(sprintf(_('Unknown inbox source %d.'), $reason));
             }
 
             common_log(LOG_INFO,
@@ -483,6 +487,8 @@ abstract class ImPlugin extends Plugin
         $content_shortened = common_shorten_links($body);
         if (Notice::contentTooLong($content_shortened)) {
           $this->sendFromSite($screenname,
+                              // TRANS: Message given when a status is too long. %1$s is the maximum number of characters,
+                              // TRANS: %2$s is the number of characters sent (used for plural).
                               sprintf(_m('Message too long - maximum is %1$d character, you sent %2$d.',
                                          'Message too long - maximum is %1$d characters, you sent %2$d.',
                                          Notice::maxContent()),
@@ -619,11 +625,13 @@ abstract class ImPlugin extends Plugin
     {
         if( ! common_config('queue', 'enabled'))
         {
-            throw new ServerException("Queueing must be enabled to use IM plugins");
+            // TRANS: Server exception thrown trying to initialise an IM plugin without meeting all prerequisites.
+            throw new ServerException(_('Queueing must be enabled to use IM plugins.'));
         }
 
         if(is_null($this->transport)){
-            throw new ServerException('transport cannot be null');
+            // TRANS: Server exception thrown trying to initialise an IM plugin without a transport method.
+            throw new ServerException(_('Transport cannot be null.'));
         }
     }
 }

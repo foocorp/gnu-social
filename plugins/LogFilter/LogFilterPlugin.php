@@ -46,6 +46,7 @@ class LogFilterPlugin extends Plugin
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:LogFilter',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Provides server-side setting to filter log output by type or keyword.'));
 
         return true;

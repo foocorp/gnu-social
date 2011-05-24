@@ -73,6 +73,7 @@ class ClientSideShortenPlugin extends Plugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:ClientSideShorten',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('ClientSideShorten causes the web interface\'s notice form to automatically shorten URLs as they entered, and before the notice is submitted.'));
         return true;
     }

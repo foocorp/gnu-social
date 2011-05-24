@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,20 +54,29 @@ msgstr ""
 msgid "Clear all flags"
 msgstr ""
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+#: adminprofileflag.php:65
+msgid "Not logged in."
+msgstr ""
+
+#: adminprofileflag.php:89
+msgid "You cannot review profile flags."
+msgstr ""
+
 #. TRANS: Title for page with a list of profiles that were flagged for review.
-#: adminprofileflag.php:125
+#: adminprofileflag.php:126
 msgid "Flagged profiles"
 msgstr ""
 
 #. TRANS: Header for moderation menu with action buttons for flagged profiles (like 'sandbox', 'silence', ...).
-#: adminprofileflag.php:242
+#: adminprofileflag.php:243
 msgid "Moderate"
 msgstr ""
 
 #. TRANS: Message displayed on a profile if it has been flagged.
 #. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
 #. TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
-#: adminprofileflag.php:388
+#: adminprofileflag.php:389
 #, php-format
 msgid "Flagged by %1$s and %2$d other"
 msgid_plural "Flagged by %1$s and %2$d others"
@@ -76,7 +85,7 @@ msgstr[1] ""
 
 #. TRANS: Message displayed on a profile if it has been flagged.
 #. TRANS: %s is a comma separated list of at most 5 user nicknames that flagged.
-#: adminprofileflag.php:392
+#: adminprofileflag.php:393
 #, php-format
 msgid "Flagged by %s"
 msgstr ""

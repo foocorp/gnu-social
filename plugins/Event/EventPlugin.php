@@ -84,6 +84,8 @@ class EventPlugin extends MicroappPlugin
         case 'ShowrsvpAction':
             include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
+        case 'EventListItem':
+        case 'RSVPListItem':
         case 'EventForm':
         case 'RSVPForm':
         case 'CancelRSVPForm':
@@ -105,7 +107,6 @@ class EventPlugin extends MicroappPlugin
      *
      * @return boolean hook value; true means continue processing, false means stop.
      */
-
     function onRouterInitialized($m)
     {
         $m->connect('main/event/new',
@@ -130,12 +131,14 @@ class EventPlugin extends MicroappPlugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Event',
                             'description' =>
+                            // TRANS: Plugin description.
                             _m('Event invitations and RSVPs.'));
         return true;
     }
 
     function appTitle() {
-        return _m('Event');
+        // TRANS: Title for event application.
+        return _m('TITLE','Event');
     }
 
     function tag() {
@@ -162,21 +165,23 @@ class EventPlugin extends MicroappPlugin
     function saveNoticeFromActivity($activity, $actor, $options=array())
     {
         if (count($activity->objects) != 1) {
-            throw new Exception('Too many activity objects.');
+            // TRANS: Exception thrown when there are too many activity objects.
+            throw new Exception(_m('Too many activity objects.'));
         }
 
         $happeningObj = $activity->objects[0];
 
         if ($happeningObj->type != Happening::OBJECT_TYPE) {
-            throw new Exception('Wrong type for object.');
+            // TRANS: Exception thrown when event plugin comes across a non-event type object.
+            throw new Exception(_m('Wrong type for object.'));
         }
 
         $notice = null;
 
         switch ($activity->verb) {
         case ActivityVerb::POST:
-            $notice = Happening::saveNew($actor, 
-                                     $start_time, 
+            $notice = Happening::saveNew($actor,
+                                     $start_time,
                                      $end_time,
                                      $happeningObj->title,
                                      null,
@@ -189,12 +194,14 @@ class EventPlugin extends MicroappPlugin
             $happening = Happening::staticGet('uri', $happeningObj->id);
             if (empty($happening)) {
                 // FIXME: save the event
-                throw new Exception("RSVP for unknown event.");
+                // TRANS: Exception thrown when trying to RSVP for an unknown event.
+                throw new Exception(_m('RSVP for unknown event.'));
             }
             $notice = RSVP::saveNew($actor, $happening, $activity->verb, $options);
             break;
         default:
-            throw new Exception("Unknown verb for events");
+            // TRANS: Exception thrown when event plugin comes across a undefined verb.
+            throw new Exception(_m('Unknown verb for events.'));
         }
 
         return $notice;
@@ -207,7 +214,6 @@ class EventPlugin extends MicroappPlugin
      *
      * @return ActivityObject
      */
-
     function activityObjectFromNotice($notice)
     {
         $happening = null;
@@ -225,13 +231,15 @@ class EventPlugin extends MicroappPlugin
         }
 
         if (empty($happening)) {
-            throw new Exception("Unknown object type.");
+            // TRANS: Exception thrown when event plugin comes across a unknown object type.
+            throw new Exception(_m('Unknown object type.'));
         }
 
         $notice = $happening->getNotice();
 
         if (empty($notice)) {
-            throw new Exception("Unknown event notice.");
+            // TRANS: Exception thrown when referring to a notice that is not an event an in event context.
+            throw new Exception(_m('Unknown event notice.'));
         }
 
         $obj = new ActivityObject();
@@ -264,7 +272,6 @@ class EventPlugin extends MicroappPlugin
      *
      * @return ActivityObject
      */
-
     function onEndNoticeAsActivity($notice, &$act) {
         switch ($notice->object_type) {
         case RSVP::POSITIVE:
@@ -276,154 +283,23 @@ class EventPlugin extends MicroappPlugin
         return true;
     }
 
-    /**
-     * Custom HTML output for our notices
-     *
-     * @param Notice $notice
-     * @param HTMLOutputter $out
-     */
-
-    function showNotice($notice, $out)
+    function adaptNoticeListItem($nli)
     {
+        $notice = $nli->notice;
+
         switch ($notice->object_type) {
         case Happening::OBJECT_TYPE:
-            $this->showEventNotice($notice, $out);
+            return new EventListItem($nli);
             break;
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
         case RSVP::POSSIBLE:
-            $this->showRSVPNotice($notice, $out);
+            return new RSVPListItem($nli);
             break;
         }
-
-        // @fixme we have to start the name/avatar and open this div
-        $out->elementStart('div', array('class' => 'event-info entry-content')); // EVENT-INFO.ENTRY-CONTENT IN
-
-        $profile = $notice->getProfile();
-        $avatar = $profile->getAvatar(AVATAR_MINI_SIZE);
-
-        $out->element('img',
-                      array('src' => ($avatar) ?
-                            $avatar->displayUrl() :
-                            Avatar::defaultImage(AVATAR_MINI_SIZE),
-                            'class' => 'avatar photo bookmark-avatar',
-                            'width' => AVATAR_MINI_SIZE,
-                            'height' => AVATAR_MINI_SIZE,
-                            'alt' => $profile->getBestName()));
-
-        $out->raw('&#160;'); // avoid &nbsp; for AJAX XML compatibility
-
-        $out->elementStart('span', 'vcard author'); // hack for belongsOnTimeline; JS needs to be able to find the author
-        $out->element('a',
-                      array('class' => 'url',
-                            'href' => $profile->profileurl,
-                            'title' => $profile->getBestName()),
-                      $profile->nickname);
-        $out->elementEnd('span');
+        return null;
     }
 
-    function showRSVPNotice($notice, $out)
-    {
-        $rsvp = RSVP::fromNotice($notice);
-
-        $out->elementStart('div', 'rsvp');
-        $out->raw($rsvp->asHTML());
-        $out->elementEnd('div');
-        return;
-    }
-
-    function showEventNotice($notice, $out)
-    {
-        $profile = $notice->getProfile();
-        $event   = Happening::fromNotice($notice);
-
-        assert(!empty($event));
-        assert(!empty($profile));
-
-        $out->elementStart('div', 'vevent event'); // VEVENT IN
-
-        $out->elementStart('h3');  // VEVENT/H3 IN
-
-        if (!empty($event->url)) {
-            $out->element('a',
-                          array('href' => $event->url,
-                                'class' => 'event-title entry-title summary'),
-                          $event->title);
-        } else {
-            $out->text($event->title);
-        }
-
-        $out->elementEnd('h3'); // VEVENT/H3 OUT
-
-        $startDate = strftime("%x", strtotime($event->start_time));
-        $startTime = strftime("%R", strtotime($event->start_time));
-
-        $endDate = strftime("%x", strtotime($event->end_time));
-        $endTime = strftime("%R", strtotime($event->end_time));
-
-        // FIXME: better dates
-
-        $out->elementStart('div', 'event-times'); // VEVENT/EVENT-TIMES IN
-
-        $out->element('strong', null, _('Time:'));
-
-        $out->element('abbr', array('class' => 'dtstart',
-                                    'title' => common_date_iso8601($event->start_time)),
-                      $startDate . ' ' . $startTime);
-        $out->text(' - ');
-        if ($startDate == $endDate) {
-            $out->element('span', array('class' => 'dtend',
-                                        'title' => common_date_iso8601($event->end_time)),
-                          $endTime);
-        } else {
-            $out->element('span', array('class' => 'dtend',
-                                        'title' => common_date_iso8601($event->end_time)),
-                          $endDate . ' ' . $endTime);
-        }
-
-        $out->elementEnd('div'); // VEVENT/EVENT-TIMES OUT
-
-        if (!empty($event->location)) {
-            $out->elementStart('div', 'event-location');
-            $out->element('strong', null, _('Location: '));
-            $out->element('span', 'location', $event->location);
-            $out->elementEnd('div');
-        }
-
-        if (!empty($event->description)) {
-            $out->elementStart('div', 'event-description');
-            $out->element('strong', null, _('Description: '));
-            $out->element('span', 'description', $event->description);
-            $out->elementEnd('div');
-        }
-
-        $rsvps = $event->getRSVPs();
-
-        $out->elementStart('div', 'event-rsvps');
-        $out->element('strong', null, _('Attending: '));
-        $out->element('span', 'event-rsvps',
-                      sprintf(_('Yes: %d No: %d Maybe: %d'),
-                              count($rsvps[RSVP::POSITIVE]),
-                              count($rsvps[RSVP::NEGATIVE]),
-                              count($rsvps[RSVP::POSSIBLE])));
-        $out->elementEnd('div');
-
-        $user = common_current_user();
-
-        if (!empty($user)) {
-            $rsvp = $event->getRSVP($user->getProfile());
-
-            if (empty($rsvp)) {
-                $form = new RSVPForm($event, $out);
-            } else {
-                $form = new CancelRSVPForm($rsvp, $out);
-            }
-
-            $form->show();
-        }
-
-        $out->elementEnd('div'); // vevent out
-    }
 
     /**
      * Form for our app
@@ -431,7 +307,6 @@ class EventPlugin extends MicroappPlugin
      * @param HTMLOutputter $out
      * @return Widget
      */
-
     function entryForm($out)
     {
         return new EventForm($out);
@@ -442,7 +317,6 @@ class EventPlugin extends MicroappPlugin
      *
      * @param Notice $notice
      */
-
     function deleteRelated($notice)
     {
         switch ($notice->object_type) {
@@ -466,12 +340,22 @@ class EventPlugin extends MicroappPlugin
 
     function onEndShowScripts($action)
     {
-        $action->inlineScript('$(document).ready(function() { $("#startdate").datepicker(); $("#enddate").datepicker(); });');
+        $action->inlineScript('$(document).ready(function() { $("#event-startdate").datepicker(); $("#event-enddate").datepicker(); });');
     }
 
     function onEndShowStyles($action)
     {
         $action->cssLink($this->path('event.css'));
+        return true;
+    }
+
+    function onStartAddNoticeReply($nli, $parent, $child)
+    {
+        // Filter out any poll responses
+        if (($parent->object_type == Happening::OBJECT_TYPE) &&
+            in_array($child->object_type, array(RSVP::POSITIVE, RSVP::NEGATIVE, RSVP::POSSIBLE))) {
+            return false;
+        }
         return true;
     }
 }

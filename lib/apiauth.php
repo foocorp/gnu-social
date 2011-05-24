@@ -199,6 +199,7 @@ class ApiAuthAction extends ApiAction
                         $user = User::staticGet('id', $appUser->profile_id);
                         if (!empty($user)) {
                             if (!$user->hasRight(Right::API)) {
+                                // TRANS: Authorization exception thrown when a user without API access tries to access the API.
                                 throw new AuthorizationException(_('Not allowed to use API.'));
                             }
                         }
@@ -225,7 +226,7 @@ class ApiAuthAction extends ApiAction
                     throw new OAuthException(_('Bad access token.'));
                 }
             } else {
-                // Also should not happen
+                // Also should not happen.
                 // TRANS: OAuth exception given when no user was found for a given token (no token was found).
                 throw new OAuthException(_('No user for that token.'));
             }
@@ -281,6 +282,7 @@ class ApiAuthAction extends ApiAction
 
                 if (!empty($user)) {
                     if (!$user->hasRight(Right::API)) {
+                        // TRANS: Authorization exception thrown when a user without API access tries to access the API.
                         throw new AuthorizationException(_('Not allowed to use API.'));
                     }
                     $this->auth_user = $user;

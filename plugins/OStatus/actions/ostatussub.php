@@ -68,7 +68,7 @@ class OStatusSubAction extends Action
                      _m('Subscribe to'),
                      $this->profile_uri,
                      // TRANS: Tooltip for field label "Subscribe to".
-                     _m('OStatus user\'s address, like nickname@example.com or http://example.net/nickname'));
+                     _m('OStatus user\'s address, like nickname@example.com or http://example.net/nickname.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
         // TRANS: Button text.
@@ -106,8 +106,8 @@ class OStatusSubAction extends Action
         $this->hidden('token', common_session_token());
         $this->hidden('profile', $this->profile_uri);
         if ($this->oprofile->isGroup()) {
+            // TRANS: Button text.
             $this->submit('submit', _m('Join'), 'submit', null,
-                         // TRANS: Button text.
                          // TRANS: Tooltip for button "Join".
                          _m('BUTTON','Join this group'));
         } else {
@@ -135,7 +135,7 @@ class OStatusSubAction extends Action
         $cur = common_current_user();
         if ($cur->isSubscribed($profile)) {
             $this->element('div', array('class' => 'error'),
-                           _m("You are already subscribed to this user."));
+                           _m('You are already subscribed to this user.'));
             $ok = false;
         } else {
             $ok = true;
@@ -228,14 +228,16 @@ class OStatusSubAction extends Action
             } else if (Validate::uri($this->profile_uri)) {
                 $this->oprofile = Ostatus_profile::ensureProfileURL($this->profile_uri);
             } else {
-                // TRANS: Error text.
+                // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+                // TRANS: and example.net, as these are official standard domain names for use in examples.
                 $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
                 common_debug('Invalid address format.', __FILE__);
                 return false;
             }
             return true;
         } catch (FeedSubBadURLException $e) {
-            // TRANS: Error text.
+                // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+                // TRANS: and example.net, as these are official standard domain names for use in examples.
             $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
             common_debug('Invalid URL or could not reach server.', __FILE__);
         } catch (FeedSubBadResponseException $e) {
@@ -260,7 +262,8 @@ class OStatusSubAction extends Action
             common_debug('Not a recognized feed type.', __FILE__);
         } catch (Exception $e) {
             // Any new ones we forgot about
-            // TRANS: Error text.
+                // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+                // TRANS: and example.net, as these are official standard domain names for use in examples.
             $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
             common_debug(sprintf('Bad feed URL: %s %s', get_class($e), $e->getMessage()), __FILE__);
         }
@@ -270,9 +273,12 @@ class OStatusSubAction extends Action
 
     function validateRemoteProfile()
     {
+        // Send us to the respective subscription form for conf
         if ($this->oprofile->isGroup()) {
-            // Send us to the group subscription form for conf
             $target = common_local_url('ostatusgroup', array(), array('profile' => $this->profile_uri));
+            common_redirect($target, 303);
+        } else if ($this->oprofile->isPeopletag()) {
+            $target = common_local_url('ostatuspeopletag', array(), array('profile' => $this->profile_uri));
             common_redirect($target, 303);
         }
     }
@@ -342,6 +348,7 @@ class OStatusSubAction extends Action
         // CSRF protection
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->showForm(_m('There was a problem with your session token. '.
                               'Try again, please.'));
             return;
@@ -389,7 +396,7 @@ class OStatusSubAction extends Action
 
     function title()
     {
-        // TRANS: Page title for OStatus remote subscription form
+        // TRANS: Page title for OStatus remote subscription form.
         return _m('Confirm');
     }
 

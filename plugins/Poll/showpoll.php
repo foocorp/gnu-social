@@ -48,17 +48,8 @@ class ShowPollAction extends ShownoticeAction
 {
     protected $poll = null;
 
-    /**
-     * For initializing members of the class.
-     *
-     * @param array $argarray misc. arguments
-     *
-     * @return boolean true
-     */
-    function prepare($argarray)
+    function getNotice()
     {
-        OwnerDesignAction::prepare($argarray);
-
         $this->id = $this->trimmed('id');
 
         $this->poll = Poll::staticGet('id', $this->id);
@@ -68,31 +59,15 @@ class ShowPollAction extends ShownoticeAction
             throw new ClientException(_m('No such poll.'), 404);
         }
 
-        $this->notice = $this->poll->getNotice();
+        $notice = $this->poll->getNotice();
 
-        if (empty($this->notice)) {
+        if (empty($notice)) {
             // Did we used to have it, and it got deleted?
             // TRANS: Client exception thrown trying to view a non-existing poll notice.
             throw new ClientException(_m('No such poll notice.'), 404);
         }
 
-        $this->user = User::staticGet('id', $this->poll->profile_id);
-
-        if (empty($this->user)) {
-            // TRANS: Client exception thrown trying to view a poll of a non-existing user.
-            throw new ClientException(_m('No such user.'), 404);
-        }
-
-        $this->profile = $this->user->getProfile();
-
-        if (empty($this->profile)) {
-            // TRANS: Server exception thrown trying to view a poll for a user for which the profile could not be loaded.
-            throw new ServerException(_m('User without a profile.'));
-        }
-
-        $this->avatar = $this->profile->getAvatar(AVATAR_PROFILE_SIZE);
-
-        return true;
+        return $notice;
     }
 
     /**

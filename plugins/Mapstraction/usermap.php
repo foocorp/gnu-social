@@ -61,11 +61,14 @@ class UsermapAction extends MapAction
         $base = $this->profile->getFancyName();
 
         if ($this->page == 1) {
-            // @todo CHECKME: inconsisten with paged variant below. " map" missing.
-            return $base;
+            // TRANS: Title for map widget.
+            // TRANS: %s is a user name.
+            return sprintf(_m('%s map'),$base);
         } else {
             // @todo CHECKME: Is the part ", page %2$d" relevant here?
-            return sprintf(_m("%s map, page %d"),
+            // TRANS: Title for map widget.
+            // TRANS: %1$s is a user name, %2$d is a page nember.
+            return sprintf(_m("%1$s map, page %2$d"),
                            $base,
                            $this->page);
         }

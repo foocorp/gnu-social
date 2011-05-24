@@ -9,52 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Gravatar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:48+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:38+0000\n"
 "Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:28+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-16 23:17:51+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-gravatar\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Set Gravatar"
-msgstr "Defineix un Gravatar"
-
-msgid "If you want to use your Gravatar image, click \"Add\"."
-msgstr "Si voleu utilitzar la vostra imatge del Gravatar, feu clic a «Afegeix»."
-
-msgid "Add"
-msgstr "Afegeix"
-
-msgid "Remove Gravatar"
-msgstr "Suprimeix el Gravatar"
-
-msgid "If you want to remove your Gravatar image, click \"Remove\"."
-msgstr ""
-"Si voleu suprimir la vostra imatge del Gravatar, feu clic a «Suprimeix»."
-
-msgid "Remove"
-msgstr "Suprimeix"
-
-msgid "To use a Gravatar first enter in an email address."
-msgstr "Per fer servir un Gravatar, primer introduïu una adreça electrònica."
-
-msgid "You do not have an email address set in your profile."
-msgstr "No teniu una adreça electrònica definida en el vostre perfil."
-
-msgid "Failed to save Gravatar to the database."
-msgstr "No s'ha pogut desar el Gravatar a la base de dades."
-
-msgid "Gravatar added."
-msgstr "S'ha afegit el Gravatar."
-
-msgid "Gravatar removed."
-msgstr "S'ha suprimit el Gravatar."
-
+#. TRANS: Plugin decsription.
 msgid ""
 "The Gravatar plugin allows users to use their <a href=\"http://www.gravatar."
 "com/\">Gravatar</a> with StatusNet."

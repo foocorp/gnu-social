@@ -49,7 +49,8 @@ class FacebookadminpanelAction extends AdminPanelAction
      */
     function title()
     {
-        return _m('Facebook');
+        // TRANS: Title for Facebook administration panel.
+        return _m('TITLE','Facebook integration settings');
     }
 
     /**
@@ -59,6 +60,7 @@ class FacebookadminpanelAction extends AdminPanelAction
      */
     function getInstructions()
     {
+        // TRANS: Instruction for Facebook administration panel.
         return _m('Facebook integration settings');
     }
 
@@ -120,13 +122,15 @@ class FacebookadminpanelAction extends AdminPanelAction
 
         if (mb_strlen($values['facebook']['appid']) > 255) {
             $this->clientError(
-                _m("Invalid Facebook ID. Max length is 255 characters.")
+                // TRANS: Client error displayed when providing too long a Facebook application ID.
+                _m("Invalid Facebook ID. Maximum length is 255 characters.")
             );
         }
 
         if (mb_strlen($values['facebook']['secret']) > 255) {
             $this->clientError(
-                _m("Invalid Facebook secret. Max length is 255 characters.")
+                // TRANS: Client error displayed when providing too long a Facebook secret key.
+                _m("Invalid Facebook secret. Maximum length is 255 characters.")
             );
         }
     }
@@ -175,14 +179,17 @@ class FacebookAdminPanelForm extends AdminForm
             'fieldset',
             array('id' => 'settings_facebook-application')
         );
+        // TRANS: Fieldset legend.
         $this->out->element('legend', null, _m('Facebook application settings'));
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
         $this->input(
             'appid',
+            // TRANS: Field label for Facebook application ID.
             _m('Application ID'),
-            _m('ID of your Facebook application'),
+            // TRANS: Field title for Facebook application ID.
+            _m('ID of your Facebook application.'),
             'facebook'
         );
         $this->unli();
@@ -190,8 +197,10 @@ class FacebookAdminPanelForm extends AdminForm
         $this->li();
         $this->input(
             'secret',
-             _m('Secret'),
-            _m('Application secret'),
+            // TRANS: Field label for Facebook secret key.
+            _m('Secret'),
+            // TRANS: Field title for Facebook secret key.
+            _m('Application secret.'),
             'facebook'
         );
         $this->unli();
@@ -207,6 +216,9 @@ class FacebookAdminPanelForm extends AdminForm
      */
     function formActions()
     {
-        $this->out->submit('submit', _m('Save'), 'submit', null, _m('Save Facebook settings'));
+        // TRANS: Button text to save Facebook integration settings.
+        $this->out->submit('submit', _m('BUTTON','Save'),
+                           // TRANS: Button title to save Facebook integration settings.
+                           'submit', null, _m('Save Facebook settings.'));
     }
 }

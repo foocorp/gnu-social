@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 11:02+0000\n"
-"PO-Revision-Date: 2011-03-26 11:07:31+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:44+0000\n"
 "Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:10:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -107,19 +107,22 @@ msgstr "No s'han pogut desar les preferències del Twitter."
 msgid "Twitter preferences saved."
 msgstr "S'han desat les preferències del Twitter."
 
-msgid "You can't register if you don't agree to the license."
+msgid "You cannot register if you do not agree to the license."
 msgstr "No podeu registrar-vos-hi si no accepteu la llicència."
 
 msgid "Something weird happened."
 msgstr "Ha passat quelcom estrany."
 
-msgid "Couldn't link your Twitter account."
+msgid "Could not link your Twitter account."
 msgstr "No s'ha pogut enllaçar amb el compte del Twitter."
 
 msgid "Couldn't link your Twitter account: oauth_token mismatch."
 msgstr ""
 "No s'ha pogut enllaçar amb el vostre compte del Twitter: no coincidència de "
 "l'oath_token."
+
+msgid "Couldn't link your Twitter account."
+msgstr "No s'ha pogut enllaçar amb el compte del Twitter."
 
 #, php-format
 msgid ""
@@ -155,8 +158,16 @@ msgstr "Crea un usuari nom amb aquest sobrenom."
 msgid "New nickname"
 msgstr "Nou sobrenom"
 
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
-msgstr "1-64 lletres en minúscules o nombres, sense puntuació o espais"
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr "1-64 lletres en minúscules o nombres, sense puntuació o espais."
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr "Correu electrònic"
+
+msgid "Used only for updates, announcements, and password recovery"
+msgstr ""
+"S'utilitza per a actualitzacions, anuncis i per recuperar la contrasenya"
 
 msgid "Create"
 msgstr "Crea"
@@ -289,9 +300,8 @@ msgid "Sign in with Twitter"
 msgstr "Inici de sessió amb el Twitter"
 
 #. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
-#, fuzzy
 msgid "Your Twitter bridge has been disabled"
-msgstr "S'ha inhabilitat el vostre pont del Twitter."
+msgstr "S'ha inhabilitat el vostre pont del Twitter"
 
 #. TRANS: Mail body after forwarding notices to Twitter has stopped working.
 #. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the

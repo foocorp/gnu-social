@@ -1,6 +1,7 @@
 # Translation of StatusNet - TwitterBridge to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Od1n
 # Author: Peter17
 # Author: Verdy p
 # --
@@ -10,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 11:02+0000\n"
-"PO-Revision-Date: 2011-03-26 11:07:31+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:45+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:10:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -68,7 +69,7 @@ msgid "Preferences"
 msgstr "Préférences"
 
 msgid "Automatically send my notices to Twitter."
-msgstr "Envoyer automatiquement  mes avis sur Twitter."
+msgstr "Envoyer automatiquement mes avis sur Twitter."
 
 msgid "Send local \"@\" replies to Twitter."
 msgstr "Envoyer des réponses \"@\" locales à Twitter."
@@ -108,19 +109,22 @@ msgstr "Impossible de sauvegarder les préférences Twitter."
 msgid "Twitter preferences saved."
 msgstr "Préférences Twitter enregistrées."
 
-msgid "You can't register if you don't agree to the license."
+msgid "You cannot register if you do not agree to the license."
 msgstr "Vous ne pouvez pas vous inscrire si vous n’acceptez pas la licence."
 
 msgid "Something weird happened."
 msgstr "Quelque chose de bizarre s’est passé."
 
-msgid "Couldn't link your Twitter account."
+msgid "Could not link your Twitter account."
 msgstr "Impossible de lier votre compte Twitter."
 
 msgid "Couldn't link your Twitter account: oauth_token mismatch."
 msgstr ""
 "Impossible de lier votre compte Twitter : le jeton d’authentification ne "
 "correspond pas."
+
+msgid "Couldn't link your Twitter account."
+msgstr "Impossible de lier votre compte Twitter."
 
 #, php-format
 msgid ""
@@ -157,8 +161,17 @@ msgstr "Créer un nouvel utilisateur avec ce pseudonyme."
 msgid "New nickname"
 msgstr "Nouveau pseudonyme"
 
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
-msgstr "1 à 64 lettres minuscules ou chiffres, sans ponctuation ni espaces"
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr "1 à 64 lettres minuscules ou chiffres, sans ponctuation ni espaces."
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr "Courriel"
+
+msgid "Used only for updates, announcements, and password recovery"
+msgstr ""
+"Utilisé uniquement pour les mises à jour, les annonces, et la récupération "
+"de mot de passe"
 
 msgid "Create"
 msgstr "Créer"
@@ -292,9 +305,8 @@ msgid "Sign in with Twitter"
 msgstr "S’inscrire avec Twitter"
 
 #. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
-#, fuzzy
 msgid "Your Twitter bridge has been disabled"
-msgstr "Votre passerelle Twitter a été désactivée."
+msgstr "Votre passerelle Twitter a été désactivée"
 
 #. TRANS: Mail body after forwarding notices to Twitter has stopped working.
 #. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the

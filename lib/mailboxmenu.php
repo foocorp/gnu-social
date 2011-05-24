@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Private mailboxes menu
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class MailboxMenu extends Menu
 {
     function show()
@@ -56,15 +55,18 @@ class MailboxMenu extends Menu
 
         $this->item('inbox',
                     array('nickname' => $nickname),
-                    _('Inbox'),
-                    _('Your incoming messages'));
+                    // TRANS: Menu item in mailbox menu. Leads to incoming private messages.
+                    _m('MENU','Inbox'),
+                    // TRANS: Menu item title in mailbox menu. Leads to incoming private messages.
+                    _('Your incoming messages.'));
 
         $this->item('outbox',
                     array('nickname' => $nickname),
-                    _('Outbox'),
-                    _('Your sent messages'));
+                    // TRANS: Menu item in mailbox menu. Leads to outgoing private messages.
+                    _m('MENU','Outbox'),
+                    // TRANS: Menu item title in mailbox menu. Leads to outgoing private messages.
+                    _('Your sent messages.'));
 
         $this->out->elementEnd('ul');
     }
-
 }

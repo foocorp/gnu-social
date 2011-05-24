@@ -46,13 +46,11 @@ require_once INSTALLDIR.'/lib/form.php';
  *
  * @see      UnsubscribeForm
  */
-
 class SubscribeForm extends Form
 {
     /**
      * Profile of user to subscribe to
      */
-
     var $profile = null;
 
     /**
@@ -61,7 +59,6 @@ class SubscribeForm extends Form
      * @param HTMLOutputter $out     output channel
      * @param Profile       $profile profile of user to subscribe to
      */
-
     function __construct($out=null, $profile=null)
     {
         parent::__construct($out);
@@ -74,36 +71,30 @@ class SubscribeForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'subscribe-' . $this->profile->id;
     }
-
 
     /**
      * class of the form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         return 'form_user_subscribe ajax';
     }
-
 
     /**
      * Action of the form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('subscribe');
     }
-
 
     /**
      * Legend of the Form
@@ -112,6 +103,7 @@ class SubscribeForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form of form to subscribe to a user.
         $this->out->element('legend', null, _('Subscribe to this user'));
     }
 
@@ -120,7 +112,6 @@ class SubscribeForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->hidden('subscribeto-' . $this->profile->id,
@@ -133,9 +124,11 @@ class SubscribeForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Subscribe'), 'submit', null, _('Subscribe to this user'));
+        // TRANS: Button text to subscribe to a user.
+        $this->out->submit('submit', _m('BUTTON','Subscribe'), 'submit', null,
+                           // TRANS: Button title to subscribe to a user.
+                           _('Subscribe to this user.'));
     }
 }

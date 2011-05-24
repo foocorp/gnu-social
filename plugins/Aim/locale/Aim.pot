@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,15 +16,28 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#. TRANS: No idea what the use case for this message is.
 #: aimmanager.php:80
 msgid "Send me a message to post a notice"
 msgstr ""
 
+#. TRANS: Display name.
 #: AimPlugin.php:60
 msgid "AIM"
 msgstr ""
 
-#: AimPlugin.php:165
+#. TRANS: Exception thrown in AIM plugin when user has not been specified.
+#: AimPlugin.php:149
+msgid "Must specify a user."
+msgstr ""
+
+#. TRANS: Exception thrown in AIM plugin when password has not been specified.
+#: AimPlugin.php:153
+msgid "Must specify a password."
+msgstr ""
+
+#. TRANS: Plugin description.
+#: AimPlugin.php:168
 msgid ""
 "The AIM plugin allows users to send and receive notices over the AIM network."
 msgstr ""

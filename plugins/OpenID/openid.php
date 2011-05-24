@@ -85,7 +85,6 @@ function oid_get_last()
 
 function oid_link_user($id, $canonical, $display)
 {
-
     $oid = new User_openid();
     $oid->user_id = $id;
     $oid->canonical = $canonical;
@@ -152,7 +151,7 @@ function oid_authenticate($openid_url, $returnto, $immediate=false)
         common_log(LOG_ERR, __METHOD__ . ": OpenID fail to $openid_url: $auth_request->message");
         // TRANS: OpenID plugin server error. Given when the OpenID authentication request fails.
         // TRANS: %s is the failure message.
-        return sprintf(_m('OpenID failure: %s'), $auth_request->message);
+        return sprintf(_m('OpenID failure: %s.'), $auth_request->message);
     }
 
     $sreg_request = Auth_OpenID_SRegRequest::build(// Required
@@ -202,7 +201,7 @@ function oid_authenticate($openid_url, $returnto, $immediate=false)
         } else if (Auth_OpenID::isFailure($redirect_url)) {
             // TRANS: OpenID plugin server error. Given when the OpenID authentication request cannot be redirected.
             // TRANS: %s is the failure message.
-            return sprintf(_m('Could not redirect to server: %s'), $redirect_url->message);
+            return sprintf(_m('Could not redirect to server: %s.'), $redirect_url->message);
         } else {
             common_redirect($redirect_url, 303);
         }
@@ -319,7 +318,7 @@ function oid_assert_allowed($url)
                 }
             }
             // TRANS: OpenID plugin client exception (403).
-            throw new ClientException(_m("Unauthorized URL used for OpenID login."), 403);
+            throw new ClientException(_m('Unauthorized URL used for OpenID login.'), 403);
         }
     }
 
@@ -373,7 +372,7 @@ class AutosubmitAction extends Action
     function showContent()
     {
         $this->raw('<p style="margin: 20px 80px">');
-        // @fixme this would be better using standard CSS class, but the present theme's a bit scary.
+        // @todo FIXME: This would be better using standard CSS class, but the present theme's a bit scary.
         $this->element('img', array('src' => Theme::path('images/icons/icon_processing.gif', 'base'),
                                     // for some reason the base CSS sets <img>s as block display?!
                                     'style' => 'display: inline'));

@@ -13,8 +13,9 @@ Settings
 ========
 provider_name*: This is a identifier designated to the connection.
     It's how StatusNet will refer to the authentication source.
-    For the most part, any name can be used, so long as each authentication source has a different identifier.
-    In most cases there will be only one authentication source used.
+    For the most part, any name can be used, so long as each authentication
+    source has a different identifier. In most cases there will be only one
+    authentication source used.
 authoritative (false): should this plugin be authoritative for
     authorization?
 uniqueMember_attribute ('uniqueMember')*: the attribute of a group
@@ -23,10 +24,10 @@ roles_to_groups: array that maps StatusNet roles to LDAP groups
     some StatusNet roles are: moderator, administrator, sandboxed, silenced
 login_group: if this is set to a group DN, only members of that group will be
     allowed to login
-    
+
 The below settings must be exact copies of the settings used for the
     corresponding LDAP Authentication plugin.
-    
+
 host*: LDAP server name to connect to. You can provide several hosts in an
     array in which case the hosts are tried from left to right.
     See http://pear.php.net/manual/en/package.networking.net-ldap2.connecting.php
@@ -91,4 +92,3 @@ addPlugin('ldapAuthorization', array(
     'attributes'=>array(
         'username'=>'sAMAccountName')
 ));
-

@@ -4,7 +4,7 @@
  * Copyright (C) 2010,2011, StatusNet, Inc.
  *
  * Settings menu
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      HTMLOutputter
  */
-
 class SettingsNav extends Menu
 {
     /**
@@ -53,7 +52,6 @@ class SettingsNav extends Menu
      *
      * @return void
      */
-
     function show()
     {
         $actionName = $this->action->trimmed('action');
@@ -63,70 +61,95 @@ class SettingsNav extends Menu
 
         // Stub section w/ home link
         $this->action->elementStart('ul');
-        $this->action->element('h3', null, _('Home'));
+        $this->action->elementStart('li');
+        // TRANS: Header in settings navigation panel.
+        $this->action->element('h3', null, _m('HEADER','Home'));
         $this->action->elementStart('ul', 'nav');
         $this->out->menuItem(common_local_url('all', array('nickname' =>
                                                            $nickname)),
-                             _('Home'),
+                             // TRANS: Menu item in settings navigation panel.
+                             _m('MENU','Home'),
+                             // TRANS: Menu item title in settings navigation panel.
+                             // TRANS: %s is a username.
                              sprintf(_('%s and friends'), $name),
                              $this->action == 'all', 'nav_timeline_personal');
-
         $this->action->elementEnd('ul');
+        $this->action->elementEnd('li');
         $this->action->elementEnd('ul');
 
         $this->action->elementStart('ul');
-        $this->action->element('h3', null, _('Settings'));
+        $this->action->elementStart('li');
+        // TRANS: Header in settings navigation panel.
+        $this->action->element('h3', null, _m('HEADER','Settings'));
         $this->action->elementStart('ul', array('class' => 'nav'));
 
         if (Event::handle('StartAccountSettingsNav', array(&$this->action))) {
             $this->action->menuItem(common_local_url('profilesettings'),
-                                    _('Profile'),
+                                    // TRANS: Menu item in settings navigation panel.
+                                    _m('MENU','Profile'),
+                                    // TRANS: Menu item title in settings navigation panel.
                                     _('Change your profile settings'),
                                     $actionName == 'profilesettings');
 
             $this->action->menuItem(common_local_url('avatarsettings'),
-                                    _('Avatar'),
+                                    // TRANS: Menu item in settings navigation panel.
+                                    _m('MENU','Avatar'),
+                                    // TRANS: Menu item title in settings navigation panel.
                                     _('Upload an avatar'),
                                     $actionName == 'avatarsettings');
 
             $this->action->menuItem(common_local_url('passwordsettings'),
-                                    _('Password'),
+                                    // TRANS: Menu item in settings navigation panel.
+                                    _m('MENU','Password'),
+                                    // TRANS: Menu item title in settings navigation panel.
                                     _('Change your password'),
                                     $actionName == 'passwordsettings');
 
             $this->action->menuItem(common_local_url('emailsettings'),
-                                    _('Email'),
+                                    // TRANS: Menu item in settings navigation panel.
+                                    _m('MENU','Email'),
+                                    // TRANS: Menu item title in settings navigation panel.
                                     _('Change email handling'),
                                     $actionName == 'emailsettings');
 
             $this->action->menuItem(common_local_url('userdesignsettings'),
-                                    _('Design'),
+                                    // TRANS: Menu item in settings navigation panel.
+                                    _m('MENU','Design'),
+                                    // TRANS: Menu item title in settings navigation panel.
                                     _('Design your profile'),
                                     $actionName == 'userdesignsettings');
 
             $this->action->menuItem(common_local_url('urlsettings'),
-                                    _('URL'),
+                                    // TRANS: Menu item in settings navigation panel.
+                                    _m('MENU','URL'),
+                                    // TRANS: Menu item title in settings navigation panel.
                                     _('URL shorteners'),
                                     $actionName == 'urlsettings');
 
             Event::handle('EndAccountSettingsNav', array(&$this->action));
-        
+
             if (common_config('xmpp', 'enabled')) {
                 $this->action->menuItem(common_local_url('imsettings'),
-                                        _m('IM'),
+                                        // TRANS: Menu item in settings navigation panel.
+                                        _m('MENU','IM'),
+                                        // TRANS: Menu item title in settings navigation panel.
                                         _('Updates by instant messenger (IM)'),
                                         $actionName == 'imsettings');
             }
 
             if (common_config('sms', 'enabled')) {
                 $this->action->menuItem(common_local_url('smssettings'),
-                                        _m('SMS'),
+                                        // TRANS: Menu item in settings navigation panel.
+                                        _m('MENU','SMS'),
+                                        // TRANS: Menu item title in settings navigation panel.
                                         _('Updates by SMS'),
                                         $actionName == 'smssettings');
             }
 
             $this->action->menuItem(common_local_url('oauthconnectionssettings'),
-                                    _('Connections'),
+                                    // TRANS: Menu item in settings navigation panel.
+                                    _m('MENU','Connections'),
+                                    // TRANS: Menu item title in settings navigation panel.
                                     _('Authorized connected applications'),
                                     $actionName == 'oauthconnectionsettings');
 
@@ -134,6 +157,7 @@ class SettingsNav extends Menu
         }
 
         $this->action->elementEnd('ul');
+        $this->action->elementEnd('li');
         $this->action->elementEnd('ul');
     }
 }

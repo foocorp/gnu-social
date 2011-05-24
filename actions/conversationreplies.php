@@ -66,9 +66,7 @@ class ConversationRepliesAction extends ConversationAction
      */
     function showContent()
     {
-        $notices = Notice::conversationStream($this->id, null, null);
-
-        $ct = new FullThreadedNoticeList($notices, $this);
+        $ct = new FullThreadedNoticeList($this->notices, $this, $this->userProfile);
 
         $cnt = $ct->show();
     }
@@ -86,21 +84,5 @@ class ConversationRepliesAction extends ConversationAction
         $this->showContent();
         $this->elementEnd('body');
         $this->elementEnd('html');
-    }
-}
-
-class FullThreadedNoticeList extends ThreadedNoticeList
-{
-    function newListItem($notice)
-    {
-        return new FullThreadedNoticeListItem($notice, $this->out);
-    }
-}
-
-class FullThreadedNoticeListItem extends ThreadedNoticeListItem
-{
-    function initialItems()
-    {
-        return 1000; // @fixme
     }
 }

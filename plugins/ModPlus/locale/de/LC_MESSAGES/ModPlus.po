@@ -2,6 +2,8 @@
 # Exported from translatewiki.net
 #
 # Author: Fujnky
+# Author: Giftpflanze
+# Author: MF-Warburg
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,30 +11,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ModPlus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:07+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:11+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:33+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:31+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-modplus\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#, php-format
-msgid "%s on %s"
-msgstr "%s auf %s"
+#. TRANS: Error message displayed when referring to a user without a profile.
+msgid "User has no profile."
+msgstr "Benutzer hat kein Profil."
 
+#. TRANS: Remote profile action page title.
+#. TRANS: %1$s is a username, %2$s is a hostname.
+#, php-format
+msgid "%1$s on %2$s"
+msgstr "%1$s auf %2$s"
+
+#. TRANS: Message on remote profile page.
+#. TRANS: This message contains Markdown links in the form [description](link).
+#. TRANS: %1$s is a profile nickname, %2$s is a hostname, %3$s is a URL.
 #, php-format
 msgid ""
-"This remote profile is registered on another site; see [%s's original "
-"profile page on %s](%s)."
+"This remote profile is registered on another site; see [%1$s's original "
+"profile page on %2$s](%3$s)."
 msgstr ""
-"Dieses entfernte Profil ist auf einer anderen Seite registriert; siehe [%ss "
-"Original-Profilseite auf %s](%s)"
+"Dieses entfernte Profil ist auf einer anderen Seite registriert; siehe [%1"
+"$ss Original-Profilseite auf %2$s](%3$s)."
 
+#. TRANS: Message on blocked remote profile page.
 msgid ""
 "Site moderators have silenced this profile, which prevents delivery of new "
 "messages to any users on this site."
@@ -40,8 +52,10 @@ msgstr ""
 "Moderatoren haben dieses Profil stumm geschaltet, was die Zustellung neuer "
 "Nachrichten an andere Benutzer dieser Seite unterbindet."
 
-msgid "UI extensions for profile moderation actions."
+#. TRANS: Plugin description.
+msgid "UI extension for profile moderation actions."
 msgstr "Benutzerobeflächenerweiterungen zur Moderation von Profilen."
 
+#. TRANS: Label for access to remote profile options.
 msgid "Remote profile options..."
 msgstr "Remoteprofil-Einstellungen…"

@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Cancel the RSVP for an event
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
+
 if (!defined('STATUSNET')) {
     // This check helps protect against security problems;
     // your code file can't be executed directly from the web.
@@ -43,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class CancelrsvpAction extends Action
 {
     protected $user  = null;
@@ -55,10 +55,10 @@ class CancelrsvpAction extends Action
      *
      * @return string Action title
      */
-
     function title()
     {
-        return _('Cancel RSVP');
+        // TRANS: Title for RSVP ("please respond") action.
+        return _m('TITLE','Cancel RSVP');
     }
 
     /**
@@ -68,7 +68,6 @@ class CancelrsvpAction extends Action
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
@@ -79,25 +78,29 @@ class CancelrsvpAction extends Action
         $rsvpId = $this->trimmed('rsvp');
 
         if (empty($rsvpId)) {
-            throw new ClientException(_('No such rsvp.'));
+            // TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
+            throw new ClientException(_m('No such RSVP.'));
         }
 
         $this->rsvp = RSVP::staticGet('id', $rsvpId);
 
         if (empty($this->rsvp)) {
-            throw new ClientException(_('No such rsvp.'));
+            // TRANS: Client exception thrown when referring to a non-existing RSVP ("please respond") item.
+            throw new ClientException(_m('No such RSVP.'));
         }
 
         $this->event = Happening::staticGet('id', $this->rsvp->event_id);
 
         if (empty($this->event)) {
-            throw new ClientException(_('No such event.'));
+            // TRANS: Client exception thrown when referring to a non-existing event.
+            throw new ClientException(_m('No such event.'));
         }
 
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            throw new ClientException(_('You must be logged in to RSVP for an event.'));
+            // TRANS: Client exception thrown when trying tp RSVP ("please respond") while not logged in.
+            throw new ClientException(_m('You must be logged in to RSVP for an event.'));
         }
 
         return true;
@@ -110,7 +113,6 @@ class CancelrsvpAction extends Action
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         parent::handle($argarray);
@@ -129,7 +131,6 @@ class CancelrsvpAction extends Action
      *
      * @return void
      */
-
     function cancelRSVP()
     {
         try {
@@ -154,7 +155,7 @@ class CancelrsvpAction extends Action
             $this->elementStart('html');
             $this->elementStart('head');
             // TRANS: Page title after sending a notice.
-            $this->element('title', null, _('Event saved'));
+            $this->element('title', null, _m('Event saved'));
             $this->elementEnd('head');
             $this->elementStart('body');
             $this->elementStart('body');
@@ -171,7 +172,6 @@ class CancelrsvpAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         if (!empty($this->error)) {
@@ -194,7 +194,6 @@ class CancelrsvpAction extends Action
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||

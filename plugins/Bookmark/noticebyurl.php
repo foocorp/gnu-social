@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * Notice stream of notices with a given attachment
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class NoticebyurlAction extends Action
 {
     protected $url     = null;
@@ -59,15 +58,15 @@ class NoticebyurlAction extends Action
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
-        
+
         $this->file = File::staticGet('id', $this->trimmed('id'));
 
         if (empty($this->file)) {
-            throw new ClientException(_('Unknown URL'));
+            // TRANS: Client exception thrown when an unknown URL is provided.
+            throw new ClientException(_m('Unknown URL.'));
         }
 
         $pageArg = $this->trimmed('page');
@@ -85,13 +84,16 @@ class NoticebyurlAction extends Action
      *
      * @return string page title
      */
-
     function title()
     {
         if ($this->page == 1) {
-            return sprintf(_("Notices linking to %s"), $this->file->url);
+            // TRANS: Title of notice stream of notices with a given attachment (first page).
+            // TRANS: %s is the URL.
+            return sprintf(_m('Notices linking to %s'), $this->file->url);
         } else {
-            return sprintf(_("Notices linking to %s, page %d"),
+            // TRANS: Title of notice stream of notices with a given attachment (all but first page).
+            // TRANS: %1$s is the URL, %2$s is the page number.
+            return sprintf(_m('Notices linking to %1$s, page %2$d'),
                            $this->file->url,
                            $this->page);
         }
@@ -104,7 +106,6 @@ class NoticebyurlAction extends Action
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         $this->showPage();
@@ -117,7 +118,6 @@ class NoticebyurlAction extends Action
      *
      * @return void
      */
-
     function showContent()
     {
         $nl = new NoticeList($this->notices, $this);
@@ -142,7 +142,6 @@ class NoticebyurlAction extends Action
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return true;
@@ -169,7 +168,6 @@ class NoticebyurlAction extends Action
      *
      * @return string etag http header
      */
-
     function etag()
     {
         return null;

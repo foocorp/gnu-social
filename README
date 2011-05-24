@@ -2,8 +2,8 @@
 README
 ------
 
-StatusNet 0.9.6 "Man on the Moon"
-29 October 2010
+StatusNet 0.9.7 "World Leader Pretend"
+17 March 2011
 
 This is the README file for StatusNet, the Open Source microblogging
 platform. It includes installation instructions, descriptions of
@@ -96,43 +96,47 @@ for additional terms.
 New this version
 ================
 
-This is a security, bug and feature release since version 0.9.5 released on
-10 September 2010.
+This is a security, bug and feature release since version 0.9.6 released on
+23 October 2010.
 
-For best compatibility with client software and site federation, and a lot of
-bug fixes, it is highly recommended that all public sites upgrade to the new
-version.
+For best compatibility with client software and site federation, and a
+lot of bug fixes, it is highly recommended that all public sites
+upgrade to the new version. Upgrades require new database indexes for
+best performance; see Upgrade below.
 
 Notable changes this version:
 
-- Site moderators can now delete groups.
-- New themes: clean, shiny, mnml, victorian
-- New YammerImport plugin allows site admins to import non-private profiles and
-  message from an authenticated Yammer site.
-- New experimental plugins: AnonFavorites, SlicedFavorites, GroupFavorited,
-  ForceGroup, ShareNotice
-- OAuth upgraded to 1.0a
-- Localization updates now include plugins, thanks to translatewiki.net!
-- SSL link generation should be more consistent; alternate SSL URLs can be
-  set in the admin UI for more parts of the system.
-- Experimental backupuser.php, restoreuser.php command-line scripts to
-  dump/restore a user's complete activity stream. Can be used to transfer
-  accounts manually between sites, or to save a backup before deleting.
-- Unicode fixes for OStatus notices
-- Header metadata on notice pages to aid in manual reposting on Facebook
-- Lots of little fixes...
+- GroupPrivateMessage plugin lets users send private messages
+  to a group. (Similar to "private groups" on Yammer.)
+- Support for Twitter streaming API in Twitter bridge plugin
+- Support for a new Activity Streams-based API using AtomPub, allowing
+  richer API data. See http://status.net/wiki/AtomPub for details.
+- Unified Facebook plugin, replacing previous Facebook application
+  and Facebook Connect plugin.
+- A plugin to send out a daily summary email to network users.
+- In-line thumbnails of some attachments (video, images) and oEmbed objects.
+- Local copies of remote profiles to let moderators manage OStatus users.
+- Upgrade upstream JS, minify everything.
+- Allow pushing plugin JS, CSS, and static files to a CDN.
+- Configurable nickname rules.
+- Better support for bit.ly URL shortener.
+- InProcessCache plugin for additional caching on top of memcached.
+- Support for Activity Streams JSON feeds on many streams.
+- User-initiated backup and restore of account data in Activity Streams
+  format.
+- Bookmark plugin for making del.icio.us-like social bookmarking sites,
+  including del.icio.us backup file import. Supports OStatus.
+- SQLProfile plugin to tune SQL queries.
+- Better sorting on timelines to support restored or imported data.
+- Hundreds of translations from http://translatewiki.net/
+- Hundreds of performance tunings, bug fixes, and UI improvements.
+- Remove deprecated data from Activity Streams Atom output, to the
+  extent possible.
+- NewMenu plugin for new layout of menu items.
+- Experimental support for moving an account from one server to
+  another, using new AtomPub API.
 
-Changes from 0.9.6 release candidate 1:
-- fix for broken group pages when logged out
-- fix for stuck ping queue entries when bad profile
-- fix for bogus single-user nickname config entry error
-- i18n updates
-- nofollow updates
-- SSL-only mode secure cookie fix
-- experimental ApiLogger plugin for usage data gathering
-- experimental follow-everyone plugin
-
-A full changelog is available at http://status.net/wiki/StatusNet_0.9.6.
+A full changelog is available at http://status.net/wiki/StatusNet_0.9.7.
 
 Prerequisites
 =============
@@ -243,9 +247,9 @@ especially if you've previously installed PHP/MySQL packages.
 1. Unpack the tarball you downloaded on your Web server. Usually a
    command like this will work:
 
-       tar zxf statusnet-0.9.6.tar.gz
+       tar zxf statusnet-0.9.7.tar.gz
 
-   ...which will make a statusnet-0.9.6 subdirectory in your current
+   ...which will make a statusnet-0.9.7 subdirectory in your current
    directory. (If you don't have shell access on your Web server, you
    may have to unpack the tarball on your local computer and FTP the
    files to the server.)
@@ -253,7 +257,7 @@ especially if you've previously installed PHP/MySQL packages.
 2. Move the tarball to a directory of your choosing in your Web root
    directory. Usually something like this will work:
 
-       mv statusnet-0.9.6 /var/www/statusnet
+       mv statusnet-0.9.7 /var/www/statusnet
 
    This will make your StatusNet instance available in the statusnet path of
    your server, like "http://example.net/statusnet". "microblog" or
@@ -668,7 +672,7 @@ with this situation.
 If you've been using StatusNet 0.7, 0.6, 0.5 or lower, or if you've
 been tracking the "git" version of the software, you will probably
 want to upgrade and keep your existing data. There is no automated
-upgrade procedure in StatusNet 0.9.6. Try these step-by-step
+upgrade procedure in StatusNet 0.9.7. Try these step-by-step
 instructions; read to the end first before trying them.
 
 0. Download StatusNet and set up all the prerequisites as if you were
@@ -689,24 +693,29 @@ instructions; read to the end first before trying them.
 5. Once all writing processes to your site are turned off, make a
    final backup of the Web directory and database.
 6. Move your StatusNet directory to a backup spot, like "statusnet.bak".
-7. Unpack your StatusNet 0.9.6 tarball and move it to "statusnet" or
+7. Unpack your StatusNet 0.9.7 tarball and move it to "statusnet" or
    wherever your code used to be.
 8. Copy the config.php file and the contents of the avatar/, background/,
    file/, and local/ subdirectories from your old directory to your new
    directory.
 9. Copy htaccess.sample to .htaccess in the new directory. Change the
    RewriteBase to use the correct path.
-10. Rebuild the database. (You can safely skip this step and go to #12
-    if you're upgrading from another 0.9.x version).
+10. Rebuild the database.
 
     NOTE: this step is destructive and cannot be
     reversed. YOU CAN EASILY DESTROY YOUR SITE WITH THIS STEP. Don't
     do it without a known-good backup!
 
-    If your database is at version 0.8.0 or above, you can run a
+    If your database is at version 0.8.0 or higher in the 0.8.x line, you can run a
     special upgrade script:
 
         mysql -u<rootuser> -p<rootpassword> <database> db/08to09.sql
+
+    If you are upgrading from any 0.9.x version like 0.9.6, run this script:
+
+        mysql -u<rootuser> -p<rootpassword> <database> db/096to097.sql
+
+    Despite the name, it should work for any 0.9.x branch.
 
     Otherwise, go to your StatusNet directory and AFTER YOU MAKE A
     BACKUP run the rebuilddb.sh script like this:
@@ -1143,6 +1152,9 @@ ssl: Whether to use SSL for JavaScript files. Default is null, which means
 sslserver: SSL server to use when page is HTTPS-encrypted. If
     unspecified, site ssl server and so on will be used.
 sslpath: If sslserver if defined, path to use when page is HTTPS-encrypted.
+bustframes: If true, all web pages will break out of framesets. If false,
+	    can comfortably live in a frame or iframe... probably. Default
+	    to true.
 
 xmpp
 ----
@@ -1392,13 +1404,25 @@ maxaliases: maximum number of aliases a group can have. Default 3. Set
 desclimit: maximum number of characters to allow in group descriptions.
     null (default) means to use the site-wide text limits. 0
     means no limit.
+addtag: Whether to add a tag for the group nickname for every group post 
+	(pre-1.0.x behaviour). Defaults to false.
 
-oohembed
+oembed
 --------
 
-oEmbed endpoint for multimedia attachments (links in posts).
+oEmbed endpoint for multimedia attachments (links in posts). Will also
+work as 'oohembed' for backwards compatibility.
 
-endpoint: oohembed endpoint using http://oohembed.com/ software.
+endpoint: oohembed endpoint using http://oohembed.com/ software. Defaults to
+	  'http://oohembed.com/oohembed/'.
+order: Array of methods to check for OEmbed data. Methods include 'built-in'
+       (use a built-in function to simulate oEmbed for some sites),
+       'well-known' (use well-known public oEmbed endpoints),
+       'discovery' (discover using <link> headers in HTML), 'service' (use
+       a third-party service, like oohembed or embed.ly. Default is
+       array('built-in', 'well-known', 'service', 'discovery'). Note that very
+       few sites implement oEmbed; 'discovery' is going to fail 99% of the
+       time.
 
 search
 ------
@@ -1472,6 +1496,8 @@ Configuration options specific to notices.
 contentlimit: max length of the plain-text content of a notice.
     Default is null, meaning to use the site-wide text limit.
     0 means no limit.
+defaultscope: default scope for notices. Defaults to 0; set to
+	      1 to keep notices private to this site by default.
 
 message
 -------

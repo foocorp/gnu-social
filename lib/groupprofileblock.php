@@ -123,4 +123,14 @@ class GroupProfileBlock extends ProfileBlock
         $this->out->elementEnd('ul');
         $this->out->elementEnd('div');
     }
+
+    function show()
+    {
+        $this->out->elementStart('div', 'profile_block group_profile_block section');
+        if (Event::handle('StartShowGroupProfileBlock', array($this->out, $this->group))) {
+            parent::show();
+            Event::handle('EndShowGroupProfileBlock', array($this->out, $this->group));
+        }
+        $this->out->elementEnd('div');
+    }
 }

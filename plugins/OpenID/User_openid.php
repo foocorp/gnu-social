@@ -28,7 +28,6 @@ class User_openid extends Memcached_DataObject
 
     function table()
     {
-
         $db = $this->getDatabaseConnection();
         $dbtype = $db->phptype; // Database type is stored here. Crazy but true.
 

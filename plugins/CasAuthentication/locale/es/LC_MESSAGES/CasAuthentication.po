@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - CasAuthentication\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:25+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:55+0000\n"
 "Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:12:58+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:26:35+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-casauthentication\n"
@@ -39,12 +39,15 @@ msgstr ""
 "(¿Tienes una cuenta con CAS? Prueba nuestro [Inicio de usuario CAS](%%action."
 "caslogin%%)!)"
 
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
 msgid "Specifying a server is required."
 msgstr "Se requiere especificar un servidor."
 
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
 msgid "Specifying a port is required."
 msgstr "Se requiere especificar un servidor."
 
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
 msgid "Specifying a path is required."
 msgstr "Se requiere especificar una ruta."
 
@@ -56,11 +59,14 @@ msgstr ""
 "La extensión de Autenticación CAS permite a StatusNet manejar autenticación "
 "a través de CAS (Servicio de Autenticación Central)."
 
+#. TRANS: Client error displayed when trying to log in while already logged on.
 msgid "Already logged in."
 msgstr "Ya has iniciado sesión"
 
+#. TRANS: Server error displayed when trying to log in with incorrect username or password.
 msgid "Incorrect username or password."
 msgstr "Nombre de usuario o contraseña incorrectos."
 
+#. TRANS: Server error displayed when login fails in CAS authentication plugin.
 msgid "Error setting user. You are probably not authorized."
 msgstr "Error al configurar el usuario. Posiblemente no tengas autorización."

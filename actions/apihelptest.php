@@ -80,7 +80,7 @@ class ApiHelpTestAction extends ApiPrivateAuthAction
             $this->endDocument('json');
         } else {
             $this->clientError(
-                // TRANS: Client error displayed trying to execute an unknown API method testing API connectivity.
+                // TRANS: Client error displayed when coming across a non-supported API method.
                 _('API method not found.'),
                 404,
                 $this->format

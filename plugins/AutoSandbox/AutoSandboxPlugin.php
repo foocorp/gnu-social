@@ -63,21 +63,24 @@ class AutoSandboxPlugin extends Plugin
                             'author' => 'Sean Carmody',
                             'homepage' => 'http://status.net/wiki/Plugin:AutoSandbox',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Automatically sandboxes newly registered members.'));
         return true;
     }
 
     function onStartRegistrationFormData($action)
     {
+         // TRANS: User instructions after registration.
          $instr = _m('Note you will initially be "sandboxed" so your posts will not appear in the public timeline.');
 
          if (isset($this->contact)) {
              $contactuser = User::staticGet('nickname', $this->contact);
              if (!empty($contactuser)) {
                  $contactlink = "@<a href=\"$contactuser->uri\">$contactuser->nickname</a>";
-                 // TRANS: $contactlink is a clickable e-mailaddress.
-                 $instr = _m("Note you will initially be \"sandboxed\" so your posts will not appear in the public timeline. ".
-                   'Send a message to $contactlink to speed up the unsandboxing process.');
+                 // TRANS: User instructions after registration.
+                 // TRANS: %s is a clickable e-mailaddress.
+                 $instr = sprintf(_m('Note you will initially be "sandboxed" so your posts will not appear in the public timeline. '.
+                   'Send a message to %s to speed up the unsandboxing process.'),$contactlink);
              }
          }
 

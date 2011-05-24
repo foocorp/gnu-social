@@ -25,6 +25,7 @@ class CasloginAction extends Action
     {
         parent::handle($args);
         if (common_is_real_login()) {
+            // TRANS: Client error displayed when trying to log in while already logged on.
             $this->clientError(_m('Already logged in.'));
         } else {
             global $casSettings;
@@ -36,12 +37,14 @@ class CasloginAction extends Action
             $casTempPassword = common_good_rand(16);
             $user = common_check_user(phpCAS::getUser(), $casTempPassword);
             if (!$user) {
+                // TRANS: Server error displayed when trying to log in with incorrect username or password.
                 $this->serverError(_m('Incorrect username or password.'));
                 return;
             }
 
             // success!
             if (!common_set_user($user)) {
+                // TRANS: Server error displayed when login fails in CAS authentication plugin.
                 $this->serverError(_m('Error setting user. You are probably not authorized.'));
                 return;
             }

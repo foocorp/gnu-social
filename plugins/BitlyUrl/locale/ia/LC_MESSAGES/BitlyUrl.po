@@ -9,21 +9,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - BitlyUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:19+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:44+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:12:53+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:26:00+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Title of administration panel.
 msgid "bit.ly URL shortening"
 msgstr "Accurtamento de URL con bit.ly"
 
+#. TRANS: Instructions for administration panel.
+#. TRANS: This message contains Markdown links in the form [decsription](link).
 msgid ""
 "URL shortening with bit.ly requires [a bit.ly account and API key](http://"
 "bit.ly/a/your_api_key). This verifies that this is an authorized account, "
@@ -34,37 +37,60 @@ msgstr ""
 "autorisate, e permitte usar le functionalitate de traciamento e dominios "
 "personalisate de bit.ly."
 
-msgid "Invalid login. Max length is 255 characters."
-msgstr "Nomine de usator invalide. Longitude maximal es 255 characteres."
+#. TRANS: Client error displayed when using too long a key.
+msgid "Invalid login. Maximum length is 255 characters."
+msgstr "Nomine de usator invalide. Longitude maxime es 255 characteres."
 
-msgid "Invalid API key. Max length is 255 characters."
-msgstr "Clave API invalide. Longitude maximal es 255 characteres."
+#. TRANS: Client error displayed when using too long a key.
+msgid "Invalid API key. Maximum length is 255 characters."
+msgstr "Clave API invalide. Longitude maxime es 255 characteres."
 
+#. TRANS: Fieldset legend in administration panel for bit.ly username and API key.
+msgctxt "LEGEND"
 msgid "Credentials"
 msgstr "Datos de authentication"
 
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
 msgid "Leave these empty to use global default credentials."
 msgstr ""
 "Lassa istes vacue pro usar le datos de authentication global predefinite."
 
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
 msgid "If you leave these empty, bit.ly will be unavailable to users."
 msgstr "Si tu lassa istes vacue, bit.ly non essera disponibile al usatores."
 
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
 msgid "Login name"
 msgstr "Nomine de conto"
 
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
 msgid "API key"
 msgstr "Clave API"
 
+#. TRANS: Button text to save setting in administration panel for bit.ly URL shortening.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Salveguardar"
+
+#. TRANS: Button title to save setting in administration panel for bit.ly URL shortening.
 msgid "Save bit.ly settings"
 msgstr "Salveguardar configurationes de bit.ly"
 
-msgid "You must specify a serviceUrl for bit.ly shortening."
-msgstr "Tu debe specificar un serviceUrl pro accurtamento bit.ly."
+#. TRANS: Exception thrown when bit.ly URL shortening plugin was configured incorrectly.
+msgid "You must specify a serviceUrl for bit.ly URL shortening."
+msgstr ""
+"Es necessari specificar un \"serviceUrl\" pro poter accurtar adresses URL "
+"con bit.ly."
 
+#. TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
 msgstr "Usa abbreviator de URL <a href=\"http://%1$s/\">%1$s</a>."
 
+#. TRANS: Menu item in administration menus for bit.ly URL shortening settings.
 msgid "bit.ly"
 msgstr "bit.ly"
+
+#. TRANS: Title for menu item in administration menus for bit.ly URL shortening settings.
+msgid "bit.ly URL shortening."
+msgstr "Accurtamento de URL con bit.ly."

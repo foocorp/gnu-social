@@ -67,6 +67,7 @@ class ApiGroupListAction extends ApiBareAuthAction
         $this->user   = $this->getTargetUser(null);
 
         if (empty($this->user)) {
+            // TRANS: Client error displayed when user not found for an action.
             $this->clientError(_('No such user.'), 404, $this->format);
             return false;
         }
@@ -130,7 +131,7 @@ class ApiGroupListAction extends ApiBareAuthAction
             break;
         default:
             $this->clientError(
-                // TRANS: Client error displayed trying to execute an unknown API method checking group membership.
+                // TRANS: Client error displayed when coming across a non-supported API method.
                 _('API method not found.'),
                 404,
                 $this->format

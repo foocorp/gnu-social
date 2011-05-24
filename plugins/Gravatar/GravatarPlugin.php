@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2009, StatusNet, Inc.
+ * Copyright (C) 2009,2011 StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -30,155 +30,20 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class GravatarPlugin extends Plugin
 {
-    function onInitializePlugin()
+    function onEndProfileGetAvatar($profile, $size, &$avatar)
     {
+        if (empty($avatar)) {
+            $user = $profile->getUser();
+            if (!empty($user) && !empty($user->email)) {
+                // Fake one!
+                $avatar = new Avatar();
+                $avatar->width = $avatar->height = $size;
+                $avatar->url = $this->gravatar_url($user->email, $size);
+                return false;
+            }
+        }
+
         return true;
-    }
-
-    function onStartAvatarFormData($action)
-    {
-        $user = common_current_user();
-        $hasGravatar = $this->hasGravatar($user->id);
-
-        if($hasGravatar) {
-            return false;
-        }
-    }
-
-    function onEndAvatarFormData($action)
-    {
-        $user = common_current_user();
-        $hasGravatar = $this->hasGravatar($user->id);
-
-        if(!empty($user->email) && !$hasGravatar) { //and not gravatar already set
-            $action->elementStart('form', array('method' => 'post',
-                                                'id' => 'form_settings_gravatar_add',
-                                                'class' => 'form_settings',
-                                                'action' =>
-                                                common_local_url('avatarsettings')));
-            $action->elementStart('fieldset', array('id' => 'settings_gravatar_add'));
-            $action->element('legend', null, _m('Set Gravatar'));
-            $action->hidden('token', common_session_token());
-            $action->element('p', 'form_guide',
-                             _m('If you want to use your Gravatar image, click "Add".'));
-            $action->element('input', array('type' => 'submit',
-                                            'id' => 'settings_gravatar_add_action-submit',
-                                            'name' => 'add',
-                                            'class' => 'submit',
-                                            'value' => _m('Add')));
-            $action->elementEnd('fieldset');
-            $action->elementEnd('form');
-        } elseif($hasGravatar) {
-            $action->elementStart('form', array('method' => 'post',
-                                                'id' => 'form_settings_gravatar_remove',
-                                                'class' => 'form_settings',
-                                                'action' =>
-                                                common_local_url('avatarsettings')));
-            $action->elementStart('fieldset', array('id' => 'settings_gravatar_remove'));
-            $action->element('legend', null, _m('Remove Gravatar'));
-            $action->hidden('token', common_session_token());
-            $action->element('p', 'form_guide',
-                             _m('If you want to remove your Gravatar image, click "Remove".'));
-            $action->element('input', array('type' => 'submit',
-                                            'id' => 'settings_gravatar_remove_action-submit',
-                                            'name' => 'remove',
-                                            'class' => 'submit',
-                                            'value' => _m('Remove')));
-            $action->elementEnd('fieldset');
-            $action->elementEnd('form');
-        } else {
-            $action->element('p', 'form_guide',
-                             _m('To use a Gravatar first enter in an email address.'));
-        }
-    }
-
-    function onStartAvatarSaveForm($action)
-    {
-        if ($action->arg('add')) {
-            $result = $this->gravatar_save();
-
-            if($result['success']===true) {
-                common_broadcast_profile(common_current_user()->getProfile());
-            }
-
-            $action->showForm($result['message'], $result['success']);
-
-            return false;
-        } else if ($action->arg('remove')) {
-            $result = $this->gravatar_remove();
-
-            if($result['success']===true) {
-                common_broadcast_profile(common_current_user()->getProfile());
-            }
-
-            $action->showForm($result['message'], $result['success']);
-
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    function hasGravatar($id) {
-        $avatar = new Avatar();
-        $avatar->profile_id = $id;
-        if ($avatar->find()) {
-            while ($avatar->fetch()) {
-                if($avatar->filename == null) {
-                    return true;
-                }
-            }
-        }
-        return false;
-     }
-
-    function gravatar_save()
-    {
-        $cur = common_current_user();
-
-        if(empty($cur->email)) {
-            return array('message' => _m('You do not have an email address set in your profile.'),
-                         'success' => false);
-        }
-        //Get rid of previous Avatar
-        $this->gravatar_remove();
-
-        foreach (array(AVATAR_PROFILE_SIZE, AVATAR_STREAM_SIZE, AVATAR_MINI_SIZE) as $size) {
-            $gravatar = new Avatar();
-            $gravatar->profile_id = $cur->id;
-            $gravatar->width = $size;
-            $gravatar->height = $size;
-            $gravatar->original = false; //No file, so no original
-            $gravatar->mediatype = 'img';//XXX: Unsure what to put here
-            //$gravatar->filename = null;//No filename. Remote
-            $gravatar->url = $this->gravatar_url($cur->email, $size);
-            $gravatar->created = DB_DataObject_Cast::dateTime(); # current time
-
-            if (!$gravatar->insert()) {
-                return array('message' => _m('Failed to save Gravatar to the database.'),
-                             'success' => false);
-            }
-        }
-        return array('message' => _m('Gravatar added.'),
-                     'success' => true);
-     }
-
-    function gravatar_remove()
-    {
-        $user = common_current_user();
-        $profile = $user->getProfile();
-
-        $avatar = $profile->getOriginalAvatar();
-        if($avatar) $avatar->delete();
-        $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);
-        if($avatar) $avatar->delete();
-        $avatar = $profile->getAvatar(AVATAR_STREAM_SIZE);
-        if($avatar) $avatar->delete();
-        $avatar = $profile->getAvatar(AVATAR_MINI_SIZE);
-        if($avatar) $avatar->delete();
-
-        return array('message' => _m('Gravatar removed.'),
-                     'success' => true);
     }
 
     function gravatar_url($email, $size)
@@ -194,9 +59,10 @@ class GravatarPlugin extends Plugin
     {
         $versions[] = array('name' => 'Gravatar',
                             'version' => STATUSNET_VERSION,
-                            'author' => 'Eric Helgeson',
+                            'author' => 'Eric Helgeson, Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Gravatar',
                             'rawdescription' =>
+                            // TRANS: Plugin decsription.
                             _m('The Gravatar plugin allows users to use their <a href="http://www.gravatar.com/">Gravatar</a> with StatusNet.'));
 
         return true;

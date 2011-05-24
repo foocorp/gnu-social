@@ -9,18 +9,33 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - LdapAuthentication\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:54+0000\n"
+"POT-Creation-Date: 2011-04-27 12:36+0000\n"
+"PO-Revision-Date: 2011-04-27 12:37:26+0000\n"
 "Language-Team: Spanish <http://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:33+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-03-24 15:25:06+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87008); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-ldapauthentication\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+msgid "You must specify a nickname attribute."
+msgstr ""
+
+#. TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+msgid ""
+"If password_changeable is set, the password attribute and password_encoding "
+"must also be specified."
+msgstr ""
+
+#. TRANS: Instructions for LDAP authentication.
+msgid "Do you have an LDAP account? Use your standard username and password."
+msgstr ""
+
+#. TRANS: Plugin description.
 msgid ""
 "The LDAP Authentication plugin allows for StatusNet to handle authentication "
 "through LDAP."

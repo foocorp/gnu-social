@@ -1,8 +1,9 @@
 The FirePHP plugin writes StatusNet's log output to FirePHP.
 
 Using FirePHP on production sites can expose sensitive information.
-    You must protect the security of your application by disabling FirePHP
-    logging on your live site.
+
+You must protect the security of your application by disabling FirePHP logging
+on your live site!
 
 Installation
 ============
@@ -18,4 +19,3 @@ Example
 =======
 
 addPlugin('FirePHP', array());
-

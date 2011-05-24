@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      DB_DataObject
  */
-
 class Bookmark extends Memcached_DataObject
 {
     public $__table = 'bookmark'; // table name
@@ -65,7 +64,6 @@ class Bookmark extends Memcached_DataObject
      * @return User_greeting_count object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Bookmark', $k, $v);
@@ -83,7 +81,6 @@ class Bookmark extends Memcached_DataObject
      * @return Bookmark object found, or null for no hits
      *
      */
-
     function pkeyGet($kv)
     {
         return Memcached_DataObject::pkeyGet('Bookmark', $kv);
@@ -97,7 +94,6 @@ class Bookmark extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array('id' => DB_DATAOBJECT_STR + DB_DATAOBJECT_NOTNULL,
@@ -106,7 +102,7 @@ class Bookmark extends Memcached_DataObject
                      'title' => DB_DATAOBJECT_STR,
                      'description' => DB_DATAOBJECT_STR,
                      'uri' => DB_DATAOBJECT_STR,
-                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE + 
+                     'created' => DB_DATAOBJECT_STR + DB_DATAOBJECT_DATE +
                      DB_DATAOBJECT_TIME + DB_DATAOBJECT_NOTNULL);
     }
 
@@ -115,7 +111,6 @@ class Bookmark extends Memcached_DataObject
      *
      * @return array list of key field names
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -126,7 +121,6 @@ class Bookmark extends Memcached_DataObject
      *
      * @return array associative array of key definitions
      */
-
     function keyTypes()
     {
         return array('id' => 'K',
@@ -138,7 +132,6 @@ class Bookmark extends Memcached_DataObject
      *
      * @return array magic three-false array that stops auto-incrementing.
      */
-
     function sequenceKey()
     {
         return array(false, false, false);
@@ -146,12 +139,11 @@ class Bookmark extends Memcached_DataObject
 
     /**
      * Get a bookmark based on a notice
-     * 
+     *
      * @param Notice $notice Notice to check for
      *
      * @return Bookmark found bookmark or null
      */
-    
     function getByNotice($notice)
     {
         return self::staticGet('uri', $notice->uri);
@@ -165,11 +157,10 @@ class Bookmark extends Memcached_DataObject
      *
      * @return Bookmark bookmark found or null
      */
-     
     static function getByURL($profile, $url)
     {
         $nb = new Bookmark();
-        
+
         $nb->profile_id = $profile->id;
         $nb->url        = $url;
 
@@ -192,14 +183,14 @@ class Bookmark extends Memcached_DataObject
      *
      * @return Notice saved notice
      */
-
     static function saveNew($profile, $title, $url, $rawtags, $description,
                             $options=null)
     {
         $nb = self::getByURL($profile, $url);
 
         if (!empty($nb)) {
-            throw new ClientException(_('Bookmark already exists.'));
+            // TRANS: Client exception thrown when trying to save a new bookmark that already exists.
+            throw new ClientException(_m('Bookmark already exists.'));
         }
 
         if (empty($options)) {
@@ -209,7 +200,8 @@ class Bookmark extends Memcached_DataObject
         if (array_key_exists('uri', $options)) {
             $other = Bookmark::staticGet('uri', $options['uri']);
             if (!empty($other)) {
-                throw new ClientException(_('Bookmark already exists.'));
+                // TRANS: Client exception thrown when trying to save a new bookmark that already exists.
+                throw new ClientException(_m('Bookmark already exists.'));
             }
         }
 
@@ -238,8 +230,23 @@ class Bookmark extends Memcached_DataObject
         if (array_key_exists('uri', $options)) {
             $nb->uri = $options['uri'];
         } else {
-            $nb->uri = common_local_url('showbookmark',
-                                        array('id' => $nb->id));
+            // FIXME: hacks to work around router bugs in
+            // queue daemons
+
+            $r = Router::get();
+
+            $path = $r->build('showbookmark',
+                              array('id' => $nb->id));
+
+            if (empty($path)) {
+                $nb->uri = common_path('bookmark/'.$nb->id, false, false);
+            } else {
+                $nb->uri = common_local_url('showbookmark',
+                                            array('id' => $nb->id),
+                                            null,
+                                            null,
+                                            false);
+            }
         }
 
         $nb->insert();
@@ -281,23 +288,29 @@ class Bookmark extends Memcached_DataObject
         try {
             $user = User::staticGet('id', $profile->id);
 
-            $shortUrl = File_redirection::makeShort($url, 
+            $shortUrl = File_redirection::makeShort($url,
                                                     empty($user) ? null : $user);
         } catch (Exception $e) {
             // Don't let this stop us.
             $shortUrl = $url;
         }
 
-        $content = sprintf(_('"%s" %s %s %s'),
+        // TRANS: Bookmark content.
+        // TRANS: %1$s is a title, %2$s is a short URL, %3$s is the bookmark description,
+	// TRANS: %4$s is space separated list of hash tags.
+        $content = sprintf(_m('"%1$s" %2$s %3$s %4$s'),
                            $title,
                            $shortUrl,
                            $description,
                            implode(' ', $hashtags));
 
-        $rendered = sprintf(_('<span class="xfolkentry">'.
-                              '<a class="taggedlink" href="%s">%s</a> '.
-                              '<span class="description">%s</span> '.
-                              '<span class="meta">%s</span>'.
+        // TRANS: Rendered bookmark content.
+        // TRANS: %1$s is a URL, %2$s the bookmark title, %3$s is the bookmark description,
+	// TRANS: %4$s is space separated list of hash tags.
+        $rendered = sprintf(_m('<span class="xfolkentry">'.
+                              '<a class="taggedlink" href="%1$s">%2$s</a> '.
+                              '<span class="description">%3$s</span> '.
+                              '<span class="meta">%4$s</span>'.
                               '</span>'),
                             htmlspecialchars($url),
                             htmlspecialchars($title),
@@ -315,11 +328,20 @@ class Bookmark extends Memcached_DataObject
             $options['uri'] = $nb->uri;
         }
 
-        $saved = Notice::saveNew($profile->id,
-                                 $content,
-                                 array_key_exists('source', $options) ?
-                                 $options['source'] : 'web',
-                                 $options);
+        try {
+            $saved = Notice::saveNew($profile->id,
+                                     $content,
+                                     array_key_exists('source', $options) ?
+                                     $options['source'] : 'web',
+                                     $options);
+        } catch (Exception $e) {
+            $nb->delete();
+            throw $e;
+        }
+
+        if (empty($saved)) {
+            $nb->delete();
+        }
 
         return $saved;
     }

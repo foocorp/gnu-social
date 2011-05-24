@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: User notification that JavaScript is required for Disqus comment display.
-#: DisqusPlugin.php:143
+#. TRANS: This message contains Markdown links in the form [description](link).
+#: DisqusPlugin.php:144
 #, php-format
 msgid ""
 "Please enable JavaScript to view the [comments powered by Disqus](http://"
@@ -25,17 +26,17 @@ msgid ""
 msgstr ""
 
 #. TRANS: This message is followed by a Disqus logo. Alt text is "Disqus".
-#: DisqusPlugin.php:151
+#: DisqusPlugin.php:152
 msgid "Comments powered by "
 msgstr ""
 
 #. TRANS: Plugin supplied feature for Disqus comments to notices.
-#: DisqusPlugin.php:204
+#: DisqusPlugin.php:205
 msgid "Comments"
 msgstr ""
 
 #. TRANS: Plugin description.
-#: DisqusPlugin.php:245
+#: DisqusPlugin.php:246
 msgid ""
 "Use <a href=\"http://disqus.com/\">Disqus</a> to add commenting to notice "
 "pages."

@@ -74,4 +74,23 @@ class Conversation extends Memcached_DataObject
 
         return $conv;
     }
+
+    static function noticeCount($id)
+    {
+        $keypart = sprintf('conversation:notice_count:%d', $id);
+
+        $cnt = self::cacheGet($keypart);
+
+        if ($cnt !== false) {
+            return $cnt;
+        }
+
+        $notice               = new Notice();
+        $notice->conversation = $id;
+        $cnt                  = $notice->count();
+
+        self::cacheSet($keypart, $cnt);
+
+        return $cnt;
+    }
 }

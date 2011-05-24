@@ -30,6 +30,9 @@ require_once 'Validate.php';
 
 class User extends Memcached_DataObject
 {
+    const SUBSCRIBE_POLICY_OPEN = 0;
+    const SUBSCRIBE_POLICY_MODERATE = 1;
+
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
 
@@ -55,10 +58,12 @@ class User extends Memcached_DataObject
     public $smsemail;                        // varchar(255)
     public $uri;                             // varchar(255)  unique_key
     public $autosubscribe;                   // tinyint(1)
+    public $subscribe_policy;                // tinyint(1)
     public $urlshorteningservice;            // varchar(50)   default_ur1.ca
     public $inboxed;                         // tinyint(1)
     public $design_id;                       // int(4)
     public $viewdesigns;                     // tinyint(1)   default_1
+    public $private_stream;                  // tinyint(1)   default_0
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -68,22 +73,33 @@ class User extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
+    protected $_profile = -1;
+
     /**
      * @return Profile
      */
     function getProfile()
     {
-        $profile = Profile::staticGet('id', $this->id);
-        if (empty($profile)) {
-            throw new UserNoProfileException($this);
+        if (is_int($this->_profile) && $this->_profile == -1) { // invalid but distinct from null
+            $this->_profile = Profile::staticGet('id', $this->id);
+            if (empty($this->_profile)) {
+                throw new UserNoProfileException($this);
+            }
         }
-        return $profile;
+
+        return $this->_profile;
     }
 
     function isSubscribed($other)
     {
         $profile = $this->getProfile();
         return $profile->isSubscribed($other);
+    }
+
+    function hasPendingSubscription($other)
+    {
+        $profile = $this->getProfile();
+        return $profile->hasPendingSubscription($other);
     }
 
     // 'update' won't write key columns, so we have to do it ourselves.
@@ -247,6 +263,8 @@ class User extends Memcached_DataObject
 
         $user->nickname = $nickname;
 
+        $invite = null;
+
         // Users who respond to invite email have proven their ownership of that address
 
         if (!empty($code)) {
@@ -335,6 +353,12 @@ class User extends Memcached_DataObject
             if (!$result) {
                 common_log_db_error($subscription, 'INSERT', __FILE__);
                 return false;
+            }
+
+            // Mark that this invite was converted
+
+            if (!empty($invite)) {
+                $invite->convert($user);
             }
 
             if (!empty($email) && !$user->email) {
@@ -467,34 +491,45 @@ class User extends Memcached_DataObject
         return Fave::stream($this->id, $offset, $limit, $own, $since_id, $max_id);
     }
 
+    function noticeInbox($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
+    {
+        $stream = new InboxNoticeStream($this);
+        return $stream->getNotices($offset, $limit, $since_id, $before_id);
+    }
+
+    // DEPRECATED, use noticeInbox()
+
     function noticesWithFriends($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
     {
-        return Inbox::streamNotices($this->id, $offset, $limit, $since_id, $before_id, false);
+        return $this->noticeInbox($offset, $limit, $since_id, $before_id);
     }
+
+    // DEPRECATED, use noticeInbox()
 
     function noticesWithFriendsThreaded($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
     {
-        return Inbox::streamNoticesThreaded($this->id, $offset, $limit, $since_id, $before_id, false);
+        return $this->noticeInbox($offset, $limit, $since_id, $before_id);
     }
 
-    function noticeInbox($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
-    {
-        return Inbox::streamNotices($this->id, $offset, $limit, $since_id, $before_id, true);
-    }
+    // DEPRECATED, use noticeInbox()
 
     function noticeInboxThreaded($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
     {
-        return Inbox::streamNoticesThreaded($this->id, $offset, $limit, $since_id, $before_id, true);
+        return $this->noticeInbox($offset, $limit, $since_id, $before_id);
     }
+
+    // DEPRECATED, use noticeInbox()
 
     function friendsTimeline($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
     {
-        return Inbox::streamNotices($this->id, $offset, $limit, $since_id, $before_id, false);
+        return $this->noticeInbox($offset, $limit, $since_id, $before_id);
     }
+
+    // DEPRECATED, use noticeInbox()
 
     function ownFriendsTimeline($offset=0, $limit=NOTICES_PER_PAGE, $since_id=0, $before_id=0)
     {
-        return Inbox::streamNotices($this->id, $offset, $limit, $since_id, $before_id, true);
+        $this->noticeInbox($offset, $limit, $since_id, $before_id);
     }
 
     function blowFavesCache()
@@ -505,12 +540,12 @@ class User extends Memcached_DataObject
 
     function getSelfTags()
     {
-        return Profile_tag::getTags($this->id, $this->id);
+        return Profile_tag::getTagsArray($this->id, $this->id, $this->id);
     }
 
-    function setSelfTags($newtags)
+    function setSelfTags($newtags, $privacy)
     {
-        return Profile_tag::setTags($this->id, $this->id, $newtags);
+        return Profile_tag::setTags($this->id, $this->id, $newtags, $privacy);
     }
 
     function block($other)
@@ -782,7 +817,8 @@ class User extends Memcached_DataObject
 
     function repeatedToMe($offset=0, $limit=20, $since_id=null, $max_id=null)
     {
-        throw new Exception("Not implemented since inbox change.");
+        // TRANS: Exception thrown when trying view "repeated to me".
+        throw new Exception(_('Not implemented since inbox change.'));
     }
 
     function shareLocation()
@@ -956,4 +992,20 @@ class User extends Memcached_DataObject
         return $apps;
     }
 
+    /**
+     * Magic function called at serialize() time.
+     *
+     * We use this to drop a couple process-specific references
+     * from DB_DataObject which can cause trouble in future
+     * processes.
+     *
+     * @return array of variable names to include in serialization.
+     */
+
+    function __sleep()
+    {
+        $vars = parent::__sleep();
+        $skip = array('_profile');
+        return array_diff($vars, $skip);
+    }
 }

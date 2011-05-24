@@ -44,7 +44,6 @@ require_once INSTALLDIR.'/plugins/OpenID/openid.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class OpenidsettingsAction extends SettingsAction
 {
     /**
@@ -52,10 +51,10 @@ class OpenidsettingsAction extends SettingsAction
      *
      * @return string Page title
      */
-
     function title()
     {
-        return _m('OpenID settings');
+        // TRANS: Title of OpenID settings page for a user.
+        return _m('TITLE','OpenID settings');
     }
 
     /**
@@ -63,12 +62,13 @@ class OpenidsettingsAction extends SettingsAction
      *
      * @return string Instructions for use
      */
-
     function getInstructions()
     {
-        return _m('[OpenID](%%doc.openid%%) lets you log into many sites' .
-                 ' with the same user account.'.
-                 ' Manage your associated OpenIDs from here.');
+        // TRANS: Form instructions for OpenID settings.
+        // TRANS: This message contains Markdown links in the form [description](link).
+        return _m('[OpenID](%%doc.openid%%) lets you log into many sites ' .
+                 'with the same user account. '.
+                 'Manage your associated OpenIDs from here.');
     }
 
     function showScripts()
@@ -84,7 +84,6 @@ class OpenidsettingsAction extends SettingsAction
      *
      * @return void
      */
-
     function showContent()
     {
         $user = common_current_user();
@@ -97,14 +96,17 @@ class OpenidsettingsAction extends SettingsAction
                                               common_local_url('openidsettings')));
             $this->elementStart('fieldset', array('id' => 'settings_openid_add'));
     
-            $this->element('legend', null, _m('Add OpenID'));
+            // TRANS: Fieldset legend.
+            $this->element('legend', null, _m('LEGEND','Add OpenID'));
             $this->hidden('token', common_session_token());
             $this->element('p', 'form_guide',
+                           // TRANS: Form guide.
                            _m('If you want to add an OpenID to your account, ' .
                              'enter it in the box below and click "Add".'));
             $this->elementStart('ul', 'form_data');
             $this->elementStart('li');
             $this->element('label', array('for' => 'openid_url'),
+                           // TRANS: Field label.
                            _m('OpenID URL'));
             $this->element('input', array('name' => 'openid_url',
                                           'type' => 'text',
@@ -115,7 +117,8 @@ class OpenidsettingsAction extends SettingsAction
                                           'id' => 'settings_openid_add_action-submit',
                                           'name' => 'add',
                                           'class' => 'submit',
-                                          'value' => _m('Add')));
+                                          // TRANS: Button text for adding an OpenID URL.
+                                          'value' => _m('BUTTON','Add')));
             $this->elementEnd('fieldset');
             $this->elementEnd('form');
         }
@@ -126,12 +129,13 @@ class OpenidsettingsAction extends SettingsAction
         $cnt = $oid->find();
 
         if ($cnt > 0) {
-
-            $this->element('h2', null, _m('Remove OpenID'));
+            // TRANS: Header on OpenID settings page.
+            $this->element('h2', null, _m('HEADER','Remove OpenID'));
 
             if ($cnt == 1 && !$user->password) {
 
                 $this->element('p', 'form_guide',
+                               // TRANS: Form guide.
                                _m('Removing your only OpenID '.
                                  'would make it impossible to log in! ' .
                                  'If you need to remove it, '.
@@ -147,6 +151,7 @@ class OpenidsettingsAction extends SettingsAction
             } else {
 
                 $this->element('p', 'form_guide',
+                               // TRANS: Form guide.
                                _m('You can remove an OpenID from your account '.
                                  'by clicking the button marked "Remove".'));
                 $idx = 0;
@@ -170,7 +175,8 @@ class OpenidsettingsAction extends SettingsAction
                                                   'id' => 'remove'.$idx,
                                                   'name' => 'remove',
                                                   'class' => 'submit remove',
-                                                  'value' => _m('Remove')));
+                                                  // TRANS: Button text to remove an OpenID.
+                                                  'value' => _m('BUTTON','Remove')));
                     $this->elementEnd('fieldset');
                     $this->elementEnd('form');
                     $idx++;
@@ -184,9 +190,11 @@ class OpenidsettingsAction extends SettingsAction
                                           'action' =>
                                           common_local_url('openidsettings')));
         $this->elementStart('fieldset', array('id' => 'settings_openid_trustroots'));
+        // TRANS: Fieldset legend.
         $this->element('legend', null, _m('OpenID Trusted Sites'));
         $this->hidden('token', common_session_token());
         $this->element('p', 'form_guide',
+                       // TRANS: Form guide.
                        _m('The following sites are allowed to access your ' .
                        'identity and log you in. You can remove a site from ' .
                        'this list to deny it access to your OpenID.'));
@@ -211,7 +219,8 @@ class OpenidsettingsAction extends SettingsAction
                                       'id' => 'settings_openid_trustroots_action-submit',
                                       'name' => 'remove_trustroots',
                                       'class' => 'submit',
-                                      'value' => _m('Remove')));
+                                      // TRANS: Button text to remove an OpenID trustroot.
+                                      'value' => _m('BUTTON','Remove')));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }
@@ -223,12 +232,12 @@ class OpenidsettingsAction extends SettingsAction
      *
      * @return void
      */
-
     function handlePost()
     {
         // CSRF protection
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->showForm(_m('There was a problem with your session token. '.
                               'Try again, please.'));
             return;
@@ -236,7 +245,8 @@ class OpenidsettingsAction extends SettingsAction
 
         if ($this->arg('add')) {
             if (common_config('openid', 'trusted_provider')) {
-                $this->showForm(_m("Can't add new providers."));
+                // TRANS: Form validation error if no OpenID providers can be added.
+                $this->showForm(_m('Cannot add new providers.'));
             } else {
                 $result = oid_authenticate($this->trimmed('openid_url'),
                                            'finishaddopenid');
@@ -249,6 +259,7 @@ class OpenidsettingsAction extends SettingsAction
         } else if($this->arg('remove_trustroots')) {
             $this->removeTrustroots();
         } else {
+            // TRANS: Unexpected form validation error.
             $this->showForm(_m('Something weird happened.'));
         }
     }
@@ -261,7 +272,6 @@ class OpenidsettingsAction extends SettingsAction
      *
      * @return void
      */
-
     function removeTrustroots()
     {
         $user = common_current_user();
@@ -273,11 +283,13 @@ class OpenidsettingsAction extends SettingsAction
                 if($user_openid_trustroot) {
                     $user_openid_trustroot->delete();
                 } else {
+                    // TRANS: Form validation error when trying to remove a non-existing trustroot.
                     $this->showForm(_m('No such OpenID trustroot.'));
                     return;
                 }
             }
-            $this->showForm(_m('Trustroots removed'), true);
+            // TRANS: Success message after removing trustroots.
+            $this->showForm(_m('Trustroots removed.'), true);
         } else {
             $this->showForm();
         }
@@ -292,7 +304,6 @@ class OpenidsettingsAction extends SettingsAction
      *
      * @return void
      */
-
     function removeOpenid()
     {
         $openid_url = $this->trimmed('openid_url');
@@ -300,15 +311,18 @@ class OpenidsettingsAction extends SettingsAction
         $oid = User_openid::staticGet('canonical', $openid_url);
 
         if (!$oid) {
+            // TRANS: Form validation error for a non-existing OpenID.
             $this->showForm(_m('No such OpenID.'));
             return;
         }
         $cur = common_current_user();
         if (!$cur || $oid->user_id != $cur->id) {
+            // TRANS: Form validation error if OpenID is connected to another user.
             $this->showForm(_m('That OpenID does not belong to you.'));
             return;
         }
         $oid->delete();
+        // TRANS: Success message after removing an OpenID.
         $this->showForm(_m('OpenID removed.'), true);
         return;
     }

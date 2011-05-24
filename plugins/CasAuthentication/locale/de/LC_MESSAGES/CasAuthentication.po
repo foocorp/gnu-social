@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - CasAuthentication\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:25+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:55+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:12:58+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:26:35+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-casauthentication\n"
@@ -38,12 +38,15 @@ msgid "(Have an account with CAS? Try our [CAS login](%%action.caslogin%%)!)"
 msgstr ""
 "(Hast du ein CAS-Konto? Probiere unseren [CAS-Login](%%action.caslogin%%)!)"
 
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
 msgid "Specifying a server is required."
 msgstr "Es ist erforderlich, einen Server anzugeben."
 
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
 msgid "Specifying a port is required."
 msgstr "Es ist erforderlich, einen Port anzugeben."
 
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
 msgid "Specifying a path is required."
 msgstr "Es ist erforderlich, einen Pfad anzugeben."
 
@@ -55,12 +58,15 @@ msgstr ""
 "Das CAS-Authenfizierungs-Plugin erlaubt es StatusNet, die Authentifizierung "
 "über CAS (Central Authentication Service) abzuwickeln."
 
+#. TRANS: Client error displayed when trying to log in while already logged on.
 msgid "Already logged in."
 msgstr "Bereits angemeldet."
 
+#. TRANS: Server error displayed when trying to log in with incorrect username or password.
 msgid "Incorrect username or password."
 msgstr "Benutzername oder Passwort falsch."
 
+#. TRANS: Server error displayed when login fails in CAS authentication plugin.
 msgid "Error setting user. You are probably not authorized."
 msgstr ""
 "Fehler beim Festlegen des Benutzers. Du bist wahrscheinlich nicht dazu "

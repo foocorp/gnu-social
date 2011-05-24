@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet - the distributed open-source microblogging tool
- * 
+ *
  * Handler for queue items of type 'usersum', sends an email summaries
  * to a particular user.
  *
@@ -41,13 +41,11 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class UserEmailSummaryHandler extends QueueHandler
 {
     // Maximum number of notices to include by default. This is probably too much.
-    
     const MAX_NOTICES = 200;
-    
+
     /**
      * Return transport keyword which identifies items this queue handler
      * services; must be defined for all subclasses.
@@ -57,7 +55,6 @@ class UserEmailSummaryHandler extends QueueHandler
      *
      * @return string
      */
-    
     function transport()
     {
         return 'sitesum';
@@ -65,47 +62,46 @@ class UserEmailSummaryHandler extends QueueHandler
 
     /**
      * Send a summary email to the user
-     * 
+     *
      * @param mixed $object
      * @return boolean true on success, false on failure
      */
-    
     function handle($user_id)
     {
         // Skip if they've asked not to get summaries
 
         $ess = Email_summary_status::staticGet('user_id', $user_id);
-	
+
         if (!empty($ess) && !$ess->send_summary) {
             common_log(LOG_INFO, sprintf('Not sending email summary for user %s by request.', $user_id));
             return true;
         }
 
         $since_id = null;
-	
+
         if (!empty($ess)) {
             $since_id = $ess->last_summary_id;
         }
-	  
+
         $user = User::staticGet('id', $user_id);
 
         if (empty($user)) {
             common_log(LOG_INFO, sprintf('Not sending email summary for user %s; no such user.', $user_id));
             return true;
         }
-	
+
         if (empty($user->email)) {
             common_log(LOG_INFO, sprintf('Not sending email summary for user %s; no email address.', $user_id));
             return true;
         }
-	
+
         $profile = $user->getProfile();
-	
+
         if (empty($profile)) {
             common_log(LOG_WARNING, sprintf('Not sending email summary for user %s; no profile.', $user_id));
             return true;
         }
-	
+
         $notice = $user->ownFriendsTimeline(0, self::MAX_NOTICES, $since_id);
 
         if (empty($notice) || $notice->N == 0) {
@@ -117,18 +113,20 @@ class UserEmailSummaryHandler extends QueueHandler
         // figuring out a better way. -ESP
 
         $new_top = null;
-	
+
         if ($notice instanceof ArrayWrapper) {
             $new_top = $notice->_items[0]->id;
         }
-	
+
         $out = new XMLStringer();
 
         $out->elementStart('div', array('width' => '100%',
                                         'style' => 'background-color: #ffffff; border: 4px solid #4c609a; padding: 10px;'));
 
         $out->elementStart('div', array('style' => 'color: #ffffff; background-color: #4c609a; font-weight: bold; margin-bottom: 10px; padding: 4px;'));
-    	$out->raw(sprintf(_('Recent updates from %1s for %2s:'),
+        // TRANS: Text in e-mail summary.
+        // TRANS: %1$s is the StatusNet sitename, %2$s is the recipient's profile name.
+        $out->raw(sprintf(_m('Recent updates from %1$s for %2$s:'),
                           common_config('site', 'name'),
                           $profile->getBestName()));
         $out->elementEnd('div');
@@ -137,13 +135,12 @@ class UserEmailSummaryHandler extends QueueHandler
                                           'style' => 'border: none; border-collapse: collapse;', 'cellpadding' => '6'));
 
         while ($notice->fetch()) {
-	    
             $profile = Profile::staticGet('id', $notice->profile_id);
-	    
+
             if (empty($profile)) {
                 continue;
             }
-	    
+
             $avatar = $profile->getAvatar(AVATAR_STREAM_SIZE);
 
             $out->elementStart('tr');
@@ -184,50 +181,51 @@ class UserEmailSummaryHandler extends QueueHandler
                     $out->text(' ');
                     $out->element('a',
                                   array('href' => $convurl.'#notice-'.$notice->id),
-                                  _('in context'));
+                                  // TRANS: Link text for link to conversation view.
+                                  _m('in context'));
                 }
             }
             $out->elementEnd('div');
             $out->elementEnd('td');
             $out->elementEnd('tr');
         }
-	
+
         $out->elementEnd('table');
 
-        $out->raw(sprintf(_('<p><a href="%1s">change your email settings for %2s</a></p>'),
+        // TRANS: Link text for link to e-mail settings.
+        // TRANS: %1$s is a link to the e-mail settings, %2$s is the StatusNet sitename.
+        $out->raw("<p>" . sprintf(_m('<a href="%1$s">change your email settings for %2$s</a>'),
                           common_local_url('emailsettings'),
-                          common_config('site', 'name')));
+                          common_config('site', 'name'))."</p>");
 
         $out->elementEnd('div');
-	
+
         $body = $out->getString();
-	
+
         // FIXME: do something for people who don't like HTML email
-	
-        mail_to_user($user, _('Updates from your network'), $body,
+
+        // TRANS: Subject for e-mail.
+        mail_to_user($user, _m('Updates from your network'), $body,
                      array('Content-Type' => 'text/html; charset=UTF-8'));
 
         if (empty($ess)) {
-	    
             $ess = new Email_summary_status();
-	    
+
             $ess->user_id         = $user_id;
             $ess->created         = common_sql_now();
             $ess->last_summary_id = $new_top;
             $ess->modified        = common_sql_now();
 
             $ess->insert();
-	    
         } else {
-	    
             $orig = clone($ess);
-	    
+
             $ess->last_summary_id = $new_top;
             $ess->modified        = common_sql_now();
 
             $ess->update($orig);
         }
-	
+
         return true;
     }
 }

@@ -64,7 +64,7 @@ class ApiAccountVerifyCredentialsAction extends ApiAuthAction
         parent::handle($args);
 
         if (!in_array($this->format, array('xml', 'json'))) {
-            // TRANS: Client error displayed trying to execute an unknown API method verifying user credentials.
+            // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), $code = 404);
             return;
         }

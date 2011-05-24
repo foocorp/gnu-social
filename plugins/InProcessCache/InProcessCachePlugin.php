@@ -39,7 +39,7 @@ if (!defined('STATUSNET')) {
  *
  * This plugin adds an extra level of in-process caching to any regular
  * cache system like APC, XCache, or Memcache.
- * 
+ *
  * Note that since most caching plugins return false for StartCache*
  * methods, you should add this plugin before them, i.e.
  *
@@ -53,7 +53,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class InProcessCachePlugin extends Plugin
 {
     private $_items = array();
@@ -77,7 +76,7 @@ class InProcessCachePlugin extends Plugin
 
     /**
      * Get an item from the cache
-     * 
+     *
      * Called before other cache systems are called (iif this
      * plugin was loaded correctly, see class comment). If we
      * have the data, return it, and don't hit the other cache
@@ -88,7 +87,6 @@ class InProcessCachePlugin extends Plugin
      *
      * @return boolean false if found, else true
      */
-
     function onStartCacheGet(&$key, &$value)
     {
         if ($this->active && array_key_exists($key, $this->_items)) {
@@ -116,7 +114,6 @@ class InProcessCachePlugin extends Plugin
      *
      * @return boolean hook value, true
      */
-
     function onEndCacheGet($key, &$value)
     {
         if ($this->active && (!array_key_exists($key, $this->_items) ||
@@ -128,7 +125,7 @@ class InProcessCachePlugin extends Plugin
 
     /**
      * Called at the end of setting a cache element
-     * 
+     *
      * Always set the cache element; may overwrite existing
      * data.
      *
@@ -139,7 +136,6 @@ class InProcessCachePlugin extends Plugin
      *
      * @return boolean true
      */
-
     function onEndCacheSet($key, $value, $flag, $expiry)
     {
         if ($this->active) {
@@ -159,7 +155,6 @@ class InProcessCachePlugin extends Plugin
      *
      * @return boolean true
      */
-     
     function onStartCacheDelete(&$key, &$success)
     {
         if ($this->active && array_key_exists($key, $this->_items)) {
@@ -175,7 +170,6 @@ class InProcessCachePlugin extends Plugin
      *
      * @return boolean true
      */
-
     function onPluginVersion(&$versions)
     {
         $url = 'http://status.net/wiki/Plugin:InProcessCache';
@@ -185,6 +179,7 @@ class InProcessCachePlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => $url,
                             'description' =>
+                            // TRANS: Plugin dscription.
                             _m('Additional in-process cache for plugins.'));
         return true;
     }
@@ -197,17 +192,16 @@ class InProcessCachePlugin extends Plugin
      *
      * @return boolean true
      */
-
     function cleanup()
     {
         if ($this->active && common_config('inprocess', 'stats')) {
-            $this->log(LOG_INFO, "cache size: " . 
+            $this->log(LOG_INFO, "cache size: " .
                        count($this->_items));
             $sum = 0;
             foreach ($this->_hits as $hitcount) {
                 $sum += $hitcount;
             }
-            $this->log(LOG_INFO, $sum . " hits on " . 
+            $this->log(LOG_INFO, $sum . " hits on " .
                        count($this->_hits) . " keys");
         }
         return true;

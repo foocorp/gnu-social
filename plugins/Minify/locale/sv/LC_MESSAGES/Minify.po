@@ -1,0 +1,40 @@
+# Translation of StatusNet - Minify to Swedish (Svenska)
+# Exported from translatewiki.net
+#
+# Author: Lokal Profil
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Minify\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:05+0000\n"
+"Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-03-18 20:08:19+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: sv\n"
+"X-Message-Group: #out-statusnet-plugin-minify\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid ""
+"The Minify plugin minifies StatusNet's CSS and JavaScript, removing "
+"whitespace and comments."
+msgstr ""
+
+#. TRANS: Client error displayed when not providing a valid path in parameter "f".
+msgid "The parameter \"f\" is not a valid path."
+msgstr "Parametern \"f\" är inte en giltig sökväg."
+
+#. TRANS: Client error displayed when not providing parameter "f".
+msgid "The parameter \"f\" is required but missing."
+msgstr "Parametern \"f\" är obligatoriska men saknas."
+
+#. TRANS: Client error displayed when trying to minify an unsupported file type.
+msgid "File type not supported."
+msgstr "Filtypen stöds inte"

@@ -237,13 +237,16 @@ class ConnectedAppsList extends Widget
         $this->out->elementEnd('a');
 
         if ($app->name == 'anonymous') {
-            $this->out->element('span', 'fn', "Unknown application");
+            // TRANS: Name for an anonymous application in application list.
+            $this->out->element('span', 'fn', _('Unknown application'));
         }
 
         $this->out->elementEnd('span');
 
         if ($app->name != 'anonymous') {
             // @todo FIXME: i18n trouble.
+            // TRANS: Message has a leading space and a trailing space. Used in application list.
+            // TRANS: Before this message the application name is put, behind it the organisation that manages it.
             $this->out->raw(_(' by '));
 
             $this->out->element(
@@ -267,6 +270,7 @@ class ConnectedAppsList extends Widget
         // TRANS: Used in application list. %1$s is a modified date, %2$s is access type ("read-write" or "read-only")
         $txt = sprintf(_('Approved %1$s - "%2$s" access.'), $modifiedDate, $access);
 
+        // @todo FIXME: i18n trouble.
         $this->out->raw(" - $txt");
         if (!empty($app->description)) {
             $this->out->element(
@@ -294,7 +298,7 @@ class ConnectedAppsList extends Widget
         $this->out->elementStart('fieldset');
         $this->out->hidden('oauth_token', $this->connection->token);
         $this->out->hidden('token', common_session_token());
-        // TRANS: Button label
+        // TRANS: Button label in application list to revoke access to user data.
         $this->out->submit('revoke', _m('BUTTON','Revoke'));
         $this->out->elementEnd('fieldset');
         $this->out->elementEnd('form');

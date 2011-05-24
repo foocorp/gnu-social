@@ -29,10 +29,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  * In a multi-site queuedaemon.php run, one connection will be instantiated
  * for each site being handled by the current process that has XMPP enabled.
  */
-
 class AimManager extends ImManager
 {
-
     public $conn = null;
     /**
      * Initialize connection to server.
@@ -77,6 +75,8 @@ class AimManager extends ImManager
             $this->conn->registerHandler("IMIn",array($this,"handle_aim_message"));
             $this->conn->myServer="toc.oscar.aol.com";
             $this->conn->signon();
+            // @todo i18n FIXME: Update translator documentation, please.
+            // TRANS: No idea what the use case for this message is.
             $this->conn->setProfile(_m('Send me a message to post a notice'),false);
         }
         return $this->conn;

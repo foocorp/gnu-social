@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Action for adding a new group message
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class NewgroupmessageAction extends Action
 {
     var $group;
@@ -58,7 +57,6 @@ class NewgroupmessageAction extends Action
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
@@ -66,11 +64,13 @@ class NewgroupmessageAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            throw new ClientException(_('Must be logged in.'), 403);
+            // TRANS: Client exception thrown when trying to send a private group message while not logged in.
+            throw new ClientException(_m('Must be logged in.'), 403);
         }
 
         if (!$this->user->hasRight(Right::NEWMESSAGE)) {
-            throw new Exception(sprintf(_('User %s not allowed to send private messages.'),
+            // TRANS: Exception thrown when user %s is not allowed to send a private group message.
+            throw new Exception(sprintf(_m('User %s is not allowed to send private messages.'),
                                         $this->user->nickname));
         }
 
@@ -87,21 +87,21 @@ class NewgroupmessageAction extends Action
         $localGroup = Local_group::staticGet('nickname', $nickname);
 
         if (empty($localGroup)) {
-            throw new ClientException(_('No such group'), 404);
+            // TRANS: Client exception thrown when trying to send a private group message to a non-existing group.
+            throw new ClientException(_m('No such group.'), 404);
         }
 
         $this->group = User_group::staticGet('id', $localGroup->group_id);
 
         if (empty($this->group)) {
-            throw new ClientException(_('No such group'), 404);
+            // TRANS: Client exception thrown when trying to send a private group message to a non-existing group.
+            throw new ClientException(_m('No such group.'), 404);
         }
 
         // This throws an exception on error
-
         Group_privacy_settings::ensurePost($this->user, $this->group);
 
         // If we're posted to, check session token and get text
-
         if ($this->isPost()) {
             $this->checkSessionToken();
             $this->text = $this->trimmed('content');
@@ -117,7 +117,6 @@ class NewgroupmessageAction extends Action
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         if ($this->isPost()) {
@@ -140,12 +139,14 @@ class NewgroupmessageAction extends Action
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
-            $this->element('title', null, _('Message sent'));
+            // TRANS: Title after sending a private group message.
+            $this->element('title', null, _m('Message sent'));
             $this->elementEnd('head');
             $this->elementStart('body');
             $this->element('p',
                            array('id' => 'command_result'),
-                           sprintf(_('Direct message to %s sent.'),
+                           // TRANS: Succes text after sending a direct message to group %s.
+                           sprintf(_m('Direct message to %s sent.'),
                                    $this->group->nickname));
             $this->elementEnd('body');
             $this->elementEnd('html');
@@ -156,6 +157,7 @@ class NewgroupmessageAction extends Action
 
     function title()
     {
-        return sprintf(_('New message to group %s'), $this->group->nickname);
+        // TRANS: Title of form for new private group message.
+        return sprintf(_m('New message to group %s'), $this->group->nickname);
     }
 }

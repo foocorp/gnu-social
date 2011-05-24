@@ -60,7 +60,6 @@ class APCPlugin extends Plugin
      *
      * @return boolean hook success
      */
-
     function onStartCacheGet(&$key, &$value)
     {
         $value = apc_fetch($key);
@@ -79,7 +78,6 @@ class APCPlugin extends Plugin
      *
      * @return boolean hook success
      */
-
     function onStartCacheSet(&$key, &$value, &$flag, &$expiry, &$success)
     {
         $success = apc_store($key, $value, ((is_null($expiry)) ? 0 : $expiry));
@@ -97,7 +95,6 @@ class APCPlugin extends Plugin
      *
      * @return boolean hook success
      */
-
     function onStartCacheDelete(&$key, &$success)
     {
         $success = apc_delete($key);
@@ -112,6 +109,7 @@ class APCPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:APC',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Use the <a href="http://pecl.php.net/package/apc">APC</a> variable cache to cache query results.'));
         return true;
     }

@@ -59,7 +59,7 @@ class ProfileFormAction extends RedirectingAction
 
         if (!common_logged_in()) {
             if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                // TRANS: Client error displayed when trying to change user options while not logged in.
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
                 $this->clientError(_('Not logged in.'));
             } else {
                 // Redirect to login.

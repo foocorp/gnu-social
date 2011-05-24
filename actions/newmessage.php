@@ -85,7 +85,7 @@ class NewmessageAction extends Action
         parent::handle($args);
 
         if (!common_logged_in()) {
-            // TRANS: Client error displayed trying to create a new direct message while not logged in.
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'), 403);
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->saveNewMessage();
@@ -137,6 +137,7 @@ class NewmessageAction extends Action
 
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->showForm(_('There was a problem with your session token. ' .
                 'Try again, please.'));
             return;

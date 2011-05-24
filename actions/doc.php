@@ -147,80 +147,19 @@ class DocAction extends Action
     {
         if (Event::handle('StartLoadDoc', array(&$this->title, &$this->output))) {
 
-            $this->filename = $this->getFilename();
+            $paths = DocFile::defaultPaths();
 
-            if (empty($this->filename)) {
+            $docfile = DocFile::forTitle($this->title, $paths);
+
+            if (empty($docfile)) {
                 // TRANS: Client exception thrown when requesting a document from the documentation that does not exist.
                 // TRANS: %s is the non-existing document.
                 throw new ClientException(sprintf(_('No such document "%s".'), $this->title), 404);
             }
 
-            $c = file_get_contents($this->filename);
-
-            $this->output = common_markup_to_html($c);
+            $this->output = $docfile->toHTML();
 
             Event::handle('EndLoadDoc', array($this->title, &$this->output));
         }
-    }
-
-    function getFilename()
-    {
-        $localDef = null;
-        $local    = null;
-
-        $site = StatusNet::currentSite();
-
-        if (!empty($site) && file_exists(INSTALLDIR.'/local/doc-src/'.$site.'/'.$this->title)) {
-            $localDef = INSTALLDIR.'/local/doc-src/'.$site.'/'.$this->title;
-
-            $local = glob(INSTALLDIR.'/local/doc-src/'.$site.'/'.$this->title.'.*');
-            if ($local === false) {
-                // Some systems return false, others array(), if dir didn't exist.
-                $local = array();
-            }
-        } else {
-            if (file_exists(INSTALLDIR.'/local/doc-src/'.$this->title)) {
-                $localDef = INSTALLDIR.'/local/doc-src/'.$this->title;
-            }
-
-            $local = glob(INSTALLDIR.'/local/doc-src/'.$this->title.'.*');
-            if ($local === false) {
-                $local = array();
-            }
-        }
-
-        if (count($local) || isset($localDef)) {
-            return $this->negotiateLanguage($local, $localDef);
-        }
-
-        if (file_exists(INSTALLDIR.'/doc-src/'.$this->title)) {
-            $distDef = INSTALLDIR.'/doc-src/'.$this->title;
-        }
-
-        $dist = glob(INSTALLDIR.'/doc-src/'.$this->title.'.*');
-        if ($dist === false) {
-            $dist = array();
-        }
-
-        if (count($dist) || isset($distDef)) {
-            return $this->negotiateLanguage($dist, $distDef);
-        }
-
-        return null;
-    }
-
-    function negotiateLanguage($filenames, $defaultFilename=null)
-    {
-        // XXX: do this better
-
-        $langcode = common_language();
-
-        foreach ($filenames as $filename) {
-            if (preg_match('/\.'.$langcode.'$/', $filename)) {
-                return $filename;
-            }
-        }
-
-        return $defaultFilename;
     }
 }

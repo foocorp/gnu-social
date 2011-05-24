@@ -33,8 +33,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-
-
 /**
  * Change profile settings
  *
@@ -46,7 +44,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ProfilesettingsAction extends SettingsAction
 {
     /**
@@ -127,15 +124,15 @@ class ProfilesettingsAction extends SettingsAction
                 // TRANS: Tooltip for field label in form for profile settings. Plural
                 // TRANS: is decided by the number of characters available for the
                 // TRANS: biography (%d).
-                $bioInstr = sprintf(_m('Describe yourself and your interests in %d character',
-                                       'Describe yourself and your interests in %d characters',
+                $bioInstr = sprintf(_m('Describe yourself and your interests in %d character.',
+                                       'Describe yourself and your interests in %d characters.',
                                        $maxBio),
                                     $maxBio);
             } else {
                 // TRANS: Tooltip for field label in form for profile settings.
-                $bioInstr = _('Describe yourself and your interests');
+                $bioInstr = _('Describe yourself and your interests.');
             }
-            // TRANS: Text area label in form for profile settings where users can provide.
+            // TRANS: Text area label in form for profile settings where users can provide
             // TRANS: their biography.
             $this->textarea('bio', _('Bio'),
                             ($this->arg('bio')) ? $this->arg('bio') : $profile->bio,
@@ -146,7 +143,7 @@ class ProfilesettingsAction extends SettingsAction
             $this->input('location', _('Location'),
                          ($this->arg('location')) ? $this->arg('location') : $profile->location,
                          // TRANS: Tooltip for field label in form for profile settings.
-                         _('Where you are, like "City, State (or Region), Country"'));
+                         _('Where you are, like "City, State (or Region), Country".'));
             $this->elementEnd('li');
             if (common_config('location', 'share') == 'user') {
                 $this->elementStart('li');
@@ -192,7 +189,27 @@ class ProfilesettingsAction extends SettingsAction
                             ($this->arg('autosubscribe')) ?
                             $this->boolean('autosubscribe') : $user->autosubscribe);
             $this->elementEnd('li');
+            $this->elementStart('li');
+            $this->dropdown('subscribe_policy',
+                            // TRANS: Dropdown field label on profile settings, for what policies to apply when someone else tries to subscribe to your updates.
+                            _('Subscription policy'),
+                            // TRANS: Dropdown field option for following policy.
+                            array(User::SUBSCRIBE_POLICY_OPEN     => _('Let anyone follow me'),
+                                  // TRANS: Dropdown field option for following policy.
+                                  User::SUBSCRIBE_POLICY_MODERATE => _('Ask me first')),
+                            // TRANS: Dropdown field title on group edit form.
+                            _('Whether other users need your permission to follow your updates.'),
+                            false,
+                            (empty($user->subscribe_policy)) ? User::SUBSCRIBE_POLICY_OPEN : $user->subscribe_policy);
+            $this->elementEnd('li');
         }
+        $this->elementStart('li');
+        $this->checkbox('private_stream',
+                        // TRANS: Checkbox label in profile settings.
+                        _('Make updates visible only to my followers'),
+                        ($this->arg('private_stream')) ?
+                        $this->boolean('private_stream') : $user->private_stream);
+        $this->elementEnd('li');
         $this->elementEnd('ul');
         // TRANS: Button to save input in profile settings.
         $this->submit('save', _m('BUTTON','Save'));
@@ -234,6 +251,8 @@ class ProfilesettingsAction extends SettingsAction
             $bio = $this->trimmed('bio');
             $location = $this->trimmed('location');
             $autosubscribe = $this->boolean('autosubscribe');
+            $subscribe_policy = $this->trimmed('subscribe_policy');
+            $private_stream = $this->boolean('private_stream');
             $language = $this->trimmed('language');
             $timezone = $this->trimmed('timezone');
             $tagstring = $this->trimmed('tags');
@@ -279,18 +298,24 @@ class ProfilesettingsAction extends SettingsAction
                 return;
             }
 
-            if ($tagstring) {
-                $tags = array_map('common_canonical_tag', preg_split('/[\s,]+/', $tagstring));
-            } else {
-                $tags = array();
-            }
+            $tags = array();
+            $tag_priv = array();
+            if (is_string($tagstring) && strlen($tagstring) > 0) {
 
-            foreach ($tags as $tag) {
-                if (!common_valid_profile_tag($tag)) {
-                    // TRANS: Validation error in form for profile settings.
-                    // TRANS: %s is an invalid tag.
-                    $this->showForm(sprintf(_('Invalid tag: "%s".'), $tag));
-                    return;
+                $tags = preg_split('/[\s,]+/', $tagstring);
+
+                foreach ($tags as &$tag) {
+                    $private = @$tag[0] === '.';
+
+                    $tag = common_canonical_tag($tag);
+                    if (!common_valid_profile_tag($tag)) {
+                        // TRANS: Validation error in form for profile settings.
+                        // TRANS: %s is an invalid tag.
+                        $this->showForm(sprintf(_('Invalid tag: "%s".'), $tag));
+                        return;
+                    }
+
+                    $tag_priv[$tag] = $private;
                 }
             }
 
@@ -333,11 +358,15 @@ class ProfilesettingsAction extends SettingsAction
             }
 
             // XXX: XOR
-            if ($user->autosubscribe ^ $autosubscribe) {
+            if (($user->autosubscribe ^ $autosubscribe) ||
+                ($user->private_stream ^ $private_stream) ||
+                ($user->subscribe_policy != $subscribe_policy)) {
 
                 $original = clone($user);
 
-                $user->autosubscribe = $autosubscribe;
+                $user->autosubscribe    = $autosubscribe;
+                $user->private_stream   = $private_stream;
+                $user->subscribe_policy = $subscribe_policy;
 
                 $result = $user->update($original);
 
@@ -345,7 +374,7 @@ class ProfilesettingsAction extends SettingsAction
                     common_log_db_error($user, 'UPDATE', __FILE__);
                     // TRANS: Server error thrown when user profile settings could not be updated to
                     // TRANS: automatically subscribe to any subscriber.
-                    $this->serverError(_('Could not update user for autosubscribe.'));
+                    $this->serverError(_('Could not update user for autosubscribe or subscribe_policy.'));
                     return;
                 }
             }
@@ -421,7 +450,7 @@ class ProfilesettingsAction extends SettingsAction
             }
 
             // Set the user tags
-            $result = $user->setSelfTags($tags);
+            $result = $user->setSelfTags($tags, $tag_priv);
 
             if (!$result) {
                 // TRANS: Server error thrown when user profile settings tags could not be saved.

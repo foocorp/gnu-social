@@ -29,7 +29,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  * In a multi-site queuedaemon.php run, one connection will be instantiated
  * for each site being handled by the current process that has MSN enabled.
  */
-
 class MsnManager extends ImManager {
     public $conn = null;
     protected $lastPing = null;
@@ -109,7 +108,8 @@ class MsnManager extends ImManager {
                     'user' => $this->plugin->user,
                     'password' => $this->plugin->password,
                     'alias' => $this->plugin->nickname,
-                    'psm' => 'Send me a message to post a notice',
+                    // TRANS: MSN bot status message.
+                    'psm' => _m('Send me a message to post a notice'),
                     'debug' => false
                 )
             );
@@ -240,7 +240,8 @@ class MsnManager extends ImManager {
 
         if (!$result) {
             common_log_db_error($wm, 'INSERT', __FILE__);
-            throw new ServerException('DB error inserting queue item');
+            // TRANS: Server exception thrown when a message to be sent through MSN cannot be added to the database queue.
+            throw new ServerException(_m('Database error inserting queue item.'));
         }
 
         return true;

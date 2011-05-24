@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * List of private messages to this group
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class GroupinboxAction extends GroupDesignAction
 {
     var $gm;
@@ -63,7 +62,8 @@ class GroupinboxAction extends GroupDesignAction
         $cur = common_current_user();
 
         if (empty($cur)) {
-            throw new ClientException(_('Only for logged-in users'), 403);
+            // TRANS: Client exception thrown when trying to view group inbox while not logged in.
+            throw new ClientException(_m('Only for logged-in users.'), 403);
         }
 
         $nicknameArg = $this->trimmed('nickname');
@@ -79,17 +79,20 @@ class GroupinboxAction extends GroupDesignAction
         $localGroup = Local_group::staticGet('nickname', $nickname);
 
         if (empty($localGroup)) {
-            throw new ClientException(_('No such group'), 404);
+            // TRANS: Client exception thrown when trying to view group inbox for non-existing group.
+            throw new ClientException(_m('No such group.'), 404);
         }
 
         $this->group = User_group::staticGet('id', $localGroup->group_id);
 
         if (empty($this->group)) {
-            throw new ClientException(_('No such group'), 404);
+            // TRANS: Client exception thrown when trying to view group inbox for non-existing group.
+            throw new ClientException(_m('No such group.'), 404);
         }
 
         if (!$cur->isMember($this->group)) {
-            throw new ClientException(_('Only for members'), 403);
+            // TRANS: Client exception thrown when trying to view group inbox while not a member.
+            throw new ClientException(_m('Only for members.'), 403);
         }
 
         $this->page = $this->trimmed('page');
@@ -97,8 +100,8 @@ class GroupinboxAction extends GroupDesignAction
         if (!$this->page) {
             $this->page = 1;
         }
-        
-        $this->gm = Group_message::forGroup($this->group, 
+
+        $this->gm = Group_message::forGroup($this->group,
                                             ($this->page - 1) * MESSAGES_PER_PAGE,
                                             MESSAGES_PER_PAGE + 1);
         return true;
@@ -122,6 +125,7 @@ class GroupinboxAction extends GroupDesignAction
         $cnt = $gml->show();
 
         if ($cnt == 0) {
+            // TRANS: Text of group inbox if no private messages were sent to it.
             $this->element('p', 'guide', _m('This group has not received any private messages.'));
         }
         $this->pagination($this->page > 1,
@@ -167,11 +171,12 @@ class GroupinboxAction extends GroupDesignAction
         $base = $this->group->getFancyName();
 
         if ($this->page == 1) {
-            return sprintf(_('%s group inbox'), $base);
+            // TRANS: Title of inbox for group %s.
+            return sprintf(_m('%s group inbox'), $base);
         } else {
             // TRANS: Page title for any but first group page.
             // TRANS: %1$s is a group name, $2$s is a page number.
-            return sprintf(_('%1$s group inbox, page %2$d'),
+            return sprintf(_m('%1$s group inbox, page %2$d'),
                            $base,
                            $this->page);
         }
@@ -184,7 +189,6 @@ class GroupinboxAction extends GroupDesignAction
      *
      * @return void
      */
-
     function showPageNotice()
     {
         $instr  = $this->getInstructions();

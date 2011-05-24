@@ -59,6 +59,7 @@ class PublicAction extends Action
 
     var $page = null;
     var $notice;
+    var $userProfile = null;
 
     function isReadOnly($args)
     {
@@ -85,8 +86,12 @@ class PublicAction extends Action
 
         common_set_returnto($this->selfUrl());
 
-        $this->notice = Notice::publicStream(($this->page-1)*NOTICES_PER_PAGE,
-                                       NOTICES_PER_PAGE + 1);
+        $this->userProfile = Profile::current();
+
+        $stream = new ThreadingPublicNoticeStream($this->userProfile);
+
+        $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
+                                            NOTICES_PER_PAGE + 1);
 
         if (!$this->notice) {
             // TRANS: Server error displayed when a public timeline cannot be retrieved.
@@ -203,7 +208,7 @@ class PublicAction extends Action
      */
     function showContent()
     {
-        $nl = new ThreadedNoticeList($this->notice, $this);
+        $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);
 
         $cnt = $nl->show();
 
@@ -217,12 +222,12 @@ class PublicAction extends Action
 
     function showSections()
     {
-        // $top = new TopPostersSection($this);
-        // $top->show();
+        $ibs = new InviteButtonSection($this);
+        $ibs->show();
         $pop = new PopularNoticeSection($this);
         $pop->show();
-        $gbp = new GroupsByMembersSection($this);
-        $gbp->show();
+        $cloud = new PublicTagCloudSection($this);
+        $cloud->show();
         $feat = new FeaturedUsersSection($this);
         $feat->show();
     }
@@ -245,5 +250,13 @@ class PublicAction extends Action
         $this->elementStart('div', array('id' => 'anon_notice'));
         $this->raw(common_markup_to_html($m));
         $this->elementEnd('div');
+    }
+}
+
+class ThreadingPublicNoticeStream extends ThreadingNoticeStream
+{
+    function __construct($profile)
+    {
+        parent::__construct(new PublicNoticeStream($profile));
     }
 }

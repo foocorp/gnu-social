@@ -73,6 +73,7 @@ class Notice extends Memcached_DataObject
     public $location_ns;                     // int(4)
     public $repeat_of;                       // int(4)
     public $object_type;                     // varchar(255)
+    public $scope;                           // int(4)
 
     /* Static get */
     function staticGet($k,$v=NULL)
@@ -89,17 +90,27 @@ class Notice extends Memcached_DataObject
     const LOCAL_NONPUBLIC = -1;
     const GATEWAY         = -2;
 
+    const PUBLIC_SCOPE    = 0; // Useful fake constant
+    const SITE_SCOPE      = 1;
+    const ADDRESSEE_SCOPE = 2;
+    const GROUP_SCOPE     = 4;
+    const FOLLOWER_SCOPE  = 8;
+
+    protected $_profile = -1;
+
     function getProfile()
     {
-        $profile = Profile::staticGet('id', $this->profile_id);
+        if (is_int($this->_profile) && $this->_profile == -1) {
+            $this->_profile = Profile::staticGet('id', $this->profile_id);
 
-        if (empty($profile)) {
-            // TRANS: Server exception thrown when a user profile for a notice cannot be found.
-            // TRANS: %1$d is a profile ID (number), %2$d is a notice ID (number).
-            throw new ServerException(sprintf(_('No such profile (%1$d) for notice (%2$d).'), $this->profile_id, $this->id));
+            if (empty($this->_profile)) {
+                // TRANS: Server exception thrown when a user profile for a notice cannot be found.
+                // TRANS: %1$d is a profile ID (number), %2$d is a notice ID (number).
+                throw new ServerException(sprintf(_('No such profile (%1$d) for notice (%2$d).'), $this->profile_id, $this->id));
+            }
         }
 
-        return $profile;
+        return $this->_profile;
     }
 
     function delete()
@@ -197,7 +208,7 @@ class Notice extends Memcached_DataObject
 
         if (!$id) {
             // TRANS: Server exception. %s are the error details.
-            throw new ServerException(sprintf(_('Database error inserting hashtag: %s'),
+            throw new ServerException(sprintf(_('Database error inserting hashtag: %s.'),
                                               $last_error->message));
             return;
         }
@@ -243,6 +254,7 @@ class Notice extends Memcached_DataObject
      *                           notice in place of extracting links from content
      *              boolean 'distribute' whether to distribute the notice, default true
      *              string 'object_type' URL of the associated object type (default ActivityObject::NOTE)
+     *              int 'scope' Scope bitmask; default to SITE_SCOPE on private sites, 0 otherwise
      *
      * @fixme tag override
      *
@@ -254,6 +266,7 @@ class Notice extends Memcached_DataObject
                           'url' => null,
                           'reply_to' => null,
                           'repeat_of' => null,
+                          'scope' => null,
                           'distribute' => true);
 
         if (!empty($options)) {
@@ -333,17 +346,80 @@ class Notice extends Memcached_DataObject
         $notice->uri = $uri;
         $notice->url = $url;
 
+        // Get the groups here so we can figure out replies and such
+
+        if (!isset($groups)) {
+            $groups = self::groupsFromText($notice->content, $profile);
+        }
+
+        $reply = null;
+
         // Handle repeat case
 
         if (isset($repeat_of)) {
+
+            // Check for a private one
+
+            $repeat = Notice::staticGet('id', $repeat_of);
+
+            if (empty($repeat)) {
+                // TRANS: Client exception thrown in notice when trying to repeat a missing or deleted notice.
+                throw new ClientException(_('Cannot repeat; original notice is missing or deleted.'));
+            }
+
+            if ($profile->id == $repeat->profile_id) {
+                // TRANS: Client error displayed when trying to repeat an own notice.
+                throw new ClientException(_('You cannot repeat your own notice.'));
+            }
+
+            if ($repeat->scope != Notice::SITE_SCOPE &&
+                $repeat->scope != Notice::PUBLIC_SCOPE) {
+                // TRANS: Client error displayed when trying to repeat a non-public notice.
+                throw new ClientException(_('Cannot repeat a private notice.'), 403);
+            }
+
+            if (!$repeat->inScope($profile)) {
+                // The generic checks above should cover this, but let's be sure!
+                // TRANS: Client error displayed when trying to repeat a notice you cannot access.
+                throw new ClientException(_('Cannot repeat a notice you cannot read.'), 403);
+            }
+
+            if ($profile->hasRepeated($repeat->id)) {
+                // TRANS: Client error displayed when trying to repeat an already repeated notice.
+                throw new ClientException(_('You already repeated that notice.'));
+            }
+
             $notice->repeat_of = $repeat_of;
         } else {
-            $notice->reply_to = self::getReplyTo($reply_to, $profile_id, $source, $final);
-        }
+            $reply = self::getReplyTo($reply_to, $profile_id, $source, $final);
 
-        if (!empty($notice->reply_to)) {
-            $reply = Notice::staticGet('id', $notice->reply_to);
-            $notice->conversation = $reply->conversation;
+            if (!empty($reply)) {
+
+                if (!$reply->inScope($profile)) {
+                    // TRANS: Client error displayed when trying to reply to a notice a the target has no access to.
+                    // TRANS: %1$s is a user nickname, %2$d is a notice ID (number).
+                    throw new ClientException(sprintf(_('%1$s has no access to notice %2$d.'),
+                                                      $profile->nickname, $reply->id), 403);
+                }
+
+                $notice->reply_to     = $reply->id;
+                $notice->conversation = $reply->conversation;
+
+                // If the original is private to a group, and notice has no group specified,
+                // make it to the same group(s)
+
+                if (empty($groups) && ($reply->scope | Notice::GROUP_SCOPE)) {
+                    $groups = array();
+                    $replyGroups = $reply->getGroups();
+                    foreach ($replyGroups as $group) {
+                        if ($profile->isMember($group)) {
+                            $groups[] = $group->id;
+                        }
+                    }
+                }
+
+                // Scope set below
+            }
         }
 
         if (!empty($lat) && !empty($lon)) {
@@ -366,6 +442,40 @@ class Notice extends Memcached_DataObject
             $notice->object_type = (empty($notice->reply_to)) ? ActivityObject::NOTE : ActivityObject::COMMENT;
         } else {
             $notice->object_type = $object_type;
+        }
+
+        if (is_null($scope)) { // 0 is a valid value
+            if (!empty($reply)) {
+                $notice->scope = $reply->scope;
+            } else {
+                $notice->scope = common_config('notice', 'defaultscope');
+            }
+        } else {
+            $notice->scope = $scope;
+        }
+
+        // For private streams
+
+        $user = $profile->getUser();
+
+        if (!empty($user)) {
+            if ($user->private_stream &&
+                ($notice->scope == Notice::PUBLIC_SCOPE ||
+                 $notice->scope == Notice::SITE_SCOPE)) {
+                $notice->scope |= Notice::FOLLOWER_SCOPE;
+            }
+        }
+
+        // Force the scope for private groups
+
+        foreach ($groups as $groupId) {
+            $group = User_group::staticGet('id', $groupId);
+            if (!empty($group)) {
+                if ($group->force_scope) {
+                    $notice->scope |= Notice::GROUP_SCOPE;
+                    break;
+                }
+            }
         }
 
         if (Event::handle('StartNoticeSave', array(&$notice))) {
@@ -431,11 +541,9 @@ class Notice extends Memcached_DataObject
 
         // Note: groups may save tags, so must be run after tags are saved
         // to avoid errors on duplicates.
-        if (isset($groups)) {
-            $notice->saveKnownGroups($groups);
-        } else {
-            $notice->saveGroups();
-        }
+        // Note: groups should always be set.
+
+        $notice->saveKnownGroups($groups);
 
         if (isset($urls)) {
             $notice->saveKnownUrls($urls);
@@ -453,19 +561,20 @@ class Notice extends Memcached_DataObject
 
     function blowOnInsert($conversation = false)
     {
-        self::blow('profile:notice_ids:%d', $this->profile_id);
+        $this->blowStream('profile:notice_ids:%d', $this->profile_id);
 
         if ($this->isPublic()) {
-            self::blow('public');
+            $this->blowStream('public');
         }
 
         // XXX: Before we were blowing the casche only if the notice id
         // was not the root of the conversation.  What to do now?
 
         self::blow('notice:conversation_ids:%d', $this->conversation);
+        self::blow('conversation::notice_count:%d', $this->conversation);
 
         if (!empty($this->repeat_of)) {
-            self::blow('notice:repeats:%d', $this->repeat_of);
+            $this->blowStream('notice:repeats:%d', $this->repeat_of);
         }
 
         $original = Notice::staticGet('id', $this->repeat_of);
@@ -473,13 +582,19 @@ class Notice extends Memcached_DataObject
         if (!empty($original)) {
             $originalUser = User::staticGet('id', $original->profile_id);
             if (!empty($originalUser)) {
-                self::blow('user:repeats_of_me:%d', $originalUser->id);
+                $this->blowStream('user:repeats_of_me:%d', $originalUser->id);
             }
         }
 
         $profile = Profile::staticGet($this->profile_id);
+
         if (!empty($profile)) {
             $profile->blowNoticeCount();
+        }
+
+        $ptags = $this->getProfileTags();
+        foreach ($ptags as $ptag) {
+            $ptag->blowNoticeStreamCache();
         }
     }
 
@@ -502,6 +617,47 @@ class Notice extends Memcached_DataObject
         if ($this->conversation) {
             // In case we're the first, will need to calc a new root.
             self::blow('notice:conversation_root:%d', $this->conversation);
+        }
+
+        $ptags = $this->getProfileTags();
+        foreach ($ptags as $ptag) {
+            $ptag->blowNoticeStreamCache(true);
+        }
+    }
+
+    function blowStream()
+    {
+        $c = self::memcache();
+
+        if (empty($c)) {
+            return false;
+        }
+
+        $args = func_get_args();
+
+        $format = array_shift($args);
+
+        $keyPart = vsprintf($format, $args);
+
+        $cacheKey = Cache::key($keyPart);
+        
+        $c->delete($cacheKey);
+
+        // delete the "last" stream, too, if this notice is
+        // older than the top of that stream
+
+        $lastKey = $cacheKey.';last';
+
+        $lastStr = $c->get($lastKey);
+
+        if ($lastStr !== false) {
+            $window     = explode(',', $lastStr);
+            $lastID     = $window[0];
+            $lastNotice = Notice::staticGet('id', $lastID);
+            if (empty($lastNotice) // just weird
+                || strtotime($lastNotice->created) >= strtotime($this->created)) {
+                $c->delete($lastKey);
+            }
         }
     }
 
@@ -614,18 +770,34 @@ class Notice extends Memcached_DataObject
     }
 
     function attachments() {
-        // XXX: cache this
-        $att = array();
-        $f2p = new File_to_post;
-        $f2p->post_id = $this->id;
-        if ($f2p->find()) {
-            while ($f2p->fetch()) {
-                $f = File::staticGet($f2p->file_id);
-                if ($f) {
-                    $att[] = clone($f);
+
+        $keypart = sprintf('notice:file_ids:%d', $this->id);
+
+        $idstr = self::cacheGet($keypart);
+
+        if ($idstr !== false) {
+            $ids = explode(',', $idstr);
+        } else {
+            $ids = array();
+            $f2p = new File_to_post;
+            $f2p->post_id = $this->id;
+            if ($f2p->find()) {
+                while ($f2p->fetch()) {
+                    $ids[] = $f2p->file_id;
                 }
             }
+            self::cacheSet($keypart, implode(',', $ids));
         }
+
+        $att = array();
+
+        foreach ($ids as $id) {
+            $f = File::staticGet('id', $id);
+            if (!empty($f)) {
+                $att[] = clone($f);
+            }
+        }
+
         return $att;
     }
 
@@ -671,30 +843,65 @@ class Notice extends Memcached_DataObject
      *
      * @return Notice or null
      */
-    function conversationRoot()
+    function conversationRoot($profile=-1)
     {
-        if (!empty($this->conversation)) {
-            $c = self::memcache();
+        // XXX: can this happen?
 
-            $key = Cache::key('notice:conversation_root:' . $this->conversation);
-            $notice = $c->get($key);
-            if ($notice) {
-                return $notice;
-            }
-
-            $notice = new Notice();
-            $notice->conversation = $this->conversation;
-            $notice->orderBy('CREATED');
-            $notice->limit(1);
-            $notice->find(true);
-
-            if ($notice->N) {
-                $c->set($key, $notice);
-                return $notice;
-            }
+        if (empty($this->conversation)) {
+            return null;
         }
-        return null;
+
+        // Get the current profile if not specified
+
+        if (is_int($profile) && $profile == -1) {
+            $profile = Profile::current();
+        }
+
+        // If this notice is out of scope, no root for you!
+
+        if (!$this->inScope($profile)) {
+            return null;
+        }
+
+        // If this isn't a reply to anything, then it's its own
+        // root.
+
+        if (empty($this->reply_to)) {
+            return $this;
+        }
+        
+        if (is_null($profile)) {
+            $keypart = sprintf('notice:conversation_root:%d:null', $this->id);
+        } else {
+            $keypart = sprintf('notice:conversation_root:%d:%d',
+                               $this->id,
+                               $profile->id);
+        }
+            
+        $root = self::cacheGet($keypart);
+
+        if ($root !== false && $root->inScope($profile)) {
+            return $root;
+        } else {
+            $last = $this;
+
+            do {
+                $parent = $last->getOriginal();
+                if (!empty($parent) && $parent->inScope($profile)) {
+                    $last = $parent;
+                    continue;
+                } else {
+                    $root = $last;
+                    break;
+                }
+            } while (!empty($parent));
+
+            self::cacheSet($keypart, $root);
+        }
+
+        return $root;
     }
+
     /**
      * Pull up a full list of local recipients who will be getting
      * this notice in their inbox. Results will be cached, so don't
@@ -726,6 +933,7 @@ class Notice extends Memcached_DataObject
         }
 
         $users = $this->getSubscribedUsers();
+        $ptags = $this->getProfileTags();
 
         // FIXME: kind of ignoring 'transitional'...
         // we'll probably stop supporting inboxless mode
@@ -749,27 +957,39 @@ class Notice extends Memcached_DataObject
                 }
             }
 
+            foreach ($ptags as $ptag) {
+                $users = $ptag->getUserSubscribers();
+                foreach ($users as $id) {
+                    if (!array_key_exists($id, $ni)) {
+                        $user = User::staticGet('id', $id);
+                        if (!$user->hasBlocked($profile)) {
+                            $ni[$id] = NOTICE_INBOX_SOURCE_PROFILE_TAG;
+                        }
+                    }
+                }
+            }
+
             foreach ($recipients as $recipient) {
                 if (!array_key_exists($recipient, $ni)) {
                     $ni[$recipient] = NOTICE_INBOX_SOURCE_REPLY;
                 }
-            }
 
-            // Exclude any deleted, non-local, or blocking recipients.
-            $profile = $this->getProfile();
-            $originalProfile = null;
-            if ($this->repeat_of) {
-                // Check blocks against the original notice's poster as well.
-                $original = Notice::staticGet('id', $this->repeat_of);
-                if ($original) {
-                    $originalProfile = $original->getProfile();
+                // Exclude any deleted, non-local, or blocking recipients.
+                $profile = $this->getProfile();
+                $originalProfile = null;
+                if ($this->repeat_of) {
+                    // Check blocks against the original notice's poster as well.
+                    $original = Notice::staticGet('id', $this->repeat_of);
+                    if ($original) {
+                        $originalProfile = $original->getProfile();
+                    }
                 }
-            }
-            foreach ($ni as $id => $source) {
-                $user = User::staticGet('id', $id);
-                if (empty($user) || $user->hasBlocked($profile) ||
-                    ($originalProfile && $user->hasBlocked($originalProfile))) {
-                    unset($ni[$id]);
+                foreach ($ni as $id => $source) {
+                    $user = User::staticGet('id', $id);
+                    if (empty($user) || $user->hasBlocked($profile) ||
+                        ($originalProfile && $user->hasBlocked($originalProfile))) {
+                        unset($ni[$id]);
+                    }
                 }
             }
 
@@ -849,6 +1069,19 @@ class Notice extends Memcached_DataObject
         return $ids;
     }
 
+    function getProfileTags()
+    {
+        $profile = $this->getProfile();
+        $list    = $profile->getOtherTags($profile);
+        $ptags   = array();
+
+        while($list->fetch()) {
+            $ptags[] = clone($list);
+        }
+
+        return $ptags;
+    }
+
     /**
      * Record this notice to the given group inboxes for delivery.
      * Overrides the regular parsing of !group markup.
@@ -875,7 +1108,17 @@ class Notice extends Memcached_DataObject
                     common_log_db_error($gi, 'INSERT', __FILE__);
                 }
 
-                // @fixme should we save the tags here or not?
+                if (common_config('group', 'addtag')) {
+                    // we automatically add a tag for every group name, too
+
+                    $tag = Notice_tag::pkeyGet(array('tag' => common_canonical_tag($group->nickname),
+                                                     'notice_id' => $this->id));
+
+                    if (is_null($tag)) {
+                        $this->saveTag($group->nickname);
+                    }
+                }
+
                 $groups[] = clone($group);
             } else {
                 common_log(LOG_ERR, "Local delivery to group id $id skipped, doesn't exist");
@@ -897,36 +1140,19 @@ class Notice extends Memcached_DataObject
             return array();
         }
 
-        $groups = array();
-
-        /* extract all !group */
-        $count = preg_match_all('/(?:^|\s)!(' . Nickname::DISPLAY_FMT . ')/',
-                                strtolower($this->content),
-                                $match);
-        if (!$count) {
-            return $groups;
-        }
-
         $profile = $this->getProfile();
+
+        $groups = self::groupsFromText($this->content, $profile);
 
         /* Add them to the database */
 
-        foreach (array_unique($match[1]) as $nickname) {
+        foreach ($groups as $group) {
             /* XXX: remote groups. */
-            $group = User_group::getForNickname($nickname, $profile);
 
             if (empty($group)) {
                 continue;
             }
 
-            // we automatically add a tag for every group name, too
-
-            $tag = Notice_tag::pkeyGet(array('tag' => common_canonical_tag($nickname),
-                                             'notice_id' => $this->id));
-
-            if (is_null($tag)) {
-                $this->saveTag($nickname);
-            }
 
             if ($profile->isMember($group)) {
 
@@ -1004,15 +1230,8 @@ class Notice extends Memcached_DataObject
                 continue;
             }
 
-            $reply = new Reply();
-
-            $reply->notice_id  = $this->id;
-            $reply->profile_id = $profile->id;
-            $reply->modified   = $this->created;
-
-            common_log(LOG_INFO, __METHOD__ . ": saving reply: notice $this->id to profile $profile->id");
-
-            $id = $reply->insert();
+            $this->saveReply($profile->id);
+            self::blow('reply:stream:%d', $profile->id);
         }
 
         return;
@@ -1038,12 +1257,26 @@ class Notice extends Memcached_DataObject
 
         $sender = Profile::staticGet($this->profile_id);
 
+        $replied = array();
+
+        // If it's a reply, save for the replied-to author
+
+        if (!empty($this->reply_to)) {
+            $original = $this->getOriginal();
+            if (!empty($original)) { // that'd be weird
+                $author = $original->getProfile();
+                if (!empty($author)) {
+                    $this->saveReply($author->id);
+                    $replied[$author->id] = 1;
+                    self::blow('reply:stream:%d', $author->id);
+                }
+            }
+        }
+
         // @todo ideally this parser information would only
         // be calculated once.
 
         $mentions = common_find_mentions($this->content, $this);
-
-        $replied = array();
 
         // store replied only for first @ (what user/notice what the reply directed,
         // we assume first @ is it)
@@ -1065,29 +1298,28 @@ class Notice extends Memcached_DataObject
                     continue;
                 }
 
-                $reply = new Reply();
-
-                $reply->notice_id  = $this->id;
-                $reply->profile_id = $mentioned->id;
-                $reply->modified   = $this->created;
-
-                $id = $reply->insert();
-
-                if (!$id) {
-                    common_log_db_error($reply, 'INSERT', __FILE__);
-                    // TRANS: Server exception thrown when a reply cannot be saved.
-                    // TRANS: %1$d is a notice ID, %2$d is the ID of the mentioned user.
-                    throw new ServerException(sprintf(_('Could not save reply for %1$d, %2$d.'), $this->id, $mentioned->id));
-                } else {
-                    $replied[$mentioned->id] = 1;
-                    self::blow('reply:stream:%d', $mentioned->id);
-                }
+                $this->saveReply($mentioned->id);
+                $replied[$mentioned->id] = 1;
+                self::blow('reply:stream:%d', $mentioned->id);
             }
         }
 
         $recipientIds = array_keys($replied);
 
         return $recipientIds;
+    }
+
+    function saveReply($profileId)
+    {
+        $reply = new Reply();
+
+        $reply->notice_id  = $this->id;
+        $reply->profile_id = $profileId;
+        $reply->modified   = $this->created;
+
+        $reply->insert();
+
+        return $reply;
     }
 
     /**
@@ -1097,24 +1329,49 @@ class Notice extends Memcached_DataObject
      */
     function getReplies()
     {
-        // XXX: cache me
+        $keypart = sprintf('notice:reply_ids:%d', $this->id);
 
-        $ids = array();
+        $idstr = self::cacheGet($keypart);
 
-        $reply = new Reply();
-        $reply->selectAdd();
-        $reply->selectAdd('profile_id');
-        $reply->notice_id = $this->id;
+        if ($idstr !== false) {
+            $ids = explode(',', $idstr);
+        } else {
+            $ids = array();
 
-        if ($reply->find()) {
-            while($reply->fetch()) {
-                $ids[] = $reply->profile_id;
+            $reply = new Reply();
+            $reply->selectAdd();
+            $reply->selectAdd('profile_id');
+            $reply->notice_id = $this->id;
+
+            if ($reply->find()) {
+                while($reply->fetch()) {
+                    $ids[] = $reply->profile_id;
+                }
             }
+            self::cacheSet($keypart, implode(',', $ids));
         }
 
-        $reply->free();
-
         return $ids;
+    }
+
+    /**
+     * Pull the complete list of @-reply targets for this notice.
+     *
+     * @return array of Profiles
+     */
+    function getReplyProfiles()
+    {
+        $ids      = $this->getReplies();
+        $profiles = array();
+
+        foreach ($ids as $id) {
+            $profile = Profile::staticGet('id', $id);
+            if (!empty($profile)) {
+                $profiles[] = $profile;
+            }
+        }
+        
+        return $profiles;
     }
 
     /**
@@ -1155,27 +1412,39 @@ class Notice extends Memcached_DataObject
             return array();
         }
 
-        // XXX: cache me
+        $ids = array();
+
+        $keypart = sprintf('notice:groups:%d', $this->id);
+
+        $idstr = self::cacheGet($keypart);
+
+        if ($idstr !== false) {
+            $ids = explode(',', $idstr);
+        } else {
+            $gi = new Group_inbox();
+
+            $gi->selectAdd();
+            $gi->selectAdd('group_id');
+
+            $gi->notice_id = $this->id;
+
+            if ($gi->find()) {
+                while ($gi->fetch()) {
+                    $ids[] = $gi->group_id;
+                }
+            }
+
+            self::cacheSet($keypart, implode(',', $ids));
+        }
 
         $groups = array();
 
-        $gi = new Group_inbox();
-
-        $gi->selectAdd();
-        $gi->selectAdd('group_id');
-
-        $gi->notice_id = $this->id;
-
-        if ($gi->find()) {
-            while ($gi->fetch()) {
-                $group = User_group::staticGet('id', $gi->group_id);
-                if ($group) {
-                    $groups[] = $group;
-                }
+        foreach ($ids as $id) {
+            $group = User_group::staticGet('id', $id);
+            if ($group) {
+                $groups[] = $group;
             }
         }
-
-        $gi->free();
 
         return $groups;
     }
@@ -1262,9 +1531,9 @@ class Notice extends Memcached_DataObject
             $reply_ids = $this->getReplies();
 
             foreach ($reply_ids as $id) {
-                $profile = Profile::staticGet('id', $id);
-                if (!empty($profile)) {
-                    $ctx->attention[] = $profile->getUri();
+                $rprofile = Profile::staticGet('id', $id);
+                if (!empty($rprofile)) {
+                    $ctx->attention[] = $rprofile->getUri();
                 }
             }
 
@@ -1459,7 +1728,7 @@ class Notice extends Memcached_DataObject
         if (!empty($reply_to)) {
             $reply_notice = Notice::staticGet('id', $reply_to);
             if (!empty($reply_notice)) {
-                return $reply_to;
+                return $reply_notice;
             }
         }
 
@@ -1498,8 +1767,10 @@ class Notice extends Memcached_DataObject
         $last = $recipient->getCurrentNotice();
 
         if (!empty($last)) {
-            return $last->id;
+            return $last;
         }
+
+        return null;
     }
 
     static function maxContent()
@@ -1535,6 +1806,15 @@ class Notice extends Memcached_DataObject
         return $location;
     }
 
+    /**
+     * Convenience function for posting a repeat of an existing message.
+     *
+     * @param int $repeater_id: profile ID of user doing the repeat
+     * @param string $source: posting source key, eg 'web', 'api', etc
+     * @return Notice
+     *
+     * @throws Exception on failure or permission problems
+     */
     function repeat($repeater_id, $source)
     {
         $author = Profile::staticGet('id', $this->profile_id);
@@ -1556,8 +1836,13 @@ class Notice extends Memcached_DataObject
             $content = mb_substr($content, 0, $maxlen - 4) . ' ...';
         }
 
-        return self::saveNew($repeater_id, $content, $source,
-                             array('repeat_of' => $this->id));
+        // Scope is same as this one's
+
+        return self::saveNew($repeater_id,
+                             $content,
+                             $source,
+                             array('repeat_of' => $this->id,
+                                   'scope' => $this->scope));
     }
 
     // These are supposed to be in chron order!
@@ -1880,14 +2165,24 @@ class Notice extends Memcached_DataObject
     public function getTags()
     {
         $tags = array();
-        $tag = new Notice_tag();
-        $tag->notice_id = $this->id;
-        if ($tag->find()) {
-            while ($tag->fetch()) {
-                $tags[] = $tag->tag;
+
+        $keypart = sprintf('notice:tags:%d', $this->id);
+
+        $tagstr = self::cacheGet($keypart);
+
+        if ($tagstr !== false) {
+            $tags = explode(',', $tagstr);
+        } else {
+            $tag = new Notice_tag();
+            $tag->notice_id = $this->id;
+            if ($tag->find()) {
+                while ($tag->fetch()) {
+                    $tags[] = $tag->tag;
+                }
             }
+            self::cacheSet($keypart, implode(',', $tags));
         }
-        $tag->free();
+
         return $tags;
     }
 
@@ -2011,4 +2306,168 @@ class Notice extends Memcached_DataObject
                     ($this->is_local != Notice::GATEWAY));
         }
     }
+
+    /**
+     * Check that the given profile is allowed to read, respond to, or otherwise
+     * act on this notice.
+     *
+     * The $scope member is a bitmask of scopes, representing a logical AND of the
+     * scope requirement. So, 0x03 (Notice::ADDRESSEE_SCOPE | Notice::SITE_SCOPE) means
+     * "only visible to people who are mentioned in the notice AND are users on this site."
+     * Users on the site who are not mentioned in the notice will not be able to see the
+     * notice.
+     *
+     * @param Profile $profile The profile to check; pass null to check for public/unauthenticated users.
+     *
+     * @return boolean whether the profile is in the notice's scope
+     */
+    function inScope($profile)
+    {
+        if (is_null($profile)) {
+            $keypart = sprintf('notice:in-scope-for:%d:null', $this->id);
+        } else {
+            $keypart = sprintf('notice:in-scope-for:%d:%d', $this->id, $profile->id);
+        }
+
+        $result = self::cacheGet($keypart);
+
+        if ($result === false) {
+            $bResult = $this->_inScope($profile);
+            $result = ($bResult) ? 1 : 0;
+            self::cacheSet($keypart, $result, 0, 300);
+        }
+
+        return ($result == 1) ? true : false;
+    }
+
+    protected function _inScope($profile)
+    {
+        // If there's no scope, anyone (even anon) is in scope.
+
+        if ($this->scope == 0) {
+            return true;
+        }
+
+        // If there's scope, anon cannot be in scope
+
+        if (empty($profile)) {
+            return false;
+        }
+
+        // Author is always in scope
+
+        if ($this->profile_id == $profile->id) {
+            return true;
+        }
+
+        // Only for users on this site
+
+        if ($this->scope & Notice::SITE_SCOPE) {
+            $user = $profile->getUser();
+            if (empty($user)) {
+                return false;
+            }
+        }
+
+        // Only for users mentioned in the notice
+
+        if ($this->scope & Notice::ADDRESSEE_SCOPE) {
+
+            // XXX: just query for the single reply
+
+            $replies = $this->getReplies();
+
+            if (!in_array($profile->id, $replies)) {
+                return false;
+            }
+        }
+
+        // Only for members of the given group
+
+        if ($this->scope & Notice::GROUP_SCOPE) {
+
+            // XXX: just query for the single membership
+
+            $groups = $this->getGroups();
+
+            $foundOne = false;
+
+            foreach ($groups as $group) {
+                if ($profile->isMember($group)) {
+                    $foundOne = true;
+                    break;
+                }
+            }
+
+            if (!$foundOne) {
+                return false;
+            }
+        }
+
+        // Only for followers of the author
+
+        if ($this->scope & Notice::FOLLOWER_SCOPE) {
+            $author = $this->getProfile();
+            if (!Subscription::exists($profile, $author)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    static function groupsFromText($text, $profile)
+    {
+        $groups = array();
+
+        /* extract all !group */
+        $count = preg_match_all('/(?:^|\s)!(' . Nickname::DISPLAY_FMT . ')/',
+                                strtolower($text),
+                                $match);
+
+        if (!$count) {
+            return $groups;
+        }
+
+        foreach (array_unique($match[1]) as $nickname) {
+            $group = User_group::getForNickname($nickname, $profile);
+            if (!empty($group) && $profile->isMember($group)) {
+                $groups[] = $group->id;
+            }
+        }
+
+        return $groups;
+    }
+
+    protected $_original = -1;
+
+    function getOriginal()
+    {
+        if (is_int($this->_original) && $this->_original == -1) {
+            if (empty($this->reply_to)) {
+                $this->_original = null;
+            } else {
+                $this->_original = Notice::staticGet('id', $this->reply_to);
+            }
+        }
+        return $this->_original;
+    }
+
+    /**
+     * Magic function called at serialize() time.
+     *
+     * We use this to drop a couple process-specific references
+     * from DB_DataObject which can cause trouble in future
+     * processes.
+     *
+     * @return array of variable names to include in serialization.
+     */
+
+    function __sleep()
+    {
+        $vars = parent::__sleep();
+        $skip = array('_original', '_profile');
+        return array_diff($vars, $skip);
+    }
+
 }

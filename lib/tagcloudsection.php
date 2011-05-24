@@ -31,7 +31,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-define('TAGS_PER_SECTION', 20);
+define('TAGS_PER_SECTION', 10);
 
 /**
  * Base class for sections
@@ -45,7 +45,6 @@ define('TAGS_PER_SECTION', 20);
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class TagCloudSection extends Section
 {
     function showContent()
@@ -53,7 +52,8 @@ class TagCloudSection extends Section
         $tags = $this->getTags();
 
         if (!$tags) {
-            $this->out->element('p', null, _('None'));
+            // TRANS: Content displayed in a tag cloud section if there are no tags.
+            $this->out->element('p', null, _m('NOTAGS','None'));
             return false;
         }
 
@@ -68,7 +68,8 @@ class TagCloudSection extends Section
         }
 
         if ($cnt == 0) {
-            $this->out->element('p', null, _('(None)'));
+            // TRANS: Content displayed in a tag cloud section if there are no tags.
+            $this->out->element('p', null, _m('NOTAGS','None'));
             return false;
         }
 

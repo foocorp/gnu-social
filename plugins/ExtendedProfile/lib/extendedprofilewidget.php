@@ -80,9 +80,11 @@ class ExtendedProfileWidget extends Form
         // For JQuery UI modal dialog
         $this->out->elementStart(
             'div',
-            array('id' => 'confirm-dialog', 'title' => 'Confirmation Required')
+            // TRANS: Title for extended profile entry deletion dialog.
+            array('id' => 'confirm-dialog', 'title' => _m('Confirmation Required'))
         );
-        $this->out->text('Really delete this entry?');
+        // TRANS: Confirmation text for extended profile entry deletion dialog.
+        $this->out->text(_m('Really delete this entry?'));
         $this->out->elementEnd('div');
         $this->showSections();
     }
@@ -163,7 +165,9 @@ class ExtendedProfileWidget extends Form
         if (!empty($field['value'])) {
             $this->out->text($field['value']);
             if (!empty($field['rel'])) {
-               $this->out->text(' (' . $field['rel'] . ')');
+               // TRANS: Value between parentheses (phone number, website, or IM address).
+               $outtext = sprintf(_m('(%s)'),$field['rel']);
+               $this->out->text(' '.$outtext);
             }
         }
         $this->out->elementEnd('div');
@@ -174,7 +178,9 @@ class ExtendedProfileWidget extends Form
         $this->out->elementStart('div', array('class' => 'im-display'));
         $this->out->text($field['value']);
         if (!empty($field['rel'])) {
-            $this->out->text(' (' . $field['rel'] . ')');
+            // TRANS: Value between parentheses (phone number, website, or IM address).
+            $outtext = sprintf(_m('(%s)'),$field['rel']);
+            $this->out->text(' '.$outtext);
         }
         $this->out->elementEnd('div');
     }
@@ -196,7 +202,9 @@ class ExtendedProfileWidget extends Form
         );
 
         if (!empty($field['rel'])) {
-            $this->out->text(' (' . $field['rel'] . ')');
+            // TRANS: Value between parentheses (phone number, website, or IM address).
+            $outtext = sprintf(_m('(%s)'),$field['rel']);
+            $this->out->text(' '.$outtext);
         }
         $this->out->elementEnd('div');
     }
@@ -314,11 +322,13 @@ class ExtendedProfileWidget extends Form
     protected function showExperience($name, $field)
     {
         $this->out->elementStart('div', 'experience-item');
+        // TRANS: Field label in experience area of extended profile.
         $this->out->element('div', 'label', _m('Company'));
 
         if (!empty($field['company'])) {
             $this->out->element('div', 'field', $field['company']);
 
+            // TRANS: Field label in extended profile (when did one start a position or education).
             $this->out->element('div', 'label', _m('Start'));
             $this->out->element(
                 'div',
@@ -326,6 +336,7 @@ class ExtendedProfileWidget extends Form
                 date('j M Y', strtotime($field['start'])
                 )
             );
+            // TRANS: Field label in extended profile (when did one end a position or education).
             $this->out->element('div', 'label', _m('End'));
             $this->out->element(
                 'div',
@@ -338,7 +349,8 @@ class ExtendedProfileWidget extends Form
                 $this->out->element(
                     'div',
                     array('class' => 'field current'),
-                    '(' . _m('Current') . ')'
+                    // TRANS: Field value in experience area of extended profile (one still holds a position).
+                    _m('(Current)')
                 );
             }
         }
@@ -356,6 +368,7 @@ class ExtendedProfileWidget extends Form
             )
         );
 
+        // TRANS: Field label in experience edit area of extended profile (which company does one work for).
         $this->out->element('div', 'label', _m('Company'));
         $this->out->input(
             $id,
@@ -363,6 +376,7 @@ class ExtendedProfileWidget extends Form
             isset($field['company']) ? $field['company'] : null
         );
 
+        // TRANS: Field label in extended profile (when did one start a position or education).
         $this->out->element('div', 'label', _m('Start'));
         $this->out->input(
             $id . '-start',
@@ -370,6 +384,7 @@ class ExtendedProfileWidget extends Form
             isset($field['start']) ? date('j M Y', strtotime($field['start'])) : null
         );
 
+            // TRANS: Field label in extended profile (when did one end a position or education).
         $this->out->element('div', 'label', _m('End'));
 
         $this->out->input(
@@ -384,6 +399,7 @@ class ExtendedProfileWidget extends Form
         $this->out->elementStart('div', 'current-checkbox');
         $this->out->checkbox(
             $id . '-current',
+            // TRANS: Checkbox label in experience edit area of extended profile (one still works at a company).
             _m('Current'),
             $field['current']
         );
@@ -396,14 +412,17 @@ class ExtendedProfileWidget extends Form
     protected function showEducation($name, $field)
     {
         $this->out->elementStart('div', 'education-item');
+        // TRANS: Field label in education area of extended profile.
         $this->out->element('div', 'label', _m('Institution'));
         if (!empty($field['school'])) {
-
             $this->out->element('div', 'field', $field['school']);
+            // TRANS: Field label in extended profile for specifying an academic degree.
             $this->out->element('div', 'label', _m('Degree'));
             $this->out->element('div', 'field', $field['degree']);
+            // TRANS: Field label in education area of extended profile.
             $this->out->element('div', 'label', _m('Description'));
             $this->out->element('div', 'field', $field['description']);
+            // TRANS: Field label in extended profile (when did one start a position or education).
             $this->out->element('div', 'label', _m('Start'));
             $this->out->element(
                 'div',
@@ -411,6 +430,7 @@ class ExtendedProfileWidget extends Form
                 date('j M Y', strtotime($field['start'])
                 )
             );
+            // TRANS: Field label in extended profile (when did one end a position or education).
             $this->out->element('div', 'label', _m('End'));
             $this->out->element(
                 'div',
@@ -432,6 +452,7 @@ class ExtendedProfileWidget extends Form
                 'class' => 'education-item'
             )
         );
+        // TRANS: Field label in education edit area of extended profile.
         $this->out->element('div', 'label', _m('Institution'));
         $this->out->input(
             $id,
@@ -439,6 +460,7 @@ class ExtendedProfileWidget extends Form
             isset($field['school']) ? $field['school'] : null
         );
 
+        // TRANS: Field label in extended profile for specifying an academic degree.
         $this->out->element('div', 'label', _m('Degree'));
         $this->out->input(
             $id . '-degree',
@@ -446,6 +468,7 @@ class ExtendedProfileWidget extends Form
             isset($field['degree']) ? $field['degree'] : null
         );
 
+        // TRANS: Field label in education edit area of extended profile.
         $this->out->element('div', 'label', _m('Description'));
 
         $this->out->textarea(
@@ -454,17 +477,21 @@ class ExtendedProfileWidget extends Form
             isset($field['description']) ? $field['description'] : null
         );
 
+        // TRANS: Field label in extended profile (when did one start a position or education).
         $this->out->element('div', 'label', _m('Start'));
         $this->out->input(
             $id . '-start',
             null,
+            // @todo FIXME: does date format need i18n? If so, should probly be dealt with in core.
             isset($field['start']) ? date('j M Y', strtotime($field['start'])) : null
         );
 
+        // TRANS: Field label in extended profile (when did one end a position or education).
         $this->out->element('div', 'label', _m('End'));
         $this->out->input(
             $id . '-end',
             null,
+            // @todo FIXME: does date format need i18n? If so, should probly be dealt with in core.
             isset($field['end']) ? date('j M Y', strtotime($field['end'])) : null
         );
 
@@ -491,7 +518,8 @@ class ExtendedProfileWidget extends Form
                 'href' => 'javascript://',
                 'style' => 'display: none;'
             ),
-            'Add another item'
+            // TRANS: Link description in extended profile page to add another profile element.
+            _m('Add another item')
         );
     }
 
@@ -601,7 +629,8 @@ class ExtendedProfileWidget extends Form
             $this->showEditableEducation($name, $field);
             break;
         default:
-            $out->input($id, null, "TYPE: $type");
+            // TRANS: Field label for undefined field in extended profile.
+            $out->input($id, null, sprintf(_m('TYPE: %s'),$type));
         }
     }
 
@@ -610,15 +639,17 @@ class ExtendedProfileWidget extends Form
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->submit(
             'save',
+            // TRANS: Button text for saving extended profile properties.
             _m('BUTTON','Save'),
             'submit form_action-secondary',
             'save',
-            _('Save details')
+            // TRANS: .
+            // TRANS: Button title for saving extended profile properties.
+            _m('Save details')
        );
     }
 
@@ -627,7 +658,6 @@ class ExtendedProfileWidget extends Form
      *
      * @return string ID of the form
      */
-
     function id()
     {
         return 'profile-details-' . $this->profile->id;
@@ -638,7 +668,6 @@ class ExtendedProfileWidget extends Form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         return 'form_profile_details form_settings';
@@ -649,7 +678,6 @@ class ExtendedProfileWidget extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('profiledetailsettings');

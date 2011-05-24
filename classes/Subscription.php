@@ -27,6 +27,7 @@ require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 class Subscription extends Memcached_DataObject
 {
     const CACHE_WINDOW = 201;
+    const FORCE = true;
 
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -58,11 +59,12 @@ class Subscription extends Memcached_DataObject
      *
      * @param Profile $subscriber party to receive new notices
      * @param Profile $other      party sending notices; publisher
+     * @param bool    $force      pass Subscription::FORCE to override local subscription approval
      *
-     * @return Subscription new subscription
+     * @return mixed Subscription or Subscription_queue: new subscription info
      */
 
-    static function start($subscriber, $other)
+    static function start($subscriber, $other, $force=false)
     {
         // @fixme should we enforce this as profiles in callers instead?
         if ($subscriber instanceof User) {
@@ -88,35 +90,39 @@ class Subscription extends Memcached_DataObject
         }
 
         if (Event::handle('StartSubscribe', array($subscriber, $other))) {
-            $sub = self::saveNew($subscriber->id, $other->id);
-            $sub->notify();
-
-            self::blow('user:notices_with_friends:%d', $subscriber->id);
-
-            self::blow('subscription:by-subscriber:'.$subscriber->id);
-            self::blow('subscription:by-subscribed:'.$other->id);
-
-            $subscriber->blowSubscriptionCount();
-            $other->blowSubscriberCount();
-
             $otherUser = User::staticGet('id', $other->id);
+            if ($otherUser && $otherUser->subscribe_policy == User::SUBSCRIBE_POLICY_MODERATE && !$force) {
+                $sub = Subscription_queue::saveNew($subscriber, $other);
+                $sub->notify();
+            } else {
+                $sub = self::saveNew($subscriber->id, $other->id);
+                $sub->notify();
 
-            if (!empty($otherUser) &&
-                $otherUser->autosubscribe &&
-                !self::exists($other, $subscriber) &&
-                !$subscriber->hasBlocked($other)) {
+                self::blow('user:notices_with_friends:%d', $subscriber->id);
 
-                try {
-                    self::start($other, $subscriber);
-                } catch (Exception $e) {
-                    common_log(LOG_ERR, "Exception during autosubscribe of {$other->nickname} to profile {$subscriber->id}: {$e->getMessage()}");
+                self::blow('subscription:by-subscriber:'.$subscriber->id);
+                self::blow('subscription:by-subscribed:'.$other->id);
+
+                $subscriber->blowSubscriptionCount();
+                $other->blowSubscriberCount();
+
+                if (!empty($otherUser) &&
+                    $otherUser->autosubscribe &&
+                    !self::exists($other, $subscriber) &&
+                    !$subscriber->hasBlocked($other)) {
+
+                    try {
+                        self::start($other, $subscriber);
+                    } catch (Exception $e) {
+                        common_log(LOG_ERR, "Exception during autosubscribe of {$other->nickname} to profile {$subscriber->id}: {$e->getMessage()}");
+                    }
                 }
             }
 
             Event::handle('EndSubscribe', array($subscriber, $other));
         }
 
-        return true;
+        return $sub;
     }
 
     /**
@@ -261,8 +267,8 @@ class Subscription extends Memcached_DataObject
                                   common_date_iso8601($this->created));
 
         $act->time    = strtotime($this->created);
-        // TRANS: Activity tile when subscribing to another person.
-        $act->title   = _("Follow");
+        // TRANS: Activity title when subscribing to another person.
+        $act->title = _m('TITLE','Follow');
         // TRANS: Notification given when one person starts following another.
         // TRANS: %1$s is the subscriber, %2$s is the subscribed.
         $act->content = sprintf(_('%1$s is now following %2$s.'),
@@ -295,7 +301,6 @@ class Subscription extends Memcached_DataObject
      *
      * @return Subscription stream of subscriptions; use fetch() to iterate
      */
-
     static function bySubscriber($subscriberId,
                                  $offset = 0,
                                  $limit = PROFILES_PER_PAGE)
@@ -356,7 +361,6 @@ class Subscription extends Memcached_DataObject
      *
      * @return Subscription stream of subscriptions; use fetch() to iterate
      */
-
     static function bySubscribed($subscribedId,
                                  $offset = 0,
                                  $limit = PROFILES_PER_PAGE)
@@ -414,7 +418,6 @@ class Subscription extends Memcached_DataObject
      *
      * @return boolean success flag.
      */
-
     function update($orig=null)
     {
         $result = parent::update($orig);

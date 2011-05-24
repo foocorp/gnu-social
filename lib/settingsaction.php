@@ -69,6 +69,7 @@ class SettingsAction extends CurrentUserDesignAction
     {
         parent::handle($args);
         if (!common_logged_in()) {
+            // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
             $this->clientError(_('Not logged in.'));
             return;
         } else if (!common_is_real_login()) {

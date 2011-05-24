@@ -193,6 +193,7 @@ class MobileProfilePlugin extends WAP20Plugin
             $type = common_negotiate_type($cp, $sp);
 
             if (!$type) {
+                // TRANS: Client exception thrown when requesting a not supported media type.
                 throw new ClientException(_m('This page is not available in a '.
                                             'media type you accept.'), 406);
             }
@@ -276,10 +277,7 @@ class MobileProfilePlugin extends WAP20Plugin
 
         $action->elementStart('div', array('id' => 'header'));
         $this->_showLogo($action);
-        $this->_showPrimaryNav($action);
-        if (common_logged_in()) {
-            $action->showNoticeForm();
-        }
+        $action->showPrimaryNav();
         $action->elementEnd('div');
 
         return false;
@@ -304,79 +302,6 @@ class MobileProfilePlugin extends WAP20Plugin
         $action->elementEnd('address');
     }
 
-    function _showPrimaryNav($action)
-    {
-        $user    = common_current_user();
-        $action->elementStart('ul', array('id' => 'site_nav_global_primary'));
-        if ($user) {
-            $action->menuItem(common_local_url('all', array('nickname' => $user->nickname)),
-                            _m('Home'));
-            $action->menuItem(common_local_url('profilesettings'),
-                            _m('Account'));
-            $action->menuItem(common_local_url('oauthconnectionssettings'),
-                                _m('Connect'));
-            if ($user->hasRight(Right::CONFIGURESITE)) {
-                $action->menuItem(common_local_url('siteadminpanel'),
-                                _m('Admin'), _m('Change site configuration'), false, 'nav_admin');
-            }
-            if (common_config('invite', 'enabled')) {
-                $action->menuItem(common_local_url('invite'),
-                                _m('Invite'));
-            }
-            $action->menuItem(common_local_url('logout'),
-                            _m('Logout'));
-        } else {
-            if (!common_config('site', 'closed')) {
-                $action->menuItem(common_local_url('register'),
-                                _m('Register'));
-            }
-            $action->menuItem(common_local_url('login'),
-                            _m('Login'));
-        }
-        if ($user || !common_config('site', 'private')) {
-            $action->menuItem(common_local_url('peoplesearch'),
-                            _m('Search'));
-        }
-        $action->elementEnd('ul');
-    }
-
-    function onStartShowNoticeFormData($form)
-    {
-        if (!$this->serveMobile) {
-            return true;
-        }
-
-        $form->out->element('textarea', array('id' => 'notice_data-text',
-                                              'cols' => 15,
-                                              'rows' => 4,
-                                              'name' => 'status_textarea'),
-                            ($form->content) ? $form->content : '');
-
-        $contentLimit = Notice::maxContent();
-
-        if ($contentLimit > 0) {
-            $form->out->element('div', array('class' => 'count'),
-                                $contentLimit);
-        }
-
-        if (common_config('attachments', 'uploads')) {
-            if ($this->mobileFeatures['inputfiletype']) {
-                $form->out->hidden('MAX_FILE_SIZE', common_config('attachments', 'file_quota'));
-                $form->out->element('label', array('for' => 'notice_data-attach'), _m('Attach'));
-                $form->out->element('input', array('id' => 'notice_data-attach',
-                                                   'type' => 'file',
-                                                   'name' => 'attach',
-                                                   'title' => _m('Attach a file')));
-            }
-        }
-        if ($form->action) {
-            $form->out->hidden('notice_return-to', $form->action, 'returnto');
-        }
-        $form->out->hidden('notice_in-reply-to', $form->inreplyto, 'inreplyto');
-
-        return false;
-    }
-
     function onStartShowAside($action)
     {
         if ($this->serveMobile) {
@@ -384,8 +309,18 @@ class MobileProfilePlugin extends WAP20Plugin
         }
     }
 
+    function onStartShowLocalNavBlock($action)
+    {
+        if ($this->serveMobile) {
+            // @todo FIXME: "Show Navigation" / "Hide Navigation" needs i18n
+            $action->element('a', array('href' => '#', 'id' => 'navtoggle'), 'Show Navigation');
+        return true;
+        }
+    }
+
     function onEndShowScripts($action)
     {
+        // @todo FIXME: "Show Navigation" / "Hide Navigation" needs i18n
         $action->inlineScript('
             $(function() {
                 $("#mobile-toggle-disable").click(function() {
@@ -397,6 +332,12 @@ class MobileProfilePlugin extends WAP20Plugin
                     $.cookie("MobileOverride", "1", {path: "/"});
                     window.location.reload();
                     return false;
+                });
+                $("#navtoggle").click(function () {
+                          $("#site_nav_local_views").fadeToggle();
+                          var text = $("#navtoggle").text();
+                          $("#navtoggle").text(
+                          text == "Show Navigation" ? "Hide Navigation" : "Show Navigation");
                 });
             });'
         );
@@ -448,6 +389,7 @@ class MobileProfilePlugin extends WAP20Plugin
                             'author' => 'Sarven Capadisli',
                             'homepage' => 'http://status.net/wiki/Plugin:MobileProfile',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('XHTML MobileProfile output for supporting user agents.'));
         return true;
     }

@@ -1,0 +1,30 @@
+# Translation of StatusNet - TabFocus to Norwegian Nynorsk (‪Norsk (nynorsk)‬)
+# Exported from translatewiki.net
+#
+# Author: Sjurhamre
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TabFocus\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:32+0000\n"
+"Language-Team: Norwegian Nynorsk <http://translatewiki.net/wiki/Portal:nn>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:23+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: nn\n"
+"X-Message-Group: #out-statusnet-plugin-tabfocus\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid ""
+"TabFocus changes the notice form behavior so that, while in the text area, "
+"pressing the tab key focuses the \"Send\" button, matching the behavior of "
+"Twitter."
+msgstr ""
+"TabFocus endrar varslingssystemet si åtferd, slik at det å trykke \"tab\" "
+"flyttar fokus til \"Send\"-knappen, slik som på Twitter."

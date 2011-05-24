@@ -85,6 +85,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
 
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $this->clientError(
+                // TRANS: Client error message. POST is a HTTP command. It should not be translated.
                 _('This method requires a POST.'),
                 400, $this->format
             );
@@ -93,7 +94,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
-                // TRANS: Client error displayed when using an unsupported API format.
+                // TRANS: Client error displayed when coming across a non-supported API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -211,7 +212,7 @@ class ApiGroupProfileUpdateAction extends ApiAuthAction
             $this->showSingleJsonGroup($this->group);
             break;
         default:
-            // TRANS: Client error displayed when using an unsupported API format.
+            // TRANS: Client error displayed when coming across a non-supported API method.
             $this->clientError(_('API method not found.'), 404, $this->format);
             break;
         }

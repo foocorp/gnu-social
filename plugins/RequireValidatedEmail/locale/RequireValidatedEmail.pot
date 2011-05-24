@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,10 +20,75 @@ msgstr ""
 msgid "You must validate your email address before posting."
 msgstr ""
 
-#: RequireValidatedEmailPlugin.php:141
+#: RequireValidatedEmailPlugin.php:142
 msgid "You must provide an email address to register."
 msgstr ""
 
-#: RequireValidatedEmailPlugin.php:245
+#: RequireValidatedEmailPlugin.php:243
 msgid "Disables posting without a validated email address."
+msgstr ""
+
+#: confirmfirstemail.php:69
+msgid "You are already logged in."
+msgstr ""
+
+#: confirmfirstemail.php:77
+msgid "Confirmation code not found."
+msgstr ""
+
+#: confirmfirstemail.php:84
+msgid "No user for that confirmation code."
+msgstr ""
+
+#: confirmfirstemail.php:90
+#, php-format
+msgid "Unrecognized address type %s."
+msgstr ""
+
+#. TRANS: Client error for an already confirmed email/jabber/sms address.
+#: confirmfirstemail.php:95
+msgid "That address has already been confirmed."
+msgstr ""
+
+#: confirmfirstemail.php:106
+msgid "Password too short."
+msgstr ""
+
+#: confirmfirstemail.php:109
+msgid "Passwords do not match."
+msgstr ""
+
+#: confirmfirstemail.php:165
+#, php-format
+msgid ""
+"You have confirmed the email address for your new user account %s. Use the "
+"form below to set your new password."
+msgstr ""
+
+#: confirmfirstemail.php:175
+msgid "Set a password"
+msgstr ""
+
+#: confirmfirstemail.php:191
+msgid "Confirm email"
+msgstr ""
+
+#: confirmfirstemail.php:209
+msgid "New password"
+msgstr ""
+
+#: confirmfirstemail.php:210
+msgid "6 or more characters."
+msgstr ""
+
+#: confirmfirstemail.php:213
+msgid "Confirm"
+msgstr ""
+
+#: confirmfirstemail.php:214
+msgid "Same as password above."
+msgstr ""
+
+#: confirmfirstemail.php:221
+msgid "Save"
 msgstr ""

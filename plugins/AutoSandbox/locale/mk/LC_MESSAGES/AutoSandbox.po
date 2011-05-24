@@ -9,21 +9,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AutoSandbox\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:16+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:41+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:12:51+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:25:59+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-autosandbox\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
+#. TRANS: Plugin description.
 msgid "Automatically sandboxes newly registered members."
 msgstr "Автоматски става новорегистрираните членови во песочник."
 
+#. TRANS: User instructions after registration.
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
 "the public timeline."
@@ -31,13 +33,14 @@ msgstr ""
 "Напомена: во прво време ќе бидете ставени во песочникот, па така Вашите "
 "објави нема да фигурираат во јавната хронологија."
 
-#. TRANS: $contactlink is a clickable e-mailaddress.
+#. TRANS: User instructions after registration.
+#. TRANS: %s is a clickable e-mailaddress.
+#, php-format
 msgid ""
 "Note you will initially be \"sandboxed\" so your posts will not appear in "
-"the public timeline. Send a message to $contactlink to speed up the "
-"unsandboxing process."
+"the public timeline. Send a message to %s to speed up the unsandboxing "
+"process."
 msgstr ""
 "Напомена: во прво време ќе бидете ставени во песочникот, па така Вашите "
-"објави нема да фигурираат во јавната хронологија.\n"
-"Испратете порака на $contactlink за да ја забрзате постапката за излегување "
-"од песочникот."
+"објави нема да фигурираат во јавната хронологија. Испратете порака на %s за "
+"да ја забрзате постапката за излегување од песочникот."

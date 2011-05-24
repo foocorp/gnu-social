@@ -1,0 +1,183 @@
+# Translation of StatusNet - EmailRegistration to Ukrainian (Українська)
+# Exported from translatewiki.net
+#
+# Author: Boogie
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailRegistration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:14+0000\n"
+"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:26:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: uk\n"
+"X-Message-Group: #out-statusnet-plugin-emailregistration\n"
+"Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
+"2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
+
+#. TRANS: Client exception thrown when no confirmation code was provided.
+msgid "No confirmation code."
+msgstr "Немає коду підтвердження."
+
+#. TRANS: Client exception thrown when given confirmation code was not issued.
+msgid "No such confirmation code."
+msgstr "Немає такого коду підтвердження."
+
+#. TRANS: Title for registration page.
+msgctxt "TITLE"
+msgid "Register"
+msgstr "Реєстрація"
+
+#. TRANS: Title for page where to register with a confirmation code.
+msgctxt "TITLE"
+msgid "Complete registration"
+msgstr "Завершення реєстрації"
+
+#. TRANS: Confirmation text after initial registration.
+#. TRANS: %s an e-mail address.
+#, php-format
+msgid ""
+"An email was sent to %s to confirm that address. Check your email inbox for "
+"instructions."
+msgstr ""
+"Лист було надіслано %s для підтвердження цієї адреси. Перевірте вашу поштову "
+"скриньку для отримання інструкцій."
+
+#. TRANS: Error text when trying to register without agreeing to the terms.
+msgid "You must accept the terms of service and privacy policy to register."
+msgstr ""
+"Щоб зареєструватися, ви повинні прийняти умови надання послуг та погодитися "
+"політикою конфіденційності."
+
+#. TRANS: Error text when trying to register without a password.
+msgid "You must set a password"
+msgstr "Ви повинні встановити пароль"
+
+#. TRANS: Error text when trying to register with too short a password.
+msgid "Password must be 6 or more characters."
+msgstr "Пароль має складатись з 6-ти або більше знаків."
+
+#. TRANS: Error text when trying to register without providing the same password twice.
+msgid "Passwords do not match."
+msgstr "Паролі не збігаються."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Confirm your registration on %s"
+msgstr "Підтвердження вашої реєстрації на %s"
+
+#. TRANS: Body for confirmation e-mail.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
+#, php-format
+msgid ""
+"Someone (probably you) has requested an account on %1$s using this email "
+"address.\n"
+"To confirm the address, click the following URL or copy it into the address "
+"bar of your browser.\n"
+"%2$s\n"
+"If it was not you, you can safely ignore this message."
+msgstr ""
+"Хтось (ймовірно, ви) надіслав запит на реєстрацію на %1$s, використовуючи цю "
+"електронну адресу. Щоб підтвердити цю адресу, натисніть на відповідне "
+"посилання або скопіюйте URL до адресного рядка вашого браузера.\n"
+"%2$s\n"
+"У випадку, якщо це були не ви, просто ігноруйте це повідомлення."
+
+#. TRANS: Form instructions.
+msgid "Enter your email address to register for an account."
+msgstr "Введіть адресу електронної пошти, щоб створити обліковий запис."
+
+#. TRANS: Field label on form for registering an account.
+msgctxt "LABEL"
+msgid "E-mail address"
+msgstr "Адреса електронної пошти"
+
+#. TRANS: Button text for registering an account.
+#. TRANS: Button text for action to register.
+msgctxt "BUTTON"
+msgid "Register"
+msgstr "Реєстрація"
+
+#. TRANS: Form instructions.
+msgid "Enter a password to confirm your new account."
+msgstr "Введіть пароль для підтвердження вашого нового облікового запису."
+
+#. TRANS: Field label in e-mail registration form.
+msgctxt "LABEL"
+msgid "User name"
+msgstr "Ім’я користувача"
+
+#. TRANS: Field label.
+msgid "Email address"
+msgstr "Електронна адреса"
+
+#. TRANS: Field label on account registration page.
+msgid "Password"
+msgstr "Пароль"
+
+#. TRANS: Field title on account registration page.
+msgid "6 or more characters."
+msgstr "6 або більше знаків."
+
+#. TRANS: Field label on account registration page. In this field the password has to be entered a second time.
+msgctxt "PASSWORD"
+msgid "Confirm"
+msgstr "Підтвердити"
+
+#. TRANS: Field title on account registration page.
+msgid "Same as password above."
+msgstr "Такий само, як і пароль вище."
+
+#. TRANS: Checkbox title for terms of service and privacy policy.
+#, php-format
+msgid ""
+"I agree to the <a href=\"%1$s\">Terms of service</a> and <a href=\"%1$s"
+"\">Privacy policy</a> of this site."
+msgstr ""
+"Я погоджуюсь з <a href=\"%1$s\">умовами надання послуг</a> та <a href=\"%1$s"
+"\">політикою конфіденційності</a> на цьому сайті."
+
+#. TRANS: Error text when trying to register with an already registered e-mail address.
+#. TRANS: %s is the URL to recover password at.
+#, php-format
+msgid ""
+"A user with that email address already exists. You can use the <a href=\"%s"
+"\">password recovery</a> tool to recover a missing password."
+msgstr ""
+"Користувач з такою адресою електронної пошти вже зареєстрований. Ви можете "
+"скористатися інструментом <a href=\"%s\">відновлення паролю</a>, щоб "
+"відновити втрачений пароль."
+
+#. TRANS: Error text when trying to register with an invalid e-mail address.
+msgid "Not a valid email address."
+msgstr "Це не дійсна електронна адреса."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Welcome to %s"
+msgstr ""
+
+#. TRANS: Plugin description.
+msgid "Use email only for registration."
+msgstr "Використання електронної пошти тільки для реєстрації."
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not save new greeting count for %d."
+msgstr "Не вдалося зберегти новий лічильник привітань для %d."
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not increment greeting count for %d."
+msgstr "Не вдалося перерахувати лічильник привітань для %d."

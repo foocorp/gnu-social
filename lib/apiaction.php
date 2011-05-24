@@ -202,6 +202,8 @@ class ApiAction extends Action
     {
         $twitter_user = array();
 
+        $user = $profile->getUser();
+
         $twitter_user['id'] = intval($profile->id);
         $twitter_user['name'] = $profile->getBestName();
         $twitter_user['screen_name'] = $profile->nickname;
@@ -213,11 +215,10 @@ class ApiAction extends Action
             Avatar::defaultImage(AVATAR_STREAM_SIZE);
 
         $twitter_user['url'] = ($profile->homepage) ? $profile->homepage : null;
-        $twitter_user['protected'] = false; # not supported by StatusNet yet
+        $twitter_user['protected'] = ($user->private_stream) ? true : false;
         $twitter_user['followers_count'] = $profile->subscriberCount();
 
-        $design        = null;
-        $user          = $profile->getUser();
+        $design = null;
 
         // Note: some profiles don't have an associated user
 
@@ -458,6 +459,32 @@ class ApiAction extends Action
         return $entry;
     }
 
+    function twitterListArray($list)
+    {
+        $profile = Profile::staticGet('id', $list->tagger);
+
+        $twitter_list = array();
+        $twitter_list['id'] = $list->id;
+        $twitter_list['name'] = $list->tag;
+        $twitter_list['full_name'] = '@'.$profile->nickname.'/'.$list->tag;;
+        $twitter_list['slug'] = $list->tag;
+        $twitter_list['description'] = $list->description;
+        $twitter_list['subscriber_count'] = $list->subscriberCount();
+        $twitter_list['member_count'] = $list->taggedCount();
+        $twitter_list['uri'] = $list->getUri();
+
+        if (isset($this->auth_user)) {
+            $twitter_list['following'] = $list->hasSubscriber($this->auth_user);
+        } else {
+            $twitter_list['following'] = false;
+        }
+
+        $twitter_list['mode'] = ($list->private) ? 'private' : 'public';
+        $twitter_list['user'] = $this->twitterUserArray($profile, false);
+
+        return $twitter_list;
+    }
+
     function twitterRssEntryArray($notice)
     {
         $entry = array();
@@ -631,6 +658,20 @@ class ApiAction extends Action
             $this->element($element, null, $value);
         }
         $this->elementEnd('group');
+    }
+
+    function showTwitterXmlList($twitter_list)
+    {
+        $this->elementStart('list');
+        foreach($twitter_list as $element => $value) {
+            if($element == 'user') {
+                $this->showTwitterXmlUser($value, 'user');
+            }
+            else {
+                $this->element($element, null, $value);
+            }
+        }
+        $this->elementEnd('list');
     }
 
     function showTwitterXmlUser($twitter_user, $role='user', $namespaces=false)
@@ -1110,6 +1151,65 @@ class ApiAction extends Action
         $this->endDocument('xml');
     }
 
+    function showXmlLists($list, $next_cursor=0, $prev_cursor=0)
+    {
+
+        $this->initDocument('xml');
+        $this->elementStart('lists_list');
+        $this->elementStart('lists', array('type' => 'array'));
+
+        if (is_array($list)) {
+            foreach ($list as $l) {
+                $twitter_list = $this->twitterListArray($l);
+                $this->showTwitterXmlList($twitter_list);
+            }
+        } else {
+            while ($list->fetch()) {
+                $twitter_list = $this->twitterListArray($list);
+                $this->showTwitterXmlList($twitter_list);
+            }
+        }
+
+        $this->elementEnd('lists');
+
+        $this->element('next_cursor', null, $next_cursor);
+        $this->element('previous_cursor', null, $prev_cursor);
+
+        $this->elementEnd('lists_list');
+        $this->endDocument('xml');
+    }
+
+    function showJsonLists($list, $next_cursor=0, $prev_cursor=0)
+    {
+        $this->initDocument('json');
+
+        $lists = array();
+
+        if (is_array($list)) {
+            foreach ($list as $l) {
+                $twitter_list = $this->twitterListArray($l);
+                array_push($lists, $twitter_list);
+            }
+        } else {
+            while ($list->fetch()) {
+                $twitter_list = $this->twitterListArray($list);
+                array_push($lists, $twitter_list);
+            }
+        }
+
+        $lists_list = array(
+            'lists' => $lists,
+            'next_cursor' => $next_cursor,
+            'next_cursor_str' => strval($next_cursor),
+            'previous_cursor' => $prev_cursor,
+            'previous_cursor_str' => strval($prev_cursor)
+        );
+
+        $this->showJsonObjects($lists_list);
+
+        $this->endDocument('json');
+    }
+
     function showTwitterXmlUsers($user)
     {
         $this->initDocument('xml');
@@ -1168,6 +1268,22 @@ class ApiAction extends Action
         $this->initDocument('xml');
         $twitter_group = $this->twitterGroupArray($group);
         $this->showTwitterXmlGroup($twitter_group);
+        $this->endDocument('xml');
+    }
+
+    function showSingleJsonList($list)
+    {
+        $this->initDocument('json');
+        $twitter_list = $this->twitterListArray($list);
+        $this->showJsonObjects($twitter_list);
+        $this->endDocument('json');
+    }
+
+    function showSingleXmlList($list)
+    {
+        $this->initDocument('xml');
+        $twitter_list = $this->twitterListArray($list);
+        $this->showTwitterXmlList($twitter_list);
         $this->endDocument('xml');
     }
 
@@ -1462,6 +1578,40 @@ class ApiAction extends Action
         } else {
             return User_group::getForNickname($id);
         }
+    }
+
+    function getTargetList($user=null, $id=null)
+    {
+        $tagger = $this->getTargetUser($user);
+        $list = null;
+
+        if (empty($id)) {
+            $id = $this->arg('id');
+        }
+
+        if($id) {
+            if (is_numeric($id)) {
+                $list = Profile_list::staticGet('id', $id);
+
+                // only if the list with the id belongs to the tagger
+                if(empty($list) || $list->tagger != $tagger->id) {
+                    $list = null;
+                }
+            }
+            if (empty($list)) {
+                $tag = common_canonical_tag($id);
+                $list = Profile_list::getByTaggerAndTag($tagger->id, $tag);
+            }
+
+            if (!empty($list) && $list->private) {
+                if ($this->auth_user->id == $list->tagger) {
+                    return $list;
+                }
+            } else {
+                return $list;
+            }
+        }
+        return null;
     }
 
     /**

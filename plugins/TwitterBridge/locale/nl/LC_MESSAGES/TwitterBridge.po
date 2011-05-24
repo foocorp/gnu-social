@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 11:02+0000\n"
-"PO-Revision-Date: 2011-03-26 11:07:31+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:45+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:10:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -107,19 +107,22 @@ msgstr "Het was niet mogelijk de Twittervoorkeuren op te slaan."
 msgid "Twitter preferences saved."
 msgstr "De Twitterinstellingen zijn opgeslagen."
 
-msgid "You can't register if you don't agree to the license."
+msgid "You cannot register if you do not agree to the license."
 msgstr "U kunt zich niet registreren als u niet met de licentie akkoord gaat."
 
 msgid "Something weird happened."
 msgstr "Er is iets vreemds gebeurd."
 
-msgid "Couldn't link your Twitter account."
+msgid "Could not link your Twitter account."
 msgstr "Het was niet mogelijk uw Twittergebruiker te koppelen."
 
 msgid "Couldn't link your Twitter account: oauth_token mismatch."
 msgstr ""
 "Het was niet mogelijk uw Twittergebruiker te koppelen: het oauth_token kwam "
 "niet overeen."
+
+msgid "Couldn't link your Twitter account."
+msgstr "Het was niet mogelijk uw Twittergebruiker te koppelen."
 
 #, php-format
 msgid ""
@@ -154,8 +157,15 @@ msgstr "Nieuwe gebruiker aanmaken met deze gebruikersnaam."
 msgid "New nickname"
 msgstr "Nieuwe gebruikersnaam"
 
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
-msgstr "1-64 kleine letters of cijfers, geen leestekens of spaties"
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr "1-64 kleine letters of cijfers, geen leestekens of spaties."
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr "E-mail"
+
+msgid "Used only for updates, announcements, and password recovery"
+msgstr "Alleen gebruikt voor updates, aankondigingen en wachtwoordherstel."
 
 msgid "Create"
 msgstr "Aanmaken"
@@ -290,9 +300,8 @@ msgid "Sign in with Twitter"
 msgstr "Aanmelden met Twitter"
 
 #. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
-#, fuzzy
 msgid "Your Twitter bridge has been disabled"
-msgstr "Uw koppeling naar Twitter is uitgeschakeld."
+msgstr "Uw koppeling naar Twitter is uitgeschakeld"
 
 #. TRANS: Mail body after forwarding notices to Twitter has stopped working.
 #. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the

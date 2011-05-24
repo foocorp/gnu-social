@@ -9,21 +9,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - NoticeTitle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:11+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:16+0000\n"
 "Language-Team: Polish <http://translatewiki.net/wiki/Portal:pl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-08 01:22:12+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:46+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: pl\n"
 "X-Message-Group: #out-statusnet-plugin-noticetitle\n"
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ( (n%10 >= 2 && n%10 <= 4 && "
 "(n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Plugin description.
 msgid "Adds optional titles to notices."
 msgstr ""
+
+#. TRANS: Exception thrown when a notice title is too long.
+#. TRANS: %d is the maximum number of characters allowed in a title (used for plural).
+#, php-format
+msgid "The notice title is too long (maximum %d character)."
+msgid_plural "The notice title is too long (maximum %d characters)."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format

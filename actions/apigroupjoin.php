@@ -144,7 +144,7 @@ class ApiGroupJoinAction extends ApiAuthAction
             break;
         default:
             $this->clientError(
-                // TRANS: Client error displayed trying to execute an unknown API method joining a group.
+                // TRANS: Client error displayed when coming across a non-supported API method.
                 _('API method not found.'),
                 404,
                 $this->format

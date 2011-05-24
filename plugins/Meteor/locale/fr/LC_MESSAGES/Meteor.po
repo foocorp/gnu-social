@@ -1,6 +1,7 @@
 # Translation of StatusNet - Meteor to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Crochet.david
 # Author: Peter17
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Meteor\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:03+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:03+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:31+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:22+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-meteor\n"
@@ -23,14 +24,15 @@ msgstr ""
 
 #. TRANS: Exception. %1$s is the control server, %2$s is the control port.
 #, php-format
-msgid "Couldn't connect to %1$s on %2$s."
-msgstr "Impossible de se connecter à %1$s sur le port %2$s."
+msgid "Could not connect to %1$s on %2$s."
+msgstr "Impossible de se connecter à %1$s sur %2$s."
 
 #. TRANS: Exception. %s is the Meteor message that could not be added.
 #, php-format
-msgid "Error adding meteor message \"%s\""
-msgstr "Erreur lors de l’ajout d'un message du message meteor « %s »"
+msgid "Error adding meteor message \"%s\"."
+msgstr "Erreur lors de l’ajout d’un message meteor « %s »."
 
+#. TRANS: Plugin description.
 msgid "Plugin to do \"real time\" updates using Comet/Bayeux."
 msgstr ""
 "Extension pour réaliser des mises à jour « en temps réel » en utilisant Comet/"

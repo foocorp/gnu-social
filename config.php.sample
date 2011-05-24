@@ -182,6 +182,29 @@ $config['sphinx']['port'] = 3312;
 // $config['memcached']['server'] = 'localhost';
 // $config['memcached']['port'] = 11211;
 
+// People tags
+// Maximum number of tags a user can create:
+// $config['peopletag']['maxtags'] = 100;
+// Maximum number of people can have the same tag by the same user
+// $config['peopletag']['maxpeople'] = 500;
+// Types of users one can tag.
+// Everyone.
+// $config['peopletag']['allow_tagging']['all'] = true;
+// Local only.
+// $config['peopletag']['allow_tagging']['local'] = true;
+// Subscriptions / Subscribers only (including remote)
+// $config['peopletag']['allow_tagging']['subs'] = true;
+// Remote.
+// $config['peopletag']['allow_tagging']['remote'] = true;
+// Examples:
+// The following set of options allows tagging local users and
+// remote subscribers / subscription.
+// $config['peopletag']['allow_tagging']['all'] = false;
+// $config['peopletag']['allow_tagging']['local'] = true;
+// $config['peopletag']['allow_tagging']['subs'] = true;
+// Or:
+// $config['peopletag']['allow_tagging'] = array('local' => true, 'subs' =>true);
+
 // Disable post-by-email
 // $config['emailpost']['enabled'] = false;
 

@@ -9,19 +9,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Mapstraction\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:00+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:58+0000\n"
 "Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:29+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:16+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-mapstraction\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Header for Map widget that displays a map with geodata for notices.
 msgid "Map"
 msgstr "Карта"
 
@@ -29,6 +30,7 @@ msgstr "Карта"
 msgid "Full size"
 msgstr "Полный размер"
 
+#. TRANS: Plugin description.
 msgid ""
 "Show maps of users' and friends' notices with <a href=\"http://www."
 "mapstraction.com/\">Mapstraction</a>."
@@ -46,12 +48,16 @@ msgstr "Карта друзей: %s"
 msgid "%1$s friends map, page %2$d"
 msgstr "Карта друзей: %s"
 
+#. TRANS: Client error displayed when referring to a non-existing user.
 msgid "No such user."
 msgstr "Нет такого пользователя."
 
+#. TRANS: Error message displayed when referring to a user without a profile.
 msgid "User has no profile."
 msgstr "У пользователя нет профиля."
 
-#, php-format
-msgid "%s map, page %d"
-msgstr ""
+#. TRANS: Title for map widget.
+#. TRANS: %s is a user name.
+#, fuzzy, php-format
+msgid "%s map"
+msgstr "Карта друзей: %s"

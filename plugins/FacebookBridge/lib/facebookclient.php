@@ -48,7 +48,12 @@ class Facebookclient
     protected $notice        = null; // The user's notice
     protected $user          = null; // Sender of the notice
 
-    function __construct($notice)
+    /**
+     *
+     * @param Notice $notice the notice to manipulate
+     * @param Profile $profile local user to act as; if left empty, the notice's poster will be used.
+     */
+    function __construct($notice, $profile=null)
     {
         $this->facebook = self::getFacebook();
 
@@ -60,8 +65,9 @@ class Facebookclient
 
         $this->notice = $notice;
 
+        $profile_id = $profile ? $profile->id : $notice->profile_id;
         $this->flink = Foreign_link::getByUserID(
-            $notice->profile_id,
+            $profile_id,
             FACEBOOK_SERVICE
         );
 
@@ -334,7 +340,8 @@ class Facebookclient
     function checkPermission($permission)
     {
         if (!in_array($permission, array('publish_stream', 'status_update'))) {
-             throw new ServerException("No such permission!");
+             // TRANS: Server exception thrown when permission check fails.
+             throw new ServerException(_('No such permission!'));
         }
 
         $fbuid = $this->flink->foreign_id;
@@ -391,7 +398,6 @@ class Facebookclient
             );
 
             return false;
-
         }
     }
 
@@ -455,7 +461,7 @@ class Facebookclient
                     ),
                     __FILE__
                 );
-            // @fixme: We want to rety at a later time when the throttling has expired
+            // @todo FIXME: We want to rety at a later time when the throttling has expired
             // instead of just giving up.
             return true;
             break;
@@ -576,7 +582,6 @@ class Facebookclient
         );
 
         if (!empty($result)) { // result will contain the item ID
-
             // Save a mapping
             Notice_to_item::saveNew($this->notice->id, $result);
 
@@ -592,7 +597,6 @@ class Facebookclient
                 ),
                 __FILE__
             );
-
         } else {
 
             $msg = sprintf(
@@ -734,7 +738,6 @@ class Facebookclient
             $result = $this->mailFacebookDisconnect();
 
             if (!$result) {
-
                 $msg = 'Unable to send email to notify %s (%d), fbuid %d '
                      . 'about his/her Facebook link being removed.';
 
@@ -749,9 +752,7 @@ class Facebookclient
                     __FILE__
                 );
             }
-
         } else {
-
             $msg = 'Unable to send email to notify %s (%d), fbuid %d '
                  . 'about his/her Facebook link being removed because the '
                  . 'user has not set an email address.';
@@ -783,26 +784,23 @@ class Facebookclient
 
         common_switch_locale($this->user->language);
 
+        // TRANS: E-mail subject.
         $subject = _m('Your Facebook connection has been removed');
 
-        $msg = <<<BODY
-Hi %1$s,
+        // TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
+        $msg = _m("Hi %1\$s,\n\n".
+                  "We are sorry to inform you we are unable to publish your notice to\n".
+                  "Facebook, and have removed the connection between your %2\$s account and\n".
+                  "Facebook.\n\n".
+                  "This may have happened because you have removed permission for %2\$s\n".
+                  "to post on your behalf, or perhaps you have deactivated your Facebook\n".
+                  "account. You can reconnect your %2\$s account to Facebook at any time by\n".
+                  "logging in with Facebook again.\n\n".
+                  "Sincerely,\n\n".
+                  "%2\$s\n");
 
-We're sorry to inform you we are unable to publish your notice to
-Facebook, and have removed the connection between your %2$s account and
-Facebook.
-
-This may have happened because you have removed permission for %2$s
-to post on your behalf, or perhaps you have deactivated your Facebook
-account. You can reconnect your %s account to Facebook at any time by
-logging in with Facebook again.
-
-Sincerely,
-
-%2$s
-BODY;
         $body = sprintf(
-            _m($msg),
+            $msg,
             $this->user->nickname,
             $siteName
         );
@@ -842,22 +840,21 @@ BODY;
 
         common_switch_locale($user->language);
 
+        // TRANS: E-mail subject. %s is the StatusNet sitename.
         $subject = _m('Contact the %s administrator to retrieve your account');
 
-        $msg = <<<BODY
-Hi %1$s,
+        // TRANS: E-mail body. %1$s is a username,
+        // TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail address.
+        $msg = _m("Hi %1\$s,\n\n".
+                  "We have noticed you have deauthorized the Facebook connection for your\n".
+                  "%2\$s account.  You have not set a password for your %2\$s account yet, so\n".
+                  "you will not be able to login. If you wish to continue using your %2\$s\n".
+                  "account, please contact the site administrator (%3\$s) to set a password.\n\n".
+                  "Sincerely,\n\n".
+                  "%2\$s\n");
 
-We've noticed you have deauthorized the Facebook connection for your
-%2$s account.  You have not set a password for your %2$s account yet, so
-you will not be able to login. If you wish to continue using your %2$s
-account, please contact the site administrator (%3$s) to set a password.
-
-Sincerely,
-
-%2$s
-BODY;
         $body = sprintf(
-            _m($msg),
+            $msg,
             $user->nickname,
             $siteName,
             $siteEmail
@@ -984,9 +981,7 @@ BODY;
         $n2i = Notice_to_item::staticGet('notice_id', $this->notice->id);
 
         if (!empty($this->flink) && !empty($n2i)) {
-
             try {
-
                 $result = $this->facebook->api(
                     array(
                         'method'  => 'stream.remove',
@@ -996,7 +991,6 @@ BODY;
                 );
 
                 if (!empty($result) && result == true) {
-
                     common_log(
                       LOG_INFO,
                         sprintf(
@@ -1014,7 +1008,6 @@ BODY;
                 } else {
                     throw new FaceboookApiException(var_export($result, true));
                 }
-
             } catch (FacebookApiException $e) {
                 common_log(
                   LOG_WARNING,
@@ -1043,9 +1036,7 @@ BODY;
         $n2i = Notice_to_item::staticGet('notice_id', $this->notice->id);
 
         if (!empty($this->flink) && !empty($n2i)) {
-
             try {
-
                 $result = $this->facebook->api(
                     array(
                         'method'  => 'stream.addlike',
@@ -1055,7 +1046,6 @@ BODY;
                 );
 
                 if (!empty($result) && result == true) {
-
                     common_log(
                       LOG_INFO,
                         sprintf(
@@ -1067,11 +1057,9 @@ BODY;
                         ),
                         __FILE__
                     );
-
                 } else {
                     throw new FacebookApiException(var_export($result, true));
                 }
-
             } catch (FacebookApiException $e) {
                 common_log(
                   LOG_WARNING,
@@ -1099,9 +1087,7 @@ BODY;
         $n2i = Notice_to_item::staticGet('notice_id', $this->notice->id);
 
         if (!empty($this->flink) && !empty($n2i)) {
-
             try {
-
                 $result = $this->facebook->api(
                     array(
                         'method'  => 'stream.removeLike',
@@ -1111,7 +1097,6 @@ BODY;
                 );
 
                 if (!empty($result) && result == true) {
-
                     common_log(
                       LOG_INFO,
                         sprintf(
@@ -1127,7 +1112,6 @@ BODY;
                 } else {
                     throw new FacebookApiException(var_export($result, true));
                 }
-
             } catch (FacebookApiException $e) {
                   common_log(
                   LOG_WARNING,
@@ -1145,5 +1129,4 @@ BODY;
             }
         }
     }
-
 }

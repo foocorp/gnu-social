@@ -71,7 +71,7 @@ class SubscriptionThrottlePlugin extends Plugin
                 $subtime = strtotime($sub->created);
                 $now     = time();
                 if ($now - $subtime < $seconds) {
-                    throw new Exception(_("Too many subscriptions. Take a break and try again later."));
+                    throw new Exception(_m("Too many subscriptions. Take a break and try again later."));
                 }
             }
         }
@@ -97,7 +97,7 @@ class SubscriptionThrottlePlugin extends Plugin
                 $jointime = strtotime($mem->created);
                 $now      = time();
                 if ($now - $jointime < $seconds) {
-                    throw new Exception(_("Too many memberships. Take a break and try again later."));
+                    throw new Exception(_m("Too many memberships. Take a break and try again later."));
                 }
             }
         }

@@ -33,11 +33,11 @@ class ForceGroupPlugin extends Plugin
      * List by local nickname.
      */
     public $post = array();
-    
+
     /**
      * New user registrations will automatically join these groups on
      * registration. They're not prevented from leaving, however.
-     * 
+     *
      * List by local nickname.
      */
     public $join = array();

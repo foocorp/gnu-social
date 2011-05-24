@@ -140,5 +140,4 @@ class FacebookdeauthorizeAction extends Action
             }
         }
     }
-
 }

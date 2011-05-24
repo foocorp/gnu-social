@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      UnSandboxForm
  */
-
 class RevokeRoleForm extends ProfileActionForm
 {
     function __construct($role, $label, $writer, $profile, $r2args)
@@ -57,7 +56,6 @@ class RevokeRoleForm extends ProfileActionForm
      *
      * @return string Name of the action, lowercased.
      */
-
     function target()
     {
         return 'revokerole';
@@ -68,7 +66,6 @@ class RevokeRoleForm extends ProfileActionForm
      *
      * @return string Title of the form, internationalized
      */
-
     function title()
     {
         return $this->label;
@@ -85,9 +82,9 @@ class RevokeRoleForm extends ProfileActionForm
      *
      * @return string description of the form, internationalized
      */
-
     function description()
     {
+        // TRANS: Description of role revoke form. %s is the role to be revoked.
         return sprintf(_('Revoke the "%s" role from this user'), $this->label);
     }
 }

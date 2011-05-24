@@ -273,24 +273,23 @@ class Memcached_DataObject extends Safe_DataObject
     function getSearchEngine($table)
     {
         require_once INSTALLDIR.'/lib/search_engines.php';
-        static $search_engine;
-        if (!isset($search_engine)) {
-            if (Event::handle('GetSearchEngine', array($this, $table, &$search_engine))) {
-                if ('mysql' === common_config('db', 'type')) {
-                    $type = common_config('search', 'type');
-                    if ($type == 'like') {
-                        $search_engine = new MySQLLikeSearch($this, $table);
-                    } else if ($type == 'fulltext') {
-                        $search_engine = new MySQLSearch($this, $table);
-                    } else {
-                        // Low level exception. No need for i18n as discussed with Brion.
-                        throw new ServerException('Unknown search type: ' . $type);
-                    }
+
+        if (Event::handle('GetSearchEngine', array($this, $table, &$search_engine))) {
+            if ('mysql' === common_config('db', 'type')) {
+                $type = common_config('search', 'type');
+                if ($type == 'like') {
+                    $search_engine = new MySQLLikeSearch($this, $table);
+                } else if ($type == 'fulltext') {
+                    $search_engine = new MySQLSearch($this, $table);
                 } else {
-                    $search_engine = new PGSearch($this, $table);
+                    // Low level exception. No need for i18n as discussed with Brion.
+                    throw new ServerException('Unknown search type: ' . $type);
                 }
+            } else {
+                $search_engine = new PGSearch($this, $table);
             }
         }
+
         return $search_engine;
     }
 

@@ -46,7 +46,6 @@ require_once INSTALLDIR.'/lib/form.php';
  *
  * @see      UnsubscribeForm
  */
-
 class LeaveForm extends Form
 {
     /**
@@ -61,7 +60,6 @@ class LeaveForm extends Form
      * @param HTMLOutputter $out   output channel
      * @param group         $group group to leave
      */
-
     function __construct($out=null, $group=null)
     {
         parent::__construct($out);
@@ -74,7 +72,6 @@ class LeaveForm extends Form
      *
      * @return string ID of the form
      */
-
     function id()
     {
         return 'group-leave-' . $this->group->id;
@@ -85,7 +82,6 @@ class LeaveForm extends Form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         return 'form_group_leave ajax';
@@ -96,7 +92,6 @@ class LeaveForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('leavegroup',
@@ -108,9 +103,9 @@ class LeaveForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Leave'));
+        // TRANS: Button text on form to leave a group.
+        $this->out->submit('submit', _m('BUTTON','Leave'));
     }
 }

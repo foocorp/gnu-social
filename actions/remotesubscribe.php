@@ -74,6 +74,7 @@ class RemotesubscribeAction extends Action
             /* Use a session token for CSRF protection. */
             $token = $this->trimmed('token');
             if (!$token || $token != common_session_token()) {
+                // TRANS: Client error displayed when the session token does not match or is not given.
                 $this->showForm(_('There was a problem with your session token. '.
                                   'Try again, please.'));
                 return;
@@ -204,8 +205,8 @@ class RemotesubscribeAction extends Action
         $profile = $user->getProfile();
         if (!$profile) {
             common_log_db_error($user, 'SELECT', __FILE__);
-            // TRANS: Server error displayed on page for remote subscribe when user does not have a matching profile.
-            $this->serverError(_('User without matching profile.'));
+            // TRANS: Error message displayed when referring to a user without a profile.
+            $this->serverError(_('User has no profile.'));
             return;
         }
 

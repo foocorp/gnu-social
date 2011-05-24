@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Superclass for microapp plugin
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -39,8 +39,8 @@ if (!defined('STATUSNET')) {
  *
  * This class lets you define micro-applications with different kinds of activities.
  *
- * The applications work more-or-less like other 
- * 
+ * The applications work more-or-less like other
+ *
  * @category  Microapp
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
@@ -48,7 +48,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 abstract class MicroAppPlugin extends Plugin
 {
     /**
@@ -137,21 +136,6 @@ abstract class MicroAppPlugin extends Plugin
      * @return ActivityObject
      */
     abstract function activityObjectFromNotice($notice);
-
-    /**
-     * Custom HTML output for your special notice; called when a
-     * matching notice turns up in a NoticeListItem.
-     *
-     * All micro-app classes must override this method.
-     *
-     * @param Notice $notice
-     * @param HTMLOutputter $out
-     *
-     * @fixme WARNING WARNING WARNING base plugin stuff below tries to close
-     * a div that this function opens in the BookmarkPlugin child class.
-     * This is probably wrong.
-     */
-    abstract function showNotice($notice, $out);
 
     /**
      * When building the primary notice form, we'll fetch also some
@@ -255,10 +239,9 @@ abstract class MicroAppPlugin extends Plugin
      * by calling the overridable $this->deleteRelated().
      *
      * @param Notice $notice Notice being deleted
-     * 
+     *
      * @return boolean hook value
      */
-
     function onNoticeDeleteRelated($notice)
     {
         if ($this->isMyNotice($notice)) {
@@ -277,29 +260,63 @@ abstract class MicroAppPlugin extends Plugin
      *
      * @fixme WARNING WARNING WARNING this closes a 'div' that is implicitly opened in BookmarkPlugin's showNotice implementation
      */
-
     function onStartShowNoticeItem($nli)
     {
         if (!$this->isMyNotice($nli->notice)) {
             return true;
         }
 
+        $adapter = $this->adaptNoticeListItem($nli);
+
+        if (!empty($adapter)) {
+            $adapter->showNotice();
+            $adapter->showNoticeAttachments();
+            $adapter->showNoticeInfo();
+            $adapter->showNoticeOptions();
+        } else {
+            $this->oldShowNotice($nli);
+        }
+
+        return false;
+    }
+
+    /**
+     * Given a notice list item, returns an adapter specific
+     * to this plugin.
+     *
+     * @param NoticeListItem $nli item to adapt
+     *
+     * @return NoticeListItemAdapter adapter or null
+     */
+    function adaptNoticeListItem($nli)
+    {
+      return null;
+    }
+
+    function oldShowNotice($nli)
+    {
         $out = $nli->out;
         $notice = $nli->notice;
 
-        $this->showNotice($notice, $out);
+        try {
+            $this->showNotice($notice, $out);
+        } catch (Exception $e) {
+            common_log(LOG_ERR, $e->getMessage());
+            // try to fall back
+            $out->elementStart('div');
+            $nli->showAuthor();
+            $nli->showContent();
+        }
 
         $nli->showNoticeLink();
         $nli->showNoticeSource();
         $nli->showNoticeLocation();
         $nli->showContext();
         $nli->showRepeat();
-        
-        $out->elementEnd('div');
-        
-        $nli->showNoticeOptions();
 
-        return false;
+        $out->elementEnd('div');
+
+        $nli->showNoticeOptions();
     }
 
     /**
@@ -310,7 +327,6 @@ abstract class MicroAppPlugin extends Plugin
      *
      * @return boolean hook value
      */
-     
     function onStartActivityObjectFromNotice($notice, &$object)
     {
         if ($this->isMyNotice($notice)) {
@@ -329,7 +345,6 @@ abstract class MicroAppPlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onStartHandleFeedEntryWithProfile($activity, $oprofile)
     {
         if ($this->isMyActivity($activity)) {
@@ -337,7 +352,8 @@ abstract class MicroAppPlugin extends Plugin
             $actor = $oprofile->checkAuthorship($activity);
 
             if (empty($actor)) {
-                throw new ClientException(_('Can\'t get author for activity.'));
+                // TRANS: Client exception thrown when no author for an activity was found.
+                throw new ClientException(_('Cannot get author for activity.'));
             }
 
             $object = $activity->objects[0];
@@ -368,31 +384,32 @@ abstract class MicroAppPlugin extends Plugin
     function onStartHandleSalmonTarget($activity, $target)
     {
         if ($this->isMyActivity($activity)) {
-
             $this->log(LOG_INFO, "Checking {$activity->id} as a valid Salmon slap.");
 
             if ($target instanceof User_group) {
                 $uri = $target->getUri();
                 if (!in_array($uri, $activity->context->attention)) {
-                    throw new ClientException(_("Bookmark not posted ".
-                                                "to this group."));
+                    // @todo FIXME: please document (i18n).
+                    // TRANS: Client exception thrown when ...
+                    throw new ClientException(_('Bookmark not posted to this group.'));
                 }
             } else if ($target instanceof User) {
                 $uri      = $target->uri;
                 $original = null;
                 if (!empty($activity->context->replyToID)) {
-                    $original = Notice::staticGet('uri', 
-                                                  $activity->context->replyToID); 
+                    $original = Notice::staticGet('uri',
+                                                  $activity->context->replyToID);
                 }
                 if (!in_array($uri, $activity->context->attention) &&
                     (empty($original) ||
                      $original->profile_id != $target->id)) {
-                    throw new ClientException(_("Object not posted ".
-                                                "to this user."));
+                    // @todo FIXME: Please document (i18n).
+                    // TRANS: Client exception when ...
+                    throw new ClientException(_('Object not posted to this user.'));
                 }
             } else {
-                throw new ServerException(_("Don't know how to handle ".
-                                            "this kind of target."));
+                // TRANS: Server exception thrown when a micro app plugin uses a target that cannot be handled.
+                throw new ServerException(_('Do not know how to handle this kind of target.'));
             }
 
             $actor = Ostatus_profile::ensureActivityObjectProfile($activity->actor);
@@ -422,7 +439,6 @@ abstract class MicroAppPlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onStartAtomPubNewActivity(&$activity, $user, &$notice)
     {
         if ($this->isMyActivity($activity)) {
@@ -451,7 +467,6 @@ abstract class MicroAppPlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onStartImportActivity($user, $author, $activity, $trusted, &$done)
     {
         if ($this->isMyActivity($activity)) {
@@ -512,7 +527,7 @@ abstract class MicroAppPlugin extends Plugin
     function onEndActivityObjectOutputJson(ActivityObject $obj, array &$out)
     {
         if (in_array($obj->type, $this->types())) {
-            $this->activityObjectOutputJson($obj, &$out);
+            $this->activityObjectOutputJson($obj, $out);
         }
         return true;
     }
@@ -531,5 +546,11 @@ abstract class MicroAppPlugin extends Plugin
         }
 
         return true;
+    }
+
+    function showNotice($notice, $out)
+    {
+        // TRANS: Server exception thrown when a micro app plugin developer has not done his job too well.
+        throw new ServerException(_('You must implement either adaptNoticeListItem() or showNotice().'));
     }
 }

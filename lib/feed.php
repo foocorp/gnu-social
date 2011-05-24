@@ -81,12 +81,16 @@ class Feed
     {
         switch ($this->type) {
          case Feed::RSS1:
+            // TRANS: Feed type name.
             return _('RSS 1.0');
          case Feed::RSS2:
+            // TRANS: Feed type name.
             return _('RSS 2.0');
          case Feed::ATOM:
+            // TRANS: Feed type name.
             return _('Atom');
          case Feed::FOAF:
+            // TRANS: Feed type name. FOAF stands for Friend of a Friend.
             return _('FOAF');
          default:
             return null;

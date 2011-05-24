@@ -23,8 +23,6 @@ require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 require_once INSTALLDIR.'/classes/File.php';
 require_once INSTALLDIR.'/classes/File_oembed.php';
 
-define('USER_AGENT', 'StatusNet user agent / file probe');
-
 /**
  * Table Definition for file_redirection
  */

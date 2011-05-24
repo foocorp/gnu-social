@@ -48,7 +48,8 @@ class ImapManager extends IoManager
      */
     public static function get()
     {
-        throw new Exception(_m('ImapManager should be created using its constructor, not the using the static get method.'));
+        // TRANS: Exception thrown when the ImapManager is used incorrectly in the code.
+        throw new Exception(_m('ImapManager should be created using its constructor, not using the static "get()" method.'));
     }
 
     /**

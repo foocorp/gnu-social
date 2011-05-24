@@ -46,7 +46,6 @@ set_include_path(get_include_path() . PATH_SEPARATOR . dirname(__FILE__) . '/ext
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class AimPlugin extends ImPlugin
 {
     public $user =  null;
@@ -57,6 +56,7 @@ class AimPlugin extends ImPlugin
 
     function getDisplayName()
     {
+        // TRANS: Display name.
         return _m('AIM');
     }
 
@@ -116,7 +116,7 @@ class AimPlugin extends ImPlugin
 
     function microiduri($screenname)
     {
-        return 'aim:' . $screenname;    
+        return 'aim:' . $screenname;
     }
 
     function sendMessage($screenname, $body)
@@ -145,10 +145,12 @@ class AimPlugin extends ImPlugin
 
     function initialize(){
         if(!isset($this->user)){
-            throw new Exception("must specify a user");
+            // TRANS: Exception thrown in AIM plugin when user has not been specified.
+            throw new Exception(_m('Must specify a user.'));
         }
         if(!isset($this->password)){
-            throw new Exception("must specify a password");
+            // TRANS: Exception thrown in AIM plugin when password has not been specified.
+            throw new Exception(_m('Must specify a password.'));
         }
 
         $this->fake_aim = new Fake_Aim($this->user,$this->password,4);
@@ -162,8 +164,8 @@ class AimPlugin extends ImPlugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:AIM',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The AIM plugin allows users to send and receive notices over the AIM network.'));
         return true;
     }
 }
-

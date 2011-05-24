@@ -9,31 +9,189 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GroupPrivateMessage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 11:02+0000\n"
-"PO-Revision-Date: 2011-03-26 11:06:07+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:44+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:07:12+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:27:30+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Client exception thrown when trying to send a private group message while not logged in.
+msgid "Must be logged in."
+msgstr "Dapat na nakalagda ka."
+
+#. TRANS: Exception thrown when user %s is not allowed to send a private group message.
+#. TRANS: Exception thrown when trying to send group private message without having the right to do that.
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "User %s is not allowed to send private messages."
+msgstr ""
+"Ang tagamit na si %so ay hindi pinapahintulutang magpadala ng mga mensaheng "
+"pribado."
+
+#. TRANS: Client exception thrown when trying to send a private group message to a non-existing group.
+#. TRANS: Client exception thrown when trying to view group inbox for non-existing group.
+msgid "No such group."
+msgstr "Walang ganyang pangkat."
+
+#. TRANS: Title after sending a private group message.
+msgid "Message sent"
+msgstr "Naipadala na ang mensahe"
+
+#. TRANS: Succes text after sending a direct message to group %s.
+#, php-format
+msgid "Direct message to %s sent."
+msgstr "Naipadala na ang tuwirang mensahe kay %s."
+
+#. TRANS: Title of form for new private group message.
+#, php-format
+msgid "New message to group %s"
+msgstr "Bagong mensahe para sa pangkat na %s"
+
+#. TRANS: Subject for direct-message notification email.
+#. TRANS: %1$s is the sending user's nickname, %2$s is the group nickname.
+#, php-format
+msgid "New private message from %1$s to group %2$s"
+msgstr "Bagong pribadong mensahe mula sa %1$s papuntang pangkat na %2$s"
+
+#. TRANS: Body for direct-message notification email.
+#. TRANS: %1$s is the sending user's long name, %2$s is the sending user's nickname,
+#. TRANS: %3$s is the message content, %4$s a URL to the message,
+#. TRANS: %5$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"%1$s (%2$s) sent a private message to group %3$s:\n"
+"\n"
+"------------------------------------------------------\n"
+"%4$s\n"
+"------------------------------------------------------\n"
+"\n"
+"You can reply to their message here:\n"
+"\n"
+"%5$s\n"
+"\n"
+"Do not reply to this email; it will not get to them.\n"
+"\n"
+"With kind regards,\n"
+"%6$s"
+msgstr ""
+"Si %1$s (%2$s) ay nagpadala ng isang pribadong mensahe papunta sa pangkat na "
+"%3$s:\n"
+"\n"
+"------------------------------------------------------\n"
+"%4$s\n"
+"------------------------------------------------------\n"
+"\n"
+"Maaari kang tumugon sa kanilang mensahe rito:\n"
+"\n"
+"%5$s\n"
+"\n"
+"Huwag kang tumugon sa e-liham na ito; hindi ito makakarating sa kanila.\n"
+"\n"
+"May pamimitagan,\n"
+"%6$s"
+
+#. TRANS: Menu item in group page.
+msgctxt "MENU"
 msgid "Inbox"
 msgstr "Kahong-tanggapan"
 
-msgid "Private messages for this group"
-msgstr "Pribadong mga mensahe para sa pangkat na ito"
+#. TRANS: Menu title in group page.
+msgid "Private messages for this group."
+msgstr "Pribadong mga mensahe para sa pangkat na ito."
 
-msgid "Allow posting DMs to a group."
-msgstr "Payagan ang pagpapaskil ng mga DM sa isang pangkat."
+#. TRANS: Dropdown label in group settings page for if group allows private messages.
+msgid "Private messages"
+msgstr "Pribadong mga mensahe"
 
+#. TRANS: Dropdown option in group settings page for allowing private messages.
+msgid "Sometimes"
+msgstr "Kung minsan"
+
+#. TRANS: Dropdown option in group settings page for allowing private messages.
+msgid "Always"
+msgstr "Palagi"
+
+#. TRANS: Dropdown option in group settings page for allowing private messages.
+msgid "Never"
+msgstr "Hindi magpakailanman"
+
+#. TRANS: Dropdown title in group settings page for if group allows private messages.
+msgid "Whether to allow private messages to this group."
+msgstr ""
+"Kung papayagan ba o hindi ang mga mensaheng pribado papunta sa pangkat na "
+"ito."
+
+#. TRANS: Dropdown label in group settings page for who can send private messages to the group.
+msgid "Private senders"
+msgstr "Pribadong mga nagpapadala"
+
+#. TRANS: Dropdown option in group settings page for who can send private messages.
+msgid "Everyone"
+msgstr "Lahat"
+
+#. TRANS: Dropdown option in group settings page for who can send private messages.
+msgid "Member"
+msgstr "Kasapi"
+
+#. TRANS: Dropdown option in group settings page for who can send private messages.
+msgid "Admin"
+msgstr "Tagapangasiwa"
+
+#. TRANS: Dropdown title in group settings page for who can send private messages to the group.
+msgid "Who can send private messages to the group."
+msgstr "Sino ang maaaring magpadala ng pribadong mga mensahe sa pangkat."
+
+#. TRANS: Title for action in group actions list.
+msgid "Send a direct message to this group."
+msgstr "Magpadala ng isang tuwirang mensahe sa pangkat na ito."
+
+#. TRANS: Link text for action in group actions list to send a private message to a group.
+msgctxt "LINKTEXT"
+msgid "Message"
+msgstr "Mensahe"
+
+#. TRANS: Client exception thrown when a private group message has to be forced.
+msgid "Forced notice to private group message."
+msgstr "Sapilitang pabatid sa mensahe ng pribadong pangkat."
+
+#. TRANS: Indicator on the group page that the group is (essentially) private.
+msgid "Private"
+msgstr "Pribado"
+
+#. TRANS: Plugin description.
+msgid "Allow posting private messages to groups."
+msgstr "Payagan ang pagpapaskil ng pribadong mga mensahe sa mga pangkat."
+
+#. TRANS: Client exception thrown when trying to view group inbox while not logged in.
+msgid "Only for logged-in users."
+msgstr "Para lamang sa nakalagdang mga tagagamit."
+
+#. TRANS: Client exception thrown when trying to view group inbox while not a member.
+msgid "Only for members."
+msgstr "Para lamang sa mga kasapi."
+
+#. TRANS: Text of group inbox if no private messages were sent to it.
 msgid "This group has not received any private messages."
 msgstr ""
 "Ang pangkat na ito ay hindi pa nakatatanggap ng anumang mga mensaheng "
 "pribado."
+
+#. TRANS: Title of inbox for group %s.
+#, php-format
+msgid "%s group inbox"
+msgstr "Kahong-tanggapan ng pangkat na %s"
+
+#. TRANS: Page title for any but first group page.
+#. TRANS: %1$s is a group name, $2$s is a page number.
+#, php-format
+msgid "%1$s group inbox, page %2$d"
+msgstr "Kahong-tanggapan ng pangkat na %1$s, pahina %2$d"
 
 #. TRANS: Instructions for user inbox page.
 msgid ""
@@ -43,13 +201,101 @@ msgstr ""
 "Ito ang kahong-tanggapan ng pangkat, na nagtatala ng lahat ng pumapasok na "
 "mga mensahe para sa pangkat na ito."
 
+#. TRANS: Form legend for sending private message to group %s.
+#, php-format
+msgid "Message to %s"
+msgstr "Mensahe para sa %s"
+
+#. TRANS: Field label for private group message to group %s.
+#, php-format
+msgid "Direct message to %s"
+msgstr "Tuwirang mensahe papunta sa %s"
+
+#. TRANS: Indicator for number of chatacters still available for notice.
+msgid "Available characters"
+msgstr "Makukuhang mga panitik"
+
+#. TRANS: Send button text for sending private group notice.
 msgctxt "Send button for sending notice"
 msgid "Send"
 msgstr "Ipadala"
 
+#. TRANS: Exception thrown when trying to set group privacy setting if group %s does not allow private messages.
+#, php-format
+msgid "Group %s does not allow private messages."
+msgstr "Ang pangkat na %s ay hindi nagpapahintulot ng pansariling mga mensahe."
+
+#. TRANS: Exception thrown when trying to send group private message while blocked from that group.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#, php-format
+msgid "User %1$s is blocked from group %2$s."
+msgstr "Ang tagagamit na si %1$s ay hinarang mula sa pangkat na %2$s."
+
+#. TRANS: Exception thrown when trying to send group private message while not a member.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#, php-format
+msgid "User %1$s is not a member of group %2$s."
+msgstr "Ang tagagamit na si %1$s ay hindi isang kasapi sa pangkat na %2$s."
+
+#. TRANS: Exception thrown when trying to send group private message while not a group administrator.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#, php-format
+msgid "User %1$s is not an administrator of group %2$s."
+msgstr ""
+"Ang tagagamit na si %1$s ay hindi isang tagapangasiwa ng pangkat na %2$s."
+
+#. TRANS: Exception thrown when encountering undefined group privacy settings.
+#. TRANS: %s is a group nickname.
+#, php-format
+msgid "Unknown privacy settings for group %s."
+msgstr "Hindi nalalamang mga katakdaan ng pagkapribado para sa pangkat na %s ."
+
+#. TRANS: Exception thrown when trying to send group private message that is too long.
+#. TRANS: %d is the maximum meggage length.
 #, php-format
 msgid "That's too long. Maximum message size is %d character."
 msgid_plural "That's too long. Maximum message size is %d characters."
 msgstr[0] ""
 "Napakahaba niyan.  Ang pinakamalaking sukat ng mensahe ay %d panitik."
 msgstr[1] "Napakahaba niyan.  Ang pinakamalaking sukat ay %d na mga panitik."
+
+#. TRANS: Exception thrown when trying to send group private message to a non-existing group.
+msgid "No group for group message."
+msgstr "Walang pangkat para sa mensahe ng pangkat."
+
+#. TRANS: Exception thrown when trying to send group private message without having a sender.
+msgid "No sender for group message."
+msgstr "Walang tagapagpadala para sa mensahe ng pangkat."
+
+#. TRANS: Client exception thrown when trying to view group private messages without being logged in.
+msgid "Only logged-in users can view private messages."
+msgstr ""
+"Tanging nakalagdang mga tagagamit lamang ang makatitingin sa pribadong mga "
+"mensahe."
+
+#. TRANS: Client exception thrown when trying to view a non-existing group private message.
+msgid "No such message."
+msgstr "Walang ganyang mensahe."
+
+#. TRANS: Server exception thrown when trying to view group private messages for a non-exsting group.
+msgid "Group not found."
+msgstr "Hindi natagpuan ang pangkat."
+
+#. TRANS: Client exception thrown when trying to view a group private message without being a group member.
+msgid "Cannot read message."
+msgstr "Hindi mabasa ang mensahe."
+
+#. TRANS: Server exception thrown when trying to view a group private message without a sender.
+msgid "No sender found."
+msgstr "Walang natagpuang tagapagpadala."
+
+#. TRANS: Title for private group message.
+#. TRANS: %1$s is the sender name, %2$s is the group name, %3$s is a timestamp.
+#, php-format
+msgid "Message from %1$s to group %2$s on %3$s"
+msgstr "Mensahe mula sa %1$s papunta sa pangkat na %2$s na nasa %3$s"
+
+#. TRANS: Succes message after sending private group message to group %s.
+#, php-format
+msgid "Direct message to group %s sent."
+msgstr "Naipadala na ang tuwirang mensahe papunta sa pangkat na %s."

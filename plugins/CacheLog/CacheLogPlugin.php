@@ -103,6 +103,7 @@ class CacheLogPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:CacheLog',
                             'description' =>
+                            // TRANS: Plugin description.
                             _m('Log reads and writes to the cache.'));
         return true;
     }

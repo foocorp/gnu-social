@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      UnSandboxForm
  */
-
 class GrantRoleForm extends ProfileActionForm
 {
     function __construct($role, $label, $writer, $profile, $r2args)
@@ -57,7 +56,6 @@ class GrantRoleForm extends ProfileActionForm
      *
      * @return string Name of the action, lowercased.
      */
-
     function target()
     {
         return 'grantrole';
@@ -68,7 +66,6 @@ class GrantRoleForm extends ProfileActionForm
      *
      * @return string Title of the form, internationalized
      */
-
     function title()
     {
         return $this->label;
@@ -85,9 +82,9 @@ class GrantRoleForm extends ProfileActionForm
      *
      * @return string description of the form, internationalized
      */
-
     function description()
     {
+        // TRANS: Description on form for granting a role.
         return sprintf(_('Grant this user the "%s" role'), $this->label);
     }
 }

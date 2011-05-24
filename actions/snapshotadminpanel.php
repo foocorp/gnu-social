@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class SnapshotadminpanelAction extends AdminPanelAction
 {
     /**
@@ -48,10 +47,10 @@ class SnapshotadminpanelAction extends AdminPanelAction
      *
      * @return string page title
      */
-
     function title()
     {
-        return _('Snapshots');
+        // TRANS: Title for admin panel to configure snapshots.
+        return _m('TITLE','Snapshots');
     }
 
     /**
@@ -59,9 +58,9 @@ class SnapshotadminpanelAction extends AdminPanelAction
      *
      * @return string instructions
      */
-
     function getInstructions()
     {
+        // TRANS: Instructions for admin panel to configure snapshots.
         return _('Manage snapshot configuration');
     }
 
@@ -70,7 +69,6 @@ class SnapshotadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function showForm()
     {
         $form = new SnapshotAdminPanelForm($this);
@@ -83,7 +81,6 @@ class SnapshotadminpanelAction extends AdminPanelAction
      *
      * @return void
      */
-
     function saveSettings()
     {
         static $settings = array(
@@ -124,12 +121,14 @@ class SnapshotadminpanelAction extends AdminPanelAction
         // Validate snapshot run value
 
         if (!in_array($values['snapshot']['run'], array('web', 'cron', 'never'))) {
+            // TRANS: Client error displayed on admin panel for snapshots when providing an invalid run value.
             $this->clientError(_('Invalid snapshot run value.'));
         }
 
         // Validate snapshot frequency value
 
         if (!Validate::number($values['snapshot']['frequency'])) {
+            // TRANS: Client error displayed on admin panel for snapshots when providing an invalid value for frequency.
             $this->clientError(_('Snapshot frequency must be a number.'));
         }
 
@@ -141,11 +140,13 @@ class SnapshotadminpanelAction extends AdminPanelAction
                 array('allowed_schemes' => array('http', 'https')
             )
         )) {
+            // TRANS: Client error displayed on admin panel for snapshots when providing an invalid report URL.
             $this->clientError(_('Invalid snapshot report URL.'));
         }
     }
 }
 
+// @todo FIXME: add documentation
 class SnapshotAdminPanelForm extends AdminForm
 {
     /**
@@ -153,7 +154,6 @@ class SnapshotAdminPanelForm extends AdminForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'form_snapshot_admin_panel';
@@ -164,7 +164,6 @@ class SnapshotAdminPanelForm extends AdminForm
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_settings';
@@ -175,7 +174,6 @@ class SnapshotAdminPanelForm extends AdminForm
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('snapshotadminpanel');
@@ -186,26 +184,31 @@ class SnapshotAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->elementStart(
             'fieldset',
             array('id' => 'settings_admin_snapshots')
         );
-        $this->out->element('legend', null, _('Snapshots'));
+        // TRANS: Fieldset legend on admin panel for snapshots.
+        $this->out->element('legend', null, _m('LEGEND','Snapshots'));
         $this->out->elementStart('ul', 'form_data');
         $this->li();
         $snapshot = array(
+            // TRANS: Option in dropdown for snapshot method in admin panel for snapshots.
             'web' => _('Randomly during web hit'),
+            // TRANS: Option in dropdown for snapshot method in admin panel for snapshots.
             'cron'  => _('In a scheduled job'),
+            // TRANS: Option in dropdown for snapshot method in admin panel for snapshots.
             'never' => _('Never')
         );
         $this->out->dropdown(
             'run',
+            // TRANS: Dropdown label for snapshot method in admin panel for snapshots.
             _('Data snapshots'),
             $snapshot,
-            _('When to send statistical data to status.net servers'),
+            // TRANS: Dropdown title for snapshot method in admin panel for snapshots.
+            _('When to send statistical data to status.net servers.'),
             false,
             $this->value('run', 'snapshot')
         );
@@ -214,8 +217,10 @@ class SnapshotAdminPanelForm extends AdminForm
         $this->li();
         $this->input(
             'frequency',
+            // TRANS: Input field label for snapshot frequency in admin panel for snapshots.
             _('Frequency'),
-            _('Snapshots will be sent once every N web hits'),
+            // TRANS: Input field title for snapshot frequency in admin panel for snapshots.
+            _('Snapshots will be sent once every N web hits.'),
             'snapshot'
         );
         $this->unli();
@@ -223,8 +228,10 @@ class SnapshotAdminPanelForm extends AdminForm
         $this->li();
         $this->input(
             'reporturl',
+            // TRANS: Input field label for snapshot report URL in admin panel for snapshots.
             _('Report URL'),
-            _('Snapshots will be sent to this URL'),
+            // TRANS: Input field title for snapshot report URL in admin panel for snapshots.
+            _('Snapshots will be sent to this URL.'),
             'snapshot'
         );
         $this->unli();
@@ -237,15 +244,16 @@ class SnapshotAdminPanelForm extends AdminForm
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->submit(
             'submit',
-            _('Save'),
+            // TRANS: Button text to save snapshot settings.
+            _m('BUTTON','Save'),
             'submit',
             null,
-            _('Save snapshot settings')
+            // TRANS: Title for button to save snapshot settings.
+            _('Save snapshot settings.')
         );
     }
 }

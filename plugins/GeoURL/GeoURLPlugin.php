@@ -121,6 +121,7 @@ class GeoURLPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:GeoURL',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Ping <a href="http://geourl.org/">GeoURL</a> when '.
                                'new geolocation-enhanced notices are posted.'));
         return true;

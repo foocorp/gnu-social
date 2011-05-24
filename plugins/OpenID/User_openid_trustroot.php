@@ -53,5 +53,4 @@ class User_openid_trustroot extends Memcached_DataObject
     {
         return array('trustroot' => 'K', 'user_id' => 'K');
     }
-
 }

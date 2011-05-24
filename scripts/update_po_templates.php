@@ -43,6 +43,7 @@ xgettext \
     --keyword="_m:1c,2,3,4t" \
     --keyword="pgettext:1c,2" \
     --keyword="npgettext:1c,2,3" \
+    index.php \
     actions/*.php \
     classes/*.php \
     lib/*.php \

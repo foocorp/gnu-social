@@ -82,13 +82,19 @@ class BlogspamNetPlugin extends Plugin
         } else {
             common_debug("Blogspamnet results = " . $response);
             if (preg_match('/^ERROR(:(.*))?$/', $response, $match)) {
-                throw new ServerException(sprintf(_("Error from %s: %s"), $this->baseUrl, $match[2]), 500);
+                // TRANS: Server exception thrown when blogspam.net returns error status.
+                // TRANS: %1$s is the base URL, %2$s is the error (unknown contents; no period).
+                throw new ServerException(sprintf(_m('Error from %1$s: %2$s'), $this->baseUrl, $match[2]), 500);
             } else if (preg_match('/^SPAM(:(.*))?$/', $response, $match)) {
-                throw new ClientException(sprintf(_("Spam checker results: %s"), $match[2]), 400);
+                // TRANS: Server exception thrown when blogspam.net returns spam status.
+                // TRANS: Does not end with period because of unknown contents for %s (spam match).
+                throw new ClientException(sprintf(_m('Spam checker results: %s'), $match[2]), 400);
             } else if (preg_match('/^OK$/', $response)) {
                 // don't do anything
             } else {
-                throw new ServerException(sprintf(_("Unexpected response from %s: %s"), $this->baseUrl, $response), 500);
+                // TRANS: Server exception thrown when blogspam.net returns an unexpected status.
+                // TRANS: %1$s is the base URL, %2$s is the response (unknown contents; no period).
+                throw new ServerException(sprintf(_m('Unexpected response from %1$s: %2$s'), $this->baseUrl, $response), 500);
             }
         }
         return true;
@@ -149,6 +155,7 @@ class BlogspamNetPlugin extends Plugin
                             'author' => 'Evan Prodromou, Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:BlogspamNet',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Plugin to check submitted notices with blogspam.net.'));
         return true;
     }

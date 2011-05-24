@@ -242,7 +242,7 @@ class Poll extends Managed_DataObject
                             $p->uri);
         $link = '<a href="' . htmlspecialchars($p->uri) . '">' . htmlspecialchars($question) . '</a>';
         // TRANS: Rendered version of the notice content creating a poll.
-        // TRANS: %s a link to the poll with the question as link description.
+        // TRANS: %s is a link to the poll with the question as link description.
         $rendered = sprintf(_m('Poll: %s'), $link);
 
         $tags    = array('poll');

@@ -55,6 +55,7 @@ class PostDebugPlugin extends Plugin
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:PostDebug',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Debugging tool to record request details on POST.'));
         return true;
     }
@@ -145,6 +146,4 @@ class PostDebugPlugin extends Plugin
         }
         return $data;
     }
-
 }
-

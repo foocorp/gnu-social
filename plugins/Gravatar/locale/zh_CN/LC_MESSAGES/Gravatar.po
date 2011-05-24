@@ -9,52 +9,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Gravatar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:49+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:39+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:28+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-16 23:17:51+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-gravatar\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "Set Gravatar"
-msgstr "设置 Gravatar"
-
-msgid "If you want to use your Gravatar image, click \"Add\"."
-msgstr "如果你想使用你的 Gravatar 图像，点击“添加”"
-
-msgid "Add"
-msgstr "添加"
-
-msgid "Remove Gravatar"
-msgstr "删除 Gravatar"
-
-msgid "If you want to remove your Gravatar image, click \"Remove\"."
-msgstr "如果你想删除你的 Gravatar 图像，点击“删除”。"
-
-msgid "Remove"
-msgstr "删除"
-
-msgid "To use a Gravatar first enter in an email address."
-msgstr "要使用 Gravatar 先要填写一个 email 地址。"
-
-msgid "You do not have an email address set in your profile."
-msgstr "你的账号没有设置 email 地址。"
-
-msgid "Failed to save Gravatar to the database."
-msgstr "将 Gravatar 保存到数据库失败。"
-
-msgid "Gravatar added."
-msgstr "Gravatar 已添加。"
-
-msgid "Gravatar removed."
-msgstr "Gravatar 已删除。"
-
+#. TRANS: Plugin decsription.
 msgid ""
 "The Gravatar plugin allows users to use their <a href=\"http://www.gravatar."
 "com/\">Gravatar</a> with StatusNet."

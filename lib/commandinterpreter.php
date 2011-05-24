@@ -274,6 +274,32 @@ class CommandInterpreter
                     }
                 }
                 break;
+             case 'list':
+             case 'tag':
+                if (!$arg) {
+                    $result = null;
+                    break;
+                }
+                list($other, $tags) = $this->split_arg($arg);
+                if (!$tags) {
+                    $result = null;
+                } else {
+                    $result = new TagCommand($user, $other, $tags);
+                }
+                break;
+             case 'unlist':
+             case 'untag':
+                if (!$arg) {
+                    $result = null;
+                    break;
+                }
+                list($other, $tags) = $this->split_arg($arg);
+                if (!$tags) {
+                    $result = null;
+                } else {
+                    $result = new UntagCommand($user, $other, $tags);
+                }
+                break;
             case 'track':
                 if (!$arg) {
                     $result = null;
@@ -313,7 +339,7 @@ class CommandInterpreter
             default:
                 $result = false;
             }
-                
+
             Event::handle('EndInterpretCommand', array($cmd, $arg, $user, &$result));
         }
 

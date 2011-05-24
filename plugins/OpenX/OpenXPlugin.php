@@ -197,8 +197,8 @@ ENDOFSCRIPT;
 
     function onEndAdminPanelNav($menu) {
         if (AdminPanelAction::canAdmin('openx')) {
-            // TRANS: Menu item title/tooltip
-            $menu_title = _m('OpenX configuration');
+            // TRANS: Menu item title.
+            $menu_title = _m('OpenX configuration.');
             // TRANS: Menu item for site administration
             $menu->out->menuItem(common_local_url('openxadminpanel'), _m('OpenX'),
                                  $menu_title, $action_name == 'openxadminpanel', 'nav_openx_admin_panel');

@@ -80,7 +80,6 @@ class Profile_detail extends Managed_DataObject
      * @return User_greeting_count object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Profile_detail', $k, $v);
@@ -98,7 +97,6 @@ class Profile_detail extends Managed_DataObject
      * @return Bookmark object found, or null for no hits
      *
      */
-
     function pkeyGet($kv)
     {
         return Memcached_DataObject::pkeyGet('Profile_detail', $kv);
@@ -107,6 +105,7 @@ class Profile_detail extends Managed_DataObject
     static function schemaDef()
     {
         return array(
+            // No need for i18n. Table properties.
             'description'
                 => 'Additional profile details for the ExtendedProfile plugin',
             'fields'      => array(
@@ -138,5 +137,4 @@ class Profile_detail extends Managed_DataObject
             )
         );
     }
-
 }

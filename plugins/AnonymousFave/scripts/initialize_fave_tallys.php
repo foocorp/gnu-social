@@ -35,4 +35,3 @@ $notice->find();
 while ($notice->fetch()) {
     Fave_tally::ensureTally($notice->id);
 }
-

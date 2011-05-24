@@ -3,6 +3,7 @@
 #
 # Author: Fujnky
 # Author: George Animal
+# Author: Giftpflanze
 # Author: The Evil IP address
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -11,20 +12,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:20+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:30+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-11 18:53:23+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:48+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-openx\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#. TRANS: Menu item title/tooltip
-msgid "OpenX configuration"
+#. TRANS: Menu item title.
+#, fuzzy
+msgid "OpenX configuration."
 msgstr "OpenX-Konfiguration"
 
 #. TRANS: Menu item for site administration
@@ -54,11 +56,11 @@ msgstr "Skript-URL"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
 msgid "Medium rectangle"
-msgstr ""
+msgstr "Mittleres Rechteck"
 
 #. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
 msgid "Medium rectangle zone"
-msgstr ""
+msgstr "Zone des mittleren Rechtecks"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
 msgid "Rectangle"
@@ -66,7 +68,7 @@ msgstr "Rechteck"
 
 #. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
 msgid "Rectangle zone"
-msgstr ""
+msgstr "Rechteckzone"
 
 #. TRANS: Form label in OpenX admin panel. Refers to advertisement format.
 msgid "Leaderboard"
@@ -82,7 +84,7 @@ msgstr "Skyscraper"
 
 #. TRANS: Tooltip for form label in OpenX admin panel. Refers to advertisement format.
 msgid "Wide skyscraper zone"
-msgstr ""
+msgstr "Zone des weiten Hochhauses"
 
 #. TRANS: Submit button text in OpenX admin panel.
 msgctxt "BUTTON"
@@ -90,5 +92,6 @@ msgid "Save"
 msgstr "Speichern"
 
 #. TRANS: Submit button title in OpenX admin panel.
-msgid "Save OpenX settings"
+#, fuzzy
+msgid "Save OpenX settings."
 msgstr "OpenX-Einstellungen speichern"

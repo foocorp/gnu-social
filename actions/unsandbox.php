@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
 class UnsandboxAction extends ProfileFormAction
 {
     /**
@@ -50,7 +49,6 @@ class UnsandboxAction extends ProfileFormAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         if (!parent::prepare($args)) {
@@ -62,6 +60,7 @@ class UnsandboxAction extends ProfileFormAction
         assert(!empty($cur)); // checked by parent
 
         if (!$cur->hasRight(Right::SANDBOXUSER)) {
+            // TRANS: Client error on page to unsandbox a user when the feature is not enabled.
             $this->clientError(_('You cannot sandbox users on this site.'));
             return false;
         }
@@ -69,6 +68,7 @@ class UnsandboxAction extends ProfileFormAction
         assert(!empty($this->profile)); // checked by parent
 
         if (!$this->profile->isSandboxed()) {
+            // TRANS: Client error on page to unsilence a user when the to be unsandboxed user has not been sandboxed.
             $this->clientError(_('User is not sandboxed.'));
             return false;
         }
@@ -81,7 +81,6 @@ class UnsandboxAction extends ProfileFormAction
      *
      * @return void
      */
-
     function handlePost()
     {
         $this->profile->unsandbox();

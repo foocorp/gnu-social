@@ -44,7 +44,7 @@ abstract class Installer
     /** Web site info */
     public $sitename, $server, $path, $fancy;
     /** DB info */
-    public $host, $dbname, $dbtype, $username, $password, $db;
+    public $host, $database, $dbtype, $username, $password, $db;
     /** Administrator info */
     public $adminNick, $adminPass, $adminEmail, $adminUpdates;
     /** Should we skip writing the configuration file? */
@@ -509,7 +509,9 @@ abstract class Installer
         $this->updateStatus("Initializing...");
         ini_set('display_errors', 1);
         error_reporting(E_ALL);
-        define('STATUSNET', 1);
+        if (!defined('STATUSNET')) {
+            define('STATUSNET', 1);
+        }
         require_once INSTALLDIR . '/lib/framework.php';
         StatusNet::initDefaults($this->server, $this->path);
 

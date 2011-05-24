@@ -46,15 +46,15 @@ class AllmapAction extends MapAction
 {
     function prepare($args)
     {
-        if(parent::prepare($args)) {
+        if (parent::prepare($args)) {
             $cur = common_current_user();
-            if (!empty($cur) && $cur->id == $this->user->id) {
-                $this->notice = $this->user->noticeInbox(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
-            } else {
-                $this->notice = $this->user->noticesWithFriends(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
-            }
+            $stream = new InboxNoticeStream($this->user, $cur->getProfile());
+            $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
+                                                NOTICES_PER_PAGE + 1,
+                                                null,
+                                                null);
             return true;
-        }else{
+        } else {
             return false;
         }
     }

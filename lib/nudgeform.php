@@ -46,13 +46,11 @@ require_once INSTALLDIR.'/lib/form.php';
  *
  * @see      DisfavorForm
  */
-
 class NudgeForm extends Form
 {
     /**
      * Profile of user to nudge
      */
-
     var $profile = null;
 
     /**
@@ -61,7 +59,6 @@ class NudgeForm extends Form
      * @param HTMLOutputter $out     output channel
      * @param Profile       $profile profile of user to nudge
      */
-
     function __construct($out=null, $profile=null)
     {
         parent::__construct($out);
@@ -74,7 +71,6 @@ class NudgeForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'form_user_nudge';
@@ -86,7 +82,6 @@ class NudgeForm extends Form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         return 'form_user_nudge ajax';
@@ -98,7 +93,6 @@ class NudgeForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('nudge',
@@ -113,6 +107,7 @@ class NudgeForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend of form to nudge/ping another user.
         $this->out->element('legend', null, _('Nudge this user'));
     }
 
@@ -122,9 +117,14 @@ class NudgeForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Nudge'), 'submit', null, _('Send a nudge to this user'));
+        $this->out->submit('submit',
+                           // TRANS: Button text to nudge/ping another user.
+                           _m('BUTTON','Nudge'),
+                           'submit',
+                           null,
+                           // TRANS: Button title to nudge/ping another user.
+                           _('Send a nudge to this user.'));
     }
 }

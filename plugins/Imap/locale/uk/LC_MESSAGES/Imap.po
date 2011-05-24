@@ -9,41 +9,49 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Imap\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:52+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:45+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:31+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:27:31+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-imap\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: E-mail subject in case of an error.
 msgid "Error"
 msgstr "Помилка"
 
+#. TRANS: Exception thrown when the ImapManager is used incorrectly in the code.
 msgid ""
-"ImapManager should be created using its constructor, not the using the "
-"static get method."
+"ImapManager should be created using its constructor, not using the static "
+"\"get()\" method."
 msgstr ""
-"ImapManager має бути створений за допомогою конструктору, не статичним "
-"методом."
+"ImapManager має бути створений за допомогою конструктору, а не статичним "
+"методом «get()»."
 
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
 msgid "A mailbox must be specified."
 msgstr "Поштову скриньку має бути зазначено."
 
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
 msgid "A user must be specified."
 msgstr "Користувача має бути зазначено."
 
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
 msgid "A password must be specified."
 msgstr "Пароль має бути зазначено."
 
+#. TRANS: Exception thrown when configuration of the IMAP plugin is incorrect.
+#. TRANS: poll_frequency is a setting that should not be translated.
 msgid "A poll_frequency must be specified."
 msgstr "Періодичність перевірки має бути зазначено."
 
+#. TRANS: Plugin description.
 msgid ""
 "The IMAP plugin allows for StatusNet to check a POP or IMAP mailbox for "
 "incoming mail containing user posts."

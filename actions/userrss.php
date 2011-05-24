@@ -37,6 +37,7 @@ class UserrssAction extends Rss10Action
         $this->tag  = $this->trimmed('tag');
 
         if (!$this->user) {
+            // TRANS: Client error displayed when user not found for an action.
             $this->clientError(_('No such user.'));
             return false;
         } else {
@@ -105,7 +106,8 @@ class UserrssAction extends Rss10Action
         $profile = $user->getProfile();
         if (!$profile) {
             common_log_db_error($user, 'SELECT', __FILE__);
-            $this->serverError(_('User without matching profile.'));
+            // TRANS: Error message displayed when referring to a user without a profile.
+            $this->serverError(_('User has no profile.'));
             return null;
         }
         $avatar = $profile->getAvatar(AVATAR_PROFILE_SIZE);

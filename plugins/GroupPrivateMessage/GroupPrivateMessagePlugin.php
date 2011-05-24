@@ -46,7 +46,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class GroupPrivateMessagePlugin extends Plugin
 {
     /**
@@ -57,7 +56,6 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onCheckSchema()
     {
         $schema = Schema::get();
@@ -78,7 +76,7 @@ class GroupPrivateMessagePlugin extends Plugin
                                                  'datetime'),
                                    new ColumnDef('modified',
                                                  'timestamp')));
-                             
+
         $schema->ensureTable('group_message',
                              array(new ColumnDef('id',
                                                  'char',
@@ -136,7 +134,6 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onAutoload($cls)
     {
         $dir = dirname(__FILE__);
@@ -171,7 +168,6 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onRouterInitialized($m)
     {
         $m->connect('group/:nickname/inbox',
@@ -199,7 +195,6 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @see Action
      */
-
     function onEndGroupGroupNav($groupnav)
     {
         $action = $groupnav->action;
@@ -207,8 +202,10 @@ class GroupPrivateMessagePlugin extends Plugin
 
         $action->menuItem(common_local_url('groupinbox',
                                            array('nickname' => $group->nickname)),
-                          _m('Inbox'),
-                          _m('Private messages for this group'),
+                          // TRANS: Menu item in group page.
+                          _m('MENU','Inbox'),
+                          // TRANS: Menu title in group page.
+                          _m('Private messages for this group.'),
                           $action->trimmed('action') == 'groupinbox',
                           'nav_group_inbox');
         return true;
@@ -221,7 +218,6 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @result boolean hook value
      */
-
     function onEndGroupSave($group)
     {
         $gps = new Group_privacy_settings();
@@ -244,7 +240,6 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @param GroupEditForm $form form being shown
      */
-
     function onEndGroupEditFormData($form)
     {
         $gps = null;
@@ -255,21 +250,31 @@ class GroupPrivateMessagePlugin extends Plugin
 
         $form->out->elementStart('li');
         $form->out->dropdown('allow_privacy',
-                             _('Private messages'),
-                             array(Group_privacy_settings::SOMETIMES => _('Sometimes'),
-                                   Group_privacy_settings::ALWAYS => _('Always'),
-                                   Group_privacy_settings::NEVER => _('Never')),
-                             _('Whether to allow private messages to this group'),
+                             // TRANS: Dropdown label in group settings page for if group allows private messages.
+                             _m('Private messages'),
+                             // TRANS: Dropdown option in group settings page for allowing private messages.
+                             array(Group_privacy_settings::SOMETIMES => _m('Sometimes'),
+                                   // TRANS: Dropdown option in group settings page for allowing private messages.
+                                   Group_privacy_settings::ALWAYS => _m('Always'),
+                                   // TRANS: Dropdown option in group settings page for allowing private messages.
+                                   Group_privacy_settings::NEVER => _m('Never')),
+                             // TRANS: Dropdown title in group settings page for if group allows private messages.
+                             _m('Whether to allow private messages to this group.'),
                              false,
                              (empty($gps)) ? Group_privacy_settings::SOMETIMES : $gps->allow_privacy);
         $form->out->elementEnd('li');
         $form->out->elementStart('li');
         $form->out->dropdown('allow_sender',
-                             _('Private sender'),
-                             array(Group_privacy_settings::EVERYONE => _('Everyone'),
-                                   Group_privacy_settings::MEMBER => _('Member'),
-                                   Group_privacy_settings::ADMIN => _('Admin')),
-                             _('Who can send private messages to the group'),
+                             // TRANS: Dropdown label in group settings page for who can send private messages to the group.
+                             _m('Private senders'),
+                             // TRANS: Dropdown option in group settings page for who can send private messages.
+                             array(Group_privacy_settings::EVERYONE => _m('Everyone'),
+                                   // TRANS: Dropdown option in group settings page for who can send private messages.
+                                   Group_privacy_settings::MEMBER => _m('Member'),
+                                   // TRANS: Dropdown option in group settings page for who can send private messages.
+                                   Group_privacy_settings::ADMIN => _m('Admin')),
+                             // TRANS: Dropdown title in group settings page for who can send private messages to the group.
+                             _m('Who can send private messages to the group.'),
                              false,
                              (empty($gps)) ? Group_privacy_settings::MEMBER : $gps->allow_sender);
         $form->out->elementEnd('li');
@@ -292,7 +297,7 @@ class GroupPrivateMessagePlugin extends Plugin
         } else {
             $orig = clone($gps);
         }
-        
+
         $gps->allow_privacy = $action->trimmed('allow_privacy');
         $gps->allow_sender  = $action->trimmed('allow_sender');
 
@@ -302,21 +307,21 @@ class GroupPrivateMessagePlugin extends Plugin
         } else {
             $gps->update($orig);
         }
-        
+
         return true;
     }
 
     /**
      * Overload 'd' command to send private messages to groups.
-     * 
+     *
      * 'd !group word word word' will send the private message
      * 'word word word' to the group 'group'.
-     * 
+     *
      * @param string  $cmd     Command being run
      * @param string  $arg     Rest of the message (including address)
      * @param User    $user    User sending the message
      * @param Command &$result The resulting command object to be run.
-     * 
+     *
      * @return boolean hook value
      */
     function onStartIntepretCommand($cmd, $arg, $user, &$result)
@@ -350,7 +355,7 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @param Widget     $widget The showgroup action being shown
      * @param User_group $group  The current group
-     * 
+     *
      * @return boolean hook value
      */
     function onEndGroupActionsList($widget, $group)
@@ -370,8 +375,10 @@ class GroupPrivateMessagePlugin extends Plugin
 
         $action->elementStart('li', 'entity_send-a-message');
         $action->element('a', array('href' => common_local_url('newgroupmessage', array('nickname' => $group->nickname)),
-                                    'title' => _('Send a direct message to this group')),
-                         _('Message'));
+                                    // TRANS: Title for action in group actions list.
+                                    'title' => _m('Send a direct message to this group.')),
+                         // TRANS: Link text for action in group actions list to send a private message to a group.
+                         _m('LINKTEXT','Message'));
         // $form = new GroupMessageForm($action, $group);
         // $form->hidden = true;
         // $form->show();
@@ -384,12 +391,9 @@ class GroupPrivateMessagePlugin extends Plugin
      * privacy == always, force a group private message to all mentioned groups.
      * If any of the groups disallows private messages, skip it.
      *
-     * @param 
-     *
+     * @param
      */
-
     function onStartNoticeSave(&$notice) {
-
         // Look for group tags
         // FIXME: won't work for remote groups
         // @fixme if Notice::saveNew is refactored so we can just pull its list
@@ -406,11 +410,9 @@ class GroupPrivateMessagePlugin extends Plugin
         $profile = $notice->getProfile();
 
         if ($count > 0) {
-
             /* Add them to the database */
 
             foreach (array_unique($match[1]) as $nickname) {
-
                 $group = User_group::getForNickname($nickname, $profile);
 
                 if (empty($group)) {
@@ -433,7 +435,6 @@ class GroupPrivateMessagePlugin extends Plugin
             }
 
             if ($forcePrivate) {
-
                 foreach ($ignored as $group) {
                     common_log(LOG_NOTICE,
                                "Notice forced to group direct message ".
@@ -454,11 +455,12 @@ class GroupPrivateMessagePlugin extends Plugin
 
                 // Don't save the notice!
                 // FIXME: this is probably cheating.
-                throw new ClientException(sprintf(_('Forced notice to private group message.')),
+                // TRANS: Client exception thrown when a private group message has to be forced.
+                throw new ClientException(sprintf(_m('Forced notice to private group message.')),
                                           200);
             }
         }
-        
+
         return true;
     }
 
@@ -470,13 +472,13 @@ class GroupPrivateMessagePlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onEndGroupProfileElements($action, $group)
     {
         $gps = Group_privacy_settings::forGroup($group);
-        
+
         if ($gps->allow_privacy == Group_privacy_settings::ALWAYS) {
-            $action->element('p', 'privategroupindicator', _('Private'));
+            // TRANS: Indicator on the group page that the group is (essentially) private.
+            $action->element('p', 'privategroupindicator', _m('Private'));
         }
 
         return true;
@@ -486,7 +488,7 @@ class GroupPrivateMessagePlugin extends Plugin
     {
         if ($action instanceof ShowgroupAction) {
             $gps = Group_privacy_settings::forGroup($action->group);
-        
+
             if ($gps->allow_privacy == Group_privacy_settings::ALWAYS) {
                 return false;
             }
@@ -501,7 +503,8 @@ class GroupPrivateMessagePlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:GroupPrivateMessage',
                             'rawdescription' =>
-                            _m('Allow posting DMs to a group.'));
+                            // TRANS: Plugin description.
+                            _m('Allow posting private messages to groups.'));
         return true;
     }
 }

@@ -134,7 +134,7 @@ class ApiGroupCreateAction extends ApiAuthAction
             break;
         default:
             $this->clientError(
-                // TRANS: Client error given when an API method was not found (404).
+                // TRANS: Client error displayed when coming across a non-supported API method.
                 _('API method not found.'),
                 404,
                 $this->format

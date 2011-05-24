@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Form for entering an event
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class EventForm extends Form
 {
     /**
@@ -52,7 +51,6 @@ class EventForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'form_new_event';
@@ -63,7 +61,6 @@ class EventForm extends Form
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_settings ajax-notice';
@@ -74,7 +71,6 @@ class EventForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('newevent');
@@ -85,69 +81,98 @@ class EventForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
-        $this->out->elementStart('fieldset', array('id' => 'new_bookmark_data'));
+        $this->out->elementStart('fieldset', array('id' => 'new_event_data'));
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
-        $this->out->input('title',
-                          _('Title'),
+        $this->out->input('event-title',
+                          // TRANS: Field label on event form.
+                          _m('LABEL','Title'),
                           null,
-                          _('Title of the event'));
+                          // TRANS: Field title on event form.
+                          _m('Title of the event.'),
+                          'title');
         $this->unli();
 
         $this->li();
-        $this->out->input('startdate',
-                          _('Start date'),
+        $this->out->input('event-startdate',
+                          // TRANS: Field label on event form.
+                          _m('LABEL','Start date'),
                           null,
-                          _('Date the event starts'));
+                          // TRANS: Field title on event form.
+                          _m('Date the event starts.'),
+                          'startdate');
         $this->unli();
 
         $this->li();
-        $this->out->input('starttime',
-                          _('Start time'),
+        $this->out->input('event-starttime',
+                          // TRANS: Field label on event form.
+                          _m('LABEL','Start time'),
                           null,
-                          _('Time the event starts'));
+                          // TRANS: Field title on event form.
+                          _m('Time the event starts.'),
+                          'starttime');
         $this->unli();
 
         $this->li();
-        $this->out->input('enddate',
-                          _('End date'),
-                          null,   
-                          _('Date the event ends'));
+        $this->out->input('event-enddate',
+                          // TRANS: Field label on event form.
+                          _m('LABEL','End date'),
+                          null,
+                          // TRANS: Field title on event form.
+                          _m('Date the event ends.'),
+                          'enddate');
         $this->unli();
 
         $this->li();
-        $this->out->input('endtime',
-                          _('End time'),
+        $this->out->input('event-endtime',
+                          // TRANS: Field label on event form.
+                          _m('LABEL','End time'),
                           null,
-                          _('Time the event ends'));
+                          // TRANS: Field title on event form.
+                          _m('Time the event ends.'),
+                          'endtime');
         $this->unli();
 
         $this->li();
-        $this->out->input('location',
-                          _('Location'),
+        $this->out->input('event-location',
+                          // TRANS: Field label on event form.
+                          _m('LABEL','Location'),
                           null,
-                          _('Event location'));
+                          // TRANS: Field title on event form.
+                          _m('Event location.'),
+                          'location');
         $this->unli();
 
         $this->li();
-        $this->out->input('url',
-                          _('URL'),
+        $this->out->input('event-url',
+                          // TRANS: Field label on event form.
+                          _m('LABEL','URL'),
                           null,
-                          _('URL for more information'));
+                          // TRANS: Field title on event form.
+                          _m('URL for more information.'),
+                          'url');
         $this->unli();
 
         $this->li();
-        $this->out->input('description',
-                          _('Description'),
+        $this->out->input('event-description',
+                          // TRANS: Field label on event form.
+                          _m('LABEL','Description'),
                           null,
-                          _('Description of the event'));
+                          // TRANS: Field title on event form.
+                          _m('Description of the event.'),
+                          'description');
         $this->unli();
 
         $this->out->elementEnd('ul');
+
+        $toWidget = new ToSelector($this->out,
+                                   common_current_user(),
+                                   null);
+        $toWidget->show();
+
         $this->out->elementEnd('fieldset');
     }
 
@@ -156,9 +181,9 @@ class EventForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _m('BUTTON', 'Save'));
+        // TRANS: Button text to save an event..
+        $this->out->submit('event-submit', _m('BUTTON', 'Save'), 'submit', 'submit');
     }
 }

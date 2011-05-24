@@ -435,7 +435,8 @@ class GeonamesPlugin extends Plugin
     function getGeonames($method, $params)
     {
         if ($this->lastTimeout && (time() - $this->lastTimeout < $this->timeoutWindow)) {
-            throw new Exception("skipping due to recent web service timeout");
+            // TRANS: Exception thrown when a geo names service is not used because of a recent timeout.
+            throw new Exception(_m('Skipping due to recent web service timeout.'));
         }
 
         $client = HTTPClient::start();
@@ -451,13 +452,16 @@ class GeonamesPlugin extends Plugin
         }
 
         if (!$result->isOk()) {
-            throw new Exception("HTTP error code " . $result->getStatus());
+            // TRANS: Exception thrown when a geo names service does not return an expected response.
+            // TRANS: %s is an HTTP error code.
+            throw new Exception(sprintf(_m('HTTP error code %s.'),$result->getStatus()));
         }
 
         $body = $result->getBody();
 
         if (empty($body)) {
-            throw new Exception("Empty HTTP body in response");
+            // TRANS: Exception thrown when a geo names service returns an empty body.
+            throw new Exception(_m('Empty HTTP body in response.'));
         }
 
         // This will throw an exception if the XML is mal-formed
@@ -473,7 +477,9 @@ class GeonamesPlugin extends Plugin
         }
 
         if (isset($document->status)) {
-            throw new Exception("Error #".$document->status['value']." ('".$document->status['message']."')");
+            // TRANS: Exception thrown when a geo names service return a specific error number and error text.
+            // TRANS: %1$s is an error code, %2$s is an error message.
+            throw new Exception(sprintf(_m('Error #%1$s ("%2$s").'),$document->status['value'],$document->status['message']));
         }
 
         // Array of elements, >0 elements
@@ -488,6 +494,7 @@ class GeonamesPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Geonames',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Uses <a href="http://geonames.org/">Geonames</a> service to get human-readable '.
                                'names for locations based on user-provided lat/long pairs.'));
         return true;

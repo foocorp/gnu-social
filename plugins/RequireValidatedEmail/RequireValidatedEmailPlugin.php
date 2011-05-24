@@ -133,16 +133,14 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return bool hook result code
      */
-    function onStartRegistrationTry($action)
+
+    function onStartRegisterUser(&$user, &$profile)
     {
-        $email = $action->trimmed('email');
+        $email = $user->email;
 
         if (empty($email)) {
-            $action->showForm(_m('You must provide an email address to register.'));
-            return false;
+            throw new ClientException(_m('You must provide an email address to register.'));
         }
-
-        // Default form will run address format validation and reject if bad.
 
         return true;
     }

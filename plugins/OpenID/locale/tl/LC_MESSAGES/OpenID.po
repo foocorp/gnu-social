@@ -9,45 +9,55 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:19+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:28+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:35+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:47+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Title for identity verification page.
 msgid "OpenID Identity Verification"
 msgstr "Pagpapatunay sa Katauhan ng OpenID"
 
+#. TRANS: Client error when visiting page directly.
 msgid ""
 "This page should only be reached during OpenID processing, not directly."
 msgstr ""
 "Ang pahinang ito ay dapat lamang na maabot habang pinoproseso ang OpenID, "
 "hindi tuwiran."
 
-#, php-format
+#. TRANS: Page notice. %s is a trustroot name.
+#, fuzzy, php-format
 msgid ""
-"%s  has asked to verify your identity. Click Continue to verify your "
-"identity and login without creating a new password."
+"%s has asked to verify your identity. Click Continue to verify your identity "
+"and login without creating a new password."
 msgstr ""
 "Hiniling ng/ni %s na patunayan ang iyong katauhan. Pindutin ang Magpatuloy "
 "upang tiyakin ang iyong katauhan at lumagdang hindi lumilikha ng isang "
 "bagong hudyat."
 
+#. TRANS: Button text to continue OpenID identity verification.
+#. TRANS: button label for OAuth authorization page when needing OpenID authentication first.
+msgctxt "BUTTON"
 msgid "Continue"
-msgstr "Magpatuloy"
+msgstr "Ipagpatuloy"
 
+#. TRANS: Button text to cancel OpenID identity verification.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Cancel"
 msgstr "Huwag ituloy"
 
 #. TRANS: Tooltip for main menu option "Login"
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Login to the site"
+msgid "Login to the site."
 msgstr "Lumagda sa sityo"
 
 #. TRANS: Main menu option when not logged in to log in
@@ -66,8 +76,9 @@ msgid "Help"
 msgstr "Saklolo"
 
 #. TRANS: Tooltip for main menu option "Search"
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Search for people or text"
+msgid "Search for people or text."
 msgstr "Maghanap ng mga tao o teksto"
 
 #. TRANS: Main menu option when logged in or when the StatusNet instance is not private
@@ -83,29 +94,35 @@ msgid "OpenID"
 msgstr "OpenID"
 
 #. TRANS: OpenID plugin tooltip for logon menu item.
-msgid "Login or register with OpenID"
+#, fuzzy
+msgid "Login or register with OpenID."
 msgstr "Lumagda o magpatala na may OpenID"
 
 #. TRANS: OpenID plugin tooltip for user settings menu item.
-msgid "Add or remove OpenIDs"
+#, fuzzy
+msgid "Add or remove OpenIDs."
 msgstr "Idagdag o alisin ang mga OpenID"
 
+#. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
+#, php-format
+msgid ""
+"* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this "
+"service."
+msgstr ""
+
 #. TRANS: Tooltip for OpenID configuration menu item.
-msgid "OpenID configuration"
+#, fuzzy
+msgid "OpenID configuration."
 msgstr "Pagkakaayos ng OpenID"
 
-#. TRANS: OpenID plugin description.
+#. TRANS: Plugin description.
 msgid "Use <a href=\"http://openid.net/\">OpenID</a> to login to the site."
 msgstr ""
 "Gamitin ang <a href=\"http://openid.net/\">OpenID</a> upang lumagda sa sityo."
 
-#. TRANS: button label for OAuth authorization page when needing OpenID authentication first.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Continue"
-msgstr "Magpatuloy"
-
 #. TRANS: OpenID plugin logon form legend.
+#, fuzzy
+msgctxt "LEGEND"
 msgid "OpenID login"
 msgstr "Panglagdang OpenID"
 
@@ -122,11 +139,15 @@ msgid "You will be sent to the provider's site for authentication."
 msgstr "Ipapadala ka sa sityo ng tagapagbigay para sa pagpapatunay."
 
 #. TRANS: OpenID plugin logon form field label.
+#. TRANS: Field label.
+#. TRANS: OpenID plugin logon form field label.
 msgid "OpenID URL"
 msgstr "URL ng OpenID"
 
 #. TRANS: OpenID plugin logon form field instructions.
-msgid "Your OpenID URL"
+#. TRANS: OpenID plugin logon form field title.
+#, fuzzy
+msgid "Your OpenID URL."
 msgstr "Ang iyong URL ng OpenID"
 
 #. TRANS: Client error message trying to log on with OpenID while already logged on.
@@ -134,11 +155,13 @@ msgid "Already logged in."
 msgstr "Nakalagda na."
 
 #. TRANS: Message given when there is a problem with the user's session token.
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr "May suliranin sa iyong token na pangsesyon.  Paki subukan uli."
 
 #. TRANS: Message given if user does not agree with the site's license.
-msgid "You can't register if you don't agree to the license."
+#, fuzzy
+msgid "You cannot register if you do not agree to the license."
 msgstr "Hindi ka makakapagpatala kung hindi ka sasang-ayon sa lisensiya."
 
 #. TRANS: Messag given on an unknown error.
@@ -147,11 +170,11 @@ msgstr "Naganap ang isang hindi nalalamang kamalian."
 
 #. TRANS: Instructions given after a first successful logon using OpenID.
 #. TRANS: %s is the site name.
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"This is the first time you've logged into %s so we must connect your OpenID "
-"to a local account. You can either create a new account, or connect with "
-"your existing account, if you have one."
+"This is the first time you have logged into %s so we must connect your "
+"OpenID to a local account. You can either create a new account, or connect "
+"with your existing account, if you have one."
 msgstr ""
 "Ito ang iyong unang pagkakataon ng paglagda sa %s kaya't kailangan naming "
 "umugnay sa iyong OpenID papunta sa isang katutubong akawnt.  Maaari kang "
@@ -159,21 +182,49 @@ msgstr ""
 "akawnt, kung mayroon ka."
 
 #. TRANS: Title
+#, fuzzy
+msgctxt "TITLE"
 msgid "OpenID Account Setup"
 msgstr "Pagkakaayos ng Akawnt na OpenID"
 
+#. TRANS: Fieldset legend.
 msgid "Create new account"
 msgstr "Likhain ang bagong akawnt"
 
+#. TRANS: Form guide.
 msgid "Create a new user with this nickname."
 msgstr "Lumikha ng isang bagong tagagamit na may ganitong palayaw."
 
+#. TRANS: Field label.
 msgid "New nickname"
 msgstr "Bagong palayaw"
 
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+#. TRANS: Field title.
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
 msgstr ""
-"1 hanggang 64 maliliit na mga titik o mga bilang, walang bantas o mga patlang"
+"1 hanggang 64 maliliit na mga titik o mga bilang, walang bantas o mga "
+"patlang."
+
+#. TRANS: Field label.
+msgid "Email"
+msgstr "E-liham"
+
+#. TRANS: Field title.
+msgid "Used only for updates, announcements, and password recovery."
+msgstr ""
+"Ginagamit lamang para sa mga pagsasapanahon, mga pagpapahayag, at pagbawi ng "
+"hudyat."
+
+#. TRANS: OpenID plugin link text.
+#. TRANS: %s is a link to a license with the license name as link text.
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"Makukuha ang teksto at mga talaksan ko sa ilalim ng %s maliban na lamang ang "
+"pribadong datong ito: hudyat, tirahan ng e-liham, tirahan ng IM, at numero "
+"ng telepono."
 
 #. TRANS: Button label in form in which to create a new user on the site for an OpenID.
 msgctxt "BUTTON"
@@ -200,7 +251,7 @@ msgstr "Umiiral na palayaw"
 msgid "Password"
 msgstr "Hudyat"
 
-#. TRANS: Button label in form in which to connect an OpenID to an existing user on the site.
+#. TRANS: Button text in form in which to connect an OpenID to an existing user on the site.
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Umugnay"
@@ -212,12 +263,15 @@ msgstr "Kinansela ang pagpapatunay ng OpenID."
 #. TRANS: OpenID authentication failed; display the error message. %s is the error message.
 #. TRANS: OpenID authentication failed; display the error message.
 #. TRANS: %s is the error message.
-#, php-format
-msgid "OpenID authentication failed: %s"
+#, fuzzy, php-format
+msgid "OpenID authentication failed: %s."
 msgstr "Nabigo ang pagpapatunay ng OpenID: %s"
 
+#. TRANS: Message displayed when OpenID authentication is aborted.
+#. TRANS: OpenID authentication error.
+#, fuzzy
 msgid ""
-"OpenID authentication aborted: you are not allowed to login to this site."
+"OpenID authentication aborted: You are not allowed to login to this site."
 msgstr ""
 "Hindi itinuloy ang pagpapatunay ng OpenID: hindi ka pinahintulutang lumagda "
 "sa sityong ito."
@@ -267,14 +321,14 @@ msgstr "Hindi isang tanggap na OpenID."
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication request fails.
 #. TRANS: %s is the failure message.
-#, php-format
-msgid "OpenID failure: %s"
+#, fuzzy, php-format
+msgid "OpenID failure: %s."
 msgstr "Kabiguan ng OpenID: %s"
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication request cannot be redirected.
 #. TRANS: %s is the failure message.
-#, php-format
-msgid "Could not redirect to server: %s"
+#, fuzzy, php-format
+msgid "Could not redirect to server: %s."
 msgstr "Hindi mabago upang papuntahin sa tagapaghain: %s"
 
 #. TRANS: OpenID plugin user instructions.
@@ -315,25 +369,37 @@ msgstr ""
 "Kapag hindi ka itinurong papunta sa iyong tagapagbigay ng paglagda sa loob "
 "ng ilang mga segundo, subukang pindutin ang pindutang nasa ibaba."
 
-msgid "OpenID"
-msgstr "OpenID"
+#. TRANS: Title for OpenID bridge administration page.
+#, fuzzy
+msgctxt "TITLE"
+msgid "OpenID Settings"
+msgstr "Mga katakdaan ng OpenID"
 
+#. TRANS: Page instructions.
 msgid "OpenID settings"
 msgstr "Mga katakdaan ng OpenID"
 
-msgid "Invalid provider URL. Max length is 255 characters."
+#. TRANS: Client error displayed when OpenID provider URL is too long.
+#, fuzzy
+msgid "Invalid provider URL. Maximum length is 255 characters."
 msgstr ""
 "Hindi tanggap na URL ng tagapagbigay. Ang pinakamataas na haba ay 255 mga "
 "panitik."
 
-msgid "Invalid team name. Max length is 255 characters."
+#. TRANS: Client error displayed when Launchpad team name is too long.
+#, fuzzy
+msgid "Invalid team name. Maximum length is 255 characters."
 msgstr ""
-"Hindi tanggap ng pangalan ng pangkat. Pinakamataas na haba ay 255 mga "
+"Hindi tanggap na pangalan ng pangkat. Pinakamataas na haba ay 255 mga "
 "panitik."
 
+#. TRANS: Fieldset legend.
+#, fuzzy
+msgctxt "LEGEND"
 msgid "Trusted provider"
 msgstr "Pinagkakatiwalaang tagapagbigay"
 
+#. TRANS: Form guide.
 msgid ""
 "By default, users are allowed to authenticate with any OpenID provider. If "
 "you are using your own OpenID service for shared sign-in, you can restrict "
@@ -344,18 +410,22 @@ msgstr ""
 "mo ang sarili mong palingkuran ng OpenID para sa pinagsasaluhang paglagdang "
 "papasok, malilimitahan mo ang pagpunta sa iyong mga tagagamit lamang dito."
 
+#. TRANS: Field label.
 msgid "Provider URL"
 msgstr "URL ng tagapagbigay"
 
+#. TRANS: Field title.
 msgid ""
 "All OpenID logins will be sent to this URL; other providers may not be used."
 msgstr ""
 "Ang lahat ng mga paglalagda sa OpenID ay ipapadala sa URL na ito; hindi "
 "maaaring gamitin ang ibang mga tagapagbigay."
 
+#. TRANS: Checkbox label.
 msgid "Append a username to base URL"
 msgstr "Ikabit ang isang pangalan ng tagagamit sa punong URL"
 
+#. TRANS: Checkbox title.
 msgid ""
 "Login form will show the base URL and prompt for a username to add at the "
 "end. Use when OpenID provider URL should be the profile page for individual "
@@ -366,57 +436,78 @@ msgstr ""
 "tagapagbigay ng OpenID ay ang dapat na maging pahina ng balangkas para sa "
 "indibiduwal na mga tagagamit."
 
+#. TRANS: Field label.
 msgid "Required team"
 msgstr "Kailangang pangkat"
 
+#. TRANS: Field title.
 msgid "Only allow logins from users in the given team (Launchpad extension)."
 msgstr ""
 "Payagan lamang ang mga paglagda mula sa mga tagagamit na nasa loob ng "
 "ibinigay na pangkat (karugtong ng Launchpad)."
 
+#. TRANS: Fieldset legend.
+#, fuzzy
+msgctxt "LEGEND"
 msgid "Options"
 msgstr "Mga pagpipilian"
 
+#. TRANS: Checkbox label.
 msgid "Enable OpenID-only mode"
 msgstr "Paganahin ang gawi na OpenID lamang"
 
-#, fuzzy
+#. TRANS: Checkbox title.
 msgid ""
 "Require all users to login via OpenID. Warning: disables password "
 "authentication for all users!"
 msgstr ""
-"Igiit sa lahat ng mga tagagamit na lumagda sa pamamagitan ng OpenID.  "
-"BABALA: hindi pinagagana ang pagpapatunay ng hudyat para sa lahat ng mga "
-"tagagamit!"
+"Kailanganin sa lahat ng mga tagagamit na lumagdang papasok sa pamamagitan ng "
+"OpenID.  Babala: hindi pinagagana ang pagpapatunay ng hudyat para sa lahat "
+"ng mga tagagamit!"
 
-msgid "Save OpenID settings"
-msgstr "Sagipin ang mga katakdaan ng OpenID"
+#. TRANS: Button text to save OpenID settings.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Sagipin"
 
-#. TRANS: Client error message
+#. TRANS: Button title to save OpenID settings.
+msgid "Save OpenID settings."
+msgstr "Sagipin ang mga katakdaan ng OpenID."
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
 msgstr "Hindi nakalagda."
 
-#. TRANS: message in case a user tries to add an OpenID that is already connected to them.
+#. TRANS: Message in case a user tries to add an OpenID that is already connected to them.
 msgid "You already have this OpenID!"
 msgstr "Mayroon ka na ng ganitong OpenID!"
 
-#. TRANS: message in case a user tries to add an OpenID that is already used by another user.
+#. TRANS: Message in case a user tries to add an OpenID that is already used by another user.
 msgid "Someone else already has this OpenID."
 msgstr "Mayroon nang ibang tao na may ganitong OpenID."
 
-#. TRANS: message in case the OpenID object cannot be connected to the user.
+#. TRANS: Message in case the OpenID object cannot be connected to the user.
 msgid "Error connecting user."
 msgstr "Kamalian sa pag-ugnay ng tagagamit."
 
-#. TRANS: message in case the user or the user profile cannot be saved in StatusNet.
-msgid "Error updating profile"
+#. TRANS: Message in case the user or the user profile cannot be saved in StatusNet.
+#, fuzzy
+msgid "Error updating profile."
 msgstr "Kamalian sa pagsasapanahon ng balangkas"
 
 #. TRANS: Title after getting the status of the OpenID authorisation request.
-#. TRANS: OpenID plugin message. Title.
 msgid "OpenID Login"
 msgstr "Panglagdang OpenID"
 
+#. TRANS: Title of OpenID settings page for a user.
+#, fuzzy
+msgctxt "TITLE"
+msgid "OpenID settings"
+msgstr "Mga katakdaan ng OpenID"
+
+#. TRANS: Form instructions for OpenID settings.
+#. TRANS: This message contains Markdown links in the form [description](link).
 #, php-format
 msgid ""
 "[OpenID](%%doc.openid%%) lets you log into many sites with the same user "
@@ -426,9 +517,13 @@ msgstr ""
 "sityong may katulad na akawnt ng tagagamit. Pamahalaan ang iyong kaugnay na "
 "mga OpenID mula rito."
 
+#. TRANS: Fieldset legend.
+#, fuzzy
+msgctxt "LEGEND"
 msgid "Add OpenID"
 msgstr "Idagdag ang OpenID"
 
+#. TRANS: Form guide.
 msgid ""
 "If you want to add an OpenID to your account, enter it in the box below and "
 "click \"Add\"."
@@ -436,12 +531,19 @@ msgstr ""
 "Kung nais mong magdagdag ng isang OpenID sa akawnt mo, ipasok ito sa kahong "
 "nasa ibaba at pindutin ang \"Idagdag\"."
 
+#. TRANS: Button text for adding an OpenID URL.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Add"
 msgstr "Idagdag"
 
+#. TRANS: Header on OpenID settings page.
+#, fuzzy
+msgctxt "HEADER"
 msgid "Remove OpenID"
 msgstr "Tanggalin ang OpenID"
 
+#. TRANS: Form guide.
 msgid ""
 "Removing your only OpenID would make it impossible to log in! If you need to "
 "remove it, add another OpenID first."
@@ -449,6 +551,7 @@ msgstr ""
 "Ang pagtatanggal ng iyong OpenID lamang ay makasasanhi ng imposibleng "
 "paglagda!  Kung kailangan mong tanggalin ito, magdagdag ng ibang OpenID muna."
 
+#. TRANS: Form guide.
 msgid ""
 "You can remove an OpenID from your account by clicking the button marked "
 "\"Remove\"."
@@ -456,12 +559,18 @@ msgstr ""
 "Matatanggap mo ang isang OpenID mula sa akawnt mo sa pamamagitan ng "
 "pagpindot sa pindutang may tatak na \"Tanggalin\"."
 
+#. TRANS: Button text to remove an OpenID.
+#. TRANS: Button text to remove an OpenID trustroot.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Remove"
 msgstr "Tanggalin"
 
+#. TRANS: Fieldset legend.
 msgid "OpenID Trusted Sites"
 msgstr "Pinagkakatiwalaang mga Sityo ng OpenID"
 
+#. TRANS: Form guide.
 msgid ""
 "The following sites are allowed to access your identity and log you in. You "
 "can remove a site from this list to deny it access to your OpenID."
@@ -470,28 +579,38 @@ msgstr ""
 "at makalagda kang papasok.  Matatanggal mo ang isang sityo mula sa talaang "
 "ito upang tanggihan ang pagpunta nito sa iyong OpenID."
 
-msgid "Can't add new providers."
+#. TRANS: Form validation error if no OpenID providers can be added.
+#, fuzzy
+msgid "Cannot add new providers."
 msgstr "Hindi makapagdaragdag ng bagong mga tagapagbigay."
 
+#. TRANS: Unexpected form validation error.
 msgid "Something weird happened."
 msgstr "May nangyaring kakaiba."
 
+#. TRANS: Form validation error when trying to remove a non-existing trustroot.
 msgid "No such OpenID trustroot."
 msgstr "Walng ganyang pinagkakatiwalaang ugat ng OpenID."
 
-msgid "Trustroots removed"
+#. TRANS: Success message after removing trustroots.
+#, fuzzy
+msgid "Trustroots removed."
 msgstr "Tinanggal ang mga pinagkakatiwalaang ugat"
 
+#. TRANS: Form validation error for a non-existing OpenID.
 msgid "No such OpenID."
 msgstr "Walang ganyang OpenID."
 
+#. TRANS: Form validation error if OpenID is connected to another user.
 msgid "That OpenID does not belong to you."
 msgstr "Hindi mo pag-aari ang OpenID na iyan."
 
+#. TRANS: Success message after removing an OpenID.
 msgid "OpenID removed."
 msgstr "Tinanggal ang OpenID."
 
 #. TRANS: OpenID plugin client error given trying to add an unauthorised OpenID to a user (403).
+#. TRANS: %s is a request identity.
 #, php-format
 msgid "You are not authorized to use the identity %s."
 msgstr "Wala kang pahintulot na gamitin ang katauhang %s."
@@ -517,11 +636,22 @@ msgstr ""
 msgid "Login with an [OpenID](%%doc.openid%%) account."
 msgstr "Lumagda sa pamamagitan ng isang akawnt ng [OpenID](%%doc.openid%%)."
 
+#. TRANS: OpenID plugin message. Title.
+#, fuzzy
+msgctxt "TITLE"
+msgid "OpenID Login"
+msgstr "Panglagdang OpenID"
+
+#, fuzzy
+msgctxt "LABEL"
+msgid "OpenID provider"
+msgstr "Tagapagbigay ng OpenID"
+
 #. TRANS: OpenID plugin logon form checkbox label for setting to put the OpenID information in a cookie.
 msgid "Remember me"
 msgstr "Tandaan ako"
 
-#. TRANS: OpenID plugin logon form field instructions.
+#. TRANS: OpenID plugin logon form field title.
 msgid "Automatically login in the future; not for shared computers!"
 msgstr ""
 "Kusang lumagda sa hinaharap; hindi para sa pinagsasaluhang mga kompyuter!"
@@ -530,3 +660,9 @@ msgstr ""
 msgctxt "BUTTON"
 msgid "Login"
 msgstr "Lumagda"
+
+#~ msgid "Continue"
+#~ msgstr "Magpatuloy"
+
+#~ msgid "OpenID"
+#~ msgstr "OpenID"

@@ -52,7 +52,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
-
 class MemcachedPlugin extends Plugin
 {
     static $cacheInitialized = false;
@@ -215,6 +214,7 @@ class MemcachedPlugin extends Plugin
                             'author' => 'Evan Prodromou, Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:Memcached',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Use <a href="http://memcached.org/">Memcached</a> to cache query results.'));
         return true;
     }

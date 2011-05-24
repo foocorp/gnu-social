@@ -1,13 +1,12 @@
 GravatarPlugin 0.1
 
-About
+About:
 This will allow users to use their Gravatar Avatar with your StatusNet install.
 
-Configuration
+Configuration:
 add this to your config.php:
 addPlugin('Gravatar', array());
 
-ToDo:
+To do:
 Site default all on for gravatar by default
 Migration Script
-Localize

@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Menu for admin panels
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -45,7 +45,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link     http://status.net/
  */
-
 class AdminPanelNav extends Menu
 {
     /**
@@ -62,106 +61,115 @@ class AdminPanelNav extends Menu
 
         // Stub section w/ home link
         $this->action->elementStart('ul');
-        $this->action->element('h3', null, _('Home'));
+        $this->action->elementStart('li');
+        // TRANS: Header in administrator navigation panel.
+        $this->action->element('h3', null, _m('HEADER','Home'));
         $this->action->elementStart('ul', 'nav');
         $this->out->menuItem(common_local_url('all', array('nickname' =>
                                                            $nickname)),
-                             _('Home'),
+                             // TRANS: Menu item in administrator navigation panel.
+                             _m('MENU','Home'),
+                             // TRANS: Menu item title in administrator navigation panel.
+                             // TRANS: %s is a username.
                              sprintf(_('%s and friends'), $name),
                              $this->action == 'all', 'nav_timeline_personal');
 
         $this->action->elementEnd('ul');
+        $this->action->elementEnd('li');
         $this->action->elementEnd('ul');
 
         $this->action->elementStart('ul');
-        $this->action->element('h3', null, _('Admin'));
+        $this->action->elementStart('li');
+        // TRANS: Header in administrator navigation panel.
+        $this->action->element('h3', null, _m('HEADER','Admin'));
         $this->action->elementStart('ul', array('class' => 'nav'));
 
         if (Event::handle('StartAdminPanelNav', array($this))) {
 
             if (AdminPanelAction::canAdmin('site')) {
-                // TRANS: Menu item title/tooltip
+                // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('Basic site configuration');
-                // TRANS: Menu item for site administration
+                // TRANS: Menu item in administrator navigation panel.
                 $this->out->menuItem(common_local_url('siteadminpanel'), _m('MENU', 'Site'),
                                      $menu_title, $action_name == 'siteadminpanel', 'nav_site_admin_panel');
             }
 
             if (AdminPanelAction::canAdmin('design')) {
-                // TRANS: Menu item title/tooltip
+                // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('Design configuration');
-                // TRANS: Menu item for site administration
+                // TRANS: Menu item in administrator navigation panel.
                 $this->out->menuItem(common_local_url('designadminpanel'), _m('MENU', 'Design'),
                                      $menu_title, $action_name == 'designadminpanel', 'nav_design_admin_panel');
             }
 
             if (AdminPanelAction::canAdmin('user')) {
-                // TRANS: Menu item title/tooltip
+                // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('User configuration');
-                // TRANS: Menu item for site administration
-                $this->out->menuItem(common_local_url('useradminpanel'), _('User'),
+                // TRANS: Menu item in administrator navigation panel.
+                $this->out->menuItem(common_local_url('useradminpanel'), _m('MENU','User'),
                                      $menu_title, $action_name == 'useradminpanel', 'nav_user_admin_panel');
             }
 
             if (AdminPanelAction::canAdmin('access')) {
-                // TRANS: Menu item title/tooltip
+                // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('Access configuration');
-                // TRANS: Menu item for site administration
-                $this->out->menuItem(common_local_url('accessadminpanel'), _('Access'),
+                // TRANS: Menu item in administrator navigation panel.
+                $this->out->menuItem(common_local_url('accessadminpanel'), _m('MENU','Access'),
                                      $menu_title, $action_name == 'accessadminpanel', 'nav_access_admin_panel');
             }
 
             if (AdminPanelAction::canAdmin('paths')) {
-                // TRANS: Menu item title/tooltip
+                // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('Paths configuration');
-                // TRANS: Menu item for site administration
-                $this->out->menuItem(common_local_url('pathsadminpanel'), _('Paths'),
+                // TRANS: Menu item in administrator navigation panel.
+                $this->out->menuItem(common_local_url('pathsadminpanel'), _m('MENU','Paths'),
                                     $menu_title, $action_name == 'pathsadminpanel', 'nav_paths_admin_panel');
             }
 
             if (AdminPanelAction::canAdmin('sessions')) {
-                // TRANS: Menu item title/tooltip
+                // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('Sessions configuration');
-                // TRANS: Menu item for site administration
-                $this->out->menuItem(common_local_url('sessionsadminpanel'), _('Sessions'),
+                // TRANS: Menu item in administrator navigation panel.
+                $this->out->menuItem(common_local_url('sessionsadminpanel'), _m('MENU','Sessions'),
                                      $menu_title, $action_name == 'sessionsadminpanel', 'nav_sessions_admin_panel');
             }
 
             if (AdminPanelAction::canAdmin('sitenotice')) {
-                // TRANS: Menu item title/tooltip
+                // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('Edit site notice');
-                // TRANS: Menu item for site administration
-                $this->out->menuItem(common_local_url('sitenoticeadminpanel'), _('Site notice'),
+                // TRANS: Menu item in administrator navigation panel.
+                $this->out->menuItem(common_local_url('sitenoticeadminpanel'), _m('MENU','Site notice'),
                                      $menu_title, $action_name == 'sitenoticeadminpanel', 'nav_sitenotice_admin_panel');
             }
 
             if (AdminPanelAction::canAdmin('snapshot')) {
-                // TRANS: Menu item title/tooltip
+                // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('Snapshots configuration');
-                // TRANS: Menu item for site administration
-                $this->out->menuItem(common_local_url('snapshotadminpanel'), _('Snapshots'),
+                // TRANS: Menu item in administrator navigation panel.
+                $this->out->menuItem(common_local_url('snapshotadminpanel'), _m('MENU','Snapshots'),
                                      $menu_title, $action_name == 'snapshotadminpanel', 'nav_snapshot_admin_panel');
             }
 
             if (AdminPanelAction::canAdmin('license')) {
-                // TRANS: Menu item title/tooltip
+                // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('Set site license');
-                // TRANS: Menu item for site administration
-                $this->out->menuItem(common_local_url('licenseadminpanel'), _('License'),
+                // TRANS: Menu item in administrator navigation panel.
+                $this->out->menuItem(common_local_url('licenseadminpanel'), _m('MENU','License'),
                                      $menu_title, $action_name == 'licenseadminpanel', 'nav_license_admin_panel');
             }
 
             if (AdminPanelAction::canAdmin('plugins')) {
-                // TRANS: Menu item title/tooltip
+                // TRANS: Menu item title in administrator navigation panel.
                 $menu_title = _('Plugins configuration');
-                // TRANS: Menu item for site administration
-                $this->out->menuItem(common_local_url('pluginsadminpanel'), _('Plugins'),
+                // TRANS: Menu item in administrator navigation panel.
+                $this->out->menuItem(common_local_url('pluginsadminpanel'), _m('MENU','Plugins'),
                                      $menu_title, $action_name == 'pluginsadminpanel', 'nav_design_admin_panel');
             }
 
             Event::handle('EndAdminPanelNav', array($this));
         }
         $this->action->elementEnd('ul');
+        $this->action->elementEnd('li');
         $this->action->elementEnd('ul');
     }
 }

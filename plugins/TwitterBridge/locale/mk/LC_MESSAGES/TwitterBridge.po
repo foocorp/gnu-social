@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 11:02+0000\n"
-"PO-Revision-Date: 2011-03-26 11:07:31+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:45+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:10:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -105,19 +105,22 @@ msgstr "Не можев да ги зачувам нагодувањата за T
 msgid "Twitter preferences saved."
 msgstr "Нагодувањата за Twitter се зачувани."
 
-msgid "You can't register if you don't agree to the license."
+msgid "You cannot register if you do not agree to the license."
 msgstr "Не можете да се регистрирате ако не се согласувате со лиценцата."
 
 msgid "Something weird happened."
 msgstr "Се случи нешто чудно."
 
-msgid "Couldn't link your Twitter account."
+msgid "Could not link your Twitter account."
 msgstr "Не можам да ја поврзам Вашата сметка на Twitter."
 
 msgid "Couldn't link your Twitter account: oauth_token mismatch."
 msgstr ""
 "Не можев да ја поврзам Вашата сметка на Twitter: несогласување со "
 "oauth_token."
+
+msgid "Couldn't link your Twitter account."
+msgstr "Не можам да ја поврзам Вашата сметка на Twitter."
 
 #, php-format
 msgid ""
@@ -141,7 +144,7 @@ msgid ""
 "email address, IM address, and phone number."
 msgstr ""
 "Мојот текст и податотеки се достапни под %s, освен следниве приватни "
-"податоци: лозинка, е-пошта, IM-адреса и телефонски број."
+"податоци: лозинка, е-пошта, НП-адреса и телефонски број."
 
 msgid "Create new account"
 msgstr "Создај нова сметка"
@@ -152,8 +155,15 @@ msgstr "Создај нов корисник со овој прекар."
 msgid "New nickname"
 msgstr "Нов прекар"
 
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
-msgstr "1-64 мали букви или бројки, без интерпункциски знаци и празни места"
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr "1-64 мали букви или бројки, без интерпункциски знаци и празни места."
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr "Е-пошта"
+
+msgid "Used only for updates, announcements, and password recovery"
+msgstr "Се користи само за подновувања, објави и повраќање на лозинка."
 
 msgid "Create"
 msgstr "Создај"
@@ -286,9 +296,8 @@ msgid "Sign in with Twitter"
 msgstr "Најава со Twitter"
 
 #. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
-#, fuzzy
 msgid "Your Twitter bridge has been disabled"
-msgstr "Вашиот мост до Twitter е оневозможен."
+msgstr "Вашиот мост до Twitter е оневозможен"
 
 #. TRANS: Mail body after forwarding notices to Twitter has stopped working.
 #. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the

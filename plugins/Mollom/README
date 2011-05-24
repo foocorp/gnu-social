@@ -15,8 +15,9 @@ addPlugin('Mollom',
     )
 );
 
-?>
 
-replace '...' with your own public and private keys for your site, which you can get from mollom.com
+replace '...' with your own public and private keys for your site, which you can
+get from mollom.com.
 
-If you're using this plugin, i'd love to know about it -- shiny@cpan.org or shiny on freenode.
+If you're using this plugin, i'd love to know about it -- shiny@cpan.org or
+shiny on freenode.

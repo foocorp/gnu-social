@@ -42,21 +42,18 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
  * @link     http://status.net/
  */
-
-
 class RedirectingAction extends Action
 {
-
     /**
      * Redirect browser to the page our hidden parameters requested,
      * or if none given, to the url given by $this->defaultReturnTo().
-     * 
+     *
      * To be called only after successful processing.
-     * 
+     *
      * Note: this was named returnToArgs() up through 0.9.2, which
      * caused problems because there's an Action::returnToArgs()
      * already which does something different.
-     * 
+     *
      * @return void
      */
     function returnToPrevious()
@@ -87,11 +84,12 @@ class RedirectingAction extends Action
      * If we reached this form without returnto arguments, where should
      * we go? May be overridden by subclasses to a reasonable destination
      * for that action; default implementation throws an exception.
-     * 
+     *
      * @return string URL
      */
     function defaultReturnTo()
     {
-        $this->clientError(_("No return-to arguments."));
+        // TRANS: Client error displayed when return-to was defined without a target.
+        $this->clientError(_('No return-to arguments.'));
     }
 }

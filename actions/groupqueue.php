@@ -156,11 +156,12 @@ class GroupqueueAction extends GroupDesignAction
         $members->free();
 
         $this->pagination($this->page > 1, $cnt > PROFILES_PER_PAGE,
-                          $this->page, 'groupmembers',
+                          $this->page, 'groupqueue',
                           array('nickname' => $this->group->nickname));
     }
 }
 
+// @todo FIXME: documentation missing.
 class GroupQueueList extends GroupMemberList
 {
     function newListItem($profile)
@@ -169,6 +170,7 @@ class GroupQueueList extends GroupMemberList
     }
 }
 
+// @todo FIXME: documentation missing.
 class GroupQueueListItem extends GroupMemberListItem
 {
     function showActions()

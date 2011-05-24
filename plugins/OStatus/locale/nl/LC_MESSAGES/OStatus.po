@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 11:02+0000\n"
-"PO-Revision-Date: 2011-03-26 11:06:52+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:44+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-24 15:25:40+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:48+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -25,25 +25,58 @@ msgstr ""
 msgid "Feeds"
 msgstr "Feeds"
 
-#. TRANS: Link description for link to subscribe to a remote user.
+#. TRANS: Link to subscribe to a remote entity.
 #. TRANS: Link text for a user to subscribe to an OStatus user.
 msgid "Subscribe"
 msgstr "Abonneren"
 
-#. TRANS: Link description for link to join a remote group.
-msgid "Join"
-msgstr "Toetreden"
+#. TRANS: Fieldset legend.
+msgid "Tag remote profile"
+msgstr "Extern profiel in lijst opnemen"
 
-#. TRANSLATE: %s is a domain.
+#. TRANS: Field label.
+msgctxt "LABEL"
+msgid "Remote profile"
+msgstr "Extern profiel"
+
+#. TRANS: Field title.
+#. TRANS: Tooltip for field label "Subscribe to".
+msgid ""
+"OStatus user's address, like nickname@example.com or http://example.net/"
+"nickname."
+msgstr ""
+"Het OStatusadres van de gebruiker. Bijvoorbeeld nickname@example.com of "
+"http://example.net/nickname."
+
+#. TRANS: Button text to fetch remote profile.
+msgctxt "BUTTON"
+msgid "Fetch"
+msgstr "Ophalen"
+
+#. TRANS: Exception in OStatus when invalid URI was entered.
+msgid "Invalid URI."
+msgstr "Ongeldige URI."
+
+#. TRANS: Error message in OStatus plugin.
+#. TRANS: Error text.
+msgid ""
+"Sorry, we could not reach that address. Please make sure that the OStatus "
+"address is like nickname@example.com or http://example.net/nickname."
+msgstr ""
+"Dat adres is helaas niet te bereiken. Zorg dat het OStatusadres de voor heft "
+"van gebruiker@example.com of http://example.net/gebruiker."
+
+#. TRANS: Title. %s is a domain name.
 #, php-format
 msgid "Sent from %s via OStatus"
 msgstr "Verzonden vanaf %s via OStatus"
 
-#. TRANS: Exception.
+#. TRANS: Exception thrown when setup of remote subscription fails.
 msgid "Could not set up remote subscription."
-msgstr ""
-"Het was niet mogelijk het abonnement via een andere dienst in te stellen."
+msgstr "Het was niet mogelijk het externe abonnement in te stellen."
 
+#. TRANS: Title for unfollowing a remote profile.
+msgctxt "TITLE"
 msgid "Unfollow"
 msgstr "Niet langer volgen"
 
@@ -53,10 +86,14 @@ msgstr "Niet langer volgen"
 msgid "%1$s stopped following %2$s."
 msgstr "%1$s volgt %2$s niet langer."
 
+#. TRANS: Exception thrown when setup of remote group membership fails.
 msgid "Could not set up remote group membership."
-msgstr ""
-"Het was niet mogelijk het groepslidmaatschap via een andere dienst in te "
-"stellen."
+msgstr "Het was niet mogelijk het externe groepslidmaatschap in te stellen."
+
+#. TRANS: Title for joining a remote groep.
+msgctxt "TITLE"
+msgid "Join"
+msgstr "Toetreden"
 
 #. TRANS: Success message for subscribe to group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the subscribed group's name.
@@ -64,11 +101,12 @@ msgstr ""
 msgid "%1$s has joined group %2$s."
 msgstr "%1$s is lid geworden van de groep %2$s."
 
-#. TRANS: Exception.
+#. TRANS: Exception thrown when joining a remote group fails.
 msgid "Failed joining remote group."
-msgstr ""
-"Het was niet mogelijk toe te streden to de groep van een andere dienst."
+msgstr "Het was niet mogelijk lid te worden van de externe groep."
 
+#. TRANS: Title for leaving a remote group.
+msgctxt "TITLE"
 msgid "Leave"
 msgstr "Verlaten"
 
@@ -78,18 +116,80 @@ msgstr "Verlaten"
 msgid "%1$s has left group %2$s."
 msgstr "%1$s heeft de groep %2$s verlaten"
 
-msgid "Disfavor"
-msgstr "Uit favorieten verwijderen"
+#. TRANS: Exception thrown when setup of remote list subscription fails.
+msgid "Could not set up remote list subscription."
+msgstr "Het was niet mogelijk het externe lijstabonnement in te stellen."
+
+#. TRANS: Title for following a remote list.
+msgctxt "TITLE"
+msgid "Follow list"
+msgstr "Op lijst abonneren"
+
+#. TRANS: Success message for remote list follow through OStatus.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#, fuzzy, php-format
+msgid "%1$s is now following people listed in %2$s by %3$s."
+msgstr "%1$s volgt niet langer de lijst %2$s van %3$s."
+
+#. TRANS: Exception thrown when subscription to remote list fails.
+msgid "Failed subscribing to remote list."
+msgstr "Het was niet mogelijk toe abonneren de externe lijst."
+
+#. TRANS: Title for unfollowing a remote list.
+msgid "Unfollow list"
+msgstr "Lijst niet langer volgen"
+
+#. TRANS: Success message for remote list unfollow through OStatus.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#, php-format
+msgid "%1$s stopped following the list %2$s by %3$s."
+msgstr "%1$s volgt niet langer de lijst %2$s van %3$s."
+
+#. TRANS: Title for listing a remote profile.
+msgctxt "TITLE"
+msgid "List"
+msgstr ""
+
+#. TRANS: Success message for remote list addition through OStatus.
+#. TRANS: %1$s is the list creator's name, %2$s is the added list member, %3$s is the list name.
+#, php-format
+msgid "%1$s listed %2$s in the list %3$s."
+msgstr "%1$s heeft %2$s in de lijst %3$s geplaatst."
+
+#. TRANS: Exception thrown when subscribing to a remote list fails.
+#, fuzzy, php-format
+msgid ""
+"Could not complete subscription to remote profile's feed. List %s could not "
+"be saved."
+msgstr ""
+"Het was niet mogelijk te abonneren op de feed van het externe profiel. Het "
+"label %s kon niet opgeslagen worden."
+
+#. TRANS: Title for unlisting a remote profile.
+#, fuzzy
+msgctxt "TITLE"
+msgid "Unlist"
+msgstr "Lijst niet langer volgen"
+
+#. TRANS: Success message for remote list removal through OStatus.
+#. TRANS: %1$s is the list creator's name, %2$s is the removed list member, %3$s is the list name.
+#, fuzzy, php-format
+msgid "%1$s removed %2$s from the list %3$s."
+msgstr "%1$s heeft %2$s in de lijst %3$s geplaatst."
+
+#. TRANS: Title for unliking a remote notice.
+msgid "Unlike"
+msgstr ""
 
 #. TRANS: Success message for remove a favorite notice through OStatus.
 #. TRANS: %1$s is the unfavoring user's name, %2$s is URI to the no longer favored notice.
-#, php-format
-msgid "%1$s marked notice %2$s as no longer a favorite."
-msgstr "%1$s heeft de mededeling %2$s als favoriet verwijderd."
+#, fuzzy, php-format
+msgid "%1$s no longer likes %2$s."
+msgstr "%1$s volgt %2$s niet langer."
 
 #. TRANS: Link text for link to remote subscribe.
 msgid "Remote"
-msgstr "Via andere dienst"
+msgstr "Extern"
 
 #. TRANS: Title for activity.
 msgid "Profile update"
@@ -100,6 +200,10 @@ msgstr "Profielupdate"
 #, php-format
 msgid "%s has updated their profile page."
 msgstr "Het profiel van %s is bijgewerkt."
+
+#. TRANS: Link text for a user to tag an OStatus user.
+msgid "Tag"
+msgstr "Label"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -127,34 +231,39 @@ msgstr ""
 "Niet ondersteund hub.topic \"%s\". Deze hub serveert alleen Atom feeds van "
 "lokale gebruikers en groepen."
 
-#. TRANS: Client exception.
+#. TRANS: Client exception. %s is sync or async.
 #, php-format
 msgid "Invalid hub.verify \"%s\". It must be sync or async."
 msgstr ""
 "Ongeldige waarde voor hub.verify \"%s\". Het moet \"sync\" of \"async\" zijn."
 
-#. TRANS: Client exception.
+#. TRANS: Client exception. %s is the invalid lease value.
 #, php-format
 msgid "Invalid hub.lease \"%s\". It must be empty or positive integer."
 msgstr ""
 "Ongeldige waarde voor hub.lease \"%s\". Deze waarde moet leeg zijn of een "
 "positief geheel getal."
 
-#. TRANS: Client exception.
+#. TRANS: Client exception. %s is the invalid hub secret.
 #, php-format
 msgid "Invalid hub.secret \"%s\". It must be under 200 bytes."
 msgstr ""
 "Ongeldig hub.secret \"%s\". Het moet minder dan tweehonderd bytes bevatten."
 
-#. TRANS: Client exception.
+#. TRANS: Client exception. %s is a feed URL.
 #, php-format
-msgid "Invalid hub.topic \"%s\". User doesn't exist."
+msgid "Invalid hub.topic \"%s\". User does not exist."
 msgstr "Ongeldig hub.topic \"%s\". De gebruiker bestaat niet."
 
-#. TRANS: Client exception.
+#. TRANS: Client exception. %s is a feed URL.
 #, php-format
-msgid "Invalid hub.topic \"%s\". Group doesn't exist."
+msgid "Invalid hub.topic \"%s\". Group does not exist."
 msgstr "Ongeldig hub.topic \"%s\". De groep bestaat niet."
+
+#. TRANS: Client exception. %s is a feed URL.
+#, php-format
+msgid "Invalid hub.topic %s; list does not exist."
+msgstr "Ongeldig hub.topic \"%s\". De lijst bestaat niet."
 
 #. TRANS: Client exception.
 #. TRANS: %1$s is this argument to the method this exception occurs in, %2$s is a URL.
@@ -162,6 +271,54 @@ msgstr "Ongeldig hub.topic \"%s\". De groep bestaat niet."
 msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "Er is een ongeldige URL doorgegeven voor %1$s: \"%2$s\""
 
+#. TRANS: Client error displayed when trying to tag a local object as if it is remote.
+msgid "You can use the local tagging!"
+msgstr "U kunt de lokale labels gebruiken!"
+
+#. TRANS: Header for tagging a remote object. %s is a remote object's name.
+#, php-format
+msgid "Tag %s"
+msgstr "Labelen als %s"
+
+#. TRANS: Button text to tag a remote object.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Go"
+msgstr "OK"
+
+#. TRANS: Field label.
+msgid "User nickname"
+msgstr "Gebruikersnaam"
+
+#. TRANS: Field title.
+#, fuzzy
+msgid "Nickname of the user you want to tag."
+msgstr "Naam van de gebruiker die u wilt labelen."
+
+#. TRANS: Field label.
+msgid "Profile Account"
+msgstr "Gebruikersprofiel"
+
+#. TRANS: Field title.
+#, fuzzy
+msgid "Your account id (i.e. user@identi.ca)."
+msgstr "Uw gebruikers-ID (bv. gebruiker@identi.ca)"
+
+#. TRANS: Client error displayed when remote profile could not be looked up.
+#. TRANS: Client error.
+msgid "Could not look up OStatus account profile."
+msgstr "Het was niet mogelijk het OStatus-gebruikersprofiel te vinden."
+
+#. TRANS: Client error displayed when remote profile address could not be confirmed.
+#. TRANS: Client error.
+msgid "Could not confirm remote profile address."
+msgstr "Het was niet mogelijk het externe profieladres te bevestigen."
+
+#. TRANS: Title for an OStatus list.
+msgid "OStatus list"
+msgstr "OStatus-lijst"
+
+#. TRANS: Server exception thrown when referring to a non-existing or empty feed.
 msgid "Empty or invalid feed id."
 msgstr "Het feed-ID is leeg of ongeldig."
 
@@ -190,27 +347,25 @@ msgstr "Onverwacht abonneringsverzoek voor %s."
 msgid "Unexpected unsubscribe request for %s."
 msgstr "Onverwacht verzoek om abonnement op te hebben voor %s."
 
+#. TRANS: Client error displayed when referring to a non-existing user.
+#. TRANS: Client error.
 msgid "No such user."
-msgstr "Onbekende gebruiker."
+msgstr "Deze gebruiker bestaat niet."
 
 #. TRANS: Field label for a field that takes an OStatus user address.
 msgid "Subscribe to"
 msgstr "Abonneren op"
 
-#. TRANS: Tooltip for field label "Subscribe to".
-msgid ""
-"OStatus user's address, like nickname@example.com or http://example.net/"
-"nickname"
-msgstr ""
-"Het OStatusadres van de gebruiker. Bijvoorbeeld nickname@example.com of "
-"http://example.net/nickname"
-
 #. TRANS: Button text.
+#. TRANS: Button text to continue joining a remote list.
 msgctxt "BUTTON"
 msgid "Continue"
 msgstr "Doorgaan"
 
 #. TRANS: Button text.
+msgid "Join"
+msgstr "Toetreden"
+
 #. TRANS: Tooltip for button "Join".
 msgctxt "BUTTON"
 msgid "Join this group"
@@ -230,27 +385,21 @@ msgstr "U bent al geabonneerd op deze gebruiker."
 
 #. TRANS: Error text.
 msgid ""
-"Sorry, we could not reach that address. Please make sure that the OStatus "
-"address is like nickname@example.com or http://example.net/nickname."
-msgstr ""
-"Dat adres is helaas niet te bereiken. Zorg dat het OStatusadres de voor heft "
-"van gebruiker@example.com of http://example.net/gebruiker."
-
-#. TRANS: Error text.
-msgid ""
 "Sorry, we could not reach that feed. Please try that OStatus address again "
 "later."
 msgstr ""
 "Die feed was niet te bereiken. Probeer dat OStatusadres later nog een keer."
 
 #. TRANS: OStatus remote subscription dialog error.
+#. TRANS: OStatus remote group subscription dialog error.
 msgid "Already subscribed!"
 msgstr "U bent al gebonneerd!"
 
 #. TRANS: OStatus remote subscription dialog error.
 msgid "Remote subscription failed!"
-msgstr "Abonneren via een andere dienst is mislukt!"
+msgstr "Extern abonneren is mislukt!"
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 "Er is een probleem ontstaan met uw sessie. Probeer het nog een keer, "
@@ -260,7 +409,7 @@ msgstr ""
 msgid "Subscribe to user"
 msgstr "Abonneren op gebruiker"
 
-#. TRANS: Page title for OStatus remote subscription form
+#. TRANS: Page title for OStatus remote subscription form.
 msgid "Confirm"
 msgstr "Bevestigen"
 
@@ -282,6 +431,7 @@ msgstr ""
 "Het adres voor de OStatusgroep. Bijvoorbeeld; http://example.net/group/"
 "nickname."
 
+#. TRANS: Error text displayed when trying to join a remote group the user is already a member of.
 msgid "You are already a member of this group."
 msgstr "U bent al lid van deze groep."
 
@@ -291,13 +441,13 @@ msgstr "U bent al lid!"
 
 #. TRANS: OStatus remote group subscription dialog error.
 msgid "Remote group join failed!"
-msgstr "Het verlaten van de groep bij een andere dienst is mislukt."
+msgstr "Het verlaten van de externe groep is mislukt."
 
 #. TRANS: Page title for OStatus remote group join form
 msgid "Confirm joining remote group"
-msgstr "Lid worden van groep bij andere dienst"
+msgstr "Lidmaatschap van externe groep bevestigen"
 
-#. TRANS: Instructions.
+#. TRANS: Form instructions.
 msgid ""
 "You can subscribe to groups from other supported sites. Paste the group's "
 "profile URI below:"
@@ -305,9 +455,16 @@ msgstr ""
 "U kunt abonneren op groepen van andere ondersteunde sites. Plak hieronder de "
 "URI van het groepsprofiel:"
 
+#. TRANS: Client error displayed trying to perform an action without providing an ID.
 #. TRANS: Client error.
+#. TRANS: Client error displayed trying to perform an action without providing an ID.
 msgid "No ID."
 msgstr "Geen ID."
+
+#. TRANS: Client exception thrown when an undefied activity is performed.
+#. TRANS: Client exception.
+msgid "Cannot handle that kind of post."
+msgstr "Dat type post kan niet verwerkt worden."
 
 #. TRANS: Client exception.
 msgid "In reply to unknown notice."
@@ -320,16 +477,60 @@ msgstr ""
 "deze gebruiker."
 
 #. TRANS: Client exception.
+msgid "To the attention of user(s), not including this one."
+msgstr ""
+
+#. TRANS: Client exception.
+msgid "Not to anyone in reply to anything."
+msgstr ""
+
+#. TRANS: Client exception.
+msgid "This is already a favorite."
+msgstr "Deze mededeling staat al in uw favorietenlijst."
+
+#. TRANS: Client exception.
 msgid "Could not save new favorite."
 msgstr "Het was niet mogelijk de nieuwe favoriet op te slaan."
 
 #. TRANS: Client exception.
-msgid "Can't favorite/unfavorite without an object."
+msgid "Notice was not favorited!"
+msgstr "De mededeling is niet op de favorietenlijst geplaatst!"
+
+#. TRANS: Client exception.
+msgid "Not a person object."
+msgstr ""
+
+#. TRANS: Client exception.
+msgid "Unidentified profile being tagged."
+msgstr ""
+
+#. TRANS: Client exception.
+msgid "This user is not the one being tagged."
+msgstr ""
+
+#. TRANS: Client exception.
+msgid "The tag could not be saved."
+msgstr ""
+
+#. TRANS: Client exception.
+msgid "Unidentified profile being untagged."
+msgstr ""
+
+#. TRANS: Client exception.
+msgid "This user is not the one being untagged."
+msgstr ""
+
+#. TRANS: Client exception.
+msgid "The tag could not be deleted."
+msgstr ""
+
+#. TRANS: Client exception.
+msgid "Cannot favorite/unfavorite without an object."
 msgstr ""
 "Het is niet mogelijk (niet langer) als favoriet te markeren zonder object."
 
 #. TRANS: Client exception.
-msgid "Can't handle that kind of object for liking/faving."
+msgid "Cannot handle that kind of object for liking/faving."
 msgstr ""
 "Dat object is niet beschikbaar voor (niet langer) als favoriet aanmerken."
 
@@ -343,35 +544,63 @@ msgstr "De mededeling met ID %s is onbekend."
 msgid "Notice with ID %1$s not posted by %2$s."
 msgstr "De mededeling met ID %1$s is niet geplaatst foor %2$s."
 
+#. TRANS: Field label.
+msgid "Subscribe to list"
+msgstr "Abonneren op lijst"
+
+#. TRANS: Field title.
+#, fuzzy
+msgid "Address of the OStatus list, like http://example.net/user/all/tag."
+msgstr ""
+"Het adres voor de OStatus-lijst, bijvoorbeeld http://example.net/user/all/"
+"tag."
+
+#. TRANS: Error text displayed when trying to subscribe to a list already a subscriber to.
+msgid "You are already subscribed to this list."
+msgstr "U bent al geabonneerd op deze lijst."
+
+#. TRANS: Page title for OStatus remote list subscription form
+msgid "Confirm subscription to remote list"
+msgstr "Abonnement op externe lijst bevestigen"
+
+#. TRANS: Instructions for OStatus list subscription form.
+#, fuzzy
+msgid ""
+"You can subscribe to lists from other supported sites. Paste the list's URI "
+"below:"
+msgstr ""
+"U kunt abonneren op lijsten van andere ondersteunde sites. Plak hieronder de "
+"URI van de lijst:"
+
 #. TRANS: Client error.
 msgid "No such group."
 msgstr "De opgegeven groep bestaat niet."
 
 #. TRANS: Client error.
-msgid "Can't accept remote posts for a remote group."
-msgstr ""
-"Berichten van andere diensten voor groepen bij andere diensten worden niet "
-"geaccepteerd."
+msgid "Cannot accept remote posts for a remote group."
+msgstr "Externe berichten voor externe groepen worden niet geaccepteerd."
 
 #. TRANS: Client error.
-msgid "Can't read profile to set up group membership."
+msgid "Cannot read profile to set up group membership."
 msgstr "Het profiel om lid te worden van een groep kon niet gelezen worden."
 
 #. TRANS: Client error.
-msgid "Groups can't join groups."
+#. TRANS: Client error displayed when trying to have a group join another group.
+msgid "Groups cannot join groups."
 msgstr "Groepen kunnen geen lid worden van groepen."
 
+#. TRANS: Client error displayed when trying to join a group the user is blocked from by a group admin.
 msgid "You have been blocked from that group by the admin."
 msgstr "Een beheerder heeft ingesteld dat u geen lid mag worden van die groep."
 
 #. TRANS: Server error. %1$s is a profile URI, %2$s is a group nickname.
 #, php-format
 msgid "Could not join remote user %1$s to group %2$s."
-msgstr ""
-"De gebruiker %1$s van een andere dienst kon niet lid worden van de groep %2"
-"$s."
+msgstr "De externe gebruiker %1$s kon geen lid worden van de groep %2$s."
 
-msgid "Can't read profile to cancel group membership."
+#. TRANS: Client error displayed when group membership cannot be cancelled
+#. TRANS: because the remote profile could not be read.
+msgid "Cannot read profile to cancel group membership."
 msgstr ""
 "Het profiel om groepslidmaatschap te annuleren kon niet gelezen worden."
 
@@ -382,50 +611,99 @@ msgstr ""
 "Het was niet mogelijk gebruiker %1$s van een andere dienst uit de groep %2$s "
 "te verwijderen."
 
+#. TRANS: Client error displayed when referring to a non-existing list.
+#. TRANS: Client error.
+msgid "No such list."
+msgstr "De lijst bestaat niet."
+
+#. TRANS: Client error displayed when trying to send a message to a remote list.
+msgid "Cannot accept remote posts for a remote list."
+msgstr ""
+"Berichten van andere diensten voor lijsten bij andere diensten worden niet "
+"geaccepteerd."
+
+#. TRANS: Client error displayed when referring to a non-existing remote list.
+#, fuzzy
+msgid "Cannot read profile to set up list subscription."
+msgstr ""
+"Het profiel om te abonneren op een persoonslabel kon niet gelezen worden."
+
+#. TRANS: Client error displayed when trying to subscribe a group to a list.
+#. TRANS: Client error displayed when trying to unsubscribe a group from a list.
+msgid "Groups cannot subscribe to lists."
+msgstr "Groepen kunnen niet abonneren op lijsten."
+
+#. TRANS: Server error displayed when subscribing a remote user to a list fails.
+#. TRANS: %1$s is a profile URI, %2$s is a list name.
+#, php-format
+msgid "Could not subscribe remote user %1$s to list %2$s."
+msgstr ""
+"Het was niet mogelijk om de externe gebruiker %1$s te abonneren op de lijst %"
+"2$s."
+
+#. TRANS: Client error displayed when trying to unsubscribe from non-existing list.
+#, fuzzy
+msgid "Cannot read profile to cancel list subscription."
+msgstr ""
+"Het profiel om het lijstlidmaatschap te annuleren kon niet gelezen worden."
+
+#. TRANS: Client error displayed when trying to unsubscribe a remote user from a list fails.
+#. TRANS: %1$s is a profile URL, %2$s is a list name.
+#, fuzzy, php-format
+msgid "Could not unsubscribe remote user %1$s from list %2$s."
+msgstr ""
+"Het was niet mogelijk om de externe gebruiker %1$s te abonneren op de lijst %"
+"2$s."
+
 #. TRANS: Client error.
 msgid "You can use the local subscription!"
 msgstr "U kunt het lokale abonnement gebruiken!"
 
-#. TRANS: Form legend.
+#. TRANS: Form title.
+msgctxt "TITLE"
+msgid "Subscribe to user"
+msgstr "Abonneren op gebruiker"
+
+#. TRANS: Form legend. %s is a group name.
 #, php-format
 msgid "Join group %s"
 msgstr "Lid worden van de groep %s"
 
-#. TRANS: Button text.
+#. TRANS: Button text to join a group.
 msgctxt "BUTTON"
 msgid "Join"
 msgstr "Toetreden"
 
-#. TRANS: Form legend.
+#. TRANS: Form legend. %1$s is a list, %2$s is a tagger's name.
 #, php-format
-msgid "Subscribe to %s"
-msgstr "Abonneren op %s"
+msgid "Subscribe to list %1$s by %2$s"
+msgstr "Abonneren op de lijst %1$s van %2$s"
 
-#. TRANS: Button text.
+#. TRANS: Button text to subscribe to a list.
+#. TRANS: Button text to subscribe to a profile.
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr "Abonneren"
+
+#. TRANS: Form legend. %s is a nickname.
+#, php-format
+msgid "Subscribe to %s"
+msgstr "Abonneren op %s"
 
 #. TRANS: Field label.
 msgid "Group nickname"
 msgstr "Korte groepsnaam"
 
+#. TRANS: Field title.
 msgid "Nickname of the group you want to join."
 msgstr "De naam van de groep die u wilt volgen."
 
-#. TRANS: Field label.
-msgid "User nickname"
-msgstr "Gebruikersnaam"
-
+#. TRANS: Field title.
 msgid "Nickname of the user you want to follow."
 msgstr "Gebruikersnaam van de gebruiker waarop u wilt abonneren."
 
-#. TRANS: Field label.
-msgid "Profile Account"
-msgstr "Gebruikersprofiel"
-
 #. TRANS: Tooltip for field label "Profile Account".
-msgid "Your account id (e.g. user@identi.ca)."
+msgid "Your account ID (e.g. user@identi.ca)."
 msgstr "Uw gebruikers-ID (bv. gebruiker@identi.ca)."
 
 #. TRANS: Client error.
@@ -433,39 +711,33 @@ msgid "Must provide a remote profile."
 msgstr "Er moet een profiel bij een andere dienst opgegeven worden."
 
 #. TRANS: Client error.
-msgid "Couldn't look up OStatus account profile."
-msgstr "Het was niet mogelijk het OStatusgebruikersprofiel te vinden."
-
-#. TRANS: Client error.
-msgid "Couldn't confirm remote profile address."
-msgstr ""
-"Het was niet mogelijk het profieladres bij de andere dienst te bevestigen."
+msgid "No local user or group nickname provided."
+msgstr "Er is geen lokale gebruikers- of groepsnaam opgegeven."
 
 #. TRANS: Page title.
 msgid "OStatus Connect"
 msgstr "OStatuskoppeling"
 
+#. TRANS: Server exception.
 msgid "Attempting to start PuSH subscription for feed with no hub."
 msgstr ""
 "Aan het proberen een PuSH-abonnement te krijgen op een feed zonder hub."
 
+#. TRANS: Server exception.
 msgid "Attempting to end PuSH subscription for feed with no hub."
 msgstr ""
 "Aan het proberen een PuSH-abonnement te verwijderen voor een feed zonder hub."
 
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Invalid ostatus_profile state: both group and profile IDs set for %s."
+#. TRANS: Server exception. %s is a URI
+#, fuzzy, php-format
+msgid "Invalid ostatus_profile state: Two or more IDs set for %s."
 msgstr ""
-"Ongeldige ostatus_profile status: het ID voor zowel de groep als het profiel "
-"voor %s is ingesteld."
+"Ongeldige OStatus-profielstatus: er zijn twee of meer ID's ingesteld voor %s."
 
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Invalid ostatus_profile state: both group and profile IDs empty for %s."
-msgstr ""
-"Ongeldige ostatus_profile status: het ID voor zowel de groep als het profiel "
-"voor %s is leeg."
+#. TRANS: Server exception. %s is a URI
+#, fuzzy, php-format
+msgid "Invalid ostatus_profile state: All IDs empty for %s."
+msgstr "Ongeldige ostatus_profile status: alle ID's zijn leeg voor %s."
 
 #. TRANS: Server exception.
 #. TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.
@@ -489,10 +761,6 @@ msgstr "Onbekend feedformaat"
 msgid "RSS feed without a channel."
 msgstr "RSS-feed zonder kanaal."
 
-#. TRANS: Client exception.
-msgid "Can't handle that kind of post."
-msgstr "Dat type post kan niet verwerkt worden."
-
 #. TRANS: Client exception. %s is a source URI.
 #, php-format
 msgid "No content for notice %s."
@@ -514,9 +782,9 @@ msgid "Could not find a feed URL for profile page %s."
 msgstr "Het was niet mogelijk de feed-URL voor de profielpagina %s te vinden."
 
 #. TRANS: Feed sub exception.
-msgid "Can't find enough profile information to make a feed."
+msgid "Cannot find enough profile information to make a feed."
 msgstr ""
-"Het was niet mogelijk voldoende profielinformatie te vinden om een feed te "
+"Het was niet mogelijk voldoende profielgegevens te vinden om een feed te "
 "maken."
 
 #. TRANS: Server exception. %s is a URL.
@@ -535,24 +803,40 @@ msgstr ""
 msgid "Unable to fetch avatar from %s."
 msgstr "Het was niet mogelijk de avatar op te halen van %s."
 
-#. TRANS: Exception.
-msgid "Local user can't be referenced as remote."
-msgstr ""
-"Naar een lokale gebruiker kan niet verwezen worden alsof die zich bij een "
-"andere dienst bevindt."
+#. TRANS: Server exception.
+msgid "No author ID URI found."
+msgstr "Er is geen URI voor het auteurs-ID gevonden."
 
 #. TRANS: Exception.
-msgid "Local group can't be referenced as remote."
+msgid "No profile URI."
+msgstr "Geen profiel-URI."
+
+#. TRANS: Exception.
+msgid "Local user cannot be referenced as remote."
 msgstr ""
-"Naar een lokale groep kan niet verwezen worden alsof die zich bij een andere "
-"dienst bevindt."
+"Naar een lokale gebruiker kan niet verwezen worden alsof die zich bij extern "
+"bevindt."
+
+#. TRANS: Exception.
+msgid "Local group cannot be referenced as remote."
+msgstr ""
+"Naar een lokale groep kan niet verwezen worden alsof die zich extern bevindt."
+
+#. TRANS: Exception.
+msgid "Local list cannot be referenced as remote."
+msgstr ""
+"Naar een lokale lijst kan niet verwezen worden alsof die zich extern bevindt."
 
 #. TRANS: Server exception.
-msgid "Can't save local profile."
+msgid "Cannot save local profile."
 msgstr "Het was niet mogelijk het lokale profiel op te slaan."
 
 #. TRANS: Server exception.
-msgid "Can't save OStatus profile."
+msgid "Cannot save local list."
+msgstr "Het was niet mogelijk de lokale lijst op te slaan."
+
+#. TRANS: Server exception.
+msgid "Cannot save OStatus profile."
 msgstr "Het was niet mogelijk het Ostatusprofiel op te slaan."
 
 #. TRANS: Exception.
@@ -561,17 +845,17 @@ msgstr "Geen geldig webfingeradres."
 
 #. TRANS: Exception. %s is a webfinger address.
 #, php-format
-msgid "Couldn't save profile for \"%s\"."
+msgid "Could not save profile for \"%s\"."
 msgstr "Het was niet mogelijk het profiel voor \"%s\" op te slaan."
 
 #. TRANS: Exception. %s is a webfinger address.
 #, php-format
-msgid "Couldn't save ostatus_profile for \"%s\"."
-msgstr "Het was niet mogelijk het ostatus_profile voor \"%s\" op te slaan."
+msgid "Could not save OStatus profile for \"%s\"."
+msgstr "Het was niet mogelijk het OStatus-profiel voor \"%s\" op te slaan."
 
 #. TRANS: Exception. %s is a webfinger address.
 #, php-format
-msgid "Couldn't find a valid profile for \"%s\"."
+msgid "Could not find a valid profile for \"%s\"."
 msgstr "Er is geen geldig profiel voor \"%s\" gevonden."
 
 #. TRANS: Server exception.
@@ -579,6 +863,17 @@ msgid "Could not store HTML content of long post as file."
 msgstr ""
 "Het was niet mogelijk de HTML-inhoud van het lange bericht als bestand op te "
 "slaan."
+
+#. TRANS: Server exception.
+#. TRANS: %1$s is a protocol, %2$s is a URI.
+#, php-format
+msgid "Unrecognized URI protocol for profile: %1$s (%2$s)."
+msgstr "Onbekend URI-protocol voor profiel: %1$s (%2$s)."
+
+#. TRANS: Server exception. %s is a URI.
+#, php-format
+msgid "No URI protocol for profile: %s."
+msgstr "Geen URI-protocol voor profiel: %s."
 
 #. TRANS: Client exception. %s is a HTTP status code.
 #, php-format
@@ -603,7 +898,7 @@ msgstr "Ongeldige actor voor het ondertekenen van Salmon."
 msgid "This method requires a POST."
 msgstr "Deze methode vereist een POST."
 
-#. TRANS: Client error. Do not translate "application/magic-envelope+xml"
+#. TRANS: Client error. Do not translate "application/magic-envelope+xml".
 msgid "Salmon requires \"application/magic-envelope+xml\"."
 msgstr "Salmon vereist \"application/magic-envelope+xml\"."
 
@@ -620,37 +915,74 @@ msgid "Unrecognized activity type."
 msgstr "Onbekend activiteitentype."
 
 #. TRANS: Client exception.
-msgid "This target doesn't understand posts."
+msgid "This target does not understand posts."
 msgstr "Deze bestemming begrijpt berichten niet."
 
 #. TRANS: Client exception.
-msgid "This target doesn't understand follows."
+msgid "This target does not understand follows."
 msgstr "Deze bestemming begrijpt volgen niet."
 
 #. TRANS: Client exception.
-msgid "This target doesn't understand unfollows."
+msgid "This target does not understand unfollows."
 msgstr "Deze bestemming begrijpt niet langer volgen niet."
 
 #. TRANS: Client exception.
-msgid "This target doesn't understand favorites."
+msgid "This target does not understand favorites."
 msgstr "Deze bestemming begrijpt favorieten niet."
 
 #. TRANS: Client exception.
-msgid "This target doesn't understand unfavorites."
+msgid "This target does not understand unfavorites."
 msgstr "Deze bestemming begrijpt favorieten verwijderen niet."
 
 #. TRANS: Client exception.
-msgid "This target doesn't understand share events."
+msgid "This target does not understand share events."
 msgstr "Deze bestemming begrijpt gebeurtenissen delen niet."
 
 #. TRANS: Client exception.
-msgid "This target doesn't understand joins."
+msgid "This target does not understand joins."
 msgstr "Deze bestemming begrijpt lid worden niet."
 
 #. TRANS: Client exception.
-msgid "This target doesn't understand leave events."
-msgstr "Deze bestemming begrijpt uitschrijven van gebeurtenissen niet."
+msgid "This target does not understand leave events."
+msgstr "Deze bestemming begrijpt uitschrijven van evenementen niet."
+
+#. TRANS: Client exception.
+msgid "This target does not understand tag events."
+msgstr "Deze bestemming begrijpt evenementen labelen niet."
+
+#. TRANS: Client exception.
+msgid "This target does not understand untag events."
+msgstr "Deze bestemming begrijpt evenementen ontlabelen niet."
 
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "Er is een Salmonslap ontvangen van een niet-geïdentificeerde actor."
+
+#~ msgctxt "TITLE"
+#~ msgid "Tag"
+#~ msgstr "Label"
+
+#~ msgctxt "TITLE"
+#~ msgid "Untag"
+#~ msgstr "Label verwijderen"
+
+#~ msgid "Disfavor"
+#~ msgstr "Uit favorieten verwijderen"
+
+#~ msgid "%1$s marked notice %2$s as no longer a favorite."
+#~ msgstr "%1$s heeft de mededeling %2$s als favoriet verwijderd."
+
+#~ msgid ""
+#~ "OStatus user's address, like nickname@example.com or http://example.net/"
+#~ "nickname"
+#~ msgstr ""
+#~ "Het OStatusadres van de gebruiker. Bijvoorbeeld nickname@example.com of "
+#~ "http://example.net/nickname"
+
+#~ msgid "Continue"
+#~ msgstr "Doorgaan"
+
+#~ msgid "Could not remove remote user %1$s from list %2$s."
+#~ msgstr ""
+#~ "!Het was niet mogelijk de externe gebruiker %1$s uit de lijst %2$s te "
+#~ "verwijderen."

@@ -9,85 +9,114 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:41+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:29+0000\n"
 "Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:26:40+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#. TRANS: Client error displayed when trying to login while already logged in.
 msgid "Already logged in."
 msgstr "Kevreet oc'h dija."
 
-#. TRANS: Instructions.
+#. TRANS: Form instructions.
 msgid "Login with your Facebook Account"
 msgstr "Kevreit gant ho kont Facebook"
 
 #. TRANS: Page title.
+#. TRANS: Alt text for "Login with Facebook" image.
 msgid "Login with Facebook"
 msgstr "Kevreañ gant Facebook"
 
-msgid "Facebook"
-msgstr "Facebook"
+#. TRANS: Title for "Login with Facebook" image.
+#, fuzzy
+msgid "Login with Facebook."
+msgstr "Kevreañ gant Facebook"
 
+#. TRANS: Title for Facebook administration panel.
+#, fuzzy
+msgctxt "TITLE"
 msgid "Facebook integration settings"
 msgstr "Arventennoù enframmañ Facebook"
 
-msgid "Invalid Facebook ID. Max length is 255 characters."
+#. TRANS: Instruction for Facebook administration panel.
+msgid "Facebook integration settings"
+msgstr "Arventennoù enframmañ Facebook"
+
+#. TRANS: Client error displayed when providing too long a Facebook application ID.
+msgid "Invalid Facebook ID. Maximum length is 255 characters."
 msgstr ""
 
-msgid "Invalid Facebook secret. Max length is 255 characters."
+#. TRANS: Client error displayed when providing too long a Facebook secret key.
+msgid "Invalid Facebook secret. Maximum length is 255 characters."
 msgstr ""
 
+#. TRANS: Fieldset legend.
 msgid "Facebook application settings"
 msgstr "Arventennoù poellad Facebook"
 
+#. TRANS: Field label for Facebook application ID.
 msgid "Application ID"
 msgstr "ID ar poellad"
 
-msgid "ID of your Facebook application"
+#. TRANS: Field title for Facebook application ID.
+#, fuzzy
+msgid "ID of your Facebook application."
 msgstr "ID ho poellad Facebook"
 
+#. TRANS: Field label for Facebook secret key.
 msgid "Secret"
 msgstr "Kuzh"
 
-msgid "Application secret"
-msgstr ""
+#. TRANS: Field title for Facebook secret key.
+#, fuzzy
+msgid "Application secret."
+msgstr "ID ar poellad"
 
-msgid "Save"
-msgstr "Enrollañ"
-
-msgid "Save Facebook settings"
-msgstr "Enrollañ arventennoù Facebook"
-
-msgid "There was a problem with your session token. Try again, please."
-msgstr "Ur gudenn 'zo bet gant ho jedaouer dalc'h. Mar plij adklaskit."
-
-#. TRANS: Page title for Facebook settings.
-#. TRANS: Tooltip for menu item "Facebook".
-msgid "Facebook settings"
-msgstr "Arventennoù Facebook"
-
-msgid "Connected Facebook user"
-msgstr "Implijer Facebook kevreet"
-
-msgid "Publish my notices to Facebook."
-msgstr ""
-
-msgid "Send \"@\" replies to Facebook."
-msgstr "Kas respontoù \"@\" da Facebook."
-
+#. TRANS: Button text to save Facebook integration settings.
 #. TRANS: Submit button to save synchronisation settings.
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Enrollañ"
 
-#. TRANS: Legend.
+#. TRANS: Button title to save Facebook integration settings.
+#, fuzzy
+msgid "Save Facebook settings."
+msgstr "Enrollañ arventennoù Facebook"
+
+#. TRANS: Client error displayed when the session token does not match or is not given.
+msgid "There was a problem with your session token. Try again, please."
+msgstr "Ur gudenn 'zo bet gant ho jedaouer dalc'h. Mar plij adklaskit."
+
+#. TRANS: Page title for Facebook settings.
+#, fuzzy
+msgctxt "TITLE"
+msgid "Facebook settings"
+msgstr "Arventennoù Facebook"
+
+#. TRANS: Instructions for Facebook settings.
+msgid "Facebook settings"
+msgstr "Arventennoù Facebook"
+
+#. TRANS: Form note. User is connected to facebook.
+msgid "Connected Facebook user"
+msgstr "Implijer Facebook kevreet"
+
+#. TRANS: Checkbox label in Facebook settings.
+msgid "Publish my notices to Facebook."
+msgstr ""
+
+#. TRANS: Checkbox label in Facebook settings.
+msgid "Send \"@\" replies to Facebook."
+msgstr "Kas respontoù \"@\" da Facebook."
+
+#. TRANS: Fieldset legend for form to disconnect from Facebook.
 msgid "Disconnect my account from Facebook"
 msgstr "Digevreañ ma c'hont deus Facebook"
 
@@ -97,6 +126,8 @@ msgid ""
 "a password](%s) first."
 msgstr ""
 
+#. TRANS: Message displayed when initiating disconnect of a StatusNet user
+#. TRANS: from a Facebook account. %1$s is the StatusNet site name.
 #, php-format
 msgid ""
 "Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
@@ -108,6 +139,7 @@ msgctxt "BUTTON"
 msgid "Disconnect"
 msgstr "Digevrañ"
 
+#. TRANS: Notice in case saving of synchronisation preferences fail.
 msgid "There was a problem saving your sync preferences."
 msgstr ""
 
@@ -115,30 +147,41 @@ msgstr ""
 msgid "Sync preferences saved."
 msgstr ""
 
-msgid "Couldn't delete link to Facebook."
+#. TRANS: Server error displayed when deleting the link to a Facebook account fails.
+#, fuzzy
+msgid "Could not delete link to Facebook."
 msgstr "N'eus ket bet gallet diverkañ al liamm war-du Facebook."
 
+#. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
 msgid "You have disconnected from Facebook."
 msgstr "Digevreet ho peus deus Facebook."
 
+#. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
 msgid ""
 "You must be logged into Facebook to register a local account using Facebook."
 msgstr ""
 
+#. TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+#. TRANS: in the same StatusNet site.
 msgid "There is already a local account linked with that Facebook account."
 msgstr "Un implijer lec'hel liammet d'ar gont Facebook-se a zo dija."
 
-msgid "You can't register if you don't agree to the license."
+#. TRANS: Form validation error displayed when user has not agreed to the license.
+#, fuzzy
+msgid "You cannot register if you do not agree to the license."
 msgstr ""
 "Rankout a rit bezañ a-du gant termenoù an aotre-implijout evit krouiñ ur "
 "gont."
 
+#. TRANS: Form validation error displayed when an unhandled error occurs.
 msgid "An unknown error has occured."
 msgstr "Ur gudenn dizanv a zo bet."
 
+#. TRANS: Form instructions for connecting to Facebook.
+#. TRANS: %s is the site name.
 #, php-format
 msgid ""
-"This is the first time you've logged into %s so we must connect your "
+"This is the first time you have logged into %s so we must connect your "
 "Facebook to a local account. You can either create a new local account, or "
 "connect with an existing local account."
 msgstr ""
@@ -147,7 +190,7 @@ msgstr ""
 msgid "Facebook Setup"
 msgstr ""
 
-#. TRANS: Legend.
+#. TRANS: Fieldset legend.
 msgid "Connection options"
 msgstr "Dibarzhioù kevreañ"
 
@@ -158,10 +201,11 @@ msgid ""
 "email address, IM address, and phone number."
 msgstr ""
 
-#. TRANS: Legend.
+#. TRANS: Fieldset legend.
 msgid "Create new account"
 msgstr "Krouiñ ur gont nevez"
 
+#. TRANS: Form instructions.
 msgid "Create a new user with this nickname."
 msgstr "Krouiñ un implijer nevez gant al lesanv-se."
 
@@ -169,17 +213,21 @@ msgstr "Krouiñ un implijer nevez gant al lesanv-se."
 msgid "New nickname"
 msgstr "Lesanv nevez"
 
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+#. TRANS: Field title.
+#, fuzzy
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
 msgstr "1 da 64 lizherenn vihan pe sifr, hep poentaouiñ nag esaouenn"
 
-#. TRANS: Submit button.
+#. TRANS: Submit button to create a new account.
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Krouiñ"
 
+#. TRANS: Fieldset legend.
 msgid "Connect existing account"
 msgstr "Kevreañ d'ur gont a zo dioutañ"
 
+#. TRANS: Form instructions.
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your Facebook."
@@ -189,10 +237,11 @@ msgstr ""
 msgid "Existing nickname"
 msgstr "Lesanv a zo dioutañ"
 
+#. TRANS: Field label.
 msgid "Password"
 msgstr "Ger-tremen"
 
-#. TRANS: Submit button.
+#. TRANS: Submit button to connect a Facebook account to an existing StatusNet account.
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Kevreañ"
@@ -206,38 +255,87 @@ msgstr "N'eo ket aotreet krouiñ kontoù."
 msgid "Not a valid invitation code."
 msgstr "N'eo ket reizh ar c'hod pedadenn."
 
+#. TRANS: Form validation error displayed when picking a nickname that is not allowed.
 msgid "Nickname not allowed."
 msgstr "Lesanv nann-aotreet."
 
+#. TRANS: Form validation error displayed when picking a nickname that is already in use.
 msgid "Nickname already in use. Try another one."
 msgstr "Implijet eo dija al lesanv-se. Klaskit unan all."
 
+#. TRANS: Server error displayed when connecting to Facebook fails.
 msgid "Error connecting user to Facebook."
 msgstr ""
 
+#. TRANS: Form validation error displayed when username/password combination is incorrect.
 msgid "Invalid username or password."
 msgstr "Anv implijer pe ger-tremen direizh."
 
-#. TRANS: Menu item.
-#. TRANS: Menu item tab.
+#. TRANS: Menu item for "Facebook" in administration panel.
+#. TRANS: Menu item for "Facebook" in user settings.
 msgctxt "MENU"
 msgid "Facebook"
 msgstr "Facebook"
 
-#. TRANS: Tooltip for menu item "Facebook".
-msgid "Login or register using Facebook"
+#. TRANS: Menu title for "Facebook" login.
+#, fuzzy
+msgid "Login or register using Facebook."
 msgstr "Kevreañ pe en em enskrivañ dre Facebook"
 
-#. TRANS: Tooltip for menu item "Facebook".
-msgid "Facebook integration configuration"
-msgstr ""
+#. TRANS: Menu title for "Facebook" in administration panel.
+#, fuzzy
+msgid "Facebook integration configuration."
+msgstr "Arventennoù enframmañ Facebook"
 
+#. TRANS: Menu title for "Facebook" in user settings.
+#, fuzzy
+msgid "Facebook settings."
+msgstr "Arventennoù Facebook"
+
+#. TRANS: Plugin description.
 msgid "A plugin for integrating StatusNet with Facebook."
 msgstr ""
 
+#. TRANS: E-mail subject.
 msgid "Your Facebook connection has been removed"
 msgstr ""
 
+#. TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"Hi %1$s,\n"
+"\n"
+"We are sorry to inform you we are unable to publish your notice to\n"
+"Facebook, and have removed the connection between your %2$s account and\n"
+"Facebook.\n"
+"\n"
+"This may have happened because you have removed permission for %2$s\n"
+"to post on your behalf, or perhaps you have deactivated your Facebook\n"
+"account. You can reconnect your %2$s account to Facebook at any time by\n"
+"logging in with Facebook again.\n"
+"\n"
+"Sincerely,\n"
+"\n"
+"%2$s\n"
+msgstr ""
+
+#. TRANS: E-mail subject. %s is the StatusNet sitename.
 #, php-format
 msgid "Contact the %s administrator to retrieve your account"
+msgstr ""
+
+#. TRANS: E-mail body. %1$s is a username,
+#. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail address.
+#, php-format
+msgid ""
+"Hi %1$s,\n"
+"\n"
+"We have noticed you have deauthorized the Facebook connection for your\n"
+"%2$s account.  You have not set a password for your %2$s account yet, so\n"
+"you will not be able to login. If you wish to continue using your %2$s\n"
+"account, please contact the site administrator (%3$s) to set a password.\n"
+"\n"
+"Sincerely,\n"
+"\n"
+"%2$s\n"
 msgstr ""

@@ -228,7 +228,7 @@ class TwitterBridgePlugin extends Plugin
      */
     function onStartEnqueueNotice($notice, &$transports)
     {
-        if (self::hasKeys() && $notice->isLocal()) {
+        if (self::hasKeys() && $notice->isLocal() && $notice->inScope(null)) {
             // Avoid a possible loop
             if ($notice->source != 'twitter') {
                 array_push($transports, 'twitter');
@@ -528,6 +528,15 @@ class TwitterBridgePlugin extends Plugin
             common_log(LOG_ERR, "Error attempting to unfavorite bridged notice on Twitter: " . $e->getMessage());
         }
 
+        return true;
+    }
+
+    function onStartGetProfileUri($profile, &$uri)
+    {
+        if (preg_match('!^https?://twitter.com/!', $profile->profileurl)) {
+            $uri = $profile->profileurl;
+            return false;
+        }
         return true;
     }
 }

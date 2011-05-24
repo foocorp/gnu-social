@@ -222,10 +222,6 @@ class RealtimePlugin extends Plugin
                          '');
         $action->elementEnd('address');
 
-        if (common_logged_in()) {
-            $action->showNoticeForm();
-        }
-
         $action->showContentBlock();
         $action->showScripts();
         $action->elementEnd('body');

@@ -92,7 +92,7 @@ class ApiBlockCreateAction extends ApiAuthAction
         }
 
         if (empty($this->user) || empty($this->other)) {
-        	  // TRANS: Client error displayed when trying to block a non-existing user or a user from another site.
+            // TRANS: Client error displayed when trying to block a non-existing user or a user from another site.
             $this->clientError(_('No such user.'), 404, $this->format);
             return;
         }

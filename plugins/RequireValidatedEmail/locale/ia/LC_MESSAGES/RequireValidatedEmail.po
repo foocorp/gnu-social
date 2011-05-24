@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:38+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:06+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:42+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
@@ -29,3 +29,55 @@ msgstr "Tu debe fornir un adresse de e-mail pro poter crear un conto."
 
 msgid "Disables posting without a validated email address."
 msgstr "Disactiva le publication de messages sin adresse de e-mail validate."
+
+msgid "You are already logged in."
+msgstr "Tu es jam authenticate."
+
+msgid "Confirmation code not found."
+msgstr "Codice de confirmation non trovate."
+
+msgid "No user for that confirmation code."
+msgstr "Il non ha un usator pro iste codice de confirmation."
+
+#, php-format
+msgid "Unrecognized address type %s."
+msgstr "Typo de adresse %s non recognoscite."
+
+#. TRANS: Client error for an already confirmed email/jabber/sms address.
+msgid "That address has already been confirmed."
+msgstr "Iste adresse ha ja essite confirmate."
+
+msgid "Password too short."
+msgstr "Contrasigno troppo curte."
+
+msgid "Passwords do not match."
+msgstr "Le contrasignos non corresponde."
+
+#, php-format
+msgid ""
+"You have confirmed the email address for your new user account %s. Use the "
+"form below to set your new password."
+msgstr ""
+"Tu ha confirmate le adresse de e-mail pro tu nove conto de usator %s. Usa le "
+"formulario sequente pro definir tu nove contrasigno."
+
+msgid "Set a password"
+msgstr "Definir un contrasigno"
+
+msgid "Confirm email"
+msgstr "Confirmar e-mail"
+
+msgid "New password"
+msgstr "Nove contrasigno"
+
+msgid "6 or more characters."
+msgstr "6 o plus characteres."
+
+msgid "Confirm"
+msgstr "Confirmar"
+
+msgid "Same as password above."
+msgstr "Identic al contrasigno hic supra."
+
+msgid "Save"
+msgstr "Salveguardar"

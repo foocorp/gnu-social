@@ -33,7 +33,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 require_once INSTALLDIR.'/lib/grouplist.php';
 
-define('GROUPS_PER_MINILIST', 27);
+define('GROUPS_PER_MINILIST', 8);
 
 /**
  * Widget to show a list of groups, good for sidebar
@@ -44,7 +44,6 @@ define('GROUPS_PER_MINILIST', 27);
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class GroupMiniList extends GroupList
 {
     function show()

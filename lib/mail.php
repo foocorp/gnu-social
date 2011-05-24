@@ -259,6 +259,49 @@ function mail_subscribe_notify_profile($listenee, $other)
     }
 }
 
+function mail_subscribe_pending_notify_profile($listenee, $other)
+{
+    if ($other->hasRight(Right::EMAILONSUBSCRIBE) &&
+        $listenee->email && $listenee->emailnotifysub) {
+
+        $profile = $listenee->getProfile();
+
+        $name = $profile->getBestName();
+
+        $long_name = ($other->fullname) ?
+          ($other->fullname . ' (' . $other->nickname . ')') : $other->nickname;
+
+        $recipients = $listenee->email;
+
+        // use the recipient's localization
+        common_switch_locale($listenee->language);
+
+        $headers = _mail_prepare_headers('subscribe', $listenee->nickname, $other->nickname);
+        $headers['From']    = mail_notify_from();
+        $headers['To']      = $name . ' <' . $listenee->email . '>';
+        // TRANS: Subject of pending new-subscriber notification e-mail.
+        // TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
+        $headers['Subject'] = sprintf(_('%1$s would like to listen to '.
+                                        'your notices on %2$s.'),
+                                      $other->getBestName(),
+                                      common_config('site', 'name'));
+
+        // TRANS: Main body of pending new-subscriber notification e-mail.
+        // TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
+        $body = sprintf(_('%1$s would like to listen to your notices on %2$s. ' .
+                          'You may approve or reject their subscription at %3$s'),
+                        $long_name,
+                        common_config('site', 'name'),
+                        common_local_url('subqueue', array('nickname' => $listenee->nickname))) .
+                mail_profile_block($other) .
+                mail_footer_block();
+
+        // reset localization
+        common_switch_locale();
+        mail_send($recipients, $headers, $body);
+    }
+}
+
 function mail_footer_block()
 {
     // TRANS: Common footer block for StatusNet notification emails.
@@ -598,7 +641,7 @@ function mail_notify_message($message, $from=null, $to=null)
 }
 
 /**
- * notify a user that one of their notices has been chosen as a 'fave'
+ * Notify a user that one of their notices has been chosen as a 'fave'
  *
  * Doesn't check that the user has an email address nor if they
  * want to receive notification of faves. Maybe this happens higher
@@ -661,7 +704,7 @@ function mail_notify_fave($other, $user, $notice)
 }
 
 /**
- * notify a user that they have received an "attn:" message AKA "@-reply"
+ * Notify a user that they have received an "attn:" message AKA "@-reply"
  *
  * @param User   $user   The user who recevied the notice
  * @param Notice $notice The notice that was sent

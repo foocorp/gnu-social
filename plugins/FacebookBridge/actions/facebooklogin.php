@@ -34,12 +34,12 @@ if (!defined('STATUSNET')) {
 
 class FacebookloginAction extends Action
 {
-
     function handle($args)
     {
         parent::handle($args);
 
         if (common_is_real_login()) {
+            // TRANS: Client error displayed when trying to login while already logged in.
             $this->clientError(_m('Already logged in.'));
         } else {
             $this->showPage();
@@ -48,7 +48,7 @@ class FacebookloginAction extends Action
 
     function getInstructions()
     {
-        // TRANS: Instructions.
+        // TRANS: Form instructions.
         return _m('Login with your Facebook Account');
     }
 
@@ -68,7 +68,6 @@ class FacebookloginAction extends Action
     }
 
     function showContent() {
-
         $this->elementStart('fieldset');
 
         $facebook = Facebookclient::getFacebook();
@@ -90,8 +89,10 @@ class FacebookloginAction extends Action
 
         $attrs = array(
             'src' => Plugin::staticPath('FacebookBridge', 'images/login-button.png'),
-            'alt'   => 'Login with Facebook',
-            'title' => 'Login with Facebook'
+            // TRANS: Alt text for "Login with Facebook" image.
+            'alt'   => _m('Login with Facebook'),
+            // TRANS: Title for "Login with Facebook" image.
+            'title' => _m('Login with Facebook.')
         );
 
         $this->element('img', $attrs);
@@ -117,4 +118,3 @@ class FacebookloginAction extends Action
         $nav->show();
     }
 }
-

@@ -440,4 +440,18 @@ class RecoverpasswordAction extends Action
         $this->success = true;
         $this->showPage();
     }
+
+    /**
+     * A local menu
+     *
+     * Shows different login/register actions.
+     *
+     * @return void
+     */
+
+    function showLocalNav()
+    {
+        $nav = new LoginGroupNav($this);
+        $nav->show();
+    }
 }

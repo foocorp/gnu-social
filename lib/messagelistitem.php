@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * A single list item for showing in a message list
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -65,7 +65,6 @@ abstract class MessageListItem extends Widget
      *
      * @return void
      */
-
     function show()
     {
         $this->out->elementStart('li', array('class' => 'hentry notice',
@@ -120,6 +119,7 @@ abstract class MessageListItem extends Widget
         if ($this->message->source) {
             $this->out->elementStart('span', 'source');
             // FIXME: bad i18n. Device should be a parameter (from %s).
+            // TRANS: Followed by notice source (usually the client used to send the notice).
             $this->out->text(_('from'));
             $this->showSource($this->message->source);
             $this->out->elementEnd('span');
@@ -129,6 +129,29 @@ abstract class MessageListItem extends Widget
         $this->out->elementEnd('li');
     }
 
+    /**
+     * Dummy method. Serves no other purpose than to make strings available used
+     * in self::showSource() through xgettext.
+     *
+     * @return void
+     */
+    function messageListItemDummyMessages()
+    {
+        // A dummy array with messages. These will get extracted by xgettext and
+        // are used in self::showSource().
+        $dummy_messages = array(
+            // TRANS: A possible notice source (web interface).
+            _m('SOURCE','web'),
+            // TRANS: A possible notice source (XMPP).
+            _m('SOURCE','xmpp'),
+            // TRANS: A possible notice source (e-mail).
+            _m('SOURCE','mail'),
+            // TRANS: A possible notice source (OpenMicroBlogging).
+            _m('SOURCE','omb'),
+            // TRANS: A possible notice source (Application Programming Interface).
+            _m('SOURCE','api'),
+        );
+    }
 
     /**
      * Show the source of the message
@@ -142,7 +165,7 @@ abstract class MessageListItem extends Widget
      */
     function showSource($source)
     {
-        $source_name = _($source);
+        $source_name = _m('SOURCE',$source);
         switch ($source) {
         case 'web':
         case 'xmpp':

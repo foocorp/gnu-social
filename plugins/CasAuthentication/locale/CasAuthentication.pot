@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,33 +34,39 @@ msgstr ""
 msgid "(Have an account with CAS? Try our [CAS login](%%action.caslogin%%)!)"
 msgstr ""
 
-#: CasAuthenticationPlugin.php:128
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
+#: CasAuthenticationPlugin.php:129
 msgid "Specifying a server is required."
 msgstr ""
 
-#: CasAuthenticationPlugin.php:131
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
+#: CasAuthenticationPlugin.php:133
 msgid "Specifying a port is required."
 msgstr ""
 
-#: CasAuthenticationPlugin.php:134
+#. TRANS: Exception thrown when the CAS Authentication plugin has been configured incorrectly.
+#: CasAuthenticationPlugin.php:137
 msgid "Specifying a path is required."
 msgstr ""
 
 #. TRANS: Plugin description. CAS is Central Authentication Service.
-#: CasAuthenticationPlugin.php:154
+#: CasAuthenticationPlugin.php:157
 msgid ""
 "The CAS Authentication plugin allows for StatusNet to handle authentication "
 "through CAS (Central Authentication Service)."
 msgstr ""
 
-#: caslogin.php:28
+#. TRANS: Client error displayed when trying to log in while already logged on.
+#: caslogin.php:29
 msgid "Already logged in."
 msgstr ""
 
-#: caslogin.php:39
+#. TRANS: Server error displayed when trying to log in with incorrect username or password.
+#: caslogin.php:41
 msgid "Incorrect username or password."
 msgstr ""
 
-#: caslogin.php:45
+#. TRANS: Server error displayed when login fails in CAS authentication plugin.
+#: caslogin.php:48
 msgid "Error setting user. You are probably not authorized."
 msgstr ""

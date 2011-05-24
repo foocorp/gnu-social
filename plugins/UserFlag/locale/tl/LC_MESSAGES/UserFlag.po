@@ -1,0 +1,103 @@
+# Translation of StatusNet - UserFlag to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - UserFlag\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:48+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-userflag\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: AJAX form title for a flagged profile.
+msgid "Flagged for review"
+msgstr "Iwinatawat para sa muling pagsusuri"
+
+#. TRANS: Body text for AJAX form when a profile has been flagged for review.
+#. TRANS: Message added to a profile if it has been flagged for review.
+msgid "Flagged"
+msgstr "Iwinatawat"
+
+#. TRANS: Plugin description.
+msgid ""
+"This plugin allows flagging of profiles for review and reviewing flagged "
+"profiles."
+msgstr ""
+"Ang pamasak na ito nagpapahintulot ng pagwawatawat ng mga balangkas na "
+"susuriing muli at pagsusuring muli ng ibinandilang mga balangkas."
+
+#. TRANS: Form title for flagging a profile for review.
+msgid "Flag"
+msgstr "Iwatawat"
+
+#. TRANS: Form description.
+msgid "Flag profile for review."
+msgstr "Balangkas ng watawat na susuriing muli."
+
+#. TRANS: Form title for action on a profile.
+msgid "Clear"
+msgstr "Hawiin"
+
+msgid "Clear all flags"
+msgstr "Hawiin ang lahat ng mga watawat"
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "Hindi nakalagda."
+
+msgid "You cannot review profile flags."
+msgstr "Hindi ka maaaring magsuring muli ng mga watawat ng balangkas."
+
+#. TRANS: Title for page with a list of profiles that were flagged for review.
+msgid "Flagged profiles"
+msgstr "Iwinatawat na mga balangkas"
+
+#. TRANS: Header for moderation menu with action buttons for flagged profiles (like 'sandbox', 'silence', ...).
+msgid "Moderate"
+msgstr "Katamtaman"
+
+#. TRANS: Message displayed on a profile if it has been flagged.
+#. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
+#, php-format
+msgid "Flagged by %1$s and %2$d other"
+msgid_plural "Flagged by %1$s and %2$d others"
+msgstr[0] "Iwinatawat ng %1$s at %2$d na iba pa"
+msgstr[1] "Iwinatawat ng %1$s at %2$d na mga iba pa"
+
+#. TRANS: Message displayed on a profile if it has been flagged.
+#. TRANS: %s is a comma separated list of at most 5 user nicknames that flagged.
+#, php-format
+msgid "Flagged by %s"
+msgstr "Iwinatawat ni %s"
+
+#. TRANS: Server exception given when flags could not be cleared.
+#, php-format
+msgid "Couldn't clear flags for profile \"%s\"."
+msgstr "Hindi mahawi ang mga watawat para sa balangkas na \"%s\"."
+
+#. TRANS: Title for AJAX form to indicated that flags were removed.
+msgid "Flags cleared"
+msgstr "Nahawi ang mga watawat"
+
+#. TRANS: Body element for "flags cleared" form.
+msgid "Cleared"
+msgstr "Nahawi na"
+
+#. TRANS: Server exception.
+#, php-format
+msgid "Couldn't flag profile \"%d\" for review."
+msgstr ""
+"Hindi maiwatawat ang watawat ng balangkas na \"%d\" para sa muling pagsusuri."

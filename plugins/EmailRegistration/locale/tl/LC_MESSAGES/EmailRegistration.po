@@ -1,0 +1,184 @@
+# Translation of StatusNet - EmailRegistration to Tagalog (Tagalog)
+# Exported from translatewiki.net
+#
+# Author: AnakngAraw
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailRegistration\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:14+0000\n"
+"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:26:37+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: tl\n"
+"X-Message-Group: #out-statusnet-plugin-emailregistration\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception thrown when no confirmation code was provided.
+msgid "No confirmation code."
+msgstr "Walang kodigo ng pagtitiyak."
+
+#. TRANS: Client exception thrown when given confirmation code was not issued.
+msgid "No such confirmation code."
+msgstr "Walang ganyang kodigo ng pagtitiyak."
+
+#. TRANS: Title for registration page.
+msgctxt "TITLE"
+msgid "Register"
+msgstr "Magpatala"
+
+#. TRANS: Title for page where to register with a confirmation code.
+msgctxt "TITLE"
+msgid "Complete registration"
+msgstr "Buuin ang pagpapatala"
+
+#. TRANS: Confirmation text after initial registration.
+#. TRANS: %s an e-mail address.
+#, php-format
+msgid ""
+"An email was sent to %s to confirm that address. Check your email inbox for "
+"instructions."
+msgstr ""
+"Isang e-liham ang ipinadala sa %s upang tiyakin ang tirahang iyon. Suriin "
+"ang kahong-tanggapan ng e-lliham para sa mga panuto."
+
+#. TRANS: Error text when trying to register without agreeing to the terms.
+msgid "You must accept the terms of service and privacy policy to register."
+msgstr ""
+"Kailangan mong tanggapin ang mga tuntunin ng palingkuran at patakaran sa "
+"paglilihim upang makapagpatala."
+
+#. TRANS: Error text when trying to register without a password.
+msgid "You must set a password"
+msgstr "Kailangan mong magtakda ng isang hudyat"
+
+#. TRANS: Error text when trying to register with too short a password.
+msgid "Password must be 6 or more characters."
+msgstr "Ang hudyat ay dapat na 6 o mahigit pang mga panitik."
+
+#. TRANS: Error text when trying to register without providing the same password twice.
+msgid "Passwords do not match."
+msgstr "Hindi magkatugma ang mga hudyat."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Confirm your registration on %s"
+msgstr "Tiyakin ang pagpapatala mo sa %s"
+
+#. TRANS: Body for confirmation e-mail.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
+#, php-format
+msgid ""
+"Someone (probably you) has requested an account on %1$s using this email "
+"address.\n"
+"To confirm the address, click the following URL or copy it into the address "
+"bar of your browser.\n"
+"%2$s\n"
+"If it was not you, you can safely ignore this message."
+msgstr ""
+"May isang tao (marahil ay ikaw) ang humiling ng isang akawnt sa %1$s na "
+"ginagamit ang tirahang ito ng e-liham.\n"
+"Upang tiyakin ang tirahan, pindutin ang sumusunod na URL o kopyahin itong "
+"papaloob sa halang ng tirahan ng pantingin-tingin mo.\n"
+"%2$s\n"
+"Kung hindi ikaw ito, maaari mong ligtas na hindi pansinin ang mensaheng ito."
+
+#. TRANS: Form instructions.
+msgid "Enter your email address to register for an account."
+msgstr ""
+"Ipasok ang iyong tirahan ng e-liham upang magpatala para sa isang akawnt."
+
+#. TRANS: Field label on form for registering an account.
+msgctxt "LABEL"
+msgid "E-mail address"
+msgstr "Tirahan ng e-liham"
+
+#. TRANS: Button text for registering an account.
+#. TRANS: Button text for action to register.
+msgctxt "BUTTON"
+msgid "Register"
+msgstr "Magpatala"
+
+#. TRANS: Form instructions.
+msgid "Enter a password to confirm your new account."
+msgstr "Magpasok ng isang hudyat upang tiyakin ang bagong akawnt mo."
+
+#. TRANS: Field label in e-mail registration form.
+msgctxt "LABEL"
+msgid "User name"
+msgstr "Pangalan ng tagagamit"
+
+#. TRANS: Field label.
+msgid "Email address"
+msgstr "Tirahan ng e-liham"
+
+#. TRANS: Field label on account registration page.
+msgid "Password"
+msgstr "Hudyat"
+
+#. TRANS: Field title on account registration page.
+msgid "6 or more characters."
+msgstr "6 o mahigit pang mga panitik."
+
+#. TRANS: Field label on account registration page. In this field the password has to be entered a second time.
+msgctxt "PASSWORD"
+msgid "Confirm"
+msgstr "Tiyakin"
+
+#. TRANS: Field title on account registration page.
+msgid "Same as password above."
+msgstr "Katulad ng hudyat na nasa itaas."
+
+#. TRANS: Checkbox title for terms of service and privacy policy.
+#, php-format
+msgid ""
+"I agree to the <a href=\"%1$s\">Terms of service</a> and <a href=\"%1$s"
+"\">Privacy policy</a> of this site."
+msgstr ""
+"Sumasang-ayon ako sa <a href=\"%1$s\">Mga tuntunin ng palingkuran</a> at <a "
+"href=\"%1$s\">Patakaran sa paglilihim</a> ng pook na ito."
+
+#. TRANS: Error text when trying to register with an already registered e-mail address.
+#. TRANS: %s is the URL to recover password at.
+#, php-format
+msgid ""
+"A user with that email address already exists. You can use the <a href=\"%s"
+"\">password recovery</a> tool to recover a missing password."
+msgstr ""
+"Umiiral na ang isang tagagamit na may ganyang tirahan ng e-liham. Maaari "
+"mong gamitin ang kasangkapang <a href=\"%s\">muling pagpapanumbalik ng "
+"hudyat</a> upang muling mapanumbalik ang isang nawawalang hudyat."
+
+#. TRANS: Error text when trying to register with an invalid e-mail address.
+msgid "Not a valid email address."
+msgstr "Hindi isang katanggap-tanggap na tirahan ng e-liham."
+
+#. TRANS: Subject for confirmation e-mail.
+#. TRANS: %s is the StatusNet sitename.
+#, php-format
+msgid "Welcome to %s"
+msgstr ""
+
+#. TRANS: Plugin description.
+msgid "Use email only for registration."
+msgstr "Gamitin lamang ang e-liham para sa pagpapatala."
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not save new greeting count for %d."
+msgstr "Hindi masagip ang bagong bilang ng pagbati para sa %d."
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not increment greeting count for %d."
+msgstr "Hindi masudlungan ang bilang ng pagbati para sa %d."

@@ -60,12 +60,15 @@ class LdapCommon
         $this->ldap_config = $this->get_ldap_config();
 
         if(!isset($this->host)){
-            throw new Exception(_m("A host must be specified."));
+            // TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
+            throw new Exception(_m('A host must be specified.'));
         }
         if(!isset($this->basedn)){
+            // TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
             throw new Exception(_m('"basedn" must be specified.'));
         }
         if(!isset($this->attributes['username'])){
+            // TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
             throw new Exception(_m('The username attribute must be set.'));
         }
     }
@@ -122,9 +125,13 @@ class LdapCommon
                 // if we were called with a config, assume caller will handle
                 // incorrect username/password (LDAP_INVALID_CREDENTIALS)
                 if (isset($config) && $err->getCode() == 0x31) {
-                    throw new LdapInvalidCredentialsException('Could not connect to LDAP server: '.$err->getMessage());
+                    // TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
+                    // TRANS: %s is the error message.
+                    throw new LdapInvalidCredentialsException(sprintf(_m('Could not connect to LDAP server: %s'),$err->getMessage()));
                 }
-                throw new Exception('Could not connect to LDAP server: '.$err->getMessage());
+                // TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
+                // TRANS: %s is the error message.
+                throw new Exception(sprintf(_m('Could not connect to LDAP server: %s.'),$err->getMessage()));
             }
             $c = Cache::instance();
             if (!empty($c)) {
@@ -165,7 +172,7 @@ class LdapCommon
     function changePassword($username,$oldpassword,$newpassword)
     {
         if(! isset($this->attributes['password']) || !isset($this->password_encoding)){
-            //throw new Exception(_('Sorry, changing LDAP passwords is not supported at this time'));
+            //throw new Exception(_m('Sorry, changing LDAP passwords is not supported at this time.'));
             return false;
         }
         $entry = $this->get_user($username,array('dn' => 'dn'));

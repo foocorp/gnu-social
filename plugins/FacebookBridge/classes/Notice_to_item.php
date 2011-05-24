@@ -48,7 +48,6 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-
 class Notice_to_item extends Memcached_DataObject
 {
     public $__table = 'notice_to_item'; // table name
@@ -67,7 +66,6 @@ class Notice_to_item extends Memcached_DataObject
      * @return Notice_to_item object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Notice_to_item', $k, $v);
@@ -81,7 +79,6 @@ class Notice_to_item extends Memcached_DataObject
      *
      * @return array array of column definitions
      */
-
     function table()
     {
         return array(
@@ -109,7 +106,6 @@ class Notice_to_item extends Memcached_DataObject
      *
      * @return array list of key field names
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -127,7 +123,6 @@ class Notice_to_item extends Memcached_DataObject
      *         'K' for primary key: for compound keys, add an entry for each component;
      *         'U' for unique keys: compound keys are not well supported here.
      */
-
     function keyTypes()
     {
         return array('notice_id' => 'K', 'item_id' => 'U');
@@ -143,7 +138,6 @@ class Notice_to_item extends Memcached_DataObject
      *
      * @return array magic three-false array that stops auto-incrementing.
      */
-
     function sequenceKey()
     {
         return array(false, false, false);
@@ -157,7 +151,6 @@ class Notice_to_item extends Memcached_DataObject
      *
      * @return Notice_to_item new object for this value
      */
-
     static function saveNew($notice_id, $item_id)
     {
         $n2i = Notice_to_item::staticGet('notice_id', $notice_id);

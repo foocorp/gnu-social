@@ -1,0 +1,135 @@
+# Translation of StatusNet - TagSub to German (Deutsch)
+# Exported from translatewiki.net
+#
+# Author: Giftpflanze
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - TagSub\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:34+0000\n"
+"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:23+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: de\n"
+"X-Message-Group: #out-statusnet-plugin-tagsub\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Unsubscribe from this tag"
+msgstr "Dieses Tag abbestellen"
+
+msgctxt "BUTTON"
+msgid "Unsubscribe"
+msgstr "Abbestellen"
+
+#. TRANS: Plugin description.
+msgid "Plugin to allow following all messages with a given tag."
+msgstr ""
+"Plugin, das ermöglicht, allen Nachrichten mit einem bestimmten Tag zu folgen."
+
+#. TRANS: SubMirror plugin menu item on user settings page.
+msgctxt "MENU"
+msgid "Tags"
+msgstr "Tags"
+
+#. TRANS: SubMirror plugin tooltip for user settings menu item.
+msgid "Configure tag subscriptions"
+msgstr "Tagabonnements konfigurieren"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "Subscribe to this tag"
+msgstr "Dieses Tag abonnieren"
+
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Abonnieren"
+
+#. TRANS: Page title when tag unsubscription succeeded.
+msgid "Unsubscribed"
+msgstr "Abbestellt"
+
+#. TRANS: Client error displayed trying to perform any request method other than POST.
+#. TRANS: Do not translate POST.
+msgid "This action only accepts POST requests."
+msgstr "Dieser Befehl akzeptiert nur POST-Anfragen."
+
+#. TRANS: Client error displayed when the session token is not okay.
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Es gab ein Problem mit deinem Sitzungstoken. Bitte später noch einmal "
+"versuchen."
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "Nicht angemeldet."
+
+#. TRANS: Client error displayed trying to subscribe to a non-existing profile.
+msgid "No such profile."
+msgstr "Kein solches Profil."
+
+#. TRANS: Page title when tag subscription succeeded.
+msgid "Subscribed"
+msgstr "Abonniert"
+
+#. TRANS: Header for subscriptions overview for a user (first page).
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "%s's tag subscriptions"
+msgstr "%ss Tagabonnements"
+
+#. TRANS: Header for subscriptions overview for a user (not first page).
+#. TRANS: %1$s is a user nickname, %2$d is the page number.
+#, php-format
+msgid "%1$s's tag subscriptions, page %2$d"
+msgstr "%1$ss Tagabonnements, Seite %2$d"
+
+#. TRANS: Page notice for page with an overview of all tag subscriptions
+#. TRANS: of the logged in user's own profile.
+msgid ""
+"You have subscribed to receive all notices on this site containing the "
+"following tags:"
+msgstr ""
+"Du hast alle Nachrichten auf dieser Site abonniert, die die folgenden Tags "
+"enthalten:"
+
+#. TRANS: Page notice for page with an overview of all subscriptions of a user other
+#. TRANS: than the logged in user. %s is the user nickname.
+#, php-format
+msgid ""
+"%s has subscribed to receive all notices on this site containing the "
+"following tags:"
+msgstr ""
+"%s hat alle Nachrichten auf dieser Site abonniert, die die folgenden Tags "
+"enthalten:"
+
+#. TRANS: Tag subscription list text when the logged in user has no tag subscriptions.
+msgid ""
+"You are not listening to any hash tags right now. You can push the "
+"\"Subscribe\" button on any hashtag page to automatically receive any public "
+"messages on this site that use that tag, even if you are not subscribed to "
+"the poster."
+msgstr ""
+"Du hast im Moment keine Hashtags abonniert. Du kannst bei jedem Hashtag die "
+"„Abonnieren“-Schaltfläche drücken, um automatisch alle öffentlichen "
+"Nachrichten auf dieser Site zu erhalten, die dieses Tag benutzen, sogar wenn "
+"du den Absenden nicht abonniert hast."
+
+#. TRANS: Tag subscription list text when looking at the subscriptions for a of a user other
+#. TRANS: than the logged in user that has no tag subscriptions. %s is the user nickname.
+#. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
+#. TRANS: as an anonymous user. %s is the user nickname.
+#, php-format
+msgid "%s is not listening to any tags."
+msgstr "%s verfolgt keine Tags."
+
+#, php-format
+msgid "#<a href=\"%s\">%s</a> since %s"
+msgstr "#<a href=\"%s\">%s</a> seit %s"

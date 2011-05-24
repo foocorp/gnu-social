@@ -54,7 +54,7 @@ class UseradminpanelAction extends AdminPanelAction
      */
     function title()
     {
-        // TRANS: User admin panel title
+        // TRANS: User admin panel title.
         return _m('TITLE', 'User');
     }
 
@@ -172,6 +172,7 @@ class UseradminpanelAction extends AdminPanelAction
     }
 }
 
+// @todo FIXME: Class documentation missing.
 class UserAdminPanelForm extends AdminForm
 {
     /**
@@ -212,7 +213,8 @@ class UserAdminPanelForm extends AdminForm
     function formData()
     {
         $this->out->elementStart('fieldset', array('id' => 'settings_user-profile'));
-        $this->out->element('legend', null, _('Profile'));
+        // TRANS: Fieldset legend in user administration panel.
+        $this->out->element('legend', null, _m('LEGEND','Profile'));
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();

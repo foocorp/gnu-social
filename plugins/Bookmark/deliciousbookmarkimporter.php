@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * Importer class for Delicious.com bookmarks
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class DeliciousBookmarkImporter extends QueueHandler
 {
     /**
@@ -52,7 +51,6 @@ class DeliciousBookmarkImporter extends QueueHandler
      *
      * @return string 'dlcsbkmk'
      */
-
     function transport()
     {
         return 'dlcsbkmk';
@@ -60,12 +58,11 @@ class DeliciousBookmarkImporter extends QueueHandler
 
     /**
      * Handle the data
-     * 
+     *
      * @param array $data associative array of user & bookmark info from DeliciousBackupImporter::importBookmark()
      *
      * @return boolean success value
      */
-
     function handle($data)
     {
         $profile = Profile::staticGet('id', $data['profile_id']);

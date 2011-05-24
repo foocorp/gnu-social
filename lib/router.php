@@ -41,7 +41,7 @@ class StatusNet_URL_Mapper extends Net_URL_Mapper
     private function __construct()
     {
     }
-    
+
     public static function getInstance($id = '__default__')
     {
         if (empty(self::$_singleton)) {
@@ -67,7 +67,7 @@ class StatusNet_URL_Mapper extends Net_URL_Mapper
         }
         return $result;
     }
-    
+
     protected function _mapAction($action, $path)
     {
         if (!array_key_exists($action, $this->_actionToPath)) {
@@ -76,19 +76,19 @@ class StatusNet_URL_Mapper extends Net_URL_Mapper
         $this->_actionToPath[$action][] = $path;
         return;
     }
-    
+
     public function generate($values = array(), $qstring = array(), $anchor = '')
     {
         if (!array_key_exists('action', $values)) {
             return parent::generate($values, $qstring, $anchor);
         }
-	
+
         $action = $values['action'];
 
         if (!array_key_exists($action, $this->_actionToPath)) {
             return parent::generate($values, $qstring, $anchor);
         }
-	
+
         $oldPaths    = $this->paths;
         $this->paths = $this->_actionToPath[$action];
         $result      = parent::generate($values, $qstring, $anchor);
@@ -126,6 +126,15 @@ class Router
         return Router::$inst;
     }
 
+    /**
+     * Clear the global singleton instance for this class.
+     * Needed to ensure reset when switching site configurations.
+     */
+    static function clear()
+    {
+        Router::$inst = null;
+    }
+
     function __construct()
     {
         if (empty($this->m)) {
@@ -147,19 +156,19 @@ class Router
 
     /**
      * Create a unique hashkey for the router.
-     * 
+     *
      * The router's url map can change based on the version of the software
      * you're running and the plugins that are enabled. To avoid having bad routes
      * get stuck in the cache, the key includes a list of plugins and the software
      * version.
-     * 
-     * There can still be problems with a) differences in versions of the plugins and 
+     *
+     * There can still be problems with a) differences in versions of the plugins and
      * b) people running code between official versions, but these tend to be more
      * sophisticated users who can grok what's going on and clear their caches.
-     * 
+     *
      * @return string cache key string that should uniquely identify a router
      */
-    
+
     static function cacheKey()
     {
         $parts = array('router');
@@ -173,7 +182,7 @@ class Router
 
         return Cache::codeKey(implode(':', $parts));
     }
-    
+
     function initialize()
     {
         $m = StatusNet_URL_Mapper::getInstance();
@@ -199,7 +208,8 @@ class Router
             // main stuff is repetitive
 
             $main = array('login', 'logout', 'register', 'subscribe',
-                          'unsubscribe', 'confirmaddress', 'recoverpassword',
+                          'unsubscribe', 'cancelsubscription', 'approvesub',
+                          'confirmaddress', 'recoverpassword',
                           'invite', 'favor', 'disfavor', 'sup',
                           'block', 'unblock', 'subedit',
                           'groupblock', 'groupunblock',
@@ -227,7 +237,9 @@ class Router
             $m->connect('main/sup/:seconds', array('action' => 'sup'),
                         array('seconds' => '[0-9]+'));
 
-            $m->connect('main/tagother/:id', array('action' => 'tagother'));
+            $m->connect('main/tagprofile', array('action' => 'tagprofile'));
+            $m->connect('main/tagprofile/:id', array('action' => 'tagprofile'),
+                                               array('id' => '[0-9]+'));
 
             $m->connect('main/oembed',
                         array('action' => 'oembed'));
@@ -356,10 +368,6 @@ class Router
                         array('tag' => self::REGEX_TAG));
             $m->connect('tag/:tag',
                         array('action' => 'tag'),
-                        array('tag' => self::REGEX_TAG));
-
-            $m->connect('peopletag/:tag',
-                        array('action' => 'peopletag'),
                         array('tag' => self::REGEX_TAG));
 
             // groups
@@ -773,6 +781,72 @@ class Router
                               'id' => '[a-zA-Z0-9]+',
                               'format' => '(xml|json)'));
 
+            // Lists (people tags)
+
+            $m->connect('api/lists/memberships.:format',
+                        array('action' => 'ApiListMemberships',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/:user/lists/memberships.:format',
+                        array('action' => 'ApiListMemberships',
+                              'user' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/lists/subscriptions.:format',
+                        array('action' => 'ApiListSubscriptions',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/:user/lists/subscriptions.:format',
+                        array('action' => 'ApiListSubscriptions',
+                              'user' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+            $m->connect('api/lists.:format',
+                        array('action' => 'ApiLists',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/:user/lists.:format',
+                        array('action' => 'ApiLists',
+                              'user' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/:user/lists/:id.:format',
+                        array('action' => 'ApiList',
+                              'user' => '[a-zA-Z0-9]+',
+                              'id' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/:user/lists/:id/statuses.:format',
+                        array('action' => 'ApiTimelineList',
+                              'user' => '[a-zA-Z0-9]+',
+                              'id' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json|rss|atom)'));
+
+            $m->connect('api/:user/:list_id/members.:format',
+                        array('action' => 'ApiListMembers',
+                              'user' => '[a-zA-Z0-9]+',
+                              'list_id' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/:user/:list_id/subscribers.:format',
+                        array('action' => 'ApiListSubscribers',
+                              'user' => '[a-zA-Z0-9]+',
+                              'list_id' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/:user/:list_id/members/:id.:format',
+                        array('action' => 'ApiListMember',
+                              'user' => '[a-zA-Z0-9]+',
+                              'list_id' => '[a-zA-Z0-9]+',
+                              'id' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/:user/:list_id/subscribers/:id.:format',
+                        array('action' => 'ApiListSubscriber',
+                              'user' => '[a-zA-Z0-9]+',
+                              'list_id' => '[a-zA-Z0-9]+',
+                              'id' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+
             // Tags
             $m->connect('api/statusnet/tags/timeline/:tag.:format',
                         array('action' => 'ApiTimelineTag',
@@ -843,6 +917,10 @@ class Router
                                 array('tag' => self::REGEX_TAG));
                 }
 
+                $m->connect('subscribers/pending',
+                            array('action' => 'subqueue',
+                                  'nickname' => $nickname));
+
                 foreach (array('rss', 'groups') as $a) {
                     $m->connect($a,
                                 array('action' => 'user'.$a,
@@ -899,6 +977,79 @@ class Router
                                 array('action' => $a),
                                 array('nickname' => Nickname::DISPLAY_FMT));
                 }
+                $m->connect(':nickname/subscribers/pending',
+                            array('action' => 'subqueue'),
+                            array('nickname' => Nickname::DISPLAY_FMT));
+
+                // people tags
+
+                $m->connect('peopletags', array('action' => 'publicpeopletagcloud'));
+
+                $m->connect('peopletag/:tag', array('action' => 'peopletag',
+                                                    'tag'    => self::REGEX_TAG));
+
+                $m->connect('selftag/:tag', array('action' => 'selftag',
+                                                  'tag'    => self::REGEX_TAG));
+
+                $m->connect('main/addpeopletag', array('action' => 'addpeopletag'));
+
+                $m->connect('main/removepeopletag', array('action' => 'removepeopletag'));
+
+                $m->connect('main/profilecompletion', array('action' => 'profilecompletion'));
+
+                $m->connect('main/peopletagautocomplete', array('action' => 'peopletagautocomplete'));
+
+                $m->connect(':nickname/peopletags',
+                                array('action' => 'peopletagsbyuser',
+                                      'nickname' => Nickname::DISPLAY_FMT));
+
+                $m->connect(':nickname/peopletags/private',
+                                array('action' => 'peopletagsbyuser',
+                                      'nickname' => Nickname::DISPLAY_FMT,
+                                      'private' => 1));
+
+                $m->connect(':nickname/peopletags/public',
+                                array('action' => 'peopletagsbyuser',
+                                      'nickname' => Nickname::DISPLAY_FMT,
+                                      'public' => 1));
+
+                $m->connect(':nickname/othertags',
+                                array('action' => 'peopletagsforuser',
+                                      'nickname' => Nickname::DISPLAY_FMT));
+
+                $m->connect(':nickname/peopletagsubscriptions',
+                                array('action' => 'peopletagsubscriptions',
+                                      'nickname' => Nickname::DISPLAY_FMT));
+
+                $m->connect(':tagger/all/:tag/subscribers',
+                                array('action' => 'peopletagsubscribers',
+                                      'tagger' => Nickname::DISPLAY_FMT,
+                                      'tag' => self::REGEX_TAG));
+
+                $m->connect(':tagger/all/:tag/tagged',
+                                array('action' => 'peopletagged',
+                                      'tagger' => Nickname::DISPLAY_FMT,
+                                      'tag' => self::REGEX_TAG));
+
+                $m->connect(':tagger/all/:tag/edit',
+                                array('action' => 'editpeopletag',
+                                      'tagger' => Nickname::DISPLAY_FMT,
+                                      'tag' => self::REGEX_TAG));
+
+                foreach(array('subscribe', 'unsubscribe') as $v) {
+                    $m->connect('peopletag/:id/'.$v,
+                                    array('action' => $v.'peopletag',
+                                          'id' => '[0-9]{1,64}'));
+                }
+                $m->connect('user/:tagger_id/profiletag/:id/id',
+                                array('action' => 'profiletagbyid',
+                                      'tagger_id' => '[0-9]+',
+                                      'id' => '[0-9]+'));
+
+                $m->connect(':tagger/all/:tag',
+                                array('action' => 'showprofiletag',
+                                      'tagger' => Nickname::DISPLAY_FMT,
+                                      'tag' => self::REGEX_TAG));
 
                 foreach (array('subscriptions', 'subscribers') as $a) {
                     $m->connect(':nickname/'.$a.'/:tag',

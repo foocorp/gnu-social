@@ -42,7 +42,6 @@ require_once INSTALLDIR.'/lib/widget.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class SubGroupNav extends Menu
 {
     var $user = null;
@@ -52,7 +51,6 @@ class SubGroupNav extends Menu
      *
      * @param Action $action current action, used for output
      */
-
     function __construct($action=null, $user=null)
     {
         parent::__construct($action);
@@ -64,7 +62,6 @@ class SubGroupNav extends Menu
      *
      * @return void
      */
-
     function show()
     {
         $cur = common_current_user();
@@ -76,38 +73,80 @@ class SubGroupNav extends Menu
 
             $this->out->menuItem(common_local_url('showstream', array('nickname' =>
                                                                       $this->user->nickname)),
-                                 _('Profile'),
+                                 // TRANS: Menu item in local navigation menu.
+                                 _m('MENU','Profile'),
                                  (empty($profile)) ? $this->user->nickname : $profile->getBestName(),
                                  $action == 'showstream',
                                  'nav_profile');
             $this->out->menuItem(common_local_url('subscriptions',
                                                   array('nickname' =>
                                                         $this->user->nickname)),
-                                 _('Subscriptions'),
-                                 sprintf(_('People %s subscribes to'),
+                                 // TRANS: Menu item in local navigation menu.
+                                 _m('MENU','Subscriptions'),
+                                 // TRANS: Menu item title in local navigation menu.
+                                 // TRANS: %s is a user nickname.
+                                 sprintf(_('People %s subscribes to.'),
                                          $this->user->nickname),
                                  $action == 'subscriptions',
                                  'nav_subscriptions');
             $this->out->menuItem(common_local_url('subscribers',
                                                   array('nickname' =>
                                                         $this->user->nickname)),
-                                 _('Subscribers'),
-                                 sprintf(_('People subscribed to %s'),
+                                 // TRANS: Menu item in local navigation menu.
+                                 _m('MENU','Subscribers'),
+                                 // TRANS: Menu item title in local navigation menu.
+                                 // TRANS: %s is a user nickname.
+                                 sprintf(_('People subscribed to %s.'),
                                          $this->user->nickname),
                                  $action == 'subscribers',
                                  'nav_subscribers');
+            if ($cur && $cur->id == $this->user->id) {
+                // Possibly site admins should be able to get in here too
+                $pending = $this->countPendingSubs();
+                if ($pending || $cur->subscribe_policy == User::SUBSCRIBE_POLICY_MODERATE) {
+                    $this->out->menuItem(common_local_url('subqueue',
+                                                          array('nickname' =>
+                                                                $this->user->nickname)),
+                                         // TRANS: Menu item in local navigation menu.
+                                         // TRANS: %d is the number of pending subscription requests.
+                                         sprintf(_m('MENU','Pending (%d)'), $pending),
+                                         // TRANS: Menu item title in local navigation menu.
+                                         sprintf(_('Approve pending subscription requests.'),
+                                                 $this->user->nickname),
+                                         $action == 'subqueueaction',
+                                         'nav_subscribers');
+                }
+            }
             $this->out->menuItem(common_local_url('usergroups',
                                                   array('nickname' =>
                                                         $this->user->nickname)),
-                                 _('Groups'),
-                                 sprintf(_('Groups %s is a member of'),
+                                 // TRANS: Menu item in local navigation menu.
+                                 _m('MENU','Groups'),
+                                 // TRANS: Menu item title in local navigation menu.
+                                 // TRANS: %s is a user nickname.
+                                 sprintf(_('Groups %s is a member of.'),
                                          $this->user->nickname),
                                  $action == 'usergroups',
                                  'nav_usergroups');
+            $this->out->menuItem(common_local_url('peopletagsubscriptions',
+                                                  array('nickname' =>
+                                                        $this->user->nickname)),
+                                 // TRANS: Menu item title in local navigation menu.
+                                 _m('MENU','Lists'),
+                                 // TRANS: Menu item title in local navigation menu.
+                                 // TRANS: %s is a user nickname.
+                                 sprintf(_('List subscriptions by %s.'),
+                                         $this->user->nickname),
+                                 in_array($action, array('peopletagsbyuser', 'peopletagsubscriptions', 'peopletagsforuser')),
+                                 'nav_timeline_peopletags');
+
             if (common_config('invite', 'enabled') && !is_null($cur) && $this->user->id === $cur->id) {
                 $this->out->menuItem(common_local_url('invite'),
-                                     _('Invite'),
-                                     sprintf(_('Invite friends and colleagues to join you on %s'),
+                                     // TRANS: Menu item in local navigation menu.
+                                     _m('MENU','Invite'),
+                                     // TRANS: Menu item title in local navigation menu.
+                                     // TRANS: %s is the StatusNet sitename.
+                                     sprintf(_('Invite friends and colleagues to join you on %s.'),
                                              common_config('site', 'name')),
                                      $action == 'invite',
                                      'nav_invite');
@@ -117,5 +156,12 @@ class SubGroupNav extends Menu
         }
 
         $this->out->elementEnd('ul');
+    }
+
+    function countPendingSubs()
+    {
+        $req = new Subscription_queue();
+        $req->subscribed = $this->user->id;
+        return $req->count();
     }
 }

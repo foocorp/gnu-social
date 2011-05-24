@@ -137,7 +137,7 @@ class groupRssAction extends Rss10Action
                    // TRANS: Message is used as link title. %s is a user nickname.
                    'title' => sprintf(_('%s timeline'), $group->nickname),
                    'link' => common_local_url('showgroup', array('nickname' => $group->nickname)),
-                   // TRANS: Message is used as link description. %1$s is a username, %2$s is a site name.
+                   // TRANS: Message is used as link description. %1$s is a group name, %2$s is a site name.
                    'description' => sprintf(_('Updates from members of %1$s on %2$s!'),
                                             $group->nickname, common_config('site', 'name')));
         return $c;

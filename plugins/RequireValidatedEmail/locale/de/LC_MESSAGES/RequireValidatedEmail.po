@@ -1,6 +1,7 @@
 # Translation of StatusNet - RequireValidatedEmail to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: Giftpflanze
 # Author: The Evil IP address
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:38+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:06+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:42+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
@@ -29,3 +30,55 @@ msgstr "Du musst eine E-Mail-Adresse angeben, um dich zu registrieren."
 
 msgid "Disables posting without a validated email address."
 msgstr "Deaktiviert Posten ohne gültige E-Mail-Adresse."
+
+msgid "You are already logged in."
+msgstr "Du bist bereits angemeldet."
+
+msgid "Confirmation code not found."
+msgstr "Bestätigungscode nicht gefunden."
+
+msgid "No user for that confirmation code."
+msgstr "Kein Benutzer für diesen Bestätigungscode."
+
+#, php-format
+msgid "Unrecognized address type %s."
+msgstr "Unbekannter Adresstyp %s."
+
+#. TRANS: Client error for an already confirmed email/jabber/sms address.
+msgid "That address has already been confirmed."
+msgstr "Diese Adresse wurde bereits bestätigt."
+
+msgid "Password too short."
+msgstr "Passwort ist zu kurz."
+
+msgid "Passwords do not match."
+msgstr "Passwörter stimmen nicht überein."
+
+#, php-format
+msgid ""
+"You have confirmed the email address for your new user account %s. Use the "
+"form below to set your new password."
+msgstr ""
+"Du hast die E-Mail-Adresse für dein neues Benutzerkonto %s bestätigt. Nutze "
+"das untenstehende Formular, um dein neues Passwort zu setzen."
+
+msgid "Set a password"
+msgstr "Passwort setzen"
+
+msgid "Confirm email"
+msgstr "E-Mail bestätigen"
+
+msgid "New password"
+msgstr "Neues Passwort"
+
+msgid "6 or more characters."
+msgstr "Mindestens 6 Zeichen."
+
+msgid "Confirm"
+msgstr "Bestätigen"
+
+msgid "Same as password above."
+msgstr "Dasselbe Passwort wie oben."
+
+msgid "Save"
+msgstr "Speichern"

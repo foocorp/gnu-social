@@ -1,5 +1,4 @@
 <?php
-
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
@@ -33,6 +32,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 }
 
 require_once INSTALLDIR.'/lib/widget.php';
+require_once INSTALLDIR.'/lib/peopletags.php';
 
 /**
  * Widget to show a list of profiles
@@ -44,7 +44,6 @@ require_once INSTALLDIR.'/lib/widget.php';
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-
 class ProfileList extends Widget
 {
     /** Current profile, profile query. */
@@ -168,6 +167,10 @@ class ProfileListItem extends Widget
                 $this->showBio();
                 Event::handle('EndProfileListItemBio', array($this));
             }
+            if (Event::handle('StartProfileListItemTags', array($this))) {
+                $this->showTags();
+                Event::handle('EndProfileListItemTags', array($this));
+            }
             Event::handle('EndProfileListItemProfileElements', array($this));
         }
         $this->endProfile();
@@ -235,6 +238,20 @@ class ProfileListItem extends Widget
             $this->out->elementStart('p', 'note');
             $this->out->raw($this->highlight($this->profile->bio));
             $this->out->elementEnd('p');
+        }
+    }
+
+    function showTags()
+    {
+        $user = common_current_user();
+        if (!empty($user)) {
+            if ($user->id == $this->profile->id) {
+                $tags = new SelftagsWidget($this->out, $user, $this->profile);
+                $tags->show();
+            } else if ($user->getProfile()->canTag($this->profile)) {
+                $tags = new PeopletagsWidget($this->out, $user, $this->profile);
+                $tags->show();
+            }
         }
     }
 

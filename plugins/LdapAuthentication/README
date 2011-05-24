@@ -11,8 +11,9 @@ Settings
 ========
 provider_name*: This is a identifier designated to the connection.
     It's how StatusNet will refer to the authentication source.
-    For the most part, any name can be used, so long as each authentication source has a different identifier.
-    In most cases there will be only one authentication source used.
+    For the most part, any name can be used, so long as each authentication
+    source has a different identifier. In most cases there will be only one
+    authentication source used.
 authoritative (false): Set to true if LDAP's responses are authoritative
     (if authorative and LDAP fails, no other password checking will be done).
 autoregistration (false): Set to true if users should be automatically created
@@ -84,4 +85,3 @@ addPlugin('ldapAuthentication', array(
         'fullname'=>'displayName',
         'password'=>'unicodePwd')
 ));
-

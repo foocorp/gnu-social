@@ -19,9 +19,9 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
+// @todo FIXME: documentation missing.
 class TagAction extends Action
 {
-
     var $notice;
 
     function prepare($args)
@@ -48,17 +48,11 @@ class TagAction extends Action
         $this->notice = Notice_tag::getStream($this->tag, (($this->page-1)*NOTICES_PER_PAGE), NOTICES_PER_PAGE + 1);
 
         if($this->page > 1 && $this->notice->N == 0){
-            // TRANS: Server error when page not found (404)
+            // TRANS: Server error when page not found (404).
             $this->serverError(_('No such page.'),$code=404);
         }
 
         return true;
-    }
-
-    function showSections()
-    {
-        $pop = new PopularNoticeSection($this);
-        $pop->show();
     }
 
     function title()
@@ -88,18 +82,24 @@ class TagAction extends Action
         return array(new Feed(Feed::RSS1,
                               common_local_url('tagrss',
                                                array('tag' => $this->tag)),
+                              // TRANS: Link label for feed on "notices with tag" page.
+                              // TRANS: %s is the tag the feed is for.
                               sprintf(_('Notice feed for tag %s (RSS 1.0)'),
                                       $this->tag)),
                      new Feed(Feed::RSS2,
                               common_local_url('ApiTimelineTag',
                                                array('format' => 'rss',
                                                      'tag' => $this->tag)),
+                              // TRANS: Link label for feed on "notices with tag" page.
+                              // TRANS: %s is the tag the feed is for.
                               sprintf(_('Notice feed for tag %s (RSS 2.0)'),
                                       $this->tag)),
                      new Feed(Feed::ATOM,
                               common_local_url('ApiTimelineTag',
                                                array('format' => 'atom',
                                                      'tag' => $this->tag)),
+                              // TRANS: Link label for feed on "notices with tag" page.
+                              // TRANS: %s is the tag the feed is for.
                               sprintf(_('Notice feed for tag %s (Atom)'),
                                       $this->tag)));
     }
@@ -107,7 +107,7 @@ class TagAction extends Action
     function showContent()
     {
         if(Event::handle('StartTagShowContent', array($this))) {
-            
+
             $nl = new NoticeList($this->notice, $this);
 
             $cnt = $nl->show();

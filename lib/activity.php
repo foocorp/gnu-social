@@ -704,11 +704,18 @@ class Activity
         return ActivityUtils::child($element, $tag, $namespace);
     }
 
+    /**
+     * For consistency, we'll always output UTC rather than local time.
+     * Note that clients *should* accept any timezone we give them as long
+     * as it's properly formatted.
+     *
+     * @param int $tm Unix timestamp
+     * @return string
+     */
     static function iso8601Date($tm)
     {
         $dateStr = date('d F Y H:i:s', $tm);
         $d = new DateTime($dateStr, new DateTimeZone('UTC'));
-        $d->setTimezone(new DateTimeZone(common_timezone()));
         return $d->format('c');
     }
 }

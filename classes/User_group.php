@@ -28,9 +28,12 @@ class User_group extends Memcached_DataObject
     public $uri;                             // varchar(255)  unique_key
     public $mainpage;                        // varchar(255)
     public $join_policy;                     // tinyint
+    public $force_scope;                     // tinyint
 
     /* Static get */
-    function staticGet($k,$v=NULL) { return DB_DataObject::staticGet('User_group',$k,$v); }
+    function staticGet($k,$v=NULL) {
+        return Memcached_DataObject::staticGet('User_group',$k,$v);
+    }
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
@@ -514,10 +517,17 @@ class User_group extends Memcached_DataObject
         $group->uri         = $uri;
         $group->mainpage    = $mainpage;
         $group->created     = common_sql_now();
+
         if (isset($fields['join_policy'])) {
             $group->join_policy = intval($fields['join_policy']);
         } else {
             $group->join_policy = 0;
+        }
+
+        if (isset($fields['force_scope'])) {
+            $group->force_scope = intval($fields['force_scope']);
+        } else {
+            $group->force_scope = 0;
         }
 
         if (Event::handle('StartGroupSave', array(&$group))) {
@@ -563,6 +573,8 @@ class User_group extends Memcached_DataObject
                 throw new ServerException(_('Could not set group membership.'));
             }
 
+            self::blow('profile:groups:%d', $userid);
+            
             if ($local) {
                 $local_group = new Local_group();
 
@@ -642,5 +654,11 @@ class User_group extends Memcached_DataObject
             common_log(LOG_WARN, "Ambiguous user_group->delete(); skipping related tables.");
         }
         parent::delete();
+    }
+
+    function isPrivate()
+    {
+        return ($this->join_policy == self::JOIN_POLICY_MODERATE &&
+                $this->force_scope == 1);
     }
 }

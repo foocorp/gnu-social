@@ -1,0 +1,40 @@
+# Translation of StatusNet - Xmpp to Catalan (Català)
+# Exported from translatewiki.net
+#
+# Author: Toniher
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Xmpp\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:55+0000\n"
+"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:55+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ca\n"
+"X-Message-Group: #out-statusnet-plugin-xmpp\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Send me a message to post a notice"
+msgstr "Envia'm un missatge per a publicar un avís"
+
+msgid "XMPP/Jabber/GTalk"
+msgstr "XMPP/Jabber/GTalk"
+
+#. TRANS: %s is a notice ID.
+#, php-format
+msgid "[%s]"
+msgstr "[%s]"
+
+msgid ""
+"The XMPP plugin allows users to send and receive notices over the XMPP/"
+"Jabber network."
+msgstr ""
+"El connector XMPP permet als usuaris enviar i rebre avisos des de la xarxa "
+"XMPP/Jabber."

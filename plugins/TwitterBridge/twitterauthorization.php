@@ -123,7 +123,7 @@ class TwitterauthorizationAction extends Action
 
             if ($this->arg('create')) {
                 if (!$this->boolean('license')) {
-                    $this->showForm(_m('You can\'t register if you don\'t agree to the license.'),
+                    $this->showForm(_m('You cannot register if you do not agree to the license.'),
                                     $this->trimmed('newname'));
                     return;
                 }
@@ -178,7 +178,7 @@ class TwitterauthorizationAction extends Action
             );
             common_log(LOG_INFO, 'Twitter bridge - ' . $msg);
             $this->serverError(
-                _m('Couldn\'t link your Twitter account.')
+                _m('Could not link your Twitter account.')
             );
         }
 
@@ -389,11 +389,11 @@ class TwitterauthorizationAction extends Action
         $this->elementStart('li');
         $this->input('newname', _m('New nickname'),
                      ($this->username) ? $this->username : '',
-                     _m('1-64 lowercase letters or numbers, no punctuation or spaces'));
+                     _m('1-64 lowercase letters or numbers, no punctuation or spaces.'));
         $this->elementEnd('li');
         $this->elementStart('li');
-        $this->input('email', _('Email'), $this->getEmail(),
-                     _('Used only for updates, announcements, '.
+        $this->input('email', _m('LABEL','Email'), $this->getEmail(),
+                     _m('Used only for updates, announcements, '.
                        'and password recovery'));
         $this->elementEnd('li');
 
@@ -678,6 +678,4 @@ class TwitterauthorizationAction extends Action
         }
         return true;
     }
-
 }
-

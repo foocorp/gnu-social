@@ -1,17 +1,11 @@
-/**
- * @package   StatusNet
- * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2009-2010 StatusNet, Inc.
- * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
- * @link      http://status.net/
- */
-/* IE specific styles */
+/* Temporary copy of base styles for overriding */
+
 input.checkbox,
 input.radio {
 top:0;
 }
 .form_notice textarea {
-width:78%;
+    width: 485px;
 }
 .form_notice .count + label {
 position:absolute;
@@ -21,10 +15,11 @@ text-indent:-9999px;
 height:16px;
 width:16px;
 display:block;
+    top: 30px;
 }
 .form_notice .submit {
-width:17%;
-max-width:17%;
+    width: 106px;
+    max-width: 106px;
 }
 .form_notice .attach-status,
 .form_notice #notice_data-geo_selected {
@@ -58,3 +53,28 @@ z-index:9999;
 .form_settings fieldset fieldset legend {
 line-height:auto;
 }
+
+
+/* IE specific styles */
+
+.notice-options input.submit {
+    color:#FFFFFF;
+}
+
+.form_notice input.notice_data-attach {
+    filter: alpha(opacity=0);
+}
+
+.form_notice .count + label {
+    background:transparent url(../images/icons/icons-01.gif) no-repeat 0 -328px;
+}
+
+.form_notice .notice_data-geo_wrap label {
+   background:transparent url(../images/icons/icons-01.gif) no-repeat 0 -1780px;
+}
+
+.form_notice .notice_data-geo_wrap label.checked {
+   background:transparent url(../images/icons/icons-01.gif) no-repeat 0 -1846px;
+}
+
+

@@ -90,7 +90,7 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
 
         if (!in_array($this->format, array('xml', 'json'))) {
             $this->clientError(
-                // TRANS: Client error displayed when trying to handle an unknown API method.
+                // TRANS: Client error displayed when coming across a non-supported API method.
                 _('API method not found.'),
                 404,
                 $this->format
@@ -107,7 +107,7 @@ class ApiAccountUpdateProfileAction extends ApiAuthAction
         $profile = $this->user->getProfile();
 
         if (empty($profile)) {
-            // TRANS: Client error displayed if a user profile could not be found.
+            // TRANS: Error message displayed when referring to a user without a profile.
             $this->clientError(_('User has no profile.'));
             return;
         }

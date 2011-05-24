@@ -4,7 +4,7 @@
  * Copyright (C) 2010, StatusNet, Inc.
  *
  * Importer for feeds of activities
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -47,7 +47,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class FeedImporter extends QueueHandler
 {
     /**
@@ -55,7 +54,6 @@ class FeedImporter extends QueueHandler
      *
      * @return string identifier for this queue handler
      */
-
     public function transport()
     {
         return 'feedimp';
@@ -72,13 +70,15 @@ class FeedImporter extends QueueHandler
 
             if ($feed->namespaceURI != Activity::ATOM ||
                 $feed->localName != 'feed') {
-                throw new ClientException(_("Not an atom feed."));
+                // TRANS: Client exception thrown when an imported feed is not an Atom feed.
+                throw new ClientException(_("Not an Atom feed."));
             }
 
 
             $author = ActivityUtils::getFeedAuthor($feed);
 
             if (empty($author)) {
+                // TRANS: Client exception thrown when an imported feed does not have an author.
                 throw new ClientException(_("No author in the feed."));
             }
 
@@ -86,7 +86,9 @@ class FeedImporter extends QueueHandler
                 if ($trusted) {
                     $user = $this->userFromAuthor($author);
                 } else {
-                    throw new ClientException(_("Can't import without a user."));
+                    // TRANS: Client exception thrown when an imported feed does not have an author that
+                    // TRANS: can be associated with a user.
+                    throw new ClientException(_("Cannot import without a user."));
                 }
             }
 
@@ -127,7 +129,6 @@ class FeedImporter extends QueueHandler
     /**
      * Sort activities oldest-first
      */
-
     static function activitySort($a, $b)
     {
         if ($a->time == $b->time) {
@@ -154,7 +155,7 @@ class FeedImporter extends QueueHandler
         $profile = $user->getProfile();
         Ostatus_profile::updateProfile($profile, $author);
 
-        // FIXME: Update avatar
+        // @todo FIXME: Update avatar
         return $user;
     }
 }

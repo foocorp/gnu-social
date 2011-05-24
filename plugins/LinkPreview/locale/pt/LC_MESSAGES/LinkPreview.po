@@ -9,18 +9,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - LinkPreview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:58+0000\n"
+"POT-Creation-Date: 2011-04-27 12:36+0000\n"
+"PO-Revision-Date: 2011-04-27 12:37:32+0000\n"
 "Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-16 23:17:55+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87008); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: pt\n"
 "X-Message-Group: #out-statusnet-plugin-linkpreview\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "UI extensions previewing thumbnails from links."
+#. TRANS: Plugin description.
+#, fuzzy
+msgid "UI extension for previewing thumbnails from links."
 msgstr ""
 "Extensões da interface, para antevisão de miniaturas a partir de links."
+
+#. TRANS: Client error displayed when the session token does not match or is not given.
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Client exception thrown when requesting a different format than JSON.
+msgid "Invalid format; only JSON supported."
+msgstr ""
+
+#. TRANS: Client exception thrown when not providing a valid URL.
+msgid "Invalid URL."
+msgstr ""

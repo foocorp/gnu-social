@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-24 11:10+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,28 +16,41 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: remoteprofileaction.php:51
-#, php-format
-msgid "%s on %s"
+#. TRANS: Error message displayed when referring to a user without a profile.
+#: remoteprofileaction.php:19
+msgid "User has no profile."
 msgstr ""
 
-#: remoteprofileaction.php:62
+#. TRANS: Remote profile action page title.
+#. TRANS: %1$s is a username, %2$s is a hostname.
+#: remoteprofileaction.php:49
+#, php-format
+msgid "%1$s on %2$s"
+msgstr ""
+
+#. TRANS: Message on remote profile page.
+#. TRANS: This message contains Markdown links in the form [description](link).
+#. TRANS: %1$s is a profile nickname, %2$s is a hostname, %3$s is a URL.
+#: remoteprofileaction.php:63
 #, php-format
 msgid ""
-"This remote profile is registered on another site; see [%s's original "
-"profile page on %s](%s)."
+"This remote profile is registered on another site; see [%1$s's original "
+"profile page on %2$s](%3$s)."
 msgstr ""
 
-#: remoteprofileaction.php:70
+#. TRANS: Message on blocked remote profile page.
+#: remoteprofileaction.php:72
 msgid ""
 "Site moderators have silenced this profile, which prevents delivery of new "
 "messages to any users on this site."
 msgstr ""
 
-#: ModPlusPlugin.php:39
-msgid "UI extensions for profile moderation actions."
+#. TRANS: Plugin description.
+#: ModPlusPlugin.php:40
+msgid "UI extension for profile moderation actions."
 msgstr ""
 
-#: ModPlusPlugin.php:139
+#. TRANS: Label for access to remote profile options.
+#: ModPlusPlugin.php:141
 msgid "Remote profile options..."
 msgstr ""

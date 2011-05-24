@@ -47,13 +47,11 @@ if (!defined('STATUSNET')) {
  * @see      UnsubscribeForm
  * @fixme    merge a bunch of this stuff with similar form types to reduce boilerplate
  */
-
 class DeleteGroupForm extends Form
 {
     /**
      * group for user to delete
      */
-
     var $group = null;
 
     /**
@@ -62,7 +60,6 @@ class DeleteGroupForm extends Form
      * @param HTMLOutputter $out   output channel
      * @param group         $group group to join
      */
-
     function __construct($out=null, $group=null)
     {
         parent::__construct($out);
@@ -75,7 +72,6 @@ class DeleteGroupForm extends Form
      *
      * @return string ID of the form
      */
-
     function id()
     {
         return 'group-delete-' . $this->group->id;
@@ -86,7 +82,6 @@ class DeleteGroupForm extends Form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         return 'form_group_delete';
@@ -97,7 +92,6 @@ class DeleteGroupForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('deletegroup',
@@ -115,9 +109,9 @@ class DeleteGroupForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Delete'));
+        // TRANS: Button text for deleting a group.
+        $this->out->submit('submit', _m('BUTTON','Delete'));
     }
 }

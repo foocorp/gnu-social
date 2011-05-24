@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,6 +90,27 @@ msgstr ""
 msgid "You are no longer subscribed to the search \"%s\"."
 msgstr ""
 
+#. TRANS: Client error displayed trying to perform any request method other than POST.
+#. TRANS: Do not translate POST.
+#: searchsubaction.php:78
+msgid "This action only accepts POST requests."
+msgstr ""
+
+#. TRANS: Client error displayed when the session token is not okay.
+#: searchsubaction.php:88
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+#: searchsubaction.php:99
+msgid "Not logged in."
+msgstr ""
+
+#. TRANS: Client error displayed trying to subscribe to a non-existing profile.
+#: searchsubaction.php:109
+msgid "No such profile."
+msgstr ""
+
 #. TRANS: Page title when search subscription succeeded.
 #: searchsubaction.php:136
 msgid "Subscribed"
@@ -97,6 +118,11 @@ msgstr ""
 
 #: searchunsubform.php:96 searchunsubform.php:107
 msgid "Unsubscribe from this search"
+msgstr ""
+
+#: searchunsubform.php:107
+msgctxt "BUTTON"
+msgid "Unsubscribe"
 msgstr ""
 
 #. TRANS: Page title when search unsubscription succeeded.
@@ -123,49 +149,49 @@ msgid "You are subscribed to the search \"%s\"."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: SearchSubPlugin.php:132
+#: SearchSubPlugin.php:133
 msgid "Plugin to allow following all messages with a given search."
 msgstr ""
 
 #. TRANS: SearchSub plugin menu item on user settings page.
-#: SearchSubPlugin.php:236
+#: SearchSubPlugin.php:237
 msgctxt "MENU"
 msgid "Searches"
 msgstr ""
 
 #. TRANS: SearchSub plugin tooltip for user settings menu item.
-#: SearchSubPlugin.php:238
+#: SearchSubPlugin.php:239
 msgid "Configure search subscriptions"
 msgstr ""
 
-#: SearchSubPlugin.php:259
-msgid "Search subscriptions"
-msgstr ""
-
 #. TRANS: Help message for IM/SMS command "track <word>"
-#: SearchSubPlugin.php:309
+#: SearchSubPlugin.php:277
 msgctxt "COMMANDHELP"
 msgid "Start following notices matching the given search query."
 msgstr ""
 
 #. TRANS: Help message for IM/SMS command "untrack <word>"
-#: SearchSubPlugin.php:311
+#: SearchSubPlugin.php:279
 msgctxt "COMMANDHELP"
 msgid "Stop following notices matching the given search query."
 msgstr ""
 
 #. TRANS: Help message for IM/SMS command "track off"
 #. TRANS: Help message for IM/SMS command "untrack all"
-#: SearchSubPlugin.php:313 SearchSubPlugin.php:315
+#: SearchSubPlugin.php:281 SearchSubPlugin.php:283
 msgctxt "COMMANDHELP"
 msgid "Disable all tracked search subscriptions."
 msgstr ""
 
 #. TRANS: Help message for IM/SMS command "tracks"
 #. TRANS: Help message for IM/SMS command "tracking"
-#: SearchSubPlugin.php:317 SearchSubPlugin.php:319
+#: SearchSubPlugin.php:285 SearchSubPlugin.php:287
 msgctxt "COMMANDHELP"
 msgid "List all your search subscriptions."
+msgstr ""
+
+#: SearchSubPlugin.php:299
+msgid "Searches"
 msgstr ""
 
 #. TRANS: Error text shown a user tries to disable all a search subscriptions with track off command, but has none.
@@ -181,6 +207,11 @@ msgstr ""
 
 #: searchsubform.php:116 searchsubform.php:140
 msgid "Subscribe to this search"
+msgstr ""
+
+#: searchsubform.php:140
+msgctxt "BUTTON"
+msgid "Subscribe"
 msgstr ""
 
 #. TRANS: Message given having failed to cancel one of the search subs with 'track off' command.

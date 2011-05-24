@@ -354,8 +354,9 @@ class XmppPlugin extends ImPlugin
         $xs->text(" ");
         $xs->element('a', array(
             'href'=>common_local_url('conversation',
-                array('id' => $notice->conversation)).'#notice-'.$notice->id
-             ),sprintf(_('[%s]'),$notice->id));
+                array('id' => $notice->conversation)).'#notice-'.$notice->id),
+             // TRANS: %s is a notice ID.
+             sprintf(_m('[%s]'),$notice->id));
         $xs->elementEnd('body');
         $xs->elementEnd('html');
 

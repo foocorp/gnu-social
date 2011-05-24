@@ -36,16 +36,18 @@ class LdapAuthenticationPlugin extends AuthenticationPlugin
     function onInitializePlugin(){
         parent::onInitializePlugin();
         if(!isset($this->attributes['nickname'])){
-            throw new Exception("must specify a nickname attribute");
+            // TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+            throw new Exception(_m('You must specify a nickname attribute.'));
         }
         if($this->password_changeable && (! isset($this->attributes['password']) || !isset($this->password_encoding))){
-            throw new Exception("if password_changeable is set, the password attribute and password_encoding must also be specified");
+            // TRANS: Exception thrown when initialising the LDAP Auth plugin fails because of an incorrect configuration.
+            throw new Exception(_m('If password_changeable is set, the password attribute and password_encoding must also be specified.'));
         }
         $this->ldapCommon = new LdapCommon(get_object_vars($this));
     }
 
     function onAutoload($cls)
-    {   
+    {
         switch ($cls)
         {
          case 'LdapCommon':
@@ -63,11 +65,13 @@ class LdapAuthenticationPlugin extends AuthenticationPlugin
         {
          case 'register':
             if($this->autoregistration) {
-                $instr = 'Have an LDAP account? Use your standard username and password.';
+                // TRANS: Instructions for LDAP authentication.
+                $instr = _m('Do you have an LDAP account? Use your standard username and password.');
             }
             break;
          case 'login':
-            $instr = 'Have an LDAP account? Use your standard username and password.';
+            // TRANS: Instructions for LDAP authentication.
+            $instr = _m('Do you have an LDAP account? Use your standard username and password.');
             break;
          default:
             return true;
@@ -79,7 +83,7 @@ class LdapAuthenticationPlugin extends AuthenticationPlugin
         }
         return true;
     }
-    
+
     //---interface implementation---//
 
     function checkPassword($username, $password)
@@ -143,6 +147,7 @@ class LdapAuthenticationPlugin extends AuthenticationPlugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:LdapAuthentication',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The LDAP Authentication plugin allows for StatusNet to handle authentication through LDAP.'));
         return true;
     }

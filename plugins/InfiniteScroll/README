@@ -1,6 +1,27 @@
-Infinite Scroll adds the following functionality to your StatusNet installation: When a user scrolls towards the bottom of the page, the next page of notices is automatically retrieved and appended. This means they never need to click "Next Page", which dramatically increases stickiness.
+Infinite Scroll adds the following functionality to your StatusNet installation:
+When a user scrolls towards the bottom of the page, the next page of notices is
+automatically retrieved and appended. This means they never need to click "Next
+Page", which dramatically increases stickiness.
+
+Note that there is a configuration option to make it so that the plugin doesn't
+trigger when the user approaches the bottom of the page, but instead triggers
+when the "next" button is clicked.
 
 Installation
 ============
-Add "addPlugin('InfiniteScroll');" to the bottom of your config.php
-That's it!
+Add "addPlugin('InfiniteScroll',
+    array('setting'=>'value', 'setting2'=>'value2', ...);"
+to the bottom of your config.php
+
+Settings
+========
+on_next_only (false): trigger infinite scroll when the next button is clicked.
+Note that this means you really don't have "infinite scrolling" as the trigger
+is clicking, not scrolling.
+
+Example
+=======
+addPlugin('InfiniteScroll', array(
+    'on_next_only'=>false
+));
+

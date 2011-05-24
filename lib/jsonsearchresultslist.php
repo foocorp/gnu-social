@@ -256,9 +256,9 @@ class ResultItem
      *
      * @return string a fully rendered source of the Notice
      */
-
     function getSourceLink($source)
     {
+        // Gettext translations for the below source types are available.
         $source_name = _($source);
         switch ($source) {
         case 'web':
@@ -277,5 +277,4 @@ class ResultItem
 
         return $source_name;
     }
-
 }

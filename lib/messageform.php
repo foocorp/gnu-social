@@ -46,19 +46,16 @@ require_once INSTALLDIR.'/lib/form.php';
  *
  * @see      HTMLOutputter
  */
-
 class MessageForm extends Form
 {
     /**
      * User to send a direct message to
      */
-
     var $to = null;
 
     /**
      * Pre-filled content of the form
      */
-
     var $content = null;
 
     /**
@@ -68,7 +65,6 @@ class MessageForm extends Form
      * @param User          $to      user to send a message to
      * @param string        $content content to pre-fill
      */
-
     function __construct($out=null, $to=null, $content=null)
     {
         parent::__construct($out);
@@ -82,7 +78,6 @@ class MessageForm extends Form
      *
      * @return string ID of the form
      */
-
     function id()
     {
         return 'form_notice-direct';
@@ -93,7 +88,6 @@ class MessageForm extends Form
      *
      * @return string class of the form
      */
-
     function formClass()
     {
         return 'form_notice ajax-notice';
@@ -104,7 +98,6 @@ class MessageForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('newmessage');
@@ -117,6 +110,7 @@ class MessageForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend for direct notice.
         $this->out->element('legend', null, _('Send a direct notice'));
     }
 
@@ -125,7 +119,6 @@ class MessageForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $user = common_current_user();
@@ -133,7 +126,9 @@ class MessageForm extends Form
         $mutual_users = $user->mutuallySubscribedUsers();
 
         $mutual = array();
-        // TRANS Label entry in drop-down selection box in direct-message inbox/outbox. This is the default entry in the drop-down box, doubling as instructions and a brake against accidental submissions with the first user in the list.
+        // TRANS: Label entry in drop-down selection box in direct-message inbox/outbox.
+        // TRANS: This is the default entry in the drop-down box, doubling as instructions
+        // TRANS: and a brake against accidental submissions with the first user in the list.
         $mutual[0] = _('Select recipient:');
 
         while ($mutual_users->fetch()) {
@@ -150,6 +145,7 @@ class MessageForm extends Form
             $mutual[0] = _('No mutual subscribers.');
         }
 
+        // TRANS: Dropdown label in direct notice form.
         $this->out->dropdown('to', _('To'), $mutual, null, false,
                              ($this->to) ? $this->to->id : null);
 
@@ -173,13 +169,41 @@ class MessageForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->element('input', array('id' => 'notice_action-submit',
                                            'class' => 'submit',
                                            'name' => 'message_send',
                                            'type' => 'submit',
+                                           // TRANS: Button text for sending a direct notice.
                                            'value' => _m('Send button for sending notice', 'Send')));
+    }
+
+
+    /**
+     * Show the form
+     *
+     * Uses a recipe to output the form.
+     *
+     * @return void
+     * @see Widget::show()
+     */
+
+    function show()
+    {
+        $this->elementStart('div', 'input_forms');
+        $this->elementStart(
+            'div',
+            array(
+                'id'    => 'input_form_direct',
+                'class' => 'input_form current nonav'
+            )
+        );
+
+        parent::show();
+
+        $this->elementEnd('div');
+        $this->elementEnd('div');
+
     }
 }

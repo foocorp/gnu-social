@@ -1,0 +1,89 @@
+# Translation of StatusNet - BitlyUrl to Friulian (Furlan)
+# Exported from translatewiki.net
+#
+# Author: Klenje
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - BitlyUrl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:44+0000\n"
+"Language-Team: Friulian <http://translatewiki.net/wiki/Portal:fur>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:26:00+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: fur\n"
+"X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Title of administration panel.
+msgid "bit.ly URL shortening"
+msgstr "Scurtis di URL bit.ly"
+
+#. TRANS: Instructions for administration panel.
+#. TRANS: This message contains Markdown links in the form [decsription](link).
+msgid ""
+"URL shortening with bit.ly requires [a bit.ly account and API key](http://"
+"bit.ly/a/your_api_key). This verifies that this is an authorized account, "
+"and allow you to use bit.ly's tracking features and custom domains."
+msgstr ""
+
+#. TRANS: Client error displayed when using too long a key.
+msgid "Invalid login. Maximum length is 255 characters."
+msgstr ""
+
+#. TRANS: Client error displayed when using too long a key.
+msgid "Invalid API key. Maximum length is 255 characters."
+msgstr ""
+
+#. TRANS: Fieldset legend in administration panel for bit.ly username and API key.
+msgctxt "LEGEND"
+msgid "Credentials"
+msgstr ""
+
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
+msgid "Leave these empty to use global default credentials."
+msgstr ""
+
+#. TRANS: Form guide in administration panel for bit.ly URL shortening.
+msgid "If you leave these empty, bit.ly will be unavailable to users."
+msgstr ""
+
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
+msgid "Login name"
+msgstr "Non de session"
+
+#. TRANS: Field label in administration panel for bit.ly URL shortening.
+msgid "API key"
+msgstr ""
+
+#. TRANS: Button text to save setting in administration panel for bit.ly URL shortening.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Salve"
+
+#. TRANS: Button title to save setting in administration panel for bit.ly URL shortening.
+msgid "Save bit.ly settings"
+msgstr "Salve lis impuestazions di bit.ly"
+
+#. TRANS: Exception thrown when bit.ly URL shortening plugin was configured incorrectly.
+msgid "You must specify a serviceUrl for bit.ly URL shortening."
+msgstr ""
+
+#. TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr "Dopre il servizi di scurte de URL <a href=\"http://%1$s/\">%1$s</a>."
+
+#. TRANS: Menu item in administration menus for bit.ly URL shortening settings.
+msgid "bit.ly"
+msgstr "bit.ly"
+
+#. TRANS: Title for menu item in administration menus for bit.ly URL shortening settings.
+msgid "bit.ly URL shortening."
+msgstr "Scurtis di URL bit.ly."

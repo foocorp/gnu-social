@@ -38,7 +38,6 @@ class FacebookfinishloginAction extends Action
     private $fbuser   = null; // Facebook user object (JSON)
 
     function prepare($args) {
-
         parent::prepare($args);
 
         $this->facebook = new Facebook(
@@ -64,7 +63,6 @@ class FacebookfinishloginAction extends Action
         }
 
         if (!empty($this->fbuser)) {
-
             // OKAY, all is well... proceed to register
 
             common_debug("Found a valid Facebook user.", __FILE__);
@@ -85,6 +83,7 @@ class FacebookfinishloginAction extends Action
             );
 
             $this->clientError(
+                // TRANS: Client error displayed when trying to connect to Facebook while not logged in.
                 _m('You must be logged into Facebook to register a local account using Facebook.')
             );
         }
@@ -115,6 +114,8 @@ class FacebookfinishloginAction extends Action
                 );
 
                 $this->clientError(
+                    // TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+                    // TRANS: in the same StatusNet site.
                     _m('There is already a local account linked with that Facebook account.')
                 );
 
@@ -138,6 +139,7 @@ class FacebookfinishloginAction extends Action
 
         if (!$token || $token != common_session_token()) {
             $this->showForm(
+                // TRANS: Client error displayed when the session token does not match or is not given.
                 _m('There was a problem with your session token. Try again, please.')
             );
             return;
@@ -147,7 +149,8 @@ class FacebookfinishloginAction extends Action
 
             if (!$this->boolean('license')) {
                 $this->showForm(
-                    _m('You can\'t register if you don\'t agree to the license.'),
+                    // TRANS: Form validation error displayed when user has not agreed to the license.
+                    _m('You cannot register if you do not agree to the license.'),
                     $this->trimmed('newname')
                 );
                 return;
@@ -164,6 +167,7 @@ class FacebookfinishloginAction extends Action
         } else {
 
             $this->showForm(
+                // TRANS: Form validation error displayed when an unhandled error occurs.
                 _m('An unknown error has occured.'),
                 $this->trimmed('newname')
             );
@@ -180,9 +184,10 @@ class FacebookfinishloginAction extends Action
 
             $this->element(
                 'div', 'instructions',
-                // TRANS: %s is the site name.
                 sprintf(
-                    _m('This is the first time you\'ve logged into %s so we must connect your Facebook to a local account. You can either create a new local account, or connect with an existing local account.'),
+                    // TRANS: Form instructions for connecting to Facebook.
+                    // TRANS: %s is the site name.
+                    _m('This is the first time you have logged into %s so we must connect your Facebook to a local account. You can either create a new local account, or connect with an existing local account.'),
                     common_config('site', 'name')
                 )
             );
@@ -209,7 +214,7 @@ class FacebookfinishloginAction extends Action
     }
 
     /**
-     * @fixme much of this duplicates core code, which is very fragile.
+     * @todo FIXME: Much of this duplicates core code, which is very fragile.
      * Should probably be replaced with an extensible mini version of
      * the core registration form.
      */
@@ -225,7 +230,7 @@ class FacebookfinishloginAction extends Action
                                           'class' => 'form_settings',
                                           'action' => common_local_url('facebookfinishlogin')));
         $this->elementStart('fieldset', array('id' => 'settings_facebook_connect_options'));
-        // TRANS: Legend.
+        // TRANS: Fieldset legend.
         $this->element('legend', null, _m('Connection options'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
@@ -252,9 +257,10 @@ class FacebookfinishloginAction extends Action
         $this->elementStart('fieldset');
         $this->hidden('token', common_session_token());
         $this->element('legend', null,
-                       // TRANS: Legend.
+                       // TRANS: Fieldset legend.
                        _m('Create new account'));
         $this->element('p', null,
+                       // TRANS: Form instructions.
                        _m('Create a new user with this nickname.'));
         $this->elementStart('ul', 'form_data');
 
@@ -265,22 +271,24 @@ class FacebookfinishloginAction extends Action
         // TRANS: Field label.
         $this->input('newname', _m('New nickname'),
                      ($this->username) ? $this->username : '',
-                     _m('1-64 lowercase letters or numbers, no punctuation or spaces'));
+                     // TRANS: Field title.
+                     _m('1-64 lowercase letters or numbers, no punctuation or spaces.'));
         $this->elementEnd('li');
 
         // Hook point for captcha etc
         Event::handle('EndRegistrationFormData', array($this));
 
         $this->elementEnd('ul');
-        // TRANS: Submit button.
+        // TRANS: Submit button to create a new account.
         $this->submit('create', _m('BUTTON','Create'));
         $this->elementEnd('fieldset');
 
         $this->elementStart('fieldset');
-        // TRANS: Legend.
         $this->element('legend', null,
+                       // TRANS: Fieldset legend.
                        _m('Connect existing account'));
         $this->element('p', null,
+                       // TRANS: Form instructions.
                        _m('If you already have an account, login with your username and password to connect it to your Facebook.'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
@@ -288,10 +296,11 @@ class FacebookfinishloginAction extends Action
         $this->input('nickname', _m('Existing nickname'));
         $this->elementEnd('li');
         $this->elementStart('li');
+        // TRANS: Field label.
         $this->password('password', _m('Password'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        // TRANS: Submit button.
+        // TRANS: Submit button to connect a Facebook account to an existing StatusNet account.
         $this->submit('connect', _m('BUTTON','Connect'));
         $this->elementEnd('fieldset');
 
@@ -344,11 +353,13 @@ class FacebookfinishloginAction extends Action
         }
 
         if (!User::allowed_nickname($nickname)) {
+            // TRANS: Form validation error displayed when picking a nickname that is not allowed.
             $this->showForm(_m('Nickname not allowed.'));
             return;
         }
 
         if (User::staticGet('nickname', $nickname)) {
+            // TRANS: Form validation error displayed when picking a nickname that is already in use.
             $this->showForm(_m('Nickname already in use. Try another one.'));
             return;
         }
@@ -377,6 +388,7 @@ class FacebookfinishloginAction extends Action
         $result = $this->flinkUser($user->id, $this->fbuid);
 
         if (!$result) {
+            // TRANS: Server error displayed when connecting to Facebook fails.
             $this->serverError(_m('Error connecting user to Facebook.'));
             return;
         }
@@ -479,6 +491,7 @@ class FacebookfinishloginAction extends Action
         $password = $this->trimmed('password');
 
         if (!common_check_user($nickname, $password)) {
+            // TRANS: Form validation error displayed when username/password combination is incorrect.
             $this->showForm(_m('Invalid username or password.'));
             return;
         }
@@ -516,6 +529,7 @@ class FacebookfinishloginAction extends Action
         $result = $this->flinkUser($user->id, $this->fbuid);
 
         if (empty($result)) {
+            // TRANS: Server error displayed when connecting to Facebook fails.
             $this->serverError(_m('Error connecting user to Facebook.'));
             return;
         }
@@ -687,5 +701,4 @@ class FacebookfinishloginAction extends Action
 
          return false;
      }
-
 }

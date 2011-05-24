@@ -104,6 +104,6 @@ class TagUnsubForm extends TagSubForm
 
     function formActions()
     {
-        $this->out->submit('submit', _('Unsubscribe'), 'submit', null, _m('Unsubscribe from this tag'));
+        $this->out->submit('submit', _m('BUTTON','Unsubscribe'), 'submit', null, _m('Unsubscribe from this tag'));
     }
 }

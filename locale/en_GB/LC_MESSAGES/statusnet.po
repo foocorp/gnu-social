@@ -5,6 +5,7 @@
 # Author: Bruce89
 # Author: CiaranG
 # Author: Lcawte
+# Author: Od1n
 # Author: Reedy
 # Author: XTL
 # --
@@ -14,20 +15,54 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 11:02+0000\n"
-"PO-Revision-Date: 2011-03-26 11:04:43+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:50:54+0000\n"
 "Language-Team: British English <http://translatewiki.net/wiki/Portal:en-gb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: en-gb\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-03-24 15:23:28+0000\n"
+"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+
+#. TRANS: Database error message.
+#, php-format
+msgid ""
+"The database for %1$s is not responding correctly, so the site will not work "
+"properly. The site admins probably know about the problem, but you can "
+"contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
+"again."
+msgstr ""
+
+#. TRANS: Error message.
+msgid ""
+"An important error occured, probably related to email setup. Check logfiles "
+"for more info."
+msgstr ""
+
+#. TRANS: Error message.
+msgid "An error occurred."
+msgstr ""
+
+#. TRANS: Error message displayed when there is no StatusNet configuration file.
+#, php-format
+msgid ""
+"No configuration file found. Try running the installation program first."
+msgstr ""
+
+#. TRANS: Error message displayed when trying to access a non-existing page.
+#, fuzzy
+msgid "Unknown page"
+msgstr "Unknown"
+
+#. TRANS: Error message displayed when trying to perform an undefined action.
+#. TRANS: Title for password recovery page when an unknown action has been specified.
+msgid "Unknown action"
+msgstr "Unknown action"
 
 #. TRANS: Page title for Access admin panel that allows configuring site access.
-#. TRANS: Menu item for site administration
 msgid "Access"
 msgstr "Access"
 
@@ -44,6 +79,8 @@ msgid "Prohibit anonymous users (not logged in) from viewing site?"
 msgstr "Prohibit anonymous users (not logged in) from viewing site?"
 
 #. TRANS: Checkbox label for prohibiting anonymous users from viewing site.
+#. TRANS: Checkbox label to show private tags.
+#. TRANS: Checkbox field label on group edit form to mark a group private.
 msgctxt "LABEL"
 msgid "Private"
 msgstr "Private"
@@ -79,18 +116,80 @@ msgstr "Save access settings"
 #. TRANS: Button text for saving site settings.
 #. TRANS: Button text for saving site notice in admin panel.
 #. TRANS: Button label to save SMS preferences.
+#. TRANS: Button text to save snapshot settings.
 #. TRANS: Save button for settings for a profile in a subscriptions list.
+#. TRANS: Button text to save lists.
 #. TRANS: Button text for saving "Other settings" in profile.
 #. TRANS: Button text to save user settings in user admin panel.
 #. TRANS: Button label in the "Edit application" form.
 #. TRANS: Button text on profile design page to save settings.
 #. TRANS: Text for save button on group edit form.
+#. TRANS: Button text to save tags for a profile.
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Save"
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
+#. TRANS: Form validation error in API OAuth authorisation because of an invalid session token.
+#. TRANS: Client error displayed when the session token does not match or is not given.
+#. TRANS: Form validation error message.
+#. TRANS: Client error displayed when the session token does not match or is not given.
+#. TRANS: Form validation error.
+#. TRANS: Form validation error message.
+#. TRANS: Client error displayed when the session token does not match or is not given.
+#. TRANS: Client error displayed when the session token is not okay.
+#. TRANS: Client error displayed when the session token does not match or is not given.
+msgid "There was a problem with your session token. Try again, please."
+msgstr "There was a problem with your session token. Try again, please."
+
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr "Not logged in."
+
+#. TRANS: Client error displayed trying to perform an action related to a non-existing profile.
+#. TRANS: Client exception thrown when requesting a favorite feed for a non-existing profile.
+#. TRANS: Client exception.
+#. TRANS: Client error displayed when referring to a non-existing profile.
+#. TRANS: Client error displayed trying to subscribe to a non-existing profile.
+#. TRANS: Client error displayed trying to perform an action related to a non-existing profile.
+msgid "No such profile."
+msgstr "No such profile."
+
+#. TRANS: Client error displayed trying to reference a non-existing list.
+#. TRANS: Client error displayed when referring to a non-existing list.
+#. TRANS: Client error displayed trying to reference a non-existing list.
+#, fuzzy
+msgid "No such list."
+msgstr "No such tag."
+
+#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
+#, fuzzy
+msgid "You cannot list an OMB 0.1 remote profile with this action."
+msgstr "You cannot subscribe to an OMB 0.1 remote profile with this action."
+
+#. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
+#. TRANS: %s is a username.
+#, php-format
+msgid "There was an unexpected error while listing %s."
+msgstr ""
+
+#. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
+#. TRANS: %s is a profile URL.
+#, php-format
+msgid ""
+"There was a problem listing %s. The remote server is probably not responding "
+"correctly. Please try retrying later."
+msgstr ""
+
+#. TRANS: Title after adding a user to a list.
+#, fuzzy
+msgctxt "TITLE"
+msgid "Listed"
+msgstr "License"
+
 #. TRANS: Server error when page not found (404).
 #. TRANS: Server error when page not found (404)
+#. TRANS: Server error when page not found (404).
 msgid "No such page."
 msgstr "No such page."
 
@@ -109,7 +208,10 @@ msgstr "No such page."
 #. TRANS: Client error displayed when checking group membership for a non-existing user.
 #. TRANS: Client error displayed when trying to have a non-existing user join a group.
 #. TRANS: Client error displayed when trying to have a non-existing user leave a group.
+#. TRANS: Client error displayed when user not found for an action.
 #. TRANS: Client error displayed when not providing a user or an invalid user.
+#. TRANS: Client error displayed when referring to a non-existing user.
+#. TRANS: Client error displayed trying to perform an action related to a non-existing user.
 #. TRANS: Client error displayed when updating a status for a non-existing user.
 #. TRANS: Client error displayed when requesting a list of followers for a non-existing user.
 #. TRANS: Client error displayed when requesting most recent favourite notices by a user for a non-existing user.
@@ -125,32 +227,36 @@ msgstr "No such page."
 #. TRANS: Client error displayed trying to make a micro summary without providing a valid user.
 #. TRANS: Client error displayed trying to send a direct message to a non-existing user.
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
+#. TRANS: Client error displayed when referring to non-existing user.
+#. TRANS: Client error displayed trying to perform an action related to a non-existing user.
 #. TRANS: Form validation error on page for remote subscribe when no user was provided.
 #. TRANS: Form validation error on page for remote subscribe when no user profile was found.
 #. TRANS: Client error displayed when trying to reply to a non-exsting user.
 #. TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
 #. TRANS: Client error.
 #. TRANS: Client error displayed when trying to display favourite notices for a non-existing user.
+#. TRANS: Client error displayed trying to perform an action related to a non-existing user.
 #. TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
 #. TRANS: Client error displayed requesting groups for a non-existing user.
+#. TRANS: Client error displayed when user not found for an action.
 #. TRANS: Client error displayed providing a non-existing nickname.
 #. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
+#. TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
+#. TRANS: Client error displayed when trying to access a mailbox without providing a user.
 #. TRANS: Client error displayed when calling a profile action without specifying a user.
 msgid "No such user."
 msgstr "No such user."
 
-#. TRANS: Page title. %1$s is user nickname, %2$d is page number
-#, php-format
-msgid "%1$s and friends, page %2$d"
-msgstr "%1$s and friends, page %2$d"
+#. TRANS: Title of a user's own start page.
+#, fuzzy
+msgid "Home timeline"
+msgstr "%s timeline"
 
-#. TRANS: Page title. %s is user nickname
-#. TRANS: H1 text for page. %s is a user nickname.
-#. TRANS: Message is used as link title. %s is a user nickname.
-#. TRANS: Timeline title for user and friends. %s is a user nickname.
-#, php-format
-msgid "%s and friends"
-msgstr "%s and friends"
+#. TRANS: Title of another user's start page.
+#. TRANS: %s is the other user's name.
+#, fuzzy, php-format
+msgid "%s's home timeline"
+msgstr "%s timeline"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -158,6 +264,8 @@ msgid "Feed for friends of %s (RSS 1.0)"
 msgstr "Feed for friends of %s (RSS 1.0)"
 
 #. TRANS: %s is user nickname.
+#. TRANS: Feed title.
+#. TRANS: %s is tagger's nickname.
 #, php-format
 msgid "Feed for friends of %s (RSS 2.0)"
 msgstr "Feed for friends of %s (RSS 2.0)"
@@ -208,9 +316,19 @@ msgstr ""
 "Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
 "post a notice to them."
 
-#. TRANS: H1 text for page when viewing a list for self.
-msgid "You and friends"
-msgstr "You and friends"
+#. TRANS: Message is used as link title. %s is a user nickname.
+#. TRANS: Title of API timeline for a user and friends.
+#. TRANS: %s is a username.
+#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Menu item title in administrator navigation panel.
+#. TRANS: %s is a username.
+#. TRANS: Menu item title in personal group navigation menu.
+#. TRANS: %s is a username.
+#. TRANS: Menu item title in settings navigation panel.
+#. TRANS: %s is a username.
+#, php-format
+msgid "%s and friends"
+msgstr "%s and friends"
 
 #. TRANS: Message is used as link description. %1$s is a username, %2$s is a site name.
 #. TRANS: Message is used as a subtitle. %1$s is a user nickname, %2$s is a site name.
@@ -218,28 +336,14 @@ msgstr "You and friends"
 msgid "Updates from %1$s and friends on %2$s!"
 msgstr "Updates from %1$s and friends on %2$s!"
 
-#. TRANS: Client error displayed handling a non-existing API method.
+#. TRANS: Client error displayed when coming across a non-supported API method.
 #. TRANS: Client error displayed when trying to handle an unknown API method.
-#. TRANS: Client error displayed trying to execute an unknown API method updating profile colours.
-#. TRANS: Client error displayed trying to execute an unknown API method verifying user credentials.
-#. TRANS: Client error given when an API method was not found (404).
-#. TRANS: Client error displayed when trying to handle an unknown API method.
-#. TRANS: Client error displayed trying to execute an unknown API method showing friendship.
-#. TRANS: Client error given when an API method was not found (404).
-#. TRANS: Client error displayed trying to execute an unknown API method showing group membership.
-#. TRANS: Client error displayed trying to execute an unknown API method joining a group.
-#. TRANS: Client error displayed trying to execute an unknown API method leaving a group.
-#. TRANS: Client error displayed trying to execute an unknown API method checking group membership.
-#. TRANS: Client error displayed trying to execute an unknown API method listing the latest 20 groups.
-#. TRANS: Client error displayed trying to execute an unknown API method showing group membership.
-#. TRANS: Client error displayed when using an unsupported API format.
-#. TRANS: Client error displayed trying to execute an unknown API method showing a group.
-#. TRANS: Client error displayed trying to execute an unknown API method testing API connectivity.
-#. TRANS: Client error displayed trying to execute an unknown API method deleting a status.
-#. TRANS: Client error displayed when trying to handle an unknown API method.
+#. TRANS: Client error displayed when coming across a non-supported API method.
 msgid "API method not found."
 msgstr "API method not found."
 
+#. TRANS: Client error message. POST is a HTTP command. It should not be translated.
+#. TRANS: Client error. POST is a HTTP command. It should not be translated.
 #. TRANS: Client error message. POST is a HTTP command. It should not be translated.
 #. TRANS: Client error. POST is a HTTP command. It should not be translated.
 msgid "This method requires a POST."
@@ -265,17 +369,7 @@ msgstr ""
 msgid "Could not update user."
 msgstr "Could not update user."
 
-#. TRANS: Client error displayed if a user profile could not be found.
-#. TRANS: Client error displayed when a user has no profile.
-#. TRANS: Client error displayed a user has no profile updating profile colours.
-#. TRANS: Client error displayed if a user profile could not be found updating a profile image.
-#. TRANS: Client error displayed when requesting user information for a user without a profile.
-#. TRANS: Client error displayed trying to get an avatar for a user without a profile.
-#. TRANS: Server error displayed when requesting Friends of a Friend feed for a user for which the profile could not be found.
-#. TRANS: Server error displayed when trying to get a user hCard for a user without a profile.
-#. TRANS: Server error displayed when trying to reply to a user without a profile.
-#. TRANS: Server error displayed requesting groups for a user without a profile.
-#. TRANS: Server error displayed when calling a profile action while the specified user does not have a profile.
+#. TRANS: Error message displayed when referring to a user without a profile.
 msgid "User has no profile."
 msgstr "User has no profile."
 
@@ -314,6 +408,8 @@ msgstr "Unable to save your design settings."
 #. TRANS: Error displayed when updating design settings fails.
 #. TRANS: Client error displayed when a database error occurs updating profile colours.
 #. TRANS: Form validation error on Profile design page when updating design settings has failed.
+#. TRANS: Error message displayed if design settings could not be saved.
+#. TRANS: Error message displayed if design settings could not be saved after clicking "Use defaults".
 msgid "Could not update your design."
 msgstr "Could not update your design."
 
@@ -514,6 +610,8 @@ msgstr "Full name is too long (max 255 chars)."
 #. TRANS: Validation error shown when providing too long a description in the "Edit application" form.
 #. TRANS: %d is the maximum number of allowed characters.
 #. TRANS: Group edit form validation error.
+#. TRANS: Client error shown when providing too long a description when editing a list.
+#. TRANS: %d is the maximum number of allowed characters.
 #. TRANS: Form validation error in New application form.
 #. TRANS: %d is the maximum number of characters for the description.
 #. TRANS: Group create form validation error.
@@ -630,7 +728,7 @@ msgstr "%1$s groups %2$s is a member of."
 msgid "%s groups"
 msgstr "%s groups"
 
-#. TRANS: Message is used as a subtitle when listing the lastest 20 groups. %s is a site name.
+#. TRANS: Message is used as a subtitle when listing the latest 20 groups. %s is a site name.
 #, php-format
 msgid "groups on %s"
 msgstr "groups on %s"
@@ -664,6 +762,66 @@ msgstr "Nickname must have only lowercase letters and numbers, and no spaces."
 msgid "Alias cannot be the same as nickname."
 msgstr "Alias can't be the same as nickname."
 
+#. TRANS: Client error displayed when referring to a non-existing list.
+#. TRANS: Client error displayed trying to perform an action related to a non-existing list.
+#. TRANS: Client error displayed when referring to a non-existing list.
+#, fuzzy
+msgid "List not found."
+msgstr "API method not found."
+
+#. TRANS: Client error displayed when trying to update another user's list.
+msgid "You cannot update lists that do not belong to you."
+msgstr ""
+
+#. TRANS: Client error displayed when an unknown error occurs updating a list.
+#. TRANS: Client error displayed when an unknown error occurs viewing list members.
+#. TRANS: Client error displayed when an unknown error occurs in the list subscribers action.
+#. TRANS: Client error displayed when an unknown error occurs unsubscribing from a list.
+msgid "An error occured."
+msgstr ""
+
+#. TRANS: Client error displayed when trying to delete another user's list.
+msgid "You cannot delete lists that do not belong to you."
+msgstr ""
+
+#. TRANS: Client error displayed when referring to a non-list member.
+#, fuzzy
+msgid "The specified user is not a member of this list."
+msgstr "User is not a member of group."
+
+#. TRANS: Client error displayed when trying to add members to a list without having the right to do so.
+#, fuzzy
+msgid "You are not allowed to add members to this list."
+msgstr "You are not allowed to delete this group."
+
+#. TRANS: Client error displayed when trying to modify list members without specifying them.
+#, fuzzy
+msgid "You must specify a member."
+msgstr "Missing profile."
+
+#. TRANS: Client error displayed when trying to remove members from a list without having the right to do so.
+#, fuzzy
+msgid "You are not allowed to remove members from this list."
+msgstr "You are not allowed to delete this group."
+
+#. TRANS: Client error displayed when trying to remove a list member that is not part of a list.
+msgid "The user you are trying to remove from the list is not a member."
+msgstr ""
+
+#. TRANS: Client error displayed when trying to create a list without a name.
+#, fuzzy
+msgid "A list must have a name."
+msgstr "Alias can't be the same as nickname."
+
+#. TRANS: Client error displayed when a membership check for a user is nagative.
+msgid "The specified user is not a subscriber of this list."
+msgstr ""
+
+#. TRANS: Client error displayed when trying to unsubscribe from a non-subscribed list.
+#, fuzzy
+msgid "You are not subscribed to this list."
+msgstr "You are not subscribed to that profile."
+
 #. TRANS: Client error displayed when uploading a media file has failed.
 msgid "Upload failed."
 msgstr "Upload failed."
@@ -684,15 +842,6 @@ msgstr "Invalid request token."
 #, fuzzy
 msgid "Request token already authorized."
 msgstr "You are not authorised."
-
-#. TRANS: Form validation error in API OAuth authorisation because of an invalid session token.
-#. TRANS: Client error displayed when the session token does not match or is not given.
-#. TRANS: Form validation error message.
-#. TRANS: Form validation error.
-#. TRANS: Form validation error message.
-#. TRANS: Client error displayed when the session token is not okay.
-msgid "There was a problem with your session token. Try again, please."
-msgstr "There was a problem with your session token. Try again, please."
 
 #. TRANS: Form validation error given when an invalid username and/or password was passed to the OAuth API.
 msgid "Invalid nickname / password!"
@@ -758,11 +907,11 @@ msgid "Account"
 msgstr "Account"
 
 #. TRANS: Field label on OAuth API authorisation form.
-#. TRANS: Field label on login page.
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
 #. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
+#. TRANS: Dropdown option for searching in profiles.
 msgid "Nickname"
 msgstr "Nickname"
 
@@ -844,16 +993,6 @@ msgstr "You may not delete another user's status."
 msgid "No such notice."
 msgstr "No such notice."
 
-#. TRANS: Client error displayed trying to repeat an own notice through the API.
-#. TRANS: Error text shown when trying to repeat an own notice.
-msgid "Cannot repeat your own notice."
-msgstr "Cannot repeat your own notice."
-
-#. TRANS: Client error displayed trying to re-repeat a notice through the API.
-#. TRANS: Error text shown when trying to repeat an notice that was already repeated by the user.
-msgid "Already repeated that notice."
-msgstr "Already repeated that notice."
-
 #. TRANS: Client error displayed calling an unsupported HTTP error in API status show.
 #. TRANS: Client exception thrown when using an unsupported HTTP method.
 #. TRANS: Client exception thrown using an unsupported HTTP method.
@@ -897,8 +1036,11 @@ msgstr "Delete notice"
 msgid "Client must provide a 'status' parameter with a value."
 msgstr ""
 
+#. TRANS: Client error displayed exceeding the maximum notice length.
+#. TRANS: %d is the maximum length for a notice.
 #. TRANS: Client error displayed when the parameter "status" is missing.
 #. TRANS: %d is the maximum number of character for a notice.
+#. TRANS: Error message in incoming mail handler used when an incoming e-mail contains too many characters.
 #, fuzzy, php-format
 msgid "That's too long. Maximum notice size is %d character."
 msgid_plural "That's too long. Maximum notice size is %d characters."
@@ -912,6 +1054,8 @@ msgstr "API method not found."
 
 #. TRANS: Client error displayed exceeding the maximum notice length.
 #. TRANS: %d is the maximum lenth for a notice.
+#. TRANS: Client error displayed exceeding the maximum notice length.
+#. TRANS: %d is the maximum length for a notice.
 #, fuzzy, php-format
 msgid "Maximum notice size is %d character, including attachment URL."
 msgid_plural "Maximum notice size is %d characters, including attachment URL."
@@ -935,6 +1079,12 @@ msgstr "%1$s / Favourites from %2$s"
 #, fuzzy, php-format
 msgid "%1$s updates favorited by %2$s / %3$s."
 msgstr "%1$s updates favourited by %2$s / %2$s."
+
+#. TRANS: Server error displayed whe trying to get a timeline fails.
+#. TRANS: %s is the error message.
+#, fuzzy, php-format
+msgid "Could not generate feed for list - %s"
+msgstr "Could not create login token for %s"
 
 #. TRANS: Title for timeline of most recent mentions of a user.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is a user nickname.
@@ -982,6 +1132,8 @@ msgstr "%1$s updates that reply to updates from %2$s / %3$s."
 msgid "Repeats of %s"
 msgstr "Repeats of %s"
 
+#. TRANS: Subtitle of API time with retweets of me.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the user nickname, %3$s is the user profile name.
 #, fuzzy, php-format
 msgid "%1$s notices that %2$s / %3$s has repeated."
 msgstr "%1$s marked notice %2$s as a favourite."
@@ -996,6 +1148,8 @@ msgstr "Notices tagged with %s"
 
 #. TRANS: Subtitle for timeline with lastest notices with a given tag.
 #. TRANS: %1$s is the tag, $2$s is the StatusNet sitename.
+#. TRANS: Tag feed description.
+#. TRANS: %1$s is the tag name, %2$s is the StatusNet sitename.
 #, php-format
 msgid "Updates tagged with %1$s on %2$s!"
 msgstr "Updates tagged with %1$s on %2$s!"
@@ -1111,11 +1265,13 @@ msgid "Only group admin can approve or cancel join requests."
 msgstr ""
 
 #. TRANS: Client error displayed trying to approve group membership without specifying a profile to approve.
+#. TRANS: Client error displayed trying to approve subscriptionswithout specifying a profile to approve.
 #, fuzzy
 msgid "Must specify a profile."
 msgstr "Missing profile."
 
 #. TRANS: Client error displayed trying to approve group membership for a non-existing request.
+#. TRANS: %s is a nickname.
 #. TRANS: Client error displayed when trying to approve a non-existing group join request.
 #. TRANS: %s is a user nickname.
 #, fuzzy, php-format
@@ -1123,10 +1279,12 @@ msgid "%s is not in the moderation queue for this group."
 msgstr "A list of the users in this group."
 
 #. TRANS: Client error displayed trying to approve/deny group membership.
+#. TRANS: Client error displayed trying to approve/deny subscription.
 msgid "Internal error: received neither cancel nor abort."
 msgstr ""
 
 #. TRANS: Client error displayed trying to approve/deny group membership.
+#. TRANS: Client error displayed trying to approve/deny  subscription
 msgid "Internal error: received both cancel and abort."
 msgstr ""
 
@@ -1151,11 +1309,33 @@ msgstr ""
 msgid "Join request canceled."
 msgstr ""
 
-#. TRANS: Client exception thrown when requesting a favorite feed for a non-existing profile.
-#. TRANS: Client exception.
-#. TRANS: Client error displayed trying to subscribe to a non-existing profile.
-msgid "No such profile."
-msgstr "No such profile."
+#. TRANS: Client error displayed trying to approve subscription for a non-existing request.
+#, fuzzy, php-format
+msgid "%s is not in the moderation queue for your subscriptions."
+msgstr "A list of the users in this group."
+
+#. TRANS: Server error displayed when cancelling a queued subscription request fails.
+#. TRANS: %1$s is the leaving user's nickname, $2$s is the nickname for which the leave failed.
+#, fuzzy, php-format
+msgid "Could not cancel or approve request for user %1$s to join group %2$s."
+msgstr "Could not join user %1$s to group %2$s."
+
+#. TRANS: Title for subscription approval ajax return
+#. TRANS: %1$s is the approved user's nickname
+#, fuzzy, php-format
+msgctxt "TITLE"
+msgid "%1$s's request"
+msgstr "%1$s's status on %2$s"
+
+#. TRANS: Message on page for user after approving a subscription request.
+#, fuzzy
+msgid "Subscription approved."
+msgstr "Subscription authorised"
+
+#. TRANS: Message on page for user after rejecting a subscription request.
+#, fuzzy
+msgid "Subscription canceled."
+msgstr "Authorisation cancelled."
 
 #. TRANS: Subtitle for Atom favorites feed.
 #. TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename.
@@ -1192,7 +1372,7 @@ msgstr "Add to favourites"
 #. TRANS: Title for group membership feed.
 #. TRANS: %s is a username.
 #, fuzzy, php-format
-msgid "%s group memberships"
+msgid "Group memberships of %s"
 msgstr "%s group members"
 
 #. TRANS: Subtitle for group membership feed.
@@ -1206,8 +1386,7 @@ msgstr "Groups %s is a member of"
 msgid "Cannot add someone else's membership."
 msgstr "Couldn't insert new subscription."
 
-#. TRANS: Client error displayed when not using the POST verb.
-#. TRANS: Do not translate POST.
+#. TRANS: Client error displayed when not using the join verb.
 #, fuzzy
 msgid "Can only handle join activities."
 msgstr "Find content of notices"
@@ -1322,14 +1501,6 @@ msgstr "Avatar"
 msgid "You can upload your personal avatar. The maximum file size is %s."
 msgstr "You can upload your personal avatar. The maximum file size is %s."
 
-#. TRANS: Server error displayed in avatar upload page when no matching profile can be found for a user.
-#. TRANS: Server error displayed coming across a request from a user without a profile.
-#. TRANS: Server error displayed on page for remote subscribe when user does not have a matching profile.
-#. TRANS: Server error displayed when trying to authorise a remote subscription request
-#. TRANS: while the user has no profile.
-msgid "User without matching profile."
-msgstr "User without matching profile."
-
 #. TRANS: Avatar upload page form legend.
 #. TRANS: Avatar upload page crop form legend.
 #. TRANS: Legend for group logo settings fieldset.
@@ -1353,6 +1524,8 @@ msgstr "Preview"
 #. TRANS: Button on avatar upload page to delete current avatar.
 #. TRANS: Button text for user account deletion.
 #. TRANS: Submit button text the OAuth application page to delete an application.
+#. TRANS: Button text for deleting a group.
+#. TRANS: Button text to delete a list.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Delete"
@@ -1471,6 +1644,7 @@ msgstr "Do not block this user"
 #. TRANS: Button label on the delete notice form.
 #. TRANS: Button label on the delete user form.
 #. TRANS: Button label on the form to block a user from a group.
+#. TRANS: Button text to repeat a notice on notice repeat form.
 msgctxt "BUTTON"
 msgid "Yes"
 msgstr "Yes"
@@ -1529,6 +1703,28 @@ msgctxt "TITLE"
 msgid "%1$s left group %2$s"
 msgstr "%1$s left group %2$s"
 
+#. TRANS: Client error displayed when trying to leave a group without specifying an ID.
+#. TRANS: Client error displayed when trying to unsubscribe without providing a profile ID.
+msgid "No profile ID in request."
+msgstr "No profile ID in request."
+
+#. TRANS: Client error displayed when trying to leave a non-existing group.
+#. TRANS: Client error displayed trying to block a user from a group while specifying a non-existing profile.
+#. TRANS: Client error displayed when trying to unblock a user from a group without providing an existing profile.
+#. TRANS: Client error displayed when specifying an invalid profile ID on the Make Admin page.
+#. TRANS: Client error displayed trying a change a subscription for a non-existant profile ID.
+#. TRANS: Client error displayed when referring to non-existing profile ID.
+#. TRANS: Client error displayed when trying to unsubscribe while providing a non-existing profile ID.
+#. TRANS: Client error displayed when trying to change user options without specifying an existing user to work on.
+msgid "No profile with that ID."
+msgstr "No profile with that ID."
+
+#. TRANS: Title after unsubscribing from a group.
+#, fuzzy
+msgctxt "TITLE"
+msgid "Unsubscribed"
+msgstr "Unsubscribed"
+
 #. TRANS: Client error displayed when not providing a confirmation code in the contact address confirmation action.
 msgid "No confirmation code."
 msgstr "No confirmation code."
@@ -1581,11 +1777,6 @@ msgstr "The address \"%s\" has been confirmed for your account."
 #. TRANS: Title for page with a conversion (multiple notices in context).
 msgid "Conversation"
 msgstr "Conversation"
-
-#. TRANS: Header on conversation page. Hidden by default (h2).
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Notices"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -1669,6 +1860,7 @@ msgstr "Application not found."
 msgid "You are not the owner of this application."
 msgstr "You are not the owner of this application."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 #. TRANS: Client error text when there is a problem with the session token.
 msgid "There was a problem with your session token."
 msgstr "There was a problem with your session token."
@@ -1742,24 +1934,6 @@ msgstr "Do not delete this group"
 #, fuzzy
 msgid "Delete this group."
 msgstr "Delete this group"
-
-#. TRANS: Error message displayed trying to delete a notice while not logged in.
-#. TRANS: Client error displayed when trying to remove a favorite while not logged in.
-#. TRANS: Client error displayed when trying to mark a notice as favorite without being logged in.
-#. TRANS: Client error displayed trying to block a user from a group while not logged in.
-#. TRANS: Client error displayed when trying to unblock a user from a group while not logged in.
-#. TRANS: Client error displayed trying to log out when not logged in.
-#. TRANS: Client error displayed when trying to access the "make admin" page while not logged in.
-#. TRANS: Client error displayed trying to create a new direct message while not logged in.
-#. TRANS: Client error displayed trying to send a notice while not logged in.
-#. TRANS: Client error displayed trying to nudge a user without being logged in.
-#. TRANS: Client error displayed when trying to enable or disable a plugin while not logged in.
-#. TRANS: Client error displayed trying a change a subscription while not logged in.
-#. TRANS: Client error displayed trying to subscribe when not logged in.
-#. TRANS: Client error message thrown when trying to access the admin panel while not logged in.
-#. TRANS: Client error displayed when trying to change user options while not logged in.
-msgid "Not logged in."
-msgstr "Not logged in."
 
 #. TRANS: Instructions for deleting a notice.
 msgid ""
@@ -1956,16 +2130,19 @@ msgid "Use defaults"
 msgstr "Use defaults"
 
 #. TRANS: Title for button for resetting theme settings.
+#. TRANS: Title for button on profile design page to reset all colour settings to default.
 #, fuzzy
 msgid "Restore default designs."
 msgstr "Restore default designs"
 
 #. TRANS: Title for button for resetting theme settings.
+#. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
 #, fuzzy
 msgid "Reset back to default."
 msgstr "Reset back to default"
 
 #. TRANS: Title for button for saving theme settings.
+#. TRANS: Title for button on profile design page to save settings.
 #, fuzzy
 msgid "Save design."
 msgstr "Save design"
@@ -2084,8 +2261,75 @@ msgid "Invalid alias: \"%s\""
 msgstr "Invalid alias: \"%s\""
 
 #. TRANS: Group edit form success message.
+#. TRANS: Edit list form success message.
 msgid "Options saved."
 msgstr "Options saved."
+
+#. TRANS: Title for edit list page after deleting a tag.
+#. TRANS: %s is a list.
+#, fuzzy, php-format
+msgid "Delete %s list"
+msgstr "Delete this user"
+
+#. TRANS: Title for edit list page.
+#. TRANS: %s is a list.
+#. TRANS: Form legend for list edit form.
+#. TRANS: %s is a list.
+#, fuzzy, php-format
+msgid "Edit list %s"
+msgstr "Not a valid people tag: %s."
+
+#. TRANS: Error message displayed when trying to perform an action that requires a tagging user or ID.
+#, fuzzy
+msgid "No tagger or ID."
+msgstr "No nickname or ID."
+
+#. TRANS: Client error displayed when referring to non-local user.
+msgid "Not a local user."
+msgstr "No such user."
+
+#. TRANS: Client error displayed when reting to edit a tag that was not self-created.
+#, fuzzy
+msgid "You must be the creator of the tag to edit it."
+msgstr "You must be an admin to edit the group."
+
+#. TRANS: Form instruction for edit list form.
+#, fuzzy
+msgid "Use this form to edit the list."
+msgstr "Use this form to edit the group."
+
+#. TRANS: Form validation error displayed if the form data for deleting a tag was incorrect.
+#, fuzzy
+msgid "Delete aborted."
+msgstr "Delete notice"
+
+#. TRANS: Text in confirmation dialog for deleting a tag.
+msgid ""
+"Deleting this tag will permanantly remove all its subscription and "
+"membership records. Do you still want to continue?"
+msgstr ""
+
+#. TRANS: Form validation error displayed if a given tag is invalid.
+#, fuzzy
+msgid "Invalid tag."
+msgstr "Invalid size."
+
+#. TRANS: Form validation error displayed if a given tag is already present.
+#. TRANS: %s is the already present tag.
+#, fuzzy, php-format
+msgid "You already have a tag named %s."
+msgstr "You already repeated that notice."
+
+#. TRANS: Text in confirmation dialog for setting a tag from public to private.
+msgid ""
+"Setting a public tag as private will permanently remove all the existing "
+"subscriptions to it. Do you still want to continue?"
+msgstr ""
+
+#. TRANS: TRANS: Server error displayed when updating a list fails.
+#, fuzzy
+msgid "Could not update list."
+msgstr "Could not update user."
 
 #. TRANS: Title for e-mail settings.
 msgid "Email settings"
@@ -2111,6 +2355,7 @@ msgstr "Current confirmed e-mail address."
 #. TRANS: Button label to remove a confirmed IM address.
 #. TRANS: Button label to remove a confirmed SMS address.
 #. TRANS: Button label for removing a set sender SMS e-mail address to post notices from.
+#. TRANS: Button text to untag a profile.
 msgctxt "BUTTON"
 msgid "Remove"
 msgstr "Remove"
@@ -2134,6 +2379,7 @@ msgstr "E-mail address, like \"UserName@example.org\""
 #. TRANS: Button label for adding an e-mail address in e-mail settings form.
 #. TRANS: Button label for adding an IM address in IM settings form.
 #. TRANS: Button label for adding a SMS phone number in SMS settings form.
+#. TRANS: Button text to tag a profile.
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "Add"
@@ -2299,6 +2545,7 @@ msgstr "Disfavor favourite"
 
 #. TRANS: Page title for first page of favorited notices.
 #. TRANS: Title for favourited notices section.
+#. TRANS: Menu item title in search group navigation panel.
 msgid "Popular notices"
 msgstr "Popular notices"
 
@@ -2339,6 +2586,8 @@ msgstr ""
 #. TRANS: %s is a user's nickname.
 #. TRANS: Title for first page of favourite notices of a user.
 #. TRANS: %s is the user for whom the favourite notices are displayed.
+#. TRANS: Menu item title in personal group navigation menu.
+#. TRANS: %s is a username.
 #, php-format
 msgid "%s's favorite notices"
 msgstr "%s's favourite notices"
@@ -2351,6 +2600,7 @@ msgstr "Updates favoured by %1$s on %2$s!"
 
 #. TRANS: Page title for first page of featured users.
 #. TRANS: Title for featured users section.
+#. TRANS: Menu item title in search group navigation panel.
 msgid "Featured users"
 msgstr "Featured users"
 
@@ -2412,6 +2662,7 @@ msgid "Remote service uses unknown version of OMB protocol."
 msgstr "Remote service uses unknown version of OMB protocol."
 
 #. TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
+#. TRANS: Exception thrown when updating a remote profile fails in OAuth store.
 msgid "Error updating remote profile."
 msgstr "Error updating remote profile."
 
@@ -2448,14 +2699,6 @@ msgstr "User already has this role."
 #. TRANS: Client error displayed when trying to change user options without specifying a user to work on.
 msgid "No profile specified."
 msgstr "No profile specified."
-
-#. TRANS: Client error displayed trying to block a user from a group while specifying a non-existing profile.
-#. TRANS: Client error displayed when trying to unblock a user from a group without providing an existing profile.
-#. TRANS: Client error displayed when specifying an invalid profile ID on the Make Admin page.
-#. TRANS: Client error displayed trying a change a subscription for a non-existant profile ID.
-#. TRANS: Client error displayed when trying to change user options without specifying an existing user to work on.
-msgid "No profile with that ID."
-msgstr "No profile with that ID."
 
 #. TRANS: Client error displayed trying to block a user from a group while not specifying a group to block a profile from.
 #. TRANS: Client error displayed when trying to unblock a user from a group without providing a group.
@@ -2507,6 +2750,7 @@ msgid "Database error blocking user from group."
 msgstr "Database error blocking user from group."
 
 #. TRANS: Client error displayed referring to a group's permalink without providing a group ID.
+#. TRANS: Client error displayed trying to perform an action without providing an ID.
 #. TRANS: Client error displayed trying to find a user by ID without providing an ID.
 msgid "No ID."
 msgstr "No ID."
@@ -2607,7 +2851,7 @@ msgstr "%1$s group members, page %2$d"
 msgid "A list of users awaiting approval to join this group."
 msgstr "A list of the users in this group."
 
-#. TRANS: Message is used as link description. %1$s is a username, %2$s is a site name.
+#. TRANS: Message is used as link description. %1$s is a group name, %2$s is a site name.
 #, php-format
 msgid "Updates from members of %1$s on %2$s!"
 msgstr "Updates from members of %1$s on %2$s!"
@@ -2664,6 +2908,7 @@ msgstr "Group search"
 #. TRANS: Text on page where groups can be searched if no results were found for a query.
 #. TRANS: Text for notice search results is the query had no results.
 #. TRANS: Message on the "People search" page where a query has no results.
+#. TRANS: Output when there are no results for a search.
 msgid "No results."
 msgstr "No results."
 
@@ -2958,67 +3203,6 @@ msgstr "Send"
 msgid "%1$s has invited you to join them on %2$s"
 msgstr "%1$s has invited you to join them on %2$s"
 
-#. TRANS: Body text for invitation email. Note that 'them' is correct as a gender-neutral
-#. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, %2$s is the
-#. TRANS: StatusNet sitename, %3$s is the site URL, %4$s is the personal message from the
-#. TRANS: inviting user, %s%5 a link to the timeline for the inviting user, %s$6 is a link
-#. TRANS: to register with the StatusNet site.
-#, php-format
-msgid ""
-"%1$s has invited you to join them on %2$s (%3$s).\n"
-"\n"
-"%2$s is a micro-blogging service that lets you keep up-to-date with people "
-"you know and people who interest you.\n"
-"\n"
-"You can also share news about yourself, your thoughts, or your life online "
-"with people who know about you. It's also great for meeting new people who "
-"share your interests.\n"
-"\n"
-"%1$s said:\n"
-"\n"
-"%4$s\n"
-"\n"
-"You can see %1$s's profile page on %2$s here:\n"
-"\n"
-"%5$s\n"
-"\n"
-"If you'd like to try the service, click on the link below to accept the "
-"invitation.\n"
-"\n"
-"%6$s\n"
-"\n"
-"If not, you can ignore this message. Thanks for your patience and your "
-"time.\n"
-"\n"
-"Sincerely, %2$s\n"
-msgstr ""
-"%1$s has invited you to join them on %2$s (%3$s).\n"
-"\n"
-"%2$s is a micro-blogging service that lets you keep up-to-date with people "
-"you know and people who interest you.\n"
-"\n"
-"You can also share news about yourself, your thoughts, or your life online "
-"with people who know about you. It's also great for meeting new people who "
-"share your interests.\n"
-"\n"
-"%1$s said:\n"
-"\n"
-"%4$s\n"
-"\n"
-"You can see %1$s's profile page on %2$s here:\n"
-"\n"
-"%5$s\n"
-"\n"
-"If you'd like to try the service, click on the link below to accept the "
-"invitation.\n"
-"\n"
-"%6$s\n"
-"\n"
-"If not, you can ignore this message. Thanks for your patience and your "
-"time.\n"
-"\n"
-"Sincerely, %2$s\n"
-
 #. TRANS: Client error displayed when trying to join a group while not logged in.
 msgid "You must be logged in to join a group."
 msgstr "You must be logged in to join a group."
@@ -3084,6 +3268,7 @@ msgid "License selection"
 msgstr ""
 
 #. TRANS: License option in the license admin panel.
+#. TRANS: Checkbox label to mark a list private.
 msgid "Private"
 msgstr "Private"
 
@@ -3167,6 +3352,11 @@ msgstr "Login"
 #. TRANS: Form legend on login page.
 msgid "Login to site"
 msgstr "Login to site"
+
+#. TRANS: Field label on login page.
+#, fuzzy
+msgid "Username or email address"
+msgstr "Nickname or e-mail address"
 
 #. TRANS: Checkbox label label on login page.
 #. TRANS: Checkbox label on account registration page.
@@ -3257,7 +3447,6 @@ msgstr "Source URL is required."
 msgid "Could not create application."
 msgstr "Could not create application."
 
-#. TRANS: Form validation error on New application page when providing an invalid image upload.
 #, fuzzy
 msgid "Invalid image."
 msgstr "Invalid size."
@@ -3322,6 +3511,9 @@ msgid "Ajax Error"
 msgstr "Ajax Error"
 
 #. TRANS: Page title for sending a new notice.
+#. TRANS: Title for form to send a new notice.
+#, fuzzy
+msgctxt "TITLE"
 msgid "New notice"
 msgstr "New notice"
 
@@ -3628,7 +3820,6 @@ msgid "Password saved."
 msgstr "Password saved."
 
 #. TRANS: Title for Paths admin panel.
-#. TRANS: Menu item for site administration
 msgid "Paths"
 msgstr ""
 
@@ -3830,6 +4021,7 @@ msgid "SSL"
 msgstr "SSL"
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
+#. TRANS: Option in dropdown for snapshot method in admin panel for snapshots.
 msgid "Never"
 msgstr "Never"
 
@@ -3871,17 +4063,218 @@ msgstr ""
 msgid "People search"
 msgstr "People search"
 
-#. TRANS: Client error displayed when trying to tag a profile with an invalid tag.
-#. TRANS: %s is the invalid tag.
-#, php-format
-msgid "Not a valid people tag: %s."
-msgstr "Not a valid people tag: %s."
+#. TRANS: Title for list page.
+#. TRANS: %s is a list.
+#, fuzzy, php-format
+msgid "Public list %s"
+msgstr "Public tag cloud"
 
-#. TRANS: Page title for users with a certain self-tag.
-#. TRANS: %1$s is the tag, %2$s is the page number.
+#. TRANS: Title for list page.
+#. TRANS: %1$s is a list, %2$d is a page number.
+#, fuzzy, php-format
+msgid "Public list %1$s, page %2$d"
+msgstr "Replies to %1$s, page %2$d"
+
+#. TRANS: Message for anonymous users on list page.
+#. TRANS: This message contains Markdown links in the form [description](link).
+#, fuzzy, php-format
+msgid ""
+"Lists are how you sort similar people on %%site.name%%, a [micro-blogging]"
+"(http://en.wikipedia.org/wiki/Micro-blogging) service based on the Free "
+"Software [StatusNet](http://status.net/) tool. You can then easily keep "
+"track of what they are doing by subscribing to the list's timeline."
+msgstr ""
+"**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
+"wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
+"[StatusNet](http://status.net/) tool. Its members share short messages about "
+"their life and interests. "
+
+#. TRANS: Client error displayed when a tagger is expected but not provided.
+#, fuzzy
+msgid "No tagger."
+msgstr "No such tag."
+
+#. TRANS: Title for list of people listed by the user.
+#. TRANS: %1$s is a list, %2$s is a username.
+#, fuzzy, php-format
+msgid "People listed in %1$s by %2$s"
+msgstr "Replies to %1$s on %2$s!"
+
+#. TRANS: Title for list of people listed by the user.
+#. TRANS: %1$s is a list, %2$s is a username, %2$s is a page number.
+#, fuzzy, php-format
+msgid "People listed in %1$s by %2$s, page %3$d"
+msgstr "Replies to %1$s, page %2$d"
+
+#. TRANS: Addition in tag membership list for creator of a tag.
+#. TRANS: Addition in tag subscribers list for creator of a tag.
+#, fuzzy
+msgid "Creator"
+msgstr "Created"
+
+#. TRANS: Title for lists by a user page for a private tag.
+#, fuzzy
+msgid "Private lists by you"
+msgstr "Edit %s group"
+
+#. TRANS: Title for lists by a user page for a public tag.
+#, fuzzy
+msgid "Public lists by you"
+msgstr "Public tag cloud"
+
+#. TRANS: Title for lists by a user page.
+#, fuzzy
+msgid "Lists by you"
+msgstr "Edit %s group"
+
+#. TRANS: Title for lists by a user page.
+#. TRANS: %s is a user nickname.
 #, php-format
-msgid "Users self-tagged with %1$s - page %2$d"
-msgstr "Users self-tagged with %1$s - page %2$d"
+msgid "Lists by %s"
+msgstr ""
+
+#. TRANS: Title for lists by a user page.
+#. TRANS: %1$s is a user nickname, %2$d is a page number.
+#, fuzzy, php-format
+msgid "Lists by %1$s, page %2$d"
+msgstr "Notices tagged with %1$s, page %2$d"
+
+#. TRANS: Client error displayed when trying view another user's private lists.
+msgid "You cannot view others' private lists"
+msgstr ""
+
+#. TRANS: Mode selector label.
+#, fuzzy
+msgid "Mode"
+msgstr "Moderate"
+
+#. TRANS: Link text to show lists for user %s.
+#, fuzzy, php-format
+msgid "Lists for %s"
+msgstr "Outbox for %s"
+
+#. TRANS: Fieldset legend.
+#. TRANS: Fieldset legend on gallery action page.
+msgid "Select tag to filter"
+msgstr "Select tag to filter"
+
+#. TRANS: Checkbox title.
+msgid "Show private tags."
+msgstr ""
+
+#. TRANS: Checkbox label to show public tags.
+#, fuzzy
+msgctxt "LABEL"
+msgid "Public"
+msgstr "Public"
+
+#. TRANS: Checkbox title.
+#, fuzzy
+msgid "Show public tags."
+msgstr "No such tag."
+
+#. TRANS: Submit button text for tag filter form.
+#. TRANS: Submit button text on gallery action page.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Go"
+msgstr "Go"
+
+#. TRANS: Message displayed for anonymous users on page that displays lists by a user.
+#. TRANS: This message contains Markdown links in the form [description](links).
+#. TRANS: %s is a tagger nickname.
+#, fuzzy, php-format
+msgid ""
+"These are lists created by **%s**. Lists are how you sort similar people on %"
+"%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
+"blogging) service based on the Free Software [StatusNet](http://status.net/) "
+"tool. You can easily keep track of what they are doing by subscribing to the "
+"tag's timeline."
+msgstr ""
+"**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
+"wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
+"[StatusNet](http://status.net/) tool. Its members share short messages about "
+"their life and interests. "
+
+#. TRANS: Message displayed on page that displays lists by a user when there are none.
+#. TRANS: This message contains Markdown links in the form [description](links).
+#. TRANS: %s is a tagger nickname.
+#, php-format
+msgid "%s has not created any [lists](%%%%doc.lists%%%%) yet."
+msgstr ""
+
+#. TRANS: Page title. %s is a tagged user's nickname.
+#, php-format
+msgid "Lists with %s in them"
+msgstr ""
+
+#. TRANS: Page title. %1$s is a tagged user's nickname, %2$s is a page number.
+#, fuzzy, php-format
+msgid "Lists with %1$s, page %2$d"
+msgstr "Notices tagged with %1$s, page %2$d"
+
+#. TRANS: Message displayed for anonymous users on page that displays lists for a user.
+#. TRANS: This message contains Markdown links in the form [description](links).
+#. TRANS: %s is a tagger nickname.
+#, fuzzy, php-format
+msgid ""
+"These are lists for **%s**. lists are how you sort similar people on %%%%"
+"site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
+"blogging) service based on the Free Software [StatusNet](http://status.net/) "
+"tool. You can easily keep track of what they are doing by subscribing to the "
+"tag's timeline."
+msgstr ""
+"**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
+"wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
+"[StatusNet](http://status.net/) tool. Its members share short messages about "
+"their life and interests. "
+
+#. TRANS: Message displayed on page that displays lists a user was added to when there are none.
+#. TRANS: This message contains Markdown links in the form [description](links).
+#. TRANS: %s is a user nickname.
+#, php-format
+msgid "%s has not been [listed](%%%%doc.lists%%%%) by anyone yet."
+msgstr ""
+
+#. TRANS: Page title for list of list subscribers.
+#. TRANS: %1$s is a list, %2$s is a user nickname.
+#, fuzzy, php-format
+msgid "Subscribers to list %1$s by %2$s"
+msgstr "Replies to %1$s on %2$s!"
+
+#. TRANS: Page title for list of list subscribers.
+#. TRANS: %1$s is a list, %2$s is a user nickname, %3$d is a page number.
+#, fuzzy, php-format
+msgid "Subscribers to list %1$s by %2$s, page %3$d"
+msgstr "Notices tagged with %1$s, page %2$d"
+
+#. TRANS: Title for page that displays lists subscribed to by a user.
+#. TRANS: %s is a profile nickname.
+#, fuzzy, php-format
+msgid "Lists subscribed to by %s"
+msgstr "People subscribed to %s"
+
+#. TRANS: Title for page that displays lists subscribed to by a user.
+#. TRANS: %1$s is a profile nickname, %2$d is a page number.
+#, fuzzy, php-format
+msgid "Lists subscribed to by %1$s, page %2$d"
+msgstr "%1$s subscriptions, page %2$d"
+
+#. TRANS: Message displayed for anonymous users on page that displays lists subscribed to by a user.
+#. TRANS: This message contains Markdown links in the form [description](links).
+#. TRANS: %s is a profile nickname.
+#, fuzzy, php-format
+msgid ""
+"These are lists subscribed to by **%s**. Lists are how you sort similar "
+"people on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/"
+"Micro-blogging) service based on the Free Software [StatusNet](http://status."
+"net/) tool. You can easily keep track of what they are doing by subscribing "
+"to the list's timeline."
+msgstr ""
+"**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
+"wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
+"[StatusNet](http://status.net/) tool. Its members share short messages about "
+"their life and interests. "
 
 #. TRANS: Page title for AJAX form return when a disabling a plugin.
 msgctxt "plugin"
@@ -3892,6 +4285,7 @@ msgstr ""
 #. TRANS: Do not translate POST.
 #. TRANS: Client error displayed trying to perform any request method other than POST.
 #. TRANS: Do not translate POST.
+#. TRANS: Client error displayed when trying to use another method than POST.
 msgid "This action only accepts POST requests."
 msgstr ""
 
@@ -3942,6 +4336,22 @@ msgstr "Invalid notice content."
 msgid "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
 msgstr "Notice license ‘%1$s’ is not compatible with site license ‘%2$s’."
 
+#. TRANS: Client error displayed when trying to add an unindentified field to profile.
+#. TRANS: %s is a field name.
+#, php-format
+msgid "Unidentified field %s."
+msgstr ""
+
+#. TRANS: Page title.
+#, fuzzy
+msgctxt "TITLE"
+msgid "Search results"
+msgstr "Search site"
+
+#. TRANS: Error message in case a search is shorter than three characters.
+msgid "The search string must be at least 3 characters long."
+msgstr ""
+
 #. TRANS: Page title for profile settings.
 msgid "Profile settings"
 msgstr "Profile settings"
@@ -3985,17 +4395,22 @@ msgstr "URL of your homepage, blog, or profile on another site"
 #. TRANS: Tooltip for field label in form for profile settings. Plural
 #. TRANS: is decided by the number of characters available for the
 #. TRANS: biography (%d).
+#. TRANS: Text area title in form for account registration. Plural
+#. TRANS: is decided by the number of characters available for the
+#. TRANS: biography (%d).
 #, fuzzy, php-format
-msgid "Describe yourself and your interests in %d character"
-msgid_plural "Describe yourself and your interests in %d characters"
+msgid "Describe yourself and your interests in %d character."
+msgid_plural "Describe yourself and your interests in %d characters."
 msgstr[0] "Describe yourself and your interests in %d chars"
 msgstr[1] "Describe yourself and your interests in %d chars"
 
 #. TRANS: Tooltip for field label in form for profile settings.
-msgid "Describe yourself and your interests"
+#. TRANS: Text area title on account registration page.
+#, fuzzy
+msgid "Describe yourself and your interests."
 msgstr "Describe yourself and your interests"
 
-#. TRANS: Text area label in form for profile settings where users can provide.
+#. TRANS: Text area label in form for profile settings where users can provide
 #. TRANS: their biography.
 #. TRANS: Text area label on account registration page.
 msgid "Bio"
@@ -4004,11 +4419,14 @@ msgstr "Bio"
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
 #. TRANS: Field label on group edit form.
+#. TRANS: Dropdown option for searching in profiles.
 msgid "Location"
 msgstr "Location"
 
 #. TRANS: Tooltip for field label in form for profile settings.
-msgid "Where you are, like \"City, State (or Region), Country\""
+#. TRANS: Field title on account registration page.
+#, fuzzy
+msgid "Where you are, like \"City, State (or Region), Country\"."
 msgstr "Where you are, like \"City, State (or Region), Country\""
 
 #. TRANS: Checkbox label in form for profile settings.
@@ -4051,6 +4469,27 @@ msgid ""
 msgstr ""
 "Automatically subscribe to whoever subscribes to me (best for non-humans)"
 
+#. TRANS: Dropdown field label on profile settings, for what policies to apply when someone else tries to subscribe to your updates.
+#, fuzzy
+msgid "Subscription policy"
+msgstr "Subscriptions"
+
+#. TRANS: Dropdown field option for following policy.
+msgid "Let anyone follow me"
+msgstr ""
+
+#. TRANS: Dropdown field option for following policy.
+msgid "Ask me first"
+msgstr ""
+
+#. TRANS: Dropdown field title on group edit form.
+msgid "Whether other users need your permission to follow your updates."
+msgstr ""
+
+#. TRANS: Checkbox label in profile settings.
+msgid "Make updates visible only to my followers"
+msgstr ""
+
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Plural form is used based on the maximum number of allowed
 #. TRANS: characters for the biography (%d).
@@ -4074,7 +4513,9 @@ msgstr "Language is too long (max 50 chars)."
 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: %s is an invalid tag.
-#. TRANS: Form validation error when entering an invalid tag.
+#. TRANS: Form validation error displayed if a given tag is invalid.
+#. TRANS: %s is the invalid tag.
+#. TRANS: Error displayed if a given tag is invalid.
 #. TRANS: %s is the invalid tag.
 #, fuzzy, php-format
 msgid "Invalid tag: \"%s\"."
@@ -4083,7 +4524,7 @@ msgstr "Invalid tag: \"%s\""
 #. TRANS: Server error thrown when user profile settings could not be updated to
 #. TRANS: automatically subscribe to any subscriber.
 #, fuzzy
-msgid "Could not update user for autosubscribe."
+msgid "Could not update user for autosubscribe or subscribe_policy."
 msgstr "Couldn't update user for autosubscribe."
 
 #. TRANS: Server error thrown when user profile location preference settings could not be updated.
@@ -4123,6 +4564,7 @@ msgid "Public timeline, page %d"
 msgstr "Public timeline, page %d"
 
 #. TRANS: Title for the first public timeline page.
+#. TRANS: Menu item title in search group navigation panel.
 msgid "Public timeline"
 msgstr "Public timeline"
 
@@ -4183,6 +4625,49 @@ msgstr ""
 "This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool."
+
+#. TRANS: Title for page with public list cloud.
+#, fuzzy
+msgid "Public list cloud"
+msgstr "Public tag cloud"
+
+#. TRANS: Page notice for page with public list cloud.
+#. TRANS: %s is a StatusNet sitename.
+#, fuzzy, php-format
+msgid "These are largest lists on %s"
+msgstr "These are most popular recent tags on %s "
+
+#. TRANS: Empty list message on page with public list cloud.
+#. TRANS: This message contains Markdown links in the form [description](link).
+#, php-format
+msgid "No one has [listed](%%doc.tags%%) anyone yet."
+msgstr ""
+
+#. TRANS: Additional empty list message on page with public list cloud for logged in users.
+msgid "Be the first to list someone!"
+msgstr ""
+
+#. TRANS: Additional empty list message on page with public list cloud for anonymous users.
+#. TRANS: This message contains Markdown links in the form [description](link).
+#, fuzzy, php-format
+msgid ""
+"Why not [register an account](%%action.register%%) and be the first to list "
+"someone!"
+msgstr ""
+"Why not [register an account](%%action.register%%) and be the first to post "
+"one!"
+
+#. TRANS: DT element on on page with public list cloud.
+#, fuzzy
+msgid "List cloud"
+msgstr "API method not found."
+
+#. TRANS: Link title for number of listed people. %d is the number of listed people.
+#, php-format
+msgid "1 person listed"
+msgid_plural "%d people listed"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
 #, fuzzy, php-format
@@ -4304,10 +4789,6 @@ msgstr "Password recovery requested"
 msgid "Password saved"
 msgstr "Password saved."
 
-#. TRANS: Title for password recovery page when an unknown action has been specified.
-msgid "Unknown action"
-msgstr "Unknown action"
-
 #. TRANS: Title for field label for password reset form.
 #, fuzzy
 msgid "6 or more characters, and do not forget it!"
@@ -4404,6 +4885,7 @@ msgstr "Registration not allowed."
 msgid "You cannot register if you do not agree to the license."
 msgstr "You can't register if you don't agree to the licence."
 
+#. TRANS: Form validation error displayed when trying to register with an already registered e-mail address.
 msgid "Email address already exists."
 msgstr "E-mail address already exists."
 
@@ -4439,26 +4921,7 @@ msgstr "Used only for updates, announcements, and password recovery"
 msgid "Longer name, preferably your \"real\" name."
 msgstr "Longer name, preferably your \"real\" name"
 
-#. TRANS: Text area title in form for account registration. Plural
-#. TRANS: is decided by the number of characters available for the
-#. TRANS: biography (%d).
-#, fuzzy, php-format
-msgid "Describe yourself and your interests in %d character."
-msgid_plural "Describe yourself and your interests in %d characters."
-msgstr[0] "Describe yourself and your interests in %d chars"
-msgstr[1] "Describe yourself and your interests in %d chars"
-
-#. TRANS: Text area title on account registration page.
-#, fuzzy
-msgid "Describe yourself and your interests."
-msgstr "Describe yourself and your interests"
-
-#. TRANS: Field title on account registration page.
-#, fuzzy
-msgid "Where you are, like \"City, State (or Region), Country\"."
-msgstr "Where you are, like \"City, State (or Region), Country\""
-
-#. TRANS: Field label on account registration page.
+#. TRANS: Button text to register a user on account registration page.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Register"
@@ -4483,7 +4946,7 @@ msgstr ""
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved.
 msgid "All rights reserved."
-msgstr ""
+msgstr "Tous droits réservés."
 
 #. TRANS: Copyright checkbox label in registration dialog, for Creative Commons-style licenses.
 #, php-format
@@ -4577,6 +5040,9 @@ msgid "URL of your profile on another compatible microblogging service."
 msgstr "URL of your profile on another compatible microblogging service"
 
 #. TRANS: Button text on page for remote subscribe.
+#. TRANS: Link text for link that will subscribe to a remote profile.
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Subscribe"
@@ -4602,6 +5068,30 @@ msgstr "That’s a local profile! Login to subscribe."
 msgid "Could not get a request token."
 msgstr "Couldn’t get a request token."
 
+#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
+#, fuzzy
+msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
+msgstr "You cannot subscribe to an OMB 0.1 remote profile with this action."
+
+#. TRANS: Client error displayed when an unknown error occurs while delisting a user.
+#. TRANS: %s is a username.
+#, php-format
+msgid "There was an unexpected error while delisting %s."
+msgstr ""
+
+#. TRANS: Client error displayed when an unknown error occurs while listing a user.
+#. TRANS: %s is a profile URL.
+#, php-format
+msgid ""
+"There was a problem listing %s. The remote server is probably not responding "
+"correctly, please try retrying later."
+msgstr ""
+
+#. TRANS: Title after removing a user from a list.
+#, fuzzy
+msgid "Unlisted"
+msgstr "License"
+
 #. TRANS: Client error displayed when trying to repeat a notice while not logged in.
 msgid "Only logged-in users can repeat notices."
 msgstr "Only logged-in users can repeat notices."
@@ -4611,16 +5101,8 @@ msgstr "Only logged-in users can repeat notices."
 msgid "No notice specified."
 msgstr "No notice specified."
 
-#. TRANS: Client error displayed when trying to repeat an own notice.
-#, fuzzy
-msgid "You cannot repeat your own notice."
-msgstr "You can't repeat your own notice."
-
-#. TRANS: Client error displayed when trying to repeat an already repeated notice.
-msgid "You already repeated that notice."
-msgstr "You already repeated that notice."
-
 #. TRANS: Title after repeating a notice.
+#. TRANS: Repeat form status in notice list when a notice has been repeated.
 msgid "Repeated"
 msgstr "Repeated"
 
@@ -4631,6 +5113,8 @@ msgstr "Repeated!"
 #. TRANS: Title for first page of replies for a user.
 #. TRANS: %s is a user nickname.
 #. TRANS: RSS reply feed title. %s is a user nickname.
+#. TRANS: Menu item title in personal group navigation menu.
+#. TRANS: %s is a username.
 #, php-format
 msgid "Replies to %s"
 msgstr "Replies to %s"
@@ -4742,6 +5226,7 @@ msgid "System error uploading file."
 msgstr "System error uploading file."
 
 #. TRANS: Client exception thrown when a feed is not an Atom feed.
+#. TRANS: Client exception thrown when an imported feed is not an Atom feed.
 #, fuzzy
 msgid "Not an Atom feed."
 msgstr "All members"
@@ -4782,12 +5267,25 @@ msgid "StatusNet"
 msgstr "StatusNet"
 
 #. TRANS: Client error displayed trying to sandbox users on a site where the feature is not enabled.
+#. TRANS: Client error on page to unsandbox a user when the feature is not enabled.
 msgid "You cannot sandbox users on this site."
 msgstr "You cannot sandbox users on this site."
 
 #. TRANS: Client error displayed trying to sandbox an already sandboxed user.
 msgid "User is already sandboxed."
 msgstr "User is already sandboxed."
+
+#. TRANS: Client error displayed when trying to list a profile with an invalid list.
+#. TRANS: %s is the invalid list name.
+#, fuzzy, php-format
+msgid "Not a valid list: %s."
+msgstr "Not a valid people tag: %s."
+
+#. TRANS: Page title for page showing self tags.
+#. TRANS: %1$s is a tag, %2$d is a page number.
+#, fuzzy, php-format
+msgid "Users self-tagged with %1$s, page %2$d"
+msgstr "Users self-tagged with %1$s - page %2$d"
 
 #. TRANS: Title for the sessions administration panel.
 #, fuzzy
@@ -4971,9 +5469,13 @@ msgid "Members"
 msgstr "Members"
 
 #. TRANS: Description for mini list of group members on a group page when the group has no members.
+#. TRANS: Content of "Listed" page if there are no listed users.
+#. TRANS: Content of "People following tag x" if there are no subscribed users.
+#. TRANS: Empty list message for tags.
 #. TRANS: Text for user subscription statistics if the user has no subscriptions.
 #. TRANS: Text for user subscriber statistics if user has no subscribers.
 #. TRANS: Text for user user group membership statistics if user is not a member of any group.
+#. TRANS: Default content for section/sidebar widget.
 msgid "(None)"
 msgstr "(None)"
 
@@ -5057,27 +5559,117 @@ msgstr "Message to %1$s on %2$s"
 msgid "Message from %1$s on %2$s"
 msgstr "Message from %1$s on %2$s"
 
+#. TRANS: Client exception thrown when trying a view a notice the user has no access to.
+#, fuzzy
+msgid "Not available."
+msgstr "IM is not available."
+
 #. TRANS: Client error displayed trying to show a deleted notice.
 msgid "Notice deleted."
 msgstr "Notice deleted."
 
+#. TRANS: Title for private list timeline.
+#. TRANS: %1$s is a list, %2$s is a page number.
+#, fuzzy, php-format
+msgid "Private timeline for %1$s list by you, page %2$d"
+msgstr "Users self-tagged with %1$s - page %2$d"
+
+#. TRANS: Title for public list timeline where the viewer is the tagger.
+#. TRANS: %1$s is a list, %2$s is a page number.
+#, fuzzy, php-format
+msgid "Timeline for %1$s list by you, page %2$d"
+msgstr "Users self-tagged with %1$s - page %2$d"
+
+#. TRANS: Title for private list timeline.
+#. TRANS: %1$s is a list, %2$s is the tagger's nickname, %3$d is a page number.
+#, fuzzy, php-format
+msgid "Timeline for %1$s list by %2$s, page %3$d"
+msgstr "Notices tagged with %1$s, page %2$d"
+
+#. TRANS: Title for private list timeline.
+#. TRANS: %s is a list.
+#, php-format
+msgid "Private timeline of %s list by you"
+msgstr ""
+
+#. TRANS: Title for public list timeline where the viewer is the tagger.
+#. TRANS: %s is a list.
+#, php-format
+msgid "Timeline for %s list by you"
+msgstr ""
+
+#. TRANS: Title for private list timeline.
+#. TRANS: %1$s is a list, %2$s is the tagger's nickname.
+#, fuzzy, php-format
+msgid "Timeline for %1$s list by %2$s"
+msgstr "Replies to %1$s on %2$s!"
+
+#. TRANS: Feed title.
+#. TRANS: %1$s is a list, %2$s is tagger's nickname.
+#, fuzzy, php-format
+msgid "Feed for %1$s list by %2$s (Atom)"
+msgstr "Feed for favorites of %s (Atom)"
+
+#. TRANS: Empty list message for list timeline.
+#. TRANS: %1$s is a list, %2$s is a tagger's nickname.
+#, fuzzy, php-format
+msgid ""
+"This is the timeline for %1$s list by %2$s but no one has posted anything "
+"yet."
+msgstr ""
+"This is the timeline for %s and friends but no one has posted anything yet."
+
+#. TRANS: Additional empty list message for list timeline for currently logged in user tagged tags.
+msgid "Try tagging more people."
+msgstr ""
+
+#. TRANS: Additional empty list message for list timeline.
+#. TRANS: This message contains Markdown links in the form [description](link).
+#, fuzzy, php-format
+msgid ""
+"Why not [register an account](%%%%action.register%%%%) and start following "
+"this timeline!"
+msgstr ""
+"Why not [register an account](%%action.register%%) and be the first to post "
+"one!"
+
+#. TRANS: Header on show list page.
+#, fuzzy
+msgid "Listed"
+msgstr "License"
+
+#. TRANS: Link for more "People in list x by a user"
+#. TRANS: if there are more than the mini list's maximum.
+msgid "Show all"
+msgstr ""
+
+#. TRANS: Header for tag subscribers.
+#. TRANS: Link description for link to list of users subscribed to a tag.
+msgid "Subscribers"
+msgstr "Subscribers"
+
+#. TRANS: Link for more "People following tag x"
+#. TRANS: if there are more than the mini list's maximum.
+msgid "All subscribers"
+msgstr "All subscribers"
+
 #. TRANS: Page title showing tagged notices in one user's stream.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, fuzzy, php-format
-msgid "%1$s tagged %2$s"
+msgid "Notices by %1$s tagged %2$s"
 msgstr "%1$s, page %2$d"
 
 #. TRANS: Page title showing tagged notices in one user's stream.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, fuzzy, php-format
-msgid "%1$s tagged %2$s, page %3$d"
+msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "Notices tagged with %1$s, page %2$d"
 
 #. TRANS: Extended page title showing tagged notices in one user's stream.
 #. TRANS: %1$s is the username, %2$d is the page number.
-#, php-format
-msgid "%1$s, page %2$d"
-msgstr "%1$s, page %2$d"
+#, fuzzy, php-format
+msgid "Notices by %1$s, page %2$d"
+msgstr "Notices tagged with %1$s, page %2$d"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %1$s is a user nickname, %2$s is a hashtag.
@@ -5162,6 +5754,7 @@ msgid "Repeat of %s"
 msgstr "Repeat of %s"
 
 #. TRANS: Client error displayed trying to silence a user on a site where the feature is not enabled.
+#. TRANS: Client error on page to unsilence a user when the feature is not enabled.
 msgid "You cannot silence users on this site."
 msgstr "You cannot silence users on this site."
 
@@ -5450,51 +6043,69 @@ msgstr ""
 msgid "No code entered."
 msgstr "No code entered"
 
-#. TRANS: Menu item for site administration
+#. TRANS: Title for admin panel to configure snapshots.
+#, fuzzy
+msgctxt "TITLE"
 msgid "Snapshots"
-msgstr ""
+msgstr "Data snapshots"
 
+#. TRANS: Instructions for admin panel to configure snapshots.
 msgid "Manage snapshot configuration"
 msgstr "Manage snapshot configuration"
 
+#. TRANS: Client error displayed on admin panel for snapshots when providing an invalid run value.
 msgid "Invalid snapshot run value."
 msgstr "Invalid snapshot run value."
 
+#. TRANS: Client error displayed on admin panel for snapshots when providing an invalid value for frequency.
 msgid "Snapshot frequency must be a number."
 msgstr ""
 
+#. TRANS: Client error displayed on admin panel for snapshots when providing an invalid report URL.
 msgid "Invalid snapshot report URL."
 msgstr "Invalid snapshot report URL."
 
+#. TRANS: Fieldset legend on admin panel for snapshots.
+#, fuzzy
+msgctxt "LEGEND"
+msgid "Snapshots"
+msgstr "Data snapshots"
+
+#. TRANS: Option in dropdown for snapshot method in admin panel for snapshots.
 msgid "Randomly during web hit"
 msgstr ""
 
+#. TRANS: Option in dropdown for snapshot method in admin panel for snapshots.
 msgid "In a scheduled job"
 msgstr ""
 
+#. TRANS: Dropdown label for snapshot method in admin panel for snapshots.
 msgid "Data snapshots"
 msgstr "Data snapshots"
 
-msgid "When to send statistical data to status.net servers"
+#. TRANS: Dropdown title for snapshot method in admin panel for snapshots.
+msgid "When to send statistical data to status.net servers."
 msgstr ""
 
+#. TRANS: Input field label for snapshot frequency in admin panel for snapshots.
 msgid "Frequency"
 msgstr ""
 
-msgid "Snapshots will be sent once every N web hits"
+#. TRANS: Input field title for snapshot frequency in admin panel for snapshots.
+msgid "Snapshots will be sent once every N web hits."
 msgstr ""
 
+#. TRANS: Input field label for snapshot report URL in admin panel for snapshots.
 msgid "Report URL"
 msgstr "Report URL"
 
-msgid "Snapshots will be sent to this URL"
+#. TRANS: Input field title for snapshot report URL in admin panel for snapshots.
+msgid "Snapshots will be sent to this URL."
 msgstr ""
 
-#. TRANS: Submit button title.
-msgid "Save"
-msgstr "Save"
-
-msgid "Save snapshot settings"
+#. TRANS: Title for button to save snapshot settings.
+#, fuzzy
+msgid "Save snapshot settings."
 msgstr "Save snapshot settings"
 
 #. TRANS: Client error displayed trying a change a subscription for a non-subscribed profile.
@@ -5506,6 +6117,27 @@ msgstr "You are not subscribed to that profile."
 msgid "Could not save subscription."
 msgstr "Could not save subscription."
 
+#. TRANS: Client error displayed when trying to approve group applicants without being a group administrator.
+msgid "You may only approve your own pending subscriptions."
+msgstr ""
+
+#. TRANS: Title of the first page showing pending subscribers still awaiting approval.
+#. TRANS: %s is the name of the user.
+#, fuzzy, php-format
+msgid "%s subscribers awaiting approval"
+msgstr "%s group members"
+
+#. TRANS: Title of all but the first page showing pending subscribersmembers still awaiting approval.
+#. TRANS: %1$s is the name of the user, %2$d is the page number of the members list.
+#, fuzzy, php-format
+msgid "%1$s subscribers awaiting approval, page %2$d"
+msgstr "%1$s group members, page %2$d"
+
+#. TRANS: Page notice for group members page.
+#, fuzzy
+msgid "A list of users awaiting approval to subscribe to you."
+msgstr "A list of the users in this group."
+
 #. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
 msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
 msgstr "You cannot subscribe to an OMB 0.1 remote profile with this action."
@@ -5513,6 +6145,28 @@ msgstr "You cannot subscribe to an OMB 0.1 remote profile with this action."
 #. TRANS: Page title when subscription succeeded.
 msgid "Subscribed"
 msgstr "Subscribed"
+
+#. TRANS: Client error displayed when trying to perform an action while not logged in.
+#, fuzzy
+msgid "You must be logged in to unsubscribe from a list."
+msgstr "You must be logged in to create a group."
+
+#. TRANS: Client error displayed when trying to perform an action without providing an ID.
+#, fuzzy
+msgid "No ID given."
+msgstr "No ID argument."
+
+#. TRANS: Server error displayed subscribing to a list fails.
+#. TRANS: %1$s is a user nickname, %2$s is a list, %3$s is the error message (no period).
+#, fuzzy, php-format
+msgid "Could not subscribe user %1$s to list %2$s: %3$s"
+msgstr "Could not join user %1$s to group %2$s."
+
+#. TRANS: Title of form to subscribe to a list.
+#. TRANS: %1%s is a user nickname, %2$s is a list, %3$s is a tagger nickname.
+#, fuzzy, php-format
+msgid "%1$s subscribed to list %2$s by %3$s"
+msgstr "%1$s subscribers, page %2$d"
 
 #. TRANS: Header for list of subscribers for a user (first page).
 #. TRANS: %s is the user's nickname.
@@ -5608,7 +6262,9 @@ msgstr "%s is not listening to anyone."
 msgid "Subscription feed for %s (Atom)"
 msgstr "Notice feed for %s (Atom)"
 
-#. TRANS: Checkbox label for enabling Jabber messages for a profile in a subscriptions list.
+#. TRANS: Checkbox label for enabling IM messages for a profile in a subscriptions list.
+#, fuzzy
+msgctxt "LABEL"
 msgid "IM"
 msgstr "IM"
 
@@ -5622,47 +6278,89 @@ msgstr "SMS"
 msgid "Notices tagged with %1$s, page %2$d"
 msgstr "Notices tagged with %1$s, page %2$d"
 
+#. TRANS: Link label for feed on "notices with tag" page.
+#. TRANS: %s is the tag the feed is for.
 #, php-format
 msgid "Notice feed for tag %s (RSS 1.0)"
 msgstr "Notice feed for tag %s (RSS 1.0)"
 
+#. TRANS: Link label for feed on "notices with tag" page.
+#. TRANS: %s is the tag the feed is for.
 #, php-format
 msgid "Notice feed for tag %s (RSS 2.0)"
 msgstr "Notice feed for tag %s (RSS 2.0)"
 
+#. TRANS: Link label for feed on "notices with tag" page.
+#. TRANS: %s is the tag the feed is for.
 #, php-format
 msgid "Notice feed for tag %s (Atom)"
 msgstr "Notice feed for tag %s (Atom)"
 
-msgid "No ID argument."
-msgstr "No ID argument."
+#. TRANS: Client error displayed when trying to tag a user that cannot be tagged.
+#. TRANS: Client exception thrown trying to set a tag for a user that cannot be tagged.
+#. TRANS: Error displayed when trying to tag a user that cannot be tagged.
+#, fuzzy
+msgid "You cannot tag this user."
+msgstr "You can't send a message to this user."
 
-#, php-format
-msgid "Tag %s"
-msgstr "Tag %s"
+#. TRANS: Title for list form when not on a profile page.
+#, fuzzy
+msgid "List a profile"
+msgstr "User profile"
 
+#. TRANS: Title for list form when on a profile page.
+#. TRANS: %s is a profile nickname.
+#, fuzzy, php-format
+msgctxt "ADDTOLIST"
+msgid "List %s"
+msgstr "Links"
+
+#. TRANS: Title for list form when an error has occurred.
+#, fuzzy
+msgctxt "TITLE"
+msgid "Error"
+msgstr "Ajax Error"
+
+#. TRANS: Header in list form.
 msgid "User profile"
 msgstr "User profile"
 
-msgid "Tag user"
-msgstr "Tag user"
+#. TRANS: Fieldset legend for list form.
+#, fuzzy
+msgid "List user"
+msgstr "Links"
 
+#. TRANS: Field label on list form.
+#, fuzzy
+msgctxt "LABEL"
+msgid "Lists"
+msgstr "Links"
+
+#. TRANS: Field title on list form.
 #, fuzzy
 msgid ""
-"Tags for this user (letters, numbers, -, ., and _), separated by commas or "
-"spaces."
+"Lists for this user (letters, numbers, -, ., and _), comma- or space- "
+"separated."
 msgstr ""
-"Tags for this user (letters, numbers, -, ., and _), comma- or space- "
-"separated"
+"Tags for yourself (letters, numbers, -, ., and _), comma- or space- separated"
 
-msgid ""
-"You can only tag people you are subscribed to or who are subscribed to you."
-msgstr ""
-"You can only tag people you are subscribed to or who are subscribed to you."
+#. TRANS: Title for personal tag cloud section.
+#, fuzzy
+msgctxt "TITLE"
+msgid "Tags"
+msgstr "Tags"
 
-msgid "Use this form to add tags to your subscribers or subscriptions."
+#. TRANS: Success message if lists are saved.
+#, fuzzy
+msgid "Lists saved."
+msgstr "Password saved."
+
+#. TRANS: Page notice.
+#, fuzzy
+msgid "Use this form to add your subscribers or subscriptions to lists."
 msgstr "Use this form to add tags to your subscribers or subscriptions."
 
+#. TRANS: Client error when requesting a tag feed for a non-existing tag.
 msgid "No such tag."
 msgstr "No such tag."
 
@@ -5670,24 +6368,36 @@ msgstr "No such tag."
 msgid "You haven't blocked that user."
 msgstr "You haven't blocked that user."
 
+#. TRANS: Client error on page to unsilence a user when the to be unsandboxed user has not been sandboxed.
 msgid "User is not sandboxed."
 msgstr "User is not sandboxed."
 
+#. TRANS: Client error on page to unsilence a user when the to be unsilenced user has not been silenced.
 msgid "User is not silenced."
 msgstr "User is not silenced."
 
-msgid "No profile ID in request."
-msgstr "No profile ID in request."
-
+#. TRANS: Page title for page to unsubscribe.
 msgid "Unsubscribed"
 msgstr "Unsubscribed"
 
-#, php-format
+#. TRANS: Page title for form that allows unsubscribing from a list.
+#. TRANS: %1$s is a nickname, %2$s is a list, %3$s is a tagger nickname.
+#, fuzzy, php-format
+msgid "%1$s unsubscribed from list %2$s by %3$s"
+msgstr "%1$s subscribers, page %2$d"
+
+#. TRANS: Client error displayed when trying to update profile with an incompatible license.
+#. TRANS: %1$s is the license incompatible with site license %2$s.
+#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
+#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
+#, fuzzy, php-format
 msgid ""
-"Listenee stream license ‘%1$s’ is not compatible with site license ‘%2$s’."
+"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
+"\"."
 msgstr ""
 "Listenee stream license ‘%1$s’ is not compatible with site license ‘%2$s’."
 
+#. TRANS: Title of URL settings tab in profile settings.
 #, fuzzy
 msgid "URL settings"
 msgstr "IM settings"
@@ -5702,10 +6412,12 @@ msgstr "Manage various other options."
 msgid " (free service)"
 msgstr ""
 
+#. TRANS: Default value for URL shortening settings.
 #, fuzzy
 msgid "[none]"
 msgstr "None"
 
+#. TRANS: Default value for URL shortening settings.
 msgid "[internal]"
 msgstr ""
 
@@ -5717,15 +6429,19 @@ msgstr "Shorten URLs with"
 msgid "Automatic shortening service to use."
 msgstr "Automatic shortening service to use."
 
+#. TRANS: Field label in URL settings in profile.
 msgid "URL longer than"
 msgstr ""
 
+#. TRANS: Field title in URL settings in profile.
 msgid "URLs longer than this will be shortened, 0 means always shorten."
 msgstr ""
 
+#. TRANS: Field label in URL settings in profile.
 msgid "Text longer than"
 msgstr ""
 
+#. TRANS: Field title in URL settings in profile.
 msgid ""
 "URLs in notices longer than this will be shortened, 0 means always shorten."
 msgstr ""
@@ -5735,17 +6451,21 @@ msgstr ""
 msgid "URL shortening service is too long (maximum 50 characters)."
 msgstr "URL shortening service is too long (max 50 chars)."
 
-msgid "Invalid number for max url length."
-msgstr ""
-
+#. TRANS: Client exception thrown when the maximum URL settings value is invalid in profile URL settings.
 #, fuzzy
-msgid "Invalid number for max notice length."
+msgid "Invalid number for maximum URL length."
 msgstr "Invalid notice content."
 
+#. TRANS: Client exception thrown when the maximum notice length settings value is invalid in profile URL settings.
+#, fuzzy
+msgid "Invalid number for maximum notice length."
+msgstr "Invalid notice content."
+
+#. TRANS: Server exception thrown in profile URL settings when preferences could not be saved.
 msgid "Error saving user URL shortening preferences."
 msgstr ""
 
-#. TRANS: User admin panel title
+#. TRANS: User admin panel title.
 msgctxt "TITLE"
 msgid "User"
 msgstr "User"
@@ -5768,6 +6488,9 @@ msgstr ""
 msgid "Invalid default subscripton: \"%1$s\" is not a user."
 msgstr ""
 
+#. TRANS: Fieldset legend in user administration panel.
+#, fuzzy
+msgctxt "LEGEND"
 msgid "Profile"
 msgstr "Profile"
 
@@ -5821,7 +6544,7 @@ msgstr "Save site settings"
 msgid "Authorize subscription"
 msgstr "Authorise subscription"
 
-#. TRANS: Page notice on "Auhtorize subscription" page.
+#. TRANS: Page notice on "Authorize subscription" page.
 #, fuzzy
 msgid ""
 "Please check these details to make sure that you want to subscribe to this "
@@ -5834,18 +6557,21 @@ msgstr ""
 
 #. TRANS: Button text on Authorise Subscription page.
 #. TRANS: Submit button text to accept a group membership request on approve group form.
+#. TRANS: Submit button text to accept a subscription request on approve sub form.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Accept"
 msgstr "Accept"
 
 #. TRANS: Title for button on Authorise Subscription page.
+#. TRANS: Button title to subscribe to a user.
 #, fuzzy
 msgid "Subscribe to this user."
 msgstr "Subscribe to this user"
 
 #. TRANS: Button text on Authorise Subscription page.
 #. TRANS: Submit button text to reject a group membership request on approve group form.
+#. TRANS: Submit button text to reject a subscription request on approve sub form.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Reject"
@@ -5864,9 +6590,10 @@ msgstr "No authorisation request!"
 msgid "Subscription authorized"
 msgstr "Subscription authorised"
 
+#. TRANS: Accept message text from Authorise subscription page.
 msgid ""
 "The subscription has been authorized, but no callback URL was passed. Check "
-"with the site’s instructions for details on how to authorize the "
+"with the site's instructions for details on how to authorize the "
 "subscription. Your subscription token is:"
 msgstr ""
 "The subscription has been authorized, but no callback URL was passed. Check "
@@ -5877,9 +6604,10 @@ msgstr ""
 msgid "Subscription rejected"
 msgstr "Subscription rejected"
 
+#. TRANS: Reject message from Authorise subscription page.
 msgid ""
 "The subscription has been rejected, but no callback URL was passed. Check "
-"with the site’s instructions for details on how to fully reject the "
+"with the site's instructions for details on how to fully reject the "
 "subscription."
 msgstr ""
 "The subscription has been rejected, but no callback URL was passed. Check "
@@ -5909,15 +6637,6 @@ msgstr ""
 #, php-format
 msgid "Profile URL \"%s\" is for a local user."
 msgstr ""
-
-#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
-#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
-#, fuzzy, php-format
-msgid ""
-"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
-"\"."
-msgstr ""
-"Listenee stream license ‘%1$s’ is not compatible with site license ‘%2$s’."
 
 #. TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
 #. TRANS: %s is an avatar URL.
@@ -6022,7 +6741,6 @@ msgid "Contributors"
 msgstr "Contributors"
 
 #. TRANS: Header for StatusNet license section on the version page.
-#. TRANS: Menu item for site administration
 msgid "License"
 msgstr "License"
 
@@ -6061,7 +6779,6 @@ msgstr ""
 "along with this program.  If not, see %s."
 
 #. TRANS: Header for StatusNet plugins section on the version page.
-#. TRANS: Menu item for site administration
 msgid "Plugins"
 msgstr ""
 
@@ -6140,18 +6857,6 @@ msgstr[1] ""
 msgid "Invalid filename."
 msgstr "Invalid filename."
 
-#. TRANS: Exception thrown when joining a group fails.
-msgid "Group join failed."
-msgstr "Group join failed."
-
-#. TRANS: Exception thrown when trying to leave a group the user is not a member of.
-msgid "Not part of group."
-msgstr "Not part of group."
-
-#. TRANS: Exception thrown when trying to leave a group fails.
-msgid "Group leave failed."
-msgstr "Group leave failed."
-
 #. TRANS: Exception thrown providing an invalid profile ID.
 #. TRANS: %s is the invalid profile ID.
 #, php-format
@@ -6163,6 +6868,18 @@ msgstr ""
 #, php-format
 msgid "Group ID %s is invalid."
 msgstr "Group ID %s is invalid."
+
+#. TRANS: Exception thrown when joining a group fails.
+msgid "Group join failed."
+msgstr "Group join failed."
+
+#. TRANS: Exception thrown when trying to leave a group the user is not a member of.
+msgid "Not part of group."
+msgstr "Not part of group."
+
+#. TRANS: Exception thrown when trying to leave a group fails.
+msgid "Group leave failed."
+msgstr "Group leave failed."
 
 #. TRANS: Activity title.
 msgid "Join"
@@ -6207,8 +6924,8 @@ msgid "No such profile (%1$d) for notice (%2$d)."
 msgstr ""
 
 #. TRANS: Server exception. %s are the error details.
-#, php-format
-msgid "Database error inserting hashtag: %s"
+#, fuzzy, php-format
+msgid "Database error inserting hashtag: %s."
 msgstr "Database error inserting hashtag: %s"
 
 #. TRANS: Client exception thrown if a notice contains too many characters.
@@ -6237,6 +6954,36 @@ msgstr ""
 msgid "You are banned from posting notices on this site."
 msgstr "You are banned from posting notices on this site."
 
+#. TRANS: Client exception thrown in notice when trying to repeat a missing or deleted notice.
+#, fuzzy
+msgid "Cannot repeat; original notice is missing or deleted."
+msgstr "Cannot repeat your own notice."
+
+#. TRANS: Client error displayed when trying to repeat an own notice.
+#, fuzzy
+msgid "You cannot repeat your own notice."
+msgstr "You can't repeat your own notice."
+
+#. TRANS: Client error displayed when trying to repeat a non-public notice.
+#, fuzzy
+msgid "Cannot repeat a private notice."
+msgstr "Cannot repeat your own notice."
+
+#. TRANS: Client error displayed when trying to repeat a notice you cannot access.
+#, fuzzy
+msgid "Cannot repeat a notice you cannot read."
+msgstr "Cannot repeat your own notice."
+
+#. TRANS: Client error displayed when trying to repeat an already repeated notice.
+msgid "You already repeated that notice."
+msgstr "You already repeated that notice."
+
+#. TRANS: Client error displayed when trying to reply to a notice a the target has no access to.
+#. TRANS: %1$s is a user nickname, %2$d is a notice ID (number).
+#, fuzzy, php-format
+msgid "%1$s has no access to notice %2$d."
+msgstr "User has no last notice."
+
 #. TRANS: Server exception thrown when a notice cannot be saved.
 #. TRANS: Server exception thrown when a notice cannot be updated.
 msgid "Problem saving notice."
@@ -6250,27 +6997,18 @@ msgstr ""
 msgid "Problem saving group inbox."
 msgstr "Problem saving group inbox."
 
-#. TRANS: Server exception thrown when a reply cannot be saved.
-#. TRANS: %1$d is a notice ID, %2$d is the ID of the mentioned user.
-#, php-format
-msgid "Could not save reply for %1$d, %2$d."
-msgstr "Could not save reply for %1$d, %2$d."
-
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr "RT @%1$s %2$s"
 
+#. TRANS: Full name of a profile or group (%1$s) followed by nickname (%2$s) in parentheses.
 #. TRANS: Full name of a profile or group followed by nickname in parens
 #, fuzzy, php-format
 msgctxt "FANCYNAME"
 msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
-
-#. TRANS: Exception thrown trying to approve a non-existing group join request.
-msgid "Invalid group join approval: not pending."
-msgstr ""
 
 #. TRANS: Exception thrown when trying to revoke an existing role for a user that does not exist.
 #. TRANS: %1$s is the role name, %2$s is the user ID (number).
@@ -6284,6 +7022,59 @@ msgstr ""
 msgid "Cannot revoke role \"%1$s\" for user #%2$d; database error."
 msgstr ""
 
+#. TRANS: Server exception.
+msgid "The tag you are trying to rename to already exists."
+msgstr ""
+
+#. TRANS: Server exception saving new tag without having a tagger specified.
+#, fuzzy
+msgid "No tagger specified."
+msgstr "No group specified."
+
+#. TRANS: Server exception saving new tag without having a tag specified.
+#, fuzzy
+msgid "No tag specified."
+msgstr "No group specified."
+
+#. TRANS: Server exception saving new tag.
+#, fuzzy
+msgid "Could not create profile tag."
+msgstr "Could not save profile."
+
+#. TRANS: Server exception saving new tag.
+#, fuzzy
+msgid "Could not set profile tag URI."
+msgstr "Could not save profile."
+
+#. TRANS: Server exception saving new tag.
+#, fuzzy
+msgid "Could not set profile tag mainpage."
+msgstr "Could not save profile."
+
+#. TRANS: Client exception thrown trying to set more tags than allowed.
+#, php-format
+msgid ""
+"You already have created %d or more tags which is the maximum allowed number "
+"of tags. Try using or deleting some existing tags."
+msgstr ""
+
+#. TRANS: Client exception thrown when trying to add more people than allowed to a list.
+#, php-format
+msgid ""
+"You already have %1$d or more people in list %2$s, which is the maximum "
+"allowed number.Try unlisting others first."
+msgstr ""
+
+#. TRANS: Exception thrown when inserting a list subscription in the database fails.
+#, fuzzy
+msgid "Adding list subscription failed."
+msgstr "Could not delete subscription."
+
+#. TRANS: Exception thrown when deleting a list subscription from the database fails.
+#, fuzzy
+msgid "Removing list subscription failed."
+msgstr "Could not delete subscription."
+
 #. TRANS: Exception thrown when a right for a non-existing user profile is checked.
 msgid "Missing profile."
 msgstr "Missing profile."
@@ -6293,6 +7084,7 @@ msgid "Unable to save tag."
 msgstr "Unable to save tag."
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
+#. TRANS: Error message displayed to a banned user when they try to subscribe.
 msgid "You have been banned from subscribing."
 msgstr "You have been banned from subscribing."
 
@@ -6320,9 +7112,11 @@ msgstr "Could not delete subscription OMB token."
 msgid "Could not delete subscription."
 msgstr "Could not delete subscription."
 
-#. TRANS: Activity tile when subscribing to another person.
+#. TRANS: Activity title when subscribing to another person.
+#, fuzzy
+msgctxt "TITLE"
 msgid "Follow"
-msgstr ""
+msgstr "Allow"
 
 #. TRANS: Notification given when one person starts following another.
 #. TRANS: %1$s is the subscriber, %2$s is the subscribed.
@@ -6335,6 +7129,10 @@ msgstr "%1$s is now following %2$s."
 #, php-format
 msgid "Welcome to %1$s, @%2$s!"
 msgstr "Welcome to %1$s, @%2$s!"
+
+#. TRANS: Exception thrown when trying view "repeated to me".
+msgid "Not implemented since inbox change."
+msgstr ""
 
 #. TRANS: Server exception.
 msgid "No single user defined for single-user mode."
@@ -6388,18 +7186,24 @@ msgid "User deletion in progress..."
 msgstr ""
 
 #. TRANS: Link title for link on user profile.
-msgid "Edit profile settings"
+#, fuzzy
+msgid "Edit profile settings."
 msgstr "Edit profile settings"
 
 #. TRANS: Link text for link on user profile.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Edit"
 msgstr "Edit"
 
 #. TRANS: Link title for link on user profile.
-msgid "Send a direct message to this user"
+#, fuzzy
+msgid "Send a direct message to this user."
 msgstr "Send a direct message to this user"
 
 #. TRANS: Link text for link on user profile.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Message"
 msgstr "Message"
 
@@ -6420,10 +7224,6 @@ msgstr "Administrator"
 msgctxt "role"
 msgid "Moderator"
 msgstr "Moderator"
-
-#. TRANS: Link text for link that will subscribe to a remote profile.
-msgid "Subscribe"
-msgstr "Subscribe"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
@@ -6450,7 +7250,9 @@ msgstr "Reply"
 msgid "Write a reply..."
 msgstr ""
 
+#. TRANS: Tab on the notice form.
 #, fuzzy
+msgctxt "TAB"
 msgid "Status"
 msgstr "StatusNet"
 
@@ -6530,7 +7332,7 @@ msgstr "Unknown file type"
 msgid "Cannot force subscription for untrusted user."
 msgstr ""
 
-#. TRANS: Client exception thrown when trying to for a remote user to subscribe.
+#. TRANS: Client exception thrown when trying to force a remote user to subscribe.
 #, fuzzy
 msgid "Cannot force remote user to subscribe."
 msgstr "Specify the name of the user to subscribe to."
@@ -6569,8 +7371,9 @@ msgstr ""
 msgid "No content for notice %s."
 msgstr "Find content of notices"
 
+#. TRANS: Exception thrown if a non-existing user is provided. %s is a user ID.
 #, fuzzy, php-format
-msgid "No such user %s."
+msgid "No such user \"%s\"."
 msgstr "No such user."
 
 #. TRANS: Client exception thrown when post to collection fails with a 400 status.
@@ -6617,75 +7420,125 @@ msgstr "saveSettings() not implemented."
 msgid "Unable to delete design setting."
 msgstr "Unable to delete design setting."
 
+#. TRANS: Header in administrator navigation panel.
+#. TRANS: Header in settings navigation panel.
+#, fuzzy
+msgctxt "HEADER"
 msgid "Home"
 msgstr "Homepage"
 
+#. TRANS: Menu item in administrator navigation panel.
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in personal group navigation menu.
+#. TRANS: Menu item in settings navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "Home"
+msgstr "Homepage"
+
+#. TRANS: Header in administrator navigation panel.
+#, fuzzy
+msgctxt "HEADER"
 msgid "Admin"
 msgstr "Admin"
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item title in administrator navigation panel.
 msgid "Basic site configuration"
 msgstr "Basic site configuration"
 
-#. TRANS: Menu item for site administration
+#. TRANS: Menu item in administrator navigation panel.
 msgctxt "MENU"
 msgid "Site"
 msgstr "Site"
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item title in administrator navigation panel.
 msgid "Design configuration"
 msgstr "Design configuration"
 
-#. TRANS: Menu item for site administration
+#. TRANS: Menu item in administrator navigation panel.
 #. TRANS: Menu item in the group navigation page. Only shown for group administrators.
+#. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
 msgid "Design"
 msgstr "Design"
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item title in administrator navigation panel.
 msgid "User configuration"
 msgstr "User configuration"
 
-#. TRANS: Menu item for site administration
+#. TRANS: Menu item in administrator navigation panel.
+#, fuzzy
+msgctxt "MENU"
 msgid "User"
 msgstr "User"
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item title in administrator navigation panel.
 msgid "Access configuration"
 msgstr "Access configuration"
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item in administrator navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "Access"
+msgstr "Access"
+
+#. TRANS: Menu item title in administrator navigation panel.
 msgid "Paths configuration"
 msgstr "Paths configuration"
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item in administrator navigation panel.
+msgctxt "MENU"
+msgid "Paths"
+msgstr ""
+
+#. TRANS: Menu item title in administrator navigation panel.
 msgid "Sessions configuration"
 msgstr "Sessions configuration"
 
-#. TRANS: Menu item for site administration
+#. TRANS: Menu item in administrator navigation panel.
+msgctxt "MENU"
 msgid "Sessions"
 msgstr "Sessions"
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item title in administrator navigation panel.
 msgid "Edit site notice"
 msgstr "Edit site notice"
 
-#. TRANS: Menu item for site administration
+#. TRANS: Menu item in administrator navigation panel.
+#, fuzzy
+msgctxt "MENU"
 msgid "Site notice"
 msgstr "Site notice"
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item title in administrator navigation panel.
 msgid "Snapshots configuration"
 msgstr "Snapshots configuration"
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item in administrator navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "Snapshots"
+msgstr "Data snapshots"
+
+#. TRANS: Menu item title in administrator navigation panel.
 msgid "Set site license"
 msgstr ""
 
-#. TRANS: Menu item title/tooltip
+#. TRANS: Menu item in administrator navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "License"
+msgstr "License"
+
+#. TRANS: Menu item title in administrator navigation panel.
 #, fuzzy
 msgid "Plugins configuration"
 msgstr "Paths configuration"
+
+#. TRANS: Menu item in administrator navigation panel.
+msgctxt "MENU"
+msgid "Plugins"
+msgstr ""
 
 #. TRANS: Client error 401.
 msgid "API resource requires read-write access, but you only have read access."
@@ -6695,6 +7548,7 @@ msgstr ""
 msgid "No application for that consumer key."
 msgstr ""
 
+#. TRANS: Authorization exception thrown when a user without API access tries to access the API.
 msgid "Not allowed to use API."
 msgstr ""
 
@@ -6731,9 +7585,11 @@ msgstr ""
 msgid "Could not issue access token."
 msgstr "Could not insert message."
 
+#. TRANS: Exception thrown when a database error occurs.
 msgid "Database error inserting OAuth application user."
 msgstr "Database error inserting OAuth application user."
 
+#. TRANS: Exception thrown when a database error occurs.
 #, fuzzy
 msgid "Database error updating OAuth application user."
 msgstr "Database error inserting OAuth application user."
@@ -6772,6 +7628,8 @@ msgstr "Describe your application"
 
 #. TRANS: Form input field label.
 #. TRANS: Text area label on group edit form; contains description of group.
+#. TRANS: Field label for description of list.
+#. TRANS: Dropdown option for searching in profiles.
 msgid "Description"
 msgstr "Description"
 
@@ -6827,6 +7685,18 @@ msgstr ""
 msgid "Cancel"
 msgstr "Cancel"
 
+#. TRANS: Submit button title.
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Save"
+
+#. TRANS: Name for an anonymous application in application list.
+#, fuzzy
+msgid "Unknown application"
+msgstr "Unknown action"
+
+#. TRANS: Message has a leading space and a trailing space. Used in application list.
+#. TRANS: Before this message the application name is put, behind it the organisation that manages it.
 msgid " by "
 msgstr ""
 
@@ -6849,11 +7719,12 @@ msgstr ""
 msgid "Access token starting with: %s"
 msgstr ""
 
-#. TRANS: Button label
+#. TRANS: Button label in application list to revoke access to user data.
 msgctxt "BUTTON"
 msgid "Revoke"
 msgstr "Revoke"
 
+#. TRANS: Atom feed exception thrown when an author element does not contain a name element.
 msgid "Author element must contain a name element."
 msgstr ""
 
@@ -6861,6 +7732,17 @@ msgstr ""
 #, fuzzy
 msgid "Do not use this method!"
 msgstr "Do not delete this group"
+
+#. TRANS: Title in atom list notice feed. %1$s is a list name, %2$s is a tagger's nickname.
+#, fuzzy, php-format
+msgid "Timeline for people in list %1$s by %2$s"
+msgstr "Replies to %1$s on %2$s!"
+
+#. TRANS: Message is used as a subtitle in atom list notice feed.
+#. TRANS: %1$s is a tagger's nickname, %2$s is a list name, %3$s is a site name.
+#, fuzzy, php-format
+msgid "Updates from %1$s's list %2$s on %3$s!"
+msgstr "Updates from %1$s on %2$s!"
 
 #. TRANS: Title.
 msgid "Notices where this attachment appears"
@@ -6891,6 +7773,12 @@ msgctxt "BUTTON"
 msgid "Cancel join request"
 msgstr ""
 
+#. TRANS: Button text for form action to cancel a subscription request.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Cancel subscription request"
+msgstr "All subscriptions"
+
 #. TRANS: Title for command results.
 msgid "Command results"
 msgstr "Command results"
@@ -6900,6 +7788,7 @@ msgid "AJAX error"
 msgstr "AJAX error"
 
 #. TRANS: E-mail subject when a command has completed.
+#. TRANS: E-mail subject for reply to an e-mail command.
 msgid "Command complete"
 msgstr "Command complete"
 
@@ -6955,7 +7844,7 @@ msgstr ""
 
 #. TRANS: Error message text shown when a favorite could not be set because it has already been favorited.
 #, fuzzy
-msgid "Could not create favorite: already favorited."
+msgid "Could not create favorite: Already favorited."
 msgstr "Could not create favourite."
 
 #. TRANS: Text shown when a notice has been marked as favourite successfully.
@@ -6973,6 +7862,47 @@ msgstr ""
 #, php-format
 msgid "%1$s left group %2$s."
 msgstr ""
+
+#. TRANS: Error displayed if tagging a user fails.
+#. TRANS: %1$s is the tagged user, %2$s is the error message (no punctuation).
+#, php-format
+msgid "Error tagging %1$s: %2$s"
+msgstr ""
+
+#. TRANS: Succes message displayed if tagging a user succeeds.
+#. TRANS: %1$s is the tagged user's nickname, %2$s is a list of tags.
+#. TRANS: Plural is decided based on the number of tags added (not part of message).
+#, fuzzy, php-format
+msgid "%1$s was tagged %2$s"
+msgid_plural "%1$s was tagged %2$s"
+msgstr[0] "%1$s - %2$s"
+msgstr[1] "%1$s - %2$s"
+
+#. TRANS: Separator for list of tags.
+#. TRANS: Separator in list of user names like "Jim, Bob, Mary".
+msgid ", "
+msgstr ""
+
+#. TRANS: Error displayed if a given tag is invalid.
+#. TRANS: %s is the invalid tag.
+#, php-format
+msgid "Invalid tag: \"%s\""
+msgstr "Invalid tag: \"%s\""
+
+#. TRANS: Error displayed if untagging a user fails.
+#. TRANS: %1$s is the untagged user, %2$s is the error message (no punctuation).
+#, php-format
+msgid "Error untagging %1$s: %2$s"
+msgstr ""
+
+#. TRANS: Succes message displayed if untagging a user succeeds.
+#. TRANS: %1$s is the untagged user's nickname, %2$s is a list of tags.
+#. TRANS: Plural is decided based on the number of tags removed (not part of message).
+#, php-format
+msgid "The following tag was removed from user %1$s: %2$s."
+msgid_plural "The following tags were removed from user %1$s: %2$s."
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANS: Whois output.
 #. TRANS: %1$s nickname of the queried user, %2$s is their profile URL.
@@ -7015,6 +7945,8 @@ msgstr ""
 
 #. TRANS: Message given if content is too long. %1$sd is used for plural.
 #. TRANS: %1$d is the maximum number of characters, %2$d is the number of submitted characters.
+#. TRANS: Message given when a status is too long. %1$s is the maximum number of characters,
+#. TRANS: %2$s is the number of characters sent (used for plural).
 #, fuzzy, php-format
 msgid "Message too long - maximum is %1$d character, you sent %2$d."
 msgid_plural "Message too long - maximum is %1$d characters, you sent %2$d."
@@ -7034,10 +7966,6 @@ msgstr "Error sending direct message."
 #, php-format
 msgid "Notice from %s repeated."
 msgstr "Notice from %s repeated."
-
-#. TRANS: Error text shown when repeating a notice fails with an unknown reason.
-msgid "Error repeating notice."
-msgstr "Error repeating notice."
 
 #. TRANS: Message given if content of a notice for a reply is too long. %1$d is used for plural.
 #. TRANS: %1$d is the maximum number of characters, %2$d is the number of submitted characters.
@@ -7163,162 +8091,174 @@ msgctxt "COMMANDHELP"
 msgid "Commands:"
 msgstr "Command results"
 
-#. TRANS: Help message for IM/SMS command "on"
+#. TRANS: Help message for IM/SMS command "on".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "turn on notifications"
 msgstr "Can't turn on notification."
 
-#. TRANS: Help message for IM/SMS command "off"
+#. TRANS: Help message for IM/SMS command "off".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "turn off notifications"
 msgstr "Can't turn off notification."
 
-#. TRANS: Help message for IM/SMS command "help"
+#. TRANS: Help message for IM/SMS command "help".
 msgctxt "COMMANDHELP"
 msgid "show this help"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "follow <nickname>"
+#. TRANS: Help message for IM/SMS command "follow <nickname>".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "subscribe to user"
 msgstr "Subscribe to this user"
 
-#. TRANS: Help message for IM/SMS command "groups"
+#. TRANS: Help message for IM/SMS command "groups".
 msgctxt "COMMANDHELP"
 msgid "lists the groups you have joined"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "subscriptions"
+#. TRANS: Help message for IM/SMS command "tag".
+#, fuzzy
+msgctxt "COMMANDHELP"
+msgid "tag a user"
+msgstr "Tag user"
+
+#. TRANS: Help message for IM/SMS command "untag".
+#, fuzzy
+msgctxt "COMMANDHELP"
+msgid "untag a user"
+msgstr "Tag user"
+
+#. TRANS: Help message for IM/SMS command "subscriptions".
 msgctxt "COMMANDHELP"
 msgid "list the people you follow"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "subscribers"
+#. TRANS: Help message for IM/SMS command "subscribers".
 msgctxt "COMMANDHELP"
 msgid "list the people that follow you"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "leave <nickname>"
+#. TRANS: Help message for IM/SMS command "leave <nickname>".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "unsubscribe from user"
 msgstr "Unsubscribe from this user"
 
-#. TRANS: Help message for IM/SMS command "d <nickname> <text>"
+#. TRANS: Help message for IM/SMS command "d <nickname> <text>".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "direct message to user"
 msgstr "Direct messages to %s"
 
-#. TRANS: Help message for IM/SMS command "get <nickname>"
+#. TRANS: Help message for IM/SMS command "get <nickname>".
 msgctxt "COMMANDHELP"
 msgid "get last notice from user"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "whois <nickname>"
+#. TRANS: Help message for IM/SMS command "whois <nickname>".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "get profile info on user"
 msgstr "Profile information"
 
-#. TRANS: Help message for IM/SMS command "lose <nickname>"
+#. TRANS: Help message for IM/SMS command "lose <nickname>".
 msgctxt "COMMANDHELP"
 msgid "force user to stop following you"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "fav <nickname>"
+#. TRANS: Help message for IM/SMS command "fav <nickname>".
 msgctxt "COMMANDHELP"
 msgid "add user's last notice as a 'fave'"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "fav #<notice_id>"
+#. TRANS: Help message for IM/SMS command "fav #<notice_id>".
 msgctxt "COMMANDHELP"
 msgid "add notice with the given id as a 'fave'"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "repeat #<notice_id>"
+#. TRANS: Help message for IM/SMS command "repeat #<notice_id>".
 msgctxt "COMMANDHELP"
 msgid "repeat a notice with a given id"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "repeat <nickname>"
+#. TRANS: Help message for IM/SMS command "repeat <nickname>".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "repeat the last notice from user"
 msgstr "Repeat this notice"
 
-#. TRANS: Help message for IM/SMS command "reply #<notice_id>"
+#. TRANS: Help message for IM/SMS command "reply #<notice_id>".
 msgctxt "COMMANDHELP"
 msgid "reply to notice with a given id"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "reply <nickname>"
+#. TRANS: Help message for IM/SMS command "reply <nickname>".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "reply to the last notice from user"
 msgstr "Reply to this notice"
 
-#. TRANS: Help message for IM/SMS command "join <group>"
+#. TRANS: Help message for IM/SMS command "join <group>".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "join group"
 msgstr "Unknown"
 
-#. TRANS: Help message for IM/SMS command "login"
+#. TRANS: Help message for IM/SMS command "login".
 msgctxt "COMMANDHELP"
 msgid "Get a link to login to the web interface"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "drop <group>"
+#. TRANS: Help message for IM/SMS command "drop <group>".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "leave group"
 msgstr "Delete group"
 
-#. TRANS: Help message for IM/SMS command "stats"
+#. TRANS: Help message for IM/SMS command "stats".
 msgctxt "COMMANDHELP"
 msgid "get your stats"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "stop"
-#. TRANS: Help message for IM/SMS command "quit"
+#. TRANS: Help message for IM/SMS command "stop".
+#. TRANS: Help message for IM/SMS command "quit".
 msgctxt "COMMANDHELP"
 msgid "same as 'off'"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "sub <nickname>"
+#. TRANS: Help message for IM/SMS command "sub <nickname>".
 msgctxt "COMMANDHELP"
 msgid "same as 'follow'"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "unsub <nickname>"
+#. TRANS: Help message for IM/SMS command "unsub <nickname>".
 msgctxt "COMMANDHELP"
 msgid "same as 'leave'"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "last <nickname>"
+#. TRANS: Help message for IM/SMS command "last <nickname>".
 msgctxt "COMMANDHELP"
 msgid "same as 'get'"
 msgstr ""
 
-#. TRANS: Help message for IM/SMS command "on <nickname>"
-#. TRANS: Help message for IM/SMS command "off <nickname>"
-#. TRANS: Help message for IM/SMS command "invite <phone number>"
-#. TRANS: Help message for IM/SMS command "track <word>"
-#. TRANS: Help message for IM/SMS command "untrack <word>"
-#. TRANS: Help message for IM/SMS command "track off"
-#. TRANS: Help message for IM/SMS command "untrack all"
-#. TRANS: Help message for IM/SMS command "tracks"
-#. TRANS: Help message for IM/SMS command "tracking"
+#. TRANS: Help message for IM/SMS command "on <nickname>".
+#. TRANS: Help message for IM/SMS command "off <nickname>".
+#. TRANS: Help message for IM/SMS command "invite <phone number>".
+#. TRANS: Help message for IM/SMS command "track <word>".
+#. TRANS: Help message for IM/SMS command "untrack <word>".
+#. TRANS: Help message for IM/SMS command "track off".
+#. TRANS: Help message for IM/SMS command "untrack all".
+#. TRANS: Help message for IM/SMS command "tracks".
+#. TRANS: Help message for IM/SMS command "tracking".
 #, fuzzy
 msgctxt "COMMANDHELP"
 msgid "not yet implemented."
 msgstr "Command not yet implemented."
 
-#. TRANS: Help message for IM/SMS command "nudge <nickname>"
+#. TRANS: Help message for IM/SMS command "nudge <nickname>".
 msgctxt "COMMANDHELP"
 msgid "remind a user to update."
 msgstr ""
@@ -7343,13 +8283,34 @@ msgstr ""
 msgid "Go to the installer."
 msgstr "Go to the installer."
 
+#. TRANS: Page title for when a database error occurs.
 msgid "Database error"
 msgstr ""
 
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in search group navigation panel.
+#, fuzzy
+msgctxt "MENU"
 msgid "Public"
 msgstr "Public"
 
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in search group navigation panel.
+#. TRANS: Menu item in local navigation menu.
+#, fuzzy
+msgctxt "MENU"
+msgid "Groups"
+msgstr "Groups"
+
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item title in local navigation menu.
+#, fuzzy
+msgctxt "MENU"
+msgid "Lists"
+msgstr "Links"
+
 #. TRANS: Title of form for deleting a user.
+#. TRANS: Link text in notice list item to delete a notice.
 msgid "Delete"
 msgstr "Delete"
 
@@ -7357,6 +8318,7 @@ msgstr "Delete"
 msgid "Delete this user"
 msgstr "Delete this user"
 
+#. TRANS: Form legend of form for changing the page design.
 #, fuzzy
 msgid "Change design"
 msgstr "Save design"
@@ -7369,23 +8331,14 @@ msgstr "Change colours"
 msgid "Use defaults"
 msgstr "Use defaults"
 
-#. TRANS: Title for button on profile design page to reset all colour settings to default.
-msgid "Restore default designs"
-msgstr "Restore default designs"
-
-#. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-msgid "Reset back to default"
-msgstr "Reset back to default"
-
 #. TRANS: Label in form on profile design page.
 #. TRANS: Field contains file name on user's computer that could be that user's custom profile background image.
 msgid "Upload file"
 msgstr "Upload file"
 
 #. TRANS: Instructions for form on profile design page.
-#, fuzzy
 msgid ""
-"You can upload your personal background image. The maximum file size is 2Mb."
+"You can upload your personal background image. The maximum file size is 2MB."
 msgstr ""
 "You can upload your personal background image. The maximum file size is 2MB."
 
@@ -7400,15 +8353,6 @@ msgstr "On"
 msgctxt "RADIO"
 msgid "Off"
 msgstr "Off"
-
-#. TRANS: Title for button on profile design page to save settings.
-msgid "Save design"
-msgstr "Save design"
-
-#. TRANS: Error message displayed if design settings could not be saved.
-#. TRANS: Error message displayed if design settings could not be saved after clicking "Use defaults".
-msgid "Couldn't update your design."
-msgstr "Couldn't update your design."
 
 #. TRANS: Success message displayed if design settings were saved after clicking "Use defaults".
 msgid "Design defaults restored."
@@ -7441,47 +8385,51 @@ msgctxt "BUTTON"
 msgid "Favor"
 msgstr "Favour"
 
+#. TRANS: Feed type name.
 msgid "RSS 1.0"
 msgstr ""
 
+#. TRANS: Feed type name.
 msgid "RSS 2.0"
 msgstr ""
 
+#. TRANS: Feed type name.
 msgid "Atom"
 msgstr ""
 
+#. TRANS: Feed type name. FOAF stands for Friend of a Friend.
 msgid "FOAF"
 msgstr ""
 
-#, fuzzy
-msgid "Not an atom feed."
-msgstr "All members"
-
+#. TRANS: Client exception thrown when an imported feed does not have an author.
 msgid "No author in the feed."
 msgstr ""
 
-msgid "Can't import without a user."
+#. TRANS: Client exception thrown when an imported feed does not have an author that
+#. TRANS: can be associated with a user.
+msgid "Cannot import without a user."
 msgstr ""
 
 #. TRANS: Header for feed links (h2).
 msgid "Feeds"
 msgstr ""
 
+#. TRANS: List element on gallery action page to show all tags.
+#, fuzzy
+msgctxt "TAGS"
 msgid "All"
 msgstr "All"
 
-msgid "Select tag to filter"
-msgstr "Select tag to filter"
-
+#. TRANS: Dropdown field label on gallery action page for a list containing tags.
 msgid "Tag"
 msgstr "Tag"
 
-msgid "Choose a tag to narrow list"
+#. TRANS: Dropdown field title on gallery action page for a list containing tags.
+#, fuzzy
+msgid "Choose a tag to narrow list."
 msgstr "Choose a tag to narrow list"
 
-msgid "Go"
-msgstr "Go"
-
+#. TRANS: Description on form for granting a role.
 #, php-format
 msgid "Grant this user the \"%s\" role"
 msgstr ""
@@ -7537,19 +8485,9 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#. TRANS: Dropdown fieldd label on group edit form.
-#, fuzzy
-msgid "Membership policy"
-msgstr "Member since"
-
-msgid "Open to all"
-msgstr ""
-
-msgid "Admin must approve all members"
-msgstr ""
-
-#. TRANS: Dropdown field title on group edit form.
-msgid "Whether admin approval is required to join this group."
+#. TRANS: Checkbox field title on group edit form to mark a group private.
+msgid ""
+"New members must be approved by admin and all posts are forced to be private."
 msgstr ""
 
 #. TRANS: Indicator in group members list that this user is a group administrator.
@@ -7611,6 +8549,7 @@ msgid "%s blocked users"
 msgstr ""
 
 #. TRANS: Menu item in the group navigation page. Only shown for group administrators.
+#. TRANS: Menu item in primary navigation panel.
 msgctxt "MENU"
 msgid "Admin"
 msgstr "Admin"
@@ -7646,12 +8585,14 @@ msgid "Group actions"
 msgstr "Group actions"
 
 #. TRANS: Title for groups with the most members section.
-msgid "Groups with most members"
-msgstr "Groups with most members"
+#, fuzzy
+msgid "Popular groups"
+msgstr "Popular notices"
 
 #. TRANS: Title for groups with the most posts section.
-msgid "Groups with most posts"
-msgstr "Groups with most posts"
+#, fuzzy
+msgid "Active groups"
+msgstr "All groups"
 
 #. TRANS: Title for group tag cloud section.
 #. TRANS: %s is a group name.
@@ -7711,23 +8652,57 @@ msgid_plural "%dB"
 msgstr[0] ""
 msgstr[1] ""
 
+#. TRANS: Body text for confirmation code e-mail.
+#. TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename,
+#. TRANS: %3$s is the display name of an IM plugin.
 #, php-format
 msgid ""
-"User \"%s\" on %s has said that your %s screenname belongs to them. If "
-"that's true, you can confirm by clicking on this URL: %s . (If you cannot "
+"User \"%1$s\" on %2$s has said that your %3$s screenname belongs to them. If "
+"that is true, you can confirm by clicking on this URL: %4$s . (If you cannot "
 "click it, copy-and-paste it into the address bar of your browser). If that "
-"user isn't you, or if you didn't request this confirmation, just ignore this "
-"message."
+"user is not you, or if you did not request this confirmation, just ignore "
+"this message."
 msgstr ""
 
+#. TRANS: Exception thrown when trying to deliver a notice to an unknown inbox.
+#. TRANS: %d is the unknown inbox ID (number).
 #, php-format
 msgid "Unknown inbox source %d."
 msgstr ""
 
+#. TRANS: Server exception thrown trying to initialise an IM plugin without meeting all prerequisites.
+msgid "Queueing must be enabled to use IM plugins."
+msgstr ""
+
+#. TRANS: Server exception thrown trying to initialise an IM plugin without a transport method.
+msgid "Transport cannot be null."
+msgstr ""
+
+#. TRANS: Title for inbox tag cloud section.
+msgctxt "TITLE"
+msgid "Trends"
+msgstr ""
+
+#. TRANS: Button text for inviting more users to the StatusNet instance.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Invite more colleagues"
+msgstr "Invite new users"
+
+#. TRANS: Button text for joining a group.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Join"
+msgstr "Join"
+
+#. TRANS: Button text on form to leave a group.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Leave"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
+#. TRANS: Menu item in primary navigation panel.
 msgctxt "MENU"
 msgid "Login"
 msgstr "Login"
@@ -7775,6 +8750,20 @@ msgstr ""
 #, php-format
 msgid "%1$s is now listening to your notices on %2$s."
 msgstr "%1$s is now listening to your notices on %2$s."
+
+#. TRANS: Subject of pending new-subscriber notification e-mail.
+#. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
+#, fuzzy, php-format
+msgid "%1$s would like to listen to your notices on %2$s."
+msgstr "%1$s is now listening to your notices on %2$s."
+
+#. TRANS: Main body of pending new-subscriber notification e-mail.
+#. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
+#, php-format
+msgid ""
+"%1$s would like to listen to your notices on %2$s. You may approve or reject "
+"their subscription at %3$s"
+msgstr ""
 
 #. TRANS: Common footer block for StatusNet notification emails.
 #. TRANS: %1$s is the StatusNet sitename,
@@ -7998,40 +8987,58 @@ msgid ""
 "their group membership at %4$s"
 msgstr ""
 
+#. TRANS: Client error displayed when trying to access a mailbox that is not of the logged in user.
 msgid "Only the user can read their own mailboxes."
 msgstr "Only the user can read their own mailboxes."
 
+#. TRANS: Message displayed when there are no private messages in the inbox of a user.
 msgid ""
 "You have no private messages. You can send private message to engage other "
 "users in conversation. People can send you messages for your eyes only."
 msgstr ""
 
+#. TRANS: Menu item in mailbox menu. Leads to incoming private messages.
+#, fuzzy
+msgctxt "MENU"
 msgid "Inbox"
 msgstr "Inbox"
 
-msgid "Your incoming messages"
+#. TRANS: Menu item title in mailbox menu. Leads to incoming private messages.
+#, fuzzy
+msgid "Your incoming messages."
 msgstr "Your incoming messages"
 
+#. TRANS: Menu item in mailbox menu. Leads to outgoing private messages.
+#, fuzzy
+msgctxt "MENU"
 msgid "Outbox"
 msgstr "Outbox"
 
-msgid "Your sent messages"
+#. TRANS: Menu item title in mailbox menu. Leads to outgoing private messages.
+#, fuzzy
+msgid "Your sent messages."
 msgstr "Your sent messages"
 
+#. TRANS: Error message in incoming mail handler used when an incoming e-mail cannot be processed.
 msgid "Could not parse message."
 msgstr "Could not parse message."
 
+#. TRANS: Error message in incoming mail handler used when an incoming e-mail is not from a registered user.
 msgid "Not a registered user."
 msgstr "Not a registered user."
 
+#. TRANS: Error message in incoming mail handler used when an incoming e-mail is not from a user's incoming e-mail address.
 msgid "Sorry, that is not your incoming email address."
 msgstr "Sorry, that is not your incoming e-mail address."
 
+#. TRANS: Error message in incoming mail handler used when no incoming e-mail is allowed.
 msgid "Sorry, no incoming email allowed."
 msgstr "Sorry, no incoming e-mail allowed."
 
-#, php-format
-msgid "Unsupported message type: %s"
+#. TRANS: Error message in incoming mail handler used when an incoming e-mail is of an unsupported type.
+#. TRANS: %s is the unsupported type.
+#, fuzzy, php-format
+msgid "Unsupported message type: %s."
 msgstr "Unsupported message type: %s"
 
 #. TRANS: Form legend for form to make a user a group admin.
@@ -8081,10 +9088,13 @@ msgstr ""
 msgid "\"%s\" is not a supported file type on this server."
 msgstr ""
 
+#. TRANS: Form legend for direct notice.
 msgid "Send a direct notice"
 msgstr "Send a direct notice"
 
-#. TRANS Label entry in drop-down selection box in direct-message inbox/outbox. This is the default entry in the drop-down box, doubling as instructions and a brake against accidental submissions with the first user in the list.
+#. TRANS: Label entry in drop-down selection box in direct-message inbox/outbox.
+#. TRANS: This is the default entry in the drop-down box, doubling as instructions
+#. TRANS: and a brake against accidental submissions with the first user in the list.
 #, fuzzy
 msgid "Select recipient:"
 msgstr "Select a carrier"
@@ -8094,32 +9104,71 @@ msgstr "Select a carrier"
 msgid "No mutual subscribers."
 msgstr "Not subscribed!"
 
+#. TRANS: Dropdown label in direct notice form.
 msgid "To"
 msgstr "To"
 
+#. TRANS: Button text for sending a direct notice.
 msgctxt "Send button for sending notice"
 msgid "Send"
 msgstr "Send"
 
+#. TRANS: Header in message list.
 #, fuzzy
 msgid "Messages"
 msgstr "Message"
 
+#. TRANS: Followed by notice source (usually the client used to send the notice).
+#. TRANS: Followed by notice source.
 msgid "from"
 msgstr "from"
 
-msgid "Can't get author for activity."
+#. TRANS: A possible notice source (web interface).
+msgctxt "SOURCE"
+msgid "web"
 msgstr ""
 
+#. TRANS: A possible notice source (XMPP).
+msgctxt "SOURCE"
+msgid "xmpp"
+msgstr ""
+
+#. TRANS: A possible notice source (e-mail).
+#, fuzzy
+msgctxt "SOURCE"
+msgid "mail"
+msgstr "E-mail"
+
+#. TRANS: A possible notice source (OpenMicroBlogging).
+msgctxt "SOURCE"
+msgid "omb"
+msgstr ""
+
+#. TRANS: A possible notice source (Application Programming Interface).
+msgctxt "SOURCE"
+msgid "api"
+msgstr ""
+
+#. TRANS: Client exception thrown when no author for an activity was found.
+msgid "Cannot get author for activity."
+msgstr ""
+
+#. TRANS: Client exception thrown when ...
 #, fuzzy
 msgid "Bookmark not posted to this group."
 msgstr "You are not allowed to delete this group."
 
+#. TRANS: Client exception when ...
 #, fuzzy
 msgid "Object not posted to this user."
 msgstr "Do not delete this group"
 
-msgid "Don't know how to handle this kind of target."
+#. TRANS: Server exception thrown when a micro app plugin uses a target that cannot be handled.
+msgid "Do not know how to handle this kind of target."
+msgstr ""
+
+#. TRANS: Server exception thrown when a micro app plugin developer has not done his job too well.
+msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
@@ -8164,68 +9213,97 @@ msgid ""
 "try again later"
 msgstr ""
 
-#. TRANS: Used in coordinates as abbreviation of north
+#. TRANS: Separator in profile addressees list.
+msgctxt "SEPARATOR"
+msgid ", "
+msgstr ""
+
+#. TRANS: Start of profile addressees list.
+msgid " ▸ "
+msgstr ""
+
+#. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
 msgstr "N"
 
-#. TRANS: Used in coordinates as abbreviation of south
+#. TRANS: Used in coordinates as abbreviation of south.
 msgid "S"
 msgstr ""
 
-#. TRANS: Used in coordinates as abbreviation of east
+#. TRANS: Used in coordinates as abbreviation of east.
 msgid "E"
 msgstr ""
 
-#. TRANS: Used in coordinates as abbreviation of west
+#. TRANS: Used in coordinates as abbreviation of west.
 msgid "W"
 msgstr ""
 
+#. TRANS: Coordinates message.
+#. TRANS: %1$s is lattitude degrees, %2$s is lattitude minutes,
+#. TRANS: %3$s is lattitude seconds, %4$s is N (north) or S (south) depending on lattitude,
+#. TRANS: %5$s is longitude degrees, %6$s is longitude minutes,
+#. TRANS: %7$s is longitude seconds, %8$s is E (east) or W (west) depending on longitude,
 #, php-format
 msgid "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 msgstr ""
 
+#. TRANS: Followed by geo location.
 msgid "at"
 msgstr ""
 
-msgid "web"
-msgstr ""
-
+#. TRANS: Addition in notice list item if notice is part of a conversation.
 msgid "in context"
 msgstr "in context"
 
+#. TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
 msgid "Repeated by"
 msgstr "Repeated by"
 
+#. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice"
 msgstr "Reply to this notice"
 
+#. TRANS: Link text in notice list item to reply to a notice.
 msgid "Reply"
 msgstr "Reply"
 
+#. TRANS: Link title in notice list item to delete a notice.
 msgid "Delete this notice"
 msgstr "Delete this notice"
 
-msgid "Notice repeated"
+#. TRANS: Title for repeat form status in notice list when a notice has been repeated.
+#, fuzzy
+msgid "Notice repeated."
 msgstr "Notice repeated"
 
+#. TRANS: Field label for notice text.
 msgid "Update your status..."
 msgstr ""
 
+#. TRANS: Form legend of form to nudge/ping another user.
 msgid "Nudge this user"
 msgstr "Nudge this user"
 
+#. TRANS: Button text to nudge/ping another user.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Nudge"
 msgstr "Nudge"
 
-msgid "Send a nudge to this user"
+#. TRANS: Button title to nudge/ping another user.
+#, fuzzy
+msgid "Send a nudge to this user."
 msgstr "Send a nudge to this user"
 
+#. TRANS: Exception thrown when creating a new profile fails in OAuth store.
 msgid "Error inserting new profile."
 msgstr ""
 
+#. TRANS: Exception thrown when creating a new avatar fails in OAuth store.
 msgid "Error inserting avatar."
 msgstr ""
 
+#. TRANS: Exception thrown when creating a remote profile fails in OAuth store.
 msgid "Error inserting remote profile."
 msgstr ""
 
@@ -8233,23 +9311,246 @@ msgstr ""
 msgid "Duplicate notice."
 msgstr ""
 
-msgid "Couldn't insert new subscription."
+#. TRANS: Exception thrown when creating a new subscription fails in OAuth store.
+#, fuzzy
+msgid "Could not insert new subscription."
 msgstr "Couldn't insert new subscription."
 
+#. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
+#, fuzzy
+msgid "No oEmbed API endpoint available."
+msgstr "IM is not available."
+
+#. TRANS: Field label for list.
+#, fuzzy
+msgctxt "LABEL"
+msgid "List"
+msgstr "Links"
+
+#. TRANS: Field title for list.
+#, fuzzy
+msgid "Change the list (letters, numbers, -, ., and _ are allowed)."
+msgstr ""
+"Tags for this user (letters, numbers, -, ., and _), comma- or space- "
+"separated"
+
+#. TRANS: Field title for description of list.
+#, fuzzy
+msgid "Describe the list or topic."
+msgstr "Describe the group or topic"
+
+#. TRANS: Field title for description of list.
+#. TRANS: %d is the maximum number of characters for the description.
+#, fuzzy, php-format
+msgid "Describe the list or topic in %d character."
+msgid_plural "Describe the list or topic in %d characters."
+msgstr[0] "Describe the group or topic in %d characters"
+msgstr[1] "Describe the group or topic in %d characters"
+
+#. TRANS: Button title to delete a list.
+#, fuzzy
+msgid "Delete this list."
+msgstr "Delete this user"
+
+#. TRANS: Header in list edit form.
+msgid "Add or remove people"
+msgstr ""
+
+#. TRANS: Header in list edit form.
+#, fuzzy
+msgctxt "HEADER"
+msgid "Search"
+msgstr "Search"
+
+#. TRANS: Menu item in list navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "List"
+msgstr "Links"
+
+#. TRANS: Menu item title in list navigation panel.
+#. TRANS: %1$s is a list, %2$s is a nickname.
+#, fuzzy, php-format
+msgid "%1$s list by %2$s."
+msgstr "%1$s - %2$s"
+
+#. TRANS: Menu item in list navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "Listed"
+msgstr "License"
+
+#. TRANS: Menu item in list navigation panel.
+#. TRANS: Menu item in local navigation menu.
+#, fuzzy
+msgctxt "MENU"
+msgid "Subscribers"
+msgstr "Subscribers"
+
+#. TRANS: Menu item title in list navigation panel.
+#. TRANS: %1$s is a list, %2$s is a nickname.
+#, fuzzy, php-format
+msgid "Subscribers to %1$s list by %2$s."
+msgstr "Replies to %1$s on %2$s!"
+
+#. TRANS: Menu item in list navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "Edit"
+msgstr "Edit"
+
+#. TRANS: Menu item title in list navigation panel.
+#. TRANS: %s is a list.
+#, fuzzy, php-format
+msgid "Edit %s list by you."
+msgstr "Edit %s group"
+
+#. TRANS: Link description for link to list of users tagged with a tag.
+#, fuzzy
+msgid "Tagged"
+msgstr "Tag"
+
+#. TRANS: Title for link to edit list settings.
+#, fuzzy
+msgid "Edit list settings."
+msgstr "Edit profile settings"
+
+#. TRANS: Text for link to edit list settings.
+msgid "Edit"
+msgstr "Edit"
+
+#. TRANS: Privacy mode text in list list item for private list.
+#, fuzzy
+msgctxt "MODE"
+msgid "Private"
+msgstr "Private"
+
+#. TRANS: Menu item in the group navigation page.
+#, fuzzy
+msgctxt "MENU"
+msgid "List Subscriptions"
+msgstr "Subscriptions"
+
+#. TRANS: Tooltip for menu item in the group navigation page.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgctxt "TOOLTIP"
+msgid "Lists subscribed to by %s."
+msgstr "People subscribed to %s"
+
+#. TRANS: Menu item in the group navigation page.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgctxt "MENU"
+msgid "Lists with %s"
+msgstr "Updates with \"%s\""
+
+#. TRANS: Tooltip for menu item in the group navigation page.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgctxt "TOOLTIP"
+msgid "Lists with %s."
+msgstr "Updates with \"%s\""
+
+#. TRANS: Menu item in the group navigation page.
+#. TRANS: %s is a user nickname.
+#, php-format
+msgctxt "MENU"
+msgid "Lists by %s"
+msgstr ""
+
+#. TRANS: Tooltip for menu item in the group navigation page.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgctxt "TOOLTIP"
+msgid "Lists by %s."
+msgstr "%1$s - %2$s"
+
+#. TRANS: Label in lists widget.
+#, fuzzy
+msgctxt "LABEL"
+msgid "Your lists"
+msgstr "Popular notices"
+
+#. TRANS: Fieldset legend in lists widget.
+#, fuzzy
+msgctxt "LEGEND"
+msgid "Edit lists"
+msgstr "Not a valid people tag: %s."
+
+#. TRANS: Label in self tags widget.
+#, fuzzy
+msgctxt "LABEL"
+msgid "Tags"
+msgstr "Tags"
+
+#. TRANS: Title for section contaning lists with the most subscribers.
+#, fuzzy
+msgid "Popular lists"
+msgstr "Popular notices"
+
+#. TRANS: List summary. %1$d is the number of users in the list,
+#. TRANS: %2$d is the number of subscribers to the list.
+#, fuzzy, php-format
+msgid "Listed: %1$d Subscribers: %2$d"
+msgstr "%1$s subscribers, page %2$d"
+
+#. TRANS: Title for page that displays which lists current user is part of.
+#, fuzzy, php-format
+msgid "Lists with you"
+msgstr "API method not found."
+
+#. TRANS: Title for page that displays which lists a user is part of.
+#. TRANS: %s is a profile name.
+#, fuzzy, php-format
+msgid "Lists with %s"
+msgstr "Updates with \"%s\""
+
+#. TRANS: Title for page that displays lists a user has subscribed to.
+#, fuzzy
+msgid "List subscriptions"
+msgstr "%s subscriptions"
+
+#. TRANS: Menu item in personal group navigation menu.
+#. TRANS: Menu item in settings navigation panel.
+#. TRANS: Menu item in local navigation menu.
+#, fuzzy
+msgctxt "MENU"
+msgid "Profile"
+msgstr "Profile"
+
+#. TRANS: Menu item title in personal group navigation menu.
 #, fuzzy
 msgid "Your profile"
 msgstr "Group profile"
 
+#. TRANS: Menu item in personal group navigation menu.
+#, fuzzy
+msgctxt "MENU"
 msgid "Replies"
 msgstr "Replies"
 
+#. TRANS: Menu item in personal group navigation menu.
+#, fuzzy
+msgctxt "MENU"
 msgid "Favorites"
 msgstr "Favourites"
 
-#. TRANS: Title for personal tag cloud section. %s is a user nickname.
-#, php-format
-msgid "Tags in %s's notices"
-msgstr "Tags in %s's notices"
+#. TRANS: Replaces %s in '%s\'s favorite notices'. (Yes, we know we need to fix this.)
+#, fuzzy
+msgctxt "FIXME"
+msgid "User"
+msgstr "User"
+
+#. TRANS: Menu item in personal group navigation menu.
+#, fuzzy
+msgctxt "MENU"
+msgid "Messages"
+msgstr "Message"
+
+#. TRANS: Menu item title in personal group navigation menu.
+msgid "Your incoming messages"
+msgstr "Your incoming messages"
 
 #. TRANS: Displayed as version information for a plugin if no version information was found.
 msgid "Unknown"
@@ -8269,50 +9570,56 @@ msgctxt "plugin-description"
 msgid "(Plugin descriptions unavailable when disabled.)"
 msgstr ""
 
+#. TRANS: Menu item in primary navigation panel.
+#, fuzzy
+msgctxt "MENU"
 msgid "Settings"
 msgstr "SMS settings"
 
+#. TRANS: Menu item title in primary navigation panel.
 #, fuzzy
-msgid "Change your personal settings"
+msgid "Change your personal settings."
 msgstr "Change your profile settings"
 
+#. TRANS: Menu item title in primary navigation panel.
 #, fuzzy
-msgid "Site configuration"
+msgid "Site configuration."
 msgstr "User configuration"
 
+#. TRANS: Menu item in primary navigation panel.
+msgctxt "MENU"
 msgid "Logout"
 msgstr "Logout"
 
-msgid "Logout from the site"
+#. TRANS: Menu item title in primary navigation panel.
+#, fuzzy
+msgid "Logout from the site."
 msgstr "Logout from the site"
 
-msgid "Login to the site"
+#. TRANS: Menu item title in primary navigation panel.
+#, fuzzy
+msgid "Login to the site."
 msgstr "Login to the site"
 
+#. TRANS: Menu item in primary navigation panel.
+msgctxt "MENU"
 msgid "Search"
 msgstr "Search"
 
+#. TRANS: Menu item title in primary navigation panel.
 #, fuzzy
-msgid "Search the site"
+msgid "Search the site."
 msgstr "Search site"
 
 #. TRANS: H2 text for user subscription statistics.
-#. TRANS: Label for user statistics.
-msgid "Subscriptions"
-msgstr "Subscriptions"
-
-#. TRANS: Text for user subscription statistics if user has more subscriptions than displayed.
-msgid "All subscriptions"
-msgstr "All subscriptions"
+#, fuzzy
+msgid "Following"
+msgstr "Allow"
 
 #. TRANS: H2 text for user subscriber statistics.
-#. TRANS: Label for user statistics.
-msgid "Subscribers"
-msgstr "Subscribers"
-
-#. TRANS: Text for user subscription statistics if user has more subscribers than displayed.
-msgid "All subscribers"
-msgstr "All subscribers"
+#, fuzzy
+msgid "Followers"
+msgstr "Allow"
 
 #. TRANS: Label for user statistics.
 msgid "User ID"
@@ -8323,47 +9630,72 @@ msgid "Member since"
 msgstr "Member since"
 
 #. TRANS: Label for user statistics.
-#. TRANS: H2 text for user group membership statistics.
-msgid "Groups"
-msgstr "Groups"
+msgid "Notices"
+msgstr "Notices"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
 msgid "Daily average"
 msgstr ""
 
-#. TRANS: Text for user group membership statistics if user has more subscriptions than displayed.
-msgid "All groups"
-msgstr "All groups"
+#. TRANS: H2 text for user group membership statistics.
+msgid "Groups"
+msgstr "Groups"
+
+#. TRANS: H2 text for user list membership statistics.
+#, fuzzy
+msgid "Lists"
+msgstr "Links"
 
 #. TRANS: Server error displayed when using an unimplemented method.
 msgid "Unimplemented method."
 msgstr ""
 
+#. TRANS: Menu item title in search group navigation panel.
 msgid "User groups"
 msgstr "User groups"
 
+#. TRANS: Menu item in search group navigation panel.
+#, fuzzy
+msgctxt "MENU"
 msgid "Recent tags"
 msgstr "Recent tags"
 
+#. TRANS: Menu item title in search group navigation panel.
+msgid "Recent tags"
+msgstr "Recent tags"
+
+#. TRANS: Menu item in search group navigation panel.
+#, fuzzy
+msgctxt "MENU"
 msgid "Featured"
 msgstr "Featured"
 
+#. TRANS: Menu item in search group navigation panel.
+#, fuzzy
+msgctxt "MENU"
 msgid "Popular"
 msgstr "Popular"
 
+#. TRANS: Title for inbox tag cloud section.
+msgctxt "TITLE"
+msgid "Trending topics"
+msgstr ""
+
+#. TRANS: Client error displayed when return-to was defined without a target.
 msgid "No return-to arguments."
 msgstr "No return-to arguments."
 
+#. TRANS: For legend for notice repeat form.
 msgid "Repeat this notice?"
 msgstr "Repeat this notice?"
 
-msgid "Yes"
-msgstr "Yes"
-
-msgid "Repeat this notice"
+#. TRANS: Button title to repeat a notice on notice repeat form.
+#, fuzzy
+msgid "Repeat this notice."
 msgstr "Repeat this notice"
 
+#. TRANS: Description of role revoke form. %s is the role to be revoked.
 #, php-format
 msgid "Revoke the \"%s\" role from this user"
 msgstr "Revoke the \"%s\" role from this user"
@@ -8373,9 +9705,13 @@ msgstr "Revoke the \"%s\" role from this user"
 msgid "Page not found."
 msgstr "API method not found."
 
+#. TRANS: Title of form to sandbox a user.
+#, fuzzy
+msgctxt "TITLE"
 msgid "Sandbox"
 msgstr "Sandbox"
 
+#. TRANS: Description of form to sandbox a user.
 msgid "Sandbox this user"
 msgstr "Sandbox this user"
 
@@ -8389,132 +9725,276 @@ msgid "Keyword(s)"
 msgstr ""
 
 #. TRANS: Button text for searching site.
+#. TRANS: Button text to search profiles.
 msgctxt "BUTTON"
 msgid "Search"
 msgstr ""
 
+#. TRANS: Standard search suggestions shown when a search does not give any results.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+
+#. TRANS: Standard search suggestions shown when a search does not give any results.
+#, php-format
+msgid ""
+"You can also try your search on other engines:\n"
+"\n"
+"* [Twingly](http://www.twingly.com/search?q=%s&content=microblog&site=%%%%"
+"site.server%%%%)\n"
+"* [Tweet scan](http://www.tweetscan.com/indexi.php?s=%s)\n"
+"* [Google](http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)\n"
+"* [Yahoo](http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)\n"
+"* [Collecta](http://collecta.com/#q=%s)"
+msgstr ""
+
+#. TRANS: Menu item in search group navigation panel.
+#, fuzzy
+msgctxt "MENU"
 msgid "People"
 msgstr "People"
 
+#. TRANS: Menu item title in search group navigation panel.
 msgid "Find people on this site"
 msgstr "Find people on this site"
 
+#. TRANS: Menu item in search group navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "Notices"
+msgstr "Notices"
+
+#. TRANS: Menu item title in search group navigation panel.
 msgid "Find content of notices"
 msgstr "Find content of notices"
 
+#. TRANS: Menu item title in search group navigation panel.
 msgid "Find groups on this site"
 msgstr "Find groups on this site"
 
-#. TRANS: Secondary navigation menu option leading to help on StatusNet.
+#. TRANS: Secondary navigation menu item leading to help on StatusNet.
+msgctxt "MENU"
 msgid "Help"
 msgstr "Help"
 
-#. TRANS: Secondary navigation menu option leading to text about StatusNet site.
+#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
+#, fuzzy
+msgctxt "MENU"
 msgid "About"
 msgstr "About"
 
-#. TRANS: Secondary navigation menu option leading to Frequently Asked Questions.
+#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
+#, fuzzy
+msgctxt "MENU"
 msgid "FAQ"
 msgstr "F.A.Q."
 
-#. TRANS: Secondary navigation menu option leading to Terms of Service.
+#. TRANS: Secondary navigation menu item leading to Terms of Service.
+msgctxt "MENU"
 msgid "TOS"
 msgstr ""
 
-#. TRANS: Secondary navigation menu option leading to privacy policy.
+#. TRANS: Secondary navigation menu item leading to privacy policy.
+#, fuzzy
+msgctxt "MENU"
 msgid "Privacy"
 msgstr "Privacy"
 
-#. TRANS: Secondary navigation menu option. Leads to information about StatusNet and its license.
+#. TRANS: Secondary navigation menu item. Leads to information about StatusNet and its license.
+#, fuzzy
+msgctxt "MENU"
 msgid "Source"
 msgstr "Source"
 
-#. TRANS: Secondary navigation menu option leading to version information on the StatusNet site.
+#. TRANS: Secondary navigation menu item leading to version information on the StatusNet site.
+#, fuzzy
+msgctxt "MENU"
 msgid "Version"
 msgstr "Version"
 
-#. TRANS: Secondary navigation menu option leading to e-mail contact information on the
+#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
+#, fuzzy
+msgctxt "MENU"
 msgid "Contact"
 msgstr "Contact"
 
-#. TRANS: Secondary navigation menu option. Leads to information about embedding a timeline widget.
+#. TRANS: Secondary navigation menu item. Leads to information about embedding a timeline widget.
+#, fuzzy
+msgctxt "MENU"
 msgid "Badge"
 msgstr "Badge"
 
+#. TRANS: Default title for section/sidebar widget.
 msgid "Untitled section"
 msgstr "Untitled section"
 
+#. TRANS: Default "More..." title for section/sidebar widget.
 msgid "More..."
 msgstr ""
 
+#. TRANS: Header in settings navigation panel.
+#, fuzzy
+msgctxt "HEADER"
+msgid "Settings"
+msgstr "SMS settings"
+
+#. TRANS: Menu item title in settings navigation panel.
 msgid "Change your profile settings"
 msgstr "Change your profile settings"
 
+#. TRANS: Menu item in settings navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "Avatar"
+msgstr "Avatar"
+
+#. TRANS: Menu item title in settings navigation panel.
 msgid "Upload an avatar"
 msgstr "Upload an avatar"
 
+#. TRANS: Menu item in settings navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "Password"
+msgstr "Password"
+
+#. TRANS: Menu item title in settings navigation panel.
 msgid "Change your password"
 msgstr "Change your password"
 
+#. TRANS: Menu item in settings navigation panel.
+#, fuzzy
+msgctxt "MENU"
+msgid "Email"
+msgstr "E-mail"
+
+#. TRANS: Menu item title in settings navigation panel.
 msgid "Change email handling"
 msgstr "Change e-mail handling"
 
+#. TRANS: Menu item title in settings navigation panel.
 msgid "Design your profile"
 msgstr "Design your profile"
 
+#. TRANS: Menu item in settings navigation panel.
+#, fuzzy
+msgctxt "MENU"
 msgid "URL"
 msgstr "URL"
 
+#. TRANS: Menu item title in settings navigation panel.
 msgid "URL shorteners"
 msgstr ""
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "IM"
+msgstr "IM"
+
+#. TRANS: Menu item title in settings navigation panel.
 msgid "Updates by instant messenger (IM)"
 msgstr "Updates by instant messenger (IM)"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "SMS"
+msgstr "SMS"
+
+#. TRANS: Menu item title in settings navigation panel.
 msgid "Updates by SMS"
 msgstr "Updates by SMS"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
 msgid "Connections"
 msgstr "Connections"
 
+#. TRANS: Menu item title in settings navigation panel.
 msgid "Authorized connected applications"
 msgstr "Authorised connected applications"
 
+#. TRANS: Title of form to silence a user.
+#, fuzzy
+msgctxt "TITLE"
 msgid "Silence"
 msgstr "Silence"
 
+#. TRANS: Description of form to silence a user.
 msgid "Silence this user"
 msgstr "Silence this user"
 
-#, php-format
-msgid "People %s subscribes to"
+#. TRANS: Menu item in local navigation menu.
+#, fuzzy
+msgctxt "MENU"
+msgid "Subscriptions"
+msgstr "Subscriptions"
+
+#. TRANS: Menu item title in local navigation menu.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "People %s subscribes to."
 msgstr "People %s subscribes to"
 
-#, php-format
-msgid "People subscribed to %s"
+#. TRANS: Menu item title in local navigation menu.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "People subscribed to %s."
 msgstr "People subscribed to %s"
 
+#. TRANS: Menu item in local navigation menu.
+#. TRANS: %d is the number of pending subscription requests.
 #, php-format
-msgid "Groups %s is a member of"
+msgctxt "MENU"
+msgid "Pending (%d)"
+msgstr ""
+
+#. TRANS: Menu item title in local navigation menu.
+#, php-format
+msgid "Approve pending subscription requests."
+msgstr ""
+
+#. TRANS: Menu item title in local navigation menu.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Groups %s is a member of."
 msgstr "Groups %s is a member of"
 
+#. TRANS: Menu item title in local navigation menu.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "List subscriptions by %s."
+msgstr "People subscribed to %s"
+
+#. TRANS: Menu item in local navigation menu.
+msgctxt "MENU"
 msgid "Invite"
 msgstr "Invite"
 
-#, php-format
-msgid "Invite friends and colleagues to join you on %s"
+#. TRANS: Menu item title in local navigation menu.
+#. TRANS: %s is the StatusNet sitename.
+#, fuzzy, php-format
+msgid "Invite friends and colleagues to join you on %s."
 msgstr "Invite friends and colleagues to join you on %s"
 
+#. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Subscribe to this user"
 
+#. TRANS: Title of personal tag cloud section.
 msgid "People Tagcloud as self-tagged"
 msgstr ""
 
+#. TRANS: Title of personal tag cloud section.
 msgid "People Tagcloud as tagged"
 msgstr ""
 
+#. TRANS: Content displayed in a tag cloud section if there are no tags.
+#, fuzzy
+msgctxt "NOTAGS"
 msgid "None"
 msgstr "None"
 
@@ -8523,18 +10003,25 @@ msgstr "None"
 msgid "Invalid theme name."
 msgstr "Invalid filename."
 
+#. TRANS: Exception thrown when a compressed theme is uploaded while no support present in PHP configuration.
 msgid "This server cannot handle theme uploads without ZIP support."
 msgstr ""
 
+#. TRANS: Server exception thrown when uploading a theme fails.
 msgid "The theme file is missing or the upload failed."
 msgstr ""
 
+#. TRANS: Server exception thrown when saving an uploaded theme after decompressing it fails.
+#. TRANS: Server exception thrown when an uploaded theme cannot be saved during extraction.
 msgid "Failed saving theme."
 msgstr "Failed saving theme."
 
-msgid "Invalid theme: bad directory structure."
+#. TRANS: Server exception thrown when an uploaded theme has an incorrect structure.
+msgid "Invalid theme: Bad directory structure."
 msgstr ""
 
+#. TRANS: Client exception thrown when an uploaded theme is larger than the limit.
+#. TRANS: %d is the number of bytes of the uncompressed theme.
 #, php-format
 msgid "Uploaded theme is too large; must be less than %d byte uncompressed."
 msgid_plural ""
@@ -8542,21 +10029,27 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-msgid "Invalid theme archive: missing file css/display.css"
+#. TRANS: Server exception thrown when an uploaded theme is incomplete.
+msgid "Invalid theme archive: Missing file css/display.css"
 msgstr ""
 
+#. TRANS: Server exception thrown when an uploaded theme has an incorrect file or folder name.
 msgid ""
 "Theme contains invalid file or folder name. Stick with ASCII letters, "
 "digits, underscore, and minus sign."
 msgstr ""
 
+#. TRANS: Server exception thrown when an uploaded theme contains files with unsafe file extensions.
 msgid "Theme contains unsafe file extension names; may be unsafe."
 msgstr ""
 
+#. TRANS: Server exception thrown when an uploaded theme contains a file type that is not allowed.
+#. TRANS: %s is the file type that is not allowed.
 #, php-format
-msgid "Theme contains file of type '.%s', which is not allowed."
+msgid "Theme contains file of type \".%s\", which is not allowed."
 msgstr ""
 
+#. TRANS: Server exception thrown when an uploaded compressed theme cannot be opened.
 msgid "Error opening theme archive."
 msgstr "Error opening theme archive."
 
@@ -8579,11 +10072,7 @@ msgctxt "FAVELIST"
 msgid "You"
 msgstr ""
 
-#. TRANS: Separator in list of user names like "You, Bob, Mary".
-msgid ", "
-msgstr ""
-
-#. TRANS: For building a list such as "You, bob, mary and 5 others have favored this notice".
+#. TRANS: For building a list such as "Jim, Bob, Mary and 5 others like this".
 #. TRANS: %1$s is a list of users, separated by a separator (default: ", "), %2$s is the last user in the list.
 #, fuzzy, php-format
 msgctxt "FAVELIST"
@@ -8593,15 +10082,26 @@ msgstr "%1$s - %2$s"
 #. TRANS: List message for notice favoured by logged in user.
 #, fuzzy
 msgctxt "FAVELIST"
-msgid "You have favored this notice."
-msgstr "Favour this notice"
+msgid "You like this."
+msgstr "Popular notices"
 
-#, fuzzy, php-format
-msgctxt "FAVELIST"
-msgid "One person has favored this notice."
-msgid_plural "%d people have favored this notice."
-msgstr[0] "Disfavour this notice"
-msgstr[1] "Disfavour this notice"
+#. TRANS: List message for when more than 4 people like something.
+#. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
+#. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
+#, php-format
+msgid "%%s and %d others like this."
+msgid_plural "%%s and %d others like this."
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: List message for favoured notices.
+#. TRANS: %%s is a list of users liking a notice.
+#. TRANS: Plural is based on the number of of users that have favoured a notice.
+#, php-format
+msgid "%%s likes this."
+msgid_plural "%%s like this."
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANS: List message for notice repeated by logged in user.
 #, fuzzy
@@ -8609,16 +10109,85 @@ msgctxt "REPEATLIST"
 msgid "You have repeated this notice."
 msgstr "You already repeated that notice."
 
+#. TRANS: List message for repeated notices.
+#. TRANS: %d is the number of users that have repeated a notice.
 #, fuzzy, php-format
-msgctxt "REPEATLIST"
 msgid "One person has repeated this notice."
 msgid_plural "%d people have repeated this notice."
 msgstr[0] "Already repeated that notice."
 msgstr[1] "Already repeated that notice."
 
+#. TRANS: Form legend.
+#, fuzzy, php-format
+msgid "Search and list people"
+msgstr "Search site"
+
+#. TRANS: Dropdown option for searching in profiles.
+msgid "Everything"
+msgstr ""
+
+#. TRANS: Dropdown option for searching in profiles.
+#, fuzzy
+msgid "Fullname"
+msgstr "Full name"
+
+#. TRANS: Dropdown option for searching in profiles.
+msgid "URI (Remote users)"
+msgstr ""
+
+#. TRANS: Dropdown field label.
+#, fuzzy
+msgctxt "LABEL"
+msgid "Search in"
+msgstr "Search site"
+
+#. TRANS: Dropdown field title.
+#, fuzzy
+msgid "Choose a field to search."
+msgstr "Choose a tag to narrow list"
+
+#. TRANS: Form legend.
+#. TRANS: %1$s is a nickname, $2$s is a list.
+#, fuzzy, php-format
+msgid "Remove %1$s from list %2$s"
+msgstr "%1$s - %2$s"
+
+#. TRANS: Legend on form to add a profile to a list.
+#. TRANS: %1$s is a nickname, %2$s is a list.
+#, fuzzy, php-format
+msgid "Add %1$s to list %2$s"
+msgstr "%1$s - %2$s"
+
 #. TRANS: Title for top posters section.
 msgid "Top posters"
 msgstr "Top posters"
+
+#. TRANS: Option in drop-down of potential addressees.
+msgctxt "SENDTO"
+msgid "Everyone"
+msgstr ""
+
+#. TRANS: Option in drop-down of potential addressees.
+#. TRANS: %s is a StatusNet sitename.
+#, php-format
+msgid "My colleagues at %s"
+msgstr ""
+
+#. TRANS: Label for drop-down of potential addressees.
+#, fuzzy
+msgctxt "LABEL"
+msgid "To:"
+msgstr "To"
+
+#. TRANS: Checkbox label in widget for selecting potential addressees to mark the notice private.
+#, fuzzy
+msgid "Private?"
+msgstr "Private"
+
+#. TRANS: Client exception thrown in widget for selecting potential addressees when an invalid fill option was received.
+#, fuzzy, php-format
+msgid "Unknown to value: \"%s\"."
+msgstr "Unknown file type"
 
 #. TRANS: Title for the form to unblock a user.
 #, fuzzy
@@ -8650,6 +10219,7 @@ msgid "Unsubscribe from this user"
 msgstr "Unsubscribe from this user"
 
 #. TRANS: Button text on unsubscribe form.
+#. TRANS: Button text for unsubscribing from a list.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Unsubscribe"
@@ -8738,5 +10308,8 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#~ msgid "Message too long - maximum is %1$d characters, you sent %2$d."
-#~ msgstr "Message too long - maximum is %1$d characters, you sent %2$d."
+#~ msgid "%1$s and friends, page %2$d"
+#~ msgstr "%1$s and friends, page %2$d"
+
+#~ msgid "You and friends"
+#~ msgstr "You and friends"

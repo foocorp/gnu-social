@@ -124,6 +124,7 @@ class BlankAdPlugin extends UAPPlugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:BlankAdPlugin',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Plugin for testing ad layout.'));
         return true;
     }

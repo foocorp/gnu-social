@@ -9,55 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Gravatar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:49+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:39+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:28+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-16 23:17:51+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-gravatar\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Set Gravatar"
-msgstr "Itakda ang Gravatar"
-
-msgid "If you want to use your Gravatar image, click \"Add\"."
-msgstr ""
-"Kung nais mong gamitin ang iyong larawan ng Gravatar, pindutin ang \"Idagdag"
-"\"."
-
-msgid "Add"
-msgstr "Idagdag"
-
-msgid "Remove Gravatar"
-msgstr "Alisin ang Gravatar"
-
-msgid "If you want to remove your Gravatar image, click \"Remove\"."
-msgstr ""
-"Kung nais mong alisin ang larawan mo ng Gravatar, pindutin ang \"Alisin\"."
-
-msgid "Remove"
-msgstr "Alisin"
-
-msgid "To use a Gravatar first enter in an email address."
-msgstr ""
-"Upang gamitin ang isang Gravatar ipasok muna ang isang tirahan ng e-liham."
-
-msgid "You do not have an email address set in your profile."
-msgstr "Wala kang tirahan ng e-liham na nakatakda sa iyong balangkas."
-
-msgid "Failed to save Gravatar to the database."
-msgstr "Nabigong sagipin ang Gravatar sa iyong kalipunan ng dato."
-
-msgid "Gravatar added."
-msgstr "Idinagdag ang Gravatar."
-
-msgid "Gravatar removed."
-msgstr "Inalis ang Gravatar."
-
+#. TRANS: Plugin decsription.
 msgid ""
 "The Gravatar plugin allows users to use their <a href=\"http://www.gravatar."
 "com/\">Gravatar</a> with StatusNet."

@@ -46,13 +46,11 @@ require_once INSTALLDIR.'/lib/form.php';
  *
  * @see      UnsubscribeForm
  */
-
 class JoinForm extends Form
 {
     /**
      * group for user to join
      */
-
     var $group = null;
 
     /**
@@ -61,7 +59,6 @@ class JoinForm extends Form
      * @param HTMLOutputter $out   output channel
      * @param group         $group group to join
      */
-
     function __construct($out=null, $group=null)
     {
         parent::__construct($out);
@@ -74,7 +71,6 @@ class JoinForm extends Form
      *
      * @return string ID of the form
      */
-
     function id()
     {
         return 'group-join-' . $this->group->id;
@@ -85,7 +81,6 @@ class JoinForm extends Form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         return 'form_group_join ajax';
@@ -96,7 +91,6 @@ class JoinForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('joingroup',
@@ -108,9 +102,9 @@ class JoinForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _('Join'));
+        // TRANS: Button text for joining a group.
+        $this->out->submit('submit', _m('BUTTON','Join'));
     }
 }

@@ -28,18 +28,14 @@ if (!defined('STATUSNET')) {
 }
 
 /**
-
-
-Things to consider...
-* should we purge incomplete subscriptions that never get a verification pingback?
-* when can we send subscription renewal checks?
-    - at next send time probably ok
-* when can we handle trimming of subscriptions?
-    - at next send time probably ok
-* should we keep a fail count?
-
-*/
-
+ * Things to consider...
+ * should we purge incomplete subscriptions that never get a verification pingback?
+ * when can we send subscription renewal checks?
+ *    - at next send time probably ok
+ * when can we handle trimming of subscriptions?
+ *    - at next send time probably ok
+ * should we keep a fail count?
+ */
 class PushHubAction extends Action
 {
     function arg($arg, $def=null)
@@ -95,13 +91,13 @@ class PushHubAction extends Action
 
         $verify = $this->arg('hub.verify'); // @fixme may be multiple
         if ($verify != 'sync' && $verify != 'async') {
-            // TRANS: Client exception.
+            // TRANS: Client exception. %s is sync or async.
             throw new ClientException(sprintf(_m('Invalid hub.verify "%s". It must be sync or async.'),$verify));
         }
 
         $lease = $this->arg('hub.lease_seconds', null);
         if ($mode == 'subscribe' && $lease != '' && !preg_match('/^\d+$/', $lease)) {
-            // TRANS: Client exception.
+            // TRANS: Client exception. %s is the invalid lease value.
             throw new ClientException(sprintf(_m('Invalid hub.lease "%s". It must be empty or positive integer.'),$lease));
         }
 
@@ -109,7 +105,7 @@ class PushHubAction extends Action
 
         $secret = $this->arg('hub.secret', null);
         if ($secret != '' && strlen($secret) >= 200) {
-            // TRANS: Client exception.
+            // TRANS: Client exception. %s is the invalid hub secret.
             throw new ClientException(sprintf(_m('Invalid hub.secret "%s". It must be under 200 bytes.'),$secret));
         }
 
@@ -161,8 +157,8 @@ class PushHubAction extends Action
             if ($feed == $userFeed) {
                 $user = User::staticGet('id', $id);
                 if (!$user) {
-                    // TRANS: Client exception.
-                    throw new ClientException(sprintt(_m('Invalid hub.topic "%s". User doesn\'t exist.'),$feed));
+                    // TRANS: Client exception. %s is a feed URL.
+                    throw new ClientException(sprintt(_m('Invalid hub.topic "%s". User does not exist.'),$feed));
                 } else {
                     return true;
                 }
@@ -170,13 +166,29 @@ class PushHubAction extends Action
             if ($feed == $groupFeed) {
                 $user = User_group::staticGet('id', $id);
                 if (!$user) {
-                    // TRANS: Client exception.
-                    throw new ClientException(sprintf(_m('Invalid hub.topic "%s". Group doesn\'t exist.'),$feed));
+                    // TRANS: Client exception. %s is a feed URL.
+                    throw new ClientException(sprintf(_m('Invalid hub.topic "%s". Group does not exist.'),$feed));
                 } else {
                     return true;
                 }
             }
-            common_log(LOG_DEBUG, "Not a user or group feed? $feed $userFeed $groupFeed");
+        } else if (preg_match('!/(\d+)/lists/(\d+)/statuses\.atom$!', $feed, $matches)) {
+            $user = $matches[1];
+            $id = $matches[2];
+            $params = array('user' => $user, 'id' => $id, 'format' => 'atom');
+            $listFeed = common_local_url('ApiTimelineList', $params);
+
+            if ($feed == $listFeed) {
+                $list = Profile_list::staticGet('id', $id);
+                $user = User::staticGet('id', $user);
+                if (!$list || !$user || $list->tagger != $user->id) {
+                    // TRANS: Client exception. %s is a feed URL.
+                    throw new ClientException(sprintf(_m('Invalid hub.topic %s; list does not exist.'),$feed));
+                } else {
+                    return true;
+                }
+            }
+            common_log(LOG_DEBUG, "Not a user, group or people tag feed? $feed $userFeed $groupFeed $listFeed");
         }
         common_log(LOG_DEBUG, "LOST $feed");
         return false;

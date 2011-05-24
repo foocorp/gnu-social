@@ -116,7 +116,7 @@ class UserdirectoryAction extends Action
     function getInstructions()
     {
         // TRANS: %%site.name%% is the name of the StatusNet site.
-        return _(
+        return _m(
             'Search for people on %%site.name%% by their name, '
             . 'location, or interests. Separate the terms by spaces; '
             . ' they must be 3 characters or more.'
@@ -199,7 +199,7 @@ class UserdirectoryAction extends Action
     {
         $this->showForm();
 
-        $this->elementStart('div', array('id' => 'user_directory'));
+        $this->elementStart('div', array('id' => 'profile_directory'));
 
         $alphaNav = new AlphaNav($this, false, false, array('0-9', 'All'));
         $alphaNav->show();
@@ -256,11 +256,11 @@ class UserdirectoryAction extends Action
 
         $this->elementStart('fieldset');
 
-        $this->element('legend', null, _('Search site'));
+        $this->element('legend', null, _m('Search site'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
 
-        $this->input('q', _('Keyword(s)'), $this->q);
+        $this->input('q', _m('Keyword(s)'), $this->q);
 
         $this->submit('search', _m('BUTTON','Search'));
         $this->elementEnd('li');
@@ -372,7 +372,7 @@ class UserdirectoryAction extends Action
                 )
             );
         } else {
-            $this->element('p', 'error', _('No results.'));
+            $this->element('p', 'error', _m('No results.'));
             $message = _m(<<<E_O_T
 * Make sure all words are spelled correctly.
 * Try different keywords.

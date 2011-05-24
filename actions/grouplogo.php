@@ -180,8 +180,8 @@ class GrouplogoAction extends GroupDesignAction
 
         if (!$profile) {
             common_log_db_error($user, 'SELECT', __FILE__);
-            // TRANS: Server error displayed coming across a request from a user without a profile.
-            $this->serverError(_('User without matching profile.'));
+            // TRANS: Error message displayed when referring to a user without a profile.
+            $this->serverError(_('User has no profile.'));
             return;
         }
 

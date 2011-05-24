@@ -207,45 +207,45 @@ class EmailsettingsAction extends SettingsAction
         $this->elementStart('ul', 'form_data');
 
         if (Event::handle('StartEmailFormData', array($this))) {
-	    $this->elementStart('li');
-	    $this->checkbox('emailnotifysub',
-			    // TRANS: Checkbox label in e-mail preferences form.
-			    _('Send me notices of new subscriptions through email.'),
-			    $user->emailnotifysub);
-	    $this->elementEnd('li');
-	    $this->elementStart('li');
-	    $this->checkbox('emailnotifyfav',
-			    // TRANS: Checkbox label in e-mail preferences form.
-			    _('Send me email when someone '.
-			      'adds my notice as a favorite.'),
-			    $user->emailnotifyfav);
-	    $this->elementEnd('li');
-	    $this->elementStart('li');
-	    $this->checkbox('emailnotifymsg',
-			    // TRANS: Checkbox label in e-mail preferences form.
-			    _('Send me email when someone sends me a private message.'),
-			    $user->emailnotifymsg);
-	    $this->elementEnd('li');
-	    $this->elementStart('li');
-	    $this->checkbox('emailnotifyattn',
-			    // TRANS: Checkbox label in e-mail preferences form.
-			    _('Send me email when someone sends me an "@-reply".'),
-			    $user->emailnotifyattn);
-	    $this->elementEnd('li');
-	    $this->elementStart('li');
-	    $this->checkbox('emailnotifynudge',
-			    // TRANS: Checkbox label in e-mail preferences form.
-			    _('Allow friends to nudge me and send me an email.'),
-			    $user->emailnotifynudge);
-	    $this->elementEnd('li');
-	    $this->elementStart('li');
-	    $this->checkbox('emailmicroid',
-			    // TRANS: Checkbox label in e-mail preferences form.
-			    _('Publish a MicroID for my email address.'),
-			    $user->emailmicroid);
-	    $this->elementEnd('li');
-	    Event::handle('EndEmailFormData', array($this));
-	}
+            $this->elementStart('li');
+            $this->checkbox('emailnotifysub',
+                            // TRANS: Checkbox label in e-mail preferences form.
+                            _('Send me notices of new subscriptions through email.'),
+                            $user->emailnotifysub);
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            $this->checkbox('emailnotifyfav',
+                            // TRANS: Checkbox label in e-mail preferences form.
+                            _('Send me email when someone '.
+                              'adds my notice as a favorite.'),
+                            $user->emailnotifyfav);
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            $this->checkbox('emailnotifymsg',
+                            // TRANS: Checkbox label in e-mail preferences form.
+                            _('Send me email when someone sends me a private message.'),
+                            $user->emailnotifymsg);
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            $this->checkbox('emailnotifyattn',
+                            // TRANS: Checkbox label in e-mail preferences form.
+                            _('Send me email when someone sends me an "@-reply".'),
+                            $user->emailnotifyattn);
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            $this->checkbox('emailnotifynudge',
+                            // TRANS: Checkbox label in e-mail preferences form.
+                            _('Allow friends to nudge me and send me an email.'),
+                            $user->emailnotifynudge);
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            $this->checkbox('emailmicroid',
+                            // TRANS: Checkbox label in e-mail preferences form.
+                            _('Publish a MicroID for my email address.'),
+                            $user->emailmicroid);
+            $this->elementEnd('li');
+            Event::handle('EndEmailFormData', array($this));
+        }
         $this->elementEnd('ul');
         // TRANS: Button label to save e-mail preferences.
         $this->submit('save', _m('BUTTON','Save'));
@@ -289,6 +289,7 @@ class EmailsettingsAction extends SettingsAction
         // CSRF protection
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->show_form(_('There was a problem with your session token. '.
                                'Try again, please.'));
             return;
@@ -319,48 +320,47 @@ class EmailsettingsAction extends SettingsAction
      */
     function savePreferences()
     {
-	$user = common_current_user();
+        $user = common_current_user();
 
-	if (Event::handle('StartEmailSaveForm', array($this, &$user))) {
+        if (Event::handle('StartEmailSaveForm', array($this, &$user))) {
+            $emailnotifysub   = $this->boolean('emailnotifysub');
+            $emailnotifyfav   = $this->boolean('emailnotifyfav');
+            $emailnotifymsg   = $this->boolean('emailnotifymsg');
+            $emailnotifynudge = $this->boolean('emailnotifynudge');
+            $emailnotifyattn  = $this->boolean('emailnotifyattn');
+            $emailmicroid     = $this->boolean('emailmicroid');
+            $emailpost        = $this->boolean('emailpost');
 
-	    $emailnotifysub   = $this->boolean('emailnotifysub');
-	    $emailnotifyfav   = $this->boolean('emailnotifyfav');
-	    $emailnotifymsg   = $this->boolean('emailnotifymsg');
-	    $emailnotifynudge = $this->boolean('emailnotifynudge');
-	    $emailnotifyattn  = $this->boolean('emailnotifyattn');
-	    $emailmicroid     = $this->boolean('emailmicroid');
-	    $emailpost        = $this->boolean('emailpost');
+            assert(!is_null($user)); // should already be checked
 
-	    assert(!is_null($user)); // should already be checked
+            $user->query('BEGIN');
 
-	    $user->query('BEGIN');
+            $original = clone($user);
 
-	    $original = clone($user);
+            $user->emailnotifysub   = $emailnotifysub;
+            $user->emailnotifyfav   = $emailnotifyfav;
+            $user->emailnotifymsg   = $emailnotifymsg;
+            $user->emailnotifynudge = $emailnotifynudge;
+            $user->emailnotifyattn  = $emailnotifyattn;
+            $user->emailmicroid     = $emailmicroid;
+            $user->emailpost        = $emailpost;
 
-	    $user->emailnotifysub   = $emailnotifysub;
-	    $user->emailnotifyfav   = $emailnotifyfav;
-	    $user->emailnotifymsg   = $emailnotifymsg;
-	    $user->emailnotifynudge = $emailnotifynudge;
-	    $user->emailnotifyattn  = $emailnotifyattn;
-	    $user->emailmicroid     = $emailmicroid;
-	    $user->emailpost        = $emailpost;
+            $result = $user->update($original);
 
-	    $result = $user->update($original);
+            if ($result === false) {
+                common_log_db_error($user, 'UPDATE', __FILE__);
+                // TRANS: Server error thrown on database error updating e-mail preferences.
+                $this->serverError(_('Could not update user.'));
+                return;
+            }
 
-	    if ($result === false) {
-		common_log_db_error($user, 'UPDATE', __FILE__);
-		// TRANS: Server error thrown on database error updating e-mail preferences.
-		$this->serverError(_('Could not update user.'));
-		return;
-	    }
+            $user->query('COMMIT');
 
-	    $user->query('COMMIT');
+            Event::handle('EndEmailSaveForm', array($this));
 
-	    Event::handle('EndEmailSaveForm', array($this));
-
-	    // TRANS: Confirmation message for successful e-mail preferences save.
-	    $this->showForm(_('Email preferences saved.'), true);
-	}
+            // TRANS: Confirmation message for successful e-mail preferences save.
+            $this->showForm(_('Email preferences saved.'), true);
+        }
     }
 
     /**
@@ -404,23 +404,28 @@ class EmailsettingsAction extends SettingsAction
             return;
         }
 
-        $confirm = new Confirm_address();
+        if (Event::handle('StartAddEmailAddress', array($user, $email))) {
 
-        $confirm->address      = $email;
-        $confirm->address_type = 'email';
-        $confirm->user_id      = $user->id;
-        $confirm->code         = common_confirmation_code(64);
+            $confirm = new Confirm_address();
 
-        $result = $confirm->insert();
+            $confirm->address      = $email;
+            $confirm->address_type = 'email';
+            $confirm->user_id      = $user->id;
+            $confirm->code         = common_confirmation_code(64);
 
-        if ($result === false) {
-            common_log_db_error($confirm, 'INSERT', __FILE__);
-            // TRANS: Server error thrown on database error adding e-mail confirmation code.
-            $this->serverError(_('Could not insert confirmation code.'));
-            return;
+            $result = $confirm->insert();
+
+            if ($result === false) {
+                common_log_db_error($confirm, 'INSERT', __FILE__);
+                // TRANS: Server error thrown on database error adding e-mail confirmation code.
+                $this->serverError(_('Could not insert confirmation code.'));
+                return;
+            }
+
+            mail_confirm_address($user, $confirm->code, $user->nickname, $email);
+
+            Event::handle('EndAddEmailAddress', array($user, $email));
         }
-
-        mail_confirm_address($user, $confirm->code, $user->nickname, $email);
 
         // TRANS: Message given saving valid e-mail address that is to be confirmed.
         $msg = _('A confirmation code was sent to the email address you added. '.

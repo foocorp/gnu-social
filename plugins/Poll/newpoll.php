@@ -138,10 +138,19 @@ class NewPollAction extends Action
                 throw new ClientException(_m('Poll must have at least two options.'));
             }
 
+            // Notice options; distinct from choices for the poll
+
+            $options = array();
+
+            // Does the heavy-lifting for getting "To:" information
+
+            ToSelector::fillOptions($this, $options);
 
             $saved = Poll::saveNew($this->user->getProfile(),
-                                              $this->question,
-                                              $this->options);
+                                   $this->question,
+                                   $this->options,
+                                   $options);
+
         } catch (ClientException $ce) {
             $this->error = $ce->getMessage();
             $this->showPage();

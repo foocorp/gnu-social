@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:49:38+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:07+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:18:42+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:17+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
@@ -29,3 +29,58 @@ msgstr "Dapat kang magbigay ng isang tirahan ng e-liham upang makapagpatala."
 
 msgid "Disables posting without a validated email address."
 msgstr ""
+"Hindi nagpapagana ng pagpapaskil na walang isang napatunayang tirahan ng e-"
+"liham."
+
+msgid "You are already logged in."
+msgstr "Nakalagda ka na."
+
+msgid "Confirmation code not found."
+msgstr "Hindi natagpuan ang kodigo ng pagtitiyak."
+
+msgid "No user for that confirmation code."
+msgstr "Walang tagagamit para sa ganyang kodigo ng paniniyak."
+
+#, php-format
+msgid "Unrecognized address type %s."
+msgstr "Hindi nakikilalang uri ng tirahan na %s."
+
+#. TRANS: Client error for an already confirmed email/jabber/sms address.
+msgid "That address has already been confirmed."
+msgstr "Natiyak na ang ganyang tirahan."
+
+msgid "Password too short."
+msgstr "Napakaikli ng hudyat."
+
+msgid "Passwords do not match."
+msgstr "Hindi magkatugma ang mga hudyat."
+
+#, php-format
+msgid ""
+"You have confirmed the email address for your new user account %s. Use the "
+"form below to set your new password."
+msgstr ""
+"Tiniyak mo ang tirahan ng e-liham para sa iyong bagong akawnt ng tagagamit "
+"na %s.  Gamitin ang pormularyong nasa ibaba upang maitakda ang bago mong "
+"hudyat."
+
+msgid "Set a password"
+msgstr "Magtakda ng isang hudyat"
+
+msgid "Confirm email"
+msgstr "Tiyakin ang e-liham"
+
+msgid "New password"
+msgstr "Bagong hudyat"
+
+msgid "6 or more characters."
+msgstr "6 o mahigit pang mga panitik."
+
+msgid "Confirm"
+msgstr "Pagtibayin"
+
+msgid "Same as password above."
+msgstr "Katulad ng hudyat na nasa itaas."
+
+msgid "Save"
+msgstr "Sagipin"

@@ -9,53 +9,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Gravatar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:49+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:39+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:28+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-16 23:17:51+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-gravatar\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
-msgid "Set Gravatar"
-msgstr "Встановити Gravatar"
-
-msgid "If you want to use your Gravatar image, click \"Add\"."
-msgstr "Якщо ви бажаєте використовувати аватари Gravatar, тисніть «Додати»."
-
-msgid "Add"
-msgstr "Додати"
-
-msgid "Remove Gravatar"
-msgstr "Видалити Gravatar"
-
-msgid "If you want to remove your Gravatar image, click \"Remove\"."
-msgstr ""
-"Якщо ви бажаєте видалити свою аватару надану Gravatar, тисніть «Видалити»."
-
-msgid "Remove"
-msgstr "Видалити"
-
-msgid "To use a Gravatar first enter in an email address."
-msgstr "Щоб використовувати Gravatar, спершу введіть адресу електронної пошти."
-
-msgid "You do not have an email address set in your profile."
-msgstr "У вашому профілі не вказано жодної електронної адреси."
-
-msgid "Failed to save Gravatar to the database."
-msgstr "Не вдалося зберегти Gravatar до бази даних."
-
-msgid "Gravatar added."
-msgstr "Gravatar додано."
-
-msgid "Gravatar removed."
-msgstr "Gravatar вилучено."
-
+#. TRANS: Plugin decsription.
 msgid ""
 "The Gravatar plugin allows users to use their <a href=\"http://www.gravatar."
 "com/\">Gravatar</a> with StatusNet."

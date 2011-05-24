@@ -112,7 +112,7 @@ class MeteorPlugin extends RealtimePlugin
         $this->_socket = stream_socket_client("tcp://{$controlserver}:{$this->controlport}", $errno, $errstr, $timeout, $flags);
         if (!$this->_socket) {
             // TRANS: Exception. %1$s is the control server, %2$s is the control port.
-            throw new Exception(sprintf(_m('Couldn\'t connect to %1$s on %2$s.'),$controlserver,$this->controlport));
+            throw new Exception(sprintf(_m('Could not connect to %1$s on %2$s.'),$controlserver,$this->controlport));
         }
     }
 
@@ -125,7 +125,7 @@ class MeteorPlugin extends RealtimePlugin
         $result = fgets($this->_socket);
         if (preg_match('/^ERR (.*)$/', $result, $matches)) {
             // TRANS: Exception. %s is the Meteor message that could not be added.
-            throw new Exception(sprintf(_m('Error adding meteor message "%s"'),$matches[1]));
+            throw new Exception(sprintf(_m('Error adding meteor message "%s".'),$matches[1]));
         }
         // TODO: parse and deal with result
     }
@@ -155,6 +155,7 @@ class MeteorPlugin extends RealtimePlugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Meteor',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Plugin to do "real time" updates using Comet/Bayeux.'));
         return true;
     }

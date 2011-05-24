@@ -1,6 +1,7 @@
 # Translation of StatusNet - LinkPreview to Dutch (Nederlands)
 # Exported from translatewiki.net
 #
+# Author: SPQRobin
 # Author: Siebrand
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,19 +10,34 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - LinkPreview\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:58+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:54+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:17:37+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:28:11+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-linkpreview\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "UI extensions previewing thumbnails from links."
+#. TRANS: Plugin description.
+msgid "UI extension for previewing thumbnails from links."
 msgstr ""
 "Gebruikersinterfaceuitbreiding voor het weergeven van miniaturen voor "
 "verwijzingen."
+
+#. TRANS: Client error displayed when the session token does not match or is not given.
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Er is een probleem ontstaan met uw sessie. Probeer het nog een keer, "
+"alstublieft."
+
+#. TRANS: Client exception thrown when requesting a different format than JSON.
+msgid "Invalid format; only JSON supported."
+msgstr "Ongeldige indeling; alleen JSON wordt ondersteund."
+
+#. TRANS: Client exception thrown when not providing a valid URL.
+msgid "Invalid URL."
+msgstr "Ongeldige URL."

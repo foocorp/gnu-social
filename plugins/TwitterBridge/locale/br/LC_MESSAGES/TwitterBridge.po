@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-26 11:02+0000\n"
-"PO-Revision-Date: 2011-03-26 11:07:31+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:51:44+0000\n"
 "Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-18 20:10:06+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84791); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:31:29+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -99,16 +99,20 @@ msgstr ""
 msgid "Twitter preferences saved."
 msgstr ""
 
-msgid "You can't register if you don't agree to the license."
+msgid "You cannot register if you do not agree to the license."
 msgstr ""
 
 msgid "Something weird happened."
 msgstr ""
 
-msgid "Couldn't link your Twitter account."
-msgstr ""
+#, fuzzy
+msgid "Could not link your Twitter account."
+msgstr "Kevreadenn gant ho kont Twitter"
 
 msgid "Couldn't link your Twitter account: oauth_token mismatch."
+msgstr ""
+
+msgid "Couldn't link your Twitter account."
 msgstr ""
 
 #, php-format
@@ -139,7 +143,14 @@ msgstr "Krouiñ un implijer nevez gant al lesanv-se."
 msgid "New nickname"
 msgstr "Lesanv nevez"
 
-msgid "1-64 lowercase letters or numbers, no punctuation or spaces"
+msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
+msgstr ""
+
+msgctxt "LABEL"
+msgid "Email"
+msgstr ""
+
+msgid "Used only for updates, announcements, and password recovery"
 msgstr ""
 
 msgid "Create"

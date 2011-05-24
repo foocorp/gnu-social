@@ -94,7 +94,8 @@ class AutocompleteAction extends Action
 
         $cur = common_current_user();
         if (!$cur) {
-            throw new ClientException('Access forbidden', true);
+            // TRANS: Client exception in autocomplete plugin.
+            throw new ClientException(_m('Access forbidden.'), true);
         }
         $this->groups=array();
         $this->users=array();

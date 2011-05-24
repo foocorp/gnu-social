@@ -21,6 +21,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 require_once INSTALLDIR . '/lib/oauthstore.php';
 
+// @todo FIXME: Class documentation missing.
 class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
 {
     function lookup_consumer($consumerKey)
@@ -65,7 +66,7 @@ class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
                     $id = $app->insert();
 
                     if (!$id) {
-			// TRANS: Server error displayed when trying to create an anynymous OAuth application.
+                        // TRANS: Server error displayed when trying to create an anynymous OAuth application.
                         $this->serverError(_("Could not create anonymous OAuth application."));
                     }
                 }
@@ -90,7 +91,7 @@ class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
         );
 
         if (empty($req_token)) {
-            common_debug("couldn't get request token from oauth datastore");
+            common_debug("Couldn't get request token from oauth datastore");
             return null;
         }
 
@@ -312,8 +313,8 @@ class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
         if (!$result) {
             common_log_db_error($appUser, 'INSERT', __FILE__);
 
-            // TRANS: Server error displayed when a database error occurs.
             throw new Exception(
+                // TRANS: Exception thrown when a database error occurs.
                 _('Database error inserting OAuth application user.')
             );
         }
@@ -340,8 +341,8 @@ class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
 
         if (!$result) {
             common_log_db_error($appUser, 'UPDATE', __FILE__);
-            // TRANS: Server error displayed when a database error occurs.
             throw new Exception(
+                // TRANS: Exception thrown when a database error occurs.
                 _('Database error updating OAuth application user.')
             );
         }

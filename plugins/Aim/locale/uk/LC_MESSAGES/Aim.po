@@ -9,25 +9,36 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Aim\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:12+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:48:35+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-11 18:52:24+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-04-27 13:25:55+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-aim\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: No idea what the use case for this message is.
 msgid "Send me a message to post a notice"
 msgstr "Надішліть мені повідомлення, щоб опублікувати свій допис"
 
+#. TRANS: Display name.
 msgid "AIM"
 msgstr "AIM"
 
+#. TRANS: Exception thrown in AIM plugin when user has not been specified.
+msgid "Must specify a user."
+msgstr "Необхідно зазначити користувача."
+
+#. TRANS: Exception thrown in AIM plugin when password has not been specified.
+msgid "Must specify a password."
+msgstr "Необхідно вказати пароль."
+
+#. TRANS: Plugin description.
 msgid ""
 "The AIM plugin allows users to send and receive notices over the AIM network."
 msgstr ""

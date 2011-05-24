@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:46+0000\n"
-"PO-Revision-Date: 2011-03-18 19:48:29+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"PO-Revision-Date: 2011-05-05 20:49:02+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-17 10:24:35+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-05-05 11:55:22+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
@@ -36,6 +36,22 @@ msgstr "Кориснички именик - %s"
 msgid "User directory - %s, page %d"
 msgstr "Кориснички именик - %s, стр. %d"
 
+#, php-format
+msgid ""
+"Search for people on %%site.name%% by their name, location, or interests. "
+"Separate the terms by spaces;  they must be 3 characters or more."
+msgstr ""
+"Пребарајте луѓе на %%site.name%% по име, местоположба или интереси. Одделете "
+"ги поимите со празни места; зборовите мора да имаат барем по 3 букви."
+
+msgid "Search site"
+msgstr "Пребарај"
+
+#. TRANS: Field label for input of one or more keywords.
+msgid "Keyword(s)"
+msgstr "Клучни зборови"
+
+#. TRANS: Button text for searching group directory.
 msgctxt "BUTTON"
 msgid "Search"
 msgstr "Пребарај"
@@ -44,11 +60,96 @@ msgstr "Пребарај"
 msgid "No users starting with %s"
 msgstr "Нема корисници што почнуваат на %s"
 
+#. TRANS: Empty list message for searching group directory.
+msgid "No results."
+msgstr "Нема резултати."
+
+#. TRANS: Title for group directory page. %d is a page number.
+#, php-format
+msgid "Group Directory, page %d"
+msgstr "Именик на групи, страница %d"
+
+#. TRANS: Title for group directory page.
+msgid "Group directory"
+msgstr "Именик на групи"
+
+#. TRANS: Title for group directory page when it is filtered.
+#. TRANS: %s is the filter string.
+#, php-format
+msgid "Group directory - %s"
+msgstr "Именик на групи - %s"
+
+#. TRANS: Title for group directory page when it is filtered.
+#. TRANS: %1$s is the filter string, %2$d is a page number.
+#, php-format
+msgid "Group directory - %1$s, page %2$d"
+msgstr "Именик на групи - %1$s, страница %2$d"
+
+#. TRANS: Page instructions.
+#, fuzzy
+msgid ""
+"After you join a group you can send messages to all other members\n"
+"using the syntax \"!groupname\".\n"
+"\n"
+"Browse groups, or search for groups on by their name, location or topic.\n"
+"Separate the terms by spaces; they must be three characters or more."
+msgstr ""
+"Откако ќе се зачлените во групата ќе можете да им испраќате пораки на сите "
+"други членови\n"
+"користејќи ја синтаксата „!groupname“.\n"
+"\n"
+"Групите можете да ги прелистувате или да ги пребарувате по име, место или "
+"тема.\n"
+"Одделете ги поимите со празни места. Секој поим мора да содржи барем три "
+"знака.\n"
+
+#. TRANS: Link to create a new group on the group list page.
+msgid "Create a new group"
+msgstr "Создај нова група"
+
+#. TRANS: Fieldset legend.
+msgid "Search groups"
+msgstr "Пребарај групи"
+
+#. TRANS: Empty list message for searching group directory.
+#. TRANS: %s is the search string.
+#, php-format
+msgid "No groups starting with %s."
+msgstr "Нема групи што почнуваат на %s."
+
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* Проверете дали сите зборови се напишани како што треба.\n"
+"* Обидете се со други клучни зборови.\n"
+"* Обидете се со поопшти клучни зборови.\n"
+"* Обидете се помалку клучни зборови.\n"
+
+#. TRANS: Menu item text for user directory.
+msgctxt "MENU"
+msgid "Directory"
+msgstr "Именик"
+
+#. TRANS: Menu item title for user directory.
+msgid "User Directory."
+msgstr "Кориснички именик."
+
+#. TRANS: Plugin description.
 msgid "Add a user directory."
 msgstr "Додај кориснички именик."
 
+#. TRANS: Column header in table for user nickname.
 msgid "Nickname"
 msgstr "Прекар"
 
+#. TRANS: Column header in table for timestamp when user was created.
 msgid "Created"
 msgstr "Создадено"
+
+#. TRANS: Column header in table for members of a group.
+msgid "Members"
+msgstr "Членови"

@@ -116,6 +116,7 @@ class ExtendedProfile
 
         if (empty($phones)) {
             $pArrays[] = array(
+                // TRANS: Field label for extended profile properties.
                 'label' => _m('Phone'),
                 'index' => 0,
                 'type'  => 'phone',
@@ -126,6 +127,7 @@ class ExtendedProfile
         } else {
             for ($i = 0; $i < sizeof($phones); $i++) {
                 $pa = array(
+                    // TRANS: Field label for extended profile properties.
                     'label' => _m('Phone'),
                     'type'  => 'phone',
                     'index' => intval($phones[$i]->value_index),
@@ -147,12 +149,14 @@ class ExtendedProfile
 
         if (empty($ims)) {
             $iArrays[] = array(
+                // TRANS: Field label for extended profile properties (Instant Messaging).
                 'label' => _m('IM'),
                 'type' => 'im'
             );
         } else {
             for ($i = 0; $i < sizeof($ims); $i++) {
                 $ia = array(
+                    // TRANS: Field label for extended profile properties (Instant Messaging).
                     'label' => _m('IM'),
                     'type'  => 'im',
                     'index' => intval($ims[$i]->value_index),
@@ -173,12 +177,14 @@ class ExtendedProfile
 
         if (empty($sites)) {
             $wArrays[] = array(
+                // TRANS: Field label for extended profile properties.
                 'label' => _m('Website'),
                 'type' => 'website'
             );
         } else {
             for ($i = 0; $i < sizeof($sites); $i++) {
                 $wa = array(
+                    // TRANS: Field label for extended profile properties.
                     'label' => _m('Website'),
                     'type'  => 'website',
                     'index' => intval($sites[$i]->value_index),
@@ -202,6 +208,7 @@ class ExtendedProfile
 
         if (empty($companies)) {
             $eArrays[] = array(
+                // TRANS: Field label for extended profile properties.
                 'label'   => _m('Employer'),
                 'type'    => 'experience',
                 'company' => null,
@@ -213,6 +220,7 @@ class ExtendedProfile
         } else {
             for ($i = 0; $i < sizeof($companies); $i++) {
                 $ea = array(
+                    // TRANS: Field label for extended profile properties.
                     'label'   => _m('Employer'),
                     'type'    => 'experience',
                     'company' => $companies[$i]->field_value,
@@ -239,6 +247,7 @@ class ExtendedProfile
         if (empty($schools)) {
             $iArrays[] = array(
                 'type' => 'education',
+                // TRANS: Field label for extended profile properties.
                 'label' => _m('Institution'),
                 'school' => null,
                 'degree' => null,
@@ -251,6 +260,7 @@ class ExtendedProfile
             for ($i = 0; $i < sizeof($schools); $i++) {
                 $ia = array(
                     'type'    => 'education',
+                    // TRANS: Field label for extended profile properties.
                     'label'   => _m('Institution'),
                     'school'  => $schools[$i]->field_value,
                     'degree'  => isset($degrees[$i]->field_value) ? $degrees[$i]->field_value : null,
@@ -275,32 +285,39 @@ class ExtendedProfile
     {
         return array(
             'basic' => array(
+                // TRANS: Field label for extended profile properties.
                 'label' => _m('Personal'),
                 'fields' => array(
                     'fullname' => array(
+                        // TRANS: Field label for extended profile properties.
                         'label' => _m('Full name'),
                         'profile' => 'fullname',
                         'vcard' => 'fn',
                     ),
                     'title' => array(
+                        // TRANS: Field label for extended profile properties.
                         'label' => _m('Title'),
                         'vcard' => 'title',
                     ),
                     'manager' => array(
+                        // TRANS: Field label for extended profile properties.
                         'label' => _m('Manager'),
                         'type' => 'person',
                         'vcard' => 'x-manager',
                     ),
                     'location' => array(
+                        // TRANS: Field label for extended profile properties.
                         'label' => _m('Location'),
                         'profile' => 'location'
                     ),
                     'bio' => array(
+                        // TRANS: Field label for extended profile properties.
                         'label' => _m('Bio'),
                         'type' => 'textarea',
                         'profile' => 'bio',
                     ),
                     'tags' => array(
+                        // TRANS: Field label for extended profile properties.
                         'label' => _m('Tags'),
                         'type' => 'tags',
                         'profile' => 'tags',
@@ -308,6 +325,7 @@ class ExtendedProfile
                 ),
             ),
             'contact' => array(
+                // TRANS: Field label for extended profile properties.
                 'label' => _m('Contact'),
                 'fields' => array(
                     'phone'   => $this->getPhones(),
@@ -316,29 +334,35 @@ class ExtendedProfile
                 ),
             ),
             'personal' => array(
+                // TRANS: Field label for extended profile properties.
                 'label' => _m('Personal'),
                 'fields' => array(
                     'birthday' => array(
+                        // TRANS: Field label for extended profile properties.
                         'label' => _m('Birthday'),
                         'type' => 'date',
                         'vcard' => 'bday',
                     ),
                     'spouse' => array(
+                        // TRANS: Field label for extended profile properties.
                         'label' => _m('Spouse\'s name'),
                         'vcard' => 'x-spouse',
                     ),
                     'kids' => array(
+                        // TRANS: Field label for extended profile properties.
                         'label' => _m('Kids\' names')
                     ),
                 ),
             ),
             'experience' => array(
+                // TRANS: Field label for extended profile properties.
                 'label' => _m('Work experience'),
                 'fields' => array(
                     'experience' => $this->getExperiences()
                 ),
             ),
             'education' => array(
+                // TRANS: Field label for extended profile properties.
                 'label' => _m('Education'),
                 'fields' => array(
                     'education' => $this->getEducation()

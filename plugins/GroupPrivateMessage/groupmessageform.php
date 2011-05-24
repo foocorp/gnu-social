@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Form for posting a group message
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class GroupMessageForm extends Form
 {
     var $group;
@@ -58,7 +57,6 @@ class GroupMessageForm extends Form
      *
      * @todo add a drop-down list to post to any group
      */
-
     function __construct($out, $group, $content=null)
     {
         parent::__construct($out);
@@ -71,7 +69,7 @@ class GroupMessageForm extends Form
      * Action for the form
      */
     function action()
-    { 
+    {
         return common_local_url('newgroupmessage',
                                 array('nickname' => $this->group->nickname));
     }
@@ -87,7 +85,8 @@ class GroupMessageForm extends Form
     {
         $this->out->element('legend',
                             null,
-                            sprintf(_('Message to %s'), $this->group->nickname));
+                            // TRANS: Form legend for sending private message to group %s.
+                            sprintf(_m('Message to %s'), $this->group->nickname));
     }
 
     /**
@@ -97,7 +96,6 @@ class GroupMessageForm extends Form
      *
      * @return
      */
-
     function id()
     {
         return 'form_notice-group-message';
@@ -110,7 +108,6 @@ class GroupMessageForm extends Form
      *
      * @return
      */
-
     function formClass()
     {
         return 'form_notice';
@@ -123,12 +120,12 @@ class GroupMessageForm extends Form
      *
      * @return
      */
-
     function formData()
     {
         $this->out->element('label', array('for' => 'notice_data-text',
                                            'id' => 'notice_data-text-label'),
-                            sprintf(_('Direct message to %s'), $this->group->nickname));
+                            // TRANS: Field label for private group message to group %s.
+                            sprintf(_m('Direct message to %s'), $this->group->nickname));
 
         $this->out->element('textarea', array('id' => 'notice_data-text',
                                               'cols' => 35,
@@ -140,7 +137,8 @@ class GroupMessageForm extends Form
 
         if ($contentLimit > 0) {
             $this->out->elementStart('dl', 'form_note');
-            $this->out->element('dt', null, _('Available characters'));
+            // TRANS: Indicator for number of chatacters still available for notice.
+            $this->out->element('dt', null, _m('Available characters'));
             $this->out->element('dd', array('class' => 'count'),
                                 $contentLimit);
             $this->out->elementEnd('dl');
@@ -154,13 +152,13 @@ class GroupMessageForm extends Form
      *
      * @return
      */
-
     function formActions()
     {
         $this->out->element('input', array('id' => 'notice_action-submit',
                                            'class' => 'submit',
                                            'name' => 'message_send',
                                            'type' => 'submit',
+                                           // TRANS: Send button text for sending private group notice.
                                            'value' => _m('Send button for sending notice', 'Send')));
     }
 }

@@ -16,7 +16,7 @@
                 function delayed () {
                     if (!execAsap)
                         func.apply(obj, args);
-                        timeout = null; 
+                        timeout = null;
                 };
 
                 if (timeout)
@@ -24,7 +24,7 @@
                 else if (execAsap)
                     func.apply(obj, args);
 
-                timeout = setTimeout(delayed, threshold || 100); 
+                timeout = setTimeout(delayed, threshold || 100);
             };
         }
         jQuery.fn[sr] = function(fn){  return fn ? this.bind('keypress', debounce(fn, 1000)) : this.trigger(sr); };

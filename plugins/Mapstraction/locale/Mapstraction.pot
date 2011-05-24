@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
+"POT-Creation-Date: 2011-05-05 20:48+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,16 +16,18 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: MapstractionPlugin.php:187
+#. TRANS: Header for Map widget that displays a map with geodata for notices.
+#: MapstractionPlugin.php:188
 msgid "Map"
 msgstr ""
 
 #. TRANS: Clickable item to allow opening the map in full size.
-#: MapstractionPlugin.php:199
+#: MapstractionPlugin.php:200
 msgid "Full size"
 msgstr ""
 
-#: MapstractionPlugin.php:211
+#. TRANS: Plugin description.
+#: MapstractionPlugin.php:213
 msgid ""
 "Show maps of users' and friends' notices with <a href=\"http://www."
 "mapstraction.com/\">Mapstraction</a>."
@@ -45,15 +47,19 @@ msgstr ""
 msgid "%1$s friends map, page %2$d"
 msgstr ""
 
-#: map.php:72
+#. TRANS: Client error displayed when referring to a non-existing user.
+#: map.php:73
 msgid "No such user."
 msgstr ""
 
-#: map.php:79
+#. TRANS: Error message displayed when referring to a user without a profile.
+#: map.php:81
 msgid "User has no profile."
 msgstr ""
 
-#: usermap.php:68
+#. TRANS: Title for map widget.
+#. TRANS: %s is a user name.
+#: usermap.php:66
 #, php-format
-msgid "%s map, page %d"
+msgid "%s map"
 msgstr ""

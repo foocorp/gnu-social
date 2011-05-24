@@ -9,17 +9,31 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - WikiHashtags\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-18 19:45+0000\n"
-"PO-Revision-Date: 2011-03-18 19:50:05+0000\n"
+"POT-Creation-Date: 2011-03-31 21:06+0000\n"
+"PO-Revision-Date: 2011-03-31 21:10:52+0000\n"
 "Language-Team: Turkish <http://translatewiki.net/wiki/Portal:tr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-06 02:19:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r84232); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-03-18 20:10:08+0000\n"
+"X-Generator: MediaWiki 1.18alpha (r85082); Translate extension (2011-03-11)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tr\n"
 "X-Message-Group: #out-statusnet-plugin-wikihashtags\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+
+#, php-format
+msgid "Edit the article for #%s on WikiHashtags"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Shared under the terms of the GNU Free Documentation License"
+msgstr ""
+
+#, php-format
+msgid "Start the article for #%s on WikiHashtags"
+msgstr ""
 
 msgid ""
 "Gets hashtag descriptions from <a href=\"http://hashtags.wikia.com/"
