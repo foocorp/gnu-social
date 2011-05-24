@@ -79,7 +79,7 @@ class GNUsocialVideoPlugin extends MicroAppPlugin
 
     function appTitle()
     {
-        return _('video');
+        return _('Video');
     }
 
     function tag()
