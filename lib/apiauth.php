@@ -204,6 +204,8 @@ class ApiAuthAction extends ApiAction
                             }
                         }
                         $this->auth_user = $user;
+                        global $_cur;
+                        $_cur = $this->auth_user;
                         Event::handle('EndSetApiUser', array($user));
                     }
 
