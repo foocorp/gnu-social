@@ -1,7 +1,7 @@
 <?php
 /**
  * GNU Social
- * Copyright (C) 2010, Free Software Foundation, Inc.
+ * Copyright (C) 2011, Free Software Foundation, Inc.
  *
  * PHP version 5
  *
