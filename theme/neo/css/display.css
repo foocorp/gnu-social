@@ -383,7 +383,7 @@ address {
 }
 
 #form_notice-direct.form_notice .count {
-    top: 80px;
+    top: 78px;
     right: 7px;
 }
 
@@ -450,6 +450,7 @@ address {
     text-align: left;
     color: #888;
     cursor: text;
+    background: #fff;
 }
 
 .input_form .form_settings li input {
@@ -784,6 +785,10 @@ div.entry-content a.response:after {
     border-left: 3px solid #ECECF2;
     background: #fafafa;
     font-size: 1em;
+}
+
+.threaded-replies:empty {
+    display: none;
 }
 
 .user_in .threaded-replies {
