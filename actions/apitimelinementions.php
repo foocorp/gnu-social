@@ -193,10 +193,13 @@ class ApiTimelineMentionsAction extends ApiBareAuthAction
     {
         $notices = array();
 
-        $notice = $this->user->getReplies(
-            ($this->page - 1) * $this->count, $this->count,
-            $this->since_id, $this->max_id
-        );
+        $stream = new ReplyNoticeStream($this->user->id,
+                                        Profile::current());
+
+        $notice = $stream->getNotices(($this->page - 1) * $this->count,
+                                      $this->count,
+                                      $this->since_id,
+                                      $this->max_id);
 
         while ($notice->fetch()) {
             $notices[] = clone($notice);
