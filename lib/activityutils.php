@@ -104,8 +104,9 @@ class ActivityUtils
     {
         $els = $element->childNodes;
         $out = array();
-
-        foreach ($els as $link) {
+        
+        for ($i = 0; $i < $els->length; $i++) {
+            $link = $els->item($i);
             if ($link->localName == self::LINK && $link->namespaceURI == self::ATOM) {
                 $linkRel = $link->getAttribute(self::REL);
                 $linkType = $link->getAttribute(self::TYPE);
