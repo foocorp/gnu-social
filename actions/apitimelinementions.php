@@ -196,7 +196,7 @@ class ApiTimelineMentionsAction extends ApiBareAuthAction
         if (empty($this->auth_user)) {
             $profile = null; 
         } else {
-            $profile = $this->auth_user->profile;
+            $profile = $this->auth_user->getProfile();
         }
 
         $stream = new ReplyNoticeStream($this->user->id, $profile);
