@@ -109,7 +109,7 @@ line-height:auto;
     margin-bottom: -20px;
 }
 
-.notice .addressees {
+*+html .notice .addressees {
     background: url(../images/icons/arrow_right.png) no-repeat top left;
     padding-left: 16px;
 }
