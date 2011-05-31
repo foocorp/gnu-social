@@ -418,10 +418,6 @@ address .poweredby {
     content: '\25B8';
 }
 
-.notice .addressees:empty:before {
-    content: none;
-}
-
 .fn {
     overflow: hidden;
 }

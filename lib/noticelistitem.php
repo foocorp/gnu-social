@@ -229,31 +229,44 @@ class NoticeListItem extends Widget
 
     function showAddressees()
     {
-        $this->out->elementStart('span', 'addressees');
+        $ga = $this->getGroupAddressees();
+        $pa = $this->getProfileAddressees();
 
-        $cnt = $this->showGroupAddressees(true);
-        $cnt = $this->showProfileAddressees($cnt == 0);
+        $a = array_merge($ga, $pa);
 
-        $this->out->elementEnd('span', 'addressees');
+        if (!empty($a)) {
+            $this->out->elementStart('span', 'addressees');
+            $first = true;
+            foreach ($a as $addr) {
+                if (!$first) {
+                    // TRANS: Separator in profile addressees list.
+                    $this->out->text(_m('SEPARATOR',', '));
+                } else {
+                    // TRANS: Start of profile addressees list.
+                    $first = false;
+                }
+                $text = $addr['text'];
+                unset($addr['text']);
+                $this->out->element('a', $addr, $text);
+            }
+            $this->out->elementEnd('span', 'addressees');
+        }
     }
 
-    function showGroupAddressees($first)
+    function getGroupAddressees()
     {
+        $ga = array();
+
         $groups = $this->getGroups();
 
         foreach ($groups as $group) {
-            if (!$first) {
-                $this->out->text( _m('SEPARATOR',', '));
-            } else {
-                $first = false;
-            }
-            $this->out->element('a', array('href' => $group->homeUrl(),
-                                           'title' => $group->nickname,
-                                           'class' => 'addressee group'),
-                                $group->getBestName());
+            $ga[] = array('href' => $group->homeUrl(),
+                          'title' => $group->nickname,
+                          'class' => 'addressee group',
+                          'text' => $group->getBestName());
         }
 
-        return count($groups);
+        return $ga;
     }
 
     function getGroups()
@@ -261,25 +274,20 @@ class NoticeListItem extends Widget
         return $this->notice->getGroups();
     }
 
-    function showProfileAddressees($first)
+    function getProfileAddressees()
     {
+        $pa = array();
+
         $replies = $this->getReplyProfiles();
 
         foreach ($replies as $reply) {
-            if (!$first) {
-                // TRANS: Separator in profile addressees list.
-                $this->out->text(_m('SEPARATOR',', '));
-            } else {
-                // TRANS: Start of profile addressees list.
-                $first = false;
-            }
-            $this->out->element('a', array('href' => $reply->profileurl,
-                                           'title' => $reply->nickname,
-                                           'class' => 'addressee account'),
-                                $reply->getBestName());
+            $pa[] = array('href' => $reply->profileurl,
+                          'title' => $reply->nickname,
+                          'class' => 'addressee account',
+                          'text' => $reply->getBestName());
         }
 
-        return count($replies);
+        return $pa;
     }
 
     function getReplyProfiles()
