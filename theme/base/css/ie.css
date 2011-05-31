@@ -99,10 +99,19 @@ line-height:auto;
     filter: alpha(opacity=0);
 }
 
+.notice .addressees:before {
+    content: '\003E';
+}
+
 /* IE7 */ 
 
 *+html .input_forms {
     margin-bottom: -20px;
+}
+
+.notice .addressees {
+    background: url(../images/icons/arrow_right.png) no-repeat top left;
+    padding-left: 16px;
 }
 
 /* IE6 */
