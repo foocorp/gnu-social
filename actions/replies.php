@@ -85,8 +85,11 @@ class RepliesAction extends OwnerDesignAction
 
         common_set_returnto($this->selfUrl());
 
-        $this->notice = $this->user->getReplies(($this->page-1) * NOTICES_PER_PAGE,
-             NOTICES_PER_PAGE + 1);
+        $stream = new ReplyNoticeStream($this->user->id,
+                                        Profile::current());
+
+        $this->notice = $stream->getNotices(($this->page-1) * NOTICES_PER_PAGE,
+                                            NOTICES_PER_PAGE + 1);
 
         if($this->page > 1 && $this->notice->N == 0){
             // TRANS: Server error when page not found (404)

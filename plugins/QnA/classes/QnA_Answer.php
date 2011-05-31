@@ -219,7 +219,7 @@ class QnA_Answer extends Managed_DataObject
 
         $out->elementStart('p', array('class' => implode(' ', $cls)));
         $out->elementStart('span', 'answer-content');
-        $out->raw(QnAPlugin::shorten($answer->content, $notice));
+        $out->raw(common_render_text($answer->content));
         $out->elementEnd('span');
 
         if (!empty($answer->revisions)) {

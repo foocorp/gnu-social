@@ -77,6 +77,7 @@ class DomainStatusNetworkPlugin extends Plugin
             $sn = Status_network::staticGet('nickname', $nickname);
         } catch (Exception $e) {
             $this->log(LOG_ERR, $e->getMessage());
+            return;
         }
 
         $tags = $sn->getTags();

@@ -49,6 +49,7 @@ class MobileProfilePlugin extends WAP20Plugin
 {
     public $DTD            = null;
     public $serveMobile    = false;
+    public $reallyMobile   = false;
     public $mobileFeatures = array();
 
     function __construct($DTD='http://www.wapforum.org/DTD/xhtml-mobile10.dtd')
@@ -160,6 +161,7 @@ class MobileProfilePlugin extends WAP20Plugin
                         $this->setMobileFeatures($httpuseragent);
 
                         $this->serveMobile = true;
+                        $this->reallyMobile = true;
                         break;
                     }
                 }
@@ -201,21 +203,28 @@ class MobileProfilePlugin extends WAP20Plugin
 
         header('Content-Type: '.$type);
 
-        $action->extraHeaders();
-        if (preg_match("/.*\/.*xml/", $type)) {
-            // Required for XML documents
-            $action->xw->startDocument('1.0', 'UTF-8');
-        }
-        $action->xw->writeDTD('html',
-                        '-//WAPFORUM//DTD XHTML Mobile 1.0//EN',
-                        $this->DTD);
+        if ($this->reallyMobile) {
 
-        $language = $action->getLanguage();
+           $action->extraHeaders();
+           if (preg_match("/.*\/.*xml/", $type)) {
+               // Required for XML documents
+               $action->xw->startDocument('1.0', 'UTF-8');
+           }
+           $action->xw->writeDTD('html',
+                           '-//WAPFORUM//DTD XHTML Mobile 1.0//EN',
+                           $this->DTD);
 
-        $action->elementStart('html', array('xmlns' => 'http://www.w3.org/1999/xhtml',
+            $language = $action->getLanguage();
+
+            $action->elementStart('html', array('xmlns' => 'http://www.w3.org/1999/xhtml',
                                             'xml:lang' => $language));
 
-        return false;
+            return false;
+
+        } else {
+        return true;
+        }
+
     }
 
     function setMobileFeatures($useragent)
@@ -312,13 +321,15 @@ class MobileProfilePlugin extends WAP20Plugin
     function onStartShowLocalNavBlock($action)
     {
         if ($this->serveMobile) {
-        $action->element('a', array('href' => '#', 'id' => 'navtoggle'), 'Show Navigation');
+            // @todo FIXME: "Show Navigation" / "Hide Navigation" needs i18n
+            $action->element('a', array('href' => '#', 'id' => 'navtoggle'), 'Show Navigation');
         return true;
         }
     }
 
     function onEndShowScripts($action)
     {
+        // @todo FIXME: "Show Navigation" / "Hide Navigation" needs i18n
         $action->inlineScript('
             $(function() {
                 $("#mobile-toggle-disable").click(function() {
@@ -337,6 +348,7 @@ class MobileProfilePlugin extends WAP20Plugin
                           $("#navtoggle").text(
                           text == "Show Navigation" ? "Hide Navigation" : "Show Navigation");
                 });
+        	    $(".checkbox-wrapper").unbind("click");
             });'
         );
     }

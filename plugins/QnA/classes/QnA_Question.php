@@ -227,7 +227,7 @@ class QnA_Question extends Managed_DataObject
 
         if (!empty($question->description)) {
             $out->elementStart('span', 'question-description');
-            $out->raw(QnAPlugin::shorten($question->description, $notice));
+            $out->raw(common_render_text($question->description));
             $out->elementEnd('span');
         }
 
