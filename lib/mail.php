@@ -240,14 +240,13 @@ function mail_subscribe_notify_profile($listenee, $other)
         $headers['To']      = $name . ' <' . $listenee->email . '>';
         // TRANS: Subject of new-subscriber notification e-mail.
         // TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
-        $headers['Subject'] = sprintf(_('%1$s is now listening to '.
-                                        'your notices on %2$s.'),
+        $headers['Subject'] = sprintf(_('%1$s is now following you on %2$s.'),
                                       $other->getBestName(),
                                       common_config('site', 'name'));
 
         // TRANS: Main body of new-subscriber notification e-mail.
         // TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-        $body = sprintf(_('%1$s is now listening to your notices on %2$s.'),
+        $body = sprintf(_('%1$s is now following you on %2$s.'),
                         $long_name,
                         common_config('site', 'name')) .
                 mail_profile_block($other) .

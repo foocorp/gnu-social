@@ -427,10 +427,6 @@ margin-left:0 !important;
     content: '\003E';
 }
 
-.notice .addressees:empty {
-    display: none;
-}
-
 .user_in .notice div.entry-content {
   max-width: 150px;
 }
