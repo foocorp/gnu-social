@@ -120,6 +120,14 @@ class DomainStatusNetworkInstaller extends Installer
         $this->sitehost = $config['DBHOST'];
         $this->sitedb   = $config['SITEDB'];
 
+        $tagstr = $config['TAGS'];
+
+        if (!empty($tagstr)) {
+            $this->tags = preg_split('/[\s,]+/', $tagstr);
+        } else {
+            $this->tags = array();
+        }
+
         // Explicitly empty
 
         $this->adminNick    = null;
@@ -185,7 +193,15 @@ class DomainStatusNetworkInstaller extends Installer
             throw new ServerException("Created {$this->nickname} status_network and could not find it again.");
         }
 
-        $sn->setTags(array('domain='.$this->domain));
+        // Set default tags
+
+        $tags = $this->tags;
+
+        // Add domain tag
+
+        $tags[] = 'domain='.$this->domain;
+
+        $sn->setTags($tags);
 
         $this->sn = $sn;
     }
