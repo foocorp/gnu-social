@@ -22,19 +22,72 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
 
+$shortoptions = 't:w:';
+$longoptions = array('tagged=', 'not-tagged=');
+
 $helptext = <<<ENDOFHELP
 allsites.php - list all sites configured for multi-site use
+USAGE: allsites.php [OPTIONS]
 
-returns the nickname of each site configured for multi-site use
+-t --tagged=tagname  List only sites with this tag
+-w --not-tagged=tagname List only sites without this tag
 
 ENDOFHELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
-$sn = new Status_network();
+function print_all_sites() {
 
-if ($sn->find()) {
+    $sn = new Status_network();
+
+    if ($sn->find()) {
+        while ($sn->fetch()) {
+            print "$sn->nickname\n";
+        }
+    }
+    return;
+}
+
+function print_tagged_sites($tag) {
+
+    $sn = new Status_network();
+
+    $sn->query('select status_network.nickname '.
+               'from status_network join status_network_tag '.
+               'on status_network.site_id = status_network_tag.site_id '.
+               'where status_network_tag.tag = "' . $tag . '"');
+
     while ($sn->fetch()) {
         print "$sn->nickname\n";
     }
+
+    return;
+}
+
+function print_untagged_sites($tag) {
+
+    $sn = new Status_network();
+
+    $sn->query('select status_network.nickname '.
+               'from status_network '.
+               'where not exists '.
+               '(select tag from status_network_tag '.
+               'where site_id = status_network.site_id '.
+               'and tag = "'.$tag.'")');
+
+    while ($sn->fetch()) {
+        print "$sn->nickname\n";
+    }
+
+    return;
+}
+
+if (have_option('t', 'tagged')) {
+    $tag = get_option_value('t', 'tagged');
+    print_tagged_sites($tag);
+} else if (have_option('w', 'not-tagged')) {
+    $tag = get_option_value('w', 'not-tagged');
+    print_untagged_sites($tag);
+} else {
+    print_all_sites();
 }
