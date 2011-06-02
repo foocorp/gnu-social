@@ -49,7 +49,7 @@ class Oauth_token_association extends Memcached_DataObject
                 'application_id' => array('type' => 'int', 'not null' => true, 'description' => 'the application'),
                 'token' => array('type' => 'varchar', 'length' => '255', 'not null' => true, 'description' => 'token used for this association'),
                 'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
-                'modified' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was modified'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
             ),
             'primary key' => array('profile_id', 'application_id', 'token'),
             'foreign keys' => array(
