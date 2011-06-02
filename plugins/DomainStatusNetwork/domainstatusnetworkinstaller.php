@@ -214,6 +214,21 @@ class DomainStatusNetworkInstaller extends Installer
 
         StatusNet::switchSite($this->nickname);
 
+        // We need to initialize the schema_version stuff to make later setup easier
+
+        $schema = array();
+        require INSTALLDIR.'/db/core.php';
+        $tableDefs = $schema;
+
+        $schema = Schema::get();
+        $schemaUpdater = new SchemaUpdater($schema);
+
+        foreach ($tableDefs as $table => $def) {
+            $schemaUpdater->register($table, $def);
+        }
+
+        $schemaUpdater->checkSchema();
+
         Event::handle('CheckSchema');
     }
 
