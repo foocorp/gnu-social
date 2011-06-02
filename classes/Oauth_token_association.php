@@ -39,4 +39,23 @@ class Oauth_token_association extends Memcached_DataObject
 
         return empty($result) ? null : $oau;
     }
+
+    public static function schemaDef()
+    {
+        return array(
+            'description' => 'Associate an application ID and profile ID with an OAuth token',
+            'fields' => array(
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'associated user'),
+                'application_id' => array('type' => 'int', 'not null' => true, 'description' => 'the application'),
+                'token' => array('type' => 'varchar', 'length' => '255', 'not null' => true, 'description' => 'token used for this association'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('profile_id', 'application_id', 'token'),
+            'foreign keys' => array(
+                'oauth_token_association_profile_fkey' => array('profile_id', array('profile' => 'id')),
+                'oauth_token_association_application_fkey' => array('application_id', array('application' => 'id')),
+            )
+        );
+    }
 }
