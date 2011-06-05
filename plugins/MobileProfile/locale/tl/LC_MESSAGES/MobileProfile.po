@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:07+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:56:17+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:36:37+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:59:15+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
@@ -38,39 +38,3 @@ msgid "XHTML MobileProfile output for supporting user agents."
 msgstr ""
 "Mga paglalabas na XHTML na MobileProfile para sa pagtataguyo ng mga ahente "
 "ng tagagamit."
-
-#~ msgid "Home"
-#~ msgstr "Tahanan"
-
-#~ msgid "Account"
-#~ msgstr "Akawnt"
-
-#~ msgid "Connect"
-#~ msgstr "Umugnay"
-
-#~ msgid "Admin"
-#~ msgstr "Tagapangasiwa"
-
-#~ msgid "Change site configuration"
-#~ msgstr "Baguhin ang pagkakaayos ng sityo"
-
-#~ msgid "Invite"
-#~ msgstr "Anyayahan"
-
-#~ msgid "Logout"
-#~ msgstr "Umalis sa pagkakalagda"
-
-#~ msgid "Register"
-#~ msgstr "Magpatala"
-
-#~ msgid "Login"
-#~ msgstr "Lumagda"
-
-#~ msgid "Search"
-#~ msgstr "Humanap"
-
-#~ msgid "Attach"
-#~ msgstr "Ilakip"
-
-#~ msgid "Attach a file."
-#~ msgstr "Maglakip ng isang talaksan."

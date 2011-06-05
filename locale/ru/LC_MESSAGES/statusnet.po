@@ -18,18 +18,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:16:22+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:57:30+0000\n"
 "Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
-"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
+"X-POT-Import-Date: 2011-06-05 09:57:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -10238,9 +10238,3 @@ msgstr "Неверный XML, отсутствует корень XRD."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Получение резервной копии из файла «%s»."
-
-#~ msgid "%1$s is now listening to your notices on %2$s."
-#~ msgstr "%1$s теперь следит за вашими записями на %2$s."
-
-#~ msgid " ▸ "
-#~ msgstr " ▸ "

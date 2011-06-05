@@ -9,26 +9,30 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RegisterThrottle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:52+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:57:03+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-04-09 19:01:00+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-registerthrottle\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
+#. TRANS: Server exception thrown when no IP address can be found for a registation attempt.
 msgid "Cannot find IP address."
 msgstr "Не можам да ја пронајдам IP-адресата."
 
+#. TRANS: Exception thrown when too many user have registered from one IP address within a given time frame.
 msgid "Too many registrations. Take a break and try again later."
 msgstr "Премногу регистрации. Направете пауза и обидете се подоцна."
 
+#. TRANS: Exception thrown when attempting to register from an IP address from which silenced users have registered.
 msgid "A banned user has registered from this address."
 msgstr "Од оваа адреса се регистрирал забранет корисник."
 
+#. TRANS: Plugin description.
 msgid "Throttles excessive registration from a single IP address."
 msgstr "Истиснува прекумерни регистрации од една IP-адреса."

@@ -9,18 +9,23 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - PtitUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:43+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:56:54+0000\n"
 "Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-03-18 20:08:31+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-ptiturl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Exception thrown when URL shortening plugin was configured incorrectly.
+msgid "You must specify a serviceUrl for ptit URL shortening."
+msgstr ""
+
+#. TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
 msgstr ""

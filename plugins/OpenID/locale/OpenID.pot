@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -132,25 +132,25 @@ msgid "OpenID provider"
 msgstr ""
 
 #. TRANS: Form guide.
-#: OpenIDPlugin.php:698 openidlogin.php:148
+#: OpenIDPlugin.php:698 openidlogin.php:149
 msgid "Enter your username."
 msgstr ""
 
 #. TRANS: Form guide.
-#: OpenIDPlugin.php:700 openidlogin.php:150
+#: OpenIDPlugin.php:700 openidlogin.php:151
 msgid "You will be sent to the provider's site for authentication."
 msgstr ""
 
 #. TRANS: OpenID plugin logon form field label.
 #. TRANS: Field label.
 #. TRANS: OpenID plugin logon form field label.
-#: OpenIDPlugin.php:704 openidsettings.php:110 openidlogin.php:154
+#: OpenIDPlugin.php:704 openidsettings.php:110 openidlogin.php:155
 msgid "OpenID URL"
 msgstr ""
 
 #. TRANS: OpenID plugin logon form field instructions.
 #. TRANS: OpenID plugin logon form field title.
-#: OpenIDPlugin.php:707 openidlogin.php:157
+#: OpenIDPlugin.php:707 openidlogin.php:158
 msgid "Your OpenID URL."
 msgstr ""
 
@@ -659,23 +659,24 @@ msgctxt "TITLE"
 msgid "OpenID Login"
 msgstr ""
 
-#: openidlogin.php:139
+#. TRANS: Field label.
+#: openidlogin.php:140
 msgctxt "LABEL"
 msgid "OpenID provider"
 msgstr ""
 
 #. TRANS: OpenID plugin logon form checkbox label for setting to put the OpenID information in a cookie.
-#: openidlogin.php:162
+#: openidlogin.php:163
 msgid "Remember me"
 msgstr ""
 
 #. TRANS: OpenID plugin logon form field title.
-#: openidlogin.php:164
+#: openidlogin.php:165
 msgid "Automatically login in the future; not for shared computers!"
 msgstr ""
 
 #. TRANS: OpenID plugin logon form button label to start logon with the data provided in the logon form.
-#: openidlogin.php:169
+#: openidlogin.php:170
 msgctxt "BUTTON"
 msgid "Login"
 msgstr ""

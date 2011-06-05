@@ -29,17 +29,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:48+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:56:58+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
+"X-POT-Import-Date: 2011-06-05 09:57:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -4091,9 +4091,8 @@ msgstr "Antworten an %1$s, Seite %2$d"
 
 #. TRANS: Addition in tag membership list for creator of a tag.
 #. TRANS: Addition in tag subscribers list for creator of a tag.
-#, fuzzy
 msgid "Creator"
-msgstr "Erstellt"
+msgstr "Ersteller"
 
 #. TRANS: Title for lists by a user page for a private tag.
 #, fuzzy
@@ -10549,9 +10548,3 @@ msgstr "Ungültiges XML, XRD-Root fehlt."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Hole Backup von der Datei „%s“."
-
-#~ msgid "%1$s is now listening to your notices on %2$s."
-#~ msgstr "%1$s hat deine Nachrichten auf „%2$s“ abonniert."
-
-#~ msgid " ▸ "
-#~ msgstr " ▸ "

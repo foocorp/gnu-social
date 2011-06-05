@@ -10,58 +10,76 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RSSCloud\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:56+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:57:07+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-04-27 13:31:19+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-rsscloud\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#. TRANS: Form validation error displayed when a URL parameter is missing.
 msgid "A URL parameter is required."
 msgstr "Un paramètre d’URL est requis."
 
+#. TRANS: Form validation error displayed when HTTP GET is not used.
 msgid "This resource requires an HTTP GET."
 msgstr "Cette ressource nécessite une requête HTTP GET."
 
+#. TRANS: Form validation error displayed when HTTP POST is not used.
 msgid "This resource requires an HTTP POST."
 msgstr "Cette ressource nécessite une requête HTTP POST."
 
+#. TRANS: Form validation error displayed when POST is not used.
 msgid "Request must be POST."
 msgstr "La requête HTTP au nuage RSS doit être de type POST."
 
-msgid "Only http-post notifications are supported at this time."
+#. TRANS: Form validation error displayed when HTTP POST is not used.
+#, fuzzy
+msgid "Only HTTP POST notifications are supported at this time."
 msgstr ""
 "Seules les notifications HTTP-POST sont prises en charge en ce moment sur le "
 "nuage RSS."
 
-#. TRANS: %s is a comma separated list of parameters.
+#. TRANS: List separator.
+msgctxt "SEPARATOR"
+msgid ", "
+msgstr ""
+
+#. TRANS: Form validation error displayed when a request body is missing expected parameters.
+#. TRANS: %s is a list of parameters separated by a list separator (default: ", ").
 #, php-format
 msgid "The following parameters were missing from the request body: %s."
 msgstr ""
 "Les paramètres suivants étaient absents du corps de la requête au nuage "
 "RSS : %s."
 
+#. TRANS: Form validation error displayed when not providing any valid profile feed URLs.
+#, fuzzy
 msgid ""
-"You must provide at least one valid profile feed url (url1, url2, url3 ... "
+"You must provide at least one valid profile feed URL (url1, url2, url3 ... "
 "urlN)."
 msgstr ""
 "Vous devez fournir au moins une adresse URL de flux de profil valide (url1, "
 "url2, url3 ... urlN)."
 
+#. TRANS: Form validation error displayed when not providing a valid feed URL.
 msgid "Feed subscription failed: Not a valid feed."
 msgstr "L’abonnement au flux a échoué : ce n’est pas un flux RSS valide."
 
+#. TRANS: Form validation error displayed when feed subscription failed.
+#, fuzzy
 msgid ""
-"Feed subscription failed - notification handler doesn't respond correctly."
+"Feed subscription failed: Notification handler does not respond correctly."
 msgstr ""
 "L’abonnement au flux RSS a échoué : le gestionnaire de notifications ne "
 "répond pas correctement."
 
+#. TRANS: Success message after subscribing to one or more feeds.
 msgid ""
 "Thanks for the subscription. When the feed(s) update(s), you will be "
 "notified."
@@ -69,6 +87,7 @@ msgstr ""
 "Merci pour l’abonnement. Vous serez informé lors des mises à jour de ce(s) "
 "flux."
 
+#. TRANS: Plugin description.
 msgid ""
 "The RSSCloud plugin enables your StatusNet instance to publish real-time "
 "updates for profile RSS feeds using the <a href=\"http://rsscloud.org/"

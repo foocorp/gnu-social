@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -267,12 +267,13 @@ msgid "answered \"%s\""
 msgstr ""
 
 #. TRANS: Number of given answers to a question.
-#. TRANS: %d is the number of given answers.
+#. TRANS: %s is the number of given answers.
 #: classes/QnA_Question.php:241
 #, php-format
-msgctxt "%s answer"
-msgid "%s answers"
-msgstr ""
+msgid "%s answer"
+msgid_plural "%s answers"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANS: Notification that a question cannot be answered anymore because it is closed.
 #: classes/QnA_Question.php:248
@@ -293,12 +294,13 @@ msgctxt "BUTTON"
 msgid "Submit"
 msgstr ""
 
-#: lib/qnanewanswerform.php:113
+#. TRANS: Field label.
+#: lib/qnanewanswerform.php:114
 msgid "Enter your answer"
 msgstr ""
 
 #. TRANS: Button text for submitting a poll response.
-#: lib/qnanewanswerform.php:124
+#: lib/qnanewanswerform.php:125
 msgctxt "BUTTON"
 msgid "Answer"
 msgstr ""

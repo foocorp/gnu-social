@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,8 +58,8 @@ msgstr ""
 
 #. TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
 #. TRANS: and example.net, as these are official standard domain names for use in examples.
-#: OStatusPlugin.php:332 OStatusPlugin.php:366 actions/ostatussub.php:233
-#: actions/ostatussub.php:241 actions/ostatussub.php:267
+#: OStatusPlugin.php:332 OStatusPlugin.php:366 actions/ostatussub.php:234
+#: actions/ostatussub.php:242 actions/ostatussub.php:268
 msgid ""
 "Sorry, we could not reach that address. Please make sure that the OStatus "
 "address is like nickname@example.com or http://example.net/nickname."
@@ -428,14 +428,15 @@ msgstr ""
 msgid "Subscribe to this user"
 msgstr ""
 
-#: actions/ostatussub.php:138
+#. TRANS: Extra paragraph in remote profile view when already subscribed.
+#: actions/ostatussub.php:139
 msgid "You are already subscribed to this user."
 msgstr ""
 
 #. TRANS: Error text.
-#: actions/ostatussub.php:245 actions/ostatussub.php:249
-#: actions/ostatussub.php:253 actions/ostatussub.php:257
-#: actions/ostatussub.php:261
+#: actions/ostatussub.php:246 actions/ostatussub.php:250
+#: actions/ostatussub.php:254 actions/ostatussub.php:258
+#: actions/ostatussub.php:262
 msgid ""
 "Sorry, we could not reach that feed. Please try that OStatus address again "
 "later."
@@ -443,32 +444,32 @@ msgstr ""
 
 #. TRANS: OStatus remote subscription dialog error.
 #. TRANS: OStatus remote group subscription dialog error.
-#: actions/ostatussub.php:299 actions/ostatuspeopletag.php:144
+#: actions/ostatussub.php:300 actions/ostatuspeopletag.php:144
 msgid "Already subscribed!"
 msgstr ""
 
 #. TRANS: OStatus remote subscription dialog error.
-#: actions/ostatussub.php:304
+#: actions/ostatussub.php:305
 msgid "Remote subscription failed!"
 msgstr ""
 
 #. TRANS: Client error displayed when the session token does not match or is not given.
-#: actions/ostatussub.php:352 actions/ostatusinit.php:69
+#: actions/ostatussub.php:353 actions/ostatusinit.php:69
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 
 #. TRANS: Form title.
-#: actions/ostatussub.php:380
+#: actions/ostatussub.php:381
 msgid "Subscribe to user"
 msgstr ""
 
 #. TRANS: Page title for OStatus remote subscription form.
-#: actions/ostatussub.php:400
+#: actions/ostatussub.php:401
 msgid "Confirm"
 msgstr ""
 
 #. TRANS: Instructions.
-#: actions/ostatussub.php:412
+#: actions/ostatussub.php:413
 msgid ""
 "You can subscribe to users from other supported sites. Paste their address "
 "or profile URI below:"

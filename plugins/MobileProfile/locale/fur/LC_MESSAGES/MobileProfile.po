@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:06+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:56:16+0000\n"
 "Language-Team: Friulian <http://translatewiki.net/wiki/Portal:fur>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:36:37+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:59:15+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fur\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
@@ -37,39 +37,3 @@ msgstr "Passe al sît web in version mobil"
 #. TRANS: Plugin description.
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr "Output XHTML MobileProfile pai clients che lu supuartin."
-
-#~ msgid "Home"
-#~ msgstr "Inizi"
-
-#~ msgid "Account"
-#~ msgstr "Identitât"
-
-#~ msgid "Connect"
-#~ msgstr "Conetiti"
-
-#~ msgid "Admin"
-#~ msgstr "Aministradôr"
-
-#~ msgid "Change site configuration"
-#~ msgstr "Cambie configurazion dal sît"
-
-#~ msgid "Invite"
-#~ msgstr "Invide"
-
-#~ msgid "Logout"
-#~ msgstr "Jes"
-
-#~ msgid "Register"
-#~ msgstr "Regjistriti"
-
-#~ msgid "Login"
-#~ msgstr "Jentre"
-
-#~ msgid "Search"
-#~ msgstr "Cîr"
-
-#~ msgid "Attach"
-#~ msgstr "Aleghe"
-
-#~ msgid "Attach a file."
-#~ msgstr "Aleghe un file."

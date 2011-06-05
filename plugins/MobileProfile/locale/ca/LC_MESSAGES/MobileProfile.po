@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:06+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:56:16+0000\n"
 "Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:36:37+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:59:15+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
@@ -36,39 +36,3 @@ msgstr "Canvia a lloc web en mode mòbil."
 #. TRANS: Plugin description.
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr ""
-
-#~ msgid "Home"
-#~ msgstr "Inici"
-
-#~ msgid "Account"
-#~ msgstr "Compte"
-
-#~ msgid "Connect"
-#~ msgstr "Connecta"
-
-#~ msgid "Admin"
-#~ msgstr "Administració"
-
-#~ msgid "Change site configuration"
-#~ msgstr "Canvia la configuració del lloc"
-
-#~ msgid "Invite"
-#~ msgstr "Convida"
-
-#~ msgid "Logout"
-#~ msgstr "Finalitza la sessió"
-
-#~ msgid "Register"
-#~ msgstr "Registre"
-
-#~ msgid "Login"
-#~ msgstr "Inicia la sessió"
-
-#~ msgid "Search"
-#~ msgstr "Cerca"
-
-#~ msgid "Attach"
-#~ msgstr "Adjunta"
-
-#~ msgid "Attach a file."
-#~ msgstr "Adjunta un fitxer."

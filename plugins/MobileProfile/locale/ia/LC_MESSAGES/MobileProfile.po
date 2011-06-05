@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:06+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:56:16+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:36:37+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:59:15+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
@@ -38,39 +38,3 @@ msgid "XHTML MobileProfile output for supporting user agents."
 msgstr ""
 "Production de XHTML MobileProfile pro le programmas de usator que lo "
 "supporta."
-
-#~ msgid "Home"
-#~ msgstr "Initio"
-
-#~ msgid "Account"
-#~ msgstr "Conto"
-
-#~ msgid "Connect"
-#~ msgstr "Connecter"
-
-#~ msgid "Admin"
-#~ msgstr "Admin"
-
-#~ msgid "Change site configuration"
-#~ msgstr "Modificar le configuration del sito"
-
-#~ msgid "Invite"
-#~ msgstr "Invitar"
-
-#~ msgid "Logout"
-#~ msgstr "Clauder session"
-
-#~ msgid "Register"
-#~ msgstr "Crear conto"
-
-#~ msgid "Login"
-#~ msgstr "Aperir session"
-
-#~ msgid "Search"
-#~ msgstr "Cercar"
-
-#~ msgid "Attach"
-#~ msgstr "Annexar"
-
-#~ msgid "Attach a file."
-#~ msgstr "Annexar un file."

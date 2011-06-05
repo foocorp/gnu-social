@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,11 +20,13 @@ msgstr ""
 msgid "Captcha"
 msgstr ""
 
-#: RecaptchaPlugin.php:98
+#. TRANS: Error message displayed if a provided captcha response does not match.
+#: RecaptchaPlugin.php:101
 msgid "Captcha does not match!"
 msgstr ""
 
-#: RecaptchaPlugin.php:110
+#. TRANS: Plugin description.
+#: RecaptchaPlugin.php:114
 msgid ""
 "Uses <a href=\"http://recaptcha.org/\">Recaptcha</a> service to add a  "
 "captcha to the registration page."

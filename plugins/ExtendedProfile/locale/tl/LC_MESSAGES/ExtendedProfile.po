@@ -9,18 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:28+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:55:38+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:49+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:56:10+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Title for extended profile settings.
 msgid "Extended profile settings"
 msgstr "Dinugtungang mga katakdaan ng balangkas"
 
@@ -31,6 +32,7 @@ msgstr ""
 "Maisasapanahon mo rito ang kabatiran sa iyong pansariling balangkas upang "
 "makaalam pa ng mas marami ang mga tao tungkol sa iyo."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 "May isang suliranin sa iyong sesyon ng kahalip.  Mangyaring subukan uli."
@@ -39,6 +41,7 @@ msgstr ""
 msgid "Unexpected form submission."
 msgstr "Hindi inaasahang pagpapasa ng pormularyo."
 
+#. TRANS: Success message after saving extended profile details.
 msgid "Details saved."
 msgstr "Nasagip na ang mga detalye."
 
@@ -60,6 +63,7 @@ msgstr "Hindi katanggap-tanggap na ipinasok na petsa para sa \"%1$s\": %2$s."
 msgid "Invalid URL: %s."
 msgstr "Hindi katanggap-tanggap na URL: %s."
 
+#. TRANS: Server error displayed when a field could not be saved in the database.
 msgid "Could not save profile details."
 msgstr "Hindi masagip ang mga detalye ng balangkas."
 

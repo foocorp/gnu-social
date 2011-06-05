@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:16:15+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:57:23+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
+"X-POT-Import-Date: 2011-06-05 09:57:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -8614,9 +8614,8 @@ msgid "Invite more colleagues"
 msgstr "Nieuwe gebruikers uitnodigen"
 
 #. TRANS: Form legend.
-#, fuzzy
 msgid "Invite collegues"
-msgstr "Nieuwe gebruikers uitnodigen"
+msgstr "Collega's uitnodigen"
 
 #. TRANS: Field label for a list of e-mail addresses.
 msgid "Email addresses"
@@ -8641,9 +8640,8 @@ msgid "Send"
 msgstr "Verzenden"
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgid "Send invitations."
-msgstr "Uitnodigingen"
+msgstr "Uitnodigingen verzenden."
 
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
@@ -8714,7 +8712,7 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s is now following you on %2$s."
 msgstr "%1$s is %2$s gaan volgen."
 
@@ -10270,9 +10268,3 @@ msgstr "Ongeldige XML. De XRD-root mist."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "De back-up wordt uit het bestand \"%s\" geladen."
-
-#~ msgid "%1$s is now listening to your notices on %2$s."
-#~ msgstr "%1$s volgt nu uw berichten %2$s."
-
-#~ msgid " ▸ "
-#~ msgstr " ▸ "

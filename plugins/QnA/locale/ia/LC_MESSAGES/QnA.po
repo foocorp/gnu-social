@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:48+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:56:59+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:46:04+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:58:23+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
@@ -227,11 +227,12 @@ msgid "answered \"%s\""
 msgstr "respondeva a \"%s\""
 
 #. TRANS: Number of given answers to a question.
-#. TRANS: %d is the number of given answers.
+#. TRANS: %s is the number of given answers.
 #, fuzzy, php-format
-msgctxt "%s answer"
-msgid "%s answers"
-msgstr "%s responsas"
+msgid "%s answer"
+msgid_plural "%s answers"
+msgstr[0] "%s responsas"
+msgstr[1] "%s responsas"
 
 #. TRANS: Notification that a question cannot be answered anymore because it is closed.
 msgid "This question is closed."
@@ -249,6 +250,7 @@ msgctxt "BUTTON"
 msgid "Submit"
 msgstr "Submitter"
 
+#. TRANS: Field label.
 msgid "Enter your answer"
 msgstr "Entra tu responsa"
 
@@ -308,12 +310,3 @@ msgstr "Optime"
 #, fuzzy
 msgid "Mark this answer as the best answer."
 msgstr "Marcar como le melior responsa"
-
-#~ msgid "Unknown object type received by QnA Plugin."
-#~ msgstr "Typo de objecto incognite recipite per le plug-in Q&R."
-
-#~ msgid "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
-#~ msgstr "<a href=\"%s\" rel=\"more\" title=\"%s\">…</a>"
-
-#~ msgid "Close the question"
-#~ msgstr "Clauder le question"

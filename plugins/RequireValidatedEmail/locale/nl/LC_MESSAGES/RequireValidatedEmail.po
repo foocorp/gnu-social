@@ -9,36 +9,44 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:54+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:57:05+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-05-05 21:46:06+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
 msgid "You must validate your email address before posting."
 msgstr "U moet uw e-mailadres bevestigen voordat u berichten kunt plaatsen."
 
+#. TRANS: Client exception thrown when trying to register without providing an e-mail address.
 msgid "You must provide an email address to register."
 msgstr "U moet een e-mailadres opgeven om te kunnen registreren."
 
+#. TRANS: Plugin description.
 msgid "Disables posting without a validated email address."
 msgstr "Schakelt berichten plaatsen zonder gevalideerd e-mailadres uit."
 
+#. TRANS: Client exception thrown when trying to register while already logged in.
 msgid "You are already logged in."
 msgstr "U bent al aangemeld."
 
+#. TRANS: Client exception thrown when trying to register with a non-existing confirmation code.
 msgid "Confirmation code not found."
 msgstr "De bevestigingscode is niet gevonden."
 
+#. TRANS: Client exception thrown when trying to register with a confirmation code that is not connected with a user.
 msgid "No user for that confirmation code."
 msgstr "Er is geen gebruiker voor die bevestigingscode."
 
+#. TRANS: Client exception thrown when trying to register with a invalid e-mail address.
+#. TRANS: %s is the invalid e-mail address.
 #, php-format
 msgid "Unrecognized address type %s."
 msgstr "Onbekend adrestype %s."
@@ -47,12 +55,15 @@ msgstr "Onbekend adrestype %s."
 msgid "That address has already been confirmed."
 msgstr "Dit adres is al bevestigd."
 
+#. TRANS: Client exception thrown when trying to register with too short a password.
 msgid "Password too short."
 msgstr "Het wachtwoord is te kort."
 
+#. TRANS: Client exception thrown when trying to register without providing the same password twice.
 msgid "Passwords do not match."
 msgstr "De wachtwoorden komen niet overeen."
 
+#. TRANS: Form instructions. %s is the nickname of the to be registered user.
 #, php-format
 msgid ""
 "You have confirmed the email address for your new user account %s. Use the "
@@ -61,23 +72,35 @@ msgstr ""
 "U hebt het e-mailadres bevestigd voor uw nieuwe gebruiker %s. Gebruik het "
 "formulier hieronder om uw nieuwe wachtwoord in te stellen."
 
+#. TRANS: Page title.
 msgid "Set a password"
 msgstr "Stel een wachtwoord in"
 
-msgid "Confirm email"
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Confirm email address"
 msgstr "E-mailadres bevestigen"
 
+#. TRANS: Field label.
 msgid "New password"
 msgstr "Nieuw wachtwoord"
 
+#. TRANS: Field title for password field.
 msgid "6 or more characters."
 msgstr "Zes of meer tekens."
 
+#. TRANS: Field label for repeat password field.
+#, fuzzy
+msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Bevestigen"
 
+#. TRANS: Field title for repeat password field.
 msgid "Same as password above."
 msgstr "Gelijk aan het wachtwoord hierboven."
 
+#. TRANS: Button text for completing registration by e-mail.
+#, fuzzy
+msgctxt "BUTTON"
 msgid "Save"
 msgstr "Opslaan"

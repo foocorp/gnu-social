@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailRegistration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:17+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:55:28+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:44+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:56:40+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-emailregistration\n"
@@ -23,11 +23,11 @@ msgstr ""
 
 #. TRANS: Client exception trown when registration by e-mail is not allowed.
 msgid "Registration not allowed."
-msgstr ""
+msgstr "Registratie is niet toegestaan."
 
 #. TRANS: Client exception trown when trying to register without an invitation.
 msgid "Sorry, only invited people can register."
-msgstr ""
+msgstr "U kunt zich alleen registreren als u wordt uitgenodigd."
 
 #. TRANS: Client exception thrown when no confirmation code was provided.
 msgid "No confirmation code."
@@ -35,7 +35,7 @@ msgstr "Geen bevestigingscode."
 
 #. TRANS: Client exception trown when using an invitation multiple times.
 msgid "Invitation already used."
-msgstr ""
+msgstr "De uitnodiging is al gebruikt."
 
 #. TRANS: Client exception thrown when given confirmation code was not issued.
 msgid "No such confirmation code."
@@ -62,7 +62,6 @@ msgstr ""
 "e-mail voor instructies."
 
 #. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
-#, fuzzy
 msgid "No confirmation thing."
 msgstr "Geen bevestigingscode."
 
@@ -86,7 +85,7 @@ msgstr "De wachtwoorden komen niet overeen."
 
 #. TRANS: Exception trown when using an invitation multiple times.
 msgid "Failed to register user."
-msgstr ""
+msgstr "De gebruikersregistratie is mislukt."
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.

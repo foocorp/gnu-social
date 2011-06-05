@@ -10,18 +10,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:27+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:55:37+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:49+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:56:10+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Title for extended profile settings.
 msgid "Extended profile settings"
 msgstr "Erweiterte Profileinstellungen"
 
@@ -32,6 +33,7 @@ msgstr ""
 "Du kannst hier dein persönliches Profil aktualisieren, damit andere Personen "
 "mehr über dich wissen."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Es gab ein Problem mit deinem Sessiontoken. Bitte versuche es erneut."
 
@@ -39,6 +41,7 @@ msgstr "Es gab ein Problem mit deinem Sessiontoken. Bitte versuche es erneut."
 msgid "Unexpected form submission."
 msgstr "Unerwartete Formulareingabe."
 
+#. TRANS: Success message after saving extended profile details.
 msgid "Details saved."
 msgstr "Informationen gespeichert."
 
@@ -60,6 +63,7 @@ msgstr "Ungültiges Datum %2$s für „%1$s“ eingegeben."
 msgid "Invalid URL: %s."
 msgstr "Ungültige URL: %s."
 
+#. TRANS: Server error displayed when a field could not be saved in the database.
 msgid "Could not save profile details."
 msgstr "Konnte Profilinformationen nicht speichern."
 

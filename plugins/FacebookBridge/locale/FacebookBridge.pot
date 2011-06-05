@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -131,7 +131,8 @@ msgstr ""
 msgid "Disconnect my account from Facebook"
 msgstr ""
 
-#: actions/facebooksettings.php:205
+#. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
+#: actions/facebooksettings.php:204
 #, php-format
 msgid ""
 "Disconnecting your Faceboook would make it impossible to log in! Please [set "
@@ -140,7 +141,7 @@ msgstr ""
 
 #. TRANS: Message displayed when initiating disconnect of a StatusNet user
 #. TRANS: from a Facebook account. %1$s is the StatusNet site name.
-#: actions/facebooksettings.php:217
+#: actions/facebooksettings.php:215
 #, php-format
 msgid ""
 "Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
@@ -148,28 +149,28 @@ msgid ""
 msgstr ""
 
 #. TRANS: Submit button.
-#: actions/facebooksettings.php:223
+#: actions/facebooksettings.php:221
 msgctxt "BUTTON"
 msgid "Disconnect"
 msgstr ""
 
 #. TRANS: Notice in case saving of synchronisation preferences fail.
-#: actions/facebooksettings.php:247
+#: actions/facebooksettings.php:245
 msgid "There was a problem saving your sync preferences."
 msgstr ""
 
 #. TRANS: Confirmation that synchronisation settings have been saved into the system.
-#: actions/facebooksettings.php:250
+#: actions/facebooksettings.php:248
 msgid "Sync preferences saved."
 msgstr ""
 
 #. TRANS: Server error displayed when deleting the link to a Facebook account fails.
-#: actions/facebooksettings.php:265
+#: actions/facebooksettings.php:263
 msgid "Could not delete link to Facebook."
 msgstr ""
 
 #. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
-#: actions/facebooksettings.php:270
+#: actions/facebooksettings.php:268
 msgid "You have disconnected from Facebook."
 msgstr ""
 

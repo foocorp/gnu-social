@@ -11,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:07+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:56:17+0000\n"
 "Language-Team: Russian <http://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:36:37+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:59:15+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
@@ -39,40 +39,3 @@ msgstr "Переключить на версию для мобильных ус�
 #. TRANS: Plugin description.
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr "XHTML MobileProfile вывод для поддерживаемых пользовательских агентов."
-
-#~ msgid "Home"
-#~ msgstr "Домой"
-
-#~ msgid "Account"
-#~ msgstr "Аккаунт"
-
-#~ msgid "Connect"
-#~ msgstr "Подключиться"
-
-#~ msgid "Admin"
-#~ msgstr "Администратор"
-
-#~ msgid "Change site configuration"
-#~ msgstr "Изменить конфигурацию сайта"
-
-#~ msgid "Invite"
-#~ msgstr "Пригласить"
-
-#~ msgid "Logout"
-#~ msgstr "Выйти"
-
-#~ msgid "Register"
-#~ msgstr "Регистрация"
-
-#~ msgid "Login"
-#~ msgstr "Представиться"
-
-#~ msgid "Search"
-#~ msgstr "Поиск"
-
-#~ msgid "Attach"
-#~ msgstr "Прикрепить"
-
-#, fuzzy
-#~ msgid "Attach a file."
-#~ msgstr "Прикрепить файл"

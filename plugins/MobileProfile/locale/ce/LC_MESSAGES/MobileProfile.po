@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:06+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:56:16+0000\n"
 "Language-Team: Chechen <http://translatewiki.net/wiki/Portal:ce>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:36:37+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:59:15+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ce\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
@@ -36,37 +36,3 @@ msgstr ""
 #. TRANS: Plugin description.
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr "XHTML MobileProfile арайокху иза лелочу декъашхошна аттон."
-
-#~ msgid "Home"
-#~ msgstr "Цlехьа"
-
-#~ msgid "Account"
-#~ msgstr "Дlавазвалар"
-
-#~ msgid "Connect"
-#~ msgstr "Зlе тасар"
-
-#~ msgid "Admin"
-#~ msgstr "Адаманкуьйгалхо"
-
-#~ msgid "Invite"
-#~ msgstr "Схьакхайкха"
-
-#~ msgid "Logout"
-#~ msgstr "Ара валар"
-
-#~ msgid "Register"
-#~ msgstr "Дlавазвалар"
-
-#~ msgid "Login"
-#~ msgstr "Вовзийта хьой"
-
-#~ msgid "Search"
-#~ msgstr "Лаха"
-
-#~ msgid "Attach"
-#~ msgstr "Тlечlагlде"
-
-#, fuzzy
-#~ msgid "Attach a file."
-#~ msgstr "Тlечlагlйе хlума"

@@ -10,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:15:07+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:56:17+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:36:37+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:59:15+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
@@ -38,40 +38,3 @@ msgstr ""
 #. TRANS: Plugin description.
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr "XHTML MobileProfile 支持用户代理的输出。"
-
-#~ msgid "Home"
-#~ msgstr "首页"
-
-#~ msgid "Account"
-#~ msgstr "账号"
-
-#~ msgid "Connect"
-#~ msgstr "关联"
-
-#~ msgid "Admin"
-#~ msgstr "管理"
-
-#~ msgid "Change site configuration"
-#~ msgstr "更改网站配置"
-
-#~ msgid "Invite"
-#~ msgstr "邀请"
-
-#~ msgid "Logout"
-#~ msgstr "登出"
-
-#~ msgid "Register"
-#~ msgstr "注册"
-
-#~ msgid "Login"
-#~ msgstr "登录"
-
-#~ msgid "Search"
-#~ msgstr "搜索"
-
-#~ msgid "Attach"
-#~ msgstr "附件"
-
-#, fuzzy
-#~ msgid "Attach a file."
-#~ msgstr "添加一个文件附件"

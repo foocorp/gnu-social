@@ -9,18 +9,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:27+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:55:38+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:49+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:56:10+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Title for extended profile settings.
 msgid "Extended profile settings"
 msgstr "Uitgebreide profielinstellingen"
 
@@ -31,6 +32,7 @@ msgstr ""
 "Hier kunt u uw persoonlijke profiel bijwerken met informatie over uzelf voor "
 "andere gebruikers."
 
+#. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 "Er is een probleem ontstaan met uw sessie. Probeer het nog een keer, "
@@ -40,6 +42,7 @@ msgstr ""
 msgid "Unexpected form submission."
 msgstr "Het formulier is onverwacht ingezonden."
 
+#. TRANS: Success message after saving extended profile details.
 msgid "Details saved."
 msgstr "De gegevens zijn opgeslagen."
 
@@ -61,6 +64,7 @@ msgstr "Er is een ongeldige datum opgegeven voor \"%1$s\": %2$s."
 msgid "Invalid URL: %s."
 msgstr "Ongeldige URL: %s."
 
+#. TRANS: Server error displayed when a field could not be saved in the database.
 msgid "Could not save profile details."
 msgstr "Het was niet mogelijk de profielgegevens op te slaan."
 

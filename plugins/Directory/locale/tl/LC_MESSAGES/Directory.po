@@ -9,33 +9,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:07+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:55:17+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:38+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:56:55+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Page title for user directory. %d is a page number.
 #, php-format
 msgid "User Directory, page %d"
 msgstr "Direktoryo ng Tagagamit, pahina %d"
 
+#. TRANS: Page title for user directory.
 msgid "User directory"
 msgstr "Direktoryo ng tagagamit"
 
+#. TRANS: Page title for user directory. %s is the applied filter.
 #, php-format
 msgid "User directory - %s"
 msgstr "Direktoryo ng tagagamit - %s"
 
-#, php-format
-msgid "User directory - %s, page %d"
+#. TRANS: Page title for user directory.
+#. TRANS: %1$s is the applied filter, %2$d is a page number.
+#, fuzzy, php-format
+msgid "User directory - %1$s, page %2$d"
 msgstr "Direktoryo ng tagagamit - %s, pahina %d"
 
+#. TRANS: %%site.name%% is the name of the StatusNet site.
 #, php-format
 msgid ""
 "Search for people on %%site.name%% by their name, location, or interests. "
@@ -45,25 +51,43 @@ msgstr ""
 "kinalalagyan, o kinahihiligan.  Paghiwa-hiwalayin ang mga kataga sa "
 "pamamagitan ng mga puwang; dapat silang 3 mga panitik o mahigit pa."
 
+#. TRANS: Fieldset legend.
 msgid "Search site"
 msgstr "Hanapin sa sityo"
 
+#. TRANS: Field label for user directory filter.
 #. TRANS: Field label for input of one or more keywords.
 msgid "Keyword(s)"
 msgstr "(Mga) susi"
 
+#. TRANS: Button text.
 #. TRANS: Button text for searching group directory.
 msgctxt "BUTTON"
 msgid "Search"
 msgstr "Hanapin"
 
+#. TRANS: Empty list message for user directory.
 #, php-format
 msgid "No users starting with %s"
 msgstr "Walang mga tagagamit na nagsisimula sa %s"
 
+#. TRANS: Empty list message for user directory.
 #. TRANS: Empty list message for searching group directory.
 msgid "No results."
 msgstr "Walang mga kinalabasan."
+
+#. TRANS: Standard search suggestions shown when a search does not give any results.
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* Tiyakin na tama ang pagbabanghay ng lahat ng mga salita.\n"
+"* Sumubok ng ibang mga susing-salita.\n"
+"* Sumubok ng mas pangkalahatang mga susing-salita.\n"
+"* Sumubok ng mas kakaunting mga susing-salita.\n"
 
 #. TRANS: Title for group directory page. %d is a page number.
 #, php-format
@@ -116,18 +140,6 @@ msgstr "Hanapin sa mga pangkat"
 #, php-format
 msgid "No groups starting with %s."
 msgstr "Walang mga pangkat na nagsisimula sa %s."
-
-#. TRANS: Help text for searching group directory.
-msgid ""
-"* Make sure all words are spelled correctly.\n"
-"* Try different keywords.\n"
-"* Try more general keywords.\n"
-"* Try fewer keywords."
-msgstr ""
-"* Tiyakin na tama ang pagbabanghay ng lahat ng mga salita.\n"
-"* Sumubok ng ibang mga susing-salita.\n"
-"* Sumubok ng mas pangkalahatang mga susing-salita.\n"
-"* Sumubok ng mas kakaunting mga susing-salita.\n"
 
 #. TRANS: Menu item text for user directory.
 msgctxt "MENU"

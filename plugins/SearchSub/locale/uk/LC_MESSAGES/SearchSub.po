@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SearchSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:16:01+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:57:13+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-05-05 21:46:06+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-searchsub\n"
@@ -81,16 +81,19 @@ msgid "\"<a href=\"%1$s\">%2$s</a>\" since %3$s"
 msgstr "«<a href=\"%1$s\">%2$s</a>» протягом %3$s"
 
 #. TRANS: Error text shown a user tries to untrack a search query they're not subscribed to.
+#. TRANS: %s is the keyword for the search.
 #, php-format
 msgid "You are not tracking the search \"%s\"."
 msgstr "Ви не відстежує пошук «%s»."
 
 #. TRANS: Message given having failed to cancel a search subscription by untrack command.
+#. TRANS: %s is the keyword for the query.
 #, php-format
 msgid "Could not end a search subscription for query \"%s\"."
 msgstr "Неможливо закінчити пошукову підписку за запитом «%s»."
 
 #. TRANS: Message given having removed a search subscription by untrack command.
+#. TRANS: %s is the keyword for the search.
 #, php-format
 msgid "You are no longer subscribed to the search \"%s\"."
 msgstr "Ви більше не підписані на пошук «%s»."
@@ -116,12 +119,19 @@ msgstr "Немає такого профілю."
 msgid "Subscribed"
 msgstr "Підписані"
 
+#. TRANS: Form legend.
 msgid "Unsubscribe from this search"
 msgstr "Відмовитися від цього пошуку"
 
+#. TRANS: Button text for unsubscribing from a text search.
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Відписатись"
+
+#. TRANS: Button title for unsubscribing from a text search.
+#, fuzzy
+msgid "Unsubscribe from this search."
+msgstr "Відмовитися від цього пошуку"
 
 #. TRANS: Page title when search unsubscription succeeded.
 msgid "Unsubscribed"
@@ -148,6 +158,7 @@ msgstr ""
 "Додаток, який дозволяє відслідковувати дописи за певними параметрами пошуку."
 
 #. TRANS: SearchSub plugin menu item on user settings page.
+#. TRANS: Sub menu for searches.
 msgctxt "MENU"
 msgid "Searches"
 msgstr "Пошуки"
@@ -181,26 +192,37 @@ msgctxt "COMMANDHELP"
 msgid "List all your search subscriptions."
 msgstr "Список пошукових запитів, за якими ви слідкуєте."
 
-msgid "Searches"
-msgstr "Пошуки"
-
 #. TRANS: Error text shown a user tries to disable all a search subscriptions with track off command, but has none.
 msgid "You are not tracking any searches."
 msgstr "Не ви відстежуєте жодні пошукові запити."
 
+#. TRANS: Separator for list of tracked searches.
+msgctxt "SEPARATOR"
+msgid "\", \""
+msgstr ""
+
 #. TRANS: Message given having disabled all search subscriptions with 'track off'.
-#, php-format
-msgid "You are tracking searches for: %s"
+#. TRANS: %s is a list of searches. Separator default is '", "'.
+#, fuzzy, php-format
+msgid "You are tracking searches for: \"%s\"."
 msgstr "Ви відслідковуєте пошуки для: %s"
 
+#. TRANS: Form legend.
 msgid "Subscribe to this search"
 msgstr "Підписатися до даного пошуку"
 
+#. TRANS: Button text for subscribing to a search.
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr "Підписатись"
 
+#. TRANS: Button title for subscribing to a search.
+#, fuzzy
+msgid "Subscribe to this search."
+msgstr "Підписатися до даного пошуку"
+
 #. TRANS: Message given having failed to cancel one of the search subs with 'track off' command.
+#. TRANS: %s is the search for which the subscription removal failed.
 #, php-format
 msgid "Error disabling search subscription for query \"%s\"."
 msgstr "Помилка при скасуванні пошукової підписки «%s»."
@@ -208,3 +230,6 @@ msgstr "Помилка при скасуванні пошукової підпи
 #. TRANS: Message given having disabled all search subscriptions with 'track off'.
 msgid "Disabled all your search subscriptions."
 msgstr "Вимкнути всі пошукові підписки."
+
+#~ msgid "Searches"
+#~ msgstr "Пошуки"

@@ -9,34 +9,40 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:07+0000\n"
+"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"PO-Revision-Date: 2011-06-05 18:55:17+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:38+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 09:56:55+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
 
+#. TRANS: Page title for user directory. %d is a page number.
 #, php-format
 msgid "User Directory, page %d"
 msgstr "Каталог користувача, сторінка %d"
 
+#. TRANS: Page title for user directory.
 msgid "User directory"
 msgstr "Каталог користувача"
 
+#. TRANS: Page title for user directory. %s is the applied filter.
 #, php-format
 msgid "User directory - %s"
 msgstr "Каталог користувача — %s"
 
-#, php-format
-msgid "User directory - %s, page %d"
+#. TRANS: Page title for user directory.
+#. TRANS: %1$s is the applied filter, %2$d is a page number.
+#, fuzzy, php-format
+msgid "User directory - %1$s, page %2$d"
 msgstr "Каталог користувача — %s, сторінка %d"
 
+#. TRANS: %%site.name%% is the name of the StatusNet site.
 #, php-format
 msgid ""
 "Search for people on %%site.name%% by their name, location, or interests. "
@@ -46,25 +52,43 @@ msgstr ""
 "інтересами. Відокремлюйте пошукові умови інтервалами; вони повинні "
 "складатись з 3 або більше знаків."
 
+#. TRANS: Fieldset legend.
 msgid "Search site"
 msgstr "Пошук на сайті"
 
+#. TRANS: Field label for user directory filter.
 #. TRANS: Field label for input of one or more keywords.
 msgid "Keyword(s)"
 msgstr "Ключові слова"
 
+#. TRANS: Button text.
 #. TRANS: Button text for searching group directory.
 msgctxt "BUTTON"
 msgid "Search"
 msgstr "Пошук"
 
+#. TRANS: Empty list message for user directory.
 #, php-format
 msgid "No users starting with %s"
 msgstr "Немає користувачів, починаючи з %s"
 
+#. TRANS: Empty list message for user directory.
 #. TRANS: Empty list message for searching group directory.
 msgid "No results."
 msgstr "Немає результатів."
+
+#. TRANS: Standard search suggestions shown when a search does not give any results.
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* Переконайтеся, що всі слова написано правильно.\n"
+"* Спробуйте різні ключові слова.\n"
+"* Спробуйте узагальнити ключові слова.\n"
+"* Спробуйте зменшити кількість ключових слів."
 
 #. TRANS: Title for group directory page. %d is a page number.
 #, php-format
@@ -116,18 +140,6 @@ msgstr "Пошук спільнот"
 #, php-format
 msgid "No groups starting with %s."
 msgstr "Немає спільнот, що починаються з %s."
-
-#. TRANS: Help text for searching group directory.
-msgid ""
-"* Make sure all words are spelled correctly.\n"
-"* Try different keywords.\n"
-"* Try more general keywords.\n"
-"* Try fewer keywords."
-msgstr ""
-"* Переконайтеся, що всі слова написано правильно.\n"
-"* Спробуйте різні ключові слова.\n"
-"* Спробуйте узагальнити ключові слова.\n"
-"* Спробуйте зменшити кількість ключових слів."
 
 #. TRANS: Menu item text for user directory.
 msgctxt "MENU"
