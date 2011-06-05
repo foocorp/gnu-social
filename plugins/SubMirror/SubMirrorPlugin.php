@@ -90,6 +90,7 @@ class SubMirrorPlugin extends Plugin
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:SubMirror',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Pull feeds into your timeline!'));
 
         return true;
@@ -102,7 +103,6 @@ class SubMirrorPlugin extends Plugin
      *
      * @return boolean hook return
      */
-
     function onEndSubGroupNav($widget)
     {
         $action = $widget->out;
@@ -183,6 +183,7 @@ class SubMirrorPlugin extends Plugin
             $mirror->subscriber = $profile->id;
             $entry = array(
                 'id' => 'mirrors',
+                // TRANS: Label in profile statistics section, followed by a count.
                 'label' => _m('Mirrored feeds'),
                 'link' => common_local_url('mirrorsettings'),
                 'value' => $mirror->count(),

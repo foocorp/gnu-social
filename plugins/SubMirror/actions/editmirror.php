@@ -47,7 +47,6 @@ if (!defined('STATUSNET')) {
  */
 class EditMirrorAction extends BaseMirrorAction
 {
-
     /**
      * Check pre-requisites and instantiate attributes
      *
@@ -65,7 +64,8 @@ class EditMirrorAction extends BaseMirrorAction
                                                  'subscribed' => $this->profile->id));
 
         if (!$this->mirror) {
-            $this->clientError(_m("Requested invalid profile to edit."));
+            // TRANS: Client error displayed when trying to edit an object that is not a feed mirror.
+            $this->clientError(_m('Requested invalid profile to edit.'));
         }
 
         $this->style = $this->validateStyle($this->trimmed('style'));
@@ -83,7 +83,8 @@ class EditMirrorAction extends BaseMirrorAction
         if (in_array($style, $allowed)) {
             return $style;
         } else {
-            $this->clientError(_m("Bad form data."));
+            // TRANS: Client error displayed when providing invalid input when editing a mirror.
+            $this->clientError(_m('Bad form data.'));
         }
     }
 
@@ -92,7 +93,7 @@ class EditMirrorAction extends BaseMirrorAction
         $mirror = SubMirror::getMirror($this->user, $this->profile);
         if (!$mirror) {
             // TRANS: Client error thrown when a mirror request is made and no result is retrieved.
-            $this->clientError(_m('Requested edit of missing mirror.'));
+            $this->clientError(_m('The mirror request failed, because no result was retrieved.'));
         }
 
         if ($this->delete) {

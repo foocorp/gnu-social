@@ -117,7 +117,7 @@ class SubMirror extends Memcached_DataObject
 
     function keyTypes()
     {
-        // @fixme keys
+        // @todo FIXME keys
         // need a sane key for reverse lookup too
         return array('subscriber' => 'K', 'subscribed' => 'K');
     }

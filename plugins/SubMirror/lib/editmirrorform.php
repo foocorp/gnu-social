@@ -80,20 +80,25 @@ class EditMirrorForm extends Form
         $this->out->elementStart('div');
         if ($feed) {
             // XXX: Why the hard coded space?
+            // TRANS: Field label (URL expectected).
             $this->out->text(_m('LABEL', 'Remote feed:') . ' ');
             //$this->out->element('a', array('href' => $feed), $feed);
             $this->out->element('input', array('value' => $feed, 'readonly' => 'readonly', 'style' => 'width: 100%'));
         } else {
+            // TRANS: Field label.
             $this->out->text(_m('LABEL', 'Local user'));
         }
         $this->out->elementEnd('div');
         $this->out->elementEnd('p');
 
         $this->out->elementStart('fieldset', array('style' => 'margin-top: 20px'));
-        $this->out->element('legend', false, _m("Mirroring style"));
+        // TRANS: Fieldset legend for feed mirror setting.
+        $this->out->element('legend', false, _m('Mirroring style'));
 
-        $styles = array('repeat' => _m("Repeat: reference the original user's post (sometimes shows as 'RT @blah')"),
-                        'copy' => _m("Repost the content under my account"));
+        // TRANS: Feed mirror style (radio button option).
+        $styles = array('repeat' => _m('Repeat: reference the original user\'s post (sometimes shows as "RT @blah")'),
+                        // TRANS: Feed mirror style (radio button option).
+                        'copy' => _m('Repost the content under my account'));
         foreach ($styles as $key => $label) {
             $this->out->elementStart('div');
             $attribs = array('type' => 'radio',
@@ -104,7 +109,7 @@ class EditMirrorForm extends Form
                 $attribs['checked'] = 'checked';
             }
             $this->out->element('input', $attribs);
-            $this->out->element('span', false, $label); // @fixme should be label, but the styles muck it up for now
+            $this->out->element('span', false, $label); // @todo FIXME: should be label, but the styles muck it up for now
             $this->out->elementEnd('div');
 
         }
@@ -112,9 +117,11 @@ class EditMirrorForm extends Form
 
 
         $this->out->elementStart('div');
-        $this->out->submit($this->id() . '-save', _m('Save'));
+        // TRANS: Button text to save feed mirror settings.
+        $this->out->submit($this->id() . '-save', _m('BUTTON','Save'));
         $this->out->element('input', array('type' => 'submit',
-                                           'value' => _m('Stop mirroring'),
+                                           // TRANS: Button text to stop mirroring a feed.
+                                           'value' => _m('BUTTON','Stop mirroring'),
                                            'name' => 'delete',
                                            'class' => 'submit'));
         $this->out->elementEnd('div');

@@ -101,9 +101,10 @@ abstract class BaseMirrorAction extends Action
             $oprofile = Ostatus_profile::ensureFeedURL($url);
         }
         if ($oprofile->isGroup()) {
-            $this->clientError(_m("Cannot mirror a StatusNet group at this time."));
+            // TRANS: Client error displayed when trying to mirror a StatusNet group feed.
+            $this->clientError(_m('Cannot mirror a StatusNet group at this time.'));
         }
-        $this->oprofile = $oprofile; // @fixme ugly side effect :D
+        $this->oprofile = $oprofile; // @todo FIXME: ugly side effect :D
         return $oprofile->localProfile();
     }
 
@@ -115,6 +116,7 @@ abstract class BaseMirrorAction extends Action
     {
         // Only allow POST requests
         if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+            // TRANS: Client error displayed when trying to use another method than POST.
             $this->clientError(_m('This action only accepts POST requests.'));
             return false;
         }
@@ -123,6 +125,7 @@ abstract class BaseMirrorAction extends Action
         $token = $this->trimmed('token');
 
         if (!$token || $token != common_session_token()) {
+            // TRANS: Client error displayed when the session token does not match or is not given.
             $this->clientError(_m('There was a problem with your session token.'.
                                  ' Try again, please.'));
             return false;
@@ -157,6 +160,7 @@ abstract class BaseMirrorAction extends Action
         if ($this->boolean('ajax')) {
             $this->startHTML('text/xml;charset=utf-8');
             $this->elementStart('head');
+            // TRANS: Page title for subscribed feed mirror.
             $this->element('title', null, _m('Subscribed'));
             $this->elementEnd('head');
             $this->elementStart('body');

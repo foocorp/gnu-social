@@ -73,6 +73,7 @@ class AddMirrorWizard extends Widget
             // hopes, is getting timely updates.
             array(
                 'id' => 'twitter',
+                // TRANS: Name for possible feed provider.
                 'name' => _m('Twitter'),
             ),
             /*
@@ -106,6 +107,7 @@ class AddMirrorWizard extends Widget
              */
             array(
                 'id' => 'feed',
+                // TRANS: Name for possible feed provider.
                 'name' => _m('RSS or Atom feed'),
             ),
         );
@@ -116,6 +118,7 @@ class AddMirrorWizard extends Widget
         $out = $this->out;
 
         $out->elementStart('div', 'provider-list');
+        // TRANS: Heading for feed mirroring selection form.
         $out->element('h2', null, _m('Select a feed provider'));
         $out->elementStart('table');
         foreach ($providers as $provider) {
