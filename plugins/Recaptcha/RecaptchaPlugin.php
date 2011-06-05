@@ -54,6 +54,7 @@ class RecaptchaPlugin extends Plugin
     function onEndRegistrationFormData($action)
     {
         $action->elementStart('li');
+        // TRANS: Field label.
         $action->raw('<label for="recaptcha">'._m('Captcha').'</label>');
 
         // AJAX API will fill this div out.
