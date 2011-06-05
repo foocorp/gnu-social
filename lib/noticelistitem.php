@@ -242,7 +242,7 @@ class NoticeListItem extends Widget
                     // TRANS: Separator in profile addressees list.
                     $this->out->text(_m('SEPARATOR',', '));
                 } else {
-                    // TRANS: Start of profile addressees list.
+                    // Start of profile addressees list.
                     $first = false;
                 }
                 $text = $addr['text'];
