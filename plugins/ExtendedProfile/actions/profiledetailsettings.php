@@ -23,9 +23,9 @@ if (!defined('STATUSNET')) {
 
 class ProfileDetailSettingsAction extends ProfileSettingsAction
 {
-
     function title()
     {
+        // TRANS: Title for extended profile settings.
         return _m('Extended profile settings');
     }
 
@@ -59,8 +59,8 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
         $token = $this->trimmed('token');
         if (!$token || $token != common_session_token()) {
             $this->showForm(
-                _m(
-                    'There was a problem with your session token. '
+                // TRANS: Client error displayed when the session token does not match or is not given.
+                _m('There was a problem with your session token. '
                     .   'Try again, please.'
                   )
             );
@@ -133,6 +133,7 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
             return;
         }
 
+        // TRANS: Success message after saving extended profile details.
         $this->showForm(_m('Details saved.'), true);
 
     }
@@ -520,6 +521,7 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
             $result = $detail->insert();
             if (empty($result)) {
                 common_log_db_error($detail, 'INSERT', __FILE__);
+                // TRANS: Server error displayed when a field could not be saved in the database.
                 $this->serverError(_m('Could not save profile details.'));
             }
         } else {
@@ -532,6 +534,7 @@ class ProfileDetailSettingsAction extends ProfileSettingsAction
             $result = $detail->update($orig);
             if (empty($result)) {
                 common_log_db_error($detail, 'UPDATE', __FILE__);
+                // TRANS: Server error displayed when a field could not be saved in the database.
                 $this->serverError(_m('Could not save profile details.'));
             }
         }
