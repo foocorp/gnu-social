@@ -1,0 +1,60 @@
+# Translation of StatusNet - Sample to Deitsch (Deitsch)
+# Exported from translatewiki.net
+#
+# Author: Xqt
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Sample\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:58+0000\n"
+"Language-Team: Deitsch <http://translatewiki.net/wiki/Portal:pdc>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-04-27 13:31:20+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: pdc\n"
+"X-Message-Group: #out-statusnet-plugin-sample\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Hello"
+msgstr "Heiya"
+
+#, php-format
+msgid "Hello, %s!"
+msgstr "Heiya %s!"
+
+msgid "Hello, stranger!"
+msgstr "Heiya Fremmer!"
+
+#, php-format
+msgid "Hello, %s"
+msgstr "Heiya %s"
+
+#, php-format
+msgid "I have greeted you %d time."
+msgid_plural "I have greeted you %d times."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "A warm greeting"
+msgstr ""
+
+msgid "A sample plugin to show basics of development for new hackers."
+msgstr ""
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not save new greeting count for %d."
+msgstr ""
+
+#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
+#. TRANS: %d is a user ID (number).
+#, php-format
+msgid "Could not increment greeting count for %d."
+msgstr ""

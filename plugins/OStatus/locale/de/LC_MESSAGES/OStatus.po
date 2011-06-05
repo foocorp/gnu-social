@@ -11,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:43+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:35+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:48+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:45:05+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -62,8 +62,8 @@ msgstr "Holen"
 msgid "Invalid URI."
 msgstr "Ungültiger Avatar-URL %s."
 
-#. TRANS: Error message in OStatus plugin.
-#. TRANS: Error text.
+#. TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+#. TRANS: and example.net, as these are official standard domain names for use in examples.
 msgid ""
 "Sorry, we could not reach that address. Please make sure that the OStatus "
 "address is like nickname@example.com or http://example.net/nickname."
@@ -311,7 +311,7 @@ msgstr "Profil-Konto"
 
 #. TRANS: Field title.
 #, fuzzy
-msgid "Your account id (i.e. user@identi.ca)."
+msgid "Your account id (for example user@identi.ca)."
 msgstr "Deine Konto-ID (z.B. user@identi.ca)."
 
 #. TRANS: Client error displayed when remote profile could not be looked up.
@@ -437,7 +437,8 @@ msgstr ""
 msgid "Join group"
 msgstr "Gruppe beitreten"
 
-#. TRANS: Tooltip for field label "Join group".
+#. TRANS: Tooltip for field label "Join group". Do not translate the "example.net"
+#. TRANS: domain name in the URL, as it is an official standard domain name for examples.
 msgid "OStatus group's address, like http://example.net/group/nickname."
 msgstr ""
 "OStatus-Adresse der Gruppe. Beispiel: http://example.net/group/nickname."
@@ -986,32 +987,3 @@ msgstr "Dieses Ziel versteht das Teilen von Events nicht."
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "Einen Salmon-Slap von einem unidentifizierten Aktor empfangen."
-
-#~ msgctxt "TITLE"
-#~ msgid "Tag"
-#~ msgstr "Tag"
-
-#~ msgctxt "TITLE"
-#~ msgid "Untag"
-#~ msgstr "Enttaggen"
-
-#~ msgid "Disfavor"
-#~ msgstr "Aus den Favoriten entfernen"
-
-#~ msgid "%1$s marked notice %2$s as no longer a favorite."
-#~ msgstr "%1$s markierte Nachricht %2$s nicht mehr als Favorit."
-
-#~ msgid ""
-#~ "OStatus user's address, like nickname@example.com or http://example.net/"
-#~ "nickname"
-#~ msgstr ""
-#~ "Adresse des OStatus-Benutzers, wie nickname@example.com oder http://"
-#~ "example.net/nickname"
-
-#, fuzzy
-#~ msgid "Continue"
-#~ msgstr "Weiter"
-
-#, fuzzy
-#~ msgid "Could not remove remote user %1$s from list %2$s."
-#~ msgstr "Konnte Remotebenutzer %1$s nicht aus der Gruppe %2$s entfernen."

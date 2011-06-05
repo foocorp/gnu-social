@@ -1,6 +1,7 @@
 # Translation of StatusNet - Core to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Balzac 40
 # Author: Brion
 # Author: Brunoperel
 # Author: Crochet.david
@@ -15,6 +16,7 @@
 # Author: Netantho
 # Author: Notafish
 # Author: Od1n
+# Author: Otourly
 # Author: Patcito
 # Author: Peter17
 # Author: Sherbrooke
@@ -27,17 +29,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:05+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:57+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -1374,9 +1376,8 @@ msgid "Cannot add someone else's subscription."
 msgstr "Impossible d’insérer un nouvel abonnement."
 
 #. TRANS: Client exception thrown when trying use an incorrect activity verb for the Atom pub method.
-#, fuzzy
 msgid "Can only handle favorite activities."
-msgstr "Ne peut gérer que les activités de publication."
+msgstr "Peut gérer seulement les activités favorites."
 
 #. TRANS: Client exception thrown when trying favorite an object that is not a notice.
 #, fuzzy
@@ -2312,9 +2313,8 @@ msgid ""
 msgstr ""
 
 #. TRANS: Form validation error displayed if a given tag is invalid.
-#, fuzzy
 msgid "Invalid tag."
-msgstr "Taille incorrecte."
+msgstr "Balise non valide."
 
 #. TRANS: Form validation error displayed if a given tag is already present.
 #. TRANS: %s is the already present tag.
@@ -3170,29 +3170,6 @@ msgid ""
 msgstr ""
 "Remplissez ce formulaire pour inviter vos amis et collègues à utiliser ce "
 "service."
-
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "Adresses courriel"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-#, fuzzy
-msgid "Addresses of friends to invite (one per line)."
-msgstr "Adresses d’amis à inviter (un par ligne)"
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "Message personnel"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "Ajouter un message personnel à l’invitation (optionnel)."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "Envoyer"
 
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
@@ -4152,7 +4129,7 @@ msgstr "Sélectionner une marque à filtrer"
 
 #. TRANS: Checkbox title.
 msgid "Show private tags."
-msgstr ""
+msgstr "Afficher les notices privées."
 
 #. TRANS: Checkbox label to show public tags.
 #, fuzzy
@@ -4289,9 +4266,8 @@ msgid "You cannot administer plugins."
 msgstr "Vous ne pouvez pas supprimer des utilisateurs."
 
 #. TRANS: Client error displayed when trying to enable or disable a non-existing plugin.
-#, fuzzy
 msgid "No such plugin."
-msgstr "Page non trouvée."
+msgstr "Plugiciel inconnu."
 
 #. TRANS: Page title for AJAX form return when enabling a plugin.
 msgctxt "plugin"
@@ -4401,9 +4377,8 @@ msgstr[1] "Décrivez-vous avec vos intérêts en %d caractères"
 
 #. TRANS: Tooltip for field label in form for profile settings.
 #. TRANS: Text area title on account registration page.
-#, fuzzy
 msgid "Describe yourself and your interests."
-msgstr "Décrivez vous et vos interêts"
+msgstr "Décrivez-vous et indiquez vos centres d'intérêt."
 
 #. TRANS: Text area label in form for profile settings where users can provide
 #. TRANS: their biography.
@@ -4481,6 +4456,8 @@ msgstr "Me demander d’abord"
 #. TRANS: Dropdown field title on group edit form.
 msgid "Whether other users need your permission to follow your updates."
 msgstr ""
+"Si les autres utilisateurs doivent avoir votre permission de suivre vos "
+"mises à jour."
 
 #. TRANS: Checkbox label in profile settings.
 msgid "Make updates visible only to my followers"
@@ -4668,9 +4645,9 @@ msgstr[0] "1 personne listée"
 msgstr[1] "%d personnes listées"
 
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s updates from everyone."
-msgstr "%s statuts de tout le monde !"
+msgstr "%s mises à jour de tout le monde."
 
 #. TRANS: Title for public tag cloud.
 msgid "Public tag cloud"
@@ -8792,6 +8769,39 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "Inviter de nouveaux utilisateurs"
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "Inviter de nouveaux utilisateurs"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "Adresses courriel"
+
+#. TRANS: Field title for a list of e-mail addresses.
+#, fuzzy
+msgid "Addresses of friends to invite (one per line)."
+msgstr "Adresses d’amis à inviter (un par ligne)"
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Message personnel"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "Ajouter un message personnel à l’invitation (optionnel)."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Envoyer"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "Invitations"
+
 #. TRANS: Button text for joining a group.
 #, fuzzy
 msgctxt "BUTTON"
@@ -8863,9 +8873,9 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
-msgstr "%1$s suit maintenant vos avis sur %2$s."
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
+msgstr "%1$s suit à présent %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -9415,10 +9425,6 @@ msgstr ""
 msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
-
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
-msgstr " ▸ "
 
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
@@ -10510,8 +10516,8 @@ msgstr "XML invalide, racine XRD manquante."
 msgid "Getting backup from file '%s'."
 msgstr "Obtention de la sauvegarde depuis le fichier « %s »."
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s et ses amis, page %2$d"
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "%1$s suit maintenant vos avis sur %2$s."
 
-#~ msgid "You and friends"
-#~ msgstr "Vous et vos amis"
+#~ msgid " ▸ "
+#~ msgstr " ▸ "

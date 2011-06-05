@@ -2,8 +2,10 @@
 # Exported from translatewiki.net
 #
 # Author: Brion
+# Author: Houcinee1
 # Author: Majid Al-Dharrab
 # Author: Meno25
+# Author: Mohd.bloui
 # Author: Mutarjem horr
 # Author: OsamaK
 # --
@@ -13,19 +15,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:42+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:40+0000\n"
 "Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
 "2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
 "99) ? 4 : 5 ) ) ) );\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -666,7 +668,7 @@ msgstr "هذا الاسم مستخدم بالفعل. جرّب اسمًا آخر.
 #. TRANS: Client error displayed when trying to use an alias during group creation that is the same as the group's nickname.
 #. TRANS: Group edit form validation error.
 msgid "Alias can't be the same as nickname."
-msgstr ""
+msgstr "الاسم الرمزي لا يمكن أن يكون مثل الاسم المستعار"
 
 #. TRANS: Client error displayed when checking group membership for a non-existing group.
 #. TRANS: Client error displayed when trying to join a group that does not exist.
@@ -758,7 +760,7 @@ msgstr ""
 #. TRANS: API validation exception thrown when alias is the same as nickname.
 #. TRANS: Group create form validation error.
 msgid "Alias cannot be the same as nickname."
-msgstr ""
+msgstr "الاسم الرمزي لا يمكن أن يكون مثل الاسم المستعار"
 
 #. TRANS: Client error displayed when referring to a non-existing list.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing list.
@@ -1069,7 +1071,7 @@ msgstr "مستجدات %1$s التي فضلها %2$s / %3$s!"
 #. TRANS: %s is the error message.
 #, fuzzy, php-format
 msgid "Could not generate feed for list - %s"
-msgstr "لم يمكن إنشاء توكن الولوج ل%s"
+msgstr "لا يمكن توليد مشاركة محتوى لقائمة - %s"
 
 #. TRANS: Title for timeline of most recent mentions of a user.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is a user nickname.
@@ -1093,7 +1095,7 @@ msgstr "مسار %s الزمني العام"
 #. TRANS: Subtitle for site timeline. %s is the StatusNet sitename.
 #, php-format
 msgid "%s updates from everyone!"
-msgstr ""
+msgstr "مستجدات جميع من هم على %s!"
 
 #. TRANS: Server error displayed calling unimplemented API method for 'retweeted by me'.
 msgid "Unimplemented."
@@ -1267,7 +1269,7 @@ msgstr ""
 #. TRANS: Client error displayed trying to approve/deny group membership.
 #. TRANS: Client error displayed trying to approve/deny  subscription
 msgid "Internal error: received both cancel and abort."
-msgstr ""
+msgstr "خطأ داخلي: تم تلقي أمر إلغاء وتراجع"
 
 #. TRANS: Server error displayed when cancelling a queued group join request fails.
 #. TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.
@@ -1395,7 +1397,7 @@ msgstr "لا يمكن أن تحذف عضوية شخص آخر."
 #. TRANS: %d is the non-existing profile ID number.
 #, php-format
 msgid "No such profile id: %d."
-msgstr ""
+msgstr "لا يوجد  ملف تعريف كهذا: %d."
 
 #. TRANS: Client exception thrown when trying to display a subscription for a non-subscribed profile ID.
 #. TRANS: %1$d is the non-existing subscriber ID number, $2$d is the ID of the profile that was not subscribed to.
@@ -1423,9 +1425,9 @@ msgstr ""
 
 #. TRANS: Client exception thrown when subscribing to a non-existing profile.
 #. TRANS: %s is the unknown profile ID.
-#, php-format
+#, fuzzy, php-format
 msgid "Unknown profile %s."
-msgstr ""
+msgstr "!!FUZZY! ملف مجهول"
 
 #. TRANS: Client error displayed trying to subscribe to an already subscribed profile.
 #. TRANS: %s is the profile the user already has a subscription on.
@@ -2243,7 +2245,7 @@ msgstr "صورة غير صالحة."
 #. TRANS: %s is the already present tag.
 #, fuzzy, php-format
 msgid "You already have a tag named %s."
-msgstr "لقد كررت هذه الملاحظة بالفعل."
+msgstr "لديك مسبقا وسم باسم %s."
 
 #. TRANS: Text in confirmation dialog for setting a tag from public to private.
 msgid ""
@@ -2568,7 +2570,7 @@ msgstr "تستطيع استخدام الاشتراك المحلي!"
 #. TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
 #, fuzzy
 msgid "That user has blocked you from subscribing."
-msgstr "لقد منعك المستخدم."
+msgstr "لقد حظرك المستخدم."
 
 #. TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
 msgid "You are not authorized."
@@ -2599,12 +2601,12 @@ msgstr "تعذّرت قراءة الملف."
 #. TRANS: Client error displayed when trying to revoke an invalid role.
 #, fuzzy
 msgid "Invalid role."
-msgstr "حجم غير صالح."
+msgstr "دور غير صحيح"
 
 #. TRANS: Client error displayed when trying to assign an reserved role to a user.
 #. TRANS: Client error displayed when trying to revoke a reserved role.
 msgid "This role is reserved and cannot be set."
-msgstr ""
+msgstr "هذا الدور مجحوز ولايمكن ضبطه."
 
 #. TRANS: Client error displayed when trying to assign a role to a user while not being allowed to set roles.
 msgid "You cannot grant user roles on this site."
@@ -2658,12 +2660,12 @@ msgstr ""
 #. TRANS: Submit button title for 'No' when blocking a user from a group.
 #, fuzzy
 msgid "Do not block this user from this group."
-msgstr "لا تمنع هذا المستخدم من هذه المجموعة"
+msgstr "لا تحظر هذا المستخدم من هذه المجموعة"
 
 #. TRANS: Submit button title for 'Yes' when blocking a user from a group.
 #, fuzzy
 msgid "Block this user from this group."
-msgstr "امنع هذا المستخدم من هذه المجموعة"
+msgstr "حظر هذا المستخدم من هذه المجموعة"
 
 #. TRANS: Server error displayed when trying to block a user from a group fails because of an application error.
 msgid "Database error blocking user from group."
@@ -2934,14 +2936,13 @@ msgid "No screenname."
 msgstr "لا اسم مستعار."
 
 #. TRANS: Form validation error when no transport is available setting an IM address.
-#, fuzzy
 msgid "No transport."
-msgstr "لا ملاحظة."
+msgstr "لا نقل."
 
 #. TRANS: Message given saving IM address that cannot be normalised.
 #, fuzzy
 msgid "Cannot normalize that screenname."
-msgstr "ليست هوية جابر صالحة"
+msgstr "لايمكن تطبيع أسم المستخدم"
 
 #. TRANS: Message given saving IM address that not valid.
 msgid "Not a valid screenname."
@@ -3075,28 +3076,6 @@ msgid ""
 "Use this form to invite your friends and colleagues to use this service."
 msgstr "استخدم هذا النموذج لدعوة أصدقائك وزملائك لاستخدام هذه الخدمة."
 
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "عناوين البريد الإلكتروني"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-msgid "Addresses of friends to invite (one per line)."
-msgstr "عناوين الأصدقاء الذين تريد دعوتهم (واحد لكل سطر)."
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "رسالة شخصية"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "يمكنك إضافة رسالة شخصية اختيارية إلى الدعوة."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "أرسل"
-
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
@@ -3193,7 +3172,7 @@ msgstr "تفاصيل الرخصة"
 
 #. TRANS: Field label in the license admin panel.
 msgid "Owner"
-msgstr ""
+msgstr "المالك"
 
 #. TRANS: Field title in the license admin panel.
 msgid "Name of the owner of the site's content (if applicable)."
@@ -3335,7 +3314,7 @@ msgstr "استخدم هذا النموذج لتسجل تطبيقا جديدا."
 #. TRANS: Validation error shown when not providing a source URL in the "New application" form.
 #, fuzzy
 msgid "Source URL is required."
-msgstr "مسار المصدر ليس صحيحا."
+msgstr "مصدر عنوان الرابط ليس صحيحا."
 
 #. TRANS: Server error displayed when an application could not be registered in the database through the "New application" form.
 msgid "Could not create application."
@@ -3825,7 +3804,7 @@ msgstr "مسار الأفتارات"
 #. TRANS: Tooltip for field label in Paths admin panel.
 #, fuzzy
 msgid "Web path to avatars."
-msgstr "فشل تحديث الأفتار."
+msgstr "مسار الويب للصورة الرمزية."
 
 #. TRANS: Field label in Paths admin panel.
 msgid "Avatar directory"
@@ -4021,7 +4000,7 @@ msgstr "اختر وسمًا لترشيحه"
 
 #. TRANS: Checkbox title.
 msgid "Show private tags."
-msgstr ""
+msgstr "عرض الوسوم الخاصة"
 
 #. TRANS: Checkbox label to show public tags.
 msgctxt "LABEL"
@@ -4922,7 +4901,7 @@ msgstr ""
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (RSS 2.0)"
-msgstr ""
+msgstr "مشاركة المحتوى للردود لـ %s (RSS 2.0)"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
@@ -5003,7 +4982,7 @@ msgstr "أوقفت إضافة رفع الملف."
 #. TRANS: Exception thrown when uploading an image fails for an unknown reason.
 #. TRANS: Client exception thrown when a file upload operation has failed with an unknown reason.
 msgid "System error uploading file."
-msgstr ""
+msgstr "حدث خطأ في النظام عند تحميل الملف."
 
 #. TRANS: Client exception thrown when a feed is not an Atom feed.
 #. TRANS: Client exception thrown when an imported feed is not an Atom feed.
@@ -5036,9 +5015,8 @@ msgid "You cannot revoke user roles on this site."
 msgstr "لا يمكنك سحب أدوار المستخدمين على هذا الموقع."
 
 #. TRANS: Client error displayed when trying to revoke a role that is not set.
-#, fuzzy
 msgid "User does not have this role."
-msgstr "ليس للمستخدم هذا الدور."
+msgstr "ليس لدى المستخدم هذا الدور."
 
 #. TRANS: Engine name for RSD.
 #. TRANS: Engine name.
@@ -5103,7 +5081,7 @@ msgstr "تنقيح الجلسة"
 #. TRANS: Checkbox title on the sessions administration panel.
 #, fuzzy
 msgid "Enable debugging output for sessions."
-msgstr "مكّن تنقيح مُخرجات الجلسة."
+msgstr "تمكين تنقيح مُخرجات الجلسة."
 
 #. TRANS: Title for submit button on the sessions administration panel.
 #, fuzzy
@@ -5138,10 +5116,9 @@ msgid "Application actions"
 msgstr "معلومات التطبيق"
 
 #. TRANS: Link text to edit application on the OAuth application page.
-#, fuzzy
 msgctxt "EDITAPP"
 msgid "Edit"
-msgstr "عدّل"
+msgstr "عدل"
 
 #. TRANS: Button text on the OAuth application page.
 #. TRANS: Resets the OAuth consumer key and secret.
@@ -5590,7 +5567,7 @@ msgstr "اسم موقعك، \"مدونة شركتك المصغرة\" مثلا."
 
 #. TRANS: Field label on site settings panel.
 msgid "Brought by"
-msgstr ""
+msgstr "تم جلبها بواسطة"
 
 #. TRANS: Field title on site settings panel.
 msgid "Text used for credits link in footer of each page."
@@ -6043,10 +6020,9 @@ msgid "Subscription feed for %s (Atom)"
 msgstr "الردود على %s"
 
 #. TRANS: Checkbox label for enabling IM messages for a profile in a subscriptions list.
-#, fuzzy
 msgctxt "LABEL"
 msgid "IM"
-msgstr "محادثة فورية"
+msgstr "المراسلة الفورية"
 
 #. TRANS: Checkbox label for enabling SMS messages for a profile in a subscriptions list.
 msgid "SMS"
@@ -8497,6 +8473,38 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "دعوة مستخدمين جدد"
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "دعوة مستخدمين جدد"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "عناوين البريد الإلكتروني"
+
+#. TRANS: Field title for a list of e-mail addresses.
+msgid "Addresses of friends to invite (one per line)."
+msgstr "عناوين الأصدقاء الذين تريد دعوتهم (واحد لكل سطر)."
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "رسالة شخصية"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "يمكنك إضافة رسالة شخصية اختيارية إلى الدعوة."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "أرسل"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "الدعوات"
+
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
 msgid "Join"
@@ -8565,8 +8573,8 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
 msgstr "%1$s يستمع الآن إلى إشعاراتك على %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
@@ -9040,10 +9048,6 @@ msgstr ""
 msgctxt "SEPARATOR"
 msgid ", "
 msgstr " و "
-
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
-msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
@@ -10153,8 +10157,5 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s والأصدقاء, الصفحة %2$d"
-
-#~ msgid "You and friends"
-#~ msgstr "أنت والأصدقاء"
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "%1$s يستمع الآن إلى إشعاراتك على %2$s."

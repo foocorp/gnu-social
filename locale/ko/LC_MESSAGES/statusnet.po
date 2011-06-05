@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:25+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:16:10+0000\n"
 "Language-Team: Korean <http://translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3043,28 +3043,6 @@ msgstr ""
 msgid ""
 "Use this form to invite your friends and colleagues to use this service."
 msgstr "다음 양식을 이용해 친구 및 동료를 이 서비스에 초대하십시오."
-
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "메일 주소"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-msgid "Addresses of friends to invite (one per line)."
-msgstr "초대할 친구 주소 (한 줄에 하나씩)"
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "개인 메시지"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "초대장에 내 메시지를 첨부합니다."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "보내기"
 
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
@@ -8376,6 +8354,38 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "친구 초대"
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "친구 초대"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "메일 주소"
+
+#. TRANS: Field title for a list of e-mail addresses.
+msgid "Addresses of friends to invite (one per line)."
+msgstr "초대할 친구 주소 (한 줄에 하나씩)"
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "개인 메시지"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "초대장에 내 메시지를 첨부합니다."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "보내기"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "초대"
+
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
 msgid "Join"
@@ -8444,9 +8454,9 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
-msgstr "%1$s님이 %2$s 사이트에서 내 글을 받고 있습니다."
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
+msgstr "%1$s님이 %2$s님을 팔로우합니다."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -8962,10 +8972,6 @@ msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
-msgstr " ▸ "
-
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
 msgstr "북"
@@ -9428,7 +9434,6 @@ msgid "Search"
 msgstr "검색"
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy
 msgid ""
 "* Make sure all words are spelled correctly.\n"
 "* Try different keywords.\n"
@@ -9438,10 +9443,10 @@ msgstr ""
 "* 단어를 제대로 입력했는지 확인하십시오.\n"
 "* 다른 검색어로 검색해 보십시오.\n"
 "* 더 일반적인 검색어로 검색해 보십시오.\n"
-"* 적은 수의 검색어로 검색해 보십시오.\n"
+"* 적은 수의 검색어로 검색해 보십시오."
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can also try your search on other engines:\n"
 "\n"
@@ -9459,7 +9464,7 @@ msgstr ""
 "* [Tweet scan](http://www.tweetscan.com/indexi.php?s=%s)\n"
 "* [구글](http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)\n"
 "* [야후](http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)\n"
-"* [Collecta](http://collecta.com/#q=%s)\n"
+"* [Collecta](http://collecta.com/#q=%s)"
 
 #. TRANS: Menu item in search group navigation panel.
 msgctxt "MENU"
@@ -9982,8 +9987,8 @@ msgstr "XML이 잘못되었습니다. XRD 루트가 없습니다."
 msgid "Getting backup from file '%s'."
 msgstr "'%s' 파일에서 백업을 가져옵니다."
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s 및 친구들, %2$d 페이지"
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "%1$s님이 %2$s 사이트에서 내 글을 받고 있습니다."
 
-#~ msgid "You and friends"
-#~ msgstr "당신 및 친구들"
+#~ msgid " ▸ "
+#~ msgstr " ▸ "

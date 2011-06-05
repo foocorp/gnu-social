@@ -14,17 +14,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:21+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:16:07+0000\n"
 "Language-Team: Japanese <http://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3192,30 +3192,6 @@ msgid ""
 "Use this form to invite your friends and colleagues to use this service."
 msgstr ""
 "友人や同僚がこのサービスを利用するようこのフォームを使用して誘ってください。"
-
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "メールアドレス"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-#, fuzzy
-msgid "Addresses of friends to invite (one per line)."
-msgstr "招待する友人のアドレス (一行に一つ)"
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "パーソナルメッセージ"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "任意に招待にパーソナルメッセージを加えてください。"
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "投稿"
 
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
@@ -8804,6 +8780,40 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "新しいユーザを招待"
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "新しいユーザを招待"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "メールアドレス"
+
+#. TRANS: Field title for a list of e-mail addresses.
+#, fuzzy
+msgid "Addresses of friends to invite (one per line)."
+msgstr "招待する友人のアドレス (一行に一つ)"
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "パーソナルメッセージ"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "任意に招待にパーソナルメッセージを加えてください。"
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "投稿"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "招待"
+
 #. TRANS: Button text for joining a group.
 #, fuzzy
 msgctxt "BUTTON"
@@ -8876,8 +8886,8 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
 msgstr "%1$s は %2$s であなたのつぶやきを聞いています。"
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
@@ -9395,10 +9405,6 @@ msgstr ""
 #. TRANS: Separator in profile addressees list.
 msgctxt "SEPARATOR"
 msgid ", "
-msgstr ""
-
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of north.
@@ -10486,8 +10492,5 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$sとその友人、%2$dページ目"
-
-#~ msgid "You and friends"
-#~ msgstr "あなたと友人"
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "%1$s は %2$s であなたのつぶやきを聞いています。"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -145,13 +145,23 @@ msgid "Add a user directory."
 msgstr ""
 
 #. TRANS: Column header in table for user nickname.
-#: lib/sortablesubscriptionlist.php:66 lib/sortablegrouplist.php:65
+#: lib/sortablesubscriptionlist.php:65 lib/sortablegrouplist.php:65
 msgid "Nickname"
 msgstr ""
 
 #. TRANS: Column header in table for timestamp when user was created.
 #: lib/sortablesubscriptionlist.php:67 lib/sortablegrouplist.php:67
 msgid "Created"
+msgstr ""
+
+#. TRANS: Column header for number of subscriptions.
+#: lib/sortablesubscriptionlist.php:114
+msgid "Subscriptions"
+msgstr ""
+
+#. TRANS: Column header for number of notices.
+#: lib/sortablesubscriptionlist.php:116
+msgid "Notices"
 msgstr ""
 
 #. TRANS: Column header in table for members of a group.

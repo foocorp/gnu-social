@@ -1,6 +1,7 @@
 # Translation of StatusNet - Core to Swedish (Svenska)
 # Exported from translatewiki.net
 #
+# Author: Ainali
 # Author: Jamminjohn
 # Author: Kjell
 # Author: McDutchie
@@ -14,17 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:45+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:16:25+0000\n"
 "Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -254,15 +255,14 @@ msgid "No such user."
 msgstr "Ingen sådan användare."
 
 #. TRANS: Title of a user's own start page.
-#, fuzzy
 msgid "Home timeline"
-msgstr "%s tidslinje"
+msgstr "Hemtidslinje"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s's home timeline"
-msgstr "%s tidslinje"
+msgstr "%ss hemtidslinje"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -3101,28 +3101,6 @@ msgstr ""
 "Använd detta formulär för att bjuda in dina vänner och kollegor att använda "
 "denna tjänst."
 
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "E-postadresser"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-msgid "Addresses of friends to invite (one per line)."
-msgstr "Adresser till vänner att bjuda in (en per rad)."
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "Personligt meddelande"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "Om du vill, skriv ett personligt meddelande till inbjudan."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "Skicka"
-
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
@@ -3277,9 +3255,8 @@ msgid "Login to site"
 msgstr "Logga in på webbplatsen"
 
 #. TRANS: Field label on login page.
-#, fuzzy
 msgid "Username or email address"
-msgstr "Smeknamn eller e-postadress"
+msgstr "Användarnamn eller e-postadress"
 
 #. TRANS: Checkbox label label on login page.
 #. TRANS: Checkbox label on account registration page.
@@ -8510,6 +8487,38 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "Bjud in fler kollegor"
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "Bjud in fler kollegor"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "E-postadresser"
+
+#. TRANS: Field title for a list of e-mail addresses.
+msgid "Addresses of friends to invite (one per line)."
+msgstr "Adresser till vänner att bjuda in (en per rad)."
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Personligt meddelande"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "Om du vill, skriv ett personligt meddelande till inbjudan."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Skicka"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "Inbjudningar"
+
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
 msgid "Join"
@@ -8578,9 +8587,9 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
-msgstr "%1$s lyssnar nu på dina notiser på %2$s."
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
+msgstr "%1$s följer nu %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -9099,10 +9108,6 @@ msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
-msgstr " ▸ "
-
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
 msgstr "N"
@@ -9566,21 +9571,19 @@ msgid "Search"
 msgstr "Sök"
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy
 msgid ""
 "* Make sure all words are spelled correctly.\n"
 "* Try different keywords.\n"
 "* Try more general keywords.\n"
 "* Try fewer keywords."
 msgstr ""
-" * Kontrollera att alla ord är korrekt stavade.\n"
-" * Prova olika nyckelord.\n"
-" * Prova mer allmänna nyckelord.\n"
-" * Prova färre nyckelord.\n"
-" "
+"* Kontrollera att alla ord är korrekt stavade.\n"
+"* Prova olika nyckelord.\n"
+"* Prova mer allmänna nyckelord.\n"
+"* Prova färre nyckelord."
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can also try your search on other engines:\n"
 "\n"
@@ -9599,8 +9602,7 @@ msgstr ""
 " * [Google] (http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)\n"
 " * [Yahoo] (http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%"
 "s)\n"
-" * [Collecta] (http://collecta.com/#q=%s)\n"
-" "
+" * [Collecta] (http://collecta.com/#q=%s)"
 
 #. TRANS: Menu item in search group navigation panel.
 msgctxt "MENU"
@@ -10130,8 +10132,8 @@ msgstr "Ogiltig XML, saknar XRD-rot."
 msgid "Getting backup from file '%s'."
 msgstr "Hämtar säkerhetskopia från filen '%s'."
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s och vänner, sida %2$d"
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "%1$s lyssnar nu på dina notiser på %2$s."
 
-#~ msgid "You and friends"
-#~ msgstr "Du och vänner"
+#~ msgid " ▸ "
+#~ msgstr " ▸ "

@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:09+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:07+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:27+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:36:37+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
@@ -24,53 +24,6 @@ msgstr ""
 #. TRANS: Client exception thrown when requesting a not supported media type.
 msgid "This page is not available in a media type you accept."
 msgstr "Ang pahinang ito ay hindi makukuha sa uri ng midya na tinanggap mo."
-
-#. TRANS: Menu item in mobile profile to go to start page of site.
-msgid "Home"
-msgstr "Tahanan"
-
-#. TRANS: Menu item in mobile profile to go to user account settings.
-msgid "Account"
-msgstr "Akawnt"
-
-#. TRANS: Menu item in mobile profile to connect to other services.
-msgid "Connect"
-msgstr "Umugnay"
-
-#. TRANS: Menu item in mobile profile to manage site settings.
-msgid "Admin"
-msgstr "Tagapangasiwa"
-
-msgid "Change site configuration"
-msgstr "Baguhin ang pagkakaayos ng sityo"
-
-#. TRANS: Menu item in mobile profile to invite other people.
-msgid "Invite"
-msgstr "Anyayahan"
-
-#. TRANS: Menu item in mobile profile log the current user off.
-msgid "Logout"
-msgstr "Umalis sa pagkakalagda"
-
-#. TRANS: Menu item in mobile profile to register with the site.
-msgid "Register"
-msgstr "Magpatala"
-
-#. TRANS: Menu item in mobile profile to log in.
-msgid "Login"
-msgstr "Lumagda"
-
-#. TRANS: Menu item in mobile profile to search the site.
-msgid "Search"
-msgstr "Humanap"
-
-#. TRANS: Field label in mobile profile to attach a file to a status.
-msgid "Attach"
-msgstr "Ilakip"
-
-#. TRANS: Field title in mobile profile to attach a file to a status.
-msgid "Attach a file."
-msgstr "Maglakip ng isang talaksan."
 
 #. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
 msgid "Switch to desktop site layout."
@@ -85,3 +38,39 @@ msgid "XHTML MobileProfile output for supporting user agents."
 msgstr ""
 "Mga paglalabas na XHTML na MobileProfile para sa pagtataguyo ng mga ahente "
 "ng tagagamit."
+
+#~ msgid "Home"
+#~ msgstr "Tahanan"
+
+#~ msgid "Account"
+#~ msgstr "Akawnt"
+
+#~ msgid "Connect"
+#~ msgstr "Umugnay"
+
+#~ msgid "Admin"
+#~ msgstr "Tagapangasiwa"
+
+#~ msgid "Change site configuration"
+#~ msgstr "Baguhin ang pagkakaayos ng sityo"
+
+#~ msgid "Invite"
+#~ msgstr "Anyayahan"
+
+#~ msgid "Logout"
+#~ msgstr "Umalis sa pagkakalagda"
+
+#~ msgid "Register"
+#~ msgstr "Magpatala"
+
+#~ msgid "Login"
+#~ msgstr "Lumagda"
+
+#~ msgid "Search"
+#~ msgstr "Humanap"
+
+#~ msgid "Attach"
+#~ msgstr "Ilakip"
+
+#~ msgid "Attach a file."
+#~ msgstr "Maglakip ng isang talaksan."

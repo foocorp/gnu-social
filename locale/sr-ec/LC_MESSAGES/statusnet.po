@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:43+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:16:24+0000\n"
 "Language-Team: Serbian Cyrillic ekavian <http://translatewiki.net/wiki/"
 "Portal:sr-ec>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: sr-ec\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -3013,28 +3013,6 @@ msgstr ""
 #. TRANS: Form instructions.
 msgid ""
 "Use this form to invite your friends and colleagues to use this service."
-msgstr ""
-
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "Е-адресе"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-msgid "Addresses of friends to invite (one per line)."
-msgstr ""
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr ""
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr ""
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
 msgstr ""
 
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
@@ -8183,6 +8161,38 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr ""
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "Позовите друге кориснике"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "Е-адресе"
+
+#. TRANS: Field title for a list of e-mail addresses.
+msgid "Addresses of friends to invite (one per line)."
+msgstr ""
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr ""
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr ""
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr ""
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "Позивнице су послате"
+
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
 msgid "Join"
@@ -8240,7 +8250,7 @@ msgstr ""
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
 #, php-format
-msgid "%1$s is now listening to your notices on %2$s."
+msgid "%1$s is now following you on %2$s."
 msgstr ""
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
@@ -8680,10 +8690,6 @@ msgstr ""
 #. TRANS: Separator in profile addressees list.
 msgctxt "SEPARATOR"
 msgid ", "
-msgstr ""
-
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of north.
@@ -9694,9 +9700,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s и пријатељи, страница %2$d"
-
-#~ msgid "You and friends"
-#~ msgstr "Ви и пријатељи"

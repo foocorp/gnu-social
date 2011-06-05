@@ -2,10 +2,12 @@
 # Exported from translatewiki.net
 #
 # Author: Apmon
+# Author: DaSch
 # Author: Fujnky
 # Author: Giftpflanze
 # Author: MF-Warburg
 # Author: The Evil IP address
+# Author: Xqt
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -13,13 +15,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:27+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:20+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:47+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:44:55+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
@@ -53,13 +55,11 @@ msgid "Continue"
 msgstr "Weiter"
 
 #. TRANS: Button text to cancel OpenID identity verification.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Cancel"
 msgstr "Abbrechen"
 
 #. TRANS: Tooltip for main menu option "Login"
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Login to the site."
 msgstr "Auf der Seite anmelden"
@@ -98,9 +98,8 @@ msgid "OpenID"
 msgstr "OpenID"
 
 #. TRANS: OpenID plugin tooltip for logon menu item.
-#, fuzzy
 msgid "Login or register with OpenID."
-msgstr "Anmelden oder Registrieren per OpenID"
+msgstr "Anmelden oder Registrieren mit OpenID"
 
 #. TRANS: OpenID plugin tooltip for user settings menu item.
 #, fuzzy
@@ -115,9 +114,8 @@ msgid ""
 msgstr ""
 
 #. TRANS: Tooltip for OpenID configuration menu item.
-#, fuzzy
 msgid "OpenID configuration."
-msgstr "OpenId-Konfiguration"
+msgstr "OpenID-Konfiguration."
 
 #. TRANS: Plugin description.
 msgid "Use <a href=\"http://openid.net/\">OpenID</a> to login to the site."
@@ -126,7 +124,6 @@ msgstr ""
 "der Seite"
 
 #. TRANS: OpenID plugin logon form legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "OpenID login"
 msgstr "OpenID-Benutzername"
@@ -268,9 +265,9 @@ msgstr "OpenID-Authentifizierung abgebrochen."
 #. TRANS: OpenID authentication failed; display the error message. %s is the error message.
 #. TRANS: OpenID authentication failed; display the error message.
 #. TRANS: %s is the error message.
-#, fuzzy, php-format
+#, php-format
 msgid "OpenID authentication failed: %s."
-msgstr "OpenID-Authentifizierung gescheitert: %s"
+msgstr "OpenID-Authentifizierung ist gescheitert: %s"
 
 #. TRANS: Message displayed when OpenID authentication is aborted.
 #. TRANS: OpenID authentication error.
@@ -374,7 +371,6 @@ msgstr ""
 "wirst, versuche den Button unten zu klicken."
 
 #. TRANS: Title for OpenID bridge administration page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Settings"
 msgstr "OpenID-Einstellungen"
@@ -445,7 +441,6 @@ msgstr ""
 "(Launchpad-Erweiterung)."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Options"
 msgstr "Optionen"
@@ -463,7 +458,6 @@ msgstr ""
 "Passwort-Authentifizierung aller Benutzer!"
 
 #. TRANS: Button text to save OpenID settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Speichern"
@@ -498,7 +492,6 @@ msgid "OpenID Login"
 msgstr "OpenID-Anmeldung"
 
 #. TRANS: Title of OpenID settings page for a user.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID settings"
 msgstr "OpenID-Einstellungen"
@@ -514,7 +507,6 @@ msgstr ""
 "Benutzerkonto anzumelden. Verwalte deine verknüpften OpenIDs von hier aus."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Add OpenID"
 msgstr "OpenID hinzufügen"
@@ -528,13 +520,11 @@ msgstr ""
 "nachfolgenden Feld ein und klicke auf „Hinzufügen“."
 
 #. TRANS: Button text for adding an OpenID URL.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "Hinzufügen"
 
 #. TRANS: Header on OpenID settings page.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Remove OpenID"
 msgstr "Entfernen der OpenID"
@@ -557,7 +547,6 @@ msgstr ""
 
 #. TRANS: Button text to remove an OpenID.
 #. TRANS: Button text to remove an OpenID trustroot.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Remove"
 msgstr "Entfernen"
@@ -632,12 +621,10 @@ msgid "Login with an [OpenID](%%doc.openid%%) account."
 msgstr "Mit einem [OpenID](%%doc.openid%%)-Benutzerkonto anmelden."
 
 #. TRANS: OpenID plugin message. Title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Login"
 msgstr "OpenID-Anmeldung"
 
-#, fuzzy
 msgctxt "LABEL"
 msgid "OpenID provider"
 msgstr "OpenID-Provider"
@@ -654,9 +641,3 @@ msgstr "Automatisch anmelden; nicht bei gemeinsam genutzten PCs einsetzen!"
 msgctxt "BUTTON"
 msgid "Login"
 msgstr "Anmelden"
-
-#~ msgid "Continue"
-#~ msgstr "Weiter"
-
-#~ msgid "OpenID"
-#~ msgstr "OpenID"

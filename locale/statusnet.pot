@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,20 +40,20 @@ msgid "An error occurred."
 msgstr ""
 
 #. TRANS: Error message displayed when there is no StatusNet configuration file.
-#: index.php:255
+#: index.php:264
 #, php-format
 msgid ""
 "No configuration file found. Try running the installation program first."
 msgstr ""
 
 #. TRANS: Error message displayed when trying to access a non-existing page.
-#: index.php:286
+#: index.php:295
 msgid "Unknown page"
 msgstr ""
 
 #. TRANS: Error message displayed when trying to perform an undefined action.
 #. TRANS: Title for password recovery page when an unknown action has been specified.
-#: index.php:341 actions/recoverpassword.php:232
+#: index.php:350 actions/recoverpassword.php:232
 msgid "Unknown action"
 msgstr ""
 
@@ -161,7 +161,7 @@ msgstr ""
 #: actions/emailsettings.php:293 actions/favor.php:76 actions/geocode.php:56
 #: actions/groupblock.php:66 actions/grouplogo.php:321
 #: actions/groupunblock.php:66 actions/imsettings.php:244
-#: actions/invite.php:66 actions/makeadmin.php:68 actions/newmessage.php:141
+#: actions/invite.php:67 actions/makeadmin.php:68 actions/newmessage.php:141
 #: actions/newnotice.php:105 actions/nudge.php:82
 #: actions/oauthappssettings.php:162 actions/oauthconnectionssettings.php:136
 #: actions/passwordsettings.php:147 actions/peopletagautocomplete.php:67
@@ -246,7 +246,7 @@ msgstr ""
 #. TRANS: Server error when page not found (404).
 #. TRANS: Server error when page not found (404)
 #. TRANS: Server error when page not found (404).
-#: actions/all.php:66 actions/public.php:104 actions/replies.php:93
+#: actions/all.php:66 actions/public.php:104 actions/replies.php:96
 #: actions/showfavorites.php:140 actions/showprofiletag.php:100
 #: actions/tag.php:52
 msgid "No such page."
@@ -397,7 +397,7 @@ msgstr ""
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
 #. TRANS: Second sentence of empty message for anonymous users. %s is a user nickname.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#: actions/all.php:150 actions/replies.php:214 actions/showstream.php:216
+#: actions/all.php:150 actions/replies.php:217 actions/showstream.php:216
 #, php-format
 msgid ""
 "Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
@@ -415,8 +415,8 @@ msgstr ""
 #. TRANS: Menu item title in settings navigation panel.
 #. TRANS: %s is a username.
 #: actions/allrss.php:110 actions/apitimelinefriends.php:209
-#: actions/apitimelinehome.php:113 lib/adminpanelnav.php:73
-#: lib/personalgroupnav.php:77 lib/settingsnav.php:73
+#: actions/apitimelinehome.php:113 lib/adminpanelnav.php:74
+#: lib/personalgroupnav.php:77 lib/settingsnav.php:74
 #, php-format
 msgid "%s and friends"
 msgstr ""
@@ -3703,12 +3703,12 @@ msgid "Invalid email address: %s."
 msgstr ""
 
 #. TRANS: Page title when invitations have been sent.
-#: actions/invite.php:143
+#: actions/invite.php:145
 msgid "Invitations sent"
 msgstr ""
 
 #. TRANS: Page title when inviting potential users.
-#: actions/invite.php:146
+#: actions/invite.php:148
 msgid "Invite new users"
 msgstr ""
 
@@ -3716,7 +3716,7 @@ msgstr ""
 #. TRANS: is already subscribed to one or more users with the given e-mail address(es).
 #. TRANS: Plural form is based on the number of reported already subscribed e-mail addresses.
 #. TRANS: Followed by a bullet list.
-#: actions/invite.php:166
+#: actions/invite.php:169
 msgid "You are already subscribed to this user:"
 msgid_plural "You are already subscribed to these users:"
 msgstr[0] ""
@@ -3724,7 +3724,7 @@ msgstr[1] ""
 
 #. TRANS: Used as list item for already subscribed users (%1$s is nickname, %2$s is e-mail address).
 #. TRANS: Used as list item for already registered people (%1$s is nickname, %2$s is e-mail address).
-#: actions/invite.php:172 actions/invite.php:186
+#: actions/invite.php:175 actions/invite.php:189
 #, php-format
 msgctxt "INVITE"
 msgid "%1$s (%2$s)"
@@ -3733,7 +3733,7 @@ msgstr ""
 #. TRANS: Message displayed inviting users to use a StatusNet site while the invited user
 #. TRANS: already uses a this StatusNet site. Plural form is based on the number of
 #. TRANS: reported already present people. Followed by a bullet list.
-#: actions/invite.php:180
+#: actions/invite.php:183
 msgid "This person is already a user and you were automatically subscribed:"
 msgid_plural ""
 "These people are already users and you were automatically subscribed to them:"
@@ -3743,7 +3743,7 @@ msgstr[1] ""
 #. TRANS: Message displayed inviting users to use a StatusNet site. Plural form is
 #. TRANS: based on the number of invitations sent. Followed by a bullet list of
 #. TRANS: e-mail addresses to which invitations were sent.
-#: actions/invite.php:194
+#: actions/invite.php:197
 msgid "Invitation sent to the following person:"
 msgid_plural "Invitations sent to the following people:"
 msgstr[0] ""
@@ -3751,49 +3751,22 @@ msgstr[1] ""
 
 #. TRANS: Generic message displayed after sending out one or more invitations to
 #. TRANS: people to join a StatusNet site.
-#: actions/invite.php:204
+#: actions/invite.php:207
 msgid ""
 "You will be notified when your invitees accept the invitation and register "
 "on the site. Thanks for growing the community!"
 msgstr ""
 
 #. TRANS: Form instructions.
-#: actions/invite.php:217
+#: actions/invite.php:222
 msgid ""
 "Use this form to invite your friends and colleagues to use this service."
-msgstr ""
-
-#. TRANS: Field label for a list of e-mail addresses.
-#: actions/invite.php:244
-msgid "Email addresses"
-msgstr ""
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-#: actions/invite.php:247
-msgid "Addresses of friends to invite (one per line)."
-msgstr ""
-
-#. TRANS: Field label for a personal message to send to invitees.
-#: actions/invite.php:251
-msgid "Personal message"
-msgstr ""
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-#: actions/invite.php:254
-msgid "Optionally add a personal message to the invitation."
-msgstr ""
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-#: actions/invite.php:258 lib/noticeform.php:302
-msgctxt "BUTTON"
-msgid "Send"
 msgstr ""
 
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
-#: actions/invite.php:294
+#: actions/invite.php:275
 #, php-format
 msgid "%1$s has invited you to join them on %2$s"
 msgstr ""
@@ -5914,7 +5887,7 @@ msgstr ""
 
 #. TRANS: Title after repeating a notice.
 #. TRANS: Repeat form status in notice list when a notice has been repeated.
-#: actions/repeat.php:102 lib/noticelistitem.php:676
+#: actions/repeat.php:102 lib/noticelistitem.php:682
 msgid "Repeated"
 msgstr ""
 
@@ -5928,7 +5901,7 @@ msgstr ""
 #. TRANS: RSS reply feed title. %s is a user nickname.
 #. TRANS: Menu item title in personal group navigation menu.
 #. TRANS: %s is a username.
-#: actions/replies.php:126 actions/repliesrss.php:68
+#: actions/replies.php:129 actions/repliesrss.php:68
 #: lib/personalgroupnav.php:93
 #, php-format
 msgid "Replies to %s"
@@ -5936,35 +5909,35 @@ msgstr ""
 
 #. TRANS: Title for all but the first page of replies for a user.
 #. TRANS: %1$s is a user nickname, %2$d is a page number.
-#: actions/replies.php:130
+#: actions/replies.php:133
 #, php-format
 msgid "Replies to %1$s, page %2$d"
 msgstr ""
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
-#: actions/replies.php:148
+#: actions/replies.php:151
 #, php-format
 msgid "Replies feed for %s (RSS 1.0)"
 msgstr ""
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
-#: actions/replies.php:157
+#: actions/replies.php:160
 #, php-format
 msgid "Replies feed for %s (RSS 2.0)"
 msgstr ""
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
-#: actions/replies.php:166
+#: actions/replies.php:169
 #, php-format
 msgid "Replies feed for %s (Atom)"
 msgstr ""
 
 #. TRANS: Empty list message for page with replies for a user.
 #. TRANS: %1$s and %s$s are the user nickname.
-#: actions/replies.php:195
+#: actions/replies.php:198
 #, php-format
 msgid ""
 "This is the timeline showing replies to %1$s but %2$s hasn't received a "
@@ -5973,7 +5946,7 @@ msgstr ""
 
 #. TRANS: Empty list message for page with replies for a user for the logged in user.
 #. TRANS: This message contains a Markdown link in the form [link text](link).
-#: actions/replies.php:204
+#: actions/replies.php:207
 #, php-format
 msgid ""
 "You can engage other users in a conversation, subscribe to more people or "
@@ -5982,7 +5955,7 @@ msgstr ""
 
 #. TRANS: Empty list message for page with replies for a user for all logged in users but the user themselves.
 #. TRANS: %1$s, %2$s and %3$s are a user nickname. This message contains a Markdown link in the form [link text](link).
-#: actions/replies.php:208
+#: actions/replies.php:211
 #, php-format
 msgid ""
 "You can try to [nudge %1$s](../%2$s) or [post something to them](%%%%action."
@@ -8179,23 +8152,23 @@ msgstr ""
 
 #. TRANS: Notice given on user registration.
 #. TRANS: %1$s is the sitename, $2$s is the registering user's nickname.
-#: classes/User.php:409
+#: classes/User.php:417
 #, php-format
 msgid "Welcome to %1$s, @%2$s!"
 msgstr ""
 
 #. TRANS: Exception thrown when trying view "repeated to me".
-#: classes/User.php:813
+#: classes/User.php:821
 msgid "Not implemented since inbox change."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/User.php:899
+#: classes/User.php:907
 msgid "No single user defined for single-user mode."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/User.php:903
+#: classes/User.php:911
 msgid "Single-user mode code called when not enabled."
 msgstr ""
 
@@ -8476,17 +8449,17 @@ msgid "%1$s %2$s %3$s"
 msgstr ""
 
 #. TRANS: Client exception thrown when there is no source attribute.
-#: lib/activityutils.php:200
+#: lib/activityutils.php:201
 msgid "Can't handle remote content yet."
 msgstr ""
 
 #. TRANS: Client exception thrown when there embedded XML content is found that cannot be processed yet.
-#: lib/activityutils.php:237
+#: lib/activityutils.php:238
 msgid "Can't handle embedded XML content yet."
 msgstr ""
 
 #. TRANS: Client exception thrown when base64 encoded content is found that cannot be processed yet.
-#: lib/activityutils.php:242
+#: lib/activityutils.php:243
 msgid "Can't handle embedded Base64 content yet."
 msgstr ""
 
@@ -8518,7 +8491,7 @@ msgstr ""
 
 #. TRANS: Header in administrator navigation panel.
 #. TRANS: Header in settings navigation panel.
-#: lib/adminpanelnav.php:65 lib/settingsnav.php:65
+#: lib/adminpanelnav.php:66 lib/settingsnav.php:66
 msgctxt "HEADER"
 msgid "Home"
 msgstr ""
@@ -8527,126 +8500,126 @@ msgstr ""
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in personal group navigation menu.
 #. TRANS: Menu item in settings navigation panel.
-#: lib/adminpanelnav.php:70 lib/defaultlocalnav.php:60
-#: lib/personalgroupnav.php:74 lib/settingsnav.php:70
+#: lib/adminpanelnav.php:71 lib/defaultlocalnav.php:60
+#: lib/personalgroupnav.php:74 lib/settingsnav.php:71
 msgctxt "MENU"
 msgid "Home"
 msgstr ""
 
 #. TRANS: Header in administrator navigation panel.
-#: lib/adminpanelnav.php:81
+#: lib/adminpanelnav.php:84
 msgctxt "HEADER"
 msgid "Admin"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:88
+#: lib/adminpanelnav.php:91
 msgid "Basic site configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:90
+#: lib/adminpanelnav.php:93
 msgctxt "MENU"
 msgid "Site"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:96
+#: lib/adminpanelnav.php:99
 msgid "Design configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
 #. TRANS: Menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: Menu item in settings navigation panel.
-#: lib/adminpanelnav.php:98 lib/groupnav.php:143 lib/settingsnav.php:115
+#: lib/adminpanelnav.php:101 lib/groupnav.php:143 lib/settingsnav.php:117
 msgctxt "MENU"
 msgid "Design"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:104
+#: lib/adminpanelnav.php:107
 msgid "User configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:106
+#: lib/adminpanelnav.php:109
 msgctxt "MENU"
 msgid "User"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:112
+#: lib/adminpanelnav.php:115
 msgid "Access configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:114
+#: lib/adminpanelnav.php:117
 msgctxt "MENU"
 msgid "Access"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:120
+#: lib/adminpanelnav.php:123
 msgid "Paths configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:122
+#: lib/adminpanelnav.php:125
 msgctxt "MENU"
 msgid "Paths"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:128
+#: lib/adminpanelnav.php:131
 msgid "Sessions configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:130
+#: lib/adminpanelnav.php:133
 msgctxt "MENU"
 msgid "Sessions"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:136
+#: lib/adminpanelnav.php:139
 msgid "Edit site notice"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:138
+#: lib/adminpanelnav.php:141
 msgctxt "MENU"
 msgid "Site notice"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:144
+#: lib/adminpanelnav.php:147
 msgid "Snapshots configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:146
+#: lib/adminpanelnav.php:149
 msgctxt "MENU"
 msgid "Snapshots"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:152
+#: lib/adminpanelnav.php:155
 msgid "Set site license"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:154
+#: lib/adminpanelnav.php:157
 msgctxt "MENU"
 msgid "License"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:160
+#: lib/adminpanelnav.php:163
 msgid "Plugins configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:162
+#: lib/adminpanelnav.php:165
 msgctxt "MENU"
 msgid "Plugins"
 msgstr ""
@@ -9100,7 +9073,7 @@ msgstr ""
 #. TRANS: Whois output. %s is the location of the queried user.
 #. TRANS: Profile info line in notification e-mail.
 #. TRANS: %s is a location.
-#: lib/command.php:561 lib/mail.php:339
+#: lib/command.php:561 lib/mail.php:338
 #, php-format
 msgid "Location: %s"
 msgstr ""
@@ -9108,7 +9081,7 @@ msgstr ""
 #. TRANS: Whois output. %s is the homepage of the queried user.
 #. TRANS: Profile info line in notification e-mail.
 #. TRANS: %s is a homepage.
-#: lib/command.php:565 lib/mail.php:344
+#: lib/command.php:565 lib/mail.php:343
 #, php-format
 msgid "Homepage: %s"
 msgstr ""
@@ -9545,7 +9518,7 @@ msgstr ""
 
 #. TRANS: Title of form for deleting a user.
 #. TRANS: Link text in notice list item to delete a notice.
-#: lib/deleteuserform.php:64 lib/noticelistitem.php:653
+#: lib/deleteuserform.php:64 lib/noticelistitem.php:659
 msgid "Delete"
 msgstr ""
 
@@ -9976,6 +9949,43 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr ""
 
+#. TRANS: Form legend.
+#: lib/inviteform.php:85
+msgid "Invite collegues"
+msgstr ""
+
+#. TRANS: Field label for a list of e-mail addresses.
+#: lib/inviteform.php:100
+msgid "Email addresses"
+msgstr ""
+
+#. TRANS: Field title for a list of e-mail addresses.
+#: lib/inviteform.php:103
+msgid "Addresses of friends to invite (one per line)."
+msgstr ""
+
+#. TRANS: Field label for a personal message to send to invitees.
+#: lib/inviteform.php:109
+msgid "Personal message"
+msgstr ""
+
+#. TRANS: Field title for a personal message to send to invitees.
+#: lib/inviteform.php:112
+msgid "Optionally add a personal message to the invitation."
+msgstr ""
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+#: lib/inviteform.php:128 lib/noticeform.php:302
+msgctxt "BUTTON"
+msgid "Send"
+msgstr ""
+
+#. TRANS: Submit button title.
+#: lib/inviteform.php:131
+msgid "Send invitations."
+msgstr ""
+
 #. TRANS: Button text for joining a group.
 #: lib/joinform.php:108
 msgctxt "BUTTON"
@@ -10040,21 +10050,21 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#: lib/mail.php:243 lib/mail.php:250
+#: lib/mail.php:243 lib/mail.php:249
 #, php-format
-msgid "%1$s is now listening to your notices on %2$s."
+msgid "%1$s is now following you on %2$s."
 msgstr ""
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
-#: lib/mail.php:284
+#: lib/mail.php:283
 #, php-format
 msgid "%1$s would like to listen to your notices on %2$s."
 msgstr ""
 
 #. TRANS: Main body of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#: lib/mail.php:291
+#: lib/mail.php:290
 #, php-format
 msgid ""
 "%1$s would like to listen to your notices on %2$s. You may approve or reject "
@@ -10064,7 +10074,7 @@ msgstr ""
 #. TRANS: Common footer block for StatusNet notification emails.
 #. TRANS: %1$s is the StatusNet sitename,
 #. TRANS: %2$s is a link to the addressed user's e-mail settings.
-#: lib/mail.php:310
+#: lib/mail.php:309
 #, php-format
 msgid ""
 "Faithfully yours,\n"
@@ -10076,21 +10086,21 @@ msgstr ""
 
 #. TRANS: Profile info line in notification e-mail.
 #. TRANS: %s is a URL.
-#: lib/mail.php:335
+#: lib/mail.php:334
 #, php-format
 msgid "Profile: %s"
 msgstr ""
 
 #. TRANS: Profile info line in notification e-mail.
 #. TRANS: %s is biographical information.
-#: lib/mail.php:349
+#: lib/mail.php:348
 #, php-format
 msgid "Bio: %s"
 msgstr ""
 
 #. TRANS: This is a paragraph in a new-subscriber e-mail.
 #. TRANS: %s is a URL where the subscriber can be reported as abusive.
-#: lib/mail.php:359
+#: lib/mail.php:358
 #, php-format
 msgid ""
 "If you believe this account is being used abusively, you can block them from "
@@ -10099,7 +10109,7 @@ msgstr ""
 
 #. TRANS: Subject of notification mail for new posting email address.
 #. TRANS: %s is the StatusNet sitename.
-#: lib/mail.php:387
+#: lib/mail.php:386
 #, php-format
 msgid "New email address for posting to %s"
 msgstr ""
@@ -10107,7 +10117,7 @@ msgstr ""
 #. TRANS: Body of notification mail for new posting email address.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the e-mail address to send
 #. TRANS: to to post by e-mail, %3$s is a URL to more instructions.
-#: lib/mail.php:393
+#: lib/mail.php:392
 #, php-format
 msgid ""
 "You have a new posting address on %1$s.\n"
@@ -10119,26 +10129,26 @@ msgstr ""
 
 #. TRANS: Subject line for SMS-by-email notification messages.
 #. TRANS: %s is the posting user's nickname.
-#: lib/mail.php:514
+#: lib/mail.php:513
 #, php-format
 msgid "%s status"
 msgstr ""
 
 #. TRANS: Subject line for SMS-by-email address confirmation message.
-#: lib/mail.php:540
+#: lib/mail.php:539
 msgid "SMS confirmation"
 msgstr ""
 
 #. TRANS: Main body heading for SMS-by-email address confirmation message.
 #. TRANS: %s is the addressed user's nickname.
-#: lib/mail.php:544
+#: lib/mail.php:543
 #, php-format
 msgid "%s: confirm you own this phone number with this code:"
 msgstr ""
 
 #. TRANS: Subject for 'nudge' notification email.
 #. TRANS: %s is the nudging user.
-#: lib/mail.php:565
+#: lib/mail.php:564
 #, php-format
 msgid "You have been nudged by %s"
 msgstr ""
@@ -10146,7 +10156,7 @@ msgstr ""
 #. TRANS: Body for 'nudge' notification email.
 #. TRANS: %1$s is the nuding user's long name, $2$s is the nudging user's nickname,
 #. TRANS: %3$s is a URL to post notices at.
-#: lib/mail.php:572
+#: lib/mail.php:571
 #, php-format
 msgid ""
 "%1$s (%2$s) is wondering what you are up to these days and is inviting you "
@@ -10161,7 +10171,7 @@ msgstr ""
 
 #. TRANS: Subject for direct-message notification email.
 #. TRANS: %s is the sending user's nickname.
-#: lib/mail.php:617
+#: lib/mail.php:616
 #, php-format
 msgid "New private message from %s"
 msgstr ""
@@ -10169,7 +10179,7 @@ msgstr ""
 #. TRANS: Body for direct-message notification email.
 #. TRANS: %1$s is the sending user's long name, %2$s is the sending user's nickname,
 #. TRANS: %3$s is the message content, %4$s a URL to the message,
-#: lib/mail.php:624
+#: lib/mail.php:623
 #, php-format
 msgid ""
 "%1$s (%2$s) sent you a private message:\n"
@@ -10187,7 +10197,7 @@ msgstr ""
 
 #. TRANS: Subject for favorite notification e-mail.
 #. TRANS: %1$s is the adding user's long name, %2$s is the adding user's nickname.
-#: lib/mail.php:674
+#: lib/mail.php:673
 #, php-format
 msgid "%1$s (@%2$s) added your notice as a favorite"
 msgstr ""
@@ -10197,7 +10207,7 @@ msgstr ""
 #. TRANS: %3$s is a URL to the faved notice, %4$s is the faved notice text,
 #. TRANS: %5$s is a URL to all faves of the adding user, %6$s is the StatusNet sitename,
 #. TRANS: %7$s is the adding user's nickname.
-#: lib/mail.php:681
+#: lib/mail.php:680
 #, php-format
 msgid ""
 "%1$s (@%7$s) just added your notice from %2$s as one of their favorites.\n"
@@ -10216,7 +10226,7 @@ msgid ""
 msgstr ""
 
 #. TRANS: Line in @-reply notification e-mail. %s is conversation URL.
-#: lib/mail.php:738
+#: lib/mail.php:737
 #, php-format
 msgid ""
 "The full conversation can be read here:\n"
@@ -10226,7 +10236,7 @@ msgstr ""
 
 #. TRANS: E-mail subject for notice notification.
 #. TRANS: %1$s is the sending user's long name, %2$s is the adding user's nickname.
-#: lib/mail.php:746
+#: lib/mail.php:745
 #, php-format
 msgid "%1$s (@%2$s) sent a notice to your attention"
 msgstr ""
@@ -10236,7 +10246,7 @@ msgstr ""
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
 #. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
-#: lib/mail.php:753
+#: lib/mail.php:752
 #, php-format
 msgid ""
 "%1$s just sent a notice to your attention (an '@-reply') on %2$s.\n"
@@ -10264,14 +10274,14 @@ msgstr ""
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
 #. TRANS: %4$s is a block of profile info about the subscriber.
 #. TRANS: %5$s is a link to the addressed user's e-mail settings.
-#: lib/mail.php:824 lib/mail.php:834
+#: lib/mail.php:823 lib/mail.php:833
 #, php-format
 msgid "%1$s has joined your group %2$s on %3$s."
 msgstr ""
 
 #. TRANS: Subject of pending group join request notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
-#: lib/mail.php:871
+#: lib/mail.php:870
 #, php-format
 msgid "%1$s wants to join your group %2$s on %3$s."
 msgstr ""
@@ -10279,7 +10289,7 @@ msgstr ""
 #. TRANS: Main body of pending group join request notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
 #. TRANS: %4$s is the URL to the moderation queue page.
-#: lib/mail.php:879
+#: lib/mail.php:878
 #, php-format
 msgid ""
 "%1$s would like to join your group %2$s on %3$s. You may approve or reject "
@@ -10438,12 +10448,12 @@ msgstr ""
 
 #. TRANS: Followed by notice source (usually the client used to send the notice).
 #. TRANS: Followed by notice source.
-#: lib/messagelistitem.php:123 lib/noticelistitem.php:500
+#: lib/messagelistitem.php:123 lib/noticelistitem.php:506
 msgid "from"
 msgstr ""
 
 #. TRANS: A possible notice source (web interface).
-#: lib/messagelistitem.php:144 lib/noticelistitem.php:495
+#: lib/messagelistitem.php:144 lib/noticelistitem.php:501
 msgctxt "SOURCE"
 msgid "web"
 msgstr ""
@@ -10549,33 +10559,28 @@ msgid ""
 msgstr ""
 
 #. TRANS: Separator in profile addressees list.
-#: lib/noticelistitem.php:246 lib/noticelistitem.php:272
+#: lib/noticelistitem.php:243
 msgctxt "SEPARATOR"
 msgid ", "
 msgstr ""
 
-#. TRANS: Start of profile addressees list.
-#: lib/noticelistitem.php:248 lib/noticelistitem.php:275
-msgid " ▸ "
-msgstr ""
-
 #. TRANS: Used in coordinates as abbreviation of north.
-#: lib/noticelistitem.php:423
+#: lib/noticelistitem.php:429
 msgid "N"
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of south.
-#: lib/noticelistitem.php:425
+#: lib/noticelistitem.php:431
 msgid "S"
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of east.
-#: lib/noticelistitem.php:427
+#: lib/noticelistitem.php:433
 msgid "E"
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of west.
-#: lib/noticelistitem.php:429
+#: lib/noticelistitem.php:435
 msgid "W"
 msgstr ""
 
@@ -10584,43 +10589,43 @@ msgstr ""
 #. TRANS: %3$s is lattitude seconds, %4$s is N (north) or S (south) depending on lattitude,
 #. TRANS: %5$s is longitude degrees, %6$s is longitude minutes,
 #. TRANS: %7$s is longitude seconds, %8$s is E (east) or W (west) depending on longitude,
-#: lib/noticelistitem.php:436
+#: lib/noticelistitem.php:442
 #, php-format
 msgid "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 msgstr ""
 
 #. TRANS: Followed by geo location.
-#: lib/noticelistitem.php:446
+#: lib/noticelistitem.php:452
 msgid "at"
 msgstr ""
 
 #. TRANS: Addition in notice list item if notice is part of a conversation.
-#: lib/noticelistitem.php:561
+#: lib/noticelistitem.php:567
 msgid "in context"
 msgstr ""
 
 #. TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
-#: lib/noticelistitem.php:596
+#: lib/noticelistitem.php:602
 msgid "Repeated by"
 msgstr ""
 
 #. TRANS: Link title in notice list item to reply to a notice.
-#: lib/noticelistitem.php:623
+#: lib/noticelistitem.php:629
 msgid "Reply to this notice"
 msgstr ""
 
 #. TRANS: Link text in notice list item to reply to a notice.
-#: lib/noticelistitem.php:625
+#: lib/noticelistitem.php:631
 msgid "Reply"
 msgstr ""
 
 #. TRANS: Link title in notice list item to delete a notice.
-#: lib/noticelistitem.php:651
+#: lib/noticelistitem.php:657
 msgid "Delete this notice"
 msgstr ""
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
-#: lib/noticelistitem.php:674
+#: lib/noticelistitem.php:680
 msgid "Notice repeated."
 msgstr ""
 
@@ -10880,7 +10885,7 @@ msgstr ""
 #. TRANS: Menu item in personal group navigation menu.
 #. TRANS: Menu item in settings navigation panel.
 #. TRANS: Menu item in local navigation menu.
-#: lib/personalgroupnav.php:82 lib/settingsnav.php:87 lib/subgroupnav.php:77
+#: lib/personalgroupnav.php:82 lib/settingsnav.php:89 lib/subgroupnav.php:77
 msgctxt "MENU"
 msgid "Profile"
 msgstr ""
@@ -11235,95 +11240,95 @@ msgid "More..."
 msgstr ""
 
 #. TRANS: Header in settings navigation panel.
-#: lib/settingsnav.php:81
+#: lib/settingsnav.php:83
 msgctxt "HEADER"
 msgid "Settings"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:89
+#: lib/settingsnav.php:91
 msgid "Change your profile settings"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:94
+#: lib/settingsnav.php:96
 msgctxt "MENU"
 msgid "Avatar"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:96
+#: lib/settingsnav.php:98
 msgid "Upload an avatar"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:101
+#: lib/settingsnav.php:103
 msgctxt "MENU"
 msgid "Password"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:103
+#: lib/settingsnav.php:105
 msgid "Change your password"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:108
+#: lib/settingsnav.php:110
 msgctxt "MENU"
 msgid "Email"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:110
+#: lib/settingsnav.php:112
 msgid "Change email handling"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:117
+#: lib/settingsnav.php:119
 msgid "Design your profile"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:122
+#: lib/settingsnav.php:124
 msgctxt "MENU"
 msgid "URL"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:124
+#: lib/settingsnav.php:126
 msgid "URL shorteners"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:132
+#: lib/settingsnav.php:134
 msgctxt "MENU"
 msgid "IM"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:134
+#: lib/settingsnav.php:136
 msgid "Updates by instant messenger (IM)"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:141
+#: lib/settingsnav.php:143
 msgctxt "MENU"
 msgid "SMS"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:143
+#: lib/settingsnav.php:145
 msgid "Updates by SMS"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:149
+#: lib/settingsnav.php:151
 msgctxt "MENU"
 msgid "Connections"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:151
+#: lib/settingsnav.php:153
 msgid "Authorized connected applications"
 msgstr ""
 

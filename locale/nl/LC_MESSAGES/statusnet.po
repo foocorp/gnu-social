@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:31+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:16:15+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -257,15 +257,14 @@ msgid "No such user."
 msgstr "Deze gebruiker bestaat niet."
 
 #. TRANS: Title of a user's own start page.
-#, fuzzy
 msgid "Home timeline"
-msgstr "%s tijdlijn"
+msgstr "Startpaginatijdlijn"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s's home timeline"
-msgstr "%s tijdlijn"
+msgstr "Startpaginatijdlijn van %s"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -3147,28 +3146,6 @@ msgstr ""
 "Gebruik deze pagina om uw vrienden en collega´s uit te nodigen deze dienst "
 "te gebruiken."
 
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "E-mailadressen"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-msgid "Addresses of friends to invite (one per line)."
-msgstr "Adressen van uit te nodigen vrienden (één per regel)."
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "Persoonlijk bericht"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "Persoonlijk bericht bij de uitnodiging (optioneel)."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "Verzenden"
-
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
@@ -3327,7 +3304,6 @@ msgid "Login to site"
 msgstr "Aanmelden"
 
 #. TRANS: Field label on login page.
-#, fuzzy
 msgid "Username or email address"
 msgstr "Gebruikersnaam of e-mailadres"
 
@@ -8637,6 +8613,38 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "Nieuwe gebruikers uitnodigen"
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "Nieuwe gebruikers uitnodigen"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "E-mailadressen"
+
+#. TRANS: Field title for a list of e-mail addresses.
+msgid "Addresses of friends to invite (one per line)."
+msgstr "Adressen van uit te nodigen vrienden (één per regel)."
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Persoonlijk bericht"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "Persoonlijk bericht bij de uitnodiging (optioneel)."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Verzenden"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "Uitnodigingen"
+
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
 msgid "Join"
@@ -8706,9 +8714,9 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
-msgstr "%1$s volgt nu uw berichten %2$s."
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
+msgstr "%1$s is %2$s gaan volgen."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -9229,10 +9237,6 @@ msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
-msgstr " ▸ "
-
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
 msgstr "N"
@@ -9696,7 +9700,6 @@ msgid "Search"
 msgstr "Zoeken"
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy
 msgid ""
 "* Make sure all words are spelled correctly.\n"
 "* Try different keywords.\n"
@@ -9706,10 +9709,10 @@ msgstr ""
 "* Zorg ervoor dat alle woorden correct zijn gespeld.\n"
 "* Probeer verschillende trefwoorden.\n"
 "* Probeer meer algemene trefwoorden.\n"
-"* Probeer minder trefwoorden.\n"
+"* Probeer minder trefwoorden."
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can also try your search on other engines:\n"
 "\n"
@@ -9727,7 +9730,7 @@ msgstr ""
 "* [Tweet scan](http://www.tweetscan.com/indexi.php?s=%s)\n"
 "* [Google](http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)\n"
 "* [Yahoo](http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)\n"
-"* [Collecta](http://collecta.com/#q=%s)\n"
+"* [Collecta](http://collecta.com/#q=%s)"
 
 #. TRANS: Menu item in search group navigation panel.
 msgctxt "MENU"
@@ -10268,8 +10271,8 @@ msgstr "Ongeldige XML. De XRD-root mist."
 msgid "Getting backup from file '%s'."
 msgstr "De back-up wordt uit het bestand \"%s\" geladen."
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s en vrienden, pagina %2$d"
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "%1$s volgt nu uw berichten %2$s."
 
-#~ msgid "You and friends"
-#~ msgstr "U en vrienden"
+#~ msgid " ▸ "
+#~ msgstr " ▸ "

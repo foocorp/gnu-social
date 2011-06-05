@@ -6,6 +6,7 @@
 # Author: Brion
 # Author: George Animal
 # Author: Giftpflanze
+# Author: Gta74
 # Author: Habi
 # Author: Jan Luca
 # Author: Kghbln
@@ -28,17 +29,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:52+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:48+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -818,9 +819,8 @@ msgid "You are not allowed to add members to this list."
 msgstr "Du bist nicht berechtigt, Mitglieder zu dieser Liste hinzufügen."
 
 #. TRANS: Client error displayed when trying to modify list members without specifying them.
-#, fuzzy
 msgid "You must specify a member."
-msgstr "Benutzer hat kein Profil."
+msgstr "Du musst ein Mitglied angeben."
 
 #. TRANS: Client error displayed when trying to remove members from a list without having the right to do so.
 msgid "You are not allowed to remove members from this list."
@@ -842,7 +842,7 @@ msgstr "Dieser Benutzer ist kein Abonnent dieser Liste."
 #. TRANS: Client error displayed when trying to unsubscribe from a non-subscribed list.
 #, fuzzy
 msgid "You are not subscribed to this list."
-msgstr "Du hast dieses Profil nicht abonniert."
+msgstr "Du hast diese Liste nicht abonniert."
 
 #. TRANS: Client error displayed when uploading a media file has failed.
 msgid "Upload failed."
@@ -1110,7 +1110,7 @@ msgstr "%1$s-Aktualisierungen favorisiert von %2$s / %3$s."
 #. TRANS: %s is the error message.
 #, fuzzy, php-format
 msgid "Could not generate feed for list - %s"
-msgstr "Konnte keinen Login-Token für %s erstellen"
+msgstr "Konnte keinen Feed für die Liste erstellen - %s"
 
 #. TRANS: Title for timeline of most recent mentions of a user.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is a user nickname.
@@ -1297,9 +1297,9 @@ msgstr "Benutzer hat kein Profil."
 #. TRANS: %s is a nickname.
 #. TRANS: Client error displayed when trying to approve a non-existing group join request.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "%s is not in the moderation queue for this group."
-msgstr "Liste der Benutzer in dieser Gruppe."
+msgstr "%s ist nicht in der Moderations-Liste für diese Gruppe."
 
 #. TRANS: Client error displayed trying to approve/deny group membership.
 #. TRANS: Client error displayed trying to approve/deny subscription.
@@ -1321,10 +1321,10 @@ msgstr "Konnte Benutzer %1$s nicht der Gruppe %2$s hinzufügen."
 
 #. TRANS: Title for leave group page after group join request is approved/disapproved.
 #. TRANS: %1$s is the user nickname, %2$s is the group nickname.
-#, fuzzy, php-format
+#, php-format
 msgctxt "TITLE"
 msgid "%1$s's request for %2$s"
-msgstr "Status von %1$s auf %2$s"
+msgstr "%1$ss Anfragen auf %2$s"
 
 #. TRANS: Message on page for group admin after approving a join request.
 msgid "Join request approved."
@@ -1738,10 +1738,9 @@ msgid "No profile with that ID."
 msgstr "Kein Benutzer-Profil mit dieser ID."
 
 #. TRANS: Title after unsubscribing from a group.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Unsubscribed"
-msgstr "Abbestellt"
+msgstr "Abgemeldet"
 
 #. TRANS: Client error displayed when not providing a confirmation code in the contact address confirmation action.
 msgid "No confirmation code."
@@ -1797,7 +1796,6 @@ msgstr "Unterhaltung"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Notice"
 msgstr "Nachrichten"
@@ -1903,7 +1901,6 @@ msgid "Do not delete this application."
 msgstr "Dieses Programm nicht löschen"
 
 #. TRANS: Submit button title for 'Yes' when deleting an application.
-#, fuzzy
 msgid "Delete this application."
 msgstr "Programm löschen"
 
@@ -1943,12 +1940,10 @@ msgstr ""
 "dieser Gruppe werden noch in einzelnen Zeitleisten erscheinen."
 
 #. TRANS: Submit button title for 'No' when deleting a group.
-#, fuzzy
 msgid "Do not delete this group."
 msgstr "Diese Gruppe nicht löschen"
 
 #. TRANS: Submit button title for 'Yes' when deleting a group.
-#, fuzzy
 msgid "Delete this group."
 msgstr "Diese Gruppe löschen"
 
@@ -1970,12 +1965,10 @@ msgid "Are you sure you want to delete this notice?"
 msgstr "Bist du sicher, dass du diese Nachricht löschen möchtest?"
 
 #. TRANS: Submit button title for 'No' when deleting a notice.
-#, fuzzy
 msgid "Do not delete this notice."
 msgstr "Diese Nachricht nicht löschen"
 
 #. TRANS: Submit button title for 'Yes' when deleting a notice.
-#, fuzzy
 msgid "Delete this notice."
 msgstr "Nachricht löschen"
 
@@ -2005,7 +1998,6 @@ msgstr ""
 "werden aus der Datenbank gelöscht (ohne ein Backup)."
 
 #. TRANS: Submit button title for 'No' when deleting a user.
-#, fuzzy
 msgid "Do not delete this user."
 msgstr "Diesen Benutzer nicht löschen"
 
@@ -2138,26 +2130,22 @@ msgid "Custom CSS"
 msgstr "Eigene CSS"
 
 #. TRANS: Button text for resetting theme settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Use defaults"
 msgstr "Standardeinstellungen benutzen"
 
 #. TRANS: Title for button for resetting theme settings.
 #. TRANS: Title for button on profile design page to reset all colour settings to default.
-#, fuzzy
 msgid "Restore default designs."
-msgstr "Standard-Design wiederherstellen"
+msgstr "Standarddesign wiederherstellen"
 
 #. TRANS: Title for button for resetting theme settings.
 #. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-#, fuzzy
 msgid "Reset back to default."
-msgstr "Standard wiederherstellen"
+msgstr "Standardeinstellungen wiederherstellen"
 
 #. TRANS: Title for button for saving theme settings.
 #. TRANS: Title for button on profile design page to save settings.
-#, fuzzy
 msgid "Save design."
 msgstr "Design speichern"
 
@@ -2307,9 +2295,8 @@ msgid "You must be the creator of the tag to edit it."
 msgstr "Du musst ein Admin sein, um die Gruppe zu bearbeiten"
 
 #. TRANS: Form instruction for edit list form.
-#, fuzzy
 msgid "Use this form to edit the list."
-msgstr "Benutze dieses Formular, um die Gruppe zu bearbeiten."
+msgstr "Benutze dieses Formular, um die Liste zu bearbeiten."
 
 #. TRANS: Form validation error displayed if the form data for deleting a tag was incorrect.
 #, fuzzy
@@ -2475,9 +2462,8 @@ msgid "No email address."
 msgstr "Keine E-Mail-Adresse."
 
 #. TRANS: Message given saving e-mail address that cannot be normalised.
-#, fuzzy
 msgid "Cannot normalize that email address."
-msgstr "Diese e-Mail-Adresse kann nicht normalisiert werden."
+msgstr "Diese Emailadresse kann nicht normalisiert werden."
 
 #. TRANS: Message given saving e-mail address that not valid.
 #. TRANS: Form validation error displayed when trying to register without a valid e-mail address.
@@ -3076,21 +3062,19 @@ msgstr "Ungültiger Benutzername."
 #. TRANS: Message given saving IM address that is already set for another user.
 #, fuzzy
 msgid "Screenname already belongs to another user."
-msgstr "Diese Jabber-ID wird bereits von einem anderen Benutzer verwendet."
+msgstr "Dieser Benutzername wird bereits von jemand Anderem verwendet."
 
 #. TRANS: Message given saving valid IM address that is to be confirmed.
-#, fuzzy
 msgid "A confirmation code was sent to the IM address you added."
 msgstr ""
 "Ein Bestätigungscode wurde an die IM-Adresse geschickt, die du hinzugefügt "
-"hast. Du musst zulassen, dass %s dir Nachrichten schicken darf."
+"hast."
 
 #. TRANS: Message given canceling IM address confirmation for the wrong IM address.
 msgid "That is the wrong IM address."
 msgstr "Das ist die falsche IM-Adresse."
 
 #. TRANS: Server error thrown on database error canceling IM address confirmation.
-#, fuzzy
 msgid "Could not delete confirmation."
 msgstr "Konnte die IM-Bestätigung nicht löschen."
 
@@ -3100,9 +3084,8 @@ msgstr "IM-Bestätigung abgebrochen."
 
 #. TRANS: Message given trying to remove an IM address that is not
 #. TRANS: registered for the active user.
-#, fuzzy
 msgid "That is not your screenname."
-msgstr "Dies ist nicht deine Telefonnummer."
+msgstr "Dies ist nicht dein Benutzername."
 
 #. TRANS: Message given after successfully removing a registered Instant Messaging address.
 msgid "The IM address was removed."
@@ -3202,33 +3185,6 @@ msgid ""
 "Use this form to invite your friends and colleagues to use this service."
 msgstr "Lade deine Freunde und Kollegen ein diesen Dienst zu nutzen."
 
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "E-Mail-Adressen"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-#, fuzzy
-msgid "Addresses of friends to invite (one per line)."
-msgstr ""
-"Adressen von Freunden, die du einladen möchtest. (Jeweils eine Adresse pro "
-"Zeile)"
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "Private Nachricht"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr ""
-"Wenn du möchtest kannst du zu der Einladung eine persönliche Nachricht "
-"anfügen."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "Senden"
-
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
@@ -3241,15 +3197,14 @@ msgid "You must be logged in to join a group."
 msgstr "Du musst angemeldet sein, um Mitglied einer Gruppe zu werden."
 
 #. TRANS: Title for join group page after joining.
-#, fuzzy, php-format
+#, php-format
 msgctxt "TITLE"
 msgid "%1$s joined group %2$s"
 msgstr "%1$s ist der Gruppe %2$s beigetreten"
 
 #. TRANS: Exception thrown when there is an unknown error joining a group.
-#, fuzzy
 msgid "Unknown error joining group."
-msgstr "Unbekannte Gruppe."
+msgstr "Unbekannter Fehler beim Beitritt zur Gruppe aufgetreten"
 
 #. TRANS: Client error displayed when trying to join a group while already a member.
 #. TRANS: Error text shown when trying to leave an existing group the user is not a member of.
@@ -3319,7 +3274,6 @@ msgid "Type"
 msgstr "Typ"
 
 #. TRANS: Dropdown field instructions in the license admin panel.
-#, fuzzy
 msgid "Select a license."
 msgstr "Lizenz auswählen"
 
@@ -3360,9 +3314,8 @@ msgid "URL for an image to display with the license."
 msgstr "URL eines mit der Lizenz anzuzeigenden Bildes."
 
 #. TRANS: Button title in the license admin panel.
-#, fuzzy
 msgid "Save license settings."
-msgstr "Lizenz-Einstellungen speichern"
+msgstr "Lizenzeinstellungen speichern"
 
 #. TRANS: Client error displayed when trying to log in while already logged in.
 #. TRANS: Client error displayed trying to use "one time password login" when already logged in.
@@ -3389,9 +3342,8 @@ msgid "Login to site"
 msgstr "An Seite anmelden"
 
 #. TRANS: Field label on login page.
-#, fuzzy
 msgid "Username or email address"
-msgstr "Spitzname oder E-Mail-Adresse"
+msgstr "Benutzername oder E-Mail-Adresse"
 
 #. TRANS: Checkbox label label on login page.
 #. TRANS: Checkbox label on account registration page.
@@ -3481,9 +3433,8 @@ msgstr "Quell-URL ist erforderlich."
 msgid "Could not create application."
 msgstr "Konnte das Programm nicht erstellen."
 
-#, fuzzy
 msgid "Invalid image."
-msgstr "Ungültige Größe."
+msgstr "Ungültiges Bild"
 
 #. TRANS: Title for form to create a group.
 msgid "New group"
@@ -3781,7 +3732,6 @@ msgstr ""
 "Das hier ist dein Postausgang, er beinhaltet deine gesendeten Nachrichten."
 
 #. TRANS: Title for page where to change password.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Change password"
 msgstr "Passwort ändern"
@@ -8635,7 +8585,6 @@ msgstr ""
 "Nachrichten sind privat."
 
 #. TRANS: Indicator in group members list that this user is a group administrator.
-#, fuzzy
 msgctxt "GROUPADMIN"
 msgid "Admin"
 msgstr "Admin"
@@ -8838,6 +8787,42 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "Lade neue Leute ein"
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "Lade neue Leute ein"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "E-Mail-Adressen"
+
+#. TRANS: Field title for a list of e-mail addresses.
+msgid "Addresses of friends to invite (one per line)."
+msgstr ""
+"Adressen von Freunden, die du einladen möchtest. (Jeweils eine Adresse pro "
+"Zeile)"
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Private Nachricht"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr ""
+"Wenn du möchtest kannst du zu der Einladung eine persönliche Nachricht "
+"anfügen."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Senden"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "Einladungen"
+
 #. TRANS: Button text for joining a group.
 #, fuzzy
 msgctxt "BUTTON"
@@ -8909,9 +8894,9 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
-msgstr "%1$s hat deine Nachrichten auf „%2$s“ abonniert."
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
+msgstr "%1$s folgt nun %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -9463,10 +9448,6 @@ msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
-msgstr " ▸ "
-
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
 msgstr "N"
@@ -9975,7 +9956,6 @@ msgid "Search"
 msgstr "Suchen"
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy
 msgid ""
 "* Make sure all words are spelled correctly.\n"
 "* Try different keywords.\n"
@@ -9985,10 +9965,10 @@ msgstr ""
 "* Stelle sicher, dass alle Worte richtig geschrieben sind.\n"
 "* Versuche andere Schlüsselwörter zu benutzen.\n"
 "* Versuche allgemeinere Schlüsselwörter zu benutzen.\n"
-"* Versuche weniger Schlüsselwörter zu benutzen.\n"
+"* Versuche weniger Schlüsselwörter zu benutzen."
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can also try your search on other engines:\n"
 "\n"
@@ -10006,7 +9986,7 @@ msgstr ""
 "* [Tweet scan](http://www.tweetscan.com/indexi.php?s=%s)\n"
 "* [Google](http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)\n"
 "* [Yahoo](http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)\n"
-"* [Collecta](http://collecta.com/#q=%s)\n"
+"* [Collecta](http://collecta.com/#q=%s)"
 
 #. TRANS: Menu item in search group navigation panel.
 #, fuzzy
@@ -10038,7 +10018,6 @@ msgid "Help"
 msgstr "Hilfe"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
-#, fuzzy
 msgctxt "MENU"
 msgid "About"
 msgstr "Über"
@@ -10095,10 +10074,9 @@ msgid "More..."
 msgstr "Mehr …"
 
 #. TRANS: Header in settings navigation panel.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Settings"
-msgstr "SMS-Einstellungen"
+msgstr "Einstellungen"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Change your profile settings"
@@ -10128,7 +10106,7 @@ msgstr "Ändere dein Passwort"
 #, fuzzy
 msgctxt "MENU"
 msgid "Email"
-msgstr "E-Mail"
+msgstr "Email"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Change email handling"
@@ -10395,7 +10373,7 @@ msgstr "Alles"
 #. TRANS: Dropdown option for searching in profiles.
 #, fuzzy
 msgid "Fullname"
-msgstr "Bürgerlicher Name"
+msgstr "Nachname"
 
 #. TRANS: Dropdown option for searching in profiles.
 msgid "URI (Remote users)"
@@ -10572,8 +10550,8 @@ msgstr "Ungültiges XML, XRD-Root fehlt."
 msgid "Getting backup from file '%s'."
 msgstr "Hole Backup von der Datei „%s“."
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s und Freunde, Seite% 2$d"
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "%1$s hat deine Nachrichten auf „%2$s“ abonniert."
 
-#~ msgid "You and friends"
-#~ msgstr "Du und Freunde"
+#~ msgid " ▸ "
+#~ msgstr " ▸ "

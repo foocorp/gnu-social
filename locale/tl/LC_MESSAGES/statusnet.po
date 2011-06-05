@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:48+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:16:28+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -257,15 +257,14 @@ msgid "No such user."
 msgstr "Walang ganyang tagagamit."
 
 #. TRANS: Title of a user's own start page.
-#, fuzzy
 msgid "Home timeline"
-msgstr "%s guhit ng panahon"
+msgstr "Guhit ng panahon ng tahanan"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s's home timeline"
-msgstr "%s guhit ng panahon"
+msgstr "Guhit ng panahon ng tahanan ni %s"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -3180,28 +3179,6 @@ msgstr ""
 "Gamitin ang pormularyong ito upang anyayahan ang mga kaibigan at mga "
 "kasamahan mo upang gamitin ang palingkurang ito."
 
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "Mga tirahan ng e-liham"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-msgid "Addresses of friends to invite (one per line)."
-msgstr "Mga tirahan ng mga kaibigang aanyayahan (isa bawat guhit)."
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "Personal na mensahe"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "Maaaring idagdag o hindi ang isang mensaheng personal sa paanyaya."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "Ipadala"
-
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
@@ -3363,9 +3340,8 @@ msgid "Login to site"
 msgstr "Lumagdang papasok sa pook"
 
 #. TRANS: Field label on login page.
-#, fuzzy
 msgid "Username or email address"
-msgstr "Palayaw o tirahan ng e-liham"
+msgstr "Pangalan ng tagagamit o tirahan ng e-liham"
 
 #. TRANS: Checkbox label label on login page.
 #. TRANS: Checkbox label on account registration page.
@@ -8775,6 +8751,38 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "Mag-anyaya ng marami pang mga kasamahan"
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "Mag-anyaya ng marami pang mga kasamahan"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "Mga tirahan ng e-liham"
+
+#. TRANS: Field title for a list of e-mail addresses.
+msgid "Addresses of friends to invite (one per line)."
+msgstr "Mga tirahan ng mga kaibigang aanyayahan (isa bawat guhit)."
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Personal na mensahe"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "Maaaring idagdag o hindi ang isang mensaheng personal sa paanyaya."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Ipadala"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "Mga paanyaya"
+
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
 msgid "Join"
@@ -8844,9 +8852,9 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
-msgstr "Nakikinig na si %1$s sa mga pabatid mo na nasa %2$s."
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
+msgstr "Sinusundan na ngayon ni %1$s si %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -9379,10 +9387,6 @@ msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
-msgstr " ▸ "
-
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
 msgstr "H"
@@ -9848,7 +9852,6 @@ msgid "Search"
 msgstr "Maghanap"
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy
 msgid ""
 "* Make sure all words are spelled correctly.\n"
 "* Try different keywords.\n"
@@ -9858,10 +9861,10 @@ msgstr ""
 "* Tiyakin na tama ang banghay ng lahat ng mga salita.\n"
 "* Sumubok ng ibang mga susing-salita.\n"
 "* Sumubok ng mas pangkalahatang mga susing-salita.\n"
-"* Sumubok ng mas kakaunting mga susing-salita.\n"
+"* Sumubok ng mas kakaunting mga susing-salita."
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can also try your search on other engines:\n"
 "\n"
@@ -9879,7 +9882,7 @@ msgstr ""
 "* [Tweet scan](http://www.tweetscan.com/indexi.php?s=%s)\n"
 "* [Google](http://www.google.com/search?q=site%%3A%%%%site.server%%%%+%s)\n"
 "* [Yahoo](http://search.yahoo.com/search?p=site%%3A%%%%site.server%%%%+%s)\n"
-"* [Collecta](http://collecta.com/#q=%s)\n"
+"* [Collecta](http://collecta.com/#q=%s)"
 
 #. TRANS: Menu item in search group navigation panel.
 msgctxt "MENU"
@@ -10424,8 +10427,8 @@ msgstr "Hindi katanggap-tanggap na XML, nawawalang ugat ng XRD."
 msgid "Getting backup from file '%s'."
 msgstr "Kinukuha ang kopyang pamalit mula sa talaksang '%s'"
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s at mga kaibigan, pahina %2$d"
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "Nakikinig na si %1$s sa mga pabatid mo na nasa %2$s."
 
-#~ msgid "You and friends"
-#~ msgstr "Ikaw at mga kaibigan"
+#~ msgid " ▸ "
+#~ msgstr " ▸ "

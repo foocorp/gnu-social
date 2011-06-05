@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:46+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:43+0000\n"
 "Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3107,29 +3107,6 @@ msgstr ""
 msgid ""
 "Use this form to invite your friends and colleagues to use this service."
 msgstr "Pediñ mignoned hag kenseurted da zont ganeoc'h war %s"
-
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "Chomlec'hioù postel"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-#, fuzzy
-msgid "Addresses of friends to invite (one per line)."
-msgstr "Chomlec'hioù an implijerien da bediñ (unan dre linenn)"
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "Kemennadenn bersonel"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "Ouzhpennañ ur gemennadenn bersonel d'ar bedadenn (diret)."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "Kas"
 
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
@@ -6337,9 +6314,8 @@ msgid " (free service)"
 msgstr " (servij digoust)"
 
 #. TRANS: Default value for URL shortening settings.
-#, fuzzy
 msgid "[none]"
-msgstr "Hini ebet"
+msgstr "[hini ebet]"
 
 #. TRANS: Default value for URL shortening settings.
 msgid "[internal]"
@@ -6347,7 +6323,7 @@ msgstr "[diabarzh]"
 
 #. TRANS: Label for dropdown with URL shortener services.
 msgid "Shorten URLs with"
-msgstr ""
+msgstr "Berraat an URLù gant"
 
 #. TRANS: Tooltip for for dropdown with URL shortener services.
 msgid "Automatic shortening service to use."
@@ -6355,7 +6331,7 @@ msgstr ""
 
 #. TRANS: Field label in URL settings in profile.
 msgid "URL longer than"
-msgstr ""
+msgstr "URL hiroc'h eget"
 
 #. TRANS: Field title in URL settings in profile.
 msgid "URLs longer than this will be shortened, 0 means always shorten."
@@ -8604,19 +8580,49 @@ msgid "Trends"
 msgstr ""
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
-msgstr "Pediñ implijerien nevez"
+msgstr "Pediñ muioc'h a genseurted"
+
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "Pediñ muioc'h a genseurted"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "Chomlec'hioù postel"
+
+#. TRANS: Field title for a list of e-mail addresses.
+#, fuzzy
+msgid "Addresses of friends to invite (one per line)."
+msgstr "Chomlec'hioù an implijerien da bediñ (unan dre linenn)"
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Kemennadenn bersonel"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "Ouzhpennañ ur gemennadenn bersonel d'ar bedadenn (diret)."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Kas"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "Pedadennoù"
 
 #. TRANS: Button text for joining a group.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Join"
 msgstr "Stagañ"
 
 #. TRANS: Button text on form to leave a group.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Kuitaat"
@@ -8628,9 +8634,8 @@ msgid "Login"
 msgstr "Kevreañ"
 
 #. TRANS: Title for menu item for logging in to the StatusNet site.
-#, fuzzy
 msgid "Login with a username and password"
-msgstr "Kevreit gant ho anv implijer hag ho ker-tremen."
+msgstr "Kevreit gant ho anv implijer hag ho ker-tremen"
 
 #. TRANS: Menu item for registering with the StatusNet site.
 msgctxt "MENU"
@@ -8669,7 +8674,7 @@ msgstr ""
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
 #, fuzzy, php-format
-msgid "%1$s is now listening to your notices on %2$s."
+msgid "%1$s is now following you on %2$s."
 msgstr "Ne heuilh %s den ebet."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
@@ -9042,13 +9047,12 @@ msgstr "web"
 #. TRANS: A possible notice source (XMPP).
 msgctxt "SOURCE"
 msgid "xmpp"
-msgstr ""
+msgstr "xmpp"
 
 #. TRANS: A possible notice source (e-mail).
-#, fuzzy
 msgctxt "SOURCE"
 msgid "mail"
-msgstr "Postel"
+msgstr "postel"
 
 #. TRANS: A possible notice source (OpenMicroBlogging).
 msgctxt "SOURCE"
@@ -9129,10 +9133,6 @@ msgstr ""
 msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
-
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
-msgstr " ▸ "
 
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
@@ -9661,7 +9661,6 @@ msgid ""
 msgstr ""
 
 #. TRANS: Menu item in search group navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "People"
 msgstr "Tud"
@@ -9671,10 +9670,9 @@ msgid "Find people on this site"
 msgstr "Klask tud el lec'hienn-mañ"
 
 #. TRANS: Menu item in search group navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Notices"
-msgstr "Ali"
+msgstr "Alioù"
 
 #. TRANS: Menu item title in search group navigation panel.
 msgid "Find content of notices"
@@ -9690,50 +9688,42 @@ msgid "Help"
 msgstr "Skoazell"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
-#, fuzzy
 msgctxt "MENU"
 msgid "About"
 msgstr "Diwar-benn"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
-#, fuzzy
 msgctxt "MENU"
 msgid "FAQ"
 msgstr "FAG"
 
 #. TRANS: Secondary navigation menu item leading to Terms of Service.
-#, fuzzy
 msgctxt "MENU"
 msgid "TOS"
 msgstr "AIH"
 
 #. TRANS: Secondary navigation menu item leading to privacy policy.
-#, fuzzy
 msgctxt "MENU"
 msgid "Privacy"
 msgstr "Prevezded"
 
 #. TRANS: Secondary navigation menu item. Leads to information about StatusNet and its license.
-#, fuzzy
 msgctxt "MENU"
 msgid "Source"
 msgstr "Mammenn"
 
 #. TRANS: Secondary navigation menu item leading to version information on the StatusNet site.
-#, fuzzy
 msgctxt "MENU"
 msgid "Version"
 msgstr "Stumm"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
-#, fuzzy
 msgctxt "MENU"
 msgid "Contact"
 msgstr "Darempred"
 
 #. TRANS: Secondary navigation menu item. Leads to information about embedding a timeline widget.
-#, fuzzy
 msgctxt "MENU"
 msgid "Badge"
 msgstr "Badj"
@@ -9747,7 +9737,6 @@ msgid "More..."
 msgstr "Muioc'h..."
 
 #. TRANS: Header in settings navigation panel.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Settings"
 msgstr "Arventennoù"
@@ -9757,7 +9746,6 @@ msgid "Change your profile settings"
 msgstr "Kemmañ arventennoù ho profil"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Avatar"
 msgstr "Avatar"
@@ -9767,7 +9755,6 @@ msgid "Upload an avatar"
 msgstr "Enporzhiañ un avatar"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Password"
 msgstr "Ger-tremen"
@@ -9777,7 +9764,6 @@ msgid "Change your password"
 msgstr "Cheñch ar ger-tremen"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Email"
 msgstr "Postel"
@@ -9791,7 +9777,6 @@ msgid "Design your profile"
 msgstr "Krouit ho profil"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "URL"
 msgstr "URL"
@@ -9801,17 +9786,15 @@ msgid "URL shorteners"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "IM"
 msgstr "IM"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Updates by instant messenger (IM)"
-msgstr ""
+msgstr "Hizivadurioù dre bostelerezh prim (IM)"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "SMS"
 msgstr "SMS"
@@ -9821,18 +9804,15 @@ msgid "Updates by SMS"
 msgstr "Hizivadennoù dre SMS"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Connections"
 msgstr "Kevreadennoù"
 
 #. TRANS: Menu item title in settings navigation panel.
-#, fuzzy
 msgid "Authorized connected applications"
-msgstr "Poeladoù kevreet."
+msgstr "Poelladoù aotreet kevret"
 
 #. TRANS: Title of form to silence a user.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Silence"
 msgstr "Didrouz"
@@ -9843,7 +9823,6 @@ msgid "Silence this user"
 msgstr "Diverkañ an implijer-mañ"
 
 #. TRANS: Menu item in local navigation menu.
-#, fuzzy
 msgctxt "MENU"
 msgid "Subscriptions"
 msgstr "Koumanantoù"
@@ -9856,16 +9835,16 @@ msgstr "Koumanantoù %s"
 
 #. TRANS: Menu item title in local navigation menu.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "People subscribed to %s."
-msgstr "Koumananterien %s"
+msgstr "Koumananterien %s."
 
 #. TRANS: Menu item in local navigation menu.
 #. TRANS: %d is the number of pending subscription requests.
-#, php-format
+#, fuzzy, php-format
 msgctxt "MENU"
 msgid "Pending (%d)"
-msgstr ""
+msgstr "War gortoz (%s)"
 
 #. TRANS: Menu item title in local navigation menu.
 #, php-format
@@ -9874,9 +9853,9 @@ msgstr ""
 
 #. TRANS: Menu item title in local navigation menu.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Groups %s is a member of."
-msgstr "Ezel eo %s eus ar strolladoù"
+msgstr "Ezel eo %s eus ar strolladoù."
 
 #. TRANS: Menu item title in local navigation menu.
 #. TRANS: %s is a user nickname.
@@ -9891,9 +9870,9 @@ msgstr "Pediñ"
 
 #. TRANS: Menu item title in local navigation menu.
 #. TRANS: %s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "Invite friends and colleagues to join you on %s."
-msgstr "Pediñ mignoned hag kenseurted da zont ganeoc'h war %s"
+msgstr "Pediñ mignoned ha kenseurted da zont ganeoc'h war %s."
 
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
@@ -9971,10 +9950,9 @@ msgid "Error opening theme archive."
 msgstr "Fazi en ur hizivaat ar profil a-bell."
 
 #. TRANS: Header for Notices section.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Notices"
-msgstr "Ali"
+msgstr "Alioù"
 
 #. TRANS: Link to show replies for a notice.
 #. TRANS: %d is the number of replies to a notice and used for plural.
@@ -9987,20 +9965,19 @@ msgstr[1] "Diskouez muioc'h"
 #. TRANS: Reference to the logged in user in favourite list.
 msgctxt "FAVELIST"
 msgid "You"
-msgstr ""
+msgstr "C'hwi"
 
 #. TRANS: For building a list such as "Jim, Bob, Mary and 5 others like this".
 #. TRANS: %1$s is a list of users, separated by a separator (default: ", "), %2$s is the last user in the list.
-#, fuzzy, php-format
+#, php-format
 msgctxt "FAVELIST"
 msgid "%1$s and %2$s"
-msgstr "%1$s - %2$s"
+msgstr "%1$s ha %2$s"
 
 #. TRANS: List message for notice favoured by logged in user.
-#, fuzzy
 msgctxt "FAVELIST"
 msgid "You like this."
-msgstr "Alioù poblek"
+msgstr "Plijout a ra deoc'h."
 
 #. TRANS: List message for when more than 4 people like something.
 #. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
@@ -10021,10 +9998,9 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. TRANS: List message for notice repeated by logged in user.
-#, fuzzy
 msgctxt "REPEATLIST"
 msgid "You have repeated this notice."
-msgstr "Adkemeret ho peus ar c'hemenn-mañ c'hoazh."
+msgstr "Adkemeret ho peus ar c'hemenn-mañ."
 
 #. TRANS: List message for repeated notices.
 #. TRANS: %d is the number of users that have repeated a notice.
@@ -10041,10 +10017,9 @@ msgstr "Klask el lec'hienn"
 
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Everything"
-msgstr ""
+msgstr "Pep tra"
 
 #. TRANS: Dropdown option for searching in profiles.
-#, fuzzy
 msgid "Fullname"
 msgstr "Anv klok"
 
@@ -10053,26 +10028,25 @@ msgid "URI (Remote users)"
 msgstr ""
 
 #. TRANS: Dropdown field label.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Search in"
-msgstr "Klask el lec'hienn"
+msgstr "Klask e"
 
 #. TRANS: Dropdown field title.
 msgid "Choose a field to search."
-msgstr ""
+msgstr "Dibab ur vaezienn da glask."
 
 #. TRANS: Form legend.
 #. TRANS: %1$s is a nickname, $2$s is a list.
-#, fuzzy, php-format
+#, php-format
 msgid "Remove %1$s from list %2$s"
-msgstr "%1$s - %2$s"
+msgstr "Dilemel %1$s deus ar roll %2$s"
 
 #. TRANS: Legend on form to add a profile to a list.
 #. TRANS: %1$s is a nickname, %2$s is a list.
-#, fuzzy, php-format
+#, php-format
 msgid "Add %1$s to list %2$s"
-msgstr "%1$s - %2$s"
+msgstr "Ouzhpennañ %1$s er roll %2$s"
 
 #. TRANS: Title for top posters section.
 msgid "Top posters"
@@ -10081,24 +10055,22 @@ msgstr "An implijerien an efedusañ"
 #. TRANS: Option in drop-down of potential addressees.
 msgctxt "SENDTO"
 msgid "Everyone"
-msgstr ""
+msgstr "An holl"
 
 #. TRANS: Option in drop-down of potential addressees.
 #. TRANS: %s is a StatusNet sitename.
 #, php-format
 msgid "My colleagues at %s"
-msgstr ""
+msgstr "Ma c'henseurted war %s"
 
 #. TRANS: Label for drop-down of potential addressees.
-#, fuzzy
 msgctxt "LABEL"
 msgid "To:"
-msgstr "Da"
+msgstr "Da :"
 
 #. TRANS: Checkbox label in widget for selecting potential addressees to mark the notice private.
-#, fuzzy
 msgid "Private?"
-msgstr "Prevez"
+msgstr "Prevez ?"
 
 #. TRANS: Client exception thrown in widget for selecting potential addressees when an invalid fill option was received.
 #, fuzzy, php-format
@@ -10111,7 +10083,6 @@ msgid "Unblock"
 msgstr "Distankañ"
 
 #. TRANS: Title for unsandbox form.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Unsandbox"
 msgstr "Kuitaat ar poull-traezh"
@@ -10138,7 +10109,6 @@ msgstr "En em zigoumanantiñ eus an implijer-mañ"
 
 #. TRANS: Button text on unsubscribe form.
 #. TRANS: Button text for unsubscribing from a list.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Digoumanantiñ"
@@ -10150,9 +10120,8 @@ msgid "User %1$s (%2$d) has no profile record."
 msgstr "An implijer-mañ n'eus profil ebet dezhañ."
 
 #. TRANS: Authorisation exception thrown when a user a not allowed to login.
-#, fuzzy
 msgid "Not allowed to log in."
-msgstr "Nann-kevreet."
+msgstr "Nann-aotreet da gevreañ."
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
 msgid "a few seconds ago"
@@ -10213,21 +10182,21 @@ msgid "%s is not a valid color! Use 3 or 6 hex characters."
 msgstr "N'eo ket %s ul liv reizh ! Implijit 3 pe 6 arouezenn heksdekvedennel."
 
 #. TRANS: Exception.
-#, fuzzy
 msgid "Invalid XML."
-msgstr "Ment direizh."
+msgstr "XML direizh."
 
 #. TRANS: Exception.
 msgid "Invalid XML, missing XRD root."
-msgstr ""
+msgstr "XML direizh, mankout a ra ar wrizienn XRD."
 
 #. TRANS: Commandline script output. %s is the filename that contains a backup for a user.
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s hag e vignoned, pajenn %2$d"
+#, fuzzy
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "Ne heuilh %s den ebet."
 
-#~ msgid "You and friends"
-#~ msgstr "C'hwi hag o mignoned"
+#~ msgid " ▸ "
+#~ msgstr " ▸ "

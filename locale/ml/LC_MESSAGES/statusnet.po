@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:29+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:16:13+0000\n"
 "Language-Team: Malayalam <http://translatewiki.net/wiki/Portal:ml>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ml\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -3052,28 +3052,6 @@ msgid ""
 msgstr ""
 "ഈ സേവനം ഉപയോഗിക്കാൻ താങ്കളുടെ സുഹൃത്തുക്കളേയും സഹപ്രവർത്തകരേയും ക്ഷണിക്കാൻ ഈ ഫോം ഉപയോഗിക്കുക."
 
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "ഇമെയിൽ വിലാസം"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-msgid "Addresses of friends to invite (one per line)."
-msgstr "ക്ഷണിക്കേണ്ട സുഹൃത്തുക്കളുടെ വിലാസം (ഒരു വരിയിൽ ഒന്നു വീതം)."
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "സ്വകാര്യ സന്ദേശം"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "ക്ഷണത്തിൽ താങ്കളുടെ സ്വന്തം സന്ദേശം കൂടി വേണമെങ്കിൽ കൂട്ടിച്ചേർക്കുക."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "അയക്കുക"
-
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
@@ -5542,7 +5520,6 @@ msgid "User is already silenced."
 msgstr "ഉപയോക്താവ് മുമ്പ് തന്നെ നിശബ്ദനാക്കപ്പെട്ടിരിക്കുന്നു."
 
 #. TRANS: Title for site administration panel.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Site"
 msgstr "സൈറ്റ്"
@@ -5574,13 +5551,11 @@ msgid "Dupe limit must be one or more seconds."
 msgstr ""
 
 #. TRANS: Fieldset legend on site settings panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "General"
 msgstr "സാർവത്രികം"
 
 #. TRANS: Field label on site settings panel.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Site name"
 msgstr "സൈറ്റിന്റെ പേര്‌"
@@ -5591,7 +5566,7 @@ msgstr ""
 
 #. TRANS: Field label on site settings panel.
 msgid "Brought by"
-msgstr ""
+msgstr "പ്രായോജകർ"
 
 #. TRANS: Field title on site settings panel.
 msgid "Text used for credits link in footer of each page."
@@ -5599,7 +5574,7 @@ msgstr ""
 
 #. TRANS: Field label on site settings panel.
 msgid "Brought by URL"
-msgstr ""
+msgstr "പ്രായോജകരുടെ യൂ.ആർ.എൽ."
 
 #. TRANS: Field title on site settings panel.
 msgid "URL used for credits link in footer of each page."
@@ -5637,7 +5612,6 @@ msgid "Site language when autodetection from browser settings is not available"
 msgstr ""
 
 #. TRANS: Fieldset legend on site settings panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Limits"
 msgstr "പരിധികൾ"
@@ -5662,7 +5636,7 @@ msgstr ""
 
 #. TRANS: Button title for saving site settings.
 msgid "Save site settings"
-msgstr "സൈറ്റ് സജ്ജീകരണങ്ങൾ ചേവ് ചെയ്യുക"
+msgstr "സൈറ്റ് സജ്ജീകരണങ്ങൾ സേവ് ചെയ്യുക"
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
 msgid "Site Notice"
@@ -5784,9 +5758,8 @@ msgid "That is the wrong confirmation number."
 msgstr "അത് തെറ്റായ സ്ഥിരീകരണ സംഖ്യയാണ്."
 
 #. TRANS: Server error thrown on database error canceling SMS phone number confirmation.
-#, fuzzy
 msgid "Could not delete SMS confirmation."
-msgstr "ഐ.എം. സ്ഥിരീകരണം നീക്കം ചെയ്യാൻ കഴിഞ്ഞില്ല."
+msgstr "എസ്.എം.എസ്. സ്ഥിരീകരണം നീക്കം ചെയ്യാൻ കഴിഞ്ഞില്ല."
 
 #. TRANS: Message given after successfully canceling SMS phone number confirmation.
 msgid "SMS confirmation cancelled."
@@ -6090,10 +6063,9 @@ msgid "List %s"
 msgstr "പരിധികൾ"
 
 #. TRANS: Title for list form when an error has occurred.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Error"
-msgstr "അജാക്സ് പിഴവ്"
+msgstr "പിഴവ്"
 
 #. TRANS: Header in list form.
 msgid "User profile"
@@ -6105,10 +6077,9 @@ msgid "List user"
 msgstr "പരിധികൾ"
 
 #. TRANS: Field label on list form.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Lists"
-msgstr "പരിധികൾ"
+msgstr "പട്ടികകൾ"
 
 #. TRANS: Field title on list form.
 msgid ""
@@ -6190,7 +6161,7 @@ msgstr "ഒന്നുമില്ല"
 
 #. TRANS: Default value for URL shortening settings.
 msgid "[internal]"
-msgstr ""
+msgstr "[ആഭ്യന്തരം]"
 
 #. TRANS: Label for dropdown with URL shortener services.
 msgid "Shorten URLs with"
@@ -8411,6 +8382,38 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "പുതിയ ഉപയോക്താക്കളെ ക്ഷണിക്കുക"
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "പുതിയ ഉപയോക്താക്കളെ ക്ഷണിക്കുക"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "ഇമെയിൽ വിലാസം"
+
+#. TRANS: Field title for a list of e-mail addresses.
+msgid "Addresses of friends to invite (one per line)."
+msgstr "ക്ഷണിക്കേണ്ട സുഹൃത്തുക്കളുടെ വിലാസം (ഒരു വരിയിൽ ഒന്നു വീതം)."
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "സ്വകാര്യ സന്ദേശം"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "ക്ഷണത്തിൽ താങ്കളുടെ സ്വന്തം സന്ദേശം കൂടി വേണമെങ്കിൽ കൂട്ടിച്ചേർക്കുക."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "അയക്കുക"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "ക്ഷണങ്ങൾ"
+
 #. TRANS: Button text for joining a group.
 #, fuzzy
 msgctxt "BUTTON"
@@ -8469,9 +8472,9 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
-msgstr ""
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
+msgstr "%1$s ഇപ്പോൾ %2$s എന്ന ഉപയോക്താവിനെ പിന്തുടരുന്നു."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -8926,10 +8929,6 @@ msgstr ""
 #. TRANS: Separator in profile addressees list.
 msgctxt "SEPARATOR"
 msgid ", "
-msgstr ""
-
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of north.
@@ -10005,9 +10004,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s ഒപ്പം സുഹൃത്തുക്കളും, താൾ %2$d"
-
-#~ msgid "You and friends"
-#~ msgstr "താങ്കളും സുഹൃത്തുക്കളും"

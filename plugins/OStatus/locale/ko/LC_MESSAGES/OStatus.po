@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:44+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:36+0000\n"
 "Language-Team: Korean <http://translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:48+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:45:05+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -56,8 +56,8 @@ msgstr "가져오기"
 msgid "Invalid URI."
 msgstr "잘못된 URI입니다."
 
-#. TRANS: Error message in OStatus plugin.
-#. TRANS: Error text.
+#. TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+#. TRANS: and example.net, as these are official standard domain names for use in examples.
 msgid ""
 "Sorry, we could not reach that address. Please make sure that the OStatus "
 "address is like nickname@example.com or http://example.net/nickname."
@@ -295,7 +295,7 @@ msgstr "프로필 계정"
 
 #. TRANS: Field title.
 #, fuzzy
-msgid "Your account id (i.e. user@identi.ca)."
+msgid "Your account id (for example user@identi.ca)."
 msgstr "내 계정 아이디 (예: user@identi.ca)"
 
 #. TRANS: Client error displayed when remote profile could not be looked up.
@@ -417,7 +417,8 @@ msgstr ""
 msgid "Join group"
 msgstr "그룹 가입"
 
-#. TRANS: Tooltip for field label "Join group".
+#. TRANS: Tooltip for field label "Join group". Do not translate the "example.net"
+#. TRANS: domain name in the URL, as it is an official standard domain name for examples.
 msgid "OStatus group's address, like http://example.net/group/nickname."
 msgstr "OStatus 그룹의 주소. http://example.net/group/nickname 형식."
 
@@ -919,30 +920,3 @@ msgstr "이 대상은 이벤트 태그 취소를 인식하지 못합니다."
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "알지 못하는 actor에서 salmon slap을 받았습니다."
-
-#~ msgctxt "TITLE"
-#~ msgid "Tag"
-#~ msgstr "태그"
-
-#~ msgctxt "TITLE"
-#~ msgid "Untag"
-#~ msgstr "태그 해제"
-
-#~ msgid "Disfavor"
-#~ msgstr "좋아함 취소"
-
-#~ msgid "%1$s marked notice %2$s as no longer a favorite."
-#~ msgstr "%1$s님이 표시한 %2$s 글이 이제 좋아하는 글이 아닙니다."
-
-#~ msgid ""
-#~ "OStatus user's address, like nickname@example.com or http://example.net/"
-#~ "nickname"
-#~ msgstr ""
-#~ "OStatus 사용자의 주소. nickname@example.com 또는 http://example.net/"
-#~ "nickname 형식"
-
-#~ msgid "Continue"
-#~ msgstr "계속"
-
-#~ msgid "Could not remove remote user %1$s from list %2$s."
-#~ msgstr "%2$s 리스트에서 %1$s 원격 사용자를 제거할 수 없습니다."

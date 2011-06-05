@@ -3,6 +3,7 @@
 #
 # Author: Milocasagrande
 # Author: Od1n
+# Author: Rippitippi
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -10,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:48:33+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:13:39+0000\n"
 "Language-Team: Italian <http://translatewiki.net/wiki/Portal:it>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:25:53+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:43:00+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: it\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
@@ -27,7 +28,6 @@ msgid "AdSense configuration"
 msgstr "Configurazione AdSene"
 
 #. TRANS: Menu item for site administration
-#, fuzzy
 msgctxt "MENU"
 msgid "AdSense"
 msgstr "AdSense"
@@ -50,16 +50,14 @@ msgid "Client ID"
 msgstr "ID client"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Google client ID."
-msgstr "ID client Google"
+msgstr "Codice utente Google"
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Ad script URL"
 msgstr "URL script Ad"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Script URL (advanced)."
 msgstr "URL script (avanzato)"
 
@@ -68,7 +66,6 @@ msgid "Medium rectangle"
 msgstr "Rettangolo medio"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Medium rectangle slot code."
 msgstr "Rettangolo medio"
 
@@ -83,7 +80,7 @@ msgstr "Rettangolo"
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Leaderboard"
-msgstr ""
+msgstr "Classifica"
 
 #. TRANS: Field title in AdSense administration panel.
 msgid "Leaderboard slot code."

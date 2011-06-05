@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:02+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:14:07+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 11:55:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:44:38+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
@@ -87,7 +87,6 @@ msgid "Group directory - %1$s, page %2$d"
 msgstr "Gruppenverzeichnis – %1$s, Seite %2$d"
 
 #. TRANS: Page instructions.
-#, fuzzy
 msgid ""
 "After you join a group you can send messages to all other members\n"
 "using the syntax \"!groupname\".\n"
@@ -101,7 +100,7 @@ msgstr ""
 "Durchstöbere Gruppen oder suche nach Gruppen über ihren Namen, Standort oder "
 "ihr Thema.\n"
 "Trenne die Suchbegriffe mit Leerzeichen, sie müssen mindestens 3 Zeichen "
-"lang sein.\n"
+"lang sein."
 
 #. TRANS: Link to create a new group on the group list page.
 msgid "Create a new group"
@@ -149,6 +148,14 @@ msgstr "Benutzername"
 #. TRANS: Column header in table for timestamp when user was created.
 msgid "Created"
 msgstr "Erstellt"
+
+#. TRANS: Column header for number of subscriptions.
+msgid "Subscriptions"
+msgstr ""
+
+#. TRANS: Column header for number of notices.
+msgid "Notices"
+msgstr ""
 
 #. TRANS: Column header in table for members of a group.
 msgid "Members"

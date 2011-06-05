@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:03+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:14:07+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 11:55:22+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:44:38+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
@@ -88,7 +88,6 @@ msgid "Group directory - %1$s, page %2$d"
 msgstr "Каталог спільноти — %1$s, сторінка %2$d"
 
 #. TRANS: Page instructions.
-#, fuzzy
 msgid ""
 "After you join a group you can send messages to all other members\n"
 "using the syntax \"!groupname\".\n"
@@ -102,7 +101,7 @@ msgstr ""
 "\n"
 "Огляньте або розшукайте інші спільноти за їхніми назвами, розташуванням або "
 "темою. Відокремлюйте пошукові запити пробілами; пошуковий запит має "
-"становити щонайменше три символи.\n"
+"становити щонайменше три символи."
 
 #. TRANS: Link to create a new group on the group list page.
 msgid "Create a new group"
@@ -150,6 +149,14 @@ msgstr "Псевдонім"
 #. TRANS: Column header in table for timestamp when user was created.
 msgid "Created"
 msgstr "Створено"
+
+#. TRANS: Column header for number of subscriptions.
+msgid "Subscriptions"
+msgstr ""
+
+#. TRANS: Column header for number of notices.
+msgid "Notices"
+msgstr ""
 
 #. TRANS: Column header in table for members of a group.
 msgid "Members"

@@ -11,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - MobileProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:07+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:06+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:27+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:36:37+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-mobileprofile\n"
@@ -27,53 +27,6 @@ msgstr ""
 msgid "This page is not available in a media type you accept."
 msgstr ""
 "Cette page n’est pas disponible dans un des types de média que vous acceptez."
-
-#. TRANS: Menu item in mobile profile to go to start page of site.
-msgid "Home"
-msgstr "Accueil"
-
-#. TRANS: Menu item in mobile profile to go to user account settings.
-msgid "Account"
-msgstr "Compte"
-
-#. TRANS: Menu item in mobile profile to connect to other services.
-msgid "Connect"
-msgstr "Connexion"
-
-#. TRANS: Menu item in mobile profile to manage site settings.
-msgid "Admin"
-msgstr "Administrateur"
-
-msgid "Change site configuration"
-msgstr "Modifier la configuration du site"
-
-#. TRANS: Menu item in mobile profile to invite other people.
-msgid "Invite"
-msgstr "Inviter"
-
-#. TRANS: Menu item in mobile profile log the current user off.
-msgid "Logout"
-msgstr "Déconnexion"
-
-#. TRANS: Menu item in mobile profile to register with the site.
-msgid "Register"
-msgstr "S’inscrire"
-
-#. TRANS: Menu item in mobile profile to log in.
-msgid "Login"
-msgstr "Connexion"
-
-#. TRANS: Menu item in mobile profile to search the site.
-msgid "Search"
-msgstr "Rechercher"
-
-#. TRANS: Field label in mobile profile to attach a file to a status.
-msgid "Attach"
-msgstr "Joindre"
-
-#. TRANS: Field title in mobile profile to attach a file to a status.
-msgid "Attach a file."
-msgstr "Joindre un fichier."
 
 #. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
 msgid "Switch to desktop site layout."
@@ -86,3 +39,39 @@ msgstr "Passer à la disposition du site mobile."
 #. TRANS: Plugin description.
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr "Sortie XHTML MobileProfile pour les navigateurs compatibles."
+
+#~ msgid "Home"
+#~ msgstr "Accueil"
+
+#~ msgid "Account"
+#~ msgstr "Compte"
+
+#~ msgid "Connect"
+#~ msgstr "Connexion"
+
+#~ msgid "Admin"
+#~ msgstr "Administrateur"
+
+#~ msgid "Change site configuration"
+#~ msgstr "Modifier la configuration du site"
+
+#~ msgid "Invite"
+#~ msgstr "Inviter"
+
+#~ msgid "Logout"
+#~ msgstr "Déconnexion"
+
+#~ msgid "Register"
+#~ msgstr "S’inscrire"
+
+#~ msgid "Login"
+#~ msgstr "Connexion"
+
+#~ msgid "Search"
+#~ msgstr "Rechercher"
+
+#~ msgid "Attach"
+#~ msgstr "Joindre"
+
+#~ msgid "Attach a file."
+#~ msgstr "Joindre un fichier."

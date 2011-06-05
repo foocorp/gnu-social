@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:50:44+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:36+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:28:48+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:45:05+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -57,8 +57,8 @@ msgstr "Ophalen"
 msgid "Invalid URI."
 msgstr "Ongeldige URI."
 
-#. TRANS: Error message in OStatus plugin.
-#. TRANS: Error text.
+#. TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
+#. TRANS: and example.net, as these are official standard domain names for use in examples.
 msgid ""
 "Sorry, we could not reach that address. Please make sure that the OStatus "
 "address is like nickname@example.com or http://example.net/nickname."
@@ -127,9 +127,9 @@ msgstr "Op lijst abonneren"
 
 #. TRANS: Success message for remote list follow through OStatus.
 #. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s is now following people listed in %2$s by %3$s."
-msgstr "%1$s volgt niet langer de lijst %2$s van %3$s."
+msgstr "%1$s volgt niet langer de mensen in de lijst %2$s van %3$s."
 
 #. TRANS: Exception thrown when subscription to remote list fails.
 msgid "Failed subscribing to remote list."
@@ -148,7 +148,7 @@ msgstr "%1$s volgt niet langer de lijst %2$s van %3$s."
 #. TRANS: Title for listing a remote profile.
 msgctxt "TITLE"
 msgid "List"
-msgstr ""
+msgstr "Opnemen in lijst"
 
 #. TRANS: Success message for remote list addition through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the added list member, %3$s is the list name.
@@ -157,35 +157,34 @@ msgid "%1$s listed %2$s in the list %3$s."
 msgstr "%1$s heeft %2$s in de lijst %3$s geplaatst."
 
 #. TRANS: Exception thrown when subscribing to a remote list fails.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Could not complete subscription to remote profile's feed. List %s could not "
 "be saved."
 msgstr ""
-"Het was niet mogelijk te abonneren op de feed van het externe profiel. Het "
-"label %s kon niet opgeslagen worden."
+"Het was niet mogelijk te abonneren op de feed van het externe profiel. De "
+"lijst %s kon niet opgeslagen worden."
 
 #. TRANS: Title for unlisting a remote profile.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Unlist"
-msgstr "Lijst niet langer volgen"
+msgstr "Verwijderen uit lijst"
 
 #. TRANS: Success message for remote list removal through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the removed list member, %3$s is the list name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s removed %2$s from the list %3$s."
-msgstr "%1$s heeft %2$s in de lijst %3$s geplaatst."
+msgstr "%1$s heeft %2$s uit de lijst %3$s verwijderd."
 
 #. TRANS: Title for unliking a remote notice.
 msgid "Unlike"
-msgstr ""
+msgstr "Niet langer leuk"
 
 #. TRANS: Success message for remove a favorite notice through OStatus.
 #. TRANS: %1$s is the unfavoring user's name, %2$s is URI to the no longer favored notice.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s no longer likes %2$s."
-msgstr "%1$s volgt %2$s niet langer."
+msgstr "%1$s vindt %2$s niet langer leuk."
 
 #. TRANS: Link text for link to remote subscribe.
 msgid "Remote"
@@ -281,7 +280,6 @@ msgid "Tag %s"
 msgstr "Labelen als %s"
 
 #. TRANS: Button text to tag a remote object.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Go"
 msgstr "OK"
@@ -291,7 +289,6 @@ msgid "User nickname"
 msgstr "Gebruikersnaam"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Nickname of the user you want to tag."
 msgstr "Naam van de gebruiker die u wilt labelen."
 
@@ -301,8 +298,8 @@ msgstr "Gebruikersprofiel"
 
 #. TRANS: Field title.
 #, fuzzy
-msgid "Your account id (i.e. user@identi.ca)."
-msgstr "Uw gebruikers-ID (bv. gebruiker@identi.ca)"
+msgid "Your account id (for example user@identi.ca)."
+msgstr "Uw gebruikers-ID (bijvoorbeeld \"gebruiker@identi.ca\")."
 
 #. TRANS: Client error displayed when remote profile could not be looked up.
 #. TRANS: Client error.
@@ -425,7 +422,8 @@ msgstr ""
 msgid "Join group"
 msgstr "Lid worden van groep"
 
-#. TRANS: Tooltip for field label "Join group".
+#. TRANS: Tooltip for field label "Join group". Do not translate the "example.net"
+#. TRANS: domain name in the URL, as it is an official standard domain name for examples.
 msgid "OStatus group's address, like http://example.net/group/nickname."
 msgstr ""
 "Het adres voor de OStatusgroep. Bijvoorbeeld; http://example.net/group/"
@@ -478,11 +476,11 @@ msgstr ""
 
 #. TRANS: Client exception.
 msgid "To the attention of user(s), not including this one."
-msgstr ""
+msgstr "Gericht aan gebruiker(s), deze uitgezonderd."
 
 #. TRANS: Client exception.
 msgid "Not to anyone in reply to anything."
-msgstr ""
+msgstr "Niet aan iemand als antwoord op iets."
 
 #. TRANS: Client exception.
 msgid "This is already a favorite."
@@ -498,31 +496,31 @@ msgstr "De mededeling is niet op de favorietenlijst geplaatst!"
 
 #. TRANS: Client exception.
 msgid "Not a person object."
-msgstr ""
+msgstr "Geen persoonsobject."
 
 #. TRANS: Client exception.
 msgid "Unidentified profile being tagged."
-msgstr ""
+msgstr "Er wordt een niet-geïdentificeerd profiel gelabeld."
 
 #. TRANS: Client exception.
 msgid "This user is not the one being tagged."
-msgstr ""
+msgstr "Dit is niet de gebruiker die wordt gelabeld."
 
 #. TRANS: Client exception.
 msgid "The tag could not be saved."
-msgstr ""
+msgstr "Het label kon niet worden opgeslagen."
 
 #. TRANS: Client exception.
 msgid "Unidentified profile being untagged."
-msgstr ""
+msgstr "Er wordt een label van een niet-geïdentificeerd profiel verwijderd."
 
 #. TRANS: Client exception.
 msgid "This user is not the one being untagged."
-msgstr ""
+msgstr "Dit is niet de gebruiker waarvan een label wordt verwijderd."
 
 #. TRANS: Client exception.
 msgid "The tag could not be deleted."
-msgstr ""
+msgstr "Het label kon niet worden verwijderd."
 
 #. TRANS: Client exception.
 msgid "Cannot favorite/unfavorite without an object."
@@ -549,7 +547,6 @@ msgid "Subscribe to list"
 msgstr "Abonneren op lijst"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Address of the OStatus list, like http://example.net/user/all/tag."
 msgstr ""
 "Het adres voor de OStatus-lijst, bijvoorbeeld http://example.net/user/all/"
@@ -564,7 +561,6 @@ msgid "Confirm subscription to remote list"
 msgstr "Abonnement op externe lijst bevestigen"
 
 #. TRANS: Instructions for OStatus list subscription form.
-#, fuzzy
 msgid ""
 "You can subscribe to lists from other supported sites. Paste the list's URI "
 "below:"
@@ -623,10 +619,8 @@ msgstr ""
 "geaccepteerd."
 
 #. TRANS: Client error displayed when referring to a non-existing remote list.
-#, fuzzy
 msgid "Cannot read profile to set up list subscription."
-msgstr ""
-"Het profiel om te abonneren op een persoonslabel kon niet gelezen worden."
+msgstr "Het profiel om te abonneren op een lijst kon niet gelezen worden."
 
 #. TRANS: Client error displayed when trying to subscribe a group to a list.
 #. TRANS: Client error displayed when trying to unsubscribe a group from a list.
@@ -642,18 +636,18 @@ msgstr ""
 "2$s."
 
 #. TRANS: Client error displayed when trying to unsubscribe from non-existing list.
-#, fuzzy
 msgid "Cannot read profile to cancel list subscription."
 msgstr ""
-"Het profiel om het lijstlidmaatschap te annuleren kon niet gelezen worden."
+"Het profiel om het abonnement op een lijst op te zeggen kon niet gelezen "
+"worden."
 
 #. TRANS: Client error displayed when trying to unsubscribe a remote user from a list fails.
 #. TRANS: %1$s is a profile URL, %2$s is a list name.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not unsubscribe remote user %1$s from list %2$s."
 msgstr ""
-"Het was niet mogelijk om de externe gebruiker %1$s te abonneren op de lijst %"
-"2$s."
+"Het was niet mogelijk om het abonnement op de lijst %2$s voor de de externe "
+"gebruiker %1$s op te zeggen."
 
 #. TRANS: Client error.
 msgid "You can use the local subscription!"
@@ -729,13 +723,14 @@ msgstr ""
 "Aan het proberen een PuSH-abonnement te verwijderen voor een feed zonder hub."
 
 #. TRANS: Server exception. %s is a URI
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid ostatus_profile state: Two or more IDs set for %s."
 msgstr ""
-"Ongeldige OStatus-profielstatus: er zijn twee of meer ID's ingesteld voor %s."
+"Ongeldige ostatus_profile-status: er zijn twee of meer ID's ingesteld voor %"
+"s."
 
 #. TRANS: Server exception. %s is a URI
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid ostatus_profile state: All IDs empty for %s."
 msgstr "Ongeldige ostatus_profile status: alle ID's zijn leeg voor %s."
 
@@ -957,32 +952,3 @@ msgstr "Deze bestemming begrijpt evenementen ontlabelen niet."
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "Er is een Salmonslap ontvangen van een niet-geïdentificeerde actor."
-
-#~ msgctxt "TITLE"
-#~ msgid "Tag"
-#~ msgstr "Label"
-
-#~ msgctxt "TITLE"
-#~ msgid "Untag"
-#~ msgstr "Label verwijderen"
-
-#~ msgid "Disfavor"
-#~ msgstr "Uit favorieten verwijderen"
-
-#~ msgid "%1$s marked notice %2$s as no longer a favorite."
-#~ msgstr "%1$s heeft de mededeling %2$s als favoriet verwijderd."
-
-#~ msgid ""
-#~ "OStatus user's address, like nickname@example.com or http://example.net/"
-#~ "nickname"
-#~ msgstr ""
-#~ "Het OStatusadres van de gebruiker. Bijvoorbeeld nickname@example.com of "
-#~ "http://example.net/nickname"
-
-#~ msgid "Continue"
-#~ msgstr "Doorgaan"
-
-#~ msgid "Could not remove remote user %1$s from list %2$s."
-#~ msgstr ""
-#~ "!Het was niet mogelijk de externe gebruiker %1$s uit de lijst %2$s te "
-#~ "verwijderen."

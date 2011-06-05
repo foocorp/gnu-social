@@ -1,6 +1,7 @@
 # Translation of StatusNet - GeoURL to Hebrew (עברית)
 # Exported from translatewiki.net
 #
+# Author: Amire80
 # Author: YaronSh
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GeoURL\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:36+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:14:38+0000\n"
 "Language-Team: Hebrew <http://translatewiki.net/wiki/Portal:he>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-04-16 23:17:46+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: he\n"
 "X-Message-Group: #out-statusnet-plugin-geourl\n"
@@ -26,5 +27,5 @@ msgid ""
 "Ping <a href=\"http://geourl.org/\">GeoURL</a> when new geolocation-enhanced "
 "notices are posted."
 msgstr ""
-"שליחת פינג ל־<a href=\"http://geourl.org/\">GeoURL</a> כאשר מפורסמות התרעות "
-"המועשרות בנתוני מיקום גאוגרפי."
+"שליחת פינג ל־<a href=\"http://geourl.org/\">GeoURL</a> כאשר מפורסמים עדכונים "
+"מועשרים בנתוני מיקום גאוגרפי."

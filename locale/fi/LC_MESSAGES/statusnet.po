@@ -6,6 +6,7 @@
 # Author: Josutus
 # Author: McDutchie
 # Author: Nike
+# Author: Silvonen
 # Author: Str4nd
 # Author: Wwwwolf
 # Author: XTL
@@ -16,17 +17,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:03+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:55+0000\n"
 "Language-Team: Finnish <http://translatewiki.net/wiki/Portal:fi>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fi\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -776,7 +777,7 @@ msgstr "Et voi päivittää luetteloita, joita et omista."
 #. TRANS: Client error displayed when an unknown error occurs in the list subscribers action.
 #. TRANS: Client error displayed when an unknown error occurs unsubscribing from a list.
 msgid "An error occured."
-msgstr ""
+msgstr "Tapahtui virhe."
 
 #. TRANS: Client error displayed when trying to delete another user's list.
 msgid "You cannot delete lists that do not belong to you."
@@ -1357,7 +1358,7 @@ msgstr "Tämä päivitys on jo suosikkina."
 
 #. TRANS: Title for group membership feed.
 #. TRANS: %s is a username.
-#, fuzzy, php-format
+#, php-format
 msgid "Group memberships of %s"
 msgstr "Käyttäjän %s ryhmäjäsenyydet"
 
@@ -3099,29 +3100,6 @@ msgstr ""
 "Käytä tätä lomaketta, jos haluat kutsua kavereita ja työkavereita käyttämään "
 "tätä palvelua."
 
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "Sähköpostiosoitteet"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-#, fuzzy
-msgid "Addresses of friends to invite (one per line)."
-msgstr "Kutsuttavien kavereiden osoitteet (yksi per rivi)"
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "Henkilökohtainen viesti"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "Voit myös lisätä oman viestisi kutsuun"
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "Lähetä"
-
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
@@ -3134,10 +3112,10 @@ msgid "You must be logged in to join a group."
 msgstr "Sinun pitää olla kirjautunut sisään, jos haluat liittyä ryhmään."
 
 #. TRANS: Title for join group page after joining.
-#, fuzzy, php-format
+#, php-format
 msgctxt "TITLE"
 msgid "%1$s joined group %2$s"
-msgstr "%s liittyi ryhmään %s"
+msgstr "%1$s liittyi ryhmään %2$s"
 
 #. TRANS: Exception thrown when there is an unknown error joining a group.
 #, fuzzy
@@ -3172,7 +3150,7 @@ msgstr ""
 
 #. TRANS: Client error displayed selecting a too long license title in the license admin panel.
 msgid "Invalid license title. Maximum length is 255 characters."
-msgstr "Lisenssin nimi on liian pitkä. Maksimipituus 255 merkkiä."
+msgstr "Lisenssin nimi on liian pitkä. Enimmäispituus on 255 merkkiä."
 
 #. TRANS: Client error displayed specifying an invalid license URL in the license admin panel.
 msgid "Invalid license URL."
@@ -3531,12 +3509,12 @@ msgstr "OAuth-sovellukset"
 
 #. TRANS: Page instructions for OAuth applications
 msgid "Applications you have registered"
-msgstr ""
+msgstr "Rekisteröimäsi sovellukset"
 
 #. TRANS: Empty list message on page with OAuth applications.
 #, php-format
 msgid "You have not registered any applications yet."
-msgstr ""
+msgstr "Et ole vielä rekisteröinyt sovelluksia."
 
 #. TRANS: Title for OAuth connection settings.
 msgid "Connected applications"
@@ -3799,9 +3777,8 @@ msgid "Site"
 msgstr "Kutsu"
 
 #. TRANS: Field label in Paths admin panel.
-#, fuzzy
 msgid "Server"
-msgstr "Palauta"
+msgstr "Palvelin"
 
 #. TRANS: Field title in Paths admin panel.
 msgid "Site's server hostname."
@@ -3837,7 +3814,7 @@ msgstr ""
 #. TRANS: Fieldset legend in Paths admin panel.
 msgctxt "LEGEND"
 msgid "Theme"
-msgstr ""
+msgstr "Ulkoasu"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #, fuzzy
@@ -3961,10 +3938,9 @@ msgid "Directory where attachments are located."
 msgstr ""
 
 #. TRANS: Fieldset legend in Paths admin panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "SSL"
-msgstr "SMS"
+msgstr "SSL"
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
 #. TRANS: Option in dropdown for snapshot method in admin panel for snapshots.
@@ -3978,9 +3954,8 @@ msgid "Sometimes"
 msgstr "Päivitykset"
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
-#, fuzzy
 msgid "Always"
-msgstr "Aliakset"
+msgstr "Aina"
 
 #. TRANS: Drop down label in Paths admin panel.
 msgid "Use SSL"
@@ -4290,10 +4265,9 @@ msgid "Unidentified field %s."
 msgstr ""
 
 #. TRANS: Page title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Search results"
-msgstr "Haku"
+msgstr "Hakutulokset"
 
 #. TRANS: Error message in case a search is shorter than three characters.
 msgid "The search string must be at least 3 characters long."
@@ -4460,7 +4434,6 @@ msgid "Timezone not selected."
 msgstr "Aikavyöhykettä ei ole valittu."
 
 #. TRANS: Validation error in form for profile settings.
-#, fuzzy
 msgid "Language is too long (maximum 50 characters)."
 msgstr "Kieli on liian pitkä (enintään 50 merkkiä)."
 
@@ -4853,13 +4826,11 @@ msgid ""
 msgstr ""
 
 #. TRANS: Field label on account registration page. In this field the password has to be entered a second time.
-#, fuzzy
 msgctxt "PASSWORD"
 msgid "Confirm"
 msgstr "Vahvista"
 
 #. TRANS: Field label on account registration page.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Email"
 msgstr "Sähköposti"
@@ -4900,7 +4871,7 @@ msgstr ""
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved.
 msgid "All rights reserved."
-msgstr ""
+msgstr "Kaikki oikeudet pidätetään."
 
 #. TRANS: Copyright checkbox label in registration dialog, for Creative Commons-style licenses.
 #, fuzzy, php-format
@@ -4998,7 +4969,6 @@ msgstr "Profiilisi URL-osoite toisessa yhteensopivassa mikroblogauspalvelussa"
 #. TRANS: Link text for link that will subscribe to a remote profile.
 #. TRANS: Button text to subscribe to a user.
 #. TRANS: Button text for subscribing to a list.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr "Tilaa"
@@ -5172,11 +5142,11 @@ msgstr ""
 
 #. TRANS: Client exception thrown when a temporary folder is not present to store a file upload.
 msgid "Missing a temporary folder."
-msgstr ""
+msgstr "Väliaikaiskansio puuttuu."
 
 #. TRANS: Client exception thrown when writing to disk is not possible during a file upload operation.
 msgid "Failed to write file to disk."
-msgstr ""
+msgstr "Tiedoston kirjoittaminen levylle epäonnistui."
 
 #. TRANS: Client exception thrown when a file upload operation has been stopped by an extension.
 msgid "File upload stopped by extension."
@@ -5319,7 +5289,7 @@ msgstr ""
 #. TRANS: Link text to edit application on the OAuth application page.
 msgctxt "EDITAPP"
 msgid "Edit"
-msgstr ""
+msgstr "Muokkaa"
 
 #. TRANS: Button text on the OAuth application page.
 #. TRANS: Resets the OAuth consumer key and secret.
@@ -5597,7 +5567,7 @@ msgstr "Lisenssi"
 #. TRANS: Link for more "People in list x by a user"
 #. TRANS: if there are more than the mini list's maximum.
 msgid "Show all"
-msgstr ""
+msgstr "Näytä kaikki"
 
 #. TRANS: Header for tag subscribers.
 #. TRANS: Link description for link to list of users subscribed to a tag.
@@ -5903,7 +5873,6 @@ msgid "Enter the code you received on your phone."
 msgstr "Syötä koodi jonka sait puhelimeesi."
 
 #. TRANS: Button label to confirm SMS confirmation code in SMS settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Confirm"
 msgstr "Vahvista"
@@ -6272,10 +6241,9 @@ msgid "List %s"
 msgstr "Linkit"
 
 #. TRANS: Title for list form when an error has occurred.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Error"
-msgstr "Ajax-virhe"
+msgstr "Virhe"
 
 #. TRANS: Header in list form.
 msgid "User profile"
@@ -6426,7 +6394,6 @@ msgid "Error saving user URL shortening preferences."
 msgstr ""
 
 #. TRANS: User admin panel title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "User"
 msgstr "Käyttäjä"
@@ -6526,7 +6493,6 @@ msgstr ""
 #. TRANS: Button text on Authorise Subscription page.
 #. TRANS: Submit button text to accept a group membership request on approve group form.
 #. TRANS: Submit button text to accept a subscription request on approve sub form.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Accept"
 msgstr "Hyväksy"
@@ -6540,15 +6506,13 @@ msgstr "Tilaa tämä käyttäjä"
 #. TRANS: Button text on Authorise Subscription page.
 #. TRANS: Submit button text to reject a group membership request on approve group form.
 #. TRANS: Submit button text to reject a subscription request on approve sub form.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Reject"
 msgstr "Hylkää"
 
 #. TRANS: Title for button on Authorise Subscription page.
-#, fuzzy
 msgid "Reject this subscription."
-msgstr "Käyttäjän %s tilaukset"
+msgstr "Hylkää tämä tilaus."
 
 #. TRANS: Client error displayed for an empty authorisation request.
 msgid "No authorization request!"
@@ -6690,9 +6654,9 @@ msgid "Updates from %1$s on %2$s!"
 msgstr "Käyttäjän %1$s päivitykset palvelussa %2$s!"
 
 #. TRANS: Title for version page. %s is the StatusNet version.
-#, fuzzy, php-format
+#, php-format
 msgid "StatusNet %s"
-msgstr "Tilastot"
+msgstr "StatusNet %s"
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
@@ -6756,7 +6720,6 @@ msgid "Author(s)"
 msgstr ""
 
 #. TRANS: Column header for plugins table on version page.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Description"
 msgstr "Kuvaus"
@@ -6970,7 +6933,7 @@ msgstr "RT @%1$s %2$s"
 
 #. TRANS: Full name of a profile or group (%1$s) followed by nickname (%2$s) in parentheses.
 #. TRANS: Full name of a profile or group followed by nickname in parens
-#, fuzzy, php-format
+#, php-format
 msgctxt "FANCYNAME"
 msgid "%1$s (%2$s)"
 msgstr "%1$s (%2$s)"
@@ -7082,10 +7045,9 @@ msgid "Could not delete subscription."
 msgstr "Tilausta ei onnistuttu tallentamaan."
 
 #. TRANS: Activity title when subscribing to another person.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Follow"
-msgstr "Salli"
+msgstr "Seuraa"
 
 #. TRANS: Notification given when one person starts following another.
 #. TRANS: %1$s is the subscriber, %2$s is the subscribed.
@@ -7163,7 +7125,7 @@ msgstr "Profiiliasetukset"
 #. TRANS: Link text for link on user profile.
 msgctxt "BUTTON"
 msgid "Edit"
-msgstr ""
+msgstr "Muokkaa"
 
 #. TRANS: Link title for link on user profile.
 #, fuzzy
@@ -7211,15 +7173,14 @@ msgid "Show more"
 msgstr ""
 
 #. TRANS: Inline reply form submit button: submits a reply comment.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Reply"
-msgstr "Vastaus"
+msgstr "Vastaa"
 
 #. TRANS: Placeholder text for inline reply form. Clicking in this box will turn it into a mini notice form.
 #. TRANS: Field label for reply mini form.
 msgid "Write a reply..."
-msgstr ""
+msgstr "Kirjoita vastaus..."
 
 #. TRANS: Tab on the notice form.
 #, fuzzy
@@ -7322,9 +7283,8 @@ msgid "Remote profile is not a group!"
 msgstr ""
 
 #. TRANS: Client exception thrown when trying to join a group the importing user is already a member of.
-#, fuzzy
 msgid "User is already a member of this group."
-msgstr "Sinä kuulut jo tähän ryhmään."
+msgstr "Käyttäjä on jo tämän ryhmän jäsen."
 
 #. TRANS: Client exception thrown when trying to import a notice by another user.
 #. TRANS: %1$s is the source URI of the notice, %2$s is the URI of the author.
@@ -7590,11 +7550,11 @@ msgstr ""
 
 #. TRANS: Form input field label for application icon.
 msgid "Icon"
-msgstr ""
+msgstr "Kuvake"
 
 #. TRANS: Form guide.
 msgid "Icon for this application"
-msgstr ""
+msgstr "Tämän sovelluksen kuvake"
 
 #. TRANS: Form input field label for application name.
 #, fuzzy
@@ -7650,7 +7610,7 @@ msgstr ""
 
 #. TRANS: Radio button label for application type
 msgid "Browser"
-msgstr ""
+msgstr "Selain"
 
 #. TRANS: Radio button label for application type
 msgid "Desktop"
@@ -8080,9 +8040,8 @@ msgstr[1] "Toista ei voitu asettaa tilaamaan sinua."
 
 #. TRANS: Text shown after requesting groups a user is subscribed to without having
 #. TRANS: any group subscriptions.
-#, fuzzy
 msgid "You are not a member of any groups."
-msgstr "Sinä et kuulu tähän ryhmään."
+msgstr "Et kuulu mihinkään ryhmään."
 
 #. TRANS: Text shown after requesting groups a user is subscribed to.
 #. TRANS: This message supports plural forms. This message is followed by a
@@ -8209,10 +8168,9 @@ msgid "reply to the last notice from user"
 msgstr "Vastaa tähän päivitykseen"
 
 #. TRANS: Help message for IM/SMS command "join <group>".
-#, fuzzy
 msgctxt "COMMANDHELP"
 msgid "join group"
-msgstr "Tuntematon ryhmä."
+msgstr "liity ryhmään"
 
 #. TRANS: Help message for IM/SMS command "login".
 msgctxt "COMMANDHELP"
@@ -8220,10 +8178,9 @@ msgid "Get a link to login to the web interface"
 msgstr ""
 
 #. TRANS: Help message for IM/SMS command "drop <group>".
-#, fuzzy
 msgctxt "COMMANDHELP"
 msgid "leave group"
-msgstr "Poista ryhmä"
+msgstr "eroa ryhmästä"
 
 #. TRANS: Help message for IM/SMS command "stats".
 msgctxt "COMMANDHELP"
@@ -8305,7 +8262,6 @@ msgstr "Julkinen"
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
 #. TRANS: Menu item in local navigation menu.
-#, fuzzy
 msgctxt "MENU"
 msgid "Groups"
 msgstr "Ryhmät"
@@ -8379,7 +8335,6 @@ msgid "Disfavor this notice"
 msgstr "Poista tämä päivitys suosikeista"
 
 #. TRANS: Button text for removing the favourite status for a favourite notice.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "Poista suosikeista"
@@ -8390,7 +8345,6 @@ msgid "Favor this notice"
 msgstr "Merkitse päivitys suosikkeihin"
 
 #. TRANS: Button text for adding the favourite status to a notice.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "Lisää suosikiksi"
@@ -8510,14 +8464,14 @@ msgstr "Ylläpito"
 #. TRANS: Menu item in the group navigation page.
 msgctxt "MENU"
 msgid "Group"
-msgstr ""
+msgstr "Ryhmä"
 
 #. TRANS: Tooltip for menu item in the group navigation page.
 #. TRANS: %s is the nickname of the group.
 #, php-format
 msgctxt "TOOLTIP"
 msgid "%s group"
-msgstr ""
+msgstr "Ryhmä %s"
 
 #. TRANS: Menu item in the group navigation page.
 msgctxt "MENU"
@@ -8529,7 +8483,7 @@ msgstr ""
 #, php-format
 msgctxt "TOOLTIP"
 msgid "%s group members"
-msgstr ""
+msgstr "Ryhmän %s jäsenet"
 
 #. TRANS: Menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %d is the number of pending members.
@@ -8542,10 +8496,10 @@ msgstr[1] ""
 
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %s is the nickname of the group.
-#, fuzzy, php-format
+#, php-format
 msgctxt "TOOLTIP"
 msgid "%s pending members"
-msgstr "Ryhmän %s jäsenet"
+msgstr "Ryhmän %s jäsenyyttä hakeneet"
 
 #. TRANS: Menu item in the group navigation page. Only shown for group administrators.
 msgctxt "MENU"
@@ -8557,7 +8511,7 @@ msgstr ""
 #, php-format
 msgctxt "TOOLTIP"
 msgid "%s blocked users"
-msgstr ""
+msgstr "Ryhmän %s estetyt käyttäjät"
 
 #. TRANS: Menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: Menu item in primary navigation panel.
@@ -8571,7 +8525,7 @@ msgstr "Ylläpito"
 #, php-format
 msgctxt "TOOLTIP"
 msgid "Edit %s group properties"
-msgstr ""
+msgstr "Muokkaa ryhmän %s ominaisuuksia"
 
 #. TRANS: Menu item in the group navigation page. Only shown for group administrators.
 msgctxt "MENU"
@@ -8597,14 +8551,12 @@ msgid "Group actions"
 msgstr "Ryhmän toiminnot"
 
 #. TRANS: Title for groups with the most members section.
-#, fuzzy
 msgid "Popular groups"
-msgstr "Suosituimmat päivitykset"
+msgstr "Suositut ryhmät"
 
 #. TRANS: Title for groups with the most posts section.
-#, fuzzy
 msgid "Active groups"
-msgstr "Kaikki ryhmät"
+msgstr "Aktiiviset ryhmät"
 
 #. TRANS: Title for group tag cloud section.
 #. TRANS: %s is a group name.
@@ -8701,14 +8653,45 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "Kutsu uusia käyttäjiä"
 
-#. TRANS: Button text for joining a group.
+#. TRANS: Form legend.
 #, fuzzy
+msgid "Invite collegues"
+msgstr "Kutsu uusia käyttäjiä"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "Sähköpostiosoitteet"
+
+#. TRANS: Field title for a list of e-mail addresses.
+#, fuzzy
+msgid "Addresses of friends to invite (one per line)."
+msgstr "Kutsuttavien kavereiden osoitteet (yksi per rivi)"
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Henkilökohtainen viesti"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "Voit myös lisätä oman viestisi kutsuun"
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Lähetä"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "Kutsu(t) lähetettiin"
+
+#. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
 msgid "Join"
 msgstr "Liity"
 
 #. TRANS: Button text on form to leave a group.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Eroa"
@@ -8725,7 +8708,6 @@ msgid "Login with a username and password"
 msgstr "Kirjaudu sisään käyttäjätunnuksella ja salasanalla"
 
 #. TRANS: Menu item for registering with the StatusNet site.
-#, fuzzy
 msgctxt "MENU"
 msgid "Register"
 msgstr "Rekisteröidy"
@@ -8761,8 +8743,8 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
 msgstr "%1$s seuraa nyt päivityksiäsi palvelussa %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
@@ -9012,7 +8994,6 @@ msgid ""
 msgstr ""
 
 #. TRANS: Menu item in mailbox menu. Leads to incoming private messages.
-#, fuzzy
 msgctxt "MENU"
 msgid "Inbox"
 msgstr "Saapuneet"
@@ -9109,9 +9090,8 @@ msgstr "Lähetä suora viesti"
 #. TRANS: Label entry in drop-down selection box in direct-message inbox/outbox.
 #. TRANS: This is the default entry in the drop-down box, doubling as instructions
 #. TRANS: and a brake against accidental submissions with the first user in the list.
-#, fuzzy
 msgid "Select recipient:"
-msgstr "Valitse operaattori"
+msgstr "Valitse vastaanottaja:"
 
 #. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
@@ -9208,7 +9188,7 @@ msgstr "Mitä teet juuri nyt, %s?"
 
 #. TRANS: Input label in notice form for adding an attachment.
 msgid "Attach"
-msgstr ""
+msgstr "Liitä"
 
 #. TRANS: Title for input field to attach a file to a notice.
 msgid "Attach a file."
@@ -9233,10 +9213,6 @@ msgstr ""
 #. TRANS: Separator in profile addressees list.
 msgctxt "SEPARATOR"
 msgid ", "
-msgstr ""
-
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of north.
@@ -9555,7 +9531,6 @@ msgid "Favorites"
 msgstr "Suosikit"
 
 #. TRANS: Replaces %s in '%s\'s favorite notices'. (Yes, we know we need to fix this.)
-#, fuzzy
 msgctxt "FIXME"
 msgid "User"
 msgstr "Käyttäjä"
@@ -9882,7 +9857,6 @@ msgid "Upload an avatar"
 msgstr "Lataa kuva"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Password"
 msgstr "Salasana"
@@ -9927,7 +9901,6 @@ msgid "Updates by instant messenger (IM)"
 msgstr "Päivitykset pikaviestintä käyttäen (IM)"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "SMS"
 msgstr "SMS"
@@ -9947,15 +9920,13 @@ msgid "Authorized connected applications"
 msgstr ""
 
 #. TRANS: Title of form to silence a user.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Silence"
-msgstr "Palvelun ilmoitus"
+msgstr "Hiljennä"
 
 #. TRANS: Description of form to silence a user.
-#, fuzzy
 msgid "Silence this user"
-msgstr "Estä tämä käyttäjä"
+msgstr "Hiljennä tämä käyttäjä"
 
 #. TRANS: Menu item in local navigation menu.
 #, fuzzy
@@ -10240,12 +10211,11 @@ msgstr "Poista esto tältä käyttäjältä"
 
 #. TRANS: Title for unsilence form.
 msgid "Unsilence"
-msgstr ""
+msgstr "Poista hiljennys"
 
 #. TRANS: Form description for unsilence form.
-#, fuzzy
 msgid "Unsilence this user"
-msgstr "Poista esto tältä käyttäjältä"
+msgstr "Poista tämän käyttäjän hiljennys"
 
 #. TRANS: Form legend on unsubscribe form.
 #. TRANS: Button title on unsubscribe form.
@@ -10342,8 +10312,8 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s ja kaverit, sivu %2$d"
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "%1$s seuraa nyt päivityksiäsi palvelussa %2$s."
 
-#~ msgid "You and friends"
-#~ msgstr "Sinä ja kaverisi"
+#~ msgid " ▸ "
+#~ msgstr " ▸ "

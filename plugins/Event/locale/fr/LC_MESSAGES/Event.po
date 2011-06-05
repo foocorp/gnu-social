@@ -2,8 +2,10 @@
 # Exported from translatewiki.net
 #
 # Author: Brunoperel
+# Author: Crochet.david
 # Author: Iketsi
 # Author: Od1n
+# Author: Verdy p
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -11,13 +13,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:49:20+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:14:23+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:26:39+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:44:48+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
@@ -151,7 +153,7 @@ msgstr "Date de début de l'événement."
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
 msgid "Start time"
-msgstr "Heure de départ"
+msgstr "Heure de début"
 
 #. TRANS: Field title on event form.
 msgid "Time the event starts."
@@ -258,7 +260,7 @@ msgstr "Code « %s » inconnu."
 #. TRANS: %s is the RSVP with the missing notice.
 #, php-format
 msgid "RSVP %s does not correspond to a notice in the database."
-msgstr ""
+msgstr "RSVP %s ne correspond pas à un avis dans la base de données."
 
 #. TRANS: Exception thrown when requesting a non-existing profile.
 #. TRANS: %s is the ID of the non-existing profile.

@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:07+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:58+0000\n"
 "Language-Team: Friulian <http://translatewiki.net/wiki/Portal:fur>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fur\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -57,7 +57,7 @@ msgstr "Pagjine no cognossude"
 #. TRANS: Error message displayed when trying to perform an undefined action.
 #. TRANS: Title for password recovery page when an unknown action has been specified.
 msgid "Unknown action"
-msgstr ""
+msgstr "Azion no cognossude"
 
 #. TRANS: Page title for Access admin panel that allows configuring site access.
 msgid "Access"
@@ -242,15 +242,14 @@ msgid "No such user."
 msgstr "Utent no cjatât."
 
 #. TRANS: Title of a user's own start page.
-#, fuzzy
 msgid "Home timeline"
-msgstr "Ativitât di %s"
+msgstr "Pagjine iniziâl de ativitât"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s's home timeline"
-msgstr "Ativitât di %s"
+msgstr "Pagjine iniziâl de ativitât di %s"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -845,11 +844,11 @@ msgstr ""
 
 #. TRANS: Title for a page where a user can confirm/deny account access by an external application.
 msgid "An application would like to connect to your account"
-msgstr ""
+msgstr "Une aplicazion e volarès conetisi ae tô identitât"
 
 #. TRANS: Fieldset legend.
 msgid "Allow or deny access"
-msgstr ""
+msgstr "Permet o dinee l'acès"
 
 #. TRANS: User notification of external application requesting account access.
 #. TRANS: %3$s is the access type requested (read-write or read-only), %4$s is the StatusNet sitename.
@@ -907,7 +906,7 @@ msgstr "Permet"
 
 #. TRANS: Form instructions.
 msgid "Authorize access to your account information."
-msgstr ""
+msgstr "Permet l'acès aes informazions de tô identitât"
 
 #. TRANS: Header for user notification after revoking OAuth access to an application.
 msgid "Authorization canceled."
@@ -921,19 +920,21 @@ msgstr ""
 
 #. TRANS: Title of the page notifying the user that an anonymous client application was successfully authorized to access the user's account with OAuth.
 msgid "You have successfully authorized the application"
-msgstr ""
+msgstr "Tu âs dât l'autorizazion ae aplicazion"
 
 #. TRANS: Message notifying the user that an anonymous client application was successfully authorized to access the user's account with OAuth.
 msgid ""
 "Please return to the application and enter the following security code to "
 "complete the process."
 msgstr ""
+"Par plasê torne ae aplicazion e inserìs il codiç di sigurece ca sot par finî "
+"il procès."
 
 #. TRANS: Title of the page notifying the user that the client application was successfully authorized to access the user's account with OAuth.
 #. TRANS: %s is the authorised application name.
 #, php-format
 msgid "You have successfully authorized %s"
-msgstr ""
+msgstr "Tu âs dât l'autorizazion a %s"
 
 #. TRANS: Message notifying the user that the client application was successfully authorized to access the user's account with OAuth.
 #. TRANS: %s is the authorised application name.
@@ -942,6 +943,8 @@ msgid ""
 "Please return to %s and enter the following security code to complete the "
 "process."
 msgstr ""
+"Par plasê torne ae %s e inserìs il codiç di sigurece ca sot par finî il "
+"procès."
 
 #. TRANS: Client error displayed trying to delete a status not using POST or DELETE.
 #. TRANS: POST and DELETE should not be translated.
@@ -3033,28 +3036,6 @@ msgid ""
 "Use this form to invite your friends and colleagues to use this service."
 msgstr "Dopre chest modul par invidâ amîs e coleghis a doprâ il servizi."
 
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "Direzions di pueste eletroniche"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-msgid "Addresses of friends to invite (one per line)."
-msgstr "Direzions dai amîs di invidâ (une par rie)."
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "Messaç personâl"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "Se tu vuelis, tu puedis zontâ un messaç personâl tal invît."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "Mande"
-
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
@@ -3209,9 +3190,8 @@ msgid "Login to site"
 msgstr "Jentre tal sît"
 
 #. TRANS: Field label on login page.
-#, fuzzy
 msgid "Username or email address"
-msgstr "Sorenon o direzion di pueste"
+msgstr "Non utent o direzion di pueste"
 
 #. TRANS: Checkbox label label on login page.
 #. TRANS: Checkbox label on account registration page.
@@ -7283,7 +7263,7 @@ msgstr "Icone"
 
 #. TRANS: Form guide.
 msgid "Icon for this application"
-msgstr ""
+msgstr "Icone de aplicazion"
 
 #. TRANS: Form input field label for application name.
 msgid "Name"
@@ -7346,11 +7326,11 @@ msgstr ""
 
 #. TRANS: Radio button label for access type.
 msgid "Read-only"
-msgstr ""
+msgstr "Dome in scriture"
 
 #. TRANS: Radio button label for access type.
 msgid "Read-write"
-msgstr ""
+msgstr "Leture e scriture"
 
 #. TRANS: Form guide.
 msgid "Default access for this application: read-only, or read-write"
@@ -7396,7 +7376,7 @@ msgstr ""
 #. TRANS: Button label in application list to revoke access to user data.
 msgctxt "BUTTON"
 msgid "Revoke"
-msgstr ""
+msgstr "Revoche"
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
 msgid "Author element must contain a name element."
@@ -8329,12 +8309,44 @@ msgstr ""
 #. TRANS: Title for inbox tag cloud section.
 msgctxt "TITLE"
 msgid "Trends"
-msgstr ""
+msgstr "Tendencis"
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "Invide gnûfs coleghis"
+
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "Invide gnûfs coleghis"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "Direzions di pueste eletroniche"
+
+#. TRANS: Field title for a list of e-mail addresses.
+msgid "Addresses of friends to invite (one per line)."
+msgstr "Direzions dai amîs di invidâ (une par rie)."
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "Messaç personâl"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "Se tu vuelis, tu puedis zontâ un messaç personâl tal invît."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "Mande"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "Invîts"
 
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
@@ -8392,9 +8404,9 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
-msgstr ""
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
+msgstr "%1$s al seguìs cumò %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -8837,10 +8849,6 @@ msgctxt "SEPARATOR"
 msgid ", "
 msgstr ", "
 
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
-msgstr ""
-
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
 msgstr "N"
@@ -9256,7 +9264,7 @@ msgstr "Popolâr"
 #. TRANS: Title for inbox tag cloud section.
 msgctxt "TITLE"
 msgid "Trending topics"
-msgstr ""
+msgstr "Argoments di tendence"
 
 #. TRANS: Client error displayed when return-to was defined without a target.
 msgid "No return-to arguments."
@@ -9304,7 +9312,6 @@ msgid "Search"
 msgstr "Cîr"
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
-#, fuzzy
 msgid ""
 "* Make sure all words are spelled correctly.\n"
 "* Try different keywords.\n"
@@ -9314,7 +9321,7 @@ msgstr ""
 "* Siguriti di vê scrit just dutis lis peraulis.\n"
 "* Prove peraulis clâfs difarentis.\n"
 "* Prove peraulis clâfs plui gjenerâls.\n"
-"* Prove mancul peraulis clâfs.\n"
+"* Prove mancul peraulis clâfs."
 
 #. TRANS: Standard search suggestions shown when a search does not give any results.
 #, php-format
@@ -9854,9 +9861,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s e amîs, pagjine %2$d"
-
-#~ msgid "You and friends"
-#~ msgstr "Tu e i tiei amîs"

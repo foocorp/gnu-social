@@ -7,6 +7,7 @@
 # Author: Choxos
 # Author: Ebraminio
 # Author: Everplays
+# Author: Huji
 # Author: Mjbmr
 # Author: Narcissus
 # Author: Sahim
@@ -18,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-05 20:48+0000\n"
-"PO-Revision-Date: 2011-05-05 20:51:00+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:15:54+0000\n"
 "Last-Translator: Ahmad Sufi Mahmudi\n"
 "Language-Team: Persian <http://translatewiki.net/wiki/Portal:fa>\n"
 "MIME-Version: 1.0\n"
@@ -28,9 +29,9 @@ msgstr ""
 "X-Language-Code: fa\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: MediaWiki 1.18alpha (r87509); Translate extension (2011-04-26)\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-POT-Import-Date: 2011-05-05 10:52:40+0000\n"
+"X-POT-Import-Date: 2011-05-05 21:43:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3161,29 +3162,6 @@ msgid ""
 msgstr ""
 "برای دعوت دوستان و تشویق آن‌ها به استفاده از خدمات از فرم زیر استفاده کنید."
 
-#. TRANS: Field label for a list of e-mail addresses.
-msgid "Email addresses"
-msgstr "نشانی‌های پست الکترونیکی"
-
-#. TRANS: Tooltip for field label for a list of e-mail addresses.
-#, fuzzy
-msgid "Addresses of friends to invite (one per line)."
-msgstr "نشانی دوستان (یک نشانی در هر خط("
-
-#. TRANS: Field label for a personal message to send to invitees.
-msgid "Personal message"
-msgstr "پیام خصوصی"
-
-#. TRANS: Tooltip for field label for a personal message to send to invitees.
-msgid "Optionally add a personal message to the invitation."
-msgstr "در صورت تمایل می‌توانید یک پیام به همراه دعوت نامه بفرستید."
-
-#. TRANS: Send button for inviting friends
-#. TRANS: Button text for sending notice.
-msgctxt "BUTTON"
-msgid "Send"
-msgstr "فرستادن"
-
 #. TRANS: Subject for invitation email. Note that 'them' is correct as a gender-neutral
 #. TRANS: singular 3rd-person pronoun in English. %1$s is the inviting user, $2$s is
 #. TRANS: the StatusNet sitename.
@@ -5507,10 +5485,9 @@ msgid "Statistics"
 msgstr "آمار"
 
 #. TRANS: Label for group creation date.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Created"
-msgstr "ساخته شد"
+msgstr "ایجاد شد"
 
 #. TRANS: Label for member count in statistics on group page.
 #, fuzzy
@@ -8741,6 +8718,39 @@ msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "دعوت کردن کاربران تازه"
 
+#. TRANS: Form legend.
+#, fuzzy
+msgid "Invite collegues"
+msgstr "دعوت کردن کاربران تازه"
+
+#. TRANS: Field label for a list of e-mail addresses.
+msgid "Email addresses"
+msgstr "نشانی‌های پست الکترونیکی"
+
+#. TRANS: Field title for a list of e-mail addresses.
+#, fuzzy
+msgid "Addresses of friends to invite (one per line)."
+msgstr "نشانی دوستان (یک نشانی در هر خط("
+
+#. TRANS: Field label for a personal message to send to invitees.
+msgid "Personal message"
+msgstr "پیام خصوصی"
+
+#. TRANS: Field title for a personal message to send to invitees.
+msgid "Optionally add a personal message to the invitation."
+msgstr "در صورت تمایل می‌توانید یک پیام به همراه دعوت نامه بفرستید."
+
+#. TRANS: Send button for inviting friends
+#. TRANS: Button text for sending notice.
+msgctxt "BUTTON"
+msgid "Send"
+msgstr "فرستادن"
+
+#. TRANS: Submit button title.
+#, fuzzy
+msgid "Send invitations."
+msgstr "دعوت‌نامه‌ها"
+
 #. TRANS: Button text for joining a group.
 #, fuzzy
 msgctxt "BUTTON"
@@ -8812,8 +8822,8 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, php-format
-msgid "%1$s is now listening to your notices on %2$s."
+#, fuzzy, php-format
+msgid "%1$s is now following you on %2$s."
 msgstr "%1$s اکنون پیام‌های شما را در %2$s دنبال می‌کند."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
@@ -9354,10 +9364,6 @@ msgstr ""
 #. TRANS: Separator in profile addressees list.
 msgctxt "SEPARATOR"
 msgid ", "
-msgstr ""
-
-#. TRANS: Start of profile addressees list.
-msgid " ▸ "
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of north.
@@ -10445,8 +10451,5 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#~ msgid "%1$s and friends, page %2$d"
-#~ msgstr "%1$s و دوستان، صفحهٔ %2$d"
-
-#~ msgid "You and friends"
-#~ msgstr "شما و دوستان"
+#~ msgid "%1$s is now listening to your notices on %2$s."
+#~ msgstr "%1$s اکنون پیام‌های شما را در %2$s دنبال می‌کند."

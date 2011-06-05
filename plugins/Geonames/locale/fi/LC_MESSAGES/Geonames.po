@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Nike
+# Author: Silvonen
 # Author: XTL
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -10,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Geonames\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-04-09 18:34+0000\n"
-"PO-Revision-Date: 2011-04-09 18:37:13+0000\n"
+"POT-Creation-Date: 2011-06-05 09:13+0000\n"
+"PO-Revision-Date: 2011-06-05 09:14:37+0000\n"
 "Language-Team: Finnish <http://translatewiki.net/wiki/Portal:fi>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-03-24 15:25:03+0000\n"
-"X-Generator: MediaWiki 1.18alpha (r85732); Translate extension (2011-03-11)\n"
+"X-POT-Import-Date: 2011-05-05 21:44:52+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fi\n"
 "X-Message-Group: #out-statusnet-plugin-geonames\n"
@@ -30,7 +31,7 @@ msgstr ""
 #. TRANS: %s is an HTTP error code.
 #, php-format
 msgid "HTTP error code %s."
-msgstr ""
+msgstr "HTTP-virhekoodi %s."
 
 #. TRANS: Exception thrown when a geo names service returns an empty body.
 msgid "Empty HTTP body in response."
