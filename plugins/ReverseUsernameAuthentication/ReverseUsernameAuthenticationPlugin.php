@@ -64,6 +64,7 @@ class ReverseUsernameAuthenticationPlugin extends AuthenticationPlugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:ReverseUsernameAuthentication',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The Reverse Username Authentication plugin allows for StatusNet to handle authentication by checking if the provided password is the same as the reverse of the username.'));
         return true;
     }
