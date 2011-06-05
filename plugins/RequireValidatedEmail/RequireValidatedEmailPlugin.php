@@ -50,14 +50,12 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
-
 class RequireValidatedEmailPlugin extends Plugin
 {
     /**
      * Users created before this time will be grandfathered in
      * without the validation requirement.
      */
-
     public $grandfatherCutoff = null;
 
     /**
@@ -74,13 +72,11 @@ class RequireValidatedEmailPlugin extends Plugin
      *    ),
      * ));
      */
-
     public $trustedOpenIDs = array();
 
     /**
      * Whether or not to disallow login for unvalidated users.
      */
-
     public $disallowLogin = false;
 
     function onAutoload($cls)
@@ -112,13 +108,13 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return bool hook result code
      */
-
     function onStartNoticeSave($notice)
     {
         $user = User::staticGet('id', $notice->profile_id);
         if (!empty($user)) { // it's a remote notice
             if (!$this->validated($user)) {
-                $msg = _m("You must validate your email address before posting.");
+                // TRANS: Client exception thrown when trying to post notices before validating an e-mail address.
+                $msg = _m('You must validate your email address before posting.');
                 throw new ClientException($msg);
             }
         }
@@ -133,12 +129,12 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return bool hook result code
      */
-
     function onStartRegisterUser(&$user, &$profile)
     {
         $email = $user->email;
 
         if (empty($email)) {
+            // TRANS: Client exception thrown when trying to register without providing an e-mail address.
             throw new ClientException(_m('You must provide an email address to register.'));
         }
 
@@ -164,8 +160,7 @@ class RequireValidatedEmailPlugin extends Plugin
         // Give other plugins a chance to override, if they can validate
         // that somebody's ok despite a non-validated email.
 
-        // FIXME: This isn't how to do it! Use Start*/End* instead
-
+        // @todo FIXME: This isn't how to do it! Use Start*/End* instead
         Event::handle('RequireValidatedEmailPlugin_Override',
                       array($user, &$knownGood));
 
@@ -201,7 +196,6 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return bool true if user has a trusted OpenID.
      */
-
     function hasTrustedOpenID($user)
     {
         if ($this->trustedOpenIDs && class_exists('User_openid')) {
@@ -228,7 +222,6 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onPluginVersion(&$versions)
     {
         $versions[] =
@@ -240,7 +233,9 @@ class RequireValidatedEmailPlugin extends Plugin
                 'homepage' =>
                 'http://status.net/wiki/Plugin:RequireValidatedEmail',
                 'rawdescription' =>
+                // TRANS: Plugin description.
                 _m('Disables posting without a validated email address.'));
+
         return true;
     }
 
@@ -251,7 +246,6 @@ class RequireValidatedEmailPlugin extends Plugin
      *
      * @return boolean hook value
      */
-
     function onStartShowNoticeForm($action)
     {
         $user = common_current_user();
