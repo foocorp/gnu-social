@@ -237,8 +237,8 @@ class QnA_Question extends Managed_DataObject
         if (!empty($cnt)) {
             $out->elementStart('span', 'answer-count');
             // TRANS: Number of given answers to a question.
-            // TRANS: %d is the number of given answers.
-            $out->text(sprintf(_m('%s answer','%s answers'), $cnt));
+            // TRANS: %s is the number of given answers.
+            $out->text(sprintf(_m('%s answer','%s answers',$cnt), $cnt));
             $out->elementEnd('span');
         }
 
