@@ -124,4 +124,3 @@ class QnanewanswerForm extends Form
         $this->out->submit('qna-answer-submit', _m('BUTTON', 'Answer'), 'submit', 'submit');
     }
 }
-

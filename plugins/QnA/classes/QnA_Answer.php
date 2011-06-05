@@ -174,7 +174,9 @@ class QnA_Answer extends Managed_DataObject
     {
         $question = QnA_Question::staticGet('id', $this->question_id);
         if (empty($question)) {
-            throw new Exception("No question with ID {$this->question_id}");
+            // TRANS: Exception thown when getting a question with a non-existing ID.
+            // TRANS: %s is the non-existing question ID.
+            throw new Exception(sprintf(_m('No question with ID %s'),$this->question_id));
         }
         return $question;
     }
@@ -183,7 +185,9 @@ class QnA_Answer extends Managed_DataObject
     {
         $profile = Profile::staticGet('id', $this->profile_id);
         if (empty($profile)) {
-            throw new Exception("No profile with ID {$this->profile_id}");
+            // TRANS: Exception thown when getting a profile with a non-existing ID.
+            // TRANS: %s is the non-existing profile ID.
+            throw new Exception(sprintf(_m('No profile with ID %s'),$this->profile_id));
         }
         return $profile;
     }
@@ -226,7 +230,9 @@ class QnA_Answer extends Managed_DataObject
             $out->elementstart('span', 'answer-revisions');
             $out->text(
                 htmlspecialchars(
-                    sprintf(_m('%s revisions'), $answer->revisions)
+                    // Notification of how often an answer was revised.
+                    // TRANS: %s is the number of answer revisions.
+                    sprintf(_m('%s revision','%s revisions',$answer->revisions), $answer->revisions)
                 )
             );
             $out->elementEnd('span');
@@ -239,14 +245,14 @@ class QnA_Answer extends Managed_DataObject
 
     static function toString($profile, $question, $answer)
     {
+        // @todo FIXME: unused variable?
         $notice = $question->getNotice();
 
-        $fmt = _m(
-            '%1$s answered the question "%2$s": %3$s'
-        );
-
         return sprintf(
-            $fmt,
+            // TRANS: Text for a question that was answered.
+            // TRANS: %1$s is the user that answered, %2$s is the question title,
+            // TRANS: %2$s is the answer content.
+            _m('%1$s answered the question "%2$s": %3$s'),
             htmlspecialchars($profile->getBestName()),
             htmlspecialchars($question->title),
             htmlspecialchars($answer->content)
@@ -285,6 +291,8 @@ class QnA_Answer extends Managed_DataObject
         $answer->insert();
 
         $content  = sprintf(
+            // TRANS: Text for a question that was answered.
+            // TRANS: %s is the question title.
             _m('answered "%s"'),
             $question->title
         );

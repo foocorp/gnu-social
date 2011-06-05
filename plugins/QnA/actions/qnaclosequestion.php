@@ -80,8 +80,8 @@ class QnaclosequestionAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            // TRANS: Client exception thrown trying to close a question when not logged in
             throw new ClientException(
+                // TRANS: Client exception thrown trying to close a question when not logged in
                 _m("You must be logged in to close a question."),
                 403
             );
@@ -128,13 +128,12 @@ class QnaclosequestionAction extends Action
      */
     function closeQuestion()
     {
-
         $user = common_current_user();
 
         try {
-
             if ($user->id != $this->question->profile_id) {
-                throw new Exception(_m('You didn\'t ask this question.'));
+                // TRANS: Exception thrown trying to close another user's question.
+                throw new Exception(_m('You did not ask this question.'));
             }
 
             $orig = clone($this->question);

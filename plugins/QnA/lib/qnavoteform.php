@@ -118,4 +118,3 @@ class QnavoteForm extends Form
         $this->out->submit('submit', _m('BUTTON', 'Submit'));
     }
 }
-

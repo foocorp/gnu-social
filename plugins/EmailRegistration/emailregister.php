@@ -80,7 +80,8 @@ class EmailregisterAction extends Action
         parent::prepare($argarray);
 
         if (common_config('site', 'closed')) {
-            throw new ClientException(_('Registration not allowed.'), 403);
+            // TRANS: Client exception trown when registration by e-mail is not allowed.
+            throw new ClientException(_m('Registration not allowed.'), 403);
         }
 
         if ($this->isPost()) {
@@ -91,7 +92,8 @@ class EmailregisterAction extends Action
 
             if (!empty($this->email)) {
                 if (common_config('site', 'inviteonly')) {
-                    throw new ClientException(_('Sorry, only invited people can register.'), 403);
+                    // TRANS: Client exception trown when trying to register without an invitation.
+                    throw new ClientException(_m('Sorry, only invited people can register.'), 403);
                 }
                 $this->email = common_canonical_email($this->email);
                 $this->state = self::NEWEMAIL;
@@ -109,6 +111,7 @@ class EmailregisterAction extends Action
 
                 if (!empty($this->invitation)) {
                     if (!empty($this->invitation->registered_user_id)) {
+                        // TRANS: Client exception trown when using an invitation multiple times.
                         throw new ClientException(_m('Invitation already used.'), 403);
                     }
                 } else {
@@ -131,13 +134,15 @@ class EmailregisterAction extends Action
 
             if (empty($this->code)) {
                 if (common_config('site', 'inviteonly')) {
-                    throw new ClientException(_('Sorry, only invited people can register.'), 403);
+                    // TRANS: Client exception trown when trying to register without an invitation.
+                    throw new ClientException(_m('Sorry, only invited people can register.'), 403);
                 }
                 $this->state = self::NEWREGISTER;
             } else {
                 $this->invitation = Invitation::staticGet('code', $this->code);
                 if (!empty($this->invitation)) {
                     if (!empty($this->invitation->registered_user_id)) {
+                        // TRANS: Client exception trown when using an invitation multiple times.
                         throw new ClientException(_m('Invitation already used.'), 403);
                     }
                     $this->state = self::CONFIRMINVITE;
@@ -180,7 +185,6 @@ class EmailregisterAction extends Action
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         $cur = common_current_user();
@@ -263,7 +267,8 @@ class EmailregisterAction extends Action
             } else if (!empty($this->confirmation)) {
                 $email = trim($this->confirmation->address);
             } else {
-                throw new Exception('No confirmation thing.');
+                // TRANS: Client exception trown when trying to set password with an invalid confirmation code.
+                throw new Exception(_m('No confirmation thing.'));
             }
 
             if (!$this->tos) {
@@ -308,7 +313,8 @@ class EmailregisterAction extends Action
             }
 
             if (empty($this->user)) {
-                throw new Exception('Failed to register user.');
+                // TRANS: Exception trown when using an invitation multiple times.
+                throw new Exception(_m('Failed to register user.'));
             }
 
             common_set_user($this->user);
@@ -346,8 +352,8 @@ class EmailregisterAction extends Action
 
         $confirmUrl = common_local_url('register', array('code' => $confirm->code));
 
-         // TRANS: Body for confirmation e-mail.
-         // TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
+        // TRANS: Body for confirmation e-mail.
+        // TRANS: %1$s is the StatusNet sitename, %2$s is the confirmation URL.
         $body = sprintf(_m('Someone (probably you) has requested an account on %1$s using this email address.'.
                           "\n".
                           'To confirm the address, click the following URL or copy it into the address bar of your browser.'.

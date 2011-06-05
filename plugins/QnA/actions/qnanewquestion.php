@@ -76,8 +76,8 @@ class QnanewquestionAction extends Action
         $this->user = common_current_user();
 
         if (empty($this->user)) {
-            // TRANS: Client exception thrown trying to create a Question while not logged in.
             throw new ClientException(
+                // TRANS: Client exception thrown trying to create a Question while not logged in.
                 _m('You must be logged in to post a question.'),
                 403
             );
@@ -240,5 +240,4 @@ class NoticeQuestionListItem extends NoticeListItem
         $this->out->element('ul', 'notices threaded-replies xoxo');
         parent::showEnd();
     }
-
 }

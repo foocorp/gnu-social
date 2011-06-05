@@ -115,7 +115,7 @@ class QnareviseanswerForm extends Form
      */
     function formActions()
     {
-        // TRANS: Button text for submitting a poll response.
+        // TRANS: Button text for submitting a revised answer.
         $this->out->submit('submit', _m('BUTTON', 'Submit'));
     }
 }
