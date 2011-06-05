@@ -46,13 +46,11 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  *
  * @see      UnsubscribeForm
  */
-
 class SearchSubForm extends Form
 {
     /**
      * Name of search to subscribe to
      */
-
     var $search = '';
 
     /**
@@ -61,7 +59,6 @@ class SearchSubForm extends Form
      * @param HTMLOutputter $out     output channel
      * @param string        $search     name of search to subscribe to
      */
-
     function __construct($out=null, $search=null)
     {
         parent::__construct($out);
@@ -74,7 +71,6 @@ class SearchSubForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'search-subscribe-' . $this->search;
@@ -86,7 +82,6 @@ class SearchSubForm extends Form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         // class to match existing styles...
@@ -99,12 +94,10 @@ class SearchSubForm extends Form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('searchsub', array('search' => $this->search));
     }
-
 
     /**
      * Legend of the Form
@@ -113,6 +106,7 @@ class SearchSubForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend.
         $this->out->element('legend', null, _m('Subscribe to this search'));
     }
 
@@ -121,7 +115,6 @@ class SearchSubForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->hidden('subscribeto-' . $this->search,
@@ -134,9 +127,14 @@ class SearchSubForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _m('BUTTON','Subscribe'), 'submit', null, _m('Subscribe to this search'));
+        $this->out->submit('submit',
+                           // TRANS: Button text for subscribing to a search.
+                           _m('BUTTON','Subscribe'),
+                           'submit',
+                           null,
+                           // TRANS: Button title for subscribing to a search.
+                           _m('Subscribe to this search.'));
     }
 }

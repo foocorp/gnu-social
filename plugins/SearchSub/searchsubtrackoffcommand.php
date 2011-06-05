@@ -21,6 +21,7 @@ class SearchSubTrackoffCommand extends Command
                 SearchSub::cancel($profile, $all->search);
             } catch (Exception $e) {
                 // TRANS: Message given having failed to cancel one of the search subs with 'track off' command.
+                // TRANS: %s is the search for which the subscription removal failed.
                 $channel->error($cur, sprintf(_m('Error disabling search subscription for query "%s".'),
                                               $all->search));
                 return;

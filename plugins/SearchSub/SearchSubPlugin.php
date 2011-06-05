@@ -181,7 +181,7 @@ class SearchSubPlugin extends Plugin
      * or Sphinx search backends.
      *
      * @param Notice $notice
-     * @param string $search 
+     * @param string $search
      * @return boolean
      */
     function matchSearch(Notice $notice, $search)
@@ -226,7 +226,6 @@ class SearchSubPlugin extends Plugin
      *
      * @return boolean hook return
      */
-
     function onEndSubGroupNav($widget)
     {
         $action = $widget->out;
@@ -296,11 +295,11 @@ class SearchSubPlugin extends Plugin
 
             if (!empty($searches) && count($searches) > 0) {
                 $searchSubMenu = new SearchSubMenu($menu->out, $user, $searches);
-                $menu->submenu(_m('Searches'), $searchSubMenu);
+                // TRANS: Sub menu for searches.
+                $menu->submenu(_m('MENU','Searches'), $searchSubMenu);
             }
         }
 
         return true;
     }
-
 }
