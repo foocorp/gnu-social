@@ -90,7 +90,7 @@ class OStatusSubAction extends Action
     {
         $ok = $this->preview();
         if (!$ok) {
-            // @fixme maybe provide a cancel button or link back?
+            // @todo FIXME maybe provide a cancel button or link back?
             return;
         }
 
@@ -135,6 +135,7 @@ class OStatusSubAction extends Action
         $cur = common_current_user();
         if ($cur->isSubscribed($profile)) {
             $this->element('div', array('class' => 'error'),
+                           // TRANS: Extra paragraph in remote profile view when already subscribed.
                            _m('You are already subscribed to this user.'));
             $ok = false;
         } else {
@@ -238,19 +239,19 @@ class OStatusSubAction extends Action
         } catch (FeedSubBadURLException $e) {
                 // TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
                 // TRANS: and example.net, as these are official standard domain names for use in examples.
-            $this->error = _m("Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.");
+            $this->error = _m('Sorry, we could not reach that address. Please make sure that the OStatus address is like nickname@example.com or http://example.net/nickname.');
             common_debug('Invalid URL or could not reach server.', __FILE__);
         } catch (FeedSubBadResponseException $e) {
             // TRANS: Error text.
-            $this->error = _m("Sorry, we could not reach that feed. Please try that OStatus address again later.");
+            $this->error = _m('Sorry, we could not reach that feed. Please try that OStatus address again later.');
             common_debug('Cannot read feed; server returned error.', __FILE__);
         } catch (FeedSubEmptyException $e) {
             // TRANS: Error text.
-            $this->error = _m("Sorry, we could not reach that feed. Please try that OStatus address again later.");
+            $this->error = _m('Sorry, we could not reach that feed. Please try that OStatus address again later.');
             common_debug('Cannot read feed; server returned an empty page.', __FILE__);
         } catch (FeedSubBadHTMLException $e) {
             // TRANS: Error text.
-            $this->error = _m("Sorry, we could not reach that feed. Please try that OStatus address again later.");
+            $this->error = _m('Sorry, we could not reach that feed. Please try that OStatus address again later.');
             common_debug('Bad HTML, could not find feed link.', __FILE__);
         } catch (FeedSubNoFeedException $e) {
             // TRANS: Error text.
