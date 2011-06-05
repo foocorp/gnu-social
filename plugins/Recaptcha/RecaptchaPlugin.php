@@ -93,9 +93,12 @@ class RecaptchaPlugin extends Plugin
 
         if (!$resp->is_valid) {
             if($this->display_errors) {
-                $action->showForm(sprintf(_m("(reCAPTCHA error: %s)", $resp->error)));
+                // TRANS: Error message displayed if there is in error communicating with the
+                // TRANS: reCAPTCHA server. %s is the error.
+                $action->showForm(sprintf(_m('(reCAPTCHA error: %s)', $resp->error)));
             }
-            $action->showForm(_m("Captcha does not match!"));
+            // TRANS: Error message displayed if a provided captcha response does not match.
+            $action->showForm(_m('Captcha does not match!'));
             return false;
         }
     }
@@ -107,6 +110,7 @@ class RecaptchaPlugin extends Plugin
                             'author' => 'Eric Helgeson',
                             'homepage' => 'http://status.net/wiki/Plugin:Recaptcha',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Uses <a href="http://recaptcha.org/">Recaptcha</a> service to add a  '.
                                'captcha to the registration page.'));
         return true;
