@@ -1,11 +1,10 @@
-This plugin enables RSSCloud (http://rsscloud.org/) publishing and
-subscription handling for RSS 2.0 profile feeds (i.e:
-http://SITE/PATH/api/statuses/user_timeline/USERNAME.rss). When the
-plugin is enabled, StatusNet acts as both the publisher and hub ('writer' and
-'cloud' in RSSCloud parlance), but only for local StatusNet feeds. It's
-not possible to use it as a general purpose hub -- for instance you can't
-subscribe and get updates to a Wordpress feed from StatusNet using this
-plugin.
+This plugin enables RSSCloud (http://rsscloud.org/) publishing and subscription
+handling for RSS 2.0 profile feeds (i.e:
+http://SITE/PATH/api/statuses/user_timeline/USERNAME.rss). When the plugin is
+enabled, StatusNet acts as both the publisher and hub ('writer' and 'cloud' in
+RSSCloud parlance), but only for local StatusNet feeds. It's not possible to use
+it as a general purpose hub -- for instance you can't subscribe and get updates
+to a Wordpress feed from StatusNet using this plugin.
 
 To use the plugin, add the following to your config.php:
 
@@ -17,29 +16,28 @@ that looks like this:
     <cloud domain="SITE" port="80" path="/main/rsscloud/request_notify"
     registerProcedure="" protocol="http-post"/>
 
-Aggregators may subscribe by sending a proper REST RSSCloud subscription
-request (the optional 'domain' parameter with challenge is supported).
-Subscribing aggregators will be notified ('pinged') when users they have
-subscribed to post new notices. Currently, REST is the only protocol
-supported for notifications.
+Aggregators may subscribe by sending a proper REST RSSCloud subscription request
+(the optional 'domain' parameter with challenge is supported). Subscribing
+aggregators will be notified ('pinged') when users they have subscribed to post
+new notices. Currently, REST is the only protocol supported for notifications.
 
 Deamon
 ------
 
-There's also a daemon for offline processing of queued notices with
-RSSCloud destinations, which will start automatically if/when you run
+There's also a daemon for offline processing of queued notices with RSSCloud
+destinations, which will start automatically if/when you run
 scripts/startdaemons.sh.
 
 Notes
 -----
 
-- Again, only RSS 2.0 profile feeds may be subscribed to, and they have
-  to be the ones with user names in them, like:
+- Again, only RSS 2.0 profile feeds may be subscribed to, and they have to be
+  the ones with user names in them, like:
       http://SITE/PATH/api/statuses/user_timeline/USERNAME.rss
-- Subscriptions are deleted after three notification failures in a row
-  (not sure this is optimal).
-- The plugin includes a dummy LoggingAggregator class that can be used
-  for end-to-end testing.  You probably don't want to mess with it.
+- Subscriptions are deleted after three notification failures in a row (not sure
+  this is optimal).
+- The plugin includes a dummy LoggingAggregator class that can be used for
+  end-to-end testing.  You probably don't want to mess with it.
 
 TODO
 ----

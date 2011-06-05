@@ -40,7 +40,7 @@ if (!defined('STATUSNET')) {
  * @author   Zach Copley <zach@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
- **/
+ */
 class RSSCloudNotifier
 {
     const MAX_FAILURES = 3;
@@ -76,7 +76,6 @@ class RSSCloudNotifier
         $body   = $response->getBody();
 
         if ($status >= 200 && $status < 300) {
-
             // NOTE: the spec says that the body must contain the string
             // challenge.  It doesn't say that the body must contain the
             // challenge string ONLY, although that seems to be the way
@@ -113,7 +112,6 @@ class RSSCloudNotifier
      */
     function postUpdate($endpoint, $feed)
     {
-
         $headers  = array();
         $postdata = array('url' => $feed);
 
@@ -210,9 +208,7 @@ class RSSCloudNotifier
                 common_log_db_error($cloudSub, 'DELETE', __FILE__);
                 common_log(LOG_ERR, 'Could not delete RSSCloud subscription.');
             }
-
         } else {
-
             common_debug('Updating failure count on RSSCloud subscription. ' .
                          $failCnt);
 
