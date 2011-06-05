@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet, the distributed open-source microblogging tool
-  *
+ *
  * Plugin to create pretty Spotify URLs
  *
  * PHP version 5
@@ -47,10 +47,8 @@ define('SPOTIFYPLUGIN_VERSION', '0.1');
  *
  * @see       Event
  */
-
 class SpotifyPlugin extends Plugin
 {
-
     function __construct()
     {
         parent::__construct();
@@ -74,8 +72,22 @@ class SpotifyPlugin extends Plugin
         return 'SpotifyPlugin/'.SPOTIFYPLUGIN_VERSION .
                ' StatusNet/' . STATUSNET_VERSION;
     }
+
+    function onPluginVersion(&$versions)
+    {
+        $versions[] = array('name' => 'Spotify',
+                            'version' => SPOTIFYPLUGIN_VERSION,
+                            'author' => 'Nick Holliday',
+                            'homepage' => 'http://status.net/wiki/Plugin:Spotify',
+                            'rawdescription' =>
+                            // TRANS: Plugin description.
+                            _m('Create pretty <a href="http://www.spotify.com">Spotify</a> URLs.'));
+
+        return true;
+    }
 }
 
+// @todo FIXME: This probably should not be global functions.
 function doSpotifyLookup($uri, $isArtist)
 {
     $request = HTTPClient::start();
