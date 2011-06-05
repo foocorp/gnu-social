@@ -108,8 +108,10 @@ class HelloAction extends Action
     function title()
     {
         if (empty($this->user)) {
+            // TRANS: Page title for sample plugin.
             return _m('Hello');
         } else {
+            // TRANS: Page title for sample plugin. %s is a user nickname.
             return sprintf(_m('Hello, %s!'), $this->user->nickname);
         }
     }
@@ -130,11 +132,15 @@ class HelloAction extends Action
     {
         if (empty($this->user)) {
             $this->element('p', array('class' => 'greeting'),
+                           // TRANS: Message in sample plugin.
                            _m('Hello, stranger!'));
         } else {
             $this->element('p', array('class' => 'greeting'),
+                           // TRANS: Message in sample plugin. %s is a user nickname.
                            sprintf(_m('Hello, %s'), $this->user->nickname));
             $this->element('p', array('class' => 'greeting_count'),
+                           // TRANS: Message in sample plugin.
+                           // TRANS: %d is the number of times a user is greeted.
                            sprintf(_m('I have greeted you %d time.',
                                       'I have greeted you %d times.',
                                       $this->gc->greeting_count),

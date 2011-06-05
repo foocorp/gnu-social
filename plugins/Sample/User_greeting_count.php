@@ -52,7 +52,6 @@ require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
  *
  * @see      DB_DataObject
  */
-
 class User_greeting_count extends Memcached_DataObject
 {
     public $__table = 'user_greeting_count'; // table name
@@ -68,7 +67,6 @@ class User_greeting_count extends Memcached_DataObject
      * @param mixed  $v Value to lookup
      *
      * @return User_greeting_count object found, or null for no hits
-     *
      */
     function staticGet($k, $v=null)
     {
@@ -150,7 +148,6 @@ class User_greeting_count extends Memcached_DataObject
         $gc = User_greeting_count::staticGet('user_id', $user_id);
 
         if (empty($gc)) {
-
             $gc = new User_greeting_count();
 
             $gc->user_id        = $user_id;
@@ -161,7 +158,7 @@ class User_greeting_count extends Memcached_DataObject
             if (!$result) {
                 // TRANS: Exception thrown when the user greeting count could not be saved in the database.
                 // TRANS: %d is a user ID (number).
-                throw Exception(sprintf(_m("Could not save new greeting count for %d."),
+                throw Exception(sprintf(_m('Could not save new greeting count for %d.'),
                                         $user_id));
             }
         } else {
@@ -174,7 +171,7 @@ class User_greeting_count extends Memcached_DataObject
             if (!$result) {
                 // TRANS: Exception thrown when the user greeting count could not be saved in the database.
                 // TRANS: %d is a user ID (number).
-                throw Exception(sprintf(_m("Could not increment greeting count for %d."),
+                throw Exception(sprintf(_m('Could not increment greeting count for %d.'),
                                         $user_id));
             }
         }

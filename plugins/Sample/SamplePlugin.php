@@ -265,9 +265,11 @@ class SamplePlugin extends Plugin
     {
         // common_local_url() gets the correct URL for the action name
         // we provide
-
         $action->menuItem(common_local_url('hello'),
-                          _m('Hello'), _m('A warm greeting'), false, 'nav_hello');
+                          // TRANS: Menu item in sample plugin.
+                          _m('Hello'),
+                          // TRANS: Menu item title in sample plugin.
+                          _m('A warm greeting'), false, 'nav_hello');
         return true;
     }
 
@@ -278,6 +280,7 @@ class SamplePlugin extends Plugin
                             'author' => 'Brion Vibber, Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Sample',
                             'rawdescription' =>
+                          // TRANS: Plugin description.
                             _m('A sample plugin to show basics of development for new hackers.'));
         return true;
     }
