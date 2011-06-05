@@ -111,7 +111,6 @@ class Registration_ip extends Memcached_DataObject
      *
      * @return array magic three-false array that stops auto-incrementing.
      */
-
     function sequenceKey()
     {
         return array(false, false, false);
@@ -124,7 +123,6 @@ class Registration_ip extends Memcached_DataObject
      *
      * @return Array IDs of users who registered with this address.
      */
-
     static function usersByIP($ipaddress)
     {
         $ids = array();
