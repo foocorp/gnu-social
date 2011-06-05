@@ -87,21 +87,26 @@ class UserdirectoryAction extends Action
      */
     function title()
     {
-        // @fixme: This looks kinda gross
+        // @todo fixme: This looks kinda gross
 
         if ($this->filter == 'all') {
             if ($this->page != 1) {
+                // TRANS: Page title for user directory. %d is a page number.
                 return(sprintf(_m('User Directory, page %d'), $this->page));
             }
+            // TRANS: Page title for user directory.
             return _m('User directory');
         } else if ($this->page == 1) {
             return sprintf(
+                // TRANS: Page title for user directory. %s is the applied filter.
                 _m('User directory - %s'),
                 strtoupper($this->filter)
             );
         } else {
             return sprintf(
-                _m('User directory - %s, page %d'),
+                // TRANS: Page title for user directory.
+                // TRANS: %1$s is the applied filter, %2$d is a page number.
+                _m('User directory - %1$s, page %2$d'),
                 strtoupper($this->filter),
                 $this->page
             );
@@ -116,8 +121,7 @@ class UserdirectoryAction extends Action
     function getInstructions()
     {
         // TRANS: %%site.name%% is the name of the StatusNet site.
-        return _m(
-            'Search for people on %%site.name%% by their name, '
+        return _m('Search for people on %%site.name%% by their name, '
             . 'location, or interests. Separate the terms by spaces; '
             . ' they must be 3 characters or more.'
         );
@@ -256,12 +260,15 @@ class UserdirectoryAction extends Action
 
         $this->elementStart('fieldset');
 
+        // TRANS: Fieldset legend.
         $this->element('legend', null, _m('Search site'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
 
+        // TRANS: Field label for user directory filter.
         $this->input('q', _m('Keyword(s)'), $this->q);
 
+        // TRANS: Button text.
         $this->submit('search', _m('BUTTON','Search'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
@@ -367,23 +374,24 @@ class UserdirectoryAction extends Action
                 'p',
                 'error',
                 sprintf(
+                    // TRANS: Empty list message for user directory.
                     _m('No users starting with %s'),
                     $this->filter
                 )
             );
         } else {
+            // TRANS: Empty list message for user directory.
             $this->element('p', 'error', _m('No results.'));
-            $message = _m(<<<E_O_T
-* Make sure all words are spelled correctly.
+            // TRANS: Standard search suggestions shown when a search does not give any results.
+            $message = _m("* Make sure all words are spelled correctly.
 * Try different keywords.
 * Try more general keywords.
-* Try fewer keywords.
-E_O_T
-);
+* Try fewer keywords.");
+            $message .= "\n";
+
             $this->elementStart('div', 'help instructions');
             $this->raw(common_markup_to_html($message));
             $this->elementEnd('div');
         }
     }
-
 }
