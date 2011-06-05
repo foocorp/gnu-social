@@ -54,6 +54,7 @@ $delta["_dgettext"] = array((microtime(true) - $start) / $times, $result);
 
 $start = microtime(true);
 for($i = 0; $i < $times; $i++) {
+    // TRANS: String in the gettext speed test script. Unimportant.
     $result = _m("Feeds");
 }
 $delta["_m"] = array((microtime(true) - $start) / $times, $result);
