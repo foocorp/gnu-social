@@ -2,7 +2,7 @@
  *
  * @package   StatusNet
  * @author Sarven Capadisli <csarven@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @copyright 2009-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -16,7 +16,7 @@ $(document).ready(function() {
                 $(E).val(rgb2hex($('#content').css('background-color')));
                 break;
             case 3:
-                $(E).val(rgb2hex($('#aside_primary').css('background-color')));
+                $(E).val(rgb2hex($('#aside_primary_wrapper, #site_nav_local_views_wrapper').css('background-color')));
                 break;
             case 4:
                 $(E).val(rgb2hex($('html body').css('color')));
@@ -45,10 +45,10 @@ $(document).ready(function() {
                 $('body').css({'background-color':C});
                 break;
             case 2:
-                $('#content, #site_nav_local_views .current a').css({'background-color':C});
+                $('#content').css({'background-color':C});
                 break;
             case 3:
-                $('#aside_primary').css({'background-color':C});
+                $('#aside_primary_wrapper, #site_nav_local_views_wrapper').css({'background-color':C});
                 break;
             case 4:
                 $('html body').css({'color':C});
