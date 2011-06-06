@@ -280,6 +280,7 @@ address {
     border: 1px solid #ECECF2;
     font-weight: bold;
     line-height: 1.4em;
+    color: #3e3e8c;
     text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.9);
     background: #ececf2;
     background: -moz-linear-gradient(top, #ffffff , #ececf2);
@@ -784,6 +785,7 @@ div.entry-content a.response:after {
     padding-right: 2px;
     border-left: 3px solid #ECECF2;
     background: #fafafa;
+    color: #222;
     font-size: 1em;
 }
 
@@ -793,6 +795,10 @@ div.entry-content a.response:after {
 
 .user_in .threaded-replies {
     margin-top: 0px;
+}
+
+.threaded-replies a {
+    color: #3e3e8c;
 }
 
 #content .notice .threaded-replies .notice,
@@ -1027,6 +1033,10 @@ background-color:rgba(200, 200, 200, 0.300);
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
+}
+
+#pagination a {
+    color: #3e3e8c;
 }
 
 #footer {
