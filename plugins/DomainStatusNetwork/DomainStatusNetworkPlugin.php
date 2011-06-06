@@ -195,6 +195,32 @@ class DomainStatusNetworkPlugin extends Plugin
                             _m('A plugin that maps a single status_network to an email domain.'));
         return true;
     }
+
+    static function registerEmail($email, $sendWelcome, $template)
+    {
+        $domain = self::toDomain($email);
+
+        $sn = self::siteForDomain($domain);
+
+        if (empty($sn)) {
+            $installer = new DomainStatusNetworkInstaller($domain);
+
+            // Do the thing
+            $installer->main();
+
+            $sn = $installer->getStatusNetwork();
+
+            $config = $installer->getConfig();
+
+            Status_network::$wildcard = $config['WILDCARD'];
+        }
+
+        StatusNet::switchSite($sn->nickname);
+
+        $confirm = EmailRegistrationPlugin::registerEmail($email);
+
+        return $confirm;
+    }
 }
 
 // The way addPlugin() works, this global variable gets disappeared.
