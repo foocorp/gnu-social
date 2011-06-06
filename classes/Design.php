@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2009, StatusNet, Inc.
+ * Copyright (C) 2009-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -66,14 +66,14 @@ class Design extends Memcached_DataObject
         $ccolor  = Design::toWebColor($this->contentcolor);
 
         if (!empty($ccolor)) {
-            $css .= '#content, #site_nav_local_views .current a { background-color: #';
+            $css .= '#content { background-color: #';
             $css .= $ccolor->hexValue() . '} '."\n";
         }
 
         $sbcolor = Design::toWebColor($this->sidebarcolor);
 
         if (!empty($sbcolor)) {
-            $css .= '#aside_primary { background-color: #'. $sbcolor->hexValue() . ' }' . "\n";
+            $css .= '#aside_primary_wrapper, #site_nav_local_views_wrapper { background-color: #'. $sbcolor->hexValue() . ' }' . "\n";
         }
 
         $tcolor  = Design::toWebColor($this->textcolor);
