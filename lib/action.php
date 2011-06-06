@@ -334,9 +334,12 @@ class Action extends HTMLOutputter // lawsuit
                 $this->inlineScript('var _peopletagAC = "' .
                     common_local_url('peopletagautocomplete') . '";');
                 $this->showScriptMessages();
-                // Frame-busting code to avoid clickjacking attacks.
+                // Anti-framing code to avoid clickjacking attacks in older browsers.
+                // This will show a blank page if the page is being framed, which is
+                // consistent with the behavior of the 'X-Frame-Options: SAMEORIGIN'
+                // header, which prevents framing in newer browser.
                 if (common_config('javascript', 'bustframes')) {
-                    $this->inlineScript('if (window.top !== window.self) { window.top.location.href = window.self.location.href; }');
+                    $this->inlineScript('if (window.top !== window.self) { document.write = ""; window.top.location = window.self.location; setTimeout(function () { document.body.innerHTML = ""; }, 1); window.self.onload = function () { document.body.innerHTML = ""; }; }');
                 }
                 Event::handle('EndShowStatusNetScripts', array($this));
                 Event::handle('EndShowLaconicaScripts', array($this));
