@@ -102,7 +102,9 @@ class UserEmailSummaryHandler extends QueueHandler
             return true;
         }
 
-        $notice = $user->ownFriendsTimeline(0, self::MAX_NOTICES, $since_id);
+        $stream = new InboxNoticeStream($user, $user->getProfile());
+
+        $notice = $stream->getNotices(0, self::MAX_NOTICES, $since_id);
 
         if (empty($notice) || $notice->N == 0) {
             common_log(LOG_WARNING, sprintf('Not sending email summary for user %s; no notices.', $user_id));
