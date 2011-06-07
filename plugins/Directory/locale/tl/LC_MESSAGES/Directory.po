@@ -141,6 +141,18 @@ msgstr "Hanapin sa mga pangkat"
 msgid "No groups starting with %s."
 msgstr "Walang mga pangkat na nagsisimula sa %s."
 
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* Tiyakin na tama ang pagbabanghay ng lahat ng mga salita.\n"
+"* Sumubok ng ibang mga susing-salita.\n"
+"* Sumubok ng mas pangkalahatang mga susing-salita.\n"
+"* Sumubok ng mas kakaunting mga susing-salita."
+
 #. TRANS: Menu item text for user directory.
 msgctxt "MENU"
 msgid "Directory"

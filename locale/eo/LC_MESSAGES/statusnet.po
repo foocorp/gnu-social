@@ -8922,7 +8922,7 @@ msgstr ""
 "\n"
 "%4$s\n"
 "\n"
-"Ne respondu al ĉi tiu retpoŝtadreso; respondo ne atingos lin.\n"
+"Ne respondu al ĉi tiu retpoŝtadreso; respondo ne atingos lin."
 
 #. TRANS: Subject for favorite notification e-mail.
 #. TRANS: %1$s is the adding user's long name, %2$s is the adding user's nickname.

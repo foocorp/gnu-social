@@ -1110,3 +1110,5 @@ $schema['schema_version'] = array(
 $schema['group_join_queue'] = Group_join_queue::schemaDef();
 
 $schema['subscription_queue'] = Subscription_queue::schemaDef();
+
+$schema['oauth_token_association'] = Oauth_token_association::schemaDef();

@@ -204,7 +204,12 @@ class ApiAuthAction extends ApiAction
                             }
                         }
                         $this->auth_user = $user;
-                        Event::handle('EndSetApiUser', array($user));
+                        // FIXME: setting the value returned by common_current_user()
+                        // There should probably be a better method for this. common_set_user()
+                        // does lots of session stuff.
+                        global $_cur;
+                        $_cur = $this->auth_user;
+                        Event::handle('EndSetApiUser', array($user)); 
                     }
 
                     $msg = "API OAuth authentication for user '%s' (id: %d) on behalf of " .

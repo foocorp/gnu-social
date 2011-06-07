@@ -140,6 +140,18 @@ msgstr "Пребарај групи"
 msgid "No groups starting with %s."
 msgstr "Нема групи што почнуваат на %s."
 
+#. TRANS: Help text for searching group directory.
+msgid ""
+"* Make sure all words are spelled correctly.\n"
+"* Try different keywords.\n"
+"* Try more general keywords.\n"
+"* Try fewer keywords."
+msgstr ""
+"* Проверете дали сите зборови се напишани како што треба.\n"
+"* Обидете се со други клучни зборови.\n"
+"* Обидете се со поопшти клучни зборови.\n"
+"* Обидете се помалку клучни зборови."
+
 #. TRANS: Menu item text for user directory.
 msgctxt "MENU"
 msgid "Directory"

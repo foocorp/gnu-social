@@ -289,7 +289,13 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
     {
         $notices = array();
 
-        $stream = new InboxNoticeStream($this->user);
+        $profile = null;
+
+        if (isset($this->auth_user)) {
+            $profile = $this->auth_user->getProfile();
+        }
+
+        $stream = new InboxNoticeStream($this->user, $profile);
         
         $notice = $stream->getNotices(($this->page-1) * $this->count,
                                       $this->count,
