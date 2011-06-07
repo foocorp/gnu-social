@@ -196,6 +196,23 @@ class DomainStatusNetworkPlugin extends Plugin
         return true;
     }
 
+    static function userExists($email)
+    {
+        $domain = self::toDomain($email);
+
+        $sn = self::siteForDomain($domain);
+
+        if (empty($sn)) {
+            return false;
+        }
+
+        StatusNet::switchSite($sn->nickname);
+
+        $user = User::staticGet('email', $email);
+
+        return !empty($user);
+    }
+
     static function registerEmail($email, $sendWelcome, $template)
     {
         $domain = self::toDomain($email);
@@ -221,6 +238,50 @@ class DomainStatusNetworkPlugin extends Plugin
 
         return $confirm;
     }
+
+    static function login($email, $password)
+    {
+        $domain = self::toDomain($email);
+
+        $sn = self::siteForDomain($domain);
+
+        if (empty($sn)) {
+            throw new ClientException(_("No such site."));
+        }
+
+        StatusNet::switchSite($sn->nickname);
+
+        $user = common_check_user($email, $password);
+
+        if (empty($user)) {
+            // TRANS: Form validation error displayed when trying to log in with incorrect credentials.
+            throw new ClientException(_('Incorrect username or password.'));
+        }
+
+        $loginToken = Login_token::makeNew($user);
+
+        if (empty($loginToken)) {
+            throw new ServerException(_('Cannot log in.'));
+        }
+
+        $url = common_local_url('otp', array('user_id' => $loginToken->user_id,
+                                             'token' => $loginToken->token));
+
+        return $url;
+    }
+
+    static function recoverPassword($email)
+    {
+        $domain = self::toDomain($email);
+
+        $sn = self::siteForDomain($domain);
+
+        if (empty($sn)) {
+            throw new NoSuchUserException(array('email' => $email));
+        }
+
+        StatusNet::switchSite($sn->nickname);
+
 }
 
 // The way addPlugin() works, this global variable gets disappeared.
