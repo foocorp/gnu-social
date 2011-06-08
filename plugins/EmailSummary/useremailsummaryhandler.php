@@ -57,7 +57,7 @@ class UserEmailSummaryHandler extends QueueHandler
      */
     function transport()
     {
-        return 'sitesum';
+        return 'usersum';
     }
 
     /**
