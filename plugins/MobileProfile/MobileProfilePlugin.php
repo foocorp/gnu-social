@@ -348,9 +348,18 @@ class MobileProfilePlugin extends WAP20Plugin
                           $("#navtoggle").text(
                           text == "Show Navigation" ? "Hide Navigation" : "Show Navigation");
                 });
-        	    $(".checkbox-wrapper").unbind("click");
             });'
         );
+
+        if ($this->serveMobile) {
+            $action->inlineScript('
+                $(function() {
+        	        $(".checkbox-wrapper").unbind("click");
+                });'
+            );
+        }
+
+
     }
 
 
