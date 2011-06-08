@@ -44,7 +44,7 @@ if (have_option('u', 'universe')) {
             StatusNet::init($server);
             // Different queue manager, maybe!
             $qm = QueueManager::get();
-            $qm->enqueue(null, 'sitesum');
+            $qm->enqueue(1, 'sitesum');
         }
     }
 } else {
@@ -54,6 +54,6 @@ if (have_option('u', 'universe')) {
         $user = getUser();
         $qm->enqueue($user->id, 'usersum');
     } catch (NoUserArgumentException $nuae) {
-        $qm->enqueue(null, 'sitesum');
+        $qm->enqueue(1, 'sitesum');
     }
 }
