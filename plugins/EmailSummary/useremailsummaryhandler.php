@@ -120,7 +120,7 @@ class UserEmailSummaryHandler extends QueueHandler
             $new_top = $notice->_items[0]->id;
         }
 
-        $out = new XMLStringer();
+        $out = new XMLStringer(true);
 
         $out->elementStart('div', array('width' => '100%',
                                         'style' => 'background-color: #ffffff; border: 4px solid #4c609a; padding: 10px;'));
@@ -206,8 +206,13 @@ class UserEmailSummaryHandler extends QueueHandler
 
         // FIXME: do something for people who don't like HTML email
 
+        $subject = sprintf(_m('Your latest updates from %s'), common_config('site', 'name'));
+
         // TRANS: Subject for e-mail.
-        mail_to_user($user, _m('Updates from your network'), $body,
+
+        mail_to_user($user,
+                     $subject,
+                     $body,
                      array('Content-Type' => 'text/html; charset=UTF-8'));
 
         if (empty($ess)) {
