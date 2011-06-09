@@ -112,13 +112,6 @@ class SettingsNav extends Menu
                                     _('Change email handling'),
                                     $actionName == 'emailsettings');
 
-            $this->action->menuItem(common_local_url('userdesignsettings'),
-                                    // TRANS: Menu item in settings navigation panel.
-                                    _m('MENU','Design'),
-                                    // TRANS: Menu item title in settings navigation panel.
-                                    _('Design your profile'),
-                                    $actionName == 'userdesignsettings');
-
             $this->action->menuItem(common_local_url('urlsettings'),
                                     // TRANS: Menu item in settings navigation panel.
                                     _m('MENU','URL'),

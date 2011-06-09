@@ -246,20 +246,6 @@ class Action extends HTMLOutputter // lawsuit
                 Event::handle('EndShowUAStyles', array($this));
             }
 
-            if (Event::handle('StartShowDesign', array($this))) {
-
-                $user = common_current_user();
-
-                if (empty($user) || $user->viewdesigns) {
-                    $design = $this->getDesign();
-
-                    if (!empty($design)) {
-                        $design->showCSS($this);
-                    }
-                }
-
-                Event::handle('EndShowDesign', array($this));
-            }
             Event::handle('EndShowStyles', array($this));
 
             if (common_config('custom_css', 'enabled')) {
@@ -1440,16 +1426,6 @@ class Action extends HTMLOutputter // lawsuit
     function getFeeds()
     {
         return null;
-    }
-
-    /**
-     * A design for this action
-     *
-     * @return Design a design object to use
-     */
-    function getDesign()
-    {
-        return Design::siteDesign();
     }
 
     /**

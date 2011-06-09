@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Base class for actions that use the current user's design
+ * Base class for group actions
  *
  * PHP version 5
  *
@@ -22,7 +22,7 @@
  * @category  Action
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2009 StatusNet, Inc.
+ * @copyright 2009-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -32,10 +32,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 }
 
 /**
- * Base class for actions that use a group's design
- *
- * Pages related to groups can be themed with a design.
- * This superclass returns that design.
+ * Base class for group actions, similar to ProfileAction
  *
  * @category Action
  * @package  StatusNet
@@ -44,30 +41,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @link     http://status.net/
  *
  */
-class GroupDesignAction extends Action {
-
-    /** The group in question */
-    var $group = null;
-
-    /**
-     * A design for this action
-     *
-     * if the group attribute has been set, returns that group's
-     * design.
-     *
-     * @return Design a design object to use
-     */
-
-    function getDesign()
-    {
-        if (!empty($this->group)) {
-            $design = $this->group->getDesign();
-            if (!empty($design)) {
-                return $design;
-            }
-        }
-        return parent::getDesign();
-    }
+class GroupAction extends Action {
 
     function showProfileBlock()
     {

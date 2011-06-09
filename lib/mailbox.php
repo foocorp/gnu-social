@@ -42,7 +42,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @see      InboxAction
  * @see      OutboxAction
  */
-class MailboxAction extends CurrentUserDesignAction
+class MailboxAction extends Action
 {
     var $page = null;
 

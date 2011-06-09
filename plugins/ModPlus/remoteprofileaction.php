@@ -8,7 +8,7 @@ class RemoteProfileAction extends ShowstreamAction
 {
     function prepare($args)
     {
-        OwnerDesignAction::prepare($args); // skip the ProfileAction code and replace it...
+        Action::prepare($args); // skip the ProfileAction code and replace it...
 
         $id = $this->arg('id');
         $this->user = false;

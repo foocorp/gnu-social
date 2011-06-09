@@ -40,7 +40,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @link     http://status.net/
  */
 
-class EditpeopletagAction extends OwnerDesignAction
+class EditpeopletagAction extends Action
 {
     var $msg, $confirm, $confirm_args=array();
 
