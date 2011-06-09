@@ -1351,13 +1351,16 @@ class Action extends HTMLOutputter // lawsuit
     {
         // Added @id to li for some control.
         // XXX: We might want to move this to htmloutputter.php
-        $lattrs = array();
+        $lattrs  = array();
+        $classes = array();
         if ($class !== null) {
-            $lattrs['class'] = $class;
-            if ($is_selected) {
-                $lattrs['class'] = trim('current ' . $lattrs['class']);
-            }
+            $classes[] = trim($class);
         }
+        if ($is_selected) {
+            $classes[] = 'current';
+        }
+
+        $lattrs['class'] = implode(' ', $classes);
 
         (is_null($id)) ? $lattrs : $lattrs['id'] = $id;
 
