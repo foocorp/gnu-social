@@ -43,7 +43,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  * @see      Widget
  */
 
-class SettingsAction extends CurrentUserDesignAction
+class SettingsAction extends Action
 {
     /**
      * A message for the user.

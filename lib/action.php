@@ -246,20 +246,6 @@ class Action extends HTMLOutputter // lawsuit
                 Event::handle('EndShowUAStyles', array($this));
             }
 
-            if (Event::handle('StartShowDesign', array($this))) {
-
-                $user = common_current_user();
-
-                if (empty($user) || $user->viewdesigns) {
-                    $design = $this->getDesign();
-
-                    if (!empty($design)) {
-                        $design->showCSS($this);
-                    }
-                }
-
-                Event::handle('EndShowDesign', array($this));
-            }
             Event::handle('EndShowStyles', array($this));
 
             if (common_config('custom_css', 'enabled')) {
@@ -1365,13 +1351,16 @@ class Action extends HTMLOutputter // lawsuit
     {
         // Added @id to li for some control.
         // XXX: We might want to move this to htmloutputter.php
-        $lattrs = array();
+        $lattrs  = array();
+        $classes = array();
         if ($class !== null) {
-            $lattrs['class'] = $class;
-            if ($is_selected) {
-                $lattrs['class'] = trim('current ' . $lattrs['class']);
-            }
+            $classes[] = trim($class);
         }
+        if ($is_selected) {
+            $classes[] = 'current';
+        }
+
+        $lattrs['class'] = implode(' ', $classes);
 
         (is_null($id)) ? $lattrs : $lattrs['id'] = $id;
 
@@ -1440,16 +1429,6 @@ class Action extends HTMLOutputter // lawsuit
     function getFeeds()
     {
         return null;
-    }
-
-    /**
-     * A design for this action
-     *
-     * @return Design a design object to use
-     */
-    function getDesign()
-    {
-        return Design::siteDesign();
     }
 
     /**

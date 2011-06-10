@@ -61,8 +61,6 @@ class User extends Memcached_DataObject
     public $subscribe_policy;                // tinyint(1)
     public $urlshorteningservice;            // varchar(50)   default_ur1.ca
     public $inboxed;                         // tinyint(1)
-    public $design_id;                       // int(4)
-    public $viewdesigns;                     // tinyint(1)   default_1
     public $private_stream;                  // tinyint(1)   default_0
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
@@ -293,7 +291,6 @@ class User extends Memcached_DataObject
         $user->emailmicroid = 1;
         $user->emailpost = 1;
         $user->jabbermicroid = 1;
-        $user->viewdesigns = 1;
 
         $user->created = common_sql_now();
 
@@ -714,11 +711,6 @@ class User extends Memcached_DataObject
         return $profile;
     }
 
-    function getDesign()
-    {
-        return Design::staticGet('id', $this->design_id);
-    }
-
     function hasRight($right)
     {
         $profile = $this->getProfile();
@@ -1007,5 +999,98 @@ class User extends Memcached_DataObject
         $vars = parent::__sleep();
         $skip = array('_profile');
         return array_diff($vars, $skip);
+    }
+
+    static function recoverPassword($nore)
+    {
+        $user = User::staticGet('email', common_canonical_email($nore));
+
+        if (!$user) {
+            try {
+                $user = User::staticGet('nickname', common_canonical_nickname($nore));
+            } catch (NicknameException $e) {
+                // invalid
+            }
+        }
+
+        // See if it's an unconfirmed email address
+
+        if (!$user) {
+            // Warning: it may actually be legit to have multiple folks
+            // who have claimed, but not yet confirmed, the same address.
+            // We'll only send to the first one that comes up.
+            $confirm_email = new Confirm_address();
+            $confirm_email->address = common_canonical_email($nore);
+            $confirm_email->address_type = 'email';
+            $confirm_email->find();
+            if ($confirm_email->fetch()) {
+                $user = User::staticGet($confirm_email->user_id);
+            } else {
+                $confirm_email = null;
+            }
+        } else {
+            $confirm_email = null;
+        }
+
+        if (!$user) {
+            // TRANS: Information on password recovery form if no known username or e-mail address was specified.
+            throw new ClientError(_('No user with that email address or username.'));
+            return;
+        }
+
+        // Try to get an unconfirmed email address if they used a user name
+
+        if (!$user->email && !$confirm_email) {
+            $confirm_email = new Confirm_address();
+            $confirm_email->user_id = $user->id;
+            $confirm_email->address_type = 'email';
+            $confirm_email->find();
+            if (!$confirm_email->fetch()) {
+                $confirm_email = null;
+            }
+        }
+
+        if (!$user->email && !$confirm_email) {
+            // TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
+            throw new ClientException(_('No registered email address for that user.'));
+            return;
+        }
+
+        // Success! We have a valid user and a confirmed or unconfirmed email address
+
+        $confirm = new Confirm_address();
+        $confirm->code = common_confirmation_code(128);
+        $confirm->address_type = 'recover';
+        $confirm->user_id = $user->id;
+        $confirm->address = (!empty($user->email)) ? $user->email : $confirm_email->address;
+
+        if (!$confirm->insert()) {
+            common_log_db_error($confirm, 'INSERT', __FILE__);
+            // TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
+            throw new ServerException(_('Error saving address confirmation.'));
+            return;
+        }
+
+         // @todo FIXME: needs i18n.
+        $body = "Hey, $user->nickname.";
+        $body .= "\n\n";
+        $body .= 'Someone just asked for a new password ' .
+                 'for this account on ' . common_config('site', 'name') . '.';
+        $body .= "\n\n";
+        $body .= 'If it was you, and you want to confirm, use the URL below:';
+        $body .= "\n\n";
+        $body .= "\t".common_local_url('recoverpassword',
+                                   array('code' => $confirm->code));
+        $body .= "\n\n";
+        $body .= 'If not, just ignore this message.';
+        $body .= "\n\n";
+        $body .= 'Thanks for your time, ';
+        $body .= "\n";
+        $body .= common_config('site', 'name');
+        $body .= "\n";
+
+        $headers = _mail_prepare_headers('recoverpassword', $user->nickname, $user->nickname);
+        // TRANS: Subject for password recovery e-mail.
+        mail_to_user($user, _('Password recovery requested'), $body, $headers, $confirm->address);
     }
 }

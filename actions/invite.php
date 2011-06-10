@@ -20,7 +20,7 @@
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 // @todo XXX: Add documentation.
-class InviteAction extends CurrentUserDesignAction
+class InviteAction extends Action
 {
     var $mode = null;
     var $error = null;

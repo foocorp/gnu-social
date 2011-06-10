@@ -121,8 +121,6 @@ $schema['user'] = array(
         'subscribe_policy' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => '0 = anybody can subscribe; 1 = require approval'),
         'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'internal', 'description' => 'service to use for auto-shortening URLs'),
         'inboxed' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'has an inbox been created for this user?'),
-        'design_id' => array('type' => 'int', 'description' => 'id of a design'),
-        'viewdesigns' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'whether to view user-provided designs'),
         'private_stream' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to limit all notices to followers only'),
 
         'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
@@ -139,7 +137,6 @@ $schema['user'] = array(
     'foreign keys' => array(
         'user_id_fkey' => array('profile', array('id' => 'id')),
         'user_carrier_fkey' => array('sms_carrier', array('carrier' => 'id')),
-        'user_design_id_fkey' => array('design', array('design_id' => 'id')),
     ),
     'indexes' => array(
         'user_smsemail_idx' => array('smsemail'),
@@ -721,7 +718,6 @@ $schema['user_group'] = array(
         'homepage_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'homepage (profile) size logo'),
         'stream_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'stream-sized logo'),
         'mini_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'mini logo'),
-        'design_id' => array('type' => 'int', 'description' => 'id of a design'),
 
         'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
         'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
@@ -734,9 +730,6 @@ $schema['user_group'] = array(
     'primary key' => array('id'),
     'unique keys' => array(
         'user_group_uri_key' => array('uri'),
-    ),
-    'foreign keys' => array(
-        'user_group_design_id_fkey' => array('design', array('design_id' => 'id')),
     ),
     'indexes' => array(
         'user_group_nickname_idx' => array('nickname'),
@@ -884,20 +877,6 @@ $schema['file_to_post'] = array(
     'indexes' => array(
         'post_id_idx' => array('post_id'),
     ),
-);
-
-$schema['design'] = array(
-    'fields' => array(
-        'id' => array('type' => 'serial', 'not null' => true, 'description' => 'design ID'),
-        'backgroundcolor' => array('type' => 'int', 'description' => 'main background color'),
-        'contentcolor' => array('type' => 'int', 'description' => 'content area background color'),
-        'sidebarcolor' => array('type' => 'int', 'description' => 'sidebar background color'),
-        'textcolor' => array('type' => 'int', 'description' => 'text color'),
-        'linkcolor' => array('type' => 'int', 'description' => 'link color'),
-        'backgroundimage' => array('type' => 'varchar', 'length' => 255, 'description' => 'background image, if any'),
-        'disposition' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'bit 1 = hide background image, bit 2 = display background image, bit 4 = tile background image'),
-    ),
-    'primary key' => array('id'),
 );
 
 $schema['group_block'] = array(

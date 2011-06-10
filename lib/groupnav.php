@@ -137,15 +137,6 @@ class GroupNav extends Menu
                                      sprintf(_m('TOOLTIP','Add or edit %s logo'), $nickname),
                                      $action_name == 'grouplogo',
                                      'nav_group_logo');
-                $this->out->menuItem(common_local_url('groupdesignsettings', array('nickname' =>
-                                                                      $nickname)),
-                                     // TRANS: Menu item in the group navigation page. Only shown for group administrators.
-                                     _m('MENU','Design'),
-                                     // TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-                                     // TRANS: %s is the nickname of the group.
-                                     sprintf(_m('TOOLTIP','Add or edit %s design'), $nickname),
-                                     $action_name == 'groupdesignsettings',
-                                     'nav_group_design');
             }
             Event::handle('EndGroupGroupNav', array($this));
         }

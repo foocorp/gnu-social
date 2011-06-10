@@ -22,7 +22,7 @@
  * @category  Personal
  * @package   StatusNet
  * @author    Shashi Gowda <connect2shashi@gmail.com>
- * @copyright 2008-2009 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -33,7 +33,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 require_once INSTALLDIR.'/lib/peopletaglist.php';
 
-class PeopletagsforuserAction extends OwnerDesignAction
+class PeopletagsforuserAction extends Action
 {
     var $page = null;
     var $tagged = null;

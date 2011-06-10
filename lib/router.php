@@ -269,7 +269,7 @@ class Router
             // settings
 
             foreach (array('profile', 'avatar', 'password', 'im', 'oauthconnections',
-                           'oauthapps', 'email', 'sms', 'userdesign', 'url') as $s) {
+                           'oauthapps', 'email', 'sms', 'url') as $s) {
                 $m->connect('settings/'.$s, array('action' => $s.'settings'));
             }
 
@@ -383,7 +383,7 @@ class Router
                             array('id' => '[0-9]+'));
             }
 
-            foreach (array('members', 'logo', 'rss', 'designsettings') as $n) {
+            foreach (array('members', 'logo', 'rss') as $n) {
                 $m->connect('group/:nickname/'.$n,
                             array('action' => 'group'.$n),
                             array('nickname' => Nickname::DISPLAY_FMT));
@@ -625,12 +625,6 @@ class Router
 
             $m->connect('api/account/update_profile_image.:format',
                         array('action' => 'ApiAccountUpdateProfileImage'));
-
-            $m->connect('api/account/update_profile_background_image.:format',
-                        array('action' => 'ApiAccountUpdateProfileBackgroundImage'));
-
-            $m->connect('api/account/update_profile_colors.:format',
-                        array('action' => 'ApiAccountUpdateProfileColors'));
 
             $m->connect('api/account/update_delivery_device.:format',
                         array('action' => 'ApiAccountUpdateDeliveryDevice'));
@@ -875,7 +869,6 @@ class Router
             // Admin
 
             $m->connect('panel/site', array('action' => 'siteadminpanel'));
-            $m->connect('panel/design', array('action' => 'designadminpanel'));
             $m->connect('panel/user', array('action' => 'useradminpanel'));
 	        $m->connect('panel/access', array('action' => 'accessadminpanel'));
             $m->connect('panel/paths', array('action' => 'pathsadminpanel'));

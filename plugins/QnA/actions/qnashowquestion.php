@@ -57,7 +57,7 @@ class QnashowquestionAction extends ShownoticeAction
      */
     function prepare($argarray)
     {
-        OwnerDesignAction::prepare($argarray);
+        Action::prepare($argarray);
 
         $this->id = $this->trimmed('id');
 

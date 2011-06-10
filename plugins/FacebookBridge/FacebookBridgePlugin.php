@@ -277,8 +277,7 @@ class FacebookBridgePlugin extends Plugin
         if ($this->hasApplication()) {
             $action_name = $action->trimmed('action');
 
-            // CurrentUserDesignAction stores the current user in $cur
-            $user = $action->getCurrentUser();
+            $user = common_current_user();
 
             $flink = null;
 
