@@ -3,7 +3,7 @@
  * StatusNet - the distributed open-source microblogging tool
  * Copyright (C) 2011, StatusNet, Inc.
  *
- * Register a user to a site by their email address
+ * Recover a password
  * 
  * PHP version 5
  *
@@ -35,7 +35,7 @@ if (!defined('STATUSNET')) {
 }
 
 /**
- * An action to globally register a new user
+ * Recover a password
  *
  * @category  Action
  * @package   StatusNet
@@ -45,7 +45,7 @@ if (!defined('STATUSNET')) {
  * @link      http://status.net/
  */
 
-class GlobalregisterAction extends GlobalApiAction
+class GlobalrecoverAction extends GlobalApiAction
 {
     /**
      * For initializing members of the class.
@@ -72,15 +72,14 @@ class GlobalregisterAction extends GlobalApiAction
     function handle($argarray=null)
     {
         try {
-            DomainStatusNetworkPlugin::registerEmail($this->email, true);
+            DomainStatusNetworkPlugin::recoverPassword($email);
             $this->showSuccess();
-        } catch (ClientException $e) {
-            $this->showError($e->getMessage());
+        } catch (ClientException $ce) {
+            $this->showError($ce->getMessage());
         } catch (Exception $e) {
             common_log(LOG_ERR, $e->getMessage());
             $this->showError(_('An internal error occurred.'));
         }
-
         return;
     }
 }

@@ -35,7 +35,7 @@ if (!defined('STATUSNET')) {
 }
 
 /**
- * Class comment
+ * Login to a site
  *
  * @category  Action
  * @package   StatusNet
@@ -45,8 +45,10 @@ if (!defined('STATUSNET')) {
  * @link      http://status.net/
  */
 
-class GlobalLoginAction extends Action
+class GloballoginAction extends GlobalApiAction
 {
+    var $password;
+
     /**
      * For initializing members of the class.
      *
@@ -58,6 +60,15 @@ class GlobalLoginAction extends Action
     function prepare($argarray)
     {
         parent::prepare($argarray);
+
+        $password = $this->trimmed('password');
+
+        if (empty($password)) {
+            throw new ClientException(_('No password.'));
+        }
+
+        $this->password = $password;
+
         return true;
     }
 
@@ -71,6 +82,15 @@ class GlobalLoginAction extends Action
 
     function handle($argarray=null)
     {
+        try {
+            $url = DomainStatusNetworkPlugin::login($email, $password);
+            $this->showSuccess(array('url' => $url));
+        } catch (ClientException $ce) {
+            $this->showError($ce->getMessage());
+        } catch (Exception $e) {
+            common_log(LOG_ERR, $e->getMessage());
+            $this->showError(_('An internal error occurred.'));
+        }
         return;
     }
 }
