@@ -241,7 +241,7 @@ class DomainStatusNetworkPlugin extends Plugin
         return !empty($user);
     }
 
-    static function registerEmail($email, $sendWelcome, $template)
+    static function registerEmail($email)
     {
         $domain = self::toDomain($email);
 
