@@ -157,13 +157,13 @@ class SiteadminpanelAction extends AdminPanelAction
         // Validate logos
         if (!empty($values['site']['logo']) &&
             !Validate::uri($values['site']['logo'], array('allowed_schemes' => array('http', 'https')))) {
-            // TRANS: Client error displayed when a logo URL does is not valid.
+            // TRANS: Client error displayed when a logo URL is not valid.
             $this->clientError(_('Invalid logo URL.'));
         }
 
         if (!empty($values['site']['ssllogo']) &&
             !Validate::uri($values['site']['ssllogo'], array('allowed_schemes' => array('https')))) {
-            // TRANS: Client error displayed when an SSL logo URL is invalid.
+            // TRANS: Client error displayed when a SSL logo URL is invalid.
             $this->clientError(_('Invalid SSL logo URL.'));
         }
 
@@ -196,7 +196,7 @@ class SiteadminpanelAction extends AdminPanelAction
 
         if (!Validate::number($values['site']['dupelimit'], array('min' => 1))) {
             // TRANS: Client error displayed trying to save site settings with a text limit below 1.
-            $this->clientError(_("Dupe limit must be one or more seconds."));
+            $this->clientError(_('Dupe limit must be one or more seconds.'));
         }
     }
 }
@@ -302,7 +302,7 @@ class SiteAdminPanelForm extends AdminForm
                              _('Default language'),
                              get_nice_language_list(),
                              // TRANS: Dropdown title on site settings panel.
-                             _('Site language when autodetection from browser settings is not available'),
+                             _('The site language when autodetection from browser settings is not available.'),
                              false, $this->value('language'));
         $this->unli();
 
@@ -374,6 +374,6 @@ class SiteAdminPanelForm extends AdminForm
                            'submit',
                            null,
                            // TRANS: Button title for saving site settings.
-                           _('Save site settings'));
+                           _('Save the site settings.'));
     }
 }
