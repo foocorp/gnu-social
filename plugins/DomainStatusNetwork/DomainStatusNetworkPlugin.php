@@ -157,6 +157,15 @@ class DomainStatusNetworkPlugin extends Plugin
         return true;
     }
 
+    function onLoginAction($action, &$login) {
+        $this->debug($action);
+        if (in_array($action, array('globalregister', 'globallogin', 'globalrecover'))) {
+            $login = true;
+            return false;
+        }
+        return true;
+    }
+
     static function nicknameForDomain($domain)
     {
         $registered = self::registeredDomain($domain);

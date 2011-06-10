@@ -57,8 +57,17 @@ class GlobalregisterAction extends GlobalApiAction
 
     function prepare($argarray)
     {
-        parent::prepare($argarray);
-        return true;
+        try {
+            parent::prepare($argarray);
+            return true;
+        } catch (ClientException $e) {
+            $this->showError($e->getMessage(), $e->getCode());
+            return false;
+        } catch (Exception $e) {
+            common_log(LOG_ERR, $e->getMessage());
+            $this->showError(_('An internal error occurred.'), 500);
+            return false;
+        }
     }
 
     /**
@@ -75,10 +84,10 @@ class GlobalregisterAction extends GlobalApiAction
             DomainStatusNetworkPlugin::registerEmail($this->email, true);
             $this->showSuccess();
         } catch (ClientException $e) {
-            $this->showError($e->getMessage());
+            $this->showError($e->getMessage(), $e->getCode());
         } catch (Exception $e) {
             common_log(LOG_ERR, $e->getMessage());
-            $this->showError(_('An internal error occurred.'));
+            $this->showError(_('An internal error occurred.'), 500);
         }
 
         return;

@@ -64,13 +64,13 @@ class GlobalApiAction extends Action
         parent::prepare($args);
 
         if (!common_config('globalapi', 'enabled')) {
-            throw new ClientException(_('Global API not enabled.'));
+            throw new ClientException(_('Global API not enabled.'), 403);
         }
 
         $apikey = $this->trimmed('apikey');
 
         if (empty($apikey)) {
-            throw new ClientException(_('No API key.'));
+            throw new ClientException(_('No API key.'), 403);
         }
 
         $expected = common_config('globalapi', 'key');
@@ -78,7 +78,7 @@ class GlobalApiAction extends Action
         if ($expected != $apikey) {
             // FIXME: increment a counter by IP address to prevent brute-force
             // attacks on the key.
-            throw new ClientException(_('Bad API key.'));
+            throw new ClientException(_('Bad API key.'), 403);
         }
 
         $email = common_canonical_email($this->trimmed('email'));
@@ -96,23 +96,36 @@ class GlobalApiAction extends Action
         return true;
     }
 
-    function showError($message)
+    function showError($message, $code=400)
     {
-        $this->showOutput(array('error' => $message));
+        $this->showOutput(array('error' => $message), $code);
     }
 
-    function showSuccess($values=null)
+    function showSuccess($values=null, $code=200)
     {
         if (empty($values)) {
             $values = array();
         }
         $values['success'] = 1;
-        $this->showOutput($values);
+        $this->showOutput($values, $code);
     }
 
-    function showOutput($values)
+    function showOutput($values, $code)
     {
+        if (array_key_exists($code, ClientErrorAction::$status)) {
+            $status_string = ClientErrorAction::$status[$code];
+        } else if (array_key_exists($code, ServerErrorAction::$status)) {
+            $status_string = ServerErrorAction::$status[$code];
+        } else {
+            // bad code!
+            $code = 500;
+            $status_string = ServerErrorAction::$status[$code];
+        }
+
+        header('HTTP/1.1 '.$code.' '.$status_string);
+
         header('Content-Type: application/json; charset=utf-8');
         print(json_encode($values));
+        print("\n");
     }
 }
