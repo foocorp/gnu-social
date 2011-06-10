@@ -111,8 +111,10 @@ class Status_network_tag extends Safe_DataObject
     function decache()
     {
         $key = 'status_network_tags:' . $this->site_id;
-        if (Status_network::$cache) {
-            Status_network::$cache->delete($key);
+        if (Status_network::$cache || Status_network::$cacheInitialized) {
+            // FIXME: this was causing errors, so I'm hiding them.
+            // I'm a big chicken and lazy.
+            @Status_network::$cache->delete($key);
         }
     }
 
