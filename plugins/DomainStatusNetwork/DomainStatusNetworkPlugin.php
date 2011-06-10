@@ -103,9 +103,8 @@ class DomainStatusNetworkPlugin extends Plugin
             include_once $dir . '/actions/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
         case 'DomainStatusNetworkInstaller':
-            include_once $dir . '/lib/' . strtolower($cls) . '.php';
-            return false;
         case 'GlobalApiAction':
+        case 'FreeEmail':
             include_once $dir . '/lib/' . strtolower($cls) . '.php';
             return false;
         default:
@@ -244,6 +243,10 @@ class DomainStatusNetworkPlugin extends Plugin
     static function registerEmail($email)
     {
         $domain = self::toDomain($email);
+
+        if (FreeEmail::isFree($domain)) {
+            throw new ClientException(_("Use your work email."));
+        }
 
         $sn = self::siteForDomain($domain);
 
