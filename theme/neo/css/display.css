@@ -1903,4 +1903,35 @@ li.notice-answer + li.notice {
     padding-left: 20px;
 }
 
+/* SNOD CompanyLogo styling */
+
+#site_nav_local_views a.company_logo {
+    width: 138px;
+    padding: 0px;
+    font-weight: bold;
+    text-transform: none;
+    line-height: 1em;
+    margin-bottom: 30px;
+}
+
+#site_nav_local_views a.company_logo:hover {
+    background: none;
+    color: blue;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
+}
+
+.company_logo img {
+    max-width: 96px;
+    margin-bottom: 10px;
+}
+
+.company_logo span {
+    display: block;
+}
+
+a.company_logo:hover span {
+    text-decoration: underline;
+}
+
+
 }/*end of @media screen, projection, tv*/
