@@ -56,7 +56,8 @@ class Status_network extends Safe_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    static $cache = null;
+    // XXX: made public so Status_network_tag can eff with it
+    public static $cache = null;
     static $cacheInitialized = false;
     static $base = null;
     static $wildcard = null;
