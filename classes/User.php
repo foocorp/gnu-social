@@ -61,8 +61,6 @@ class User extends Memcached_DataObject
     public $subscribe_policy;                // tinyint(1)
     public $urlshorteningservice;            // varchar(50)   default_ur1.ca
     public $inboxed;                         // tinyint(1)
-    public $design_id;                       // int(4)
-    public $viewdesigns;                     // tinyint(1)   default_1
     public $private_stream;                  // tinyint(1)   default_0
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
@@ -293,7 +291,6 @@ class User extends Memcached_DataObject
         $user->emailmicroid = 1;
         $user->emailpost = 1;
         $user->jabbermicroid = 1;
-        $user->viewdesigns = 1;
 
         $user->created = common_sql_now();
 
@@ -712,11 +709,6 @@ class User extends Memcached_DataObject
         $profile->query(sprintf($qry, $this->id, $tag));
 
         return $profile;
-    }
-
-    function getDesign()
-    {
-        return Design::staticGet('id', $this->design_id);
     }
 
     function hasRight($right)

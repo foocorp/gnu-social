@@ -296,10 +296,6 @@ class StatusNet
 
         $config['db'] = $default['db'];
 
-        // Backward compatibility
-
-        $config['site']['design'] =& $config['design'];
-
         if (function_exists('date_default_timezone_set')) {
             /* Work internally in UTC */
             date_default_timezone_set('UTC');

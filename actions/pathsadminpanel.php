@@ -364,61 +364,7 @@ class PathsAdminPanelForm extends AdminForm
         $this->out->elementEnd('fieldset');
 
         $this->out->elementStart('fieldset', array('id' =>
-                                                   'settings_design_background-paths'));
-        // TRANS: Fieldset legend in Paths admin panel.
-        $this->out->element('legend', null, _('Backgrounds'));
-        $this->out->elementStart('ul', 'form_data');
-
-        $this->li();
-        $this->input('server',
-                     // TRANS: Field label in Paths admin panel.
-                     _('Server'),
-                     // TRANS: Tooltip for field label in Paths admin panel.
-                     _('Server for backgrounds.'),
-                     'background');
-        $this->unli();
-
-        $this->li();
-        $this->input('path',
-                     // TRANS: Field label in Paths admin panel.
-                     _('Path'),
-                     // TRANS: Tooltip for field label in Paths admin panel.
-                     _('Web path to backgrounds.'),
-                     'background');
-        $this->unli();
-
-        $this->li();
-        $this->input('sslserver',
-                     // TRANS: Field label in Paths admin panel.
-                     _('SSL server'),
-                     // TRANS: Tooltip for field label in Paths admin panel.
-                     _('Server for backgrounds on SSL pages.'),
-                     'background');
-        $this->unli();
-
-        $this->li();
-        $this->input('sslpath',
-                     // TRANS: Field label in Paths admin panel.
-                     _('SSL path'),
-                     // TRANS: Tooltip for field label in Paths admin panel.
-                     _('Web path to backgrounds on SSL pages.'),
-                     'background');
-        $this->unli();
-
-        $this->li();
-        $this->input('dir',
-                     // TRANS: Field label in Paths admin panel.
-                     _('Directory'),
-                     // TRANS: Tooltip for field label in Paths admin panel.
-                     _('Directory where backgrounds are located.'),
-                     'background');
-        $this->unli();
-
-        $this->out->elementEnd('ul');
-        $this->out->elementEnd('fieldset');
-
-        $this->out->elementStart('fieldset', array('id' =>
-                                                   'settings_design_attachments-paths'));
+                                                   'settings_attachments-paths'));
 
         // TRANS: Fieldset legens in Paths admin panel.
         $this->out->element('legend', null, _('Attachments'));
