@@ -447,7 +447,8 @@ function mail_broadcast_notice_sms($notice)
                    __FILE__);
         $success = mail_send_sms_notice_address($notice,
                                                 $user->smsemail,
-                                                $user->incomingemail);
+                                                $user->incomingemail,
+                                                $user->nickname);
         if (!$success) {
             // XXX: Not sure, but I think that's the right thing to do
             common_log(LOG_WARNING,
@@ -480,7 +481,8 @@ function mail_send_sms_notice($notice, $user)
 {
     return mail_send_sms_notice_address($notice,
                                         $user->smsemail,
-                                        $user->incomingemail);
+                                        $user->incomingemail,
+                                        $user->nickname);
 }
 
 /**
@@ -492,10 +494,11 @@ function mail_send_sms_notice($notice, $user)
  * @param Notice $notice        notice to send
  * @param string $smsemail      email address to send to
  * @param string $incomingemail email address to set as 'from'
+ * @param string $nickname      nickname to add to beginning
  *
  * @return boolean success flag
  */
-function mail_send_sms_notice_address($notice, $smsemail, $incomingemail)
+function mail_send_sms_notice_address($notice, $smsemail, $incomingemail, $nickname)
 {
     $to = $nickname . ' <' . $smsemail . '>';
 
