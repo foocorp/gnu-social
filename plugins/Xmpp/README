@@ -1,4 +1,5 @@
-The XMPP plugin allows users to send and receive notices over the XMPP/Jabber/GTalk network.
+The XMPP plugin allows users to send and receive notices over the
+XMPP/Jabber/GTalk network.
 
 Installation
 ============
@@ -6,9 +7,10 @@ add "addPlugin('xmpp',
     array('setting'=>'value', 'setting2'=>'value2', ...);"
 to the bottom of your config.php
 
-The daemon included with this plugin must be running. It will be started by
-the plugin along with their other daemons when you run scripts/startdaemons.sh.
-See the StatusNet README for more about queuing and daemons.
+The daemon included with this plugin must be running. It will be
+started by the plugin along with their other daemons when you run
+scripts/startdaemons.sh. See the StatusNet README for more about queuing and
+daemons.
 
 Settings
 ========
@@ -32,4 +34,3 @@ addPlugin('xmpp', array(
     'password'=>'...',
     'public'=>array('bob@aol.com', 'sue@google.com')
 ));
-

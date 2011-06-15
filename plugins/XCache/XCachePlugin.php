@@ -117,8 +117,8 @@ class XCachePlugin extends Plugin
                             'author' => 'Craig Andrews',
                             'homepage' => 'http://status.net/wiki/Plugin:XCache',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Use the <a href="http://xcache.lighttpd.net/">XCache</a> variable cache to cache query results.'));
         return true;
     }
 }
-
