@@ -260,7 +260,7 @@ class RecoverpasswordAction extends Action
         $this->elementStart('li');
          // TRANS: Field label for password reset form where the password has to be typed again.
         $this->password('confirm', _('Confirm'),
-                        // TRANS: Ttile for field label for password reset form where the password has to be typed again.
+                        // TRANS: Title for field label for password reset form where the password has to be typed again.
                         _('Same as password above.'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
