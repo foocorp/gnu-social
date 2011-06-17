@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Menu to show tags you're subscribed to
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class TagSubMenu extends Menu
 {
     protected $user;
@@ -66,7 +65,8 @@ class TagSubMenu extends Menu
                 $this->out->menuItem(common_local_url('tag',
                                                       array('tag' => $tag)),
                                      sprintf('#%s', $tag),
-                                     sprintf(_('Notices tagged with %s'), $tag),
+                                     // TRANS: Menu item title. %s is a tag.
+                                     sprintf(_('Notices tagged with "%s".'), $tag),
                                      $this->actionName == 'tag' && $this->action->arg('tag') == $tag,
                                      'nav_streams_tag_'.$tag);
             }
@@ -74,5 +74,4 @@ class TagSubMenu extends Menu
 
         $this->out->elementEnd('ul');
     }
-    
 }

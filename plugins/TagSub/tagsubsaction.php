@@ -116,18 +116,18 @@ class TagSubsAction extends GalleryAction
             if ($this->user->id === $current_user->id) {
                 // TRANS: Tag subscription list text when the logged in user has no tag subscriptions.
                 $message = _m('You are not listening to any hash tags right now. You can push the "Subscribe" button ' .
-                             'on any hashtag page to automatically receive any public messages on this site that use that ' .
-                             'tag, even if you are not subscribed to the poster.');
+                              'on any hashtag page to automatically receive any public messages on this site that use that ' .
+                              'tag, even if you are not subscribed to the poster.');
             } else {
                 // TRANS: Tag subscription list text when looking at the subscriptions for a of a user other
                 // TRANS: than the logged in user that has no tag subscriptions. %s is the user nickname.
-                $message = sprintf(_m('%s is not listening to any tags.'), $this->user->nickname);
+                $message = sprintf(_m('%s is not following any tags.'), $this->user->nickname);
             }
         }
         else {
             // TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
             // TRANS: as an anonymous user. %s is the user nickname.
-            $message = sprintf(_m('%s is not listening to any tags.'), $this->user->nickname);
+            $message = sprintf(_m('%s is not following any tags.'), $this->user->nickname);
         }
 
         $this->elementStart('div', 'guide');
@@ -163,9 +163,11 @@ class TagSubscriptionsListItem extends SubscriptionListItem
         if (!empty($cur) && $cur->id == $this->owner->id) {
             $this->showOwnerControls();
         }
-        
+
         $url = common_local_url('tag', array('tag' => $tag));
-        $linkline = sprintf(_m('#<a href="%s">%s</a> since %s'),
+        // TRANS: %1$s is a URL to a tag, %2$s is a tag,
+        // TRANS: %3$s a date string.
+        $linkline = sprintf(_m('#<a href="%1$s">%2$s</a> since %3$s'),
                             htmlspecialchars($url),
                             htmlspecialchars($tag),
                             common_date_string($tagsub->created));

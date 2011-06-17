@@ -46,7 +46,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  *
  * @see      UnsubscribeForm
  */
-
 class TagUnsubForm extends TagSubForm
 {
     /**
@@ -54,37 +53,31 @@ class TagUnsubForm extends TagSubForm
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'tag-unsubscribe-' . $this->tag;
     }
-
 
     /**
      * class of the form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         // class to match existing styles...
         return 'form_user_unsubscribe ajax';
     }
 
-
     /**
      * Action of the form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('tagunsub', array('tag' => $this->tag));
     }
-
 
     /**
      * Legend of the Form
@@ -93,6 +86,7 @@ class TagUnsubForm extends TagSubForm
      */
     function formLegend()
     {
+        // TRANS: Form legend.
         $this->out->element('legend', null, _m('Unsubscribe from this tag'));
     }
 
@@ -101,9 +95,11 @@ class TagUnsubForm extends TagSubForm
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _m('BUTTON','Unsubscribe'), 'submit', null, _m('Unsubscribe from this tag'));
+        // TRANS: Submit button text to unsubscribe from a tag.
+        $this->out->submit('submit', _m('BUTTON','Unsubscribe'),
+                           // TRANS: Submit button title to unsubscribe from a tag.
+                           'submit', null, _m('Unsubscribe from this tag.'));
     }
 }
