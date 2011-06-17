@@ -88,34 +88,38 @@ class Queued_XMPP extends XMPPHP_XMPP
      */
     public function connect($timeout = 30, $persistent = false, $sendinit = true)
     {
-        throw new Exception("Can't connect to server from fake XMPP.");
+        // No i18n needed. Test message.
+        throw new Exception('Cannot connect to server from fake XMPP.');
     }
 
     public function disconnect()
     {
-        throw new Exception("Can't connect to server from fake XMPP.");
+        // No i18n needed. Test message.
+        throw new Exception('Cannot connect to server from fake XMPP.');
     }
 
     public function process()
     {
-        throw new Exception("Can't read stream from fake XMPP.");
+        // No i18n needed. Test message.
+        throw new Exception('Cannot read stream from fake XMPP.');
     }
 
     public function processUntil($event, $timeout=-1)
     {
-        throw new Exception("Can't read stream from fake XMPP.");
+        // No i18n needed. Test message.
+        throw new Exception('Cannot read stream from fake XMPP.');
     }
 
     public function read()
     {
-        throw new Exception("Can't read stream from fake XMPP.");
+        // No i18n needed. Test message.
+        throw new Exception('Cannot read stream from fake XMPP.');
     }
 
     public function readyToProcess()
     {
-        throw new Exception("Can't read stream from fake XMPP.");
+        // No i18n needed. Test message.
+        throw new Exception('Cannot read stream from fake XMPP.');
     }
     //@}
-
 }
-
