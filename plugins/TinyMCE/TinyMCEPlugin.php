@@ -1,5 +1,4 @@
 <?php
-
 /**
  * StatusNet - the distributed open-source microblogging tool
  * Copyright (C) 2010, StatusNet, Inc.
@@ -38,7 +37,7 @@ if (!defined('STATUSNET')) {
  * Use TinyMCE library to allow rich text editing in the browser
  *
  * Converts the notice form in browser to a rich-text editor.
- * 
+ *
  * FIXME: this plugin DOES NOT load its static files from the configured
  * plugin server if one exists. There are cross-server permissions errors
  * if you try to do that (something about window.tinymce).
@@ -84,6 +83,7 @@ class TinyMCEPlugin extends Plugin
             'author' => 'Evan Prodromou',
             'homepage' => 'http://status.net/wiki/Plugin:TinyMCE',
             'rawdescription' =>
+            // TRANS: Plugin description.
             _m('Use TinyMCE library to allow rich text editing in the browser.'));
         return true;
     }
