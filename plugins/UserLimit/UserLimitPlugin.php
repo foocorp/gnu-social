@@ -45,7 +45,6 @@ if (!defined('STATUSNET')) {
  *
  * @seeAlso  Location
  */
-
 class UserLimitPlugin extends Plugin
 {
     public $maxUsers = null;
@@ -65,14 +64,16 @@ class UserLimitPlugin extends Plugin
     function _checkMaxUsers()
     {
         if (!is_null($this->maxUsers)) {
-
             $cls = new User();
 
             $cnt = $cls->count();
 
             if ($cnt >= $this->maxUsers) {
-                // @todo FIXME: i18n issue. Needs plural.
-                $msg = sprintf(_m('Cannot register; maximum number of users (%d) reached.'),
+                // TRANS: Error message given if creating a new user is not possible because a limit has been reached.
+                // TRANS: %d is the user limit (also available for plural).
+                $msg = sprintf(_m('Cannot register because the maximum number of users (%d) for this site was reached.',
+                                  'Cannot register because the maximum number of users (%d) for this site was reached.',
+                                  $this->maxUsers),
                                $this->maxUsers);
 
                 throw new ClientException($msg);
@@ -87,6 +88,7 @@ class UserLimitPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:UserLimit',
                             'description' =>
+                            // TRANS: Plugin description.
                             _m('Limit the number of users who can register.'));
         return true;
     }
