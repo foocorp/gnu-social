@@ -135,7 +135,8 @@ class OpenIDPlugin extends Plugin
                     common_redirect(common_local_url('openidsettings'));
                     exit(0);
                 } else if ($action == 'recoverpassword') {
-                    throw new ClientException('Unavailable action.');
+                    // TRANS: Client exception thrown when an action is not available.
+                    throw new ClientException(_m('Unavailable action.'));
                 }
             }
         }
@@ -478,18 +479,24 @@ class OpenIDPlugin extends Plugin
         {
         case 'register':
             if (common_logged_in()) {
-                $instr = '(Have an [OpenID](http://openid.net/)? ' .
-                  '[Add an OpenID to your account](%%action.openidsettings%%)!';
+                // TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
+                // TRANS: This message contains Markdown links in the form (description)[link].
+                $instr = _m('(Have an [OpenID](http://openid.net/)? ' .
+                  '[Add an OpenID to your account](%%action.openidsettings%%)!');
             } else {
-                $instr = '(Have an [OpenID](http://openid.net/)? ' .
+                // TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
+                // TRANS: This message contains Markdown links in the form (description)[link].
+                $instr = _m('(Have an [OpenID](http://openid.net/)? ' .
                   'Try our [OpenID registration]'.
-                  '(%%action.openidlogin%%)!)';
+                  '(%%action.openidlogin%%)!)');
             }
             break;
         case 'login':
-            $instr = '(Have an [OpenID](http://openid.net/)? ' .
+            // TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
+            // TRANS: This message contains Markdown links in the form (description)[link].
+            $instr = _m('(Have an [OpenID](http://openid.net/)? ' .
               'Try our [OpenID login]'.
-              '(%%action.openidlogin%%)!)';
+              '(%%action.openidlogin%%)!)');
             break;
         default:
             return true;
