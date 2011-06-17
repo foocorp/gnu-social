@@ -56,6 +56,7 @@ class WikiHowProfilePlugin extends Plugin
                             'author' => 'Brion Vibber',
                             'homepage' => 'http://status.net/wiki/Plugin:Sample',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Fetches avatar and other profile information for WikiHow users when setting up an account via OpenID.'));
         return true;
     }
@@ -121,7 +122,8 @@ class WikiHowProfilePlugin extends Plugin
         $client = HTTPClient::start();
         $response = $client->get($profileUrl);
         if (!$response->isOk()) {
-            throw new Exception("WikiHow profile page fetch failed.");
+            // TRANS: Exception thrown when fetching a WikiHow profile page fails.
+            throw new Exception(_m('WikiHow profile page fetch failed.'));
             // HTTP error response already logged.
             return false;
         }
@@ -137,7 +139,8 @@ class WikiHowProfilePlugin extends Plugin
         error_reporting($old);
 
         if (!$ok) {
-            throw new Exception("HTML parse failure during check for WikiHow avatar.");
+            // TRANS: Exception thrown when parsing a WikiHow profile page fails.
+            throw new Exception(_m('HTML parse failure during check for WikiHow avatar.'));
             return false;
         }
 
@@ -168,15 +171,19 @@ class WikiHowProfilePlugin extends Plugin
     private function saveAvatar($user, $url)
     {
         if (!common_valid_http_url($url)) {
-            throw new ServerException(sprintf(_m("Invalid avatar URL %s."), $url));
+            // TRANS: Server exception thrown when an avatar URL is invalid.
+            // TRANS: %s is the invalid avatar URL.
+            throw new ServerException(sprintf(_m('Invalid avatar URL %s.'), $url));
         }
 
-        // @fixme this should be better encapsulated
+        // @todo FIXME: This should be better encapsulated
         // ripped from OStatus via oauthstore.php (for old OMB client)
         $temp_filename = tempnam(sys_get_temp_dir(), 'listener_avatar');
         try {
             if (!copy($url, $temp_filename)) {
-                throw new ServerException(sprintf(_m("Unable to fetch avatar from %s."), $url));
+                // TRANS: Exception thrown when fetching an avatar from a URL fails.
+                // TRANS: %s is a URL.
+                throw new ServerException(sprintf(_m('Unable to fetch avatar from %s.'), $url));
             }
 
             $profile = $user->getProfile();
