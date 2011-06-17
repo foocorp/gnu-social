@@ -1,0 +1,26 @@
+First reminder...
+
+%%arg.inviter%% has invited you to join them on %%site.name%%.
+
+%%site.name%% is a micro-blogging service that lets you keep
+up-to-date with people you know and people who interest you.
+
+You can also share news about yourself, your thoughts, or your life
+online with people who know about you.
+
+It's great for meeting new people who share your interests.
+
+You can see %%arg.inviter%%'s profile page on %%site.name%% here:
+
+> [%%arg.inviterurl%%](%%arg.inviterurl%%)
+
+If you'd like to try the service, click on the link below to accept
+the invitation.
+
+> [%%arg.confirmurl%%](%%arg.confirmurl%%)
+
+If not, you can ignore this message. Thanks for your patience and your time.
+
+Sincerely,
+
+%%site.name%%
