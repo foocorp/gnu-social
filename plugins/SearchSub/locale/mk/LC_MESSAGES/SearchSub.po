@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SearchSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:12+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:30+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:46:06+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:51:31+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-searchsub\n"
@@ -128,9 +128,8 @@ msgid "Unsubscribe"
 msgstr "Откажи претплата"
 
 #. TRANS: Button title for unsubscribing from a text search.
-#, fuzzy
 msgid "Unsubscribe from this search."
-msgstr "Откажи претплата на ова пребарување"
+msgstr "Откажи претплата на ова пребарување."
 
 #. TRANS: Page title when search unsubscription succeeded.
 msgid "Unsubscribed"
@@ -195,13 +194,13 @@ msgstr "Не следите никакви пребарувања."
 #. TRANS: Separator for list of tracked searches.
 msgctxt "SEPARATOR"
 msgid "\", \""
-msgstr ""
+msgstr "„, “"
 
 #. TRANS: Message given having disabled all search subscriptions with 'track off'.
 #. TRANS: %s is a list of searches. Separator default is '", "'.
-#, fuzzy, php-format
+#, php-format
 msgid "You are tracking searches for: \"%s\"."
-msgstr "Следите пребарувања на: %s"
+msgstr "Ги следите пребарувањата на: „%s“."
 
 #. TRANS: Form legend.
 msgid "Subscribe to this search"
@@ -213,9 +212,8 @@ msgid "Subscribe"
 msgstr "Претплати се"
 
 #. TRANS: Button title for subscribing to a search.
-#, fuzzy
 msgid "Subscribe to this search."
-msgstr "Претплати се на пребарувањево"
+msgstr "Претплати се на пребарувањево."
 
 #. TRANS: Message given having failed to cancel one of the search subs with 'track off' command.
 #. TRANS: %s is the search for which the subscription removal failed.
@@ -226,6 +224,3 @@ msgstr "Грешка при оневозможувањето на претпла
 #. TRANS: Message given having disabled all search subscriptions with 'track off'.
 msgid "Disabled all your search subscriptions."
 msgstr "Ги оневозможив соте пребарувања на кои сте се претплатиле."
-
-#~ msgid "Searches"
-#~ msgstr "Пребарувања"

@@ -16,17 +16,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:56:55+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:04+0000\n"
 "Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-05 09:57:31+0000\n"
+"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -116,7 +116,6 @@ msgid "Save access settings"
 msgstr "Desa els paràmetres d'accés"
 
 #. TRANS: Tooltip for button to save access settings in site admin panel.
-#. TRANS: Button text for saving theme settings.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -132,7 +131,6 @@ msgstr "Desa els paràmetres d'accés"
 #. TRANS: Button text for saving "Other settings" in profile.
 #. TRANS: Button text to save user settings in user admin panel.
 #. TRANS: Button label in the "Edit application" form.
-#. TRANS: Button text on profile design page to save settings.
 #. TRANS: Text for save button on group edit form.
 #. TRANS: Button text to save tags for a profile.
 msgctxt "BUTTON"
@@ -208,7 +206,6 @@ msgstr "No existeix la pàgina."
 #. TRANS: Client error when user not found for an rss related action.
 #. TRANS: Client error displayed when no existing user is provided for a user's delivery device setting.
 #. TRANS: Client error displayed if a user could not be found.
-#. TRANS: Client error when user not found updating a profile background image.
 #. TRANS: Client error displayed updating profile image without having a user object.
 #. TRANS: Client error displayed when making an Atom API request for an unknown user.
 #. TRANS: Client error displayed when trying to block a non-existing user or a user from another site.
@@ -376,7 +373,6 @@ msgstr ""
 #. TRANS: Server error thrown on database error updating SMS preferences.
 #. TRANS: Server error thrown on database error removing a registered SMS phone number.
 #. TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
-#. TRANS: Server exception thrown on Profile design page when updating design settings fails.
 msgid "Could not update user."
 msgstr "No s'ha pogut actualitzar l'usuari."
 
@@ -391,7 +387,6 @@ msgstr "No s'ha pogut desar el perfil."
 
 #. TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
 #. TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-#. TRANS: Form validation error in design settings form. POST should remain untranslated.
 #, php-format
 msgid ""
 "The server was unable to handle that much POST data (%s byte) due to its "
@@ -405,24 +400,6 @@ msgstr[0] ""
 msgstr[1] ""
 "El servidor no ha pogut gestionar tantes dades POST (%s bytes) a causa de la "
 "configuració actual."
-
-#. TRANS: Client error displayed when saving design settings fails because of an empty id.
-#. TRANS: Client error displayed when saving design settings fails because of an empty result.
-#. TRANS: Client error displayed when a database error occurs inserting profile colours.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error displayed when group design settings could not be saved because of an application issue.
-#. TRANS: Form validation error on Profile design page when saving design settings has failed.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-msgid "Unable to save your design settings."
-msgstr "No s'han pogut desar els paràmetres de disseny."
-
-#. TRANS: Error displayed when updating design settings fails.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-#. TRANS: Error message displayed if design settings could not be saved.
-#. TRANS: Error message displayed if design settings could not be saved after clicking "Use defaults".
-msgid "Could not update your design."
-msgstr "No s'ha pogut actualitzar el vostre disseny."
 
 #. TRANS: Title for Atom feed.
 msgctxt "ATOM"
@@ -515,6 +492,8 @@ msgstr ""
 "amics."
 
 #. TRANS: Client error displayed trying to direct message self (403).
+#. TRANS: Client error displayed trying to send a direct message to self.
+#. TRANS: Error text shown when trying to send a direct message to self.
 msgid ""
 "Do not send a message to yourself; just say it to yourself quietly instead."
 msgstr "No us envieu un missatge a un mateix; simplement comentar-vos-ho."
@@ -743,7 +722,6 @@ msgstr "grups sobre %s"
 
 #. TRANS: Client error displayed when trying to edit a group without being an admin.
 #. TRANS: Client error displayed trying to edit a group while not being a group admin.
-#. TRANS: Client error displayed trying to change group design settings without being a (group) admin.
 #. TRANS: Client error displayed when trying to change group logo settings while not being a group admin.
 msgid "You must be an admin to edit the group."
 msgstr "Heu de ser administrador per editar el grup."
@@ -854,7 +832,6 @@ msgstr "Error de la base de dades en inserir l'oauth_token_association."
 
 #. TRANS: Client error given on when invalid data was passed through a form in the OAuth API.
 #. TRANS: Unexpected validation error on avatar upload form.
-#. TRANS: Client error displayed when the submitted form contains unexpected data.
 #. TRANS: Client error displayed submitting invalid form data for edit application.
 #. TRANS: Message given submitting a form with an unknown action in e-mail settings.
 #. TRANS: Form validation error message when an unsupported argument is used.
@@ -863,7 +840,6 @@ msgstr "Error de la base de dades en inserir l'oauth_token_association."
 #. TRANS: Client error when submitting a form with unexpected information.
 #. TRANS: Client error displayed when unexpected data is posted in the password recovery form.
 #. TRANS: Message given submitting a form with an unknown action in SMS settings.
-#. TRANS: Unknown form validation error in design settings form.
 msgid "Unexpected form submission."
 msgstr "Enviament de formulari inesperat."
 
@@ -1221,7 +1197,6 @@ msgstr "Heu d'haver iniciat una sessió per deixar un grup."
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.
 #. TRANS: Client error displayed trying to block a user from a group while specifying a non-existing group.
 #. TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
-#. TRANS: Client error displayed trying to change group design settings while providing a nickname for a non-existing group.
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
@@ -1308,6 +1283,7 @@ msgid "Join request canceled."
 msgstr "S'ha cancel·lat la sol·licitud d'unió."
 
 #. TRANS: Client error displayed trying to approve subscription for a non-existing request.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "%s is not in the moderation queue for your subscriptions."
 msgstr "%s no és una cua de moderació de les vostres subscripcions."
@@ -1459,7 +1435,6 @@ msgstr "No existeix l'adjunció."
 #. TRANS: Client error displayed trying to get an avatar without providing a nickname.
 #. TRANS: Client error displayed when requesting a list of blocked users for a group without providing a group nickname.
 #. TRANS: Client error displayed trying to edit a group while not proving a nickname for the group to edit.
-#. TRANS: Client error displayed trying to change group design settings without providing a group nickname.
 #. TRANS: Client error displayed when trying to change group logo settings without providing a nickname.
 #. TRANS: Client error displayed when trying to view group members without providing a group nickname.
 #. TRANS: Client error displayed when requesting a group RSS feed without providing a group nickname.
@@ -1968,149 +1943,6 @@ msgstr "No eliminis l'usuari."
 #. TRANS: Submit button title for 'Yes' when deleting a user.
 msgid "Delete this user."
 msgstr "Elimina l'usuari."
-
-#. TRANS: Message used as title for design settings for the site.
-msgid "Design"
-msgstr "Disseny"
-
-#. TRANS: Instructions for design adminsitration panel.
-msgid "Design settings for this StatusNet site"
-msgstr "Paràmetres de disseny d'aquest lloc StatusNet."
-
-#. TRANS: Client error displayed when a logo URL does is not valid.
-msgid "Invalid logo URL."
-msgstr "L'URL del logotip no és vàlid."
-
-#. TRANS: Client error displayed when an SSL logo URL is invalid.
-msgid "Invalid SSL logo URL."
-msgstr "L'URL SSL del logotip no és vàlid."
-
-#. TRANS: Client error displayed when a theme is submitted through the form that is not in the theme list.
-#. TRANS: %s is the chosen unavailable theme.
-#, php-format
-msgid "Theme not available: %s."
-msgstr "Tema no disponible: %s."
-
-#. TRANS: Fieldset legend for form to change logo.
-msgid "Change logo"
-msgstr "Canvia el logotip"
-
-#. TRANS: Field label for StatusNet site logo.
-msgid "Site logo"
-msgstr "Logotip del lloc"
-
-#. TRANS: Field label for SSL StatusNet site logo.
-msgid "SSL logo"
-msgstr "Logotip SSL"
-
-#. TRANS: Fieldset legend for form change StatusNet site's theme.
-msgid "Change theme"
-msgstr "Canvia el tema"
-
-#. TRANS: Field label for dropdown to choose site theme.
-msgid "Site theme"
-msgstr "Tema del lloc"
-
-#. TRANS: Title for field label for dropdown to choose site theme.
-msgid "Theme for the site."
-msgstr "Tema del lloc."
-
-#. TRANS: Field label for uploading a cutom theme.
-msgid "Custom theme"
-msgstr "Tema personalitzat"
-
-#. TRANS: Form instructions for uploading a cutom StatusNet theme.
-msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-msgstr "Podeu pujar un tema personalitzat de l'StatusNet amb un arxiu ZIP."
-
-#. TRANS: Fieldset legend for theme background image.
-msgid "Change background image"
-msgstr "Canvia la imatge de fons"
-
-#. TRANS: Field label for background image on theme designer page.
-#. TRANS: Field label for background color selector.
-#. TRANS: Label on profile design page for setting a profile page background colour.
-msgid "Background"
-msgstr "Fons"
-
-#. TRANS: Form guide for background image upload form on theme designer page.
-#, php-format
-msgid ""
-"You can upload a background image for the site. The maximum file size is %1"
-"$s."
-msgstr ""
-"Podeu pujar una imatge de fons per al lloc. La mida màxima de fitxer és %1$s."
-
-#. TRANS: Used as radio button label to add a background image.
-msgid "On"
-msgstr "Activada"
-
-#. TRANS: Used as radio button label to not add a background image.
-msgid "Off"
-msgstr "Desactivada"
-
-#. TRANS: Form guide for turning background image on or off on theme designer page.
-#. TRANS: Form guide for a set of radio buttons on the profile design page that will enable or disable
-#. TRANS: use of the uploaded profile image.
-msgid "Turn background image on or off."
-msgstr "Activa o desactiva la imatge de fons."
-
-#. TRANS: Checkbox label to title background image on theme designer page.
-#. TRANS: Checkbox label on profile design page that will cause the profile image to be tiled.
-msgid "Tile background image"
-msgstr "Posa en mosaic la imatge de fons"
-
-#. TRANS: Fieldset legend for theme colors.
-msgid "Change colors"
-msgstr "Canvia els colors"
-
-#. TRANS: Field label for content color selector.
-#. TRANS: Label on profile design page for setting a profile page content colour.
-msgid "Content"
-msgstr "Contingut"
-
-#. TRANS: Field label for sidebar color selector.
-#. TRANS: Label on profile design page for setting a profile page sidebar colour.
-msgid "Sidebar"
-msgstr "Barra lateral"
-
-#. TRANS: Field label for text color selector.
-#. TRANS: Label on profile design page for setting a profile page text colour.
-msgid "Text"
-msgstr "Text"
-
-#. TRANS: Field label for link color selector.
-#. TRANS: Label on profile design page for setting a profile page links colour.
-msgid "Links"
-msgstr "Enllaços"
-
-#. TRANS: Fieldset legend for advanced theme design settings.
-msgid "Advanced"
-msgstr "Avançat"
-
-#. TRANS: Field label for custom CSS.
-msgid "Custom CSS"
-msgstr "CSS personalitzat"
-
-#. TRANS: Button text for resetting theme settings.
-msgctxt "BUTTON"
-msgid "Use defaults"
-msgstr "Utilitza els paràmetres per defecte"
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default.
-msgid "Restore default designs."
-msgstr "Restaura els dissenys per defecte."
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-msgid "Reset back to default."
-msgstr "Torna a restaurar els paràmetres per defecte."
-
-#. TRANS: Title for button for saving theme settings.
-#. TRANS: Title for button on profile design page to save settings.
-msgid "Save design."
-msgstr "Desa el disseny."
 
 #. TRANS: Client error displayed when trying to remove favorite status for a notice that is not a favorite.
 msgid "This notice is not a favorite!"
@@ -2713,31 +2545,6 @@ msgstr "S'ha produït un error en la base de dades en blocar l'usuari del grup."
 #. TRANS: Client error displayed trying to find a user by ID without providing an ID.
 msgid "No ID."
 msgstr "Sense ID."
-
-#. TRANS: Client error displayed trying to change group design settings while not logged in.
-msgid "You must be logged in to edit a group."
-msgstr "Heu d'iniciar una sessió per editar un grup."
-
-#. TRANS: Title group design settings page.
-msgid "Group design"
-msgstr "Disseny de grup"
-
-#. TRANS: Instructions for group design settings page.
-msgid ""
-"Customize the way your group looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-"Personalitzeu l'aspecte del vostre grup amb una imatge de fons i una paleta "
-"de colors de la vostra elecció."
-
-#. TRANS: Form validation error displayed when group design settings could not be updated because of an application issue.
-msgid "Unable to update your design settings."
-msgstr "No s'han pogut actualitzar els paràmetres de disseny."
-
-#. TRANS: Form text to confirm saved group design settings.
-#. TRANS: Confirmation message on Profile design page when saving design settings has succeeded.
-msgid "Design preferences saved."
-msgstr "S'han desat les preferències de disseny."
 
 #. TRANS: Title for group logo settings page.
 #. TRANS: Group logo form legend.
@@ -3403,12 +3210,6 @@ msgstr "Cap contingut!"
 msgid "No recipient specified."
 msgstr "No has especificat el destinatari."
 
-#. TRANS: Client error displayed trying to send a direct message to self.
-#. TRANS: Error text shown when trying to send a direct message to self.
-msgid ""
-"Don't send a message to yourself; just say it to yourself quietly instead."
-msgstr "No t'enviïs missatges a tu mateix, simplement dir-te això."
-
 #. TRANS: Page title after sending a direct message.
 msgid "Message sent"
 msgstr "S'ha enviat el missatge"
@@ -3694,7 +3495,7 @@ msgid "Confirm"
 msgstr "Confirma"
 
 #. TRANS: Field title on page where to change password.
-#. TRANS: Ttile for field label for password reset form where the password has to be typed again.
+#. TRANS: Title for field label for password reset form where the password has to be typed again.
 #. TRANS: Field title on account registration page.
 msgid "Same as password above."
 msgstr "Igual que la contrasenya de dalt"
@@ -3869,30 +3670,6 @@ msgstr "Directori d'avatars"
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Directory where avatars are located."
 msgstr "Directori on es troben els avatars."
-
-#. TRANS: Fieldset legend in Paths admin panel.
-msgid "Backgrounds"
-msgstr "Fons"
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds."
-msgstr "Servidor de fons."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds."
-msgstr "Camí web de fons."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds on SSL pages."
-msgstr "Servidor de fons a pàgines SSL."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds on SSL pages."
-msgstr "Camí web de fons a pàgines SSL."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Directory where backgrounds are located."
-msgstr "Directori on es troben els fons."
 
 #. TRANS: Fieldset legens in Paths admin panel.
 msgid "Attachments"
@@ -4689,7 +4466,6 @@ msgid "6 or more characters, and do not forget it!"
 msgstr "6 o més caràcters, i no ho oblideu!"
 
 #. TRANS: Button text for password reset form.
-#. TRANS: Button text on profile design page to reset all colour settings to default without saving.
 msgctxt "BUTTON"
 msgid "Reset"
 msgstr "Reinicialitza"
@@ -4697,18 +4473,6 @@ msgstr "Reinicialitza"
 #. TRANS: Form instructions for password recovery form.
 msgid "Enter a nickname or email address."
 msgstr "Escriviu un sobrenom o una adreça de correu electrònic."
-
-#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
-msgid "No user with that email address or username."
-msgstr "No hi ha cap usuari amb aquesta direcció o usuari."
-
-#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
-msgid "No registered email address for that user."
-msgstr "No hi ha cap adreça de correu electrònic registrada d'aquest usuari."
-
-#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
-msgid "Error saving address confirmation."
-msgstr "S'ha produït un error en desar la confirmació de l'adreça."
 
 #. TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
 msgid ""
@@ -5669,6 +5433,14 @@ msgstr "El nom del lloc ha de tenir una longitud superior a zero."
 msgid "You must have a valid contact email address."
 msgstr "Heu de tenir una adreça electrònica de contacte vàlida."
 
+#. TRANS: Client error displayed when a logo URL is not valid.
+msgid "Invalid logo URL."
+msgstr "L'URL del logotip no és vàlid."
+
+#. TRANS: Client error displayed when a SSL logo URL is invalid.
+msgid "Invalid SSL logo URL."
+msgstr "L'URL SSL del logotip no és vàlid."
+
 #. TRANS: Client error displayed trying to save site settings with an invalid language code.
 #. TRANS: %s is the invalid language code.
 #, php-format
@@ -5739,7 +5511,9 @@ msgid "Default language"
 msgstr "Llengua per defecte"
 
 #. TRANS: Dropdown title on site settings panel.
-msgid "Site language when autodetection from browser settings is not available"
+#, fuzzy
+msgid ""
+"The site language when autodetection from browser settings is not available."
 msgstr ""
 "Llengua del lloc quan la detecció automàtica des de la configuració del "
 "navegador no està disponible"
@@ -5767,8 +5541,22 @@ msgstr ""
 "Quant de temps cal que esperin els usuaris (en segons) per enviar el mateix "
 "de nou."
 
+#. TRANS: Fieldset legend for form to change logo.
+#, fuzzy
+msgid "Logo"
+msgstr "Logotip"
+
+#. TRANS: Field label for StatusNet site logo.
+msgid "Site logo"
+msgstr "Logotip del lloc"
+
+#. TRANS: Field label for SSL StatusNet site logo.
+msgid "SSL logo"
+msgstr "Logotip SSL"
+
 #. TRANS: Button title for saving site settings.
-msgid "Save site settings"
+#, fuzzy
+msgid "Save the site settings."
 msgstr "Desa els paràmetres del lloc"
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
@@ -6533,40 +6321,6 @@ msgstr "No es pot llegir l'URL de l'avatar «%s»."
 msgid "Wrong image type for avatar URL \"%s\"."
 msgstr "Tipus d'imatge incorrecta per a l'URL de l'avatar «%s»."
 
-#. TRANS: Title for profile design page.
-#. TRANS: Page title for profile design page.
-msgid "Profile design"
-msgstr "Disseny del perfil"
-
-#. TRANS: Instructions for Profile design page.
-#. TRANS: Instructions for profile design page.
-msgid ""
-"Customize the way your profile looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-"Personalitzeu l'aspecte del vostre perfil amb una imatge de fons o una "
-"paleta de colors de la vostra elecció."
-
-#. TRANS: Succes message on Profile design page when finding an easter egg.
-msgid "Enjoy your hotdog!"
-msgstr "Gaudiu de l'entrepà!"
-
-#. TRANS: Form legend on Profile design page.
-msgid "Design settings"
-msgstr "Paràmetres de disseny"
-
-#. TRANS: Checkbox label on Profile design page.
-msgid "View profile designs"
-msgstr "Visualitza els dissenys de perfil"
-
-#. TRANS: Title for checkbox on Profile design page.
-msgid "Show or hide profile designs."
-msgstr "Mostra o amaga els dissenys de perfil."
-
-#. TRANS: Form legend on Profile design page for form to choose a background image.
-msgid "Background file"
-msgstr "Fitxer de fons"
-
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
 #, php-format
@@ -7020,6 +6774,18 @@ msgstr "No s'ha definit cap usuari únic per al mode d'usuari únic."
 msgid "Single-user mode code called when not enabled."
 msgstr "S'ha cridat el codi del mode d'únic usuari quan no està habilitat."
 
+#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
+msgid "No user with that email address or username."
+msgstr "No hi ha cap usuari amb aquesta direcció o usuari."
+
+#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
+msgid "No registered email address for that user."
+msgstr "No hi ha cap adreça de correu electrònic registrada d'aquest usuari."
+
+#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
+msgid "Error saving address confirmation."
+msgstr "S'ha produït un error en desar la confirmació de l'adreça."
+
 #. TRANS: Server exception thrown when creating a group failed.
 msgid "Could not create group."
 msgstr "No s'ha pogut crear el grup."
@@ -7293,11 +7059,6 @@ msgstr "El showForm() no està implementat."
 msgid "saveSettings() not implemented."
 msgstr "El saveSettings() no està implementat."
 
-#. TRANS: Client error message thrown if design settings could not be deleted in
-#. TRANS: the admin panel Design.
-msgid "Unable to delete design setting."
-msgstr "No s'ha pogut eliminar el paràmetre de disseny."
-
 #. TRANS: Header in administrator navigation panel.
 #. TRANS: Header in settings navigation panel.
 msgctxt "HEADER"
@@ -7325,17 +7086,6 @@ msgstr "Configuració bàsica del lloc"
 msgctxt "MENU"
 msgid "Site"
 msgstr "Lloc"
-
-#. TRANS: Menu item title in administrator navigation panel.
-msgid "Design configuration"
-msgstr "Configuració del disseny"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
-msgid "Design"
-msgstr "Disseny"
 
 #. TRANS: Menu item title in administrator navigation panel.
 msgid "User configuration"
@@ -8177,44 +7927,6 @@ msgstr "Elimina"
 msgid "Delete this user"
 msgstr "Elimina l'usuari"
 
-#. TRANS: Form legend of form for changing the page design.
-msgid "Change design"
-msgstr "Canvia el disseny"
-
-#. TRANS: Fieldset legend on profile design page to change profile page colours.
-msgid "Change colours"
-msgstr "Canvia els colors"
-
-#. TRANS: Button text on profile design page to immediately reset all colour settings to default.
-msgid "Use defaults"
-msgstr "Utilitza els paràmetres per defecte"
-
-#. TRANS: Label in form on profile design page.
-#. TRANS: Field contains file name on user's computer that could be that user's custom profile background image.
-msgid "Upload file"
-msgstr "Puja un fitxer"
-
-#. TRANS: Instructions for form on profile design page.
-msgid ""
-"You can upload your personal background image. The maximum file size is 2MB."
-msgstr ""
-"Podeu pujar la vostra imatge de fons personal. La mida màxima del fitxer és "
-"2MB."
-
-#. TRANS: Radio button on profile design page that will enable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "On"
-msgstr "Activada"
-
-#. TRANS: Radio button on profile design page that will disable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "Off"
-msgstr "Desactivada"
-
-#. TRANS: Success message displayed if design settings were saved after clicking "Use defaults".
-msgid "Design defaults restored."
-msgstr "S'han restaurat els paràmetres de disseny per defecte."
-
 #. TRANS: Exception. %s is an ID.
 #, php-format
 msgid "Unable to find services for %s."
@@ -8428,13 +8140,6 @@ msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr "Afegeix o edita el logotip de %s"
 
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "Add or edit %s design"
-msgstr "Afegeix o edita el disseny de %s"
-
 #. TRANS: Group actions header (h2). Text hidden by default.
 msgid "Group actions"
 msgstr "Accions del grup"
@@ -8547,9 +8252,8 @@ msgid "Invite more colleagues"
 msgstr "Convida més companys"
 
 #. TRANS: Form legend.
-#, fuzzy
 msgid "Invite collegues"
-msgstr "Convida més companys"
+msgstr "Convida els col·legues"
 
 #. TRANS: Field label for a list of e-mail addresses.
 msgid "Email addresses"
@@ -8574,9 +8278,8 @@ msgid "Send"
 msgstr "Envia"
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgid "Send invitations."
-msgstr "Invitacions"
+msgstr "Envia invitacions."
 
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
@@ -8647,9 +8350,9 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s is now following you on %2$s."
-msgstr "%1$s ara està seguint %2$s."
+msgstr "%1$s ara està seguint-vos a %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -9779,10 +9482,6 @@ msgstr "Adreça electrònica"
 msgid "Change email handling"
 msgstr "Canvieu la gestió del correu"
 
-#. TRANS: Menu item title in settings navigation panel.
-msgid "Design your profile"
-msgstr "Dissenyeu el vostre perfil"
-
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
 msgid "URL"
@@ -10196,3 +9895,242 @@ msgstr "L'XML no és vàlid, hi manca l'arrel XRD."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Es recupera la còpia de seguretat del fitxer '%s'."
+
+#. TRANS: Server exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Invalid avatar URL %s."
+msgstr "No es pot llegir l'URL de l'avatar «%s»."
+
+#. TRANS: Server exception. %s is a URI.
+#, fuzzy, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr "S'ha produït un error en actualitzar el perfil remot."
+
+#. TRANS: Server exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "No s'han pogut trobar els serveis de %s."
+
+#. TRANS: Exception. %s is a profile URL.
+#, fuzzy, php-format
+msgid "Could not reach profile page %s."
+msgstr "No s'ha pogut crear l'etiqueta de perfil."
+
+#. TRANS: Exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr "No es pot trobar un usuari amb el sobrenom %s."
+
+#. TRANS: Exception.
+#, fuzzy
+msgid "Not a valid webfinger address."
+msgstr "Adreça de correu electrònic no vàlida."
+
+#, fuzzy, php-format
+msgid "Could not find a valid profile for \"%s\"."
+msgstr "No s'ha pogut desar el perfil."
+
+#~ msgid "Unable to save your design settings."
+#~ msgstr "No s'han pogut desar els paràmetres de disseny."
+
+#~ msgid "Could not update your design."
+#~ msgstr "No s'ha pogut actualitzar el vostre disseny."
+
+#~ msgid "Design"
+#~ msgstr "Disseny"
+
+#~ msgid "Design settings for this StatusNet site"
+#~ msgstr "Paràmetres de disseny d'aquest lloc StatusNet."
+
+#~ msgid "Theme not available: %s."
+#~ msgstr "Tema no disponible: %s."
+
+#~ msgid "Change logo"
+#~ msgstr "Canvia el logotip"
+
+#~ msgid "Change theme"
+#~ msgstr "Canvia el tema"
+
+#~ msgid "Site theme"
+#~ msgstr "Tema del lloc"
+
+#~ msgid "Theme for the site."
+#~ msgstr "Tema del lloc."
+
+#~ msgid "Custom theme"
+#~ msgstr "Tema personalitzat"
+
+#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
+#~ msgstr "Podeu pujar un tema personalitzat de l'StatusNet amb un arxiu ZIP."
+
+#~ msgid "Change background image"
+#~ msgstr "Canvia la imatge de fons"
+
+#~ msgid "Background"
+#~ msgstr "Fons"
+
+#~ msgid ""
+#~ "You can upload a background image for the site. The maximum file size is %"
+#~ "1$s."
+#~ msgstr ""
+#~ "Podeu pujar una imatge de fons per al lloc. La mida màxima de fitxer és %1"
+#~ "$s."
+
+#~ msgid "On"
+#~ msgstr "Activada"
+
+#~ msgid "Off"
+#~ msgstr "Desactivada"
+
+#~ msgid "Turn background image on or off."
+#~ msgstr "Activa o desactiva la imatge de fons."
+
+#~ msgid "Tile background image"
+#~ msgstr "Posa en mosaic la imatge de fons"
+
+#~ msgid "Change colors"
+#~ msgstr "Canvia els colors"
+
+#~ msgid "Content"
+#~ msgstr "Contingut"
+
+#~ msgid "Sidebar"
+#~ msgstr "Barra lateral"
+
+#~ msgid "Text"
+#~ msgstr "Text"
+
+#~ msgid "Links"
+#~ msgstr "Enllaços"
+
+#~ msgid "Advanced"
+#~ msgstr "Avançat"
+
+#~ msgid "Custom CSS"
+#~ msgstr "CSS personalitzat"
+
+#~ msgctxt "BUTTON"
+#~ msgid "Use defaults"
+#~ msgstr "Utilitza els paràmetres per defecte"
+
+#~ msgid "Restore default designs."
+#~ msgstr "Restaura els dissenys per defecte."
+
+#~ msgid "Reset back to default."
+#~ msgstr "Torna a restaurar els paràmetres per defecte."
+
+#~ msgid "Save design."
+#~ msgstr "Desa el disseny."
+
+#~ msgid "You must be logged in to edit a group."
+#~ msgstr "Heu d'iniciar una sessió per editar un grup."
+
+#~ msgid "Group design"
+#~ msgstr "Disseny de grup"
+
+#~ msgid ""
+#~ "Customize the way your group looks with a background image and a colour "
+#~ "palette of your choice."
+#~ msgstr ""
+#~ "Personalitzeu l'aspecte del vostre grup amb una imatge de fons i una "
+#~ "paleta de colors de la vostra elecció."
+
+#~ msgid "Unable to update your design settings."
+#~ msgstr "No s'han pogut actualitzar els paràmetres de disseny."
+
+#~ msgid "Design preferences saved."
+#~ msgstr "S'han desat les preferències de disseny."
+
+#~ msgid ""
+#~ "Don't send a message to yourself; just say it to yourself quietly instead."
+#~ msgstr "No t'enviïs missatges a tu mateix, simplement dir-te això."
+
+#~ msgid "Backgrounds"
+#~ msgstr "Fons"
+
+#~ msgid "Server for backgrounds."
+#~ msgstr "Servidor de fons."
+
+#~ msgid "Web path to backgrounds."
+#~ msgstr "Camí web de fons."
+
+#~ msgid "Server for backgrounds on SSL pages."
+#~ msgstr "Servidor de fons a pàgines SSL."
+
+#~ msgid "Web path to backgrounds on SSL pages."
+#~ msgstr "Camí web de fons a pàgines SSL."
+
+#~ msgid "Directory where backgrounds are located."
+#~ msgstr "Directori on es troben els fons."
+
+#~ msgid "Profile design"
+#~ msgstr "Disseny del perfil"
+
+#~ msgid ""
+#~ "Customize the way your profile looks with a background image and a colour "
+#~ "palette of your choice."
+#~ msgstr ""
+#~ "Personalitzeu l'aspecte del vostre perfil amb una imatge de fons o una "
+#~ "paleta de colors de la vostra elecció."
+
+#~ msgid "Enjoy your hotdog!"
+#~ msgstr "Gaudiu de l'entrepà!"
+
+#~ msgid "Design settings"
+#~ msgstr "Paràmetres de disseny"
+
+#~ msgid "View profile designs"
+#~ msgstr "Visualitza els dissenys de perfil"
+
+#~ msgid "Show or hide profile designs."
+#~ msgstr "Mostra o amaga els dissenys de perfil."
+
+#~ msgid "Background file"
+#~ msgstr "Fitxer de fons"
+
+#~ msgid "Unable to delete design setting."
+#~ msgstr "No s'ha pogut eliminar el paràmetre de disseny."
+
+#~ msgid "Design configuration"
+#~ msgstr "Configuració del disseny"
+
+#~ msgctxt "MENU"
+#~ msgid "Design"
+#~ msgstr "Disseny"
+
+#~ msgid "Change design"
+#~ msgstr "Canvia el disseny"
+
+#~ msgid "Change colours"
+#~ msgstr "Canvia els colors"
+
+#~ msgid "Use defaults"
+#~ msgstr "Utilitza els paràmetres per defecte"
+
+#~ msgid "Upload file"
+#~ msgstr "Puja un fitxer"
+
+#~ msgid ""
+#~ "You can upload your personal background image. The maximum file size is "
+#~ "2MB."
+#~ msgstr ""
+#~ "Podeu pujar la vostra imatge de fons personal. La mida màxima del fitxer "
+#~ "és 2MB."
+
+#~ msgctxt "RADIO"
+#~ msgid "On"
+#~ msgstr "Activada"
+
+#~ msgctxt "RADIO"
+#~ msgid "Off"
+#~ msgstr "Desactivada"
+
+#~ msgid "Design defaults restored."
+#~ msgstr "S'han restaurat els paràmetres de disseny per defecte."
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "Add or edit %s design"
+#~ msgstr "Afegeix o edita el disseny de %s"
+
+#~ msgid "Design your profile"
+#~ msgstr "Dissenyeu el vostre perfil"

@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:22+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:37+0000\n"
 "Language-Team: Malayalam <http://translatewiki.net/wiki/Portal:ml>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 09:57:31+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ml\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -99,7 +99,6 @@ msgid "Save access settings"
 msgstr "അഭിഗമ്യതാ സജ്ജീകരണങ്ങൾ സേവ് ചെയ്യുക"
 
 #. TRANS: Tooltip for button to save access settings in site admin panel.
-#. TRANS: Button text for saving theme settings.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -115,7 +114,6 @@ msgstr "അഭിഗമ്യതാ സജ്ജീകരണങ്ങൾ സേ�
 #. TRANS: Button text for saving "Other settings" in profile.
 #. TRANS: Button text to save user settings in user admin panel.
 #. TRANS: Button label in the "Edit application" form.
-#. TRANS: Button text on profile design page to save settings.
 #. TRANS: Text for save button on group edit form.
 #. TRANS: Button text to save tags for a profile.
 msgctxt "BUTTON"
@@ -187,7 +185,6 @@ msgstr "അത്തരത്തിൽ ഒരു താളില്ല."
 #. TRANS: Client error when user not found for an rss related action.
 #. TRANS: Client error displayed when no existing user is provided for a user's delivery device setting.
 #. TRANS: Client error displayed if a user could not be found.
-#. TRANS: Client error when user not found updating a profile background image.
 #. TRANS: Client error displayed updating profile image without having a user object.
 #. TRANS: Client error displayed when making an Atom API request for an unknown user.
 #. TRANS: Client error displayed when trying to block a non-existing user or a user from another site.
@@ -346,7 +343,6 @@ msgstr ""
 #. TRANS: Server error thrown on database error updating SMS preferences.
 #. TRANS: Server error thrown on database error removing a registered SMS phone number.
 #. TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
-#. TRANS: Server exception thrown on Profile design page when updating design settings fails.
 msgid "Could not update user."
 msgstr "ഉപയോക്തൃ വിവരങ്ങൾ പുതുക്കാൻ കഴിഞ്ഞില്ല."
 
@@ -361,7 +357,6 @@ msgstr ""
 
 #. TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
 #. TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-#. TRANS: Form validation error in design settings form. POST should remain untranslated.
 #, php-format
 msgid ""
 "The server was unable to handle that much POST data (%s byte) due to its "
@@ -371,24 +366,6 @@ msgid_plural ""
 "current configuration."
 msgstr[0] ""
 msgstr[1] ""
-
-#. TRANS: Client error displayed when saving design settings fails because of an empty id.
-#. TRANS: Client error displayed when saving design settings fails because of an empty result.
-#. TRANS: Client error displayed when a database error occurs inserting profile colours.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error displayed when group design settings could not be saved because of an application issue.
-#. TRANS: Form validation error on Profile design page when saving design settings has failed.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-msgid "Unable to save your design settings."
-msgstr "താങ്കളുടെ രൂപകല്പനാ സജ്ജീകരണങ്ങൾ കാത്തുസൂക്ഷിക്കാനായില്ല."
-
-#. TRANS: Error displayed when updating design settings fails.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-#. TRANS: Error message displayed if design settings could not be saved.
-#. TRANS: Error message displayed if design settings could not be saved after clicking "Use defaults".
-msgid "Could not update your design."
-msgstr "താങ്കളുടെ രൂപകല്പന പുതുക്കാനായില്ല."
 
 #. TRANS: Title for Atom feed.
 msgctxt "ATOM"
@@ -479,6 +456,8 @@ msgid "Cannot send direct messages to users who aren't your friend."
 msgstr "താങ്കളുടെ സുഹൃത്തുക്കളല്ലാത്ത ഉപയോക്താക്കൾക്ക് നേരിട്ടുള്ള സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയില്ല."
 
 #. TRANS: Client error displayed trying to direct message self (403).
+#. TRANS: Client error displayed trying to send a direct message to self.
+#. TRANS: Error text shown when trying to send a direct message to self.
 msgid ""
 "Do not send a message to yourself; just say it to yourself quietly instead."
 msgstr "താങ്കൾക്കു തന്നെ സന്ദേശം അയയ്ക്കരുത്; പകരം അത് പതുക്കെ സ്വയം പറയുക."
@@ -707,7 +686,6 @@ msgstr "%s സൈറ്റിലെ സംഘങ്ങൾ"
 
 #. TRANS: Client error displayed when trying to edit a group without being an admin.
 #. TRANS: Client error displayed trying to edit a group while not being a group admin.
-#. TRANS: Client error displayed trying to change group design settings without being a (group) admin.
 #. TRANS: Client error displayed when trying to change group logo settings while not being a group admin.
 msgid "You must be an admin to edit the group."
 msgstr "സംഘത്തിൽ മാറ്റം വരുത്താൻ താങ്കൾ ഒരു കാര്യനിർവ്വാഹകനായിരിക്കണം."
@@ -816,7 +794,6 @@ msgstr ""
 
 #. TRANS: Client error given on when invalid data was passed through a form in the OAuth API.
 #. TRANS: Unexpected validation error on avatar upload form.
-#. TRANS: Client error displayed when the submitted form contains unexpected data.
 #. TRANS: Client error displayed submitting invalid form data for edit application.
 #. TRANS: Message given submitting a form with an unknown action in e-mail settings.
 #. TRANS: Form validation error message when an unsupported argument is used.
@@ -825,7 +802,6 @@ msgstr ""
 #. TRANS: Client error when submitting a form with unexpected information.
 #. TRANS: Client error displayed when unexpected data is posted in the password recovery form.
 #. TRANS: Message given submitting a form with an unknown action in SMS settings.
-#. TRANS: Unknown form validation error in design settings form.
 msgid "Unexpected form submission."
 msgstr "അപ്രതീക്ഷിത ഫോം സമർപ്പിക്കൽ."
 
@@ -1174,7 +1150,6 @@ msgstr "ഒരു സംഘത്തിൽ നിന്നും പുറത്
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.
 #. TRANS: Client error displayed trying to block a user from a group while specifying a non-existing group.
 #. TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
-#. TRANS: Client error displayed trying to change group design settings while providing a nickname for a non-existing group.
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
@@ -1259,6 +1234,7 @@ msgid "Join request canceled."
 msgstr "ഭാഗഭാക്കാകൽ അഭ്യർത്ഥന നിരസിച്ചു."
 
 #. TRANS: Client error displayed trying to approve subscription for a non-existing request.
+#. TRANS: %s is a user nickname.
 #, fuzzy, php-format
 msgid "%s is not in the moderation queue for your subscriptions."
 msgstr "ഈ സംഘത്തിലെ ഉപയോക്താക്കളുടെ പട്ടിക."
@@ -1412,7 +1388,6 @@ msgstr ""
 #. TRANS: Client error displayed trying to get an avatar without providing a nickname.
 #. TRANS: Client error displayed when requesting a list of blocked users for a group without providing a group nickname.
 #. TRANS: Client error displayed trying to edit a group while not proving a nickname for the group to edit.
-#. TRANS: Client error displayed trying to change group design settings without providing a group nickname.
 #. TRANS: Client error displayed when trying to change group logo settings without providing a nickname.
 #. TRANS: Client error displayed when trying to view group members without providing a group nickname.
 #. TRANS: Client error displayed when requesting a group RSS feed without providing a group nickname.
@@ -1904,152 +1879,6 @@ msgstr "ഈ ഉപയോക്താവിനെ നീക്കം ചെയ്
 #. TRANS: Submit button title for 'Yes' when deleting a user.
 msgid "Delete this user."
 msgstr "ഈ ഉപയോക്താവിനെ നീക്കം ചെയ്യുക."
-
-#. TRANS: Message used as title for design settings for the site.
-msgid "Design"
-msgstr "രൂപകല്പന"
-
-#. TRANS: Instructions for design adminsitration panel.
-msgid "Design settings for this StatusNet site"
-msgstr "ഈ സ്റ്റാറ്റസ്‌നെറ്റ് സൈറ്റിന്റെ രൂപകല്പനാ സജ്ജീകരണങ്ങൾ"
-
-#. TRANS: Client error displayed when a logo URL does is not valid.
-msgid "Invalid logo URL."
-msgstr "ലോഗോ യൂ.ആർ.എൽ. അസാധുവാണ്."
-
-#. TRANS: Client error displayed when an SSL logo URL is invalid.
-msgid "Invalid SSL logo URL."
-msgstr "അസാധുവായ എസ്.എസ്.എൽ. ലോഗോ യൂ.ആർ.എൽ."
-
-#. TRANS: Client error displayed when a theme is submitted through the form that is not in the theme list.
-#. TRANS: %s is the chosen unavailable theme.
-#, php-format
-msgid "Theme not available: %s."
-msgstr "ദൃശ്യരൂപം ലഭ്യമല്ല: %s."
-
-#. TRANS: Fieldset legend for form to change logo.
-msgid "Change logo"
-msgstr "ലോഗോ മാറ്റുക"
-
-#. TRANS: Field label for StatusNet site logo.
-msgid "Site logo"
-msgstr "സൈറ്റിന്റെ ലോഗോ"
-
-#. TRANS: Field label for SSL StatusNet site logo.
-msgid "SSL logo"
-msgstr "എസ്.എസ്.എൽ. ലോഗോ"
-
-#. TRANS: Fieldset legend for form change StatusNet site's theme.
-msgid "Change theme"
-msgstr "ദൃശ്യരൂപം മാറ്റുക"
-
-#. TRANS: Field label for dropdown to choose site theme.
-msgid "Site theme"
-msgstr "സൈറ്റിന്റെ ദൃശ്യരൂപം"
-
-#. TRANS: Title for field label for dropdown to choose site theme.
-msgid "Theme for the site."
-msgstr "ഈ സൈറ്റിന്റെ ദൃശ്യരൂപം."
-
-#. TRANS: Field label for uploading a cutom theme.
-msgid "Custom theme"
-msgstr "ഐച്ഛിക ദൃശ്യരൂപം"
-
-#. TRANS: Form instructions for uploading a cutom StatusNet theme.
-msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-msgstr ""
-"താങ്കളുടെ ഇച്ഛാനുസരണം നിർമ്മിച്ച സ്റ്റാറ്റസ്‌നെറ്റ് ദൃശ്യരൂപം .സിപ് ആർക്കൈവ് ആയി താങ്കൾക്ക് അപ്‌ലോഡ് "
-"ചെയ്യാവുന്നതാണ്."
-
-#. TRANS: Fieldset legend for theme background image.
-msgid "Change background image"
-msgstr "പശ്ചാത്തലചിത്രം മാറ്റുക"
-
-#. TRANS: Field label for background image on theme designer page.
-#. TRANS: Field label for background color selector.
-#. TRANS: Label on profile design page for setting a profile page background colour.
-msgid "Background"
-msgstr "പശ്ചാത്തലം"
-
-#. TRANS: Form guide for background image upload form on theme designer page.
-#, php-format
-msgid ""
-"You can upload a background image for the site. The maximum file size is %1"
-"$s."
-msgstr ""
-"താങ്കൾക്ക് ഈ സൈറ്റിനുള്ള പശ്ചാത്തല ചിത്രം അപ്‌ലോഡ് ചെയ്യാവുന്നതാണ്. പ്രമാണത്തിന്റെ പരമാവധി "
-"വലിപ്പം %1$s ആയിരിക്കണം."
-
-#. TRANS: Used as radio button label to add a background image.
-msgid "On"
-msgstr "സജ്ജം"
-
-#. TRANS: Used as radio button label to not add a background image.
-msgid "Off"
-msgstr "രഹിതം"
-
-#. TRANS: Form guide for turning background image on or off on theme designer page.
-#. TRANS: Form guide for a set of radio buttons on the profile design page that will enable or disable
-#. TRANS: use of the uploaded profile image.
-msgid "Turn background image on or off."
-msgstr "പശ്ചാത്തലചിത്രം പ്രവർത്തന സജ്ജമാക്കുക അല്ലെങ്കിൽ രഹിതമാക്കുക."
-
-#. TRANS: Checkbox label to title background image on theme designer page.
-#. TRANS: Checkbox label on profile design page that will cause the profile image to be tiled.
-msgid "Tile background image"
-msgstr "പശ്ചാത്തലചിത്രം ആവർത്തിച്ചു ചേർക്കുക"
-
-#. TRANS: Fieldset legend for theme colors.
-msgid "Change colors"
-msgstr "നിറങ്ങൾ മാറ്റുക"
-
-#. TRANS: Field label for content color selector.
-#. TRANS: Label on profile design page for setting a profile page content colour.
-msgid "Content"
-msgstr "ഉള്ളടക്കം"
-
-#. TRANS: Field label for sidebar color selector.
-#. TRANS: Label on profile design page for setting a profile page sidebar colour.
-msgid "Sidebar"
-msgstr "പാർശ്വഭിത്തി"
-
-#. TRANS: Field label for text color selector.
-#. TRANS: Label on profile design page for setting a profile page text colour.
-msgid "Text"
-msgstr "എഴുത്ത്"
-
-#. TRANS: Field label for link color selector.
-#. TRANS: Label on profile design page for setting a profile page links colour.
-msgid "Links"
-msgstr "കണ്ണികൾ"
-
-#. TRANS: Fieldset legend for advanced theme design settings.
-msgid "Advanced"
-msgstr "വിപുലം"
-
-#. TRANS: Field label for custom CSS.
-msgid "Custom CSS"
-msgstr "സ്വന്തം സി.എസ്.എസ്."
-
-#. TRANS: Button text for resetting theme settings.
-msgctxt "BUTTON"
-msgid "Use defaults"
-msgstr "സ്വതേയുള്ളവ ഉപയോഗിക്കുക"
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default.
-msgid "Restore default designs."
-msgstr "സ്വതേയുള്ള രൂപകല്പനകൾ പുനഃസ്ഥാപിക്കുക."
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-msgid "Reset back to default."
-msgstr "മുമ്പ് സ്വതേയുണ്ടായിരുന്നതിലേയ്ക്ക് പുനഃസ്ഥാപിക്കുക."
-
-#. TRANS: Title for button for saving theme settings.
-#. TRANS: Title for button on profile design page to save settings.
-msgid "Save design."
-msgstr "രൂപകല്പന സേവ്‌ ചെയ്യുക."
 
 #. TRANS: Client error displayed when trying to remove favorite status for a notice that is not a favorite.
 msgid "This notice is not a favorite!"
@@ -2646,29 +2475,6 @@ msgstr "സംഘത്തിൽ നിന്നും ഉപയോക്താ�
 #. TRANS: Client error displayed trying to find a user by ID without providing an ID.
 msgid "No ID."
 msgstr "ഐ.ഡി. ഇല്ല."
-
-#. TRANS: Client error displayed trying to change group design settings while not logged in.
-msgid "You must be logged in to edit a group."
-msgstr "സംഘത്തിൽ മാറ്റങ്ങൾ വരുത്താൻ താങ്കൾ ലോഗിൻ ചെയ്തിരിക്കേണ്ടതാണ്."
-
-#. TRANS: Title group design settings page.
-msgid "Group design"
-msgstr "സംഘത്തിന്റെ രൂപകല്പന"
-
-#. TRANS: Instructions for group design settings page.
-msgid ""
-"Customize the way your group looks with a background image and a colour "
-"palette of your choice."
-msgstr "പശ്ചാത്തല്ല ചിത്രവും വർണ്ണങ്ങളും ചേർത്ത് സംഘത്തിന്റെ ദൃശ്യരൂപം ഇച്ഛാനുസരണമാക്കുക."
-
-#. TRANS: Form validation error displayed when group design settings could not be updated because of an application issue.
-msgid "Unable to update your design settings."
-msgstr "താങ്കളുടെ രൂപകല്പനാ സജ്ജീകരണങ്ങൾ പുതുക്കാനായില്ല."
-
-#. TRANS: Form text to confirm saved group design settings.
-#. TRANS: Confirmation message on Profile design page when saving design settings has succeeded.
-msgid "Design preferences saved."
-msgstr "രൂപകല്പനാ ക്രമീകരണങ്ങൾ സേവ് ചെയ്തിരിക്കുന്നു."
 
 #. TRANS: Title for group logo settings page.
 #. TRANS: Group logo form legend.
@@ -3337,12 +3143,6 @@ msgstr "ഉള്ളടക്കമില്ല!"
 msgid "No recipient specified."
 msgstr "സ്വീകർത്താവിനെ വ്യക്തമാക്കിയിട്ടില്ല."
 
-#. TRANS: Client error displayed trying to send a direct message to self.
-#. TRANS: Error text shown when trying to send a direct message to self.
-msgid ""
-"Don't send a message to yourself; just say it to yourself quietly instead."
-msgstr "താങ്കൾക്കു തന്നെ സന്ദേശം അയയ്ക്കരുത്; പകരം അത് പതുക്കെ സ്വയം പറയുക."
-
 #. TRANS: Page title after sending a direct message.
 msgid "Message sent"
 msgstr "സന്ദേശം അയച്ചു"
@@ -3616,7 +3416,7 @@ msgid "Confirm"
 msgstr "സ്ഥിരീകരിക്കുക"
 
 #. TRANS: Field title on page where to change password.
-#. TRANS: Ttile for field label for password reset form where the password has to be typed again.
+#. TRANS: Title for field label for password reset form where the password has to be typed again.
 #. TRANS: Field title on account registration page.
 msgid "Same as password above."
 msgstr "മുകളിൽ നൽകിയ അതേ രഹസ്യവാക്ക്."
@@ -3791,30 +3591,6 @@ msgstr ""
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Directory where avatars are located."
-msgstr ""
-
-#. TRANS: Fieldset legend in Paths admin panel.
-msgid "Backgrounds"
-msgstr "പശ്ചാത്തലം"
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds."
-msgstr ""
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds."
-msgstr ""
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds on SSL pages."
-msgstr ""
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds on SSL pages."
-msgstr ""
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Directory where backgrounds are located."
 msgstr ""
 
 #. TRANS: Fieldset legens in Paths admin panel.
@@ -4601,7 +4377,6 @@ msgid "6 or more characters, and do not forget it!"
 msgstr "ആറോ അതിലധികമോ അക്ഷരങ്ങൾ, അത് മറക്കരുത്!"
 
 #. TRANS: Button text for password reset form.
-#. TRANS: Button text on profile design page to reset all colour settings to default without saving.
 msgctxt "BUTTON"
 msgid "Reset"
 msgstr "പുനഃക്രമീകരിക്കുക"
@@ -4609,18 +4384,6 @@ msgstr "പുനഃക്രമീകരിക്കുക"
 #. TRANS: Form instructions for password recovery form.
 msgid "Enter a nickname or email address."
 msgstr "ഒരു വിളിപ്പേരോ ഇമെയിൽ വിലാസമോ നൽകുക."
-
-#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
-msgid "No user with that email address or username."
-msgstr "ആ ഇമെയിൽ വിലാസമോ ഉപയോക്തൃനാമമോ ഉപയോഗിക്കുന്ന ഒരു ഉപയോക്താവും ഇല്ല."
-
-#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
-msgid "No registered email address for that user."
-msgstr "ആ ഉപയോക്താവ് ഇമെയിൽ വിലാസമൊന്നും നൽകിയിട്ടില്ല."
-
-#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
-msgid "Error saving address confirmation."
-msgstr "വിലാസത്തിന്റെ സ്ഥിരീകരണം സേവ് ചെയ്യുമ്പോൾ പിഴവുണ്ടായി."
 
 #. TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
 msgid ""
@@ -5536,6 +5299,14 @@ msgstr "സൈറ്റിന്റെ പേര് ശൂന്യമായി�
 msgid "You must have a valid contact email address."
 msgstr "താങ്കളെ ബന്ധപ്പെടാനായി സാധുവായ ഇമെയിൽ വിലാസമുണ്ടായിരിക്കണം."
 
+#. TRANS: Client error displayed when a logo URL is not valid.
+msgid "Invalid logo URL."
+msgstr "ലോഗോ യൂ.ആർ.എൽ. അസാധുവാണ്."
+
+#. TRANS: Client error displayed when a SSL logo URL is invalid.
+msgid "Invalid SSL logo URL."
+msgstr "അസാധുവായ എസ്.എസ്.എൽ. ലോഗോ യൂ.ആർ.എൽ."
+
 #. TRANS: Client error displayed trying to save site settings with an invalid language code.
 #. TRANS: %s is the invalid language code.
 #, php-format
@@ -5608,7 +5379,8 @@ msgid "Default language"
 msgstr "സ്വതേ വേണ്ട ഭാഷ"
 
 #. TRANS: Dropdown title on site settings panel.
-msgid "Site language when autodetection from browser settings is not available"
+msgid ""
+"The site language when autodetection from browser settings is not available."
 msgstr ""
 
 #. TRANS: Fieldset legend on site settings panel.
@@ -5634,8 +5406,22 @@ msgstr ""
 "ഒരേ കാര്യം വീണ്ടും പ്രസിദ്ധീകരിക്കാൻ ഉപയോക്താക്കൾ എത്ര നേരമാണ് (സെക്കന്റുകളിൽ) "
 "കാത്തിരിക്കേണ്ടത്."
 
+#. TRANS: Fieldset legend for form to change logo.
+#, fuzzy
+msgid "Logo"
+msgstr "ലോഗോ"
+
+#. TRANS: Field label for StatusNet site logo.
+msgid "Site logo"
+msgstr "സൈറ്റിന്റെ ലോഗോ"
+
+#. TRANS: Field label for SSL StatusNet site logo.
+msgid "SSL logo"
+msgstr "എസ്.എസ്.എൽ. ലോഗോ"
+
 #. TRANS: Button title for saving site settings.
-msgid "Save site settings"
+#, fuzzy
+msgid "Save the site settings."
 msgstr "സൈറ്റ് സജ്ജീകരണങ്ങൾ സേവ് ചെയ്യുക"
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
@@ -6381,39 +6167,6 @@ msgstr ""
 msgid "Wrong image type for avatar URL \"%s\"."
 msgstr ""
 
-#. TRANS: Title for profile design page.
-#. TRANS: Page title for profile design page.
-msgid "Profile design"
-msgstr ""
-
-#. TRANS: Instructions for Profile design page.
-#. TRANS: Instructions for profile design page.
-msgid ""
-"Customize the way your profile looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-
-#. TRANS: Succes message on Profile design page when finding an easter egg.
-msgid "Enjoy your hotdog!"
-msgstr "താങ്കളുടെ ഹോട്ട്ഡോഗ് ആസ്വദിക്കൂ!"
-
-#. TRANS: Form legend on Profile design page.
-#, fuzzy
-msgid "Design settings"
-msgstr "സൈറ്റ് സജ്ജീകരണങ്ങൾ ചേവ് ചെയ്യുക"
-
-#. TRANS: Checkbox label on Profile design page.
-msgid "View profile designs"
-msgstr ""
-
-#. TRANS: Title for checkbox on Profile design page.
-msgid "Show or hide profile designs."
-msgstr ""
-
-#. TRANS: Form legend on Profile design page for form to choose a background image.
-msgid "Background file"
-msgstr "പശ്ചാത്തല പ്രമാണം"
-
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
 #, php-format
@@ -6851,6 +6604,18 @@ msgstr ""
 msgid "Single-user mode code called when not enabled."
 msgstr ""
 
+#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
+msgid "No user with that email address or username."
+msgstr "ആ ഇമെയിൽ വിലാസമോ ഉപയോക്തൃനാമമോ ഉപയോഗിക്കുന്ന ഒരു ഉപയോക്താവും ഇല്ല."
+
+#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
+msgid "No registered email address for that user."
+msgstr "ആ ഉപയോക്താവ് ഇമെയിൽ വിലാസമൊന്നും നൽകിയിട്ടില്ല."
+
+#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
+msgid "Error saving address confirmation."
+msgstr "വിലാസത്തിന്റെ സ്ഥിരീകരണം സേവ് ചെയ്യുമ്പോൾ പിഴവുണ്ടായി."
+
 #. TRANS: Server exception thrown when creating a group failed.
 msgid "Could not create group."
 msgstr "സംഘം സൃഷ്ടിക്കാൻ കഴിഞ്ഞില്ല."
@@ -7117,11 +6882,6 @@ msgstr ""
 msgid "saveSettings() not implemented."
 msgstr ""
 
-#. TRANS: Client error message thrown if design settings could not be deleted in
-#. TRANS: the admin panel Design.
-msgid "Unable to delete design setting."
-msgstr "രൂപകല്പനാ സജ്ജീകരണങ്ങൾ മായ്ക്കാൻ കഴിഞ്ഞില്ല."
-
 #. TRANS: Header in administrator navigation panel.
 #. TRANS: Header in settings navigation panel.
 #, fuzzy
@@ -7152,17 +6912,6 @@ msgstr "സൈറ്റിന്റെ അടിസ്ഥാന ക്രമീ�
 msgctxt "MENU"
 msgid "Site"
 msgstr "സൈറ്റ്"
-
-#. TRANS: Menu item title in administrator navigation panel.
-msgid "Design configuration"
-msgstr "രൂപകല്പനാ ക്രമീകരണം"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
-msgid "Design"
-msgstr "രൂപകല്പന"
 
 #. TRANS: Menu item title in administrator navigation panel.
 msgid "User configuration"
@@ -8015,46 +7764,6 @@ msgstr "മായ്ക്കുക"
 msgid "Delete this user"
 msgstr "ഈ ഉപയോക്താവിനെ നീക്കം ചെയ്യുക"
 
-#. TRANS: Form legend of form for changing the page design.
-#, fuzzy
-msgid "Change design"
-msgstr "രൂപകല്പന സേവ്‌ ചെയ്യുക"
-
-#. TRANS: Fieldset legend on profile design page to change profile page colours.
-msgid "Change colours"
-msgstr "നിറങ്ങൾ മാറ്റുക"
-
-#. TRANS: Button text on profile design page to immediately reset all colour settings to default.
-msgid "Use defaults"
-msgstr "സ്വതേയുള്ളവ ഉപയോഗിക്കുക"
-
-#. TRANS: Label in form on profile design page.
-#. TRANS: Field contains file name on user's computer that could be that user's custom profile background image.
-msgid "Upload file"
-msgstr "പ്രമാണം അപ്‌ലോഡ് ചെയ്യുക"
-
-#. TRANS: Instructions for form on profile design page.
-#, fuzzy
-msgid ""
-"You can upload your personal background image. The maximum file size is 2MB."
-msgstr ""
-"താങ്കൾക്ക് ഈ സൈറ്റിനുള്ള പശ്ചാത്തല ചിത്രം അപ്‌ലോഡ് ചെയ്യാവുന്നതാണ്. പ്രമാണത്തിന്റെ പരമാവധി "
-"വലിപ്പം %1$s ആയിരിക്കണം."
-
-#. TRANS: Radio button on profile design page that will enable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "On"
-msgstr "സജ്ജം"
-
-#. TRANS: Radio button on profile design page that will disable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "Off"
-msgstr "രഹിതം"
-
-#. TRANS: Success message displayed if design settings were saved after clicking "Use defaults".
-msgid "Design defaults restored."
-msgstr "സ്വതേയുള്ള രൂപകല്പന പുനഃസ്ഥാപിച്ചിരിക്കുന്നു."
-
 #. TRANS: Exception. %s is an ID.
 #, php-format
 msgid "Unable to find services for %s."
@@ -8265,13 +7974,6 @@ msgstr "ലോഗോ"
 msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr ""
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "Add or edit %s design"
-msgstr "%s എന്ന സംഘത്തിനു രൂപകല്പന കൂട്ടിച്ചേർക്കുക അല്ലെങ്കിൽ മാറ്റം വരുത്തുക"
 
 #. TRANS: Group actions header (h2). Text hidden by default.
 msgid "Group actions"
@@ -9577,10 +9279,6 @@ msgstr "ഇമെയിൽ"
 msgid "Change email handling"
 msgstr "ഇമെയിൽ കൈകാര്യരീതിയിൽ മാറ്റം വരുത്തുക"
 
-#. TRANS: Menu item title in settings navigation panel.
-msgid "Design your profile"
-msgstr ""
-
 #. TRANS: Menu item in settings navigation panel.
 #, fuzzy
 msgctxt "MENU"
@@ -10004,3 +9702,211 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
+
+#. TRANS: Server exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Invalid avatar URL %s."
+msgstr "അസാധുവായ റ്റാഗ്: \"%s\""
+
+#. TRANS: Server exception. %s is a URI.
+#, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr ""
+
+#. TRANS: Server exception. %s is a URL.
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr ""
+
+#. TRANS: Exception. %s is a profile URL.
+#, fuzzy, php-format
+msgid "Could not reach profile page %s."
+msgstr "സംഘം സൃഷ്ടിക്കാൻ കഴിഞ്ഞില്ല."
+
+#. TRANS: Exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr "പ്രിയങ്കരങ്ങൾ സൃഷ്ടിക്കാൻ കഴിഞ്ഞില്ല."
+
+#. TRANS: Exception.
+#, fuzzy
+msgid "Not a valid webfinger address."
+msgstr "സാധുവായ ഇമെയിൽ വിലാസം അല്ല."
+
+#, fuzzy, php-format
+msgid "Could not find a valid profile for \"%s\"."
+msgstr "ലക്ഷ്യമിട്ട ഉപയോക്താവിനെ കണ്ടെത്താനായില്ല."
+
+#~ msgid "Unable to save your design settings."
+#~ msgstr "താങ്കളുടെ രൂപകല്പനാ സജ്ജീകരണങ്ങൾ കാത്തുസൂക്ഷിക്കാനായില്ല."
+
+#~ msgid "Could not update your design."
+#~ msgstr "താങ്കളുടെ രൂപകല്പന പുതുക്കാനായില്ല."
+
+#~ msgid "Design"
+#~ msgstr "രൂപകല്പന"
+
+#~ msgid "Design settings for this StatusNet site"
+#~ msgstr "ഈ സ്റ്റാറ്റസ്‌നെറ്റ് സൈറ്റിന്റെ രൂപകല്പനാ സജ്ജീകരണങ്ങൾ"
+
+#~ msgid "Theme not available: %s."
+#~ msgstr "ദൃശ്യരൂപം ലഭ്യമല്ല: %s."
+
+#~ msgid "Change logo"
+#~ msgstr "ലോഗോ മാറ്റുക"
+
+#~ msgid "Change theme"
+#~ msgstr "ദൃശ്യരൂപം മാറ്റുക"
+
+#~ msgid "Site theme"
+#~ msgstr "സൈറ്റിന്റെ ദൃശ്യരൂപം"
+
+#~ msgid "Theme for the site."
+#~ msgstr "ഈ സൈറ്റിന്റെ ദൃശ്യരൂപം."
+
+#~ msgid "Custom theme"
+#~ msgstr "ഐച്ഛിക ദൃശ്യരൂപം"
+
+#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
+#~ msgstr ""
+#~ "താങ്കളുടെ ഇച്ഛാനുസരണം നിർമ്മിച്ച സ്റ്റാറ്റസ്‌നെറ്റ് ദൃശ്യരൂപം .സിപ് ആർക്കൈവ് ആയി താങ്കൾക്ക് "
+#~ "അപ്‌ലോഡ് ചെയ്യാവുന്നതാണ്."
+
+#~ msgid "Change background image"
+#~ msgstr "പശ്ചാത്തലചിത്രം മാറ്റുക"
+
+#~ msgid "Background"
+#~ msgstr "പശ്ചാത്തലം"
+
+#~ msgid ""
+#~ "You can upload a background image for the site. The maximum file size is %"
+#~ "1$s."
+#~ msgstr ""
+#~ "താങ്കൾക്ക് ഈ സൈറ്റിനുള്ള പശ്ചാത്തല ചിത്രം അപ്‌ലോഡ് ചെയ്യാവുന്നതാണ്. പ്രമാണത്തിന്റെ പരമാവധി "
+#~ "വലിപ്പം %1$s ആയിരിക്കണം."
+
+#~ msgid "On"
+#~ msgstr "സജ്ജം"
+
+#~ msgid "Off"
+#~ msgstr "രഹിതം"
+
+#~ msgid "Turn background image on or off."
+#~ msgstr "പശ്ചാത്തലചിത്രം പ്രവർത്തന സജ്ജമാക്കുക അല്ലെങ്കിൽ രഹിതമാക്കുക."
+
+#~ msgid "Tile background image"
+#~ msgstr "പശ്ചാത്തലചിത്രം ആവർത്തിച്ചു ചേർക്കുക"
+
+#~ msgid "Change colors"
+#~ msgstr "നിറങ്ങൾ മാറ്റുക"
+
+#~ msgid "Content"
+#~ msgstr "ഉള്ളടക്കം"
+
+#~ msgid "Sidebar"
+#~ msgstr "പാർശ്വഭിത്തി"
+
+#~ msgid "Text"
+#~ msgstr "എഴുത്ത്"
+
+#~ msgid "Links"
+#~ msgstr "കണ്ണികൾ"
+
+#~ msgid "Advanced"
+#~ msgstr "വിപുലം"
+
+#~ msgid "Custom CSS"
+#~ msgstr "സ്വന്തം സി.എസ്.എസ്."
+
+#~ msgctxt "BUTTON"
+#~ msgid "Use defaults"
+#~ msgstr "സ്വതേയുള്ളവ ഉപയോഗിക്കുക"
+
+#~ msgid "Restore default designs."
+#~ msgstr "സ്വതേയുള്ള രൂപകല്പനകൾ പുനഃസ്ഥാപിക്കുക."
+
+#~ msgid "Reset back to default."
+#~ msgstr "മുമ്പ് സ്വതേയുണ്ടായിരുന്നതിലേയ്ക്ക് പുനഃസ്ഥാപിക്കുക."
+
+#~ msgid "Save design."
+#~ msgstr "രൂപകല്പന സേവ്‌ ചെയ്യുക."
+
+#~ msgid "You must be logged in to edit a group."
+#~ msgstr "സംഘത്തിൽ മാറ്റങ്ങൾ വരുത്താൻ താങ്കൾ ലോഗിൻ ചെയ്തിരിക്കേണ്ടതാണ്."
+
+#~ msgid "Group design"
+#~ msgstr "സംഘത്തിന്റെ രൂപകല്പന"
+
+#~ msgid ""
+#~ "Customize the way your group looks with a background image and a colour "
+#~ "palette of your choice."
+#~ msgstr "പശ്ചാത്തല്ല ചിത്രവും വർണ്ണങ്ങളും ചേർത്ത് സംഘത്തിന്റെ ദൃശ്യരൂപം ഇച്ഛാനുസരണമാക്കുക."
+
+#~ msgid "Unable to update your design settings."
+#~ msgstr "താങ്കളുടെ രൂപകല്പനാ സജ്ജീകരണങ്ങൾ പുതുക്കാനായില്ല."
+
+#~ msgid "Design preferences saved."
+#~ msgstr "രൂപകല്പനാ ക്രമീകരണങ്ങൾ സേവ് ചെയ്തിരിക്കുന്നു."
+
+#~ msgid ""
+#~ "Don't send a message to yourself; just say it to yourself quietly instead."
+#~ msgstr "താങ്കൾക്കു തന്നെ സന്ദേശം അയയ്ക്കരുത്; പകരം അത് പതുക്കെ സ്വയം പറയുക."
+
+#~ msgid "Backgrounds"
+#~ msgstr "പശ്ചാത്തലം"
+
+#~ msgid "Enjoy your hotdog!"
+#~ msgstr "താങ്കളുടെ ഹോട്ട്ഡോഗ് ആസ്വദിക്കൂ!"
+
+#, fuzzy
+#~ msgid "Design settings"
+#~ msgstr "സൈറ്റ് സജ്ജീകരണങ്ങൾ ചേവ് ചെയ്യുക"
+
+#~ msgid "Background file"
+#~ msgstr "പശ്ചാത്തല പ്രമാണം"
+
+#~ msgid "Unable to delete design setting."
+#~ msgstr "രൂപകല്പനാ സജ്ജീകരണങ്ങൾ മായ്ക്കാൻ കഴിഞ്ഞില്ല."
+
+#~ msgid "Design configuration"
+#~ msgstr "രൂപകല്പനാ ക്രമീകരണം"
+
+#~ msgctxt "MENU"
+#~ msgid "Design"
+#~ msgstr "രൂപകല്പന"
+
+#, fuzzy
+#~ msgid "Change design"
+#~ msgstr "രൂപകല്പന സേവ്‌ ചെയ്യുക"
+
+#~ msgid "Change colours"
+#~ msgstr "നിറങ്ങൾ മാറ്റുക"
+
+#~ msgid "Use defaults"
+#~ msgstr "സ്വതേയുള്ളവ ഉപയോഗിക്കുക"
+
+#~ msgid "Upload file"
+#~ msgstr "പ്രമാണം അപ്‌ലോഡ് ചെയ്യുക"
+
+#, fuzzy
+#~ msgid ""
+#~ "You can upload your personal background image. The maximum file size is "
+#~ "2MB."
+#~ msgstr ""
+#~ "താങ്കൾക്ക് ഈ സൈറ്റിനുള്ള പശ്ചാത്തല ചിത്രം അപ്‌ലോഡ് ചെയ്യാവുന്നതാണ്. പ്രമാണത്തിന്റെ പരമാവധി "
+#~ "വലിപ്പം %1$s ആയിരിക്കണം."
+
+#~ msgctxt "RADIO"
+#~ msgid "On"
+#~ msgstr "സജ്ജം"
+
+#~ msgctxt "RADIO"
+#~ msgid "Off"
+#~ msgstr "രഹിതം"
+
+#~ msgid "Design defaults restored."
+#~ msgstr "സ്വതേയുള്ള രൂപകല്പന പുനഃസ്ഥാപിച്ചിരിക്കുന്നു."
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "Add or edit %s design"
+#~ msgstr "%s എന്ന സംഘത്തിനു രൂപകല്പന കൂട്ടിച്ചേർക്കുക അല്ലെങ്കിൽ മാറ്റം വരുത്തുക"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -312,7 +312,7 @@ msgstr ""
 #. TRANS: Menu item for "Facebook" in administration panel.
 #. TRANS: Menu item for "Facebook" in user settings.
 #: FacebookBridgePlugin.php:217 FacebookBridgePlugin.php:256
-#: FacebookBridgePlugin.php:297
+#: FacebookBridgePlugin.php:296
 msgctxt "MENU"
 msgid "Facebook"
 msgstr ""
@@ -328,12 +328,12 @@ msgid "Facebook integration configuration."
 msgstr ""
 
 #. TRANS: Menu title for "Facebook" in user settings.
-#: FacebookBridgePlugin.php:299
+#: FacebookBridgePlugin.php:298
 msgid "Facebook settings."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: FacebookBridgePlugin.php:560
+#: FacebookBridgePlugin.php:559
 msgid "A plugin for integrating StatusNet with Facebook."
 msgstr ""
 

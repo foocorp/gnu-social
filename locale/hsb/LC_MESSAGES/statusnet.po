@@ -12,18 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:11+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:24+0000\n"
 "Language-Team: Upper Sorbian <http://translatewiki.net/wiki/Portal:hsb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: hsb\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : (n%100==3 || "
 "n%100==4) ? 2 : 3)\n"
-"X-POT-Import-Date: 2011-06-05 09:57:31+0000\n"
+"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -104,7 +104,6 @@ msgid "Save access settings"
 msgstr "Přistupne nastajenja składować"
 
 #. TRANS: Tooltip for button to save access settings in site admin panel.
-#. TRANS: Button text for saving theme settings.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -120,7 +119,6 @@ msgstr "Přistupne nastajenja składować"
 #. TRANS: Button text for saving "Other settings" in profile.
 #. TRANS: Button text to save user settings in user admin panel.
 #. TRANS: Button label in the "Edit application" form.
-#. TRANS: Button text on profile design page to save settings.
 #. TRANS: Text for save button on group edit form.
 #. TRANS: Button text to save tags for a profile.
 msgctxt "BUTTON"
@@ -195,7 +193,6 @@ msgstr "Strona njeeksistuje."
 #. TRANS: Client error when user not found for an rss related action.
 #. TRANS: Client error displayed when no existing user is provided for a user's delivery device setting.
 #. TRANS: Client error displayed if a user could not be found.
-#. TRANS: Client error when user not found updating a profile background image.
 #. TRANS: Client error displayed updating profile image without having a user object.
 #. TRANS: Client error displayed when making an Atom API request for an unknown user.
 #. TRANS: Client error displayed when trying to block a non-existing user or a user from another site.
@@ -356,7 +353,6 @@ msgstr ""
 #. TRANS: Server error thrown on database error updating SMS preferences.
 #. TRANS: Server error thrown on database error removing a registered SMS phone number.
 #. TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
-#. TRANS: Server exception thrown on Profile design page when updating design settings fails.
 msgid "Could not update user."
 msgstr "Wužiwar njeje so dał aktualizować."
 
@@ -371,7 +367,6 @@ msgstr "Profil njeje so składować dał."
 
 #. TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
 #. TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-#. TRANS: Form validation error in design settings form. POST should remain untranslated.
 #, php-format
 msgid ""
 "The server was unable to handle that much POST data (%s byte) due to its "
@@ -383,24 +378,6 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
-
-#. TRANS: Client error displayed when saving design settings fails because of an empty id.
-#. TRANS: Client error displayed when saving design settings fails because of an empty result.
-#. TRANS: Client error displayed when a database error occurs inserting profile colours.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error displayed when group design settings could not be saved because of an application issue.
-#. TRANS: Form validation error on Profile design page when saving design settings has failed.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-msgid "Unable to save your design settings."
-msgstr "Njeje móžno, designowe nastajenja składować."
-
-#. TRANS: Error displayed when updating design settings fails.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-#. TRANS: Error message displayed if design settings could not be saved.
-#. TRANS: Error message displayed if design settings could not be saved after clicking "Use defaults".
-msgid "Could not update your design."
-msgstr "Design njeda so aktualizować."
 
 #. TRANS: Title for Atom feed.
 msgctxt "ATOM"
@@ -495,6 +472,8 @@ msgstr ""
 "njejsu."
 
 #. TRANS: Client error displayed trying to direct message self (403).
+#. TRANS: Client error displayed trying to send a direct message to self.
+#. TRANS: Error text shown when trying to send a direct message to self.
 msgid ""
 "Do not send a message to yourself; just say it to yourself quietly instead."
 msgstr ""
@@ -727,7 +706,6 @@ msgstr "skupiny na %s"
 
 #. TRANS: Client error displayed when trying to edit a group without being an admin.
 #. TRANS: Client error displayed trying to edit a group while not being a group admin.
-#. TRANS: Client error displayed trying to change group design settings without being a (group) admin.
 #. TRANS: Client error displayed when trying to change group logo settings while not being a group admin.
 msgid "You must be an admin to edit the group."
 msgstr "Dyrbiš administrator być, zo by skupinu wobdźěłał."
@@ -844,7 +822,6 @@ msgstr "Zmylk datoweje banki při zasunjenju oauth_token_association."
 
 #. TRANS: Client error given on when invalid data was passed through a form in the OAuth API.
 #. TRANS: Unexpected validation error on avatar upload form.
-#. TRANS: Client error displayed when the submitted form contains unexpected data.
 #. TRANS: Client error displayed submitting invalid form data for edit application.
 #. TRANS: Message given submitting a form with an unknown action in e-mail settings.
 #. TRANS: Form validation error message when an unsupported argument is used.
@@ -853,7 +830,6 @@ msgstr "Zmylk datoweje banki při zasunjenju oauth_token_association."
 #. TRANS: Client error when submitting a form with unexpected information.
 #. TRANS: Client error displayed when unexpected data is posted in the password recovery form.
 #. TRANS: Message given submitting a form with an unknown action in SMS settings.
-#. TRANS: Unknown form validation error in design settings form.
 msgid "Unexpected form submission."
 msgstr "Njewočakowane wotpósłanje formulara."
 
@@ -1204,7 +1180,6 @@ msgstr "Dyrbiš přizjewjeny być, zo by skupinu wopušćił."
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.
 #. TRANS: Client error displayed trying to block a user from a group while specifying a non-existing group.
 #. TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
-#. TRANS: Client error displayed trying to change group design settings while providing a nickname for a non-existing group.
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
@@ -1290,6 +1265,7 @@ msgid "Join request canceled."
 msgstr ""
 
 #. TRANS: Client error displayed trying to approve subscription for a non-existing request.
+#. TRANS: %s is a user nickname.
 #, fuzzy, php-format
 msgid "%s is not in the moderation queue for your subscriptions."
 msgstr "Lisćina wužiwarjow w tutej skupinje."
@@ -1441,7 +1417,6 @@ msgstr "Přiwěšk njeeksistuje."
 #. TRANS: Client error displayed trying to get an avatar without providing a nickname.
 #. TRANS: Client error displayed when requesting a list of blocked users for a group without providing a group nickname.
 #. TRANS: Client error displayed trying to edit a group while not proving a nickname for the group to edit.
-#. TRANS: Client error displayed trying to change group design settings without providing a group nickname.
 #. TRANS: Client error displayed when trying to change group logo settings without providing a nickname.
 #. TRANS: Client error displayed when trying to view group members without providing a group nickname.
 #. TRANS: Client error displayed when requesting a group RSS feed without providing a group nickname.
@@ -1927,149 +1902,6 @@ msgstr "Tutoho wužiwarja njezhašeć."
 #. TRANS: Submit button title for 'Yes' when deleting a user.
 msgid "Delete this user."
 msgstr "Tutoho wužiwarja zhašeć"
-
-#. TRANS: Message used as title for design settings for the site.
-msgid "Design"
-msgstr "Design"
-
-#. TRANS: Instructions for design adminsitration panel.
-msgid "Design settings for this StatusNet site"
-msgstr "Designowe nastajenja za tute sydło StatusNet"
-
-#. TRANS: Client error displayed when a logo URL does is not valid.
-msgid "Invalid logo URL."
-msgstr "Njepłaćiwy logowy URL."
-
-#. TRANS: Client error displayed when an SSL logo URL is invalid.
-msgid "Invalid SSL logo URL."
-msgstr "Njepłaćiwy SSL-URL loga."
-
-#. TRANS: Client error displayed when a theme is submitted through the form that is not in the theme list.
-#. TRANS: %s is the chosen unavailable theme.
-#, php-format
-msgid "Theme not available: %s."
-msgstr "Šat njesteji k dispoziciji: %s."
-
-#. TRANS: Fieldset legend for form to change logo.
-msgid "Change logo"
-msgstr "Logo změnić"
-
-#. TRANS: Field label for StatusNet site logo.
-msgid "Site logo"
-msgstr "Logo sydła"
-
-#. TRANS: Field label for SSL StatusNet site logo.
-msgid "SSL logo"
-msgstr "SSL-logo"
-
-#. TRANS: Fieldset legend for form change StatusNet site's theme.
-msgid "Change theme"
-msgstr "Šat změnić"
-
-#. TRANS: Field label for dropdown to choose site theme.
-msgid "Site theme"
-msgstr "Šat sydła"
-
-#. TRANS: Title for field label for dropdown to choose site theme.
-msgid "Theme for the site."
-msgstr "Šat za sydło."
-
-#. TRANS: Field label for uploading a cutom theme.
-msgid "Custom theme"
-msgstr "Swójski šat"
-
-#. TRANS: Form instructions for uploading a cutom StatusNet theme.
-msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-msgstr "Móžeš swójski šat StatusNet jako .ZIP-archiw nahrać."
-
-#. TRANS: Fieldset legend for theme background image.
-msgid "Change background image"
-msgstr "Pozadkowy wobraz změnić"
-
-#. TRANS: Field label for background image on theme designer page.
-#. TRANS: Field label for background color selector.
-#. TRANS: Label on profile design page for setting a profile page background colour.
-msgid "Background"
-msgstr "Pozadk"
-
-#. TRANS: Form guide for background image upload form on theme designer page.
-#, php-format
-msgid ""
-"You can upload a background image for the site. The maximum file size is %1"
-"$s."
-msgstr ""
-"Móžeš pozadkowy wobraz za sydło nahrać. Maksimalna datajowa wulkosć je %1$s."
-
-#. TRANS: Used as radio button label to add a background image.
-msgid "On"
-msgstr "Zapinjeny"
-
-#. TRANS: Used as radio button label to not add a background image.
-msgid "Off"
-msgstr "Wupinjeny"
-
-#. TRANS: Form guide for turning background image on or off on theme designer page.
-#. TRANS: Form guide for a set of radio buttons on the profile design page that will enable or disable
-#. TRANS: use of the uploaded profile image.
-msgid "Turn background image on or off."
-msgstr "Pozadkowy wobraz zmóžnić abo znjemóžnić."
-
-#. TRANS: Checkbox label to title background image on theme designer page.
-#. TRANS: Checkbox label on profile design page that will cause the profile image to be tiled.
-msgid "Tile background image"
-msgstr "Pozadkowy wobraz kachlicować"
-
-#. TRANS: Fieldset legend for theme colors.
-msgid "Change colors"
-msgstr "Barby změnić"
-
-#. TRANS: Field label for content color selector.
-#. TRANS: Label on profile design page for setting a profile page content colour.
-msgid "Content"
-msgstr "Wobsah"
-
-#. TRANS: Field label for sidebar color selector.
-#. TRANS: Label on profile design page for setting a profile page sidebar colour.
-msgid "Sidebar"
-msgstr "Bóčnica"
-
-#. TRANS: Field label for text color selector.
-#. TRANS: Label on profile design page for setting a profile page text colour.
-msgid "Text"
-msgstr "Tekst"
-
-#. TRANS: Field label for link color selector.
-#. TRANS: Label on profile design page for setting a profile page links colour.
-msgid "Links"
-msgstr "Wotkazy"
-
-#. TRANS: Fieldset legend for advanced theme design settings.
-msgid "Advanced"
-msgstr "Rozšěrjeny"
-
-#. TRANS: Field label for custom CSS.
-msgid "Custom CSS"
-msgstr "Swójski CSS"
-
-#. TRANS: Button text for resetting theme settings.
-msgctxt "BUTTON"
-msgid "Use defaults"
-msgstr "Standardne hódnoty wužiwać"
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default.
-msgid "Restore default designs."
-msgstr "Standardne designy wobnowić."
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-msgid "Reset back to default."
-msgstr "Na standard wróćo stajić."
-
-#. TRANS: Title for button for saving theme settings.
-#. TRANS: Title for button on profile design page to save settings.
-msgid "Save design."
-msgstr "Design składować."
 
 #. TRANS: Client error displayed when trying to remove favorite status for a notice that is not a favorite.
 msgid "This notice is not a favorite!"
@@ -2657,29 +2489,6 @@ msgstr "Zmylk datoweje banki blokuje wužiwarja za skupinu."
 #. TRANS: Client error displayed trying to find a user by ID without providing an ID.
 msgid "No ID."
 msgstr "Žadyn ID."
-
-#. TRANS: Client error displayed trying to change group design settings while not logged in.
-msgid "You must be logged in to edit a group."
-msgstr "Dyrbiš přizjewjeny być, zo by skupinu wobdźěłał."
-
-#. TRANS: Title group design settings page.
-msgid "Group design"
-msgstr "Skupinski design"
-
-#. TRANS: Instructions for group design settings page.
-msgid ""
-"Customize the way your group looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-
-#. TRANS: Form validation error displayed when group design settings could not be updated because of an application issue.
-msgid "Unable to update your design settings."
-msgstr "Njeje móžno, twoje designowe nastajenja aktualizować."
-
-#. TRANS: Form text to confirm saved group design settings.
-#. TRANS: Confirmation message on Profile design page when saving design settings has succeeded.
-msgid "Design preferences saved."
-msgstr "Designowe nastajenja składowane."
 
 #. TRANS: Title for group logo settings page.
 #. TRANS: Group logo form legend.
@@ -3343,12 +3152,6 @@ msgstr "Žadyn wobsah!"
 msgid "No recipient specified."
 msgstr "Žadyn přijimowar podaty."
 
-#. TRANS: Client error displayed trying to send a direct message to self.
-#. TRANS: Error text shown when trying to send a direct message to self.
-msgid ""
-"Don't send a message to yourself; just say it to yourself quietly instead."
-msgstr ""
-
 #. TRANS: Page title after sending a direct message.
 msgid "Message sent"
 msgstr "Powěsć pósłana"
@@ -3623,7 +3426,7 @@ msgid "Confirm"
 msgstr "Wobkrućić"
 
 #. TRANS: Field title on page where to change password.
-#. TRANS: Ttile for field label for password reset form where the password has to be typed again.
+#. TRANS: Title for field label for password reset form where the password has to be typed again.
 #. TRANS: Field title on account registration page.
 msgid "Same as password above."
 msgstr "Samsne hesło kaž horjeka."
@@ -3798,30 +3601,6 @@ msgstr "Awatarowy zapis"
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Directory where avatars are located."
 msgstr "Zapis, hdźež awatary su."
-
-#. TRANS: Fieldset legend in Paths admin panel.
-msgid "Backgrounds"
-msgstr "Pozadki"
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds."
-msgstr "Serwer za pozadki."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds."
-msgstr "Webšćežka k pozadkam."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds on SSL pages."
-msgstr "Serwer za pozadki na SSL-stronach."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds on SSL pages."
-msgstr "Webšćežka k pozadkam na SSL-stronach."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Directory where backgrounds are located."
-msgstr "Zapis, hdźež pozadki su."
 
 #. TRANS: Fieldset legens in Paths admin panel.
 msgid "Attachments"
@@ -4590,7 +4369,6 @@ msgid "6 or more characters, and do not forget it!"
 msgstr "6 abo wjace znamješkow, a njezabudź jo!"
 
 #. TRANS: Button text for password reset form.
-#. TRANS: Button text on profile design page to reset all colour settings to default without saving.
 msgctxt "BUTTON"
 msgid "Reset"
 msgstr "Wróćo stajić"
@@ -4598,19 +4376,6 @@ msgstr "Wróćo stajić"
 #. TRANS: Form instructions for password recovery form.
 msgid "Enter a nickname or email address."
 msgstr "Zapodaj přimjeno abo e-mejlowu adresu."
-
-#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
-msgid "No user with that email address or username."
-msgstr ""
-"Wužiwar z tej e-mejlowej adresu abo tym wužiwarskim mjenom njeeksistuje."
-
-#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
-msgid "No registered email address for that user."
-msgstr "Wužiwar nima žanu zregistrowanu e-mejlowu adresu."
-
-#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
-msgid "Error saving address confirmation."
-msgstr "Zmylk při składowanju adresoweho wobkrućenja."
 
 #. TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
 msgid ""
@@ -5512,6 +5277,14 @@ msgstr "Sydłowe mjeno njesmě prózdne być."
 msgid "You must have a valid contact email address."
 msgstr "Dyrbiš płaćiwu kontaktowu e-mejlowu adresu měć."
 
+#. TRANS: Client error displayed when a logo URL is not valid.
+msgid "Invalid logo URL."
+msgstr "Njepłaćiwy logowy URL."
+
+#. TRANS: Client error displayed when a SSL logo URL is invalid.
+msgid "Invalid SSL logo URL."
+msgstr "Njepłaćiwy SSL-URL loga."
+
 #. TRANS: Client error displayed trying to save site settings with an invalid language code.
 #. TRANS: %s is the invalid language code.
 #, php-format
@@ -5587,7 +5360,9 @@ msgid "Default language"
 msgstr "Standardna rěč"
 
 #. TRANS: Dropdown title on site settings panel.
-msgid "Site language when autodetection from browser settings is not available"
+#, fuzzy
+msgid ""
+"The site language when autodetection from browser settings is not available."
 msgstr ""
 "Rěč sydła, jeli awtomatiske spóznawanje po nastajenjach wobhladowaka k "
 "dispoziciji njesteji"
@@ -5614,8 +5389,22 @@ msgstr "Limit duplikatow"
 msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 
+#. TRANS: Fieldset legend for form to change logo.
+#, fuzzy
+msgid "Logo"
+msgstr "Logo"
+
+#. TRANS: Field label for StatusNet site logo.
+msgid "Site logo"
+msgstr "Logo sydła"
+
+#. TRANS: Field label for SSL StatusNet site logo.
+msgid "SSL logo"
+msgstr "SSL-logo"
+
 #. TRANS: Button title for saving site settings.
-msgid "Save site settings"
+#, fuzzy
+msgid "Save the site settings."
 msgstr "Sydłowe nastajenja składować"
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
@@ -6363,40 +6152,6 @@ msgstr "Awatarowy URL \"%s\" njeda so čitać."
 msgid "Wrong image type for avatar URL \"%s\"."
 msgstr "Wopačny wobrazowy typ za awatarowy URL \"%s\"."
 
-#. TRANS: Title for profile design page.
-#. TRANS: Page title for profile design page.
-msgid "Profile design"
-msgstr "Profilowy design"
-
-#. TRANS: Instructions for Profile design page.
-#. TRANS: Instructions for profile design page.
-msgid ""
-"Customize the way your profile looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-
-#. TRANS: Succes message on Profile design page when finding an easter egg.
-msgid "Enjoy your hotdog!"
-msgstr "Wjele wjesela!"
-
-#. TRANS: Form legend on Profile design page.
-#, fuzzy
-msgid "Design settings"
-msgstr "Sydłowe nastajenja składować"
-
-#. TRANS: Checkbox label on Profile design page.
-msgid "View profile designs"
-msgstr "Profilowe designy sej wobhladać"
-
-#. TRANS: Title for checkbox on Profile design page.
-msgid "Show or hide profile designs."
-msgstr "Profilowe designy pokazać abo schować."
-
-#. TRANS: Form legend on Profile design page for form to choose a background image.
-#, fuzzy
-msgid "Background file"
-msgstr "Pozadk"
-
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
 #, php-format
@@ -6840,6 +6595,19 @@ msgstr "Žadyn jednotliwy wužiwar za modus jednotliweho wužiwarja definowany."
 msgid "Single-user mode code called when not enabled."
 msgstr ""
 
+#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
+msgid "No user with that email address or username."
+msgstr ""
+"Wužiwar z tej e-mejlowej adresu abo tym wužiwarskim mjenom njeeksistuje."
+
+#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
+msgid "No registered email address for that user."
+msgstr "Wužiwar nima žanu zregistrowanu e-mejlowu adresu."
+
+#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
+msgid "Error saving address confirmation."
+msgstr "Zmylk při składowanju adresoweho wobkrućenja."
+
 #. TRANS: Server exception thrown when creating a group failed.
 msgid "Could not create group."
 msgstr "Skupina njeda so wutowrić."
@@ -7105,11 +6873,6 @@ msgstr "showForm() njeimplementowany."
 msgid "saveSettings() not implemented."
 msgstr "saveSettings() njeimplementowany."
 
-#. TRANS: Client error message thrown if design settings could not be deleted in
-#. TRANS: the admin panel Design.
-msgid "Unable to delete design setting."
-msgstr "Njeje móžno, designowe nastajenje zhašeć."
-
 #. TRANS: Header in administrator navigation panel.
 #. TRANS: Header in settings navigation panel.
 #, fuzzy
@@ -7140,17 +6903,6 @@ msgstr "Zakładna sydłowa konfiguracija"
 msgctxt "MENU"
 msgid "Site"
 msgstr "Sydło"
-
-#. TRANS: Menu item title in administrator navigation panel.
-msgid "Design configuration"
-msgstr "Designowa konfiguracija"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
-msgid "Design"
-msgstr "Design"
 
 #. TRANS: Menu item title in administrator navigation panel.
 msgid "User configuration"
@@ -8035,45 +7787,6 @@ msgstr "Zničić"
 msgid "Delete this user"
 msgstr "Tutoho wužiwarja wušmórnyć"
 
-#. TRANS: Form legend of form for changing the page design.
-#, fuzzy
-msgid "Change design"
-msgstr "Design składować"
-
-#. TRANS: Fieldset legend on profile design page to change profile page colours.
-msgid "Change colours"
-msgstr "Barby změnić"
-
-#. TRANS: Button text on profile design page to immediately reset all colour settings to default.
-msgid "Use defaults"
-msgstr "Standardne hódnoty wužiwać"
-
-#. TRANS: Label in form on profile design page.
-#. TRANS: Field contains file name on user's computer that could be that user's custom profile background image.
-msgid "Upload file"
-msgstr "Dataju nahrać"
-
-#. TRANS: Instructions for form on profile design page.
-msgid ""
-"You can upload your personal background image. The maximum file size is 2MB."
-msgstr ""
-"Móžeš swój wosobinski pozadkowy wobraz nahrać. Maksimalna datajowa wulkosć "
-"je 2 MB."
-
-#. TRANS: Radio button on profile design page that will enable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "On"
-msgstr "Zapinjeny"
-
-#. TRANS: Radio button on profile design page that will disable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "Off"
-msgstr "Wupinjeny"
-
-#. TRANS: Success message displayed if design settings were saved after clicking "Use defaults".
-msgid "Design defaults restored."
-msgstr "Designowe standardne nastajenja wobnowjene."
-
 #. TRANS: Exception. %s is an ID.
 #, php-format
 msgid "Unable to find services for %s."
@@ -8291,13 +8004,6 @@ msgstr "Logo"
 msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr "Logo skupiny %s přidać abo wobdźěłać"
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "Add or edit %s design"
-msgstr "Design skupiny %s přidać abo wobdźěłać"
 
 #. TRANS: Group actions header (h2). Text hidden by default.
 msgid "Group actions"
@@ -9615,10 +9321,6 @@ msgstr "E-mejl"
 msgid "Change email handling"
 msgstr ""
 
-#. TRANS: Menu item title in settings navigation panel.
-msgid "Design your profile"
-msgstr "Twój profil wuhotować"
-
 #. TRANS: Menu item in settings navigation panel.
 #, fuzzy
 msgctxt "MENU"
@@ -10063,3 +9765,227 @@ msgstr "Njepłaćiwy XML, korjeń XRD faluje."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Wobstaruje so zawěsćenje z dataje \"%s\"-"
+
+#. TRANS: Server exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Awatarowy URL \"%s\" njeda so čitać."
+
+#. TRANS: Server exception. %s is a URI.
+#, fuzzy, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr "Zmylk při aktualizaciji zdaleneho profila."
+
+#. TRANS: Server exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Njemóžno słužby za %s namakać."
+
+#. TRANS: Exception. %s is a profile URL.
+#, fuzzy, php-format
+msgid "Could not reach profile page %s."
+msgstr "Profil njeje so składować dał."
+
+#. TRANS: Exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr "Wužiwar z přimjenom %s njeda so namakać."
+
+#. TRANS: Exception.
+#, fuzzy
+msgid "Not a valid webfinger address."
+msgstr "Njepłaćiwa e-mejlowa adresa."
+
+#, fuzzy, php-format
+msgid "Could not find a valid profile for \"%s\"."
+msgstr "Profil njeje so składować dał."
+
+#~ msgid "Unable to save your design settings."
+#~ msgstr "Njeje móžno, designowe nastajenja składować."
+
+#~ msgid "Could not update your design."
+#~ msgstr "Design njeda so aktualizować."
+
+#~ msgid "Design"
+#~ msgstr "Design"
+
+#~ msgid "Design settings for this StatusNet site"
+#~ msgstr "Designowe nastajenja za tute sydło StatusNet"
+
+#~ msgid "Theme not available: %s."
+#~ msgstr "Šat njesteji k dispoziciji: %s."
+
+#~ msgid "Change logo"
+#~ msgstr "Logo změnić"
+
+#~ msgid "Change theme"
+#~ msgstr "Šat změnić"
+
+#~ msgid "Site theme"
+#~ msgstr "Šat sydła"
+
+#~ msgid "Theme for the site."
+#~ msgstr "Šat za sydło."
+
+#~ msgid "Custom theme"
+#~ msgstr "Swójski šat"
+
+#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
+#~ msgstr "Móžeš swójski šat StatusNet jako .ZIP-archiw nahrać."
+
+#~ msgid "Change background image"
+#~ msgstr "Pozadkowy wobraz změnić"
+
+#~ msgid "Background"
+#~ msgstr "Pozadk"
+
+#~ msgid ""
+#~ "You can upload a background image for the site. The maximum file size is %"
+#~ "1$s."
+#~ msgstr ""
+#~ "Móžeš pozadkowy wobraz za sydło nahrać. Maksimalna datajowa wulkosć je %1"
+#~ "$s."
+
+#~ msgid "On"
+#~ msgstr "Zapinjeny"
+
+#~ msgid "Off"
+#~ msgstr "Wupinjeny"
+
+#~ msgid "Turn background image on or off."
+#~ msgstr "Pozadkowy wobraz zmóžnić abo znjemóžnić."
+
+#~ msgid "Tile background image"
+#~ msgstr "Pozadkowy wobraz kachlicować"
+
+#~ msgid "Change colors"
+#~ msgstr "Barby změnić"
+
+#~ msgid "Content"
+#~ msgstr "Wobsah"
+
+#~ msgid "Sidebar"
+#~ msgstr "Bóčnica"
+
+#~ msgid "Text"
+#~ msgstr "Tekst"
+
+#~ msgid "Links"
+#~ msgstr "Wotkazy"
+
+#~ msgid "Advanced"
+#~ msgstr "Rozšěrjeny"
+
+#~ msgid "Custom CSS"
+#~ msgstr "Swójski CSS"
+
+#~ msgctxt "BUTTON"
+#~ msgid "Use defaults"
+#~ msgstr "Standardne hódnoty wužiwać"
+
+#~ msgid "Restore default designs."
+#~ msgstr "Standardne designy wobnowić."
+
+#~ msgid "Reset back to default."
+#~ msgstr "Na standard wróćo stajić."
+
+#~ msgid "Save design."
+#~ msgstr "Design składować."
+
+#~ msgid "You must be logged in to edit a group."
+#~ msgstr "Dyrbiš přizjewjeny być, zo by skupinu wobdźěłał."
+
+#~ msgid "Group design"
+#~ msgstr "Skupinski design"
+
+#~ msgid "Unable to update your design settings."
+#~ msgstr "Njeje móžno, twoje designowe nastajenja aktualizować."
+
+#~ msgid "Design preferences saved."
+#~ msgstr "Designowe nastajenja składowane."
+
+#~ msgid "Backgrounds"
+#~ msgstr "Pozadki"
+
+#~ msgid "Server for backgrounds."
+#~ msgstr "Serwer za pozadki."
+
+#~ msgid "Web path to backgrounds."
+#~ msgstr "Webšćežka k pozadkam."
+
+#~ msgid "Server for backgrounds on SSL pages."
+#~ msgstr "Serwer za pozadki na SSL-stronach."
+
+#~ msgid "Web path to backgrounds on SSL pages."
+#~ msgstr "Webšćežka k pozadkam na SSL-stronach."
+
+#~ msgid "Directory where backgrounds are located."
+#~ msgstr "Zapis, hdźež pozadki su."
+
+#~ msgid "Profile design"
+#~ msgstr "Profilowy design"
+
+#~ msgid "Enjoy your hotdog!"
+#~ msgstr "Wjele wjesela!"
+
+#, fuzzy
+#~ msgid "Design settings"
+#~ msgstr "Sydłowe nastajenja składować"
+
+#~ msgid "View profile designs"
+#~ msgstr "Profilowe designy sej wobhladać"
+
+#~ msgid "Show or hide profile designs."
+#~ msgstr "Profilowe designy pokazać abo schować."
+
+#, fuzzy
+#~ msgid "Background file"
+#~ msgstr "Pozadk"
+
+#~ msgid "Unable to delete design setting."
+#~ msgstr "Njeje móžno, designowe nastajenje zhašeć."
+
+#~ msgid "Design configuration"
+#~ msgstr "Designowa konfiguracija"
+
+#~ msgctxt "MENU"
+#~ msgid "Design"
+#~ msgstr "Design"
+
+#, fuzzy
+#~ msgid "Change design"
+#~ msgstr "Design składować"
+
+#~ msgid "Change colours"
+#~ msgstr "Barby změnić"
+
+#~ msgid "Use defaults"
+#~ msgstr "Standardne hódnoty wužiwać"
+
+#~ msgid "Upload file"
+#~ msgstr "Dataju nahrać"
+
+#~ msgid ""
+#~ "You can upload your personal background image. The maximum file size is "
+#~ "2MB."
+#~ msgstr ""
+#~ "Móžeš swój wosobinski pozadkowy wobraz nahrać. Maksimalna datajowa "
+#~ "wulkosć je 2 MB."
+
+#~ msgctxt "RADIO"
+#~ msgid "On"
+#~ msgstr "Zapinjeny"
+
+#~ msgctxt "RADIO"
+#~ msgid "Off"
+#~ msgstr "Wupinjeny"
+
+#~ msgid "Design defaults restored."
+#~ msgstr "Designowe standardne nastajenja wobnowjene."
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "Add or edit %s design"
+#~ msgstr "Design skupiny %s přidać abo wobdźěłać"
+
+#~ msgid "Design your profile"
+#~ msgstr "Twój profil wuhotować"

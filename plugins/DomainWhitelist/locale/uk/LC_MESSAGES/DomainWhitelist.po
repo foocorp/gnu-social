@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - DomainWhitelist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:12+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:55:36+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:42+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:50:01+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-domainwhitelist\n"
@@ -30,9 +30,9 @@ msgstr "Адреса електронної пошти повинна бути �
 
 #. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
 #. TRANS: %s are whitelisted e-mail domains separated by comma's (localisable).
-#, fuzzy, php-format
+#, php-format
 msgid "Email address must be in one of these domains: %s."
-msgstr "Адреса електронної пошти повинна бути в цьому домені: %s."
+msgstr "Адреса електронної пошти повинна бути в одному з цих доменів: %s."
 
 #. TRANS: Separator for whitelisted domains.
 msgctxt "SEPARATOR"
@@ -40,17 +40,16 @@ msgid ", "
 msgstr ", "
 
 #. TRANS: Exception thrown when an e-mail address does not match the site's domain whitelist.
-#, fuzzy
 msgid "That email address is not allowed on this site."
-msgstr "Адреса електронної пошти повинна бути в цьому домені: %s."
+msgstr "Така адреса електронної пошти є неприпустимою на цьому сайті."
 
 #. TRANS: Title for invitiation deletion dialog.
 msgid "Confirmation Required"
-msgstr ""
+msgstr "Необхідне підтвердження"
 
 #. TRANS: Confirmation text for invitation deletion dialog.
 msgid "Really delete this invitation?"
-msgstr ""
+msgstr "Дійсно видалити це запрошення?"
 
 #. TRANS: Plugin description.
 msgid "Restrict domains for email users."
@@ -58,25 +57,25 @@ msgstr "Обмежити домени для електронної пошти �
 
 #. TRANS: Form legend.
 msgid "Invite collegues"
-msgstr ""
+msgstr "Запросити колег"
 
 #. TRANS: Field label for a personal message to send to invitees.
 msgid "Personal message"
-msgstr ""
+msgstr "Особисте повідомлення"
 
 #. TRANS: Field title for a personal message to send to invitees.
 msgid "Optionally add a personal message to the invitation."
-msgstr ""
+msgstr "При необхідності додайте особисте повідомлення до запрошення."
 
 #. TRANS: Link description to action to add another item to a list.
 msgid "Add another item"
-msgstr ""
+msgstr "Додати ще один пункт"
 
 #. TRANS: Send button for inviting friends.
 msgctxt "BUTTON"
 msgid "Send"
-msgstr ""
+msgstr "Надіслати"
 
 #. TRANS: Submit button title.
 msgid "Send invitations."
-msgstr ""
+msgstr "Надіслати запрошення."

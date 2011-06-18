@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserFlag\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:40+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:58+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 09:58:44+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:52:10+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-userflag\n"
@@ -50,6 +50,7 @@ msgstr "Означи профил за преглед."
 msgid "Clear"
 msgstr "Отстрани"
 
+#. TRANS: Form description for clearing flags from a profile.
 msgid "Clear all flags"
 msgstr "Отстрани ги сите ознаки"
 
@@ -57,6 +58,7 @@ msgstr "Отстрани ги сите ознаки"
 msgid "Not logged in."
 msgstr "Не сте најавени."
 
+#. TRANS: Error message displayed when trying to review profile flags while not authorised.
 msgid "You cannot review profile flags."
 msgstr "Не можете да прегледувате профилни знаменца."
 
@@ -70,7 +72,7 @@ msgstr "Модерирај"
 
 #. TRANS: Message displayed on a profile if it has been flagged.
 #. TRANS: %1$s is a comma separated list of at most 5 user nicknames that flagged.
-#. TRANS: %2$d is a positive integer of additional flagging users. Also used for the plural.
+#. TRANS: %2$d is a positive integer of additional flagging users. Also used for plural.
 #, php-format
 msgid "Flagged by %1$s and %2$d other"
 msgid_plural "Flagged by %1$s and %2$d others"
@@ -84,8 +86,9 @@ msgid "Flagged by %s"
 msgstr "Означено од %s"
 
 #. TRANS: Server exception given when flags could not be cleared.
-#, php-format
-msgid "Couldn't clear flags for profile \"%s\"."
+#. TRANS: %s is a profile nickname.
+#, fuzzy, php-format
+msgid "Could not clear flags for profile \"%s\"."
 msgstr "Не можев да ги отстранам ознаките за профилот „%s“."
 
 #. TRANS: Title for AJAX form to indicated that flags were removed.
@@ -97,6 +100,7 @@ msgid "Cleared"
 msgstr "Отстрането"
 
 #. TRANS: Server exception.
-#, php-format
-msgid "Couldn't flag profile \"%d\" for review."
+#. TRANS: %d is a profile ID (number).
+#, fuzzy, php-format
+msgid "Could not flag profile \"%d\" for review."
 msgstr "Не можев да го означам профилот „%d“ за преглед."
