@@ -71,7 +71,6 @@ function save_twitter_user($twitter_id, $screen_name)
     $fuser = Foreign_user::getForeignUser($twitter_id, TWITTER_SERVICE);
 
     if (!empty($fuser)) {
-
         // Delete old record if Twitter user changed screen name
 
         if ($fuser->nickname != $screen_name) {

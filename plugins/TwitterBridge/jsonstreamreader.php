@@ -63,7 +63,8 @@ abstract class JsonStreamReader
         } else if ($scheme == 'https') {
             $rawScheme = 'ssl';
         } else {
-            throw new ServerException('Invalid URL scheme for HTTP stream reader');
+            // TRANS: Server exception thrown when an invalid URL scheme is detected.
+            throw new ServerException(_m('Invalid URL scheme for HTTP stream reader.'));
         }
 
         $host = parse_url($url, PHP_URL_HOST);
@@ -180,7 +181,8 @@ abstract class JsonStreamReader
     public function handleInput($socket)
     {
         if ($this->socket !== $socket) {
-            throw new Exception('Got input from unexpected socket!');
+            // TRANS: Exception thrown when input from an inexpected socket is encountered.
+            throw new Exception(_m('Got input from unexpected socket!'));
         }
 
         try {
@@ -210,7 +212,9 @@ abstract class JsonStreamReader
                 $this->handleLineActive($line);
                 break;
             default:
-                throw new Exception('Invalid state in handleLine: ' . $this->state);
+                // TRANS: Exception thrown when an invalid state is encountered in handleLine.
+                // TRANS: %s is the invalid state.
+                throw new Exception(sprintf(_m('Invalid state in handleLine: %s.'),$this->state));
         }
     }
 
@@ -222,15 +226,21 @@ abstract class JsonStreamReader
     {
         $bits = explode(' ', $line, 3);
         if (count($bits) != 3) {
-            throw new Exception("Invalid HTTP response line: $line");
+            // TRANS: Exception thrown when an invalid response line is encountered.
+            // TRANS: %s is the invalid line.
+            throw new Exception(sprintf(_m('Invalid HTTP response line: %s.'),$line));
         }
 
         list($http, $status, $text) = $bits;
         if (substr($http, 0, 5) != 'HTTP/') {
-            throw new Exception("Invalid HTTP response line chunk '$http': $line");
+            // TRANS: Exception thrown when an invalid response line part is encountered.
+            // TRANS: %1$s is the chunk, %2$s is the line.
+            throw new Exception(sprintf(_m('Invalid HTTP response line chunk "%1$s": %2$s.'),$http, $line));
         }
         if ($status != '200') {
-            throw new Exception("Bad HTTP response code $status: $line");
+            // TRANS: Exception thrown when an invalid response code is encountered.
+            // TRANS: %1$s is the response code, %2$s is the line.
+            throw new Exception(sprintf(_m('Bad HTTP response code %1$s: %2$s.'),$status,$line));
         }
         common_log(LOG_DEBUG, "$this->id $line");
         $this->state = 'headers';
