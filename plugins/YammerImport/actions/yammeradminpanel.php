@@ -101,6 +101,7 @@ class YammeradminpanelAction extends AdminPanelAction
 
                 $form = new YammerProgressForm($this, $this->runner);
             } else if ($this->subaction == 'pause-import') {
+                // TRANS: Error message about an import job being paused from the admin panel.
                 $this->runner->recordError(_m('Paused from admin panel.'));
                 $form = $this->statusForm();
             } else if ($this->subaction == 'continue-import') {
