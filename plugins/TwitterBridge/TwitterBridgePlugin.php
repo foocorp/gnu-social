@@ -303,8 +303,10 @@ class TwitterBridgePlugin extends Plugin
 
             $nav->out->menuItem(
                 common_local_url('twitteradminpanel'),
+                // TRANS: Menu item in administrative panel that leads to the Twitter bridge configuration.
                 _m('Twitter'),
-                _m('Twitter bridge configuration'),
+                // TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
+                _m('Twitter bridge configuration page.'),
                 $action_name == 'twitteradminpanel',
                 'nav_twitter_admin_panel'
             );

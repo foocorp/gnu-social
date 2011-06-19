@@ -66,6 +66,7 @@ class TwittersettingsAction extends ProfileSettingsAction
 
     function getInstructions()
     {
+        // TRANS: Instructions for page with Twitter integration settings.
         return _m('Connect your Twitter account to share your updates ' .
                   'with your Twitter friends and vice-versa.');
     }
