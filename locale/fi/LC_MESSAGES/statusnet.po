@@ -18,17 +18,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:16+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:48+0000\n"
 "Language-Team: Finnish <http://translatewiki.net/wiki/Portal:fi>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fi\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, fuzzy, php-format
@@ -309,7 +309,7 @@ msgstr ""
 "Voit yrittää [nykäistä %1$s](../%2$s) heidän profiilinsa kautta tai [lähetä "
 "heille viesti](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2110,7 +2110,7 @@ msgstr ""
 "Julkisen tagin muuttaminen yksityiseksi poistaa pysyvästi siihen liittyvät "
 "tilaukset. Haluatko silti jatkaa?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "Luettelon päivittäminen epäonnistui."
 
@@ -3177,6 +3177,7 @@ msgstr ""
 msgid "Could not create application."
 msgstr "Ei voitu lisätä aliasta."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Virheellinen kuva."
 
@@ -5563,7 +5564,6 @@ msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Kirjaudu ulos"
 
@@ -8749,7 +8749,7 @@ msgstr "Lähetä suora viesti"
 msgid "Select recipient:"
 msgstr "Valitse vastaanottaja:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "Ei ole tilattu!."
@@ -9198,8 +9198,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Ota käyttöön"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr "(Liitännäinen ei ole käytössä.)"
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9968,187 +9971,3 @@ msgstr "Tuo ei ole kelvollinen sähköpostiosoite."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Profiilin tallennus epäonnistui."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Ulkoasun tallennus epäonnistui."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Ulkoasua ei voitu päivittää."
-
-#~ msgid "Design"
-#~ msgstr "Ulkoasu"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Ulkoasuasetukset tälle StatusNet-sivustolle"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Teema ei ole käytettävissä: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Vaihda väriä"
-
-#~ msgid "Change theme"
-#~ msgstr "Teeman vaihto"
-
-#~ msgid "Site theme"
-#~ msgstr "Sivuston teema"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Teema sivustolle."
-
-#~ msgid "Custom theme"
-#~ msgstr "Mukautettu teema"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "Voit ladata mukautetun StatusNet-teeman .ZIP-pakettina."
-
-#~ msgid "Change background image"
-#~ msgstr "Vaihda tautakuva"
-
-#~ msgid "Background"
-#~ msgstr "Tausta"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr "Voit ladata ryhmälle taustakuvan. Enimmäiskoko on %1$s."
-
-#~ msgid "On"
-#~ msgstr "On"
-
-#~ msgid "Off"
-#~ msgstr "Off"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Kytke taustakuva päälle tai pois päältä."
-
-#~ msgid "Tile background image"
-#~ msgstr "Taustakuvan toisto vierekkäin"
-
-#~ msgid "Change colors"
-#~ msgstr "Vaihda värejä"
-
-#~ msgid "Content"
-#~ msgstr "Sisältö"
-
-#~ msgid "Sidebar"
-#~ msgstr "Sivupalkki"
-
-#~ msgid "Text"
-#~ msgstr "Teksti"
-
-#~ msgid "Links"
-#~ msgstr "Linkit"
-
-#~ msgid "Advanced"
-#~ msgstr "Lisäasetukset"
-
-#~ msgid "Custom CSS"
-#~ msgstr "Mukautettu CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Käytä oletusasetuksia"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Palauta oletusulkonäkö."
-
-#~ msgid "Reset back to default."
-#~ msgstr "Palauta oletusulkoasu."
-
-#~ msgid "Save design."
-#~ msgstr "Tallenna ulkoasu."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr ""
-#~ "Sinun pitää olla kirjautunut sisään, jotta voit muuttaa ryhmän tietoja."
-
-#~ msgid "Group design"
-#~ msgstr "Ryhmän ulkoasu"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "Mukauta ryhmäsi ulkonäköä taustakuvan ja väripaletin valinnalla."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Ulkoasun tallennus epäonnistui."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Ulkoasuasetukset tallennettu."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "Älä lähetä viestiä itsellesi, vaan kuiskaa se vain hiljaa itsellesi."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Taustakuvat"
-
-#, fuzzy
-#~ msgid "Server for backgrounds."
-#~ msgstr "Kirjaudu ulos palvelusta"
-
-#~ msgid "Profile design"
-#~ msgstr "Profiilin ulkoasu"
-
-#~ msgid "Design settings"
-#~ msgstr "Ulkoasuasetukset"
-
-#, fuzzy
-#~ msgid "View profile designs"
-#~ msgstr "Näytä tai piillota profiilin ulkoasu."
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Näytä tai piillota profiilin ulkoasu."
-
-#~ msgid "Background file"
-#~ msgstr "Taustakuvatiedosto"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Ulkoasun asetuksia ei voitu poistaa."
-
-#~ msgid "Design configuration"
-#~ msgstr "Ulkoasun asetukset"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Ulkoasu"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "Ryhmän ulkoasu"
-
-#~ msgid "Change colours"
-#~ msgstr "Vaihda väriä"
-
-#~ msgid "Use defaults"
-#~ msgstr "Käytä oletusasetuksia"
-
-#, fuzzy
-#~ msgid "Upload file"
-#~ msgstr "Lataa"
-
-#, fuzzy
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr "Voit ladata oman profiilikuvasi. Maksimikoko on %s."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "On"
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Off"
-
-#, fuzzy
-#~ msgid "Design defaults restored."
-#~ msgstr "Ulkoasuasetukset tallennettu."
-
-#, fuzzy
-#~ msgid "Design your profile"
-#~ msgstr "Käyttäjän profiili"

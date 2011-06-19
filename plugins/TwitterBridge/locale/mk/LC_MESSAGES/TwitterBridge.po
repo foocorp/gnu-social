@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:55+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:40+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:21:09+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -25,6 +25,7 @@ msgstr ""
 msgid "Twitter settings"
 msgstr "Нагодувања за Twitter"
 
+#. TRANS: Instructions for page with Twitter integration settings.
 msgid ""
 "Connect your Twitter account to share your updates with your Twitter friends "
 "and vice-versa."
@@ -46,13 +47,13 @@ msgstr "Прекини ја врската со сметката на Twitter"
 
 #. TRANS: Form guide. %s is a URL to the password settings.
 #. TRANS: This message contains a Markdown link in the form [description](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Disconnecting your Twitter account could make it impossible to log in! "
 "Please [set a password](%s) first."
 msgstr ""
 "Ако ја прекинете врската со сметката на Twitter, нема да можете да се "
-"најавите! Затоа "
+"најавувате! Најпрвин [ставете лозинка](%s)."
 
 #. TRANS: Form instructions. %s is a URL to the password settings.
 #. TRANS: %1$s is the StatusNet sitename.
@@ -65,10 +66,9 @@ msgstr ""
 "најава, користете ја Вашата лозинка на %1$s."
 
 #. TRANS: Button text for disconnecting a Twitter account.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Disconnect"
-msgstr "Прекини"
+msgstr "Прекрати"
 
 #. TRANS: Fieldset legend.
 msgid "Preferences"
@@ -92,13 +92,11 @@ msgstr "Увези ја хронологијата на моите пријат�
 
 #. TRANS: Button text for saving Twitter integration settings.
 #. TRANS: Button text for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зачувај"
 
 #. TRANS: Button text for adding Twitter integration.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "Додај"
@@ -116,16 +114,14 @@ msgid "No Twitter connection to remove."
 msgstr "Нема врска со Twitter за отстранување."
 
 #. TRANS: Server error displayed when trying to remove a connected Twitter account fails.
-#, fuzzy
 msgid "Could not remove Twitter user."
-msgstr "Не можев да го отстранам корисникот на Twitter."
+msgstr "Не можев да го отстранам корисникот од Twitter."
 
 #. TRANS: Success message displayed after disconnecting a Twitter account.
 msgid "Twitter account disconnected."
 msgstr "Врската со сметката на Twitter е прекината."
 
 #. TRANS: Server error displayed when saving Twitter integration preferences fails.
-#, fuzzy
 msgid "Could not save Twitter preferences."
 msgstr "Не можев да ги зачувам нагодувањата за Twitter."
 
@@ -146,14 +142,13 @@ msgid "Could not link your Twitter account."
 msgstr "Не можам да ја поврзам Вашата сметка на Twitter."
 
 #. TRANS: Server error displayed when linking to a Twitter account fails because of an incorrect oauth_token.
-#, fuzzy
 msgid "Could not link your Twitter account: oauth_token mismatch."
 msgstr ""
 "Не можев да ја поврзам Вашата сметка на Twitter: несогласување со "
 "oauth_token."
 
 #. TRANS: Page instruction. %s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "Twitter account to a local account. You can either create a new account, or "
@@ -161,7 +156,7 @@ msgid ""
 msgstr ""
 "Ова е прв пат како се најавувате на %s, па затоа мораме да ја поврземе "
 "Вашата сметка на Twitter со локална сметка. Можете да создадете нова сметка, "
-"или пак да се поврзете со Вашата постоечка сметка (ако ја имате)."
+"или пак да се поврзете со постоечката (ако ја имате)."
 
 #. TRANS: Page title.
 msgid "Twitter Account Setup"
@@ -207,7 +202,6 @@ msgid "Used only for updates, announcements, and password recovery"
 msgstr "Се користи само за подновувања, објави и повраќање на лозинка."
 
 #. TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Создај"
@@ -233,7 +227,6 @@ msgid "Password"
 msgstr "Лозинка"
 
 #. TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Поврзи се"
@@ -269,7 +262,6 @@ msgid "Invalid username or password."
 msgstr "Неважечко корисничко име или лозинка."
 
 #. TRANS: Page title for Twitter administration panel.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter"
 msgstr "Twitter"
@@ -279,12 +271,10 @@ msgid "Twitter bridge settings"
 msgstr "Поставки за мостот до Twitter"
 
 #. TRANS: Client error displayed when a consumer key is invalid because it is too long.
-#, fuzzy
 msgid "Invalid consumer key. Maximum length is 255 characters."
 msgstr "Неважечки потрошувачки клуч. Дозволени се највеќе 255 знаци."
 
 #. TRANS: Client error displayed when a consumer secret is invalid because it is too long.
-#, fuzzy
 msgid "Invalid consumer secret. Maximum length is 255 characters."
 msgstr "Неважечка потрошувачка тајна. Дозволени се највеќе 255 знаци."
 
@@ -297,32 +287,29 @@ msgid "Consumer key"
 msgstr "Потрошувачки клуч"
 
 #. TRANS: Field title for Twitter assigned consumer key.
-#, fuzzy
 msgid "The consumer key assigned by Twitter."
-msgstr "Потрошувачкиот клуч доделен од Twitter"
+msgstr "Потрошувачкиот клуч доделен од Twitter."
 
 #. TRANS: Field label for Twitter assigned consumer secret.
 msgid "Consumer secret"
 msgstr "Потрошувачка тајна"
 
 #. TRANS: Field title for Twitter assigned consumer secret.
-#, fuzzy
 msgid "The consumer secret assigned by Twitter."
-msgstr "Потрошувачката тајна доделена од Twitter"
+msgstr "Потрошувачката тајна доделена од Twitter."
 
 #. TRANS: Form guide displayed when two required fields have already been provided.
-#, fuzzy
 msgid "Note: A global consumer key and secret are set."
-msgstr "Напомена: поставени се глобални потрошувачки клуч и тајна."
+msgstr ""
+"Напомена: Поставени се е глобален потрошувачки клуч и потрошувачка тајна."
 
 #. TRANS: Field label for Twitter application name.
 msgid "Integration source"
 msgstr "Извор на соединување"
 
 #. TRANS: Field title for Twitter application name.
-#, fuzzy
 msgid "The name of your Twitter application."
-msgstr "Име на Вашето програмче за Twitter"
+msgstr "Име на Вашето програмче за Twitter."
 
 #. TRANS: Fieldset legend for Twitter integration options.
 msgid "Options"
@@ -333,10 +320,10 @@ msgid "Enable \"Sign-in with Twitter\""
 msgstr "Овозможи „најава со Twitter“"
 
 #. TRANS: Checkbox title.
-#, fuzzy
 msgid "This allow users to login with their Twitter credentials."
 msgstr ""
-"Им овозможува на корисниците да се најавуваат со нивните податоци од Twitter"
+"Ова им овозможува на корисниците да се најавуваат со нивните податоци од "
+"Twitter."
 
 #. TRANS: Checkbox label for global setting.
 msgid "Enable Twitter import"
@@ -351,62 +338,62 @@ msgstr ""
 "пријатели на Twitter. Бара рачно нагодување на демоните."
 
 #. TRANS: Button title for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgid "Save the Twitter bridge settings."
-msgstr "Поставки за мостот до Twitter"
+msgstr "Зачувај ги поставките за мостот до Twitter."
 
 #. TRANS: Server exception thrown when an invalid URL scheme is detected.
 msgid "Invalid URL scheme for HTTP stream reader."
-msgstr ""
+msgstr "Неважечка URL-шема за читачот на HTTP-каналот."
 
 #. TRANS: Exception thrown when input from an inexpected socket is encountered.
 msgid "Got input from unexpected socket!"
-msgstr ""
+msgstr "Добив влезни податоци од неочекуван извор!"
 
 #. TRANS: Exception thrown when an invalid state is encountered in handleLine.
 #. TRANS: %s is the invalid state.
 #, php-format
 msgid "Invalid state in handleLine: %s."
-msgstr ""
+msgstr "Неважечка состојба во handleLine: %s."
 
 #. TRANS: Exception thrown when an invalid response line is encountered.
 #. TRANS: %s is the invalid line.
 #, php-format
 msgid "Invalid HTTP response line: %s."
-msgstr ""
+msgstr "Неважечки ред во одговорот со HTTP: %s."
 
 #. TRANS: Exception thrown when an invalid response line part is encountered.
 #. TRANS: %1$s is the chunk, %2$s is the line.
 #, php-format
 msgid "Invalid HTTP response line chunk \"%1$s\": %2$s."
-msgstr ""
+msgstr "Неважечко парче „%1$s“ од редот во одговорот со HTTP: %2$s."
 
 #. TRANS: Exception thrown when an invalid response code is encountered.
 #. TRANS: %1$s is the response code, %2$s is the line.
 #, php-format
 msgid "Bad HTTP response code %1$s: %2$s."
-msgstr ""
+msgstr "Неправилен код %1$s на одговорот со HTTP: %2$s."
 
 #. TRANS: Menu item in login navigation.
 #. TRANS: Menu item in connection settings navigation.
-#, fuzzy
 msgctxt "MENU"
 msgid "Twitter"
 msgstr "Twitter"
 
 #. TRANS: Title for menu item in login navigation.
-#, fuzzy
 msgid "Login or register using Twitter."
-msgstr "Најава или регистрација со Twitter"
+msgstr "Најава или регистрација со Twitter."
 
 #. TRANS: Title for menu item in connection settings navigation.
 msgid "Twitter integration options"
 msgstr "Нагодувања за обединување со Twitter"
 
+#. TRANS: Menu item in administrative panel that leads to the Twitter bridge configuration.
 msgid "Twitter"
 msgstr "Twitter"
 
-msgid "Twitter bridge configuration"
+#. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
+#, fuzzy
+msgid "Twitter bridge configuration page."
 msgstr "Нагодувања за мостот до Twitter"
 
 #. TRANS: Plugin description.
@@ -422,7 +409,6 @@ msgid "Already logged in."
 msgstr "Веќе сте најавени."
 
 #. TRANS: Title for login using Twitter page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter Login"
 msgstr "Најава со Twitter"
@@ -473,15 +459,3 @@ msgstr ""
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr "RT @%1$s %2$s"
-
-#~ msgid "set a password"
-#~ msgstr "ставете лозинка"
-
-#~ msgid " first."
-#~ msgstr "пред да продолжите."
-
-#~ msgid "Couldn't link your Twitter account."
-#~ msgstr "Не можам да ја поврзам Вашата сметка на Twitter."
-
-#~ msgid "Save Twitter settings"
-#~ msgstr "Зачувај нагодувања на Twitter"

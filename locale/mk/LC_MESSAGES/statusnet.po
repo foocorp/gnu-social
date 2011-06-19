@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:35+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:04+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -301,7 +301,7 @@ msgstr ""
 "Можете да го [подбуцнете корисникот %1$s](../%2$s) од неговиот профил или да "
 "[му испратите нешто](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2108,7 +2108,7 @@ msgstr ""
 "Ако наместите јавна ознака како приватна, со тоа трајно ќе ги избришете и "
 "сите нејзини постоечки претплати. Дали сакате да продолжите?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "Не можев да го подновам списокот."
 
@@ -3165,6 +3165,7 @@ msgstr "Треба изворна URL-адреса."
 msgid "Could not create application."
 msgstr "Не можеше да се создаде програмот."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Неважечка слика."
 
@@ -5508,10 +5509,9 @@ msgid "Default language"
 msgstr "Основен јазик"
 
 #. TRANS: Dropdown title on site settings panel.
-#, fuzzy
 msgid ""
 "The site language when autodetection from browser settings is not available."
-msgstr "Јазик на мрежното место ако прелистувачот не може да го препознае сам"
+msgstr "Јазик на мрежното место ако прелистувачот не може да го препознае сам."
 
 #. TRANS: Fieldset legend on site settings panel.
 msgctxt "LEGEND"
@@ -5537,7 +5537,6 @@ msgstr ""
 "да го објават истото."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Лого"
 
@@ -5550,9 +5549,8 @@ msgid "SSL logo"
 msgstr "SSL-лого"
 
 #. TRANS: Button title for saving site settings.
-#, fuzzy
 msgid "Save the site settings."
-msgstr "Зачувај нагодувања на мреж. место"
+msgstr "Зачувај нагодувања на мреж. место."
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
 msgid "Site Notice"
@@ -8750,7 +8748,7 @@ msgstr "Испрати непосредна забелешка"
 msgid "Select recipient:"
 msgstr "Оберете примач:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Нема заемни претплатници."
 
@@ -9179,8 +9177,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Овозможи"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr "(Описите на приклучоците не се достапни ако е оневозможено.)"
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9890,242 +9891,35 @@ msgid "Getting backup from file '%s'."
 msgstr "Земам резерва на податотеката „%s“."
 
 #. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid avatar URL %s."
-msgstr "Не можам да ја прочитам URL-адресата на аватарот „%s“."
+msgstr "Не можам да ја прочитам URL-адресата на аватарот %s."
 
 #. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
+#, php-format
 msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Грешка во подновувањето на далечинскиот профил."
+msgstr ""
+"Се обидов да го подновувам аватарот за незачуваниот далечински профил %s."
 
 #. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Unable to fetch avatar from %s."
-msgstr "Не можам да пронајдам служби за: %s."
+msgstr "Не можам да го добијам аватарот од: %s."
 
 #. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not reach profile page %s."
-msgstr "Не можев да создадам профилна ознака."
+msgstr "Не можев да дојдам до профилната страница %s."
 
 #. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find a feed URL for profile page %s."
-msgstr "Не можев да пронајдам корисник со прекар %s."
+msgstr "Не можев да пронајдам URL на канал за профилната страница %s."
 
 #. TRANS: Exception.
-#, fuzzy
 msgid "Not a valid webfinger address."
-msgstr "Ова не е важечка е-пошта."
+msgstr "Ова не е важечка Webfinger-адреса."
 
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find a valid profile for \"%s\"."
-msgstr "Не може да се зачува профил."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Не можам да ги зачувам Вашите нагодувања за изглед."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Не може да се поднови Вашиот изглед."
-
-#~ msgid "Design"
-#~ msgstr "Изглед"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Нагодувања на изгледот на ова StatusNet-мрежно место."
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Темата е недостапна: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Промени лого"
-
-#~ msgid "Change theme"
-#~ msgstr "Промени изглед"
-
-#~ msgid "Site theme"
-#~ msgstr "Изглед на мрежното место"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Изглед за мрежното место."
-
-#~ msgid "Custom theme"
-#~ msgstr "Прилагоден мотив"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "Можете да подигнете свој изглед за StatusNet како .ZIP архив."
-
-#~ msgid "Change background image"
-#~ msgstr "Промена на слика за позадина"
-
-#~ msgid "Background"
-#~ msgstr "Позадина"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Може да подигнете позадинска слика за ова мрежно место. Максималната "
-#~ "големина на податотеката е %1$s."
-
-#~ msgid "On"
-#~ msgstr "Вкл."
-
-#~ msgid "Off"
-#~ msgstr "Искл."
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Вклучи или исклучи позадинска слика."
-
-#~ msgid "Tile background image"
-#~ msgstr "Позадината во квадрати"
-
-#~ msgid "Change colors"
-#~ msgstr "Смени бои"
-
-#~ msgid "Content"
-#~ msgstr "Содржина"
-
-#~ msgid "Sidebar"
-#~ msgstr "Странична лента"
-
-#~ msgid "Text"
-#~ msgstr "Текст"
-
-#~ msgid "Links"
-#~ msgstr "Врски"
-
-#~ msgid "Advanced"
-#~ msgstr "Напредно"
-
-#~ msgid "Custom CSS"
-#~ msgstr "Прилагодено CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Користи по основно"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Врати ги изгледите по основно."
-
-#~ msgid "Reset back to default."
-#~ msgstr "Врати по основно."
-
-#~ msgid "Save design."
-#~ msgstr "Зачувај изглед."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "Мора да сте најавени за да можете да уредувате група."
-
-#~ msgid "Group design"
-#~ msgstr "Изглед на групата"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Прилагодете го изгледот на Вашата група со позадинска слика и палета од "
-#~ "бои по Ваш избор."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Не можам да ги подновам Вашите нагодувања за изглед."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Нагодувањата се зачувани."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "Не испраќајте си порака самите на себе; подобро тивко кажете си го тоа на "
-#~ "себеси."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Позадини"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "Опслужувач за позадини."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "Мрежна патека за позадините."
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "Опслужувач за позадини на SSL-страници."
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr "Мрежна патека за позадините на SSL-страници."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Директориумот кадешто се сместени позадините."
-
-#~ msgid "Profile design"
-#~ msgstr "Изглед на профилот"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Прилагодете го изгледот на Вашиот профил, со позадинска слика и палета од "
-#~ "бои по Ваш избор."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Добар апетит!"
-
-#~ msgid "Design settings"
-#~ msgstr "Нагодувања на изгледот"
-
-#~ msgid "View profile designs"
-#~ msgstr "Види изгледи на профилот"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Прикажи или скриј изгледи на профилот."
-
-#~ msgid "Background file"
-#~ msgstr "Податотека за позадината"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Не можам да ги избришам нагодувањата за изглед."
-
-#~ msgid "Design configuration"
-#~ msgstr "Поставки на изгледот"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Изглед"
-
-#~ msgid "Change design"
-#~ msgstr "Измени изглед"
-
-#~ msgid "Change colours"
-#~ msgstr "Промена на бои"
-
-#~ msgid "Use defaults"
-#~ msgstr "Користи по основно"
-
-#~ msgid "Upload file"
-#~ msgstr "Подигање"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Можете да подигнете лична позадинска слика. Максималната дозволена "
-#~ "големина изнесува 2МБ."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Вкл."
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Искл."
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Основно-зададениот изглед е вратен."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Додавање или уредување на изгледот на групата „%s“"
-
-#~ msgid "Design your profile"
-#~ msgstr "Наместете изглед на Вашиот профил"
+msgstr "Не можев да пронајдам важечки профил за „%s“."

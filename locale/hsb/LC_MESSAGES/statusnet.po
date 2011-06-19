@@ -12,18 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:24+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:54+0000\n"
 "Language-Team: Upper Sorbian <http://translatewiki.net/wiki/Portal:hsb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: hsb\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : (n%100==3 || "
 "n%100==4) ? 2 : 3)\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -292,7 +292,7 @@ msgid ""
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2080,7 +2080,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "Wužiwar njeje so dał aktualizować."
@@ -3116,6 +3116,7 @@ msgstr "Žórłowy URL je trěbny."
 msgid "Could not create application."
 msgstr "Aplikacija njeda so wutworić."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Njepłaćiwy wobraz."
 
@@ -5390,7 +5391,6 @@ msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Logo"
 
@@ -8553,7 +8553,7 @@ msgstr "Direktnu zdźělenku pósłać"
 msgid "Select recipient:"
 msgstr "Přijimowarja wubrać:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Žani wzajomni abonenća."
 
@@ -9012,8 +9012,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9799,193 +9801,3 @@ msgstr "Njepłaćiwa e-mejlowa adresa."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Profil njeje so składować dał."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Njeje móžno, designowe nastajenja składować."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Design njeda so aktualizować."
-
-#~ msgid "Design"
-#~ msgstr "Design"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Designowe nastajenja za tute sydło StatusNet"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Šat njesteji k dispoziciji: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Logo změnić"
-
-#~ msgid "Change theme"
-#~ msgstr "Šat změnić"
-
-#~ msgid "Site theme"
-#~ msgstr "Šat sydła"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Šat za sydło."
-
-#~ msgid "Custom theme"
-#~ msgstr "Swójski šat"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "Móžeš swójski šat StatusNet jako .ZIP-archiw nahrać."
-
-#~ msgid "Change background image"
-#~ msgstr "Pozadkowy wobraz změnić"
-
-#~ msgid "Background"
-#~ msgstr "Pozadk"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Móžeš pozadkowy wobraz za sydło nahrać. Maksimalna datajowa wulkosć je %1"
-#~ "$s."
-
-#~ msgid "On"
-#~ msgstr "Zapinjeny"
-
-#~ msgid "Off"
-#~ msgstr "Wupinjeny"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Pozadkowy wobraz zmóžnić abo znjemóžnić."
-
-#~ msgid "Tile background image"
-#~ msgstr "Pozadkowy wobraz kachlicować"
-
-#~ msgid "Change colors"
-#~ msgstr "Barby změnić"
-
-#~ msgid "Content"
-#~ msgstr "Wobsah"
-
-#~ msgid "Sidebar"
-#~ msgstr "Bóčnica"
-
-#~ msgid "Text"
-#~ msgstr "Tekst"
-
-#~ msgid "Links"
-#~ msgstr "Wotkazy"
-
-#~ msgid "Advanced"
-#~ msgstr "Rozšěrjeny"
-
-#~ msgid "Custom CSS"
-#~ msgstr "Swójski CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Standardne hódnoty wužiwać"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Standardne designy wobnowić."
-
-#~ msgid "Reset back to default."
-#~ msgstr "Na standard wróćo stajić."
-
-#~ msgid "Save design."
-#~ msgstr "Design składować."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "Dyrbiš přizjewjeny być, zo by skupinu wobdźěłał."
-
-#~ msgid "Group design"
-#~ msgstr "Skupinski design"
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Njeje móžno, twoje designowe nastajenja aktualizować."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Designowe nastajenja składowane."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Pozadki"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "Serwer za pozadki."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "Webšćežka k pozadkam."
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "Serwer za pozadki na SSL-stronach."
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr "Webšćežka k pozadkam na SSL-stronach."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Zapis, hdźež pozadki su."
-
-#~ msgid "Profile design"
-#~ msgstr "Profilowy design"
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Wjele wjesela!"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "Sydłowe nastajenja składować"
-
-#~ msgid "View profile designs"
-#~ msgstr "Profilowe designy sej wobhladać"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Profilowe designy pokazać abo schować."
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "Pozadk"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Njeje móžno, designowe nastajenje zhašeć."
-
-#~ msgid "Design configuration"
-#~ msgstr "Designowa konfiguracija"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Design"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "Design składować"
-
-#~ msgid "Change colours"
-#~ msgstr "Barby změnić"
-
-#~ msgid "Use defaults"
-#~ msgstr "Standardne hódnoty wužiwać"
-
-#~ msgid "Upload file"
-#~ msgstr "Dataju nahrać"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Móžeš swój wosobinski pozadkowy wobraz nahrać. Maksimalna datajowa "
-#~ "wulkosć je 2 MB."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Zapinjeny"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Wupinjeny"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Designowe standardne nastajenja wobnowjene."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Design skupiny %s přidać abo wobdźěłać"
-
-#~ msgid "Design your profile"
-#~ msgstr "Twój profil wuhotować"

@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:32+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:01+0000\n"
 "Language-Team: Georgian <http://translatewiki.net/wiki/Portal:ka>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ka\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -293,7 +293,7 @@ msgid ""
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2132,7 +2132,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "მომხმარებლის განახლება ვერ მოხერხდა."
@@ -3209,6 +3209,7 @@ msgstr "წყაროს URL სავალდებულოა."
 msgid "Could not create application."
 msgstr "აპლიკაციის შექმნა ვერ მოხერხდა."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "ზომა არასწორია."
@@ -5604,9 +5605,8 @@ msgstr ""
 "რამდენი ხანი (წამებში) უნდა ელოდოს მომხმარებელი რომ დაპოსტოს ერთი და იგივე."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
-msgstr "გასვლა"
+msgstr "ლოგო"
 
 #. TRANS: Field label for StatusNet site logo.
 msgid "Site logo"
@@ -8892,7 +8892,7 @@ msgstr "გააგზავნე პირდაპირი შეტყო�
 msgid "Select recipient:"
 msgstr "აირჩიეთ ოპერატორი"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "არ გაქვთ გამოწერილი!"
@@ -9355,8 +9355,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -10127,202 +10129,3 @@ msgstr "არასწორი ელ. ფოსტის მისამა�
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "პროფილის შენახვა ვერ მოხერხდა."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "სამწუხაროდ თქვენი დიზაინის პარამეტრების შენახვა ვერ მოხერხდა."
-
-#~ msgid "Could not update your design."
-#~ msgstr "დიზაინის განახლება ვერ მოხერხდა."
-
-#~ msgid "Design"
-#~ msgstr "ამ მომხმარებლის წაშლა"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "იერსახე არ არის ხელმისაწვდომი %s."
-
-#~ msgid "Change logo"
-#~ msgstr "შეცვალე ლოგო"
-
-#~ msgid "Change theme"
-#~ msgstr "შეცვალე იერსახე"
-
-#~ msgid "Site theme"
-#~ msgstr "საიტის იერსახე"
-
-#~ msgid "Theme for the site."
-#~ msgstr "იერსახე ამ საიტისთვის"
-
-#~ msgid "Custom theme"
-#~ msgstr "საკუთარი იერსახე"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr ""
-#~ "თქვენ შეგიძლიათ ატვირთოთ საკუთარი StatusNet–იერსახე .ZIP არქივის სახით."
-
-#~ msgid "Change background image"
-#~ msgstr "შეცვალე ფონური სურათი"
-
-#~ msgid "Background"
-#~ msgstr "ფონი"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "თქვენ შეგიძლიათ ატვუირთოთ ფონური სურათი ამ საიტისთვის. ფაილის დასაშვები "
-#~ "ზომაა %1$s."
-
-#~ msgid "On"
-#~ msgstr "ჩართვა"
-
-#~ msgid "Off"
-#~ msgstr "გამორთვა"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "ჩართე ან გამორთე ფონური სურათის ფუნქცია."
-
-#~ msgid "Tile background image"
-#~ msgstr "გაამრავლე ფონური სურათი"
-
-#, fuzzy
-#~ msgid "Change colors"
-#~ msgstr "შეცვალე ფერები"
-
-#~ msgid "Content"
-#~ msgstr "შიგთავსი"
-
-#~ msgid "Sidebar"
-#~ msgstr "გვერდითი პანელი"
-
-#~ msgid "Text"
-#~ msgstr "ტექსტი"
-
-#~ msgid "Links"
-#~ msgstr "ბმულები"
-
-#~ msgid "Advanced"
-#~ msgstr "მეტი პარამეტრები"
-
-#~ msgid "Custom CSS"
-#~ msgstr "საკუთარი CSS"
-
-#, fuzzy
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "გამოიყენე პირვანდელი მდგომარეობა"
-
-#, fuzzy
-#~ msgid "Restore default designs."
-#~ msgstr "დააბრუნე პირვანდელი დიზაინი"
-
-#, fuzzy
-#~ msgid "Reset back to default."
-#~ msgstr "პირვანდელის პარამეტრების დაბრუნება"
-
-#, fuzzy
-#~ msgid "Save design."
-#~ msgstr "შეინახე დიზაინი"
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "ჯგუფის რედაქტირებისათვის საჭიროა ავტორიზაცია."
-
-#~ msgid "Group design"
-#~ msgstr "ჯგუფის დიზაინი"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "აირჩიეთ, როგორ გნებავთ გამოიყურებოდეს თქვენი ჯგუფი ფონური სურათისა და "
-#~ "ფერთა პალიტრის შეცვლით."
-
-#, fuzzy
-#~ msgid "Unable to update your design settings."
-#~ msgstr "სამწუხაროდ თქვენი დიზაინის პარამეტრების შენახვა ვერ მოხერხდა."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "დიზაინის პარამეტრები შენახულია."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "ნუ გაუგზავნი შეტყობინებას საკუთარ თავს; უბრალოდ ჩუმად ჩაუჩურჩულე."
-
-#~ msgid "Backgrounds"
-#~ msgstr "ფონები"
-
-#, fuzzy
-#~ msgid "Server for backgrounds."
-#~ msgstr "იერსახე ამ საიტისთვის"
-
-#~ msgid "Profile design"
-#~ msgstr "პროფილის დიზაინი"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "აირჩიეთ, როგორ გნებავთ გამოიყურებოდეს თქვენი პროფილი ფონური სურათისა და "
-#~ "ფერთა პალიტრის შეცვლით."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "ისიამოვნეთ ჰოთ დოგით!"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "საიტის პარამეტრების შენახვა"
-
-#~ msgid "View profile designs"
-#~ msgstr "პროფილის დიზაინების ნახვა"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "აჩვენე ან დამალე პროფილის დიზაინები."
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "ფონი"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "დიზაინის პარამეტრების წაშლა ვერ ხერხდება."
-
-#~ msgid "Design configuration"
-#~ msgstr "დიზაინის კონფიგურაცია"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "დიზაინი"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "შეინახე დიზაინი"
-
-#~ msgid "Change colours"
-#~ msgstr "შეცვალე ფერები"
-
-#~ msgid "Use defaults"
-#~ msgstr "გამოიყენე პირვანდელი მდგომარეობა"
-
-#~ msgid "Upload file"
-#~ msgstr "ფაილის ატვირთვა"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "თქვენ შეგიძლიათ ატვირთოთ პერსონალური ფონური სურათი. ფაილის დასაშვები "
-#~ "ზომაა 2მბ."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "ჩართვა"
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "გამორთვა"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "დიზაინის პირველადი პარამეტრები დაბრუნებულია."
-
-#~ msgid "Design your profile"
-#~ msgstr "პროფილის პარამეტრები"

@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:39+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:07+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -309,7 +309,7 @@ msgstr ""
 "bericht voor die gebruiker plaatsen](%%%%action.newnotice%%%%?"
 "status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2138,7 +2138,7 @@ msgstr ""
 "Door een openbaar label als privé in te stellen worden alle bestaande "
 "abonnementen verwijderd. Wilt u doorgaan?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "Het was niet mogelijk de lijst bij te werken."
 
@@ -3201,6 +3201,7 @@ msgstr "Een bron-URL is verplicht."
 msgid "Could not create application."
 msgstr "Het was niet mogelijk de applicatie aan te maken."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Ongeldige afbeelding."
 
@@ -5553,12 +5554,11 @@ msgid "Default language"
 msgstr "Standaardtaal"
 
 #. TRANS: Dropdown title on site settings panel.
-#, fuzzy
 msgid ""
 "The site language when autodetection from browser settings is not available."
 msgstr ""
 "De taal voor de website als deze niet uit de browserinstellingen opgemaakt "
-"kan worden"
+"kan worden."
 
 #. TRANS: Fieldset legend on site settings panel.
 msgctxt "LEGEND"
@@ -5584,7 +5584,6 @@ msgstr ""
 "zenden."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Logo"
 
@@ -5597,9 +5596,8 @@ msgid "SSL logo"
 msgstr "SSL-logo"
 
 #. TRANS: Button title for saving site settings.
-#, fuzzy
 msgid "Save the site settings."
-msgstr "Websiteinstellingen opslaan"
+msgstr "De websiteinstellingen opslaan."
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
 msgid "Site Notice"
@@ -8823,7 +8821,7 @@ msgstr "Directe mededeling verzenden"
 msgid "Select recipient:"
 msgstr "Selecteer ontvanger:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Geen wederzijdse abonnees."
 
@@ -9252,8 +9250,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Inschakelen"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr "Plug-inbeschrijvingen zijn niet beschikbaar als uitgeschakeld."
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9970,241 +9971,36 @@ msgid "Getting backup from file '%s'."
 msgstr "De back-up wordt uit het bestand \"%s\" geladen."
 
 #. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid avatar URL %s."
-msgstr "Het was niet mogelijk de avatar-URL \"%s\" te lezen."
+msgstr "Ongeldige avatar-URL %s."
 
 #. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
+#, php-format
 msgid "Tried to update avatar for unsaved remote profile %s."
 msgstr ""
-"Er is een fout opgetreden tijdens het bijwerken van het profiel op afstand."
+"Er is geprobeerd om een avatar bij te werken voor het niet opgeslagen "
+"externe profiel %s."
 
 #. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Unable to fetch avatar from %s."
-msgstr "Er zijn geen diensten aantroffen voor %s."
+msgstr "Het was niet mogelijk om de avatar op te halen van %s."
 
 #. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not reach profile page %s."
-msgstr "Het was niet mogelijk het profiellabel aan te maken."
+msgstr "Het was niet mogelijk de profielpagina %s te bereiken."
 
 #. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find a feed URL for profile page %s."
-msgstr "De gebruiker %s is niet aangetroffen."
+msgstr "Het was niet mogelijk de feed-URL voor de profielpagina %s te vinden."
 
 #. TRANS: Exception.
-#, fuzzy
 msgid "Not a valid webfinger address."
-msgstr "Geen geldig e-mailadres."
+msgstr "Geen geldig webfingeradres."
 
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find a valid profile for \"%s\"."
-msgstr "Het was niet mogelijk het profiel op te slaan."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Het was niet mogelijk om uw ontwerpinstellingen op te slaan."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Het was niet mogelijk uw ontwerp bij te werken."
-
-#~ msgid "Design"
-#~ msgstr "Uiterlijk"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Instellingen voor de vormgeving van deze StatusNet-website"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "De vormgeving is niet beschikbaar: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Logo wijzigen"
-
-#~ msgid "Change theme"
-#~ msgstr "Vormgeving wijzigen"
-
-#~ msgid "Site theme"
-#~ msgstr "Vormgeving website"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Mogelijke vormgevingen voor deze website."
-
-#~ msgid "Custom theme"
-#~ msgstr "Aangepaste vormgeving"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "U kunt een vormgeving voor StatusNet uploaden als ZIP-archief."
-
-#~ msgid "Change background image"
-#~ msgstr "Achtergrondafbeelding wijzigen"
-
-#~ msgid "Background"
-#~ msgstr "Achtergrond"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Hier kunt u een achtergrondafbeelding voor de website uploaden. De "
-#~ "maximale bestandsgrootte is %1$s."
-
-#~ msgid "On"
-#~ msgstr "Aan"
-
-#~ msgid "Off"
-#~ msgstr "Uit"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Achtergrondafbeelding inschakelen of uitschakelen."
-
-#~ msgid "Tile background image"
-#~ msgstr "Achtergrondafbeelding naast elkaar"
-
-#~ msgid "Change colors"
-#~ msgstr "Kleuren wijzigen"
-
-#~ msgid "Content"
-#~ msgstr "Inhoud"
-
-#~ msgid "Sidebar"
-#~ msgstr "Menubalk"
-
-#~ msgid "Text"
-#~ msgstr "Tekst"
-
-#~ msgid "Links"
-#~ msgstr "Verwijzingen"
-
-#~ msgid "Advanced"
-#~ msgstr "Uitgebreid"
-
-#~ msgid "Custom CSS"
-#~ msgstr "Aangepaste CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Standaardinstellingen gebruiken"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Het standaardontwerp toepassen."
-
-#~ msgid "Reset back to default."
-#~ msgstr "De standaardinstellingen toepassen."
-
-#~ msgid "Save design."
-#~ msgstr "Ontwerp opslaan."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "U moet aangemeld zijn om een groep te kunnen bewerken."
-
-#~ msgid "Group design"
-#~ msgstr "Groepsontwerp"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "De vormgeving van uw groep aanpassen met een achtergrondafbeelding en een "
-#~ "kleurenpalet van uw keuze."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Het was niet mogelijk om uw ontwerpinstellingen bij te werken."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "De ontwerpvoorkeuren zijn opgeslagen."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "Stuur geen berichten naar uzelf. Zeg het gewoon in uw hoofd."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Achtergronden"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "Server voor achtergronden."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "Webpad naar achtergronden."
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "Server voor achtergronden op SSL-pagina's."
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr "Webpad naar achtergronden op SSL-pagina's."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Map waar achtergronden worden opgeslagen."
-
-#~ msgid "Profile design"
-#~ msgstr "Profielontwerp"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "U kunt de vormgeving van uw profiel aanpassen door een "
-#~ "achtergrondafbeelding toe te voegen of het kleurenpalet aan te passen."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Geniet van uw hotdog!"
-
-#~ msgid "Design settings"
-#~ msgstr "Vormgevingsinstellingen"
-
-#~ msgid "View profile designs"
-#~ msgstr "Profielontwerpen gebruiken"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Profielontwerpen weergeven of verbergen"
-
-#~ msgid "Background file"
-#~ msgstr "Achtergrondbestand"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Het was niet mogelijk om de ontwerpinstellingen te verwijderen."
-
-#~ msgid "Design configuration"
-#~ msgstr "Instellingen vormgeving"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Uiterlijk"
-
-#~ msgid "Change design"
-#~ msgstr "Ontwerp wijzigen"
-
-#~ msgid "Change colours"
-#~ msgstr "Kleuren wijzigen"
-
-#~ msgid "Use defaults"
-#~ msgstr "Standaardinstellingen gebruiken"
-
-#~ msgid "Upload file"
-#~ msgstr "Bestand uploaden"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "U kunt een persoonlijke achtergrondafbeelding uploaden. De maximale "
-#~ "bestandsgrootte is 2 megabyte."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Aan"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Uit"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Het standaardontwerp is weer ingesteld."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Vormgeving van de groep %s toevoegen of aanpassen"
-
-#~ msgid "Design your profile"
-#~ msgstr "Uw profiel ontwerpen"
+msgstr "Er is geen geldig profiel voor \"%s\" gevonden."

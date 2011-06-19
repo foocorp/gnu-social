@@ -18,17 +18,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:43+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:11+0000\n"
 "Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: pt\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -302,7 +302,7 @@ msgstr ""
 "Pode tentar [dar um toque em %1$s](../%2$s) a partir do perfil ou [endereçar-"
 "lhe uma nota](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2106,7 +2106,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "Não foi possível actualizar o utilizador."
@@ -3180,6 +3180,7 @@ msgstr "É necessária a URL de origem."
 msgid "Could not create application."
 msgstr "Não foi possível criar a aplicação."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "Tamanho inválido."
@@ -5616,7 +5617,6 @@ msgstr ""
 "mesma coisa outra vez."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Logótipo"
 
@@ -8937,7 +8937,7 @@ msgstr "Enviar uma nota directa"
 msgid "Select recipient:"
 msgstr "Seleccione um operador"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "Não subscrito!"
@@ -9404,8 +9404,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -10188,204 +10190,3 @@ msgstr "Correio electrónico é inválido."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Não foi possível gravar o perfil."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Não foi possível gravar as configurações do estilo."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Não foi possível actualizar o seu estilo."
-
-#~ msgid "Design"
-#~ msgstr "Estilo"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Tema não está disponível: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Alterar logotipo"
-
-#~ msgid "Change theme"
-#~ msgstr "Alterar tema"
-
-#~ msgid "Site theme"
-#~ msgstr "Tema do site"
-
-#~ msgid "Theme for the site."
-#~ msgstr "O tema para o site."
-
-#~ msgid "Custom theme"
-#~ msgstr "Tema personalizado"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr ""
-#~ "Pode fazer o upload de um tema personalizado para o StatusNet, na forma "
-#~ "de um arquivo .ZIP."
-
-#~ msgid "Change background image"
-#~ msgstr "Alterar imagem de fundo"
-
-#~ msgid "Background"
-#~ msgstr "Fundo"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Pode carregar uma imagem de fundo para o site. O tamanho máximo do "
-#~ "ficheiro é %1$s."
-
-#~ msgid "On"
-#~ msgstr "Ligar"
-
-#~ msgid "Off"
-#~ msgstr "Desligar"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Ligar ou desligar a imagem de fundo."
-
-#~ msgid "Tile background image"
-#~ msgstr "Repetir imagem de fundo em mosaico"
-
-#~ msgid "Change colors"
-#~ msgstr "Alterar cores"
-
-#~ msgid "Content"
-#~ msgstr "Conteúdo"
-
-#~ msgid "Sidebar"
-#~ msgstr "Barra"
-
-#~ msgid "Text"
-#~ msgstr "Texto"
-
-#~ msgid "Links"
-#~ msgstr "Links"
-
-#~ msgid "Advanced"
-#~ msgstr "Avançado"
-
-#~ msgid "Custom CSS"
-#~ msgstr "CSS personalizado"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Usar padrão"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Restaurar designs padrão."
-
-#~ msgid "Reset back to default."
-#~ msgstr "Repor para o padrão."
-
-#~ msgid "Save design."
-#~ msgstr "Salvar o design."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "Tem de iniciar uma sessão para editar um grupo."
-
-#~ msgid "Group design"
-#~ msgstr "Estilo do grupo"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Personalize o aspecto do seu grupo com uma imagem de fundo e uma paleta "
-#~ "de cores à sua escolha."
-
-#, fuzzy
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Não foi possível gravar as configurações do estilo."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Preferências de estilo foram gravadas."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "Não auto-envie uma mensagem; basta lê-la baixinho a si próprio."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Fundos"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "Servidor para os fundos."
-
-#, fuzzy
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Localização do directório das línguas"
-
-#~ msgid "Profile design"
-#~ msgstr "Estilo do perfil"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Personalize o estilo do seu perfil com uma imagem de fundo e uma paleta "
-#~ "de cores à sua escolha."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Disfrute do seu cachorro-quente!"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "Gravar configurações do site"
-
-#~ msgid "View profile designs"
-#~ msgstr "Ver estilos para o perfil"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Mostrar ou esconder estilos para o perfil."
-
-#~ msgid "Background file"
-#~ msgstr "Ficheiro de fundo"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Não foi possível apagar a configuração do estilo."
-
-#~ msgid "Design configuration"
-#~ msgstr "Configuração do estilo"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Estilo"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "Gravar o estilo"
-
-#~ msgid "Change colours"
-#~ msgstr "Alterar cores"
-
-#~ msgid "Use defaults"
-#~ msgstr "Usar predefinições"
-
-#~ msgid "Upload file"
-#~ msgstr "Carregar ficheiro"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Pode carregar uma imagem de fundo pessoal. O tamanho máximo do ficheiro é "
-#~ "2MB."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Ligar"
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Desligar"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Predefinições do estilo repostas"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Adicionar ou editar o design de %s"
-
-#~ msgid "Design your profile"
-#~ msgstr "Altere o estilo do seu perfil"

@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:51+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:16+0000\n"
 "Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -287,7 +287,7 @@ msgstr ""
 "ప్రొఫైలు ద్వారా [%1$sని కదిపి](../%2$s) చూడండి లేదా [వారికి ఏదైనా వ్రాయండి](%%%%action.newnotice%"
 "%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2077,7 +2077,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "వాడుకరిని తాజాకరించలేకున్నాం."
@@ -3123,6 +3123,7 @@ msgstr "పేరు తప్పనిసరి."
 msgid "Could not create application."
 msgstr "ఉపకరణాన్ని సృష్టించలేకపోయాం."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "తప్పుడు పరిమాణం."
@@ -5476,7 +5477,6 @@ msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr "అదే విషయాన్ని మళ్ళీ టపా చేయడానికి వాడుకరులు ఎంత సమయం (క్షణాల్లో) వేచివుండాలి."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "చిహ్నం"
 
@@ -8655,7 +8655,7 @@ msgstr "సైటు గమనికని భద్రపరచు"
 msgid "Select recipient:"
 msgstr ""
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "పరస్పర చందాదార్లు ఎవరూలేరు."
 
@@ -9099,8 +9099,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9840,186 +9842,3 @@ msgstr "సరైన ఈమెయిల్ చిరునామా కాదు
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "ప్రొఫైలుని భద్రపరచలేకున్నాం."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "మీ రూపురేఖల అమరికలని భద్రపరచలేకున్నాం."
-
-#, fuzzy
-#~ msgid "Could not update your design."
-#~ msgstr "వాడుకరిని తాజాకరించలేకున్నాం."
-
-#~ msgid "Design"
-#~ msgstr "రూపురేఖలు"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "ఈ స్టేటస్&zwnj;నెట్ సైటుకి రూపురేఖల అమరికలు"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "అలంకారం అందుబాటులో లేదు: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "చిహ్నాన్ని మార్చు"
-
-#~ msgid "Change theme"
-#~ msgstr "అలంకారాన్ని మార్చు"
-
-#~ msgid "Site theme"
-#~ msgstr "సైటు అలంకారం"
-
-#~ msgid "Theme for the site."
-#~ msgstr "సైటుకి అలంకారం."
-
-#~ msgid "Custom theme"
-#~ msgstr "అభిమత అలంకారం"
-
-#~ msgid "Change background image"
-#~ msgstr "నేపథ్య చిత్రాన్ని మార్చు"
-
-#~ msgid "Background"
-#~ msgstr "నేపథ్యం"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr "సైటుకి మీరు నేపథ్యపు చిత్రాన్ని ఎక్కించవచ్చు. గరిష్ఠ ఫైలు పరిమాణం %1$s."
-
-#~ msgid "On"
-#~ msgstr "ఆన్"
-
-#~ msgid "Off"
-#~ msgstr "ఆఫ్"
-
-#, fuzzy
-#~ msgid "Turn background image on or off."
-#~ msgstr "నేపథ్య చిత్రాన్ని మార్చు"
-
-#, fuzzy
-#~ msgid "Tile background image"
-#~ msgstr "నేపథ్య చిత్రాన్ని మార్చు"
-
-#~ msgid "Change colors"
-#~ msgstr "రంగులను మార్చు"
-
-#~ msgid "Content"
-#~ msgstr "విషయం"
-
-#~ msgid "Sidebar"
-#~ msgstr "పక్కపట్టీ"
-
-#~ msgid "Text"
-#~ msgstr "పాఠ్యం"
-
-#~ msgid "Links"
-#~ msgstr "లంకెలు"
-
-#~ msgid "Advanced"
-#~ msgstr "ఉన్నత"
-
-#~ msgid "Custom CSS"
-#~ msgstr "ప్రత్యేక CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "అప్రమేయాలను ఉపయోగించు"
-
-#, fuzzy
-#~ msgid "Restore default designs."
-#~ msgstr "అప్రమేయాలని ఉపయోగించు"
-
-#, fuzzy
-#~ msgid "Reset back to default."
-#~ msgstr "అప్రమేయాలని ఉపయోగించు"
-
-#~ msgid "Save design."
-#~ msgstr "రూపురేఖలని భద్రపరచండి."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "గుంపుని మార్చడానికి మీరు ప్రవేశించి ఉండాలి."
-
-#~ msgid "Group design"
-#~ msgstr "గుంపు అలంకారం"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "నేపథ్య చిత్రం మరియు రంగుల ఎంపికతో మీ గుంపు ఎలా కనిపించాలో మలచుకోండి."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "మీ రూపురేఖల అమరికలను భద్రపరచలేకున్నాం."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "ఈమెయిలు అభిరుచులు భద్రమయ్యాయి."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "మీకు మీరే సందేశాన్ని పంపుకోకండి; దాని బదులు మీలో మీరే మెల్లగా చెప్పుకోండి."
-
-#~ msgid "Backgrounds"
-#~ msgstr "నేపథ్యాలు"
-
-#, fuzzy
-#~ msgid "Server for backgrounds."
-#~ msgstr "సైటుకి అలంకారం."
-
-#~ msgid "Profile design"
-#~ msgstr "ఫ్రొఫైలు రూపురేఖలు"
-
-#, fuzzy
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "నేపథ్య చిత్రం మరియు రంగుల ఎంపికతో మీ గుంపు ఎలా కనిపించాలో మలచుకోండి."
-
-#~ msgid "Design settings"
-#~ msgstr "రూపురేఖల అమరికలు"
-
-#~ msgid "View profile designs"
-#~ msgstr "ఫ్రొఫైలు రూపురేఖలు"
-
-#, fuzzy
-#~ msgid "Show or hide profile designs."
-#~ msgstr "ఫ్రొఫైలు రూపురేఖలు"
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "నేపథ్యం"
-
-#, fuzzy
-#~ msgid "Unable to delete design setting."
-#~ msgstr "మీ రూపురేఖల అమరికలని భద్రపరచలేకున్నాం."
-
-#~ msgid "Design configuration"
-#~ msgstr "రూపకల్పన స్వరూపణం"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "రూపురేఖలు"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "రూపురేఖలని భద్రపరచు"
-
-#~ msgid "Change colours"
-#~ msgstr "రంగులను మార్చు"
-
-#~ msgid "Use defaults"
-#~ msgstr "అప్రమేయాలను ఉపయోగించు"
-
-#~ msgid "Upload file"
-#~ msgstr "ఫైలుని ఎక్కించు"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr "మీ వ్యక్తిగత నేపథ్యపు చిత్రాన్ని మీరు ఎక్కించవచ్చు. గరిష్ఠ ఫైలు పరిమాణం 2మెబై."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "ఆన్"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "ఆఫ్"
-
-#~ msgid "Design your profile"
-#~ msgstr "వాడుకరి ప్రొఫైలు"

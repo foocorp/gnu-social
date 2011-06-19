@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:52+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:18+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -309,7 +309,7 @@ msgstr ""
 "balangkas o [magpaskil ng bagay sa kanila] (%%%%action.newnotice%%%%?"
 "status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2149,7 +2149,7 @@ msgstr ""
 "magtatanggal ng lahat ng umiiral na mga pagpapasipi mula rito. Nais mo pa "
 "ring magpatuloy?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "Hindi maisapanahon ang talaan."
 
@@ -3240,6 +3240,7 @@ msgstr "Kailangan ang URL na pinagmumulan."
 msgid "Could not create application."
 msgstr "Hindi malikha ang aplikasyon."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Hindi katanggap-tanggap na larawan."
 
@@ -8965,7 +8966,7 @@ msgstr "Magpadala ng isang tuwirang pabatid"
 msgid "Select recipient:"
 msgstr "Pumili ng tagatanggap:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Walang nagbibigayang mga sumisipi."
 
@@ -9398,8 +9399,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Paganahin"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 "(Hindi makukuha ang mga paglalarawan ng pampasak kapag hindi gumagana.)"
 
@@ -10153,214 +10157,3 @@ msgstr "Hindi isang katanggap-tanggap na tirahan ng e-liham."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Hindi masagip ang balangkas."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Hindi nagawang sagipin ang mga pagtatakda mo ng disenyo."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Hindi maisapanahon ang disenyo mo."
-
-#~ msgid "Design"
-#~ msgstr "Disenyo"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Mga katakdaan ng disensyo para sa sityong ito ng StatusNet"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Hindi makukuha ang tema: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Baguhin ang logo"
-
-#~ msgid "Change theme"
-#~ msgstr "Baguhin ang tema"
-
-#~ msgid "Site theme"
-#~ msgstr "Tema ng sityo"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Tema para sa sityo."
-
-#~ msgid "Custom theme"
-#~ msgstr "Pinasadyang tema"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr ""
-#~ "Makapagkakarga kang papaitaas ng isang pinasadyang tema ng StatusNet "
-#~ "bilang isang supnay na .ZIP."
-
-#~ msgid "Change background image"
-#~ msgstr "Baguhin ang panlikod na larawan"
-
-#~ msgid "Background"
-#~ msgstr "Panlikurang tanawin"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Maaari kang makapagkargang papaitaas ng isang larawang panlikuran para sa "
-#~ "sityo.  Ang pinakamataas na sukat ng talaksan ay %1$s."
-
-#~ msgid "On"
-#~ msgstr "Buhay"
-
-#~ msgid "Off"
-#~ msgstr "Nakapatay"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Buhayin o patayin ang larawan na panglikuran."
-
-#~ msgid "Tile background image"
-#~ msgstr "Panlikurang larawan ng tisa"
-
-#~ msgid "Change colors"
-#~ msgstr "Palitan ang mga kulay"
-
-#~ msgid "Content"
-#~ msgstr "Nilalaman"
-
-#~ msgid "Sidebar"
-#~ msgstr "Panggilid na halang"
-
-#~ msgid "Text"
-#~ msgstr "Teksto"
-
-#~ msgid "Links"
-#~ msgstr "Mga kawing"
-
-#~ msgid "Advanced"
-#~ msgstr "Mas masulong"
-
-#~ msgid "Custom CSS"
-#~ msgstr "Pasadyang CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Gamitin ang likas na mga katakdaan"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Ibalik ang likas na nakatakdang mga disenyo."
-
-#~ msgid "Reset back to default."
-#~ msgstr "Muling itakda pabalik sa likas na pagtatakda."
-
-#~ msgid "Save design."
-#~ msgstr "Sagipin ang disenyo."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "Dapat kang nakalagda upang makapamatnugot ng isang pangkat."
-
-#~ msgid "Group design"
-#~ msgstr "Disenyo ng pangkat"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Ipasadya ang paraan ng kaanyuan ng pangkat na may isang larawang "
-#~ "panlikuran at isang paleta ng kulay na napili mo."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Hindi nagawang isapanahon ang mga pagtatakda mo ng disenyo."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Nasagip ang mga kagustuhan sa disenyo."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "Huwag magpadala ng isang mensahe na papunta sa sarili mo; sa halip ay "
-#~ "sabihin lamang ito ng tahimik sa sarili mo."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Mga panlikuran"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "Tagapaghain para sa mga panlikuran."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "Landas ng web papunta sa mga panlikuran."
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "Tagapaghain para sa mga panlikuran na nasa mga pahina ng SSL."
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr ""
-#~ "Landas ng web papunta sa mga panlkuran na nasa ibabaw ng mga pahina ng "
-#~ "SSL."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Direktoryo kung saan matatagpuan ang mga panlikuran."
-
-#~ msgid "Profile design"
-#~ msgstr "Disenyo ng balangkas"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Ipasadya ang paraan ng kaanyuan ng balangkas na may isang larawang "
-#~ "panlikuran at isang paleta ng kulay na napili mo."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Masiyahan sa hotdog mo!"
-
-#~ msgid "Design settings"
-#~ msgstr "Mga katakdaan ng disenyo"
-
-#~ msgid "View profile designs"
-#~ msgstr "Tingnan ang mga disenyo ng balangkas"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Ipakita o itago ang mga disenyo ng balangkas."
-
-#~ msgid "Background file"
-#~ msgstr "Talaksan ng panlikurang tanawin"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Hindi nagawang burahin ang mga pagtatakda mo ng disenyo."
-
-#~ msgid "Design configuration"
-#~ msgstr "Pagkakaayos ng disenyo"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Disenyo"
-
-#~ msgid "Change design"
-#~ msgstr "Baguhin ang disenyo"
-
-#~ msgid "Change colours"
-#~ msgstr "Baguhin ang mga kulay"
-
-#~ msgid "Use defaults"
-#~ msgstr "Gamitin ang likas na mga katakdaan"
-
-#~ msgid "Upload file"
-#~ msgstr "Ikarga ang talaksan"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Maaari mong ikargang papaitaas ang pansarili mong larawang panlikuran.  "
-#~ "Ang pinakamataas na sukat ng talaksan ay 2MB."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Buhay"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Patay"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Naipanumbalik ang likas na mga katakdaan ng disenyo."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Idagdag o baguhin ang disenyo ng %s"
-
-#~ msgid "Design your profile"
-#~ msgstr "Magdisenyo ng balangkas mo"

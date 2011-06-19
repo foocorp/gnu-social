@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:42+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:25+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:04+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:20:49+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
@@ -64,11 +64,11 @@ msgstr "Onjuiste formuliergegevens."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
 msgid "The mirror request failed, because no result was retrieved."
-msgstr ""
+msgstr "Het kopieerverzoek is mislukt omdat er geen resultaat is ontvangen."
 
 #. TRANS: Exception thrown when a feed provider could not be recognised.
 msgid "Internal form error: Unrecognized feed provider."
-msgstr ""
+msgstr "Interne formulierfout: onbekende feedprovider."
 
 #. TRANS: Exception thrown when a subscribing to a feed fails.
 msgid "Could not subscribe to feed."
@@ -136,7 +136,6 @@ msgid "Mirroring style"
 msgstr "Spiegelstijl"
 
 #. TRANS: Feed mirror style (radio button option).
-#, fuzzy
 msgid ""
 "Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 msgstr ""
@@ -148,13 +147,11 @@ msgid "Repost the content under my account"
 msgstr "De inhoud herhalen alsof die van mij komt"
 
 #. TRANS: Button text to save feed mirror settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Opslaan"
 
 #. TRANS: Button text to stop mirroring a feed.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Stop mirroring"
 msgstr "Spiegelen beëindigen"
@@ -170,6 +167,3 @@ msgstr "RSS- of Atom-feed"
 #. TRANS: Heading for feed mirroring selection form.
 msgid "Select a feed provider"
 msgstr "Selecteer een feedprovider"
-
-#~ msgid "Requested edit of missing mirror."
-#~ msgstr "Er is een missende spiegel opgevraagd om te bewerken."

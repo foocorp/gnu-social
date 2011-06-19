@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:23+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:53+0000\n"
 "Language-Team: Hebrew <http://translatewiki.net/wiki/Portal:he>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: he\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -294,7 +294,7 @@ msgstr ""
 "אפשר לנסות [לדחוף את %1$s](../%2$s) מדף המשתמש שלהם או [לשלוח להם משהו](%%%%"
 "action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2048,7 +2048,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr ""
 
@@ -3052,6 +3052,7 @@ msgstr ""
 msgid "Could not create application."
 msgstr "שמירת הפרופיל נכשלה."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "תמונה לא תקינה."
 
@@ -5274,7 +5275,6 @@ msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "יציאה"
 
@@ -8293,7 +8293,7 @@ msgstr ""
 msgid "Select recipient:"
 msgstr ""
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr ""
 
@@ -8720,8 +8720,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9445,90 +9447,3 @@ msgstr "כתובת דואר אלקטרוני לא תקינה."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "שמירת הפרופיל נכשלה."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "לא ניתן לשמור את הגדרות העיצוב שלך."
-
-#~ msgid "Could not update your design."
-#~ msgstr "עדכון העיצוב נכשל."
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "ערכת נושא לא זמינה: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "שנה"
-
-#~ msgid "Change theme"
-#~ msgstr "שינוי ערכת נושא"
-
-#~ msgid "Site theme"
-#~ msgstr "ערכת נושא לאתר"
-
-#~ msgid "Custom theme"
-#~ msgstr "ערכת נושא מותאמת אישית"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr "אפשר להעלות תמונת רקע לאתר. גודל התמונה המרבי הוא %1$s."
-
-#~ msgid "On"
-#~ msgstr "מופעל"
-
-#~ msgid "Off"
-#~ msgstr "כבוי"
-
-#~ msgid "Content"
-#~ msgstr "תוכן"
-
-#~ msgid "Sidebar"
-#~ msgstr "סרגל צד"
-
-#~ msgid "Text"
-#~ msgstr "טקסט"
-
-#~ msgid "Links"
-#~ msgstr "קישורים"
-
-#~ msgid "Advanced"
-#~ msgstr "מתקדם"
-
-#~ msgid "Custom CSS"
-#~ msgstr "CSS מותאם אישית"
-
-#~ msgid "Save design."
-#~ msgstr "שמירת עיצוב."
-
-#~ msgid "Group design"
-#~ msgstr "עיצוב קבוצה."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "העדפות העיצוב נשמרו."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "אל תשלח לעצמך הודעה; פשוט אמור את זה לעצמך בשקט."
-
-#~ msgid "Profile design"
-#~ msgstr "עיצוב דף משתמש"
-
-#~ msgid "View profile designs"
-#~ msgstr "הצגת עיצובי דף משתמש"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "עיצוב"
-
-#~ msgid "Change colours"
-#~ msgstr "שינוי צבעים"
-
-#~ msgid "Upload file"
-#~ msgstr "העלאת קובץ"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr "אתה יכול להעלות תמונת רקע משלך. גודל הקובץ המרבי הוא 2 מ״ב."
-
-#~ msgid "Design your profile"
-#~ msgstr "עיצוב דף המשתמש שלך"

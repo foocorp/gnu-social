@@ -15,17 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:50+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:15+0000\n"
 "Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -304,7 +304,7 @@ msgstr ""
 "Var den första att [skriva i detta ämne](%%%%action.newnotice%%%%?"
 "status_textarea=%s)!"
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2106,7 +2106,7 @@ msgstr ""
 "Ställa om en publik tagg som privat kommer permanent ta bort alla befintliga "
 "prenumerationer på den. Vill du fortfarande fortsätta?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "Kunde inte uppdatera lista."
 
@@ -3153,6 +3153,7 @@ msgstr "Webbadress till källa krävs."
 msgid "Could not create application."
 msgstr "Kunde inte skapa applikation."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Ogiltig bild."
 
@@ -5503,7 +5504,6 @@ msgstr ""
 "Hur länge användare måste vänta (i sekunder) för att posta samma sak igen."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Logotyp"
 
@@ -8693,7 +8693,7 @@ msgstr "Skicka en direktnotis"
 msgid "Select recipient:"
 msgstr "Välj mottagare:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Inga ömsesidiga prenumeranter."
 
@@ -9123,8 +9123,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Aktivera"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr "(Beskrivningar av insticksmoduler inte tillgängliga när inaktiverade.)"
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9863,208 +9866,3 @@ msgstr "Inte en giltig e-postadress."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Kunde inte spara profil."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Kunde inte spara dina utseendeinställningar."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Kunde inte uppdatera din profils utseende."
-
-#~ msgid "Design"
-#~ msgstr "Utseende"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Utseendeinställningar för den här StatusNet-webbplatsen"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Tema inte tillgängligt: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Byt logotyp"
-
-#~ msgid "Change theme"
-#~ msgstr "Byt tema"
-
-#~ msgid "Site theme"
-#~ msgstr "Webbplatstema"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Tema för webbplatsen."
-
-#~ msgid "Custom theme"
-#~ msgstr "Anpassat tema"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "Du kan ladda upp ett eget StatusNet-tema som ett .ZIP-arkiv."
-
-#~ msgid "Change background image"
-#~ msgstr "Ändra bakgrundsbild"
-
-#~ msgid "Background"
-#~ msgstr "Bakgrund"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Du kan ladda upp en bakgrundsbild för denna webbplats. Den maximala "
-#~ "filstorleken är %1$s."
-
-#~ msgid "On"
-#~ msgstr "På"
-
-#~ msgid "Off"
-#~ msgstr "Av"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Sätt på eller stäng av bakgrundsbild."
-
-#~ msgid "Tile background image"
-#~ msgstr "Upprepa bakgrundsbild"
-
-#~ msgid "Change colors"
-#~ msgstr "Byt färger"
-
-#~ msgid "Content"
-#~ msgstr "Innehåll"
-
-#~ msgid "Sidebar"
-#~ msgstr "Sidofält"
-
-#~ msgid "Text"
-#~ msgstr "Text"
-
-#~ msgid "Links"
-#~ msgstr "Länkar"
-
-#~ msgid "Advanced"
-#~ msgstr "Avancerat"
-
-#~ msgid "Custom CSS"
-#~ msgstr "Anpassad CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Använd standardvärden"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Återställ standardutseende."
-
-#~ msgid "Reset back to default."
-#~ msgstr "Återställ till standard."
-
-#~ msgid "Save design."
-#~ msgstr "Spara utseende."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "Du måste vara inloggad för att redigera en grupp."
-
-#~ msgid "Group design"
-#~ msgstr "Gruppens utseende"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Anpassa hur din grupp ser ut genom att välja bakgrundbild och färgpalett."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Det gick inte att uppdatera utseendeinställningarna."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Utseendeinställningar sparade."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "Skicka inte meddelande till dig själv; viska lite tyst till dig själv "
-#~ "istället."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Bakgrunder"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "Server för bakgrunder."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "Websökväg till bakgrunder."
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "Server för bakgrunder på SSL-sidor."
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr "Webbsökväg till bakgrunder på SSL-sidor."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Katalog där bakgrunder finns."
-
-#~ msgid "Profile design"
-#~ msgstr "Profilutseende"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Anpassa hur din profil ser ut genom att välja bakgrundbild och färgpalett."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Smaklig måltid!"
-
-#~ msgid "Design settings"
-#~ msgstr "Utseendeinställningar"
-
-#~ msgid "View profile designs"
-#~ msgstr "Visa profilutseenden"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Visa eller göm profilutseenden."
-
-#~ msgid "Background file"
-#~ msgstr "Fil för bakgrund"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Kunde inte ta bort utseendeinställning."
-
-#~ msgid "Design configuration"
-#~ msgstr "Konfiguration av utseende"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Utseende"
-
-#~ msgid "Change design"
-#~ msgstr "Ändra utseende"
-
-#~ msgid "Change colours"
-#~ msgstr "Byt färger"
-
-#~ msgid "Use defaults"
-#~ msgstr "Använd standardvärden"
-
-#~ msgid "Upload file"
-#~ msgstr "Ladda upp fil"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Du kan ladda upp din personliga bakgrundbild. Den maximala filstorleken "
-#~ "är 2MB."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "På"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Av"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Standardvärden för utseende återställda."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Lägg till eller redigera %s utseende"
-
-#~ msgid "Design your profile"
-#~ msgstr "Designa din profil"

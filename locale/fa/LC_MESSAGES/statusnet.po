@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:15+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:47+0000\n"
 "Last-Translator: Ahmad Sufi Mahmudi\n"
 "Language-Team: Persian <http://translatewiki.net/wiki/Portal:fa>\n"
 "MIME-Version: 1.0\n"
@@ -29,9 +29,9 @@ msgstr ""
 "X-Language-Code: fa\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -304,7 +304,7 @@ msgstr ""
 "اولین کسی باشید که در [این موضوع](%%%%action.newnotice%%%%?status_textarea=%"
 "s) پیام می‌فرستد."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2140,7 +2140,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "نمی‌توان کاربر را به‌هنگام‌سازی کرد."
@@ -3213,6 +3213,7 @@ msgstr "نشانی اینترنتی منبع مورد نیاز است."
 msgid "Could not create application."
 msgstr "نمی‌توان برنامه را ساخت."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "اندازه نادرست است."
@@ -5648,7 +5649,6 @@ msgstr ""
 "چه مدت کاربران باید منتظر بمانند (به ثانیه) تا همان چیز را دوباره بفرستند."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "خروج"
 
@@ -8936,7 +8936,7 @@ msgstr "فرستادن یک پیام مستقیم"
 msgid "Select recipient:"
 msgstr "یک اپراتور را انتخاب کنید"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "تایید نشده!"
@@ -9400,8 +9400,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -10171,205 +10173,3 @@ msgstr "یک نشانی پست الکترونیکی معتبر نیست."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "نمی‌توان نمایه را ذخیره کرد."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "نمی‌توان تنظیمات طرح‌تان را ذخیره کرد."
-
-#~ msgid "Could not update your design."
-#~ msgstr "نمی‌توان طرح‌تان به‌هنگام‌سازی کرد."
-
-#~ msgid "Design"
-#~ msgstr "طرح"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "پوسته در دسترس نیست: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "تغییر نشان"
-
-#~ msgid "Change theme"
-#~ msgstr "تغییر پوسته"
-
-#~ msgid "Site theme"
-#~ msgstr "پوستهٔ وب‌گاه"
-
-#~ msgid "Theme for the site."
-#~ msgstr "پوسته برای وب‌گاه"
-
-#~ msgid "Custom theme"
-#~ msgstr "پوستهٔ اختصاصی"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr ""
-#~ "شما می‌توانید یک پوستهٔ اختصاصی StatusNet را به‌عنوان یک آرشیو .ZIP بارگذاری "
-#~ "کنید."
-
-#~ msgid "Change background image"
-#~ msgstr "تغییر تصویر پیش‌زمینه"
-
-#~ msgid "Background"
-#~ msgstr "پیش‌زمینه"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "شما می‌توانید یک تصویر پیش‌زمینه را برای وب‌گاه بارگذاری کنید. بیشینهٔ اندازهٔ "
-#~ "پرونده %1 $s است."
-
-#~ msgid "On"
-#~ msgstr "روشن"
-
-#~ msgid "Off"
-#~ msgstr "خاموش"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "تصویر پیش‌زمینه را فعال یا غیرفعال کنید."
-
-#~ msgid "Tile background image"
-#~ msgstr "تصویر پیش‌زمینهٔ موزاییکی"
-
-#, fuzzy
-#~ msgid "Change colors"
-#~ msgstr "تغییر رنگ‌ها"
-
-#~ msgid "Content"
-#~ msgstr "محتوا"
-
-#~ msgid "Sidebar"
-#~ msgstr "ستون کناری"
-
-#~ msgid "Text"
-#~ msgstr "متن"
-
-#~ msgid "Links"
-#~ msgstr "پیوندها"
-
-#~ msgid "Advanced"
-#~ msgstr "پیشرفته"
-
-#~ msgid "Custom CSS"
-#~ msgstr "CSS اختصاصی"
-
-#, fuzzy
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "استفاده‌کردن از پیش‌فرض‌ها"
-
-#, fuzzy
-#~ msgid "Restore default designs."
-#~ msgstr "بازگرداندن طرح‌های پیش‌فرض"
-
-#, fuzzy
-#~ msgid "Reset back to default."
-#~ msgstr "برگشت به حالت پیش گزیده"
-
-#, fuzzy
-#~ msgid "Save design."
-#~ msgstr "ذخیره‌کردن طرح"
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "برای ویرایش گروه باید وارد شوید."
-
-#~ msgid "Group design"
-#~ msgstr "ظاهر گروه"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "ظاهر گروه را تغییر دهید تا شما را راضی کند."
-
-#, fuzzy
-#~ msgid "Unable to update your design settings."
-#~ msgstr "نمی‌توان تنظیمات طرح‌تان را ذخیره کرد."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "ترجیحات طرح ذخیره شد."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "یک پیام را به خودتان نفرستید؛ در عوض آن را آهسته برای خود بگویید."
-
-#~ msgid "Backgrounds"
-#~ msgstr "پس زمینه‌ها"
-
-#, fuzzy
-#~ msgid "Server for backgrounds."
-#~ msgstr "پوسته برای وب‌گاه"
-
-#, fuzzy
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "مسیر پوشه برای زبان‌های محلی"
-
-#~ msgid "Profile design"
-#~ msgstr "طراحی نمایه"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "شیوهٔ نمایش نمایهٔ خود را با یک تصویر پیش‌زمینه و یک رنگ از جعبهٔ رنگ‌ها به "
-#~ "انتخاب خودتان سفارشی‌سازی کنید."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "از هات داگ خود لذت ببرید!"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "ذخیرهٔ تنظیمات وب‌گاه"
-
-#~ msgid "View profile designs"
-#~ msgstr "نمایش طراحی‌های نمایه"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "نمایش دادن یا پنهان کردن طراحی‌های نمایه."
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "پیش‌زمینه"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "نمی توان تنظیمات طراحی شده را پاک کرد ."
-
-#~ msgid "Design configuration"
-#~ msgstr "پیکربندی طرح"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "طرح"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "ذخیره‌کردن طرح"
-
-#~ msgid "Change colours"
-#~ msgstr "تغییر رنگ‌ها"
-
-#~ msgid "Use defaults"
-#~ msgstr "استفاده‌کردن از پیش‌فرض‌ها"
-
-#~ msgid "Upload file"
-#~ msgstr "بارگذاری پرونده"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "شما می‌توانید تصویر پیش‌زمینهٔ شخصی خود را بارگذاری کنید. بیشینهٔ اندازهٔ "
-#~ "پرونده ۲ مگابایت است."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "روشن"
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "خاموش"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "پیش‌فرض‌های طراحی برگردانده شدند."
-
-#~ msgid "Design your profile"
-#~ msgstr "نمایهٔ خود را طراحی کنید"

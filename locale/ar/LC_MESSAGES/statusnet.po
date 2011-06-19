@@ -15,19 +15,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:56:59+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:34+0000\n"
 "Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
 "2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
 "99) ? 4 : 5 ) ) ) );\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -296,7 +296,7 @@ msgstr ""
 "يمكن أن تحاول [تنبيه %1$s](../%2$s) من ملفه الشخصي أو [مراسلته عن أمر ما](%%%"
 "%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2086,7 +2086,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "تعذّر تحديث المستخدم."
@@ -3129,6 +3129,7 @@ msgstr "مصدر عنوان الرابط ليس صحيحا."
 msgid "Could not create application."
 msgstr "لم يمكن إنشاء التطبيق."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "صورة غير صالحة."
 
@@ -5414,7 +5415,6 @@ msgstr ""
 "نفسها مجددًا"
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "الشعار"
 
@@ -8634,7 +8634,7 @@ msgstr "أرسل إشعارًا مباشرًا"
 msgid "Select recipient:"
 msgstr "اختر وسمًا لترشيحه"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "غير مشترك!"
@@ -9106,8 +9106,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9897,195 +9899,3 @@ msgstr "ليس عنوان بريد صالح."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "لم يمكن حفظ الملف."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "تعذّر حفظ إعدادات تصميمك."
-
-#~ msgid "Could not update your design."
-#~ msgstr "تعذّر تحديث تصميمك."
-
-#~ msgid "Design"
-#~ msgstr "التصميم"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "إعدادات تصميم موقع ستاسنت هذا"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "السمة غير متوفرة: %s"
-
-#~ msgid "Change logo"
-#~ msgstr "غيّر الشعار"
-
-#~ msgid "Change theme"
-#~ msgstr "غيّر السمة"
-
-#~ msgid "Site theme"
-#~ msgstr "سمة الموقع"
-
-#~ msgid "Theme for the site."
-#~ msgstr "سمة الموقع."
-
-#~ msgid "Custom theme"
-#~ msgstr "سمة مخصصة"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "يمكنك رفع سمة ستاتس نت على هيأة أرشيف .ZIP."
-
-#~ msgid "Change background image"
-#~ msgstr "تغيير صورة الخلفية"
-
-#~ msgid "Background"
-#~ msgstr "الخلفية"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr "بإمكانك رفع صورة خلفية للموقع. أقصى حجم للملف هو %1$s."
-
-#~ msgid "On"
-#~ msgstr "مكّن"
-
-#~ msgid "Off"
-#~ msgstr "عطّل"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "مكّن صورة الخلفية أو عطّلها."
-
-#~ msgid "Tile background image"
-#~ msgstr "كرّر صورة الخلفية"
-
-#~ msgid "Change colors"
-#~ msgstr "غيّر الألوان"
-
-#~ msgid "Content"
-#~ msgstr "المحتوى"
-
-#~ msgid "Sidebar"
-#~ msgstr "الشريط الجانبي"
-
-#~ msgid "Text"
-#~ msgstr "النص"
-
-#~ msgid "Links"
-#~ msgstr "وصلات"
-
-#~ msgid "Advanced"
-#~ msgstr "متقدم"
-
-#~ msgid "Custom CSS"
-#~ msgstr "CSS مخصصة"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "استخدم المبدئية"
-
-#~ msgid "Restore default designs."
-#~ msgstr "استعد التصاميم المبدئية."
-
-#~ msgid "Reset back to default."
-#~ msgstr "ارجع إلى المبدئيات."
-
-#~ msgid "Save design."
-#~ msgstr "احفظ التصميم."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "يجب أن تلج لتُعدّل المجموعات."
-
-#~ msgid "Group design"
-#~ msgstr "تصميم المجموعة"
-
-#, fuzzy
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "خصّص أسلوب عرض ملفك بصورة خلفية ومخطط ألوان من اختيارك."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "!تعذّر تحديث إعدادات تصميمك."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "حُفظت تفضيلات التصميم."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "لا ترسل رسالة إلى نفسك، قلها لنفسك في سرك بدلًا من ذلك."
-
-#~ msgid "Backgrounds"
-#~ msgstr "الخلفيات"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "خادوم الخلفيات."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "مسار الشبكة للصور الخلفية."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "الدليل الذي فيه الخلفيات."
-
-#~ msgid "Profile design"
-#~ msgstr "تصميم الملف الشخصي"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "خصّص أسلوب عرض ملفك بصورة خلفية ومخطط ألوان من اختيارك."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "استمتع بالنقانق!"
-
-#~ msgid "Design settings"
-#~ msgstr "إعدادات التصميم"
-
-#~ msgid "View profile designs"
-#~ msgstr "اعرض تصاميم الملف الشخصي"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "أظهر أو أخفِ تصاميم الملفات الشخصية."
-
-#~ msgid "Background file"
-#~ msgstr "ملف الخلفية"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "تعذّر حذف إعدادات التصميم."
-
-#~ msgid "Design configuration"
-#~ msgstr "ضبط التصميم"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "التصميم"
-
-#~ msgid "Change design"
-#~ msgstr "غيّر التصميم"
-
-#~ msgid "Change colours"
-#~ msgstr "تغيير الألوان"
-
-#~ msgid "Use defaults"
-#~ msgstr "استخدم المبدئيات"
-
-#~ msgid "Upload file"
-#~ msgstr "ارفع ملفًا"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr "تستطيع رفع صورتك الشخصية. أقصى حجم للملف هو 2 م.ب."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "مكّن"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "عطّل"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "استعيدت مبدئيات التصميم."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "أضف تصميما ل%s أو عدله"
-
-#~ msgid "Design your profile"
-#~ msgstr "صمّم ملفك الشخصي"

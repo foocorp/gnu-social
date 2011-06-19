@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:55+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:40+0000\n"
 "Language-Team: Korean <http://translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:21:09+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -25,6 +25,7 @@ msgstr ""
 msgid "Twitter settings"
 msgstr "트위터 설정"
 
+#. TRANS: Instructions for page with Twitter integration settings.
 msgid ""
 "Connect your Twitter account to share your updates with your Twitter friends "
 "and vice-versa."
@@ -396,10 +397,13 @@ msgstr "트위터를 사용해 로그인 또는 가입"
 msgid "Twitter integration options"
 msgstr "트위터 통합 옵션"
 
+#. TRANS: Menu item in administrative panel that leads to the Twitter bridge configuration.
 msgid "Twitter"
 msgstr "트위터"
 
-msgid "Twitter bridge configuration"
+#. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
+#, fuzzy
+msgid "Twitter bridge configuration page."
 msgstr "트위터 브릿지 설정"
 
 #. TRANS: Plugin description.
@@ -465,15 +469,3 @@ msgstr ""
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr "RT @%1$s %2$s"
-
-#~ msgid "set a password"
-#~ msgstr "비밀 번호를 설정하십시오"
-
-#~ msgid " first."
-#~ msgstr "."
-
-#~ msgid "Couldn't link your Twitter account."
-#~ msgstr "트위터 계정을 연결할 수 없습니다."
-
-#~ msgid "Save Twitter settings"
-#~ msgstr "트위터 설정 저장"

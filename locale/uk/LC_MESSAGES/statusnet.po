@@ -12,18 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:54+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:20+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -304,7 +304,7 @@ msgstr ""
 "Ви можете [«розштовхати» %1$s](../%2$s) зі сторінки його профілю або [щось "
 "йому написати](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2134,7 +2134,7 @@ msgstr ""
 "Зазначення теґу як особистого означатиме незворотне видалення всіх підписок "
 "до нього. Ви все ще хочете продовжити?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "Не вдалося оновити список."
 
@@ -3191,6 +3191,7 @@ msgstr "Потрібна URL-адреса."
 msgid "Could not create application."
 msgstr "Не вдалося створити додаток."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Неприпустиме зображення."
 
@@ -5556,7 +5557,6 @@ msgstr ""
 "допис ще раз."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Логотип"
 
@@ -8780,7 +8780,7 @@ msgstr "Надіслати прямий допис"
 msgid "Select recipient:"
 msgstr "Оберіть одержувача:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Немає відповідних абонентів."
 
@@ -9211,8 +9211,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Увімкнути"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr "(Опис додатку недоступний, якщо даний додаток вимкнутий.)"
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9967,211 +9970,3 @@ msgstr "Це недійсна електронна адреса."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Не вдалося зберегти профіль."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Не маю можливості зберегти налаштування дизайну."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Не вдалося оновити ваш дизайн."
-
-#~ msgid "Design"
-#~ msgstr "Дизайн"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Налаштування дизайну для цього сайту StatusNet"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Тема недоступна: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Змінити логотип"
-
-#~ msgid "Change theme"
-#~ msgstr "Змінити тему"
-
-#~ msgid "Site theme"
-#~ msgstr "Тема сайту"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Тема для цього сайту."
-
-#~ msgid "Custom theme"
-#~ msgstr "Своя тема"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "Ви можете завантажити свою тему для сайту StatusNet як .ZIP архів."
-
-#~ msgid "Change background image"
-#~ msgstr "Змінити фонове зображення"
-
-#~ msgid "Background"
-#~ msgstr "Фон"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Ви можете завантажити фонове зображення для сайту. Максимальний розмір "
-#~ "файлу %1$s."
-
-#~ msgid "On"
-#~ msgstr "Увімк."
-
-#~ msgid "Off"
-#~ msgstr "Вимк."
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Увімкнути або вимкнути фонове зображення."
-
-#~ msgid "Tile background image"
-#~ msgstr "Замостити фон"
-
-#~ msgid "Change colors"
-#~ msgstr "Змінити кольори"
-
-#~ msgid "Content"
-#~ msgstr "Зміст"
-
-#~ msgid "Sidebar"
-#~ msgstr "Сайдбар"
-
-#~ msgid "Text"
-#~ msgstr "Текст"
-
-#~ msgid "Links"
-#~ msgstr "Посилання"
-
-#~ msgid "Advanced"
-#~ msgstr "Додатково"
-
-#~ msgid "Custom CSS"
-#~ msgstr "Свій CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "За замовч."
-
-#~ msgid "Restore default designs."
-#~ msgstr "Відновити стандартні установки."
-
-#~ msgid "Reset back to default."
-#~ msgstr "Повернутись до стандартних налаштувань."
-
-#~ msgid "Save design."
-#~ msgstr "Зберегти дизайн."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr ""
-#~ "Ви маєте спочатку увійти, аби мати змогу відредагувати властивості "
-#~ "спільноти."
-
-#~ msgid "Group design"
-#~ msgstr "Дизайн спільноти"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Налаштуйте вигляд сторінки спільноти, використовуючи фонове зображення і "
-#~ "кольори на свій смак."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Не вдалося оновити налаштування дизайну."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Преференції дизайну збережно."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "Не надсилайте повідомлень самому собі; краще поговоріть із собою вголос."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Фони"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "Сервер для фонових зображень."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "Шлях до фонових зображень."
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "Сервер для фонових зображень на захищених SSL-сторінках."
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr "Шлях до фонових зображень на захищених SSL-сторінках."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Директорія, в якій знаходяться фонові зображення."
-
-#~ msgid "Profile design"
-#~ msgstr "Дизайн профілю"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Налаштуйте вигляд сторінки свого профілю, використовуючи фонове "
-#~ "зображення і кольори на свій смак."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Поласуйте бутербродом!"
-
-#~ msgid "Design settings"
-#~ msgstr "Налаштування дизайну"
-
-#~ msgid "View profile designs"
-#~ msgstr "Переглядати дизайн користувачів"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Показувати або приховувати дизайни сторінок окремих користувачів."
-
-#~ msgid "Background file"
-#~ msgstr "Файл фону"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Немає можливості видалити налаштування дизайну."
-
-#~ msgid "Design configuration"
-#~ msgstr "Конфігурація дизайну"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Дизайн"
-
-#~ msgid "Change design"
-#~ msgstr "Змінити дизайн"
-
-#~ msgid "Change colours"
-#~ msgstr "Змінити кольори"
-
-#~ msgid "Use defaults"
-#~ msgstr "За замовч."
-
-#~ msgid "Upload file"
-#~ msgstr "Завантажити файл"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Ви можете завантажити власне фонове зображення. Максимальний розмір файлу "
-#~ "становить 2Мб."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Увімк."
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Вимк."
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Дизайн за замовчуванням відновлено."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Додати або редагувати дизайн %s"
-
-#~ msgid "Design your profile"
-#~ msgstr "Дизайн вашого профілю"

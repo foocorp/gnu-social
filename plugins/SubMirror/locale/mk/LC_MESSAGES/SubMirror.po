@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:42+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:25+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:04+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:20:49+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
@@ -62,11 +62,11 @@ msgstr "Неисправни податоци за образецот."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
 msgid "The mirror request failed, because no result was retrieved."
-msgstr ""
+msgstr "Барањето за отсликување не успеа бидејќи не добив никаков резултат."
 
 #. TRANS: Exception thrown when a feed provider could not be recognised.
 msgid "Internal form error: Unrecognized feed provider."
-msgstr ""
+msgstr "Грешка во внатрешниот образец: Непрепознаен извор за каналот."
 
 #. TRANS: Exception thrown when a subscribing to a feed fails.
 msgid "Could not subscribe to feed."
@@ -134,25 +134,22 @@ msgid "Mirroring style"
 msgstr "Стил на отсликување"
 
 #. TRANS: Feed mirror style (radio button option).
-#, fuzzy
 msgid ""
 "Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 msgstr ""
 "Повторување: наведете ја објавата на изворниот корисник (понекогаш се "
-"прикажува како „RT @blah“)"
+"прикажува како „RT @бла“)"
 
 #. TRANS: Feed mirror style (radio button option).
 msgid "Repost the content under my account"
 msgstr "Објави ја содржината под мојата сметка"
 
 #. TRANS: Button text to save feed mirror settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Зачувај"
 
 #. TRANS: Button text to stop mirroring a feed.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Stop mirroring"
 msgstr "Престани со отсликување"
@@ -168,6 +165,3 @@ msgstr "RSS или Atom канал"
 #. TRANS: Heading for feed mirroring selection form.
 msgid "Select a feed provider"
 msgstr "Одберете емитувач"
-
-#~ msgid "Requested edit of missing mirror."
-#~ msgstr "Побаравте уредување на отсликување што недостасува."

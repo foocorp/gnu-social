@@ -17,18 +17,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:56+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:21+0000\n"
 "Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -297,7 +297,7 @@ msgstr ""
 "你可以试着到他们的资料页 [呼叫%1$s](../%2$s) 他们或者 [给他们发消息](%%%%"
 "action.newnotice%%%%?status_textarea=%3$s)。"
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2057,7 +2057,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr "把一个公开标签设置为私有，将会永久移除所有该标签的订阅。仍要继续吗？"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "无法更新名单。"
 
@@ -3070,6 +3070,7 @@ msgstr "Source URL 必填。"
 msgid "Could not create application."
 msgstr "无法创建应用。"
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "无效的图像。"
 
@@ -5348,7 +5349,6 @@ msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr "用户再次发布相同内容时需要等待的时间（秒）。"
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Logo"
 
@@ -8481,7 +8481,7 @@ msgstr "发送一条私信"
 msgid "Select recipient:"
 msgstr "选择收件人："
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "没有共同的关注者。"
 
@@ -8934,8 +8934,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9669,200 +9671,3 @@ msgstr "不是有效的电子邮件。"
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "无法保存个人信息。"
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "无法保存你的外观设置。"
-
-#~ msgid "Could not update your design."
-#~ msgstr "无法更新你的外观。"
-
-#~ msgid "Design"
-#~ msgstr "外观"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "这个 StatusNet 网站的外观设置"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "主题不可用：%s。"
-
-#~ msgid "Change logo"
-#~ msgstr "更换 logo"
-
-#~ msgid "Change theme"
-#~ msgstr "更换主题"
-
-#~ msgid "Site theme"
-#~ msgstr "网站主题"
-
-#~ msgid "Theme for the site."
-#~ msgstr "这个网站的主题。"
-
-#~ msgid "Custom theme"
-#~ msgstr "自定义主题"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "你可以上传一个 .ZIP 压缩文件作为一个自定义的 StatusNet 主题"
-
-#~ msgid "Change background image"
-#~ msgstr "更换背景图像"
-
-#~ msgid "Background"
-#~ msgstr "背景"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr "你可以为网站上传一个背景图像。文件大小限制在%1$s以下。"
-
-#~ msgid "On"
-#~ msgstr "打开"
-
-#~ msgid "Off"
-#~ msgstr "关闭"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "打开或关闭背景图片"
-
-#~ msgid "Tile background image"
-#~ msgstr "平铺背景图片"
-
-#~ msgid "Change colors"
-#~ msgstr "更改颜色"
-
-#~ msgid "Content"
-#~ msgstr "内容"
-
-#~ msgid "Sidebar"
-#~ msgstr "边栏"
-
-#~ msgid "Text"
-#~ msgstr "文字"
-
-#~ msgid "Links"
-#~ msgstr "链接"
-
-#~ msgid "Advanced"
-#~ msgstr "高级"
-
-#~ msgid "Custom CSS"
-#~ msgstr "自定义CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "使用默认值"
-
-#~ msgid "Restore default designs."
-#~ msgstr "还原默认设计。"
-
-#~ msgid "Reset back to default."
-#~ msgstr "重置回默认值。"
-
-#~ msgid "Save design."
-#~ msgstr "保存设计。"
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "你必须登录才能创建小组。"
-
-#~ msgid "Group design"
-#~ msgstr "小组页面外观。"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "通过背景图片和颜色板来自定义你的小组的外观。"
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "无法更新你的外观设置。"
-
-#~ msgid "Design preferences saved."
-#~ msgstr "外观偏好已保存。"
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "不要向自己发送消息；跟自己悄悄说就得了。"
-
-#~ msgid "Backgrounds"
-#~ msgstr "背景"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "背景服务器。"
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "背景的网站路径。"
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "SSL 页面的背景服务器。"
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr "SSL 页面的背景网站路径。"
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "背景文件的目录。"
-
-#~ msgid "Profile design"
-#~ msgstr "个人页面外观"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "通过背景图片和调色板自定义你的页面外观。"
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "享受你的成果吧！"
-
-#~ msgid "Design settings"
-#~ msgstr "外观设置"
-
-#~ msgid "View profile designs"
-#~ msgstr "查看个人页面外观"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "显示或隐藏个人页面外观。"
-
-#~ msgid "Background file"
-#~ msgstr "背景文件"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "无法删除外观设置。"
-
-#~ msgid "Design configuration"
-#~ msgstr "外观配置"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "外观"
-
-#~ msgid "Change design"
-#~ msgstr "修改外观"
-
-#~ msgid "Change colours"
-#~ msgstr "改变颜色"
-
-#~ msgid "Use defaults"
-#~ msgstr "使用默认值"
-
-#~ msgid "Upload file"
-#~ msgstr "上传文件"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr "你可以上传你的个人页面背景。文件最大 2MB。"
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "打开"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "关闭"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "默认外观已恢复。"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "添加或编辑 %s 外观"
-
-#~ msgid "Design your profile"
-#~ msgstr "设计你的个人页面外观"

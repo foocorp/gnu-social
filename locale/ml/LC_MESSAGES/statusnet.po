@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:37+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:05+0000\n"
 "Language-Team: Malayalam <http://translatewiki.net/wiki/Portal:ml>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ml\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -284,7 +284,7 @@ msgid ""
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2053,7 +2053,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "ഉപയോക്തൃ വിവരങ്ങൾ പുതുക്കാൻ കഴിഞ്ഞില്ല."
@@ -3107,6 +3107,7 @@ msgstr "സ്രോതസ്സ് യു.ആർ.എൽ. ആവശ്യമാ�
 msgid "Could not create application."
 msgstr ""
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "അസാധുവായ ചിത്രം."
 
@@ -8512,7 +8513,7 @@ msgstr "അറിയിപ്പ് നേരിട്ട് അയയ്ക്�
 msgid "Select recipient:"
 msgstr "സ്വീകർത്താവിനെ തിരഞ്ഞെടുക്കുക:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr ""
 
@@ -8971,8 +8972,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9736,177 +9739,3 @@ msgstr "സാധുവായ ഇമെയിൽ വിലാസം അല്ല
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "ലക്ഷ്യമിട്ട ഉപയോക്താവിനെ കണ്ടെത്താനായില്ല."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "താങ്കളുടെ രൂപകല്പനാ സജ്ജീകരണങ്ങൾ കാത്തുസൂക്ഷിക്കാനായില്ല."
-
-#~ msgid "Could not update your design."
-#~ msgstr "താങ്കളുടെ രൂപകല്പന പുതുക്കാനായില്ല."
-
-#~ msgid "Design"
-#~ msgstr "രൂപകല്പന"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "ഈ സ്റ്റാറ്റസ്‌നെറ്റ് സൈറ്റിന്റെ രൂപകല്പനാ സജ്ജീകരണങ്ങൾ"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "ദൃശ്യരൂപം ലഭ്യമല്ല: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "ലോഗോ മാറ്റുക"
-
-#~ msgid "Change theme"
-#~ msgstr "ദൃശ്യരൂപം മാറ്റുക"
-
-#~ msgid "Site theme"
-#~ msgstr "സൈറ്റിന്റെ ദൃശ്യരൂപം"
-
-#~ msgid "Theme for the site."
-#~ msgstr "ഈ സൈറ്റിന്റെ ദൃശ്യരൂപം."
-
-#~ msgid "Custom theme"
-#~ msgstr "ഐച്ഛിക ദൃശ്യരൂപം"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr ""
-#~ "താങ്കളുടെ ഇച്ഛാനുസരണം നിർമ്മിച്ച സ്റ്റാറ്റസ്‌നെറ്റ് ദൃശ്യരൂപം .സിപ് ആർക്കൈവ് ആയി താങ്കൾക്ക് "
-#~ "അപ്‌ലോഡ് ചെയ്യാവുന്നതാണ്."
-
-#~ msgid "Change background image"
-#~ msgstr "പശ്ചാത്തലചിത്രം മാറ്റുക"
-
-#~ msgid "Background"
-#~ msgstr "പശ്ചാത്തലം"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "താങ്കൾക്ക് ഈ സൈറ്റിനുള്ള പശ്ചാത്തല ചിത്രം അപ്‌ലോഡ് ചെയ്യാവുന്നതാണ്. പ്രമാണത്തിന്റെ പരമാവധി "
-#~ "വലിപ്പം %1$s ആയിരിക്കണം."
-
-#~ msgid "On"
-#~ msgstr "സജ്ജം"
-
-#~ msgid "Off"
-#~ msgstr "രഹിതം"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "പശ്ചാത്തലചിത്രം പ്രവർത്തന സജ്ജമാക്കുക അല്ലെങ്കിൽ രഹിതമാക്കുക."
-
-#~ msgid "Tile background image"
-#~ msgstr "പശ്ചാത്തലചിത്രം ആവർത്തിച്ചു ചേർക്കുക"
-
-#~ msgid "Change colors"
-#~ msgstr "നിറങ്ങൾ മാറ്റുക"
-
-#~ msgid "Content"
-#~ msgstr "ഉള്ളടക്കം"
-
-#~ msgid "Sidebar"
-#~ msgstr "പാർശ്വഭിത്തി"
-
-#~ msgid "Text"
-#~ msgstr "എഴുത്ത്"
-
-#~ msgid "Links"
-#~ msgstr "കണ്ണികൾ"
-
-#~ msgid "Advanced"
-#~ msgstr "വിപുലം"
-
-#~ msgid "Custom CSS"
-#~ msgstr "സ്വന്തം സി.എസ്.എസ്."
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "സ്വതേയുള്ളവ ഉപയോഗിക്കുക"
-
-#~ msgid "Restore default designs."
-#~ msgstr "സ്വതേയുള്ള രൂപകല്പനകൾ പുനഃസ്ഥാപിക്കുക."
-
-#~ msgid "Reset back to default."
-#~ msgstr "മുമ്പ് സ്വതേയുണ്ടായിരുന്നതിലേയ്ക്ക് പുനഃസ്ഥാപിക്കുക."
-
-#~ msgid "Save design."
-#~ msgstr "രൂപകല്പന സേവ്‌ ചെയ്യുക."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "സംഘത്തിൽ മാറ്റങ്ങൾ വരുത്താൻ താങ്കൾ ലോഗിൻ ചെയ്തിരിക്കേണ്ടതാണ്."
-
-#~ msgid "Group design"
-#~ msgstr "സംഘത്തിന്റെ രൂപകല്പന"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "പശ്ചാത്തല്ല ചിത്രവും വർണ്ണങ്ങളും ചേർത്ത് സംഘത്തിന്റെ ദൃശ്യരൂപം ഇച്ഛാനുസരണമാക്കുക."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "താങ്കളുടെ രൂപകല്പനാ സജ്ജീകരണങ്ങൾ പുതുക്കാനായില്ല."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "രൂപകല്പനാ ക്രമീകരണങ്ങൾ സേവ് ചെയ്തിരിക്കുന്നു."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "താങ്കൾക്കു തന്നെ സന്ദേശം അയയ്ക്കരുത്; പകരം അത് പതുക്കെ സ്വയം പറയുക."
-
-#~ msgid "Backgrounds"
-#~ msgstr "പശ്ചാത്തലം"
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "താങ്കളുടെ ഹോട്ട്ഡോഗ് ആസ്വദിക്കൂ!"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "സൈറ്റ് സജ്ജീകരണങ്ങൾ ചേവ് ചെയ്യുക"
-
-#~ msgid "Background file"
-#~ msgstr "പശ്ചാത്തല പ്രമാണം"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "രൂപകല്പനാ സജ്ജീകരണങ്ങൾ മായ്ക്കാൻ കഴിഞ്ഞില്ല."
-
-#~ msgid "Design configuration"
-#~ msgstr "രൂപകല്പനാ ക്രമീകരണം"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "രൂപകല്പന"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "രൂപകല്പന സേവ്‌ ചെയ്യുക"
-
-#~ msgid "Change colours"
-#~ msgstr "നിറങ്ങൾ മാറ്റുക"
-
-#~ msgid "Use defaults"
-#~ msgstr "സ്വതേയുള്ളവ ഉപയോഗിക്കുക"
-
-#~ msgid "Upload file"
-#~ msgstr "പ്രമാണം അപ്‌ലോഡ് ചെയ്യുക"
-
-#, fuzzy
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "താങ്കൾക്ക് ഈ സൈറ്റിനുള്ള പശ്ചാത്തല ചിത്രം അപ്‌ലോഡ് ചെയ്യാവുന്നതാണ്. പ്രമാണത്തിന്റെ പരമാവധി "
-#~ "വലിപ്പം %1$s ആയിരിക്കണം."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "സജ്ജം"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "രഹിതം"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "സ്വതേയുള്ള രൂപകല്പന പുനഃസ്ഥാപിച്ചിരിക്കുന്നു."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "%s എന്ന സംഘത്തിനു രൂപകല്പന കൂട്ടിച്ചേർക്കുക അല്ലെങ്കിൽ മാറ്റം വരുത്തുക"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -385,7 +385,7 @@ msgid ""
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2593,7 +2593,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #: actions/editpeopletag.php:297
 msgid "Could not update list."
 msgstr ""
@@ -3807,7 +3807,8 @@ msgstr ""
 msgid "Could not create application."
 msgstr ""
 
-#: actions/newapplication.php:298
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
+#: actions/newapplication.php:299
 msgid "Invalid image."
 msgstr ""
 
@@ -10051,7 +10052,7 @@ msgstr ""
 msgid "Select recipient:"
 msgstr ""
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #: lib/messageform.php:145
 msgid "No mutual subscribers."
 msgstr ""
@@ -10567,9 +10568,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
-#: lib/pluginlist.php:196
+#. TRANS: Plugin description for a disabled plugin.
+#: lib/pluginlist.php:195
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.

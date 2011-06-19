@@ -17,17 +17,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:11+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:43+0000\n"
 "Language-Team: Esperanto <http://translatewiki.net/wiki/Portal:eo>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: eo\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -297,7 +297,7 @@ msgstr ""
 "Vi povas provi  [puŝeti %1$s](../%2$s) de lia profilo aŭ [afiŝi ion al li](%%"
 "%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2137,7 +2137,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "Malsukcesis ĝisdatigi uzanton"
@@ -3201,6 +3201,7 @@ msgstr "Fonta URL bezonata."
 msgid "Could not create application."
 msgstr "Malsukcesis krei aplikaĵon."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "Nevalida bildo."
@@ -5590,7 +5591,6 @@ msgstr ""
 "Kiel longe devas uzantoj atendas (je sekundo) antaŭ afiŝi la saman refejo."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Emblemo"
 
@@ -8876,7 +8876,7 @@ msgstr "Sendi rektan avizon"
 msgid "Select recipient:"
 msgstr "Elektu ricevonton:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Mankas abonantoj reciprokaj."
 
@@ -9341,8 +9341,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -10119,212 +10121,3 @@ msgstr "Retpoŝta adreso ne valida"
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Malsukcesis konservi la profilon."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Malsukcesis konservi vian desegnan agordon"
-
-#~ msgid "Could not update your design."
-#~ msgstr "Malsukcesis ĝisdatigi vian desegnon."
-
-#~ msgid "Design"
-#~ msgstr "Aspekto"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Desegna agordo por ĉi tiu StatusNet-retejo"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Desegno ne havebla: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Ŝanĝi emblemon"
-
-#~ msgid "Change theme"
-#~ msgstr "Ŝanĝi desegnon"
-
-#~ msgid "Site theme"
-#~ msgstr "Reteja desegno"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Desegno por la retejo"
-
-#~ msgid "Custom theme"
-#~ msgstr "Propra desegno"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "Vi povas alŝuti propran StatusNet-desegnon kiel .zip-dosiero"
-
-#~ msgid "Change background image"
-#~ msgstr "Ŝanĝi fonbildon"
-
-#~ msgid "Background"
-#~ msgstr "Fono"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Vi povas alŝuti fonbildon por la retejo. Dosiero-grandlimo estas %1$s."
-
-#~ msgid "On"
-#~ msgstr "En"
-
-#~ msgid "Off"
-#~ msgstr "For"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Aktivigi aŭ senaktivigi fonbildon"
-
-#~ msgid "Tile background image"
-#~ msgstr "Ripeti la fonbildon"
-
-#~ msgid "Change colors"
-#~ msgstr "Ŝanĝi kolorojn"
-
-#~ msgid "Content"
-#~ msgstr "Enhavo"
-
-#~ msgid "Sidebar"
-#~ msgstr "Flanka strio"
-
-#~ msgid "Text"
-#~ msgstr "Teksto"
-
-#~ msgid "Links"
-#~ msgstr "Ligiloj"
-
-#~ msgid "Advanced"
-#~ msgstr "Speciala"
-
-#~ msgid "Custom CSS"
-#~ msgstr "Propra CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Uzi defaŭlton"
-
-#, fuzzy
-#~ msgid "Restore default designs."
-#~ msgstr "Restaŭri defaŭltajn desegnojn"
-
-#, fuzzy
-#~ msgid "Reset back to default."
-#~ msgstr "Redefaŭltiĝi"
-
-#, fuzzy
-#~ msgid "Save design."
-#~ msgstr "Savi desegnon"
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "Ensalutu por redakti grupon."
-
-#~ msgid "Group design"
-#~ msgstr "Grupa desegno"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "Agordi kiel aspektu via grupo, per elekto de fonbildo kaj koloraro."
-
-#, fuzzy
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Malsukcesis konservi vian desegnan agordon"
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Desegna agordo konservita."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "Ne sendu mesaĝon al vi mem! Simple suspiru anstataŭ."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Fono"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "Servilo por fonoj."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "Retvojo al fonoj."
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "Servilo por fonoj en SSL-paĝoj."
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr "Retvojo al fonoj en SSL-paĝoj."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Dosierujo kie fonoj estas."
-
-#~ msgid "Profile design"
-#~ msgstr "Profila desegno"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Agodi kiel aspektu via profilo, per elekto de fonbildo kaj koloraro."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Ĝuu vian kolbasobulkon!"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "Konservi retejan agordon"
-
-#~ msgid "View profile designs"
-#~ msgstr "Vidi profilo-desegnon"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Montri aŭ kaŝi profilo-desegnon."
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "Fono"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Malsukcesas forigi desegnan agordon."
-
-#~ msgid "Design configuration"
-#~ msgstr "Desegna agordo"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Desegno"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "ŝanĝi etoson"
-
-#~ msgid "Change colours"
-#~ msgstr "Ŝanĝi kolorojn"
-
-#~ msgid "Use defaults"
-#~ msgstr "Uzi defaŭlton"
-
-#~ msgid "Upload file"
-#~ msgstr "Alŝuti dosieron"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Vi povas alŝuti vian propran fonbildon. La dosiera grandlimo estas 2MB."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "En"
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "For"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Desegnaj defaŭltoj konserviĝas."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Aldoni aŭ redakti desegnon de %s"
-
-#~ msgid "Design your profile"
-#~ msgstr "Desegni vian profilon"

@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:03+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:37+0000\n"
 "Language-Team: Breton <http://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -296,7 +296,7 @@ msgid ""
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2108,7 +2108,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "Dibosupl hizivaat an implijer."
@@ -3166,6 +3166,7 @@ msgstr "Ezhomm 'zo eus ar vammenn URL."
 msgid "Could not create application."
 msgstr "N'eo ket posubl krouiñ ar poellad."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "Ment direizh."
@@ -5535,7 +5536,6 @@ msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Logo"
 
@@ -8709,7 +8709,7 @@ msgstr "Kas ur gemennadenn war-eeun"
 msgid "Select recipient:"
 msgstr "Dibab un aotre-implijout"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "Nann-koumanantet !"
@@ -9169,8 +9169,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Gweredekaat"
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9917,184 +9919,3 @@ msgstr "N'eo ket ur chomlec'h postel reizh."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Dibosupl eo enrollañ ar profil."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Dibosupl eo enrollañ an arventennoù empentiñ."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Dibosupl eo hizivaat ho design."
-
-#~ msgid "Design"
-#~ msgstr "Design"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "N'eus ket eus ar gaoz-se : %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Cheñch al logo"
-
-#~ msgid "Change theme"
-#~ msgstr "Lakaat un dodenn all"
-
-#~ msgid "Site theme"
-#~ msgstr "Dodenn al lec'hienn"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Dodenn evit al lec'hienn."
-
-#~ msgid "Custom theme"
-#~ msgstr "Dodenn personelaet"
-
-#~ msgid "Change background image"
-#~ msgstr "Kemmañ ar skeudenn foñs"
-
-#~ msgid "Background"
-#~ msgstr "Background"
-
-#~ msgid "On"
-#~ msgstr "Gweredekaet"
-
-#~ msgid "Off"
-#~ msgstr "Diweredekaet"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Gweredekaat pe diweredekaat ar skeudenn foñs."
-
-#~ msgid "Tile background image"
-#~ msgstr "Adober gant ar skeudenn drekleur"
-
-#, fuzzy
-#~ msgid "Change colors"
-#~ msgstr "Kemmañ al livioù"
-
-#~ msgid "Content"
-#~ msgstr "Endalc'h"
-
-#~ msgid "Sidebar"
-#~ msgstr "Barenn kostez"
-
-#~ msgid "Text"
-#~ msgstr "Testenn"
-
-#~ msgid "Links"
-#~ msgstr "Liammoù"
-
-#~ msgid "Advanced"
-#~ msgstr "Araokaet"
-
-#~ msgid "Custom CSS"
-#~ msgstr "CSS personelaet"
-
-#, fuzzy
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Implijout an talvoudoù dre ziouer"
-
-#, fuzzy
-#~ msgid "Restore default designs."
-#~ msgstr "Adlakaat an neuz dre ziouer."
-
-#, fuzzy
-#~ msgid "Reset back to default."
-#~ msgstr "Adlakaat an arventennoù dre ziouer"
-
-#, fuzzy
-#~ msgid "Save design."
-#~ msgstr "Enrollañ an design"
-
-#, fuzzy
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "Rankout a reoc'h bezañ luget evit krouiñ ur strollad."
-
-#~ msgid "Group design"
-#~ msgstr "Design ar strollad"
-
-#, fuzzy
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Dibosupl eo enrollañ an arventennoù empentiñ."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Enrollet eo bet an arventennoù design."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "Na gasit ket a gemennadenn deoc'h c'hwi ho unan ; lavarit an traoù-se en "
-#~ "ho penn kentoc'h."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Backgroundoù"
-
-#, fuzzy
-#~ msgid "Server for backgrounds."
-#~ msgstr "Dodenn evit al lec'hienn."
-
-#~ msgid "Profile design"
-#~ msgstr "Design ar profil"
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Bez plijadur gant da hotdog !"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "Enrollañ arventennoù al lec'hienn"
-
-#, fuzzy
-#~ msgid "View profile designs"
-#~ msgstr "Design ar profil"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Diskouez pe kuzhat designoù ar profil."
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "Background"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Dibosupl eo dilemel an arventennoù krouiñ."
-
-#~ msgid "Design configuration"
-#~ msgstr "Kefluniadur ar c'hrouiñ"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Design"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "Enrollañ an design"
-
-#~ msgid "Change colours"
-#~ msgstr "Kemmañ al livioù"
-
-#~ msgid "Use defaults"
-#~ msgstr "Implijout an talvoudoù dre ziouer"
-
-#~ msgid "Upload file"
-#~ msgstr "Enporzhiañ ar restr"
-
-#, fuzzy
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Gallout a rit kargañ hoc'h avatar personel. Ment vrasañ ar restr zo %s."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Gweredekaet"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Diweredekaet"
-
-#, fuzzy
-#~ msgid "Design defaults restored."
-#~ msgstr "Enrollet eo bet an arventennoù design."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Ouzhpennañ pe kemmañ tres ar strollad %s"
-
-#~ msgid "Design your profile"
-#~ msgstr "Krouit ho profil"

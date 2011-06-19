@@ -13,18 +13,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:06+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:39+0000\n"
 "Language-Team: Czech <http://translatewiki.net/wiki/Portal:cs>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: cs\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ( (n >= 2 && n <= 4) ? 1 : "
 "2 );\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -298,7 +298,7 @@ msgstr ""
 "Můžete se pokusit uživatele [%1$s postrčit](../%2$s) z jejich profilu nebo "
 "[jim něco poslat](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2165,7 +2165,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "Nepodařilo se aktualizovat nastavení uživatele"
@@ -3243,6 +3243,7 @@ msgstr "Zdrojové URL je nutné."
 msgid "Could not create application."
 msgstr "Nelze vytvořit aplikaci."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "Neplatná velikost"
@@ -5683,9 +5684,8 @@ msgstr ""
 "Jak dlouho uživatel musí čekat (v sekundách) než může poslat totéž znovu."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
-msgstr "Odhlásit se"
+msgstr "Logo"
 
 #. TRANS: Field label for StatusNet site logo.
 msgid "Site logo"
@@ -9006,7 +9006,7 @@ msgstr "Pošlete přímou zprávu"
 msgid "Select recipient:"
 msgstr "Vyberte operátora"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "Nepřihlášen!"
@@ -9474,8 +9474,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -10265,205 +10267,3 @@ msgstr "Není platnou mailovou adresou."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Nepodařilo se uložit profil."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Nelze uložit vaše nastavení designu."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Nelze uložit design."
-
-#~ msgid "Design"
-#~ msgstr "Vzhled"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Téma není k dispozici: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Změňte logo"
-
-#~ msgid "Change theme"
-#~ msgstr "Změnit téma"
-
-#~ msgid "Site theme"
-#~ msgstr "Téma stránek"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Téma stránek"
-
-#~ msgid "Custom theme"
-#~ msgstr "Vlastní téma"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "Můžete nahrát vlastní StatusNet téma jako .ZIP archiv."
-
-#~ msgid "Change background image"
-#~ msgstr "Změnit obrázek na pozadí"
-
-#~ msgid "Background"
-#~ msgstr "Pozadí"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Můžete nahrát obrázek na pozadí stránek. Maximální velikost souboru je %1"
-#~ "$s."
-
-#~ msgid "On"
-#~ msgstr "zap."
-
-#~ msgid "Off"
-#~ msgstr "vyp."
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Zapněte nebů vypněte obrázek na pozadí."
-
-#~ msgid "Tile background image"
-#~ msgstr "Dlaždicovat obrázek na pozadí"
-
-#, fuzzy
-#~ msgid "Change colors"
-#~ msgstr "Změnit barvy"
-
-#~ msgid "Content"
-#~ msgstr "Obsah"
-
-#~ msgid "Sidebar"
-#~ msgstr "Boční panel"
-
-#~ msgid "Text"
-#~ msgstr "Text"
-
-#~ msgid "Links"
-#~ msgstr "Odkazy"
-
-#~ msgid "Advanced"
-#~ msgstr "Rozšířené"
-
-#~ msgid "Custom CSS"
-#~ msgstr "Vlastní CSS"
-
-#, fuzzy
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Použít výchozí"
-
-#, fuzzy
-#~ msgid "Restore default designs."
-#~ msgstr "Obnovit výchozí vzhledy"
-
-#, fuzzy
-#~ msgid "Reset back to default."
-#~ msgstr "Reset zpět do výchozího"
-
-#, fuzzy
-#~ msgid "Save design."
-#~ msgstr "Uložit vzhled"
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "K úpravě skupiny musíte být přihlášen."
-
-#~ msgid "Group design"
-#~ msgstr "Vzhled skupiny"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Přizpůsobit vzhled skupiny obrázkem na pozadí a barevnou paletou vašeho "
-#~ "výběru."
-
-#, fuzzy
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Nelze uložit vaše nastavení designu."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Nastavení vzhledu uloženo."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "Neposílejte si zprávu, potichu si ji pro sebe řekněte."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Pozadí"
-
-#, fuzzy
-#~ msgid "Server for backgrounds."
-#~ msgstr "Téma stránek"
-
-#, fuzzy
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Cesta k adresáři locales"
-
-#~ msgid "Profile design"
-#~ msgstr "Vzhled profilu"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Přizpůsobit vzhled vašeho profilu obrázkem na pozadí a barevnou paletou "
-#~ "vašeho výběru."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Užijte si svůj párek v rohlíku!"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "Uložit Nastavení webu"
-
-#~ msgid "View profile designs"
-#~ msgstr "Zobrazit vzhledy profilu"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Zobrazit nebo skrýt vzhledy profilu."
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "Pozadí"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Nelze smazat nastavení vzhledu."
-
-#~ msgid "Design configuration"
-#~ msgstr "Nastavení vzhledu"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Vzhled"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "Uložit vzhled"
-
-#~ msgid "Change colours"
-#~ msgstr "Změnit barvy"
-
-#~ msgid "Use defaults"
-#~ msgstr "Použít výchozí"
-
-#~ msgid "Upload file"
-#~ msgstr "Nahrát soubor"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Můžete nahrát váš osobní obrázek na pozadí. Maximální velikost souboru je "
-#~ "2 MB."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "zap."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "vyp."
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Obnoveno výchozí nastavení vzhledu."
-
-#~ msgid "Design your profile"
-#~ msgstr "Změňte vzhled svého profilu"

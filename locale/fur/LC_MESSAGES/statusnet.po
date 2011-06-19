@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:20+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:51+0000\n"
 "Language-Team: Friulian <http://translatewiki.net/wiki/Portal:fur>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fur\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -293,7 +293,7 @@ msgstr ""
 "Tu puedis provâ a [pocâ %1$s](../%2$s) dal so profîl o ben [mandâi un avîs](%"
 "%%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2063,7 +2063,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "No si à podût inzornâ la liste."
 
@@ -3092,6 +3092,7 @@ msgstr ""
 msgid "Could not create application."
 msgstr ""
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "La figure no je valide."
 
@@ -8448,7 +8449,7 @@ msgstr ""
 msgid "Select recipient:"
 msgstr "Sielç il destinatari:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr ""
 
@@ -8877,8 +8878,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Ative"
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9606,128 +9609,3 @@ msgstr "La direzion di pueste eletroniche no je valide."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "No si à podût salvâ il profîl."
-
-#~ msgid "Design"
-#~ msgstr "Grafiche"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Impuestazions de grafiche par chest sît StatusNet"
-
-#~ msgid "Change logo"
-#~ msgstr "Cambie il logo"
-
-#~ msgid "Change theme"
-#~ msgstr "Cambie il teme"
-
-#~ msgid "Site theme"
-#~ msgstr "Teme dal sît"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Teme pal sît."
-
-#~ msgid "Custom theme"
-#~ msgstr "Teme personalizât"
-
-#~ msgid "Change background image"
-#~ msgstr "Cambie la figure di sfont"
-
-#~ msgid "Background"
-#~ msgstr "Sfont"
-
-#~ msgid "On"
-#~ msgstr "Ativade"
-
-#~ msgid "Off"
-#~ msgstr "Disativade"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Ative o disative la figure di sfont."
-
-#~ msgid "Tile background image"
-#~ msgstr "Figure di sfont in stîl mosaic"
-
-#~ msgid "Change colors"
-#~ msgstr "Cambie i colôrs"
-
-#~ msgid "Content"
-#~ msgstr "Contignût"
-
-#~ msgid "Sidebar"
-#~ msgstr "Bare in bande"
-
-#~ msgid "Text"
-#~ msgstr "Test"
-
-#~ msgid "Links"
-#~ msgstr "Leams"
-
-#~ msgid "Advanced"
-#~ msgstr "Avançadis"
-
-#~ msgid "Custom CSS"
-#~ msgstr "CSS personalizât"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Dopre i parametris predeterminâts"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Torne ae grafiche predeterminade."
-
-#~ msgid "Reset back to default."
-#~ msgstr "Torne ai valôrs iniziâi."
-
-#~ msgid "Save design."
-#~ msgstr "Salve la grafiche"
-
-#~ msgid "Group design"
-#~ msgstr "Grafiche dal grup"
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Preferencis pe grafiche salvadis."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Sfonts"
-
-#~ msgid "Profile design"
-#~ msgstr "Grafiche dal profîl"
-
-#~ msgid "Design settings"
-#~ msgstr "Impuestazions grafichis"
-
-#~ msgid "View profile designs"
-#~ msgstr "Cjale grafichis dai profîi"
-
-#~ msgid "Background file"
-#~ msgstr "File dal sfont"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Grafiche"
-
-#~ msgid "Change design"
-#~ msgstr "Cambie la grafiche"
-
-#~ msgid "Change colours"
-#~ msgstr "Cambie i colôrs"
-
-#~ msgid "Use defaults"
-#~ msgstr "Dopre valôrs predeterminâts"
-
-#~ msgid "Upload file"
-#~ msgstr "Cjame sù un file"
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Ativade"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Disativade"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Zonte o cambie la grafiche di %s"
-
-#~ msgid "Design your profile"
-#~ msgstr "Disegne il to profîl"

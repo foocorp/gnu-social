@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:34+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:02+0000\n"
 "Language-Team: Korean <http://translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -298,7 +298,7 @@ msgstr ""
 "프로파일에서 [%1$s 님을 찔러 보거나](../%2$s) 또는 [그 분에게 뭔가 글을 써보"
 "세요](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2071,7 +2071,7 @@ msgstr ""
 "공개 태그를 비공개로 설정하면 기존의 구독이 모두 지워집니다. 그래도 계속 하시"
 "겠습니까?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "리스트를 업데이트할 수 없습니다."
 
@@ -3099,6 +3099,7 @@ msgstr "소스 URL이 필요합니다."
 msgid "Could not create application."
 msgstr "응용 프로그램을 새로 만들 수 없습니다."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "잘못된 이미지입니다."
 
@@ -5425,7 +5426,6 @@ msgstr ""
 "같은 내용을 글을 다시 올릴 수 있을 때까지 기다려야 하는 시간. (초 단위)"
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "로고"
 
@@ -8566,7 +8566,7 @@ msgstr "직접 메시지 보내기"
 msgid "Select recipient:"
 msgstr "수신자 선택:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "서로 구독한 사람이 없습니다."
 
@@ -8993,8 +8993,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "사용"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr "(플러그인을 사용하지 않으면 설명을 볼 수 없습니다.)"
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9725,205 +9728,3 @@ msgstr "올바른 메일 주소가 아닙니다."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "프로필을 저장 할 수 없습니다."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "디자인 설정을 저장할 수 없습니다."
-
-#~ msgid "Could not update your design."
-#~ msgstr "디자인을 업데이트할 수 없습니다."
-
-#~ msgid "Design"
-#~ msgstr "디자인"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "이 StatusNet 사이트의 디자인 설정"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "테마가 없습니다: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "로고 바꾸기"
-
-#~ msgid "Change theme"
-#~ msgstr "테마 바꾸기"
-
-#~ msgid "Site theme"
-#~ msgstr "사이트 테마"
-
-#~ msgid "Theme for the site."
-#~ msgstr "사이트에 대한 테마"
-
-#~ msgid "Custom theme"
-#~ msgstr "사용자 지정 테마"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr ""
-#~ "StatusNet의 사용자 지정 테마를 .ZIP 압축 파일로 업로드할 수 있습니다."
-
-#~ msgid "Change background image"
-#~ msgstr "배경 이미지 바꾸기"
-
-#~ msgid "Background"
-#~ msgstr "배경"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "사이트의 배경 이미지를 업로드할 수 있습니다. 최대 파일 크기는 %1$s 입니다."
-
-#~ msgid "On"
-#~ msgstr "켜기"
-
-#~ msgid "Off"
-#~ msgstr "끄기"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "배경 이미지를 켜거나 끕니다."
-
-#~ msgid "Tile background image"
-#~ msgstr "배경 이미지를 반복 나열"
-
-#~ msgid "Change colors"
-#~ msgstr "색 바꾸기"
-
-#~ msgid "Content"
-#~ msgstr "내용"
-
-#~ msgid "Sidebar"
-#~ msgstr "가장자리 창"
-
-#~ msgid "Text"
-#~ msgstr "문자"
-
-#~ msgid "Links"
-#~ msgstr "링크"
-
-#~ msgid "Advanced"
-#~ msgstr "고급"
-
-#~ msgid "Custom CSS"
-#~ msgstr "사용자 정의 CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "기본값 사용"
-
-#~ msgid "Restore default designs."
-#~ msgstr "기본값 디자인으로 되돌리기."
-
-#~ msgid "Reset back to default."
-#~ msgstr "기본값으로 초기화."
-
-#~ msgid "Save design."
-#~ msgstr "디자인 저장."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "그룹을 편집하려면 로그인해야 합니다."
-
-#~ msgid "Group design"
-#~ msgstr "그룹 디자인"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "배경 이미지와 색 팔레트를 선택해서 그룹의 모양을 설정합니다."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "디자인 설정을 업데이트할 수 없습니다."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "디자인 설정을 저장했습니다."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "자기 자신에게 메시지를 보내지 마세요. (혼자서 조용히 자신에게 말하는 건 어"
-#~ "떤가요?)"
-
-#~ msgid "Backgrounds"
-#~ msgstr "배경"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "배경 서버."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "배경의 웹 경로."
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "SSL 페이지의 배경 서버."
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr "SSL 페이지의 배경 웹 경로."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "배경이 들어 있는 디렉터리."
-
-#~ msgid "Profile design"
-#~ msgstr "프로필 디자인"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr "배경 이미지와 색 팔레트를 선택해서 프로필의 모양을 설정합니다."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "핫도그 맛있게 드세요!"
-
-#~ msgid "Design settings"
-#~ msgstr "디자인 설정"
-
-#~ msgid "View profile designs"
-#~ msgstr "프로필 디자인 보기"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "프로필 디자인 보이거나 감춥니다."
-
-#~ msgid "Background file"
-#~ msgstr "배경 파일"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "디자인 설정을 삭제할 수 없습니다."
-
-#~ msgid "Design configuration"
-#~ msgstr "디자인 설정"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "디자인"
-
-#~ msgid "Change design"
-#~ msgstr "디자인 변경"
-
-#~ msgid "Change colours"
-#~ msgstr "색 변경"
-
-#~ msgid "Use defaults"
-#~ msgstr "기본값 사용"
-
-#~ msgid "Upload file"
-#~ msgstr "파일 업로드"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "개인 배경 이미지를 업로드할 수 있습니다. 최대 파일 크기는 2MB입니다."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "켜기"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "끄기"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "디자인 기본값을 복구했습니다."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "%s 디자인 추가 또는 편집"
-
-#~ msgid "Design your profile"
-#~ msgstr "프로필 디자인"

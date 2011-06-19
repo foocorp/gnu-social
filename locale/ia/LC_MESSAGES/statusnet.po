@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:27+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:57+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -299,7 +299,7 @@ msgstr ""
 "Tu pote tentar [dar un pulsata a %1$s](../%2$s) in su profilo o [publicar un "
 "message a su attention](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2108,7 +2108,7 @@ msgstr ""
 "Si tu mitte un etiquetta public a private, tote le subscriptiones existente "
 "a illo essera permanentemente cancellate. Es tu secur de voler continuar?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "Non poteva actualisar le lista."
 
@@ -3157,6 +3157,7 @@ msgstr "Le URL de origine es requirite."
 msgid "Could not create application."
 msgstr "Non poteva crear application."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Imagine invalide."
 
@@ -5517,7 +5518,6 @@ msgstr ""
 "publicar le mesme cosa de novo."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Logotypo"
 
@@ -8718,7 +8718,7 @@ msgstr "Inviar un nota directe"
 msgid "Select recipient:"
 msgstr "Selige destinatario:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Nulle subscriptores mutual."
 
@@ -9147,8 +9147,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Activar"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr "(Le descriptiones de plug-ins non es disponibile si disactivate.)"
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9895,211 +9898,3 @@ msgstr "Adresse de e-mail invalide."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Non poteva salveguardar le profilo."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Impossibile salveguardar le configurationes del apparentia."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Non poteva actualisar le apparentia."
-
-#~ msgid "Design"
-#~ msgstr "Apparentia"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Configuration del apparentia de iste sito StatusNet"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Thema non disponibile: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Cambiar logotypo"
-
-#~ msgid "Change theme"
-#~ msgstr "Cambiar thema"
-
-#~ msgid "Site theme"
-#~ msgstr "Thema del sito"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Le thema de apparentia pro le sito."
-
-#~ msgid "Custom theme"
-#~ msgstr "Apparentia personalisate"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr ""
-#~ "Es possibile incargar un apparentia personalisate de StatusNet in un "
-#~ "archivo .ZIP."
-
-#~ msgid "Change background image"
-#~ msgstr "Cambiar imagine de fundo"
-
-#~ msgid "Background"
-#~ msgstr "Fundo"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Tu pote incargar un imagine de fundo pro le sito. Le dimension maximal "
-#~ "del file es %1$s."
-
-#~ msgid "On"
-#~ msgstr "Active"
-
-#~ msgid "Off"
-#~ msgstr "Non active"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Activar o disactivar le imagine de fundo."
-
-#~ msgid "Tile background image"
-#~ msgstr "Tegular le imagine de fundo"
-
-#~ msgid "Change colors"
-#~ msgstr "Cambiar colores"
-
-#~ msgid "Content"
-#~ msgstr "Contento"
-
-#~ msgid "Sidebar"
-#~ msgstr "Barra lateral"
-
-#~ msgid "Text"
-#~ msgstr "Texto"
-
-#~ msgid "Links"
-#~ msgstr "Ligamines"
-
-#~ msgid "Advanced"
-#~ msgstr "Avantiate"
-
-#~ msgid "Custom CSS"
-#~ msgstr "CSS personalisate"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Usar predefinitiones"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Restaurar apparentias predefinite."
-
-#~ msgid "Reset back to default."
-#~ msgstr "Revenir al predefinitiones."
-
-#~ msgid "Save design."
-#~ msgstr "Salveguardar apparentia."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "Tu debe aperir un session pro modificar un gruppo."
-
-#~ msgid "Group design"
-#~ msgstr "Apparentia del gruppo"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Personalisa le apparentia de tu gruppo con un imagine de fundo e un "
-#~ "paletta de colores de tu preferentia."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Impossibile actualisar le configurationes del apparentia."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Preferentias de apparentia salveguardate."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "Non invia un message a te mesme; il suffice susurrar lo discretemente."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Fundos"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "Servitor pro fundos de schermo."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "Cammino web verso fundos de schermo."
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "Servitor pro fundos de schermo in paginas SSL."
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr "Cammino web verso fundos de schermo in paginas SSL."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Cammino a ubi se trova le fundos de schermo."
-
-#~ msgid "Profile design"
-#~ msgstr "Apparentia del profilo"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Personalisa le apparentia de tu profilo con un imagine de fundo e un "
-#~ "paletta de colores de tu preferentia."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Bon appetito!"
-
-#~ msgid "Design settings"
-#~ msgstr "Configuration del apparentia"
-
-#~ msgid "View profile designs"
-#~ msgstr "Vider apparentias de profilo"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Monstrar o celar apparentias de profilo."
-
-#~ msgid "Background file"
-#~ msgstr "File de fundo"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Impossibile deler configuration de apparentia."
-
-#~ msgid "Design configuration"
-#~ msgstr "Configuration del apparentia"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Apparentia"
-
-#~ msgid "Change design"
-#~ msgstr "Cambiar de apparentia"
-
-#~ msgid "Change colours"
-#~ msgstr "Cambiar colores"
-
-#~ msgid "Use defaults"
-#~ msgstr "Usar predefinitiones"
-
-#~ msgid "Upload file"
-#~ msgstr "Incargar file"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Tu pote actualisar tu imagine de fundo personal. Le dimension maximal del "
-#~ "file es 2MB."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Active"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Non active"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Apparentia predefinite restaurate."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Adder o modificar apparentia de %s"
-
-#~ msgid "Design your profile"
-#~ msgstr "Designar tu profilo"

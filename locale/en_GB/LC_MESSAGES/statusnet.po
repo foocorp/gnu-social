@@ -16,17 +16,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:09+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:41+0000\n"
 "Language-Team: British English <http://translatewiki.net/wiki/Portal:en-gb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: en-gb\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -300,7 +300,7 @@ msgstr ""
 "You can try to [nudge %1$s](../%2$s) from their profile or [post something "
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2153,7 +2153,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "Could not update user."
@@ -3225,6 +3225,7 @@ msgstr "Source URL is required."
 msgid "Could not create application."
 msgstr "Could not create application."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "Invalid size."
@@ -5620,7 +5621,6 @@ msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Logout"
 
@@ -8801,7 +8801,7 @@ msgstr "Send a direct notice"
 msgid "Select recipient:"
 msgstr "Select a carrier"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "Not subscribed!"
@@ -9264,8 +9264,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -10035,190 +10037,3 @@ msgstr "Not a valid e-mail address."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Could not save profile."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Unable to save your design settings."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Could not update your design."
-
-#~ msgid "Design"
-#~ msgstr "Design"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Theme not available: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Change logo"
-
-#~ msgid "Change theme"
-#~ msgstr "Change theme"
-
-#~ msgid "Site theme"
-#~ msgstr "Site theme"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Theme for the site."
-
-#~ msgid "Custom theme"
-#~ msgstr "Custom theme"
-
-#~ msgid "Change background image"
-#~ msgstr "Change background image"
-
-#~ msgid "Background"
-#~ msgstr "Background"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-
-#~ msgid "On"
-#~ msgstr "On"
-
-#~ msgid "Off"
-#~ msgstr "Off"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Turn background image on or off."
-
-#~ msgid "Tile background image"
-#~ msgstr "Tile background image"
-
-#, fuzzy
-#~ msgid "Change colors"
-#~ msgstr "Change colours"
-
-#~ msgid "Content"
-#~ msgstr "Content"
-
-#~ msgid "Sidebar"
-#~ msgstr "Sidebar"
-
-#~ msgid "Text"
-#~ msgstr "Text"
-
-#~ msgid "Links"
-#~ msgstr "Links"
-
-#, fuzzy
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Use defaults"
-
-#, fuzzy
-#~ msgid "Restore default designs."
-#~ msgstr "Restore default designs"
-
-#, fuzzy
-#~ msgid "Reset back to default."
-#~ msgstr "Reset back to default"
-
-#, fuzzy
-#~ msgid "Save design."
-#~ msgstr "Save design"
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "You must be logged in to edit a group."
-
-#~ msgid "Group design"
-#~ msgstr "Group design"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Customise the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-
-#, fuzzy
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Unable to save your design settings."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Design preferences saved."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Backgrounds"
-
-#, fuzzy
-#~ msgid "Server for backgrounds."
-#~ msgstr "Server for themes"
-
-#~ msgid "Profile design"
-#~ msgstr "Profile design"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Customise the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "Save site settings"
-
-#~ msgid "View profile designs"
-#~ msgstr "View profile designs"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Show or hide profile designs."
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "Background"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Unable to delete design setting."
-
-#~ msgid "Design configuration"
-#~ msgstr "Design configuration"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Design"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "Save design"
-
-#~ msgid "Change colours"
-#~ msgstr "Change colours"
-
-#~ msgid "Use defaults"
-#~ msgstr "Use defaults"
-
-#~ msgid "Upload file"
-#~ msgstr "Upload file"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "On"
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Off"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "Design defaults restored."
-
-#~ msgid "Design your profile"
-#~ msgstr "Design your profile"

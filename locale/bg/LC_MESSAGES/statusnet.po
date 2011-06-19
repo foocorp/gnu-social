@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:01+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:36+0000\n"
 "Language-Team: Bulgarian <http://translatewiki.net/wiki/Portal:bg>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: bg\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -290,7 +290,7 @@ msgid ""
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2128,7 +2128,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "Грешка при обновяване на потребителя."
@@ -3202,6 +3202,7 @@ msgstr "Името е задължително."
 msgid "Could not create application."
 msgstr "Грешка при отбелязване като любима."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "Неправилен размер."
@@ -5545,7 +5546,6 @@ msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Изход"
 
@@ -8767,7 +8767,7 @@ msgstr "Изпращане на пряко съобщеие"
 msgid "Select recipient:"
 msgstr "Изберете оператор"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "Не сте абонирани!"
@@ -9230,8 +9230,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -10012,172 +10014,3 @@ msgstr "Неправилен адрес на е-поща."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Грешка при запазване на профила."
-
-#, fuzzy
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Грешка при записване настройките за Twitter"
-
-#, fuzzy
-#~ msgid "Could not update your design."
-#~ msgstr "Грешка при обновяване на потребителя."
-
-#~ msgid "Design"
-#~ msgstr "Дизайн"
-
-#, fuzzy
-#~ msgid "Theme not available: %s."
-#~ msgstr "Страницата не е достъпна във вида медия, който приемате"
-
-#~ msgid "Change logo"
-#~ msgstr "Смяна на логото"
-
-#, fuzzy
-#~ msgid "Change theme"
-#~ msgstr "Промяна"
-
-#~ msgid "Site theme"
-#~ msgstr "Път до сайта"
-
-#, fuzzy
-#~ msgid "Theme for the site."
-#~ msgstr "Излизане от сайта"
-
-#, fuzzy
-#~ msgid "Custom theme"
-#~ msgstr "Нова бележка"
-
-#~ msgid "Change background image"
-#~ msgstr "Смяна на изображението за фон"
-
-#~ msgid "Background"
-#~ msgstr "Фон"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Можете да качите лично изображение за фон. Максималната големина на файла "
-#~ "е 2MB."
-
-#~ msgid "On"
-#~ msgstr "Вкл."
-
-#~ msgid "Off"
-#~ msgstr "Изкл."
-
-#, fuzzy
-#~ msgid "Turn background image on or off."
-#~ msgstr "Смяна на изображението за фон"
-
-#, fuzzy
-#~ msgid "Tile background image"
-#~ msgstr "Смяна на изображението за фон"
-
-#, fuzzy
-#~ msgid "Change colors"
-#~ msgstr "Смяна на цветовете"
-
-#~ msgid "Content"
-#~ msgstr "Съдържание"
-
-#~ msgid "Sidebar"
-#~ msgstr "Страничен панел"
-
-#~ msgid "Text"
-#~ msgstr "Текст"
-
-#~ msgid "Links"
-#~ msgstr "Лиценз"
-
-#, fuzzy
-#~ msgid "Restore default designs."
-#~ msgstr "Грешка при записване настройките за Twitter"
-
-#, fuzzy
-#~ msgid "Save design."
-#~ msgstr "Запазване настройките на сайта"
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "За да редактирате група, трябва да сте влезли."
-
-#, fuzzy
-#~ msgid "Group design"
-#~ msgstr "Групи"
-
-#, fuzzy
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Грешка при записване настройките за Twitter"
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Настройките на е-поща са запазени."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "Не може да изпращате съобщения до себе си. По-добре си го кажете на себе "
-#~ "си тихичко."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Фонове"
-
-#, fuzzy
-#~ msgid "Server for backgrounds."
-#~ msgstr "Излизане от сайта"
-
-#, fuzzy
-#~ msgid "Profile design"
-#~ msgstr "Настройки на профила"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "Запазване настройките на сайта"
-
-#~ msgid "View profile designs"
-#~ msgstr "Редактиране на профила"
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "Фон"
-
-#, fuzzy
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Грешка при записване настройките за Twitter"
-
-#~ msgid "Design configuration"
-#~ msgstr "Настройка на оформлението"
-
-#, fuzzy
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Версия"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "Запазване настройките на сайта"
-
-#~ msgid "Change colours"
-#~ msgstr "Смяна на цветовете"
-
-#~ msgid "Upload file"
-#~ msgstr "Качване на файл"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Можете да качите лично изображение за фон. Максималната големина на файла "
-#~ "е 2MB."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Вкл."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Изкл."
-
-#, fuzzy
-#~ msgid "Design your profile"
-#~ msgstr "Потребителски профил"

@@ -12,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:26+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:56+0000\n"
 "Language-Team: Hungarian <http://translatewiki.net/wiki/Portal:hu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: hu\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -294,7 +294,7 @@ msgid ""
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2126,7 +2126,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr ""
 
@@ -3187,6 +3187,7 @@ msgstr "Meg kell adnod forrás URL-t."
 msgid "Could not create application."
 msgstr "Nem sikerült létrehozni az alkalmazást."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "Érvénytelen méret."
@@ -8682,7 +8683,7 @@ msgstr "Küldjünk egy üzenetet közvetlenül"
 msgid "Select recipient:"
 msgstr "Válassz egy szolgáltatót"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "Nem követed figyelemmel!"
@@ -9125,8 +9126,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Engedélyezés"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr "(A kiegészítők leírásai nem elérhetőek, ha le vannak tiltva.)"
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9896,182 +9900,3 @@ msgstr "Érvénytelen email cím."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Nem sikerült menteni a profilt."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "Nem sikerült elmenteni a megjelenítési beállításaid."
-
-#~ msgid "Could not update your design."
-#~ msgstr "Nem sikerült frissíteni a megjelenítést."
-
-#~ msgid "Design"
-#~ msgstr "Megjelenés"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "A StatusNet-oldal kinézetének beállítása"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "A téma nem áll rendelkezésre: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Logó megváltoztatása"
-
-#~ msgid "Change theme"
-#~ msgstr "Téma megváltoztatása"
-
-#~ msgid "Site theme"
-#~ msgstr "Webhely-téma"
-
-#~ msgid "Theme for the site."
-#~ msgstr "A webhely témája."
-
-#~ msgid "Custom theme"
-#~ msgstr "Egyéni téma"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "Feltölthetsz egy egyedi StatusNet-témát ZIP archívumon keresztül."
-
-#~ msgid "Change background image"
-#~ msgstr "Háttérkép megváltoztatása"
-
-#~ msgid "Background"
-#~ msgstr "Háttér"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Feltölthetsz egy háttérképet az oldalnak. A fájl maximális mérete %1$s "
-#~ "lehet."
-
-#~ msgid "On"
-#~ msgstr "Be"
-
-#~ msgid "Off"
-#~ msgstr "Ki"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Háttérkép be- vagy kikapcsolása."
-
-#~ msgid "Tile background image"
-#~ msgstr "Háttérkép csempézése"
-
-#~ msgid "Change colors"
-#~ msgstr "Színek módosítása"
-
-#~ msgid "Content"
-#~ msgstr "Tartalom"
-
-#~ msgid "Sidebar"
-#~ msgstr "Oldalsáv"
-
-#~ msgid "Text"
-#~ msgstr "Szöveg"
-
-#~ msgid "Links"
-#~ msgstr "Hivatkozások"
-
-#~ msgid "Advanced"
-#~ msgstr "Haladó"
-
-#~ msgid "Custom CSS"
-#~ msgstr "Egyedi CSS"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Alapértelmezett beállítások használata"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Alapértelmezett beállítások használata"
-
-#~ msgid "Reset back to default."
-#~ msgstr "Alapértelmezett beállítások visszaállítása"
-
-#~ msgid "Save design."
-#~ msgstr "A kinézet mentése."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "Csoport szerkesztéséhez be kell jelentkezned."
-
-#~ msgid "Group design"
-#~ msgstr "A csoport megjelenése"
-
-#, fuzzy
-#~ msgid "Unable to update your design settings."
-#~ msgstr "Nem sikerült elmenteni a megjelenítési beállításaid."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "Design beállítások elmentve."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "Ne küldj üzenetet magadnak, helyette mondd el halkan."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Hátterek"
-
-#, fuzzy
-#~ msgid "Server for backgrounds."
-#~ msgstr "A webhely témája."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "Hátterek webes elérési útja."
-
-#, fuzzy
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "A nyelvi fájlok elérési útvonala"
-
-#~ msgid "Profile design"
-#~ msgstr "Profilterv"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "Mentsük el a webhely beállításait"
-
-#~ msgid "View profile designs"
-#~ msgstr "Profiltervek megtekintése"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Profiltervek megjelenítése vagy elrejtése"
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "Háttér"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "Nem sikerült törölni a megjelenés beállításait."
-
-#~ msgid "Design configuration"
-#~ msgstr "A megjelenés beállításai"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "Design mentése"
-
-#~ msgid "Change colours"
-#~ msgstr "Színek megváltoztatása"
-
-#~ msgid "Use defaults"
-#~ msgstr "Alapértelmezések használata"
-
-#~ msgid "Upload file"
-#~ msgstr "Fájl feltöltése"
-
-#, fuzzy
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Feltöltheted a személyes avatarodat. A fájl maximális mérete %s lehet."
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Be"
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Ki"
-
-#~ msgid "Design your profile"
-#~ msgstr "Profil tervezése"

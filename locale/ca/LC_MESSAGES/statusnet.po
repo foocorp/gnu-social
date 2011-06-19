@@ -16,17 +16,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:04+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:38+0000\n"
 "Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -310,7 +310,7 @@ msgstr ""
 "Sigueu el primer en [enviar sobre aquest tema](%%%%action.newnotice%%%%?"
 "status_textarea=%s)!"
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2120,7 +2120,7 @@ msgstr ""
 "En definir una etiqueta pública com a privada eliminarà permanentment totes "
 "les subscripcions que hi estan associades. Encara voleu continuar?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "No s'ha pogut actualitzar la llista."
 
@@ -3174,6 +3174,7 @@ msgstr "URL d'origen requerida."
 msgid "Could not create application."
 msgstr "No s'ha pogut crear l'aplicació."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "La imatge no és vàlida."
 
@@ -5542,7 +5543,6 @@ msgstr ""
 "de nou."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Logotip"
 
@@ -8758,7 +8758,7 @@ msgstr "Envia un avís directe"
 msgid "Select recipient:"
 msgstr "Seleccioneu el destinatari"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "No teniu subscriptors mutus."
 
@@ -9187,8 +9187,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Habilita"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 "(Les descripcions dels connectors no són disponibles en ser inhabiitats.)"
 
@@ -9929,208 +9932,3 @@ msgstr "Adreça de correu electrònic no vàlida."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "No s'ha pogut desar el perfil."
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "No s'han pogut desar els paràmetres de disseny."
-
-#~ msgid "Could not update your design."
-#~ msgstr "No s'ha pogut actualitzar el vostre disseny."
-
-#~ msgid "Design"
-#~ msgstr "Disseny"
-
-#~ msgid "Design settings for this StatusNet site"
-#~ msgstr "Paràmetres de disseny d'aquest lloc StatusNet."
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "Tema no disponible: %s."
-
-#~ msgid "Change logo"
-#~ msgstr "Canvia el logotip"
-
-#~ msgid "Change theme"
-#~ msgstr "Canvia el tema"
-
-#~ msgid "Site theme"
-#~ msgstr "Tema del lloc"
-
-#~ msgid "Theme for the site."
-#~ msgstr "Tema del lloc."
-
-#~ msgid "Custom theme"
-#~ msgstr "Tema personalitzat"
-
-#~ msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-#~ msgstr "Podeu pujar un tema personalitzat de l'StatusNet amb un arxiu ZIP."
-
-#~ msgid "Change background image"
-#~ msgstr "Canvia la imatge de fons"
-
-#~ msgid "Background"
-#~ msgstr "Fons"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "Podeu pujar una imatge de fons per al lloc. La mida màxima de fitxer és %1"
-#~ "$s."
-
-#~ msgid "On"
-#~ msgstr "Activada"
-
-#~ msgid "Off"
-#~ msgstr "Desactivada"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "Activa o desactiva la imatge de fons."
-
-#~ msgid "Tile background image"
-#~ msgstr "Posa en mosaic la imatge de fons"
-
-#~ msgid "Change colors"
-#~ msgstr "Canvia els colors"
-
-#~ msgid "Content"
-#~ msgstr "Contingut"
-
-#~ msgid "Sidebar"
-#~ msgstr "Barra lateral"
-
-#~ msgid "Text"
-#~ msgstr "Text"
-
-#~ msgid "Links"
-#~ msgstr "Enllaços"
-
-#~ msgid "Advanced"
-#~ msgstr "Avançat"
-
-#~ msgid "Custom CSS"
-#~ msgstr "CSS personalitzat"
-
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "Utilitza els paràmetres per defecte"
-
-#~ msgid "Restore default designs."
-#~ msgstr "Restaura els dissenys per defecte."
-
-#~ msgid "Reset back to default."
-#~ msgstr "Torna a restaurar els paràmetres per defecte."
-
-#~ msgid "Save design."
-#~ msgstr "Desa el disseny."
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "Heu d'iniciar una sessió per editar un grup."
-
-#~ msgid "Group design"
-#~ msgstr "Disseny de grup"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Personalitzeu l'aspecte del vostre grup amb una imatge de fons i una "
-#~ "paleta de colors de la vostra elecció."
-
-#~ msgid "Unable to update your design settings."
-#~ msgstr "No s'han pogut actualitzar els paràmetres de disseny."
-
-#~ msgid "Design preferences saved."
-#~ msgstr "S'han desat les preferències de disseny."
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr "No t'enviïs missatges a tu mateix, simplement dir-te això."
-
-#~ msgid "Backgrounds"
-#~ msgstr "Fons"
-
-#~ msgid "Server for backgrounds."
-#~ msgstr "Servidor de fons."
-
-#~ msgid "Web path to backgrounds."
-#~ msgstr "Camí web de fons."
-
-#~ msgid "Server for backgrounds on SSL pages."
-#~ msgstr "Servidor de fons a pàgines SSL."
-
-#~ msgid "Web path to backgrounds on SSL pages."
-#~ msgstr "Camí web de fons a pàgines SSL."
-
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "Directori on es troben els fons."
-
-#~ msgid "Profile design"
-#~ msgstr "Disseny del perfil"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "Personalitzeu l'aspecte del vostre perfil amb una imatge de fons o una "
-#~ "paleta de colors de la vostra elecció."
-
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "Gaudiu de l'entrepà!"
-
-#~ msgid "Design settings"
-#~ msgstr "Paràmetres de disseny"
-
-#~ msgid "View profile designs"
-#~ msgstr "Visualitza els dissenys de perfil"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "Mostra o amaga els dissenys de perfil."
-
-#~ msgid "Background file"
-#~ msgstr "Fitxer de fons"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "No s'ha pogut eliminar el paràmetre de disseny."
-
-#~ msgid "Design configuration"
-#~ msgstr "Configuració del disseny"
-
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "Disseny"
-
-#~ msgid "Change design"
-#~ msgstr "Canvia el disseny"
-
-#~ msgid "Change colours"
-#~ msgstr "Canvia els colors"
-
-#~ msgid "Use defaults"
-#~ msgstr "Utilitza els paràmetres per defecte"
-
-#~ msgid "Upload file"
-#~ msgstr "Puja un fitxer"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "Podeu pujar la vostra imatge de fons personal. La mida màxima del fitxer "
-#~ "és 2MB."
-
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "Activada"
-
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "Desactivada"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "S'han restaurat els paràmetres de disseny per defecte."
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "Add or edit %s design"
-#~ msgstr "Afegeix o edita el disseny de %s"
-
-#~ msgid "Design your profile"
-#~ msgstr "Dissenyeu el vostre perfil"

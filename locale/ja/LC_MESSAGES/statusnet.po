@@ -14,17 +14,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:30+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:00+0000\n"
 "Language-Team: Japanese <http://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-06-18 15:53:57+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -299,7 +299,7 @@ msgstr ""
 "最初の [このトピック投稿](%%%%action.newnotice%%%%?status_textarea=%s) をして"
 "ください!"
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -2156,7 +2156,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #, fuzzy
 msgid "Could not update list."
 msgstr "ユーザを更新できませんでした。"
@@ -3242,6 +3242,7 @@ msgstr "ソースURLが必要です。"
 msgid "Could not create application."
 msgstr "アプリケーションを作成できません。"
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 #, fuzzy
 msgid "Invalid image."
 msgstr "不正なサイズ。"
@@ -5685,7 +5686,6 @@ msgstr ""
 "いか。"
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "ロゴ"
 
@@ -8971,7 +8971,7 @@ msgstr "直接つぶやきを送る"
 msgid "Select recipient:"
 msgstr "キャリア選択"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #, fuzzy
 msgid "No mutual subscribers."
 msgstr "フォローしていません！"
@@ -9438,8 +9438,10 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
+#. TRANS: Plugin description for a disabled plugin.
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -10207,200 +10209,3 @@ msgstr "有効なメールアドレスではありません。"
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "プロフィールを保存できませんでした。"
-
-#~ msgid "Unable to save your design settings."
-#~ msgstr "あなたのデザイン設定を保存できません。"
-
-#~ msgid "Could not update your design."
-#~ msgstr "デザインを更新できませんでした。"
-
-#~ msgid "Design"
-#~ msgstr "デザイン"
-
-#~ msgid "Theme not available: %s."
-#~ msgstr "ＩＭ が利用不可。"
-
-#~ msgid "Change logo"
-#~ msgstr "ロゴの変更"
-
-#~ msgid "Change theme"
-#~ msgstr "テーマ変更"
-
-#~ msgid "Site theme"
-#~ msgstr "サイトテーマ"
-
-#~ msgid "Theme for the site."
-#~ msgstr "サイトのテーマ"
-
-#, fuzzy
-#~ msgid "Custom theme"
-#~ msgstr "サイトテーマ"
-
-#~ msgid "Change background image"
-#~ msgstr "バックグラウンドイメージの変更"
-
-#~ msgid "Background"
-#~ msgstr "バックグラウンド"
-
-#~ msgid ""
-#~ "You can upload a background image for the site. The maximum file size is %"
-#~ "1$s."
-#~ msgstr ""
-#~ "このサイト用にバックグラウンドイメージをアップロードできます。最大ファイル"
-#~ "サイズは %1$s。"
-
-#~ msgid "On"
-#~ msgstr "オン"
-
-#~ msgid "Off"
-#~ msgstr "オフ"
-
-#~ msgid "Turn background image on or off."
-#~ msgstr "バックグラウンドイメージのオンまたはオフ。"
-
-#~ msgid "Tile background image"
-#~ msgstr "タイルバックグラウンドイメージ"
-
-#, fuzzy
-#~ msgid "Change colors"
-#~ msgstr "色の変更"
-
-#~ msgid "Content"
-#~ msgstr "内容"
-
-#~ msgid "Sidebar"
-#~ msgstr "サイドバー"
-
-#~ msgid "Text"
-#~ msgstr "テキスト"
-
-#~ msgid "Links"
-#~ msgstr "リンク"
-
-#, fuzzy
-#~ msgctxt "BUTTON"
-#~ msgid "Use defaults"
-#~ msgstr "デフォルトを使用"
-
-#, fuzzy
-#~ msgid "Restore default designs."
-#~ msgstr "デフォルトデザインに戻す。"
-
-#, fuzzy
-#~ msgid "Reset back to default."
-#~ msgstr "デフォルトへリセットする"
-
-#, fuzzy
-#~ msgid "Save design."
-#~ msgstr "デザインの保存"
-
-#~ msgid "You must be logged in to edit a group."
-#~ msgstr "グループを編集するにはログインしていなければなりません。"
-
-#~ msgid "Group design"
-#~ msgstr "グループデザイン"
-
-#~ msgid ""
-#~ "Customize the way your group looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "あなたが選んだパレットの色とバックグラウンドイメージであなたのグループをカ"
-#~ "スタマイズしてください。"
-
-#, fuzzy
-#~ msgid "Unable to update your design settings."
-#~ msgstr "あなたのデザイン設定を保存できません。"
-
-#~ msgid "Design preferences saved."
-#~ msgstr "デザイン設定が保存されました。"
-
-#~ msgid ""
-#~ "Don't send a message to yourself; just say it to yourself quietly instead."
-#~ msgstr ""
-#~ "自分自身にメッセージを送ることはできません; かわりに独り言を言いましょう。"
-
-#~ msgid "Backgrounds"
-#~ msgstr "バックグラウンド"
-
-#, fuzzy
-#~ msgid "Server for backgrounds."
-#~ msgstr "サイトのテーマ"
-
-#, fuzzy
-#~ msgid "Directory where backgrounds are located."
-#~ msgstr "ロケールへのディレクトリパス"
-
-#~ msgid "Profile design"
-#~ msgstr "プロファイルデザイン"
-
-#~ msgid ""
-#~ "Customize the way your profile looks with a background image and a colour "
-#~ "palette of your choice."
-#~ msgstr ""
-#~ "あなたのプロフィールがバックグラウンド画像とあなたの選択の色のパレットで見"
-#~ "る方法をカスタマイズしてください。"
-
-#, fuzzy
-#~ msgid "Enjoy your hotdog!"
-#~ msgstr "あなたのhotdogを楽しんでください!"
-
-#, fuzzy
-#~ msgid "Design settings"
-#~ msgstr "サイト設定の保存"
-
-#~ msgid "View profile designs"
-#~ msgstr "プロファイルデザインを表示"
-
-#~ msgid "Show or hide profile designs."
-#~ msgstr "プロファイルデザインの表示または非表示"
-
-#, fuzzy
-#~ msgid "Background file"
-#~ msgstr "バックグラウンド"
-
-#~ msgid "Unable to delete design setting."
-#~ msgstr "デザイン設定を削除できません。"
-
-#~ msgid "Design configuration"
-#~ msgstr "デザイン設定"
-
-#, fuzzy
-#~ msgctxt "MENU"
-#~ msgid "Design"
-#~ msgstr "デザイン"
-
-#, fuzzy
-#~ msgid "Change design"
-#~ msgstr "デザインの保存"
-
-#~ msgid "Change colours"
-#~ msgstr "色の変更"
-
-#~ msgid "Use defaults"
-#~ msgstr "デフォルトを使用"
-
-#~ msgid "Upload file"
-#~ msgstr "ファイルアップロード"
-
-#~ msgid ""
-#~ "You can upload your personal background image. The maximum file size is "
-#~ "2MB."
-#~ msgstr ""
-#~ "自分のバックグラウンド画像をアップロードできます。最大ファイルサイズは "
-#~ "2MB です。"
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "On"
-#~ msgstr "オン"
-
-#, fuzzy
-#~ msgctxt "RADIO"
-#~ msgid "Off"
-#~ msgstr "オフ"
-
-#~ msgid "Design defaults restored."
-#~ msgstr "デフォルトのデザインを回復。"
-
-#~ msgid "Design your profile"
-#~ msgstr "あなたのプロファイルをデザイン"
