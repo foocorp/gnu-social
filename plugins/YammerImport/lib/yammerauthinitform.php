@@ -45,6 +45,7 @@ class YammerAuthInitForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend.
         $this->out->element('legend', null, _m('Connect to Yammer'));
     }
 
@@ -59,8 +60,12 @@ class YammerAuthInitForm extends Form
         $this->out->hidden('subaction', 'authinit');
 
         $this->out->elementStart('fieldset');
-        $this->out->submit('submit', _m('Start authentication'), 'submit', null, _m('Request authorization to connect to Yammer account'));
-        $this->out->submit('change-apikey', _m('Change API key'));
+        // TRANS: Button text for starting Yammer authentication.
+        $this->out->submit('submit', _m('BUTTON','Start authentication'),
+                           // TRANS: Button title for starting Yammer authentication.
+                           'submit', null, _m('Request authorization to connect to a Yammer account.'));
+        // TRANS: Button text for starting changing a Yammer API key.
+        $this->out->submit('change-apikey', _m('BUTTON','Change API key'));
         $this->out->elementEnd('fieldset');
     }
 
