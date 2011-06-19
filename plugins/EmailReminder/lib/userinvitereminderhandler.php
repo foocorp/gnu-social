@@ -25,6 +25,7 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
+
 if (!defined('STATUSNET')) {
     exit(1);
 }
@@ -69,7 +70,7 @@ class UserInviteReminderHandler extends UserReminderHandler {
     {
         $invDate = strtotime($invitation->created);
         $now     = strtotime('now');
-        
+
         // Days since first invitation was sent
         $days = ($now - $invDate) / 86499; // 60*60*24 = 86499
 
@@ -79,7 +80,8 @@ class UserInviteReminderHandler extends UserReminderHandler {
         case ($days > 1 && $days < 2):
             if (Email_reminder::needsReminder(self::INVITE_REMINDER, $invitation, 1)) {
                 common_log(LOG_INFO, "Sending one day invitation reminder to {$invitation->address}", __FILE__);
-                $subject = _m("Reminder - You have been invited to join {$siteName}!");
+                // TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+                $subject = sprintf(_m('Reminder - You have been invited to join %s!'),$siteName);
                 return EmailReminderPlugin::sendReminder(
                     self::INVITE_REMINDER,
                     $invitation,
@@ -92,7 +94,8 @@ class UserInviteReminderHandler extends UserReminderHandler {
         case ($days > 3 && $days < 4):
             if (Email_reminder::needsReminder(self::INVITE_REMINDER, $invitation, 3)) {
                 common_log(LOG_INFO, "Sending three day invitation reminder to {$invitation->address}", __FILE__);
-                $subject = _m("Final reminder - you have been invited to join {$siteName}!");
+                // TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
+                $subject = sprintf(_m('Final reminder - you have been invited to join %s!'),$siteName);
                     return EmailReminderPlugin::sendReminder(
                         self::INVITE_REMINDER,
                         $invitation,
@@ -102,9 +105,8 @@ class UserInviteReminderHandler extends UserReminderHandler {
                 } else {
                     return true;
                 }
-            break;        
+            break;
         }
         return true;
     }
-
 }
