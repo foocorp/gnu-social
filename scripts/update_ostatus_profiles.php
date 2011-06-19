@@ -133,7 +133,7 @@ class LooseOstatusProfile extends Ostatus_profile
 
         if (!$response->isOk()) {
             // TRANS: Exception. %s is a profile URL.
-            throw new Exception(sprintf(_m('Could not reach profile page %s.'),$profile_url));
+            throw new Exception(sprintf(_('Could not reach profile page %s.'),$profile_url));
         }
 
         // Check if we have a non-canonical URL
