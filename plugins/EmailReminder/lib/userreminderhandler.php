@@ -1,5 +1,4 @@
 <?php
-
 /**
  * StatusNet - the distributed open-source microblogging tool
  *
@@ -25,6 +24,7 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
+
 if (!defined('STATUSNET')) {
     exit(1);
 }
@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * @link      http://status.net/
  */
 class UserReminderHandler extends QueueHandler {
-
     /**
      * Send the next email reminder to the confirm address
      *
