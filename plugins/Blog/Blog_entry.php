@@ -118,12 +118,13 @@ class Blog_entry extends Managed_DataObject
         $be             = new Blog_entry();
         $be->id         = (string) new UUID();
         $be->profile_id = $profile->id;
-        $be->title      = htmlspecialchars($title);
-        $be->content    = $content;
+        $be->title      = $title; // Note: not HTML-protected
+        $be->content    = self::purify($content);
         
         if (array_key_exists('summary', $options)) {
-            $be->summary = $options['summary'];
+            $be->summary = self::purify($options['summary']);
         } else {
+            // Already purified
             $be->summary = self::summarize($content);
         }
 
@@ -175,13 +176,10 @@ class Blog_entry extends Managed_DataObject
                 XMLStringer::estring('a', array('href' => $url,
                                                 'class' => 'blog-entry'),
                                      _('More...'));
-            $content = html_entity_decode(strip_tags($text), ENT_QUOTES, 'UTF-8');
-
+            $content = html_entity_decode(strip_tags($be->summary), ENT_QUOTES, 'UTF-8');
         } else {
-            $options['rendered'] = $be->content . ' ' . 
-                XMLStringer::estring('a', array('href' => $url,
-                                                'class' => 'blog-entry'),
-                                     _('More...'));
+            $options['rendered'] = $be->content;
+            $content = html_entity_decode(strip_tags($be->content), ENT_QUOTES, 'UTF-8');
         }
 
 
@@ -243,5 +241,16 @@ class Blog_entry extends Managed_DataObject
         $obj->link    = $this->url;
 
         return $obj;
+    }
+
+    /**
+     * Clean up input HTML
+     */
+    static function purify($html)
+    {
+        require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
+        $config = array('safe' => 1,
+                        'deny_attribute' => 'id,style,on*');
+        return htmLawed($html, $config);
     }
 }

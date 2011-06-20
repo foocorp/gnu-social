@@ -72,10 +72,14 @@ class BlogEntryListItem extends NoticeListItemAdapter
         $out->elementEnd('h4');
 
         if (!empty($entry->summary)) {
-            $out->element('div', 'blog-entry-summary', $entry->summary);
+            $out->elementStart('div', 'blog-entry-summary');
+            $out->raw($entry->summary);
+            $out->elementEnd('div');
         } else {
             // XXX: hide content initially; click More... for full text.
-            $out->element('div', 'blog-entry-content', $entry->content);
+            $out->elementStart('div', 'blog-entry-content');
+            $out->raw($entry->content);
+            $out->elementEnd('div');
         }
     }
 }
