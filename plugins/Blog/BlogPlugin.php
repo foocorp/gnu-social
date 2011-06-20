@@ -1,0 +1,210 @@
+<?php
+/**
+ * StatusNet - the distributed open-source microblogging tool
+ * Copyright (C) 2011, StatusNet, Inc.
+ *
+ * A microapp to implement lite blogging
+ *
+ * PHP version 5
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * @category  Blog
+ * @package   StatusNet
+ * @author    Evan Prodromou <evan@status.net>
+ * @copyright 2011 StatusNet, Inc.
+ * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
+ * @link      http://status.net/
+ */
+
+if (!defined('STATUSNET')) {
+    // This check helps protect against security problems;
+    // your code file can't be executed directly from the web.
+    exit(1);
+}
+
+/**
+ * Blog plugin
+ *
+ * Many social systems have a way to write and share long-form texts with
+ * your network. This microapp plugin lets users post blog entries.
+ *
+ * @category  Blog
+ * @package   StatusNet
+ * @author    Evan Prodromou <evan@status.net>
+ * @copyright 2011 StatusNet, Inc.
+ * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
+ * @link      http://status.net/
+ */
+
+class BlogPlugin extends MicroAppPlugin
+{
+    /**
+     * Database schema setup
+     *
+     * @see Schema
+     * @see ColumnDef
+     *
+     * @return boolean hook value; true means continue processing, false means stop.
+     */
+    function onCheckSchema()
+    {
+        $schema = Schema::get();
+
+        $schema->ensureTable('blog_entry', BlogEntry::schemaDef());
+
+        return true;
+    }
+
+    /**
+     * Load related modules when needed
+     *
+     * @param string $cls Name of the class to be loaded
+     *
+     * @return boolean hook value; true means continue processing, false means stop.
+     */
+    function onAutoload($cls)
+    {
+        $dir = dirname(__FILE__);
+
+        switch ($cls)
+        {
+        case 'NewblogentryAction':
+        case 'ShowblogentryAction':
+            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+            return false;
+        case 'BlogEntryForm':
+        case 'BlogEntryListItem':
+            include_once $dir . '/'.strtolower($cls).'.php';
+            return false;
+        case 'BlogEntry':
+            include_once $dir . '/'.$cls.'.php';
+            return false;
+        default:
+            return true;
+        }
+    }
+
+    /**
+     * Map URLs to actions
+     *
+     * @param Net_URL_Mapper $m path-to-action mapper
+     *
+     * @return boolean hook value; true means continue processing, false means stop.
+     */
+    function onRouterInitialized($m)
+    {
+        $m->connect('blog/new',
+                    array('action' => 'newblogentry'));
+        $m->connect('blog/:id',
+                    array('action' => 'showblogentry'),
+                    array('id' => UUID::REGEX));
+        return true;
+    }
+
+    function onPluginVersion(&$versions)
+    {
+        $versions[] = array('name' => 'Blog',
+                            'version' => STATUSNET_VERSION,
+                            'author' => 'Evan Prodromou',
+                            'homepage' => 'http://status.net/wiki/Plugin:Blog',
+                            'rawdescription' =>
+                            _m('Let users write and share long-form texts.'));
+        return true;
+    }
+
+    function appTitle()
+    {
+        return _m('Blog');
+    }
+
+    function tag()
+    {
+        return 'blog';
+    }
+
+    function types()
+    {
+        return array(BlogEntry::TYPE);
+    }
+
+    function saveNoticeFromActivity($activity, $actor, $options=array())
+    {
+        if (count($activity->objects) != 1) {
+            // TRANS: Exception thrown when there are too many activity objects.
+            throw new ClientException(_m('Too many activity objects.'));
+        }
+
+        $entryObj = $activity->objects[0];
+
+        if ($entryObj->type != BlogEntry::TYPE) {
+            // TRANS: Exception thrown when blog plugin comes across a non-event type object.
+            throw new ClientException(_m('Wrong type for object.'));
+        }
+
+        $notice = null;
+
+        switch ($activity->verb) {
+        case ActivityVerb::POST:
+            $notice = BlogEntry::saveNew($actor,
+                                         $entryObj->title,
+                                         $entryObj->content,
+                                         $options);
+            break;
+        default:
+            // TRANS: Exception thrown when blog plugin comes across a undefined verb.
+            throw new ClientException(_m('Unknown verb for blog entries.'));
+        }
+
+        return $notice;
+    }
+
+    function activityObjectFromNotice($notice)
+    {
+        $entry = BlogEntry::fromNotice($notice);
+
+        if (empty($entry)) {
+            throw new ClientException(sprintf(_('No blog entry for notice %s'),
+                        $notice->id));
+        }
+
+        return $entry->asActivityObject();
+    }
+
+    function entryForm($out)
+    {
+        return new BlogEntryForm($out);
+    }
+
+    function deleteRelated($notice)
+    {
+        if ($notice->object_type == BlogEntry::TYPE) {
+            $entry = BlogEntry::fromNotice($notice);
+            if (exists($entry)) {
+                $entry->delete();
+            }
+        }
+    }
+
+    function adaptNoticeListItem($nli)
+    {
+        $notice = $nli->notice;
+
+        if ($notice->object_type == BlogEntry::TYPE) {
+            return new BlogEntryListItem($nli);
+        }
+        
+        return null;
+    }
+}
