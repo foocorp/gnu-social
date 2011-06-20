@@ -60,22 +60,24 @@ class SiteConfirmReminderHandler extends QueueHandler
     /**
      * Handle the site
      *
-     * @param string $reminderType type of reminder to send
+     * @param array $remitem type of reminder to send and any special options
      * @return boolean true on success, false on failure
      */
-    function handle($reminderType)
+    function handle($remitem)
     {
+        list($type, $opts) = $remitem;
+
         $qm = QueueManager::get();
 
         try {
-            switch($reminderType) {
+            switch($type) {
             case UserConfirmRegReminderHandler::REGISTER_REMINDER:
                 $confirm               = new Confirm_address();
-                $confirm->address_type = $object;
+                $confirm->address_type = $type;
                 $confirm->find();
                 while ($confirm->fetch()) {
                     try {
-                        $qm->enqueue($confirm, 'uregrem');
+                        $qm->enqueue(array($confirm, $opts), 'uregrem');
                     } catch (Exception $e) {
                         common_log(LOG_WARNING, $e->getMessage());
                         continue;
@@ -87,7 +89,7 @@ class SiteConfirmReminderHandler extends QueueHandler
                 $invitation->find();
                 while ($invitation->fetch()) {
                     try {
-                        $qm->enqueue($invitation, 'uinvrem');
+                        $qm->enqueue(array($invitation, $opts), 'uinvrem');
                     } catch (Exception $e) {
                         common_log(LOG_WARNING, $e->getMessage());
                         continue;

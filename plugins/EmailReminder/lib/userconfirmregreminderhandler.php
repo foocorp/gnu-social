@@ -64,16 +64,34 @@ class UserConfirmRegReminderHandler extends UserReminderHandler {
      *
      * @todo abstract this bit further
      *
-     * @param Confirm_address $confirm
+     * @param array $regitem confirmation address and any special options
      * @return boolean success value
      */
-    function sendNextReminder($confirm)
+    function sendNextReminder($regitem)
     {
+        list($confirm, $opts) = $regitem;
+
         $regDate = strtotime($confirm->modified); // Seems like my best bet
         $now     = strtotime('now');
 
         // Days since registration
         $days = ($now - $regDate) / 86499; // 60*60*24 = 86499
+        // $days = ($now - $regDate) / 120; // Two mins, good for testing
+
+        if ($days > 7 && isset($opts['onetime'])) {
+            // Don't send the reminder if we're past the normal reminder window and
+            // we've already pestered her at all before
+            if (Email_reminder::needsReminder(self::REGISTER_REMINDER, $confirm)) {
+                common_log(LOG_INFO, "Sending one-time registration confirmation reminder to {$confirm->address}", __FILE__);
+                $subject = _m("One time reminder - please confirm your registration!");
+                return EmailReminderPlugin::sendReminder(
+                    self::REGISTER_REMINDER,
+                    $confirm,
+                    $subject,
+                    -1 // special one-time indicator
+                );
+            }
+        }
 
         // Welcome to one of the ugliest switch statement I've ever written
 
@@ -87,7 +105,8 @@ class UserConfirmRegReminderHandler extends UserReminderHandler {
                     self::REGISTER_REMINDER,
                     $confirm,
                     $subject,
-                1);
+                    1
+                );
             } else {
                 return true;
             }
