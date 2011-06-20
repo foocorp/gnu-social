@@ -114,22 +114,25 @@ class EmailReminderPlugin extends Plugin
     }
 
     /**
+     * Send a reminder and record doing so
      *
-     * @param type $object
-     * @param type $subject
-     * @param type $day
+     * @param string $type      type of reminder
+     * @param mixed  $object    Confirm_address or Invitation object
+     * @param string $subject   subjct of the email reminder
+     * @param int    $day       number of days
      */
     static function sendReminder($type, $object, $subject, $day)
     {
-        common_debug("QQQQQ sendReminder() enter ... ", __FILE__);
-
-        $title = "{$type}-{$day}";
-
-        common_debug("QQQQ title = {$title}", __FILE__);
+        // XXX: -1 is a for the special one-time reminder (maybe 30) would be
+        // better?  Like >= 30 days?
+        if ($day == -1) {
+            $title = "{$type}-onetime";
+        } else {
+            $title = "{$type}-{$day}";
+        }
 
         // Record the fact that we sent a reminder
         if (self::sendReminderEmail($type, $object, $subject, $title)) {
-            common_debug("Recording reminder record for {$object->address}", __FILE__);
             try {
                 Email_reminder::recordReminder($type, $object, $day);
             } catch (Exception $e) {
@@ -138,19 +141,21 @@ class EmailReminderPlugin extends Plugin
             }
         }
 
-        common_debug("QQQQQ sendReminder() exit ... ", __FILE__);
-
         return true;
     }
 
     /**
+     * Send a real live email reminder
      *
-     * @param type $object
-     * @param type $subject
-     * @param type $title
-     * @return type
+     * @todo This would probably be better as two or more sep functions
+     *
+     * @param string $type      type of reminder
+     * @param mixed  $object    Confirm_address or Invitation object
+     * @param string $subject   subjct of the email reminder
+     * @param string $title     title of the email reminder
+     * @return boolean true if the email subsystem doesn't explode
      */
-    static function sendReminderEmail($type, $object, $subject, $title=null) {
+    static function sendReminderEmail($type, $object, $subject, $title = null) {
 
         $sitename   = common_config('site', 'name');
         $recipients = array($object->address);
@@ -177,14 +182,15 @@ class EmailReminderPlugin extends Plugin
 
         $template = DocFile::forTitle($title, DocFile::mailPaths());
 
-        $body = $template->toHTML(
-            array(
-                'confirmurl' => $confirmUrl,
-                'inviter'    => $inviter,
-                'inviterurl' => $inviterUrl
-                // @todo private invitation message
-            )
-        );
+        $blankfillers = array('confirmurl' => $confirmUrl);
+
+        if ($type == UserInviteReminderHandler::INVITE_REMINDER) {
+            $blankfillers['inviter'] = $inviter;
+            $blankfillers['inviterurl'] = $inviterUrl;
+            // @todo private invitation message?
+        }
+
+        $body = $template->toHTML($blankfillers);
 
         return mail_send($recipients, $headers, $body);
     }
@@ -205,5 +211,5 @@ class EmailReminderPlugin extends Plugin
         );
         return true;
     }
-    
+
 }

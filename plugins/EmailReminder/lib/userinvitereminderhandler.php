@@ -62,24 +62,42 @@ class UserInviteReminderHandler extends UserReminderHandler {
      *
      * @todo Abstract this stuff further
      *
-     * @param Invitation $invitation
+     * @param array $invitem Invitation obj and any special options
      * @return boolean success value
      */
-    function sendNextReminder($invitation)
+    function sendNextReminder($invitem)
     {
+        list($invitation, $opts) = $invitem;
+
         $invDate = strtotime($invitation->created);
         $now     = strtotime('now');
-        
+
         // Days since first invitation was sent
         $days = ($now - $invDate) / 86499; // 60*60*24 = 86499
+        // $days = ($now - $regDate) / 120; // Two mins, good for testing
 
         $siteName = common_config('site', 'name');
+
+        if ($days > 7 && isset($opts['onetime'])) {
+            // Don't send the reminder if we're past the normal reminder window and
+            // we've already pestered her at all before
+            if (Email_reminder::needsReminder(self::INVITE_REMINDER, $invitation)) {
+                common_log(LOG_INFO, "Sending one-time invitation reminder to {$invitation->address}", __FILE__);
+                $subject = _m("One time reminder - you have been invited to join {$siteName}!");
+                return EmailReminderPlugin::sendReminder(
+                    self::INVITE_REMINDER,
+                    $invitation,
+                    $subject,
+                    -1 // special one-time indicator
+                );
+            }
+        }
 
         switch($days) {
         case ($days > 1 && $days < 2):
             if (Email_reminder::needsReminder(self::INVITE_REMINDER, $invitation, 1)) {
                 common_log(LOG_INFO, "Sending one day invitation reminder to {$invitation->address}", __FILE__);
-                $subject = _m("Reminder - You have been invited to join {$siteName}!");
+                $subject = _m("Reminder - you have been invited to join {$siteName}!");
                 return EmailReminderPlugin::sendReminder(
                     self::INVITE_REMINDER,
                     $invitation,
@@ -102,7 +120,7 @@ class UserInviteReminderHandler extends UserReminderHandler {
                 } else {
                     return true;
                 }
-            break;        
+            break;
         }
         return true;
     }

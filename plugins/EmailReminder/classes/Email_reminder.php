@@ -28,8 +28,6 @@
 
 class Email_reminder extends Managed_DataObject
 {
-    const INVITE_REMINDER   = 'invite'; // @todo Move this to the invite reminder handler
-
     public $__table = 'email_reminder';
 
     public $type;     // type of reminder
@@ -56,40 +54,45 @@ class Email_reminder extends Managed_DataObject
     }
 
     /**
+     * Do we need to send a reminder?
      *
-     * @param type $type
-     * @param type $confirm
-     * @param type $day
-     * @return type
+     * @param string $type      type of reminder
+     * @param Object $object    an object with a 'code' property
+     *                          (Confirm_address or Invitation)
+     * @param int    $days      Number of days after the code was created
+     * @return boolean true if any Email_reminder records were found
      */
-    static function needsReminder($type, $confirm, $days) {
+    static function needsReminder($type, $object, $days = null) {
 
         $reminder        = new Email_reminder();
         $reminder->type  = $type;
-        $reminder->code  = $confirm->code;
-        $reminder->days  = $days;
+        $reminder->code  = $object->code;
+        if (!empty($days)) {
+            $reminder->days  = $days;
+        }
+        $result = $reminder->find();
 
-        $result = $reminder->find(true);
-
-        if (empty($result)) {
-            return true;
+        if (!empty($result)) {
+            return false;
         }
 
-        return false;
+        return true;
     }
 
     /**
+     * Record a record of sending the reminder
      *
-     * @param type $type
-     * @param type $confirm
-     * @param type $day
-     * @return type
+     * @param string $type      type of reminder
+     * @param Object $object    an object with a 'code' property
+     *                          (Confirm_address or Invitation)
+     * @param int    $days      Number of days after the code was created
+     * @return int   $result    row ID of the new reminder record
      */
-    static function recordReminder($type, $confirm, $days) {
+    static function recordReminder($type, $object, $days) {
 
         $reminder        = new Email_reminder();
         $reminder->type  = $type;
-        $reminder->code  = $confirm->code;
+        $reminder->code  = $object->code;
         $reminder->days  = $days;
         $reminder->sent  = $reminder->created = common_sql_now();
         $result          = $reminder->insert();
