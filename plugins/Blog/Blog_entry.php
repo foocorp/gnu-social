@@ -59,7 +59,7 @@ class Blog_entry extends Managed_DataObject
     public $created; // datetime
     public $modified; // datetime
 
-    const TYPE = 'http://activitystrea.ms/schema/1.0/blog-entry';
+    const TYPE = ActivityObject::ARTICLE;
     
     function staticGet($k, $v=null)
     {
@@ -170,19 +170,25 @@ class Blog_entry extends Managed_DataObject
 
         // XXX: this might be too long.
 
-        $options['rendered'] = $be->summary . ' ' . 
-            XMLStringer::estring('a', array('href' => $shortUrl,
-                                            'class' => 'blog-entry'),
-                                 _('More...'));
+        if (!empty($be->summary)) {
+            $options['rendered'] = $be->summary . ' ' . 
+                XMLStringer::estring('a', array('href' => $url,
+                                                'class' => 'blog-entry'),
+                                     _('More...'));
+            $content = html_entity_decode(strip_tags($text), ENT_QUOTES, 'UTF-8');
 
-        $summaryText = html_entity_decode(strip_tags($summary), ENT_QUOTES, 'UTF-8');
-
-        if (Notice::contentTooLong($summaryText)) {
-            $summaryText = substr($summaryText, 0, Notice::maxContent() - mb_strlen($shortUrl) - 2) .
-                '… ' . $shortUrl;
+        } else {
+            $options['rendered'] = $be->content . ' ' . 
+                XMLStringer::estring('a', array('href' => $url,
+                                                'class' => 'blog-entry'),
+                                     _('More...'));
         }
 
-        $content = $summaryText;
+
+        if (Notice::contentTooLong($content)) {
+            $content = substr($content, 0, Notice::maxContent() - mb_strlen($shortUrl) - 2) .
+                '… ' . $shortUrl;
+        }
 
         // Override this no matter what.
         
@@ -191,7 +197,9 @@ class Blog_entry extends Managed_DataObject
         $source = array_key_exists('source', $options) ?
                                     $options['source'] : 'web';
         
-        Notice::saveNew($profile->id, $content, $source, $options);
+        $saved = Notice::saveNew($profile->id, $content, $source, $options);
+
+        return $saved;
     }
 
     /**
