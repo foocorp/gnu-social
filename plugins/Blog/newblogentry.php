@@ -114,7 +114,7 @@ class NewblogentryAction extends Action
             
         $profile = $this->user->getProfile();
 
-        $saved = BlogEntry::saveNew($profile,
+        $saved = Blog_entry::saveNew($profile,
                                     $this->title,
                                     $this->content,
                                     $options);

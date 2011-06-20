@@ -61,7 +61,7 @@ class BlogEntryListItem extends NoticeListItemAdapter
         $notice = $this->nli->notice;
         $out    = $this->nli->out;
 
-        $entry  = BlogEntry::fromNotice($notice);
+        $entry  = Blog_entry::fromNotice($notice);
 
         if (empty($entry)) {
             throw new Exception('BlogEntryListItem used for non-blog notice.');

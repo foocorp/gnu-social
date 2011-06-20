@@ -62,7 +62,7 @@ class BlogPlugin extends MicroAppPlugin
     {
         $schema = Schema::get();
 
-        $schema->ensureTable('blog_entry', BlogEntry::schemaDef());
+        $schema->ensureTable('blog_entry', Blog_entry::schemaDef());
 
         return true;
     }
@@ -88,7 +88,7 @@ class BlogPlugin extends MicroAppPlugin
         case 'BlogEntryListItem':
             include_once $dir . '/'.strtolower($cls).'.php';
             return false;
-        case 'BlogEntry':
+        case 'Blog_entry':
             include_once $dir . '/'.$cls.'.php';
             return false;
         default:
@@ -136,7 +136,7 @@ class BlogPlugin extends MicroAppPlugin
 
     function types()
     {
-        return array(BlogEntry::TYPE);
+        return array(Blog_entry::TYPE);
     }
 
     function saveNoticeFromActivity($activity, $actor, $options=array())
@@ -148,7 +148,7 @@ class BlogPlugin extends MicroAppPlugin
 
         $entryObj = $activity->objects[0];
 
-        if ($entryObj->type != BlogEntry::TYPE) {
+        if ($entryObj->type != Blog_entry::TYPE) {
             // TRANS: Exception thrown when blog plugin comes across a non-event type object.
             throw new ClientException(_m('Wrong type for object.'));
         }
@@ -157,7 +157,7 @@ class BlogPlugin extends MicroAppPlugin
 
         switch ($activity->verb) {
         case ActivityVerb::POST:
-            $notice = BlogEntry::saveNew($actor,
+            $notice = Blog_entry::saveNew($actor,
                                          $entryObj->title,
                                          $entryObj->content,
                                          $options);
@@ -172,7 +172,7 @@ class BlogPlugin extends MicroAppPlugin
 
     function activityObjectFromNotice($notice)
     {
-        $entry = BlogEntry::fromNotice($notice);
+        $entry = Blog_entry::fromNotice($notice);
 
         if (empty($entry)) {
             throw new ClientException(sprintf(_('No blog entry for notice %s'),
@@ -189,8 +189,8 @@ class BlogPlugin extends MicroAppPlugin
 
     function deleteRelated($notice)
     {
-        if ($notice->object_type == BlogEntry::TYPE) {
-            $entry = BlogEntry::fromNotice($notice);
+        if ($notice->object_type == Blog_entry::TYPE) {
+            $entry = Blog_entry::fromNotice($notice);
             if (exists($entry)) {
                 $entry->delete();
             }
@@ -201,7 +201,7 @@ class BlogPlugin extends MicroAppPlugin
     {
         $notice = $nli->notice;
 
-        if ($notice->object_type == BlogEntry::TYPE) {
+        if ($notice->object_type == Blog_entry::TYPE) {
             return new BlogEntryListItem($nli);
         }
         

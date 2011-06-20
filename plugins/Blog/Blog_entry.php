@@ -45,7 +45,7 @@ if (!defined('STATUSNET')) {
  * @link      http://status.net/
  */
 
-class BlogEntry extends Managed_DataObject
+class Blog_entry extends Managed_DataObject
 {
     public $__table = 'blog_entry';
 
@@ -115,7 +115,7 @@ class BlogEntry extends Managed_DataObject
             $options = array();
         }
         
-        $be             = new BlogEntry();
+        $be             = new Blog_entry();
         $be->id         = (string) new UUID();
         $be->profile_id = $profile->id;
         $be->title      = htmlspecialchars($title);
@@ -209,7 +209,7 @@ class BlogEntry extends Managed_DataObject
 
     static function fromNotice($notice)
     {
-        return BlogEntry::staticGet('uri', $notice->uri);
+        return Blog_entry::staticGet('uri', $notice->uri);
     }
 
     function getNotice()
