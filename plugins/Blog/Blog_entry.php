@@ -114,18 +114,18 @@ class Blog_entry extends Managed_DataObject
         if (is_null($options)) {
             $options = array();
         }
-        
+
         $be             = new Blog_entry();
         $be->id         = (string) new UUID();
         $be->profile_id = $profile->id;
         $be->title      = $title; // Note: not HTML-protected
         $be->content    = self::purify($content);
-        
+
         if (array_key_exists('summary', $options)) {
             $be->summary = self::purify($options['summary']);
         } else {
             // Already purified
-            $be->summary = self::summarize($content);
+            $be->summary = self::summarize($be->content);
         }
 
         // Don't save an identical summary
@@ -176,15 +176,15 @@ class Blog_entry extends Managed_DataObject
                 XMLStringer::estring('a', array('href' => $url,
                                                 'class' => 'blog-entry'),
                                      _('More...'));
-            $content = html_entity_decode(strip_tags($be->summary), ENT_QUOTES, 'UTF-8');
+            $text = html_entity_decode(strip_tags($be->summary), ENT_QUOTES, 'UTF-8');
         } else {
             $options['rendered'] = $be->content;
-            $content = html_entity_decode(strip_tags($be->content), ENT_QUOTES, 'UTF-8');
+            $text = html_entity_decode(strip_tags($be->content), ENT_QUOTES, 'UTF-8');
         }
 
 
-        if (Notice::contentTooLong($content)) {
-            $content = substr($content, 0, Notice::maxContent() - mb_strlen($shortUrl) - 2) .
+        if (Notice::contentTooLong($text)) {
+            $text = substr($text, 0, Notice::maxContent() - mb_strlen($shortUrl) - 2) .
                 '… ' . $shortUrl;
         }
 
@@ -195,7 +195,7 @@ class Blog_entry extends Managed_DataObject
         $source = array_key_exists('source', $options) ?
                                     $options['source'] : 'web';
         
-        $saved = Notice::saveNew($profile->id, $content, $source, $options);
+        $saved = Notice::saveNew($profile->id, $text, $source, $options);
 
         return $saved;
     }
@@ -249,8 +249,11 @@ class Blog_entry extends Managed_DataObject
     static function purify($html)
     {
         require_once INSTALLDIR.'/extlib/htmLawed/htmLawed.php';
+
         $config = array('safe' => 1,
                         'deny_attribute' => 'id,style,on*');
-        return htmLawed($html, $config);
+        $pure = htmLawed($html, $config);
+
+        return $pure;
     }
 }
