@@ -207,4 +207,13 @@ class BlogPlugin extends MicroAppPlugin
         
         return null;
     }
+
+    function onEndShowScripts($action)
+    {
+        $action->script(common_path('plugins/TinyMCE/js/jquery.tinymce.js'));
+        $action->inlineScript('var _tinymce_path = "'.common_path('plugins/TinyMCE/js/tiny_mce.js').'";'."\n".
+                              'var _tinymce_placeholder = "'.common_path('plugins/TinyMCE/icons/placeholder.png').'";'."\n");
+        $action->script($this->path('blog.js'));
+        return true;
+    }
 }
