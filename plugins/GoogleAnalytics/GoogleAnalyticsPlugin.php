@@ -49,6 +49,9 @@ if (!defined('STATUSNET')) {
  */
 class GoogleAnalyticsPlugin extends Plugin
 {
+    var $code;
+    var $domain;
+
     const VERSION = '0.2';
 
     function __construct($code=null)
@@ -64,7 +67,13 @@ class GoogleAnalyticsPlugin extends Plugin
     function onEndShowScripts($action)
     {
         $code = common_config('googleanalytics', 'code');
+        if (empty($code)) {
+            $code = $this->code;
+        }
         $domain = common_config('googleanalytics', 'domain');
+        if (empty($domain)) {
+            $domain = $this->domain;
+        }
 
         $js = <<<ENDOFSCRIPT0
 
