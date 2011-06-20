@@ -127,6 +127,12 @@ class Blog_entry extends Managed_DataObject
             $be->summary = self::summarize($content);
         }
 
+        // Don't save an identical summary
+
+        if ($be->summary == $be->content) {
+            $be->summary = null;
+        }
+
         $url = common_local_url('showblogentry', array('id' => $be->id));
 
         if (!array_key_exists('uri', $options)) {
