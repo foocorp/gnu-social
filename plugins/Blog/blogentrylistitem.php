@@ -49,10 +49,11 @@ class BlogEntryListItem extends NoticeListItemAdapter
 {
     function showNotice()
     {
-        $this->out->elementStart('div', 'entry-title');
+        $out = $this->nli->out;
+        $out->elementStart('div', 'entry-title');
         $this->showAuthor();
         $this->showContent();
-        $this->out->elementEnd('div');
+        $out->elementEnd('div');
     }
 
     function showContent()
