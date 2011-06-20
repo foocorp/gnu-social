@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:00+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:16+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 09:58:23+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:51:22+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
@@ -81,10 +81,9 @@ msgid "Answer"
 msgstr "Kasagutan"
 
 #. TRANS: Form title for sending an answer.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Answer"
-msgstr "Kasagutan"
+msgstr "Sagot"
 
 #. TRANS: Client exception thrown trying to view a non-existing question.
 msgid "No such question."
@@ -113,9 +112,8 @@ msgid "Invalid or missing question."
 msgstr "Hindi katanggap-tanggap o nawawalang katanungan."
 
 #. TRANS: Exception thrown trying to close another user's question.
-#, fuzzy
 msgid "You did not ask this question."
-msgstr "Hindi ka nagtanong ng tanong na ito."
+msgstr "Hindi mo itinanong ang tanong na ito."
 
 #. TRANS: Page title after sending an answer.
 #. TRANS: Page title after sending in a vote for a question or answer.
@@ -141,10 +139,9 @@ msgid "Question and Answers micro-app."
 msgstr "Mikro-aplikasyon ng Tanong at mga Sagot."
 
 #. TRANS: Application title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Question"
-msgstr "Katanungan"
+msgstr "Tanong"
 
 #. TRANS: Exception thrown when there are too many activity objects.
 msgid "Too many activity objects."
@@ -184,7 +181,7 @@ msgstr "Ang sagot mo..."
 #. TRANS: Link description for link to full notice text if it is longer than
 #. TRANS: what will be dispplayed.
 msgid "…"
-msgstr ""
+msgstr "…"
 
 #. TRANS: Title for link that is an ellipsis in English.
 msgid "more..."
@@ -192,9 +189,9 @@ msgstr "marami pa..."
 
 #. TRANS: Exception thown when getting a question with a non-existing ID.
 #. TRANS: %s is the non-existing question ID.
-#, fuzzy, php-format
+#, php-format
 msgid "No question with ID %s"
-msgstr "Walang katanungan para sa kasagutang ito."
+msgstr "Walang tanong na may ID na %s."
 
 #. TRANS: Exception thown when getting a profile with a non-existing ID.
 #. TRANS: %s is the non-existing profile ID.
@@ -202,14 +199,14 @@ msgstr "Walang katanungan para sa kasagutang ito."
 #. TRANS: %s is the provided profile ID.
 #, php-format
 msgid "No profile with ID %s"
-msgstr ""
+msgstr "Walang balangkas na may ID na %s"
 
 #. TRANS: %s is the number of answer revisions.
-#, fuzzy, php-format
+#, php-format
 msgid "%s revision"
 msgid_plural "%s revisions"
-msgstr[0] "%s mga pagbabago"
-msgstr[1] "%s mga pagbabago"
+msgstr[0] "%s rebisyon"
+msgstr[1] "%s mga rebisyon"
 
 #. TRANS: Text for a question that was answered.
 #. TRANS: %1$s is the user that answered, %2$s is the question title,
@@ -228,11 +225,11 @@ msgstr "sumagot sa \"%s\""
 
 #. TRANS: Number of given answers to a question.
 #. TRANS: %s is the number of given answers.
-#, fuzzy, php-format
+#, php-format
 msgid "%s answer"
 msgid_plural "%s answers"
-msgstr[0] "%s mga kasagutan"
-msgstr[1] "%s mga kasagutan"
+msgstr[0] "%s sagot"
+msgstr[1] "%s mga sagot"
 
 #. TRANS: Notification that a question cannot be answered anymore because it is closed.
 msgid "This question is closed."
@@ -260,26 +257,22 @@ msgid "Answer"
 msgstr "Kasagutan"
 
 #. TRANS: Field label for a new question.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Title"
 msgstr "Pamagat"
 
 #. TRANS: Field title for a new question.
-#, fuzzy
 msgid "The title of your question."
-msgstr "Pamagat ng katanungan mo"
+msgstr "Ang pamagat ng tanong mo."
 
 #. TRANS: Field label for question details.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Description"
 msgstr "Paglalarawan"
 
 #. TRANS: Field title for question details.
-#, fuzzy
 msgid "Your question in detail."
-msgstr "Nakadetalyeng katanungan mo"
+msgstr "Nakadetalyeng tanong mo."
 
 #. TRANS: Button text for saving a new question.
 msgctxt "BUTTON"
@@ -287,10 +280,9 @@ msgid "Save"
 msgstr "Sagipin"
 
 #. TRANS: Form legend for revising the answer.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Question"
-msgstr "Katanungan"
+msgstr "Tanong"
 
 #. TRANS: Button text for closing a question.
 msgctxt "BUTTON"
@@ -299,7 +291,7 @@ msgstr "Isara"
 
 #. TRANS: Title for button text for closing a question.
 msgid "Close the question to no one can answer it anymore."
-msgstr ""
+msgstr "Isara ang tanong upang wala nang makakasagot rito."
 
 #. TRANS: Button text for marking an answer as "best".
 msgctxt "BUTTON"
@@ -307,6 +299,5 @@ msgid "Best"
 msgstr "Pinakamahusay"
 
 #. TRANS: Title for button text marking an answer as "best".
-#, fuzzy
 msgid "Mark this answer as the best answer."
-msgstr "Markahan bilang pinakamahusay na kasagutan"
+msgstr "Markahan ang sagot na ito bilang pinakamahusay na sagot."

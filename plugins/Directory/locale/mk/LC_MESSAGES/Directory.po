@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:55:17+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:55:31+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 09:56:55+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 15:54:12+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
@@ -37,9 +37,9 @@ msgstr "Кориснички именик - %s"
 
 #. TRANS: Page title for user directory.
 #. TRANS: %1$s is the applied filter, %2$d is a page number.
-#, fuzzy, php-format
+#, php-format
 msgid "User directory - %1$s, page %2$d"
-msgstr "Кориснички именик - %s, стр. %d"
+msgstr "Именик на корисници - %1$s, страница %2$d"
 
 #. TRANS: %%site.name%% is the name of the StatusNet site.
 #, php-format
@@ -86,7 +86,7 @@ msgstr ""
 "* Проверете дали сите зборови се напишани како што треба.\n"
 "* Обидете се со други клучни зборови.\n"
 "* Обидете се со поопшти клучни зборови.\n"
-"* Обидете се помалку клучни зборови.\n"
+"* Обидете се помалку клучни зборови."
 
 #. TRANS: Title for group directory page. %d is a page number.
 #, php-format
@@ -139,18 +139,6 @@ msgstr "Пребарај групи"
 #, php-format
 msgid "No groups starting with %s."
 msgstr "Нема групи што почнуваат на %s."
-
-#. TRANS: Help text for searching group directory.
-msgid ""
-"* Make sure all words are spelled correctly.\n"
-"* Try different keywords.\n"
-"* Try more general keywords.\n"
-"* Try fewer keywords."
-msgstr ""
-"* Проверете дали сите зборови се напишани како што треба.\n"
-"* Обидете се со други клучни зборови.\n"
-"* Обидете се со поопшти клучни зборови.\n"
-"* Обидете се помалку клучни зборови."
 
 #. TRANS: Menu item text for user directory.
 msgctxt "MENU"

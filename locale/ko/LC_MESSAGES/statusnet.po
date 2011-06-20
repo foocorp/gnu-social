@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:19+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:02+0000\n"
 "Language-Team: Korean <http://translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-06-05 09:57:31+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -107,7 +107,6 @@ msgid "Save access settings"
 msgstr "접근 권한 설정 저장"
 
 #. TRANS: Tooltip for button to save access settings in site admin panel.
-#. TRANS: Button text for saving theme settings.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -123,7 +122,6 @@ msgstr "접근 권한 설정 저장"
 #. TRANS: Button text for saving "Other settings" in profile.
 #. TRANS: Button text to save user settings in user admin panel.
 #. TRANS: Button label in the "Edit application" form.
-#. TRANS: Button text on profile design page to save settings.
 #. TRANS: Text for save button on group edit form.
 #. TRANS: Button text to save tags for a profile.
 msgctxt "BUTTON"
@@ -197,7 +195,6 @@ msgstr "해당 페이지가 없습니다."
 #. TRANS: Client error when user not found for an rss related action.
 #. TRANS: Client error displayed when no existing user is provided for a user's delivery device setting.
 #. TRANS: Client error displayed if a user could not be found.
-#. TRANS: Client error when user not found updating a profile background image.
 #. TRANS: Client error displayed updating profile image without having a user object.
 #. TRANS: Client error displayed when making an Atom API request for an unknown user.
 #. TRANS: Client error displayed when trying to block a non-existing user or a user from another site.
@@ -301,7 +298,7 @@ msgstr ""
 "프로파일에서 [%1$s 님을 찔러 보거나](../%2$s) 또는 [그 분에게 뭔가 글을 써보"
 "세요](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -362,7 +359,6 @@ msgstr "'device' 파라미터의 값은 다음 중 하나로 지정해야 합니
 #. TRANS: Server error thrown on database error updating SMS preferences.
 #. TRANS: Server error thrown on database error removing a registered SMS phone number.
 #. TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
-#. TRANS: Server exception thrown on Profile design page when updating design settings fails.
 msgid "Could not update user."
 msgstr "사용자를 업데이트할 수 없습니다."
 
@@ -377,7 +373,6 @@ msgstr "프로필을 저장 할 수 없습니다."
 
 #. TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
 #. TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-#. TRANS: Form validation error in design settings form. POST should remain untranslated.
 #, php-format
 msgid ""
 "The server was unable to handle that much POST data (%s byte) due to its "
@@ -386,24 +381,6 @@ msgid_plural ""
 "The server was unable to handle that much POST data (%s bytes) due to its "
 "current configuration."
 msgstr[0] ""
-
-#. TRANS: Client error displayed when saving design settings fails because of an empty id.
-#. TRANS: Client error displayed when saving design settings fails because of an empty result.
-#. TRANS: Client error displayed when a database error occurs inserting profile colours.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error displayed when group design settings could not be saved because of an application issue.
-#. TRANS: Form validation error on Profile design page when saving design settings has failed.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-msgid "Unable to save your design settings."
-msgstr "디자인 설정을 저장할 수 없습니다."
-
-#. TRANS: Error displayed when updating design settings fails.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-#. TRANS: Error message displayed if design settings could not be saved.
-#. TRANS: Error message displayed if design settings could not be saved after clicking "Use defaults".
-msgid "Could not update your design."
-msgstr "디자인을 업데이트할 수 없습니다."
 
 #. TRANS: Title for Atom feed.
 msgctxt "ATOM"
@@ -493,6 +470,8 @@ msgid "Cannot send direct messages to users who aren't your friend."
 msgstr "친구가 아닌 사용자에게는 직접 직접 메시지를 보낼 수 없습니다."
 
 #. TRANS: Client error displayed trying to direct message self (403).
+#. TRANS: Client error displayed trying to send a direct message to self.
+#. TRANS: Error text shown when trying to send a direct message to self.
 msgid ""
 "Do not send a message to yourself; just say it to yourself quietly instead."
 msgstr ""
@@ -721,7 +700,6 @@ msgstr "%s 사이트의 그룹"
 
 #. TRANS: Client error displayed when trying to edit a group without being an admin.
 #. TRANS: Client error displayed trying to edit a group while not being a group admin.
-#. TRANS: Client error displayed trying to change group design settings without being a (group) admin.
 #. TRANS: Client error displayed when trying to change group logo settings while not being a group admin.
 msgid "You must be an admin to edit the group."
 msgstr "관리자만 그룹을 편집할 수 있습니다."
@@ -831,7 +809,6 @@ msgstr "oauth_token_association을 넣는데 데이터베이스 오류."
 
 #. TRANS: Client error given on when invalid data was passed through a form in the OAuth API.
 #. TRANS: Unexpected validation error on avatar upload form.
-#. TRANS: Client error displayed when the submitted form contains unexpected data.
 #. TRANS: Client error displayed submitting invalid form data for edit application.
 #. TRANS: Message given submitting a form with an unknown action in e-mail settings.
 #. TRANS: Form validation error message when an unsupported argument is used.
@@ -840,7 +817,6 @@ msgstr "oauth_token_association을 넣는데 데이터베이스 오류."
 #. TRANS: Client error when submitting a form with unexpected information.
 #. TRANS: Client error displayed when unexpected data is posted in the password recovery form.
 #. TRANS: Message given submitting a form with an unknown action in SMS settings.
-#. TRANS: Unknown form validation error in design settings form.
 msgid "Unexpected form submission."
 msgstr "예상치 못한 폼 제출."
 
@@ -1192,7 +1168,6 @@ msgstr "그룹을 떠나려면 로그인해야 합니다."
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.
 #. TRANS: Client error displayed trying to block a user from a group while specifying a non-existing group.
 #. TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
-#. TRANS: Client error displayed trying to change group design settings while providing a nickname for a non-existing group.
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
@@ -1276,6 +1251,7 @@ msgid "Join request canceled."
 msgstr "가입 요청이 취소되었습니다."
 
 #. TRANS: Client error displayed trying to approve subscription for a non-existing request.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "%s is not in the moderation queue for your subscriptions."
 msgstr "%s 사용자는 구독 확인 큐에 들어 있지 않습니다."
@@ -1425,7 +1401,6 @@ msgstr "첨부 파일이 없습니다."
 #. TRANS: Client error displayed trying to get an avatar without providing a nickname.
 #. TRANS: Client error displayed when requesting a list of blocked users for a group without providing a group nickname.
 #. TRANS: Client error displayed trying to edit a group while not proving a nickname for the group to edit.
-#. TRANS: Client error displayed trying to change group design settings without providing a group nickname.
 #. TRANS: Client error displayed when trying to change group logo settings without providing a nickname.
 #. TRANS: Client error displayed when trying to view group members without providing a group nickname.
 #. TRANS: Client error displayed when requesting a group RSS feed without providing a group nickname.
@@ -1920,149 +1895,6 @@ msgstr "이 사용자 삭제하지 않기."
 msgid "Delete this user."
 msgstr "이 사용자 삭제."
 
-#. TRANS: Message used as title for design settings for the site.
-msgid "Design"
-msgstr "디자인"
-
-#. TRANS: Instructions for design adminsitration panel.
-msgid "Design settings for this StatusNet site"
-msgstr "이 StatusNet 사이트의 디자인 설정"
-
-#. TRANS: Client error displayed when a logo URL does is not valid.
-msgid "Invalid logo URL."
-msgstr "로고 URL이 잘못되었습니다."
-
-#. TRANS: Client error displayed when an SSL logo URL is invalid.
-msgid "Invalid SSL logo URL."
-msgstr "SSL 로고 URL이 잘못되었습니다."
-
-#. TRANS: Client error displayed when a theme is submitted through the form that is not in the theme list.
-#. TRANS: %s is the chosen unavailable theme.
-#, php-format
-msgid "Theme not available: %s."
-msgstr "테마가 없습니다: %s."
-
-#. TRANS: Fieldset legend for form to change logo.
-msgid "Change logo"
-msgstr "로고 바꾸기"
-
-#. TRANS: Field label for StatusNet site logo.
-msgid "Site logo"
-msgstr "사이트 로고"
-
-#. TRANS: Field label for SSL StatusNet site logo.
-msgid "SSL logo"
-msgstr "SSL 로고"
-
-#. TRANS: Fieldset legend for form change StatusNet site's theme.
-msgid "Change theme"
-msgstr "테마 바꾸기"
-
-#. TRANS: Field label for dropdown to choose site theme.
-msgid "Site theme"
-msgstr "사이트 테마"
-
-#. TRANS: Title for field label for dropdown to choose site theme.
-msgid "Theme for the site."
-msgstr "사이트에 대한 테마"
-
-#. TRANS: Field label for uploading a cutom theme.
-msgid "Custom theme"
-msgstr "사용자 지정 테마"
-
-#. TRANS: Form instructions for uploading a cutom StatusNet theme.
-msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-msgstr "StatusNet의 사용자 지정 테마를 .ZIP 압축 파일로 업로드할 수 있습니다."
-
-#. TRANS: Fieldset legend for theme background image.
-msgid "Change background image"
-msgstr "배경 이미지 바꾸기"
-
-#. TRANS: Field label for background image on theme designer page.
-#. TRANS: Field label for background color selector.
-#. TRANS: Label on profile design page for setting a profile page background colour.
-msgid "Background"
-msgstr "배경"
-
-#. TRANS: Form guide for background image upload form on theme designer page.
-#, php-format
-msgid ""
-"You can upload a background image for the site. The maximum file size is %1"
-"$s."
-msgstr ""
-"사이트의 배경 이미지를 업로드할 수 있습니다. 최대 파일 크기는 %1$s 입니다."
-
-#. TRANS: Used as radio button label to add a background image.
-msgid "On"
-msgstr "켜기"
-
-#. TRANS: Used as radio button label to not add a background image.
-msgid "Off"
-msgstr "끄기"
-
-#. TRANS: Form guide for turning background image on or off on theme designer page.
-#. TRANS: Form guide for a set of radio buttons on the profile design page that will enable or disable
-#. TRANS: use of the uploaded profile image.
-msgid "Turn background image on or off."
-msgstr "배경 이미지를 켜거나 끕니다."
-
-#. TRANS: Checkbox label to title background image on theme designer page.
-#. TRANS: Checkbox label on profile design page that will cause the profile image to be tiled.
-msgid "Tile background image"
-msgstr "배경 이미지를 반복 나열"
-
-#. TRANS: Fieldset legend for theme colors.
-msgid "Change colors"
-msgstr "색 바꾸기"
-
-#. TRANS: Field label for content color selector.
-#. TRANS: Label on profile design page for setting a profile page content colour.
-msgid "Content"
-msgstr "내용"
-
-#. TRANS: Field label for sidebar color selector.
-#. TRANS: Label on profile design page for setting a profile page sidebar colour.
-msgid "Sidebar"
-msgstr "가장자리 창"
-
-#. TRANS: Field label for text color selector.
-#. TRANS: Label on profile design page for setting a profile page text colour.
-msgid "Text"
-msgstr "문자"
-
-#. TRANS: Field label for link color selector.
-#. TRANS: Label on profile design page for setting a profile page links colour.
-msgid "Links"
-msgstr "링크"
-
-#. TRANS: Fieldset legend for advanced theme design settings.
-msgid "Advanced"
-msgstr "고급"
-
-#. TRANS: Field label for custom CSS.
-msgid "Custom CSS"
-msgstr "사용자 정의 CSS"
-
-#. TRANS: Button text for resetting theme settings.
-msgctxt "BUTTON"
-msgid "Use defaults"
-msgstr "기본값 사용"
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default.
-msgid "Restore default designs."
-msgstr "기본값 디자인으로 되돌리기."
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-msgid "Reset back to default."
-msgstr "기본값으로 초기화."
-
-#. TRANS: Title for button for saving theme settings.
-#. TRANS: Title for button on profile design page to save settings.
-msgid "Save design."
-msgstr "디자인 저장."
-
 #. TRANS: Client error displayed when trying to remove favorite status for a notice that is not a favorite.
 msgid "This notice is not a favorite!"
 msgstr "좋아하는 글이 아닙니다!"
@@ -2239,7 +2071,7 @@ msgstr ""
 "공개 태그를 비공개로 설정하면 기존의 구독이 모두 지워집니다. 그래도 계속 하시"
 "겠습니까?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "리스트를 업데이트할 수 없습니다."
 
@@ -2659,29 +2491,6 @@ msgstr "사용자를 그룹에서 차단하는데 데이터베이스 오류."
 #. TRANS: Client error displayed trying to find a user by ID without providing an ID.
 msgid "No ID."
 msgstr "아이디가 없습니다."
-
-#. TRANS: Client error displayed trying to change group design settings while not logged in.
-msgid "You must be logged in to edit a group."
-msgstr "그룹을 편집하려면 로그인해야 합니다."
-
-#. TRANS: Title group design settings page.
-msgid "Group design"
-msgstr "그룹 디자인"
-
-#. TRANS: Instructions for group design settings page.
-msgid ""
-"Customize the way your group looks with a background image and a colour "
-"palette of your choice."
-msgstr "배경 이미지와 색 팔레트를 선택해서 그룹의 모양을 설정합니다."
-
-#. TRANS: Form validation error displayed when group design settings could not be updated because of an application issue.
-msgid "Unable to update your design settings."
-msgstr "디자인 설정을 업데이트할 수 없습니다."
-
-#. TRANS: Form text to confirm saved group design settings.
-#. TRANS: Confirmation message on Profile design page when saving design settings has succeeded.
-msgid "Design preferences saved."
-msgstr "디자인 설정을 저장했습니다."
 
 #. TRANS: Title for group logo settings page.
 #. TRANS: Group logo form legend.
@@ -3290,6 +3099,7 @@ msgstr "소스 URL이 필요합니다."
 msgid "Could not create application."
 msgstr "응용 프로그램을 새로 만들 수 없습니다."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "잘못된 이미지입니다."
 
@@ -3325,14 +3135,6 @@ msgstr "내용이 없습니다!"
 #. TRANS: Form validation error displayed trying to send a direct message without specifying a recipient.
 msgid "No recipient specified."
 msgstr "수신자를 지정하지 않았습니다."
-
-#. TRANS: Client error displayed trying to send a direct message to self.
-#. TRANS: Error text shown when trying to send a direct message to self.
-msgid ""
-"Don't send a message to yourself; just say it to yourself quietly instead."
-msgstr ""
-"자기 자신에게 메시지를 보내지 마세요. (혼자서 조용히 자신에게 말하는 건 어떤"
-"가요?)"
 
 #. TRANS: Page title after sending a direct message.
 msgid "Message sent"
@@ -3616,7 +3418,7 @@ msgid "Confirm"
 msgstr "확인"
 
 #. TRANS: Field title on page where to change password.
-#. TRANS: Ttile for field label for password reset form where the password has to be typed again.
+#. TRANS: Title for field label for password reset form where the password has to be typed again.
 #. TRANS: Field title on account registration page.
 msgid "Same as password above."
 msgstr "위와 같은 비밀 번호."
@@ -3791,30 +3593,6 @@ msgstr "아바타 디렉터리"
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Directory where avatars are located."
 msgstr "아바타가 들어 있는 디렉터리."
-
-#. TRANS: Fieldset legend in Paths admin panel.
-msgid "Backgrounds"
-msgstr "배경"
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds."
-msgstr "배경 서버."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds."
-msgstr "배경의 웹 경로."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds on SSL pages."
-msgstr "SSL 페이지의 배경 서버."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds on SSL pages."
-msgstr "SSL 페이지의 배경 웹 경로."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Directory where backgrounds are located."
-msgstr "배경이 들어 있는 디렉터리."
 
 #. TRANS: Fieldset legens in Paths admin panel.
 msgid "Attachments"
@@ -4595,7 +4373,6 @@ msgid "6 or more characters, and do not forget it!"
 msgstr "6글자 이상, 잊어버리지 마십시오!"
 
 #. TRANS: Button text for password reset form.
-#. TRANS: Button text on profile design page to reset all colour settings to default without saving.
 msgctxt "BUTTON"
 msgid "Reset"
 msgstr "초기화"
@@ -4603,18 +4380,6 @@ msgstr "초기화"
 #. TRANS: Form instructions for password recovery form.
 msgid "Enter a nickname or email address."
 msgstr "사용자 이름이나 메일 계정을 입력하십시오."
-
-#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
-msgid "No user with that email address or username."
-msgstr "그러한 메일 주소나 이름의 사용자가 없습니다."
-
-#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
-msgid "No registered email address for that user."
-msgstr "그 사용자는 등록한 메일 주소가 없습니다."
-
-#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
-msgid "Error saving address confirmation."
-msgstr "주소 확인 저장 오류."
 
 #. TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
 msgid ""
@@ -5555,6 +5320,14 @@ msgstr "사이트 이름은 길이가 0보다 커야 합니다."
 msgid "You must have a valid contact email address."
 msgstr "올바른 연락처 메일 주소가 필요합니다."
 
+#. TRANS: Client error displayed when a logo URL is not valid.
+msgid "Invalid logo URL."
+msgstr "로고 URL이 잘못되었습니다."
+
+#. TRANS: Client error displayed when a SSL logo URL is invalid.
+msgid "Invalid SSL logo URL."
+msgstr "SSL 로고 URL이 잘못되었습니다."
+
 #. TRANS: Client error displayed trying to save site settings with an invalid language code.
 #. TRANS: %s is the invalid language code.
 #, php-format
@@ -5625,7 +5398,9 @@ msgid "Default language"
 msgstr "기본 언어"
 
 #. TRANS: Dropdown title on site settings panel.
-msgid "Site language when autodetection from browser settings is not available"
+#, fuzzy
+msgid ""
+"The site language when autodetection from browser settings is not available."
 msgstr "사이트의 언어, 브라우저의 자동 언어 설정이 없을 때."
 
 #. TRANS: Fieldset legend on site settings panel.
@@ -5650,8 +5425,21 @@ msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 "같은 내용을 글을 다시 올릴 수 있을 때까지 기다려야 하는 시간. (초 단위)"
 
+#. TRANS: Fieldset legend for form to change logo.
+msgid "Logo"
+msgstr "로고"
+
+#. TRANS: Field label for StatusNet site logo.
+msgid "Site logo"
+msgstr "사이트 로고"
+
+#. TRANS: Field label for SSL StatusNet site logo.
+msgid "SSL logo"
+msgstr "SSL 로고"
+
 #. TRANS: Button title for saving site settings.
-msgid "Save site settings"
+#, fuzzy
+msgid "Save the site settings."
 msgstr "사이트 설정 저장"
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
@@ -6400,38 +6188,6 @@ msgstr "아바타 URL \"%s\"을(를) 읽을 수 없습니다."
 msgid "Wrong image type for avatar URL \"%s\"."
 msgstr "아바타 URL \"%s\"의 이미지 종류가 잘못되었습니다."
 
-#. TRANS: Title for profile design page.
-#. TRANS: Page title for profile design page.
-msgid "Profile design"
-msgstr "프로필 디자인"
-
-#. TRANS: Instructions for Profile design page.
-#. TRANS: Instructions for profile design page.
-msgid ""
-"Customize the way your profile looks with a background image and a colour "
-"palette of your choice."
-msgstr "배경 이미지와 색 팔레트를 선택해서 프로필의 모양을 설정합니다."
-
-#. TRANS: Succes message on Profile design page when finding an easter egg.
-msgid "Enjoy your hotdog!"
-msgstr "핫도그 맛있게 드세요!"
-
-#. TRANS: Form legend on Profile design page.
-msgid "Design settings"
-msgstr "디자인 설정"
-
-#. TRANS: Checkbox label on Profile design page.
-msgid "View profile designs"
-msgstr "프로필 디자인 보기"
-
-#. TRANS: Title for checkbox on Profile design page.
-msgid "Show or hide profile designs."
-msgstr "프로필 디자인 보이거나 감춥니다."
-
-#. TRANS: Form legend on Profile design page for form to choose a background image.
-msgid "Background file"
-msgstr "배경 파일"
-
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
 #, php-format
@@ -6872,6 +6628,18 @@ msgstr "단일 사용자 모드에서 사용자를 정의하지 않았습니다.
 msgid "Single-user mode code called when not enabled."
 msgstr "단일 사용자 모드를 사용하지 않지만 코드를 호출했습니다."
 
+#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
+msgid "No user with that email address or username."
+msgstr "그러한 메일 주소나 이름의 사용자가 없습니다."
+
+#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
+msgid "No registered email address for that user."
+msgstr "그 사용자는 등록한 메일 주소가 없습니다."
+
+#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
+msgid "Error saving address confirmation."
+msgstr "주소 확인 저장 오류."
+
 #. TRANS: Server exception thrown when creating a group failed.
 msgid "Could not create group."
 msgstr "그룹을 만들 수 없습니다."
@@ -7137,11 +6905,6 @@ msgstr "showForm()이 구현되지 않았습니다."
 msgid "saveSettings() not implemented."
 msgstr "saveSettings()이 구현되지 않았습니다."
 
-#. TRANS: Client error message thrown if design settings could not be deleted in
-#. TRANS: the admin panel Design.
-msgid "Unable to delete design setting."
-msgstr "디자인 설정을 삭제할 수 없습니다."
-
 #. TRANS: Header in administrator navigation panel.
 #. TRANS: Header in settings navigation panel.
 msgctxt "HEADER"
@@ -7169,17 +6932,6 @@ msgstr "기본 사이트 설정"
 msgctxt "MENU"
 msgid "Site"
 msgstr "사이트"
-
-#. TRANS: Menu item title in administrator navigation panel.
-msgid "Design configuration"
-msgstr "디자인 설정"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
-msgid "Design"
-msgstr "디자인"
 
 #. TRANS: Menu item title in administrator navigation panel.
 msgid "User configuration"
@@ -8001,42 +7753,6 @@ msgstr "삭제"
 msgid "Delete this user"
 msgstr "이 사용자 삭제"
 
-#. TRANS: Form legend of form for changing the page design.
-msgid "Change design"
-msgstr "디자인 변경"
-
-#. TRANS: Fieldset legend on profile design page to change profile page colours.
-msgid "Change colours"
-msgstr "색 변경"
-
-#. TRANS: Button text on profile design page to immediately reset all colour settings to default.
-msgid "Use defaults"
-msgstr "기본값 사용"
-
-#. TRANS: Label in form on profile design page.
-#. TRANS: Field contains file name on user's computer that could be that user's custom profile background image.
-msgid "Upload file"
-msgstr "파일 업로드"
-
-#. TRANS: Instructions for form on profile design page.
-msgid ""
-"You can upload your personal background image. The maximum file size is 2MB."
-msgstr "개인 배경 이미지를 업로드할 수 있습니다. 최대 파일 크기는 2MB입니다."
-
-#. TRANS: Radio button on profile design page that will enable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "On"
-msgstr "켜기"
-
-#. TRANS: Radio button on profile design page that will disable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "Off"
-msgstr "끄기"
-
-#. TRANS: Success message displayed if design settings were saved after clicking "Use defaults".
-msgid "Design defaults restored."
-msgstr "디자인 기본값을 복구했습니다."
-
 #. TRANS: Exception. %s is an ID.
 #, php-format
 msgid "Unable to find services for %s."
@@ -8239,13 +7955,6 @@ msgstr "로고"
 msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr "%s 로고 추가 또는 편집"
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "Add or edit %s design"
-msgstr "%s 디자인 추가 또는 편집"
 
 #. TRANS: Group actions header (h2). Text hidden by default.
 msgid "Group actions"
@@ -8857,7 +8566,7 @@ msgstr "직접 메시지 보내기"
 msgid "Select recipient:"
 msgstr "수신자 선택:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "서로 구독한 사람이 없습니다."
 
@@ -9284,8 +8993,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "사용"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr "(플러그인을 사용하지 않으면 설명을 볼 수 없습니다.)"
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9577,10 +9289,6 @@ msgstr "메일"
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Change email handling"
 msgstr "메일 처리 바꾸기"
-
-#. TRANS: Menu item title in settings navigation panel.
-msgid "Design your profile"
-msgstr "프로필 디자인"
 
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
@@ -9986,3 +9694,37 @@ msgstr "XML이 잘못되었습니다. XRD 루트가 없습니다."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "'%s' 파일에서 백업을 가져옵니다."
+
+#. TRANS: Server exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Invalid avatar URL %s."
+msgstr "아바타 URL \"%s\"을(를) 읽을 수 없습니다."
+
+#. TRANS: Server exception. %s is a URI.
+#, fuzzy, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr "원격 프로필 프로필 업데이트 오류."
+
+#. TRANS: Server exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "%s에 대한 서비스를 찾을 수 없습니다."
+
+#. TRANS: Exception. %s is a profile URL.
+#, fuzzy, php-format
+msgid "Could not reach profile page %s."
+msgstr "프로필 태그를 만들 수 없습니다."
+
+#. TRANS: Exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr "이름이 %s인 사용자를 찾을 수 없습니다."
+
+#. TRANS: Exception.
+#, fuzzy
+msgid "Not a valid webfinger address."
+msgstr "올바른 메일 주소가 아닙니다."
+
+#, fuzzy, php-format
+msgid "Could not find a valid profile for \"%s\"."
+msgstr "프로필을 저장 할 수 없습니다."

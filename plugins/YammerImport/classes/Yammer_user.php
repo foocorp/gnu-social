@@ -48,7 +48,6 @@ class Yammer_user extends Yammer_common
      * @return Yammer_user object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Yammer_user', $k, $v);
@@ -57,7 +56,6 @@ class Yammer_user extends Yammer_common
     /**
      * Return schema definition to set this table up in onCheckSchema
      */
-
     static function schemaDef()
     {
         return self::doSchemaDef('user_id');
@@ -71,7 +69,6 @@ class Yammer_user extends Yammer_common
      *
      * @return Yammer_user new object for this value
      */
-
     static function record($orig_id, $user_id)
     {
         return self::doRecord('Yammer_user', 'user_id', $orig_id, $user_id);

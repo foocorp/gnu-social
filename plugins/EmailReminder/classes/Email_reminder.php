@@ -46,7 +46,6 @@ class Email_reminder extends Managed_DataObject
      * @param mixed  $v Value to lookup
      *
      * @return QnA_Answer object found, or null for no hits
-     *
      */
     function staticGet($k, $v=null)
     {
@@ -100,6 +99,7 @@ class Email_reminder extends Managed_DataObject
         if (empty($result)) {
             common_log_db_error($reminder, 'INSERT', __FILE__);
                 throw new ServerException(
+                    // TRANS: Server exception thrown when a reminder record could not be inserted into the database.
                     _m('Database error inserting reminder record.')
             );
         }

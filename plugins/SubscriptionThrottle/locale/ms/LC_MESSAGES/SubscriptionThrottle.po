@@ -9,23 +9,26 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubscriptionThrottle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:25+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:28+0000\n"
 "Language-Team: Malay <http://translatewiki.net/wiki/Portal:ms>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:22+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:52:05+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ms\n"
 "X-Message-Group: #out-statusnet-plugin-subscriptionthrottle\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#. TRANS: Exception thrown when subscribing too quickly.
 msgid "Too many subscriptions. Take a break and try again later."
 msgstr "Terlalu banyak langganan. Berehat seketika dan cuba lagi nanti."
 
+#. TRANS: Exception thrown when joing groups too quickly.
 msgid "Too many memberships. Take a break and try again later."
 msgstr "Terlalu banyak keahlian. Berehat seketika dan cuba lagi nanti."
 
+#. TRANS: Plugin description.
 msgid "Configurable limits for subscriptions and group memberships."
 msgstr ""

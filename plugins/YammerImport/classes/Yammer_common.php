@@ -40,7 +40,6 @@ if (!defined('STATUSNET')) {
  * - schemaDef (call self::doSchemaDef)
  * - record (call self::doRecord)
  */
-
 class Yammer_common extends Memcached_DataObject
 {
     public $__table = 'yammer_XXXX'; // table name
@@ -50,7 +49,7 @@ class Yammer_common extends Memcached_DataObject
     public $created;                 // datetime
 
     /**
-     * @fixme add a 'references' thing for the foreign key when we support that
+     * @todo FIXME: Add a 'references' thing for the foreign key when we support that
      */
     protected static function doSchemaDef($field)
     {
@@ -87,7 +86,6 @@ class Yammer_common extends Memcached_DataObject
      *
      * @return array list of key field names
      */
-
     function keys()
     {
         return array_keys($this->keyTypes());
@@ -105,7 +103,6 @@ class Yammer_common extends Memcached_DataObject
      *         'K' for primary key: for compound keys, add an entry for each component;
      *         'U' for unique keys: compound keys are not well supported here.
      */
-
     function keyTypes()
     {
         return array('id' => 'K', $this->__field => 'U');
@@ -121,7 +118,6 @@ class Yammer_common extends Memcached_DataObject
      *
      * @return array magic three-false array that stops auto-incrementing.
      */
-
     function sequenceKey()
     {
         return array(false, false, false);
@@ -135,7 +131,6 @@ class Yammer_common extends Memcached_DataObject
      *
      * @return Yammer_common new object for this value
      */
-
     protected static function doRecord($class, $field, $orig_id, $local_id)
     {
         $map = parent::staticGet($class, 'id', $orig_id);

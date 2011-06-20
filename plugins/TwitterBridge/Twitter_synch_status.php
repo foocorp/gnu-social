@@ -64,7 +64,6 @@ class Twitter_synch_status extends Memcached_DataObject
      * @param mixed  $v Value to lookup
      *
      * @return Twitter_synch_status object found, or null for no hits
-     *
      */
     function staticGet($k, $v=null)
     {

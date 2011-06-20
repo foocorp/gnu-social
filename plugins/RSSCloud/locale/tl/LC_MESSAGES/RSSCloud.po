@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RSSCloud\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:08+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:25+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:19+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:51:29+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-rsscloud\n"
@@ -38,14 +38,14 @@ msgid "Request must be POST."
 msgstr "Ang hiling ay dapat na POST."
 
 #. TRANS: Form validation error displayed when HTTP POST is not used.
-#, fuzzy
 msgid "Only HTTP POST notifications are supported at this time."
-msgstr "Tanging mga pabatid na http-post lang ang tinatangkilik sa ngayon."
+msgstr ""
+"Tanging mga pabatid na HTTP POST lamang ang tinatangkilik sa panahong ito."
 
 #. TRANS: List separator.
 msgctxt "SEPARATOR"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #. TRANS: Form validation error displayed when a request body is missing expected parameters.
 #. TRANS: %s is a list of parameters separated by a list separator (default: ", ").
@@ -54,24 +54,22 @@ msgid "The following parameters were missing from the request body: %s."
 msgstr "Nawawala ang sumusunod na mga parametro mula sa katawan ng hiling: %s."
 
 #. TRANS: Form validation error displayed when not providing any valid profile feed URLs.
-#, fuzzy
 msgid ""
 "You must provide at least one valid profile feed URL (url1, url2, url3 ... "
 "urlN)."
 msgstr ""
-"Dapat kang magbigay ng kahit na isang url ng pakain ng tanggap na talaksan "
-"(url1, url2, url3 ... urlN)."
+"Dapat kang magbigay ng kahit na isang katanggap-tanggap na URL ng pakain ng "
+"balangkas (url1, url2, url3 ... urlN)."
 
 #. TRANS: Form validation error displayed when not providing a valid feed URL.
 msgid "Feed subscription failed: Not a valid feed."
 msgstr "Nabigo ang pagtanggap ng pakain: Hindi isang tanggap na pakain."
 
 #. TRANS: Form validation error displayed when feed subscription failed.
-#, fuzzy
 msgid ""
 "Feed subscription failed: Notification handler does not respond correctly."
 msgstr ""
-"Nabigo ang pagtanggap ng pakain - hindi tama ang pagtugon ng tagapaghawak ng "
+"Nabigo ang pagpapasipi ng pakain: Hindi tama ang pagtugon ng tagapaghawak ng "
 "pabatid."
 
 #. TRANS: Success message after subscribing to one or more feeds.

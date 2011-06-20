@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:56:31+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:29+0000\n"
 "Last-Translator: Siebrand Mazeland <s.mazeland@xs4all.nl>\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-05 09:58:10+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:19:23+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
@@ -55,6 +55,10 @@ msgstr "Continue"
 msgctxt "BUTTON"
 msgid "Cancel"
 msgstr "Annuleren"
+
+#. TRANS: Client exception thrown when an action is not available.
+msgid "Unavailable action."
+msgstr "Handeling niet beschikbaar."
 
 #. TRANS: Tooltip for main menu option "Login"
 msgctxt "TOOLTIP"
@@ -100,6 +104,36 @@ msgstr "Aanmelden of registreren met OpenID."
 #. TRANS: OpenID plugin tooltip for user settings menu item.
 msgid "Add or remove OpenIDs."
 msgstr "OpenID's toevoegen of verwijderen."
+
+#. TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? [Add an OpenID to your account](%%"
+"action.openidsettings%%)!"
+msgstr ""
+"(Hebt u een [OpenID](http://openid.net/)? [Voeg een OpenID toe aan uw "
+"gebruiker](%%action.openidsettings%%)!"
+
+#. TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID registration](%%"
+"action.openidlogin%%)!)"
+msgstr ""
+"(Hebt u een [OpenID](http://openid.net/)? Gebruik onze [OpenID-registratie](%"
+"%action.openidlogin%%)!)"
+
+#. TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID login](%%action."
+"openidlogin%%)!)"
+msgstr ""
+"(Hebt u een[OpenID](http://openid.net/)? [Meld u aan via OpenID](%%action."
+"openidlogin%%)!)"
 
 #. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
 #, php-format

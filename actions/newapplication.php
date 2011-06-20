@@ -295,6 +295,7 @@ class NewApplicationAction extends Action
             $app->uploadLogo();
         } catch (Exception $e) {
             $app->query('ROLLBACK');
+            // TRANS: Form validation error messages displayed when uploading an invalid application logo.
             $this->showForm(_('Invalid image.'));
 	        return;	 
 	}

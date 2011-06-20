@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:23+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:07+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-05 09:57:31+0000\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -110,7 +110,6 @@ msgid "Save access settings"
 msgstr "Toegangsinstellingen opslaan"
 
 #. TRANS: Tooltip for button to save access settings in site admin panel.
-#. TRANS: Button text for saving theme settings.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -126,7 +125,6 @@ msgstr "Toegangsinstellingen opslaan"
 #. TRANS: Button text for saving "Other settings" in profile.
 #. TRANS: Button text to save user settings in user admin panel.
 #. TRANS: Button label in the "Edit application" form.
-#. TRANS: Button text on profile design page to save settings.
 #. TRANS: Text for save button on group edit form.
 #. TRANS: Button text to save tags for a profile.
 msgctxt "BUTTON"
@@ -206,7 +204,6 @@ msgstr "Deze pagina bestaat niet."
 #. TRANS: Client error when user not found for an rss related action.
 #. TRANS: Client error displayed when no existing user is provided for a user's delivery device setting.
 #. TRANS: Client error displayed if a user could not be found.
-#. TRANS: Client error when user not found updating a profile background image.
 #. TRANS: Client error displayed updating profile image without having a user object.
 #. TRANS: Client error displayed when making an Atom API request for an unknown user.
 #. TRANS: Client error displayed when trying to block a non-existing user or a user from another site.
@@ -312,7 +309,7 @@ msgstr ""
 "bericht voor die gebruiker plaatsen](%%%%action.newnotice%%%%?"
 "status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -375,7 +372,6 @@ msgstr ""
 #. TRANS: Server error thrown on database error updating SMS preferences.
 #. TRANS: Server error thrown on database error removing a registered SMS phone number.
 #. TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
-#. TRANS: Server exception thrown on Profile design page when updating design settings fails.
 msgid "Could not update user."
 msgstr "Het was niet mogelijk de gebruiker bij te werken."
 
@@ -390,7 +386,6 @@ msgstr "Het was niet mogelijk het profiel op te slaan."
 
 #. TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
 #. TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-#. TRANS: Form validation error in design settings form. POST should remain untranslated.
 #, php-format
 msgid ""
 "The server was unable to handle that much POST data (%s byte) due to its "
@@ -404,24 +399,6 @@ msgstr[0] ""
 msgstr[1] ""
 "De server was niet in staat zoveel POST-gegevens te verwerken (%s bytes) "
 "vanwege de huidige instellingen."
-
-#. TRANS: Client error displayed when saving design settings fails because of an empty id.
-#. TRANS: Client error displayed when saving design settings fails because of an empty result.
-#. TRANS: Client error displayed when a database error occurs inserting profile colours.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error displayed when group design settings could not be saved because of an application issue.
-#. TRANS: Form validation error on Profile design page when saving design settings has failed.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-msgid "Unable to save your design settings."
-msgstr "Het was niet mogelijk om uw ontwerpinstellingen op te slaan."
-
-#. TRANS: Error displayed when updating design settings fails.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-#. TRANS: Error message displayed if design settings could not be saved.
-#. TRANS: Error message displayed if design settings could not be saved after clicking "Use defaults".
-msgid "Could not update your design."
-msgstr "Het was niet mogelijk uw ontwerp bij te werken."
 
 #. TRANS: Title for Atom feed.
 msgctxt "ATOM"
@@ -514,6 +491,8 @@ msgstr ""
 "vriendenlijst staan."
 
 #. TRANS: Client error displayed trying to direct message self (403).
+#. TRANS: Client error displayed trying to send a direct message to self.
+#. TRANS: Error text shown when trying to send a direct message to self.
 msgid ""
 "Do not send a message to yourself; just say it to yourself quietly instead."
 msgstr "Stuur geen berichten naar uzelf. Zeg het gewoon in uw hoofd."
@@ -746,7 +725,6 @@ msgstr "groepen op %s"
 
 #. TRANS: Client error displayed when trying to edit a group without being an admin.
 #. TRANS: Client error displayed trying to edit a group while not being a group admin.
-#. TRANS: Client error displayed trying to change group design settings without being a (group) admin.
 #. TRANS: Client error displayed when trying to change group logo settings while not being a group admin.
 msgid "You must be an admin to edit the group."
 msgstr "U moet beheerder zijn om de groep te kunnen bewerken."
@@ -859,7 +837,6 @@ msgstr ""
 
 #. TRANS: Client error given on when invalid data was passed through a form in the OAuth API.
 #. TRANS: Unexpected validation error on avatar upload form.
-#. TRANS: Client error displayed when the submitted form contains unexpected data.
 #. TRANS: Client error displayed submitting invalid form data for edit application.
 #. TRANS: Message given submitting a form with an unknown action in e-mail settings.
 #. TRANS: Form validation error message when an unsupported argument is used.
@@ -868,7 +845,6 @@ msgstr ""
 #. TRANS: Client error when submitting a form with unexpected information.
 #. TRANS: Client error displayed when unexpected data is posted in the password recovery form.
 #. TRANS: Message given submitting a form with an unknown action in SMS settings.
-#. TRANS: Unknown form validation error in design settings form.
 msgid "Unexpected form submission."
 msgstr "Het formulier is onverwacht ingezonden."
 
@@ -1230,7 +1206,6 @@ msgstr "U moet aangemeld zijn om een groep te kunnen verlaten."
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.
 #. TRANS: Client error displayed trying to block a user from a group while specifying a non-existing group.
 #. TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
-#. TRANS: Client error displayed trying to change group design settings while providing a nickname for a non-existing group.
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
@@ -1318,6 +1293,7 @@ msgid "Join request canceled."
 msgstr "Het verzoek voor lidmaatschap is geweigerd."
 
 #. TRANS: Client error displayed trying to approve subscription for a non-existing request.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "%s is not in the moderation queue for your subscriptions."
 msgstr "%s staat niet in de wachtrij voor uw abonnementen."
@@ -1476,7 +1452,6 @@ msgstr "Deze bijlage bestaat niet."
 #. TRANS: Client error displayed trying to get an avatar without providing a nickname.
 #. TRANS: Client error displayed when requesting a list of blocked users for a group without providing a group nickname.
 #. TRANS: Client error displayed trying to edit a group while not proving a nickname for the group to edit.
-#. TRANS: Client error displayed trying to change group design settings without providing a group nickname.
 #. TRANS: Client error displayed when trying to change group logo settings without providing a nickname.
 #. TRANS: Client error displayed when trying to view group members without providing a group nickname.
 #. TRANS: Client error displayed when requesting a group RSS feed without providing a group nickname.
@@ -1987,150 +1962,6 @@ msgstr "Deze gebruiker niet verwijderen."
 msgid "Delete this user."
 msgstr "Deze gebruiker verwijderen."
 
-#. TRANS: Message used as title for design settings for the site.
-msgid "Design"
-msgstr "Uiterlijk"
-
-#. TRANS: Instructions for design adminsitration panel.
-msgid "Design settings for this StatusNet site"
-msgstr "Instellingen voor de vormgeving van deze StatusNet-website"
-
-#. TRANS: Client error displayed when a logo URL does is not valid.
-msgid "Invalid logo URL."
-msgstr "De logo-URL is ongeldig."
-
-#. TRANS: Client error displayed when an SSL logo URL is invalid.
-msgid "Invalid SSL logo URL."
-msgstr "De SSL logo-URL is ongeldig."
-
-#. TRANS: Client error displayed when a theme is submitted through the form that is not in the theme list.
-#. TRANS: %s is the chosen unavailable theme.
-#, php-format
-msgid "Theme not available: %s."
-msgstr "De vormgeving is niet beschikbaar: %s."
-
-#. TRANS: Fieldset legend for form to change logo.
-msgid "Change logo"
-msgstr "Logo wijzigen"
-
-#. TRANS: Field label for StatusNet site logo.
-msgid "Site logo"
-msgstr "Websitelogo"
-
-#. TRANS: Field label for SSL StatusNet site logo.
-msgid "SSL logo"
-msgstr "SSL-logo"
-
-#. TRANS: Fieldset legend for form change StatusNet site's theme.
-msgid "Change theme"
-msgstr "Vormgeving wijzigen"
-
-#. TRANS: Field label for dropdown to choose site theme.
-msgid "Site theme"
-msgstr "Vormgeving website"
-
-#. TRANS: Title for field label for dropdown to choose site theme.
-msgid "Theme for the site."
-msgstr "Mogelijke vormgevingen voor deze website."
-
-#. TRANS: Field label for uploading a cutom theme.
-msgid "Custom theme"
-msgstr "Aangepaste vormgeving"
-
-#. TRANS: Form instructions for uploading a cutom StatusNet theme.
-msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-msgstr "U kunt een vormgeving voor StatusNet uploaden als ZIP-archief."
-
-#. TRANS: Fieldset legend for theme background image.
-msgid "Change background image"
-msgstr "Achtergrondafbeelding wijzigen"
-
-#. TRANS: Field label for background image on theme designer page.
-#. TRANS: Field label for background color selector.
-#. TRANS: Label on profile design page for setting a profile page background colour.
-msgid "Background"
-msgstr "Achtergrond"
-
-#. TRANS: Form guide for background image upload form on theme designer page.
-#, php-format
-msgid ""
-"You can upload a background image for the site. The maximum file size is %1"
-"$s."
-msgstr ""
-"Hier kunt u een achtergrondafbeelding voor de website uploaden. De maximale "
-"bestandsgrootte is %1$s."
-
-#. TRANS: Used as radio button label to add a background image.
-msgid "On"
-msgstr "Aan"
-
-#. TRANS: Used as radio button label to not add a background image.
-msgid "Off"
-msgstr "Uit"
-
-#. TRANS: Form guide for turning background image on or off on theme designer page.
-#. TRANS: Form guide for a set of radio buttons on the profile design page that will enable or disable
-#. TRANS: use of the uploaded profile image.
-msgid "Turn background image on or off."
-msgstr "Achtergrondafbeelding inschakelen of uitschakelen."
-
-#. TRANS: Checkbox label to title background image on theme designer page.
-#. TRANS: Checkbox label on profile design page that will cause the profile image to be tiled.
-msgid "Tile background image"
-msgstr "Achtergrondafbeelding naast elkaar"
-
-#. TRANS: Fieldset legend for theme colors.
-msgid "Change colors"
-msgstr "Kleuren wijzigen"
-
-#. TRANS: Field label for content color selector.
-#. TRANS: Label on profile design page for setting a profile page content colour.
-msgid "Content"
-msgstr "Inhoud"
-
-#. TRANS: Field label for sidebar color selector.
-#. TRANS: Label on profile design page for setting a profile page sidebar colour.
-msgid "Sidebar"
-msgstr "Menubalk"
-
-#. TRANS: Field label for text color selector.
-#. TRANS: Label on profile design page for setting a profile page text colour.
-msgid "Text"
-msgstr "Tekst"
-
-#. TRANS: Field label for link color selector.
-#. TRANS: Label on profile design page for setting a profile page links colour.
-msgid "Links"
-msgstr "Verwijzingen"
-
-#. TRANS: Fieldset legend for advanced theme design settings.
-msgid "Advanced"
-msgstr "Uitgebreid"
-
-#. TRANS: Field label for custom CSS.
-msgid "Custom CSS"
-msgstr "Aangepaste CSS"
-
-#. TRANS: Button text for resetting theme settings.
-msgctxt "BUTTON"
-msgid "Use defaults"
-msgstr "Standaardinstellingen gebruiken"
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default.
-msgid "Restore default designs."
-msgstr "Het standaardontwerp toepassen."
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-msgid "Reset back to default."
-msgstr "De standaardinstellingen toepassen."
-
-#. TRANS: Title for button for saving theme settings.
-#. TRANS: Title for button on profile design page to save settings.
-msgid "Save design."
-msgstr "Ontwerp opslaan."
-
 #. TRANS: Client error displayed when trying to remove favorite status for a notice that is not a favorite.
 msgid "This notice is not a favorite!"
 msgstr "Deze mededeling staat niet op uw favorietenlijst."
@@ -2307,7 +2138,7 @@ msgstr ""
 "Door een openbaar label als privé in te stellen worden alle bestaande "
 "abonnementen verwijderd. Wilt u doorgaan?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "Het was niet mogelijk de lijst bij te werken."
 
@@ -2740,31 +2571,6 @@ msgstr ""
 #. TRANS: Client error displayed trying to find a user by ID without providing an ID.
 msgid "No ID."
 msgstr "Geen ID."
-
-#. TRANS: Client error displayed trying to change group design settings while not logged in.
-msgid "You must be logged in to edit a group."
-msgstr "U moet aangemeld zijn om een groep te kunnen bewerken."
-
-#. TRANS: Title group design settings page.
-msgid "Group design"
-msgstr "Groepsontwerp"
-
-#. TRANS: Instructions for group design settings page.
-msgid ""
-"Customize the way your group looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-"De vormgeving van uw groep aanpassen met een achtergrondafbeelding en een "
-"kleurenpalet van uw keuze."
-
-#. TRANS: Form validation error displayed when group design settings could not be updated because of an application issue.
-msgid "Unable to update your design settings."
-msgstr "Het was niet mogelijk om uw ontwerpinstellingen bij te werken."
-
-#. TRANS: Form text to confirm saved group design settings.
-#. TRANS: Confirmation message on Profile design page when saving design settings has succeeded.
-msgid "Design preferences saved."
-msgstr "De ontwerpvoorkeuren zijn opgeslagen."
 
 #. TRANS: Title for group logo settings page.
 #. TRANS: Group logo form legend.
@@ -3395,6 +3201,7 @@ msgstr "Een bron-URL is verplicht."
 msgid "Could not create application."
 msgstr "Het was niet mogelijk de applicatie aan te maken."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Ongeldige afbeelding."
 
@@ -3430,12 +3237,6 @@ msgstr "Geen inhoud!"
 #. TRANS: Form validation error displayed trying to send a direct message without specifying a recipient.
 msgid "No recipient specified."
 msgstr "Er is geen ontvanger aangegeven."
-
-#. TRANS: Client error displayed trying to send a direct message to self.
-#. TRANS: Error text shown when trying to send a direct message to self.
-msgid ""
-"Don't send a message to yourself; just say it to yourself quietly instead."
-msgstr "Stuur geen berichten naar uzelf. Zeg het gewoon in uw hoofd."
 
 #. TRANS: Page title after sending a direct message.
 msgid "Message sent"
@@ -3725,7 +3526,7 @@ msgid "Confirm"
 msgstr "Bevestigen"
 
 #. TRANS: Field title on page where to change password.
-#. TRANS: Ttile for field label for password reset form where the password has to be typed again.
+#. TRANS: Title for field label for password reset form where the password has to be typed again.
 #. TRANS: Field title on account registration page.
 msgid "Same as password above."
 msgstr "Gelijk aan het wachtwoord hierboven."
@@ -3900,30 +3701,6 @@ msgstr "Avatarmap"
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Directory where avatars are located."
 msgstr "Map waar alle avatars worden opgeslagen."
-
-#. TRANS: Fieldset legend in Paths admin panel.
-msgid "Backgrounds"
-msgstr "Achtergronden"
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds."
-msgstr "Server voor achtergronden."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds."
-msgstr "Webpad naar achtergronden."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds on SSL pages."
-msgstr "Server voor achtergronden op SSL-pagina's."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds on SSL pages."
-msgstr "Webpad naar achtergronden op SSL-pagina's."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Directory where backgrounds are located."
-msgstr "Map waar achtergronden worden opgeslagen."
 
 #. TRANS: Fieldset legens in Paths admin panel.
 msgid "Attachments"
@@ -4720,7 +4497,6 @@ msgid "6 or more characters, and do not forget it!"
 msgstr "Zes of meer tekens, en vergeet uw wachtwoord niet!"
 
 #. TRANS: Button text for password reset form.
-#. TRANS: Button text on profile design page to reset all colour settings to default without saving.
 msgctxt "BUTTON"
 msgid "Reset"
 msgstr "Opnieuw instellen"
@@ -4728,20 +4504,6 @@ msgstr "Opnieuw instellen"
 #. TRANS: Form instructions for password recovery form.
 msgid "Enter a nickname or email address."
 msgstr "Voer een gebruikersnaam of e-mailadres in."
-
-#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
-msgid "No user with that email address or username."
-msgstr ""
-"Er bestaat geen gebruiker met het opgegeven e-mailadres of de opgegeven "
-"gebruikersnaam."
-
-#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
-msgid "No registered email address for that user."
-msgstr "Die gebruiker heeft geen e-mailadres geregistreerd."
-
-#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
-msgid "Error saving address confirmation."
-msgstr "Er is een fout opgetreden bij het opslaan van de adresbevestiging."
 
 #. TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
 msgid ""
@@ -5710,6 +5472,14 @@ msgid "You must have a valid contact email address."
 msgstr ""
 "U moet een geldig e-mailadres opgeven waarop contact opgenomen kan worden."
 
+#. TRANS: Client error displayed when a logo URL is not valid.
+msgid "Invalid logo URL."
+msgstr "De logo-URL is ongeldig."
+
+#. TRANS: Client error displayed when a SSL logo URL is invalid.
+msgid "Invalid SSL logo URL."
+msgstr "De SSL logo-URL is ongeldig."
+
 #. TRANS: Client error displayed trying to save site settings with an invalid language code.
 #. TRANS: %s is the invalid language code.
 #, php-format
@@ -5784,10 +5554,11 @@ msgid "Default language"
 msgstr "Standaardtaal"
 
 #. TRANS: Dropdown title on site settings panel.
-msgid "Site language when autodetection from browser settings is not available"
+msgid ""
+"The site language when autodetection from browser settings is not available."
 msgstr ""
 "De taal voor de website als deze niet uit de browserinstellingen opgemaakt "
-"kan worden"
+"kan worden."
 
 #. TRANS: Fieldset legend on site settings panel.
 msgctxt "LEGEND"
@@ -5812,9 +5583,21 @@ msgstr ""
 "Hoe lang gebruikers moeten wachten (in seconden) voor ze hetzelfde kunnen "
 "zenden."
 
+#. TRANS: Fieldset legend for form to change logo.
+msgid "Logo"
+msgstr "Logo"
+
+#. TRANS: Field label for StatusNet site logo.
+msgid "Site logo"
+msgstr "Websitelogo"
+
+#. TRANS: Field label for SSL StatusNet site logo.
+msgid "SSL logo"
+msgstr "SSL-logo"
+
 #. TRANS: Button title for saving site settings.
-msgid "Save site settings"
-msgstr "Websiteinstellingen opslaan"
+msgid "Save the site settings."
+msgstr "De websiteinstellingen opslaan."
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
 msgid "Site Notice"
@@ -6575,40 +6358,6 @@ msgstr "Het was niet mogelijk de avatar-URL \"%s\" te lezen."
 msgid "Wrong image type for avatar URL \"%s\"."
 msgstr "Er staat een verkeerd afbeeldingsttype op de avatar-URL \"%s\"."
 
-#. TRANS: Title for profile design page.
-#. TRANS: Page title for profile design page.
-msgid "Profile design"
-msgstr "Profielontwerp"
-
-#. TRANS: Instructions for Profile design page.
-#. TRANS: Instructions for profile design page.
-msgid ""
-"Customize the way your profile looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-"U kunt de vormgeving van uw profiel aanpassen door een achtergrondafbeelding "
-"toe te voegen of het kleurenpalet aan te passen."
-
-#. TRANS: Succes message on Profile design page when finding an easter egg.
-msgid "Enjoy your hotdog!"
-msgstr "Geniet van uw hotdog!"
-
-#. TRANS: Form legend on Profile design page.
-msgid "Design settings"
-msgstr "Vormgevingsinstellingen"
-
-#. TRANS: Checkbox label on Profile design page.
-msgid "View profile designs"
-msgstr "Profielontwerpen gebruiken"
-
-#. TRANS: Title for checkbox on Profile design page.
-msgid "Show or hide profile designs."
-msgstr "Profielontwerpen weergeven of verbergen"
-
-#. TRANS: Form legend on Profile design page for form to choose a background image.
-msgid "Background file"
-msgstr "Achtergrondbestand"
-
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
 #, php-format
@@ -7077,6 +6826,20 @@ msgid "Single-user mode code called when not enabled."
 msgstr ""
 "De \"single-user\"-modus is aangeroepen terwijl deze niet is ingeschakeld."
 
+#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
+msgid "No user with that email address or username."
+msgstr ""
+"Er bestaat geen gebruiker met het opgegeven e-mailadres of de opgegeven "
+"gebruikersnaam."
+
+#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
+msgid "No registered email address for that user."
+msgstr "Die gebruiker heeft geen e-mailadres geregistreerd."
+
+#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
+msgid "Error saving address confirmation."
+msgstr "Er is een fout opgetreden bij het opslaan van de adresbevestiging."
+
 #. TRANS: Server exception thrown when creating a group failed.
 msgid "Could not create group."
 msgstr "Het was niet mogelijk de groep aan te maken."
@@ -7350,11 +7113,6 @@ msgstr "showForm() is niet geïmplementeerd."
 msgid "saveSettings() not implemented."
 msgstr "saveSettings() is nog niet geïmplementeerd."
 
-#. TRANS: Client error message thrown if design settings could not be deleted in
-#. TRANS: the admin panel Design.
-msgid "Unable to delete design setting."
-msgstr "Het was niet mogelijk om de ontwerpinstellingen te verwijderen."
-
 #. TRANS: Header in administrator navigation panel.
 #. TRANS: Header in settings navigation panel.
 msgctxt "HEADER"
@@ -7382,17 +7140,6 @@ msgstr "Basisinstellingen voor de website"
 msgctxt "MENU"
 msgid "Site"
 msgstr "Website"
-
-#. TRANS: Menu item title in administrator navigation panel.
-msgid "Design configuration"
-msgstr "Instellingen vormgeving"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
-msgid "Design"
-msgstr "Uiterlijk"
 
 #. TRANS: Menu item title in administrator navigation panel.
 msgid "User configuration"
@@ -8245,44 +7992,6 @@ msgstr "Verwijderen"
 msgid "Delete this user"
 msgstr "Gebruiker verwijderen"
 
-#. TRANS: Form legend of form for changing the page design.
-msgid "Change design"
-msgstr "Ontwerp wijzigen"
-
-#. TRANS: Fieldset legend on profile design page to change profile page colours.
-msgid "Change colours"
-msgstr "Kleuren wijzigen"
-
-#. TRANS: Button text on profile design page to immediately reset all colour settings to default.
-msgid "Use defaults"
-msgstr "Standaardinstellingen gebruiken"
-
-#. TRANS: Label in form on profile design page.
-#. TRANS: Field contains file name on user's computer that could be that user's custom profile background image.
-msgid "Upload file"
-msgstr "Bestand uploaden"
-
-#. TRANS: Instructions for form on profile design page.
-msgid ""
-"You can upload your personal background image. The maximum file size is 2MB."
-msgstr ""
-"U kunt een persoonlijke achtergrondafbeelding uploaden. De maximale "
-"bestandsgrootte is 2 megabyte."
-
-#. TRANS: Radio button on profile design page that will enable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "On"
-msgstr "Aan"
-
-#. TRANS: Radio button on profile design page that will disable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "Off"
-msgstr "Uit"
-
-#. TRANS: Success message displayed if design settings were saved after clicking "Use defaults".
-msgid "Design defaults restored."
-msgstr "Het standaardontwerp is weer ingesteld."
-
 #. TRANS: Exception. %s is an ID.
 #, php-format
 msgid "Unable to find services for %s."
@@ -8493,13 +8202,6 @@ msgstr "Logo"
 msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr "Logo voor de groep %s toevoegen of bewerken"
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "Add or edit %s design"
-msgstr "Vormgeving van de groep %s toevoegen of aanpassen"
 
 #. TRANS: Group actions header (h2). Text hidden by default.
 msgid "Group actions"
@@ -9119,7 +8821,7 @@ msgstr "Directe mededeling verzenden"
 msgid "Select recipient:"
 msgstr "Selecteer ontvanger:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Geen wederzijdse abonnees."
 
@@ -9548,8 +9250,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Inschakelen"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr "Plug-inbeschrijvingen zijn niet beschikbaar als uitgeschakeld."
 
 #. TRANS: Menu item in primary navigation panel.
@@ -9841,10 +9546,6 @@ msgstr "E-mail"
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Change email handling"
 msgstr "E-mailafhandeling wijzigen"
-
-#. TRANS: Menu item title in settings navigation panel.
-msgid "Design your profile"
-msgstr "Uw profiel ontwerpen"
 
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
@@ -10268,3 +9969,38 @@ msgstr "Ongeldige XML. De XRD-root mist."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "De back-up wordt uit het bestand \"%s\" geladen."
+
+#. TRANS: Server exception. %s is a URL.
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Ongeldige avatar-URL %s."
+
+#. TRANS: Server exception. %s is a URI.
+#, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr ""
+"Er is geprobeerd om een avatar bij te werken voor het niet opgeslagen "
+"externe profiel %s."
+
+#. TRANS: Server exception. %s is a URL.
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Het was niet mogelijk om de avatar op te halen van %s."
+
+#. TRANS: Exception. %s is a profile URL.
+#, php-format
+msgid "Could not reach profile page %s."
+msgstr "Het was niet mogelijk de profielpagina %s te bereiken."
+
+#. TRANS: Exception. %s is a URL.
+#, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr "Het was niet mogelijk de feed-URL voor de profielpagina %s te vinden."
+
+#. TRANS: Exception.
+msgid "Not a valid webfinger address."
+msgstr "Geen geldig webfingeradres."
+
+#, php-format
+msgid "Could not find a valid profile for \"%s\"."
+msgstr "Er is geen geldig profiel voor \"%s\" gevonden."

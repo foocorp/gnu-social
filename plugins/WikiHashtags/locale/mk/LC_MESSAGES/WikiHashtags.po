@@ -9,34 +9,45 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - WikiHashtags\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:43+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:45+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-04-27 13:31:31+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:21:25+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-wikihashtags\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
 
+#. TRANS: Link title for editing an article on WikiHashTags.
+#. TRANS: %s is the hash tag page to be edited.
 #, php-format
 msgid "Edit the article for #%s on WikiHashtags"
 msgstr "Уредете ја статијата за #%s на WikiHashtags"
 
+#. TRANS: Link description for editing an article on WikiHashTags.
 msgid "Edit"
 msgstr "Уреди"
 
+#. TRANS: Link title for viewing the GFDL.
 msgid "Shared under the terms of the GNU Free Documentation License"
 msgstr ""
 "Споделувањето подлежи на условите на ГНУ-овата лиценца за слободна "
 "документација"
 
+#. TRANS: Link description for viewing the GFDL.
+msgid "GNU FDL"
+msgstr "GNU FDL"
+
+#. TRANS: Link description for editing an article on WikiHashTags.
+#. TRANS: %s is the hash tag page to be created.
 #, php-format
 msgid "Start the article for #%s on WikiHashtags"
 msgstr "Започнете ја статијата за #%s на WikiHashtags"
 
+#. TRANS: Plugin description.
 msgid ""
 "Gets hashtag descriptions from <a href=\"http://hashtags.wikia.com/"
 "\">WikiHashtags</a>."

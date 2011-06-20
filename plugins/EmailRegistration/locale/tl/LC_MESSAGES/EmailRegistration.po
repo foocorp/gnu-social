@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailRegistration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:55:28+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:07:21+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 09:56:40+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-emailregistration\n"
@@ -23,11 +23,11 @@ msgstr ""
 
 #. TRANS: Client exception trown when registration by e-mail is not allowed.
 msgid "Registration not allowed."
-msgstr ""
+msgstr "Hindi pinapayagan ang pagpapatala."
 
 #. TRANS: Client exception trown when trying to register without an invitation.
 msgid "Sorry, only invited people can register."
-msgstr ""
+msgstr "Paumanhin, tanging inanyayahang mga tao lamang ang makakapagpatala."
 
 #. TRANS: Client exception thrown when no confirmation code was provided.
 msgid "No confirmation code."
@@ -35,7 +35,7 @@ msgstr "Walang kodigo ng pagtitiyak."
 
 #. TRANS: Client exception trown when using an invitation multiple times.
 msgid "Invitation already used."
-msgstr ""
+msgstr "Nagamit na ang paanyaya."
 
 #. TRANS: Client exception thrown when given confirmation code was not issued.
 msgid "No such confirmation code."
@@ -62,9 +62,8 @@ msgstr ""
 "ang kahong-tanggapan ng e-lliham para sa mga panuto."
 
 #. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
-#, fuzzy
 msgid "No confirmation thing."
-msgstr "Walang kodigo ng pagtitiyak."
+msgstr "Walang bagay ng pagtitiyak."
 
 #. TRANS: Error text when trying to register without agreeing to the terms.
 msgid "You must accept the terms of service and privacy policy to register."
@@ -86,7 +85,7 @@ msgstr "Hindi magkatugma ang mga hudyat."
 
 #. TRANS: Exception trown when using an invitation multiple times.
 msgid "Failed to register user."
-msgstr ""
+msgstr "Nabigo sa pagtatala ng tagagamit."
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.
@@ -191,15 +190,3 @@ msgstr "Maligayang pagdating sa %s"
 #. TRANS: Plugin description.
 msgid "Use email only for registration."
 msgstr "Gamitin lamang ang e-liham para sa pagpapatala."
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not save new greeting count for %d."
-msgstr "Hindi masagip ang bagong bilang ng pagbati para sa %d."
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not increment greeting count for %d."
-msgstr "Hindi masudlungan ang bilang ng pagbati para sa %d."

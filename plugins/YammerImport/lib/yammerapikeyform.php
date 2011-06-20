@@ -53,6 +53,7 @@ class YammerApikeyForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend for adding details to connect to a remote Yammer API.
         $this->out->element('legend', null, _m('Yammer API registration'));
     }
 
@@ -69,6 +70,7 @@ class YammerApikeyForm extends Form
         $this->out->elementStart('fieldset');
 
         $this->out->elementStart('p');
+        // TRANS: Explanation of what needs to be done to connect to a Yammer network.
         $this->out->text(_m('Before we can connect to your Yammer network, ' .
                             'you will need to register the importer as an ' .
                             'application authorized to pull data on your behalf. ' .
@@ -81,21 +83,28 @@ class YammerApikeyForm extends Form
         $this->out->element('a',
             array('href' => 'https://www.yammer.com/client_applications/new',
                   'target' => '_blank'),
+            // TRANS: Link description to a Yammer application registration form.
             _m('Open Yammer application registration form'));
         $this->out->elementEnd('p');
 
+        // TRANS: Instructions.
         $this->out->element('p', array(), _m('Copy the consumer key and secret you are given into the form below:'));
 
         $this->out->elementStart('ul', array('class' => 'form_data'));
         $this->out->elementStart('li');
+        // TRANS: Field label for a Yammer consumer key.
         $this->out->input('consumer_key', _m('Consumer key:'), common_config('yammer', 'consumer_key'));
         $this->out->elementEnd('li');
         $this->out->elementStart('li');
+        // TRANS: Field label for a Yammer consumer secret.
         $this->out->input('consumer_secret', _m('Consumer secret:'), common_config('yammer', 'consumer_secret'));
         $this->out->elementEnd('li');
         $this->out->elementEnd('ul');
 
-        $this->out->submit('submit', _m('Save'), 'submit', null, _m('Save these consumer keys'));
+        // TRANS: Button text for saving a Yammer API registration.
+        $this->out->submit('submit', _m('BUTTON','Save'),
+                           // TRANS: Button title for saving a Yammer API registration.
+                           'submit', null, _m('Save the entered consumer key and consumer secret.'));
 
         $this->out->elementEnd('fieldset');
     }

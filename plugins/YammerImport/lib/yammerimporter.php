@@ -34,7 +34,7 @@ class YammerImporter
 
     /**
      * Load or create an imported profile from Yammer data.
-     * 
+     *
      * @param object $item loaded JSON data for Yammer importer
      * @return Profile
      */
@@ -180,7 +180,8 @@ class YammerImporter
     function prepUser($item)
     {
         if ($item['type'] != 'user') {
-            throw new Exception('Wrong item type sent to Yammer user import processing.');
+            // TRANS: Exception thrown when a non-user item type is used, but expected.
+            throw new Exception(_m('Wrong item type sent to Yammer user import processing.'));
         }
 
         $origId = $item['id'];
@@ -227,6 +228,7 @@ class YammerImporter
             $bio[] = $item['summary'];
         }
         if (!empty($item['expertise'])) {
+            // TRANS: Used as a prefix for the Yammer expertise field contents.
             $bio[] = _m('Expertise:') . ' ' . $item['expertise'];
         }
         $options['bio'] = implode("\n\n", $bio);
@@ -262,7 +264,8 @@ class YammerImporter
     function prepGroup($item)
     {
         if ($item['type'] != 'group') {
-            throw new Exception('Wrong item type sent to Yammer group import processing.');
+            // TRANS: Exception thrown when a non-group item type is used, but expected.
+            throw new Exception(_m('Wrong item type sent to Yammer group import processing.'));
         }
 
         $origId = $item['id'];
@@ -277,7 +280,6 @@ class YammerImporter
 
         $avatar = $item['mugshot_url']; // as with user profiles...
 
-
         $options['mainpage'] = common_local_url('showgroup',
                                    array('nickname' => $options['nickname']));
 
@@ -285,7 +287,7 @@ class YammerImporter
         $options['homepage'] = '';
         $options['location'] = '';
         $options['aliases'] = array();
-        // @fixme what about admin user for the group?
+        // @todo FIXME: What about admin user for the group?
 
         $options['local'] = true;
         return array('orig_id' => $origId,
@@ -303,7 +305,8 @@ class YammerImporter
     function prepNotice($item)
     {
         if (isset($item['type']) && $item['type'] != 'message') {
-            throw new Exception('Wrong item type sent to Yammer message import processing.');
+            // TRANS: Exception thrown when a non-message item type is used, but expected.
+            throw new Exception(_m('Wrong item type sent to Yammer message import processing.'));
         }
 
         $origId = $item['id'];
@@ -430,7 +433,9 @@ class YammerImporter
         $url = preg_replace('/_small(\..*?)$/', '$1', $url);
 
         if (!common_valid_http_url($url)) {
-            throw new ServerException(sprintf(_m("Invalid avatar URL %s."), $url));
+            // TRANS: Server exception thrown when an avatar URL is invalid.
+            // TRANS: %s is the invalid avatar URL.
+            throw new ServerException(sprintf(_m('Invalid avatar URL %s.'), $url));
         }
 
         // @fixme this should be better encapsulated
@@ -438,7 +443,9 @@ class YammerImporter
         $temp_filename = tempnam(sys_get_temp_dir(), 'listener_avatar');
         try {
             if (!copy($url, $temp_filename)) {
-                throw new ServerException(sprintf(_m("Unable to fetch avatar from %s."), $url));
+                // TRANS: Server exception thrown when an avatar could not be fetched.
+                // TRANS: %s is the failed avatar URL.
+                throw new ServerException(sprintf(_m('Unable to fetch avatar from %s.'), $url));
             }
 
             $id = $dest->id;

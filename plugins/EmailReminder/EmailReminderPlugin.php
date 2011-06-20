@@ -207,6 +207,7 @@ class EmailReminderPlugin extends Plugin
             'version'        => STATUSNET_VERSION,
             'author'         => 'Zach Copley',
             'homepage'       => 'http://status.net/wiki/Plugin:EmailReminder',
+            // TRANS: Plugin description.
             'rawdescription' => _m('Send email reminders for various things.')
         );
         return true;
