@@ -20,8 +20,8 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/../../..'));
 
-$shortoptions = 't:e:au';
-$longoptions = array('type=', 'email=', 'all', 'universe');
+$shortoptions = 't:e:auo';
+$longoptions = array('type=', 'email=', 'all', 'universe', 'onetime');
 
 $helptext = <<<END_OF_SENDEMAILREMINDER_HELP
 sendemailreminder.php [options]
@@ -31,6 +31,7 @@ Send an email summary of the inbox to users
  -e --email    email address to send reminder to
  -a --all      send reminder to all addresses
  -u --universe send reminder to all addresses on all sites
+ -o --onetime  send one-time reminder to older addresses
 
 END_OF_SENDEMAILREMINDER_HELP;
 
@@ -55,6 +56,7 @@ $types = array(
 );
 
 $type = null;
+$opts = array(); // special options like "onetime"
 
 if (have_option('t', 'type')) {
     $type = trim(get_option_value('t', 'type'));
@@ -65,6 +67,11 @@ if (have_option('t', 'type')) {
 } else {
    show_help();
    exit(1);
+}
+
+if (have_option('o', 'onetime')) {
+    $opts['onetime'] = true;
+    if (!$quiet) { print "Special one-time reminder mode.\n"; }
 }
 
 $reminders = array();
@@ -91,7 +98,7 @@ if (have_option('u', 'universe')) {
             $qm = QueueManager::get();
             foreach ($reminders as $reminder) {
                 extract($reminder);
-                $qm->enqueue($type, 'siterem');
+                $qm->enqueue(array($type, $opts), 'siterem');
                 if (!$quiet) { print "Sent pending {$type} reminders to all unconfirmed addresses in the known universe.\n"; }
             }
         }
@@ -111,13 +118,13 @@ if (have_option('u', 'universe')) {
                 if (empty($result)) {
                     throw new Exception("No confirmation code found for {$address}.");
                 }
-                $qm->enqueue($confirm, $utransport);
+                $qm->enqueue(array($confirm, $opts), $utransport);
                 if (!$quiet) { print "Sent all pending {$type} reminder to {$address}.\n"; }
             }
         } else if (have_option('a', 'all')) {
             foreach ($reminders as $reminder) {
                 extract($reminder);
-                $qm->enqueue($type, 'siterem');
+                $qm->enqueue(array($type, $opts), 'siterem');
                 if (!$quiet) { print "Sent pending {$type} reminders to all unconfirmed addresses on the site.\n"; }
             }
         } else {
