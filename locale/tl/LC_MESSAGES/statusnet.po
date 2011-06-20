@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:36+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:09:18+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 09:57:31+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -112,7 +112,6 @@ msgid "Save access settings"
 msgstr "Sagipin ang mga itinakdang mapupuntahan"
 
 #. TRANS: Tooltip for button to save access settings in site admin panel.
-#. TRANS: Button text for saving theme settings.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -128,7 +127,6 @@ msgstr "Sagipin ang mga itinakdang mapupuntahan"
 #. TRANS: Button text for saving "Other settings" in profile.
 #. TRANS: Button text to save user settings in user admin panel.
 #. TRANS: Button label in the "Edit application" form.
-#. TRANS: Button text on profile design page to save settings.
 #. TRANS: Text for save button on group edit form.
 #. TRANS: Button text to save tags for a profile.
 msgctxt "BUTTON"
@@ -206,7 +204,6 @@ msgstr "Walang ganyang pahina."
 #. TRANS: Client error when user not found for an rss related action.
 #. TRANS: Client error displayed when no existing user is provided for a user's delivery device setting.
 #. TRANS: Client error displayed if a user could not be found.
-#. TRANS: Client error when user not found updating a profile background image.
 #. TRANS: Client error displayed updating profile image without having a user object.
 #. TRANS: Client error displayed when making an Atom API request for an unknown user.
 #. TRANS: Client error displayed when trying to block a non-existing user or a user from another site.
@@ -312,7 +309,7 @@ msgstr ""
 "balangkas o [magpaskil ng bagay sa kanila] (%%%%action.newnotice%%%%?"
 "status_textarea=%3$s)."
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -375,7 +372,6 @@ msgstr ""
 #. TRANS: Server error thrown on database error updating SMS preferences.
 #. TRANS: Server error thrown on database error removing a registered SMS phone number.
 #. TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
-#. TRANS: Server exception thrown on Profile design page when updating design settings fails.
 msgid "Could not update user."
 msgstr "Hindi maisapanahon ang tagagamit."
 
@@ -390,7 +386,6 @@ msgstr "Hindi masagip ang balangkas."
 
 #. TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
 #. TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-#. TRANS: Form validation error in design settings form. POST should remain untranslated.
 #, php-format
 msgid ""
 "The server was unable to handle that much POST data (%s byte) due to its "
@@ -404,24 +399,6 @@ msgstr[0] ""
 msgstr[1] ""
 "Hindi nagawang mapanghawakan ng tagapaghain ang ganyang karaming dato ng "
 "PAGPAPASKIL (%s na mga byte) dahil sa pangkasalukuyang pagkakaasyos nito."
-
-#. TRANS: Client error displayed when saving design settings fails because of an empty id.
-#. TRANS: Client error displayed when saving design settings fails because of an empty result.
-#. TRANS: Client error displayed when a database error occurs inserting profile colours.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error displayed when group design settings could not be saved because of an application issue.
-#. TRANS: Form validation error on Profile design page when saving design settings has failed.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-msgid "Unable to save your design settings."
-msgstr "Hindi nagawang sagipin ang mga pagtatakda mo ng disenyo."
-
-#. TRANS: Error displayed when updating design settings fails.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-#. TRANS: Error message displayed if design settings could not be saved.
-#. TRANS: Error message displayed if design settings could not be saved after clicking "Use defaults".
-msgid "Could not update your design."
-msgstr "Hindi maisapanahon ang disenyo mo."
 
 #. TRANS: Title for Atom feed.
 msgctxt "ATOM"
@@ -515,6 +492,8 @@ msgstr ""
 "kaibigan."
 
 #. TRANS: Client error displayed trying to direct message self (403).
+#. TRANS: Client error displayed trying to send a direct message to self.
+#. TRANS: Error text shown when trying to send a direct message to self.
 msgid ""
 "Do not send a message to yourself; just say it to yourself quietly instead."
 msgstr ""
@@ -747,7 +726,6 @@ msgstr "mga pangkat na nasa %s"
 
 #. TRANS: Client error displayed when trying to edit a group without being an admin.
 #. TRANS: Client error displayed trying to edit a group while not being a group admin.
-#. TRANS: Client error displayed trying to change group design settings without being a (group) admin.
 #. TRANS: Client error displayed when trying to change group logo settings while not being a group admin.
 msgid "You must be an admin to edit the group."
 msgstr "Dapat na isa kang tagapangasiwa upang baguhin ang pangkat."
@@ -862,7 +840,6 @@ msgstr ""
 
 #. TRANS: Client error given on when invalid data was passed through a form in the OAuth API.
 #. TRANS: Unexpected validation error on avatar upload form.
-#. TRANS: Client error displayed when the submitted form contains unexpected data.
 #. TRANS: Client error displayed submitting invalid form data for edit application.
 #. TRANS: Message given submitting a form with an unknown action in e-mail settings.
 #. TRANS: Form validation error message when an unsupported argument is used.
@@ -871,7 +848,6 @@ msgstr ""
 #. TRANS: Client error when submitting a form with unexpected information.
 #. TRANS: Client error displayed when unexpected data is posted in the password recovery form.
 #. TRANS: Message given submitting a form with an unknown action in SMS settings.
-#. TRANS: Unknown form validation error in design settings form.
 msgid "Unexpected form submission."
 msgstr "Hindi inaasahang pagpapasa ng pormularyo."
 
@@ -1240,7 +1216,6 @@ msgstr "Dapat kang nakalagda upang makaalis mula sa isang pangkat."
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.
 #. TRANS: Client error displayed trying to block a user from a group while specifying a non-existing group.
 #. TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
-#. TRANS: Client error displayed trying to change group design settings while providing a nickname for a non-existing group.
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
@@ -1329,6 +1304,7 @@ msgid "Join request canceled."
 msgstr "Hindi itinuloy ang hiling na pagsali."
 
 #. TRANS: Client error displayed trying to approve subscription for a non-existing request.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "%s is not in the moderation queue for your subscriptions."
 msgstr ""
@@ -1481,7 +1457,6 @@ msgstr "Walang ganyang kalakip."
 #. TRANS: Client error displayed trying to get an avatar without providing a nickname.
 #. TRANS: Client error displayed when requesting a list of blocked users for a group without providing a group nickname.
 #. TRANS: Client error displayed trying to edit a group while not proving a nickname for the group to edit.
-#. TRANS: Client error displayed trying to change group design settings without providing a group nickname.
 #. TRANS: Client error displayed when trying to change group logo settings without providing a nickname.
 #. TRANS: Client error displayed when trying to view group members without providing a group nickname.
 #. TRANS: Client error displayed when requesting a group RSS feed without providing a group nickname.
@@ -1997,152 +1972,6 @@ msgstr "Huwag burahin ang tagagamit na ito."
 msgid "Delete this user."
 msgstr "Burahin ang tagagamit na ito."
 
-#. TRANS: Message used as title for design settings for the site.
-msgid "Design"
-msgstr "Disenyo"
-
-#. TRANS: Instructions for design adminsitration panel.
-msgid "Design settings for this StatusNet site"
-msgstr "Mga katakdaan ng disensyo para sa sityong ito ng StatusNet"
-
-#. TRANS: Client error displayed when a logo URL does is not valid.
-msgid "Invalid logo URL."
-msgstr "Hindi katanggap-tanggap na URL ng logo."
-
-#. TRANS: Client error displayed when an SSL logo URL is invalid.
-msgid "Invalid SSL logo URL."
-msgstr "Hindi katanggap-tanggap na URL ng logo ng SSL."
-
-#. TRANS: Client error displayed when a theme is submitted through the form that is not in the theme list.
-#. TRANS: %s is the chosen unavailable theme.
-#, php-format
-msgid "Theme not available: %s."
-msgstr "Hindi makukuha ang tema: %s."
-
-#. TRANS: Fieldset legend for form to change logo.
-msgid "Change logo"
-msgstr "Baguhin ang logo"
-
-#. TRANS: Field label for StatusNet site logo.
-msgid "Site logo"
-msgstr "Logo ng sityo"
-
-#. TRANS: Field label for SSL StatusNet site logo.
-msgid "SSL logo"
-msgstr "Logo ng SSL"
-
-#. TRANS: Fieldset legend for form change StatusNet site's theme.
-msgid "Change theme"
-msgstr "Baguhin ang tema"
-
-#. TRANS: Field label for dropdown to choose site theme.
-msgid "Site theme"
-msgstr "Tema ng sityo"
-
-#. TRANS: Title for field label for dropdown to choose site theme.
-msgid "Theme for the site."
-msgstr "Tema para sa sityo."
-
-#. TRANS: Field label for uploading a cutom theme.
-msgid "Custom theme"
-msgstr "Pinasadyang tema"
-
-#. TRANS: Form instructions for uploading a cutom StatusNet theme.
-msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-msgstr ""
-"Makapagkakarga kang papaitaas ng isang pinasadyang tema ng StatusNet bilang "
-"isang supnay na .ZIP."
-
-#. TRANS: Fieldset legend for theme background image.
-msgid "Change background image"
-msgstr "Baguhin ang panlikod na larawan"
-
-#. TRANS: Field label for background image on theme designer page.
-#. TRANS: Field label for background color selector.
-#. TRANS: Label on profile design page for setting a profile page background colour.
-msgid "Background"
-msgstr "Panlikurang tanawin"
-
-#. TRANS: Form guide for background image upload form on theme designer page.
-#, php-format
-msgid ""
-"You can upload a background image for the site. The maximum file size is %1"
-"$s."
-msgstr ""
-"Maaari kang makapagkargang papaitaas ng isang larawang panlikuran para sa "
-"sityo.  Ang pinakamataas na sukat ng talaksan ay %1$s."
-
-#. TRANS: Used as radio button label to add a background image.
-msgid "On"
-msgstr "Buhay"
-
-#. TRANS: Used as radio button label to not add a background image.
-msgid "Off"
-msgstr "Nakapatay"
-
-#. TRANS: Form guide for turning background image on or off on theme designer page.
-#. TRANS: Form guide for a set of radio buttons on the profile design page that will enable or disable
-#. TRANS: use of the uploaded profile image.
-msgid "Turn background image on or off."
-msgstr "Buhayin o patayin ang larawan na panglikuran."
-
-#. TRANS: Checkbox label to title background image on theme designer page.
-#. TRANS: Checkbox label on profile design page that will cause the profile image to be tiled.
-msgid "Tile background image"
-msgstr "Panlikurang larawan ng tisa"
-
-#. TRANS: Fieldset legend for theme colors.
-msgid "Change colors"
-msgstr "Palitan ang mga kulay"
-
-#. TRANS: Field label for content color selector.
-#. TRANS: Label on profile design page for setting a profile page content colour.
-msgid "Content"
-msgstr "Nilalaman"
-
-#. TRANS: Field label for sidebar color selector.
-#. TRANS: Label on profile design page for setting a profile page sidebar colour.
-msgid "Sidebar"
-msgstr "Panggilid na halang"
-
-#. TRANS: Field label for text color selector.
-#. TRANS: Label on profile design page for setting a profile page text colour.
-msgid "Text"
-msgstr "Teksto"
-
-#. TRANS: Field label for link color selector.
-#. TRANS: Label on profile design page for setting a profile page links colour.
-msgid "Links"
-msgstr "Mga kawing"
-
-#. TRANS: Fieldset legend for advanced theme design settings.
-msgid "Advanced"
-msgstr "Mas masulong"
-
-#. TRANS: Field label for custom CSS.
-msgid "Custom CSS"
-msgstr "Pasadyang CSS"
-
-#. TRANS: Button text for resetting theme settings.
-msgctxt "BUTTON"
-msgid "Use defaults"
-msgstr "Gamitin ang likas na mga katakdaan"
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default.
-msgid "Restore default designs."
-msgstr "Ibalik ang likas na nakatakdang mga disenyo."
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-msgid "Reset back to default."
-msgstr "Muling itakda pabalik sa likas na pagtatakda."
-
-#. TRANS: Title for button for saving theme settings.
-#. TRANS: Title for button on profile design page to save settings.
-msgid "Save design."
-msgstr "Sagipin ang disenyo."
-
 #. TRANS: Client error displayed when trying to remove favorite status for a notice that is not a favorite.
 msgid "This notice is not a favorite!"
 msgstr "Hindi isang kinagigiliwan ang pabatid na ito!"
@@ -2320,7 +2149,7 @@ msgstr ""
 "magtatanggal ng lahat ng umiiral na mga pagpapasipi mula rito. Nais mo pa "
 "ring magpatuloy?"
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 msgid "Could not update list."
 msgstr "Hindi maisapanahon ang talaan."
 
@@ -2767,31 +2596,6 @@ msgstr ""
 #. TRANS: Client error displayed trying to find a user by ID without providing an ID.
 msgid "No ID."
 msgstr "Walang ID."
-
-#. TRANS: Client error displayed trying to change group design settings while not logged in.
-msgid "You must be logged in to edit a group."
-msgstr "Dapat kang nakalagda upang makapamatnugot ng isang pangkat."
-
-#. TRANS: Title group design settings page.
-msgid "Group design"
-msgstr "Disenyo ng pangkat"
-
-#. TRANS: Instructions for group design settings page.
-msgid ""
-"Customize the way your group looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-"Ipasadya ang paraan ng kaanyuan ng pangkat na may isang larawang panlikuran "
-"at isang paleta ng kulay na napili mo."
-
-#. TRANS: Form validation error displayed when group design settings could not be updated because of an application issue.
-msgid "Unable to update your design settings."
-msgstr "Hindi nagawang isapanahon ang mga pagtatakda mo ng disenyo."
-
-#. TRANS: Form text to confirm saved group design settings.
-#. TRANS: Confirmation message on Profile design page when saving design settings has succeeded.
-msgid "Design preferences saved."
-msgstr "Nasagip ang mga kagustuhan sa disenyo."
 
 #. TRANS: Title for group logo settings page.
 #. TRANS: Group logo form legend.
@@ -3436,6 +3240,7 @@ msgstr "Kailangan ang URL na pinagmumulan."
 msgid "Could not create application."
 msgstr "Hindi malikha ang aplikasyon."
 
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
 msgid "Invalid image."
 msgstr "Hindi katanggap-tanggap na larawan."
 
@@ -3471,14 +3276,6 @@ msgstr "Walang nilalaman!"
 #. TRANS: Form validation error displayed trying to send a direct message without specifying a recipient.
 msgid "No recipient specified."
 msgstr "Walang tinukoy na tagatanggap."
-
-#. TRANS: Client error displayed trying to send a direct message to self.
-#. TRANS: Error text shown when trying to send a direct message to self.
-msgid ""
-"Don't send a message to yourself; just say it to yourself quietly instead."
-msgstr ""
-"Huwag magpadala ng isang mensahe na papunta sa sarili mo; sa halip ay "
-"sabihin lamang ito ng tahimik sa sarili mo."
 
 #. TRANS: Page title after sending a direct message.
 msgid "Message sent"
@@ -3769,7 +3566,7 @@ msgid "Confirm"
 msgstr "Pagtibayin"
 
 #. TRANS: Field title on page where to change password.
-#. TRANS: Ttile for field label for password reset form where the password has to be typed again.
+#. TRANS: Title for field label for password reset form where the password has to be typed again.
 #. TRANS: Field title on account registration page.
 msgid "Same as password above."
 msgstr "Katulad ng hudyat na nasa itaas."
@@ -3948,31 +3745,6 @@ msgstr "Direktoryo ng huwaran"
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Directory where avatars are located."
 msgstr "Direktoryo kung saan nakalagay ang mga huwaran."
-
-#. TRANS: Fieldset legend in Paths admin panel.
-msgid "Backgrounds"
-msgstr "Mga panlikuran"
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds."
-msgstr "Tagapaghain para sa mga panlikuran."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds."
-msgstr "Landas ng web papunta sa mga panlikuran."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Server for backgrounds on SSL pages."
-msgstr "Tagapaghain para sa mga panlikuran na nasa mga pahina ng SSL."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Web path to backgrounds on SSL pages."
-msgstr ""
-"Landas ng web papunta sa mga panlkuran na nasa ibabaw ng mga pahina ng SSL."
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-msgid "Directory where backgrounds are located."
-msgstr "Direktoryo kung saan matatagpuan ang mga panlikuran."
 
 #. TRANS: Fieldset legens in Paths admin panel.
 msgid "Attachments"
@@ -4788,7 +4560,6 @@ msgid "6 or more characters, and do not forget it!"
 msgstr "6 o mahigit pang mga panitik, at huwag itong kalimutan!"
 
 #. TRANS: Button text for password reset form.
-#. TRANS: Button text on profile design page to reset all colour settings to default without saving.
 msgctxt "BUTTON"
 msgid "Reset"
 msgstr "Itakdang muli"
@@ -4796,19 +4567,6 @@ msgstr "Itakdang muli"
 #. TRANS: Form instructions for password recovery form.
 msgid "Enter a nickname or email address."
 msgstr "Magpasok ng isang palayaw o tirahan ng e-liham."
-
-#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
-msgid "No user with that email address or username."
-msgstr ""
-"Walang tagagamit na may ganyang tirahan ng e-liham o pangalan ng tagagamit."
-
-#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
-msgid "No registered email address for that user."
-msgstr "Walang nakatalang tirahan ng e-liham para sa ganyang tagagamit."
-
-#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
-msgid "Error saving address confirmation."
-msgstr "Kamalian sa pagsagip ng pagtitiyak ng tirahan."
 
 #. TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
 msgid ""
@@ -5805,6 +5563,14 @@ msgstr "Ang pangalan ng sityo ay dapat na may habang hindi sero."
 msgid "You must have a valid contact email address."
 msgstr "Dapat na mayroon ka ng isang katanggap-tanggap na tirahan ng e-liham."
 
+#. TRANS: Client error displayed when a logo URL is not valid.
+msgid "Invalid logo URL."
+msgstr "Hindi katanggap-tanggap na URL ng logo."
+
+#. TRANS: Client error displayed when a SSL logo URL is invalid.
+msgid "Invalid SSL logo URL."
+msgstr "Hindi katanggap-tanggap na URL ng logo ng SSL."
+
 #. TRANS: Client error displayed trying to save site settings with an invalid language code.
 #. TRANS: %s is the invalid language code.
 #, php-format
@@ -5880,7 +5646,9 @@ msgid "Default language"
 msgstr "Likas na nakatakdang wika"
 
 #. TRANS: Dropdown title on site settings panel.
-msgid "Site language when autodetection from browser settings is not available"
+#, fuzzy
+msgid ""
+"The site language when autodetection from browser settings is not available."
 msgstr ""
 "Wika ng sityo kapag hindi makuha ang kusang pagpansin mula sa mga katakdaan "
 "ng pantingin-tingin"
@@ -5908,8 +5676,22 @@ msgstr ""
 "Kung gaano katagal dapat na maghintay ang mga tagagamit (nasa mga segundo) "
 "upang maipaskil ulit ang katulad na bagay."
 
+#. TRANS: Fieldset legend for form to change logo.
+#, fuzzy
+msgid "Logo"
+msgstr "Logo"
+
+#. TRANS: Field label for StatusNet site logo.
+msgid "Site logo"
+msgstr "Logo ng sityo"
+
+#. TRANS: Field label for SSL StatusNet site logo.
+msgid "SSL logo"
+msgstr "Logo ng SSL"
+
 #. TRANS: Button title for saving site settings.
-msgid "Save site settings"
+#, fuzzy
+msgid "Save the site settings."
 msgstr "Sagipin ang mga katakdaan ng sityo"
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
@@ -6696,40 +6478,6 @@ msgstr "Hindi mabasa ang URL na \"%s\" ng huwaran."
 msgid "Wrong image type for avatar URL \"%s\"."
 msgstr "Maling uri ng larawan para sa URL na \"%s\" ng huwaran."
 
-#. TRANS: Title for profile design page.
-#. TRANS: Page title for profile design page.
-msgid "Profile design"
-msgstr "Disenyo ng balangkas"
-
-#. TRANS: Instructions for Profile design page.
-#. TRANS: Instructions for profile design page.
-msgid ""
-"Customize the way your profile looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-"Ipasadya ang paraan ng kaanyuan ng balangkas na may isang larawang "
-"panlikuran at isang paleta ng kulay na napili mo."
-
-#. TRANS: Succes message on Profile design page when finding an easter egg.
-msgid "Enjoy your hotdog!"
-msgstr "Masiyahan sa hotdog mo!"
-
-#. TRANS: Form legend on Profile design page.
-msgid "Design settings"
-msgstr "Mga katakdaan ng disenyo"
-
-#. TRANS: Checkbox label on Profile design page.
-msgid "View profile designs"
-msgstr "Tingnan ang mga disenyo ng balangkas"
-
-#. TRANS: Title for checkbox on Profile design page.
-msgid "Show or hide profile designs."
-msgstr "Ipakita o itago ang mga disenyo ng balangkas."
-
-#. TRANS: Form legend on Profile design page for form to choose a background image.
-msgid "Background file"
-msgstr "Talaksan ng panlikurang tanawin"
-
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
 #, php-format
@@ -7202,6 +6950,19 @@ msgstr ""
 "Tinatawag ang kodigo ng pamamaraan ng isahang tagagamit kapag hindi "
 "pinagagana."
 
+#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
+msgid "No user with that email address or username."
+msgstr ""
+"Walang tagagamit na may ganyang tirahan ng e-liham o pangalan ng tagagamit."
+
+#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
+msgid "No registered email address for that user."
+msgstr "Walang nakatalang tirahan ng e-liham para sa ganyang tagagamit."
+
+#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
+msgid "Error saving address confirmation."
+msgstr "Kamalian sa pagsagip ng pagtitiyak ng tirahan."
+
 #. TRANS: Server exception thrown when creating a group failed.
 msgid "Could not create group."
 msgstr "Hindi malikha ang pangkat."
@@ -7480,11 +7241,6 @@ msgstr "Hindi ipinatutupad ang ipakita ang Pormularyo()."
 msgid "saveSettings() not implemented."
 msgstr "Hindi ipinatutupad ang sagipin ang mga Katakdaan()."
 
-#. TRANS: Client error message thrown if design settings could not be deleted in
-#. TRANS: the admin panel Design.
-msgid "Unable to delete design setting."
-msgstr "Hindi nagawang burahin ang mga pagtatakda mo ng disenyo."
-
 #. TRANS: Header in administrator navigation panel.
 #. TRANS: Header in settings navigation panel.
 msgctxt "HEADER"
@@ -7512,17 +7268,6 @@ msgstr "Payak na pagkakaayos ng sityo"
 msgctxt "MENU"
 msgid "Site"
 msgstr "Sityo"
-
-#. TRANS: Menu item title in administrator navigation panel.
-msgid "Design configuration"
-msgstr "Pagkakaayos ng disenyo"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
-msgid "Design"
-msgstr "Disenyo"
 
 #. TRANS: Menu item title in administrator navigation panel.
 msgid "User configuration"
@@ -8378,44 +8123,6 @@ msgstr "Burahin"
 msgid "Delete this user"
 msgstr "Burahin ang tagagamit na ito"
 
-#. TRANS: Form legend of form for changing the page design.
-msgid "Change design"
-msgstr "Baguhin ang disenyo"
-
-#. TRANS: Fieldset legend on profile design page to change profile page colours.
-msgid "Change colours"
-msgstr "Baguhin ang mga kulay"
-
-#. TRANS: Button text on profile design page to immediately reset all colour settings to default.
-msgid "Use defaults"
-msgstr "Gamitin ang likas na mga katakdaan"
-
-#. TRANS: Label in form on profile design page.
-#. TRANS: Field contains file name on user's computer that could be that user's custom profile background image.
-msgid "Upload file"
-msgstr "Ikarga ang talaksan"
-
-#. TRANS: Instructions for form on profile design page.
-msgid ""
-"You can upload your personal background image. The maximum file size is 2MB."
-msgstr ""
-"Maaari mong ikargang papaitaas ang pansarili mong larawang panlikuran.  Ang "
-"pinakamataas na sukat ng talaksan ay 2MB."
-
-#. TRANS: Radio button on profile design page that will enable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "On"
-msgstr "Buhay"
-
-#. TRANS: Radio button on profile design page that will disable use of the uploaded profile image.
-msgctxt "RADIO"
-msgid "Off"
-msgstr "Patay"
-
-#. TRANS: Success message displayed if design settings were saved after clicking "Use defaults".
-msgid "Design defaults restored."
-msgstr "Naipanumbalik ang likas na mga katakdaan ng disenyo."
-
 #. TRANS: Exception. %s is an ID.
 #, php-format
 msgid "Unable to find services for %s."
@@ -8631,13 +8338,6 @@ msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr "Idagdag o baguhin ang logo ng %s"
 
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "Add or edit %s design"
-msgstr "Idagdag o baguhin ang disenyo ng %s"
-
 #. TRANS: Group actions header (h2). Text hidden by default.
 msgid "Group actions"
 msgstr "Mga galaw ng pangkat"
@@ -8752,9 +8452,8 @@ msgid "Invite more colleagues"
 msgstr "Mag-anyaya ng marami pang mga kasamahan"
 
 #. TRANS: Form legend.
-#, fuzzy
 msgid "Invite collegues"
-msgstr "Mag-anyaya ng marami pang mga kasamahan"
+msgstr "Anyayahan ang mga kasamahan"
 
 #. TRANS: Field label for a list of e-mail addresses.
 msgid "Email addresses"
@@ -8779,9 +8478,8 @@ msgid "Send"
 msgstr "Ipadala"
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgid "Send invitations."
-msgstr "Mga paanyaya"
+msgstr "Magpadala ng mga paanyaya."
 
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
@@ -8852,9 +8550,9 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s is now following you on %2$s."
-msgstr "Sinusundan na ngayon ni %1$s si %2$s."
+msgstr "Sinusundan ka na ngayon ni %1$s sa %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -9268,7 +8966,7 @@ msgstr "Magpadala ng isang tuwirang pabatid"
 msgid "Select recipient:"
 msgstr "Pumili ng tagatanggap:"
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."
 msgstr "Walang nagbibigayang mga sumisipi."
 
@@ -9701,8 +9399,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr "Paganahin"
 
+#. TRANS: Plugin description for a disabled plugin.
+#, fuzzy
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 "(Hindi makukuha ang mga paglalarawan ng pampasak kapag hindi gumagana.)"
 
@@ -9995,10 +9696,6 @@ msgstr "E-liham"
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Change email handling"
 msgstr "Baguhin ang paghawak sa e-liham"
-
-#. TRANS: Menu item title in settings navigation panel.
-msgid "Design your profile"
-msgstr "Magdisenyo ng balangkas mo"
 
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
@@ -10426,3 +10123,37 @@ msgstr "Hindi katanggap-tanggap na XML, nawawalang ugat ng XRD."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Kinukuha ang kopyang pamalit mula sa talaksang '%s'"
+
+#. TRANS: Server exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Invalid avatar URL %s."
+msgstr "Hindi mabasa ang URL na \"%s\" ng huwaran."
+
+#. TRANS: Server exception. %s is a URI.
+#, fuzzy, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr "Kamalian sa pagsasapanahon ng pangmalayuang balangkas."
+
+#. TRANS: Server exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr "Hindi matagpuan ang mga palingkuran para sa %s."
+
+#. TRANS: Exception. %s is a profile URL.
+#, fuzzy, php-format
+msgid "Could not reach profile page %s."
+msgstr "Hindi malikha ang tatak ng balangkas."
+
+#. TRANS: Exception. %s is a URL.
+#, fuzzy, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr "Walang matagpuang isang tagagamit na may palayaw na %s."
+
+#. TRANS: Exception.
+#, fuzzy
+msgid "Not a valid webfinger address."
+msgstr "Hindi isang katanggap-tanggap na tirahan ng e-liham."
+
+#, fuzzy, php-format
+msgid "Could not find a valid profile for \"%s\"."
+msgstr "Hindi masagip ang balangkas."

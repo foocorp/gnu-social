@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:05+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:22+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:46:06+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:51:26+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
@@ -77,7 +77,6 @@ msgid "Set a password"
 msgstr "Stel een wachtwoord in"
 
 #. TRANS: Form legend.
-#, fuzzy
 msgid "Confirm email address"
 msgstr "E-mailadres bevestigen"
 
@@ -90,7 +89,6 @@ msgid "6 or more characters."
 msgstr "Zes of meer tekens."
 
 #. TRANS: Field label for repeat password field.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Bevestigen"
@@ -100,7 +98,6 @@ msgid "Same as password above."
 msgstr "Gelijk aan het wachtwoord hierboven."
 
 #. TRANS: Button text for completing registration by e-mail.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Opslaan"

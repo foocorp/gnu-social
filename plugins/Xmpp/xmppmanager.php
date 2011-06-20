@@ -245,7 +245,7 @@ class XmppManager extends ImManager
 
     function special_presence($type, $to=null, $show=null, $status=null)
     {
-        // FIXME: why use this instead of send_presence()?
+        // @todo FIXME: why use this instead of send_presence()?
         $this->connect();
         if (!$this->conn || $this->conn->isDisconnected()) {
             return false;

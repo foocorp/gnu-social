@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -112,7 +112,6 @@ msgid "Save access settings"
 msgstr ""
 
 #. TRANS: Tooltip for button to save access settings in site admin panel.
-#. TRANS: Button text for saving theme settings.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -128,18 +127,16 @@ msgstr ""
 #. TRANS: Button text for saving "Other settings" in profile.
 #. TRANS: Button text to save user settings in user admin panel.
 #. TRANS: Button label in the "Edit application" form.
-#. TRANS: Button text on profile design page to save settings.
 #. TRANS: Text for save button on group edit form.
 #. TRANS: Button text to save tags for a profile.
-#: actions/accessadminpanel.php:193 actions/designadminpanel.php:732
-#: actions/emailsettings.php:251 actions/imsettings.php:201
-#: actions/licenseadminpanel.php:335 actions/pathsadminpanel.php:517
-#: actions/profilesettings.php:215 actions/sessionsadminpanel.php:202
-#: actions/siteadminpanel.php:319 actions/sitenoticeadminpanel.php:197
-#: actions/smssettings.php:204 actions/snapshotadminpanel.php:252
-#: actions/subscriptions.php:251 actions/tagprofile.php:169
-#: actions/urlsettings.php:152 actions/useradminpanel.php:300
-#: lib/applicationeditform.php:355 lib/designform.php:315
+#: actions/accessadminpanel.php:193 actions/emailsettings.php:251
+#: actions/imsettings.php:201 actions/licenseadminpanel.php:335
+#: actions/pathsadminpanel.php:463 actions/profilesettings.php:215
+#: actions/sessionsadminpanel.php:202 actions/siteadminpanel.php:373
+#: actions/sitenoticeadminpanel.php:197 actions/smssettings.php:204
+#: actions/snapshotadminpanel.php:252 actions/subscriptions.php:251
+#: actions/tagprofile.php:169 actions/urlsettings.php:152
+#: actions/useradminpanel.php:300 lib/applicationeditform.php:355
 #: lib/groupeditform.php:225 lib/peopletags.php:146
 msgctxt "BUTTON"
 msgid "Save"
@@ -166,14 +163,13 @@ msgstr ""
 #: actions/oauthappssettings.php:162 actions/oauthconnectionssettings.php:136
 #: actions/passwordsettings.php:147 actions/peopletagautocomplete.php:67
 #: actions/pluginenable.php:88 actions/profilecompletion.php:81
-#: actions/profilesettings.php:235 actions/recoverpassword.php:387
+#: actions/profilesettings.php:235 actions/recoverpassword.php:303
 #: actions/register.php:164 actions/remotesubscribe.php:78
 #: actions/removepeopletag.php:79 actions/repeat.php:80
 #: actions/smssettings.php:250 actions/subedit.php:41 actions/subscribe.php:87
 #: actions/subscribepeopletag.php:76 actions/tagprofile.php:186
 #: actions/unsubscribe.php:70 actions/unsubscribepeopletag.php:77
 #: actions/urlsettings.php:171 actions/userauthorization.php:54
-#: lib/designsettings.php:123
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 
@@ -256,7 +252,6 @@ msgstr ""
 #. TRANS: Client error when user not found for an rss related action.
 #. TRANS: Client error displayed when no existing user is provided for a user's delivery device setting.
 #. TRANS: Client error displayed if a user could not be found.
-#. TRANS: Client error when user not found updating a profile background image.
 #. TRANS: Client error displayed updating profile image without having a user object.
 #. TRANS: Client error displayed when making an Atom API request for an unknown user.
 #. TRANS: Client error displayed when trying to block a non-existing user or a user from another site.
@@ -306,7 +301,6 @@ msgstr ""
 #: actions/all.php:78 actions/allrss.php:69
 #: actions/apiaccountupdatedeliverydevice.php:110
 #: actions/apiaccountupdateprofile.php:103
-#: actions/apiaccountupdateprofilebackgroundimage.php:118
 #: actions/apiaccountupdateprofileimage.php:104 actions/apiatomservice.php:59
 #: actions/apiblockcreate.php:96 actions/apiblockdestroy.php:94
 #: actions/apidirectmessage.php:75 actions/apidirectmessagenew.php:72
@@ -391,7 +385,7 @@ msgid ""
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 
-#. TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+#. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
 #. TRANS: Empty list message for page with replies for a user for not logged in users.
 #. TRANS: %1$s is a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -435,8 +429,6 @@ msgstr ""
 #: actions/apiaccountratelimitstatus.php:70
 #: actions/apiaccountupdatedeliverydevice.php:92
 #: actions/apiaccountupdateprofile.php:94
-#: actions/apiaccountupdateprofilebackgroundimage.php:92
-#: actions/apiaccountupdateprofilecolors.php:115
 #: actions/apiaccountverifycredentials.php:68 actions/apidirectmessage.php:157
 #: actions/apifavoritecreate.php:98 actions/apifavoritedestroy.php:98
 #: actions/apifriendshipscreate.php:99 actions/apifriendshipsdestroy.php:99
@@ -471,8 +463,6 @@ msgstr ""
 #. TRANS: Client error. POST is a HTTP command. It should not be translated.
 #: actions/apiaccountupdatedeliverydevice.php:83
 #: actions/apiaccountupdateprofile.php:85
-#: actions/apiaccountupdateprofilebackgroundimage.php:83
-#: actions/apiaccountupdateprofilecolors.php:106
 #: actions/apiaccountupdateprofileimage.php:80 actions/apiblockcreate.php:87
 #: actions/apiblockdestroy.php:85 actions/apidirectmessagenew.php:107
 #: actions/apifavoritecreate.php:88 actions/apifavoritedestroy.php:88
@@ -499,19 +489,16 @@ msgstr ""
 #. TRANS: Server error thrown on database error updating SMS preferences.
 #. TRANS: Server error thrown on database error removing a registered SMS phone number.
 #. TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
-#. TRANS: Server exception thrown on Profile design page when updating design settings fails.
 #: actions/apiaccountupdatedeliverydevice.php:136
 #: actions/confirmaddress.php:122 actions/emailsettings.php:353
 #: actions/emailsettings.php:504 actions/profilesettings.php:348
 #: actions/smssettings.php:301 actions/smssettings.php:454
-#: actions/urlsettings.php:213 actions/userdesignsettings.php:315
+#: actions/urlsettings.php:213
 msgid "Could not update user."
 msgstr ""
 
 #. TRANS: Error message displayed when referring to a user without a profile.
 #: actions/apiaccountupdateprofile.php:111
-#: actions/apiaccountupdateprofilebackgroundimage.php:199
-#: actions/apiaccountupdateprofilecolors.php:183
 #: actions/apiaccountupdateprofileimage.php:131
 #: actions/apiuserprofileimage.php:88 actions/apiusershow.php:108
 #: actions/avatarbynickname.php:85 actions/avatarsettings.php:108
@@ -533,13 +520,10 @@ msgstr ""
 
 #. TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
 #. TRANS: %s is the number of bytes of the CONTENT_LENGTH.
-#. TRANS: Form validation error in design settings form. POST should remain untranslated.
-#: actions/apiaccountupdateprofilebackgroundimage.php:108
 #: actions/apiaccountupdateprofileimage.php:95 actions/apimediaupload.php:81
 #: actions/apistatusesupdate.php:210 actions/avatarsettings.php:271
-#: actions/designadminpanel.php:120 actions/editapplication.php:121
-#: actions/newapplication.php:102 actions/newnotice.php:94
-#: lib/designsettings.php:110
+#: actions/editapplication.php:121 actions/newapplication.php:102
+#: actions/newnotice.php:94
 #, php-format
 msgid ""
 "The server was unable to handle that much POST data (%s byte) due to its "
@@ -549,35 +533,6 @@ msgid_plural ""
 "current configuration."
 msgstr[0] ""
 msgstr[1] ""
-
-#. TRANS: Client error displayed when saving design settings fails because of an empty id.
-#. TRANS: Client error displayed when saving design settings fails because of an empty result.
-#. TRANS: Client error displayed when a database error occurs inserting profile colours.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error displayed when group design settings could not be saved because of an application issue.
-#. TRANS: Form validation error on Profile design page when saving design settings has failed.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-#: actions/apiaccountupdateprofilebackgroundimage.php:138
-#: actions/apiaccountupdateprofilebackgroundimage.php:149
-#: actions/apiaccountupdateprofilecolors.php:160
-#: actions/apiaccountupdateprofilecolors.php:171
-#: actions/groupdesignsettings.php:295 actions/groupdesignsettings.php:306
-#: actions/userdesignsettings.php:222 actions/userdesignsettings.php:233
-#: actions/userdesignsettings.php:276 actions/userdesignsettings.php:287
-msgid "Unable to save your design settings."
-msgstr ""
-
-#. TRANS: Error displayed when updating design settings fails.
-#. TRANS: Client error displayed when a database error occurs updating profile colours.
-#. TRANS: Form validation error on Profile design page when updating design settings has failed.
-#. TRANS: Error message displayed if design settings could not be saved.
-#. TRANS: Error message displayed if design settings could not be saved after clicking "Use defaults".
-#: actions/apiaccountupdateprofilebackgroundimage.php:191
-#: actions/apiaccountupdateprofilecolors.php:139
-#: actions/userdesignsettings.php:199 lib/designsettings.php:217
-#: lib/designsettings.php:239
-msgid "Could not update your design."
-msgstr ""
 
 #. TRANS: Title for Atom feed.
 #: actions/apiatomservice.php:85
@@ -687,7 +642,10 @@ msgid "Cannot send direct messages to users who aren't your friend."
 msgstr ""
 
 #. TRANS: Client error displayed trying to direct message self (403).
-#: actions/apidirectmessagenew.php:154
+#. TRANS: Client error displayed trying to send a direct message to self.
+#. TRANS: Error text shown when trying to send a direct message to self.
+#: actions/apidirectmessagenew.php:154 actions/newmessage.php:178
+#: lib/command.php:632
 msgid ""
 "Do not send a message to yourself; just say it to yourself quietly instead."
 msgstr ""
@@ -969,11 +927,9 @@ msgstr ""
 
 #. TRANS: Client error displayed when trying to edit a group without being an admin.
 #. TRANS: Client error displayed trying to edit a group while not being a group admin.
-#. TRANS: Client error displayed trying to change group design settings without being a (group) admin.
 #. TRANS: Client error displayed when trying to change group logo settings while not being a group admin.
 #: actions/apigroupprofileupdate.php:119 actions/editgroup.php:110
-#: actions/editgroup.php:176 actions/groupdesignsettings.php:109
-#: actions/grouplogo.php:111
+#: actions/editgroup.php:176 actions/grouplogo.php:111
 msgid "You must be an admin to edit the group."
 msgstr ""
 
@@ -987,7 +943,7 @@ msgstr ""
 #. TRANS: Server error displayed when group aliases could not be added.
 #. TRANS: Server exception thrown when creating group aliases failed.
 #: actions/apigroupprofileupdate.php:196 actions/editgroup.php:292
-#: classes/User_group.php:558
+#: classes/User_group.php:552
 msgid "Could not create aliases."
 msgstr ""
 
@@ -1103,13 +1059,12 @@ msgid "Invalid nickname / password!"
 msgstr ""
 
 #. TRANS: Server error displayed when a database action fails.
-#: actions/apioauthauthorize.php:217
+#: actions/apioauthauthorize.php:211
 msgid "Database error inserting oauth_token_association."
 msgstr ""
 
 #. TRANS: Client error given on when invalid data was passed through a form in the OAuth API.
 #. TRANS: Unexpected validation error on avatar upload form.
-#. TRANS: Client error displayed when the submitted form contains unexpected data.
 #. TRANS: Client error displayed submitting invalid form data for edit application.
 #. TRANS: Message given submitting a form with an unknown action in e-mail settings.
 #. TRANS: Form validation error message when an unsupported argument is used.
@@ -1118,29 +1073,27 @@ msgstr ""
 #. TRANS: Client error when submitting a form with unexpected information.
 #. TRANS: Client error displayed when unexpected data is posted in the password recovery form.
 #. TRANS: Message given submitting a form with an unknown action in SMS settings.
-#. TRANS: Unknown form validation error in design settings form.
-#: actions/apioauthauthorize.php:294 actions/avatarsettings.php:297
-#: actions/designadminpanel.php:100 actions/editapplication.php:145
-#: actions/emailsettings.php:312 actions/grouplogo.php:332
-#: actions/imsettings.php:259 actions/newapplication.php:125
-#: actions/oauthconnectionssettings.php:145 actions/recoverpassword.php:46
-#: actions/smssettings.php:271 lib/designsettings.php:134
+#: actions/apioauthauthorize.php:288 actions/avatarsettings.php:297
+#: actions/editapplication.php:145 actions/emailsettings.php:312
+#: actions/grouplogo.php:332 actions/imsettings.php:259
+#: actions/newapplication.php:125 actions/oauthconnectionssettings.php:145
+#: actions/recoverpassword.php:46 actions/smssettings.php:271
 msgid "Unexpected form submission."
 msgstr ""
 
 #. TRANS: Title for a page where a user can confirm/deny account access by an external application.
-#: actions/apioauthauthorize.php:387
+#: actions/apioauthauthorize.php:357
 msgid "An application would like to connect to your account"
 msgstr ""
 
 #. TRANS: Fieldset legend.
-#: actions/apioauthauthorize.php:404
+#: actions/apioauthauthorize.php:374
 msgid "Allow or deny access"
 msgstr ""
 
 #. TRANS: User notification of external application requesting account access.
 #. TRANS: %3$s is the access type requested (read-write or read-only), %4$s is the StatusNet sitename.
-#: actions/apioauthauthorize.php:425
+#: actions/apioauthauthorize.php:395
 #, php-format
 msgid ""
 "An application would like the ability to <strong>%3$s</strong> your %4$s "
@@ -1151,7 +1104,7 @@ msgstr ""
 #. TRANS: User notification of external application requesting account access.
 #. TRANS: %1$s is the application name requesting access, %2$s is the organisation behind the application,
 #. TRANS: %3$s is the access type requested, %4$s is the StatusNet sitename.
-#: actions/apioauthauthorize.php:433
+#: actions/apioauthauthorize.php:403
 #, php-format
 msgid ""
 "The application <strong>%1$s</strong> by <strong>%2$s</strong> would like "
@@ -1160,7 +1113,7 @@ msgid ""
 msgstr ""
 
 #. TRANS: Fieldset legend.
-#: actions/apioauthauthorize.php:455
+#: actions/apioauthauthorize.php:425
 msgctxt "LEGEND"
 msgid "Account"
 msgstr ""
@@ -1171,7 +1124,7 @@ msgstr ""
 #. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
 #. TRANS: Dropdown option for searching in profiles.
-#: actions/apioauthauthorize.php:459 actions/profilesettings.php:104
+#: actions/apioauthauthorize.php:429 actions/profilesettings.php:104
 #: actions/register.php:438 actions/userauthorization.php:146
 #: lib/groupeditform.php:147 lib/togglepeopletag.php:107
 msgid "Nickname"
@@ -1180,7 +1133,7 @@ msgstr ""
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label on login page.
 #. TRANS: Field label on account registration page.
-#: actions/apioauthauthorize.php:463 actions/login.php:235
+#: actions/apioauthauthorize.php:433 actions/login.php:235
 #: actions/register.php:444
 msgid "Password"
 msgstr ""
@@ -1191,7 +1144,7 @@ msgstr ""
 #. TRANS: Button label to cancel an IM address confirmation procedure.
 #. TRANS: Button label to cancel a SMS address confirmation procedure.
 #. TRANS: Button label in the "Edit application" form.
-#: actions/apioauthauthorize.php:478 actions/emailsettings.php:125
+#: actions/apioauthauthorize.php:448 actions/emailsettings.php:125
 #: actions/imsettings.php:136 actions/smssettings.php:132
 #: lib/applicationeditform.php:351
 msgctxt "BUTTON"
@@ -1199,35 +1152,35 @@ msgid "Cancel"
 msgstr ""
 
 #. TRANS: Button text that when clicked will allow access to an account by an external application.
-#: actions/apioauthauthorize.php:485
+#: actions/apioauthauthorize.php:455
 msgctxt "BUTTON"
 msgid "Allow"
 msgstr ""
 
 #. TRANS: Form instructions.
-#: actions/apioauthauthorize.php:502
+#: actions/apioauthauthorize.php:472
 msgid "Authorize access to your account information."
 msgstr ""
 
 #. TRANS: Header for user notification after revoking OAuth access to an application.
-#: actions/apioauthauthorize.php:594
+#: actions/apioauthauthorize.php:564
 msgid "Authorization canceled."
 msgstr ""
 
 #. TRANS: User notification after revoking OAuth access to an application.
 #. TRANS: %s is an OAuth token.
-#: actions/apioauthauthorize.php:598
+#: actions/apioauthauthorize.php:568
 #, php-format
 msgid "The request token %s has been revoked."
 msgstr ""
 
 #. TRANS: Title of the page notifying the user that an anonymous client application was successfully authorized to access the user's account with OAuth.
-#: actions/apioauthauthorize.php:621
+#: actions/apioauthauthorize.php:591
 msgid "You have successfully authorized the application"
 msgstr ""
 
 #. TRANS: Message notifying the user that an anonymous client application was successfully authorized to access the user's account with OAuth.
-#: actions/apioauthauthorize.php:625
+#: actions/apioauthauthorize.php:595
 msgid ""
 "Please return to the application and enter the following security code to "
 "complete the process."
@@ -1235,14 +1188,14 @@ msgstr ""
 
 #. TRANS: Title of the page notifying the user that the client application was successfully authorized to access the user's account with OAuth.
 #. TRANS: %s is the authorised application name.
-#: actions/apioauthauthorize.php:632
+#: actions/apioauthauthorize.php:602
 #, php-format
 msgid "You have successfully authorized %s"
 msgstr ""
 
 #. TRANS: Message notifying the user that the client application was successfully authorized to access the user's account with OAuth.
 #. TRANS: %s is the authorised application name.
-#: actions/apioauthauthorize.php:639
+#: actions/apioauthauthorize.php:609
 #, php-format
 msgid ""
 "Please return to %s and enter the following security code to complete the "
@@ -1543,7 +1496,6 @@ msgstr ""
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for a nickname that is not a group.
 #. TRANS: Client error displayed trying to block a user from a group while specifying a non-existing group.
 #. TRANS: Client error displayed referring to a group's permalink for a non-existing group ID.
-#. TRANS: Client error displayed trying to change group design settings while providing a nickname for a non-existing group.
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
@@ -1568,11 +1520,11 @@ msgstr ""
 #: actions/deletegroup.php:100 actions/editgroup.php:102
 #: actions/foafgroup.php:46 actions/foafgroup.php:65 actions/foafgroup.php:73
 #: actions/groupblock.php:90 actions/groupbyid.php:83
-#: actions/groupdesignsettings.php:101 actions/grouplogo.php:103
-#: actions/groupmembers.php:84 actions/groupmembers.php:92
-#: actions/groupqueue.php:85 actions/groupqueue.php:93 actions/grouprss.php:97
-#: actions/grouprss.php:105 actions/groupunblock.php:90
-#: actions/joingroup.php:82 actions/joingroup.php:95 actions/leavegroup.php:82
+#: actions/grouplogo.php:103 actions/groupmembers.php:84
+#: actions/groupmembers.php:92 actions/groupqueue.php:85
+#: actions/groupqueue.php:93 actions/grouprss.php:97 actions/grouprss.php:105
+#: actions/groupunblock.php:90 actions/joingroup.php:82
+#: actions/joingroup.php:95 actions/leavegroup.php:82
 #: actions/leavegroup.php:95 actions/makeadmin.php:92
 #: actions/showgroup.php:136 actions/showgroup.php:145 lib/command.php:168
 #: lib/command.php:389
@@ -1621,13 +1573,13 @@ msgstr ""
 
 #. TRANS: Client error displayed trying to approve/deny group membership.
 #. TRANS: Client error displayed trying to approve/deny subscription.
-#: actions/approvegroup.php:132 actions/approvesub.php:83
+#: actions/approvegroup.php:132 actions/approvesub.php:84
 msgid "Internal error: received neither cancel nor abort."
 msgstr ""
 
 #. TRANS: Client error displayed trying to approve/deny group membership.
 #. TRANS: Client error displayed trying to approve/deny  subscription
-#: actions/approvegroup.php:136 actions/approvesub.php:87
+#: actions/approvegroup.php:136 actions/approvesub.php:88
 msgid "Internal error: received both cancel and abort."
 msgstr ""
 
@@ -1657,33 +1609,34 @@ msgid "Join request canceled."
 msgstr ""
 
 #. TRANS: Client error displayed trying to approve subscription for a non-existing request.
-#: actions/approvesub.php:76
+#. TRANS: %s is a user nickname.
+#: actions/approvesub.php:77
 #, php-format
 msgid "%s is not in the moderation queue for your subscriptions."
 msgstr ""
 
 #. TRANS: Server error displayed when cancelling a queued subscription request fails.
 #. TRANS: %1$s is the leaving user's nickname, $2$s is the nickname for which the leave failed.
-#: actions/approvesub.php:116
+#: actions/approvesub.php:117
 #, php-format
 msgid "Could not cancel or approve request for user %1$s to join group %2$s."
 msgstr ""
 
 #. TRANS: Title for subscription approval ajax return
 #. TRANS: %1$s is the approved user's nickname
-#: actions/approvesub.php:126
+#: actions/approvesub.php:127
 #, php-format
 msgctxt "TITLE"
 msgid "%1$s's request"
 msgstr ""
 
 #. TRANS: Message on page for user after approving a subscription request.
-#: actions/approvesub.php:132
+#: actions/approvesub.php:133
 msgid "Subscription approved."
 msgstr ""
 
 #. TRANS: Message on page for user after rejecting a subscription request.
-#: actions/approvesub.php:135
+#: actions/approvesub.php:136
 msgid "Subscription canceled."
 msgstr ""
 
@@ -1839,15 +1792,14 @@ msgstr ""
 #. TRANS: Client error displayed trying to get an avatar without providing a nickname.
 #. TRANS: Client error displayed when requesting a list of blocked users for a group without providing a group nickname.
 #. TRANS: Client error displayed trying to edit a group while not proving a nickname for the group to edit.
-#. TRANS: Client error displayed trying to change group design settings without providing a group nickname.
 #. TRANS: Client error displayed when trying to change group logo settings without providing a nickname.
 #. TRANS: Client error displayed when trying to view group members without providing a group nickname.
 #. TRANS: Client error displayed when requesting a group RSS feed without providing a group nickname.
 #. TRANS: Client error displayed if no nickname argument was given requesting a group page.
 #: actions/avatarbynickname.php:60 actions/blockedfromgroup.php:73
-#: actions/editgroup.php:85 actions/groupdesignsettings.php:84
-#: actions/grouplogo.php:86 actions/groupmembers.php:76
-#: actions/groupqueue.php:77 actions/grouprss.php:89 actions/showgroup.php:118
+#: actions/editgroup.php:85 actions/grouplogo.php:86
+#: actions/groupmembers.php:76 actions/groupqueue.php:77
+#: actions/grouprss.php:89 actions/showgroup.php:118
 msgid "No nickname."
 msgstr ""
 
@@ -2292,7 +2244,7 @@ msgstr ""
 #. TRANS: Client error text when there is a problem with the session token.
 #: actions/deleteapplication.php:103 actions/editapplication.php:132
 #: actions/newapplication.php:113 actions/showapplication.php:117
-#: lib/action.php:1468
+#: lib/action.php:1450
 msgid "There was a problem with your session token."
 msgstr ""
 
@@ -2432,180 +2384,6 @@ msgstr ""
 #. TRANS: Submit button title for 'Yes' when deleting a user.
 #: actions/deleteuser.php:165
 msgid "Delete this user."
-msgstr ""
-
-#. TRANS: Message used as title for design settings for the site.
-#: actions/designadminpanel.php:60
-msgid "Design"
-msgstr ""
-
-#. TRANS: Instructions for design adminsitration panel.
-#: actions/designadminpanel.php:71
-msgid "Design settings for this StatusNet site"
-msgstr ""
-
-#. TRANS: Client error displayed when a logo URL does is not valid.
-#: actions/designadminpanel.php:327
-msgid "Invalid logo URL."
-msgstr ""
-
-#. TRANS: Client error displayed when an SSL logo URL is invalid.
-#: actions/designadminpanel.php:333
-msgid "Invalid SSL logo URL."
-msgstr ""
-
-#. TRANS: Client error displayed when a theme is submitted through the form that is not in the theme list.
-#. TRANS: %s is the chosen unavailable theme.
-#: actions/designadminpanel.php:339
-#, php-format
-msgid "Theme not available: %s."
-msgstr ""
-
-#. TRANS: Fieldset legend for form to change logo.
-#: actions/designadminpanel.php:437
-msgid "Change logo"
-msgstr ""
-
-#. TRANS: Field label for StatusNet site logo.
-#: actions/designadminpanel.php:444
-msgid "Site logo"
-msgstr ""
-
-#. TRANS: Field label for SSL StatusNet site logo.
-#: actions/designadminpanel.php:452
-msgid "SSL logo"
-msgstr ""
-
-#. TRANS: Fieldset legend for form change StatusNet site's theme.
-#: actions/designadminpanel.php:467
-msgid "Change theme"
-msgstr ""
-
-#. TRANS: Field label for dropdown to choose site theme.
-#: actions/designadminpanel.php:485
-msgid "Site theme"
-msgstr ""
-
-#. TRANS: Title for field label for dropdown to choose site theme.
-#: actions/designadminpanel.php:487
-msgid "Theme for the site."
-msgstr ""
-
-#. TRANS: Field label for uploading a cutom theme.
-#: actions/designadminpanel.php:494
-msgid "Custom theme"
-msgstr ""
-
-#. TRANS: Form instructions for uploading a cutom StatusNet theme.
-#: actions/designadminpanel.php:499
-msgid "You can upload a custom StatusNet theme as a .ZIP archive."
-msgstr ""
-
-#. TRANS: Fieldset legend for theme background image.
-#: actions/designadminpanel.php:515
-msgid "Change background image"
-msgstr ""
-
-#. TRANS: Field label for background image on theme designer page.
-#. TRANS: Field label for background color selector.
-#. TRANS: Label on profile design page for setting a profile page background colour.
-#: actions/designadminpanel.php:525 actions/designadminpanel.php:609
-#: lib/designform.php:233
-msgid "Background"
-msgstr ""
-
-#. TRANS: Form guide for background image upload form on theme designer page.
-#: actions/designadminpanel.php:531
-#, php-format
-msgid ""
-"You can upload a background image for the site. The maximum file size is %1"
-"$s."
-msgstr ""
-
-#. TRANS: Used as radio button label to add a background image.
-#: actions/designadminpanel.php:558
-msgid "On"
-msgstr ""
-
-#. TRANS: Used as radio button label to not add a background image.
-#: actions/designadminpanel.php:575
-msgid "Off"
-msgstr ""
-
-#. TRANS: Form guide for turning background image on or off on theme designer page.
-#. TRANS: Form guide for a set of radio buttons on the profile design page that will enable or disable
-#. TRANS: use of the uploaded profile image.
-#: actions/designadminpanel.php:577 lib/designform.php:209
-msgid "Turn background image on or off."
-msgstr ""
-
-#. TRANS: Checkbox label to title background image on theme designer page.
-#. TRANS: Checkbox label on profile design page that will cause the profile image to be tiled.
-#: actions/designadminpanel.php:583 lib/designform.php:215
-msgid "Tile background image"
-msgstr ""
-
-#. TRANS: Fieldset legend for theme colors.
-#: actions/designadminpanel.php:598
-msgid "Change colors"
-msgstr ""
-
-#. TRANS: Field label for content color selector.
-#. TRANS: Label on profile design page for setting a profile page content colour.
-#: actions/designadminpanel.php:623 lib/designform.php:247
-msgid "Content"
-msgstr ""
-
-#. TRANS: Field label for sidebar color selector.
-#. TRANS: Label on profile design page for setting a profile page sidebar colour.
-#: actions/designadminpanel.php:637 lib/designform.php:261
-msgid "Sidebar"
-msgstr ""
-
-#. TRANS: Field label for text color selector.
-#. TRANS: Label on profile design page for setting a profile page text colour.
-#: actions/designadminpanel.php:651 lib/designform.php:275
-msgid "Text"
-msgstr ""
-
-#. TRANS: Field label for link color selector.
-#. TRANS: Label on profile design page for setting a profile page links colour.
-#: actions/designadminpanel.php:665 lib/designform.php:289
-msgid "Links"
-msgstr ""
-
-#. TRANS: Fieldset legend for advanced theme design settings.
-#: actions/designadminpanel.php:691
-msgid "Advanced"
-msgstr ""
-
-#. TRANS: Field label for custom CSS.
-#: actions/designadminpanel.php:696
-msgid "Custom CSS"
-msgstr ""
-
-#. TRANS: Button text for resetting theme settings.
-#: actions/designadminpanel.php:718
-msgctxt "BUTTON"
-msgid "Use defaults"
-msgstr ""
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default.
-#: actions/designadminpanel.php:720 lib/designform.php:135
-msgid "Restore default designs."
-msgstr ""
-
-#. TRANS: Title for button for resetting theme settings.
-#. TRANS: Title for button on profile design page to reset all colour settings to default without saving.
-#: actions/designadminpanel.php:728 lib/designform.php:143
-msgid "Reset back to default."
-msgstr ""
-
-#. TRANS: Title for button for saving theme settings.
-#. TRANS: Title for button on profile design page to save settings.
-#: actions/designadminpanel.php:736 lib/designform.php:317
-msgid "Save design."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to remove favorite status for a notice that is not a favorite.
@@ -2815,7 +2593,7 @@ msgid ""
 "subscriptions to it. Do you still want to continue?"
 msgstr ""
 
-#. TRANS: TRANS: Server error displayed when updating a list fails.
+#. TRANS: Server error displayed when updating a list fails.
 #: actions/editpeopletag.php:297
 msgid "Could not update list."
 msgstr ""
@@ -2973,7 +2751,7 @@ msgstr ""
 #. TRANS: Form validation error displayed when trying to register without a valid e-mail address.
 #. TRANS: Client error displayed trying to save site settings without a valid contact address.
 #: actions/emailsettings.php:394 actions/register.php:207
-#: actions/siteadminpanel.php:144
+#: actions/siteadminpanel.php:154
 msgid "Not a valid email address."
 msgstr ""
 
@@ -3318,34 +3096,6 @@ msgstr ""
 #: actions/groupbyid.php:73 actions/profiletagbyid.php:57
 #: actions/userbyid.php:70
 msgid "No ID."
-msgstr ""
-
-#. TRANS: Client error displayed trying to change group design settings while not logged in.
-#: actions/groupdesignsettings.php:67
-msgid "You must be logged in to edit a group."
-msgstr ""
-
-#. TRANS: Title group design settings page.
-#: actions/groupdesignsettings.php:146
-msgid "Group design"
-msgstr ""
-
-#. TRANS: Instructions for group design settings page.
-#: actions/groupdesignsettings.php:157
-msgid ""
-"Customize the way your group looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-
-#. TRANS: Form validation error displayed when group design settings could not be updated because of an application issue.
-#: actions/groupdesignsettings.php:272
-msgid "Unable to update your design settings."
-msgstr ""
-
-#. TRANS: Form text to confirm saved group design settings.
-#. TRANS: Confirmation message on Profile design page when saving design settings has succeeded.
-#: actions/groupdesignsettings.php:317 actions/userdesignsettings.php:245
-msgid "Design preferences saved."
 msgstr ""
 
 #. TRANS: Title for group logo settings page.
@@ -4057,7 +3807,8 @@ msgstr ""
 msgid "Could not create application."
 msgstr ""
 
-#: actions/newapplication.php:298
+#. TRANS: Form validation error messages displayed when uploading an invalid application logo.
+#: actions/newapplication.php:299
 msgid "Invalid image."
 msgstr ""
 
@@ -4067,7 +3818,7 @@ msgid "New group"
 msgstr ""
 
 #. TRANS: Client exception thrown when a user tries to create a group while banned.
-#: actions/newgroup.php:73 classes/User_group.php:491
+#: actions/newgroup.php:73 classes/User_group.php:485
 msgid "You are not allowed to create groups on this site."
 msgstr ""
 
@@ -4100,13 +3851,6 @@ msgstr ""
 #. TRANS: Form validation error displayed trying to send a direct message without specifying a recipient.
 #: actions/newmessage.php:169
 msgid "No recipient specified."
-msgstr ""
-
-#. TRANS: Client error displayed trying to send a direct message to self.
-#. TRANS: Error text shown when trying to send a direct message to self.
-#: actions/newmessage.php:178 lib/command.php:632
-msgid ""
-"Don't send a message to yourself; just say it to yourself quietly instead."
 msgstr ""
 
 #. TRANS: Page title after sending a direct message.
@@ -4333,8 +4077,8 @@ msgstr ""
 
 #. TRANS: Server error displayed in oEmbed action when request specifies an unsupported data format.
 #. TRANS: Client error on an API request with an unsupported data format.
-#: actions/oembed.php:204 actions/oembed.php:224 lib/apiaction.php:1323
-#: lib/apiaction.php:1350 lib/apiaction.php:1485
+#: actions/oembed.php:204 actions/oembed.php:224 lib/apiaction.php:1292
+#: lib/apiaction.php:1319 lib/apiaction.php:1454
 msgid "Not a supported data format."
 msgstr ""
 
@@ -4432,7 +4176,7 @@ msgid "Confirm"
 msgstr ""
 
 #. TRANS: Field title on page where to change password.
-#. TRANS: Ttile for field label for password reset form where the password has to be typed again.
+#. TRANS: Title for field label for password reset form where the password has to be typed again.
 #. TRANS: Field title on account registration page.
 #: actions/passwordsettings.php:121 actions/recoverpassword.php:264
 #: actions/register.php:452
@@ -4470,7 +4214,7 @@ msgstr ""
 #. TRANS: Server error displayed on page where to change password when password change
 #. TRANS: could not be made because of a server error.
 #. TRANS: Reset password form validation error message.
-#: actions/passwordsettings.php:201 actions/recoverpassword.php:422
+#: actions/passwordsettings.php:201 actions/recoverpassword.php:338
 msgid "Cannot save new password."
 msgstr ""
 
@@ -4530,7 +4274,7 @@ msgstr ""
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:241 actions/pathsadminpanel.php:284
-#: actions/pathsadminpanel.php:375 actions/pathsadminpanel.php:430
+#: actions/pathsadminpanel.php:376
 msgid "Server"
 msgstr ""
 
@@ -4541,7 +4285,7 @@ msgstr ""
 
 #. TRANS: Field label in Paths admin panel.
 #: actions/pathsadminpanel.php:249 actions/pathsadminpanel.php:293
-#: actions/pathsadminpanel.php:384 actions/pathsadminpanel.php:439
+#: actions/pathsadminpanel.php:385
 msgid "Path"
 msgstr ""
 
@@ -4587,8 +4331,8 @@ msgid "Web path to themes."
 msgstr ""
 
 #. TRANS: Field label in Paths admin panel.
-#: actions/pathsadminpanel.php:302 actions/pathsadminpanel.php:393
-#: actions/pathsadminpanel.php:448 actions/pathsadminpanel.php:500
+#: actions/pathsadminpanel.php:302 actions/pathsadminpanel.php:394
+#: actions/pathsadminpanel.php:446
 msgid "SSL server"
 msgstr ""
 
@@ -4598,8 +4342,7 @@ msgid "SSL server for themes (default: SSL server)."
 msgstr ""
 
 #. TRANS: Field label in Paths admin panel.
-#: actions/pathsadminpanel.php:311 actions/pathsadminpanel.php:402
-#: actions/pathsadminpanel.php:457
+#: actions/pathsadminpanel.php:311 actions/pathsadminpanel.php:403
 msgid "SSL path"
 msgstr ""
 
@@ -4609,8 +4352,7 @@ msgid "SSL path to themes (default: /theme/)."
 msgstr ""
 
 #. TRANS: Field label in Paths admin panel.
-#: actions/pathsadminpanel.php:320 actions/pathsadminpanel.php:411
-#: actions/pathsadminpanel.php:466
+#: actions/pathsadminpanel.php:320 actions/pathsadminpanel.php:412
 msgid "Directory"
 msgstr ""
 
@@ -4654,105 +4396,75 @@ msgstr ""
 msgid "Directory where avatars are located."
 msgstr ""
 
-#. TRANS: Fieldset legend in Paths admin panel.
-#: actions/pathsadminpanel.php:369
-msgid "Backgrounds"
-msgstr ""
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:377
-msgid "Server for backgrounds."
-msgstr ""
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:386
-msgid "Web path to backgrounds."
-msgstr ""
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:395
-msgid "Server for backgrounds on SSL pages."
-msgstr ""
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:404
-msgid "Web path to backgrounds on SSL pages."
-msgstr ""
-
-#. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:413
-msgid "Directory where backgrounds are located."
-msgstr ""
-
 #. TRANS: Fieldset legens in Paths admin panel.
-#: actions/pathsadminpanel.php:424
+#: actions/pathsadminpanel.php:370
 msgid "Attachments"
 msgstr ""
 
 #. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:432
+#: actions/pathsadminpanel.php:378
 msgid "Server for attachments."
 msgstr ""
 
 #. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:441
+#: actions/pathsadminpanel.php:387
 msgid "Web path to attachments."
 msgstr ""
 
 #. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:450
+#: actions/pathsadminpanel.php:396
 msgid "Server for attachments on SSL pages."
 msgstr ""
 
 #. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:459
+#: actions/pathsadminpanel.php:405
 msgid "Web path to attachments on SSL pages."
 msgstr ""
 
 #. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:468
+#: actions/pathsadminpanel.php:414
 msgid "Directory where attachments are located."
 msgstr ""
 
 #. TRANS: Fieldset legend in Paths admin panel.
-#: actions/pathsadminpanel.php:477
+#: actions/pathsadminpanel.php:423
 msgctxt "LEGEND"
 msgid "SSL"
 msgstr ""
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
 #. TRANS: Option in dropdown for snapshot method in admin panel for snapshots.
-#: actions/pathsadminpanel.php:482 actions/snapshotadminpanel.php:203
+#: actions/pathsadminpanel.php:428 actions/snapshotadminpanel.php:203
 msgid "Never"
 msgstr ""
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
-#: actions/pathsadminpanel.php:484
+#: actions/pathsadminpanel.php:430
 msgid "Sometimes"
 msgstr ""
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
-#: actions/pathsadminpanel.php:486
+#: actions/pathsadminpanel.php:432
 msgid "Always"
 msgstr ""
 
 #. TRANS: Drop down label in Paths admin panel.
-#: actions/pathsadminpanel.php:490
+#: actions/pathsadminpanel.php:436
 msgid "Use SSL"
 msgstr ""
 
 #. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:492
+#: actions/pathsadminpanel.php:438
 msgid "When to use SSL."
 msgstr ""
 
 #. TRANS: Tooltip for field label in Paths admin panel.
-#: actions/pathsadminpanel.php:502
+#: actions/pathsadminpanel.php:448
 msgid "Server to direct SSL requests to."
 msgstr ""
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-#: actions/pathsadminpanel.php:519
+#: actions/pathsadminpanel.php:465
 msgid "Save paths"
 msgstr ""
 
@@ -5247,7 +4959,7 @@ msgstr[1] ""
 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Client error displayed trying to save site settings without a timezone.
-#: actions/profilesettings.php:289 actions/siteadminpanel.php:152
+#: actions/profilesettings.php:289 actions/siteadminpanel.php:175
 msgid "Timezone not selected."
 msgstr ""
 
@@ -5552,7 +5264,7 @@ msgstr ""
 
 #. TRANS: Title for password recovery page in email sent mode.
 #. TRANS: Subject for password recovery e-mail.
-#: actions/recoverpassword.php:227 actions/recoverpassword.php:370
+#: actions/recoverpassword.php:227 classes/User.php:1094
 msgid "Password recovery requested"
 msgstr ""
 
@@ -5567,62 +5279,46 @@ msgid "6 or more characters, and do not forget it!"
 msgstr ""
 
 #. TRANS: Button text for password reset form.
-#. TRANS: Button text on profile design page to reset all colour settings to default without saving.
-#: actions/recoverpassword.php:268 lib/designform.php:140
+#: actions/recoverpassword.php:268
 msgctxt "BUTTON"
 msgid "Reset"
 msgstr ""
 
 #. TRANS: Form instructions for password recovery form.
-#: actions/recoverpassword.php:278
+#: actions/recoverpassword.php:279
 msgid "Enter a nickname or email address."
 msgstr ""
 
-#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
-#: actions/recoverpassword.php:313
-msgid "No user with that email address or username."
-msgstr ""
-
-#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
-#: actions/recoverpassword.php:331
-msgid "No registered email address for that user."
-msgstr ""
-
-#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
-#: actions/recoverpassword.php:346
-msgid "Error saving address confirmation."
-msgstr ""
-
 #. TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
-#: actions/recoverpassword.php:374
+#: actions/recoverpassword.php:287
 msgid ""
 "Instructions for recovering your password have been sent to the email "
 "address registered to your account."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to reset as password without providing a user.
-#: actions/recoverpassword.php:395
+#: actions/recoverpassword.php:311
 msgid "Unexpected password reset."
 msgstr ""
 
 #. TRANS: Reset password form validation error message.
-#: actions/recoverpassword.php:404
+#: actions/recoverpassword.php:320
 msgid "Password must be 6 characters or more."
 msgstr ""
 
 #. TRANS: Reset password form validation error message.
-#: actions/recoverpassword.php:409
+#: actions/recoverpassword.php:325
 msgid "Password and confirmation do not match."
 msgstr ""
 
 #. TRANS: Server error displayed when something does wrong with the user object during password reset.
 #. TRANS: Server error displayed when saving fails during user registration.
-#: actions/recoverpassword.php:430 actions/register.php:263
+#: actions/recoverpassword.php:346 actions/register.php:263
 msgid "Error setting user."
 msgstr ""
 
 #. TRANS: Success message for user after password reset.
-#: actions/recoverpassword.php:438
+#: actions/recoverpassword.php:354
 msgid "New password successfully saved. You are now logged in."
 msgstr ""
 
@@ -6625,134 +6321,160 @@ msgid "Basic settings for this StatusNet site"
 msgstr ""
 
 #. TRANS: Client error displayed trying to save an empty site name.
-#: actions/siteadminpanel.php:131
+#: actions/siteadminpanel.php:141
 msgid "Site name must have non-zero length."
 msgstr ""
 
 #. TRANS: Client error displayed trying to save site settings without a contact address.
-#: actions/siteadminpanel.php:140
+#: actions/siteadminpanel.php:150
 msgid "You must have a valid contact email address."
+msgstr ""
+
+#. TRANS: Client error displayed when a logo URL is not valid.
+#: actions/siteadminpanel.php:161
+msgid "Invalid logo URL."
+msgstr ""
+
+#. TRANS: Client error displayed when a SSL logo URL is invalid.
+#: actions/siteadminpanel.php:167
+msgid "Invalid SSL logo URL."
 msgstr ""
 
 #. TRANS: Client error displayed trying to save site settings with an invalid language code.
 #. TRANS: %s is the invalid language code.
-#: actions/siteadminpanel.php:162
+#: actions/siteadminpanel.php:185
 #, php-format
 msgid "Unknown language \"%s\"."
 msgstr ""
 
 #. TRANS: Client error displayed trying to save site settings with a text limit below 0.
-#: actions/siteadminpanel.php:169
+#: actions/siteadminpanel.php:192
 msgid "Minimum text limit is 0 (unlimited)."
 msgstr ""
 
 #. TRANS: Client error displayed trying to save site settings with a text limit below 1.
-#: actions/siteadminpanel.php:176
+#: actions/siteadminpanel.php:199
 msgid "Dupe limit must be one or more seconds."
 msgstr ""
 
 #. TRANS: Fieldset legend on site settings panel.
-#: actions/siteadminpanel.php:223
+#: actions/siteadminpanel.php:246
 msgctxt "LEGEND"
 msgid "General"
 msgstr ""
 
 #. TRANS: Field label on site settings panel.
-#: actions/siteadminpanel.php:227
+#: actions/siteadminpanel.php:250
 msgctxt "LABEL"
 msgid "Site name"
 msgstr ""
 
 #. TRANS: Field title on site settings panel.
-#: actions/siteadminpanel.php:229
+#: actions/siteadminpanel.php:252
 msgid "The name of your site, like \"Yourcompany Microblog\"."
 msgstr ""
 
 #. TRANS: Field label on site settings panel.
-#: actions/siteadminpanel.php:234
+#: actions/siteadminpanel.php:257
 msgid "Brought by"
 msgstr ""
 
 #. TRANS: Field title on site settings panel.
-#: actions/siteadminpanel.php:236
+#: actions/siteadminpanel.php:259
 msgid "Text used for credits link in footer of each page."
 msgstr ""
 
 #. TRANS: Field label on site settings panel.
-#: actions/siteadminpanel.php:241
+#: actions/siteadminpanel.php:264
 msgid "Brought by URL"
 msgstr ""
 
 #. TRANS: Field title on site settings panel.
-#: actions/siteadminpanel.php:243
+#: actions/siteadminpanel.php:266
 msgid "URL used for credits link in footer of each page."
 msgstr ""
 
 #. TRANS: Field label on site settings panel.
-#: actions/siteadminpanel.php:247
+#: actions/siteadminpanel.php:270
 msgid "Email"
 msgstr ""
 
 #. TRANS: Field title on site settings panel.
-#: actions/siteadminpanel.php:249
+#: actions/siteadminpanel.php:272
 msgid "Contact email address for your site."
 msgstr ""
 
 #. TRANS: Fieldset legend on site settings panel.
-#: actions/siteadminpanel.php:256
+#: actions/siteadminpanel.php:281
 msgctxt "LEGEND"
 msgid "Local"
 msgstr ""
 
 #. TRANS: Dropdown label on site settings panel.
-#: actions/siteadminpanel.php:268
+#: actions/siteadminpanel.php:293
 msgid "Default timezone"
 msgstr ""
 
 #. TRANS: Dropdown title on site settings panel.
-#: actions/siteadminpanel.php:270
+#: actions/siteadminpanel.php:295
 msgid "Default timezone for the site; usually UTC."
 msgstr ""
 
 #. TRANS: Dropdown label on site settings panel.
-#: actions/siteadminpanel.php:277
+#: actions/siteadminpanel.php:302
 msgid "Default language"
 msgstr ""
 
 #. TRANS: Dropdown title on site settings panel.
-#: actions/siteadminpanel.php:280
-msgid "Site language when autodetection from browser settings is not available"
+#: actions/siteadminpanel.php:305
+msgid ""
+"The site language when autodetection from browser settings is not available."
 msgstr ""
 
 #. TRANS: Fieldset legend on site settings panel.
-#: actions/siteadminpanel.php:289
+#: actions/siteadminpanel.php:314
 msgctxt "LEGEND"
 msgid "Limits"
 msgstr ""
 
 #. TRANS: Field label on site settings panel.
-#: actions/siteadminpanel.php:294
+#: actions/siteadminpanel.php:319
 msgid "Text limit"
 msgstr ""
 
 #. TRANS: Field title on site settings panel.
-#: actions/siteadminpanel.php:296
+#: actions/siteadminpanel.php:321
 msgid "Maximum number of characters for notices."
 msgstr ""
 
 #. TRANS: Field label on site settings panel.
-#: actions/siteadminpanel.php:302
+#: actions/siteadminpanel.php:327
 msgid "Dupe limit"
 msgstr ""
 
 #. TRANS: Field title on site settings panel.
-#: actions/siteadminpanel.php:304
+#: actions/siteadminpanel.php:329
 msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
 
+#. TRANS: Fieldset legend for form to change logo.
+#: actions/siteadminpanel.php:339
+msgid "Logo"
+msgstr ""
+
+#. TRANS: Field label for StatusNet site logo.
+#: actions/siteadminpanel.php:346
+msgid "Site logo"
+msgstr ""
+
+#. TRANS: Field label for SSL StatusNet site logo.
+#: actions/siteadminpanel.php:354
+msgid "SSL logo"
+msgstr ""
+
 #. TRANS: Button title for saving site settings.
-#: actions/siteadminpanel.php:323
-msgid "Save site settings"
+#: actions/siteadminpanel.php:377
+msgid "Save the site settings."
 msgstr ""
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
@@ -7627,45 +7349,6 @@ msgstr ""
 msgid "Wrong image type for avatar URL \"%s\"."
 msgstr ""
 
-#. TRANS: Title for profile design page.
-#. TRANS: Page title for profile design page.
-#: actions/userdesignsettings.php:75 lib/designsettings.php:61
-msgid "Profile design"
-msgstr ""
-
-#. TRANS: Instructions for Profile design page.
-#. TRANS: Instructions for profile design page.
-#: actions/userdesignsettings.php:86 lib/designsettings.php:72
-msgid ""
-"Customize the way your profile looks with a background image and a colour "
-"palette of your choice."
-msgstr ""
-
-#. TRANS: Succes message on Profile design page when finding an easter egg.
-#: actions/userdesignsettings.php:297
-msgid "Enjoy your hotdog!"
-msgstr ""
-
-#. TRANS: Form legend on Profile design page.
-#: actions/userdesignsettings.php:335
-msgid "Design settings"
-msgstr ""
-
-#. TRANS: Checkbox label on Profile design page.
-#: actions/userdesignsettings.php:351
-msgid "View profile designs"
-msgstr ""
-
-#. TRANS: Title for checkbox on Profile design page.
-#: actions/userdesignsettings.php:353
-msgid "Show or hide profile designs."
-msgstr ""
-
-#. TRANS: Form legend on Profile design page for form to choose a background image.
-#: actions/userdesignsettings.php:361
-msgid "Background file"
-msgstr ""
-
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
 #: actions/usergroups.php:67
@@ -8015,7 +7698,7 @@ msgstr ""
 
 #. TRANS: Full name of a profile or group (%1$s) followed by nickname (%2$s) in parentheses.
 #. TRANS: Full name of a profile or group followed by nickname in parens
-#: classes/Profile.php:186 classes/User_group.php:248
+#: classes/Profile.php:186 classes/User_group.php:247
 #, php-format
 msgctxt "FANCYNAME"
 msgid "%1$s (%2$s)"
@@ -8152,43 +7835,58 @@ msgstr ""
 
 #. TRANS: Notice given on user registration.
 #. TRANS: %1$s is the sitename, $2$s is the registering user's nickname.
-#: classes/User.php:417
+#: classes/User.php:414
 #, php-format
 msgid "Welcome to %1$s, @%2$s!"
 msgstr ""
 
 #. TRANS: Exception thrown when trying view "repeated to me".
-#: classes/User.php:821
+#: classes/User.php:813
 msgid "Not implemented since inbox change."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/User.php:907
+#: classes/User.php:899
 msgid "No single user defined for single-user mode."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/User.php:911
+#: classes/User.php:903
 msgid "Single-user mode code called when not enabled."
 msgstr ""
 
+#. TRANS: Information on password recovery form if no known username or e-mail address was specified.
+#: classes/User.php:1037
+msgid "No user with that email address or username."
+msgstr ""
+
+#. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
+#: classes/User.php:1055
+msgid "No registered email address for that user."
+msgstr ""
+
+#. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
+#: classes/User.php:1070
+msgid "Error saving address confirmation."
+msgstr ""
+
 #. TRANS: Server exception thrown when creating a group failed.
-#: classes/User_group.php:540
+#: classes/User_group.php:534
 msgid "Could not create group."
 msgstr ""
 
 #. TRANS: Server exception thrown when updating a group URI failed.
-#: classes/User_group.php:550
+#: classes/User_group.php:544
 msgid "Could not set group URI."
 msgstr ""
 
 #. TRANS: Server exception thrown when setting group membership failed.
-#: classes/User_group.php:573
+#: classes/User_group.php:567
 msgid "Could not set group membership."
 msgstr ""
 
 #. TRANS: Server exception thrown when saving local group information failed.
-#: classes/User_group.php:590
+#: classes/User_group.php:584
 msgid "Could not save local group info."
 msgstr ""
 
@@ -8280,25 +7978,25 @@ msgid "Untitled page"
 msgstr ""
 
 #. TRANS: Localized tooltip for '...' expansion button on overlong remote messages.
-#: lib/action.php:363
+#: lib/action.php:352
 msgctxt "TOOLTIP"
 msgid "Show more"
 msgstr ""
 
 #. TRANS: Inline reply form submit button: submits a reply comment.
-#: lib/action.php:366
+#: lib/action.php:355
 msgctxt "BUTTON"
 msgid "Reply"
 msgstr ""
 
 #. TRANS: Placeholder text for inline reply form. Clicking in this box will turn it into a mini notice form.
 #. TRANS: Field label for reply mini form.
-#: lib/action.php:369 lib/threadednoticelist.php:396
+#: lib/action.php:358 lib/threadednoticelist.php:396
 msgid "Write a reply..."
 msgstr ""
 
 #. TRANS: Tab on the notice form.
-#: lib/action.php:619
+#: lib/action.php:608
 msgctxt "TAB"
 msgid "Status"
 msgstr ""
@@ -8307,7 +8005,7 @@ msgstr ""
 #. TRANS: Text between [] is a link description, text between () is the link itself.
 #. TRANS: Make sure there is no whitespace between "]" and "(".
 #. TRANS: "%%site.broughtby%%" is the value of the variable site.broughtby
-#: lib/action.php:995
+#: lib/action.php:984
 #, php-format
 msgid ""
 "**%%site.name%%** is a microblogging service brought to you by [%%site."
@@ -8315,7 +8013,7 @@ msgid ""
 msgstr ""
 
 #. TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is not set.
-#: lib/action.php:998
+#: lib/action.php:987
 #, php-format
 msgid "**%%site.name%%** is a microblogging service."
 msgstr ""
@@ -8324,7 +8022,7 @@ msgstr ""
 #. TRANS: Make sure there is no whitespace between "]" and "(".
 #. TRANS: Text between [] is a link description, text between () is the link itself.
 #. TRANS: %s is the version of StatusNet that is being used.
-#: lib/action.php:1005
+#: lib/action.php:994
 #, php-format
 msgid ""
 "It runs the [StatusNet](http://status.net/) microblogging software, version %"
@@ -8334,39 +8032,39 @@ msgstr ""
 
 #. TRANS: Content license displayed when license is set to 'private'.
 #. TRANS: %1$s is the site name.
-#: lib/action.php:1023
+#: lib/action.php:1012
 #, php-format
 msgid "Content and data of %1$s are private and confidential."
 msgstr ""
 
 #. TRANS: Content license displayed when license is set to 'allrightsreserved'.
 #. TRANS: %1$s is the copyright owner.
-#: lib/action.php:1030
+#: lib/action.php:1019
 #, php-format
 msgid "Content and data copyright by %1$s. All rights reserved."
 msgstr ""
 
 #. TRANS: Content license displayed when license is set to 'allrightsreserved' and no owner is set.
-#: lib/action.php:1034
+#: lib/action.php:1023
 msgid "Content and data copyright by contributors. All rights reserved."
 msgstr ""
 
 #. TRANS: license message in footer.
 #. TRANS: %1$s is the site name, %2$s is a link to the license URL, with a licence name set in configuration.
-#: lib/action.php:1066
+#: lib/action.php:1055
 #, php-format
 msgid "All %1$s content and data are available under the %2$s license."
 msgstr ""
 
 #. TRANS: Pagination message to go to a page displaying information more in the
 #. TRANS: present than the currently displayed information.
-#: lib/action.php:1412
+#: lib/action.php:1404
 msgid "After"
 msgstr ""
 
 #. TRANS: Pagination message to go to a page displaying information more in the
 #. TRANS: past than the currently displayed information.
-#: lib/action.php:1422
+#: lib/action.php:1414
 msgid "Before"
 msgstr ""
 
@@ -8483,12 +8181,6 @@ msgstr ""
 msgid "saveSettings() not implemented."
 msgstr ""
 
-#. TRANS: Client error message thrown if design settings could not be deleted in
-#. TRANS: the admin panel Design.
-#: lib/adminpanelaction.php:274
-msgid "Unable to delete design setting."
-msgstr ""
-
 #. TRANS: Header in administrator navigation panel.
 #. TRANS: Header in settings navigation panel.
 #: lib/adminpanelnav.php:66 lib/settingsnav.php:66
@@ -8525,101 +8217,88 @@ msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
 #: lib/adminpanelnav.php:99
-msgid "Design configuration"
-msgstr ""
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in settings navigation panel.
-#: lib/adminpanelnav.php:101 lib/groupnav.php:143 lib/settingsnav.php:117
-msgctxt "MENU"
-msgid "Design"
-msgstr ""
-
-#. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:107
 msgid "User configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:109
+#: lib/adminpanelnav.php:101
 msgctxt "MENU"
 msgid "User"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:115
+#: lib/adminpanelnav.php:107
 msgid "Access configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:117
+#: lib/adminpanelnav.php:109
 msgctxt "MENU"
 msgid "Access"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:123
+#: lib/adminpanelnav.php:115
 msgid "Paths configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:125
+#: lib/adminpanelnav.php:117
 msgctxt "MENU"
 msgid "Paths"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:131
+#: lib/adminpanelnav.php:123
 msgid "Sessions configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:133
+#: lib/adminpanelnav.php:125
 msgctxt "MENU"
 msgid "Sessions"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:139
+#: lib/adminpanelnav.php:131
 msgid "Edit site notice"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:141
+#: lib/adminpanelnav.php:133
 msgctxt "MENU"
 msgid "Site notice"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:147
+#: lib/adminpanelnav.php:139
 msgid "Snapshots configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:149
+#: lib/adminpanelnav.php:141
 msgctxt "MENU"
 msgid "Snapshots"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:155
+#: lib/adminpanelnav.php:147
 msgid "Set site license"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:157
+#: lib/adminpanelnav.php:149
 msgctxt "MENU"
 msgid "License"
 msgstr ""
 
 #. TRANS: Menu item title in administrator navigation panel.
-#: lib/adminpanelnav.php:163
+#: lib/adminpanelnav.php:155
 msgid "Plugins configuration"
 msgstr ""
 
 #. TRANS: Menu item in administrator navigation panel.
-#: lib/adminpanelnav.php:165
+#: lib/adminpanelnav.php:157
 msgctxt "MENU"
 msgid "Plugins"
 msgstr ""
@@ -8635,23 +8314,23 @@ msgid "No application for that consumer key."
 msgstr ""
 
 #. TRANS: Authorization exception thrown when a user without API access tries to access the API.
-#: lib/apiauth.php:203 lib/apiauth.php:286
+#: lib/apiauth.php:203 lib/apiauth.php:291
 msgid "Not allowed to use API."
 msgstr ""
 
 #. TRANS: OAuth exception given when an incorrect access token was given for a user.
-#: lib/apiauth.php:226
+#: lib/apiauth.php:231
 msgid "Bad access token."
 msgstr ""
 
 #. TRANS: OAuth exception given when no user was found for a given token (no token was found).
-#: lib/apiauth.php:231
+#: lib/apiauth.php:236
 msgid "No user for that token."
 msgstr ""
 
 #. TRANS: Client error thrown when authentication fails becaus a user clicked "Cancel".
 #. TRANS: Client error thrown when authentication fails.
-#: lib/apiauth.php:273 lib/apiauth.php:304
+#: lib/apiauth.php:278 lib/apiauth.php:309
 msgid "Could not authenticate you."
 msgstr ""
 
@@ -9527,50 +9206,6 @@ msgstr ""
 msgid "Delete this user"
 msgstr ""
 
-#. TRANS: Form legend of form for changing the page design.
-#: lib/designform.php:110
-msgid "Change design"
-msgstr ""
-
-#. TRANS: Fieldset legend on profile design page to change profile page colours.
-#: lib/designform.php:126
-msgid "Change colours"
-msgstr ""
-
-#. TRANS: Button text on profile design page to immediately reset all colour settings to default.
-#: lib/designform.php:133
-msgid "Use defaults"
-msgstr ""
-
-#. TRANS: Label in form on profile design page.
-#. TRANS: Field contains file name on user's computer that could be that user's custom profile background image.
-#: lib/designform.php:153
-msgid "Upload file"
-msgstr ""
-
-#. TRANS: Instructions for form on profile design page.
-#: lib/designform.php:158
-msgid ""
-"You can upload your personal background image. The maximum file size is 2MB."
-msgstr ""
-
-#. TRANS: Radio button on profile design page that will enable use of the uploaded profile image.
-#: lib/designform.php:189
-msgctxt "RADIO"
-msgid "On"
-msgstr ""
-
-#. TRANS: Radio button on profile design page that will disable use of the uploaded profile image.
-#: lib/designform.php:206
-msgctxt "RADIO"
-msgid "Off"
-msgstr ""
-
-#. TRANS: Success message displayed if design settings were saved after clicking "Use defaults".
-#: lib/designsettings.php:245
-msgid "Design defaults restored."
-msgstr ""
-
 #. TRANS: Exception. %s is an ID.
 #: lib/discovery.php:153
 #, php-format
@@ -9813,14 +9448,6 @@ msgstr ""
 #, php-format
 msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
-msgstr ""
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#: lib/groupnav.php:146
-#, php-format
-msgctxt "TOOLTIP"
-msgid "Add or edit %s design"
 msgstr ""
 
 #. TRANS: Group actions header (h2). Text hidden by default.
@@ -10425,7 +10052,7 @@ msgstr ""
 msgid "Select recipient:"
 msgstr ""
 
-#. TRANS Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
+#. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 #: lib/messageform.php:145
 msgid "No mutual subscribers."
 msgstr ""
@@ -10941,9 +10568,11 @@ msgctxt "plugin"
 msgid "Enable"
 msgstr ""
 
-#: lib/pluginlist.php:196
+#. TRANS: Plugin description for a disabled plugin.
+#: lib/pluginlist.php:195
 msgctxt "plugin-description"
-msgid "(Plugin descriptions unavailable when disabled.)"
+msgid ""
+"(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
@@ -11091,7 +10720,7 @@ msgid "Revoke the \"%s\" role from this user"
 msgstr ""
 
 #. TRANS: Client error on action trying to visit a non-existing page.
-#: lib/router.php:1159
+#: lib/router.php:1152
 msgid "Page not found."
 msgstr ""
 
@@ -11283,52 +10912,47 @@ msgstr ""
 msgid "Change email handling"
 msgstr ""
 
-#. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:119
-msgid "Design your profile"
-msgstr ""
-
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:124
+#: lib/settingsnav.php:117
 msgctxt "MENU"
 msgid "URL"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:126
+#: lib/settingsnav.php:119
 msgid "URL shorteners"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:134
+#: lib/settingsnav.php:127
 msgctxt "MENU"
 msgid "IM"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:136
+#: lib/settingsnav.php:129
 msgid "Updates by instant messenger (IM)"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:143
+#: lib/settingsnav.php:136
 msgctxt "MENU"
 msgid "SMS"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:145
+#: lib/settingsnav.php:138
 msgid "Updates by SMS"
 msgstr ""
 
 #. TRANS: Menu item in settings navigation panel.
-#: lib/settingsnav.php:151
+#: lib/settingsnav.php:144
 msgctxt "MENU"
 msgid "Connections"
 msgstr ""
 
 #. TRANS: Menu item title in settings navigation panel.
-#: lib/settingsnav.php:153
+#: lib/settingsnav.php:146
 msgid "Authorized connected applications"
 msgstr ""
 
@@ -11780,4 +11404,44 @@ msgstr ""
 #: scripts/restoreuser.php:62
 #, php-format
 msgid "Getting backup from file '%s'."
+msgstr ""
+
+#. TRANS: Server exception. %s is a URL.
+#: scripts/update_ostatus_profiles.php:56
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr ""
+
+#. TRANS: Server exception. %s is a URI.
+#: scripts/update_ostatus_profiles.php:67
+#, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr ""
+
+#. TRANS: Server exception. %s is a URL.
+#: scripts/update_ostatus_profiles.php:77
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr ""
+
+#. TRANS: Exception. %s is a profile URL.
+#: scripts/update_ostatus_profiles.php:136
+#, php-format
+msgid "Could not reach profile page %s."
+msgstr ""
+
+#. TRANS: Exception. %s is a URL.
+#: scripts/update_ostatus_profiles.php:187
+#, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr ""
+
+#. TRANS: Exception.
+#: scripts/update_ostatus_profiles.php:212
+msgid "Not a valid webfinger address."
+msgstr ""
+
+#: scripts/update_ostatus_profiles.php:264
+#, php-format
+msgid "Could not find a valid profile for \"%s\"."
 msgstr ""

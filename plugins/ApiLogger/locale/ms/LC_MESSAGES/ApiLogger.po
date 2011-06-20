@@ -1,0 +1,26 @@
+# Translation of StatusNet - ApiLogger to Malay (Bahasa Melayu)
+# Exported from translatewiki.net
+#
+# Author: Anakmalaysia
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ApiLogger\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:55:07+0000\n"
+"Language-Team: Malay <http://translatewiki.net/wiki/Portal:ms>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:49:11+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: ms\n"
+"X-Message-Group: #out-statusnet-plugin-apilogger\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. TRANS: Plugin description.
+msgid "Allows random sampling of API requests."
+msgstr "Membolehkan pensampelan permohonan API secara rawak."

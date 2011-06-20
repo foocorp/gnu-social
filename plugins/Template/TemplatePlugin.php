@@ -22,7 +22,6 @@ if (!defined('STATUSNET')) {
 define('TEMPLATEPLUGIN_VERSION', '0.1');
 
 class TemplatePlugin extends Plugin {
-
   var $blocks = array();
 
   function __construct() {
@@ -38,12 +37,14 @@ class TemplatePlugin extends Plugin {
     ));
   }
 
-  // <%styles%>
-  // <%scripts%>
-  // <%search%>
-  // <%feeds%>
-  // <%description%>
-  // <%head%>
+  /**
+   <%styles%>
+   <%scripts%>
+   <%search%>
+   <%feeds%>
+   <%description%>
+   <%head%>
+  */
   function onStartShowHead( &$act ) {
     $this->clear_xmlWriter($act);
     $act->extraHead();
@@ -184,7 +185,6 @@ class TemplatePlugin extends Plugin {
   // capture the EndHTML event
   // and include the template
   function onEndEndHTML($act) {
-
     global $action, $tags;
 
     // set the action and title values
@@ -250,7 +250,6 @@ class TemplatePlugin extends Plugin {
     $act->xw->openMemory();
     $act->xw->setIndent(true);
   }
-
 }
 
 /**
@@ -266,29 +265,23 @@ class TemplatePlugin extends Plugin {
  * @link     http://megapump.com/
  *
  */
-
 class TemplateAction extends Action
 {
-
   function prepare($args) {
     parent::prepare($args);
     return true;
   }
 
   function handle($args) {
-
     parent::handle($args);
 
     if (!isset($_SERVER['PHP_AUTH_USER'])) {
-
       // not authenticated, show login form
       header('WWW-Authenticate: Basic realm="StatusNet API"');
 
       // cancelled the browser login form
       $this->clientError(_m('Authentication error!'), $code = 401);
-
     } else {
-
       $nick = $_SERVER['PHP_AUTH_USER'];
       $pass = $_SERVER['PHP_AUTH_PW'];
 
@@ -296,7 +289,6 @@ class TemplateAction extends Action
       $user = common_check_user($nick,$pass);
 
       if ($user) {
-
         // verify that user is admin
         if (!($user->id == 1))
           $this->clientError(_m('Only User #1 can update the template.'), $code = 401);
@@ -312,12 +304,9 @@ class TemplateAction extends Action
         header('HTTP/1.1 200 OK');
         header('Content-type: text/plain');
         print "Template Updated!";
-
       } else {
-
         // bad username and password
         $this->clientError(_m('Authentication error!'), $code = 401);
-
       }
 
     }
@@ -329,6 +318,7 @@ class TemplateAction extends Action
                             'author' => 'Brian Hendrickson',
                             'homepage' => 'http://status.net/wiki/Plugin:Template',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Use an HTML template for Web output.'));
         return true;
     }
@@ -348,10 +338,8 @@ class TemplateAction extends Action
  * @link     http://megapump.com/
  *
  */
-
 function section($tagname) {
   global $tags;
   if (isset($tags[$tagname]))
     return $tags[$tagname];
 }
-

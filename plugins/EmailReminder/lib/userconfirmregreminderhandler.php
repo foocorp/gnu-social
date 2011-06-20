@@ -1,5 +1,4 @@
 <?php
-
 /**
  * StatusNet - the distributed open-source microblogging tool
  *
@@ -26,6 +25,7 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
+
 if (!defined('STATUSNET')) {
     exit(1);
 }
@@ -81,7 +81,8 @@ class UserConfirmRegReminderHandler extends UserReminderHandler {
         case ($days > 1 && $days < 2):
             if (Email_reminder::needsReminder(self::REGISTER_REMINDER, $confirm, 1)) {
                 common_log(LOG_INFO, "Sending one day registration confirmation reminder to {$confirm->address}", __FILE__);
-                $subject = _m("Reminder - please confirm your registration!");
+                // TRANS: Subject for reminder e-mail.
+                $subject = _m('Reminder - please confirm your registration!');
                 return EmailReminderPlugin::sendReminder(
                     self::REGISTER_REMINDER,
                     $confirm,
@@ -94,7 +95,8 @@ class UserConfirmRegReminderHandler extends UserReminderHandler {
         case ($days > 3 && $days < 4):
             if (Email_reminder::needsReminder(self::REGISTER_REMINDER, $confirm, 3)) {
                 common_log(LOG_INFO, "Sending three day registration confirmation reminder to {$confirm->address}", __FILE__);
-                $subject = _m("Second reminder - please confirm your registration!");
+                // TRANS: Subject for reminder e-mail.
+                $subject = _m('Second reminder - please confirm your registration!');
                     return EmailReminderPlugin::sendReminder(
                         self::REGISTER_REMINDER,
                         $confirm,
@@ -108,7 +110,8 @@ class UserConfirmRegReminderHandler extends UserReminderHandler {
         case ($days > 7 && $days < 8):
             if (Email_reminder::needsReminder(self::REGISTER_REMINDER, $confirm, 7)) {
                 common_log(LOG_INFO, "Sending one week registration confirmation reminder to {$confirm->address}", __FILE__);
-                $subject = _m("Final reminder - please confirm your registration!");
+                // TRANS: Subject for reminder e-mail.
+                $subject = _m('Final reminder - please confirm your registration!');
                 return EmailReminderPlugin::sendReminder(
                     self::REGISTER_REMINDER,
                     $confirm,
@@ -122,5 +125,4 @@ class UserConfirmRegReminderHandler extends UserReminderHandler {
         }
         return true;
     }
-
 }

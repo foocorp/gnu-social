@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:56:31+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:29+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 09:58:10+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:19:23+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
@@ -51,6 +51,10 @@ msgstr "Продолжи"
 msgctxt "BUTTON"
 msgid "Cancel"
 msgstr "Откажи"
+
+#. TRANS: Client exception thrown when an action is not available.
+msgid "Unavailable action."
+msgstr "Дејството е недостапно."
 
 #. TRANS: Tooltip for main menu option "Login"
 msgctxt "TOOLTIP"
@@ -96,6 +100,36 @@ msgstr "Најава или регистрација со OpenID."
 #. TRANS: OpenID plugin tooltip for user settings menu item.
 msgid "Add or remove OpenIDs."
 msgstr "Додај или отстрани OpenID-ја."
+
+#. TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? [Add an OpenID to your account](%%"
+"action.openidsettings%%)!"
+msgstr ""
+"(Имате [OpenID](http://openid.net/)? [Додајте ѝ OpenID на сметката](%%action."
+"openidsettings%%)!"
+
+#. TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID registration](%%"
+"action.openidlogin%%)!)"
+msgstr ""
+"(Имате [OpenID](http://openid.net/)? Ви предлагаме да се [регистрирате со "
+"OpenID](%%action.openidlogin%%)!)"
+
+#. TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
+#. TRANS: This message contains Markdown links in the form (description)[link].
+#, php-format
+msgid ""
+"(Have an [OpenID](http://openid.net/)? Try our [OpenID login](%%action."
+"openidlogin%%)!)"
+msgstr ""
+"(Имате [OpenID](http://openid.net/)? Ви предлагаме да се [најавите со OpenID]"
+"(%%action.openidlogin%%)!)"
 
 #. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
 #, php-format
@@ -609,7 +643,7 @@ msgstr "Запомни ме"
 #. TRANS: OpenID plugin logon form field title.
 msgid "Automatically login in the future; not for shared computers!"
 msgstr ""
-"Отсега врши автоматска најава. Не треба да се користи за јавни сметачи!"
+"Отсега врши автоматска најава (не треба да се користи на јавни сметачи!)"
 
 #. TRANS: OpenID plugin logon form button label to start logon with the data provided in the logon form.
 msgctxt "BUTTON"

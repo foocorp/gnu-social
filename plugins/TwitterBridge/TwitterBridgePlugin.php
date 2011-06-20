@@ -148,8 +148,10 @@ class TwitterBridgePlugin extends Plugin
         if (self::hasKeys() && common_config('twitter', 'signin')) {
             $action->menuItem(
                 common_local_url('twitterlogin'),
-                _m('Twitter'),
-                _m('Login or register using Twitter'),
+                // TRANS: Menu item in login navigation.
+                _m('MENU','Twitter'),
+                // TRANS: Title for menu item in login navigation.
+                _m('Login or register using Twitter.'),
                 'twitterlogin' === $action_name
             );
         }
@@ -171,7 +173,9 @@ class TwitterBridgePlugin extends Plugin
 
             $action->menuItem(
                 common_local_url('twittersettings'),
-                _m('Twitter'),
+                // TRANS: Menu item in connection settings navigation.
+                _m('MENU','Twitter'),
+                // TRANS: Title for menu item in connection settings navigation.
                 _m('Twitter integration options'),
                 $action_name === 'twittersettings'
             );
@@ -299,8 +303,10 @@ class TwitterBridgePlugin extends Plugin
 
             $nav->out->menuItem(
                 common_local_url('twitteradminpanel'),
+                // TRANS: Menu item in administrative panel that leads to the Twitter bridge configuration.
                 _m('Twitter'),
-                _m('Twitter bridge configuration'),
+                // TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
+                _m('Twitter bridge configuration page.'),
                 $action_name == 'twitteradminpanel',
                 'nav_twitter_admin_panel'
             );
@@ -323,8 +329,8 @@ class TwitterBridgePlugin extends Plugin
             'version' => self::VERSION,
             'author' => 'Zach Copley, Julien C',
             'homepage' => 'http://status.net/wiki/Plugin:TwitterBridge',
-            'rawdescription' => _m(
-                'The Twitter "bridge" plugin allows integration ' .
+            // TRANS: Plugin description.
+            'rawdescription' => _m('The Twitter "bridge" plugin allows integration ' .
                 'of a StatusNet instance with ' .
                 '<a href="http://twitter.com/">Twitter</a>.'
             )

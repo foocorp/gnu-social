@@ -145,7 +145,7 @@ class AllAction extends ProfileAction
                 $message .= sprintf(_('You can try to [nudge %1$s](../%2$s) from their profile or [post something to them](%%%%action.newnotice%%%%?status_textarea=%3$s).'), $this->user->nickname, $this->user->nickname, '@' . $this->user->nickname);
             }
         } else {
-            // TRANS: Encoutagement displayed on empty timeline user pages for anonymous users.
+            // TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
             // TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
             $message .= sprintf(_('Why not [register an account](%%%%action.register%%%%) and then nudge %s or post a notice to them.'), $this->user->nickname);
         }

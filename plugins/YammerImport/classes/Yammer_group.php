@@ -48,7 +48,6 @@ class Yammer_group extends Yammer_common
      * @return Yammer_group object found, or null for no hits
      *
      */
-
     function staticGet($k, $v=null)
     {
         return Memcached_DataObject::staticGet('Yammer_group', $k, $v);
@@ -57,7 +56,6 @@ class Yammer_group extends Yammer_common
     /**
      * Return schema definition to set this table up in onCheckSchema
      */
-
     static function schemaDef()
     {
         return self::doSchemaDef('group_id');
@@ -71,7 +69,6 @@ class Yammer_group extends Yammer_common
      *
      * @return Yammer_group new object for this value
      */
-
     static function record($orig_id, $group_id)
     {
         return self::doRecord('Yammer_group', 'group_id', $orig_id, $group_id);

@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - DomainWhitelist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:12+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:55:36+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:42+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:50:01+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-domainwhitelist\n"
@@ -29,9 +29,9 @@ msgstr "Le adresse de e-mail debe esser in iste dominio: %s."
 
 #. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
 #. TRANS: %s are whitelisted e-mail domains separated by comma's (localisable).
-#, fuzzy, php-format
+#, php-format
 msgid "Email address must be in one of these domains: %s."
-msgstr "Le adresse de e-mail debe esser in iste dominio: %s."
+msgstr "Le adresse de e-mail debe esser in un de iste dominios: %s."
 
 #. TRANS: Separator for whitelisted domains.
 msgctxt "SEPARATOR"
@@ -39,17 +39,16 @@ msgid ", "
 msgstr ", "
 
 #. TRANS: Exception thrown when an e-mail address does not match the site's domain whitelist.
-#, fuzzy
 msgid "That email address is not allowed on this site."
-msgstr "Le adresse de e-mail debe esser in iste dominio: %s."
+msgstr "Iste adresse de e-mail non es permittite in iste sito."
 
 #. TRANS: Title for invitiation deletion dialog.
 msgid "Confirmation Required"
-msgstr ""
+msgstr "Confirmation necessari"
 
 #. TRANS: Confirmation text for invitation deletion dialog.
 msgid "Really delete this invitation?"
-msgstr ""
+msgstr "Es tu secur de voler deler iste invitation?"
 
 #. TRANS: Plugin description.
 msgid "Restrict domains for email users."
@@ -57,25 +56,25 @@ msgstr "Restringer dominios pro usatores de e-mail."
 
 #. TRANS: Form legend.
 msgid "Invite collegues"
-msgstr ""
+msgstr "Invitar collegas"
 
 #. TRANS: Field label for a personal message to send to invitees.
 msgid "Personal message"
-msgstr ""
+msgstr "Message personal"
 
 #. TRANS: Field title for a personal message to send to invitees.
 msgid "Optionally add a personal message to the invitation."
-msgstr ""
+msgstr "Si tu vole, adde un message personal al invitation."
 
 #. TRANS: Link description to action to add another item to a list.
 msgid "Add another item"
-msgstr ""
+msgstr "Adder un altere elemento"
 
 #. TRANS: Send button for inviting friends.
 msgctxt "BUTTON"
 msgid "Send"
-msgstr ""
+msgstr "Inviar"
 
 #. TRANS: Submit button title.
 msgid "Send invitations."
-msgstr ""
+msgstr "Inviar invitationes."

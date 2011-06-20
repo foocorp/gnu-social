@@ -402,16 +402,20 @@ class XmppPlugin extends ImPlugin
      */
     function queuedConnection(){
         if(!isset($this->server)){
-            throw new Exception("must specify a server");
+            // TRANS: Exception thrown when the plugin configuration is incorrect.
+            throw new Exception(_m('You must specify a server in the configuration.'));
         }
         if(!isset($this->port)){
-            throw new Exception("must specify a port");
+            // TRANS: Exception thrown when the plugin configuration is incorrect.
+            throw new Exception(_m('You must specify a port in the configuration.'));
         }
         if(!isset($this->user)){
-            throw new Exception("must specify a user");
+            // TRANS: Exception thrown when the plugin configuration is incorrect.
+            throw new Exception(_m('You must specify a user in the configuration.'));
         }
         if(!isset($this->password)){
-            throw new Exception("must specify a password");
+            // TRANS: Exception thrown when the plugin configuration is incorrect.
+            throw new Exception(_m('You must specify a password in the configuration.'));
         }
 
         return new Queued_XMPP($this, $this->host ?
@@ -436,6 +440,7 @@ class XmppPlugin extends ImPlugin
                             'author' => 'Craig Andrews, Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:XMPP',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('The XMPP plugin allows users to send and receive notices over the XMPP/Jabber network.'));
         return true;
     }

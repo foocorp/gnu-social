@@ -49,7 +49,6 @@ class ClearflagAction extends ProfileFormAction
      *
      * @return boolean success flag
      */
-
     function prepare($args)
     {
         if (!parent::prepare($args)) {
@@ -102,7 +101,8 @@ class ClearflagAction extends ProfileFormAction
 
         if ($result == false) {
             // TRANS: Server exception given when flags could not be cleared.
-            $msg = sprintf(_m('Couldn\'t clear flags for profile "%s".'),
+            // TRANS: %s is a profile nickname.
+            $msg = sprintf(_m('Could not clear flags for profile "%s".'),
                            $this->profile->nickname);
             throw new ServerException($msg);
         }

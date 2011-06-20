@@ -192,8 +192,7 @@ class PluginListItem extends Widget
         } else {
             return array('name' => $this->plugin,
                          // TRANS: Plugin description for a disabled plugin.
-                         'rawdescription' => _m('plugin-description',
-                                                '(Plugin descriptions unavailable when disabled.)'));
+                         'rawdescription' => _m('plugin-description','(The plugin description is unavailable when a plugin has been disabled.)'));
         }
     }
 

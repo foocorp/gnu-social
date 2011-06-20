@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:05+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:22+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:46:06+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:51:26+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
@@ -80,9 +80,8 @@ msgid "Set a password"
 msgstr "Magtakda ng isang hudyat"
 
 #. TRANS: Form legend.
-#, fuzzy
 msgid "Confirm email address"
-msgstr "Tiyakin ang e-liham"
+msgstr "Patotohanan ang tirahan ng e-liham"
 
 #. TRANS: Field label.
 msgid "New password"
@@ -93,17 +92,15 @@ msgid "6 or more characters."
 msgstr "6 o mahigit pang mga panitik."
 
 #. TRANS: Field label for repeat password field.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Confirm"
-msgstr "Pagtibayin"
+msgstr "Patunayan"
 
 #. TRANS: Field title for repeat password field.
 msgid "Same as password above."
 msgstr "Katulad ng hudyat na nasa itaas."
 
 #. TRANS: Button text for completing registration by e-mail.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Sagipin"

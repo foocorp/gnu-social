@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - DomainWhitelist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:12+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:55:36+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:42+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:50:01+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-domainwhitelist\n"
@@ -29,9 +29,11 @@ msgstr "Ang tirahan ng e-liham ay dapat na nasa loob ng nasasakupang ito: %s."
 
 #. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
 #. TRANS: %s are whitelisted e-mail domains separated by comma's (localisable).
-#, fuzzy, php-format
+#, php-format
 msgid "Email address must be in one of these domains: %s."
-msgstr "Ang tirahan ng e-liham ay dapat na nasa loob ng nasasakupang ito: %s."
+msgstr ""
+"Ang tirahan ng e-liham ay dapat na nasa loob ng isa sa mga nasasakupang ito: "
+"%s."
 
 #. TRANS: Separator for whitelisted domains.
 msgctxt "SEPARATOR"
@@ -39,17 +41,16 @@ msgid ", "
 msgstr ", "
 
 #. TRANS: Exception thrown when an e-mail address does not match the site's domain whitelist.
-#, fuzzy
 msgid "That email address is not allowed on this site."
-msgstr "Ang tirahan ng e-liham ay dapat na nasa loob ng nasasakupang ito: %s."
+msgstr "Ang tirahan ng e-liham ay hindi pinapayagan sa loob ng sityong ito."
 
 #. TRANS: Title for invitiation deletion dialog.
 msgid "Confirmation Required"
-msgstr ""
+msgstr "Kailangan ang Pagpapatunay"
 
 #. TRANS: Confirmation text for invitation deletion dialog.
 msgid "Really delete this invitation?"
-msgstr ""
+msgstr "Buburahin na talaga ang paanyayang ito?"
 
 #. TRANS: Plugin description.
 msgid "Restrict domains for email users."
@@ -57,25 +58,25 @@ msgstr "Hangganan ang mga nasasakupan sa mga tagagamit ng e-liham."
 
 #. TRANS: Form legend.
 msgid "Invite collegues"
-msgstr ""
+msgstr "Anyayahan ang mga kasamahan"
 
 #. TRANS: Field label for a personal message to send to invitees.
 msgid "Personal message"
-msgstr ""
+msgstr "Personal na mensahe"
 
 #. TRANS: Field title for a personal message to send to invitees.
 msgid "Optionally add a personal message to the invitation."
-msgstr ""
+msgstr "Opsyonal na magdagdag ng isang personal na mensahe sa paanyaya."
 
 #. TRANS: Link description to action to add another item to a list.
 msgid "Add another item"
-msgstr ""
+msgstr "Magdagdag ng isa pang larawan"
 
 #. TRANS: Send button for inviting friends.
 msgctxt "BUTTON"
 msgid "Send"
-msgstr ""
+msgstr "Ipadala"
 
 #. TRANS: Submit button title.
 msgid "Send invitations."
-msgstr ""
+msgstr "Magpadala ng mga paanyaya."

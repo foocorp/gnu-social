@@ -46,13 +46,11 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  *
  * @see      UnsubscribeForm
  */
-
 class TagSubForm extends Form
 {
     /**
      * Name of tag to subscribe to
      */
-
     var $tag = '';
 
     /**
@@ -61,7 +59,6 @@ class TagSubForm extends Form
      * @param HTMLOutputter $out     output channel
      * @param string        $tag     name of tag to subscribe to
      */
-
     function __construct($out=null, $tag=null)
     {
         parent::__construct($out);
@@ -74,37 +71,31 @@ class TagSubForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'tag-subscribe-' . $this->tag;
     }
-
 
     /**
      * class of the form
      *
      * @return string of the form class
      */
-
     function formClass()
     {
         // class to match existing styles...
         return 'form_user_subscribe ajax';
     }
 
-
     /**
      * Action of the form
      *
      * @return string URL of the action
      */
-
     function action()
     {
         return common_local_url('tagsub', array('tag' => $this->tag));
     }
-
 
     /**
      * Legend of the Form
@@ -113,6 +104,7 @@ class TagSubForm extends Form
      */
     function formLegend()
     {
+        // TRANS: Form legend.
         $this->out->element('legend', null, _m('Subscribe to this tag'));
     }
 
@@ -121,7 +113,6 @@ class TagSubForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->hidden('subscribeto-' . $this->tag,
@@ -134,9 +125,11 @@ class TagSubForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
-        $this->out->submit('submit', _m('BUTTON','Subscribe'), 'submit', null, _m('Subscribe to this tag'));
+        // TRANS: Submit button text to subscribe to a tag.
+        $this->out->submit('submit', _m('BUTTON','Subscribe'),
+                           // TRANS: Submit button title to subscribe to a tag.
+                           'submit', null, _m('Subscribe to this tag.'));
     }
 }

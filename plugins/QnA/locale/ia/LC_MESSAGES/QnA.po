@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:56:59+0000\n"
+"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"PO-Revision-Date: 2011-06-18 15:57:15+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 09:58:23+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-05 21:51:22+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
@@ -81,7 +81,6 @@ msgid "Answer"
 msgstr "Responsa"
 
 #. TRANS: Form title for sending an answer.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Answer"
 msgstr "Responsa"
@@ -113,7 +112,6 @@ msgid "Invalid or missing question."
 msgstr "Question invalide o mancante."
 
 #. TRANS: Exception thrown trying to close another user's question.
-#, fuzzy
 msgid "You did not ask this question."
 msgstr "Non es tu qui poneva iste question."
 
@@ -141,7 +139,6 @@ msgid "Question and Answers micro-app."
 msgstr "Microapplication pro questiones e responsas."
 
 #. TRANS: Application title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Question"
 msgstr "Question"
@@ -184,7 +181,7 @@ msgstr "Tu responsa..."
 #. TRANS: Link description for link to full notice text if it is longer than
 #. TRANS: what will be dispplayed.
 msgid "…"
-msgstr ""
+msgstr "…"
 
 #. TRANS: Title for link that is an ellipsis in English.
 msgid "more..."
@@ -192,9 +189,9 @@ msgstr "plus..."
 
 #. TRANS: Exception thown when getting a question with a non-existing ID.
 #. TRANS: %s is the non-existing question ID.
-#, fuzzy, php-format
+#, php-format
 msgid "No question with ID %s"
-msgstr "Il non ha un question pro iste responsa."
+msgstr "Il non ha un question con le ID %s"
 
 #. TRANS: Exception thown when getting a profile with a non-existing ID.
 #. TRANS: %s is the non-existing profile ID.
@@ -202,13 +199,13 @@ msgstr "Il non ha un question pro iste responsa."
 #. TRANS: %s is the provided profile ID.
 #, php-format
 msgid "No profile with ID %s"
-msgstr ""
+msgstr "Non existe un profilo con le ID %s"
 
 #. TRANS: %s is the number of answer revisions.
-#, fuzzy, php-format
+#, php-format
 msgid "%s revision"
 msgid_plural "%s revisions"
-msgstr[0] "%s versiones"
+msgstr[0] "%s version"
 msgstr[1] "%s versiones"
 
 #. TRANS: Text for a question that was answered.
@@ -228,10 +225,10 @@ msgstr "respondeva a \"%s\""
 
 #. TRANS: Number of given answers to a question.
 #. TRANS: %s is the number of given answers.
-#, fuzzy, php-format
+#, php-format
 msgid "%s answer"
 msgid_plural "%s answers"
-msgstr[0] "%s responsas"
+msgstr[0] "%s responsa"
 msgstr[1] "%s responsas"
 
 #. TRANS: Notification that a question cannot be answered anymore because it is closed.
@@ -260,26 +257,22 @@ msgid "Answer"
 msgstr "Responsa"
 
 #. TRANS: Field label for a new question.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Title"
 msgstr "Titulo"
 
 #. TRANS: Field title for a new question.
-#, fuzzy
 msgid "The title of your question."
-msgstr "Titulo de tu question"
+msgstr "Le titulo de tu question."
 
 #. TRANS: Field label for question details.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Description"
 msgstr "Description"
 
 #. TRANS: Field title for question details.
-#, fuzzy
 msgid "Your question in detail."
-msgstr "Tu question in detalio"
+msgstr "Le detalios de tu question."
 
 #. TRANS: Button text for saving a new question.
 msgctxt "BUTTON"
@@ -287,7 +280,6 @@ msgid "Save"
 msgstr "Salveguardar"
 
 #. TRANS: Form legend for revising the answer.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Question"
 msgstr "Question"
@@ -299,7 +291,7 @@ msgstr "Clauder"
 
 #. TRANS: Title for button text for closing a question.
 msgid "Close the question to no one can answer it anymore."
-msgstr ""
+msgstr "Clauder le question de sorta que nemo pote responder plus."
 
 #. TRANS: Button text for marking an answer as "best".
 msgctxt "BUTTON"
@@ -307,6 +299,5 @@ msgid "Best"
 msgstr "Optime"
 
 #. TRANS: Title for button text marking an answer as "best".
-#, fuzzy
 msgid "Mark this answer as the best answer."
-msgstr "Marcar como le melior responsa"
+msgstr "Marcar iste responsa como le melior responsa."

@@ -10,18 +10,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:56:47+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:08:44+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 09:58:14+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:19:25+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: String in the gettext speed test script. Unimportant.
 msgid "Feeds"
 msgstr "Feeds"
 
@@ -791,12 +792,13 @@ msgstr "Ongeldige avatar-URL %s."
 #, php-format
 msgid "Tried to update avatar for unsaved remote profile %s."
 msgstr ""
-"Geprobeerd om een avatar bij te werken voor het niet opgeslagen profiel %s."
+"Er is geprobeerd om een avatar bij te werken voor het niet opgeslagen "
+"externe profiel %s."
 
 #. TRANS: Server exception. %s is a URL.
 #, php-format
 msgid "Unable to fetch avatar from %s."
-msgstr "Het was niet mogelijk de avatar op te halen van %s."
+msgstr "Het was niet mogelijk om de avatar op te halen van %s."
 
 #. TRANS: Server exception.
 msgid "No author ID URI found."

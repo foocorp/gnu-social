@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailRegistration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:55:28+0000\n"
+"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"PO-Revision-Date: 2011-06-19 11:07:22+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 09:56:40+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-emailregistration\n"
@@ -24,11 +24,11 @@ msgstr ""
 
 #. TRANS: Client exception trown when registration by e-mail is not allowed.
 msgid "Registration not allowed."
-msgstr ""
+msgstr "Реєстрацію не дозволено."
 
 #. TRANS: Client exception trown when trying to register without an invitation.
 msgid "Sorry, only invited people can register."
-msgstr ""
+msgstr "Вибачте, але реєстрація лише за запрошеннями."
 
 #. TRANS: Client exception thrown when no confirmation code was provided.
 msgid "No confirmation code."
@@ -36,7 +36,7 @@ msgstr "Немає коду підтвердження."
 
 #. TRANS: Client exception trown when using an invitation multiple times.
 msgid "Invitation already used."
-msgstr ""
+msgstr "Це запрошення вже було використано."
 
 #. TRANS: Client exception thrown when given confirmation code was not issued.
 msgid "No such confirmation code."
@@ -63,7 +63,6 @@ msgstr ""
 "скриньку для отримання інструкцій."
 
 #. TRANS: Client exception trown when trying to set password with an invalid confirmation code.
-#, fuzzy
 msgid "No confirmation thing."
 msgstr "Немає коду підтвердження."
 
@@ -87,7 +86,7 @@ msgstr "Паролі не збігаються."
 
 #. TRANS: Exception trown when using an invitation multiple times.
 msgid "Failed to register user."
-msgstr ""
+msgstr "Не вдалося зареєструвати користувача."
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.
@@ -190,15 +189,3 @@ msgstr "Ласкаво просимо до %s"
 #. TRANS: Plugin description.
 msgid "Use email only for registration."
 msgstr "Використання електронної пошти тільки для реєстрації."
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not save new greeting count for %d."
-msgstr "Не вдалося зберегти новий лічильник привітань для %d."
-
-#. TRANS: Exception thrown when the user greeting count could not be saved in the database.
-#. TRANS: %d is a user ID (number).
-#, php-format
-msgid "Could not increment greeting count for %d."
-msgstr "Не вдалося перерахувати лічильник привітань для %d."

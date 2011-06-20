@@ -42,7 +42,6 @@ if (!defined('STATUSNET')) {
  *
  * @see      DB_DataObject
  */
-
 class TagSub extends Managed_DataObject
 {
     public $__table = 'tagsub'; // table name

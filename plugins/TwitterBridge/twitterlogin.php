@@ -53,6 +53,7 @@ class TwitterloginAction extends Action
         parent::handle($args);
 
         if (common_is_real_login()) {
+            // TRANS: Client error displayed when trying to log in using Twitter while already logged in to StatusNet.
             $this->clientError(_m('Already logged in.'));
         }
 
@@ -61,11 +62,13 @@ class TwitterloginAction extends Action
 
     function title()
     {
-        return _m('Twitter Login');
+        // TRANS: Title for login using Twitter page.
+        return _m('TITLE','Twitter Login');
     }
 
     function getInstructions()
     {
+        // TRANS: Instructions for login using Twitter page.
         return _m('Login with your Twitter account');
     }
 
@@ -84,6 +87,7 @@ class TwitterloginAction extends Action
                                                                   null,
                                                                   array('signin' => true))));
         $this->element('img', array('src' => Plugin::staticPath('TwitterBridge', 'Sign-in-with-Twitter-lighter.png'),
+                                    // TRANS: Alternative text for "sign in with Twitter" image.
                                     'alt' => _m('Sign in with Twitter')));
         $this->elementEnd('a');
     }

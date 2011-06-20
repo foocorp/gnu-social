@@ -293,7 +293,7 @@ class EditpeopletagAction extends Action
 
         if (!$result) {
             common_log_db_error($this->group, 'UPDATE', __FILE__);
-            // TRANS: TRANS: Server error displayed when updating a list fails.
+            // TRANS: Server error displayed when updating a list fails.
             $this->serverError(_('Could not update list.'));
         }
 
