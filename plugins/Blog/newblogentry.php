@@ -128,7 +128,8 @@ class NewblogentryAction extends Action
             $this->element('title', null, _m('Blog entry saved'));
             $this->elementEnd('head');
             $this->elementStart('body');
-            $this->showNotice($saved);
+            $nli = new NoticeListItem($saved, $this);
+            $nli->show();
             $this->elementEnd('body');
             $this->elementEnd('html');
         } else {
