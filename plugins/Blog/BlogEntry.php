@@ -61,7 +61,7 @@ class BlogEntry extends Managed_DataObject
 
     const TYPE = 'http://activitystrea.ms/schema/1.0/blog-entry';
     
-    static function staticGet($k, $v=null)
+    function staticGet($k, $v=null)
     {
         return Managed_DataObject::staticGet('blog_entry', $k, $v);
     }
