@@ -84,7 +84,7 @@ class UserInviteReminderHandler extends UserReminderHandler {
             // we've already pestered her at all before
             if (Email_reminder::needsReminder(self::INVITE_REMINDER, $invitation)) {
                 common_log(LOG_INFO, "Sending one-time invitation reminder to {$invitation->address}", __FILE__);
-                $subject = _m("One time reminder - you have been invited to join {$siteName}!");
+                $subject = _m("Reminder - you have been invited to join {$siteName}!");
                 return EmailReminderPlugin::sendReminder(
                     self::INVITE_REMINDER,
                     $invitation,
