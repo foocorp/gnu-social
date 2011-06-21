@@ -135,6 +135,11 @@ class EmailReminderPlugin extends Plugin
         if (self::sendReminderEmail($type, $object, $subject, $title)) {
             try {
                 Email_reminder::recordReminder($type, $object, $day);
+                common_log(
+                    LOG_INFO,
+                    "Sent {$type} reminder to {$object->address}.",
+                    __FILE__
+                );
             } catch (Exception $e) {
                 // oh noez
                 common_log(LOG_ERR, $e->getMessage(), __FILE__);
