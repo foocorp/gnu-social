@@ -90,19 +90,32 @@ case 'all':
 
 if (have_option('u', 'universe')) {
     $sn = new Status_network();
-    if ($sn->find()) {
-        while ($sn->fetch()) {
-            $server = $sn->getServerName();
-            StatusNet::init($server);
-            // Different queue manager, maybe!
-            $qm = QueueManager::get();
-            foreach ($reminders as $reminder) {
-                extract($reminder);
-                $qm->enqueue(array($type, $opts), 'siterem');
-                if (!$quiet) { print "Sent pending {$type} reminders for {$server}.\n"; }
+    try {
+        if ($sn->find()) {
+            while ($sn->fetch()) {
+                try {
+                    $server = $sn->getServerName();
+                    StatusNet::init($server);
+                    // Different queue manager, maybe!
+                    $qm = QueueManager::get();
+                    foreach ($reminders as $reminder) {
+                        extract($reminder);
+                        $qm->enqueue(array($type, $opts), 'siterem');
+                        if (!$quiet) { print "Sent pending {$type} reminders for {$server}.\n"; }
+                    }
+                } catch (Exception $e) {
+                    // keep going
+                    common_log(LOG_ERR, "Couldn't init {$server}.\n", __FILE__);
+                    if (!$quiet) { print "Couldn't init {$server}.\n"; }
+                    continue;
+                }
             }
+           if (!$quiet) { print "Done! Reminders sent to all unconfirmed addresses in the known universe.\n"; }
         }
-       if (!$quiet) { print "Done! Reminders sent to all unconfirmed addresses in the known universe.\n"; }
+    } catch (Exception $e) {
+        if (!$quiet) { print $e->getMessage() . "\n"; }
+        common_log(LOG_ERR, $e->getMessage(), __FILE__);
+        exit(1);
     }
 } else {
     $qm = QueueManager::get();

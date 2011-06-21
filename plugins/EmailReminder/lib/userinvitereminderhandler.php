@@ -124,6 +124,9 @@ class UserInviteReminderHandler extends UserReminderHandler {
                     return true;
                 }
             break;
+        default:
+            common_log(LOG_INFO, "No need to send invitation reminder to {$invitation->address}.", __FILE__);
+            break;
         }
         return true;
     }

@@ -86,7 +86,9 @@ class SiteConfirmReminderHandler extends QueueHandler
                 break;
             case UserInviteReminderHandler::INVITE_REMINDER:
                 $invitation = new Invitation();
-                $invitation->find();
+                // Only send one reminder (the latest one), regardless of how many invitations a user has
+                $sql = 'SELECT * FROM (SELECT * FROM invitation WHERE registered_user_id IS NULL ORDER BY created DESC) invitees GROUP BY invitees.address';
+                $invitation->query($sql);
                 while ($invitation->fetch()) {
                     try {
                         $qm->enqueue(array($invitation, $opts), 'uinvrem');

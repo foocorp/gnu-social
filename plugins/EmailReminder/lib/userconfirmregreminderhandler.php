@@ -141,6 +141,9 @@ class UserConfirmRegReminderHandler extends UserReminderHandler {
                 return true;
             }
             break;
+        default:
+            common_log(LOG_INFO, "No need to send registration reminder to {$confirm->address}.", __FILE__);
+            break;
         }
         return true;
     }
