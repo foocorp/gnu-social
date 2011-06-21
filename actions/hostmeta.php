@@ -59,6 +59,7 @@ class HostMetaAction extends Action
             Event::handle('EndHostMetaLinks', array(&$xrd->links));
         }
 
+        header('Access-Control-Allow-Origin: *');
         header('Content-type: application/xrd+xml');
         print $xrd->toXML();
     }
