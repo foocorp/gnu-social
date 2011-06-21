@@ -83,7 +83,7 @@ class UserConfirmRegReminderHandler extends UserReminderHandler {
             // we've already pestered her at all before
             if (Email_reminder::needsReminder(self::REGISTER_REMINDER, $confirm)) {
                 common_log(LOG_INFO, "Sending one-time registration confirmation reminder to {$confirm->address}", __FILE__);
-                $subject = _m("One time reminder - please confirm your registration!");
+                $subject = _m("Reminder - please confirm your registration!");
                 return EmailReminderPlugin::sendReminder(
                     self::REGISTER_REMINDER,
                     $confirm,
