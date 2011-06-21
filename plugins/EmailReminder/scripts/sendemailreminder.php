@@ -101,8 +101,8 @@ if (have_option('u', 'universe')) {
                 $qm->enqueue(array($type, $opts), 'siterem');
                 if (!$quiet) { print "Sent pending {$type} reminders for {$server}.\n"; }
             }
-            if (!$quiet) { print "Done! Reminders sent to all unconfirmed addresses in the known universe.\n"; }
         }
+       if (!$quiet) { print "Done! Reminders sent to all unconfirmed addresses in the known universe.\n"; }
     }
 } else {
     $qm = QueueManager::get();
