@@ -143,7 +143,16 @@ class RepliesAction extends Action
      */
     function getFeeds()
     {
-        return array(new Feed(Feed::RSS1,
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelineMentions',
+                                               array(
+                                                    'id' => $this->user->nickname,
+                                                    'format' => 'as')),
+                              // TRANS: Link for feed with replies for a user.
+                              // TRANS: %s is a user nickname.
+                              sprintf(_('Replies feed for %s (Activity Streams JSON)'),
+                                      $this->user->nickname)),
+                     new Feed(Feed::RSS1,
                               common_local_url('repliesrss',
                                                array('nickname' => $this->user->nickname)),
                               // TRANS: Link for feed with replies for a user.

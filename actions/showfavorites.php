@@ -165,7 +165,15 @@ class ShowfavoritesAction extends Action
      */
     function getFeeds()
     {
-        return array(new Feed(Feed::RSS1,
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelineFavorites',
+                                               array(
+                                                    'id' => $this->user->nickname,
+                                                    'format' => 'as')),
+                              // TRANS: Feed link text. %s is a username.
+                              sprintf(_('Feed for favorites of %s (Activity Streams JSON)'),
+                                      $this->user->nickname)),
+                     new Feed(Feed::RSS1,
                               common_local_url('favoritesrss',
                                                array('nickname' => $this->user->nickname)),
                               // TRANS: Feed link text. %s is a username.

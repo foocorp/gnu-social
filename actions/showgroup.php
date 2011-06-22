@@ -220,7 +220,14 @@ class ShowgroupAction extends Action
           common_local_url('grouprss',
                            array('nickname' => $this->group->nickname));
 
-        return array(new Feed(Feed::RSS1,
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelineGroup',
+                                               array('format' => 'as',
+                                                     'id' => $this->group->id)),
+                              // TRANS: Tooltip for feed link. %s is a group nickname.
+                              sprintf(_('Notice feed for %s group (Activity Streams JSON)'),
+                                      $this->group->nickname)),
+                    new Feed(Feed::RSS1,
                               common_local_url('grouprss',
                                                array('nickname' => $this->group->nickname)),
                               // TRANS: Tooltip for feed link. %s is a group nickname.
