@@ -162,7 +162,12 @@ class PublicAction extends Action
      */
     function getFeeds()
     {
-        return array(new Feed(Feed::RSS1, common_local_url('publicrss'),
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelinePublic',
+                                               array('format' => 'as')),
+                              // TRANS: Link description for public timeline feed.
+                              _('Public Stream Feed (Activity Streams JSON)')),
+                    new Feed(Feed::RSS1, common_local_url('publicrss'),
                               // TRANS: Link description for public timeline feed.
                               _('Public Stream Feed (RSS 1.0)')),
                      new Feed(Feed::RSS2,

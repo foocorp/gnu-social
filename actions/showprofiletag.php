@@ -169,7 +169,18 @@ class ShowprofiletagAction extends Action
     function getFeeds()
     {
         #XXX: make these actually work
-        return array(new Feed(Feed::RSS2,
+        return array(new Feed(Feed::JSON,
+                common_local_url(
+                    'ApiTimelineList', array(
+                        'user' => $this->tagger->id,
+                        'id' => $this->peopletag->id,
+                        'format' => 'as'
+                    )
+                ),
+                // TRANS: Feed title.
+                // TRANS: %s is tagger's nickname.
+                sprintf(_('Feed for friends of %s (Activity Streams JSON)'), $this->tagger->nickname)),
+                new Feed(Feed::RSS2,
                 common_local_url(
                     'ApiTimelineList', array(
                         'user' => $this->tagger->id,

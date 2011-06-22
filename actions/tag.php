@@ -79,7 +79,15 @@ class TagAction extends Action
 
     function getFeeds()
     {
-        return array(new Feed(Feed::RSS1,
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelineTag',
+                                               array('format' => 'as',
+                                                     'tag' => $this->tag)),
+                              // TRANS: Link label for feed on "notices with tag" page.
+                              // TRANS: %s is the tag the feed is for.
+                              sprintf(_('Notice feed for tag %s (Activity Streams JSON)'),
+                                      $this->tag)),
+                     new Feed(Feed::RSS1,
                               common_local_url('tagrss',
                                                array('tag' => $this->tag)),
                               // TRANS: Link label for feed on "notices with tag" page.

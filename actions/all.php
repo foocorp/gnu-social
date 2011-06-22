@@ -99,6 +99,15 @@ class AllAction extends ProfileAction
     function getFeeds()
     {
         return array(
+            new Feed(Feed::JSON,
+                common_local_url(
+                    'ApiTimelineFriends', array(
+                        'format' => 'as',
+                        'id' => $this->user->nickname
+                    )
+                ),
+                // TRANS: %s is user nickname.
+                sprintf(_('Feed for friends of %s (Activity Streams JSON)'), $this->user->nickname)),
             new Feed(Feed::RSS1,
                 common_local_url(
                     'allrss', array(
