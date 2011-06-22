@@ -2009,6 +2009,13 @@ background-position:0 -64px;
 #export_data li a.foaf {
 background-position:0 1px;
 }
+
+#export_data li a.json {
+background-image:url(../images/icons/activitystreams.png);
+background-repeat:no-repeat;
+background-color:transparent;
+}
+
 .form_group_leave input.submit,
 .form_user_unsubscribe input.submit,
 .form_user_remove_peopletag input.submit,

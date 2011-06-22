@@ -127,7 +127,16 @@ class ShowstreamAction extends ProfileAction
                                           $this->user->nickname, $this->tag)));
         }
 
-        return array(new Feed(Feed::RSS1,
+        return array(new Feed(Feed::JSON,
+                              common_local_url('ApiTimelineUser',
+                                               array(
+                                                    'id' => $this->user->id,
+                                                    'format' => 'as')),
+                              // TRANS: Title for link to notice feed.
+                              // TRANS: %s is a user nickname.
+                              sprintf(_('Notice feed for %s (Activity Streams JSON)'),
+                                      $this->user->nickname)),
+                     new Feed(Feed::RSS1,
                               common_local_url('userrss',
                                                array('nickname' => $this->user->nickname)),
                               // TRANS: Title for link to notice feed.

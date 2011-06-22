@@ -93,6 +93,9 @@ class FeedList extends Widget
             case Feed::FOAF:
                 $classname = 'foaf';
                 break;
+            case Feed::JSON:
+                $classname = 'json';
+                break;
             }
 
             $this->out->elementStart('li');
