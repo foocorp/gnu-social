@@ -6,7 +6,7 @@
  *
  * LICENSE:
  *
- * Copyright (c) 2008, 2009, Alexey Borzov <avb@php.net>
+ * Copyright (c) 2008-2011, Alexey Borzov <avb@php.net>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,7 +37,7 @@
  * @package    HTTP_Request2
  * @author     Alexey Borzov <avb@php.net>
  * @license    http://opensource.org/licenses/bsd-license.php New BSD License
- * @version    CVS: $Id: MultipartBody.php 287306 2009-08-14 15:22:52Z avb $
+ * @version    SVN: $Id: MultipartBody.php 308322 2011-02-14 13:58:03Z avb $
  * @link       http://pear.php.net/package/HTTP_Request2
  */
 
@@ -50,7 +50,7 @@
  * @category   HTTP
  * @package    HTTP_Request2
  * @author     Alexey Borzov <avb@php.net>
- * @version    Release: 0.4.1
+ * @version    Release: 2.0.0RC1
  * @link       http://tools.ietf.org/html/rfc1867
  */
 class HTTP_Request2_MultipartBody
@@ -172,7 +172,7 @@ class HTTP_Request2_MultipartBody
         while ($length > 0 && $this->_pos[0] <= $paramCount + $uploadCount) {
             $oldLength = $length;
             if ($this->_pos[0] < $paramCount) {
-                $param = sprintf($this->_headerParam, $boundary, 
+                $param = sprintf($this->_headerParam, $boundary,
                                  $this->_params[$this->_pos[0]][0]) .
                          $this->_params[$this->_pos[0]][1] . "\r\n";
                 $ret    .= substr($param, $this->_pos[1], $length);
