@@ -135,7 +135,7 @@ class ApiTimelineGroupAction extends ApiPrivateAuthAction
             $this->showJsonTimeline($this->notices);
             break;
         case 'as':
-            header('Content-Type: application/json; charset=utf-8');
+            header('Content-Type: ' . ActivityStreamJSONDocument::CONTENT_TYPE);
             $doc = new ActivityStreamJSONDocument($this->auth_user);
             $doc->setTitle($atom->title);
             $doc->addLink($link, 'alternate', 'text/html');
