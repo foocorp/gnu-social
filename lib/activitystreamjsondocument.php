@@ -43,6 +43,7 @@ if (!defined('STATUSNET'))
  */
 class ActivityStreamJSONDocument
 {
+    const CONTENT_TYPE = 'application/stream+json; charset=utf-8';
 
     /* Top level array representing the document */
     protected $doc = array();
