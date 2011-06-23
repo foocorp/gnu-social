@@ -74,7 +74,7 @@ class Feed
          case Feed::FOAF:
             return 'application/rdf+xml';
          case Feed::JSON:
-            return 'application/json';
+            return 'application/stream+json';
          default:
             return null;
         }
