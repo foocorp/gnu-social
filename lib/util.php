@@ -1470,8 +1470,7 @@ function common_redirect($url, $code=307)
 
 function common_enqueue_notice($notice)
 {
-    static $localTransports = array('omb',
-                                    'ping');
+    static $localTransports = array('ping');
 
     $transports = array();
     if (common_config('sms', 'enabled')) {
