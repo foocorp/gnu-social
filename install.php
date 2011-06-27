@@ -335,10 +335,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     <head>
         <title>Install StatusNet</title>
 	<link rel="shortcut icon" href="favicon.ico"/>
-        <link rel="stylesheet" type="text/css" href="theme/default/css/display.css" media="screen, projection, tv"/>
+        <link rel="stylesheet" type="text/css" href="theme/neo/css/display.css" media="screen, projection, tv"/>
         <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/base/css/ie.css" /><![endif]-->
         <!--[if lte IE 6]><link rel="stylesheet" type="text/css" theme/base/css/ie6.css" /><![endif]-->
-        <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/default/css/ie.css" /><![endif]-->
+        <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/neo/css/ie.css" /><![endif]-->
         <script src="js/jquery.min.js"></script>
         <script src="js/install.js"></script>
     </head>
@@ -347,7 +347,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
             <div id="header">
                 <address id="site_contact" class="vcard">
                     <a class="url home bookmark" href=".">
-                        <img class="logo photo" src="theme/default/logo.png" alt="StatusNet"/>
+                        <img class="logo photo" src="theme/neo/logo.png" alt="StatusNet"/>
                         <span class="fn org">StatusNet</span>
                     </a>
                 </address>
