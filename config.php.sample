@@ -40,6 +40,8 @@ $config['site']['path'] = 'statusnet';
 // $config['site']['inviteonly'] = true;
 // Make the site invisible to  non-logged-in users
 // $config['site']['private'] = true;
+// Allow Cross-Origin Resource Sharing
+// $config['site']['cors'] = true;
 
 // If your web server supports X-Sendfile (Apache with mod_xsendfile,
 // lighttpd, nginx), you can enable X-Sendfile support for better
