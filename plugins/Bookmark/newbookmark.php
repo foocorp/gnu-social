@@ -150,7 +150,18 @@ class NewbookmarkAction extends Action
 
         } catch (ClientException $ce) {
             if ($this->boolean('ajax')) {
-                throw $ce;
+                header('Content-Type: text/xml;charset=utf-8');
+                $this->xw->startDocument('1.0', 'UTF-8');
+                $this->elementStart('html');
+                $this->elementStart('head');
+                // TRANS: Page title after an AJAX error occurs
+                $this->element('title', null, _('Ajax Error'));
+                $this->elementEnd('head');
+                $this->elementStart('body');
+                $this->element('p', array('id' => 'error'), $ce->getMessage());
+                $this->elementEnd('body');
+                $this->elementEnd('html');
+                return;
             } else {
                 $this->error = $ce->getMessage();
                 $this->showPage();
