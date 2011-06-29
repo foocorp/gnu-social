@@ -47,9 +47,10 @@ if (!defined('STATUSNET')) {
 
 class BookmarkforurlAction extends Action
 {
-    protected $url;
-    protected $oembed;
-    protected $thumbnail;
+    protected $url        = null;
+    protected $oembed     = null;
+    protected $thumbnail  = null;
+    protected $title      = null;
 
     /**
      * For initializing members of the class.
