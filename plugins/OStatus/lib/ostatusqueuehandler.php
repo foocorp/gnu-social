@@ -51,7 +51,7 @@ class OStatusQueueHandler extends QueueHandler
         assert($notice instanceof Notice);
 
         $this->notice = $notice;
-        $this->user = User::staticGet($notice->profile_id);
+        $this->user = User::staticGet('id', $notice->profile_id);
 
         $this->pushUser();
 
@@ -61,6 +61,13 @@ class OStatusQueueHandler extends QueueHandler
                 $this->pingReply($oprofile);
             } else {
                 $this->pushGroup($group->id);
+            }
+        }
+        
+        foreach ($notice->getReplies() as $profile_id) {
+            $oprofile = Ostatus_profile::staticGet('profile_id', $profile_id);
+            if ($oprofile) {
+                $this->pingReply($oprofile);
             }
         }
 
