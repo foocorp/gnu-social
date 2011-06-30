@@ -125,11 +125,18 @@ class OStatusPlugin extends Plugin
      */
     function onStartEnqueueNotice($notice, &$transports)
     {
-        // FIXME: we don't do privacy-controlled OStatus updates yet.
-        // once that happens, finer grain of control here.
-        if ($notice->isLocal() && $notice->inScope(null)) {
-            // put our transport first, in case there's any conflict (like OMB)
-            array_unshift($transports, 'ostatus');
+        if ($notice->isLocal()) {
+        	 if ($notice->inScope(null)) {	
+            	// put our transport first, in case there's any conflict (like OMB)
+            	array_unshift($transports, 'ostatus');
+		        $this->log(LOG_INFO, "Notice {$notice->id} queued for OStatus processing");
+        	 } else {
+		        // FIXME: we don't do privacy-controlled OStatus updates yet.
+		        // once that happens, finer grain of control here.
+		        $this->log(LOG_NOTICE, "Not queueing notice {$notice->id} for OStatus because of privacy; scope = {$notice->scope}");
+        	 }
+        } else {
+        	$this->log(LOG_NOTICE, "Not queueing notice {$notice->id} for OStatus because it's not local.");
         }
         return true;
     }
