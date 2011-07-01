@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 11:06+0000\n"
-"PO-Revision-Date: 2011-06-19 11:08:57+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:26:16+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -253,6 +253,13 @@ msgstr "Chronologia initial"
 #, php-format
 msgid "%s's home timeline"
 msgstr "Chronologia initial de %s"
+
+#. TRANS: %s is user nickname.
+#. TRANS: Feed title.
+#. TRANS: %s is tagger's nickname.
+#, fuzzy, php-format
+msgid "Feed for friends of %s (Activity Streams JSON)"
+msgstr "Syndication pro le amicos de %s (Atom)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -1172,7 +1179,7 @@ msgstr "Usator non trovate."
 
 #. TRANS: Client error displayed when trying to leave a group while not logged in.
 msgid "You must be logged in to leave a group."
-msgstr "Tu debe aperir un session pro quitar un gruppo."
+msgstr "Tu debe aperir un session pro poter quitar un gruppo."
 
 #. TRANS: Client error displayed when trying to leave a non-local group.
 #. TRANS: Client error displayed when trying to leave a non-existing group.
@@ -1833,7 +1840,7 @@ msgstr "Deler iste application."
 
 #. TRANS: Client error when trying to delete group while not logged in.
 msgid "You must be logged in to delete a group."
-msgstr "Tu debe aperir un session pro deler un gruppo."
+msgstr "Tu debe aperir un session pro poter deler un gruppo."
 
 #. TRANS: Client error when trying to delete a group without having the rights to delete it.
 msgid "You are not allowed to delete this group."
@@ -2030,7 +2037,7 @@ msgstr "Modificar gruppo %s"
 #. TRANS: Client error displayed when trying to create a group while not logged in.
 #. TRANS: Client error displayed trying to create a group while not logged in.
 msgid "You must be logged in to create a group."
-msgstr "Tu debe aperir un session pro crear un gruppo."
+msgstr "Tu debe aperir un session pro poter crear un gruppo."
 
 #. TRANS: Form instructions for group edit form.
 msgid "Use this form to edit the group."
@@ -4223,6 +4230,11 @@ msgid "Public timeline"
 msgstr "Chronologia public"
 
 #. TRANS: Link description for public timeline feed.
+#, fuzzy
+msgid "Public Stream Feed (Activity Streams JSON)"
+msgstr "Syndication del fluxo public (Atom)"
+
+#. TRANS: Link description for public timeline feed.
 msgid "Public Stream Feed (RSS 1.0)"
 msgstr "Syndication del fluxo public (RSS 1.0)"
 
@@ -4756,6 +4768,12 @@ msgstr "Responsas a %1$s, pagina %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Replies feed for %s (Activity Streams JSON)"
+msgstr "Syndication de responsas pro %s (Atom)"
+
+#. TRANS: Link for feed with replies for a user.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (RSS 1.0)"
 msgstr "Syndication de responsas pro %s (RSS 1.0)"
@@ -5013,6 +5031,11 @@ msgid "Could not retrieve favorite notices."
 msgstr "Non poteva recuperar notas favorite."
 
 #. TRANS: Feed link text. %s is a username.
+#, fuzzy, php-format
+msgid "Feed for favorites of %s (Activity Streams JSON)"
+msgstr "Syndication del favorites de %s (Atom)"
+
+#. TRANS: Feed link text. %s is a username.
 #, php-format
 msgid "Feed for favorites of %s (RSS 1.0)"
 msgstr "Syndication del favorites de %s (RSS 1.0)"
@@ -5073,6 +5096,11 @@ msgstr "Gruppo %s"
 #, php-format
 msgid "%1$s group, page %2$d"
 msgstr "Gruppo %1$s, pagina %2$d"
+
+#. TRANS: Tooltip for feed link. %s is a group nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s group (Activity Streams JSON)"
+msgstr "Syndication de notas pro le gruppo %s (Atom)"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
@@ -5305,6 +5333,12 @@ msgstr "Syndication de notas pro %1$s con etiquetta %2$s (RSS 1.0)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s (Activity Streams JSON)"
+msgstr "Syndication de notas pro %s (Atom)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "Notice feed for %s (RSS 1.0)"
 msgstr "Syndication de notas pro %s (RSS 1.0)"
@@ -5487,12 +5521,11 @@ msgid "Default language"
 msgstr "Lingua predefinite"
 
 #. TRANS: Dropdown title on site settings panel.
-#, fuzzy
 msgid ""
 "The site language when autodetection from browser settings is not available."
 msgstr ""
-"Le lingua del sito quando le detection automatic ex le configuration del "
-"navigator non es disponibile"
+"Le lingua del sito si le detection automatic ex le configuration del "
+"navigator non es disponibile."
 
 #. TRANS: Fieldset legend on site settings panel.
 msgctxt "LEGEND"
@@ -5530,9 +5563,8 @@ msgid "SSL logo"
 msgstr "Logotypo SSL"
 
 #. TRANS: Button title for saving site settings.
-#, fuzzy
 msgid "Save the site settings."
-msgstr "Salveguardar configurationes del sito"
+msgstr "Salveguardar configurationes del sito."
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
 msgid "Site Notice"
@@ -5926,6 +5958,12 @@ msgstr "SMS"
 #, php-format
 msgid "Notices tagged with %1$s, page %2$d"
 msgstr "Notas etiquettate con %1$s, pagina %2$d"
+
+#. TRANS: Link label for feed on "notices with tag" page.
+#. TRANS: %s is the tag the feed is for.
+#, fuzzy, php-format
+msgid "Notice feed for tag %s (Activity Streams JSON)"
+msgstr "Syndication de notas pro le etiquetta %s (Atom)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -7931,6 +7969,10 @@ msgstr "Atom"
 msgid "FOAF"
 msgstr "Amico de un amico"
 
+#. TRANS: Feed type name. See http://activitystrea.ms/
+msgid "Activity Streams"
+msgstr ""
+
 #. TRANS: Client exception thrown when an imported feed does not have an author.
 msgid "No author in the feed."
 msgstr "Il non ha un autor in le syndication."
@@ -9148,11 +9190,11 @@ msgid "Enable"
 msgstr "Activar"
 
 #. TRANS: Plugin description for a disabled plugin.
-#, fuzzy
 msgctxt "plugin-description"
 msgid ""
 "(The plugin description is unavailable when a plugin has been disabled.)"
-msgstr "(Le descriptiones de plug-ins non es disponibile si disactivate.)"
+msgstr ""
+"(Le description de un plug-in non es disponibile si illo es disactivate.)"
 
 #. TRANS: Menu item in primary navigation panel.
 msgctxt "MENU"
@@ -9866,35 +9908,34 @@ msgid "Getting backup from file '%s'."
 msgstr "Obtene copia de reserva ex file '%s'."
 
 #. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid avatar URL %s."
-msgstr "Non pote leger URL de avatar \"%s\"."
+msgstr "URL de avatar %s invalide."
 
 #. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
+#, php-format
 msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Error durante le actualisation del profilo remote."
+msgstr "Tentava actualisar avatar pro profilo remote non salveguardate %s."
 
 #. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Unable to fetch avatar from %s."
-msgstr "Incapace de trovar servicios pro %s."
+msgstr "Incapace de obtener avatar ab %s."
 
 #. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not reach profile page %s."
-msgstr "Non poteva crear le etiquetta de profilo."
+msgstr "Non poteva attinger pagina de profilo %s."
 
 #. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find a feed URL for profile page %s."
-msgstr "Non poteva trovar un usator con pseudonymo %s."
+msgstr "Non poteva trovar un URL de syndication pro pagina de profilo %s."
 
 #. TRANS: Exception.
-#, fuzzy
 msgid "Not a valid webfinger address."
-msgstr "Adresse de e-mail invalide."
+msgstr "Adresse webfinger invalide."
 
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find a valid profile for \"%s\"."
-msgstr "Non poteva salveguardar le profilo."
+msgstr "Non poteva trovar un profilo valide pro \"%s\"."

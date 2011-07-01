@@ -1,6 +1,7 @@
 # Translation of StatusNet - UserLimit to Hebrew (עברית)
 # Exported from translatewiki.net
 #
+# Author: Amire80
 # Author: YaronSh
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserLimit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:59+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:26:47+0000\n"
 "Language-Team: Hebrew <http://translatewiki.net/wiki/Portal:he>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:11+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-19 11:23:51+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: he\n"
 "X-Message-Group: #out-statusnet-plugin-userlimit\n"
@@ -30,8 +31,8 @@ msgid ""
 msgid_plural ""
 "Cannot register because the maximum number of users (%d) for this site was "
 "reached."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "לא ניתן להירשם משום שבאתר כבר יש מספר מרבי של מנויים (%d)."
+msgstr[1] "לא ניתן להירשם משום שבאתר כבר יש מספר מרבי של מנויים (%d)."
 
 #. TRANS: Plugin description.
 msgid "Limit the number of users who can register."

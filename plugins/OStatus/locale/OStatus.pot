@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,43 +23,43 @@ msgstr ""
 
 #. TRANS: Link to subscribe to a remote entity.
 #. TRANS: Link text for a user to subscribe to an OStatus user.
-#: OStatusPlugin.php:249 OStatusPlugin.php:270 OStatusPlugin.php:1272
+#: OStatusPlugin.php:256 OStatusPlugin.php:277 OStatusPlugin.php:1279
 msgid "Subscribe"
 msgstr ""
 
 #. TRANS: Fieldset legend.
-#: OStatusPlugin.php:289
+#: OStatusPlugin.php:296
 msgid "Tag remote profile"
 msgstr ""
 
 #. TRANS: Field label.
-#: OStatusPlugin.php:298
+#: OStatusPlugin.php:305
 msgctxt "LABEL"
 msgid "Remote profile"
 msgstr ""
 
 #. TRANS: Field title.
 #. TRANS: Tooltip for field label "Subscribe to".
-#: OStatusPlugin.php:300 actions/ostatussub.php:71
+#: OStatusPlugin.php:307 actions/ostatussub.php:71
 msgid ""
 "OStatus user's address, like nickname@example.com or http://example.net/"
 "nickname."
 msgstr ""
 
 #. TRANS: Button text to fetch remote profile.
-#: OStatusPlugin.php:304
+#: OStatusPlugin.php:311
 msgctxt "BUTTON"
 msgid "Fetch"
 msgstr ""
 
 #. TRANS: Exception in OStatus when invalid URI was entered.
-#: OStatusPlugin.php:322 OStatusPlugin.php:359
+#: OStatusPlugin.php:329 OStatusPlugin.php:366
 msgid "Invalid URI."
 msgstr ""
 
 #. TRANS: Error message in OStatus plugin. Do not translate the domain names example.com
 #. TRANS: and example.net, as these are official standard domain names for use in examples.
-#: OStatusPlugin.php:332 OStatusPlugin.php:366 actions/ostatussub.php:234
+#: OStatusPlugin.php:339 OStatusPlugin.php:373 actions/ostatussub.php:234
 #: actions/ostatussub.php:242 actions/ostatussub.php:268
 msgid ""
 "Sorry, we could not reach that address. Please make sure that the OStatus "
@@ -67,115 +67,115 @@ msgid ""
 msgstr ""
 
 #. TRANS: Title. %s is a domain name.
-#: OStatusPlugin.php:581
+#: OStatusPlugin.php:588
 #, php-format
 msgid "Sent from %s via OStatus"
 msgstr ""
 
 #. TRANS: Exception thrown when setup of remote subscription fails.
-#: OStatusPlugin.php:653
+#: OStatusPlugin.php:660
 msgid "Could not set up remote subscription."
 msgstr ""
 
 #. TRANS: Title for unfollowing a remote profile.
-#: OStatusPlugin.php:728
+#: OStatusPlugin.php:735
 msgctxt "TITLE"
 msgid "Unfollow"
 msgstr ""
 
 #. TRANS: Success message for unsubscribe from user attempt through OStatus.
 #. TRANS: %1$s is the unsubscriber's name, %2$s is the unsubscribed user's name.
-#: OStatusPlugin.php:731
+#: OStatusPlugin.php:738
 #, php-format
 msgid "%1$s stopped following %2$s."
 msgstr ""
 
 #. TRANS: Exception thrown when setup of remote group membership fails.
-#: OStatusPlugin.php:759
+#: OStatusPlugin.php:766
 msgid "Could not set up remote group membership."
 msgstr ""
 
 #. TRANS: Title for joining a remote groep.
-#: OStatusPlugin.php:779
+#: OStatusPlugin.php:786
 msgctxt "TITLE"
 msgid "Join"
 msgstr ""
 
 #. TRANS: Success message for subscribe to group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the subscribed group's name.
-#: OStatusPlugin.php:782
+#: OStatusPlugin.php:789
 #, php-format
 msgid "%1$s has joined group %2$s."
 msgstr ""
 
 #. TRANS: Exception thrown when joining a remote group fails.
-#: OStatusPlugin.php:791
+#: OStatusPlugin.php:798
 msgid "Failed joining remote group."
 msgstr ""
 
 #. TRANS: Title for leaving a remote group.
-#: OStatusPlugin.php:831
+#: OStatusPlugin.php:838
 msgctxt "TITLE"
 msgid "Leave"
 msgstr ""
 
 #. TRANS: Success message for unsubscribe from group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the unsubscribed group's name.
-#: OStatusPlugin.php:834
+#: OStatusPlugin.php:841
 #, php-format
 msgid "%1$s has left group %2$s."
 msgstr ""
 
 #. TRANS: Exception thrown when setup of remote list subscription fails.
-#: OStatusPlugin.php:859
+#: OStatusPlugin.php:866
 msgid "Could not set up remote list subscription."
 msgstr ""
 
 #. TRANS: Title for following a remote list.
-#: OStatusPlugin.php:877
+#: OStatusPlugin.php:884
 msgctxt "TITLE"
 msgid "Follow list"
 msgstr ""
 
 #. TRANS: Success message for remote list follow through OStatus.
 #. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
-#: OStatusPlugin.php:880
+#: OStatusPlugin.php:887
 #, php-format
 msgid "%1$s is now following people listed in %2$s by %3$s."
 msgstr ""
 
 #. TRANS: Exception thrown when subscription to remote list fails.
-#: OStatusPlugin.php:890
+#: OStatusPlugin.php:897
 msgid "Failed subscribing to remote list."
 msgstr ""
 
 #. TRANS: Title for unfollowing a remote list.
-#: OStatusPlugin.php:927
+#: OStatusPlugin.php:934
 msgid "Unfollow list"
 msgstr ""
 
 #. TRANS: Success message for remote list unfollow through OStatus.
 #. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
-#: OStatusPlugin.php:930
+#: OStatusPlugin.php:937
 #, php-format
 msgid "%1$s stopped following the list %2$s by %3$s."
 msgstr ""
 
 #. TRANS: Title for listing a remote profile.
-#: OStatusPlugin.php:1007
+#: OStatusPlugin.php:1014
 msgctxt "TITLE"
 msgid "List"
 msgstr ""
 
 #. TRANS: Success message for remote list addition through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the added list member, %3$s is the list name.
-#: OStatusPlugin.php:1010
+#: OStatusPlugin.php:1017
 #, php-format
 msgid "%1$s listed %2$s in the list %3$s."
 msgstr ""
 
 #. TRANS: Exception thrown when subscribing to a remote list fails.
-#: OStatusPlugin.php:1024
+#: OStatusPlugin.php:1031
 #, php-format
 msgid ""
 "Could not complete subscription to remote profile's feed. List %s could not "
@@ -183,54 +183,54 @@ msgid ""
 msgstr ""
 
 #. TRANS: Title for unlisting a remote profile.
-#: OStatusPlugin.php:1064
+#: OStatusPlugin.php:1071
 msgctxt "TITLE"
 msgid "Unlist"
 msgstr ""
 
 #. TRANS: Success message for remote list removal through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the removed list member, %3$s is the list name.
-#: OStatusPlugin.php:1067
+#: OStatusPlugin.php:1074
 #, php-format
 msgid "%1$s removed %2$s from the list %3$s."
 msgstr ""
 
 #. TRANS: Title for unliking a remote notice.
-#: OStatusPlugin.php:1115
+#: OStatusPlugin.php:1122
 msgid "Unlike"
 msgstr ""
 
 #. TRANS: Success message for remove a favorite notice through OStatus.
 #. TRANS: %1$s is the unfavoring user's name, %2$s is URI to the no longer favored notice.
-#: OStatusPlugin.php:1118
+#: OStatusPlugin.php:1125
 #, php-format
 msgid "%1$s no longer likes %2$s."
 msgstr ""
 
 #. TRANS: Link text for link to remote subscribe.
-#: OStatusPlugin.php:1194
+#: OStatusPlugin.php:1201
 msgid "Remote"
 msgstr ""
 
 #. TRANS: Title for activity.
-#: OStatusPlugin.php:1234
+#: OStatusPlugin.php:1241
 msgid "Profile update"
 msgstr ""
 
 #. TRANS: Ping text for remote profile update through OStatus.
 #. TRANS: %s is user that updated their profile.
-#: OStatusPlugin.php:1237
+#: OStatusPlugin.php:1244
 #, php-format
 msgid "%s has updated their profile page."
 msgstr ""
 
 #. TRANS: Link text for a user to tag an OStatus user.
-#: OStatusPlugin.php:1281
+#: OStatusPlugin.php:1288
 msgid "Tag"
 msgstr ""
 
 #. TRANS: Plugin description.
-#: OStatusPlugin.php:1296
+#: OStatusPlugin.php:1303
 msgid ""
 "Follow people across social networks that implement <a href=\"http://ostatus."
 "org/\">OStatus</a>."
@@ -903,82 +903,82 @@ msgid "Unable to fetch avatar from %s."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1213
+#: classes/Ostatus_profile.php:1214
 msgid "No author ID URI found."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1239
+#: classes/Ostatus_profile.php:1240
 msgid "No profile URI."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1245
+#: classes/Ostatus_profile.php:1246
 msgid "Local user cannot be referenced as remote."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1250
+#: classes/Ostatus_profile.php:1251
 msgid "Local group cannot be referenced as remote."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1258
+#: classes/Ostatus_profile.php:1259
 msgid "Local list cannot be referenced as remote."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1311 classes/Ostatus_profile.php:1322
+#: classes/Ostatus_profile.php:1312 classes/Ostatus_profile.php:1323
 msgid "Cannot save local profile."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1333
+#: classes/Ostatus_profile.php:1334
 msgid "Cannot save local list."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1341
+#: classes/Ostatus_profile.php:1342
 msgid "Cannot save OStatus profile."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1654 classes/Ostatus_profile.php:1681
+#: classes/Ostatus_profile.php:1655 classes/Ostatus_profile.php:1682
 msgid "Not a valid webfinger address."
 msgstr ""
 
 #. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1759
+#: classes/Ostatus_profile.php:1760
 #, php-format
 msgid "Could not save profile for \"%s\"."
 msgstr ""
 
 #. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1778
+#: classes/Ostatus_profile.php:1779
 #, php-format
 msgid "Could not save OStatus profile for \"%s\"."
 msgstr ""
 
 #. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1786
+#: classes/Ostatus_profile.php:1787
 #, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1829
+#: classes/Ostatus_profile.php:1830
 msgid "Could not store HTML content of long post as file."
 msgstr ""
 
 #. TRANS: Server exception.
 #. TRANS: %1$s is a protocol, %2$s is a URI.
-#: classes/Ostatus_profile.php:1861
+#: classes/Ostatus_profile.php:1862
 #, php-format
 msgid "Unrecognized URI protocol for profile: %1$s (%2$s)."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:1868
+#: classes/Ostatus_profile.php:1869
 #, php-format
 msgid "No URI protocol for profile: %s."
 msgstr ""

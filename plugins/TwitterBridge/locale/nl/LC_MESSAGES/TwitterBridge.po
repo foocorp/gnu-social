@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 11:06+0000\n"
-"PO-Revision-Date: 2011-06-19 11:09:40+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:26:44+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:21:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-19 11:23:45+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -394,9 +394,8 @@ msgid "Twitter"
 msgstr "Twitter"
 
 #. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
-#, fuzzy
 msgid "Twitter bridge configuration page."
-msgstr "Instellingen voor Twitterkoppeling"
+msgstr "Pagina voor instellingen van de Twitterkoppeling."
 
 #. TRANS: Plugin description.
 msgid ""

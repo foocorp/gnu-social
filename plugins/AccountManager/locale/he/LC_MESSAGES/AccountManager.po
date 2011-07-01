@@ -1,0 +1,27 @@
+# Translation of StatusNet - AccountManager to Hebrew (עברית)
+# Exported from translatewiki.net
+#
+# Author: Amire80
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AccountManager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:23:59+0000\n"
+"Language-Team: Hebrew <http://translatewiki.net/wiki/Portal:he>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:49:06+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Language-Code: he\n"
+"X-Message-Group: #out-statusnet-plugin-accountmanager\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid ""
+"The Account Manager plugin implements the Account Manager specification."
+msgstr "תוסף מנהל החשבון מיישם את מִפרט מנהל החשבון."

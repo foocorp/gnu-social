@@ -16,17 +16,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 11:06+0000\n"
-"PO-Revision-Date: 2011-06-19 11:08:38+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:25:56+0000\n"
 "Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -264,6 +264,13 @@ msgstr "Línia temporal inicial"
 #, php-format
 msgid "%s's home timeline"
 msgstr "Línia temporal inicial de %s"
+
+#. TRANS: %s is user nickname.
+#. TRANS: Feed title.
+#. TRANS: %s is tagger's nickname.
+#, fuzzy, php-format
+msgid "Feed for friends of %s (Activity Streams JSON)"
+msgstr "Canal dels amics de %s (Atom)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -4242,6 +4249,11 @@ msgid "Public timeline"
 msgstr "Línia temporal pública"
 
 #. TRANS: Link description for public timeline feed.
+#, fuzzy
+msgid "Public Stream Feed (Activity Streams JSON)"
+msgstr "Flux de canal públic (Atom)"
+
+#. TRANS: Link description for public timeline feed.
 msgid "Public Stream Feed (RSS 1.0)"
 msgstr "Flux de canal públic (RSS 1.0)"
 
@@ -4778,6 +4790,12 @@ msgstr "Respostes a %1$s, pàgina %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Replies feed for %s (Activity Streams JSON)"
+msgstr "Canal de respostes de %s (Atom)"
+
+#. TRANS: Link for feed with replies for a user.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (RSS 1.0)"
 msgstr "Canal de respostes de %s (RSS 1.0)"
@@ -5038,6 +5056,11 @@ msgid "Could not retrieve favorite notices."
 msgstr "No s'han pogut recuperar els avisos preferits."
 
 #. TRANS: Feed link text. %s is a username.
+#, fuzzy, php-format
+msgid "Feed for favorites of %s (Activity Streams JSON)"
+msgstr "Canal dels preferits de %s (Atom)"
+
+#. TRANS: Feed link text. %s is a username.
 #, php-format
 msgid "Feed for favorites of %s (RSS 1.0)"
 msgstr "Canal dels preferits de %s (RSS 1.0)"
@@ -5096,6 +5119,11 @@ msgstr "%s grup"
 #, php-format
 msgid "%1$s group, page %2$d"
 msgstr "grup %1$s, pàgina %2$d"
+
+#. TRANS: Tooltip for feed link. %s is a group nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s group (Activity Streams JSON)"
+msgstr "Canal d'avisos del grup %s (Atom)"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
@@ -5329,6 +5357,12 @@ msgstr "Canal d'avisos de %1$s etiquetats amb %2$s (RSS 1.0)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s (Activity Streams JSON)"
+msgstr "Canal d'avisos de %s (Atom)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "Notice feed for %s (RSS 1.0)"
 msgstr "Canal d'avisos de %s (RSS 1.0)"
@@ -5512,12 +5546,11 @@ msgid "Default language"
 msgstr "Llengua per defecte"
 
 #. TRANS: Dropdown title on site settings panel.
-#, fuzzy
 msgid ""
 "The site language when autodetection from browser settings is not available."
 msgstr ""
 "Llengua del lloc quan la detecció automàtica des de la configuració del "
-"navegador no està disponible"
+"navegador no està disponible."
 
 #. TRANS: Fieldset legend on site settings panel.
 msgctxt "LEGEND"
@@ -5555,9 +5588,8 @@ msgid "SSL logo"
 msgstr "Logotip SSL"
 
 #. TRANS: Button title for saving site settings.
-#, fuzzy
 msgid "Save the site settings."
-msgstr "Desa els paràmetres del lloc"
+msgstr "Desa els paràmetres del lloc."
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
 msgid "Site Notice"
@@ -5954,6 +5986,12 @@ msgstr "SMS"
 #, php-format
 msgid "Notices tagged with %1$s, page %2$d"
 msgstr "Avisos etiquetats amb %1$s, pàgina %2$d"
+
+#. TRANS: Link label for feed on "notices with tag" page.
+#. TRANS: %s is the tag the feed is for.
+#, fuzzy, php-format
+msgid "Notice feed for tag %s (Activity Streams JSON)"
+msgstr "Canal d'avisos de l'etiqueta %s (Atom)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -7968,6 +8006,10 @@ msgstr "Atom"
 msgid "FOAF"
 msgstr "FOAF"
 
+#. TRANS: Feed type name. See http://activitystrea.ms/
+msgid "Activity Streams"
+msgstr ""
+
 #. TRANS: Client exception thrown when an imported feed does not have an author.
 msgid "No author in the feed."
 msgstr "No hi ha cap autor al canal."
@@ -9188,12 +9230,10 @@ msgid "Enable"
 msgstr "Habilita"
 
 #. TRANS: Plugin description for a disabled plugin.
-#, fuzzy
 msgctxt "plugin-description"
 msgid ""
 "(The plugin description is unavailable when a plugin has been disabled.)"
-msgstr ""
-"(Les descripcions dels connectors no són disponibles en ser inhabiitats.)"
+msgstr "(La descripció del connector no és disponible en ser inhabilitat.)"
 
 #. TRANS: Menu item in primary navigation panel.
 msgctxt "MENU"
@@ -9900,35 +9940,34 @@ msgid "Getting backup from file '%s'."
 msgstr "Es recupera la còpia de seguretat del fitxer '%s'."
 
 #. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid avatar URL %s."
-msgstr "No es pot llegir l'URL de l'avatar «%s»."
+msgstr "L'URL «%s» de l'avatar no és vàlid."
 
 #. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
+#, php-format
 msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "S'ha produït un error en actualitzar el perfil remot."
+msgstr "S'ha provat d'actualitzar l'avatar no desat del perfil remot %s."
 
 #. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Unable to fetch avatar from %s."
-msgstr "No s'han pogut trobar els serveis de %s."
+msgstr "No s'ha pogut aconseguir l'avatar de %s."
 
 #. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not reach profile page %s."
-msgstr "No s'ha pogut crear l'etiqueta de perfil."
+msgstr "No s'ha pogut obtenir la pàgina del perfil %s."
 
 #. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find a feed URL for profile page %s."
-msgstr "No es pot trobar un usuari amb el sobrenom %s."
+msgstr "No s'ha pogut trobar un URL de canal de la pàgina del perfil %s."
 
 #. TRANS: Exception.
-#, fuzzy
 msgid "Not a valid webfinger address."
-msgstr "Adreça de correu electrònic no vàlida."
+msgstr "No és una adreça de webfinger vàlida."
 
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find a valid profile for \"%s\"."
-msgstr "No s'ha pogut desar el perfil."
+msgstr "No s'ha pogut trobar un perfil de «%s» vàlid."
