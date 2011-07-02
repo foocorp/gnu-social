@@ -180,6 +180,7 @@ class EventPlugin extends MicroappPlugin
 
         switch ($activity->verb) {
         case ActivityVerb::POST:
+        	// FIXME: get startTime, endTime, location and URL
             $notice = Happening::saveNew($actor,
                                          $start_time,
                                          $end_time,
@@ -261,6 +262,9 @@ class EventPlugin extends MicroappPlugin
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
                               common_date_iso8601($happening->end_time));
 
+		// FIXME: add location
+		// FIXME: add URL
+		
         // XXX: probably need other stuff here
 
         return $obj;
