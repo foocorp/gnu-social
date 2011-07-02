@@ -37,7 +37,7 @@ if (!defined('STATUSNET')) {
 /**
  * Event plugin
  *
- * @category  Sample
+ * @category  Event
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @copyright 2011 StatusNet, Inc.
