@@ -200,12 +200,10 @@ class Poll_response extends Managed_DataObject
         $rendered = sprintf(_m('voted for "%s"'), $link);
 
         $tags    = array();
-        $replies = array();
 
         $options = array_merge(array('urls' => array(),
                                      'rendered' => $rendered,
                                      'tags' => $tags,
-                                     'replies' => $replies,
                                      'reply_to' => $poll->getNotice()->id,
                                      'object_type' => PollPlugin::POLL_RESPONSE_OBJECT),
                                $options);
