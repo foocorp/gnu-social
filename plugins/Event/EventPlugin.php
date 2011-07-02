@@ -181,12 +181,13 @@ class EventPlugin extends MicroappPlugin
         switch ($activity->verb) {
         case ActivityVerb::POST:
             $notice = Happening::saveNew($actor,
-                                     $start_time,
-                                     $end_time,
-                                     $happeningObj->title,
-                                     null,
-                                     $happeningObj->summary,
-                                     $options);
+                                         $start_time,
+                                         $end_time,
+                                         $happeningObj->title,
+                                         null,
+                                         $happeningObj->summary,
+                                         null,
+                                         $options);
             break;
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
