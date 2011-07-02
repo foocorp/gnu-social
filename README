@@ -1496,8 +1496,9 @@ Configuration options specific to notices.
 contentlimit: max length of the plain-text content of a notice.
     Default is null, meaning to use the site-wide text limit.
     0 means no limit.
-defaultscope: default scope for notices. Defaults to 0; set to
-	      1 to keep notices private to this site by default.
+defaultscope: default scope for notices. If null, the default
+	scope depends on site/private. It's 1 if the site is private,
+	0 otherwise. Set this value to override.
 
 message
 -------

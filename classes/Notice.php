@@ -448,7 +448,7 @@ class Notice extends Memcached_DataObject
             if (!empty($reply)) {
                 $notice->scope = $reply->scope;
             } else {
-                $notice->scope = common_config('notice', 'defaultscope');
+                $notice->scope = self::defaultScope();
             }
         } else {
             $notice->scope = $scope;
@@ -2468,6 +2468,19 @@ class Notice extends Memcached_DataObject
         $vars = parent::__sleep();
         $skip = array('_original', '_profile');
         return array_diff($vars, $skip);
+    }
+    
+    static function defaultScope()
+    {
+    	$scope = common_config('notice', 'defaultscope');
+    	if (is_null($scope)) {
+    		if (common_config('site', 'private')) {
+    			$scope = 1;
+    		} else {
+    			$scope = 0;
+    		}
+    	}
+    	return $scope;
     }
 
 }
