@@ -1045,7 +1045,10 @@ class Ostatus_profile extends Managed_DataObject
         chmod(Avatar::path($filename), 0644);
 
         $profile = $this->localProfile();
-        $profile->setOriginal($filename);
+        
+        if (!empty($profile)) {
+            $profile->setOriginal($filename);
+        }
 
         $orig = clone($this);
         $this->avatar = $url;
