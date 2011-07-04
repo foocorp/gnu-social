@@ -49,7 +49,7 @@ class Profile_list extends Memcached_DataObject
     public $subscriber_count;                // smallint
 
     /* Static get */
-    function staticGet($k,$v=NULL) { return DB_DataObject::staticGet('Profile_list',$k,$v); }
+    function staticGet($k,$v=NULL) { return Memcached_DataObject::staticGet('Profile_list',$k,$v); }
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
