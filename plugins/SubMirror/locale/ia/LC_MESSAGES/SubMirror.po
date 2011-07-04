@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 11:06+0000\n"
-"PO-Revision-Date: 2011-06-19 11:09:25+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:26:30+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:20:49+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-19 11:23:33+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
@@ -63,10 +63,12 @@ msgstr "Mal datos de formulario."
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
 msgid "The mirror request failed, because no result was retrieved."
 msgstr ""
+"Le requesta de reduplication ha fallite proque nulle requesta ha essite "
+"recipite."
 
 #. TRANS: Exception thrown when a feed provider could not be recognised.
 msgid "Internal form error: Unrecognized feed provider."
-msgstr ""
+msgstr "Error interne in formulario: Fornitor de syndication incognite."
 
 #. TRANS: Exception thrown when a subscribing to a feed fails.
 msgid "Could not subscribe to feed."
@@ -134,28 +136,25 @@ msgid "Mirroring style"
 msgstr "Stilo de republication"
 
 #. TRANS: Feed mirror style (radio button option).
-#, fuzzy
 msgid ""
 "Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 msgstr ""
-"Repeter: referer al message del usator original (monstrate a vices como 'RT "
-"@pseudonymo')"
+"Repeter: referer al message del usator original (monstrate a vices como \"RT "
+"@pseudonymo\")"
 
 #. TRANS: Feed mirror style (radio button option).
 msgid "Repost the content under my account"
 msgstr "Republicar le contento sub mi conto"
 
 #. TRANS: Button text to save feed mirror settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Salveguardar"
 
 #. TRANS: Button text to stop mirroring a feed.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Stop mirroring"
-msgstr "Cessar le republication"
+msgstr "Cessar le reduplication"
 
 #. TRANS: Name for possible feed provider.
 msgid "Twitter"

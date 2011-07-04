@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:55+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:26:43+0000\n"
 "Language-Team: Friulian <http://translatewiki.net/wiki/Portal:fur>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-19 11:23:45+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fur\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -25,6 +25,7 @@ msgstr ""
 msgid "Twitter settings"
 msgstr "Impuestazions di Twitter"
 
+#. TRANS: Instructions for page with Twitter integration settings.
 msgid ""
 "Connect your Twitter account to share your updates with your Twitter friends "
 "and vice-versa."
@@ -59,7 +60,6 @@ msgid ""
 msgstr ""
 
 #. TRANS: Button text for disconnecting a Twitter account.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Disconnect"
 msgstr "Disconetiti"
@@ -78,7 +78,7 @@ msgstr "Mande lis rispuestis locâls cun \"@\" a Twitter."
 
 #. TRANS: Checkbox label.
 msgid "Subscribe to my Twitter friends here."
-msgstr ""
+msgstr "Sotscrivimi culì ai miei amîs di Twitter."
 
 #. TRANS: Checkbox label.
 msgid "Import my friends timeline."
@@ -86,13 +86,11 @@ msgstr "Impuarte la ativitât dai miei amîs."
 
 #. TRANS: Button text for saving Twitter integration settings.
 #. TRANS: Button text for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Salve"
 
 #. TRANS: Button text for adding Twitter integration.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "Zonte"
@@ -118,9 +116,8 @@ msgid "Twitter account disconnected."
 msgstr ""
 
 #. TRANS: Server error displayed when saving Twitter integration preferences fails.
-#, fuzzy
 msgid "Could not save Twitter preferences."
-msgstr "Preferencis di Twitter salvadis."
+msgstr "No si à podût salvâ lis preferencis di Twitter."
 
 #. TRANS: Success message after saving Twitter integration preferences.
 msgid "Twitter preferences saved."
@@ -192,7 +189,6 @@ msgid "Used only for updates, announcements, and password recovery"
 msgstr "Doprât dome par inzornaments, comunicazions e recupar de password.ì"
 
 #. TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Cree"
@@ -216,7 +212,6 @@ msgid "Password"
 msgstr "Password"
 
 #. TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Conetiti"
@@ -252,7 +247,6 @@ msgid "Invalid username or password."
 msgstr "Il non utent o la password no son valits."
 
 #. TRANS: Page title for Twitter administration panel.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter"
 msgstr "Twitter"
@@ -298,7 +292,6 @@ msgid "Integration source"
 msgstr ""
 
 #. TRANS: Field title for Twitter application name.
-#, fuzzy
 msgid "The name of your Twitter application."
 msgstr "Non de tô aplicazion Twitter"
 
@@ -325,9 +318,8 @@ msgid ""
 msgstr ""
 
 #. TRANS: Button title for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgid "Save the Twitter bridge settings."
-msgstr "Salve lis impuestazions di Twitter"
+msgstr "Salve lis impuestazions dal puint par Twitter."
 
 #. TRANS: Server exception thrown when an invalid URL scheme is detected.
 msgid "Invalid URL scheme for HTTP stream reader."
@@ -363,23 +355,24 @@ msgstr ""
 
 #. TRANS: Menu item in login navigation.
 #. TRANS: Menu item in connection settings navigation.
-#, fuzzy
 msgctxt "MENU"
 msgid "Twitter"
 msgstr "Twitter"
 
 #. TRANS: Title for menu item in login navigation.
 msgid "Login or register using Twitter."
-msgstr ""
+msgstr "Jentre o regjistriti doprant Twitter."
 
 #. TRANS: Title for menu item in connection settings navigation.
 msgid "Twitter integration options"
 msgstr ""
 
+#. TRANS: Menu item in administrative panel that leads to the Twitter bridge configuration.
 msgid "Twitter"
 msgstr "Twitter"
 
-msgid "Twitter bridge configuration"
+#. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
+msgid "Twitter bridge configuration page."
 msgstr ""
 
 #. TRANS: Plugin description.
@@ -393,18 +386,17 @@ msgid "Already logged in."
 msgstr "Tu sês za jentrât."
 
 #. TRANS: Title for login using Twitter page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter Login"
-msgstr "Identitât su Twitter"
+msgstr "Jentre su Twitter"
 
 #. TRANS: Instructions for login using Twitter page.
 msgid "Login with your Twitter account"
-msgstr ""
+msgstr "Jentre cu la tô identitât su Twitter"
 
 #. TRANS: Alternative text for "sign in with Twitter" image.
 msgid "Sign in with Twitter"
-msgstr ""
+msgstr "Jentre cun Twitter"
 
 #. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
 msgid "Your Twitter bridge has been disabled"

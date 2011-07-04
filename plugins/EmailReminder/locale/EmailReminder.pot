@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 11:06+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,38 +17,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: Plugin description.
-#: EmailReminderPlugin.php:205
+#: EmailReminderPlugin.php:216
 msgid "Send email reminders for various things."
 msgstr ""
 
 #. TRANS: Server exception thrown when a reminder record could not be inserted into the database.
-#: classes/Email_reminder.php:100
+#: classes/Email_reminder.php:103
 msgid "Database error inserting reminder record."
 msgstr ""
 
 #. TRANS: Subject for reminder e-mail.
-#: lib/userconfirmregreminderhandler.php:85
+#: lib/userconfirmregreminderhandler.php:86
+#: lib/userconfirmregreminderhandler.php:103
 msgid "Reminder - please confirm your registration!"
 msgstr ""
 
 #. TRANS: Subject for reminder e-mail.
-#: lib/userconfirmregreminderhandler.php:99
+#: lib/userconfirmregreminderhandler.php:118
 msgid "Second reminder - please confirm your registration!"
 msgstr ""
 
 #. TRANS: Subject for reminder e-mail.
-#: lib/userconfirmregreminderhandler.php:114
+#: lib/userconfirmregreminderhandler.php:133
 msgid "Final reminder - please confirm your registration!"
 msgstr ""
 
 #. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
-#: lib/userinvitereminderhandler.php:84
+#: lib/userinvitereminderhandler.php:102
 #, php-format
 msgid "Reminder - You have been invited to join %s!"
 msgstr ""
 
 #. TRANS: Subject for reminder e-mail. %s is the StatusNet sitename.
-#: lib/userinvitereminderhandler.php:98
+#: lib/userinvitereminderhandler.php:116
 #, php-format
 msgid "Final reminder - you have been invited to join %s!"
 msgstr ""

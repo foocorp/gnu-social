@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 11:06+0000\n"
-"PO-Revision-Date: 2011-06-19 11:09:40+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:26:43+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:21:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-19 11:23:45+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -47,13 +47,13 @@ msgstr "Disconnecter mi conto ab Twitter"
 
 #. TRANS: Form guide. %s is a URL to the password settings.
 #. TRANS: This message contains a Markdown link in the form [description](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Disconnecting your Twitter account could make it impossible to log in! "
 "Please [set a password](%s) first."
 msgstr ""
 "Le disconnexion de tu conto de Twitter renderea le authentication "
-"impossibile! Per favor "
+"impossibile! Per favor [defini un contrasigno](%s) primo."
 
 #. TRANS: Form instructions. %s is a URL to the password settings.
 #. TRANS: %1$s is the StatusNet sitename.
@@ -66,7 +66,6 @@ msgstr ""
 "contrasigno de %1$s pro aperir session."
 
 #. TRANS: Button text for disconnecting a Twitter account.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Disconnect"
 msgstr "Disconnecter"
@@ -93,13 +92,11 @@ msgstr "Importar le chronologia de mi amicos."
 
 #. TRANS: Button text for saving Twitter integration settings.
 #. TRANS: Button text for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Salveguardar"
 
 #. TRANS: Button text for adding Twitter integration.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "Adder"
@@ -117,7 +114,6 @@ msgid "No Twitter connection to remove."
 msgstr "Nulle connexion Twitter a remover."
 
 #. TRANS: Server error displayed when trying to remove a connected Twitter account fails.
-#, fuzzy
 msgid "Could not remove Twitter user."
 msgstr "Non poteva remover le usator de Twitter."
 
@@ -126,7 +122,6 @@ msgid "Twitter account disconnected."
 msgstr "Conto de Twitter disconnectite."
 
 #. TRANS: Server error displayed when saving Twitter integration preferences fails.
-#, fuzzy
 msgid "Could not save Twitter preferences."
 msgstr "Non poteva salveguardar le preferentias de Twitter."
 
@@ -147,12 +142,11 @@ msgid "Could not link your Twitter account."
 msgstr "Non poteva ligar tu conto de Twitter."
 
 #. TRANS: Server error displayed when linking to a Twitter account fails because of an incorrect oauth_token.
-#, fuzzy
 msgid "Could not link your Twitter account: oauth_token mismatch."
 msgstr "Non poteva ligar a tu conto de Twitter: oauth_token non corresponde."
 
 #. TRANS: Page instruction. %s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "Twitter account to a local account. You can either create a new account, or "
@@ -209,7 +203,6 @@ msgstr ""
 "contrasigno"
 
 #. TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Crear"
@@ -235,7 +228,6 @@ msgid "Password"
 msgstr "Contrasigno"
 
 #. TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Connecter"
@@ -271,7 +263,6 @@ msgid "Invalid username or password."
 msgstr "Nomine de usator o contrasigno invalide."
 
 #. TRANS: Page title for Twitter administration panel.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter"
 msgstr "Twitter"
@@ -281,14 +272,12 @@ msgid "Twitter bridge settings"
 msgstr "Configuration del ponte a Twitter"
 
 #. TRANS: Client error displayed when a consumer key is invalid because it is too long.
-#, fuzzy
 msgid "Invalid consumer key. Maximum length is 255 characters."
-msgstr "Clave de consumitor invalide. Longitude maximal es 255 characteres."
+msgstr "Clave de consumitor invalide. Longitude maxime es 255 characteres."
 
 #. TRANS: Client error displayed when a consumer secret is invalid because it is too long.
-#, fuzzy
 msgid "Invalid consumer secret. Maximum length is 255 characters."
-msgstr "Secreto de consumitor invalide. Longitude maximal es 255 characteres."
+msgstr "Secreto de consumitor invalide. Longitude maxime es 255 characteres."
 
 #. TRANS: Fieldset legend for Twitter application settings.
 msgid "Twitter application settings"
@@ -299,32 +288,28 @@ msgid "Consumer key"
 msgstr "Clave de consumitor"
 
 #. TRANS: Field title for Twitter assigned consumer key.
-#, fuzzy
 msgid "The consumer key assigned by Twitter."
-msgstr "Clave de consumitor assignate per Twitter"
+msgstr "Le clave de consumitor assignate per Twitter."
 
 #. TRANS: Field label for Twitter assigned consumer secret.
 msgid "Consumer secret"
 msgstr "Secreto de consumitor"
 
 #. TRANS: Field title for Twitter assigned consumer secret.
-#, fuzzy
 msgid "The consumer secret assigned by Twitter."
-msgstr "Secreto de consumitor assignate per Twitter"
+msgstr "Le secreto de consumitor assignate per Twitter."
 
 #. TRANS: Form guide displayed when two required fields have already been provided.
-#, fuzzy
 msgid "Note: A global consumer key and secret are set."
-msgstr "Nota: un clave e un secreto de consumitor global es definite."
+msgstr "Nota: Un clave e un secreto de consumitor global es definite."
 
 #. TRANS: Field label for Twitter application name.
 msgid "Integration source"
 msgstr "Fonte de integration"
 
 #. TRANS: Field title for Twitter application name.
-#, fuzzy
 msgid "The name of your Twitter application."
-msgstr "Nomine de tu application Twitter"
+msgstr "Le nomine de tu application Twitter."
 
 #. TRANS: Fieldset legend for Twitter integration options.
 msgid "Options"
@@ -335,9 +320,8 @@ msgid "Enable \"Sign-in with Twitter\""
 msgstr "Activar \"Aperir session con Twitter\""
 
 #. TRANS: Checkbox title.
-#, fuzzy
 msgid "This allow users to login with their Twitter credentials."
-msgstr "Permitte que usatores aperi session con lor conto de Twitter"
+msgstr "Isto permitte que usatores aperi session con lor conto de Twitter."
 
 #. TRANS: Checkbox label for global setting.
 msgid "Enable Twitter import"
@@ -352,53 +336,50 @@ msgstr ""
 "Require que le demones sia configurate manualmente."
 
 #. TRANS: Button title for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgid "Save the Twitter bridge settings."
-msgstr "Configuration del ponte a Twitter"
+msgstr "Salveguardar le configuration del ponte a Twitter."
 
 #. TRANS: Server exception thrown when an invalid URL scheme is detected.
 msgid "Invalid URL scheme for HTTP stream reader."
-msgstr ""
+msgstr "Schema de URL invalide pro le lector de fluxo HTTP."
 
 #. TRANS: Exception thrown when input from an inexpected socket is encountered.
 msgid "Got input from unexpected socket!"
-msgstr ""
+msgstr "Recipeva datos ab un prisa inexpectate!"
 
 #. TRANS: Exception thrown when an invalid state is encountered in handleLine.
 #. TRANS: %s is the invalid state.
 #, php-format
 msgid "Invalid state in handleLine: %s."
-msgstr ""
+msgstr "Stato invalide in \"handleLine\": %s."
 
 #. TRANS: Exception thrown when an invalid response line is encountered.
 #. TRANS: %s is the invalid line.
 #, php-format
 msgid "Invalid HTTP response line: %s."
-msgstr ""
+msgstr "Linea de responsa HTTP invalide: %s."
 
 #. TRANS: Exception thrown when an invalid response line part is encountered.
 #. TRANS: %1$s is the chunk, %2$s is the line.
 #, php-format
 msgid "Invalid HTTP response line chunk \"%1$s\": %2$s."
-msgstr ""
+msgstr "Parte de linea de responsa HTTP invalide \"%1$s\": %2$s."
 
 #. TRANS: Exception thrown when an invalid response code is encountered.
 #. TRANS: %1$s is the response code, %2$s is the line.
 #, php-format
 msgid "Bad HTTP response code %1$s: %2$s."
-msgstr ""
+msgstr "Mal codice de responsa HTTP %1$s: %2$s."
 
 #. TRANS: Menu item in login navigation.
 #. TRANS: Menu item in connection settings navigation.
-#, fuzzy
 msgctxt "MENU"
 msgid "Twitter"
 msgstr "Twitter"
 
 #. TRANS: Title for menu item in login navigation.
-#, fuzzy
 msgid "Login or register using Twitter."
-msgstr "Aperir session o crear conto usante Twitter"
+msgstr "Aperir session o crear conto usante Twitter."
 
 #. TRANS: Title for menu item in connection settings navigation.
 msgid "Twitter integration options"
@@ -409,9 +390,8 @@ msgid "Twitter"
 msgstr "Twitter"
 
 #. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
-#, fuzzy
 msgid "Twitter bridge configuration page."
-msgstr "Configuration del ponte a Twitter"
+msgstr "Pagina de configuration del ponte a Twitter."
 
 #. TRANS: Plugin description.
 msgid ""
@@ -426,7 +406,6 @@ msgid "Already logged in."
 msgstr "Tu es jam authenticate."
 
 #. TRANS: Title for login using Twitter page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter Login"
 msgstr "Apertura de session con Twitter"

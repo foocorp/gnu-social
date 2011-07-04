@@ -72,7 +72,7 @@ function newNotice($i, $tagmax)
 {
     global $userprefix;
 
-    $options = array('scope' => common_config('notice', 'defaultscope'));
+    $options = array('scope' => Notice::defaultScope());
 
     $n = rand(0, $i - 1);
     $user = User::staticGet('nickname', sprintf('%s%d', $userprefix, $n));

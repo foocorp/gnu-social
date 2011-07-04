@@ -12,18 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 11:06+0000\n"
-"PO-Revision-Date: 2011-06-19 11:09:20+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:26:39+0000\n"
 "Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
-"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -260,6 +260,13 @@ msgstr "Моя стрічка"
 #, php-format
 msgid "%s's home timeline"
 msgstr "Стрічка %s"
+
+#. TRANS: %s is user nickname.
+#. TRANS: Feed title.
+#. TRANS: %s is tagger's nickname.
+#, fuzzy, php-format
+msgid "Feed for friends of %s (Activity Streams JSON)"
+msgstr "Стрічка дописів для друзів %s (Atom)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -4259,6 +4266,11 @@ msgid "Public timeline"
 msgstr "Загальна стрічка"
 
 #. TRANS: Link description for public timeline feed.
+#, fuzzy
+msgid "Public Stream Feed (Activity Streams JSON)"
+msgstr "Стрічка публічних дописів (Atom)"
+
+#. TRANS: Link description for public timeline feed.
 msgid "Public Stream Feed (RSS 1.0)"
 msgstr "Стрічка публічних дописів (RSS 1.0)"
 
@@ -4791,6 +4803,12 @@ msgstr "Відповіді до %1$s, сторінка %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Replies feed for %s (Activity Streams JSON)"
+msgstr "Стрічка відповідей до %s (Atom)"
+
+#. TRANS: Link for feed with replies for a user.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (RSS 1.0)"
 msgstr "Стрічка відповідей до %s (RSS 1.0)"
@@ -5051,6 +5069,11 @@ msgid "Could not retrieve favorite notices."
 msgstr "Не можна відновити обрані дописи."
 
 #. TRANS: Feed link text. %s is a username.
+#, fuzzy, php-format
+msgid "Feed for favorites of %s (Activity Streams JSON)"
+msgstr "Стрічка обраних дописів %s (Atom)"
+
+#. TRANS: Feed link text. %s is a username.
 #, php-format
 msgid "Feed for favorites of %s (RSS 1.0)"
 msgstr "Стрічка обраних дописів %s (RSS 1.0)"
@@ -5111,6 +5134,11 @@ msgstr "Спільнота %s"
 #, php-format
 msgid "%1$s group, page %2$d"
 msgstr "Спільнота %1$s, сторінка %2$d"
+
+#. TRANS: Tooltip for feed link. %s is a group nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s group (Activity Streams JSON)"
+msgstr "Стрічка дописів спільноти %s (Atom)"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
@@ -5340,6 +5368,12 @@ msgstr "Дописи %1$s, сторінка %2$d"
 #, php-format
 msgid "Notice feed for %1$s tagged %2$s (RSS 1.0)"
 msgstr "Стрічка дописів %1$s з теґом «%2$s» (RSS 1.0)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s (Activity Streams JSON)"
+msgstr "Стрічка дописів для %s (Atom)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
@@ -5965,6 +5999,12 @@ msgstr "СМС"
 #, php-format
 msgid "Notices tagged with %1$s, page %2$d"
 msgstr "Дописи з теґом %1$s, сторінка %2$d"
+
+#. TRANS: Link label for feed on "notices with tag" page.
+#. TRANS: %s is the tag the feed is for.
+#, fuzzy, php-format
+msgid "Notice feed for tag %s (Activity Streams JSON)"
+msgstr "Стрічка дописів для теґу %s (Atom)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -7980,6 +8020,10 @@ msgstr "Atom"
 #. TRANS: Feed type name. FOAF stands for Friend of a Friend.
 msgid "FOAF"
 msgstr "FOAF"
+
+#. TRANS: Feed type name. See http://activitystrea.ms/
+msgid "Activity Streams"
+msgstr ""
 
 #. TRANS: Client exception thrown when an imported feed does not have an author.
 msgid "No author in the feed."

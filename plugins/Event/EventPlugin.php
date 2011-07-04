@@ -37,7 +37,7 @@ if (!defined('STATUSNET')) {
 /**
  * Event plugin
  *
- * @category  Sample
+ * @category  Event
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @copyright 2011 StatusNet, Inc.
@@ -180,13 +180,15 @@ class EventPlugin extends MicroappPlugin
 
         switch ($activity->verb) {
         case ActivityVerb::POST:
+        	// FIXME: get startTime, endTime, location and URL
             $notice = Happening::saveNew($actor,
-                                     $start_time,
-                                     $end_time,
-                                     $happeningObj->title,
-                                     null,
-                                     $happeningObj->summary,
-                                     $options);
+                                         $start_time,
+                                         $end_time,
+                                         $happeningObj->title,
+                                         null,
+                                         $happeningObj->summary,
+                                         null,
+                                         $options);
             break;
         case RSVP::POSITIVE:
         case RSVP::NEGATIVE:
@@ -260,6 +262,9 @@ class EventPlugin extends MicroappPlugin
                               array('xmlns' => 'urn:ietf:params:xml:ns:xcal'),
                               common_date_iso8601($happening->end_time));
 
+		// FIXME: add location
+		// FIXME: add URL
+		
         // XXX: probably need other stuff here
 
         return $obj;

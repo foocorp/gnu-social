@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 11:06+0000\n"
-"PO-Revision-Date: 2011-06-19 11:08:53+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:26:12+0000\n"
 "Language-Team: Hebrew <http://translatewiki.net/wiki/Portal:he>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: he\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -250,6 +250,13 @@ msgstr "ציר הזמן בדף הבית"
 #, php-format
 msgid "%s's home timeline"
 msgstr "ציר הזמן בדף הבית של %s"
+
+#. TRANS: %s is user nickname.
+#. TRANS: Feed title.
+#. TRANS: %s is tagger's nickname.
+#, fuzzy, php-format
+msgid "Feed for friends of %s (Activity Streams JSON)"
+msgstr "הזנות עבור החברים של %s‏ (Atom)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -4076,6 +4083,11 @@ msgid "Public timeline"
 msgstr "קו זמן ציבורי"
 
 #. TRANS: Link description for public timeline feed.
+#, fuzzy
+msgid "Public Stream Feed (Activity Streams JSON)"
+msgstr "הזנת זרם ציבורי (Atom)"
+
+#. TRANS: Link description for public timeline feed.
 msgid "Public Stream Feed (RSS 1.0)"
 msgstr "הזנת זרם ציבורי (RSS 1.0)"
 
@@ -4562,6 +4574,12 @@ msgstr "תגובות למשתמש %1$s, דף %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Replies feed for %s (Activity Streams JSON)"
+msgstr "תגובת עבור %s"
+
+#. TRANS: Link for feed with replies for a user.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (RSS 1.0)"
 msgstr "הזנת תגובות של %s‏ (RSS 1.0)"
@@ -4807,6 +4825,11 @@ msgid "Could not retrieve favorite notices."
 msgstr "אחזור עדכונים אהובים לא הצליח."
 
 #. TRANS: Feed link text. %s is a username.
+#, fuzzy, php-format
+msgid "Feed for favorites of %s (Activity Streams JSON)"
+msgstr "הזנות האהובים של %s‏ (Atom)"
+
+#. TRANS: Feed link text. %s is a username.
 #, php-format
 msgid "Feed for favorites of %s (RSS 1.0)"
 msgstr "הזנת האהובים של %s‏ (RSS 1.0)"
@@ -4859,6 +4882,11 @@ msgstr ""
 #, php-format
 msgid "%1$s group, page %2$d"
 msgstr "הקבוצה %1$s, דף %2$d"
+
+#. TRANS: Tooltip for feed link. %s is a group nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s group (Activity Streams JSON)"
+msgstr "הזנת עדכונים של הקבוצה %s‏ (Atom)"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
@@ -5075,6 +5103,12 @@ msgstr ""
 #, php-format
 msgid "Notice feed for %1$s tagged %2$s (RSS 1.0)"
 msgstr "הזנת עדכונים של %1$s עם התג %2$s‏ (RSS 1.0)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s (Activity Streams JSON)"
+msgstr "הזנת עדכונים של %s‏ (Atom)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
@@ -5667,6 +5701,12 @@ msgstr "סמס"
 #, php-format
 msgid "Notices tagged with %1$s, page %2$d"
 msgstr "עדכונים עם התג %1$s, דף %2$d"
+
+#. TRANS: Link label for feed on "notices with tag" page.
+#. TRANS: %s is the tag the feed is for.
+#, fuzzy, php-format
+msgid "Notice feed for tag %s (Activity Streams JSON)"
+msgstr "הזנת עדכונים לתג %s‏ (Atom)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -7605,6 +7645,10 @@ msgstr ""
 
 #. TRANS: Feed type name. FOAF stands for Friend of a Friend.
 msgid "FOAF"
+msgstr ""
+
+#. TRANS: Feed type name. See http://activitystrea.ms/
+msgid "Activity Streams"
 msgstr ""
 
 #. TRANS: Client exception thrown when an imported feed does not have an author.

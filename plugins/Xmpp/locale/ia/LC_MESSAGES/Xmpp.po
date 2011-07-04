@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Xmpp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:58:03+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:26:51+0000\n"
 "Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:15+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-19 11:23:56+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-xmpp\n"
@@ -32,37 +32,37 @@ msgstr "XMPP/Jabber/GTalk"
 
 #. TRANS: Exception thrown when using too many @ signs in a Jabber ID.
 msgid "Invalid JID: too many @s."
-msgstr ""
+msgstr "JID invalide: troppo de signos @."
 
 #. TRANS: Exception thrown when using @ sign not followed by a Jabber ID.
 msgid "Invalid JID: @ but no node"
-msgstr ""
+msgstr "JID invalide: signo @ sin nodo"
 
 #. TRANS: Exception thrown when using too long a Jabber ID (>1023).
 msgid "Invalid JID: node too long."
-msgstr ""
+msgstr "JID invalide: nodo troppo longe."
 
 #. TRANS: Exception thrown when using an invalid Jabber ID.
 #. TRANS: %s is the invalid Jabber ID.
 #, php-format
 msgid "Invalid JID node \"%s\"."
-msgstr ""
+msgstr "Nodo JID \"%s\" invalide."
 
 #. TRANS: Exception thrown when using too long a Jabber domain (>1023).
 msgid "Invalid JID: domain too long."
-msgstr ""
+msgstr "JID invalide: dominio troppo longe."
 
 #. TRANS: Exception thrown when using an invalid Jabber domain name.
 #. TRANS: %s is the invalid domain name.
 #, php-format
 msgid "Invalid JID domain name \"%s\"."
-msgstr ""
+msgstr "Nomine de dominio JID \"%s\" invalide."
 
 #. TRANS: Exception thrown when using an invalid Jabber resource.
 #. TRANS: %s is the invalid resource.
 #, php-format
 msgid "Invalid JID resource \"%s\"."
-msgstr ""
+msgstr "Ressource JID \"%s\" invalide."
 
 #. TRANS: Link description to notice in conversation.
 #. TRANS: %s is a notice ID.
@@ -72,19 +72,19 @@ msgstr "[%s]"
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 msgid "You must specify a server in the configuration."
-msgstr ""
+msgstr "Es necessari specificar un servitor in le configuration."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 msgid "You must specify a port in the configuration."
-msgstr ""
+msgstr "Es necessari specificar un porto in le configuration."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 msgid "You must specify a user in the configuration."
-msgstr ""
+msgstr "Es necessari specificar un usator in le configuration."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 msgid "You must specify a password in the configuration."
-msgstr ""
+msgstr "Es necessari specificar un contrasigno in le configuration."
 
 #. TRANS: Plugin description.
 msgid ""

@@ -9,17 +9,22 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailSummary\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:55:42+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:24:39+0000\n"
 "Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:04+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-emailsummary\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Subject for e-mail.
+#, php-format
+msgid "Your latest updates from %s"
+msgstr ""
 
 #. TRANS: Text in e-mail summary.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the recipient's profile name.
@@ -37,10 +42,6 @@ msgstr "en context"
 msgid "<a href=\"%1$s\">change your email settings for %2$s</a>"
 msgstr ""
 
-#. TRANS: Subject for e-mail.
-msgid "Updates from your network"
-msgstr "Actualitzacions de la vostra xarxa"
-
 #. TRANS: Plugin description.
 msgid "Send an email summary of the inbox to users."
 msgstr "Envia un resum de correu a la safata d'entrada dels usuaris."
@@ -48,3 +49,6 @@ msgstr "Envia un resum de correu a la safata d'entrada dels usuaris."
 #. TRANS: Checkbox label in e-mail preferences form.
 msgid "Send me a periodic summary of updates from my network"
 msgstr "Envia'm un resum periòdic d'actualitzacions de la meva xarxa"
+
+#~ msgid "Updates from your network"
+#~ msgstr "Actualitzacions de la vostra xarxa"

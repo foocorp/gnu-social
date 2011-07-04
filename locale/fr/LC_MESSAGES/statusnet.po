@@ -29,17 +29,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 11:06+0000\n"
-"PO-Revision-Date: 2011-06-19 11:08:49+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:26:08+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -277,6 +277,13 @@ msgstr "Activité de %s"
 #, fuzzy, php-format
 msgid "%s's home timeline"
 msgstr "Activité de %s"
+
+#. TRANS: %s is user nickname.
+#. TRANS: Feed title.
+#. TRANS: %s is tagger's nickname.
+#, fuzzy, php-format
+msgid "Feed for friends of %s (Activity Streams JSON)"
+msgstr "Flux pour les amis de %s (Atom)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -1376,9 +1383,9 @@ msgstr "Groupes de %s"
 
 #. TRANS: Subtitle for group membership feed.
 #. TRANS: %1$s is a username, %2$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "Groups %1$s is a member of on %2$s"
-msgstr "Groupes de %s"
+msgstr "Groupes %1$s est membre sur %2$s"
 
 #. TRANS: Client exception thrown when trying subscribe someone else to a group.
 msgid "Cannot add someone else's membership."
@@ -1425,9 +1432,9 @@ msgstr "Aucun ID de profil type: %d."
 
 #. TRANS: Client exception thrown when trying to display a subscription for a non-subscribed profile ID.
 #. TRANS: %1$d is the non-existing subscriber ID number, $2$d is the ID of the profile that was not subscribed to.
-#, fuzzy, php-format
+#, php-format
 msgid "Profile %1$d not subscribed to profile %2$d."
-msgstr "Vous n’êtes pas abonné(e) à ce profil."
+msgstr "Profil %1$d n’est pas abonné au profil de %2$d ."
 
 #. TRANS: Client exception thrown when trying to delete a subscription of another user.
 #, fuzzy
@@ -1451,15 +1458,15 @@ msgstr "Seules les personnes peuvent être suivies."
 
 #. TRANS: Client exception thrown when subscribing to a non-existing profile.
 #. TRANS: %s is the unknown profile ID.
-#, fuzzy, php-format
+#, php-format
 msgid "Unknown profile %s."
-msgstr "Type de fichier inconnu"
+msgstr "Profil inconnu %s."
 
 #. TRANS: Client error displayed trying to subscribe to an already subscribed profile.
 #. TRANS: %s is the profile the user already has a subscription on.
-#, fuzzy, php-format
+#, php-format
 msgid "Already subscribed to %s."
-msgstr "Déjà abonné !"
+msgstr "Déjà abonné à %s."
 
 #. TRANS: Client error displayed trying to get a non-existing attachment.
 msgid "No such attachment."
@@ -1567,9 +1574,8 @@ msgid "Backup account"
 msgstr "Sauvegarder le compte"
 
 #. TRANS: Client exception thrown when trying to backup an account while not logged in.
-#, fuzzy
 msgid "Only logged-in users can backup their account."
-msgstr "Seuls  les utilisateurs identifiés peuvent reprendre des avis."
+msgstr "Seuls les utilisateurs enregistrés peuvent sauvegarder leur compte."
 
 #. TRANS: Client exception thrown when trying to backup an account without having backup rights.
 msgid "You may not backup your account."
@@ -4316,6 +4322,11 @@ msgid "Public timeline"
 msgstr "Flux public"
 
 #. TRANS: Link description for public timeline feed.
+#, fuzzy
+msgid "Public Stream Feed (Activity Streams JSON)"
+msgstr "Fil du flux public (Atom)"
+
+#. TRANS: Link description for public timeline feed.
 msgid "Public Stream Feed (RSS 1.0)"
 msgstr "Fil du flux public (RSS 1.0)"
 
@@ -4876,6 +4887,12 @@ msgstr "Réponses à %1$s, page %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Replies feed for %s (Activity Streams JSON)"
+msgstr "Flux des réponses pour %s (Atom)"
+
+#. TRANS: Link for feed with replies for a user.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (RSS 1.0)"
 msgstr "Flux des réponses pour %s (RSS 1.0)"
@@ -5145,6 +5162,11 @@ msgid "Could not retrieve favorite notices."
 msgstr "Impossible d’afficher les favoris."
 
 #. TRANS: Feed link text. %s is a username.
+#, fuzzy, php-format
+msgid "Feed for favorites of %s (Activity Streams JSON)"
+msgstr "Flux pour les amis de %s (Atom)"
+
+#. TRANS: Feed link text. %s is a username.
 #, php-format
 msgid "Feed for favorites of %s (RSS 1.0)"
 msgstr "Flux pour les amis de %s (RSS 1.0)"
@@ -5205,6 +5227,11 @@ msgstr "Groupe %s"
 #, php-format
 msgid "%1$s group, page %2$d"
 msgstr "Groupe %1$s, page %2$d"
+
+#. TRANS: Tooltip for feed link. %s is a group nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s group (Activity Streams JSON)"
+msgstr "Fil des avis du groupe %s (Atom)"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
@@ -5441,6 +5468,12 @@ msgstr "Avis marqués avec %1$s, page %2$d"
 #, php-format
 msgid "Notice feed for %1$s tagged %2$s (RSS 1.0)"
 msgstr "Fil des avis pour %1$s marqués %2$s (RSS 1.0)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s (Activity Streams JSON)"
+msgstr "Flux des avis de %s (Atom)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
@@ -6096,6 +6129,12 @@ msgstr "SMS"
 #, php-format
 msgid "Notices tagged with %1$s, page %2$d"
 msgstr "Avis marqués avec %1$s, page %2$d"
+
+#. TRANS: Link label for feed on "notices with tag" page.
+#. TRANS: %s is the tag the feed is for.
+#, fuzzy, php-format
+msgid "Notice feed for tag %s (Activity Streams JSON)"
+msgstr "Flux des avis pour la marque %s (Atom)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -8182,6 +8221,10 @@ msgstr "Atom"
 #. TRANS: Feed type name. FOAF stands for Friend of a Friend.
 msgid "FOAF"
 msgstr "Ami d’un ami"
+
+#. TRANS: Feed type name. See http://activitystrea.ms/
+msgid "Activity Streams"
+msgstr ""
 
 #. TRANS: Client exception thrown when an imported feed does not have an author.
 msgid "No author in the feed."

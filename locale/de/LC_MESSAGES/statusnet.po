@@ -29,17 +29,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-19 11:06+0000\n"
-"PO-Revision-Date: 2011-06-19 11:08:40+0000\n"
+"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"PO-Revision-Date: 2011-07-01 09:25:58+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r90375); Translate extension (2011-06-02)\n"
+"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-18 16:18:45+0000\n"
+"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -183,9 +183,8 @@ msgid "No such list."
 msgstr "Liste nicht gefunden."
 
 #. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
-#, fuzzy
 msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr "Du hast dieses OMB 0.1 Profil nicht abonniert."
+msgstr "Du kannst kein entfernt liegendes OMB-0.1-Profil der Liste hinzufügen."
 
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
@@ -268,15 +267,21 @@ msgid "No such user."
 msgstr "Unbekannter Benutzer."
 
 #. TRANS: Title of a user's own start page.
-#, fuzzy
 msgid "Home timeline"
-msgstr "%s-Zeitleiste"
+msgstr "Eigene Zeitleiste"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s's home timeline"
-msgstr "%s-Zeitleiste"
+msgstr "Zeitleiste von %s"
+
+#. TRANS: %s is user nickname.
+#. TRANS: Feed title.
+#. TRANS: %s is tagger's nickname.
+#, fuzzy, php-format
+msgid "Feed for friends of %s (Activity Streams JSON)"
+msgstr "Feed der Freunde von %s (Atom)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -818,7 +823,6 @@ msgid "The specified user is not a subscriber of this list."
 msgstr "Dieser Benutzer ist kein Abonnent dieser Liste."
 
 #. TRANS: Client error displayed when trying to unsubscribe from a non-subscribed list.
-#, fuzzy
 msgid "You are not subscribed to this list."
 msgstr "Du hast diese Liste nicht abonniert."
 
@@ -1084,7 +1088,7 @@ msgstr "%1$s-Aktualisierungen favorisiert von %2$s / %3$s."
 
 #. TRANS: Server error displayed whe trying to get a timeline fails.
 #. TRANS: %s is the error message.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not generate feed for list - %s"
 msgstr "Konnte keinen Feed für die Liste erstellen - %s"
 
@@ -1264,9 +1268,8 @@ msgstr "Nur der Gruppenverwalter kann Beitrittsgesuche annehmen oder ablehnen."
 
 #. TRANS: Client error displayed trying to approve group membership without specifying a profile to approve.
 #. TRANS: Client error displayed trying to approve subscriptionswithout specifying a profile to approve.
-#, fuzzy
 msgid "Must specify a profile."
-msgstr "Benutzer hat kein Profil."
+msgstr "Du musst ein Profil auswählen."
 
 #. TRANS: Client error displayed trying to approve group membership for a non-existing request.
 #. TRANS: %s is a nickname.
@@ -1290,9 +1293,11 @@ msgstr ""
 
 #. TRANS: Server error displayed when cancelling a queued group join request fails.
 #. TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not cancel request for user %1$s to join group %2$s."
-msgstr "Konnte Benutzer %1$s nicht der Gruppe %2$s hinzufügen."
+msgstr ""
+"Konnte das Beitrittsgesuch des Benutzers %1$s zur Gruppe %2$s nicht "
+"entfernen."
 
 #. TRANS: Title for leave group page after group join request is approved/disapproved.
 #. TRANS: %1$s is the user nickname, %2$s is the group nickname.
@@ -1311,31 +1316,32 @@ msgstr "Beitrittsgesuch abgelehnt."
 
 #. TRANS: Client error displayed trying to approve subscription for a non-existing request.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "%s is not in the moderation queue for your subscriptions."
-msgstr "Liste der Benutzer in dieser Gruppe."
+msgstr "%s ist nicht in der Moderationswarteschlange deiner Abonnements."
 
 #. TRANS: Server error displayed when cancelling a queued subscription request fails.
 #. TRANS: %1$s is the leaving user's nickname, $2$s is the nickname for which the leave failed.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not cancel or approve request for user %1$s to join group %2$s."
-msgstr "Konnte Benutzer %1$s nicht der Gruppe %2$s hinzufügen."
+msgstr ""
+"Konnte das Beitrittsgesuch des Benutzers %1$s zur Gruppe %2$s nicht "
+"entfernen oder annehmen."
 
 #. TRANS: Title for subscription approval ajax return
 #. TRANS: %1$s is the approved user's nickname
-#, fuzzy, php-format
+#, php-format
 msgctxt "TITLE"
 msgid "%1$s's request"
-msgstr "Status von %1$s auf %2$s"
+msgstr "Anfrage von %1$s"
 
 #. TRANS: Message on page for user after approving a subscription request.
 msgid "Subscription approved."
 msgstr "Abonnement genehmigt."
 
 #. TRANS: Message on page for user after rejecting a subscription request.
-#, fuzzy
 msgid "Subscription canceled."
-msgstr "Authorisierung abgebrochen."
+msgstr "Abonnement aufgelöst."
 
 #. TRANS: Subtitle for Atom favorites feed.
 #. TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename.
@@ -1349,12 +1355,10 @@ msgid "Cannot add someone else's subscription."
 msgstr "Konnte neues Abonnement nicht eintragen."
 
 #. TRANS: Client exception thrown when trying use an incorrect activity verb for the Atom pub method.
-#, fuzzy
 msgid "Can only handle favorite activities."
 msgstr "Kann nur Favoriten-Aktionen bearbeiten."
 
 #. TRANS: Client exception thrown when trying favorite an object that is not a notice.
-#, fuzzy
 msgid "Can only fave notices."
 msgstr "Kann nur Notizen favorisieren."
 
@@ -1374,17 +1378,17 @@ msgstr "Gruppen-Mitgliedschaften von %s"
 
 #. TRANS: Subtitle for group membership feed.
 #. TRANS: %1$s is a username, %2$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "Groups %1$s is a member of on %2$s"
-msgstr "Gruppen %1$s ist ein Mitglied von %2$s"
+msgstr ""
+"Mitglieder der Gruppe %1$s, die auf die Aufnahmebestätigung warten, Seite %2"
+"$s."
 
 #. TRANS: Client exception thrown when trying subscribe someone else to a group.
-#, fuzzy
 msgid "Cannot add someone else's membership."
-msgstr "Kann Abonnement von jemand  anderem nicht eintragen."
+msgstr "Kann kein Abonnement für jemand anderen eintragen."
 
 #. TRANS: Client error displayed when not using the join verb.
-#, fuzzy
 msgid "Can only handle join activities."
 msgstr "Kann nur Beitritts-Aktivitäten durchführen."
 
@@ -1405,18 +1409,16 @@ msgid "No such favorite."
 msgstr "Favorit nicht gefunden."
 
 #. TRANS: Client exception thrown when trying to remove a favorite notice of another user.
-#, fuzzy
 msgid "Cannot delete someone else's favorite."
-msgstr "Kann Favoriten von jemand anderem nicht löschen."
+msgstr "Kann keine Favoriten für jeamnd anderen löschen."
 
 #. TRANS: Client exception thrown when trying to show membership of a non-subscribed group
 msgid "Not a member."
 msgstr "Kein Mitglied"
 
 #. TRANS: Client exception thrown when deleting someone else's membership.
-#, fuzzy
 msgid "Cannot delete someone else's membership."
-msgstr "Konnte Abonnement von jemand anderem nicht löschen."
+msgstr "Kann kein Abonnement für jemand anderen löschen."
 
 #. TRANS: Client exception thrown when trying to display a subscription for a non-existing profile ID.
 #. TRANS: %d is the non-existing profile ID number.
@@ -1426,14 +1428,13 @@ msgstr "Keine Profil-Id: %d"
 
 #. TRANS: Client exception thrown when trying to display a subscription for a non-subscribed profile ID.
 #. TRANS: %1$d is the non-existing subscriber ID number, $2$d is the ID of the profile that was not subscribed to.
-#, fuzzy, php-format
+#, php-format
 msgid "Profile %1$d not subscribed to profile %2$d."
-msgstr "Du hast dieses Profil nicht abonniert."
+msgstr "Profil %1$d hat Profil %2$d nicht abonniert."
 
 #. TRANS: Client exception thrown when trying to delete a subscription of another user.
-#, fuzzy
 msgid "Cannot delete someone else's subscription."
-msgstr "Konnte Selbst-Abonnement nicht löschen."
+msgstr "Kann kein Abonnement eines anderen löschen."
 
 #. TRANS: Subtitle for Atom subscription feed.
 #. TRANS: %1$s is a user nickname, %s$s is the StatusNet sitename.
@@ -1539,9 +1540,9 @@ msgid "No file uploaded."
 msgstr "Keine Datei hoch geladen."
 
 #. TRANS: Avatar upload form instruction after uploading a file.
-#, fuzzy
 msgid "Pick a square area of the image to be your avatar."
-msgstr "Wähle einen quadratischen Bereich aus dem Bild als dein Avatar."
+msgstr ""
+"Wähle einen quadratischen Bereich des Bildes, der dein Avatar sein soll."
 
 #. TRANS: Server error displayed if an avatar upload went wrong somehow server side.
 #. TRANS: Server error displayed trying to crop an uploaded group logo that is no longer present.
@@ -1566,9 +1567,8 @@ msgid "Backup account"
 msgstr "Backup-Konto"
 
 #. TRANS: Client exception thrown when trying to backup an account while not logged in.
-#, fuzzy
 msgid "Only logged-in users can backup their account."
-msgstr "Nur angemeldete Benutzer können Nachrichten wiederholen."
+msgstr "Nur angemeldete Benutzer können ihren Account sichern."
 
 #. TRANS: Client exception thrown when trying to backup an account without having backup rights.
 msgid "You may not backup your account."
@@ -1594,9 +1594,8 @@ msgid "Backup"
 msgstr "Backup"
 
 #. TRANS: Title for submit button to backup an account on the backup account page.
-#, fuzzy
 msgid "Backup your account."
-msgstr "Sicherheitskopie des Konto erstellen."
+msgstr "Sicherheitskopie des Kontos erstellen."
 
 #. TRANS: Client error displayed when blocking a user that has already been blocked.
 msgid "You already blocked that user."
@@ -1629,9 +1628,8 @@ msgid "No"
 msgstr "Nein"
 
 #. TRANS: Submit button title for 'No' when blocking a user.
-#, fuzzy
 msgid "Do not block this user."
-msgstr "Diesen Benutzer nicht blokieren."
+msgstr "Diesen Benutzer nicht blockieren."
 
 #. TRANS: Button label on the user block form.
 #. TRANS: Button label on the delete application form.
@@ -1691,7 +1689,7 @@ msgstr "Versenden an %s"
 #. TRANS: Title for leave group page after leaving.
 #. TRANS: %s$s is the leaving user's name, %2$s is the group name.
 #. TRANS: Title for leave group page after leaving.
-#, fuzzy, php-format
+#, php-format
 msgctxt "TITLE"
 msgid "%1$s left group %2$s"
 msgstr "%1$s hat die Gruppe %2$s verlassen"
@@ -1741,14 +1739,12 @@ msgstr "Diese Adresse wurde bereits bestätigt."
 
 #. TRANS: Server error displayed when updating IM preferences fails.
 #. TRANS: Server error thrown on database error removing a registered IM address.
-#, fuzzy
 msgid "Could not update user IM preferences."
-msgstr "Konnte Benutzereintrag nicht schreiben"
+msgstr "Konnte IM-Einstellungen des Benuzters nicht aktualisieren."
 
 #. TRANS: Server error displayed when adding IM preferences fails.
-#, fuzzy
 msgid "Could not insert user IM preferences."
-msgstr "Konnte neues Abonnement nicht eintragen."
+msgstr "Konnte IM-Einstellungen des Benuzters nichte eintragen."
 
 #. TRANS: Server error displayed when an address confirmation code deletion from the
 #. TRANS: database fails in the contact address confirmation action.
@@ -1776,9 +1772,8 @@ msgid "Notice"
 msgstr "Nachrichten"
 
 #. TRANS: Client exception displayed trying to delete a user account while not logged in.
-#, fuzzy
 msgid "Only logged-in users can delete their account."
-msgstr "Nur angemeldete Benutzer können Nachrichten wiederholen."
+msgstr "Nur angemeldete Benutzer können ihr Konto löschen."
 
 #. TRANS: Client exception displayed trying to delete a user account without have the rights to do that.
 msgid "You cannot delete your account."
@@ -1828,14 +1823,13 @@ msgstr "Bestätigen"
 
 #. TRANS: Input title for the delete account field.
 #. TRANS: %s is the text that needs to be input.
-#, fuzzy, php-format
+#, php-format
 msgid "Enter \"%s\" to confirm that you want to delete your account."
-msgstr "Du kannst keine Benutzer löschen."
+msgstr "Gib „%s” ein, um zu bestätigen, dass du dein Konto löschen willst."
 
 #. TRANS: Button title for user account deletion.
-#, fuzzy
 msgid "Permanently delete your account"
-msgstr "Du kannst keine Benutzer löschen."
+msgstr "Dein Konto für immer löschen"
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
 msgid "You must be logged in to delete an application."
@@ -1871,9 +1865,8 @@ msgstr ""
 "aus der Datenbank entfernt, auch alle bestehenden Benutzer-Verbindungen."
 
 #. TRANS: Submit button title for 'No' when deleting an application.
-#, fuzzy
 msgid "Do not delete this application."
-msgstr "Dieses Programm nicht löschen"
+msgstr "Dieses Programm nicht löschen."
 
 #. TRANS: Submit button title for 'Yes' when deleting an application.
 msgid "Delete this application."
@@ -2099,40 +2092,37 @@ msgstr "Einstellungen gespeichert."
 
 #. TRANS: Title for edit list page after deleting a tag.
 #. TRANS: %s is a list.
-#, fuzzy, php-format
+#, php-format
 msgid "Delete %s list"
-msgstr "Diesen Benutzer löschen"
+msgstr "Löschung der Liste %s"
 
 #. TRANS: Title for edit list page.
 #. TRANS: %s is a list.
 #. TRANS: Form legend for list edit form.
 #. TRANS: %s is a list.
-#, fuzzy, php-format
+#, php-format
 msgid "Edit list %s"
-msgstr "Ungültiger Personen-Tag: „%s“."
+msgstr "Bearbeiten der Liste %s"
 
 #. TRANS: Error message displayed when trying to perform an action that requires a tagging user or ID.
-#, fuzzy
 msgid "No tagger or ID."
-msgstr "Kein Benutzername oder ID"
+msgstr "Kein Benutzer oder ID angegeben."
 
 #. TRANS: Client error displayed when referring to non-local user.
 msgid "Not a local user."
 msgstr "Kein lokaler Benutzer."
 
 #. TRANS: Client error displayed when reting to edit a tag that was not self-created.
-#, fuzzy
 msgid "You must be the creator of the tag to edit it."
-msgstr "Du musst ein Admin sein, um die Gruppe zu bearbeiten"
+msgstr "Du musst der Ersteller dieses Tags sein, um es zu bearbeiten."
 
 #. TRANS: Form instruction for edit list form.
 msgid "Use this form to edit the list."
 msgstr "Benutze dieses Formular, um die Liste zu bearbeiten."
 
 #. TRANS: Form validation error displayed if the form data for deleting a tag was incorrect.
-#, fuzzy
 msgid "Delete aborted."
-msgstr "Notiz löschen"
+msgstr "Löschen abgebrochen."
 
 #. TRANS: Text in confirmation dialog for deleting a tag.
 msgid ""
@@ -2143,15 +2133,14 @@ msgstr ""
 "Mitgliedschaft. Möchtest du trotzdem fortfahren?"
 
 #. TRANS: Form validation error displayed if a given tag is invalid.
-#, fuzzy
 msgid "Invalid tag."
-msgstr "Ungültige Größe."
+msgstr "Ungültiges Tag."
 
 #. TRANS: Form validation error displayed if a given tag is already present.
 #. TRANS: %s is the already present tag.
-#, fuzzy, php-format
+#, php-format
 msgid "You already have a tag named %s."
-msgstr "Nachricht bereits wiederholt"
+msgstr "Das Tag %s existiert bereits."
 
 #. TRANS: Text in confirmation dialog for setting a tag from public to private.
 msgid ""
@@ -2162,9 +2151,8 @@ msgstr ""
 "diesbezüglichen Abonnements. Möchtest du trotzdem fortfahren?"
 
 #. TRANS: Server error displayed when updating a list fails.
-#, fuzzy
 msgid "Could not update list."
-msgstr "Konnte Benutzerdaten nicht aktualisieren."
+msgstr "Konnte Liste nicht aktualisieren."
 
 #. TRANS: Title for e-mail settings.
 msgid "Email settings"
@@ -2313,9 +2301,8 @@ msgstr "Diese E-Mail-Adresse gehört bereits einem anderen Benutzer."
 #. TRANS: Server error thrown on database error adding e-mail confirmation code.
 #. TRANS: Server error thrown on database error adding Instant Messaging confirmation code.
 #. TRANS: Server error thrown on database error adding SMS confirmation code.
-#, fuzzy
 msgid "Could not insert confirmation code."
-msgstr "Konnte keinen Bestätigungscode einfügen."
+msgstr "Konnte Bestätigungscode nicht einfügen."
 
 #. TRANS: Message given saving valid e-mail address that is to be confirmed.
 msgid ""
@@ -2337,7 +2324,6 @@ msgid "That is the wrong email address."
 msgstr "Dies ist die falsche E-Mail Adresse"
 
 #. TRANS: Server error thrown on database error canceling e-mail address confirmation.
-#, fuzzy
 msgid "Could not delete email confirmation."
 msgstr "Konnte E-Mail-Bestätigung nicht löschen."
 
@@ -2361,9 +2347,8 @@ msgstr "Keine Eingangs-E-Mail-Adresse."
 #. TRANS: Server error thrown on database error removing incoming e-mail address.
 #. TRANS: Server error thrown on database error adding incoming e-mail address.
 #. TRANS: Server error displayed when the user could not be updated in SMS settings.
-#, fuzzy
 msgid "Could not update user record."
-msgstr "Konnte Benutzereintrag nicht schreiben"
+msgstr "Konnte Benutzereintrag nicht aktualisieren."
 
 #. TRANS: Message given after successfully removing an incoming e-mail address.
 #. TRANS: Confirmation text after updating SMS settings.
@@ -2380,9 +2365,8 @@ msgid "This notice is already a favorite!"
 msgstr "Diese Nachricht ist bereits ein Favorit!"
 
 #. TRANS: Page title for page on which favorite notices can be unfavourited.
-#, fuzzy
 msgid "Disfavor favorite."
-msgstr "Aus Favoriten entfernen"
+msgstr "Aus den Favoriten entfernen."
 
 #. TRANS: Page title for first page of favorited notices.
 #. TRANS: Title for favourited notices section.
@@ -2453,9 +2437,9 @@ msgid "Featured users, page %d"
 msgstr "Top-Benutzer, Seite %d"
 
 #. TRANS: Description on page displaying featured users.
-#, fuzzy, php-format
+#, php-format
 msgid "A selection of some great users on %s."
-msgstr "Eine Auswahl toller Benutzer auf %s"
+msgstr "Eine Auswahl besonderer Benutzer auf %s."
 
 #. TRANS: Client error displayed when no notice ID was given trying do display a file.
 msgid "No notice ID."
@@ -2578,14 +2562,12 @@ msgstr ""
 "und wird auch in Zukunft dieser Gruppe nicht mehr beitreten können."
 
 #. TRANS: Submit button title for 'No' when blocking a user from a group.
-#, fuzzy
 msgid "Do not block this user from this group."
-msgstr "Diesen Benutzerzugang nicht für diese Gruppe blockieren."
+msgstr "Diesen Benutzer in dieser Gruppe nicht blockieren."
 
 #. TRANS: Submit button title for 'Yes' when blocking a user from a group.
-#, fuzzy
 msgid "Block this user from this group."
-msgstr "Diesen Benutzer von der Gruppe blockieren"
+msgstr "Diesen Benutzer in dieser Gruppe blockieren."
 
 #. TRANS: Server error displayed when trying to block a user from a group fails because of an application error.
 msgid "Database error blocking user from group."
@@ -2654,20 +2636,22 @@ msgstr "Nur der Gruppenverwalter kann Benutzer annehmen."
 
 #. TRANS: Title of the first page showing pending group members still awaiting approval to join the group.
 #. TRANS: %s is the name of the group.
-#, fuzzy, php-format
+#, php-format
 msgid "%s group members awaiting approval"
-msgstr "%s Gruppen-Mitgliedschaften"
+msgstr "Mitglieder der Gruppe %s, die auf die Aufnahmebestätigung warten."
 
 #. TRANS: Title of all but the first page showing pending group members still awaiting approval to join the group.
 #. TRANS: %1$s is the name of the group, %2$d is the page number of the members list.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s group members awaiting approval, page %2$d"
-msgstr "%1$s Gruppen-Mitglieder, Seite %2$d"
+msgstr ""
+"Mitglieder der Gruppe %1$s, die auf die Aufnahmebestätigung warten, Seite %2"
+"$d."
 
 #. TRANS: Page notice for group members page.
-#, fuzzy
 msgid "A list of users awaiting approval to join this group."
-msgstr "Liste der Benutzer in dieser Gruppe."
+msgstr ""
+"Liste von Benutzern, die auf die Bestätigung ihrer Mitgliedschaft warten."
 
 #. TRANS: Message is used as link description. %1$s is a group name, %2$s is a site name.
 #, php-format
@@ -2681,7 +2665,7 @@ msgstr "Gruppen"
 
 #. TRANS: Title for all but the first page of the groups list.
 #. TRANS: %d is the page number.
-#, fuzzy, php-format
+#, php-format
 msgctxt "TITLE"
 msgid "Groups, page %d"
 msgstr "Gruppen, Seite %d"
@@ -2689,7 +2673,7 @@ msgstr "Gruppen, Seite %d"
 #. TRANS: Page notice of group list. %%%%site.name%%%% is the StatusNet site name,
 #. TRANS: %%%%action.groupsearch%%%% and %%%%action.newgroup%%%% are URLs. Do not change them.
 #. TRANS: This message contains Markdown links in the form [link text](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%%%%site.name%%%% groups let you find and talk with people of similar "
 "interests. After you join a group you can send messages to all other members "
@@ -2698,10 +2682,10 @@ msgid ""
 "%%%)!"
 msgstr ""
 "Finde und rede mit Gleichgesinnten in %%%%site.name%%%%-Gruppen. Nachdem du "
-"einer Gruppe beigetreten bist kannst du mit „!Gruppenname“ eine Nachricht an "
-"alle Gruppenmitglieder schicken. Du kannst nach einer [Gruppe suchen](%%%%"
-"action.groupsearch%%%%) oder deine eigene [Gruppe aufmachen!](%%%%action."
-"newgroup%%%%)"
+"einer Gruppe beigetreten bist, kannst du mit „!Gruppenname“ eine Nachricht "
+"an alle Gruppenmitglieder schicken. Du kannst nach einer [Gruppe suchen](%%%%"
+"action.groupsearch%%%%) oder deine eigene [Gruppe aufmachen](%%%%action."
+"newgroup%%%%)!"
 
 #. TRANS: Link to create a new group on the group list page.
 #. TRANS: Link text on group page to create a new group.
@@ -2732,13 +2716,13 @@ msgstr "Keine Ergebnisse."
 
 #. TRANS: Additional text on page where groups can be searched if no results were found for a query for a logged in user.
 #. TRANS: This message contains Markdown links in the form [link text](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "If you cannot find the group you're looking for, you can [create it](%%"
 "action.newgroup%%) yourself."
 msgstr ""
-"Wenn du die Gruppe die dich interessiert nicht finden kannst, dann [erstelle "
-"sie](%%action.newgroup%%) doch einfach."
+"Wenn du die Gruppe, die dich interessiert, nicht finden kannst, dann "
+"[erstelle sie](%%action.newgroup%%) doch einfach."
 
 #. TRANS: Additional text on page where groups can be searched if no results were found for a query for a not logged in user.
 #. TRANS: This message contains Markdown links in the form [link text](link).
@@ -2770,22 +2754,22 @@ msgstr "IM-Einstellungen"
 #. TRANS: Instant messaging settings page instructions.
 #. TRANS: [instant messages] is link text, "(%%doc.im%%)" is the link.
 #. TRANS: the order and formatting of link text and link should remain unchanged.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can send and receive notices through instant messaging [instant messages]"
 "(%%doc.im%%). Configure your addresses and settings below."
 msgstr ""
 "Du kannst Nachrichten mittels [Jabber/GTalk IM](%%doc.im%%) empfangen und "
-"senden. Stelle deine Adresse und Einstellungen unten ein."
+"senden. Stelle deine Adressen und Einstellungen unten ein."
 
 #. TRANS: Message given in the IM settings if IM is not enabled on the site.
 msgid "IM is not available."
 msgstr "IM ist nicht verfügbar."
 
 #. TRANS: Form note in IM settings form. %s is the type of IM address that was confirmed.
-#, fuzzy, php-format
+#, php-format
 msgid "Current confirmed %s address."
-msgstr "Aktuelle bestätigte E-Mail-Adresse."
+msgstr "Aktuelle bestätigte Adresse für %s."
 
 #. TRANS: Form note in IM settings form.
 #. TRANS: %s is the IM service name, %2$s is the IM address set.
@@ -2808,36 +2792,29 @@ msgid "%s screenname."
 msgstr "%s Benutzername."
 
 #. TRANS: Header for IM preferences form.
-#, fuzzy
 msgid "IM Preferences"
 msgstr "IM-Einstellungen"
 
 #. TRANS: Checkbox label in IM preferences form.
-#, fuzzy
 msgid "Send me notices"
-msgstr "Nachricht senden"
+msgstr "Schicke mir Nachrichten"
 
 #. TRANS: Checkbox label in IM preferences form.
-#, fuzzy
 msgid "Post a notice when my status changes."
-msgstr "Schicke eine Nachricht, wenn sich mein Jabber/GTalk-Status verändert."
-
-#. TRANS: Checkbox label in IM preferences form.
-#, fuzzy
-msgid "Send me replies from people I'm not subscribed to."
 msgstr ""
-"Schicke mir Antworten von Leuten, die ich nicht abonniert habe, mit Jabber/"
-"GTalk."
+"Schicke mir eine Nachricht, wenn sich mein Jabber/GTalk-Status verändert."
 
 #. TRANS: Checkbox label in IM preferences form.
-#, fuzzy
+msgid "Send me replies from people I'm not subscribed to."
+msgstr "Schicke mir Antworten von Leuten, die ich nicht abonniert habe."
+
+#. TRANS: Checkbox label in IM preferences form.
 msgid "Publish a MicroID"
-msgstr "MicroID für meine E-Mail-Adresse veröffentlichen."
+msgstr "MicroID veröffentlichen"
 
 #. TRANS: Server error thrown on database error updating IM preferences.
-#, fuzzy
 msgid "Could not update IM preferences."
-msgstr "Konnte Benutzerdaten nicht aktualisieren."
+msgstr "Konnte I%TEinstellungen nihct aktualisieren."
 
 #. TRANS: Confirmation message for successful IM preferences save.
 #. TRANS: Confirmation message after saving preferences.
@@ -2845,29 +2822,24 @@ msgid "Preferences saved."
 msgstr "Einstellungen gesichert."
 
 #. TRANS: Message given saving IM address without having provided one.
-#, fuzzy
 msgid "No screenname."
-msgstr "Kein Benutzername."
+msgstr "Kein IM-Benutzername angegeben."
 
 #. TRANS: Form validation error when no transport is available setting an IM address.
-#, fuzzy
 msgid "No transport."
-msgstr "Keine Nachricht"
+msgstr "Keine Übertragungsmöglichkeit vorhanden."
 
 #. TRANS: Message given saving IM address that cannot be normalised.
-#, fuzzy
 msgid "Cannot normalize that screenname."
-msgstr "Konnte diese Jabber-ID nicht normalisieren"
+msgstr "Konnte den IM-Benutzernamen nicht normalisieren."
 
 #. TRANS: Message given saving IM address that not valid.
-#, fuzzy
 msgid "Not a valid screenname."
 msgstr "Ungültiger Benutzername."
 
 #. TRANS: Message given saving IM address that is already set for another user.
-#, fuzzy
 msgid "Screenname already belongs to another user."
-msgstr "Dieser Benutzername wird bereits von jemand Anderem verwendet."
+msgstr "Dieser Benutzername wird bereits von jemand anderem verwendet."
 
 #. TRANS: Message given saving valid IM address that is to be confirmed.
 msgid "A confirmation code was sent to the IM address you added."
@@ -3247,9 +3219,8 @@ msgid "New group"
 msgstr "Neue Gruppe"
 
 #. TRANS: Client exception thrown when a user tries to create a group while banned.
-#, fuzzy
 msgid "You are not allowed to create groups on this site."
-msgstr "Du darfst diese Gruppe nicht löschen."
+msgstr "Du darfst hier keine Gruppen gründen."
 
 #. TRANS: Form instructions for group create form.
 msgid "Use this form to create a new group."
@@ -3262,7 +3233,6 @@ msgstr "Neue Nachricht"
 
 #. TRANS: Client error displayed trying to send a direct message to a user while sender and
 #. TRANS: receiver are not subscribed to each other.
-#, fuzzy
 msgid "You cannot send a message to this user."
 msgstr "Du kannst diesem Benutzer keine Nachricht schicken."
 
@@ -3296,7 +3266,6 @@ msgstr "Ajax-Fehler"
 
 #. TRANS: Page title for sending a new notice.
 #. TRANS: Title for form to send a new notice.
-#, fuzzy
 msgctxt "TITLE"
 msgid "New notice"
 msgstr "Neue Nachricht"
@@ -3437,15 +3406,15 @@ msgstr ""
 
 #. TRANS: Server error displayed in oEmbed action when path not found.
 #. TRANS: %s is a path.
-#, fuzzy, php-format
+#, php-format
 msgid "\"%s\" not found."
-msgstr "API-Methode nicht gefunden."
+msgstr "„%s“ nicht gefunden."
 
 #. TRANS: Server error displayed in oEmbed action when notice not found.
 #. TRANS: %s is a notice.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice %s not found."
-msgstr "API-Methode nicht gefunden."
+msgstr "Notiz %s nicht gefunden."
 
 #. TRANS: Server error displayed in oEmbed action when notice has not profile.
 #. TRANS: Server error displayed trying to show a notice without a connected profile.
@@ -3461,15 +3430,15 @@ msgstr "Status von %1$s auf %2$s"
 
 #. TRANS: Server error displayed in oEmbed action when attachment not found.
 #. TRANS: %d is an attachment ID.
-#, fuzzy, php-format
+#, php-format
 msgid "Attachment %s not found."
-msgstr "Empfänger nicht gefunden."
+msgstr "Anhang %s nihct gefunden."
 
 #. TRANS: Server error displayed in oEmbed request when a path is not supported.
 #. TRANS: %s is a path.
-#, fuzzy, php-format
+#, php-format
 msgid "\"%s\" not supported for oembed requests."
-msgstr "\"%s\" ist für Oembed-Anfragen nicht unterstützt."
+msgstr "„%s“ wird bei oEmbed-Anfragen nicht unterstützt."
 
 #. TRANS: Error message displaying attachments. %s is a raw MIME type (eg 'image/png')
 #, php-format
@@ -3559,7 +3528,6 @@ msgid "6 or more characters."
 msgstr "6 oder mehr Zeichen"
 
 #. TRANS: Field label on page where to change password. In this field the new password should be typed a second time.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Bestätigen"
@@ -3571,7 +3539,6 @@ msgid "Same as password above."
 msgstr "Gleiches Passwort wie zuvor"
 
 #. TRANS: Button text on page where to change password.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Change"
 msgstr "Ändern"
@@ -3583,14 +3550,12 @@ msgstr "Das Passwort muss aus 6 oder mehr Zeichen bestehen."
 
 #. TRANS: Form validation error on password change when password confirmation does not match.
 #. TRANS: Form validation error displayed when trying to register with non-matching passwords.
-#, fuzzy
 msgid "Passwords do not match."
 msgstr "Passwörter stimmen nicht überein."
 
 #. TRANS: Form validation error on page where to change password.
-#, fuzzy
 msgid "Incorrect old password."
-msgstr "Altes Passwort falsch"
+msgstr "Das alte Passwort wurde falsch angegeben."
 
 #. TRANS: Form validation error on page where to change password.
 msgid "Error saving user; invalid."
@@ -3599,9 +3564,8 @@ msgstr "Fehler beim Speichern des Benutzers, ungültig."
 #. TRANS: Server error displayed on page where to change password when password change
 #. TRANS: could not be made because of a server error.
 #. TRANS: Reset password form validation error message.
-#, fuzzy
 msgid "Cannot save new password."
-msgstr "Konnte neues Passwort nicht speichern"
+msgstr "Kann neues Passwort nicht speichern."
 
 #. TRANS: Form validation notice on page where to change password.
 msgid "Password saved."
@@ -3677,12 +3641,10 @@ msgid "Fancy URLs"
 msgstr "Schicke URLs."
 
 #. TRANS: Field title in Paths admin panel.
-#, fuzzy
 msgid "Use fancy URLs (more readable and memorable)?"
-msgstr "Schicke URLs (lesbarer und besser zu merken) verwenden?"
+msgstr "Ausgefallene URLs verwenden (lesbarer und besser merkbar)?"
 
 #. TRANS: Fieldset legend in Paths admin panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Theme"
 msgstr "Motiv"
@@ -3772,7 +3734,6 @@ msgid "Directory where attachments are located."
 msgstr "Pfad, in dem sich die Themes befinden."
 
 #. TRANS: Fieldset legend in Paths admin panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "SSL"
 msgstr "SSL"
@@ -3823,34 +3784,34 @@ msgstr "Suche nach anderen Benutzern"
 
 #. TRANS: Title for list page.
 #. TRANS: %s is a list.
-#, fuzzy, php-format
+#, php-format
 msgid "Public list %s"
-msgstr "Öffentliche Tag-Wolke"
+msgstr "Öffentliche Liste %s"
 
 #. TRANS: Title for list page.
 #. TRANS: %1$s is a list, %2$d is a page number.
-#, fuzzy, php-format
+#, php-format
 msgid "Public list %1$s, page %2$d"
-msgstr "Antworten an %1$s, Seite %2$d"
+msgstr "Öffentliche Liste %1$s, Seite %2$d"
 
 #. TRANS: Message for anonymous users on list page.
 #. TRANS: This message contains Markdown links in the form [description](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Lists are how you sort similar people on %%site.name%%, a [micro-blogging]"
 "(http://en.wikipedia.org/wiki/Micro-blogging) service based on the Free "
 "Software [StatusNet](http://status.net/) tool. You can then easily keep "
 "track of what they are doing by subscribing to the list's timeline."
 msgstr ""
-"**%s** ist eine Benutzergruppe auf %%%%site.name%%%%, einem [Mikroblogging]"
-"(http://de.wikipedia.org/wiki/Mikroblogging)-Dienst basierend auf der freien "
-"Software [StatusNet](http://status.net/). Seine Mitglieder erstellen kurze "
-"Nachrichten über ihr Leben und Interessen. "
+"Listen sind ein Mechanismus, um ähnliche Leute auf %%%%site.name%%%%, einem "
+"[Mikroblogging](http://de.wikipedia.org/wiki/Mikroblogging)-Dienst, "
+"basierend auf der freien Software [StatusNet](http://status.net/), zu "
+"gruppieren. Du kannst leicht verfolgen, was sie tun, indem du die Zeitleiste "
+"der Liste abonnierst."
 
 #. TRANS: Client error displayed when a tagger is expected but not provided.
-#, fuzzy
 msgid "No tagger."
-msgstr "Tag nicht vorhanden."
+msgstr "Kein Benutzer angegeben."
 
 #. TRANS: Title for list of people listed by the user.
 #. TRANS: %1$s is a list, %2$s is a username.
@@ -4338,6 +4299,11 @@ msgstr "Öffentliche Zeitleiste, Seite %d"
 #. TRANS: Menu item title in search group navigation panel.
 msgid "Public timeline"
 msgstr "Öffentliche Zeitleiste"
+
+#. TRANS: Link description for public timeline feed.
+#, fuzzy
+msgid "Public Stream Feed (Activity Streams JSON)"
+msgstr "Feed des öffentlichen Streams (Atom)"
 
 #. TRANS: Link description for public timeline feed.
 msgid "Public Stream Feed (RSS 1.0)"
@@ -4901,6 +4867,12 @@ msgstr "Antworten an %1$s, Seite %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Replies feed for %s (Activity Streams JSON)"
+msgstr "Feed der Nachrichten von %s (Atom)"
+
+#. TRANS: Link for feed with replies for a user.
+#. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (RSS 1.0)"
 msgstr "Feed der Antworten an %s (RSS 1.0)"
@@ -5171,6 +5143,11 @@ msgid "Could not retrieve favorite notices."
 msgstr "Konnte Favoriten nicht abrufen."
 
 #. TRANS: Feed link text. %s is a username.
+#, fuzzy, php-format
+msgid "Feed for favorites of %s (Activity Streams JSON)"
+msgstr "Feed der Freunde von %s (Atom)"
+
+#. TRANS: Feed link text. %s is a username.
 #, php-format
 msgid "Feed for favorites of %s (RSS 1.0)"
 msgstr "Feed der Freunde von %s (RSS 1.0)"
@@ -5231,6 +5208,11 @@ msgstr "%s-Gruppe"
 #, php-format
 msgid "%1$s group, page %2$d"
 msgstr "%1$s Gruppe, Seite %d"
+
+#. TRANS: Tooltip for feed link. %s is a group nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s group (Activity Streams JSON)"
+msgstr "Nachrichtenfeed der Gruppe %s (Atom)"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
@@ -5464,6 +5446,12 @@ msgstr "Mit „%1$s“ getaggte Nachrichten, Seite %2$d"
 #, php-format
 msgid "Notice feed for %1$s tagged %2$s (RSS 1.0)"
 msgstr "Feed aller von „%1$s“ mit „%2$s“ getaggten Nachrichten (RSS 1.0)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy, php-format
+msgid "Notice feed for %s (Activity Streams JSON)"
+msgstr "Feed der Nachrichten von %s (Atom)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
@@ -6112,6 +6100,12 @@ msgstr "SMS"
 #, php-format
 msgid "Notices tagged with %1$s, page %2$d"
 msgstr "Mit „%1$s“ getaggte Nachrichten, Seite %2$d"
+
+#. TRANS: Link label for feed on "notices with tag" page.
+#. TRANS: %s is the tag the feed is for.
+#, fuzzy, php-format
+msgid "Notice feed for tag %s (Activity Streams JSON)"
+msgstr "Nachrichten-Feed des Tags „%s“ (Atom)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -8196,6 +8190,10 @@ msgstr "Atom"
 #. TRANS: Feed type name. FOAF stands for Friend of a Friend.
 msgid "FOAF"
 msgstr "FOAF"
+
+#. TRANS: Feed type name. See http://activitystrea.ms/
+msgid "Activity Streams"
+msgstr ""
 
 #. TRANS: Client exception thrown when an imported feed does not have an author.
 msgid "No author in the feed."
