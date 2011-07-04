@@ -63,7 +63,7 @@ class Blog_entry extends Managed_DataObject
     
     function staticGet($k, $v=null)
     {
-        return Managed_DataObject::staticGet('blog_entry', $k, $v);
+        return Managed_DataObject::staticGet('Blog_entry', $k, $v);
     }
 
     static function schemaDef()
@@ -99,12 +99,14 @@ class Blog_entry extends Managed_DataObject
                                     'description' => 'date this record was created'),
             ),
             'primary key' => array('id'),
+            'unique keys' => array(
+                'blog_entry_uri_key' => array('uri'),
+            ),
             'foreign keys' => array(
                 'blog_entry_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
             ),
             'indexes' => array(
-                'blog_entry_created_idx' => array('created'),
-                'blog_entry_uri_idx' => array('uri'),
+                'blog_entry_created_idx' => array('created')
             ),
         );
     }
