@@ -146,18 +146,18 @@ class TagSub extends Managed_DataObject
         $keypart = sprintf('tagsub:by_profile:%d', $profile->id);
         $tagstring = self::cacheGet($keypart);
         
-        if ($tagstring !== false && !empty($tagstring)) {
-            $tags = explode(',', $tagstring);
+        if ($tagstring !== false) { // cache hit
+        	if (!empty($tagstring)) {
+            	$tags = explode(',', $tagstring);
+        	}
         } else {
-            $tagsub = new TagSub();
+            $tagsub             = new TagSub();
             $tagsub->profile_id = $profile->id;
+            $tagsub->selectAdd();
+            $tagsub->selectAdd('tag');
 
             if ($tagsub->find()) {
-                while ($tagsub->fetch()) {
-                    if (!empty($tagsub->tag)) {
-                        $tags[] = $tagsub->tag;
-                    }
-                }
+				$tags = $tagsub->fetchAll('tag');
             }
 
             self::cacheSet($keypart, implode(',', $tags));
