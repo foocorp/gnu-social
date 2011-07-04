@@ -46,6 +46,7 @@ class Poll_response extends Managed_DataObject
 {
     public $__table = 'poll_response'; // table name
     public $id;          // char(36) primary key not null -> UUID
+    public $uri;          // varchar(255)
     public $poll_id;     // char(36) -> poll.id UUID
     public $profile_id;  // int -> profile.id
     public $selection;   // int -> choice #
