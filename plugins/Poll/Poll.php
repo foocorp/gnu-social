@@ -160,15 +160,9 @@ class Poll extends Managed_DataObject
      */
     function getResponse(Profile $profile)
     {
-        $pr = new Poll_response();
-        $pr->poll_id = $this->id;
-        $pr->profile_id = $profile->id;
-        $pr->find();
-        if ($pr->fetch()) {
-            return $pr;
-        } else {
-            return null;
-        }
+    	$pr = Poll_response::pkeyGet(array('poll_id' => $this->id,
+    									   'profile_id' => $profile->id));
+    	return $pr;
     }
 
     function countResponses()
