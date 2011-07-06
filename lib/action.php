@@ -1360,9 +1360,13 @@ class Action extends HTMLOutputter // lawsuit
             $classes[] = 'current';
         }
 
-        $lattrs['class'] = implode(' ', $classes);
+        if (!empty($classes)) {
+            $lattrs['class'] = implode(' ', $classes);
+        }
 
-        (is_null($id)) ? $lattrs : $lattrs['id'] = $id;
+        if (!is_null($id)) {
+            $lattrs['id'] = $id;
+        }
 
         $this->elementStart('li', $lattrs);
         $attrs['href'] = $url;
