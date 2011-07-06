@@ -61,33 +61,24 @@ class GroupsNav extends Menu
         return (!empty($this->groups) && ($this->groups->N > 0));
     }
 
-    /**
-     * Show the menu
-     *
-     * @return void
-     */
-    function show()
+    function tag()
     {
-        $action = $this->actionName;
+        return 'groups';
+    }
 
-        $this->out->elementStart('ul', array('class' => 'nav'));
+    function getItems()
+    {
+        $items = array();
 
-        if (Event::handle('StartGroupsNav', array($this))) {
-
-            while ($this->groups->fetch()) {
-                $this->out->menuItem(($this->groups->mainpage) ?
-                                     $this->groups->mainpage :
-                                     common_local_url('showgroup',
-                                                      array('nickname' => $this->groups->nickname)),
-                                     $this->groups->getBestName(),
-                                     '',
-                                     $action == 'showgroup' &&
-                                     $this->action->arg('nickname') == $this->groups->nickname,
-                                     'nav_timeline_group_'.$this->groups->nickname);
-            }
-            Event::handle('EndGroupsNav', array($this));
+        while ($this->groups->fetch()) {
+            $items[] = array('showgroup',
+                             array('nickname' => $this->groups->nickname),
+                             $this->groups->getBestName(),
+                             $this->groups->getBestName()
+                            );
         }
 
-        $this->out->elementEnd('ul');
+        return $items;
     }
+    
 }
