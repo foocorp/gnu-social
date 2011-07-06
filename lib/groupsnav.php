@@ -46,8 +46,6 @@ if (!defined('STATUSNET')) {
  */
 class GroupsNav extends Menu
 {
-	const TOP_GROUPS = 5;
-	
     protected $user;
     protected $groups;
 
@@ -55,28 +53,13 @@ class GroupsNav extends Menu
     {
         parent::__construct($action);
         $this->user = $user;
-        $this->groups = $this->getTopGroups($user);
+        $this->groups = $user->getGroups();
     }
 
     function haveGroups()
     {
         return (!empty($this->groups) && ($this->groups->N > 0));
     }
-
-	function getTopGroups($user)
-	{
-        $memberships = Group_member::byMember($user->id,
-                                              0,
-                                              self::TOP_GROUPS + 1);
-
-        $g = array();
-
-        while ($memberships->fetch()) {
-            $g[] = User_group::staticGet('id', $memberships->group_id);
-        }
-        
-        return new ArrayWrapper($g);
-	}
 
     /**
      * Show the menu
@@ -87,21 +70,11 @@ class GroupsNav extends Menu
     {
         $action = $this->actionName;
 
-        $this->out->elementStart('ul', array('class' => 'nav',
-                                             'id' => 'nav_group'));
+        $this->out->elementStart('ul', array('class' => 'nav'));
 
         if (Event::handle('StartGroupsNav', array($this))) {
 
-			$cnt = 0;
-			
             while ($this->groups->fetch()) {
-            	
-            	$cnt++;
-            	
-            	if ($cnt > self::TOP_GROUPS) {
-            		break;
-            	}
-            	
                 $this->out->menuItem(($this->groups->mainpage) ?
                                      $this->groups->mainpage :
                                      common_local_url('showgroup',
@@ -112,16 +85,6 @@ class GroupsNav extends Menu
                                      $this->action->arg('nickname') == $this->groups->nickname,
                                      'nav_timeline_group_'.$this->groups->nickname);
             }
-            
-            if ($cnt > self::TOP_GROUPS) {
-            	$this->out->menuItem(sprintf('javascript:SN.U.showMoreGroupMenuItems("%s")', 
-                                             common_local_url('AtomPubMembershipFeed', array('profile' => $this->user->id))),
-                                     _('More ▼'),
-                                     _('More groups'),
-                                     false,
-                                     'nav_timeline_more_group_menu_items');
-            }
-            
             Event::handle('EndGroupsNav', array($this));
         }
 

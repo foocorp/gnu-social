@@ -1422,29 +1422,6 @@ var SN = { // StatusNet
                     SN.Init.NoticeFormSetup(form);
                 })
                 .find('.notice_data-text').focus();
-	},
-
-	showMoreGroupMenuItems: function(url) {
-            $.ajax({
-                type: 'GET',
-                dataType: 'xml',
-                url: url,
-                success: function(data, textStatus) {
-		    var groupmenu = $('ul#nav_group');
-		    $('li#nav_timeline_more_group_menu_items').remove();
-		    $("activity\\:object", data).each(function() {
-			var group = $(this);
-			var fullname = $('title',group).text();
-			var nickname = $('poco\\:preferredUsername',group).text();
-			var url      = $('link[rel="alternate"][type="text/html"]',group).attr('href');
-			if ($('li#nav_timeline_group_'+nickname, groupmenu).length == 0) {
-			    groupmenu.append('<li id="nav_timeline_group_"' + nickname +'">'+
-					     '<a href="'+url+'">'+fullname+'</a>'+
-					     '</li>');
-			}
-		    });
-                }
-            });
 	}
     },
 
