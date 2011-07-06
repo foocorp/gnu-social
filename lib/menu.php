@@ -143,6 +143,8 @@ class Menu extends Widget
                 $id .= '_' . $key . '_' . $value;
             }
         }
+
+        return $id;
     }
 
     function submenu($label, $menu)
