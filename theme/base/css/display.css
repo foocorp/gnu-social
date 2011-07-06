@@ -2229,6 +2229,10 @@ float:right;
 display:none;
 }
 
+#site_nav_local_views li.extended_menu a {
+    display:none;
+}
+
 /*end of @media screen, projection, tv*/
 
 

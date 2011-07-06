@@ -44,7 +44,7 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-class GroupsNav extends Menu
+class GroupsNav extends MoreMenu
 {
     protected $user;
     protected $groups;

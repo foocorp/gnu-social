@@ -104,7 +104,7 @@ class Menu extends Widget
         }
     }
     
-    function item($actionName, $args, $label, $description, $id=null)
+    function item($actionName, $args, $label, $description, $id=null, $cls=null)
     {
         if (empty($id)) {
             $id = $this->menuItemID($actionName, $args);
@@ -116,7 +116,8 @@ class Menu extends Widget
                              $label,
                              $description,
                              $this->isCurrent($actionName, $args),
-                             $id);
+                             $id,
+                             $cls);
     }
 
     function isCurrent($actionName, $args)
