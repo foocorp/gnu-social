@@ -103,11 +103,13 @@ class MoreMenu extends Menu
                     $this->item($actionName, $args, $label, $description, $id, 'extended_menu');
                 }
 
-                $seeAll = $this->seeAllItem();
+                if ($total > self::HARD_MAX) {
+                    $seeAll = $this->seeAllItem();
 
-                if (!empty($seeAll)) {
-                    list($actionName, $args, $label, $description, $id) = $seeAll;
-                    $this->item($actionName, $args, $label, $description, $id, 'extended_menu see_all');
+                    if (!empty($seeAll)) {
+                        list($actionName, $args, $label, $description, $id) = $seeAll;
+                        $this->item($actionName, $args, $label, $description, $id, 'extended_menu see_all');
+                    }
                 }
             }
             
