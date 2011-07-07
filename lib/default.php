@@ -61,6 +61,7 @@ $default =
               'textlimit' => 140,
               'indent' => true,
               'use_x_sendfile' => false,
+              'cors' => true,
               'notice' => null, // site wide notice text
               'build' => 1, // build number, for code-dependent cache
               'minify' => true, // true to use the minified versions of JS files; false to use orig files. Can aid during development

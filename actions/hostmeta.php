@@ -59,6 +59,10 @@ class HostMetaAction extends Action
             Event::handle('EndHostMetaLinks', array(&$xrd->links));
         }
 
+        global $config;
+        if($config['site']['cors'] === true){
+            header('Access-Control-Allow-Origin: *');
+        }
         header('Content-type: application/xrd+xml');
         print $xrd->toXML();
     }
