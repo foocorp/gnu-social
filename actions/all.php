@@ -195,8 +195,21 @@ class AllAction extends ProfileAction
 
     function showSections()
     {
-        $ibs = new InviteButtonSection($this);
-        $ibs->show();
+        // Show invite button, as long as site isn't closed, and
+        // we have a logged in user.
+        if (!common_config('site', 'closed') && common_logged_in()) {
+            if (!common_config('site', 'private')) {
+                $ibs = new InviteButtonSection(
+                    $this,
+                    // TRANS: Button text for inviting more users to the StatusNet instance.
+                    // TRANS: Less business/enterprise-oriented language for public sites.
+                    _m('BUTTON', 'Send invite')
+                );
+            } else {
+                $ibs = new InviteButtonSection($this);
+            }
+            $ibs->show();
+        }
         $pop = new PopularNoticeSection($this);
         $pop->show();
         //        $pop = new InboxTagCloudSection($this, $this->user);
