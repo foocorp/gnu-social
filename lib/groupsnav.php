@@ -80,5 +80,12 @@ class GroupsNav extends MoreMenu
 
         return $items;
     }
+
+    function seeAllItem() {
+        return array('usergroups',
+                     array('nickname' => $this->user->nickname),
+                     _('See all'),
+                     _('See all groups you belong to'));
+    }
     
 }

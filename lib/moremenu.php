@@ -62,11 +62,13 @@ class MoreMenu extends Menu
     {
         $items = $this->getItems();
         $tag = $this->tag();
+        $menuID  = null;
 
         $attrs = array('class' => 'nav');
 
         if (!is_null($tag)) {
-            $attrs['id']  = 'nav_' . $tag;
+            $menuID = 'nav_' . $tag;
+            $attrs['id'] = $menuID;
         }
 
         if (Event::handle('StartNav', array($this, &$tag, &$items))) {
@@ -87,8 +89,10 @@ class MoreMenu extends Menu
             }
 
             if ($total > self::SOFT_MAX + 1) {
-                $this->out->elementStart('li');
-                $this->out->element('a', array('href' => '#'),
+
+                $this->out->elementStart('li', array('class' => 'more_link'));
+                $this->out->element('a', array('href' => '#',
+                                               'onclick' => 'SN.U.showMoreMenuItems("'.$menuID.'"); return false;'),
                                     _('More ▼'));
                 $this->out->elementEnd('li');
 

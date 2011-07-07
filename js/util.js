@@ -1422,7 +1422,15 @@ var SN = { // StatusNet
                     SN.Init.NoticeFormSetup(form);
                 })
                 .find('.notice_data-text').focus();
-	}
+	},
+
+        showMoreMenuItems: function(menuid) {
+            $('#'+menuid+' .more_link').remove();
+            var selector = '#'+menuid+' .extended_menu';
+            var extended = $(selector);
+            extended.removeClass('extended_menu');
+            return void(0);
+        }
     },
 
     Init: {
