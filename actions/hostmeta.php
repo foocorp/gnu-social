@@ -44,7 +44,6 @@ class HostMetaAction extends Action
     function handle()
     {
         parent::handle();
-        common_debug("GARGARGAR");
 
         $domain = common_config('site', 'server');
 
