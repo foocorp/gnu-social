@@ -59,6 +59,27 @@ class RealtimePlugin extends Plugin
                                             array('notice' => '0000000000'));
         return true;
     }
+    
+    function onCheckSchema()
+    {
+        $schema = Schema::get();
+        $schema->ensureTable('realtime_channel', Realtime_channel::schemaDef());
+        return true;
+    }
+    
+    function onAutoload($cls)
+    {
+        $dir = dirname(__FILE__);
+
+        switch ($cls)
+        {
+        case 'Realtime_channel':
+            include_once $dir.'/'.$cls.'.php';
+            return false;
+        default:
+            return true;
+        }
+    }
 
     function onEndShowScripts($action)
     {
@@ -377,6 +398,10 @@ class RealtimePlugin extends Plugin
 
         $action_name = $action->trimmed('action');
 
+		// FIXME: lists
+		// FIXME: search (!)
+		// FIXME: 
+		
         switch ($action_name) {
          case 'public':
             $path = array('public');
