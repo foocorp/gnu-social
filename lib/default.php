@@ -349,4 +349,6 @@ $default =
               ),
         'router' =>
         array('cache' => true), // whether to cache the router object. Defaults to true, turn off for devel
+        'discovery' =>
+        array('cors' => false) // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
     );

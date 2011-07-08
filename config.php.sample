@@ -41,6 +41,12 @@ $config['site']['path'] = 'statusnet';
 // Make the site invisible to  non-logged-in users
 // $config['site']['private'] = true;
 
+// Allow Cross-Origin Resource Sharing (CORS) for service discovery
+// (host-meta, XRD, etc.) Useful for AJAXy client applications. Should
+// probably NOT be on for private / intranet sites but OK for public sites.
+// Default is off.
+// $config['discovery']['cors'] = true;
+
 // If your web server supports X-Sendfile (Apache with mod_xsendfile,
 // lighttpd, nginx), you can enable X-Sendfile support for better
 // performance. Presently, only attachment serving when the site is
