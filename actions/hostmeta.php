@@ -44,6 +44,7 @@ class HostMetaAction extends Action
     function handle()
     {
         parent::handle();
+        common_debug("GARGARGAR");
 
         $domain = common_config('site', 'server');
 
@@ -59,11 +60,13 @@ class HostMetaAction extends Action
             Event::handle('EndHostMetaLinks', array(&$xrd->links));
         }
 
-        global $config;
-        if($config['site']['cors'] === true){
+        // Output Cross-Origin Resource Sharing (CORS) header
+        if (common_config('discovery', 'cors')) {
             header('Access-Control-Allow-Origin: *');
         }
+
         header('Content-type: application/xrd+xml');
+
         print $xrd->toXML();
     }
 }

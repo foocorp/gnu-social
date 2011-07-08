@@ -31,9 +31,6 @@ class UserxrdAction extends XrdAction
     {
         parent::prepare($args);
         global $config;
-        if($config['site']['cors'] === true){
-            header('Access-Control-Allow-Origin: *');
-        }
 
         $this->uri = $this->trimmed('uri');
         $this->uri = self::normalize($this->uri);

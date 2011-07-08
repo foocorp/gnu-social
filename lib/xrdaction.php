@@ -117,7 +117,12 @@ class XrdAction extends Action
             Event::handle('EndXrdActionLinks', array(&$xrd, $this->user));
         }
 
+        if (common_config('discovery', 'cors')) {
+            header('Access-Control-Allow-Origin: *');
+        }
+
         header('Content-type: application/xrd+xml');
+
         print $xrd->toXML();
     }
 
