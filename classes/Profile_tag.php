@@ -55,20 +55,17 @@ class Profile_tag extends Memcached_DataObject
             return $tags;
         }
 
-        $profile_tag = new Profile_tag();
-        $profile_list->tagger = $tagger;
-        $profile_tag->tagged = $tagged;
+        $qry = 'select profile_list.* from profile_list left join '.
+               'profile_tag on (profile_list.tag = profile_tag.tag and '.
+               'profile_list.tagger = profile_tag.tagger) where '.
+               'profile_tag.tagger = %d and profile_tag.tagged = %d ';
+        $qry = sprintf($qry, $tagger, $tagged);
 
-        $profile_list->selectAdd();
+        if (!$include_priv) {
+            $qry .= 'profile_list.private = 0';
+        }
 
-        // only fetch id, tag, mainpage and
-        // private hoping this will be faster
-        $profile_list->selectAdd('profile_list.id, ' .
-                                 'profile_list.tag, ' .
-                                 'profile_list.mainpage, ' .
-                                 'profile_list.private');
-        $profile_list->joinAdd($profile_tag);
-        $profile_list->find();
+        $profile_list->query($qry);
 
         Profile_list::setCache($key, $profile_list);
 

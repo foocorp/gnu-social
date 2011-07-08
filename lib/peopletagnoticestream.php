@@ -99,7 +99,9 @@ class RawPeopletagNoticeStream extends NoticeStream
         $ptag = new Profile_tag();
         $ptag->tag    = $this->profile_list->tag;
         $ptag->tagger = $this->profile_list->tagger;
-        $notice->joinAdd($ptag);
+        $notice->joinAdd(array('profile_id', 'profile_tag:tagged'));
+        $notice->whereAdd('profile_tag.tagger = ' . $this->profile_list->tagger);
+        $notice->whereAdd(sprintf('profile_tag.tag = "%s"', $this->profile_list->tag));
 
         if ($since_id != 0) {
             $notice->whereAdd('notice.id > ' . $since_id);

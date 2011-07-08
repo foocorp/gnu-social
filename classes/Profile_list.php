@@ -185,10 +185,12 @@ class Profile_list extends Memcached_DataObject
     function getSubscribers($offset=0, $limit=null, $since=0, $upto=0)
     {
         $subs = new Profile();
-        $sub = new Profile_tag_subscription();
-        $sub->profile_tag_id = $this->id;
 
-        $subs->joinAdd($sub);
+        $subs->joinAdd(
+            array('id', 'profile_tag_subscription:profile_id')
+        );
+        $subs->whereAdd('profile_tag_subscription.profile_tag_id = ' . $this->id);
+
         $subs->selectAdd('unix_timestamp(profile_tag_subscription.' .
                          'created) as "cursor"');
 
