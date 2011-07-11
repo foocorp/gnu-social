@@ -197,7 +197,7 @@ class Realtime_channel extends Managed_DataObject
     		$channel->arg2 = $arg2;
     	}
     	
-    	$channel->whereAdd('modified > "' . common_sql_time(time() - self::TIMEOUT) . '"');
+    	$channel->whereAdd('modified > "' . common_sql_date(time() - self::TIMEOUT) . '"');
     	
     	$channels = array();
     	
