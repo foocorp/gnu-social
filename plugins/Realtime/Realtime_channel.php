@@ -131,6 +131,7 @@ class Realtime_channel extends Managed_DataObject
             ),
             'indexes' => array(
                 'realtime_channel_modified_idx' => array('modified'),
+                'realtime_channel_page_idx' => array('action', 'arg1', 'arg2')
             ),
         );
     }
