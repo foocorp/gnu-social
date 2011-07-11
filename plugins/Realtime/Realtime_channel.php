@@ -157,10 +157,7 @@ class Realtime_channel extends Managed_DataObject
     
     static function getChannel($user_id, $action, $arg1, $arg2)
     {
-    	$channel = self::pkeyGet(array('user_id' => $user_id,
-    								   'action' => $action,
-    								   'arg1' => $arg1,
-    								   'arg2' => $arg2));
+    	$channel = self::fetchChannel($user_id, $action, $arg1, $arg2);
     	
     	// Ignore (and delete!)	old channels
     				   
@@ -206,5 +203,40 @@ class Realtime_channel extends Managed_DataObject
     	}
     	
     	return $channels;
+    }
+    
+    static function fetchChannel($user_id, $action, $arg1, $arg2)
+    {	
+    	$channel = new Realtime_channel();
+    	
+    	if (is_null($user_id)) {
+    		$channel->whereAdd('user_id is null');
+    	} else {
+    		$channel->user_id = $user_id;
+    	}
+    	
+    	$channel->action = $action;
+    	
+    	if (is_null($arg1)) {
+    		$channel->whereAdd('arg1 is null');
+    	} else {
+    		$channel->arg1 = $arg1;
+    	}
+    	
+    	if (is_null($arg2)) {
+    		$channel->whereAdd('arg2 is null');
+    	} else {
+    		$channel->arg2 = $arg2;
+    	}
+    	
+    	if ($channel->find(true)) {
+    		// Touch it!
+    		$orig = clone($channel);
+    		$channel->modified = common_sql_now();
+    		$channel->update($orig);
+    		return $channel;
+    	} else {
+    		return null;
+    	}
     }
 }
