@@ -468,4 +468,9 @@ class RealtimePlugin extends Plugin
 				
         return $timeline;
     }
+    
+    function onStartReadWriteTables(&$alwaysRW, &$rwdb)
+    {
+    	$alwaysRW[] = 'realtime_channel';
+    }
 }
