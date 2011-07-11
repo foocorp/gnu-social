@@ -137,8 +137,6 @@ class Realtime_channel extends Managed_DataObject
     
     static function saveNew($user_id, $action, $arg1, $arg2)
     {
-    	$channel = self::getChannel($user_id, $action, $arg1, $arg2);
-    	
     	$channel = new Realtime_channel();
     	
     	$channel->user_id = $user_id;
@@ -173,6 +171,39 @@ class Realtime_channel extends Managed_DataObject
 			}
     	}
     	
+    	if (empty($channel)) {
+    		$channel = self::saveNew($user_id, $action, $arg1, $arg2);
+    	}
+    	
     	return $channel;
+    }
+    
+    static function getAllChannels($action, $arg1, $arg2)
+    {
+    	$channel = new Realtime_channel();
+    	
+    	$channel->action = $action;
+    	
+    	if (is_null($arg1)) {
+    		$channel->whereAdd('arg1 is null');
+    	} else {
+    		$channel->arg1 = $arg1;
+    	}
+    	
+    	if (is_null($arg2)) {
+    		$channel->whereAdd('arg2 is null');
+    	} else {
+    		$channel->arg2 = $arg2;
+    	}
+    	
+    	$channel->whereAdd('modified > "' . common_sql_time(time() - self::TIMEOUT) . '"');
+    	
+    	$channels = array();
+    	
+    	if ($channel->find()) {
+    		$channels = $channel->fetchAll();
+    	}
+    	
+    	return $channels;
     }
 }

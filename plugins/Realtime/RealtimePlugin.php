@@ -147,14 +147,14 @@ class RealtimePlugin extends Plugin
         $user = User::staticGet('id', $notice->profile_id);
 
         if (!empty($user)) {
-            $paths[] = array('showstream', $user->nickname);
+            $paths[] = array('showstream', $user->nickname, null);
         }
 
         // Add to the public timeline
 
         if ($notice->is_local == Notice::LOCAL_PUBLIC ||
             ($notice->is_local == Notice::REMOTE_OMB && !common_config('public', 'localonly'))) {
-            $paths[] = array('public');
+            $paths[] = array('public', null, null);
         }
 
         // Add to the tags timeline
@@ -163,7 +163,7 @@ class RealtimePlugin extends Plugin
 
         if (!empty($tags)) {
             foreach ($tags as $tag) {
-                $paths[] = array('tag', $tag);
+                $paths[] = array('tag', $tag, null);
             }
         }
 
@@ -174,7 +174,7 @@ class RealtimePlugin extends Plugin
 
         foreach (array_keys($ni) as $user_id) {
             $user = User::staticGet('id', $user_id);
-            $paths[] = array('all', $user->nickname);
+            $paths[] = array('all', $user->nickname, null);
         }
 
         // Add to the replies timeline
@@ -186,7 +186,7 @@ class RealtimePlugin extends Plugin
             while ($reply->fetch()) {
                 $user = User::staticGet('id', $reply->profile_id);
                 if (!empty($user)) {
-                    $paths[] = array('replies', $user->nickname);
+                    $paths[] = array('replies', $user->nickname, null);
                 }
             }
         }
@@ -200,7 +200,7 @@ class RealtimePlugin extends Plugin
         if ($gi->find()) {
             while ($gi->fetch()) {
                 $ug = User_group::staticGet('id', $gi->group_id);
-                $paths[] = array('showgroup', $ug->nickname);
+                $paths[] = array('showgroup', $ug->nickname, null);
             }
         }
 
@@ -211,8 +211,22 @@ class RealtimePlugin extends Plugin
             $this->_connect();
 
             foreach ($paths as $path) {
-                $timeline = $this->_pathToChannel($path);
-                $this->_publish($timeline, $json);
+            	
+            	list($action, $arg1, $arg2) = $path;
+            	
+            	$channels = Realtime_channel::getAllChannels($action, $arg1, $arg2);
+            	
+            	foreach ($channels as $channel) {
+            		if (is_null($channel->user_id)) {
+            			$profile = null;
+            		} else {
+            			$profile = Profile::staticGet('id', $channel->user_id);
+            		}
+            		if ($notice->inScope($profile)) {
+            			$timeline = $this->_pathToChannel(array($channel->channel_key));		
+                		$this->_publish($timeline, $json);
+            		}
+            	}
             }
 
             $this->_disconnect();
@@ -393,23 +407,27 @@ class RealtimePlugin extends Plugin
 
     function _getTimeline($action)
     {
-        $path = null;
         $timeline = null;
-
+		$arg1     = null;
+		$arg2	  = null;
+		
         $action_name = $action->trimmed('action');
 
 		// FIXME: lists
 		// FIXME: search (!)
-		// FIXME: 
+		// FIXME: profile + tag
 		
         switch ($action_name) {
          case 'public':
-            $path = array('public');
+         	// no arguments
             break;
          case 'tag':
             $tag = $action->trimmed('tag');
-            if (!empty($tag)) {
-                $path = array('tag', $tag);
+            if (empty($tag)) {
+                $arg1 = $tag;
+            } else {
+            	$this->log(LOG_NOTICE, "Unexpected 'tag' action without tag argument");
+            	return null;
             }
             break;
          case 'showstream':
@@ -418,17 +436,29 @@ class RealtimePlugin extends Plugin
          case 'showgroup':
             $nickname = common_canonical_nickname($action->trimmed('nickname'));
             if (!empty($nickname)) {
-                $path = array($action_name, $nickname);
+                $arg1 = $nickname;
+            } else {
+            	$this->log(LOG_NOTICE, "Unexpected $action_name action without nickname argument.");
+            	return null;
             }
             break;
          default:
-            break;
+            return null;
         }
 
-        if (!empty($path)) {
-            $timeline = $this->_pathToChannel($path);
-        }
-
+		$user = common_current_user();
+		
+		$user_id = (!empty($user)) ? $user->id : null;
+		
+		$channel = Realtime_channel::getChannel($user_id,
+												$action_name,
+												$arg1,
+												$arg2);
+		
+		if (!empty($channel)) {
+			$timeline = $this->_pathToChannel(array($channel->channel_key));
+		}
+				
         return $timeline;
     }
 }
