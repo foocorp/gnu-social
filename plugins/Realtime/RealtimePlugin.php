@@ -209,6 +209,9 @@ class RealtimePlugin extends Plugin
             $json = $this->noticeAsJson($notice);
 
             $this->_connect();
+            
+            // XXX: We should probably fan-out here and do a
+            // new queue item for each path
 
             foreach ($paths as $path) {
             	
@@ -217,6 +220,10 @@ class RealtimePlugin extends Plugin
             	$channels = Realtime_channel::getAllChannels($action, $arg1, $arg2);
             	
             	foreach ($channels as $channel) {
+            		
+            		// XXX: We should probably fan-out here and do a
+            		// new queue item for each user/path combo
+            
             		if (is_null($channel->user_id)) {
             			$profile = null;
             		} else {
