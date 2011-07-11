@@ -124,8 +124,8 @@ class Realtime_channel extends Managed_DataObject
 				    				'not null' => true,
 				    			    'description' => 'date this record was modified'),
             ),
-            'primary key' => array('user_id', 'action', 'arg1', 'arg2'),
-            'unique keys' => array('realtime_channel_channel_key_idx' => array('channel_key')),
+            'primary key' => array('channel_key'),
+            'unique keys' => array('realtime_channel_user_page_idx' => array('user_id', 'action', 'arg1', 'arg2')),
             'foreign keys' => array(
                 'realtime_channel_user_id_fkey' => array('user', array('user_id' => 'id')),
             ),
