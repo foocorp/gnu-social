@@ -472,5 +472,6 @@ class RealtimePlugin extends Plugin
     function onStartReadWriteTables(&$alwaysRW, &$rwdb)
     {
     	$alwaysRW[] = 'realtime_channel';
+    	return true;
     }
 }
