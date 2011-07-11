@@ -78,7 +78,13 @@ class Memcached_DataObject extends Safe_DataObject
                 return false;
             }
             foreach ($kv as $k => $v) {
-                $i->$k = $v;
+            	if (is_null($v)) {
+            		// XXX: possible SQL injection...? Don't 
+            		// pass keys from the browser, eh.
+            		$i->whereAdd("$k is null");
+            	} else {
+                	$i->$k = $v;
+            	}
             }
             if ($i->find(true)) {
                 $i->encache();
