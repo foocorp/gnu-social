@@ -288,6 +288,18 @@ class TwitterBridgePlugin extends Plugin
     }
 
     /**
+     * If the plugin's installed, this should be accessible to admins
+     */
+    function onAdminPanelCheck($name, &$isOK)
+    {
+        if ($name == 'twitter') {
+            $isOK = true;
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Add a Twitter tab to the admin panel
      *
      * @param Widget $nav Admin panel nav
