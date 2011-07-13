@@ -73,12 +73,31 @@ class RealtimePlugin extends Plugin
 
         switch ($cls)
         {
+        case 'KeepalivechannelAction':
+        case 'ClosechannelAction':
+            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+            return false;
         case 'Realtime_channel':
             include_once $dir.'/'.$cls.'.php';
             return false;
         default:
             return true;
         }
+    }
+
+    /**
+     * Hook for RouterInitialized event.
+     *
+     * @param Net_URL_Mapper $m path-to-action mapper
+     * @return boolean hook return
+     */
+    function onRouterInitialized($m)
+    {
+        // Discovery actions
+        $m->connect('main/channel/:channel_key/keepalive',
+                    array('action' => 'keepalivechannel'));
+        $m->connect('main/channel/:channel_key/close',
+                    array('action' => 'closechannel'));
     }
 
     function onEndShowScripts($action)
