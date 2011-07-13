@@ -58,6 +58,7 @@ class Realtime_channel extends Managed_DataObject
     public $arg1;          // argument
     public $arg2;          // argument, usually null
     public $channel_key;   // 128-bit shared secret key
+    public $audience;      // listener count
     public $created;	   // created date
     public $modified;      // modified date
 
@@ -117,6 +118,10 @@ class Realtime_channel extends Managed_DataObject
 			    			   'length' => 32,
 			    			   'not null' => true,
 			    			   'description' => 'shared secret key for this channel'),
+			    'audience' => array('type' => 'integer',
+                                    'not null' => true,
+                                    'default' => 0,
+                                    'description' => 'reference count'),
                 'created' => array('type' => 'datetime',
 				   				   'not null' => true,
 				   				   'description' => 'date this record was created'),
@@ -144,6 +149,7 @@ class Realtime_channel extends Managed_DataObject
     	$channel->action  = $action;
     	$channel->arg1    = $arg1;
     	$channel->arg2    = $arg2;
+    	$channel->audience  = 1;
     	
     	$channel->channel_key = common_good_rand(16); // 128-bit key, 32 hex chars
     	
@@ -230,18 +236,40 @@ class Realtime_channel extends Managed_DataObject
     	}
     	
     	if ($channel->find(true)) {
-            $channel->touch();
+            $channel->increment();
     		return $channel;
     	} else {
     		return null;
     	}
     }
 
+    function increment()
+    {
+        // XXX: race
+        $orig = clone($this);
+        $this->audience++;
+        $this->modified = common_sql_now();
+        $this->update($orig);
+    }
+
     function touch()
     {
-   		// Touch it!
+        // XXX: race
         $orig = clone($this);
         $this->modified = common_sql_now();
         $this->update($orig);
+    }
+
+    function decrement()
+    {
+        // XXX: race
+        if ($this->audience == 1) {
+            $this->delete();
+        } else {
+            $orig = clone($this);
+            $this->audience--;
+            $this->modified = common_sql_now();
+            $this->update($orig);
+        }
     }
 }

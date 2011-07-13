@@ -66,7 +66,7 @@ class ClosechannelAction extends Action
             throw new ClientException(_m('You have to POST it.'));
         }
 
-        $this->channelKey = $this->trimmed('channel_key');
+        $this->channelKey = $this->trimmed('channelkey');
 
         if (empty($this->channelKey)) {
             throw new ClientException(_m('No channel key argument.'));
@@ -91,7 +91,7 @@ class ClosechannelAction extends Action
 
     function handle($argarray=null)
     {
-        $this->channel->delete();
+        $this->channel->decrement();
 
         header('HTTP/1.1 204 No Content');
 

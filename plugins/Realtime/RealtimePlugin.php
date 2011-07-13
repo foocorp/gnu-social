@@ -93,16 +93,24 @@ class RealtimePlugin extends Plugin
      */
     function onRouterInitialized($m)
     {
-        // Discovery actions
-        $m->connect('main/channel/:channel_key/keepalive',
-                    array('action' => 'keepalivechannel'));
-        $m->connect('main/channel/:channel_key/close',
-                    array('action' => 'closechannel'));
+        $m->connect('main/channel/:channelkey/keepalive',
+                    array('action' => 'keepalivechannel'),
+                    array('channelkey' => '[a-z0-9]{32}'));
+        $m->connect('main/channel/:channelkey/close',
+                    array('action' => 'closechannel'),
+                    array('channelkey' => '[a-z0-9]{32}'));
+        return true;
     }
 
     function onEndShowScripts($action)
     {
-        $timeline = $this->_getTimeline($action);
+        $channel = $this->_getChannel($action);
+
+        if (empty($channel)) {
+            return true;
+        }
+
+        $timeline = $this->_pathToChannel(array($channel->channel_key));
 
         // If there's not a timeline on this page,
         // just return true
@@ -137,12 +145,14 @@ class RealtimePlugin extends Plugin
         }
         else {
             $pluginPath = common_path('plugins/Realtime/');
-            $realtimeUI = ' RealtimeUpdate.initActions("'.$url.'", "'.$timeline.'", "'. $pluginPath .'");';
+            $keepalive = common_local_url('keepalivechannel', array('channelkey' => $channel->channel_key));
+            $close = common_local_url('closechannel', array('channelkey' => $channel->channel_key));
+            $realtimeUI = ' RealtimeUpdate.initActions("'.$url.'", "'.$timeline.'", "'. $pluginPath .'", "'.$keepalive.'", "'.$close.'"); ';
         }
 
         $script = ' $(document).ready(function() { '.
           $realtimeUI.
-          $this->_updateInitialize($timeline, $user_id).
+            $this->_updateInitialize($timeline, $user_id).
           '}); ';
         $action->inlineScript($script);
 
@@ -431,7 +441,18 @@ class RealtimePlugin extends Plugin
         return '';
     }
 
+
     function _getTimeline($action)
+    {
+        $channel = $this->_getChannel($action);
+        if (empty($channel)) {
+            return null;
+        }
+
+        return $this->_pathToChannel(array($channel->channel_key));
+    }
+
+    function _getChannel($action)
     {
         $timeline = null;
 		$arg1     = null;
@@ -480,12 +501,8 @@ class RealtimePlugin extends Plugin
 												$action_name,
 												$arg1,
 												$arg2);
-		
-		if (!empty($channel)) {
-			$timeline = $this->_pathToChannel(array($channel->channel_key));
-		}
-				
-        return $timeline;
+
+        return $channel;
     }
     
     function onStartReadWriteTables(&$alwaysRW, &$rwdb)
