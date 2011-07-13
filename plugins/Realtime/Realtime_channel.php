@@ -230,13 +230,18 @@ class Realtime_channel extends Managed_DataObject
     	}
     	
     	if ($channel->find(true)) {
-    		// Touch it!
-    		$orig = clone($channel);
-    		$channel->modified = common_sql_now();
-    		$channel->update($orig);
+            $channel->touch();
     		return $channel;
     	} else {
     		return null;
     	}
+    }
+
+    function touch()
+    {
+   		// Touch it!
+        $orig = clone($this);
+        $this->modified = common_sql_now();
+        $this->update($orig);
     }
 }
