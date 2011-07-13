@@ -2,7 +2,7 @@
 /**
  * StatusNet, the distributed open-source microblogging tool
  *
- * Plugin to do "real time" updates using Comet/Bayeux
+ * Plugin to do "real time" updates using Meteor
  *
  * PHP version 5
  *
@@ -156,7 +156,7 @@ class MeteorPlugin extends RealtimePlugin
                             'homepage' => 'http://status.net/wiki/Plugin:Meteor',
                             'rawdescription' =>
                             // TRANS: Plugin description.
-                            _m('Plugin to do "real time" updates using Comet/Bayeux.'));
+                            _m('Plugin to do "real time" updates using Meteor.'));
         return true;
     }
 }
