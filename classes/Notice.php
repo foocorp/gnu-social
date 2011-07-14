@@ -84,9 +84,9 @@ class Notice extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-	function multiGet($kc, $kvs)
+	function multiGet($kc, $kvs, $skipNulls=true)
 	{
-		return Memcached_DataObject::multiGet('Notice', $kc, $kvs);
+		return Memcached_DataObject::multiGet('Notice', $kc, $kvs, $skipNulls);
 	}
 	
     /* Notice types */

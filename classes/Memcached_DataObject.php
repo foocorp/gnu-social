@@ -64,7 +64,17 @@ class Memcached_DataObject extends Safe_DataObject
         return $i;
     }
     
-    function multiGet($cls, $keyCol, $keyVals)
+    /**
+     * Get multiple items from the database by key
+     * 
+     * @param string  $cls       Class to fetch
+     * @param string  $keyCol    name of column for key
+     * @param array   $keyVals   key values to fetch
+     * @param boolean $skipNulls return only non-null results?
+     * 
+     * @return array Array of objects, in order
+     */
+    function multiGet($cls, $keyCol, $keyVals, $skipNulls=true)
     {
     	$result = array_fill_keys($keyVals, null);
     	
@@ -92,9 +102,34 @@ class Memcached_DataObject extends Safe_DataObject
     				$result[$i->$keyCol] = $copy;
     			}
     		}
+    		
+    		// Save state of DB misses
+    		
+    		foreach ($toFetch as $keyVal) {
+    			if (empty($result[$keyVal])) {
+                	// save the fact that no such row exists
+                	$c = self::memcache();
+                	if (!empty($c)) {
+                    	$ck = self::cachekey($cls, $keyCol, $keyVal);
+                    	$c->set($ck, null);
+                	}	
+    			}
+    		}
     	}
     	
-    	return new ArrayWrapper(array_values($result));
+    	$values = array_values($result);
+    	
+    	if ($skipNulls) {
+    		$tmp = array();
+    		foreach ($values as $value) {
+    			if (!empty($value)) {
+    				$tmp[] = $value;
+    			}
+    		}
+    		$values = $tmp;
+    	}
+    	
+    	return new ArrayWrapper($values);
     }
 
 	function columnType($columnName)
