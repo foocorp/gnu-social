@@ -59,42 +59,6 @@ abstract class NoticeStream
 
     static function getStreamByIds($ids)
     {
-        $cache = Cache::instance();
-
-        if (!empty($cache)) {
-            $notices = array();
-            foreach ($ids as $id) {
-                $n = Notice::staticGet('id', $id);
-                if (!empty($n)) {
-                    $notices[] = $n;
-                }
-            }
-            return new ArrayWrapper($notices);
-        } else {
-            $notice = new Notice();
-            if (empty($ids)) {
-                //if no IDs requested, just return the notice object
-                return $notice;
-            }
-            $notice->whereAdd('id in (' . implode(', ', $ids) . ')');
-
-            $notice->find();
-
-            $temp = array();
-
-            while ($notice->fetch()) {
-                $temp[$notice->id] = clone($notice);
-            }
-
-            $wrapped = array();
-
-            foreach ($ids as $id) {
-                if (array_key_exists($id, $temp)) {
-                    $wrapped[] = $temp[$id];
-                }
-            }
-
-            return new ArrayWrapper($wrapped);
-        }
+    	return Notice::multiGet('id', $ids);
     }
 }
