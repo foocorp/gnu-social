@@ -1861,7 +1861,11 @@ class Notice extends Memcached_DataObject
         } else {
             $idstr = $cache->get(Cache::key('notice:repeats:'.$this->id));
             if ($idstr !== false) {
-                $ids = explode(',', $idstr);
+            	if (empty($idstr)) {
+            		$ids = array();
+            	} else {
+                	$ids = explode(',', $idstr);
+            	}
             } else {
                 $ids = $this->_repeatStreamDirect(100);
                 $cache->set(Cache::key('notice:repeats:'.$this->id), implode(',', $ids));
@@ -1890,18 +1894,7 @@ class Notice extends Memcached_DataObject
             $notice->limit(0, $limit);
         }
 
-        $ids = array();
-
-        if ($notice->find()) {
-            while ($notice->fetch()) {
-                $ids[] = $notice->id;
-            }
-        }
-
-        $notice->free();
-        $notice = NULL;
-
-        return $ids;
+        return $notice->fetchAll('id');
     }
 
     function locationOptions($lat, $lon, $location_id, $location_ns, $profile = null)
