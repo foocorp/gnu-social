@@ -63,7 +63,56 @@ class Memcached_DataObject extends Safe_DataObject
         }
         return $i;
     }
+    
+    function multiGet($cls, $keyCol, $keyVals)
+    {
+    	$result = array_fill_keys($keyVals, null);
+    	
+    	$toFetch = array();
+    	
+    	foreach ($keyVals as $keyVal) {
+        	$i = self::getcached($cls, $keyCol, $keyVal);
+        	if ($i !== false) {
+        		$result[$keyVal] = $i;
+        	} else if (!empty($keyVal)) {
+        		$toFetch[] = $keyVal;
+        	}
+    	}
+    	
+    	if (count($toFetch) > 0) {
+            $i = DB_DataObject::factory($cls);
+            if (empty($i)) {
+            	throw new Exception(_('Cannot instantiate class ' . $cls));
+            }
+    		$i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
+    		if ($i->find()) {
+    			while ($i->fetch()) {
+    				$copy = clone($i);
+    				$copy->encache();
+    				$result[$i->$keyCol] = $copy;
+    			}
+    		}
+    	}
+    	
+    	return new ArrayWrapper(array_values($result));
+    }
 
+	function columnType($columnName)
+	{
+		$keys = $this->table();
+		if (!array_key_exists($columnName, $keys)) {
+			throw new Exception('Unknown key column ' . $columnName . ' in ' . join(',', array_keys($keys)));
+		}
+		
+		$def = $keys[$columnName];
+		
+		if ($def & DB_DATAOBJECT_INT) {
+			return 'integer';
+		} else {
+			return 'string';
+		}
+	}
+	
     /**
      * @fixme Should this return false on lookup fail to match staticGet?
      */

@@ -1,0 +1,44 @@
+/** theme: neo-light
+ *
+ * @package   StatusNet
+ * @author    Samantha Doherty <sammy@status.net>
+ * @copyright 2011 StatusNet, Inc.
+ * @license   http://creativecommons.org/licenses/by/3.0/ Creative Commons Attribution 3.0 Unported
+ * @link      http://status.net/
+ */
+
+@media screen, projection, tv {
+
+body { 
+    background: #f0f2f5;
+}
+
+#wrap {
+    background-color: #f0f2f5;
+    border: none;
+}
+
+#aside_primary_wrapper {
+    background-color: #fafafa;  
+}    
+
+#content_wrapper  {  
+    border-right: 1px solid #fff;
+}  
+
+#site_nav_local_views_wrapper  {  
+    background-color: #fafafa;  
+    border-right: 1px solid #fff;
+}  
+
+#site_notice {
+    background: #fff;
+}
+
+.input_forms {
+    background-color: #fff;
+    left: 0px;
+    padding: 18px 0px 0px 0px;
+}
+
+}/*end of @media screen, projection, tv*/
