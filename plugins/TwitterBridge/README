@@ -75,13 +75,9 @@ Administration panel
 
 As of StatusNet 0.9.0 there is a new administration panel that allows
 you to configure Twitter bridge settings within StatusNet itself,
-instead of having to specify them manually in your config.php.  To enable
-the administration panel, you will need to add it to the list of active
-administration panels.  You can do this via your config.php. E.g.:
+instead of having to specify them manually in your config.php.
 
-    $config['admin']['panels'][] = 'twitter';
-
-And to access it, you'll need to use a user with the "administrator"
+To access it, you'll need to use a user with the "administrator"
 role (see: scripts/userrole.php).
 
 Sign in with Twitter
