@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,13 +19,14 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-require_once INSTALLDIR.'/lib/oauthstore.php';
-require_once 'OAuth.php';
-require_once 'libomb/constants.php';
-require_once 'libomb/service_consumer.php';
-require_once 'libomb/notice.php';
-require_once 'libomb/profile.php';
-require_once 'Auth/Yadis/Yadis.php';
+$dir = dirname(__FILE__);
+
+require_once $dir . '/omboauthstore.php';
+require_once $dir . '/../extlib/libomb/constants.php';
+require_once $dir . '/../extlib/libomb/service_consumer.php';
+require_once $dir . '/../extlib/libomb/notice.php';
+require_once $dir . '/../extlib/libomb/profile.php';
+require_once INSTALLDIR . '/extlib/Auth/Yadis/Yadis.php';
 
 function omb_oauth_consumer()
 {
@@ -48,7 +49,7 @@ function omb_oauth_datastore()
 {
     static $store = null;
     if (is_null($store)) {
-        $store = new StatusNetOAuthDataStore();
+        $store = new OMBOAuthDataStore();
     }
     return $store;
 }
@@ -64,7 +65,6 @@ function omb_hmac_sha1()
 
 function omb_broadcast_notice($notice)
 {
-
     try {
         $omb_notice = notice_to_omb_notice($notice);
     } catch (Exception $e) {
@@ -233,4 +233,4 @@ function notice_to_omb_notice($notice)
 
     return $omb_notice;
 }
-?>
+

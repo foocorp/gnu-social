@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,10 +19,12 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-require_once INSTALLDIR . '/lib/oauthstore.php';
+require_once 'OAuth.php';
 
-// @todo FIXME: Class documentation missing.
-class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
+/**
+ * @fixme class doc
+ */
+class ApiStatusNetOAuthDataStore extends OAuthDataStore
 {
     function lookup_consumer($consumerKey)
     {
@@ -408,6 +410,97 @@ class ApiStatusNetOAuthDataStore extends StatusNetOAuthDataStore
             return null;
         } else {
             return new OAuthToken($t->tok, $t->secret);
+        }
+    }
+
+    /**
+     * Authorize specified OAuth token
+     *
+     * Authorizes the authorization token specified by $token_key.
+     * Throws exceptions in case of error.
+     *
+     * @param string $token_key The token to be authorized
+     *
+     * @access public
+     **/
+    public function authorize_token($token_key) {
+        $rt = new Token();
+        $rt->tok = $token_key;
+        $rt->type = 0;
+        $rt->state = 0;
+        if (!$rt->find(true)) {
+            throw new Exception('Tried to authorize unknown token');
+        }
+        $orig_rt = clone($rt);
+        $rt->state = 1; # Authorized but not used
+        if (!$rt->update($orig_rt)) {
+            throw new Exception('Failed to authorize token');
+        }
+    }
+
+    /**
+     *
+     * http://oauth.net/core/1.0/#nonce
+     * "The Consumer SHALL then generate a Nonce value that is unique for
+     * all requests with that timestamp."
+     * XXX: It's not clear why the token is here
+     *
+     * @param type $consumer
+     * @param type $token
+     * @param type $nonce
+     * @param type $timestamp
+     * @return type
+     */
+    function lookup_nonce($consumer, $token, $nonce, $timestamp)
+    {
+        $n = new Nonce();
+        $n->consumer_key = $consumer->key;
+        $n->ts = common_sql_date($timestamp);
+        $n->nonce = $nonce;
+        if ($n->find(true)) {
+            return true;
+        } else {
+            $n->created = DB_DataObject_Cast::dateTime();
+            $n->insert();
+            return false;
+        }
+    }
+
+    /**
+     *
+     * @param type $consumer
+     * @param type $token_type
+     * @param type $token_key
+     * @return OAuthToken
+     */
+    function lookup_token($consumer, $token_type, $token_key)
+    {
+        $t = new Token();
+        if (!is_null($consumer)) {
+            $t->consumer_key = $consumer->key;
+        }
+        $t->tok = $token_key;
+        $t->type = ($token_type == 'access') ? 1 : 0;
+        if ($t->find(true)) {
+            return new OAuthToken($t->tok, $t->secret);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     *
+     * @param type $token_key
+     * @return Token 
+     */
+    function getTokenByKey($token_key)
+    {
+        $t = new Token();
+        $t->tok = $token_key;
+        if ($t->find(true)) {
+            return $t;
+        } else {
+            return null;
         }
     }
 }

@@ -360,7 +360,7 @@ abstract class MicroAppPlugin extends Plugin
 
             $options = array('uri' => $object->id,
                              'url' => $object->link,
-                             'is_local' => Notice::REMOTE_OMB,
+                             'is_local' => Notice::REMOTE,
                              'source' => 'ostatus');
 
             // $actor is an ostatus_profile
@@ -418,7 +418,7 @@ abstract class MicroAppPlugin extends Plugin
 
             $options = array('uri' => $object->id,
                              'url' => $object->link,
-                             'is_local' => Notice::REMOTE_OMB,
+                             'is_local' => Notice::REMOTE,
                              'source' => 'ostatus');
 
             // $actor is an ostatus_profile

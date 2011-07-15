@@ -1,6 +1,6 @@
 <?php
 /**
- * Handle postnotice action
+ * Handle an updateprofile action
  *
  * PHP version 5
  *
@@ -12,7 +12,7 @@
  * @link     http://status.net/
  *
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -30,20 +30,20 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-require_once INSTALLDIR.'/lib/omb.php';
-require_once INSTALLDIR.'/extlib/libomb/service_provider.php';
+require_once dirname(__FILE__) . '/../lib/omb.php';
+require_once dirname(__FILE__) . '/../extlib/libomb/service_provider.php';
 
 /**
- * Handler for postnotice action
+ * Handle an updateprofile action
  *
  * @category Action
- * @package  StatusNet
+ * @package  Laconica
  * @author   Evan Prodromou <evan@status.net>
- * @author   Robin Millette <millette@status.net>
+ * @author   Robin Millette <millette@controlyourself.ca>
  * @license  http://www.fsf.org/licensing/licenses/agpl.html AGPLv3
- * @link     http://status.net/
+ * @link     http://laconi.ca/
  */
-class PostnoticeAction extends Action
+class UpdateprofileAction extends Action
 {
     /**
      * For initializing members of the class.
@@ -57,11 +57,14 @@ class PostnoticeAction extends Action
         StatusNet::setApi(true); // Send smaller error pages
 
         parent::prepare($argarray);
-
-        try {
-            $this->checkNotice();
-        } catch (Exception $e) {
-            $this->clientError($e->getMessage());
+        $license      = $_POST['omb_listenee_license'];
+        $site_license = common_config('license', 'url');
+        if (!common_compatible_license($license, $site_license)) {
+            // TRANS: Client error displayed when trying to update profile with an incompatible license.
+            // TRANS: %1$s is the license incompatible with site license %2$s.
+            $this->clientError(sprintf(_('Listenee stream license "%1$s" is not '.
+                                         'compatible with site license "%2$s".'),
+                                       $license, $site_license));
             return false;
         }
         return true;
@@ -70,10 +73,11 @@ class PostnoticeAction extends Action
     function handle($args)
     {
         parent::handle($args);
+
         try {
             $srv = new OMB_Service_Provider(null, omb_oauth_datastore(),
                                             omb_oauth_server());
-            $srv->handlePostNotice();
+            $srv->handleUpdateProfile();
         } catch (OMB_RemoteServiceException $rse) {
             $msg = $rse->getMessage();
             if (preg_match('/Revoked accesstoken/', $msg) ||
@@ -85,25 +89,6 @@ class PostnoticeAction extends Action
         } catch (Exception $e) {
             $this->serverError($e->getMessage());
             return;
-        }
-    }
-
-    function checkNotice()
-    {
-        $content = common_shorten_links($_POST['omb_notice_content']);
-        if (Notice::contentTooLong($content)) {
-            // TRANS: Client error displayed if the notice posted has too many characters.
-            $this->clientError(_('Invalid notice content.'), 400);
-            return false;
-        }
-        $license      = $_POST['omb_notice_license'];
-        $site_license = common_config('license', 'url');
-        if ($license && !common_compatible_license($license, $site_license)) {
-            // TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
-            // TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
-            throw new Exception(sprintf(_('Notice license "%1$s" is not ' .
-                                          'compatible with site license "%2$s".'),
-                                        $license, $site_license));
         }
     }
 }

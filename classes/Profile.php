@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -1240,13 +1240,8 @@ class Profile extends Memcached_DataObject
 
             if (!empty($user)) {
                 $uri = $user->uri;
-            } else {
-                // return OMB profile if any
-                $remote = Remote_profile::staticGet('id', $this->id);
-                if (!empty($remote)) {
-                    $uri = $remote->uri;
-                }
             }
+
             Event::handle('EndGetProfileUri', array($this, &$uri));
         }
 
@@ -1291,11 +1286,6 @@ class Profile extends Memcached_DataObject
             $user = User::staticGet('uri', $uri);
             if (!empty($user)) {
                 $profile = $user->getProfile();
-            } else {
-                $remote_profile = Remote_profile::staticGet('uri', $uri);
-                if (!empty($remote_profile)) {
-                    $profile = Profile::staticGet('id', $remote_profile->profile_id);
-                }
             }
             Event::handle('EndGetProfileFromURI', array($uri, $profile));
         }

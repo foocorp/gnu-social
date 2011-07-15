@@ -289,11 +289,10 @@ class ProfileListItem extends Widget
                 $usf = new UnsubscribeForm($this->out, $this->profile);
                 $usf->show();
             } else {
-                // We can't initiate sub for a remote OMB profile.
-                $remote = Remote_profile::staticGet('id', $this->profile->id);
-                if (empty($remote)) {
+                if (Event::handle('StartShowProfileListSubscribeButton', array($this))) {
                     $sf = new SubscribeForm($this->out, $this->profile);
                     $sf->show();
+                    Event::handle('EndShowProfileListSubscribeButton', array($this));
                 }
             }
             $this->out->elementEnd('li');
