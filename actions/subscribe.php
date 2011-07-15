@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008-2010, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * Subscription action.
  *
@@ -108,18 +108,6 @@ class SubscribeAction extends Action
         if (empty($this->other)) {
             // TRANS: Client error displayed trying to subscribe to a non-existing profile.
             $this->clientError(_('No such profile.'));
-            return false;
-        }
-
-        // OMB 0.1 doesn't have a mechanism for local-server-
-        // originated subscription.
-
-        $omb01 = Remote_profile::staticGet('id', $other_id);
-
-        if (!empty($omb01)) {
-            // TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
-            $this->clientError(_('You cannot subscribe to an OMB 0.1'.
-                                 ' remote profile with this action.'));
             return false;
         }
 

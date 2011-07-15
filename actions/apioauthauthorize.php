@@ -22,7 +22,7 @@
  * @category  API
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2010 StatusNet, Inc.
+ * @copyright 2010-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -35,7 +35,7 @@ require_once INSTALLDIR . '/lib/apioauth.php';
 require_once INSTALLDIR . '/lib/info.php';
 
 /**
- * Authorize an Oputh request token
+ * Authorize an OAuth request token
  *
  * @category API
  * @package  StatusNet

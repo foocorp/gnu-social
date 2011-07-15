@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -1501,7 +1501,7 @@ function common_enqueue_notice($notice)
 }
 
 /**
- * Broadcast profile updates to OMB and other remote subscribers.
+ * Broadcast profile updates to remote subscribers.
  *
  * Since this may be slow with a lot of subscribers or bad remote sites,
  * this is run through the background queues if possible.
@@ -2008,20 +2008,20 @@ function common_user_property($property)
 
 function common_profile_uri($profile)
 {
-    if (!$profile) {
-        return null;
-    }
-    $user = User::staticGet($profile->id);
-    if ($user) {
-        return $user->uri;
+    $uri = null;
+
+    if (!empty($profile)) {
+        if (Event::handle('StartCommonProfileURI', array($profile, &$uri))) {
+            $user = User::staticGet($profile->id);
+            if (!empty($user)) {
+                $uri = $user->uri;
+            }
+            Event::handle('EndCommonProfileURI', array($profile, &$uri));
+        }
     }
 
-    $remote = Remote_profile::staticGet($profile->id);
-    if ($remote) {
-        return $remote->uri;
-    }
     // XXX: this is a very bad profile!
-    return null;
+    return $uri;
 }
 
 function common_canonical_sms($sms)

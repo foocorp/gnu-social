@@ -12,7 +12,7 @@
  * @link     http://status.net/
  *
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -30,8 +30,8 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-require_once INSTALLDIR.'/extlib/libomb/service_consumer.php';
-require_once INSTALLDIR.'/lib/omb.php';
+require_once dirname(__FILE__) . '/../extlib/libomb/service_consumer.php';
+require_once dirname(__FILE__) . '/../lib/omb.php';
 
 /**
  * Handler for remote subscription finish callback

@@ -591,7 +591,7 @@ class Ostatus_profile extends Managed_DataObject
             }
         }
 
-        $options = array('is_local' => Notice::REMOTE_OMB,
+        $options = array('is_local' => Notice::REMOTE,
                         'url' => $sourceUrl,
                         'uri' => $sourceUri,
                         'rendered' => $rendered,

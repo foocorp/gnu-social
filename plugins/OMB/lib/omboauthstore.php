@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011 StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -19,10 +19,10 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-require_once 'libomb/datastore.php';
+require_once dirname(__FILE__) . '/../extlib/libomb/datastore.php';
 
 // @todo FIXME: Class documentation missing.
-class StatusNetOAuthDataStore extends OAuthDataStore
+class OMBOAuthDataStore extends OAuthDataStore
 {
     // We keep a record of who's contacted us
     function lookup_consumer($consumer_key)
@@ -50,17 +50,6 @@ class StatusNetOAuthDataStore extends OAuthDataStore
         $t->type = ($token_type == 'access') ? 1 : 0;
         if ($t->find(true)) {
             return new OAuthToken($t->tok, $t->secret);
-        } else {
-            return null;
-        }
-    }
-
-    function getTokenByKey($token_key)
-    {
-        $t = new Token();
-        $t->tok = $token_key;
-        if ($t->find(true)) {
-            return $t;
         } else {
             return null;
         }
@@ -234,7 +223,7 @@ class StatusNetOAuthDataStore extends OAuthDataStore
         $profile = Profile::staticGet('id', $remote->id);
         if (!$profile) throw new Exception('No profile for remote user');
 
-        require_once INSTALLDIR.'/lib/omb.php';
+        require_once dirname(__FILE__) . '/omb.php';
         return profile_to_omb_profile($identifier_uri, $profile);
     }
 
@@ -376,7 +365,7 @@ class StatusNetOAuthDataStore extends OAuthDataStore
         $notice = Notice::saveNew($author->id,
                                   $omb_notice->getContent(),
                                   'omb',
-                                  array('is_local' => Notice::REMOTE_OMB,
+                                  array('is_local' => Notice::REMOTE,
                                         'uri' => $omb_notice->getIdentifierURI()));
 
     }

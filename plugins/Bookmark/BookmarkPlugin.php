@@ -330,7 +330,7 @@ class BookmarkPlugin extends MicroAppPlugin
 
         $options = array('uri' => $bookmark->id,
                          'url' => $bookmark->link,
-                         'is_local' => Notice::REMOTE_OMB,
+                         'is_local' => Notice::REMOTE,
                          'source' => 'ostatus');
 
         return self::_postBookmark($author->localProfile(), $activity, $options);
