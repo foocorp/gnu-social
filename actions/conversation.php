@@ -132,4 +132,33 @@ class ConversationAction extends Action
     {
         return true;
     }
+    
+    function getFeeds()
+    {
+    	
+        return array(new Feed(Feed::JSON,
+                              common_local_url('apiconversation',
+                                               array(
+                                                    'id' => $this->id,
+                                                    'format' => 'as')),
+                              // TRANS: Title for link to notice feed.
+                              // TRANS: %s is a user nickname.
+                              _('Conversation feed (Activity Streams JSON)')),
+                     new Feed(Feed::RSS2,
+                              common_local_url('apiconversation',
+                                               array(
+                                                    'id' => $this->id,
+                                                    'format' => 'rss')),
+                              // TRANS: Title for link to notice feed.
+                              // TRANS: %s is a user nickname.
+                              _('Conversation feed (RSS 2.0)')),
+                     new Feed(Feed::ATOM,
+                              common_local_url('apiconversation',
+                                               array(
+                                                    'id' => $this->id,
+                                                    'format' => 'atom')),
+                              // TRANS: Title for link to notice feed.
+                              // TRANS: %s is a user nickname.
+                              _('Conversation feed (Activity Streams JSON)')));
+    }
 }
