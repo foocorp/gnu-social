@@ -774,6 +774,11 @@ class Router
                         array('action' => 'ApiGroupProfileUpdate',
                               'id' => '[a-zA-Z0-9]+',
                               'format' => '(xml|json)'));
+                              
+            $m->connect('api/statusnet/conversation/:id.:format',
+                        array('action' => 'apiconversation',
+                              'id' => '[0-9]+',
+                              'format' => '(xml|json|rss|atom|as)'));
 
             // Lists (people tags)
 
