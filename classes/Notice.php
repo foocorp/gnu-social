@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011 StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -86,7 +86,7 @@ class Notice extends Memcached_DataObject
 
     /* Notice types */
     const LOCAL_PUBLIC    =  1;
-    const REMOTE_OMB      =  0;
+    const REMOTE          =  0;
     const LOCAL_NONPUBLIC = -1;
     const GATEWAY         = -2;
 
@@ -229,11 +229,11 @@ class Notice extends Memcached_DataObject
      *              string 'created' timestamp of notice; defaults to now
      *              int 'is_local' source/gateway ID, one of:
      *                  Notice::LOCAL_PUBLIC    - Local, ok to appear in public timeline
-     *                  Notice::REMOTE_OMB      - Sent from a remote OMB service;
+     *                  Notice::REMOTE          - Sent from a remote service;
      *                                            hide from public timeline but show in
      *                                            local "and friends" timelines
      *                  Notice::LOCAL_NONPUBLIC - Local, but hide from public timeline
-     *                  Notice::GATEWAY         - From another non-OMB service;
+     *                  Notice::GATEWAY         - From another non-OStatus service;
      *                                            will not appear in public views
      *              float 'lat' decimal latitude for geolocation
      *              float 'lon' decimal longitude for geolocation

@@ -214,7 +214,7 @@ class ShownoticeAction extends Action
         if ($this->boolean('ajax')) {
             $this->showAjax();
         } else {
-            if ($this->notice->is_local == Notice::REMOTE_OMB) {
+            if ($this->notice->is_local == Notice::REMOTE) {
                 if (!empty($this->notice->url)) {
                     $target = $this->notice->url;
                 } else if (!empty($this->notice->uri) && preg_match('/^https?:/', $this->notice->uri)) {

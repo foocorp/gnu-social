@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2010, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -17,36 +17,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-/**
- * @package QueueHandler
- * @maintainer Brion Vibber <brion@status.net>
- */
+if (!defined('STATUSNET') && !defined('LACONICA')) {
+    exit(1);
+}
 
-class ProfileQueueHandler extends QueueHandler
+/**
+ * Queue handler for pushing new notices to OpenMicroBlogging subscribers.
+ */
+class OmbQueueHandler extends QueueHandler
 {
 
     function transport()
     {
-        return 'profile';
+        return 'omb';
     }
 
-    function handle($profile)
+    /**
+     * @fixme doesn't currently report failure back to the queue manager
+     * because omb_broadcast_notice() doesn't report it to us
+     */
+    function handle($notice)
     {
-        if (!($profile instanceof Profile)) {
-            common_log(LOG_ERR, "Got a bogus profile, not broadcasting");
+        if ($this->is_remote($notice)) {
+            common_log(LOG_DEBUG, 'Ignoring remote notice ' . $notice->id);
+            return true;
+        } else {
+            require_once(dirname(__FILE__) . '/omb.php');
+            omb_broadcast_notice($notice);
             return true;
         }
-
-        if (Event::handle('StartBroadcastProfile', array($profile))) {
-            require_once(INSTALLDIR.'/lib/omb.php');
-            try {
-                omb_broadcast_profile($profile);
-            } catch (Exception $e) {
-                common_log(LOG_ERR, "Failed sending OMB profiles: " . $e->getMessage());
-            }
-        }
-        Event::handle('EndBroadcastProfile', array($profile));
-        return true;
     }
 
+    function is_remote($notice)
+    {
+        $user = User::staticGet($notice->profile_id);
+        return is_null($user);
+    }
 }

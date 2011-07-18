@@ -226,7 +226,6 @@ and the URLs are listed here for your convenience.
 - Facebook library. Used for the Facebook application.
 - PEAR Validate is used for URL and email validation.
 - Console_GetOpt for parsing command-line options.
-- libomb. a library for implementing OpenMicroBlogging 0.1, the
   predecessor to OStatus.
 - HTTP_Request2, a library for making HTTP requests.
 - PEAR Net_URL2 is an HTTP_Request2 dependency.
@@ -484,7 +483,7 @@ On a default installation, your site can broadcast messages using
 XMPP. Users won't be able to post messages using XMPP unless you've
 got the XMPP daemon running.  See 'Queues and daemons' below for how
 to set that up. Also, once you have a sizable number of users, sending
-a lot of SMS, OMB, and XMPP messages whenever someone posts a message
+a lot of SMS, OStatus, and XMPP messages whenever someone posts a message
 can really slow down your site; it may cause posting to timeout.
 
 NOTE: stream_select(), a crucial function for network programming, is
@@ -1111,7 +1110,7 @@ public
 For configuring the public stream.
 
 localonly: If set to true, only messages posted by users of this
-    service (rather than other services, filtered through OMB)
+    service (rather than other services, filtered through OStatus)
     are shown in the public stream. Default true.
 blacklist: An array of IDs of users to hide from the public stream.
     Useful if you have someone making excessive Twitterfeed posts

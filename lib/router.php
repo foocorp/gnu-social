@@ -113,8 +113,6 @@ class Router
 {
     var $m = null;
     static $inst = null;
-    static $bare = array('requesttoken', 'accesstoken', 'userauthorization',
-                         'postnotice', 'updateprofile', 'finishremotesubscribe');
 
     const REGEX_TAG = '[^\/]+'; // [\pL\pN_\-\.]{1,64} better if we can do unicode regexes
 
@@ -255,15 +253,6 @@ class Router
 
             foreach (array('register', 'confirmaddress', 'recoverpassword') as $c) {
                 $m->connect('main/'.$c.'/:code', array('action' => $c));
-            }
-
-            // exceptional
-
-            $m->connect('main/remote', array('action' => 'remotesubscribe'));
-            $m->connect('main/remote?nickname=:nickname', array('action' => 'remotesubscribe'), array('nickname' => '[A-Za-z0-9_-]+'));
-
-            foreach (Router::$bare as $action) {
-                $m->connect('index.php?action=' . $action, array('action' => $action));
             }
 
             // settings
@@ -896,8 +885,8 @@ class Router
                 $nickname = User::singleUserNickname();
 
                 foreach (array('subscriptions', 'subscribers',
-                               'all', 'foaf', 'xrds',
-                               'replies', 'microsummary', 'hcard') as $a) {
+                               'all', 'foaf', 'replies',
+                               'microsummary', 'hcard') as $a) {
                     $m->connect($a,
                                 array('action' => $a,
                                       'nickname' => $nickname));
@@ -964,8 +953,8 @@ class Router
                 $m->connect('rsd.xml', array('action' => 'rsd'));
 
                 foreach (array('subscriptions', 'subscribers',
-                               'nudge', 'all', 'foaf', 'xrds',
-                               'replies', 'inbox', 'outbox', 'microsummary', 'hcard') as $a) {
+                               'nudge', 'all', 'foaf', 'replies',
+                               'inbox', 'outbox', 'microsummary', 'hcard') as $a) {
                     $m->connect(':nickname/'.$a,
                                 array('action' => $a),
                                 array('nickname' => Nickname::DISPLAY_FMT));
