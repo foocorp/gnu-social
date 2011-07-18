@@ -49,10 +49,11 @@ class MeteorPlugin extends RealtimePlugin
     public $controlport   = null;
     public $controlserver = null;
     public $channelbase   = null;
+    public $protocol      = null;
     public $persistent    = true;
     protected $_socket    = null;
 
-    function __construct($webserver=null, $webport=4670, $controlport=4671, $controlserver=null, $channelbase='')
+    function __construct($webserver=null, $webport=4670, $controlport=4671, $controlserver=null, $channelbase='', $protocol='http')
     {
         global $config;
 
@@ -61,7 +62,8 @@ class MeteorPlugin extends RealtimePlugin
         $this->controlport   = $controlport;
         $this->controlserver = (empty($controlserver)) ? $webserver : $controlserver;
         $this->channelbase   = $channelbase;
-
+		$this->protocol      = $protocol;
+		
         parent::__construct();
     }
 
@@ -74,7 +76,8 @@ class MeteorPlugin extends RealtimePlugin
                           'webport',
                           'controlport',
                           'controlserver',
-                          'channelbase');
+                          'channelbase',
+                          'protocol');
         foreach ($settings as $name) {
             $val = common_config('meteor', $name);
             if ($val !== false) {
@@ -88,7 +91,11 @@ class MeteorPlugin extends RealtimePlugin
     function _getScripts()
     {
         $scripts = parent::_getScripts();
-        $scripts[] = 'http://'.$this->webserver.(($this->webport == 80) ? '':':'.$this->webport).'/meteor.js';
+        if ($this->protocol == 'https') {
+        	$scripts[] = 'https://'.$this->webserver.(($this->webport == 443) ? '':':'.$this->webport).'/meteor.js';
+        } else {
+        	$scripts[] = 'http://'.$this->webserver.(($this->webport == 80) ? '':':'.$this->webport).'/meteor.js';
+        }
         $scripts[] = $this->path('meteorupdater.min.js');
         return $scripts;
     }
