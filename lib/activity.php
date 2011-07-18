@@ -435,7 +435,7 @@ class Activity
                 if ($object instanceof Activity) {
                     // throw in a type
                     // XXX: hackety-hack
-                    $oa['type'] = 'activity';
+                    $oa['objectType'] = 'activity';
                 }
                 $activity['object'][] = $oa;
             }
