@@ -1473,21 +1473,32 @@ class Notice extends Memcached_DataObject
 
         if (Event::handle('StartNoticeAsActivity', array($this, &$act))) {
 
+            $act->id      = $this->uri;
+            $act->time    = strtotime($this->created);
+            $act->link    = $this->bestUrl();
+            $act->content = common_xml_safe_str($this->rendered);
+            $act->title   = common_xml_safe_str($this->content);
+
             $profile = $this->getProfile();
 
             $act->actor            = ActivityObject::fromProfile($profile);
             $act->actor->extra[]   = $profile->profileInfo($cur);
-            $act->verb             = ActivityVerb::POST;
-            $act->objects[]        = ActivityObject::fromNotice($this);
+
+            if ($this->repeat_of) {
+
+                $repeated = Notice::staticGet('id', $this->repeat_of);
+
+                $act->verb             = ActivityVerb::SHARE;
+                $act->objects[]        = $repeated->asActivity($cur);
+
+            } else {
+
+                $act->verb             = ActivityVerb::POST;
+                $act->objects[]        = ActivityObject::fromNotice($this);
+
+            }
 
             // XXX: should this be handled by default processing for object entry?
-
-            $act->time    = strtotime($this->created);
-            $act->link    = $this->bestUrl();
-
-            $act->content = common_xml_safe_str($this->rendered);
-            $act->id      = $this->uri;
-            $act->title   = common_xml_safe_str($this->content);
 
             // Categories
 

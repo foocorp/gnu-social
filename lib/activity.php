@@ -431,7 +431,13 @@ class Activity
         } else {
             $activity['object'] = array();
             foreach($this->objects as $object) {
-                $activity['object'][] = $object->asArray();
+                $oa = $object->asArray();
+                if ($object instanceof Activity) {
+                    // throw in a type
+                    // XXX: hackety-hack
+                    $oa['type'] = 'activity';
+                }
+                $activity['object'][] = $oa;
             }
         }
 
@@ -495,7 +501,7 @@ class Activity
         return $xs->getString();
     }
 
-    function outputTo($xs, $namespace=false, $author=true, $source=false)
+    function outputTo($xs, $namespace=false, $author=true, $source=false, $tag='entry')
     {
         if ($namespace) {
             $attrs = array('xmlns' => 'http://www.w3.org/2005/Atom',
@@ -510,9 +516,13 @@ class Activity
             $attrs = array();
         }
 
-        $xs->elementStart('entry', $attrs);
+        $xs->elementStart($tag, $attrs);
 
-        if ($this->verb == ActivityVerb::POST && count($this->objects) == 1) {
+        if ($tag != 'entry') {
+            $xs->element('activity:object-type', null, ActivityObject::ACTIVITY);
+        }
+
+        if ($this->verb == ActivityVerb::POST && count($this->objects) == 1 && $tag == 'entry') {
 
             $obj = $this->objects[0];
 			$obj->outputTo($xs, null);
@@ -558,9 +568,13 @@ class Activity
             $this->actor->outputTo($xs, 'activity:actor');
         }
 
-        if ($this->verb != ActivityVerb::POST || count($this->objects) != 1) {
+        if ($this->verb != ActivityVerb::POST || count($this->objects) != 1 || $tag != 'entry') {
             foreach($this->objects as $object) {
-                $object->outputTo($xs, 'activity:object');
+                if ($object instanceof Activity) {
+                    $object->outputTo($xs, false, true, true, 'activity:object');
+                } else {
+                    $object->outputTo($xs, 'activity:object');
+                }
             }
         }
 
@@ -694,7 +708,7 @@ class Activity
             $xs->element($tag, $attrs, $content);
         }
 
-        $xs->elementEnd('entry');
+        $xs->elementEnd($tag);
 
         return;
     }
