@@ -95,14 +95,6 @@ class RawConversationNoticeStream extends NoticeStream
         Notice::addWhereSinceId($notice, $since_id);
         Notice::addWhereMaxId($notice, $max_id);
 
-        $ids = array();
-
-        if ($notice->find()) {
-            while ($notice->fetch()) {
-                $ids[] = $notice->id;
-            }
-        }
-
-        return $ids;
+        return $notice->fetchAll('id');
     }
 }

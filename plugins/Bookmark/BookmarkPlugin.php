@@ -292,19 +292,27 @@ class BookmarkPlugin extends MicroAppPlugin
 
     function onStartOpenNoticeListItemElement($nli)
     {
+    	if (!$this->isMyNotice($nli->notice)) {
+    		return true;
+    	}
+    	
         $nb = Bookmark::getByNotice($nli->notice);
-        if (!empty($nb)) {
-            $id = (empty($nli->repeat)) ? $nli->notice->id : $nli->repeat->id;
-            $class = 'hentry notice bookmark';
-            if ($nli->notice->scope != 0 && $nli->notice->scope != 1) {
-                $class .= ' limited-scope';
-            }
-            $nli->out->elementStart('li', array('class' => $class,
-                                                 'id' => 'notice-' . $id));
-            Event::handle('EndOpenNoticeListItemElement', array($nli));
-            return false;
+        
+        if (empty($nb)) {
+        	$this->log(LOG_INFO, "Notice {$nli->notice->id} has bookmark class but no matching Bookmark record.");
+        	return true;
         }
-        return true;
+	        
+	    $id = (empty($nli->repeat)) ? $nli->notice->id : $nli->repeat->id;
+	    $class = 'hentry notice bookmark';
+	    if ($nli->notice->scope != 0 && $nli->notice->scope != 1) {
+	    	$class .= ' limited-scope';
+	    }
+	    $nli->out->elementStart('li', array('class' => $class,
+	                                        'id' => 'notice-' . $id));
+	                                        
+	    Event::handle('EndOpenNoticeListItemElement', array($nli));
+	    return false;
     }
 
     /**
@@ -355,12 +363,15 @@ class BookmarkPlugin extends MicroAppPlugin
      */
     function deleteRelated($notice)
     {
-        $nb = Bookmark::getByNotice($notice);
+    	if ($this->isMyNotice($notice)) {
+    		
+        	$nb = Bookmark::getByNotice($notice);
 
-        if (!empty($nb)) {
-            $nb->delete();
-        }
-
+        	if (!empty($nb)) {
+            	$nb->delete();
+        	}
+    	}
+    	
         return true;
     }
 
