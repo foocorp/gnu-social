@@ -525,9 +525,11 @@ class Ostatus_profile extends Managed_DataObject
             throw new ClientException(_m("Can only handle shared activities."));
         }
 
+        $other = Ostatus_profile::ensureActivityObjectProfile($shared->actor);
+
         // Save the item (or check for a dupe)
 
-        $this->processActivity($shared, $method);
+        $other->processActivity($shared, $method);
         
         // XXX: process*() should return the new or existing notice. They don't, so we have to
         // go fishing for it now.
