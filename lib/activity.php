@@ -171,15 +171,12 @@ class Activity
             // XXX: do other implied stuff here
         }
 
-        $objectEls = $entry->getElementsByTagNameNS(self::SPEC, self::OBJECT);
+        // get immediate object children
 
-        if ($objectEls->length > 0) {
-            for ($i = 0; $i < $objectEls->length; $i++) {
-                $objectEl = $objectEls->item($i);
-                // Only immediate children (don't slurp embedded activities' objects!)
-                if ($objectEl->parentNode != $entry) {
-                    continue;
-                }
+        $objectEls = ActivityUtils::children($entry, self::OBJECT, self::SPEC);
+
+        if (count($objectEls) > 0) {
+            foreach ($objectEls as $objectEl) {
                 // Special case for embedded activities
                 $objectType = ActivityUtils::childContent($objectEl, self::OBJECTTYPE, self::SPEC);
                 if (!empty($objectType) && $objectType == ActivityObject::ACTIVITY) {
