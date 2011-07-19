@@ -135,6 +135,9 @@ class Activity
         } else if ($entry->namespaceURI == Activity::RSS &&
                    $entry->localName == 'item') {
             $this->_fromRssItem($entry, $feed);
+        } else if ($entry->namespaceURI == Activity::SPEC &&
+                   $entry->localName == 'object') {
+            $this->_fromAtomEntry($entry, $feed);
         } else {
             // Low level exception. No need for i18n.
             throw new Exception("Unknown DOM element: {$entry->namespaceURI} {$entry->localName}");
@@ -173,9 +176,16 @@ class Activity
         if ($objectEls->length > 0) {
             for ($i = 0; $i < $objectEls->length; $i++) {
                 $objectEl = $objectEls->item($i);
-                $this->objects[] = new ActivityObject($objectEl);
+                // Special case for embedded activities
+                $objectType = ActivityUtils::childContent($objectEl, self::OBJECTTYPE, self::SPEC);
+                if (!empty($objectType) && $objectType == ActivityObject::ACTIVITY) {
+                    $this->objects[] = new Activity($objectEl);
+                } else {
+                    $this->objects[] = new ActivityObject($objectEl);
+                }
             }
         } else {
+            // XXX: really?
             $this->objects[] = new ActivityObject($entry);
         }
 
