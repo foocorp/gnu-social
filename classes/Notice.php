@@ -275,7 +275,7 @@ class Notice extends Memcached_DataObject
                           'distribute' => true);
 
         if (!empty($options)) {
-            $options = $options + $defaults;
+            $options = array_merge($options, $defaults);
             extract($options);
         } else {
             extract($defaults);
