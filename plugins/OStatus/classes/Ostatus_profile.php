@@ -463,18 +463,23 @@ class Ostatus_profile extends Managed_DataObject
      * @param DOMElement $entry
      * @param DOMElement $feed for context
      * @param string $source identifier ("push" or "salmon")
+     *
+     * @return Notice Notice representing the new (or existing) activity
      */
+
     public function processEntry($entry, $feed, $source)
     {
         $activity = new Activity($entry, $feed);
-        $this->processActivity($activity, $source);
+        return $this->processActivity($activity, $source);
     }
 
     public function processActivity($activity, $source)
     {
+        $notice = null;
+
         // The "WithProfile" events were added later.
 
-        if (Event::handle('StartHandleFeedEntryWithProfile', array($activity, $this)) &&
+        if (Event::handle('StartHandleFeedEntryWithProfile', array($activity, $this, &$notice)) &&
             Event::handle('StartHandleFeedEntry', array($activity))) {
 
             switch ($activity->verb) {
@@ -487,7 +492,7 @@ class Ostatus_profile extends Managed_DataObject
                 case ActivityObject::STATUS:
                 case ActivityObject::COMMENT:
                 case null:
-                    $this->processPost($activity, $source);
+                    $notice = $this->processPost($activity, $source);
                     break;
                 default:
                     // TRANS: Client exception.
@@ -495,24 +500,28 @@ class Ostatus_profile extends Managed_DataObject
                 }
                 break;
             case ActivityVerb::SHARE:
-                $result = $this->processShare($activity, $source);
+                $notice = $this->processShare($activity, $source);
                 break;
             default:
                 common_log(LOG_INFO, "Ignoring activity with unrecognized verb $activity->verb");
             }
 
             Event::handle('EndHandleFeedEntry', array($activity));
-            Event::handle('EndHandleFeedEntryWithProfile', array($activity, $this));
+            Event::handle('EndHandleFeedEntryWithProfile', array($activity, $this, $notice));
         }
+        
+        return $notice;
     }
 
     public function processShare($activity, $method)
     {
+        $notice = null;
+
         $oprofile = $this->checkAuthorship($activity);
 
         if (empty($oprofile)) {
             common_log(LOG_INFO, "No author matched share activity");
-            return false;
+            return null;
         }
 
         if (count($activity->objects) != 1) {
@@ -529,16 +538,10 @@ class Ostatus_profile extends Managed_DataObject
 
         // Save the item (or check for a dupe)
 
-        $other->processActivity($shared, $method);
+        $sharedNotice = $other->processActivity($shared, $method);
         
-        // XXX: process*() should return the new or existing notice. They don't, so we have to
-        // go fishing for it now.
-
-        $sharedId = ($shared->id) ? $shared->id : $shared->objects[0]->id;
-
-        $sharedNotice = Notice::staticGet('uri', $sharedId);
-
         if (empty($sharedNotice)) {
+            $sharedId = ($shared->id) ? $shared->id : $shared->objects[0]->id;
             throw new ClientException(sprintf(_m("Failed to save activity %s"),
                                               $sharedId));
         }
@@ -552,7 +555,7 @@ class Ostatus_profile extends Managed_DataObject
         $dupe = Notice::staticGet('uri', $sourceUri);
         if ($dupe) {
             common_log(LOG_INFO, "OStatus: ignoring duplicate post: $sourceUri");
-            return false;
+            return $dupe;
         }
 
         // We'll also want to save a web link to the original notice, if provided.
@@ -689,10 +692,12 @@ class Ostatus_profile extends Managed_DataObject
             $options['urls'][] = $href;
         }
 
-        return Notice::saveNew($oprofile->profile_id,
-                               $content,
-                               'ostatus',
-                               $content);
+        $notice = Notice::saveNew($oprofile->profile_id,
+                                  $content,
+                                  'ostatus',
+                                  $content);
+
+        return $notice;
     }
 
     /**
@@ -704,10 +709,12 @@ class Ostatus_profile extends Managed_DataObject
      */
     public function processPost($activity, $method)
     {
+        $notice = null;
+
         $oprofile = $this->checkAuthorship($activity);
 
         if (empty($oprofile)) {
-            return false;
+            return null;
         }
 
         // It's not always an ActivityObject::NOTE, but... let's just say it is.
@@ -721,7 +728,7 @@ class Ostatus_profile extends Managed_DataObject
         $dupe = Notice::staticGet('uri', $sourceUri);
         if ($dupe) {
             common_log(LOG_INFO, "OStatus: ignoring duplicate post: $sourceUri");
-            return false;
+            return $dupe;
         }
 
         // We'll also want to save a web link to the original notice, if provided.

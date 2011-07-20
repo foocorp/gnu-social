@@ -345,7 +345,7 @@ abstract class MicroAppPlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onStartHandleFeedEntryWithProfile($activity, $oprofile)
+    function onStartHandleFeedEntryWithProfile($activity, $oprofile, &$notice)
     {
         if ($this->isMyActivity($activity)) {
 
@@ -364,7 +364,7 @@ abstract class MicroAppPlugin extends Plugin
                              'source' => 'ostatus');
 
             // $actor is an ostatus_profile
-            $this->saveNoticeFromActivity($activity, $actor->localProfile(), $options);
+            $notice = $this->saveNoticeFromActivity($activity, $actor->localProfile(), $options);
 
             return false;
         }
