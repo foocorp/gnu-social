@@ -534,17 +534,21 @@ class Ostatus_profile extends Managed_DataObject
         // XXX: process*() should return the new or existing notice. They don't, so we have to
         // go fishing for it now.
 
-        $sharedNotice = Notice::staticGet('uri', $shared->id);
+        $sharedId = ($shared->id) ? $shared->id : $shared->objects[0]->id;
+
+        $sharedNotice = Notice::staticGet('uri', $sharedId);
 
         if (empty($sharedNotice)) {
             throw new ClientException(sprintf(_m("Failed to save activity %d"),
-                                              $shared->id));
+                                              $sharedId));
         }
 
         // The id URI will be used as a unique identifier for for the notice,
         // protecting against duplicate saves. It isn't required to be a URL;
         // tag: URIs for instance are found in Google Buzz feeds.
+
         $sourceUri = $activity->id;
+
         $dupe = Notice::staticGet('uri', $sourceUri);
         if ($dupe) {
             common_log(LOG_INFO, "OStatus: ignoring duplicate post: $sourceUri");
@@ -552,6 +556,7 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         // We'll also want to save a web link to the original notice, if provided.
+
         $sourceUrl = null;
         if ($activity->link) {
             $sourceUrl = $activity->link;
