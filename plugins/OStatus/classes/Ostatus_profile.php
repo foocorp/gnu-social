@@ -539,7 +539,7 @@ class Ostatus_profile extends Managed_DataObject
         $sharedNotice = Notice::staticGet('uri', $sharedId);
 
         if (empty($sharedNotice)) {
-            throw new ClientException(sprintf(_m("Failed to save activity %d"),
+            throw new ClientException(sprintf(_m("Failed to save activity %s"),
                                               $sharedId));
         }
 
