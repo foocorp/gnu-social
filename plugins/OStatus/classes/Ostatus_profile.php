@@ -695,7 +695,7 @@ class Ostatus_profile extends Managed_DataObject
         $notice = Notice::saveNew($oprofile->profile_id,
                                   $content,
                                   'ostatus',
-                                  $content);
+                                  $options);
 
         return $notice;
     }
