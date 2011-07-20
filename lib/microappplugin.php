@@ -193,6 +193,7 @@ abstract class MicroAppPlugin extends Plugin
     function isMyActivity($activity) {
         $types = $this->types();
         return (count($activity->objects) == 1 &&
+                ($activity->objects[0] instanceof ActivityObject) &&
                 in_array($activity->objects[0]->type, $types));
     }
 
