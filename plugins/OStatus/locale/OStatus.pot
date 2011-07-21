@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -524,7 +524,7 @@ msgstr ""
 
 #. TRANS: Client exception thrown when an undefied activity is performed.
 #. TRANS: Client exception.
-#: actions/usersalmon.php:73 classes/Ostatus_profile.php:489
+#: actions/usersalmon.php:73 classes/Ostatus_profile.php:499
 msgid "Cannot handle that kind of post."
 msgstr ""
 
@@ -855,130 +855,143 @@ msgstr ""
 msgid "RSS feed without a channel."
 msgstr ""
 
+#: classes/Ostatus_profile.php:528
+msgid "Can only handle share activities with exactly one object."
+msgstr ""
+
+#: classes/Ostatus_profile.php:534
+msgid "Can only handle shared activities."
+msgstr ""
+
+#: classes/Ostatus_profile.php:545
+#, php-format
+msgid "Failed to save activity %s"
+msgstr ""
+
 #. TRANS: Client exception. %s is a source URI.
-#: classes/Ostatus_profile.php:547
+#: classes/Ostatus_profile.php:583 classes/Ostatus_profile.php:755
 #, php-format
 msgid "No content for notice %s."
 msgstr ""
 
 #. TRANS: Shown when a notice is longer than supported and/or when attachments are present. At runtime
 #. TRANS: this will usually be replaced with localised text from StatusNet core messages.
-#: classes/Ostatus_profile.php:582
+#: classes/Ostatus_profile.php:618 classes/Ostatus_profile.php:790
 msgid "Show more"
 msgstr ""
 
 #. TRANS: Exception. %s is a profile URL.
-#: classes/Ostatus_profile.php:779
+#: classes/Ostatus_profile.php:987
 #, php-format
 msgid "Could not reach profile page %s."
 msgstr ""
 
 #. TRANS: Exception. %s is a URL.
-#: classes/Ostatus_profile.php:837
+#: classes/Ostatus_profile.php:1045
 #, php-format
 msgid "Could not find a feed URL for profile page %s."
 msgstr ""
 
 #. TRANS: Feed sub exception.
-#: classes/Ostatus_profile.php:935
+#: classes/Ostatus_profile.php:1143
 msgid "Cannot find enough profile information to make a feed."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URL.
-#: classes/Ostatus_profile.php:999
+#: classes/Ostatus_profile.php:1207
 #, php-format
 msgid "Invalid avatar URL %s."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:1010
+#: classes/Ostatus_profile.php:1218
 #, php-format
 msgid "Tried to update avatar for unsaved remote profile %s."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URL.
-#: classes/Ostatus_profile.php:1020
+#: classes/Ostatus_profile.php:1228
 #, php-format
 msgid "Unable to fetch avatar from %s."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1214
+#: classes/Ostatus_profile.php:1425
 msgid "No author ID URI found."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1240
+#: classes/Ostatus_profile.php:1451
 msgid "No profile URI."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1246
+#: classes/Ostatus_profile.php:1457
 msgid "Local user cannot be referenced as remote."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1251
+#: classes/Ostatus_profile.php:1462
 msgid "Local group cannot be referenced as remote."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1259
+#: classes/Ostatus_profile.php:1470
 msgid "Local list cannot be referenced as remote."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1312 classes/Ostatus_profile.php:1323
+#: classes/Ostatus_profile.php:1523 classes/Ostatus_profile.php:1534
 msgid "Cannot save local profile."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1334
+#: classes/Ostatus_profile.php:1545
 msgid "Cannot save local list."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1342
+#: classes/Ostatus_profile.php:1553
 msgid "Cannot save OStatus profile."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1655 classes/Ostatus_profile.php:1682
+#: classes/Ostatus_profile.php:1866 classes/Ostatus_profile.php:1893
 msgid "Not a valid webfinger address."
 msgstr ""
 
 #. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1760
+#: classes/Ostatus_profile.php:1971
 #, php-format
 msgid "Could not save profile for \"%s\"."
 msgstr ""
 
 #. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1779
+#: classes/Ostatus_profile.php:1990
 #, php-format
 msgid "Could not save OStatus profile for \"%s\"."
 msgstr ""
 
 #. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1787
+#: classes/Ostatus_profile.php:1998
 #, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1830
+#: classes/Ostatus_profile.php:2041
 msgid "Could not store HTML content of long post as file."
 msgstr ""
 
 #. TRANS: Server exception.
 #. TRANS: %1$s is a protocol, %2$s is a URI.
-#: classes/Ostatus_profile.php:1862
+#: classes/Ostatus_profile.php:2073
 #, php-format
 msgid "Unrecognized URI protocol for profile: %1$s (%2$s)."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:1869
+#: classes/Ostatus_profile.php:2080
 #, php-format
 msgid "No URI protocol for profile: %s."
 msgstr ""

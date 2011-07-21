@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -441,17 +441,17 @@ msgid "Twitter integration options"
 msgstr ""
 
 #. TRANS: Menu item in administrative panel that leads to the Twitter bridge configuration.
-#: TwitterBridgePlugin.php:307
+#: TwitterBridgePlugin.php:319
 msgid "Twitter"
 msgstr ""
 
 #. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
-#: TwitterBridgePlugin.php:309
+#: TwitterBridgePlugin.php:321
 msgid "Twitter bridge configuration page."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: TwitterBridgePlugin.php:333
+#: TwitterBridgePlugin.php:345
 msgid ""
 "The Twitter \"bridge\" plugin allows integration of a StatusNet instance "
 "with <a href=\"http://twitter.com/\">Twitter</a>."

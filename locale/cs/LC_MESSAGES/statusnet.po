@@ -14,18 +14,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:25:57+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:21:38+0000\n"
 "Language-Team: Czech <http://translatewiki.net/wiki/Portal:cs>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: cs\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ( (n >= 2 && n <= 4) ? 1 : "
 "2 );\n"
-"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
+"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -159,11 +159,6 @@ msgstr "Žádný takový profil."
 msgid "No such list."
 msgstr "Žádná taková nálepka."
 
-#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
-#, fuzzy
-msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr "Touto akcí se nemůžete přihlásit k odběru vzdáleného OMB 0.1 profilu."
-
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
 #, php-format
@@ -225,8 +220,6 @@ msgstr "Tady žádná taková stránka není."
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
 #. TRANS: Client error displayed when referring to non-existing user.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing user.
-#. TRANS: Form validation error on page for remote subscribe when no user was provided.
-#. TRANS: Form validation error on page for remote subscribe when no user profile was found.
 #. TRANS: Client error displayed when trying to reply to a non-exsting user.
 #. TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
 #. TRANS: Client error.
@@ -235,7 +228,6 @@ msgstr "Tady žádná taková stránka není."
 #. TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
 #. TRANS: Client error displayed requesting groups for a non-existing user.
 #. TRANS: Client error displayed when user not found for an action.
-#. TRANS: Client error displayed providing a non-existing nickname.
 #. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
 #. TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
 #. TRANS: Client error displayed when trying to access a mailbox without providing a user.
@@ -319,6 +311,13 @@ msgid ""
 msgstr ""
 "Proč si [nezaregistrovat účet](%%%%action.register%%%%) a pak pošťouchnout "
 "uživatele %s nebo jim poslat hlášku."
+
+#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Less business/enterprise-oriented language for public sites.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Send invite"
+msgstr "Pozvánky"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -444,6 +443,19 @@ msgstr "Zablokovat uživatele se nezdařilo."
 #. TRANS: Server error displayed when unblocking a user has failed.
 msgid "Unblock user failed."
 msgstr "Odblokovat uživatele se nezdařilo."
+
+#, fuzzy
+msgid "no conversation id"
+msgstr "Konverzace"
+
+#, php-format
+msgid "No conversation with id %d"
+msgstr ""
+
+#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "Konverzace"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -899,7 +911,6 @@ msgstr "Účet"
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
-#. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Nickname"
@@ -1768,9 +1779,17 @@ msgstr "Heslo znovu"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "Adresa \"%s\" byla potvrzena pro váš účet"
 
-#. TRANS: Title for page with a conversion (multiple notices in context).
-msgid "Conversation"
-msgstr "Konverzace"
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (Activity Streams JSON)"
+msgstr "Feed oznámení pro %1$s (Atom)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (RSS 2.0)"
+msgstr "Feed oznámení pro %1$s (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -2480,40 +2499,6 @@ msgstr "Bez příloh."
 #. TRANS: that could not be found.
 msgid "No uploaded attachments."
 msgstr "Žádné nahrané přílohy."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and an unexpected response is received.
-msgid "Not expecting this response!"
-msgstr "Nečekaná odpověď!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that does not exist.
-msgid "User being listened to does not exist."
-msgstr "Úživatel, kterému nasloucháte neexistuje."
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
-#. TRANS: Client error displayed when using remote subscribe for a local entity.
-msgid "You can use the local subscription!"
-msgstr "Můžete použít místní odebírání."
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
-msgid "That user has blocked you from subscribing."
-msgstr "Uživatel vaše odebírání zablokoval."
-
-#. TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
-msgid "You are not authorized."
-msgstr "Nejste autorizován."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and conversion of the request token to access token fails.
-msgid "Could not convert request token to access token."
-msgstr "Nemohu převést žádost token na přístup token."
-
-#. TRANS: Client error displayed when subscribing to a remote profile fails because of an unsupported version of the OMB protocol.
-msgid "Remote service uses unknown version of OMB protocol."
-msgstr "Vzdálená služba používá neznámou verzi protokolu OMB."
-
-#. TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
-#. TRANS: Exception thrown when updating a remote profile fails in OAuth store.
-msgid "Error updating remote profile."
-msgstr "Chyba při aktualizaci vzdáleného profilu."
 
 #. TRANS: Client error displayed when requesting a non-existent file.
 msgid "No such file."
@@ -4112,16 +4097,6 @@ msgid ""
 "All default plugins have been disabled from the site's configuration file."
 msgstr ""
 
-#. TRANS: Client error displayed if the notice posted has too many characters.
-msgid "Invalid notice content."
-msgstr "Neplatná velikost"
-
-#. TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
-#. TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
-#, fuzzy, php-format
-msgid "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-msgstr "Licence hlášky ‘%1$s’ není kompatibilní s licencí webu ‘%2$s’."
-
 #. TRANS: Client error displayed when trying to add an unindentified field to profile.
 #. TRANS: %s is a field name.
 #, php-format
@@ -4783,81 +4758,6 @@ msgid ""
 msgstr ""
 "(Měli byste za okamžik obdržet e-mailem zprávu s instrukcemi, jak potvrdit "
 "svou e-mailovou adresu.)"
-
-#. TRANS: Page notice for remote subscribe. This message contains Markdown links.
-#. TRANS: Ensure to keep the correct markup of [link description](link).
-#, php-format
-msgid ""
-"To subscribe, you can [login](%%action.login%%), or [register](%%action."
-"register%%) a new  account. If you already have an account  on a [compatible "
-"microblogging site](%%doc.openmublog%%),  enter your profile URL below."
-msgstr ""
-"Pro odebírání, se musíte [přihlásit](%%action.login%%), nebo [registrovat](%%"
-"action.register%%) nový účet. Pokud již máte účet na [kompatibilních "
-"mikroblozích](%%doc.openmublog%%), vložte níže adresu."
-
-#. TRANS: Page title for Remote subscribe.
-msgid "Remote subscribe"
-msgstr "Vzdálený odběr"
-
-#. TRANS: Field legend on page for remote subscribe.
-msgid "Subscribe to a remote user"
-msgstr "Přihlásit se ke vzdálenému uživateli"
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "User nickname"
-msgstr "Přezdívka uživatele"
-
-#. TRANS: Field title on page for remote subscribe.
-#, fuzzy
-msgid "Nickname of the user you want to follow."
-msgstr "Přezdívka uživatele, kterého chcete sledovat"
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "Profile URL"
-msgstr "Adresa Profilu"
-
-#. TRANS: Field title on page for remote subscribe.
-#, fuzzy
-msgid "URL of your profile on another compatible microblogging service."
-msgstr "Adresa profilu na jiných kompatibilních mikroblozích."
-
-#. TRANS: Button text on page for remote subscribe.
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Odebírat"
-
-#. TRANS: Form validation error on page for remote subscribe when an invalid profile URL was provided.
-#, fuzzy
-msgid "Invalid profile URL (bad format)."
-msgstr "Neplatná adresa profilu (špatný formát)"
-
-#. TRANS: Form validation error on page for remote subscribe when no the provided profile URL
-#. TRANS: does not contain expected data.
-msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-msgstr ""
-"Není platnou adresou profilu (není YADIS dokumentem nebo definováno neplatné "
-"XRDS)."
-
-#. TRANS: Form validation error on page for remote subscribe.
-#, fuzzy
-msgid "That is a local profile! Login to subscribe."
-msgstr "To je místní profil! Pro přihlášení k odběru se přihlášte."
-
-#. TRANS: Form validation error on page for remote subscribe when the remote service is not providing a request token.
-#, fuzzy
-msgid "Could not get a request token."
-msgstr "Nelze získat řetězec požadavku."
-
-#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
-#, fuzzy
-msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-msgstr ""
-"Touto akcí se nemůžete se přihlásit k odběru vzdáleného OMB 0.1 profilu."
 
 #. TRANS: Client error displayed when an unknown error occurs while delisting a user.
 #. TRANS: %s is a username.
@@ -5997,11 +5897,6 @@ msgstr "členové skupiny %1$s, strana %2$d"
 msgid "A list of users awaiting approval to subscribe to you."
 msgstr "Seznam uživatelů v této skupině."
 
-#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
-msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-msgstr ""
-"Touto akcí se nemůžete se přihlásit k odběru vzdáleného OMB 0.1 profilu."
-
 #. TRANS: Page title when subscription succeeded.
 msgid "Subscribed"
 msgstr "Prihlášen"
@@ -6259,17 +6154,6 @@ msgstr "Odhlášeno"
 msgid "%1$s unsubscribed from list %2$s by %3$s"
 msgstr "odběratelé %1$s, strana %2$d"
 
-#. TRANS: Client error displayed when trying to update profile with an incompatible license.
-#. TRANS: %1$s is the license incompatible with site license %2$s.
-#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
-#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
-#, fuzzy, php-format
-msgid ""
-"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
-"\"."
-msgstr ""
-"Licence naslouchaného '%1$s' není kompatibilní s licencí stránky '%2$s'."
-
 #. TRANS: Title of URL settings tab in profile settings.
 #, fuzzy
 msgid "URL settings"
@@ -6413,121 +6297,6 @@ msgstr "Zda chcete uživatelům umožnit pozvat nové uživatele."
 #, fuzzy
 msgid "Save user settings."
 msgstr "Uložit Nastavení webu"
-
-#. TRANS: Page title.
-msgid "Authorize subscription"
-msgstr "Autorizujte přihlášení"
-
-#. TRANS: Page notice on "Authorize subscription" page.
-#, fuzzy
-msgid ""
-"Please check these details to make sure that you want to subscribe to this "
-"user’s notices. If you didn’t just ask to subscribe to someone’s notices, "
-"click \"Reject\"."
-msgstr ""
-"Prosím zkontrolujte tyto detailu, a ujistěte se že opravdu chcete odebírat "
-"sdělení tohoto uživatele. Pokud jste právě nepožádali o přihlášení k tomuto "
-"uživteli, klikněte na \"Zrušit\""
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to accept a group membership request on approve group form.
-#. TRANS: Submit button text to accept a subscription request on approve sub form.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Accept"
-msgstr "Přijmout"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#. TRANS: Button title to subscribe to a user.
-#, fuzzy
-msgid "Subscribe to this user."
-msgstr "Přihlásit se k tomuto uživateli"
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to reject a group membership request on approve group form.
-#. TRANS: Submit button text to reject a subscription request on approve sub form.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Reject"
-msgstr "Odmítnout"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#, fuzzy
-msgid "Reject this subscription."
-msgstr "Odmítnout toto přihlášení"
-
-#. TRANS: Client error displayed for an empty authorisation request.
-msgid "No authorization request!"
-msgstr "Žádná žádost o autorizaci!"
-
-#. TRANS: Accept message header from Authorise subscription page.
-msgid "Subscription authorized"
-msgstr "Odběr autorizován"
-
-#. TRANS: Accept message text from Authorise subscription page.
-msgid ""
-"The subscription has been authorized, but no callback URL was passed. Check "
-"with the site's instructions for details on how to authorize the "
-"subscription. Your subscription token is:"
-msgstr ""
-"Odběr byl autorizován, ale nepřišla žádná callback adresa. Zkontrolujte v "
-"nápovědě jak správně postupovat při autorizování odběru. Váš řetězec odběru "
-"je:"
-
-#. TRANS: Reject message header from Authorise subscription page.
-msgid "Subscription rejected"
-msgstr "Odběr odmítnut"
-
-#. TRANS: Reject message from Authorise subscription page.
-msgid ""
-"The subscription has been rejected, but no callback URL was passed. Check "
-"with the site's instructions for details on how to fully reject the "
-"subscription."
-msgstr ""
-"Odebírání bylo zamítnuto, ale nepřišla žádná callback adresa. Zkontrolujte v "
-"nápovědě jak správně postupovat pro plné zamítnutí odběru."
-
-#. TRANS: Exception thrown when no valid user is found for an authorisation request.
-#. TRANS: %s is a listener URI.
-#, fuzzy, php-format
-msgid "Listener URI \"%s\" not found here."
-msgstr "Naslouchací URI ‘%s’ zde nebyl nalezen."
-
-#. TRANS: Exception thrown when listenee URI is too long for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, fuzzy, php-format
-msgid "Listenee URI \"%s\" is too long."
-msgstr "Naslouchací URI ‘%s’ je příliš dlouhý."
-
-#. TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, fuzzy, php-format
-msgid "Listenee URI \"%s\" is a local user."
-msgstr "Naslouchací URI ‘%s’ je místní uživatel."
-
-#. TRANS: Exception thrown when profile URL is a local user for an authorisation request.
-#. TRANS: %s is a profile URL.
-#, fuzzy, php-format
-msgid "Profile URL \"%s\" is for a local user."
-msgstr "URL profilu '%s' je pro místního uživatele."
-
-#. TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, fuzzy, php-format
-msgid "Avatar URL \"%s\" is not valid."
-msgstr "URL avataru ‘%s’ není platný."
-
-#. TRANS: Exception thrown when avatar URL could not be read for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, fuzzy, php-format
-msgid "Cannot read avatar URL \"%s\"."
-msgstr "Nelze načíst avatara z URL '%s'"
-
-#. TRANS: Exception thrown when avatar URL return an invalid image type for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, fuzzy, php-format
-msgid "Wrong image type for avatar URL \"%s\"."
-msgstr "Špatný typ obrázku na URL '%s'"
 
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
@@ -6751,6 +6520,10 @@ msgstr "Nelze aktualizovat místní skupinu."
 msgid "Could not create login token for %s"
 msgstr "Nelze vytvořit přihlašovací token pro %s"
 
+#, fuzzy
+msgid "Cannot instantiate class "
+msgstr "Nelze uložit nové heslo"
+
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "Nenalezeno jméno databáze ani DSN."
@@ -6936,7 +6709,6 @@ msgid "Unable to save tag."
 msgstr "Nelze uložit tag."
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
-#. TRANS: Error message displayed to a banned user when they try to subscribe.
 msgid "You have been banned from subscribing."
 msgstr "Byl jste vykázán (banned) z přihlašování se."
 
@@ -6955,10 +6727,6 @@ msgstr "Nepřihlášen!"
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 msgid "Could not delete self-subscription."
 msgstr "Nelze smazat odebírání sebe sama"
-
-#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
-msgid "Could not delete subscription OMB token."
-msgstr "Nelze smazat OMB token přihlášení."
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
 msgid "Could not delete subscription."
@@ -7088,6 +6856,14 @@ msgstr "Administrátor"
 msgctxt "role"
 msgid "Moderator"
 msgstr "Moderátor"
+
+#. TRANS: Link text for link that will subscribe to a remote profile.
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Odebírat"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
@@ -7416,43 +7192,6 @@ msgstr ""
 msgid "Could not authenticate you."
 msgstr ""
 
-#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
-#, fuzzy
-msgid "Could not create anonymous consumer."
-msgstr "Nelze vytvořit aliasy."
-
-#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
-#, fuzzy
-msgid "Could not create anonymous OAuth application."
-msgstr "Nelze vytvořit aplikaci."
-
-#. TRANS: Exception thrown when no token association could be found.
-msgid ""
-"Could not find a profile and application associated with the request token."
-msgstr ""
-
-#. TRANS: Exception thrown when no access token can be issued.
-#, fuzzy
-msgid "Could not issue access token."
-msgstr "Nemohu vložit zprávu."
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error inserting OAuth application user."
-msgstr "Chyba databáze při vkládání uživatele aplikace OAuth."
-
-#. TRANS: Exception thrown when a database error occurs.
-#, fuzzy
-msgid "Database error updating OAuth application user."
-msgstr "Chyba databáze při vkládání uživatele aplikace OAuth."
-
-#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
-msgid "Tried to revoke unknown token."
-msgstr ""
-
-#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
-msgid "Failed to delete revoked token."
-msgstr ""
-
 #. TRANS: Form input field label for application icon.
 msgid "Icon"
 msgstr "Ikona"
@@ -7575,6 +7314,20 @@ msgstr ""
 msgctxt "BUTTON"
 msgid "Revoke"
 msgstr "Obnovit"
+
+#. TRANS: Submit button text to accept a group membership request on approve group form.
+#. TRANS: Submit button text to accept a subscription request on approve sub form.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr "Přijmout"
+
+#. TRANS: Submit button text to reject a group membership request on approve group form.
+#. TRANS: Submit button text to reject a subscription request on approve sub form.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Reject"
+msgstr "Odmítnout"
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
 msgid "Author element must contain a name element."
@@ -8423,6 +8176,12 @@ msgstr "Populární oznámení"
 msgid "Active groups"
 msgstr "Všechny skupiny"
 
+msgid "See all"
+msgstr ""
+
+msgid "See all groups you belong to"
+msgstr ""
+
 #. TRANS: Title for group tag cloud section.
 #. TRANS: %s is a group name.
 #, php-format
@@ -8515,7 +8274,7 @@ msgctxt "TITLE"
 msgid "Trends"
 msgstr ""
 
-#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Default button text for inviting more users to the StatusNet instance.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
@@ -8565,6 +8324,10 @@ msgstr "Připojit se"
 msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Opustit"
+
+#, fuzzy
+msgid "See all lists you have created"
+msgstr "Aplikace které jste zaregistrovali"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -9123,6 +8886,9 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+msgid "More ▼"
+msgstr ""
+
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
 msgstr ""
@@ -9246,27 +9012,6 @@ msgstr "Pošťouchnout"
 #, fuzzy
 msgid "Send a nudge to this user."
 msgstr "Poslat pošťouchnutí tomuto uživateli"
-
-#. TRANS: Exception thrown when creating a new profile fails in OAuth store.
-msgid "Error inserting new profile."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a new avatar fails in OAuth store.
-msgid "Error inserting avatar."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a remote profile fails in OAuth store.
-msgid "Error inserting remote profile."
-msgstr ""
-
-#. TRANS: Exception thrown when a notice is denied because it has been sent before.
-msgid "Duplicate notice."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a new subscription fails in OAuth store.
-#, fuzzy
-msgid "Could not insert new subscription."
-msgstr "Nelze vložit odebírání"
 
 #. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
 #, fuzzy
@@ -9881,6 +9626,43 @@ msgstr "Uťišit"
 msgid "Silence this user"
 msgstr "Utišit tohoto uživatele"
 
+#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
+#, fuzzy
+msgid "Could not create anonymous consumer."
+msgstr "Nelze vytvořit aliasy."
+
+#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
+#, fuzzy
+msgid "Could not create anonymous OAuth application."
+msgstr "Nelze vytvořit aplikaci."
+
+#. TRANS: Exception thrown when no token association could be found.
+msgid ""
+"Could not find a profile and application associated with the request token."
+msgstr ""
+
+#. TRANS: Exception thrown when no access token can be issued.
+#, fuzzy
+msgid "Could not issue access token."
+msgstr "Nemohu vložit zprávu."
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error inserting OAuth application user."
+msgstr "Chyba databáze při vkládání uživatele aplikace OAuth."
+
+#. TRANS: Exception thrown when a database error occurs.
+#, fuzzy
+msgid "Database error updating OAuth application user."
+msgstr "Chyba databáze při vkládání uživatele aplikace OAuth."
+
+#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
+msgid "Tried to revoke unknown token."
+msgstr ""
+
+#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
+msgid "Failed to delete revoked token."
+msgstr ""
+
 #. TRANS: Menu item in local navigation menu.
 #, fuzzy
 msgctxt "MENU"
@@ -9936,6 +9718,11 @@ msgstr "Pozvěte přátele a kolegy, aby se k vám připojili na %s"
 
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
+msgstr "Přihlásit se k tomuto uživateli"
+
+#. TRANS: Button title to subscribe to a user.
+#, fuzzy
+msgid "Subscribe to this user."
 msgstr "Přihlásit se k tomuto uživateli"
 
 #. TRANS: Title of personal tag cloud section.
@@ -10311,3 +10098,181 @@ msgstr "Není platnou mailovou adresou."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Nepodařilo se uložit profil."
+
+#, fuzzy
+#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
+#~ msgstr ""
+#~ "Touto akcí se nemůžete přihlásit k odběru vzdáleného OMB 0.1 profilu."
+
+#~ msgid "Not expecting this response!"
+#~ msgstr "Nečekaná odpověď!"
+
+#~ msgid "User being listened to does not exist."
+#~ msgstr "Úživatel, kterému nasloucháte neexistuje."
+
+#~ msgid "You can use the local subscription!"
+#~ msgstr "Můžete použít místní odebírání."
+
+#~ msgid "That user has blocked you from subscribing."
+#~ msgstr "Uživatel vaše odebírání zablokoval."
+
+#~ msgid "You are not authorized."
+#~ msgstr "Nejste autorizován."
+
+#~ msgid "Could not convert request token to access token."
+#~ msgstr "Nemohu převést žádost token na přístup token."
+
+#~ msgid "Remote service uses unknown version of OMB protocol."
+#~ msgstr "Vzdálená služba používá neznámou verzi protokolu OMB."
+
+#~ msgid "Error updating remote profile."
+#~ msgstr "Chyba při aktualizaci vzdáleného profilu."
+
+#~ msgid "Invalid notice content."
+#~ msgstr "Neplatná velikost"
+
+#, fuzzy
+#~ msgid ""
+#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
+#~ msgstr "Licence hlášky ‘%1$s’ není kompatibilní s licencí webu ‘%2$s’."
+
+#~ msgid ""
+#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
+#~ "register%%) a new  account. If you already have an account  on a "
+#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
+#~ "URL below."
+#~ msgstr ""
+#~ "Pro odebírání, se musíte [přihlásit](%%action.login%%), nebo [registrovat]"
+#~ "(%%action.register%%) nový účet. Pokud již máte účet na [kompatibilních "
+#~ "mikroblozích](%%doc.openmublog%%), vložte níže adresu."
+
+#~ msgid "Remote subscribe"
+#~ msgstr "Vzdálený odběr"
+
+#~ msgid "Subscribe to a remote user"
+#~ msgstr "Přihlásit se ke vzdálenému uživateli"
+
+#~ msgid "User nickname"
+#~ msgstr "Přezdívka uživatele"
+
+#, fuzzy
+#~ msgid "Nickname of the user you want to follow."
+#~ msgstr "Přezdívka uživatele, kterého chcete sledovat"
+
+#~ msgid "Profile URL"
+#~ msgstr "Adresa Profilu"
+
+#, fuzzy
+#~ msgid "URL of your profile on another compatible microblogging service."
+#~ msgstr "Adresa profilu na jiných kompatibilních mikroblozích."
+
+#, fuzzy
+#~ msgid "Invalid profile URL (bad format)."
+#~ msgstr "Neplatná adresa profilu (špatný formát)"
+
+#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
+#~ msgstr ""
+#~ "Není platnou adresou profilu (není YADIS dokumentem nebo definováno "
+#~ "neplatné XRDS)."
+
+#, fuzzy
+#~ msgid "That is a local profile! Login to subscribe."
+#~ msgstr "To je místní profil! Pro přihlášení k odběru se přihlášte."
+
+#, fuzzy
+#~ msgid "Could not get a request token."
+#~ msgstr "Nelze získat řetězec požadavku."
+
+#, fuzzy
+#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
+#~ msgstr ""
+#~ "Touto akcí se nemůžete se přihlásit k odběru vzdáleného OMB 0.1 profilu."
+
+#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
+#~ msgstr ""
+#~ "Touto akcí se nemůžete se přihlásit k odběru vzdáleného OMB 0.1 profilu."
+
+#, fuzzy
+#~ msgid ""
+#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
+#~ "$s\"."
+#~ msgstr ""
+#~ "Licence naslouchaného '%1$s' není kompatibilní s licencí stránky '%2$s'."
+
+#~ msgid "Authorize subscription"
+#~ msgstr "Autorizujte přihlášení"
+
+#, fuzzy
+#~ msgid ""
+#~ "Please check these details to make sure that you want to subscribe to "
+#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
+#~ "notices, click \"Reject\"."
+#~ msgstr ""
+#~ "Prosím zkontrolujte tyto detailu, a ujistěte se že opravdu chcete "
+#~ "odebírat sdělení tohoto uživatele. Pokud jste právě nepožádali o "
+#~ "přihlášení k tomuto uživteli, klikněte na \"Zrušit\""
+
+#, fuzzy
+#~ msgid "Reject this subscription."
+#~ msgstr "Odmítnout toto přihlášení"
+
+#~ msgid "No authorization request!"
+#~ msgstr "Žádná žádost o autorizaci!"
+
+#~ msgid "Subscription authorized"
+#~ msgstr "Odběr autorizován"
+
+#~ msgid ""
+#~ "The subscription has been authorized, but no callback URL was passed. "
+#~ "Check with the site's instructions for details on how to authorize the "
+#~ "subscription. Your subscription token is:"
+#~ msgstr ""
+#~ "Odběr byl autorizován, ale nepřišla žádná callback adresa. Zkontrolujte v "
+#~ "nápovědě jak správně postupovat při autorizování odběru. Váš řetězec "
+#~ "odběru je:"
+
+#~ msgid "Subscription rejected"
+#~ msgstr "Odběr odmítnut"
+
+#~ msgid ""
+#~ "The subscription has been rejected, but no callback URL was passed. Check "
+#~ "with the site's instructions for details on how to fully reject the "
+#~ "subscription."
+#~ msgstr ""
+#~ "Odebírání bylo zamítnuto, ale nepřišla žádná callback adresa. "
+#~ "Zkontrolujte v nápovědě jak správně postupovat pro plné zamítnutí odběru."
+
+#, fuzzy
+#~ msgid "Listener URI \"%s\" not found here."
+#~ msgstr "Naslouchací URI ‘%s’ zde nebyl nalezen."
+
+#, fuzzy
+#~ msgid "Listenee URI \"%s\" is too long."
+#~ msgstr "Naslouchací URI ‘%s’ je příliš dlouhý."
+
+#, fuzzy
+#~ msgid "Listenee URI \"%s\" is a local user."
+#~ msgstr "Naslouchací URI ‘%s’ je místní uživatel."
+
+#, fuzzy
+#~ msgid "Profile URL \"%s\" is for a local user."
+#~ msgstr "URL profilu '%s' je pro místního uživatele."
+
+#, fuzzy
+#~ msgid "Avatar URL \"%s\" is not valid."
+#~ msgstr "URL avataru ‘%s’ není platný."
+
+#, fuzzy
+#~ msgid "Cannot read avatar URL \"%s\"."
+#~ msgstr "Nelze načíst avatara z URL '%s'"
+
+#, fuzzy
+#~ msgid "Wrong image type for avatar URL \"%s\"."
+#~ msgstr "Špatný typ obrázku na URL '%s'"
+
+#~ msgid "Could not delete subscription OMB token."
+#~ msgstr "Nelze smazat OMB token přihlášení."
+
+#, fuzzy
+#~ msgid "Could not insert new subscription."
+#~ msgstr "Nelze vložit odebírání"

@@ -1,6 +1,7 @@
 # Translation of StatusNet - EmailSummary to Dutch (Nederlands)
 # Exported from translatewiki.net
 #
+# Author: SPQRobin
 # Author: Siebrand
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailSummary\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:24:39+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:20:20+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:04+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-POT-Import-Date: 2011-07-01 11:18:46+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-emailsummary\n"
@@ -24,7 +25,7 @@ msgstr ""
 #. TRANS: Subject for e-mail.
 #, php-format
 msgid "Your latest updates from %s"
-msgstr ""
+msgstr "Uw recentste updates van %s"
 
 #. TRANS: Text in e-mail summary.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the recipient's profile name.
@@ -49,6 +50,3 @@ msgstr "E-mailsamenvatting verzenden naar het Postvak IN van gebruikers."
 #. TRANS: Checkbox label in e-mail preferences form.
 msgid "Send me a periodic summary of updates from my network"
 msgstr "Stuur mij periodiek een samenvatting van de updates in mijn netwerk"
-
-#~ msgid "Updates from your network"
-#~ msgstr "Updates uit uw netwerk"

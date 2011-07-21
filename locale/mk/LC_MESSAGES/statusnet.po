@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:26:23+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:22:07+0000\n"
 "Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
-"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
+"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -163,10 +163,6 @@ msgstr "Нема таков профил."
 msgid "No such list."
 msgstr "Нема таков список."
 
-#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
-msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr "Не можете да наведете далечински профил OMB 0.1 со ова дејство."
-
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
 #, php-format
@@ -229,8 +225,6 @@ msgstr "Нема таква страница."
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
 #. TRANS: Client error displayed when referring to non-existing user.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing user.
-#. TRANS: Form validation error on page for remote subscribe when no user was provided.
-#. TRANS: Form validation error on page for remote subscribe when no user profile was found.
 #. TRANS: Client error displayed when trying to reply to a non-exsting user.
 #. TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
 #. TRANS: Client error.
@@ -239,7 +233,6 @@ msgstr "Нема таква страница."
 #. TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
 #. TRANS: Client error displayed requesting groups for a non-existing user.
 #. TRANS: Client error displayed when user not found for an action.
-#. TRANS: Client error displayed providing a non-existing nickname.
 #. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
 #. TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
 #. TRANS: Client error displayed when trying to access a mailbox without providing a user.
@@ -260,9 +253,9 @@ msgstr "Хронологија на домашната страница на %s"
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
 #. TRANS: %s is tagger's nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Feed for friends of %s (Activity Streams JSON)"
-msgstr "Канал за пријатели на %S (Atom)"
+msgstr "Канал за пријатели на %s (Activity Streams JSON)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -321,6 +314,13 @@ msgid ""
 msgstr ""
 "А зошто не се [регистрирате](%%%%action.register%%%%), и потоа да го "
 "подбуцнете корисникот %s или да му испратите забелешка."
+
+#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Less business/enterprise-oriented language for public sites.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Send invite"
+msgstr "Испрати покани."
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -444,6 +444,19 @@ msgstr "Блокирањето на корисникот не успеа."
 #. TRANS: Server error displayed when unblocking a user has failed.
 msgid "Unblock user failed."
 msgstr "Не успеа одблокирањето на корисникот."
+
+#, fuzzy
+msgid "no conversation id"
+msgstr "Разговор"
+
+#, php-format
+msgid "No conversation with id %d"
+msgstr ""
+
+#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "Разговор"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -882,7 +895,6 @@ msgstr "Сметка"
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
-#. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Nickname"
@@ -1729,9 +1741,17 @@ msgstr "Потврди адреса"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "Адресата  \"%s\" е потврдена за Вашата сметка."
 
-#. TRANS: Title for page with a conversion (multiple notices in context).
-msgid "Conversation"
-msgstr "Разговор"
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (Activity Streams JSON)"
+msgstr "Канал со забелешки за %s (Activity Streams JSON)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (RSS 2.0)"
+msgstr "Канал со забелешки за %s (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -2421,40 +2441,6 @@ msgstr "Нема прилози."
 #. TRANS: that could not be found.
 msgid "No uploaded attachments."
 msgstr "Нема подигнато прилози."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and an unexpected response is received.
-msgid "Not expecting this response!"
-msgstr "Овој одговор не беше очекуван!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that does not exist.
-msgid "User being listened to does not exist."
-msgstr "Следениот корисник не постои."
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
-#. TRANS: Client error displayed when using remote subscribe for a local entity.
-msgid "You can use the local subscription!"
-msgstr "Може да ја користите локалната претплата."
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
-msgid "That user has blocked you from subscribing."
-msgstr "Тој корисник Ве има блокирано од претплаќање."
-
-#. TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
-msgid "You are not authorized."
-msgstr "Не сте овластени."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and conversion of the request token to access token fails.
-msgid "Could not convert request token to access token."
-msgstr "Не можев да ги претворам жетоните за барање во жетони за пристап."
-
-#. TRANS: Client error displayed when subscribing to a remote profile fails because of an unsupported version of the OMB protocol.
-msgid "Remote service uses unknown version of OMB protocol."
-msgstr "Далечинската служба користи непозната верзија на OMB протокол."
-
-#. TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
-#. TRANS: Exception thrown when updating a remote profile fails in OAuth store.
-msgid "Error updating remote profile."
-msgstr "Грешка во подновувањето на далечинскиот профил."
 
 #. TRANS: Client error displayed when requesting a non-existent file.
 msgid "No such file."
@@ -4000,18 +3986,6 @@ msgid ""
 msgstr ""
 "Сите основни приклучоци се оневозможени во поставките на мрежното место."
 
-#. TRANS: Client error displayed if the notice posted has too many characters.
-msgid "Invalid notice content."
-msgstr "Неважечка содржина на забелешката."
-
-#. TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
-#. TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
-#, php-format
-msgid "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-msgstr ""
-"Лиценцата на забелешката „%1$s“ не е соодветна на лиценцата на мрежното "
-"место „%2$s“."
-
 #. TRANS: Client error displayed when trying to add an unindentified field to profile.
 #. TRANS: %s is a field name.
 #, php-format
@@ -4240,9 +4214,8 @@ msgid "Public timeline"
 msgstr "Јавна историја"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Stream Feed (Activity Streams JSON)"
-msgstr "Канал на јавниот поток (Atom)"
+msgstr "Канал на јавниот поток (Activity Streams JSON)"
 
 #. TRANS: Link description for public timeline feed.
 msgid "Public Stream Feed (RSS 1.0)"
@@ -4658,76 +4631,6 @@ msgstr ""
 "(Би требало веднаш да добиете порака по е-пошта, во која стојат напатствија "
 "за потврдување на е-поштенската адреса.)"
 
-#. TRANS: Page notice for remote subscribe. This message contains Markdown links.
-#. TRANS: Ensure to keep the correct markup of [link description](link).
-#, php-format
-msgid ""
-"To subscribe, you can [login](%%action.login%%), or [register](%%action."
-"register%%) a new  account. If you already have an account  on a [compatible "
-"microblogging site](%%doc.openmublog%%),  enter your profile URL below."
-msgstr ""
-"За да се претплатите, можете да се [најавите](%%action.login%%) или да "
-"[регистрирате](%%action.register%%) нова сметка. Ако веќе имате сметка на "
-"[усогласиво мреж. место за микроблогирање](%%doc.openmublog%%), внесете го "
-"URL-то на Вашиот профил подолу."
-
-#. TRANS: Page title for Remote subscribe.
-msgid "Remote subscribe"
-msgstr "Оддалечена претплата"
-
-#. TRANS: Field legend on page for remote subscribe.
-msgid "Subscribe to a remote user"
-msgstr "Претплати се на далечински корисник"
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "User nickname"
-msgstr "Прекар на корисникот"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "Nickname of the user you want to follow."
-msgstr "Прекар на корисникот што сакате да го следите."
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "Profile URL"
-msgstr "URL на профилот"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "URL of your profile on another compatible microblogging service."
-msgstr "!URL на Вашиот профил на друга складна служба за микроблогирање."
-
-#. TRANS: Button text on page for remote subscribe.
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Претплати се"
-
-#. TRANS: Form validation error on page for remote subscribe when an invalid profile URL was provided.
-msgid "Invalid profile URL (bad format)."
-msgstr "Неправилна URL на профилот (лош формат)."
-
-#. TRANS: Form validation error on page for remote subscribe when no the provided profile URL
-#. TRANS: does not contain expected data.
-msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-msgstr ""
-"Неважечка URL-адреса на профил (нема YADIS документ или определен е "
-"неважечки XRDS)."
-
-#. TRANS: Form validation error on page for remote subscribe.
-msgid "That is a local profile! Login to subscribe."
-msgstr "Тоа е локален профил! Најавете се за да се претплатите."
-
-#. TRANS: Form validation error on page for remote subscribe when the remote service is not providing a request token.
-msgid "Could not get a request token."
-msgstr "Не можев да добијам жетон за барање."
-
-#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
-msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-msgstr ""
-"!Не можете да наведете/отстраните од список далечински профил OMB 0.1 со ова "
-"дејство."
-
 #. TRANS: Client error displayed when an unknown error occurs while delisting a user.
 #. TRANS: %s is a username.
 #, php-format
@@ -4783,9 +4686,9 @@ msgstr "Одговори на %1$s, стр. %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Replies feed for %s (Activity Streams JSON)"
-msgstr "Канал со одговори за %s (Atom)"
+msgstr "Канал со одговори за %s (Activity Streams JSON)"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
@@ -5050,9 +4953,9 @@ msgid "Could not retrieve favorite notices."
 msgstr "Не можев да ги повратам бендисаните забелешки."
 
 #. TRANS: Feed link text. %s is a username.
-#, fuzzy, php-format
+#, php-format
 msgid "Feed for favorites of %s (Activity Streams JSON)"
-msgstr "Канал за бендисани забелешки на %s (Atom)"
+msgstr "Канал за бендисани забелешки на %s (Activity Streams JSON)"
 
 #. TRANS: Feed link text. %s is a username.
 #, php-format
@@ -5117,9 +5020,9 @@ msgid "%1$s group, page %2$d"
 msgstr "Група %1$s, стр. %2$d"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice feed for %s group (Activity Streams JSON)"
-msgstr "Канал со забелешки за групата%s (Atom)"
+msgstr "Канал со забелешки за групата %s (Activity Streams JSON)"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
@@ -5353,9 +5256,9 @@ msgstr "Канал со забелешки за %1$s означен со %2$s (R
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice feed for %s (Activity Streams JSON)"
-msgstr "Канал со забелешки за %s (Atom)"
+msgstr "Канал со забелешки за %s (Activity Streams JSON)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
@@ -5840,11 +5743,6 @@ msgstr "%1$s претплатници чекаат на одобрение, ст
 msgid "A list of users awaiting approval to subscribe to you."
 msgstr "Список на корисниците што чекаат одобрение за да се претплатат на Вас."
 
-#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
-msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-msgstr ""
-"Не можете да се претплатите на OMB 0.1 далечински профил со ова дејство."
-
 #. TRANS: Page title when subscription succeeded.
 msgid "Subscribed"
 msgstr "Претплатено"
@@ -5984,9 +5882,9 @@ msgstr "Забелешки означени со %1$s, стр. %2$d"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice feed for tag %s (Activity Streams JSON)"
-msgstr "Канал со забелешки за ознаката %s (Atom)"
+msgstr "Канал со забелешки за ознаката %s (Activity Streams JSON)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -6088,18 +5986,6 @@ msgstr "Претплатата е откажана"
 #, php-format
 msgid "%1$s unsubscribed from list %2$s by %3$s"
 msgstr "%1$s ја откажа претплатата на списокот %2$s од %3$s"
-
-#. TRANS: Client error displayed when trying to update profile with an incompatible license.
-#. TRANS: %1$s is the license incompatible with site license %2$s.
-#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
-#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
-#, php-format
-msgid ""
-"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
-"\"."
-msgstr ""
-"Лиценцата на каналот на следениот „%1$s“ не е складна на лиценцата на "
-"мрежното место „%2$s“."
 
 #. TRANS: Title of URL settings tab in profile settings.
 msgid "URL settings"
@@ -6241,117 +6127,6 @@ msgstr "Дали да им е дозволено на корисниците д�
 #. TRANS: Title for button to save user settings in user admin panel.
 msgid "Save user settings."
 msgstr "Зачувај кориснички нагодувања."
-
-#. TRANS: Page title.
-msgid "Authorize subscription"
-msgstr "Одобрете ја претплатата"
-
-#. TRANS: Page notice on "Authorize subscription" page.
-msgid ""
-"Please check these details to make sure that you want to subscribe to this "
-"user’s notices. If you didn’t just ask to subscribe to someone’s notices, "
-"click \"Reject\"."
-msgstr ""
-"Проверете ги овие податоци и видете дали сакате да се претплатите на "
-"забелешките на овој корисник. Ако не сакате да се претплатите, едноставно "
-"стиснете на „Одбиј“."
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to accept a group membership request on approve group form.
-#. TRANS: Submit button text to accept a subscription request on approve sub form.
-msgctxt "BUTTON"
-msgid "Accept"
-msgstr "Прифати"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#. TRANS: Button title to subscribe to a user.
-msgid "Subscribe to this user."
-msgstr "Претплати се на корисников."
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to reject a group membership request on approve group form.
-#. TRANS: Submit button text to reject a subscription request on approve sub form.
-msgctxt "BUTTON"
-msgid "Reject"
-msgstr "Одбиј"
-
-#. TRANS: Title for button on Authorise Subscription page.
-msgid "Reject this subscription."
-msgstr "Одбиј ја оваа претплата."
-
-#. TRANS: Client error displayed for an empty authorisation request.
-msgid "No authorization request!"
-msgstr "Нема барање за проверка!"
-
-#. TRANS: Accept message header from Authorise subscription page.
-msgid "Subscription authorized"
-msgstr "Претплатата е одобрена"
-
-#. TRANS: Accept message text from Authorise subscription page.
-msgid ""
-"The subscription has been authorized, but no callback URL was passed. Check "
-"with the site's instructions for details on how to authorize the "
-"subscription. Your subscription token is:"
-msgstr ""
-"Претплатата е одобрена, но не е зададена обратна URL-адреса. Проверете ги "
-"инструкциите на мрежното место за да дознаете како се одобрува претплата. "
-"Жетонот на Вашата претплата е:"
-
-#. TRANS: Reject message header from Authorise subscription page.
-msgid "Subscription rejected"
-msgstr "Претплатата е одбиена"
-
-#. TRANS: Reject message from Authorise subscription page.
-msgid ""
-"The subscription has been rejected, but no callback URL was passed. Check "
-"with the site's instructions for details on how to fully reject the "
-"subscription."
-msgstr ""
-"Претплатата е одбиена, но не е зададена обратна URL-адреса. Проверете ги "
-"инструкциите на мрежното место за да дознаете како се одбива претплата во "
-"потполност."
-
-#. TRANS: Exception thrown when no valid user is found for an authorisation request.
-#. TRANS: %s is a listener URI.
-#, php-format
-msgid "Listener URI \"%s\" not found here."
-msgstr "URI-то на следачот „%s“ не е пронајдено тука."
-
-#. TRANS: Exception thrown when listenee URI is too long for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is too long."
-msgstr "Следеното URI „%s“ е предолго."
-
-#. TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is a local user."
-msgstr "Следеното URI „%s“ е локален корисник."
-
-#. TRANS: Exception thrown when profile URL is a local user for an authorisation request.
-#. TRANS: %s is a profile URL.
-#, php-format
-msgid "Profile URL \"%s\" is for a local user."
-msgstr "Профилната URL-адреса „%s“ е за локален корисник."
-
-#. TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Avatar URL \"%s\" is not valid."
-msgstr "URL-адресата „%s“ за аватар е неважечка."
-
-#. TRANS: Exception thrown when avatar URL could not be read for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Cannot read avatar URL \"%s\"."
-msgstr "Не можам да ја прочитам URL-адресата на аватарот „%s“."
-
-#. TRANS: Exception thrown when avatar URL return an invalid image type for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Wrong image type for avatar URL \"%s\"."
-msgstr "Погрешен тип на слика за аватарот со URL „%s“."
 
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
@@ -6571,6 +6346,10 @@ msgstr "Не можев да ја подновам локалната група
 msgid "Could not create login token for %s"
 msgstr "Не можам да создадам најавен жетон за"
 
+#, fuzzy
+msgid "Cannot instantiate class "
+msgstr "Не можам да ја зачувам новата лозинка."
+
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "Никаде не е пронајдено име на базата или DSN."
@@ -6753,7 +6532,6 @@ msgid "Unable to save tag."
 msgstr "Не можам да ја зачувам ознаката."
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
-#. TRANS: Error message displayed to a banned user when they try to subscribe.
 msgid "You have been banned from subscribing."
 msgstr "Блокирани сте од претплаќање."
 
@@ -6772,10 +6550,6 @@ msgstr "Не сте ни претплатени!"
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 msgid "Could not delete self-subscription."
 msgstr "Не можам да ја избришам самопретплатата."
-
-#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
-msgid "Could not delete subscription OMB token."
-msgstr "Не можам да го избришам OMB-жетонот за претплата."
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
 msgid "Could not delete subscription."
@@ -6900,6 +6674,13 @@ msgstr "Администратор"
 msgctxt "role"
 msgid "Moderator"
 msgstr "Модератор"
+
+#. TRANS: Link text for link that will subscribe to a remote profile.
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Претплати се"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
@@ -7217,42 +6998,6 @@ msgstr "Нема корисник за тој жетон."
 msgid "Could not authenticate you."
 msgstr "Не можевме да Ве потврдиме."
 
-#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
-msgid "Could not create anonymous consumer."
-msgstr "Не можев да создадам анонимен потрошувач."
-
-#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
-msgid "Could not create anonymous OAuth application."
-msgstr "Не можев да создадам анонимен OAuth-програм."
-
-#. TRANS: Exception thrown when no token association could be found.
-msgid ""
-"Could not find a profile and application associated with the request token."
-msgstr "Не можев да пронајдам профил и програм поврзан со жетонот за барање."
-
-#. TRANS: Exception thrown when no access token can be issued.
-msgid "Could not issue access token."
-msgstr "Не можев да го издадам жетонот за пристап."
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error inserting OAuth application user."
-msgstr ""
-"Грешка во базата на податоци при вметнувањето на корисникот на OAuth-"
-"програмот."
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error updating OAuth application user."
-msgstr ""
-"Грешка во базата на податоци при подновата на корисникот на OAuth-програмот."
-
-#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
-msgid "Tried to revoke unknown token."
-msgstr "Се обидовте да отповикате непознат жетон."
-
-#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
-msgid "Failed to delete revoked token."
-msgstr "Не успеав да го избришам отповиканиот жетон."
-
 #. TRANS: Form input field label for application icon.
 msgid "Icon"
 msgstr "Икона"
@@ -7374,6 +7119,18 @@ msgstr "Пристапен жетон што почнува со: %s"
 msgctxt "BUTTON"
 msgid "Revoke"
 msgstr "Одземи"
+
+#. TRANS: Submit button text to accept a group membership request on approve group form.
+#. TRANS: Submit button text to accept a subscription request on approve sub form.
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr "Прифати"
+
+#. TRANS: Submit button text to reject a group membership request on approve group form.
+#. TRANS: Submit button text to reject a subscription request on approve sub form.
+msgctxt "BUTTON"
+msgid "Reject"
+msgstr "Одбиј"
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
 msgid "Author element must contain a name element."
@@ -8001,7 +7758,7 @@ msgstr "FOAF"
 
 #. TRANS: Feed type name. See http://activitystrea.ms/
 msgid "Activity Streams"
-msgstr ""
+msgstr "Activity Streams"
 
 #. TRANS: Client exception thrown when an imported feed does not have an author.
 msgid "No author in the feed."
@@ -8187,6 +7944,13 @@ msgstr "Популарни групи"
 msgid "Active groups"
 msgstr "Активни групи"
 
+#, fuzzy
+msgid "See all"
+msgstr "Прикажи ги сите"
+
+msgid "See all groups you belong to"
+msgstr ""
+
 #. TRANS: Title for group tag cloud section.
 #. TRANS: %s is a group name.
 #, php-format
@@ -8282,7 +8046,7 @@ msgctxt "TITLE"
 msgid "Trends"
 msgstr "Трендови"
 
-#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Default button text for inviting more users to the StatusNet instance.
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "Покани уште колеги"
@@ -8326,6 +8090,10 @@ msgstr "Зачлени се"
 msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Напушти"
+
+#, fuzzy
+msgid "See all lists you have created"
+msgstr "Програми што ги имате регистрирано"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -8859,6 +8627,9 @@ msgstr "Не знам како да работам со ваква одредн�
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr "Мора да го спроведете или adaptNoticeListItem() или showNotice()."
 
+msgid "More ▼"
+msgstr ""
+
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
 msgstr "Прекарот не може да стои празен."
@@ -8977,26 +8748,6 @@ msgstr "Подбоцни"
 #. TRANS: Button title to nudge/ping another user.
 msgid "Send a nudge to this user."
 msgstr "Подбоцни го корисников."
-
-#. TRANS: Exception thrown when creating a new profile fails in OAuth store.
-msgid "Error inserting new profile."
-msgstr "Грешка при вметнувањето на новиот профил."
-
-#. TRANS: Exception thrown when creating a new avatar fails in OAuth store.
-msgid "Error inserting avatar."
-msgstr "Грешка при вметнувањето на аватарот."
-
-#. TRANS: Exception thrown when creating a remote profile fails in OAuth store.
-msgid "Error inserting remote profile."
-msgstr "Грешка при вметнувањето на далечинскиот профил."
-
-#. TRANS: Exception thrown when a notice is denied because it has been sent before.
-msgid "Duplicate notice."
-msgstr "Дуплирана забелешка."
-
-#. TRANS: Exception thrown when creating a new subscription fails in OAuth store.
-msgid "Could not insert new subscription."
-msgstr "Не можев да внесам нова претплата."
 
 #. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
 msgid "No oEmbed API endpoint available."
@@ -9563,6 +9314,42 @@ msgstr "Замолчи"
 msgid "Silence this user"
 msgstr "Замолчи го овој корисник"
 
+#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
+msgid "Could not create anonymous consumer."
+msgstr "Не можев да создадам анонимен потрошувач."
+
+#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
+msgid "Could not create anonymous OAuth application."
+msgstr "Не можев да создадам анонимен OAuth-програм."
+
+#. TRANS: Exception thrown when no token association could be found.
+msgid ""
+"Could not find a profile and application associated with the request token."
+msgstr "Не можев да пронајдам профил и програм поврзан со жетонот за барање."
+
+#. TRANS: Exception thrown when no access token can be issued.
+msgid "Could not issue access token."
+msgstr "Не можев да го издадам жетонот за пристап."
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error inserting OAuth application user."
+msgstr ""
+"Грешка во базата на податоци при вметнувањето на корисникот на OAuth-"
+"програмот."
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error updating OAuth application user."
+msgstr ""
+"Грешка во базата на податоци при подновата на корисникот на OAuth-програмот."
+
+#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
+msgid "Tried to revoke unknown token."
+msgstr "Се обидовте да отповикате непознат жетон."
+
+#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
+msgid "Failed to delete revoked token."
+msgstr "Не успеав да го избришам отповиканиот жетон."
+
 #. TRANS: Menu item in local navigation menu.
 msgctxt "MENU"
 msgid "Subscriptions"
@@ -9618,6 +9405,10 @@ msgstr "Поканете пријатели и колеги да Ви се пр�
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Претплати се на корисников"
+
+#. TRANS: Button title to subscribe to a user.
+msgid "Subscribe to this user."
+msgstr "Претплати се на корисников."
 
 #. TRANS: Title of personal tag cloud section.
 msgid "People Tagcloud as self-tagged"
@@ -9967,3 +9758,179 @@ msgstr "Ова не е важечка Webfinger-адреса."
 #, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Не можев да пронајдам важечки профил за „%s“."
+
+#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
+#~ msgstr "Не можете да наведете далечински профил OMB 0.1 со ова дејство."
+
+#~ msgid "Not expecting this response!"
+#~ msgstr "Овој одговор не беше очекуван!"
+
+#~ msgid "User being listened to does not exist."
+#~ msgstr "Следениот корисник не постои."
+
+#~ msgid "You can use the local subscription!"
+#~ msgstr "Може да ја користите локалната претплата."
+
+#~ msgid "That user has blocked you from subscribing."
+#~ msgstr "Тој корисник Ве има блокирано од претплаќање."
+
+#~ msgid "You are not authorized."
+#~ msgstr "Не сте овластени."
+
+#~ msgid "Could not convert request token to access token."
+#~ msgstr "Не можев да ги претворам жетоните за барање во жетони за пристап."
+
+#~ msgid "Remote service uses unknown version of OMB protocol."
+#~ msgstr "Далечинската служба користи непозната верзија на OMB протокол."
+
+#~ msgid "Error updating remote profile."
+#~ msgstr "Грешка во подновувањето на далечинскиот профил."
+
+#~ msgid "Invalid notice content."
+#~ msgstr "Неважечка содржина на забелешката."
+
+#~ msgid ""
+#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
+#~ msgstr ""
+#~ "Лиценцата на забелешката „%1$s“ не е соодветна на лиценцата на мрежното "
+#~ "место „%2$s“."
+
+#~ msgid ""
+#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
+#~ "register%%) a new  account. If you already have an account  on a "
+#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
+#~ "URL below."
+#~ msgstr ""
+#~ "За да се претплатите, можете да се [најавите](%%action.login%%) или да "
+#~ "[регистрирате](%%action.register%%) нова сметка. Ако веќе имате сметка на "
+#~ "[усогласиво мреж. место за микроблогирање](%%doc.openmublog%%), внесете "
+#~ "го URL-то на Вашиот профил подолу."
+
+#~ msgid "Remote subscribe"
+#~ msgstr "Оддалечена претплата"
+
+#~ msgid "Subscribe to a remote user"
+#~ msgstr "Претплати се на далечински корисник"
+
+#~ msgid "User nickname"
+#~ msgstr "Прекар на корисникот"
+
+#~ msgid "Nickname of the user you want to follow."
+#~ msgstr "Прекар на корисникот што сакате да го следите."
+
+#~ msgid "Profile URL"
+#~ msgstr "URL на профилот"
+
+#~ msgid "URL of your profile on another compatible microblogging service."
+#~ msgstr "!URL на Вашиот профил на друга складна служба за микроблогирање."
+
+#~ msgid "Invalid profile URL (bad format)."
+#~ msgstr "Неправилна URL на профилот (лош формат)."
+
+#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
+#~ msgstr ""
+#~ "Неважечка URL-адреса на профил (нема YADIS документ или определен е "
+#~ "неважечки XRDS)."
+
+#~ msgid "That is a local profile! Login to subscribe."
+#~ msgstr "Тоа е локален профил! Најавете се за да се претплатите."
+
+#~ msgid "Could not get a request token."
+#~ msgstr "Не можев да добијам жетон за барање."
+
+#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
+#~ msgstr ""
+#~ "!Не можете да наведете/отстраните од список далечински профил OMB 0.1 со "
+#~ "ова дејство."
+
+#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
+#~ msgstr ""
+#~ "Не можете да се претплатите на OMB 0.1 далечински профил со ова дејство."
+
+#~ msgid ""
+#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
+#~ "$s\"."
+#~ msgstr ""
+#~ "Лиценцата на каналот на следениот „%1$s“ не е складна на лиценцата на "
+#~ "мрежното место „%2$s“."
+
+#~ msgid "Authorize subscription"
+#~ msgstr "Одобрете ја претплатата"
+
+#~ msgid ""
+#~ "Please check these details to make sure that you want to subscribe to "
+#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
+#~ "notices, click \"Reject\"."
+#~ msgstr ""
+#~ "Проверете ги овие податоци и видете дали сакате да се претплатите на "
+#~ "забелешките на овој корисник. Ако не сакате да се претплатите, едноставно "
+#~ "стиснете на „Одбиј“."
+
+#~ msgid "Reject this subscription."
+#~ msgstr "Одбиј ја оваа претплата."
+
+#~ msgid "No authorization request!"
+#~ msgstr "Нема барање за проверка!"
+
+#~ msgid "Subscription authorized"
+#~ msgstr "Претплатата е одобрена"
+
+#~ msgid ""
+#~ "The subscription has been authorized, but no callback URL was passed. "
+#~ "Check with the site's instructions for details on how to authorize the "
+#~ "subscription. Your subscription token is:"
+#~ msgstr ""
+#~ "Претплатата е одобрена, но не е зададена обратна URL-адреса. Проверете ги "
+#~ "инструкциите на мрежното место за да дознаете како се одобрува претплата. "
+#~ "Жетонот на Вашата претплата е:"
+
+#~ msgid "Subscription rejected"
+#~ msgstr "Претплатата е одбиена"
+
+#~ msgid ""
+#~ "The subscription has been rejected, but no callback URL was passed. Check "
+#~ "with the site's instructions for details on how to fully reject the "
+#~ "subscription."
+#~ msgstr ""
+#~ "Претплатата е одбиена, но не е зададена обратна URL-адреса. Проверете ги "
+#~ "инструкциите на мрежното место за да дознаете како се одбива претплата во "
+#~ "потполност."
+
+#~ msgid "Listener URI \"%s\" not found here."
+#~ msgstr "URI-то на следачот „%s“ не е пронајдено тука."
+
+#~ msgid "Listenee URI \"%s\" is too long."
+#~ msgstr "Следеното URI „%s“ е предолго."
+
+#~ msgid "Listenee URI \"%s\" is a local user."
+#~ msgstr "Следеното URI „%s“ е локален корисник."
+
+#~ msgid "Profile URL \"%s\" is for a local user."
+#~ msgstr "Профилната URL-адреса „%s“ е за локален корисник."
+
+#~ msgid "Avatar URL \"%s\" is not valid."
+#~ msgstr "URL-адресата „%s“ за аватар е неважечка."
+
+#~ msgid "Cannot read avatar URL \"%s\"."
+#~ msgstr "Не можам да ја прочитам URL-адресата на аватарот „%s“."
+
+#~ msgid "Wrong image type for avatar URL \"%s\"."
+#~ msgstr "Погрешен тип на слика за аватарот со URL „%s“."
+
+#~ msgid "Could not delete subscription OMB token."
+#~ msgstr "Не можам да го избришам OMB-жетонот за претплата."
+
+#~ msgid "Error inserting new profile."
+#~ msgstr "Грешка при вметнувањето на новиот профил."
+
+#~ msgid "Error inserting avatar."
+#~ msgstr "Грешка при вметнувањето на аватарот."
+
+#~ msgid "Error inserting remote profile."
+#~ msgstr "Грешка при вметнувањето на далечинскиот профил."
+
+#~ msgid "Duplicate notice."
+#~ msgstr "Дуплирана забелешка."
+
+#~ msgid "Could not insert new subscription."
+#~ msgstr "Не можев да внесам нова претплата."
