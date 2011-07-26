@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -256,22 +256,22 @@ msgid "Wrong type for object."
 msgstr ""
 
 #. TRANS: Exception thrown when trying to RSVP for an unknown event.
-#: EventPlugin.php:198
+#: EventPlugin.php:200
 msgid "RSVP for unknown event."
 msgstr ""
 
 #. TRANS: Exception thrown when event plugin comes across a undefined verb.
-#: EventPlugin.php:204
+#: EventPlugin.php:206
 msgid "Unknown verb for events."
 msgstr ""
 
 #. TRANS: Exception thrown when event plugin comes across a unknown object type.
-#: EventPlugin.php:235
+#: EventPlugin.php:237
 msgid "Unknown object type."
 msgstr ""
 
 #. TRANS: Exception thrown when referring to a notice that is not an event an in event context.
-#: EventPlugin.php:242
+#: EventPlugin.php:244
 msgid "Unknown event notice."
 msgstr ""
 

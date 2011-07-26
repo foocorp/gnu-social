@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:26:36+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:22:21+0000\n"
 "Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
+"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -153,11 +153,6 @@ msgstr "అటువంటి ప్రొఫైలు లేదు."
 msgid "No such list."
 msgstr "అటువంటి జాబితా లేదు."
 
-#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
-#, fuzzy
-msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr "ఈ సైటులో మీరు వాడుకరలకి పాత్రలను ఇవ్వలేరు."
-
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
 #, php-format
@@ -218,8 +213,6 @@ msgstr "అటువంటి పేజీ లేదు."
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
 #. TRANS: Client error displayed when referring to non-existing user.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing user.
-#. TRANS: Form validation error on page for remote subscribe when no user was provided.
-#. TRANS: Form validation error on page for remote subscribe when no user profile was found.
 #. TRANS: Client error displayed when trying to reply to a non-exsting user.
 #. TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
 #. TRANS: Client error.
@@ -228,7 +221,6 @@ msgstr "అటువంటి పేజీ లేదు."
 #. TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
 #. TRANS: Client error displayed requesting groups for a non-existing user.
 #. TRANS: Client error displayed when user not found for an action.
-#. TRANS: Client error displayed providing a non-existing nickname.
 #. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
 #. TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
 #. TRANS: Client error displayed when trying to access a mailbox without providing a user.
@@ -306,6 +298,13 @@ msgid ""
 "post a notice to them."
 msgstr ""
 "[ఒక ఖాతాని నమోదుచేసుకుని](%%%%action.register%%%%) %sని కదపండి లేదా వారికి ఒక టపాని పంపించండి!"
+
+#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Less business/enterprise-oriented language for public sites.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Send invite"
+msgstr "ఆహ్వానాలు"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -424,6 +423,19 @@ msgstr "వాడుకరి నిరోధం విఫలమైంది."
 #, fuzzy
 msgid "Unblock user failed."
 msgstr "వాడుకరి నిరోధం విఫలమైంది."
+
+#, fuzzy
+msgid "no conversation id"
+msgstr "సంభాషణ"
+
+#, php-format
+msgid "No conversation with id %d"
+msgstr ""
+
+#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "సంభాషణ"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -859,7 +871,6 @@ msgstr "ఖాతా"
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
-#. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Nickname"
@@ -1313,9 +1324,9 @@ msgstr "అది ఇప్పటికే ఇష్టాంశం."
 
 #. TRANS: Title for group membership feed.
 #. TRANS: %s is a username.
-#, fuzzy, php-format
+#, php-format
 msgid "Group memberships of %s"
-msgstr "%s గుంపు సభ్యత్వాలు"
+msgstr "%s యొక్క గుంపు సభ్యత్వాలు"
 
 #. TRANS: Subtitle for group membership feed.
 #. TRANS: %1$s is a username, %2$s is the StatusNet sitename.
@@ -1700,9 +1711,17 @@ msgstr "చిరునామాని నిర్ధారించు"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "\"%s\" అనే చిరునామా మీ ఖాతాకి నిర్ధారితమైంది."
 
-#. TRANS: Title for page with a conversion (multiple notices in context).
-msgid "Conversation"
-msgstr "సంభాషణ"
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (Activity Streams JSON)"
+msgstr "%s కొరకు స్పందనల ఫీడు (ఆటమ్)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (RSS 2.0)"
+msgstr "%s కొరకు స్పందనల ఫీడు (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -2392,41 +2411,6 @@ msgstr "జోడింపులు లేవు."
 #. TRANS: that could not be found.
 msgid "No uploaded attachments."
 msgstr "ఎక్కించిన జోడింపులేమీ లేవు."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and an unexpected response is received.
-msgid "Not expecting this response!"
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile that does not exist.
-msgid "User being listened to does not exist."
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
-#. TRANS: Client error displayed when using remote subscribe for a local entity.
-msgid "You can use the local subscription!"
-msgstr "మీరు స్థానిక చందాని ఉపయోగించవచ్చు!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
-msgid "That user has blocked you from subscribing."
-msgstr "ఆ వాడుకరి మిమ్మల్ని చందాచేరకుండా నిరోధించారు."
-
-#. TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
-msgid "You are not authorized."
-msgstr "మీకు అధీకరణ లేదు."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and conversion of the request token to access token fails.
-msgid "Could not convert request token to access token."
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile fails because of an unsupported version of the OMB protocol.
-msgid "Remote service uses unknown version of OMB protocol."
-msgstr ""
-
-#. TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
-#. TRANS: Exception thrown when updating a remote profile fails in OAuth store.
-#, fuzzy
-msgid "Error updating remote profile."
-msgstr "దూరపు ప్రొపైలుని తాజాకరించటంలో పొరపాటు"
 
 #. TRANS: Client error displayed when requesting a non-existent file.
 msgid "No such file."
@@ -3975,16 +3959,6 @@ msgid ""
 "All default plugins have been disabled from the site's configuration file."
 msgstr ""
 
-#. TRANS: Client error displayed if the notice posted has too many characters.
-msgid "Invalid notice content."
-msgstr "తప్పుడు దస్త్రపుపేరు.."
-
-#. TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
-#. TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
-#, php-format
-msgid "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-msgstr ""
-
 #. TRANS: Client error displayed when trying to add an unindentified field to profile.
 #. TRANS: %s is a field name.
 #, php-format
@@ -4617,73 +4591,6 @@ msgid ""
 msgstr ""
 "(మీ ఈమెయిలు చిరునామాని ఎలా నిర్ధారించాలో తెలిపే సూచనలతో ఒక సందేశం మీరు ఈమెయిలు ద్వారా మరి కొద్దిసేపట్లోనే "
 "అందుతుంది.)"
-
-#. TRANS: Page notice for remote subscribe. This message contains Markdown links.
-#. TRANS: Ensure to keep the correct markup of [link description](link).
-#, php-format
-msgid ""
-"To subscribe, you can [login](%%action.login%%), or [register](%%action."
-"register%%) a new  account. If you already have an account  on a [compatible "
-"microblogging site](%%doc.openmublog%%),  enter your profile URL below."
-msgstr ""
-"చందా చేరడానికి, మీరు [ప్రవేశించవచ్చు](%%action.login%%), లేదా కొత్త ఖాతాని [నమోదుచేసుకోవచ్చు](%%"
-"action.register%%). ఒకవేళ మీకు ఇప్పటికే ఏదైనా [పొసగే మైక్రోబ్లాగింగు సైటులో](%%doc.openmublog%"
-"%) ఖాతా ఉంటే, మీ ప్రొఫైలు చిరునామాని క్రింద ఇవ్వండి."
-
-#. TRANS: Page title for Remote subscribe.
-msgid "Remote subscribe"
-msgstr "సుదూర చందా"
-
-#. TRANS: Field legend on page for remote subscribe.
-msgid "Subscribe to a remote user"
-msgstr "ఈ వాడుకరికి చందాచేరు"
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "User nickname"
-msgstr "వాడుకరి పేరు"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "Nickname of the user you want to follow."
-msgstr "మీరు అనుసరించాలనుకుంటున్న వాడుకరి యొక్క ముద్దుపేరు."
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "Profile URL"
-msgstr "ప్రొఫైలు URL"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "URL of your profile on another compatible microblogging service."
-msgstr ""
-
-#. TRANS: Button text on page for remote subscribe.
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "చందాచేరండి"
-
-#. TRANS: Form validation error on page for remote subscribe when an invalid profile URL was provided.
-msgid "Invalid profile URL (bad format)."
-msgstr "ప్రొపైల్ URL తప్పు (చెల్లని ఫార్మాట్)."
-
-#. TRANS: Form validation error on page for remote subscribe when no the provided profile URL
-#. TRANS: does not contain expected data.
-msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-msgstr ""
-
-#. TRANS: Form validation error on page for remote subscribe.
-msgid "That is a local profile! Login to subscribe."
-msgstr "అది స్థానిక ప్రొఫైలు! చందాచేరడానికి ప్రవేశించండి."
-
-#. TRANS: Form validation error on page for remote subscribe when the remote service is not providing a request token.
-#, fuzzy
-msgid "Could not get a request token."
-msgstr "ట్యాగులని భద్రపరచలేకపోయాం."
-
-#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
-#, fuzzy
-msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-msgstr "ఈ సైటులో మీరు వాడుకరలకి పాత్రలను ఇవ్వలేరు."
 
 #. TRANS: Client error displayed when an unknown error occurs while delisting a user.
 #. TRANS: %s is a username.
@@ -5783,10 +5690,6 @@ msgstr "అనుమతి కోసం వేచివున్న %1$s గు�
 msgid "A list of users awaiting approval to subscribe to you."
 msgstr "ఈ గుంపులో చేరడానికి అనుమతి కోసం వేచివున్న వాడుకరుల జాబితా."
 
-#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
-msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-msgstr ""
-
 #. TRANS: Page title when subscription succeeded.
 msgid "Subscribed"
 msgstr "చందాచేరారు"
@@ -6030,16 +5933,6 @@ msgstr "చందామాను"
 msgid "%1$s unsubscribed from list %2$s by %3$s"
 msgstr "%3$s యొక్క %2$s అనే జాబితా నుండి %1$s చందా విరమించారు"
 
-#. TRANS: Client error displayed when trying to update profile with an incompatible license.
-#. TRANS: %1$s is the license incompatible with site license %2$s.
-#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
-#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
-#, php-format
-msgid ""
-"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
-"\"."
-msgstr ""
-
 #. TRANS: Title of URL settings tab in profile settings.
 msgid "URL settings"
 msgstr "URL అమరికలు"
@@ -6179,108 +6072,6 @@ msgstr "వాడుకరులను కొత్త వారిని ఆహ
 #. TRANS: Title for button to save user settings in user admin panel.
 msgid "Save user settings."
 msgstr "వాడుకరి అమరికలను భద్రపరచు."
-
-#. TRANS: Page title.
-msgid "Authorize subscription"
-msgstr "చందాని అధీకరించండి"
-
-#. TRANS: Page notice on "Authorize subscription" page.
-msgid ""
-"Please check these details to make sure that you want to subscribe to this "
-"user’s notices. If you didn’t just ask to subscribe to someone’s notices, "
-"click \"Reject\"."
-msgstr ""
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to accept a group membership request on approve group form.
-#. TRANS: Submit button text to accept a subscription request on approve sub form.
-msgctxt "BUTTON"
-msgid "Accept"
-msgstr "అంగీకరించు"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#. TRANS: Button title to subscribe to a user.
-msgid "Subscribe to this user."
-msgstr "ఈ వాడుకరికి చందాచేరండి."
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to reject a group membership request on approve group form.
-#. TRANS: Submit button text to reject a subscription request on approve sub form.
-msgctxt "BUTTON"
-msgid "Reject"
-msgstr "తిరస్కరించు"
-
-#. TRANS: Title for button on Authorise Subscription page.
-msgid "Reject this subscription."
-msgstr "ఈ చందాని తిరస్కరించండి."
-
-#. TRANS: Client error displayed for an empty authorisation request.
-msgid "No authorization request!"
-msgstr "అధీకరణ అభ్యర్థన లేదు!"
-
-#. TRANS: Accept message header from Authorise subscription page.
-msgid "Subscription authorized"
-msgstr "చందాని అధీకరించారు"
-
-#. TRANS: Accept message text from Authorise subscription page.
-msgid ""
-"The subscription has been authorized, but no callback URL was passed. Check "
-"with the site's instructions for details on how to authorize the "
-"subscription. Your subscription token is:"
-msgstr ""
-
-#. TRANS: Reject message header from Authorise subscription page.
-msgid "Subscription rejected"
-msgstr "చందాని తిరస్కరించారు."
-
-#. TRANS: Reject message from Authorise subscription page.
-msgid ""
-"The subscription has been rejected, but no callback URL was passed. Check "
-"with the site's instructions for details on how to fully reject the "
-"subscription."
-msgstr ""
-
-#. TRANS: Exception thrown when no valid user is found for an authorisation request.
-#. TRANS: %s is a listener URI.
-#, php-format
-msgid "Listener URI \"%s\" not found here."
-msgstr ""
-
-#. TRANS: Exception thrown when listenee URI is too long for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is too long."
-msgstr ""
-
-#. TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is a local user."
-msgstr ""
-
-#. TRANS: Exception thrown when profile URL is a local user for an authorisation request.
-#. TRANS: %s is a profile URL.
-#, php-format
-msgid "Profile URL \"%s\" is for a local user."
-msgstr ""
-
-#. TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, fuzzy, php-format
-msgid "Avatar URL \"%s\" is not valid."
-msgstr "హోమ్ పేజీ URL సరైనది కాదు."
-
-#. TRANS: Exception thrown when avatar URL could not be read for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, fuzzy, php-format
-msgid "Cannot read avatar URL \"%s\"."
-msgstr "'%s' అనే అవతారపు URL తప్పు"
-
-#. TRANS: Exception thrown when avatar URL return an invalid image type for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, fuzzy, php-format
-msgid "Wrong image type for avatar URL \"%s\"."
-msgstr "'%s' కొరకు తప్పుడు బొమ్మ రకం"
 
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
@@ -6479,6 +6270,10 @@ msgstr "స్థానిక గుంపుని తాజాకరించ�
 msgid "Could not create login token for %s"
 msgstr "మారుపేర్లని సృష్టించలేకపోయాం."
 
+#, fuzzy
+msgid "Cannot instantiate class "
+msgstr "కొత్త సంకేతపదాన్ని భద్రపరచలేకున్నాం."
+
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr ""
@@ -6663,7 +6458,6 @@ msgid "Unable to save tag."
 msgstr "ట్యాగులని భద్రపరచలేకపోయాం."
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
-#. TRANS: Error message displayed to a banned user when they try to subscribe.
 msgid "You have been banned from subscribing."
 msgstr "చందాచేరడం నుండి మిమ్మల్ని నిషేధించారు."
 
@@ -6681,10 +6475,6 @@ msgstr "చందాదార్లు కాదు!"
 
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 msgid "Could not delete self-subscription."
-msgstr "కొత్త చందాని చేర్చలేకపోయాం."
-
-#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
-msgid "Could not delete subscription OMB token."
 msgstr "కొత్త చందాని చేర్చలేకపోయాం."
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
@@ -6811,6 +6601,13 @@ msgstr "నిర్వాహకులు"
 msgctxt "role"
 msgid "Moderator"
 msgstr "సమన్వయకర్త"
+
+#. TRANS: Link text for link that will subscribe to a remote profile.
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "చందాచేరండి"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
@@ -7126,44 +6923,6 @@ msgstr ""
 msgid "Could not authenticate you."
 msgstr "మిమ్మల్ని అధీకరించలేకపోయాం."
 
-#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
-#, fuzzy
-msgid "Could not create anonymous consumer."
-msgstr "మారుపేర్లని సృష్టించలేకపోయాం."
-
-#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
-#, fuzzy
-msgid "Could not create anonymous OAuth application."
-msgstr "ఉపకరణాన్ని సృష్టించలేకపోయాం."
-
-#. TRANS: Exception thrown when no token association could be found.
-msgid ""
-"Could not find a profile and application associated with the request token."
-msgstr ""
-
-#. TRANS: Exception thrown when no access token can be issued.
-#, fuzzy
-msgid "Could not issue access token."
-msgstr "ట్యాగులని భద్రపరచలేకపోయాం."
-
-#. TRANS: Exception thrown when a database error occurs.
-#, fuzzy
-msgid "Database error inserting OAuth application user."
-msgstr "అవతారాన్ని పెట్టడంలో పొరపాటు"
-
-#. TRANS: Exception thrown when a database error occurs.
-#, fuzzy
-msgid "Database error updating OAuth application user."
-msgstr "అవతారాన్ని పెట్టడంలో పొరపాటు"
-
-#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
-msgid "Tried to revoke unknown token."
-msgstr ""
-
-#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
-msgid "Failed to delete revoked token."
-msgstr ""
-
 #. TRANS: Form input field label for application icon.
 msgid "Icon"
 msgstr "ప్రతీకం"
@@ -7286,6 +7045,18 @@ msgstr ""
 msgctxt "BUTTON"
 msgid "Revoke"
 msgstr "తొలగించు"
+
+#. TRANS: Submit button text to accept a group membership request on approve group form.
+#. TRANS: Submit button text to accept a subscription request on approve sub form.
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr "అంగీకరించు"
+
+#. TRANS: Submit button text to reject a group membership request on approve group form.
+#. TRANS: Submit button text to reject a subscription request on approve sub form.
+msgctxt "BUTTON"
+msgid "Reject"
+msgstr "తిరస్కరించు"
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
 msgid "Author element must contain a name element."
@@ -8106,6 +7877,13 @@ msgstr "ప్రసిద్ధ గుంపులు"
 msgid "Active groups"
 msgstr "క్రియాశీల గుంపులు"
 
+#, fuzzy
+msgid "See all"
+msgstr "అన్నీ చూపించు"
+
+msgid "See all groups you belong to"
+msgstr ""
+
 #. TRANS: Title for group tag cloud section.
 #. TRANS: %s is a group name.
 #, fuzzy, php-format
@@ -8195,7 +7973,7 @@ msgctxt "TITLE"
 msgid "Trends"
 msgstr ""
 
-#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Default button text for inviting more users to the StatusNet instance.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
@@ -8242,6 +8020,10 @@ msgstr "చేరండి"
 msgctxt "BUTTON"
 msgid "Leave"
 msgstr "వైదొలగండి"
+
+#, fuzzy
+msgid "See all lists you have created"
+msgstr "మీరు నమోదు చేసివున్న ఉపకరణాలు"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -8768,6 +8550,9 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+msgid "More ▼"
+msgstr ""
+
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
 msgstr ""
@@ -8889,27 +8674,6 @@ msgstr "బాడ్జి"
 #, fuzzy
 msgid "Send a nudge to this user."
 msgstr "ఈ వాడుకరికి ఒక నేరు సందేశాన్ని పంపించండి"
-
-#. TRANS: Exception thrown when creating a new profile fails in OAuth store.
-msgid "Error inserting new profile."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a new avatar fails in OAuth store.
-msgid "Error inserting avatar."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a remote profile fails in OAuth store.
-msgid "Error inserting remote profile."
-msgstr ""
-
-#. TRANS: Exception thrown when a notice is denied because it has been sent before.
-msgid "Duplicate notice."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a new subscription fails in OAuth store.
-#, fuzzy
-msgid "Could not insert new subscription."
-msgstr "కొత్త చందాని చేర్చలేకపోయాం."
 
 #. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
 #, fuzzy
@@ -9485,6 +9249,44 @@ msgstr "సైటు గమనిక"
 msgid "Silence this user"
 msgstr "ఈ వాడుకరిని తొలగించు"
 
+#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
+#, fuzzy
+msgid "Could not create anonymous consumer."
+msgstr "మారుపేర్లని సృష్టించలేకపోయాం."
+
+#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
+#, fuzzy
+msgid "Could not create anonymous OAuth application."
+msgstr "ఉపకరణాన్ని సృష్టించలేకపోయాం."
+
+#. TRANS: Exception thrown when no token association could be found.
+msgid ""
+"Could not find a profile and application associated with the request token."
+msgstr ""
+
+#. TRANS: Exception thrown when no access token can be issued.
+#, fuzzy
+msgid "Could not issue access token."
+msgstr "ట్యాగులని భద్రపరచలేకపోయాం."
+
+#. TRANS: Exception thrown when a database error occurs.
+#, fuzzy
+msgid "Database error inserting OAuth application user."
+msgstr "అవతారాన్ని పెట్టడంలో పొరపాటు"
+
+#. TRANS: Exception thrown when a database error occurs.
+#, fuzzy
+msgid "Database error updating OAuth application user."
+msgstr "అవతారాన్ని పెట్టడంలో పొరపాటు"
+
+#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
+msgid "Tried to revoke unknown token."
+msgstr ""
+
+#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
+msgid "Failed to delete revoked token."
+msgstr ""
+
 #. TRANS: Menu item in local navigation menu.
 msgctxt "MENU"
 msgid "Subscriptions"
@@ -9540,6 +9342,10 @@ msgstr "%sలో తోడుకై మీ స్నేహితులని మ
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "ఈ వాడుకరికి చందాచేరు"
+
+#. TRANS: Button title to subscribe to a user.
+msgid "Subscribe to this user."
+msgstr "ఈ వాడుకరికి చందాచేరండి."
 
 #. TRANS: Title of personal tag cloud section.
 msgid "People Tagcloud as self-tagged"
@@ -9886,3 +9692,96 @@ msgstr "సరైన ఈమెయిల్ చిరునామా కాదు
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "ప్రొఫైలుని భద్రపరచలేకున్నాం."
+
+#, fuzzy
+#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
+#~ msgstr "ఈ సైటులో మీరు వాడుకరలకి పాత్రలను ఇవ్వలేరు."
+
+#~ msgid "You can use the local subscription!"
+#~ msgstr "మీరు స్థానిక చందాని ఉపయోగించవచ్చు!"
+
+#~ msgid "That user has blocked you from subscribing."
+#~ msgstr "ఆ వాడుకరి మిమ్మల్ని చందాచేరకుండా నిరోధించారు."
+
+#~ msgid "You are not authorized."
+#~ msgstr "మీకు అధీకరణ లేదు."
+
+#, fuzzy
+#~ msgid "Error updating remote profile."
+#~ msgstr "దూరపు ప్రొపైలుని తాజాకరించటంలో పొరపాటు"
+
+#~ msgid "Invalid notice content."
+#~ msgstr "తప్పుడు దస్త్రపుపేరు.."
+
+#~ msgid ""
+#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
+#~ "register%%) a new  account. If you already have an account  on a "
+#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
+#~ "URL below."
+#~ msgstr ""
+#~ "చందా చేరడానికి, మీరు [ప్రవేశించవచ్చు](%%action.login%%), లేదా కొత్త ఖాతాని [నమోదుచేసుకోవచ్చు](%"
+#~ "%action.register%%). ఒకవేళ మీకు ఇప్పటికే ఏదైనా [పొసగే మైక్రోబ్లాగింగు సైటులో](%%doc."
+#~ "openmublog%%) ఖాతా ఉంటే, మీ ప్రొఫైలు చిరునామాని క్రింద ఇవ్వండి."
+
+#~ msgid "Remote subscribe"
+#~ msgstr "సుదూర చందా"
+
+#~ msgid "Subscribe to a remote user"
+#~ msgstr "ఈ వాడుకరికి చందాచేరు"
+
+#~ msgid "User nickname"
+#~ msgstr "వాడుకరి పేరు"
+
+#~ msgid "Nickname of the user you want to follow."
+#~ msgstr "మీరు అనుసరించాలనుకుంటున్న వాడుకరి యొక్క ముద్దుపేరు."
+
+#~ msgid "Profile URL"
+#~ msgstr "ప్రొఫైలు URL"
+
+#~ msgid "Invalid profile URL (bad format)."
+#~ msgstr "ప్రొపైల్ URL తప్పు (చెల్లని ఫార్మాట్)."
+
+#~ msgid "That is a local profile! Login to subscribe."
+#~ msgstr "అది స్థానిక ప్రొఫైలు! చందాచేరడానికి ప్రవేశించండి."
+
+#, fuzzy
+#~ msgid "Could not get a request token."
+#~ msgstr "ట్యాగులని భద్రపరచలేకపోయాం."
+
+#, fuzzy
+#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
+#~ msgstr "ఈ సైటులో మీరు వాడుకరలకి పాత్రలను ఇవ్వలేరు."
+
+#~ msgid "Authorize subscription"
+#~ msgstr "చందాని అధీకరించండి"
+
+#~ msgid "Reject this subscription."
+#~ msgstr "ఈ చందాని తిరస్కరించండి."
+
+#~ msgid "No authorization request!"
+#~ msgstr "అధీకరణ అభ్యర్థన లేదు!"
+
+#~ msgid "Subscription authorized"
+#~ msgstr "చందాని అధీకరించారు"
+
+#~ msgid "Subscription rejected"
+#~ msgstr "చందాని తిరస్కరించారు."
+
+#, fuzzy
+#~ msgid "Avatar URL \"%s\" is not valid."
+#~ msgstr "హోమ్ పేజీ URL సరైనది కాదు."
+
+#, fuzzy
+#~ msgid "Cannot read avatar URL \"%s\"."
+#~ msgstr "'%s' అనే అవతారపు URL తప్పు"
+
+#, fuzzy
+#~ msgid "Wrong image type for avatar URL \"%s\"."
+#~ msgstr "'%s' కొరకు తప్పుడు బొమ్మ రకం"
+
+#~ msgid "Could not delete subscription OMB token."
+#~ msgstr "కొత్త చందాని చేర్చలేకపోయాం."
+
+#, fuzzy
+#~ msgid "Could not insert new subscription."
+#~ msgstr "కొత్త చందాని చేర్చలేకపోయాం."

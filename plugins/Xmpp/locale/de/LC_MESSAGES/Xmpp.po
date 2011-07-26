@@ -3,6 +3,7 @@
 #
 # Author: Giftpflanze
 # Author: Habi
+# Author: Inkowik
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -10,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Xmpp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:58:03+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:22:35+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:15+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-19 11:23:56+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-xmpp\n"
@@ -73,19 +74,19 @@ msgstr "[%s]"
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 msgid "You must specify a server in the configuration."
-msgstr ""
+msgstr "Du musst einen Server in der Konfiguration angeben."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 msgid "You must specify a port in the configuration."
-msgstr ""
+msgstr "Du musst einen Port in der Konfiguration angeben."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 msgid "You must specify a user in the configuration."
-msgstr ""
+msgstr "Du musst einen Benutzernamen in der Konfiguration angeben."
 
 #. TRANS: Exception thrown when the plugin configuration is incorrect.
 msgid "You must specify a password in the configuration."
-msgstr ""
+msgstr "Du musst ein Passwort in der Konfiguration angeben."
 
 #. TRANS: Plugin description.
 msgid ""

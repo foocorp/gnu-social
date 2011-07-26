@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:26:38+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:22:22+0000\n"
 "Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -166,12 +166,6 @@ msgstr "Walang ganyang balangkas."
 msgid "No such list."
 msgstr "Walang ganyang talaan."
 
-#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
-msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr ""
-"Hindi mo maitatala ang isang malayong balangkas ng OMB 0.1 sa pamamagitan ng "
-"ganitong galaw."
-
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
 #, php-format
@@ -235,8 +229,6 @@ msgstr "Walang ganyang pahina."
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
 #. TRANS: Client error displayed when referring to non-existing user.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing user.
-#. TRANS: Form validation error on page for remote subscribe when no user was provided.
-#. TRANS: Form validation error on page for remote subscribe when no user profile was found.
 #. TRANS: Client error displayed when trying to reply to a non-exsting user.
 #. TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
 #. TRANS: Client error.
@@ -245,7 +237,6 @@ msgstr "Walang ganyang pahina."
 #. TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
 #. TRANS: Client error displayed requesting groups for a non-existing user.
 #. TRANS: Client error displayed when user not found for an action.
-#. TRANS: Client error displayed providing a non-existing nickname.
 #. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
 #. TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
 #. TRANS: Client error displayed when trying to access a mailbox without providing a user.
@@ -329,6 +320,13 @@ msgid ""
 msgstr ""
 "Bakit hindi [magpatala ng isang akawnt] (%%%%action.register%%%%) at "
 "pagkaraan ay dunggulin ang %s o magpaskil ng isang pabatid sa kanila."
+
+#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Less business/enterprise-oriented language for public sites.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Send invite"
+msgstr "Magpadala ng mga paanyaya."
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -452,6 +450,19 @@ msgstr "Nabigo ang paghadlang ng tagagamit."
 #. TRANS: Server error displayed when unblocking a user has failed.
 msgid "Unblock user failed."
 msgstr "Nabigo ang hindi paghadlang sa tagagamit."
+
+#, fuzzy
+msgid "no conversation id"
+msgstr "Pag-uusap"
+
+#, php-format
+msgid "No conversation with id %d"
+msgstr ""
+
+#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "Pag-uusap"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -900,7 +911,6 @@ msgstr "Akawnt"
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
-#. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Nickname"
@@ -1762,9 +1772,17 @@ msgstr "Tiyakin ang tirahan"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "Natiyak na ang tirahang \"%s\" para sa akawnt mo."
 
-#. TRANS: Title for page with a conversion (multiple notices in context).
-msgid "Conversation"
-msgstr "Pag-uusap"
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (Activity Streams JSON)"
+msgstr "Pasubong pabatid para sa %s (Atom)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (RSS 2.0)"
+msgstr "Pasubong pabatid para sa %s (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -2475,44 +2493,6 @@ msgstr "Walang mga kalakip."
 #. TRANS: that could not be found.
 msgid "No uploaded attachments."
 msgstr "Walang naikargang mga kalakip."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and an unexpected response is received.
-msgid "Not expecting this response!"
-msgstr "Hindi inaasahan ang tugong ito!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that does not exist.
-msgid "User being listened to does not exist."
-msgstr "Hindi umiiral ang tagagamit na pinakikinggan."
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
-#. TRANS: Client error displayed when using remote subscribe for a local entity.
-msgid "You can use the local subscription!"
-msgstr "Maaari mong gamitin ang katutubong pagpapasipi!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
-msgid "That user has blocked you from subscribing."
-msgstr "Hinadlangan ka ng tagagamit na iyan mula sa pagpapasipi."
-
-#. TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
-msgid "You are not authorized."
-msgstr "Wala kang kapahintulutan."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and conversion of the request token to access token fails.
-msgid "Could not convert request token to access token."
-msgstr ""
-"Hindi magawang baguhin ang kahalip ng kahilangan upang maging kahalip ng "
-"pagpunta."
-
-#. TRANS: Client error displayed when subscribing to a remote profile fails because of an unsupported version of the OMB protocol.
-msgid "Remote service uses unknown version of OMB protocol."
-msgstr ""
-"Gumagamit ang malayong palingkuran ng hindi nalalamang bersyon ng protokol "
-"ng OMB."
-
-#. TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
-#. TRANS: Exception thrown when updating a remote profile fails in OAuth store.
-msgid "Error updating remote profile."
-msgstr "Kamalian sa pagsasapanahon ng pangmalayuang balangkas."
 
 #. TRANS: Client error displayed when requesting a non-existent file.
 msgid "No such file."
@@ -4095,18 +4075,6 @@ msgstr ""
 "Hindi pinagagana ang lahat ng likas na nakatakdang mga pampasak mula sa "
 "talaksan ng pagkakaayos ng sityo."
 
-#. TRANS: Client error displayed if the notice posted has too many characters.
-msgid "Invalid notice content."
-msgstr "Hindi katanggap-tanggap na nilalaman ng pabatid."
-
-#. TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
-#. TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
-#, php-format
-msgid "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-msgstr ""
-"Hindi akma ang lisensiyang \"%1$s\" ng pabatid sa lisensiyang \"%2$s\" ng "
-"sityo."
-
 #. TRANS: Client error displayed when trying to add an unindentified field to profile.
 #. TRANS: %s is a field name.
 #, php-format
@@ -4766,77 +4734,6 @@ msgstr ""
 "(Dapat kang makatanggap ng isang mensahe sa pamamagitan ng e-liham sa loob "
 "ng ilang mga sandali, na may mga panuto kung paano titiyakin ang tirahan mo "
 "ng e-liham.)"
-
-#. TRANS: Page notice for remote subscribe. This message contains Markdown links.
-#. TRANS: Ensure to keep the correct markup of [link description](link).
-#, php-format
-msgid ""
-"To subscribe, you can [login](%%action.login%%), or [register](%%action."
-"register%%) a new  account. If you already have an account  on a [compatible "
-"microblogging site](%%doc.openmublog%%),  enter your profile URL below."
-msgstr ""
-"Upang makapagpasipi, maaari kang [lumagda](%%action.login%%), o [magpatala](%"
-"%action.register%%) ng isang bagong akawnt. Kung mayroon ka nang isang "
-"akawnt sa isang [kaakmang sityo ng maliitang pagboblog](%%doc.openmublog%"
-"%),  ipasok ang URL mo ng balangkas sa ibaba."
-
-#. TRANS: Page title for Remote subscribe.
-msgid "Remote subscribe"
-msgstr "Magpasipi ng malayo"
-
-#. TRANS: Field legend on page for remote subscribe.
-msgid "Subscribe to a remote user"
-msgstr "Magpasipi mula sa isang malayong tagagamit"
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "User nickname"
-msgstr "Palayaw ng tagagamit"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "Nickname of the user you want to follow."
-msgstr "Palayaw ng tagagamit na nais mong sundan."
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "Profile URL"
-msgstr "URL ng balangkas"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "URL of your profile on another compatible microblogging service."
-msgstr ""
-"URL ng balangkas mo sa ibang kaakmang palingkuran ng maliitang pagboblog."
-
-#. TRANS: Button text on page for remote subscribe.
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Pumayag na tumanggap ng sipi"
-
-#. TRANS: Form validation error on page for remote subscribe when an invalid profile URL was provided.
-msgid "Invalid profile URL (bad format)."
-msgstr "Hindi katanggap-tanggap na URL ng balangkas (masamang anyo)."
-
-#. TRANS: Form validation error on page for remote subscribe when no the provided profile URL
-#. TRANS: does not contain expected data.
-msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-msgstr ""
-"Isang hindi katanggap-tanggap na URL ng balangkas (walang binigyang "
-"kahulugan na kasulatang YADIS o hindi katanggap-tanggap na XRDS)."
-
-#. TRANS: Form validation error on page for remote subscribe.
-msgid "That is a local profile! Login to subscribe."
-msgstr "Iyan ay isang katutubong balangkas! Lumagda upang makapagpasipi."
-
-#. TRANS: Form validation error on page for remote subscribe when the remote service is not providing a request token.
-msgid "Could not get a request token."
-msgstr "Hindi makakuha ng isang kahalip ng kahilingan."
-
-#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
-msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-msgstr ""
-"Hindi mo (hindi) maitatala ang isang malayong balangkas ng OMB 0.1 sa "
-"pamamagitan ng ganitong galaw."
 
 #. TRANS: Client error displayed when an unknown error occurs while delisting a user.
 #. TRANS: %s is a username.
@@ -5992,12 +5889,6 @@ msgid "A list of users awaiting approval to subscribe to you."
 msgstr ""
 "Isang tala ng mga tagagamit na naghihintay ng pagpayag upang makasipi sa iyo."
 
-#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
-msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-msgstr ""
-"Hindi ka maaaring magpasipi sa isang malayong balangkas ng OMB 0.1 sa "
-"pamamagitan ng galaw na ito."
-
 #. TRANS: Page title when subscription succeeded.
 msgid "Subscribed"
 msgstr "Tumatanggap na ng sipi"
@@ -6245,18 +6136,6 @@ msgstr "Hindi na nagpapasipi"
 msgid "%1$s unsubscribed from list %2$s by %3$s"
 msgstr "Hindi na nagpapasipi si %1$s  mula sa talaang %2$s ni %3$s"
 
-#. TRANS: Client error displayed when trying to update profile with an incompatible license.
-#. TRANS: %1$s is the license incompatible with site license %2$s.
-#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
-#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
-#, php-format
-msgid ""
-"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
-"\"."
-msgstr ""
-"Hindi akma ang lisensiya ng agos na \"%1$s\" ng pabatid sa lisensiyang \"%2$s"
-"\" ng sityo."
-
 #. TRANS: Title of URL settings tab in profile settings.
 msgid "URL settings"
 msgstr "Mga katakdaan ng URL"
@@ -6406,117 +6285,6 @@ msgstr ""
 #. TRANS: Title for button to save user settings in user admin panel.
 msgid "Save user settings."
 msgstr "Sagipin ang mga katakdaan ng tagagamit."
-
-#. TRANS: Page title.
-msgid "Authorize subscription"
-msgstr "Pahintulutan ang pagpapasipi"
-
-#. TRANS: Page notice on "Authorize subscription" page.
-msgid ""
-"Please check these details to make sure that you want to subscribe to this "
-"user’s notices. If you didn’t just ask to subscribe to someone’s notices, "
-"click \"Reject\"."
-msgstr ""
-"Pakisuri ang mga detalyeng ito upang matiyak na nais mong magpasipi ng mga "
-"pabatid ng tagagamit na ito.  Kung hindi ka humiling na magpasipi ng mga "
-"pabatid mula kaninuman, pindutin ang \"Tanggihan\"."
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to accept a group membership request on approve group form.
-#. TRANS: Submit button text to accept a subscription request on approve sub form.
-msgctxt "BUTTON"
-msgid "Accept"
-msgstr "Tanggapin"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#. TRANS: Button title to subscribe to a user.
-msgid "Subscribe to this user."
-msgstr "Tumanggap ng pagpapasipi mula sa tagagamit na ito."
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to reject a group membership request on approve group form.
-#. TRANS: Submit button text to reject a subscription request on approve sub form.
-msgctxt "BUTTON"
-msgid "Reject"
-msgstr "Tanggihan"
-
-#. TRANS: Title for button on Authorise Subscription page.
-msgid "Reject this subscription."
-msgstr "Tanggihan ang pagpapasiping ito."
-
-#. TRANS: Client error displayed for an empty authorisation request.
-msgid "No authorization request!"
-msgstr "Walang hiling ng pagpapahintulot!"
-
-#. TRANS: Accept message header from Authorise subscription page.
-msgid "Subscription authorized"
-msgstr "Pinahintulutan ang pagpapasipi"
-
-#. TRANS: Accept message text from Authorise subscription page.
-msgid ""
-"The subscription has been authorized, but no callback URL was passed. Check "
-"with the site's instructions for details on how to authorize the "
-"subscription. Your subscription token is:"
-msgstr ""
-"Pinahintulutan ang pagpapasipi, ngunit walang ipinasang URL ng pagtawag na "
-"pabalik. Suriin ang panuto ng sityo para sa mga detalye kung paano "
-"papahintulutan ang pagpapasipi. Ang kahalip ng pagpapasipi mo ay:"
-
-#. TRANS: Reject message header from Authorise subscription page.
-msgid "Subscription rejected"
-msgstr "Tinanggihan ang pagpapasipi"
-
-#. TRANS: Reject message from Authorise subscription page.
-msgid ""
-"The subscription has been rejected, but no callback URL was passed. Check "
-"with the site's instructions for details on how to fully reject the "
-"subscription."
-msgstr ""
-"Tinanggihan ang pagpapasipi, ngunit walang ipinasang URL ng pagtawag na "
-"pabalik. Suriin ang panuto ng sityo para sa mga detalye kung paano tanggihan "
-"nang buo ang pagpapasipi."
-
-#. TRANS: Exception thrown when no valid user is found for an authorisation request.
-#. TRANS: %s is a listener URI.
-#, php-format
-msgid "Listener URI \"%s\" not found here."
-msgstr "URI na \"%s\" ng tagapakinig hindi natagpuan dito."
-
-#. TRANS: Exception thrown when listenee URI is too long for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is too long."
-msgstr "URI na \"%s\" ng tagapakinig ay masyadong mahaba."
-
-#. TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is a local user."
-msgstr "URI na \"%s\" ng tagapakinig ay isang katutubong tagagamit."
-
-#. TRANS: Exception thrown when profile URL is a local user for an authorisation request.
-#. TRANS: %s is a profile URL.
-#, php-format
-msgid "Profile URL \"%s\" is for a local user."
-msgstr "Ang URL na \"%s\" ng balangkas ay para sa isang katutubong tagagamit."
-
-#. TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Avatar URL \"%s\" is not valid."
-msgstr "Hindi katanggap-tanggap ang URL na \"%s\" ng huwaran."
-
-#. TRANS: Exception thrown when avatar URL could not be read for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Cannot read avatar URL \"%s\"."
-msgstr "Hindi mabasa ang URL na \"%s\" ng huwaran."
-
-#. TRANS: Exception thrown when avatar URL return an invalid image type for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Wrong image type for avatar URL \"%s\"."
-msgstr "Maling uri ng larawan para sa URL na \"%s\" ng huwaran."
 
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
@@ -6744,6 +6512,10 @@ msgstr "Hindi maisapanahon ang katutubong pangkat."
 msgid "Could not create login token for %s"
 msgstr "Hindi malikha ang kahalip ng paglagdang papasok para kay %s"
 
+#, fuzzy
+msgid "Cannot instantiate class "
+msgstr "Hindi masagip ang bagong hudyat."
+
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr ""
@@ -6929,7 +6701,6 @@ msgid "Unable to save tag."
 msgstr "Hindi nagawang sagipin ang tatak."
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
-#. TRANS: Error message displayed to a banned user when they try to subscribe.
 msgid "You have been banned from subscribing."
 msgstr "Pinagbabawalan ka na mula sa pagpapasipi."
 
@@ -6948,10 +6719,6 @@ msgstr "Hindi nagpapasipi!"
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 msgid "Could not delete self-subscription."
 msgstr "Hindi mabura ang pagpapasipi sa sarili."
-
-#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
-msgid "Could not delete subscription OMB token."
-msgstr "Hindi mabura ang kahalip na OMB ng pagpapasipi."
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
 msgid "Could not delete subscription."
@@ -7081,6 +6848,13 @@ msgstr "Tagapangasiwa"
 msgctxt "role"
 msgid "Moderator"
 msgstr "Tagapamagitan"
+
+#. TRANS: Link text for link that will subscribe to a remote profile.
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Pumayag na tumanggap ng sipi"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
@@ -7408,45 +7182,6 @@ msgstr "Walang tagagamit para sa ganyang kahalip."
 msgid "Could not authenticate you."
 msgstr "Hindi ka mapatunayan."
 
-#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
-msgid "Could not create anonymous consumer."
-msgstr "Hindi makalikha ng hindi nagpapakilalang tagaubos."
-
-#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
-msgid "Could not create anonymous OAuth application."
-msgstr "Hindi makalikha ng hindi nagpapakilalang aplikasyon ng OAuth."
-
-#. TRANS: Exception thrown when no token association could be found.
-msgid ""
-"Could not find a profile and application associated with the request token."
-msgstr ""
-"Hindi matagpuan ang isang balangkas at aplikasyon na may kaugnayan sa "
-"kahalip ng kahilingan."
-
-#. TRANS: Exception thrown when no access token can be issued.
-msgid "Could not issue access token."
-msgstr "Hindi maibigay ang kahalip ng pagpunta."
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error inserting OAuth application user."
-msgstr ""
-"Kamalian ng kalipunan ng dato sa pagsisingit ng tagagamit ng aplikasyong "
-"OAuth."
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error updating OAuth application user."
-msgstr ""
-"Kamalian ng kalipunan ng dato sa pagsasapanahon ng tagagamit ng aplikasyong "
-"OAuth."
-
-#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
-msgid "Tried to revoke unknown token."
-msgstr "Sinubukang bawiin ang hindi nalalamang kahalip."
-
-#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
-msgid "Failed to delete revoked token."
-msgstr "Nabigo sa pagbura ng binawing kahalip."
-
 #. TRANS: Form input field label for application icon.
 msgid "Icon"
 msgstr "Kinatawang larawan"
@@ -7569,6 +7304,18 @@ msgstr "Kahalip na pangpunta na nagsisimula sa: %s"
 msgctxt "BUTTON"
 msgid "Revoke"
 msgstr "Bawiin"
+
+#. TRANS: Submit button text to accept a group membership request on approve group form.
+#. TRANS: Submit button text to accept a subscription request on approve sub form.
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr "Tanggapin"
+
+#. TRANS: Submit button text to reject a group membership request on approve group form.
+#. TRANS: Submit button text to reject a subscription request on approve sub form.
+msgctxt "BUTTON"
+msgid "Reject"
+msgstr "Tanggihan"
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
 msgid "Author element must contain a name element."
@@ -8394,6 +8141,13 @@ msgstr "Tanyag na mga pangkat"
 msgid "Active groups"
 msgstr "Masisiglang mga pangkat"
 
+#, fuzzy
+msgid "See all"
+msgstr "Ipakitang lahat"
+
+msgid "See all groups you belong to"
+msgstr ""
+
 #. TRANS: Title for group tag cloud section.
 #. TRANS: %s is a group name.
 #, php-format
@@ -8490,7 +8244,7 @@ msgctxt "TITLE"
 msgid "Trends"
 msgstr "Mga kalakaran"
 
-#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Default button text for inviting more users to the StatusNet instance.
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "Mag-anyaya ng marami pang mga kasamahan"
@@ -8534,6 +8288,10 @@ msgstr "Sumali"
 msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Lumisan"
+
+#, fuzzy
+msgid "See all lists you have created"
+msgstr "Ang ipinatala mong mga aplikasyon"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -9079,6 +8837,9 @@ msgstr ""
 "Dapat mong ipatupad ang iakma ang Bagay ng Talaan ng Pabatid() o ipakita ang "
 "Pabatid()."
 
+msgid "More ▼"
+msgstr ""
+
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
 msgstr "Hindi maaaring walang laman ang palayaw."
@@ -9198,26 +8959,6 @@ msgstr "Dunggulin"
 #. TRANS: Button title to nudge/ping another user.
 msgid "Send a nudge to this user."
 msgstr "Magpadala ng isang pagdunggol sa tagagamit na ito."
-
-#. TRANS: Exception thrown when creating a new profile fails in OAuth store.
-msgid "Error inserting new profile."
-msgstr "Kamalian sa pagsisingit ng bagong balangkas."
-
-#. TRANS: Exception thrown when creating a new avatar fails in OAuth store.
-msgid "Error inserting avatar."
-msgstr "Kamalian sa pagsisingit ng huwaran."
-
-#. TRANS: Exception thrown when creating a remote profile fails in OAuth store.
-msgid "Error inserting remote profile."
-msgstr "Kamalian sa pagsisingit ng malayong balangkas."
-
-#. TRANS: Exception thrown when a notice is denied because it has been sent before.
-msgid "Duplicate notice."
-msgstr "Nagkadalawang pabatid."
-
-#. TRANS: Exception thrown when creating a new subscription fails in OAuth store.
-msgid "Could not insert new subscription."
-msgstr "Hindi maisingit ang bagong pagpapasipi."
 
 #. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
 msgid "No oEmbed API endpoint available."
@@ -9786,6 +9527,45 @@ msgstr "Katahimikan"
 msgid "Silence this user"
 msgstr "Patahimikin ang tagagamit na ito"
 
+#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
+msgid "Could not create anonymous consumer."
+msgstr "Hindi makalikha ng hindi nagpapakilalang tagaubos."
+
+#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
+msgid "Could not create anonymous OAuth application."
+msgstr "Hindi makalikha ng hindi nagpapakilalang aplikasyon ng OAuth."
+
+#. TRANS: Exception thrown when no token association could be found.
+msgid ""
+"Could not find a profile and application associated with the request token."
+msgstr ""
+"Hindi matagpuan ang isang balangkas at aplikasyon na may kaugnayan sa "
+"kahalip ng kahilingan."
+
+#. TRANS: Exception thrown when no access token can be issued.
+msgid "Could not issue access token."
+msgstr "Hindi maibigay ang kahalip ng pagpunta."
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error inserting OAuth application user."
+msgstr ""
+"Kamalian ng kalipunan ng dato sa pagsisingit ng tagagamit ng aplikasyong "
+"OAuth."
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error updating OAuth application user."
+msgstr ""
+"Kamalian ng kalipunan ng dato sa pagsasapanahon ng tagagamit ng aplikasyong "
+"OAuth."
+
+#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
+msgid "Tried to revoke unknown token."
+msgstr "Sinubukang bawiin ang hindi nalalamang kahalip."
+
+#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
+msgid "Failed to delete revoked token."
+msgstr "Nabigo sa pagbura ng binawing kahalip."
+
 #. TRANS: Menu item in local navigation menu.
 msgctxt "MENU"
 msgid "Subscriptions"
@@ -9842,6 +9622,10 @@ msgstr ""
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Tagasipi sa tagagamit na ito"
+
+#. TRANS: Button title to subscribe to a user.
+msgid "Subscribe to this user."
+msgstr "Tumanggap ng pagpapasipi mula sa tagagamit na ito."
 
 #. TRANS: Title of personal tag cloud section.
 msgid "People Tagcloud as self-tagged"
@@ -10201,3 +9985,188 @@ msgstr "Hindi isang katanggap-tanggap na tirahan ng e-liham."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Hindi masagip ang balangkas."
+
+#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
+#~ msgstr ""
+#~ "Hindi mo maitatala ang isang malayong balangkas ng OMB 0.1 sa pamamagitan "
+#~ "ng ganitong galaw."
+
+#~ msgid "Not expecting this response!"
+#~ msgstr "Hindi inaasahan ang tugong ito!"
+
+#~ msgid "User being listened to does not exist."
+#~ msgstr "Hindi umiiral ang tagagamit na pinakikinggan."
+
+#~ msgid "You can use the local subscription!"
+#~ msgstr "Maaari mong gamitin ang katutubong pagpapasipi!"
+
+#~ msgid "That user has blocked you from subscribing."
+#~ msgstr "Hinadlangan ka ng tagagamit na iyan mula sa pagpapasipi."
+
+#~ msgid "You are not authorized."
+#~ msgstr "Wala kang kapahintulutan."
+
+#~ msgid "Could not convert request token to access token."
+#~ msgstr ""
+#~ "Hindi magawang baguhin ang kahalip ng kahilangan upang maging kahalip ng "
+#~ "pagpunta."
+
+#~ msgid "Remote service uses unknown version of OMB protocol."
+#~ msgstr ""
+#~ "Gumagamit ang malayong palingkuran ng hindi nalalamang bersyon ng "
+#~ "protokol ng OMB."
+
+#~ msgid "Error updating remote profile."
+#~ msgstr "Kamalian sa pagsasapanahon ng pangmalayuang balangkas."
+
+#~ msgid "Invalid notice content."
+#~ msgstr "Hindi katanggap-tanggap na nilalaman ng pabatid."
+
+#~ msgid ""
+#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
+#~ msgstr ""
+#~ "Hindi akma ang lisensiyang \"%1$s\" ng pabatid sa lisensiyang \"%2$s\" ng "
+#~ "sityo."
+
+#~ msgid ""
+#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
+#~ "register%%) a new  account. If you already have an account  on a "
+#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
+#~ "URL below."
+#~ msgstr ""
+#~ "Upang makapagpasipi, maaari kang [lumagda](%%action.login%%), o "
+#~ "[magpatala](%%action.register%%) ng isang bagong akawnt. Kung mayroon ka "
+#~ "nang isang akawnt sa isang [kaakmang sityo ng maliitang pagboblog](%%doc."
+#~ "openmublog%%),  ipasok ang URL mo ng balangkas sa ibaba."
+
+#~ msgid "Remote subscribe"
+#~ msgstr "Magpasipi ng malayo"
+
+#~ msgid "Subscribe to a remote user"
+#~ msgstr "Magpasipi mula sa isang malayong tagagamit"
+
+#~ msgid "User nickname"
+#~ msgstr "Palayaw ng tagagamit"
+
+#~ msgid "Nickname of the user you want to follow."
+#~ msgstr "Palayaw ng tagagamit na nais mong sundan."
+
+#~ msgid "Profile URL"
+#~ msgstr "URL ng balangkas"
+
+#~ msgid "URL of your profile on another compatible microblogging service."
+#~ msgstr ""
+#~ "URL ng balangkas mo sa ibang kaakmang palingkuran ng maliitang pagboblog."
+
+#~ msgid "Invalid profile URL (bad format)."
+#~ msgstr "Hindi katanggap-tanggap na URL ng balangkas (masamang anyo)."
+
+#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
+#~ msgstr ""
+#~ "Isang hindi katanggap-tanggap na URL ng balangkas (walang binigyang "
+#~ "kahulugan na kasulatang YADIS o hindi katanggap-tanggap na XRDS)."
+
+#~ msgid "That is a local profile! Login to subscribe."
+#~ msgstr "Iyan ay isang katutubong balangkas! Lumagda upang makapagpasipi."
+
+#~ msgid "Could not get a request token."
+#~ msgstr "Hindi makakuha ng isang kahalip ng kahilingan."
+
+#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
+#~ msgstr ""
+#~ "Hindi mo (hindi) maitatala ang isang malayong balangkas ng OMB 0.1 sa "
+#~ "pamamagitan ng ganitong galaw."
+
+#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
+#~ msgstr ""
+#~ "Hindi ka maaaring magpasipi sa isang malayong balangkas ng OMB 0.1 sa "
+#~ "pamamagitan ng galaw na ito."
+
+#~ msgid ""
+#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
+#~ "$s\"."
+#~ msgstr ""
+#~ "Hindi akma ang lisensiya ng agos na \"%1$s\" ng pabatid sa lisensiyang \"%"
+#~ "2$s\" ng sityo."
+
+#~ msgid "Authorize subscription"
+#~ msgstr "Pahintulutan ang pagpapasipi"
+
+#~ msgid ""
+#~ "Please check these details to make sure that you want to subscribe to "
+#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
+#~ "notices, click \"Reject\"."
+#~ msgstr ""
+#~ "Pakisuri ang mga detalyeng ito upang matiyak na nais mong magpasipi ng "
+#~ "mga pabatid ng tagagamit na ito.  Kung hindi ka humiling na magpasipi ng "
+#~ "mga pabatid mula kaninuman, pindutin ang \"Tanggihan\"."
+
+#~ msgid "Reject this subscription."
+#~ msgstr "Tanggihan ang pagpapasiping ito."
+
+#~ msgid "No authorization request!"
+#~ msgstr "Walang hiling ng pagpapahintulot!"
+
+#~ msgid "Subscription authorized"
+#~ msgstr "Pinahintulutan ang pagpapasipi"
+
+#~ msgid ""
+#~ "The subscription has been authorized, but no callback URL was passed. "
+#~ "Check with the site's instructions for details on how to authorize the "
+#~ "subscription. Your subscription token is:"
+#~ msgstr ""
+#~ "Pinahintulutan ang pagpapasipi, ngunit walang ipinasang URL ng pagtawag "
+#~ "na pabalik. Suriin ang panuto ng sityo para sa mga detalye kung paano "
+#~ "papahintulutan ang pagpapasipi. Ang kahalip ng pagpapasipi mo ay:"
+
+#~ msgid "Subscription rejected"
+#~ msgstr "Tinanggihan ang pagpapasipi"
+
+#~ msgid ""
+#~ "The subscription has been rejected, but no callback URL was passed. Check "
+#~ "with the site's instructions for details on how to fully reject the "
+#~ "subscription."
+#~ msgstr ""
+#~ "Tinanggihan ang pagpapasipi, ngunit walang ipinasang URL ng pagtawag na "
+#~ "pabalik. Suriin ang panuto ng sityo para sa mga detalye kung paano "
+#~ "tanggihan nang buo ang pagpapasipi."
+
+#~ msgid "Listener URI \"%s\" not found here."
+#~ msgstr "URI na \"%s\" ng tagapakinig hindi natagpuan dito."
+
+#~ msgid "Listenee URI \"%s\" is too long."
+#~ msgstr "URI na \"%s\" ng tagapakinig ay masyadong mahaba."
+
+#~ msgid "Listenee URI \"%s\" is a local user."
+#~ msgstr "URI na \"%s\" ng tagapakinig ay isang katutubong tagagamit."
+
+#~ msgid "Profile URL \"%s\" is for a local user."
+#~ msgstr ""
+#~ "Ang URL na \"%s\" ng balangkas ay para sa isang katutubong tagagamit."
+
+#~ msgid "Avatar URL \"%s\" is not valid."
+#~ msgstr "Hindi katanggap-tanggap ang URL na \"%s\" ng huwaran."
+
+#~ msgid "Cannot read avatar URL \"%s\"."
+#~ msgstr "Hindi mabasa ang URL na \"%s\" ng huwaran."
+
+#~ msgid "Wrong image type for avatar URL \"%s\"."
+#~ msgstr "Maling uri ng larawan para sa URL na \"%s\" ng huwaran."
+
+#~ msgid "Could not delete subscription OMB token."
+#~ msgstr "Hindi mabura ang kahalip na OMB ng pagpapasipi."
+
+#~ msgid "Error inserting new profile."
+#~ msgstr "Kamalian sa pagsisingit ng bagong balangkas."
+
+#~ msgid "Error inserting avatar."
+#~ msgstr "Kamalian sa pagsisingit ng huwaran."
+
+#~ msgid "Error inserting remote profile."
+#~ msgstr "Kamalian sa pagsisingit ng malayong balangkas."
+
+#~ msgid "Duplicate notice."
+#~ msgstr "Nagkadalawang pabatid."
+
+#~ msgid "Could not insert new subscription."
+#~ msgstr "Hindi maisingit ang bagong pagpapasipi."

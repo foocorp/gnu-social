@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -164,12 +164,11 @@ msgstr ""
 #: actions/passwordsettings.php:147 actions/peopletagautocomplete.php:67
 #: actions/pluginenable.php:88 actions/profilecompletion.php:81
 #: actions/profilesettings.php:235 actions/recoverpassword.php:303
-#: actions/register.php:164 actions/remotesubscribe.php:78
-#: actions/removepeopletag.php:79 actions/repeat.php:80
-#: actions/smssettings.php:250 actions/subedit.php:41 actions/subscribe.php:87
-#: actions/subscribepeopletag.php:76 actions/tagprofile.php:186
-#: actions/unsubscribe.php:70 actions/unsubscribepeopletag.php:77
-#: actions/urlsettings.php:171 actions/userauthorization.php:54
+#: actions/register.php:164 actions/removepeopletag.php:79
+#: actions/repeat.php:80 actions/smssettings.php:250 actions/subedit.php:41
+#: actions/subscribe.php:87 actions/subscribepeopletag.php:76
+#: actions/tagprofile.php:186 actions/unsubscribe.php:70
+#: actions/unsubscribepeopletag.php:77 actions/urlsettings.php:171
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 
@@ -212,21 +211,16 @@ msgstr ""
 msgid "No such list."
 msgstr ""
 
-#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
-#: actions/addpeopletag.php:121
-msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr ""
-
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
-#: actions/addpeopletag.php:150
+#: actions/addpeopletag.php:138
 #, php-format
 msgid "There was an unexpected error while listing %s."
 msgstr ""
 
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a profile URL.
-#: actions/addpeopletag.php:155
+#: actions/addpeopletag.php:143
 #, php-format
 msgid ""
 "There was a problem listing %s. The remote server is probably not responding "
@@ -234,7 +228,7 @@ msgid ""
 msgstr ""
 
 #. TRANS: Title after adding a user to a list.
-#: actions/addpeopletag.php:165
+#: actions/addpeopletag.php:153
 msgctxt "TITLE"
 msgid "Listed"
 msgstr ""
@@ -283,8 +277,6 @@ msgstr ""
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
 #. TRANS: Client error displayed when referring to non-existing user.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing user.
-#. TRANS: Form validation error on page for remote subscribe when no user was provided.
-#. TRANS: Form validation error on page for remote subscribe when no user profile was found.
 #. TRANS: Client error displayed when trying to reply to a non-exsting user.
 #. TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
 #. TRANS: Client error.
@@ -293,7 +285,6 @@ msgstr ""
 #. TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
 #. TRANS: Client error displayed requesting groups for a non-existing user.
 #. TRANS: Client error displayed when user not found for an action.
-#. TRANS: Client error displayed providing a non-existing nickname.
 #. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
 #. TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
 #. TRANS: Client error displayed when trying to access a mailbox without providing a user.
@@ -318,13 +309,12 @@ msgstr ""
 #: actions/microsummary.php:63 actions/newmessage.php:119 actions/otp.php:78
 #: actions/peopletagged.php:87 actions/peopletagsbyuser.php:97
 #: actions/peopletagsforuser.php:79 actions/peopletagsubscribers.php:87
-#: actions/peopletagsubscriptions.php:81 actions/remotesubscribe.php:156
-#: actions/remotesubscribe.php:166 actions/replies.php:72
+#: actions/peopletagsubscriptions.php:81 actions/replies.php:72
 #: actions/repliesrss.php:38 actions/rsd.php:114 actions/showfavorites.php:106
 #: actions/showprofiletag.php:73 actions/showprofiletag.php:112
 #: actions/userbyid.php:75 actions/usergroups.php:95 actions/userrss.php:41
-#: actions/userxrd.php:60 actions/xrds.php:71 lib/command.php:624
-#: lib/galleryaction.php:61 lib/mailbox.php:79 lib/profileaction.php:77
+#: actions/userxrd.php:61 lib/command.php:624 lib/galleryaction.php:61
+#: lib/mailbox.php:79 lib/profileaction.php:77
 msgid "No such user."
 msgstr ""
 
@@ -406,6 +396,13 @@ msgid ""
 "post a notice to them."
 msgstr ""
 
+#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Less business/enterprise-oriented language for public sites.
+#: actions/all.php:206 actions/public.php:238
+msgctxt "BUTTON"
+msgid "Send invite"
+msgstr ""
+
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
 #. TRANS: %s is a username.
@@ -437,28 +434,29 @@ msgstr ""
 #: actions/apiaccountratelimitstatus.php:70
 #: actions/apiaccountupdatedeliverydevice.php:92
 #: actions/apiaccountupdateprofile.php:94
-#: actions/apiaccountverifycredentials.php:68 actions/apidirectmessage.php:157
-#: actions/apifavoritecreate.php:98 actions/apifavoritedestroy.php:98
-#: actions/apifriendshipscreate.php:99 actions/apifriendshipsdestroy.php:99
-#: actions/apifriendshipsshow.php:124 actions/apigroupcreate.php:138
-#: actions/apigroupismember.php:115 actions/apigroupjoin.php:148
-#: actions/apigroupleave.php:138 actions/apigrouplist.php:135
-#: actions/apigrouplistall.php:120 actions/apigroupmembership.php:105
-#: actions/apigroupprofileupdate.php:98 actions/apigroupprofileupdate.php:216
-#: actions/apigroupshow.php:114 actions/apihelptest.php:84
-#: actions/apilist.php:117 actions/apilist.php:177 actions/apilist.php:214
-#: actions/apilistmember.php:117 actions/apilistmembers.php:87
-#: actions/apilistmembers.php:160 actions/apilistmemberships.php:103
-#: actions/apilists.php:120 actions/apilists.php:172
-#: actions/apilistsubscriber.php:88 actions/apilistsubscribers.php:66
-#: actions/apilistsubscribers.php:113 actions/apilistsubscriptions.php:91
-#: actions/apistatusesdestroy.php:101 actions/apistatusesretweets.php:110
-#: actions/apistatusesshow.php:105 actions/apistatusnetconfig.php:139
-#: actions/apistatusnetversion.php:91 actions/apisubscriptions.php:109
-#: actions/apitimelinefavorites.php:182 actions/apitimelinefriends.php:278
-#: actions/apitimelinegroup.php:148 actions/apitimelinehome.php:181
-#: actions/apitimelinelist.php:182 actions/apitimelinementions.php:182
-#: actions/apitimelinepublic.php:247 actions/apitimelineretweetedtome.php:150
+#: actions/apiaccountverifycredentials.php:68 actions/apiconversation.php:157
+#: actions/apidirectmessage.php:157 actions/apifavoritecreate.php:98
+#: actions/apifavoritedestroy.php:98 actions/apifriendshipscreate.php:99
+#: actions/apifriendshipsdestroy.php:99 actions/apifriendshipsshow.php:124
+#: actions/apigroupcreate.php:138 actions/apigroupismember.php:115
+#: actions/apigroupjoin.php:148 actions/apigroupleave.php:138
+#: actions/apigrouplist.php:135 actions/apigrouplistall.php:120
+#: actions/apigroupmembership.php:105 actions/apigroupprofileupdate.php:98
+#: actions/apigroupprofileupdate.php:216 actions/apigroupshow.php:114
+#: actions/apihelptest.php:84 actions/apilist.php:117 actions/apilist.php:177
+#: actions/apilist.php:214 actions/apilistmember.php:117
+#: actions/apilistmembers.php:87 actions/apilistmembers.php:160
+#: actions/apilistmemberships.php:103 actions/apilists.php:120
+#: actions/apilists.php:172 actions/apilistsubscriber.php:88
+#: actions/apilistsubscribers.php:66 actions/apilistsubscribers.php:113
+#: actions/apilistsubscriptions.php:91 actions/apistatusesdestroy.php:101
+#: actions/apistatusesretweets.php:110 actions/apistatusesshow.php:105
+#: actions/apistatusnetconfig.php:139 actions/apistatusnetversion.php:91
+#: actions/apisubscriptions.php:109 actions/apitimelinefavorites.php:182
+#: actions/apitimelinefriends.php:278 actions/apitimelinegroup.php:148
+#: actions/apitimelinehome.php:181 actions/apitimelinelist.php:182
+#: actions/apitimelinementions.php:182 actions/apitimelinepublic.php:247
+#: actions/apitimelineretweetedtome.php:150
 #: actions/apitimelineretweetsofme.php:149 actions/apitimelinetag.php:165
 #: actions/apitimelineuser.php:217 actions/apiusershow.php:100
 #: lib/apilistusers.php:149
@@ -513,8 +511,7 @@ msgstr ""
 #: actions/avatarsettings.php:194 actions/foaf.php:69
 #: actions/grouplogo.php:184 actions/hcard.php:75
 #: actions/peopletagsbyuser.php:105 actions/peopletagsforuser.php:87
-#: actions/peopletagsubscriptions.php:89 actions/remotesubscribe.php:209
-#: actions/replies.php:80 actions/userauthorization.php:75
+#: actions/peopletagsubscriptions.php:89 actions/replies.php:80
 #: actions/usergroups.php:103 actions/userrss.php:110 lib/galleryaction.php:69
 #: lib/profileaction.php:85
 msgid "User has no profile."
@@ -597,6 +594,21 @@ msgstr ""
 #. TRANS: Server error displayed when unblocking a user has failed.
 #: actions/apiblockdestroy.php:113
 msgid "Unblock user failed."
+msgstr ""
+
+#: actions/apiconversation.php:70
+msgid "no conversation id"
+msgstr ""
+
+#: actions/apiconversation.php:76
+#, php-format
+msgid "No conversation with id %d"
+msgstr ""
+
+#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for page with a conversion (multiple notices in context).
+#: actions/apiconversation.php:106 actions/conversation.php:113
+msgid "Conversation"
 msgstr ""
 
 #. TRANS: Title. %s is a user nickname.
@@ -1129,12 +1141,11 @@ msgstr ""
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
-#. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
 #. TRANS: Dropdown option for searching in profiles.
 #: actions/apioauthauthorize.php:429 actions/profilesettings.php:104
-#: actions/register.php:438 actions/userauthorization.php:146
-#: lib/groupeditform.php:147 lib/togglepeopletag.php:107
+#: actions/register.php:438 lib/groupeditform.php:147
+#: lib/togglepeopletag.php:107
 msgid "Nickname"
 msgstr ""
 
@@ -2151,9 +2162,16 @@ msgstr ""
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr ""
 
-#. TRANS: Title for page with a conversion (multiple notices in context).
-#: actions/conversation.php:113
-msgid "Conversation"
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#: actions/conversation.php:146 actions/conversation.php:162
+msgid "Conversation feed (Activity Streams JSON)"
+msgstr ""
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#: actions/conversation.php:154
+msgid "Conversation feed (RSS 2.0)"
 msgstr ""
 
 #. TRANS: Title for conversation page.
@@ -2252,7 +2270,7 @@ msgstr ""
 #. TRANS: Client error text when there is a problem with the session token.
 #: actions/deleteapplication.php:103 actions/editapplication.php:132
 #: actions/newapplication.php:113 actions/showapplication.php:117
-#: lib/action.php:1450
+#: lib/action.php:1454
 msgid "There was a problem with your session token."
 msgstr ""
 
@@ -2957,48 +2975,6 @@ msgstr ""
 #. TRANS: that could not be found.
 #: actions/file.php:58
 msgid "No uploaded attachments."
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile and an unexpected response is received.
-#: actions/finishremotesubscribe.php:69
-msgid "Not expecting this response!"
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile that does not exist.
-#: actions/finishremotesubscribe.php:81
-msgid "User being listened to does not exist."
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
-#. TRANS: Client error displayed when using remote subscribe for a local entity.
-#: actions/finishremotesubscribe.php:89 actions/remotesubscribe.php:59
-msgid "You can use the local subscription!"
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
-#: actions/finishremotesubscribe.php:102
-msgid "That user has blocked you from subscribing."
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
-#: actions/finishremotesubscribe.php:114
-msgid "You are not authorized."
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile and conversion of the request token to access token fails.
-#: actions/finishremotesubscribe.php:118
-msgid "Could not convert request token to access token."
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile fails because of an unsupported version of the OMB protocol.
-#: actions/finishremotesubscribe.php:124
-msgid "Remote service uses unknown version of OMB protocol."
-msgstr ""
-
-#. TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
-#. TRANS: Exception thrown when updating a remote profile fails in OAuth store.
-#: actions/finishremotesubscribe.php:145 lib/oauthstore.php:316
-msgid "Error updating remote profile."
 msgstr ""
 
 #. TRANS: Client error displayed when requesting a non-existent file.
@@ -4767,18 +4743,6 @@ msgid ""
 "All default plugins have been disabled from the site's configuration file."
 msgstr ""
 
-#. TRANS: Client error displayed if the notice posted has too many characters.
-#: actions/postnotice.php:96
-msgid "Invalid notice content."
-msgstr ""
-
-#. TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
-#. TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
-#: actions/postnotice.php:104
-#, php-format
-msgid "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-msgstr ""
-
 #. TRANS: Client error displayed when trying to add an unindentified field to profile.
 #. TRANS: %s is a field name.
 #: actions/profilecompletion.php:109
@@ -5083,7 +5047,7 @@ msgstr ""
 
 #. TRANS: Message for not logged in users at an invite-only site trying to view the public feed of notices.
 #. TRANS: This message contains Markdown links. Please mind the formatting.
-#: actions/public.php:245
+#: actions/public.php:259
 #, php-format
 msgid ""
 "This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
@@ -5094,7 +5058,7 @@ msgstr ""
 
 #. TRANS: Message for not logged in users at a closed site trying to view the public feed of notices.
 #. TRANS: This message contains Markdown links. Please mind the formatting.
-#: actions/public.php:252
+#: actions/public.php:266
 #, php-format
 msgid ""
 "This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
@@ -5486,92 +5450,16 @@ msgid ""
 "to confirm your email address.)"
 msgstr ""
 
-#. TRANS: Page notice for remote subscribe. This message contains Markdown links.
-#. TRANS: Ensure to keep the correct markup of [link description](link).
-#: actions/remotesubscribe.php:101
-#, php-format
-msgid ""
-"To subscribe, you can [login](%%action.login%%), or [register](%%action."
-"register%%) a new  account. If you already have an account  on a [compatible "
-"microblogging site](%%doc.openmublog%%),  enter your profile URL below."
-msgstr ""
-
-#. TRANS: Page title for Remote subscribe.
-#: actions/remotesubscribe.php:116
-msgid "Remote subscribe"
-msgstr ""
-
-#. TRANS: Field legend on page for remote subscribe.
-#: actions/remotesubscribe.php:129
-msgid "Subscribe to a remote user"
-msgstr ""
-
-#. TRANS: Field label on page for remote subscribe.
-#: actions/remotesubscribe.php:135
-msgid "User nickname"
-msgstr ""
-
-#. TRANS: Field title on page for remote subscribe.
-#: actions/remotesubscribe.php:137
-msgid "Nickname of the user you want to follow."
-msgstr ""
-
-#. TRANS: Field label on page for remote subscribe.
-#: actions/remotesubscribe.php:141
-msgid "Profile URL"
-msgstr ""
-
-#. TRANS: Field title on page for remote subscribe.
-#: actions/remotesubscribe.php:143
-msgid "URL of your profile on another compatible microblogging service."
-msgstr ""
-
-#. TRANS: Button text on page for remote subscribe.
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-#: actions/remotesubscribe.php:147 lib/accountprofileblock.php:308
-#: lib/subscribeform.php:130 lib/subscribepeopletagform.php:106
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr ""
-
-#. TRANS: Form validation error on page for remote subscribe when an invalid profile URL was provided.
-#: actions/remotesubscribe.php:172
-msgid "Invalid profile URL (bad format)."
-msgstr ""
-
-#. TRANS: Form validation error on page for remote subscribe when no the provided profile URL
-#. TRANS: does not contain expected data.
-#: actions/remotesubscribe.php:183
-msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-msgstr ""
-
-#. TRANS: Form validation error on page for remote subscribe.
-#: actions/remotesubscribe.php:192
-msgid "That is a local profile! Login to subscribe."
-msgstr ""
-
-#. TRANS: Form validation error on page for remote subscribe when the remote service is not providing a request token.
-#: actions/remotesubscribe.php:200
-msgid "Could not get a request token."
-msgstr ""
-
-#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
-#: actions/removepeopletag.php:122
-msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-msgstr ""
-
 #. TRANS: Client error displayed when an unknown error occurs while delisting a user.
 #. TRANS: %s is a username.
-#: actions/removepeopletag.php:152
+#: actions/removepeopletag.php:140
 #, php-format
 msgid "There was an unexpected error while delisting %s."
 msgstr ""
 
 #. TRANS: Client error displayed when an unknown error occurs while listing a user.
 #. TRANS: %s is a profile URL.
-#: actions/removepeopletag.php:157
+#: actions/removepeopletag.php:145
 #, php-format
 msgid ""
 "There was a problem listing %s. The remote server is probably not responding "
@@ -5579,7 +5467,7 @@ msgid ""
 msgstr ""
 
 #. TRANS: Title after removing a user from a list.
-#: actions/removepeopletag.php:167
+#: actions/removepeopletag.php:155
 msgid "Unlisted"
 msgstr ""
 
@@ -6815,13 +6703,8 @@ msgstr ""
 msgid "A list of users awaiting approval to subscribe to you."
 msgstr ""
 
-#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
-#: actions/subscribe.php:121
-msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-msgstr ""
-
 #. TRANS: Page title when subscription succeeded.
-#: actions/subscribe.php:149
+#: actions/subscribe.php:137
 msgid "Subscribed"
 msgstr ""
 
@@ -7095,17 +6978,6 @@ msgstr ""
 msgid "%1$s unsubscribed from list %2$s by %3$s"
 msgstr ""
 
-#. TRANS: Client error displayed when trying to update profile with an incompatible license.
-#. TRANS: %1$s is the license incompatible with site license %2$s.
-#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
-#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
-#: actions/updateprofile.php:65 actions/userauthorization.php:342
-#, php-format
-msgid ""
-"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
-"\"."
-msgstr ""
-
 #. TRANS: Title of URL settings tab in profile settings.
 #: actions/urlsettings.php:57
 msgid "URL settings"
@@ -7271,128 +7143,6 @@ msgstr ""
 #. TRANS: Title for button to save user settings in user admin panel.
 #: actions/useradminpanel.php:304
 msgid "Save user settings."
-msgstr ""
-
-#. TRANS: Page title.
-#: actions/userauthorization.php:109
-msgid "Authorize subscription"
-msgstr ""
-
-#. TRANS: Page notice on "Authorize subscription" page.
-#: actions/userauthorization.php:115
-msgid ""
-"Please check these details to make sure that you want to subscribe to this "
-"user’s notices. If you didn’t just ask to subscribe to someone’s notices, "
-"click \"Reject\"."
-msgstr ""
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to accept a group membership request on approve group form.
-#. TRANS: Submit button text to accept a subscription request on approve sub form.
-#: actions/userauthorization.php:202 lib/approvegroupform.php:116
-#: lib/approvesubform.php:110
-msgctxt "BUTTON"
-msgid "Accept"
-msgstr ""
-
-#. TRANS: Title for button on Authorise Subscription page.
-#. TRANS: Button title to subscribe to a user.
-#: actions/userauthorization.php:204 lib/subscribeform.php:132
-msgid "Subscribe to this user."
-msgstr ""
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to reject a group membership request on approve group form.
-#. TRANS: Submit button text to reject a subscription request on approve sub form.
-#: actions/userauthorization.php:207 lib/approvegroupform.php:118
-#: lib/approvesubform.php:112
-msgctxt "BUTTON"
-msgid "Reject"
-msgstr ""
-
-#. TRANS: Title for button on Authorise Subscription page.
-#: actions/userauthorization.php:209
-msgid "Reject this subscription."
-msgstr ""
-
-#. TRANS: Client error displayed for an empty authorisation request.
-#: actions/userauthorization.php:222
-msgid "No authorization request!"
-msgstr ""
-
-#. TRANS: Accept message header from Authorise subscription page.
-#: actions/userauthorization.php:245
-msgid "Subscription authorized"
-msgstr ""
-
-#. TRANS: Accept message text from Authorise subscription page.
-#: actions/userauthorization.php:248
-msgid ""
-"The subscription has been authorized, but no callback URL was passed. Check "
-"with the site's instructions for details on how to authorize the "
-"subscription. Your subscription token is:"
-msgstr ""
-
-#. TRANS: Reject message header from Authorise subscription page.
-#: actions/userauthorization.php:259
-msgid "Subscription rejected"
-msgstr ""
-
-#. TRANS: Reject message from Authorise subscription page.
-#: actions/userauthorization.php:262
-msgid ""
-"The subscription has been rejected, but no callback URL was passed. Check "
-"with the site's instructions for details on how to fully reject the "
-"subscription."
-msgstr ""
-
-#. TRANS: Exception thrown when no valid user is found for an authorisation request.
-#. TRANS: %s is a listener URI.
-#: actions/userauthorization.php:299
-#, php-format
-msgid "Listener URI \"%s\" not found here."
-msgstr ""
-
-#. TRANS: Exception thrown when listenee URI is too long for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#: actions/userauthorization.php:306
-#, php-format
-msgid "Listenee URI \"%s\" is too long."
-msgstr ""
-
-#. TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#: actions/userauthorization.php:314
-#, php-format
-msgid "Listenee URI \"%s\" is a local user."
-msgstr ""
-
-#. TRANS: Exception thrown when profile URL is a local user for an authorisation request.
-#. TRANS: %s is a profile URL.
-#: actions/userauthorization.php:332
-#, php-format
-msgid "Profile URL \"%s\" is for a local user."
-msgstr ""
-
-#. TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#: actions/userauthorization.php:352
-#, php-format
-msgid "Avatar URL \"%s\" is not valid."
-msgstr ""
-
-#. TRANS: Exception thrown when avatar URL could not be read for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#: actions/userauthorization.php:359
-#, php-format
-msgid "Cannot read avatar URL \"%s\"."
-msgstr ""
-
-#. TRANS: Exception thrown when avatar URL return an invalid image type for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#: actions/userauthorization.php:366
-#, php-format
-msgid "Wrong image type for avatar URL \"%s\"."
 msgstr ""
 
 #. TRANS: Page title for all but the first page of groups for a user.
@@ -7626,8 +7376,12 @@ msgstr ""
 msgid "Could not create login token for %s"
 msgstr ""
 
+#: classes/Memcached_DataObject.php:95
+msgid "Cannot instantiate class "
+msgstr ""
+
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
-#: classes/Memcached_DataObject.php:555
+#: classes/Memcached_DataObject.php:645
 msgid "No database name or DSN found anywhere."
 msgstr ""
 
@@ -7648,96 +7402,96 @@ msgstr ""
 
 #. TRANS: Server exception thrown when a user profile for a notice cannot be found.
 #. TRANS: %1$d is a profile ID (number), %2$d is a notice ID (number).
-#: classes/Notice.php:109
+#: classes/Notice.php:114
 #, php-format
 msgid "No such profile (%1$d) for notice (%2$d)."
 msgstr ""
 
 #. TRANS: Server exception. %s are the error details.
-#: classes/Notice.php:211
+#: classes/Notice.php:216
 #, php-format
 msgid "Database error inserting hashtag: %s."
 msgstr ""
 
 #. TRANS: Client exception thrown if a notice contains too many characters.
-#: classes/Notice.php:294
+#: classes/Notice.php:299
 msgid "Problem saving notice. Too long."
 msgstr ""
 
 #. TRANS: Client exception thrown when trying to save a notice for an unknown user.
-#: classes/Notice.php:299
+#: classes/Notice.php:304
 msgid "Problem saving notice. Unknown user."
 msgstr ""
 
 #. TRANS: Client exception thrown when a user tries to post too many notices in a given time frame.
-#: classes/Notice.php:305
+#: classes/Notice.php:310
 msgid ""
 "Too many notices too fast; take a breather and post again in a few minutes."
 msgstr ""
 
 #. TRANS: Client exception thrown when a user tries to post too many duplicate notices in a given time frame.
-#: classes/Notice.php:312
+#: classes/Notice.php:317
 msgid ""
 "Too many duplicate messages too quickly; take a breather and post again in a "
 "few minutes."
 msgstr ""
 
 #. TRANS: Client exception thrown when a user tries to post while being banned.
-#: classes/Notice.php:320
+#: classes/Notice.php:325
 msgid "You are banned from posting notices on this site."
 msgstr ""
 
 #. TRANS: Client exception thrown in notice when trying to repeat a missing or deleted notice.
-#: classes/Notice.php:367
+#: classes/Notice.php:372
 msgid "Cannot repeat; original notice is missing or deleted."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to repeat an own notice.
-#: classes/Notice.php:372
+#: classes/Notice.php:377
 msgid "You cannot repeat your own notice."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to repeat a non-public notice.
-#: classes/Notice.php:378
+#: classes/Notice.php:383
 msgid "Cannot repeat a private notice."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to repeat a notice you cannot access.
-#: classes/Notice.php:384
+#: classes/Notice.php:389
 msgid "Cannot repeat a notice you cannot read."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to repeat an already repeated notice.
-#: classes/Notice.php:389
+#: classes/Notice.php:394
 msgid "You already repeated that notice."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to reply to a notice a the target has no access to.
 #. TRANS: %1$s is a user nickname, %2$d is a notice ID (number).
-#: classes/Notice.php:401
+#: classes/Notice.php:406
 #, php-format
 msgid "%1$s has no access to notice %2$d."
 msgstr ""
 
 #. TRANS: Server exception thrown when a notice cannot be saved.
 #. TRANS: Server exception thrown when a notice cannot be updated.
-#: classes/Notice.php:490 classes/Notice.php:517
+#: classes/Notice.php:495 classes/Notice.php:522
 msgid "Problem saving notice."
 msgstr ""
 
 #. TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
-#: classes/Notice.php:1098
+#: classes/Notice.php:1103
 msgid "Bad type provided to saveKnownGroups."
 msgstr ""
 
 #. TRANS: Server exception thrown when an update for a group inbox fails.
-#: classes/Notice.php:1190
+#: classes/Notice.php:1195
 msgid "Problem saving group inbox."
 msgstr ""
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1824
+#: classes/Notice.php:1840
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr ""
@@ -7831,8 +7585,7 @@ msgid "Unable to save tag."
 msgstr ""
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
-#. TRANS: Error message displayed to a banned user when they try to subscribe.
-#: classes/Subscription.php:79 lib/oauthstore.php:483
+#: classes/Subscription.php:79
 msgid "You have been banned from subscribing."
 msgstr ""
 
@@ -7856,25 +7609,20 @@ msgstr ""
 msgid "Could not delete self-subscription."
 msgstr ""
 
-#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
-#: classes/Subscription.php:217
-msgid "Could not delete subscription OMB token."
-msgstr ""
-
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
-#: classes/Subscription.php:229
+#: classes/Subscription.php:206
 msgid "Could not delete subscription."
 msgstr ""
 
 #. TRANS: Activity title when subscribing to another person.
-#: classes/Subscription.php:271
+#: classes/Subscription.php:248
 msgctxt "TITLE"
 msgid "Follow"
 msgstr ""
 
 #. TRANS: Notification given when one person starts following another.
 #. TRANS: %1$s is the subscriber, %2$s is the subscribed.
-#: classes/Subscription.php:274
+#: classes/Subscription.php:251
 #, php-format
 msgid "%1$s is now following %2$s."
 msgstr ""
@@ -8012,6 +7760,15 @@ msgctxt "role"
 msgid "Moderator"
 msgstr ""
 
+#. TRANS: Link text for link that will subscribe to a remote profile.
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+#: lib/accountprofileblock.php:308 lib/subscribeform.php:130
+#: lib/subscribepeopletagform.php:106
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr ""
+
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #: lib/action.php:168
 #, php-format
@@ -8104,13 +7861,13 @@ msgstr ""
 
 #. TRANS: Pagination message to go to a page displaying information more in the
 #. TRANS: present than the currently displayed information.
-#: lib/action.php:1404
+#: lib/action.php:1408
 msgid "After"
 msgstr ""
 
 #. TRANS: Pagination message to go to a page displaying information more in the
 #. TRANS: past than the currently displayed information.
-#: lib/action.php:1414
+#: lib/action.php:1418
 msgid "Before"
 msgstr ""
 
@@ -8193,17 +7950,17 @@ msgid "%1$s %2$s %3$s"
 msgstr ""
 
 #. TRANS: Client exception thrown when there is no source attribute.
-#: lib/activityutils.php:201
+#: lib/activityutils.php:229
 msgid "Can't handle remote content yet."
 msgstr ""
 
 #. TRANS: Client exception thrown when there embedded XML content is found that cannot be processed yet.
-#: lib/activityutils.php:238
+#: lib/activityutils.php:266
 msgid "Can't handle embedded XML content yet."
 msgstr ""
 
 #. TRANS: Client exception thrown when base64 encoded content is found that cannot be processed yet.
-#: lib/activityutils.php:243
+#: lib/activityutils.php:271
 msgid "Can't handle embedded Base64 content yet."
 msgstr ""
 
@@ -8380,47 +8137,6 @@ msgstr ""
 msgid "Could not authenticate you."
 msgstr ""
 
-#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
-#: lib/apioauthstore.php:46
-msgid "Could not create anonymous consumer."
-msgstr ""
-
-#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
-#: lib/apioauthstore.php:70
-msgid "Could not create anonymous OAuth application."
-msgstr ""
-
-#. TRANS: Exception thrown when no token association could be found.
-#: lib/apioauthstore.php:152
-msgid ""
-"Could not find a profile and application associated with the request token."
-msgstr ""
-
-#. TRANS: Exception thrown when no access token can be issued.
-#: lib/apioauthstore.php:210
-msgid "Could not issue access token."
-msgstr ""
-
-#. TRANS: Exception thrown when a database error occurs.
-#: lib/apioauthstore.php:318
-msgid "Database error inserting OAuth application user."
-msgstr ""
-
-#. TRANS: Exception thrown when a database error occurs.
-#: lib/apioauthstore.php:346
-msgid "Database error updating OAuth application user."
-msgstr ""
-
-#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
-#: lib/apioauthstore.php:372
-msgid "Tried to revoke unknown token."
-msgstr ""
-
-#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
-#: lib/apioauthstore.php:377
-msgid "Failed to delete revoked token."
-msgstr ""
-
 #. TRANS: Form input field label for application icon.
 #: lib/applicationeditform.php:177
 msgid "Icon"
@@ -8568,6 +8284,20 @@ msgstr ""
 #: lib/applicationlist.php:302
 msgctxt "BUTTON"
 msgid "Revoke"
+msgstr ""
+
+#. TRANS: Submit button text to accept a group membership request on approve group form.
+#. TRANS: Submit button text to accept a subscription request on approve sub form.
+#: lib/approvegroupform.php:116 lib/approvesubform.php:110
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr ""
+
+#. TRANS: Submit button text to reject a group membership request on approve group form.
+#. TRANS: Submit button text to reject a subscription request on approve sub form.
+#: lib/approvegroupform.php:118 lib/approvesubform.php:112
+msgctxt "BUTTON"
+msgid "Reject"
 msgstr ""
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
@@ -9516,6 +9246,14 @@ msgstr ""
 msgid "Active groups"
 msgstr ""
 
+#: lib/groupsnav.php:87 lib/listsnav.php:87
+msgid "See all"
+msgstr ""
+
+#: lib/groupsnav.php:88
+msgid "See all groups you belong to"
+msgstr ""
+
 #. TRANS: Title for group tag cloud section.
 #. TRANS: %s is a group name.
 #: lib/grouptagcloudsection.php:57
@@ -9621,8 +9359,8 @@ msgctxt "TITLE"
 msgid "Trends"
 msgstr ""
 
-#. TRANS: Button text for inviting more users to the StatusNet instance.
-#: lib/invitebuttonsection.php:60
+#. TRANS: Default button text for inviting more users to the StatusNet instance.
+#: lib/invitebuttonsection.php:56
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr ""
@@ -9674,6 +9412,10 @@ msgstr ""
 #: lib/leaveform.php:109
 msgctxt "BUTTON"
 msgid "Leave"
+msgstr ""
+
+#: lib/listsnav.php:88
+msgid "See all lists you have created"
 msgstr ""
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -10161,28 +9903,32 @@ msgid "api"
 msgstr ""
 
 #. TRANS: Client exception thrown when no author for an activity was found.
-#: lib/microappplugin.php:356
+#: lib/microappplugin.php:357
 msgid "Cannot get author for activity."
 msgstr ""
 
 #. TRANS: Client exception thrown when ...
-#: lib/microappplugin.php:394
+#: lib/microappplugin.php:395
 msgid "Bookmark not posted to this group."
 msgstr ""
 
 #. TRANS: Client exception when ...
-#: lib/microappplugin.php:408
+#: lib/microappplugin.php:409
 msgid "Object not posted to this user."
 msgstr ""
 
 #. TRANS: Server exception thrown when a micro app plugin uses a target that cannot be handled.
-#: lib/microappplugin.php:412
+#: lib/microappplugin.php:413
 msgid "Do not know how to handle this kind of target."
 msgstr ""
 
 #. TRANS: Server exception thrown when a micro app plugin developer has not done his job too well.
-#: lib/microappplugin.php:554
+#: lib/microappplugin.php:555
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
+msgstr ""
+
+#: lib/moremenu.php:96
+msgid "More ▼"
 msgstr ""
 
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
@@ -10326,31 +10072,6 @@ msgstr ""
 #. TRANS: Button title to nudge/ping another user.
 #: lib/nudgeform.php:128
 msgid "Send a nudge to this user."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a new profile fails in OAuth store.
-#: lib/oauthstore.php:291
-msgid "Error inserting new profile."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a new avatar fails in OAuth store.
-#: lib/oauthstore.php:300
-msgid "Error inserting avatar."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a remote profile fails in OAuth store.
-#: lib/oauthstore.php:322
-msgid "Error inserting remote profile."
-msgstr ""
-
-#. TRANS: Exception thrown when a notice is denied because it has been sent before.
-#: lib/oauthstore.php:362
-msgid "Duplicate notice."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a new subscription fails in OAuth store.
-#: lib/oauthstore.php:509
-msgid "Could not insert new subscription."
 msgstr ""
 
 #. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
@@ -10771,7 +10492,7 @@ msgid "Revoke the \"%s\" role from this user"
 msgstr ""
 
 #. TRANS: Client error on action trying to visit a non-existing page.
-#: lib/router.php:1152
+#: lib/router.php:1146
 msgid "Page not found."
 msgstr ""
 
@@ -11018,6 +10739,47 @@ msgstr ""
 msgid "Silence this user"
 msgstr ""
 
+#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
+#: lib/statusnetoauthstore.php:48
+msgid "Could not create anonymous consumer."
+msgstr ""
+
+#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
+#: lib/statusnetoauthstore.php:72
+msgid "Could not create anonymous OAuth application."
+msgstr ""
+
+#. TRANS: Exception thrown when no token association could be found.
+#: lib/statusnetoauthstore.php:154
+msgid ""
+"Could not find a profile and application associated with the request token."
+msgstr ""
+
+#. TRANS: Exception thrown when no access token can be issued.
+#: lib/statusnetoauthstore.php:212
+msgid "Could not issue access token."
+msgstr ""
+
+#. TRANS: Exception thrown when a database error occurs.
+#: lib/statusnetoauthstore.php:320
+msgid "Database error inserting OAuth application user."
+msgstr ""
+
+#. TRANS: Exception thrown when a database error occurs.
+#: lib/statusnetoauthstore.php:348
+msgid "Database error updating OAuth application user."
+msgstr ""
+
+#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
+#: lib/statusnetoauthstore.php:374
+msgid "Tried to revoke unknown token."
+msgstr ""
+
+#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
+#: lib/statusnetoauthstore.php:379
+msgid "Failed to delete revoked token."
+msgstr ""
+
 #. TRANS: Menu item in local navigation menu.
 #: lib/subgroupnav.php:85
 msgctxt "MENU"
@@ -11082,6 +10844,11 @@ msgstr ""
 #. TRANS: Form of form to subscribe to a user.
 #: lib/subscribeform.php:107
 msgid "Subscribe to this user"
+msgstr ""
+
+#. TRANS: Button title to subscribe to a user.
+#: lib/subscribeform.php:132
+msgid "Subscribe to this user."
 msgstr ""
 
 #. TRANS: Title of personal tag cloud section.

@@ -14,17 +14,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:26:19+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:22:02+0000\n"
 "Language-Team: Japanese <http://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
+"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -161,11 +161,6 @@ msgstr "そのようなファイルはありません。"
 msgid "No such list."
 msgstr "そのようなタグはありません。"
 
-#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
-#, fuzzy
-msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr "あなたはそのプロファイルにフォローされていません。"
-
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
 #, php-format
@@ -227,8 +222,6 @@ msgstr "そのようなページはありません。"
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
 #. TRANS: Client error displayed when referring to non-existing user.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing user.
-#. TRANS: Form validation error on page for remote subscribe when no user was provided.
-#. TRANS: Form validation error on page for remote subscribe when no user profile was found.
 #. TRANS: Client error displayed when trying to reply to a non-exsting user.
 #. TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
 #. TRANS: Client error.
@@ -237,7 +230,6 @@ msgstr "そのようなページはありません。"
 #. TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
 #. TRANS: Client error displayed requesting groups for a non-existing user.
 #. TRANS: Client error displayed when user not found for an action.
-#. TRANS: Client error displayed providing a non-existing nickname.
 #. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
 #. TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
 #. TRANS: Client error displayed when trying to access a mailbox without providing a user.
@@ -319,6 +311,13 @@ msgid ""
 msgstr ""
 "なぜ [アカウント登録](%%action.register%%) しないのですか。そして最初の投稿を"
 "してください!"
+
+#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Less business/enterprise-oriented language for public sites.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Send invite"
+msgstr "招待"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -440,6 +439,19 @@ msgstr "ユーザのブロックに失敗しました。"
 #. TRANS: Server error displayed when unblocking a user has failed.
 msgid "Unblock user failed."
 msgstr "ユーザのブロック解除に失敗しました。"
+
+#, fuzzy
+msgid "no conversation id"
+msgstr "会話"
+
+#, php-format
+msgid "No conversation with id %d"
+msgstr ""
+
+#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "会話"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -888,7 +900,6 @@ msgstr "アカウント"
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
-#. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Nickname"
@@ -1757,9 +1768,17 @@ msgstr "アドレスの確認"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "アドレス \"%s\" はあなたのアカウントとして承認されています。"
 
-#. TRANS: Title for page with a conversion (multiple notices in context).
-msgid "Conversation"
-msgstr "会話"
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (Activity Streams JSON)"
+msgstr "%sのつぶやきフィード (Atom)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (RSS 2.0)"
+msgstr "%sのつぶやきフィード (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -2477,42 +2496,6 @@ msgstr "そのような添付はありません。"
 #. TRANS: that could not be found.
 msgid "No uploaded attachments."
 msgstr "アップロードされた添付はありません。"
-
-#. TRANS: Client error displayed when subscribing to a remote profile and an unexpected response is received.
-msgid "Not expecting this response!"
-msgstr "想定外のレスポンスです！"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that does not exist.
-msgid "User being listened to does not exist."
-msgstr "存在しないように聴かれているユーザ。"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
-#. TRANS: Client error displayed when using remote subscribe for a local entity.
-msgid "You can use the local subscription!"
-msgstr "ローカルサブスクリプションを使用可能です！"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
-msgid "That user has blocked you from subscribing."
-msgstr "このユーザはフォローをブロックされています。"
-
-#. TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
-msgid "You are not authorized."
-msgstr "認証されていません。"
-
-#. TRANS: Client error displayed when subscribing to a remote profile and conversion of the request token to access token fails.
-msgid "Could not convert request token to access token."
-msgstr "リクエストトークンをアクセストークンに変換できません"
-
-#. TRANS: Client error displayed when subscribing to a remote profile fails because of an unsupported version of the OMB protocol.
-msgid "Remote service uses unknown version of OMB protocol."
-msgstr ""
-"リモートサービスは、不明なバージョンの OMB プロトコルを使用しています。"
-
-#. TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
-#. TRANS: Exception thrown when updating a remote profile fails in OAuth store.
-#, fuzzy
-msgid "Error updating remote profile."
-msgstr "リモートプロファイル更新エラー"
 
 #. TRANS: Client error displayed when requesting a non-existent file.
 msgid "No such file."
@@ -4113,17 +4096,6 @@ msgid ""
 "All default plugins have been disabled from the site's configuration file."
 msgstr ""
 
-#. TRANS: Client error displayed if the notice posted has too many characters.
-msgid "Invalid notice content."
-msgstr "不正なトークン。"
-
-#. TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
-#. TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
-#, fuzzy, php-format
-msgid "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-msgstr ""
-"つぶやきライセンス ‘%1$s’ はサイトライセンス ‘%2$s’ と互換性がありません。"
-
 #. TRANS: Client error displayed when trying to add an unindentified field to profile.
 #. TRANS: %s is a field name.
 #, php-format
@@ -4782,82 +4754,6 @@ msgid ""
 msgstr ""
 "(メールアドレスを承認する方法を読んで、すぐにメールによるメッセージを受け取る"
 "ようにしてください)"
-
-#. TRANS: Page notice for remote subscribe. This message contains Markdown links.
-#. TRANS: Ensure to keep the correct markup of [link description](link).
-#, php-format
-msgid ""
-"To subscribe, you can [login](%%action.login%%), or [register](%%action."
-"register%%) a new  account. If you already have an account  on a [compatible "
-"microblogging site](%%doc.openmublog%%),  enter your profile URL below."
-msgstr ""
-"フォローするには、[ログイン](%%action.login%%) するか, [登録](%%action."
-"register%%) を行って下さい。既に [compatible microblogging site](%%doc."
-"openmublog%%) にアカウントをお持ちの場合は、下にプロファイルURLを入力して下さ"
-"い."
-
-#. TRANS: Page title for Remote subscribe.
-msgid "Remote subscribe"
-msgstr "リモートフォロー"
-
-#. TRANS: Field legend on page for remote subscribe.
-msgid "Subscribe to a remote user"
-msgstr "リモートユーザーをフォロー"
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "User nickname"
-msgstr "ユーザのニックネーム"
-
-#. TRANS: Field title on page for remote subscribe.
-#, fuzzy
-msgid "Nickname of the user you want to follow."
-msgstr "フォローしたいユーザのニックネーム"
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "Profile URL"
-msgstr "プロファイルURL"
-
-#. TRANS: Field title on page for remote subscribe.
-#, fuzzy
-msgid "URL of your profile on another compatible microblogging service."
-msgstr "プロファイルサービスまたはマイクロブロギングサービスのURL"
-
-#. TRANS: Button text on page for remote subscribe.
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "フォロー"
-
-#. TRANS: Form validation error on page for remote subscribe when an invalid profile URL was provided.
-#, fuzzy
-msgid "Invalid profile URL (bad format)."
-msgstr "不正なプロファイルURL。（形式不備）"
-
-#. TRANS: Form validation error on page for remote subscribe when no the provided profile URL
-#. TRANS: does not contain expected data.
-msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-msgstr ""
-"有効なプロファイルURLではありません。（YADIS ドキュメントがないかまたは 不正"
-"な XRDS 定義）"
-
-#. TRANS: Form validation error on page for remote subscribe.
-#, fuzzy
-msgid "That is a local profile! Login to subscribe."
-msgstr ""
-"それはローカルのプロファイルです! フォローするには、ログインしてください。"
-
-#. TRANS: Form validation error on page for remote subscribe when the remote service is not providing a request token.
-#, fuzzy
-msgid "Could not get a request token."
-msgstr "リクエストトークンを取得できません"
-
-#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
-#, fuzzy
-msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-msgstr "あなたはそのプロファイルにフォローされていません。"
 
 #. TRANS: Client error displayed when an unknown error occurs while delisting a user.
 #. TRANS: %s is a username.
@@ -6008,11 +5904,6 @@ msgstr "%1$s グループメンバー、ページ %2$d"
 msgid "A list of users awaiting approval to subscribe to you."
 msgstr "このグループのユーザのリスト。"
 
-#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
-#, fuzzy
-msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-msgstr "あなたはそのプロファイルにフォローされていません。"
-
 #. TRANS: Page title when subscription succeeded.
 msgid "Subscribed"
 msgstr "フォローしている"
@@ -6270,18 +6161,6 @@ msgstr "フォロー解除済み"
 msgid "%1$s unsubscribed from list %2$s by %3$s"
 msgstr "%1$s フォローされている、ページ %2$d"
 
-#. TRANS: Client error displayed when trying to update profile with an incompatible license.
-#. TRANS: %1$s is the license incompatible with site license %2$s.
-#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
-#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
-#, fuzzy, php-format
-msgid ""
-"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
-"\"."
-msgstr ""
-"リスニーストリームライセンス ‘%1$s’ は、サイトライセンス ‘%2$s’ と互換性があ"
-"りません。"
-
 #. TRANS: Title of URL settings tab in profile settings.
 #, fuzzy
 msgid "URL settings"
@@ -6426,123 +6305,6 @@ msgstr "ユーザが新しいユーザを招待するのを許容するかどう
 #, fuzzy
 msgid "Save user settings."
 msgstr "サイト設定の保存"
-
-#. TRANS: Page title.
-msgid "Authorize subscription"
-msgstr "フォローを承認"
-
-#. TRANS: Page notice on "Authorize subscription" page.
-#, fuzzy
-msgid ""
-"Please check these details to make sure that you want to subscribe to this "
-"user’s notices. If you didn’t just ask to subscribe to someone’s notices, "
-"click \"Reject\"."
-msgstr ""
-"ユーザのつぶやきをフォローするには詳細を確認して下さい。だれかのつぶやきを"
-"フォローするために尋ねない場合は、\"Reject\" をクリックして下さい。"
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to accept a group membership request on approve group form.
-#. TRANS: Submit button text to accept a subscription request on approve sub form.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Accept"
-msgstr "承認"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#. TRANS: Button title to subscribe to a user.
-#, fuzzy
-msgid "Subscribe to this user."
-msgstr "このユーザーをフォロー"
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to reject a group membership request on approve group form.
-#. TRANS: Submit button text to reject a subscription request on approve sub form.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Reject"
-msgstr "拒否"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#, fuzzy
-msgid "Reject this subscription."
-msgstr "このフォローを拒否"
-
-#. TRANS: Client error displayed for an empty authorisation request.
-msgid "No authorization request!"
-msgstr "認証のリクエストがありません。"
-
-#. TRANS: Accept message header from Authorise subscription page.
-msgid "Subscription authorized"
-msgstr "フォローが承認されました"
-
-#. TRANS: Accept message text from Authorise subscription page.
-#, fuzzy
-msgid ""
-"The subscription has been authorized, but no callback URL was passed. Check "
-"with the site's instructions for details on how to authorize the "
-"subscription. Your subscription token is:"
-msgstr ""
-"フォローは承認されましたが、コールバックＵＲＬが通過できませんでした。どう"
-"フォローを承認するかに関する詳細のためのサイトの指示をチェックしてください。"
-"あなたのフォロートークンは:"
-
-#. TRANS: Reject message header from Authorise subscription page.
-msgid "Subscription rejected"
-msgstr "フォローが拒否"
-
-#. TRANS: Reject message from Authorise subscription page.
-#, fuzzy
-msgid ""
-"The subscription has been rejected, but no callback URL was passed. Check "
-"with the site's instructions for details on how to fully reject the "
-"subscription."
-msgstr ""
-"フォローは拒絶されましたが、コールバックURLは全く通過されませんでした。 どう"
-"フォローを完全に拒絶するかに関する詳細のためのサイトの指示をチェックしてくだ"
-"さい。"
-
-#. TRANS: Exception thrown when no valid user is found for an authorisation request.
-#. TRANS: %s is a listener URI.
-#, fuzzy, php-format
-msgid "Listener URI \"%s\" not found here."
-msgstr "リスナー URI  ‘%s’ はここでは見つかりません。"
-
-#. TRANS: Exception thrown when listenee URI is too long for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, fuzzy, php-format
-msgid "Listenee URI \"%s\" is too long."
-msgstr "リスニー URI  ‘%s’ が長すぎます。"
-
-#. TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, fuzzy, php-format
-msgid "Listenee URI \"%s\" is a local user."
-msgstr "リスニー URI  ‘%s’ はローカルユーザーではありません。"
-
-#. TRANS: Exception thrown when profile URL is a local user for an authorisation request.
-#. TRANS: %s is a profile URL.
-#, fuzzy, php-format
-msgid "Profile URL \"%s\" is for a local user."
-msgstr "プロファイル URL  ‘%s’ はローカルユーザーではありません。"
-
-#. TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, fuzzy, php-format
-msgid "Avatar URL \"%s\" is not valid."
-msgstr "アバター URL  ‘%s’ が正しくありません。"
-
-#. TRANS: Exception thrown when avatar URL could not be read for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, fuzzy, php-format
-msgid "Cannot read avatar URL \"%s\"."
-msgstr "アバターURL　を読み取れません '%s'"
-
-#. TRANS: Exception thrown when avatar URL return an invalid image type for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, fuzzy, php-format
-msgid "Wrong image type for avatar URL \"%s\"."
-msgstr "アバター URL '%s' は不正な画像形式。"
 
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
@@ -6750,6 +6512,10 @@ msgstr "グループを更新できません。"
 msgid "Could not create login token for %s"
 msgstr "%s 用のログイン・トークンを作成できませんでした"
 
+#, fuzzy
+msgid "Cannot instantiate class "
+msgstr "新しいパスワードを保存できません。"
+
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr ""
@@ -6934,7 +6700,6 @@ msgid "Unable to save tag."
 msgstr "タグをを保存できません。"
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
-#. TRANS: Error message displayed to a banned user when they try to subscribe.
 msgid "You have been banned from subscribing."
 msgstr "あなたはフォローが禁止されました。"
 
@@ -6952,10 +6717,6 @@ msgstr "フォローしていません！"
 
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 msgid "Could not delete self-subscription."
-msgstr "フォローを保存できません。"
-
-#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
-msgid "Could not delete subscription OMB token."
 msgstr "フォローを保存できません。"
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
@@ -7091,6 +6852,14 @@ msgstr "管理者"
 msgctxt "role"
 msgid "Moderator"
 msgstr "管理"
+
+#. TRANS: Link text for link that will subscribe to a remote profile.
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "フォロー"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
@@ -7424,43 +7193,6 @@ msgstr ""
 msgid "Could not authenticate you."
 msgstr ""
 
-#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
-#, fuzzy
-msgid "Could not create anonymous consumer."
-msgstr "別名を作成できません。"
-
-#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
-#, fuzzy
-msgid "Could not create anonymous OAuth application."
-msgstr "アプリケーションを作成できません。"
-
-#. TRANS: Exception thrown when no token association could be found.
-msgid ""
-"Could not find a profile and application associated with the request token."
-msgstr ""
-
-#. TRANS: Exception thrown when no access token can be issued.
-#, fuzzy
-msgid "Could not issue access token."
-msgstr "メッセージを追加できません。"
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error inserting OAuth application user."
-msgstr "OAuth アプリケーションユーザの追加時ＤＢエラー。"
-
-#. TRANS: Exception thrown when a database error occurs.
-#, fuzzy
-msgid "Database error updating OAuth application user."
-msgstr "OAuth アプリケーションユーザの追加時ＤＢエラー。"
-
-#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
-msgid "Tried to revoke unknown token."
-msgstr ""
-
-#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
-msgid "Failed to delete revoked token."
-msgstr ""
-
 #. TRANS: Form input field label for application icon.
 msgid "Icon"
 msgstr "アイコン"
@@ -7585,6 +7317,20 @@ msgstr ""
 msgctxt "BUTTON"
 msgid "Revoke"
 msgstr "回復"
+
+#. TRANS: Submit button text to accept a group membership request on approve group form.
+#. TRANS: Submit button text to accept a subscription request on approve sub form.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr "承認"
+
+#. TRANS: Submit button text to reject a group membership request on approve group form.
+#. TRANS: Submit button text to reject a subscription request on approve sub form.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Reject"
+msgstr "拒否"
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
 msgid "Author element must contain a name element."
@@ -8418,6 +8164,12 @@ msgstr "人気のつぶやき"
 msgid "Active groups"
 msgstr "全てのグループ"
 
+msgid "See all"
+msgstr ""
+
+msgid "See all groups you belong to"
+msgstr ""
+
 #. TRANS: Title for group tag cloud section.
 #. TRANS: %s is a group name.
 #, php-format
@@ -8504,7 +8256,7 @@ msgctxt "TITLE"
 msgid "Trends"
 msgstr ""
 
-#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Default button text for inviting more users to the StatusNet instance.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
@@ -8555,6 +8307,10 @@ msgstr "参加"
 msgctxt "BUTTON"
 msgid "Leave"
 msgstr "離れる"
+
+#, fuzzy
+msgid "See all lists you have created"
+msgstr "あなたが登録したアプリケーション"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -9088,6 +8844,9 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+msgid "More ▼"
+msgstr ""
+
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
 msgstr ""
@@ -9213,27 +8972,6 @@ msgstr "合図"
 #, fuzzy
 msgid "Send a nudge to this user."
 msgstr "このユーザへ合図を送る"
-
-#. TRANS: Exception thrown when creating a new profile fails in OAuth store.
-msgid "Error inserting new profile."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a new avatar fails in OAuth store.
-msgid "Error inserting avatar."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a remote profile fails in OAuth store.
-msgid "Error inserting remote profile."
-msgstr ""
-
-#. TRANS: Exception thrown when a notice is denied because it has been sent before.
-msgid "Duplicate notice."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a new subscription fails in OAuth store.
-#, fuzzy
-msgid "Could not insert new subscription."
-msgstr "サブスクリプションを追加できません"
 
 #. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
 #, fuzzy
@@ -9846,6 +9584,43 @@ msgstr "サイレンス"
 msgid "Silence this user"
 msgstr "このユーザをサイレンスに"
 
+#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
+#, fuzzy
+msgid "Could not create anonymous consumer."
+msgstr "別名を作成できません。"
+
+#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
+#, fuzzy
+msgid "Could not create anonymous OAuth application."
+msgstr "アプリケーションを作成できません。"
+
+#. TRANS: Exception thrown when no token association could be found.
+msgid ""
+"Could not find a profile and application associated with the request token."
+msgstr ""
+
+#. TRANS: Exception thrown when no access token can be issued.
+#, fuzzy
+msgid "Could not issue access token."
+msgstr "メッセージを追加できません。"
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error inserting OAuth application user."
+msgstr "OAuth アプリケーションユーザの追加時ＤＢエラー。"
+
+#. TRANS: Exception thrown when a database error occurs.
+#, fuzzy
+msgid "Database error updating OAuth application user."
+msgstr "OAuth アプリケーションユーザの追加時ＤＢエラー。"
+
+#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
+msgid "Tried to revoke unknown token."
+msgstr ""
+
+#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
+msgid "Failed to delete revoked token."
+msgstr ""
+
 #. TRANS: Menu item in local navigation menu.
 #, fuzzy
 msgctxt "MENU"
@@ -9902,6 +9677,11 @@ msgstr "友人や同僚が %s で加わるよう誘ってください。"
 
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
+msgstr "このユーザーをフォロー"
+
+#. TRANS: Button title to subscribe to a user.
+#, fuzzy
+msgid "Subscribe to this user."
 msgstr "このユーザーをフォロー"
 
 #. TRANS: Title of personal tag cloud section.
@@ -10253,3 +10033,187 @@ msgstr "有効なメールアドレスではありません。"
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "プロフィールを保存できませんでした。"
+
+#, fuzzy
+#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
+#~ msgstr "あなたはそのプロファイルにフォローされていません。"
+
+#~ msgid "Not expecting this response!"
+#~ msgstr "想定外のレスポンスです！"
+
+#~ msgid "User being listened to does not exist."
+#~ msgstr "存在しないように聴かれているユーザ。"
+
+#~ msgid "You can use the local subscription!"
+#~ msgstr "ローカルサブスクリプションを使用可能です！"
+
+#~ msgid "That user has blocked you from subscribing."
+#~ msgstr "このユーザはフォローをブロックされています。"
+
+#~ msgid "You are not authorized."
+#~ msgstr "認証されていません。"
+
+#~ msgid "Could not convert request token to access token."
+#~ msgstr "リクエストトークンをアクセストークンに変換できません"
+
+#~ msgid "Remote service uses unknown version of OMB protocol."
+#~ msgstr ""
+#~ "リモートサービスは、不明なバージョンの OMB プロトコルを使用しています。"
+
+#, fuzzy
+#~ msgid "Error updating remote profile."
+#~ msgstr "リモートプロファイル更新エラー"
+
+#~ msgid "Invalid notice content."
+#~ msgstr "不正なトークン。"
+
+#, fuzzy
+#~ msgid ""
+#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
+#~ msgstr ""
+#~ "つぶやきライセンス ‘%1$s’ はサイトライセンス ‘%2$s’ と互換性がありません。"
+
+#~ msgid ""
+#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
+#~ "register%%) a new  account. If you already have an account  on a "
+#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
+#~ "URL below."
+#~ msgstr ""
+#~ "フォローするには、[ログイン](%%action.login%%) するか, [登録](%%action."
+#~ "register%%) を行って下さい。既に [compatible microblogging site](%%doc."
+#~ "openmublog%%) にアカウントをお持ちの場合は、下にプロファイルURLを入力して"
+#~ "下さい."
+
+#~ msgid "Remote subscribe"
+#~ msgstr "リモートフォロー"
+
+#~ msgid "Subscribe to a remote user"
+#~ msgstr "リモートユーザーをフォロー"
+
+#~ msgid "User nickname"
+#~ msgstr "ユーザのニックネーム"
+
+#, fuzzy
+#~ msgid "Nickname of the user you want to follow."
+#~ msgstr "フォローしたいユーザのニックネーム"
+
+#~ msgid "Profile URL"
+#~ msgstr "プロファイルURL"
+
+#, fuzzy
+#~ msgid "URL of your profile on another compatible microblogging service."
+#~ msgstr "プロファイルサービスまたはマイクロブロギングサービスのURL"
+
+#, fuzzy
+#~ msgid "Invalid profile URL (bad format)."
+#~ msgstr "不正なプロファイルURL。（形式不備）"
+
+#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
+#~ msgstr ""
+#~ "有効なプロファイルURLではありません。（YADIS ドキュメントがないかまたは 不"
+#~ "正な XRDS 定義）"
+
+#, fuzzy
+#~ msgid "That is a local profile! Login to subscribe."
+#~ msgstr ""
+#~ "それはローカルのプロファイルです! フォローするには、ログインしてください。"
+
+#, fuzzy
+#~ msgid "Could not get a request token."
+#~ msgstr "リクエストトークンを取得できません"
+
+#, fuzzy
+#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
+#~ msgstr "あなたはそのプロファイルにフォローされていません。"
+
+#, fuzzy
+#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
+#~ msgstr "あなたはそのプロファイルにフォローされていません。"
+
+#, fuzzy
+#~ msgid ""
+#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
+#~ "$s\"."
+#~ msgstr ""
+#~ "リスニーストリームライセンス ‘%1$s’ は、サイトライセンス ‘%2$s’ と互換性が"
+#~ "ありません。"
+
+#~ msgid "Authorize subscription"
+#~ msgstr "フォローを承認"
+
+#, fuzzy
+#~ msgid ""
+#~ "Please check these details to make sure that you want to subscribe to "
+#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
+#~ "notices, click \"Reject\"."
+#~ msgstr ""
+#~ "ユーザのつぶやきをフォローするには詳細を確認して下さい。だれかのつぶやきを"
+#~ "フォローするために尋ねない場合は、\"Reject\" をクリックして下さい。"
+
+#, fuzzy
+#~ msgid "Reject this subscription."
+#~ msgstr "このフォローを拒否"
+
+#~ msgid "No authorization request!"
+#~ msgstr "認証のリクエストがありません。"
+
+#~ msgid "Subscription authorized"
+#~ msgstr "フォローが承認されました"
+
+#, fuzzy
+#~ msgid ""
+#~ "The subscription has been authorized, but no callback URL was passed. "
+#~ "Check with the site's instructions for details on how to authorize the "
+#~ "subscription. Your subscription token is:"
+#~ msgstr ""
+#~ "フォローは承認されましたが、コールバックＵＲＬが通過できませんでした。どう"
+#~ "フォローを承認するかに関する詳細のためのサイトの指示をチェックしてくださ"
+#~ "い。あなたのフォロートークンは:"
+
+#~ msgid "Subscription rejected"
+#~ msgstr "フォローが拒否"
+
+#, fuzzy
+#~ msgid ""
+#~ "The subscription has been rejected, but no callback URL was passed. Check "
+#~ "with the site's instructions for details on how to fully reject the "
+#~ "subscription."
+#~ msgstr ""
+#~ "フォローは拒絶されましたが、コールバックURLは全く通過されませんでした。 ど"
+#~ "うフォローを完全に拒絶するかに関する詳細のためのサイトの指示をチェックして"
+#~ "ください。"
+
+#, fuzzy
+#~ msgid "Listener URI \"%s\" not found here."
+#~ msgstr "リスナー URI  ‘%s’ はここでは見つかりません。"
+
+#, fuzzy
+#~ msgid "Listenee URI \"%s\" is too long."
+#~ msgstr "リスニー URI  ‘%s’ が長すぎます。"
+
+#, fuzzy
+#~ msgid "Listenee URI \"%s\" is a local user."
+#~ msgstr "リスニー URI  ‘%s’ はローカルユーザーではありません。"
+
+#, fuzzy
+#~ msgid "Profile URL \"%s\" is for a local user."
+#~ msgstr "プロファイル URL  ‘%s’ はローカルユーザーではありません。"
+
+#, fuzzy
+#~ msgid "Avatar URL \"%s\" is not valid."
+#~ msgstr "アバター URL  ‘%s’ が正しくありません。"
+
+#, fuzzy
+#~ msgid "Cannot read avatar URL \"%s\"."
+#~ msgstr "アバターURL　を読み取れません '%s'"
+
+#, fuzzy
+#~ msgid "Wrong image type for avatar URL \"%s\"."
+#~ msgstr "アバター URL '%s' は不正な画像形式。"
+
+#~ msgid "Could not delete subscription OMB token."
+#~ msgstr "フォローを保存できません。"
+
+#, fuzzy
+#~ msgid "Could not insert new subscription."
+#~ msgstr "サブスクリプションを追加できません"
