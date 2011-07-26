@@ -884,7 +884,7 @@ content: ":";
 }
 
 .threaded-replies:empty {
-    display: none;
+    margin-bottom: 0px; 
 }
 
 .user_in .threaded-replies {
