@@ -447,9 +447,9 @@ abstract class MicroAppPlugin extends Plugin
             $options = array('source' => 'atompub');
 
             // $user->getProfile() is a Profile
-            $this->saveNoticeFromActivity($activity,
-                                          $user->getProfile(),
-                                          $options);
+            $notice = $this->saveNoticeFromActivity($activity,
+                                                    $user->getProfile(),
+                                                    $options);
 
             return false;
         }
