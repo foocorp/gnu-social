@@ -102,7 +102,7 @@ class RealtimePlugin extends Plugin
         }
         else {
             $pluginPath = common_path('plugins/Realtime/');
-            $realtimeUI = ' RealtimeUpdate.initActions("'.$url.'", "'.$timeline.'", "'. $pluginPath .'");';
+            $realtimeUI = ' RealtimeUpdate.initActions('.json_encode($url).', '.json_encode($timeline).', '. json_encode($pluginPath).');';
         }
 
         $script = ' $(document).ready(function() { '.
