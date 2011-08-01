@@ -22,13 +22,13 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 //exit with 200 response, if this is checking fancy from the installer
 if (isset($_REQUEST['p']) && $_REQUEST['p'] == 'check-fancy') {  exit; }
 
-define('STATUSNET_BASE_VERSION', '0.9.7');
-define('STATUSNET_LIFECYCLE', 'fix1'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', '' for release
+define('STATUSNET_BASE_VERSION', '0.9.8');
+define('STATUSNET_LIFECYCLE', ''); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', '' for release
 define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . STATUSNET_LIFECYCLE);
 
 define('LACONICA_VERSION', STATUSNET_VERSION); // compatibility
 
-define('STATUSNET_CODENAME', 'World Leader Pretend');
+define('STATUSNET_CODENAME', 'Letter Never Sent');
 
 define('AVATAR_PROFILE_SIZE', 96);
 define('AVATAR_STREAM_SIZE', 48);
