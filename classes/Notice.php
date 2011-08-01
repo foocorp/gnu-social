@@ -106,7 +106,7 @@ class Notice extends Memcached_DataObject
     function getProfile()
     {
         if (is_int($this->_profile) && $this->_profile == -1) {
-            $this->_profile = Profile::staticGet('id', $this->profile_id);
+            $this->_setProfile(Profile::staticGet('id', $this->profile_id));
 
             if (empty($this->_profile)) {
                 // TRANS: Server exception thrown when a user profile for a notice cannot be found.
@@ -116,6 +116,11 @@ class Notice extends Memcached_DataObject
         }
 
         return $this->_profile;
+    }
+    
+    function _setProfile($profile)
+    {
+        $this->_profile = $profile;
     }
 
     function delete()
@@ -2492,4 +2497,26 @@ class Notice extends Memcached_DataObject
     	return $scope;
     }
 
+	static function fillProfiles($notices)
+	{
+		$authors = array();
+		
+		foreach ($notices as $notice) {
+			if (array_key_exists($notice->profile_id, $authors)) {
+			    $authors[$notice->profile_id][] = $notice;
+			} else {
+			    $authors[$notice->profile_id] = array($notice);
+			}	
+		}
+		
+		$profile = Profile::multiGet('id', array_keys($authors));
+		
+		$profiles = $profile->fetchAll();
+		
+		foreach ($profiles as $p) {
+			foreach ($authors[$p->id] as $notice) {
+				$notice->_setProfile($p);    
+			}
+		}
+	}
 }
