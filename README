@@ -2,8 +2,8 @@
 README
 ------
 
-StatusNet 0.9.7 "World Leader Pretend"
-17 March 2011
+StatusNet 0.9.8 "Letter Never Sent"
+1 August 2011
 
 This is the README file for StatusNet, the Open Source microblogging
 platform. It includes installation instructions, descriptions of
@@ -96,47 +96,24 @@ for additional terms.
 New this version
 ================
 
-This is a security, bug and feature release since version 0.9.6 released on
-23 October 2010.
-
-For best compatibility with client software and site federation, and a
-lot of bug fixes, it is highly recommended that all public sites
-upgrade to the new version. Upgrades require new database indexes for
-best performance; see Upgrade below.
+This is a security release since version 0.9.7 released on 11 March
+2011. It fixes security bug #3260. All sites running version 0.9.7 or
+below are recommended to upgrade to 0.9.8 immediately.
 
 Notable changes this version:
 
-- GroupPrivateMessage plugin lets users send private messages
-  to a group. (Similar to "private groups" on Yammer.)
-- Support for Twitter streaming API in Twitter bridge plugin
-- Support for a new Activity Streams-based API using AtomPub, allowing
-  richer API data. See http://status.net/wiki/AtomPub for details.
-- Unified Facebook plugin, replacing previous Facebook application
-  and Facebook Connect plugin.
-- A plugin to send out a daily summary email to network users.
-- In-line thumbnails of some attachments (video, images) and oEmbed objects.
-- Local copies of remote profiles to let moderators manage OStatus users.
-- Upgrade upstream JS, minify everything.
-- Allow pushing plugin JS, CSS, and static files to a CDN.
-- Configurable nickname rules.
-- Better support for bit.ly URL shortener.
-- InProcessCache plugin for additional caching on top of memcached.
-- Support for Activity Streams JSON feeds on many streams.
-- User-initiated backup and restore of account data in Activity Streams
-  format.
-- Bookmark plugin for making del.icio.us-like social bookmarking sites,
-  including del.icio.us backup file import. Supports OStatus.
-- SQLProfile plugin to tune SQL queries.
-- Better sorting on timelines to support restored or imported data.
-- Hundreds of translations from http://translatewiki.net/
-- Hundreds of performance tunings, bug fixes, and UI improvements.
-- Remove deprecated data from Activity Streams Atom output, to the
-  extent possible.
-- NewMenu plugin for new layout of menu items.
-- Experimental support for moving an account from one server to
-  another, using new AtomPub API.
+- Fix bug #3260, a cross-site scripting (XSS) bug that allows an
+  attacker to inject JavaScript into a page with a carefully structured URL.
+- Updated code for Google Analytics to reflect new API.
+- Various fixes for Bookmark plugin.
+- Updates to reCAPTCHA plugin based on changes to API.
+- New plugin to move the site notice to the sidebar.
+- Add rss.me to notice source list.
+- Updates to data backup/restore.
+- Correct use of "likes" in Facebook plugin.
+- Ignore failures in Twitter plugin.
 
-A full changelog is available at http://status.net/wiki/StatusNet_0.9.7.
+A full changelog is available at http://status.net/wiki/StatusNet_0.9.8.
 
 Prerequisites
 =============
