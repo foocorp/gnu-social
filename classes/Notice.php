@@ -1438,25 +1438,14 @@ class Notice extends Memcached_DataObject
 
             $gi->notice_id = $this->id;
 
-            if ($gi->find()) {
-                while ($gi->fetch()) {
-                    $ids[] = $gi->group_id;
-                }
-            }
-
+            $ids = $gi->fetchAll('group_id');
+            
             self::cacheSet($keypart, implode(',', $ids));
         }
 
-        $groups = array();
-
-        foreach ($ids as $id) {
-            $group = User_group::staticGet('id', $id);
-            if ($group) {
-                $groups[] = $group;
-            }
-        }
-
-        return $groups;
+		$groups = User_group::multiGet('id', $ids);
+		
+		return $groups->fetchAll();
     }
 
     /**
