@@ -273,16 +273,7 @@ class Profile extends Memcached_DataObject
             self::cacheSet($keypart, implode(',', $ids));
         }
 
-        $groups = array();
-
-        foreach ($ids as $id) {
-            $group = User_group::staticGet('id', $id);
-            if (!empty($group)) {
-                $groups[] = $group;
-            }
-        }
-
-        return new ArrayWrapper($groups);
+        return User_group::multiGet('id', $ids);
     }
 
     function isTagged($peopletag)

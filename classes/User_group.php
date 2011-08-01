@@ -33,6 +33,11 @@ class User_group extends Memcached_DataObject
     function staticGet($k,$v=NULL) {
         return Memcached_DataObject::staticGet('User_group',$k,$v);
     }
+    
+    function multiGet($keyCol, $keyVals, $skipNulls=true)
+    {
+        return parent::multiGet('User_group', $keyCol, $keyVals, $skipNulls);
+    }
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
