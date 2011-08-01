@@ -76,17 +76,18 @@ class ThreadedNoticeList extends NoticeList
         $this->out->element('h2', null, _m('HEADER','Notices'));
         $this->out->elementStart('ol', array('class' => 'notices threaded-notices xoxo'));
 
+		$notices = $this->notice->fetchAll();
+		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
+		
+    	$this->prefill($notices);
+    	
         $cnt = 0;
         $conversations = array();
-        while ($this->notice->fetch() && $cnt <= NOTICES_PER_PAGE) {
-            $cnt++;
-
-            if ($cnt > NOTICES_PER_PAGE) {
-                break;
-            }
+        
+        foreach ($notices as $notice) {
 
             // Collapse repeats into their originals...
-            $notice = $this->notice;
+            
             if ($notice->repeat_of) {
                 $orig = Notice::staticGet('id', $notice->repeat_of);
                 if ($orig) {
@@ -223,6 +224,8 @@ class ThreadedNoticeListItem extends NoticeListItem
                         $item = new ThreadedNoticeListMoreItem($moreCutoff, $this->out, count($notices));
                         $item->show();
                     }
+                    // XXX: replicating NoticeList::prefill(), annoyingly
+                    $this->prefill($notices);
                     foreach (array_reverse($notices) as $notice) {
                         if (Event::handle('StartShowThreadedNoticeSub', array($this, $this->notice, $notice))) {
                             $item = new ThreadedNoticeListSubItem($notice, $this->notice, $this->out);
@@ -246,6 +249,12 @@ class ThreadedNoticeListItem extends NoticeListItem
         }
 
         parent::showEnd();
+    }
+    
+    function prefill(&$notices)
+    {       
+    	// Prefill the profiles
+    	Notice::fillProfiles($notices);
     }
 }
 

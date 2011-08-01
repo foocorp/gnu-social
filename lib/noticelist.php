@@ -83,17 +83,16 @@ class NoticeList extends Widget
         $this->out->elementStart('div', array('id' =>'notices_primary'));
         $this->out->elementStart('ol', array('class' => 'notices xoxo'));
 
-        $cnt = 0;
-
-        while ($this->notice->fetch() && $cnt <= NOTICES_PER_PAGE) {
-            $cnt++;
-
-            if ($cnt > NOTICES_PER_PAGE) {
-                break;
-            }
+		$notices = $this->notice->fetchAll();
+		
+		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
+		
+    	$this->prefill($notices);
+    	
+    	foreach ($notices as $notice) {
 
             try {
-                $item = $this->newListItem($this->notice);
+                $item = $this->newListItem($notice);
                 $item->show();
             } catch (Exception $e) {
                 // we log exceptions and continue
@@ -105,7 +104,7 @@ class NoticeList extends Widget
         $this->out->elementEnd('ol');
         $this->out->elementEnd('div');
 
-        return $cnt;
+        return count($notices);
     }
 
     /**
@@ -121,5 +120,11 @@ class NoticeList extends Widget
     function newListItem($notice)
     {
         return new NoticeListItem($notice, $this->out);
+    }
+    
+    function prefill(&$notices)
+    {
+    	// Prefill the profiles
+    	Notice::fillProfiles($notices);
     }
 }

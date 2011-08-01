@@ -59,9 +59,6 @@ abstract class NoticeStream
 
     static function getStreamByIds($ids)
     {
-    	$notices = Notice::multiGet('id', $ids);
-    	// Prefill the profiles
-    	Notice::fillProfiles($notices->fetchAll());
-    	return $notices;
+    	return Notice::multiGet('id', $ids);
     }
 }
