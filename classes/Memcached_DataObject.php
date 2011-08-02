@@ -76,46 +76,7 @@ class Memcached_DataObject extends Safe_DataObject
      */
     function multiGet($cls, $keyCol, $keyVals, $skipNulls=true)
     {
-    	$result = array_fill_keys($keyVals, null);
-    	
-    	$toFetch = array();
-    	
-    	foreach ($keyVals as $keyVal) {
-        	$i = self::getcached($cls, $keyCol, $keyVal);
-        	if ($i !== false) {
-        		$result[$keyVal] = $i;
-        	} else if (!empty($keyVal)) {
-        		$toFetch[] = $keyVal;
-        	}
-    	}
-    	
-    	if (count($toFetch) > 0) {
-            $i = DB_DataObject::factory($cls);
-            if (empty($i)) {
-            	throw new Exception(_('Cannot instantiate class ' . $cls));
-            }
-    		$i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
-    		if ($i->find()) {
-    			while ($i->fetch()) {
-    				$copy = clone($i);
-    				$copy->encache();
-    				$result[$i->$keyCol] = $copy;
-    			}
-    		}
-    		
-    		// Save state of DB misses
-    		
-    		foreach ($toFetch as $keyVal) {
-    			if (empty($result[$keyVal])) {
-                	// save the fact that no such row exists
-                	$c = self::memcache();
-                	if (!empty($c)) {
-                    	$ck = self::cachekey($cls, $keyCol, $keyVal);
-                    	$c->set($ck, null);
-                	}	
-    			}
-    		}
-    	}
+    	$result = self::pivotGet($cls, $keyCol, $keyVals);
     	
     	$values = array_values($result);
     	
@@ -130,6 +91,70 @@ class Memcached_DataObject extends Safe_DataObject
     	}
     	
     	return new ArrayWrapper($values);
+    }
+    
+    /**
+     * Get multiple items from the database by key
+     * 
+     * @param string  $cls       Class to fetch
+     * @param string  $keyCol    name of column for key
+     * @param array   $keyVals   key values to fetch
+     * @param boolean $otherCols Other columns to hold fixed
+     * 
+     * @return array Array mapping $keyVals to objects, or null if not found
+     */
+    static function pivotGet($cls, $keyCol, $keyVals, $otherCols = array())
+    {
+    	$result = array_fill_keys($keyVals, null);
+    	
+    	$toFetch = array();
+    	
+    	foreach ($keyVals as $keyVal) {
+    		
+    		$kv = array_merge($otherCols, array($keyCol => $keyVal));
+    		
+        	$i = self::multicache($cls, $kv);
+        	
+        	if ($i !== false) {
+        		$result[$keyVal] = $i;
+        	} else if (!empty($keyVal)) {
+        		$toFetch[] = $keyVal;
+        	}
+    	}
+    	
+    	if (count($toFetch) > 0) {
+            $i = DB_DataObject::factory($cls);
+            if (empty($i)) {
+            	throw new Exception(_('Cannot instantiate class ' . $cls));
+            }
+            foreach ($otherCols as $otherKeyCol => $otherKeyVal) {
+                $i->$otherKeyCol = $otherKeyVal;
+            }
+    		$i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
+    		if ($i->find()) {
+    			while ($i->fetch()) {
+    				$copy = clone($i);
+    				$copy->encache();
+    				$result[$i->$keyCol] = $copy;
+    			}
+    		}
+    		
+    		// Save state of DB misses
+    		
+    		foreach ($toFetch as $keyVal) {
+    			if (empty($result[$keyVal])) {
+    				$kv = array_merge($otherCols, array($keyCol => $keyVal));
+                	// save the fact that no such row exists
+                	$c = self::memcache();
+                	if (!empty($c)) {
+                    	$ck = self::multicacheKey($cls, $kv);
+                    	$c->set($ck, null);
+                	}	
+    			}
+    		}
+    	}
+    	
+    	return $result;
     }
 
 	function columnType($columnName)

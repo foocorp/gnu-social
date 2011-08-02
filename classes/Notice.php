@@ -106,7 +106,7 @@ class Notice extends Memcached_DataObject
     function getProfile()
     {
         if (is_int($this->_profile) && $this->_profile == -1) {
-            $this->_profile = Profile::staticGet('id', $this->profile_id);
+            $this->_setProfile(Profile::staticGet('id', $this->profile_id));
 
             if (empty($this->_profile)) {
                 // TRANS: Server exception thrown when a user profile for a notice cannot be found.
@@ -116,6 +116,11 @@ class Notice extends Memcached_DataObject
         }
 
         return $this->_profile;
+    }
+    
+    function _setProfile($profile)
+    {
+        $this->_profile = $profile;
     }
 
     function delete()
@@ -1366,17 +1371,11 @@ class Notice extends Memcached_DataObject
      */
     function getReplyProfiles()
     {
-        $ids      = $this->getReplies();
-        $profiles = array();
-
-        foreach ($ids as $id) {
-            $profile = Profile::staticGet('id', $id);
-            if (!empty($profile)) {
-                $profiles[] = $profile;
-            }
-        }
+        $ids = $this->getReplies();
         
-        return $profiles;
+        $profiles = Profile::multiGet('id', $ids);
+        
+        return $profiles->fetchAll();
     }
 
     /**
@@ -1433,25 +1432,14 @@ class Notice extends Memcached_DataObject
 
             $gi->notice_id = $this->id;
 
-            if ($gi->find()) {
-                while ($gi->fetch()) {
-                    $ids[] = $gi->group_id;
-                }
-            }
-
+            $ids = $gi->fetchAll('group_id');
+            
             self::cacheSet($keypart, implode(',', $ids));
         }
 
-        $groups = array();
-
-        foreach ($ids as $id) {
-            $group = User_group::staticGet('id', $id);
-            if ($group) {
-                $groups[] = $group;
-            }
-        }
-
-        return $groups;
+		$groups = User_group::multiGet('id', $ids);
+		
+		return $groups->fetchAll();
     }
 
     /**
@@ -2382,11 +2370,10 @@ class Notice extends Memcached_DataObject
 
         if ($this->scope & Notice::ADDRESSEE_SCOPE) {
 
-            // XXX: just query for the single reply
-
-            $replies = $this->getReplies();
-
-            if (!in_array($profile->id, $replies)) {
+			$repl = Reply::pkeyGet(array('notice_id' => $this->id,
+										 'profile_id' => $profile->id));
+										 
+            if (empty($repl)) {
                 return false;
             }
         }
@@ -2492,4 +2479,28 @@ class Notice extends Memcached_DataObject
     	return $scope;
     }
 
+	static function fillProfiles($notices)
+	{
+		$map = self::getProfiles($notices);
+		
+		foreach ($notices as $notice) {
+			if (array_key_exists($notice->profile_id, $map)) {
+				$notice->_setProfile($map[$notice->profile_id]);    
+			}
+		}
+		
+		return array_values($map);
+	}
+	
+	static function getProfiles(&$notices)
+	{
+		$ids = array();
+		foreach ($notices as $notice) {
+			$ids[] = $notice->profile_id;
+		}
+		
+		$ids = array_unique($ids);
+		
+		return Memcached_DataObject::pivotGet('Profile', 'id', $ids); 
+	}
 }

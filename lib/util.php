@@ -1127,8 +1127,11 @@ function common_tag_link($tag)
 
 function common_canonical_tag($tag)
 {
+  // only alphanum
+  $tag = preg_replace('/[^\pL\pN]/u', '', $tag);
   $tag = mb_convert_case($tag, MB_CASE_LOWER, "UTF-8");
-  return str_replace(array('-', '_', '.'), '', $tag);
+  $tag = substr($tag, 0, 64);
+  return $tag;
 }
 
 function common_valid_profile_tag($str)
@@ -1501,16 +1504,18 @@ function common_enqueue_notice($notice)
 }
 
 /**
- * Broadcast profile updates to remote subscribers.
+ * Legacy function to broadcast profile updates to OMB remote subscribers.
+ *
+ * XXX: This probably needs killing, but there are several bits of code
+ *      that broadcast profile changes that need to be dealt with. AFAIK
+ *      this function is only used for OMB. -z
  *
  * Since this may be slow with a lot of subscribers or bad remote sites,
  * this is run through the background queues if possible.
  */
 function common_broadcast_profile(Profile $profile)
 {
-    $qm = QueueManager::get();
-    $qm->enqueue($profile, "profile");
-    return true;
+    Event::handle('BroadcastProfile', array($profile));
 }
 
 function common_profile_url($nickname)
