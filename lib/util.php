@@ -1127,8 +1127,11 @@ function common_tag_link($tag)
 
 function common_canonical_tag($tag)
 {
+  // only alphanum
+  $tag = preg_replace('/[^\pL\pN]/u', '', $tag);
   $tag = mb_convert_case($tag, MB_CASE_LOWER, "UTF-8");
-  return str_replace(array('-', '_', '.'), '', $tag);
+  $tag = substr($tag, 0, 64);
+  return $tag;
 }
 
 function common_valid_profile_tag($str)
