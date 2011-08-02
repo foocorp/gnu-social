@@ -243,9 +243,14 @@ class Profile extends Memcached_DataObject
 
     function isMember($group)
     {
-        $gm = Group_member::pkeyGet(array('profile_id' => $this->id,
-                                          'group_id' => $group->id));
-        return (!empty($gm));
+    	$groups = $this->getGroups(0, null);
+    	$gs = $groups->fetchAll();
+    	foreach ($gs as $g) {
+    	    if ($group->id == $g->id) {
+    	        return true;
+    	    }
+    	}
+    	return false;
     }
 
     function isAdmin($group)
