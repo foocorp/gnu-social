@@ -1408,6 +1408,9 @@ class Notice extends Memcached_DataObject
      *
      * @return array of Group objects
      */
+    
+    protected $_groups = -1;
+    
     function getGroups()
     {
         // Don't save groups for repeats
@@ -1415,31 +1418,29 @@ class Notice extends Memcached_DataObject
         if (!empty($this->repeat_of)) {
             return array();
         }
-
-        $ids = array();
-
-        $keypart = sprintf('notice:groups:%d', $this->id);
-
-        $idstr = self::cacheGet($keypart);
-
-        if ($idstr !== false) {
-            $ids = explode(',', $idstr);
-        } else {
-            $gi = new Group_inbox();
-
-            $gi->selectAdd();
-            $gi->selectAdd('group_id');
-
-            $gi->notice_id = $this->id;
-
-            $ids = $gi->fetchAll('group_id');
-            
-            self::cacheSet($keypart, implode(',', $ids));
+        
+        if ($this->_groups != -1)
+        {
+            return $this->_groups;
         }
-
+        
+        $gis = Memcached_DataObject::listGet('Group_inbox', 'notice_id', array($this->id));
+		
+		foreach ($gis[$this->id] as $gi)
+		{
+		    $ids[] = $gi->group_id;
+		}
+		
 		$groups = User_group::multiGet('id', $ids);
 		
-		return $groups->fetchAll();
+		$this->_groups = $groups->fetchAll();
+		
+		return $this->_groups;
+    }
+    
+    function _setGroups($groups)
+    {
+        $this->_groups = $groups;
     }
 
     /**
@@ -2462,7 +2463,7 @@ class Notice extends Memcached_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_original', '_profile');
+        $skip = array('_original', '_profile', '_groups');
         return array_diff($vars, $skip);
     }
     
@@ -2502,5 +2503,40 @@ class Notice extends Memcached_DataObject
 		$ids = array_unique($ids);
 		
 		return Memcached_DataObject::pivotGet('Profile', 'id', $ids); 
+	}
+	
+	static function fillGroups(&$notices)
+	{
+		$ids = array();
+		foreach ($notices as $notice) {
+			$ids[] = $notice->id;
+		}
+		$ids = array_unique($ids);
+		
+		$gis = Memcached_DataObject::listGet('Group_inbox', 'notice_id', $ids);
+		
+		common_debug(sprintf("Notice::fillGroups(): got %d results for %d notices", count($gis), count($ids)));
+		
+		foreach ($gis as $id => $gi)
+		{
+		    foreach ($gi as $g)
+		    {
+		        $gids[] = $g->group_id;
+		    }
+		}
+		
+		$gids = array_unique($gids);
+		
+		$group = Memcached_DataObject::pivotGet('User_group', 'id', $gids);
+		
+		foreach ($notices as $notice)
+		{
+			$grps = array();
+			$gi = $gis[$notice->id];
+			foreach ($gi as $g) {
+			    $grps[] = $group[$g->group_id];
+			}
+		    $notice->_setGroups($grps);
+		}
 	}
 }

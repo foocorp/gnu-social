@@ -81,9 +81,15 @@ abstract class FilteringNoticeStream extends NoticeStream
                 break;
             }
 
-            while ($raw->fetch()) {
-                if ($this->filter($raw)) {
-                    $filtered[] = clone($raw);
+			$notices = $raw->fetchAll();
+			
+			// XXX: this should probably only be in the scoping one.
+			
+			Notice::fillGroups($notices);
+			
+			foreach ($notices as $notice) {
+                if ($this->filter($notice)) {
+                    $filtered[] = $notice;
                     if (count($filtered) >= $total) {
                         break;
                     }
