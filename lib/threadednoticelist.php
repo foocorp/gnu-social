@@ -80,7 +80,7 @@ class ThreadedNoticeList extends NoticeList
 		$total = count($notices);
 		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
 		
-    	$this->prefill($notices);
+    	self::prefill($notices);
     	
         $conversations = array();
         
@@ -224,8 +224,7 @@ class ThreadedNoticeListItem extends NoticeListItem
                         $item = new ThreadedNoticeListMoreItem($moreCutoff, $this->out, count($notices));
                         $item->show();
                     }
-                    // XXX: replicating NoticeList::prefill(), annoyingly
-                    $this->prefill($notices);
+                    NoticeList::prefill($notices, AVATAR_MINI_SIZE);
                     foreach (array_reverse($notices) as $notice) {
                         if (Event::handle('StartShowThreadedNoticeSub', array($this, $this->notice, $notice))) {
                             $item = new ThreadedNoticeListSubItem($notice, $this->notice, $this->out);
@@ -249,13 +248,6 @@ class ThreadedNoticeListItem extends NoticeListItem
         }
 
         parent::showEnd();
-    }
-    
-    function prefill(&$notices)
-    {       
-    	// Prefill the profiles
-    	$profiles = Notice::fillProfiles($notices);
-    	Profile::fillAvatars($profiles, AVATAR_MINI_SIZE);
     }
 }
 

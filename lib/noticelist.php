@@ -87,7 +87,7 @@ class NoticeList extends Widget
 		$total   = count($notices);
 		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
 		
-    	$this->prefill($notices);
+    	self::prefill($notices);
     	
     	foreach ($notices as $notice) {
 
@@ -122,10 +122,23 @@ class NoticeList extends Widget
         return new NoticeListItem($notice, $this->out);
     }
     
-    function prefill(&$notices)
+    static function prefill(&$notices, $avatarSize=AVATAR_STREAM_SIZE)
     {
     	// Prefill the profiles
     	$profiles = Notice::fillProfiles($notices);
-    	Profile::fillAvatars($profiles, AVATAR_STREAM_SIZE);
+    	// Prefill the avatars
+    	Profile::fillAvatars($profiles, $avatarSize);
+    	
+    	$p = Profile::current();
+    	
+    	$ids = array();
+    	
+    	foreach ($notices as $notice) {
+    	    $ids[] = $notice->id;
+    	}
+    	
+    	if (!empty($p)) {
+    		Memcached_DataObject::pivotGet('Fave', 'notice_id', $ids, array('user_id' => $p->id));
+    	}
     }
 }
