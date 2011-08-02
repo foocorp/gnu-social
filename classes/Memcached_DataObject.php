@@ -76,12 +76,51 @@ class Memcached_DataObject extends Safe_DataObject
      */
     function multiGet($cls, $keyCol, $keyVals, $skipNulls=true)
     {
+    	$result = self::pivotGet($cls, $keyCol, $keyVals);
+    	
+    	common_log(LOG_INFO, sprintf("Got %d results for class %s with %d keys on column %s",
+    				 count($result),
+    				 $cls,
+    				 count($keyVals),
+    				 $keyCol));
+    				 
+    	$values = array_values($result);
+    	
+    	if ($skipNulls) {
+    		$tmp = array();
+    		foreach ($values as $value) {
+    			if (!empty($value)) {
+    				$tmp[] = $value;
+    			}
+    		}
+    		$values = $tmp;
+    	}
+    	
+    	return new ArrayWrapper($values);
+    }
+    
+    /**
+     * Get multiple items from the database by key
+     * 
+     * @param string  $cls       Class to fetch
+     * @param string  $keyCol    name of column for key
+     * @param array   $keyVals   key values to fetch
+     * @param boolean $otherCols Other columns to hold fixed
+     * 
+     * @return array Array mapping $keyVals to objects, or null if not found
+     */
+    static function pivotGet($cls, $keyCol, $keyVals, $otherCols = array())
+    {
     	$result = array_fill_keys($keyVals, null);
     	
     	$toFetch = array();
     	
     	foreach ($keyVals as $keyVal) {
-        	$i = self::getcached($cls, $keyCol, $keyVal);
+    		
+    		$kv = array_merge($otherCols, array($keyCol => $keyVal));
+    		
+        	$i = self::multicache($cls, $kv);
+        	
         	if ($i !== false) {
         		$result[$keyVal] = $i;
         	} else if (!empty($keyVal)) {
@@ -93,6 +132,9 @@ class Memcached_DataObject extends Safe_DataObject
             $i = DB_DataObject::factory($cls);
             if (empty($i)) {
             	throw new Exception(_('Cannot instantiate class ' . $cls));
+            }
+            foreach ($otherCols as $otherKeyCol => $otherKeyVal) {
+                $i->$otherKeyCol = $otherKeyVal;
             }
     		$i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
     		if ($i->find()) {
@@ -107,29 +149,18 @@ class Memcached_DataObject extends Safe_DataObject
     		
     		foreach ($toFetch as $keyVal) {
     			if (empty($result[$keyVal])) {
+    				$kv = array_merge($otherCols, array($keyCol => $keyVal));
                 	// save the fact that no such row exists
                 	$c = self::memcache();
                 	if (!empty($c)) {
-                    	$ck = self::cachekey($cls, $keyCol, $keyVal);
+                    	$ck = self::multicacheKey($cls, $keyCol, $keyVal);
                     	$c->set($ck, null);
                 	}	
     			}
     		}
     	}
     	
-    	$values = array_values($result);
-    	
-    	if ($skipNulls) {
-    		$tmp = array();
-    		foreach ($values as $value) {
-    			if (!empty($value)) {
-    				$tmp[] = $value;
-    			}
-    		}
-    		$values = $tmp;
-    	}
-    	
-    	return new ArrayWrapper($values);
+    	return $result;
     }
 
 	function columnType($columnName)
