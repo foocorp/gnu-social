@@ -147,7 +147,7 @@ class Memcached_DataObject extends Safe_DataObject
                 	// save the fact that no such row exists
                 	$c = self::memcache();
                 	if (!empty($c)) {
-                    	$ck = self::multicacheKey($cls, $keyCol, $keyVal);
+                    	$ck = self::multicacheKey($cls, $kv);
                     	$c->set($ck, null);
                 	}	
     			}
