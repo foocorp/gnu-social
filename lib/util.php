@@ -1097,7 +1097,7 @@ function common_tag_link($tag)
 function common_canonical_tag($tag)
 {
   // only alphanum
-  $tag = preg_replace('/[^\pL\pN]/', '', $tag);
+  $tag = preg_replace('/[^\pL\pN]/u', '', $tag);
   $tag = mb_convert_case($tag, MB_CASE_LOWER, "UTF-8");
   $tag = substr($tag, 0, 64);
   return $tag;
