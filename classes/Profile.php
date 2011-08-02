@@ -1382,12 +1382,8 @@ class Profile extends Memcached_DataObject
     	    $ids[] = $profile->id;
     	}
     	
-    	common_debug('Got here');
-    	
     	$avatars = Avatar::pivotGet('profile_id', $ids, array('width' => $width,
 															  'height' => $width));
-    	
-    	common_debug(sprintf('Got %d avatars for %d profiles', count($avatars), count($ids)));
     	
     	foreach ($profiles as $profile) {
     	    $profile->_fillAvatar($width, $avatars[$profile->id]);
