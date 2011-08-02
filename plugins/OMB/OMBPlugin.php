@@ -370,6 +370,18 @@ class OMBPlugin extends Plugin
     }
 
     /**
+     * Broadcast a profile over OMB
+     *
+     * @param Profile $profile to broadcast
+     * @return false
+     */
+    function onBroadcastProfile($profile) {
+        $qm = QueueManager::get();
+        $qm->enqueue($profile, "profile");
+        return true;
+    }
+
+    /**
      * Plugin version info
      *
      * @param array $versions
