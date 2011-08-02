@@ -20,7 +20,7 @@
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 define('STATUSNET_BASE_VERSION', '1.0.0');
-define('STATUSNET_LIFECYCLE', 'beta1'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
+define('STATUSNET_LIFECYCLE', 'beta2'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
 define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . STATUSNET_LIFECYCLE);
 
 define('LACONICA_VERSION', STATUSNET_VERSION); // compatibility
@@ -156,4 +156,5 @@ function PEAR_ErrorToPEAR_Exception($err)
     }
     throw new PEAR_Exception($err->getMessage());
 }
+
 PEAR::setErrorHandling(PEAR_ERROR_CALLBACK, 'PEAR_ErrorToPEAR_Exception');

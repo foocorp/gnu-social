@@ -2,19 +2,19 @@
 README
 ------
 
-StatusNet 0.9.9 "9-9"
+StatusNet 1.0.0beta2
 2 August 2011
 
-This is the README file for StatusNet, the Open Source microblogging
-platform. It includes installation instructions, descriptions of
-options you can set, warnings, tips, and general info for
-administrators. Information on using StatusNet can be found in the
+This is the README file for StatusNet, the Open Source social
+networking platform. It includes installation instructions,
+descriptions of options you can set, warnings, tips, and general info
+for administrators. Information on using StatusNet can be found in the
 "doc" subdirectory or in the "help" section on-line.
 
 About
 =====
 
-StatusNet is a Free and Open Source microblogging platform. It helps
+StatusNet is a Free and Open Source social networking platform. It helps
 people in a community, company or group to exchange short (140
 characters, by default) messages over the Web. Users can choose which
 people to "follow" and receive only their friends' or colleagues'
@@ -474,7 +474,7 @@ off of amd64 to another server.
 Public feed
 -----------
 
-You can send *all* messages from your microblogging site to a
+You can send *all* messages from your social networking site to a
 third-party service using XMPP. This can be useful for providing
 search, indexing, bridging, or other cool services.
 
@@ -614,7 +614,7 @@ Private
 
 The administrator can set the "private" flag for a site so that it's
 not visible to non-logged-in users. This might be useful for
-workgroups who want to share a microblogging site for project
+workgroups who want to share a social networking site for project
 management, but host it on a public server.
 
 Total privacy is not guaranteed or ensured. Also, privacy is
@@ -1733,8 +1733,8 @@ There are several ways to get more information about StatusNet.
 Feedback
 ========
 
-* Microblogging messages to http://support.status.net/ are very welcome.
-* The microblogging group http://identi.ca/group/statusnet is a good
+* Messages to http://support.status.net/ are very welcome.
+* The group http://identi.ca/group/statusnet is a good
   place to discuss the software.
 * StatusNet has a bug tracker for any defects you may find, or ideas for
   making things better. http://status.net/bugs
