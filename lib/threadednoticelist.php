@@ -77,11 +77,11 @@ class ThreadedNoticeList extends NoticeList
         $this->out->elementStart('ol', array('class' => 'notices threaded-notices xoxo'));
 
 		$notices = $this->notice->fetchAll();
+		$total = count($notices);
 		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
 		
     	$this->prefill($notices);
     	
-        $cnt = 0;
         $conversations = array();
         
         foreach ($notices as $notice) {
@@ -120,7 +120,7 @@ class ThreadedNoticeList extends NoticeList
         $this->out->elementEnd('ol');
         $this->out->elementEnd('div');
 
-        return $cnt;
+        return $total;
     }
 
     /**

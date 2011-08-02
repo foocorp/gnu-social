@@ -84,7 +84,7 @@ class NoticeList extends Widget
         $this->out->elementStart('ol', array('class' => 'notices xoxo'));
 
 		$notices = $this->notice->fetchAll();
-		
+		$total   = count($notices);
 		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
 		
     	$this->prefill($notices);
@@ -104,7 +104,7 @@ class NoticeList extends Widget
         $this->out->elementEnd('ol');
         $this->out->elementEnd('div');
 
-        return count($notices);
+        return $total;
     }
 
     /**
