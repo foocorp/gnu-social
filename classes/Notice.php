@@ -1371,17 +1371,11 @@ class Notice extends Memcached_DataObject
      */
     function getReplyProfiles()
     {
-        $ids      = $this->getReplies();
-        $profiles = array();
-
-        foreach ($ids as $id) {
-            $profile = Profile::staticGet('id', $id);
-            if (!empty($profile)) {
-                $profiles[] = $profile;
-            }
-        }
+        $ids = $this->getReplies();
         
-        return $profiles;
+        $profiles = Profile::multiGet('id', $ids);
+        
+        return $profiles->fetchAll();
     }
 
     /**
@@ -2376,11 +2370,10 @@ class Notice extends Memcached_DataObject
 
         if ($this->scope & Notice::ADDRESSEE_SCOPE) {
 
-            // XXX: just query for the single reply
-
-            $replies = $this->getReplies();
-
-            if (!in_array($profile->id, $replies)) {
+			$repl = Reply::pkeyGet(array('notice_id' => $this->id,
+										 'profile_id' => $profile->id));
+										 
+            if (empty($repl)) {
                 return false;
             }
         }
