@@ -1171,9 +1171,19 @@ td.entity_profile {
     width: auto;
 }
 
-#event-startdate, #event-starttime, #event-enddate, #event-endtime {
-    width: 120px;
+label[for=event-starttime], label[for=event-endtime] {
+    display: none;
+}
+
+#event-starttime, #event-endtime {
+    margin-top:  -1px;
+    margin-bottom:  -1px;
+    height: 2em;
+}
+
+#event-startdate, #event-enddate {
     margin-right: 20px;
+    width: 120px;
 }
 
 /* Limited-scope specific styles */
