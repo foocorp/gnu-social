@@ -2481,24 +2481,26 @@ class Notice extends Memcached_DataObject
 
 	static function fillProfiles($notices)
 	{
-		$authors = array();
+		$map = self::getProfiles($notices);
 		
 		foreach ($notices as $notice) {
-			if (array_key_exists($notice->profile_id, $authors)) {
-			    $authors[$notice->profile_id][] = $notice;
-			} else {
-			    $authors[$notice->profile_id] = array($notice);
-			}	
-		}
-		
-		$profile = Profile::multiGet('id', array_keys($authors));
-		
-		$profiles = $profile->fetchAll();
-		
-		foreach ($profiles as $p) {
-			foreach ($authors[$p->id] as $notice) {
-				$notice->_setProfile($p);    
+			if (array_key_exists($notice->profile_id, $map)) {
+				$notice->_setProfile($map[$notice->profile_id]);    
 			}
 		}
+		
+		return array_values($map);
+	}
+	
+	static function getProfiles(&$notices)
+	{
+		$ids = array();
+		foreach ($notices as $notice) {
+			$ids[] = $notice->profile_id;
+		}
+		
+		$ids = array_unique($ids);
+		
+		return Memcached_DataObject::pivotGet('Profile', 'id', $ids); 
 	}
 }

@@ -254,7 +254,8 @@ class ThreadedNoticeListItem extends NoticeListItem
     function prefill(&$notices)
     {       
     	// Prefill the profiles
-    	Notice::fillProfiles($notices);
+    	$profiles = Notice::fillProfiles($notices);
+    	Profile::fillAvatars($profiles, AVATAR_MINI_SIZE);
     }
 }
 

@@ -68,12 +68,18 @@ class Profile extends Memcached_DataObject
         return $this->_user;
     }
 
+	protected $_avatars = array();
+	
     function getAvatar($width, $height=null)
     {
         if (is_null($height)) {
             $height = $width;
         }
 
+		if (array_key_exists($width, $this->_avatars)) {
+			return $this->_avatars[$width];
+		}
+		
         $avatar = null;
 
         if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
@@ -83,9 +89,16 @@ class Profile extends Memcached_DataObject
             Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
         }
 
+		$this->_avatars[$width] = $avatar;
+		
         return $avatar;
     }
 
+	function _fillAvatar($width, $avatar)
+	{
+		$this->_avatars[$width] = $avatar;    
+	}
+	
     function getOriginalAvatar()
     {
         $avatar = DB_DataObject::factory('avatar');
@@ -1353,7 +1366,26 @@ class Profile extends Memcached_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_user');
+        $skip = array('_user', '_avatars');
         return array_diff($vars, $skip);
+    }
+    
+    static function fillAvatars(&$profiles, $width)
+    {
+    	$ids = array();
+    	foreach ($profiles as $profile) {
+    	    $ids[] = $profile->id;
+    	}
+    	
+    	common_debug('Got here');
+    	
+    	$avatars = Avatar::pivotGet('profile_id', $ids, array('width' => $width,
+															  'height' => $width));
+    	
+    	common_debug(sprintf('Got %d avatars for %d profiles', count($avatars), count($ids)));
+    	
+    	foreach ($profiles as $profile) {
+    	    $profile->_fillAvatar($width, $avatars[$profile->id]);
+    	}
     }
 }

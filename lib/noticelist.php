@@ -125,6 +125,7 @@ class NoticeList extends Widget
     function prefill(&$notices)
     {
     	// Prefill the profiles
-    	Notice::fillProfiles($notices);
+    	$profiles = Notice::fillProfiles($notices);
+    	Profile::fillAvatars($profiles, AVATAR_STREAM_SIZE);
     }
 }
