@@ -2,8 +2,8 @@
 README
 ------
 
-StatusNet 0.9.8 "Letter Never Sent"
-1 August 2011
+StatusNet 0.9.9 "9-9"
+2 August 2011
 
 This is the README file for StatusNet, the Open Source microblogging
 platform. It includes installation instructions, descriptions of
@@ -98,7 +98,7 @@ New this version
 
 This is a security release since version 0.9.7 released on 11 March
 2011. It fixes security bug #3260. All sites running version 0.9.7 or
-below are recommended to upgrade to 0.9.8 immediately.
+below are recommended to upgrade to 0.9.9 immediately.
 
 Notable changes this version:
 
@@ -113,7 +113,10 @@ Notable changes this version:
 - Correct use of "likes" in Facebook plugin.
 - Ignore failures in Twitter plugin.
 
-A full changelog is available at http://status.net/wiki/StatusNet_0.9.8.
+A full changelog is available at http://status.net/wiki/StatusNet_0.9.9.
+
+NOTE: The short-lived StatusNet 0.9.8 ("Letter Never Sent") did not
+adequately fix bug #3260 as originally thought; thus this new release.
 
 Prerequisites
 =============
@@ -224,9 +227,9 @@ especially if you've previously installed PHP/MySQL packages.
 1. Unpack the tarball you downloaded on your Web server. Usually a
    command like this will work:
 
-       tar zxf statusnet-0.9.7.tar.gz
+       tar zxf statusnet-0.9.9.tar.gz
 
-   ...which will make a statusnet-0.9.7 subdirectory in your current
+   ...which will make a statusnet-0.9.9 subdirectory in your current
    directory. (If you don't have shell access on your Web server, you
    may have to unpack the tarball on your local computer and FTP the
    files to the server.)
@@ -234,7 +237,7 @@ especially if you've previously installed PHP/MySQL packages.
 2. Move the tarball to a directory of your choosing in your Web root
    directory. Usually something like this will work:
 
-       mv statusnet-0.9.7 /var/www/statusnet
+       mv statusnet-0.9.9 /var/www/statusnet
 
    This will make your StatusNet instance available in the statusnet path of
    your server, like "http://example.net/statusnet". "microblog" or
@@ -649,7 +652,7 @@ with this situation.
 If you've been using StatusNet 0.7, 0.6, 0.5 or lower, or if you've
 been tracking the "git" version of the software, you will probably
 want to upgrade and keep your existing data. There is no automated
-upgrade procedure in StatusNet 0.9.7. Try these step-by-step
+upgrade procedure in StatusNet 0.9.9. Try these step-by-step
 instructions; read to the end first before trying them.
 
 0. Download StatusNet and set up all the prerequisites as if you were
@@ -670,7 +673,7 @@ instructions; read to the end first before trying them.
 5. Once all writing processes to your site are turned off, make a
    final backup of the Web directory and database.
 6. Move your StatusNet directory to a backup spot, like "statusnet.bak".
-7. Unpack your StatusNet 0.9.7 tarball and move it to "statusnet" or
+7. Unpack your StatusNet 0.9.9 tarball and move it to "statusnet" or
    wherever your code used to be.
 8. Copy the config.php file and the contents of the avatar/, background/,
    file/, and local/ subdirectories from your old directory to your new
