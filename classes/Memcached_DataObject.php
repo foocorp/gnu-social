@@ -78,12 +78,6 @@ class Memcached_DataObject extends Safe_DataObject
     {
     	$result = self::pivotGet($cls, $keyCol, $keyVals);
     	
-    	common_log(LOG_INFO, sprintf("Got %d results for class %s with %d keys on column %s",
-    				 count($result),
-    				 $cls,
-    				 count($keyVals),
-    				 $keyCol));
-    				 
     	$values = array_values($result);
     	
     	if ($skipNulls) {
