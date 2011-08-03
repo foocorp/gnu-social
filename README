@@ -871,9 +871,8 @@ shorturllength: ignored. See 'url' section below.
 dupelimit: minimum time allowed for one person to say the same thing
     twice. Default 60s. Anything lower is considered a user
     or UI error.
-textlimit: default max size for texts in the site. Defaults to 140.
-    0 means no limit. Can be fine-tuned for notices, messages,
-    profile bios and group descriptions.
+textlimit: default max size for texts in the site. Defaults to 0 (no limit).
+    Can be fine-tuned for notices, messages, profile bios and group descriptions.
 
 db
 --
