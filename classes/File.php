@@ -56,23 +56,6 @@ class File extends Memcached_DataObject
     }
 
     /**
-     * Get the attachments for a particlar notice.
-     *
-     * @param int $post_id
-     * @return array of File objects
-     */
-    static function getAttachments($post_id) {
-        $file = new File();
-        $query = "select file.* from file join file_to_post on (file_id = file.id) where post_id = " . $file->escape($post_id);
-        $file = Memcached_DataObject::cachedQuery('File', $query);
-        $att = array();
-        while ($file->fetch()) {
-            $att[] = clone($file);
-        }
-        return $att;
-    }
-
-    /**
      * Save a new file record.
      *
      * @param array $redir_data lookup data eg from File_redirection::where()
