@@ -156,6 +156,44 @@ class Memcached_DataObject extends Safe_DataObject
     	
     	return $result;
     }
+    
+    function listGet($cls, $keyCol, $keyVals)
+    {
+    	$result = array_fill_keys($keyVals, array());
+    	
+    	$toFetch = array();
+    	
+    	foreach ($keyVals as $keyVal) {
+    	    $l = self::cacheGet(sprintf("%s:list:%s:%s", $cls, $keyCol, $keyVal));
+    	    if ($l !== false) {
+    	        $result[$keyVal] = $l;
+    	    } else {
+    	        $toFetch[] = $keyVal;
+    	    }
+    	}
+        
+        if (count($toFetch) > 0) {
+	        $i = DB_DataObject::factory($cls);
+	        if (empty($i)) {
+	        	throw new Exception(_('Cannot instantiate class ' . $cls));
+	        }
+			$i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
+			if ($i->find()) {
+				while ($i->fetch()) {
+					$copy = clone($i);
+					$copy->encache();
+					$result[$i->$keyCol][] = $copy;
+				}
+			}        
+	    	foreach ($toFetch as $keyVal)
+	    	{
+	    		self::cacheSet(sprintf("%s:list:%s:%s", $cls, $keyCol, $keyVal),
+	    					   $result[$keyVal]);   
+	    	}      
+        }
+    	
+    	return $result;        
+    }
 
 	function columnType($columnName)
 	{

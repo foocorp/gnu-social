@@ -755,62 +755,33 @@ class Notice extends Memcached_DataObject
         return true;
     }
 
-    function getUploadedAttachment() {
-        $post = clone $this;
-        $query = 'select file.url as up, file.id as i from file join file_to_post on file.id = file_id where post_id=' . $post->escape($post->id) . ' and url like "%/notice/%/file"';
-        $post->query($query);
-        $post->fetch();
-        if (empty($post->up) || empty($post->i)) {
-            $ret = false;
-        } else {
-            $ret = array($post->up, $post->i);
-        }
-        $post->free();
-        return $ret;
-    }
-
-    function hasAttachments() {
-        $post = clone $this;
-        $query = "select count(file_id) as n_attachments from file join file_to_post on (file_id = file.id) join notice on (post_id = notice.id) where post_id = " . $post->escape($post->id);
-        $post->query($query);
-        $post->fetch();
-        $n_attachments = intval($post->n_attachments);
-        $post->free();
-        return $n_attachments;
-    }
-
+	protected $_attachments = -1;
+	
     function attachments() {
 
-        $keypart = sprintf('notice:file_ids:%d', $this->id);
-
-        $idstr = self::cacheGet($keypart);
-
-        if ($idstr !== false) {
-            $ids = explode(',', $idstr);
-        } else {
-            $ids = array();
-            $f2p = new File_to_post;
-            $f2p->post_id = $this->id;
-            if ($f2p->find()) {
-                while ($f2p->fetch()) {
-                    $ids[] = $f2p->file_id;
-                }
-            }
-            self::cacheSet($keypart, implode(',', $ids));
+		if ($this->_attachments != -1)  {
+            return $this->_attachments;
         }
-
-        $att = array();
-
-        foreach ($ids as $id) {
-            $f = File::staticGet('id', $id);
-            if (!empty($f)) {
-                $att[] = clone($f);
-            }
+		
+		$f2ps = Memcached_DataObject::listGet('File_to_post', 'post_id', array($this->id));
+		
+		$ids = array();
+		
+		foreach ($f2ps[$this->id] as $f2p) {
+            $ids[] = $f2p->file_id;    
         }
+		
+		$files = Memcached_DataObject::multiGet('File', 'id', $ids);
 
-        return $att;
+		$this->_attachments = $files->fetchAll();
+		
+        return $this->_attachments;
     }
 
+	function _setAttachments($attachments)
+	{
+	    $this->_attachments = $attachments;
+	}
 
     function publicStream($offset=0, $limit=20, $since_id=0, $max_id=0)
     {
@@ -1332,6 +1303,8 @@ class Notice extends Memcached_DataObject
         return $reply;
     }
 
+    protected $_replies = -1;
+
     /**
      * Pull the complete list of @-reply targets for this notice.
      *
@@ -1339,29 +1312,26 @@ class Notice extends Memcached_DataObject
      */
     function getReplies()
     {
-        $keypart = sprintf('notice:reply_ids:%d', $this->id);
-
-        $idstr = self::cacheGet($keypart);
-
-        if ($idstr !== false) {
-            $ids = explode(',', $idstr);
-        } else {
-            $ids = array();
-
-            $reply = new Reply();
-            $reply->selectAdd();
-            $reply->selectAdd('profile_id');
-            $reply->notice_id = $this->id;
-
-            if ($reply->find()) {
-                while($reply->fetch()) {
-                    $ids[] = $reply->profile_id;
-                }
-            }
-            self::cacheSet($keypart, implode(',', $ids));
+        if ($this->_replies != -1) {
+            return $this->_replies;
         }
 
+        $replyMap = Memcached_DataObject::listGet('Reply', 'notice_id', array($this->id));
+
+        $ids = array();
+
+        foreach ($replyMap[$this->id] as $reply) {
+            $ids[] = $reply->profile_id;
+        }
+
+        $this->_replies = $ids;
+
         return $ids;
+    }
+
+    function _setReplies($replies)
+    {
+        $this->_replies = $replies;
     }
 
     /**
@@ -1408,6 +1378,9 @@ class Notice extends Memcached_DataObject
      *
      * @return array of Group objects
      */
+    
+    protected $_groups = -1;
+    
     function getGroups()
     {
         // Don't save groups for repeats
@@ -1415,31 +1388,31 @@ class Notice extends Memcached_DataObject
         if (!empty($this->repeat_of)) {
             return array();
         }
+        
+        if ($this->_groups != -1)
+        {
+            return $this->_groups;
+        }
+        
+        $gis = Memcached_DataObject::listGet('Group_inbox', 'notice_id', array($this->id));
 
         $ids = array();
 
-        $keypart = sprintf('notice:groups:%d', $this->id);
-
-        $idstr = self::cacheGet($keypart);
-
-        if ($idstr !== false) {
-            $ids = explode(',', $idstr);
-        } else {
-            $gi = new Group_inbox();
-
-            $gi->selectAdd();
-            $gi->selectAdd('group_id');
-
-            $gi->notice_id = $this->id;
-
-            $ids = $gi->fetchAll('group_id');
-            
-            self::cacheSet($keypart, implode(',', $ids));
-        }
-
+		foreach ($gis[$this->id] as $gi)
+		{
+		    $ids[] = $gi->group_id;
+		}
+		
 		$groups = User_group::multiGet('id', $ids);
 		
-		return $groups->fetchAll();
+		$this->_groups = $groups->fetchAll();
+		
+		return $this->_groups;
+    }
+    
+    function _setGroups($groups)
+    {
+        $this->_groups = $groups;
     }
 
     /**
@@ -2462,7 +2435,7 @@ class Notice extends Memcached_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_original', '_profile');
+        $skip = array('_original', '_profile', '_groups', '_attachments', '_faves', '_replies');
         return array_diff($vars, $skip);
     }
     
@@ -2503,4 +2476,120 @@ class Notice extends Memcached_DataObject
 		
 		return Memcached_DataObject::pivotGet('Profile', 'id', $ids); 
 	}
+	
+	static function fillGroups(&$notices)
+	{
+        $ids = self::_idsOf($notices);
+		
+		$gis = Memcached_DataObject::listGet('Group_inbox', 'notice_id', $ids);
+		
+        $gids = array();
+
+		foreach ($gis as $id => $gi)
+		{
+		    foreach ($gi as $g)
+		    {
+		        $gids[] = $g->group_id;
+		    }
+		}
+		
+		$gids = array_unique($gids);
+		
+		$group = Memcached_DataObject::pivotGet('User_group', 'id', $gids);
+		
+		foreach ($notices as $notice)
+		{
+			$grps = array();
+			$gi = $gis[$notice->id];
+			foreach ($gi as $g) {
+			    $grps[] = $group[$g->group_id];
+			}
+		    $notice->_setGroups($grps);
+		}
+	}
+
+    static function _idsOf(&$notices)
+    {
+		$ids = array();
+		foreach ($notices as $notice) {
+			$ids[] = $notice->id;
+		}
+		$ids = array_unique($ids);
+        return $ids;
+    }
+
+    static function fillAttachments(&$notices)
+    {
+        $ids = self::_idsOf($notices);
+
+		$f2pMap = Memcached_DataObject::listGet('File_to_post', 'post_id', $ids);
+		
+		$fileIds = array();
+		
+		foreach ($f2pMap as $noticeId => $f2ps) {
+            foreach ($f2ps as $f2p) {
+                $fileIds[] = $f2p->file_id;    
+            }
+        }
+
+        $fileIds = array_unique($fileIds);
+
+		$fileMap = Memcached_DataObject::pivotGet('File', 'id', $fileIds);
+
+		foreach ($notices as $notice)
+		{
+			$files = array();
+			$f2ps = $f2pMap[$notice->id];
+			foreach ($f2ps as $f2p) {
+			    $files[] = $fileMap[$f2p->file_id];
+			}
+		    $notice->_setAttachments($files);
+		}
+    }
+
+    protected $_faves = -1;
+
+    /**
+     * All faves of this notice
+     *
+     * @return array Array of Fave objects
+     */
+
+    function getFaves()
+    {
+        if ($this->_faves != -1) {
+            return $this->_faves;
+        }
+        $faveMap = Memcached_DataObject::listGet('Fave', 'notice_id', array($noticeId));
+        $this->_faves = $faveMap[$noticeId];
+        return $this->_faves;
+    }
+
+    function _setFaves($faves)
+    {
+        $this->_faves = $faves;
+    }
+
+    static function fillFaves(&$notices)
+    {
+        $ids = self::_idsOf($notices);
+        $faveMap = Memcached_DataObject::listGet('Fave', 'notice_id', $ids);
+        foreach ($notices as $notice) {
+            $notice->_setFaves($faveMap[$notice->id]);
+        }
+    }
+
+    static function fillReplies(&$notices)
+    {
+        $ids = self::_idsOf($notices);
+        $replyMap = Memcached_DataObject::listGet('Reply', 'notice_id', $ids);
+        foreach ($notices as $notice) {
+            $replies = $replyMap[$notice->id];
+            $ids = array();
+            foreach ($replies as $reply) {
+                $ids[] = $reply->profile_id;
+            }
+            $notice->_setReplies($ids);
+        }
+    }
 }
