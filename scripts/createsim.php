@@ -20,20 +20,31 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/..'));
 
-$shortoptions = 'u:n:b:g:j:t:x:z:';
-$longoptions = array('users=', 'notices=', 'subscriptions=', 'groups=', 'joins=', 'tags=', 'prefix=');
+$shortoptions = 'b:g:j:n:t:u:w:x:z:';
+$longoptions = array(
+    'subscriptions=',
+    'groups=',
+    'joins=',
+    'notices=',
+    'tags=',
+    'users=',
+    'words=',
+    'prefix=',
+    'groupprefix'
+);
 
 $helptext = <<<END_OF_CREATESIM_HELP
 Creates a lot of test users and notices to (loosely) simulate a real server.
 
-    -u --users         Number of users (default 100)
-    -n --notices       Average notices per user (default 100)
     -b --subscriptions Average subscriptions per user (default no. users/20)
     -g --groups        Number of groups (default 20)
     -j --joins         Number of groups per user (default 5)
+    -n --notices       Average notices per user (default 100)
     -t --tags          Number of distinct hash tags (default 10000)
-    -x --prefix        User name prefix (default 'testuser')
+    -u --users         Number of users (default 100)
     -w --words         Words file (default '/usr/share/dict/words')
+    -x --prefix        User name prefix (default 'testuser')
+    -z --groupprefix   Group name prefix (default 'testgroup')
 
 END_OF_CREATESIM_HELP;
 
@@ -300,6 +311,8 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $tagmax)
     }
 }
 
+$defaultWordfile = '/usr/share/dict/words';
+
 $usercount   = (have_option('u', 'users')) ? get_option_value('u', 'users') : 100;
 $groupcount  = (have_option('g', 'groups')) ? get_option_value('g', 'groups') : 20;
 $noticeavg   = (have_option('n', 'notices')) ? get_option_value('n', 'notices') : 100;
@@ -308,11 +321,15 @@ $joinsavg    = (have_option('j', 'joins')) ? get_option_value('j', 'joins') : 5;
 $tagmax      = (have_option('t', 'tags')) ? get_option_value('t', 'tags') : 10000;
 $userprefix  = (have_option('x', 'prefix')) ? get_option_value('x', 'prefix') : 'testuser';
 $groupprefix = (have_option('z', 'groupprefix')) ? get_option_value('z', 'groupprefix') : 'testgroup';
-$wordsfile   = (have_option('w', 'words')) ? get_option_value('w', 'words') : '/usr/share/dict/words';
+$wordsfile   = (have_option('w', 'words')) ? get_option_value('w', 'words') : $defaultWordfile;
 
 if (is_readable($wordsfile)) {
     $words = file($wordsfile);
 } else {
+   if ($wordsfile != $defaultWordfile) {
+      // user specified words file couldn't be read
+      throw new Exception("Couldn't read words file: {$wordfile}.");
+    }
     $words = null;
 }
 
