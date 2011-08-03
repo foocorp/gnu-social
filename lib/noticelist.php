@@ -124,6 +124,8 @@ class NoticeList extends Widget
     
     static function prefill(&$notices, $avatarSize=AVATAR_STREAM_SIZE)
     {
+        // Prefill attachments
+        Notice::fillAttachments($notices);
     	// Prefill the profiles
     	$profiles = Notice::fillProfiles($notices);
     	// Prefill the avatars
