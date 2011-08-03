@@ -86,6 +86,7 @@ abstract class FilteringNoticeStream extends NoticeStream
 			// XXX: this should probably only be in the scoping one.
 			
 			Notice::fillGroups($notices);
+			Notice::fillReplies($notices);
 			
 			foreach ($notices as $notice) {
                 if ($this->filter($notice)) {

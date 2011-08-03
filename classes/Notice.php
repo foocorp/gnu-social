@@ -1303,6 +1303,8 @@ class Notice extends Memcached_DataObject
         return $reply;
     }
 
+    protected $_replies = -1;
+
     /**
      * Pull the complete list of @-reply targets for this notice.
      *
@@ -1310,29 +1312,26 @@ class Notice extends Memcached_DataObject
      */
     function getReplies()
     {
-        $keypart = sprintf('notice:reply_ids:%d', $this->id);
-
-        $idstr = self::cacheGet($keypart);
-
-        if ($idstr !== false) {
-            $ids = explode(',', $idstr);
-        } else {
-            $ids = array();
-
-            $reply = new Reply();
-            $reply->selectAdd();
-            $reply->selectAdd('profile_id');
-            $reply->notice_id = $this->id;
-
-            if ($reply->find()) {
-                while($reply->fetch()) {
-                    $ids[] = $reply->profile_id;
-                }
-            }
-            self::cacheSet($keypart, implode(',', $ids));
+        if ($this->_replies != -1) {
+            return $this->_replies;
         }
 
+        $replyMap = Memcached_DataObject::listGet('Reply', 'notice_id', array($this->id));
+
+        $ids = array();
+
+        foreach ($replyMap[$this->id] as $reply) {
+            $ids[] = $reply->profile_id;
+        }
+
+        $this->_replies = $ids;
+
         return $ids;
+    }
+
+    function _setReplies($replies)
+    {
+        $this->_replies = $replies;
     }
 
     /**
@@ -2436,7 +2435,7 @@ class Notice extends Memcached_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_original', '_profile', '_groups', '_attachments', '_faves');
+        $skip = array('_original', '_profile', '_groups', '_attachments', '_faves', '_replies');
         return array_diff($vars, $skip);
     }
     
@@ -2577,6 +2576,20 @@ class Notice extends Memcached_DataObject
         $faveMap = Memcached_DataObject::listGet('Fave', 'notice_id', $ids);
         foreach ($notices as $notice) {
             $notice->_setFaves($faveMap[$notice->id]);
+        }
+    }
+
+    static function fillReplies(&$notices)
+    {
+        $ids = self::_idsOf($notices);
+        $replyMap = Memcached_DataObject::listGet('Reply', 'notice_id', $ids);
+        foreach ($notices as $notice) {
+            $replies = $replyMap[$notice->id];
+            $ids = array();
+            foreach ($replies as $reply) {
+                $ids[] = $reply->profile_id;
+            }
+            $notice->_setReplies($ids);
         }
     }
 }
