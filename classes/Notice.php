@@ -1396,7 +1396,9 @@ class Notice extends Memcached_DataObject
         }
         
         $gis = Memcached_DataObject::listGet('Group_inbox', 'notice_id', array($this->id));
-		
+
+        $ids = array();
+
 		foreach ($gis[$this->id] as $gi)
 		{
 		    $ids[] = $gi->group_id;
@@ -2434,7 +2436,7 @@ class Notice extends Memcached_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_original', '_profile', '_groups');
+        $skip = array('_original', '_profile', '_groups', '_attachments', '_faves');
         return array_diff($vars, $skip);
     }
     
@@ -2482,8 +2484,8 @@ class Notice extends Memcached_DataObject
 		
 		$gis = Memcached_DataObject::listGet('Group_inbox', 'notice_id', $ids);
 		
-		common_debug(sprintf("Notice::fillGroups(): got %d results for %d notices", count($gis), count($ids)));
-		
+        $gids = array();
+
 		foreach ($gis as $id => $gi)
 		{
 		    foreach ($gi as $g)
@@ -2544,5 +2546,37 @@ class Notice extends Memcached_DataObject
 			}
 		    $notice->_setAttachments($files);
 		}
+    }
+
+    protected $_faves = -1;
+
+    /**
+     * All faves of this notice
+     *
+     * @return array Array of Fave objects
+     */
+
+    function getFaves()
+    {
+        if ($this->_faves != -1) {
+            return $this->_faves;
+        }
+        $faveMap = Memcached_DataObject::listGet('Fave', 'notice_id', array($noticeId));
+        $this->_faves = $faveMap[$noticeId];
+        return $this->_faves;
+    }
+
+    function _setFaves($faves)
+    {
+        $this->_faves = $faves;
+    }
+
+    static function fillFaves(&$notices)
+    {
+        $ids = self::_idsOf($notices);
+        $faveMap = Memcached_DataObject::listGet('Fave', 'notice_id', $ids);
+        foreach ($notices as $notice) {
+            $notice->_setFaves($faveMap[$notice->id]);
+        }
     }
 }

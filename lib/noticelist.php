@@ -126,6 +126,8 @@ class NoticeList extends Widget
     {
         // Prefill attachments
         Notice::fillAttachments($notices);
+        // Prefill attachments
+        Notice::fillFaves($notices);
     	// Prefill the profiles
     	$profiles = Notice::fillProfiles($notices);
     	// Prefill the avatars

@@ -470,9 +470,9 @@ class ThreadedNoticeListFavesItem extends NoticeListActorsItem
 {
     function getProfiles()
     {
-        $fave = Fave::byNotice($this->notice->id);
+        $faves = $this->notice->getFaves();
         $profiles = array();
-        while ($fave->fetch()) {
+        foreach ($faves as $fave) {
             $profiles[] = $fave->user_id;
         }
         return $profiles;
