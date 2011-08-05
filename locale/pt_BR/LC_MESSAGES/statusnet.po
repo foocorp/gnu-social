@@ -16,18 +16,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:26:32+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:22:16+0000\n"
 "Language-Team: Brazilian Portuguese <http://translatewiki.net/wiki/Portal:pt-"
 "br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: pt-br\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
+"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -169,10 +169,6 @@ msgstr "Este perfil não existe."
 msgid "No such list."
 msgstr "Esta lista não existe."
 
-#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
-msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr "Você não pode listar um perfil OMB 0.1 remoto com esta ação."
-
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
 #, php-format
@@ -235,8 +231,6 @@ msgstr "Esta página não existe."
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
 #. TRANS: Client error displayed when referring to non-existing user.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing user.
-#. TRANS: Form validation error on page for remote subscribe when no user was provided.
-#. TRANS: Form validation error on page for remote subscribe when no user profile was found.
 #. TRANS: Client error displayed when trying to reply to a non-exsting user.
 #. TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
 #. TRANS: Client error.
@@ -245,7 +239,6 @@ msgstr "Esta página não existe."
 #. TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
 #. TRANS: Client error displayed requesting groups for a non-existing user.
 #. TRANS: Client error displayed when user not found for an action.
-#. TRANS: Client error displayed providing a non-existing nickname.
 #. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
 #. TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
 #. TRANS: Client error displayed when trying to access a mailbox without providing a user.
@@ -330,6 +323,13 @@ msgid ""
 msgstr ""
 "Por que você não [registra uma conta](%%%%action.register%%%%) e então "
 "cutuca %s ou publica alguma mensagem para ele?"
+
+#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Less business/enterprise-oriented language for public sites.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Send invite"
+msgstr "Convites"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -453,6 +453,19 @@ msgstr "Não foi possível bloquear o usuário."
 #. TRANS: Server error displayed when unblocking a user has failed.
 msgid "Unblock user failed."
 msgstr "Não foi possível desbloquear o usuário."
+
+#, fuzzy
+msgid "no conversation id"
+msgstr "Conversa"
+
+#, php-format
+msgid "No conversation with id %d"
+msgstr ""
+
+#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "Conversa"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -896,7 +909,6 @@ msgstr "Conta"
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
-#. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Nickname"
@@ -1743,9 +1755,17 @@ msgstr "Confirme o endereço"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "O endereço \"%s\" foi confirmado para sua conta."
 
-#. TRANS: Title for page with a conversion (multiple notices in context).
-msgid "Conversation"
-msgstr "Conversa"
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (Activity Streams JSON)"
+msgstr "Fonte de mensagens de %s (Atom)"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (RSS 2.0)"
+msgstr "Fonte de mensagens de %s (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -2441,41 +2461,6 @@ msgstr "Nenhum anexo."
 #. TRANS: that could not be found.
 msgid "No uploaded attachments."
 msgstr "Nenhum anexo enviado."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and an unexpected response is received.
-msgid "Not expecting this response!"
-msgstr "Não esperava por esta resposta!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that does not exist.
-msgid "User being listened to does not exist."
-msgstr "O usuário que está está sendo acompanhado não existe."
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
-#. TRANS: Client error displayed when using remote subscribe for a local entity.
-msgid "You can use the local subscription!"
-msgstr "Você pode usar a assinatura local!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
-msgid "That user has blocked you from subscribing."
-msgstr "Esse usuário bloqueou o seu pedido de assinatura."
-
-#. TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
-msgid "You are not authorized."
-msgstr "Você não está autorizado."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and conversion of the request token to access token fails.
-msgid "Could not convert request token to access token."
-msgstr ""
-"Não foi possível converter o token de solicitação para token de acesso."
-
-#. TRANS: Client error displayed when subscribing to a remote profile fails because of an unsupported version of the OMB protocol.
-msgid "Remote service uses unknown version of OMB protocol."
-msgstr "O serviço remoto usa uma versão desconhecida do protocolo OMB."
-
-#. TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
-#. TRANS: Exception thrown when updating a remote profile fails in OAuth store.
-msgid "Error updating remote profile."
-msgstr "Ocorreu um erro durante a atualização do perfil remoto."
 
 #. TRANS: Client error displayed when requesting a non-existent file.
 msgid "No such file."
@@ -4024,18 +4009,6 @@ msgstr ""
 "Todos os plugins padrão foram desabilitados no arquivo de configuração do "
 "site."
 
-#. TRANS: Client error displayed if the notice posted has too many characters.
-msgid "Invalid notice content."
-msgstr "O conteúdo da mensagem é inválido."
-
-#. TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
-#. TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
-#, php-format
-msgid "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-msgstr ""
-"A licença \"%1$s\" da mensagem não é compatível com a licença \"%2$s\" do "
-"site."
-
 #. TRANS: Client error displayed when trying to add an unindentified field to profile.
 #. TRANS: %s is a field name.
 #, php-format
@@ -4682,74 +4655,6 @@ msgid ""
 msgstr ""
 "(Você receberá uma mensagem por e-mail a qualquer momento, com instruções "
 "sobre como confirmar seu endereço.)"
-
-#. TRANS: Page notice for remote subscribe. This message contains Markdown links.
-#. TRANS: Ensure to keep the correct markup of [link description](link).
-#, php-format
-msgid ""
-"To subscribe, you can [login](%%action.login%%), or [register](%%action."
-"register%%) a new  account. If you already have an account  on a [compatible "
-"microblogging site](%%doc.openmublog%%),  enter your profile URL below."
-msgstr ""
-"Para assinar, você pode [autenticar-se](%%action.login%%), ou [registrar](%%"
-"action.register%%) uma nova conta. Se você já tem uma conta em um [site de "
-"microblog compatível](%%doc.openmublog%%), informe a URL do seu perfil "
-"abaixo."
-
-#. TRANS: Page title for Remote subscribe.
-msgid "Remote subscribe"
-msgstr "Assinatura remota"
-
-#. TRANS: Field legend on page for remote subscribe.
-msgid "Subscribe to a remote user"
-msgstr "Assinar um usuário remoto"
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "User nickname"
-msgstr "Identificação do usuário"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "Nickname of the user you want to follow."
-msgstr "Identificação do usuário que você quer acompanhar."
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "Profile URL"
-msgstr "URL do perfil"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "URL of your profile on another compatible microblogging service."
-msgstr "URL do seu perfil em outro serviço de microblog compatível."
-
-#. TRANS: Button text on page for remote subscribe.
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Assinar"
-
-#. TRANS: Form validation error on page for remote subscribe when an invalid profile URL was provided.
-msgid "Invalid profile URL (bad format)."
-msgstr "A URL do perfil é inválida (formato inválido)."
-
-#. TRANS: Form validation error on page for remote subscribe when no the provided profile URL
-#. TRANS: does not contain expected data.
-msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-msgstr ""
-"Não é uma URL de perfil válida (nenhum documento YADIS ou XRDS inválido)."
-
-#. TRANS: Form validation error on page for remote subscribe.
-msgid "That is a local profile! Login to subscribe."
-msgstr "Esse é um perfil local! Entre para assinar."
-
-#. TRANS: Form validation error on page for remote subscribe when the remote service is not providing a request token.
-msgid "Could not get a request token."
-msgstr "Não foi possível obter um token de solicitação."
-
-#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
-#, fuzzy
-msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-msgstr "Não é possível assinar um perfil OMB 0.1 remoto com essa ação."
 
 #. TRANS: Client error displayed when an unknown error occurs while delisting a user.
 #. TRANS: %s is a username.
@@ -5862,10 +5767,6 @@ msgstr "Assinantes de %1$s aguardando aprovação, pág. %2$d"
 msgid "A list of users awaiting approval to subscribe to you."
 msgstr "Lista de usuários aguardando aprovação para assinarem você."
 
-#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
-msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-msgstr "Não é possível assinar um perfil OMB 0.1 remoto com essa ação."
-
 #. TRANS: Page title when subscription succeeded.
 msgid "Subscribed"
 msgstr "Assinado"
@@ -6120,18 +6021,6 @@ msgstr "Cancelado"
 msgid "%1$s unsubscribed from list %2$s by %3$s"
 msgstr "Assinantes de %1$s, pág. %2$d"
 
-#. TRANS: Client error displayed when trying to update profile with an incompatible license.
-#. TRANS: %1$s is the license incompatible with site license %2$s.
-#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
-#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
-#, php-format
-msgid ""
-"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
-"\"."
-msgstr ""
-"A licença \"%1$s\" do fluxo do usuário não é compatível com a licença \"%2$s"
-"\" do site."
-
 #. TRANS: Title of URL settings tab in profile settings.
 msgid "URL settings"
 msgstr "Configurações da URL"
@@ -6272,117 +6161,6 @@ msgstr "Define se os usuários podem ou não convidar novos usuários."
 #. TRANS: Title for button to save user settings in user admin panel.
 msgid "Save user settings."
 msgstr "Salvar as configurações de usuário."
-
-#. TRANS: Page title.
-msgid "Authorize subscription"
-msgstr "Autorizar a assinatura"
-
-#. TRANS: Page notice on "Authorize subscription" page.
-msgid ""
-"Please check these details to make sure that you want to subscribe to this "
-"user’s notices. If you didn’t just ask to subscribe to someone’s notices, "
-"click \"Reject\"."
-msgstr ""
-"Por favor, verifique estes detalhes para ter certeza que você quer assinar "
-"as mensagens deste usuário. Se você não solicitou assinar as mensagens de "
-"alguém, clique em \"Recusar\"."
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to accept a group membership request on approve group form.
-#. TRANS: Submit button text to accept a subscription request on approve sub form.
-msgctxt "BUTTON"
-msgid "Accept"
-msgstr "Aceitar"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#. TRANS: Button title to subscribe to a user.
-msgid "Subscribe to this user."
-msgstr "Assinar este usuário."
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to reject a group membership request on approve group form.
-#. TRANS: Submit button text to reject a subscription request on approve sub form.
-msgctxt "BUTTON"
-msgid "Reject"
-msgstr "Recusar"
-
-#. TRANS: Title for button on Authorise Subscription page.
-msgid "Reject this subscription."
-msgstr "Recusar esta assinatura."
-
-#. TRANS: Client error displayed for an empty authorisation request.
-msgid "No authorization request!"
-msgstr "Nenhuma solicitação de autorização!"
-
-#. TRANS: Accept message header from Authorise subscription page.
-msgid "Subscription authorized"
-msgstr "A assinatura foi autorizada"
-
-#. TRANS: Accept message text from Authorise subscription page.
-msgid ""
-"The subscription has been authorized, but no callback URL was passed. Check "
-"with the site's instructions for details on how to authorize the "
-"subscription. Your subscription token is:"
-msgstr ""
-"A assinatura foi autorizada, mas não foi informada nenhuma URL de retorno. "
-"Verifique as instruções do site para detalhes sobre como autorizar a "
-"assinatura. Seu token de assinatura é:"
-
-#. TRANS: Reject message header from Authorise subscription page.
-msgid "Subscription rejected"
-msgstr "A assinatura foi recusada"
-
-#. TRANS: Reject message from Authorise subscription page.
-msgid ""
-"The subscription has been rejected, but no callback URL was passed. Check "
-"with the site's instructions for details on how to fully reject the "
-"subscription."
-msgstr ""
-"A assinatura foi rejeitada, mas não foi informada nenhuma URL de retorno. "
-"Verifique as instruções do site para detalhes sobre como rejeitar "
-"completamente a assinatura."
-
-#. TRANS: Exception thrown when no valid user is found for an authorisation request.
-#. TRANS: %s is a listener URI.
-#, php-format
-msgid "Listener URI \"%s\" not found here."
-msgstr "A URI do usuário \"%s\" não foi encontrada aqui."
-
-#. TRANS: Exception thrown when listenee URI is too long for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is too long."
-msgstr "A URI do usuário \"%s\" é muito extensa."
-
-#. TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is a local user."
-msgstr "A URI \"%s\" é de um usuário local."
-
-#. TRANS: Exception thrown when profile URL is a local user for an authorisation request.
-#. TRANS: %s is a profile URL.
-#, php-format
-msgid "Profile URL \"%s\" is for a local user."
-msgstr "A URL de perfil \"%s\" é de um usuário local."
-
-#. TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Avatar URL \"%s\" is not valid."
-msgstr "A URL de avatar \"%s\" não é válida."
-
-#. TRANS: Exception thrown when avatar URL could not be read for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Cannot read avatar URL \"%s\"."
-msgstr "Não é possível ler a URL de avatar \"%s\"."
-
-#. TRANS: Exception thrown when avatar URL return an invalid image type for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Wrong image type for avatar URL \"%s\"."
-msgstr "Tipo de imagem errado para a URL de avatar \"%s\"."
 
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
@@ -6597,6 +6375,10 @@ msgstr "Não foi possível atualizar o grupo local."
 msgid "Could not create login token for %s"
 msgstr "Não foi possível criar o token de autenticação para %s"
 
+#, fuzzy
+msgid "Cannot instantiate class "
+msgstr "Não é possível salvar a nova senha."
+
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "Não foi encontrado nenhum nome de base de dados ou DSN."
@@ -6777,7 +6559,6 @@ msgid "Unable to save tag."
 msgstr "Não foi salvar gravar a categoria."
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
-#. TRANS: Error message displayed to a banned user when they try to subscribe.
 msgid "You have been banned from subscribing."
 msgstr "Você está proibido de assinar."
 
@@ -6795,10 +6576,6 @@ msgstr "Não assinado!"
 
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 msgid "Could not delete self-subscription."
-msgstr "Não foi possível salvar a assinatura."
-
-#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
-msgid "Could not delete subscription OMB token."
 msgstr "Não foi possível salvar a assinatura."
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
@@ -6926,6 +6703,13 @@ msgstr "Administrador"
 msgctxt "role"
 msgid "Moderator"
 msgstr "Moderador"
+
+#. TRANS: Link text for link that will subscribe to a remote profile.
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Assinar"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
@@ -7245,44 +7029,6 @@ msgstr "Nenhum usuário para esse código."
 msgid "Could not authenticate you."
 msgstr "Não foi possível autenticá-lo."
 
-#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
-msgid "Could not create anonymous consumer."
-msgstr "Não é possível criar um consumidor anônimo."
-
-#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
-msgid "Could not create anonymous OAuth application."
-msgstr "Não é possível criar uma aplicação OAuth anônima."
-
-#. TRANS: Exception thrown when no token association could be found.
-msgid ""
-"Could not find a profile and application associated with the request token."
-msgstr ""
-"Não foi possível encontrar um perfil e uma aplicação associados ao token "
-"requisitado."
-
-#. TRANS: Exception thrown when no access token can be issued.
-msgid "Could not issue access token."
-msgstr "Não foi possível emitir o token de acesso."
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error inserting OAuth application user."
-msgstr ""
-"Erro no banco de dados durante a inserção do usuário da aplicativo OAuth."
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error updating OAuth application user."
-msgstr ""
-"Ocorreu um erro no banco de dados durante a atualização do usuário da "
-"aplicação OAuth"
-
-#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
-msgid "Tried to revoke unknown token."
-msgstr "Tentou revogar um código desconhecido."
-
-#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
-msgid "Failed to delete revoked token."
-msgstr "Falha ao eliminar código revogado."
-
 #. TRANS: Form input field label for application icon.
 msgid "Icon"
 msgstr "Ícone"
@@ -7404,6 +7150,18 @@ msgstr "Token de acesso iniciando com: %s"
 msgctxt "BUTTON"
 msgid "Revoke"
 msgstr "Revogar"
+
+#. TRANS: Submit button text to accept a group membership request on approve group form.
+#. TRANS: Submit button text to accept a subscription request on approve sub form.
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr "Aceitar"
+
+#. TRANS: Submit button text to reject a group membership request on approve group form.
+#. TRANS: Submit button text to reject a subscription request on approve sub form.
+msgctxt "BUTTON"
+msgid "Reject"
+msgstr "Recusar"
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
 msgid "Author element must contain a name element."
@@ -8222,6 +7980,13 @@ msgstr "Mensagens populares"
 msgid "Active groups"
 msgstr "Todos os grupos"
 
+#, fuzzy
+msgid "See all"
+msgstr "Exibir todas"
+
+msgid "See all groups you belong to"
+msgstr ""
+
 #. TRANS: Title for group tag cloud section.
 #. TRANS: %s is a group name.
 #, php-format
@@ -8316,7 +8081,7 @@ msgctxt "TITLE"
 msgid "Trends"
 msgstr ""
 
-#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Default button text for inviting more users to the StatusNet instance.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
@@ -8363,6 +8128,10 @@ msgstr "Entrar"
 msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Sair"
+
+#, fuzzy
+msgid "See all lists you have created"
+msgstr "Aplicações que você registrou"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -8897,6 +8666,9 @@ msgstr "Não sei como manipular esse tipo de destino."
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+msgid "More ▼"
+msgstr ""
+
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
 msgstr "A identificação não pode estar em branco."
@@ -9015,26 +8787,6 @@ msgstr "Cutucar"
 #. TRANS: Button title to nudge/ping another user.
 msgid "Send a nudge to this user."
 msgstr "Cutucar este usuário"
-
-#. TRANS: Exception thrown when creating a new profile fails in OAuth store.
-msgid "Error inserting new profile."
-msgstr "Erro ao inserir perfil novo."
-
-#. TRANS: Exception thrown when creating a new avatar fails in OAuth store.
-msgid "Error inserting avatar."
-msgstr "Erro ao inserir avatar."
-
-#. TRANS: Exception thrown when creating a remote profile fails in OAuth store.
-msgid "Error inserting remote profile."
-msgstr "Erro ao inserir perfil remoto."
-
-#. TRANS: Exception thrown when a notice is denied because it has been sent before.
-msgid "Duplicate notice."
-msgstr "Nota duplicada."
-
-#. TRANS: Exception thrown when creating a new subscription fails in OAuth store.
-msgid "Could not insert new subscription."
-msgstr "Não foi possível inserir a nova assinatura."
 
 #. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
 #, fuzzy
@@ -9650,6 +9402,44 @@ msgstr "Silenciar"
 msgid "Silence this user"
 msgstr "Silenciar este usuário"
 
+#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
+msgid "Could not create anonymous consumer."
+msgstr "Não é possível criar um consumidor anônimo."
+
+#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
+msgid "Could not create anonymous OAuth application."
+msgstr "Não é possível criar uma aplicação OAuth anônima."
+
+#. TRANS: Exception thrown when no token association could be found.
+msgid ""
+"Could not find a profile and application associated with the request token."
+msgstr ""
+"Não foi possível encontrar um perfil e uma aplicação associados ao token "
+"requisitado."
+
+#. TRANS: Exception thrown when no access token can be issued.
+msgid "Could not issue access token."
+msgstr "Não foi possível emitir o token de acesso."
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error inserting OAuth application user."
+msgstr ""
+"Erro no banco de dados durante a inserção do usuário da aplicativo OAuth."
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error updating OAuth application user."
+msgstr ""
+"Ocorreu um erro no banco de dados durante a atualização do usuário da "
+"aplicação OAuth"
+
+#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
+msgid "Tried to revoke unknown token."
+msgstr "Tentou revogar um código desconhecido."
+
+#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
+msgid "Failed to delete revoked token."
+msgstr "Falha ao eliminar código revogado."
+
 #. TRANS: Menu item in local navigation menu.
 #, fuzzy
 msgctxt "MENU"
@@ -9706,6 +9496,10 @@ msgstr "Convide seus amigos e colegas para unir-se a você no %s"
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Assinar este usuário"
+
+#. TRANS: Button title to subscribe to a user.
+msgid "Subscribe to this user."
+msgstr "Assinar este usuário."
 
 #. TRANS: Title of personal tag cloud section.
 msgid "People Tagcloud as self-tagged"
@@ -10070,3 +9864,177 @@ msgstr "Não é um endereço de e-mail válido."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Não foi possível salvar o perfil."
+
+#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
+#~ msgstr "Você não pode listar um perfil OMB 0.1 remoto com esta ação."
+
+#~ msgid "Not expecting this response!"
+#~ msgstr "Não esperava por esta resposta!"
+
+#~ msgid "User being listened to does not exist."
+#~ msgstr "O usuário que está está sendo acompanhado não existe."
+
+#~ msgid "You can use the local subscription!"
+#~ msgstr "Você pode usar a assinatura local!"
+
+#~ msgid "That user has blocked you from subscribing."
+#~ msgstr "Esse usuário bloqueou o seu pedido de assinatura."
+
+#~ msgid "You are not authorized."
+#~ msgstr "Você não está autorizado."
+
+#~ msgid "Could not convert request token to access token."
+#~ msgstr ""
+#~ "Não foi possível converter o token de solicitação para token de acesso."
+
+#~ msgid "Remote service uses unknown version of OMB protocol."
+#~ msgstr "O serviço remoto usa uma versão desconhecida do protocolo OMB."
+
+#~ msgid "Error updating remote profile."
+#~ msgstr "Ocorreu um erro durante a atualização do perfil remoto."
+
+#~ msgid "Invalid notice content."
+#~ msgstr "O conteúdo da mensagem é inválido."
+
+#~ msgid ""
+#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
+#~ msgstr ""
+#~ "A licença \"%1$s\" da mensagem não é compatível com a licença \"%2$s\" do "
+#~ "site."
+
+#~ msgid ""
+#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
+#~ "register%%) a new  account. If you already have an account  on a "
+#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
+#~ "URL below."
+#~ msgstr ""
+#~ "Para assinar, você pode [autenticar-se](%%action.login%%), ou [registrar]"
+#~ "(%%action.register%%) uma nova conta. Se você já tem uma conta em um "
+#~ "[site de microblog compatível](%%doc.openmublog%%), informe a URL do seu "
+#~ "perfil abaixo."
+
+#~ msgid "Remote subscribe"
+#~ msgstr "Assinatura remota"
+
+#~ msgid "Subscribe to a remote user"
+#~ msgstr "Assinar um usuário remoto"
+
+#~ msgid "User nickname"
+#~ msgstr "Identificação do usuário"
+
+#~ msgid "Nickname of the user you want to follow."
+#~ msgstr "Identificação do usuário que você quer acompanhar."
+
+#~ msgid "Profile URL"
+#~ msgstr "URL do perfil"
+
+#~ msgid "URL of your profile on another compatible microblogging service."
+#~ msgstr "URL do seu perfil em outro serviço de microblog compatível."
+
+#~ msgid "Invalid profile URL (bad format)."
+#~ msgstr "A URL do perfil é inválida (formato inválido)."
+
+#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
+#~ msgstr ""
+#~ "Não é uma URL de perfil válida (nenhum documento YADIS ou XRDS inválido)."
+
+#~ msgid "That is a local profile! Login to subscribe."
+#~ msgstr "Esse é um perfil local! Entre para assinar."
+
+#~ msgid "Could not get a request token."
+#~ msgstr "Não foi possível obter um token de solicitação."
+
+#, fuzzy
+#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
+#~ msgstr "Não é possível assinar um perfil OMB 0.1 remoto com essa ação."
+
+#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
+#~ msgstr "Não é possível assinar um perfil OMB 0.1 remoto com essa ação."
+
+#~ msgid ""
+#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
+#~ "$s\"."
+#~ msgstr ""
+#~ "A licença \"%1$s\" do fluxo do usuário não é compatível com a licença \"%2"
+#~ "$s\" do site."
+
+#~ msgid "Authorize subscription"
+#~ msgstr "Autorizar a assinatura"
+
+#~ msgid ""
+#~ "Please check these details to make sure that you want to subscribe to "
+#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
+#~ "notices, click \"Reject\"."
+#~ msgstr ""
+#~ "Por favor, verifique estes detalhes para ter certeza que você quer "
+#~ "assinar as mensagens deste usuário. Se você não solicitou assinar as "
+#~ "mensagens de alguém, clique em \"Recusar\"."
+
+#~ msgid "Reject this subscription."
+#~ msgstr "Recusar esta assinatura."
+
+#~ msgid "No authorization request!"
+#~ msgstr "Nenhuma solicitação de autorização!"
+
+#~ msgid "Subscription authorized"
+#~ msgstr "A assinatura foi autorizada"
+
+#~ msgid ""
+#~ "The subscription has been authorized, but no callback URL was passed. "
+#~ "Check with the site's instructions for details on how to authorize the "
+#~ "subscription. Your subscription token is:"
+#~ msgstr ""
+#~ "A assinatura foi autorizada, mas não foi informada nenhuma URL de "
+#~ "retorno. Verifique as instruções do site para detalhes sobre como "
+#~ "autorizar a assinatura. Seu token de assinatura é:"
+
+#~ msgid "Subscription rejected"
+#~ msgstr "A assinatura foi recusada"
+
+#~ msgid ""
+#~ "The subscription has been rejected, but no callback URL was passed. Check "
+#~ "with the site's instructions for details on how to fully reject the "
+#~ "subscription."
+#~ msgstr ""
+#~ "A assinatura foi rejeitada, mas não foi informada nenhuma URL de retorno. "
+#~ "Verifique as instruções do site para detalhes sobre como rejeitar "
+#~ "completamente a assinatura."
+
+#~ msgid "Listener URI \"%s\" not found here."
+#~ msgstr "A URI do usuário \"%s\" não foi encontrada aqui."
+
+#~ msgid "Listenee URI \"%s\" is too long."
+#~ msgstr "A URI do usuário \"%s\" é muito extensa."
+
+#~ msgid "Listenee URI \"%s\" is a local user."
+#~ msgstr "A URI \"%s\" é de um usuário local."
+
+#~ msgid "Profile URL \"%s\" is for a local user."
+#~ msgstr "A URL de perfil \"%s\" é de um usuário local."
+
+#~ msgid "Avatar URL \"%s\" is not valid."
+#~ msgstr "A URL de avatar \"%s\" não é válida."
+
+#~ msgid "Cannot read avatar URL \"%s\"."
+#~ msgstr "Não é possível ler a URL de avatar \"%s\"."
+
+#~ msgid "Wrong image type for avatar URL \"%s\"."
+#~ msgstr "Tipo de imagem errado para a URL de avatar \"%s\"."
+
+#~ msgid "Could not delete subscription OMB token."
+#~ msgstr "Não foi possível salvar a assinatura."
+
+#~ msgid "Error inserting new profile."
+#~ msgstr "Erro ao inserir perfil novo."
+
+#~ msgid "Error inserting avatar."
+#~ msgstr "Erro ao inserir avatar."
+
+#~ msgid "Error inserting remote profile."
+#~ msgstr "Erro ao inserir perfil remoto."
+
+#~ msgid "Duplicate notice."
+#~ msgstr "Nota duplicada."
+
+#~ msgid "Could not insert new subscription."
+#~ msgstr "Não foi possível inserir a nova assinatura."

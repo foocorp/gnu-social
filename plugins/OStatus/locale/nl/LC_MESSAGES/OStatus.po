@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:25:54+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:21:39+0000\n"
 "Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:13+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -756,6 +756,16 @@ msgstr "Onbekend feedformaat"
 #. TRANS: Exception.
 msgid "RSS feed without a channel."
 msgstr "RSS-feed zonder kanaal."
+
+msgid "Can only handle share activities with exactly one object."
+msgstr ""
+
+msgid "Can only handle shared activities."
+msgstr ""
+
+#, php-format
+msgid "Failed to save activity %s"
+msgstr ""
 
 #. TRANS: Client exception. %s is a source URI.
 #, php-format

@@ -49,6 +49,11 @@ class Profile extends Memcached_DataObject
         return Memcached_DataObject::staticGet('Profile',$k,$v);
     }
 
+	function multiGet($keyCol, $keyVals, $skipNulls=true)
+	{
+	    return parent::multiGet('Profile', $keyCol, $keyVals, $skipNulls);
+	}
+	
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
@@ -63,12 +68,18 @@ class Profile extends Memcached_DataObject
         return $this->_user;
     }
 
+	protected $_avatars = array();
+	
     function getAvatar($width, $height=null)
     {
         if (is_null($height)) {
             $height = $width;
         }
 
+		if (array_key_exists($width, $this->_avatars)) {
+			return $this->_avatars[$width];
+		}
+		
         $avatar = null;
 
         if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
@@ -78,9 +89,16 @@ class Profile extends Memcached_DataObject
             Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
         }
 
+		$this->_avatars[$width] = $avatar;
+		
         return $avatar;
     }
 
+	function _fillAvatar($width, $avatar)
+	{
+		$this->_avatars[$width] = $avatar;    
+	}
+	
     function getOriginalAvatar()
     {
         $avatar = DB_DataObject::factory('avatar');
@@ -225,9 +243,14 @@ class Profile extends Memcached_DataObject
 
     function isMember($group)
     {
-        $gm = Group_member::pkeyGet(array('profile_id' => $this->id,
-                                          'group_id' => $group->id));
-        return (!empty($gm));
+    	$groups = $this->getGroups(0, null);
+    	$gs = $groups->fetchAll();
+    	foreach ($gs as $g) {
+    	    if ($group->id == $g->id) {
+    	        return true;
+    	    }
+    	}
+    	return false;
     }
 
     function isAdmin($group)
@@ -268,16 +291,7 @@ class Profile extends Memcached_DataObject
             self::cacheSet($keypart, implode(',', $ids));
         }
 
-        $groups = array();
-
-        foreach ($ids as $id) {
-            $group = User_group::staticGet('id', $id);
-            if (!empty($group)) {
-                $groups[] = $group;
-            }
-        }
-
-        return new ArrayWrapper($groups);
+        return User_group::multiGet('id', $ids);
     }
 
     function isTagged($peopletag)
@@ -1357,7 +1371,22 @@ class Profile extends Memcached_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_user');
+        $skip = array('_user', '_avatars');
         return array_diff($vars, $skip);
+    }
+    
+    static function fillAvatars(&$profiles, $width)
+    {
+    	$ids = array();
+    	foreach ($profiles as $profile) {
+    	    $ids[] = $profile->id;
+    	}
+    	
+    	$avatars = Avatar::pivotGet('profile_id', $ids, array('width' => $width,
+															  'height' => $width));
+    	
+    	foreach ($profiles as $profile) {
+    	    $profile->_fillAvatar($width, $avatars[$profile->id]);
+    	}
     }
 }

@@ -1171,9 +1171,19 @@ td.entity_profile {
     width: auto;
 }
 
-#event-startdate, #event-starttime, #event-enddate, #event-endtime {
-    width: 120px;
+label[for=event-starttime], label[for=event-endtime] {
+    display: none;
+}
+
+#event-starttime, #event-endtime {
+    margin-top:  -1px;
+    margin-bottom:  -1px;
+    height: 2em;
+}
+
+#event-startdate, #event-enddate {
     margin-right: 20px;
+    width: 120px;
 }
 
 /* Limited-scope specific styles */
@@ -1348,6 +1358,27 @@ li.notice-answer + li.notice {
 .question p.best, .answer p.best {
     background: url(../images/rosette.png) no-repeat top left;
     padding-left: 20px;
+}
+
+/* Blog specific styles */
+
+label[for=blog-entry-content] {
+    display: none !important;
+}
+
+#input_form_blog td {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#input_form_blog td.mceToolbar {
+    padding-top: 4px;
+}
+
+/* Poll specific styles */
+
+.notice div.poll-content {
+    opacity: 1;
 }
 
 /* SNOD CompanyLogo styling */

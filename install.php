@@ -335,6 +335,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
     <head>
         <title>Install StatusNet</title>
 	<link rel="shortcut icon" href="favicon.ico"/>
+        <link rel="stylesheet" type="text/css" href="theme/base/css/display.css" media="screen, projection, tv"/>
         <link rel="stylesheet" type="text/css" href="theme/neo/css/display.css" media="screen, projection, tv"/>
         <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/base/css/ie.css" /><![endif]-->
         <!--[if lte IE 6]><link rel="stylesheet" type="text/css" theme/base/css/ie6.css" /><![endif]-->
@@ -351,8 +352,14 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
                         <span class="fn org">StatusNet</span>
                     </a>
                 </address>
+                <div id="site_nav_global_primary"></div>
             </div>
             <div id="core">
+             <div id="aside_primary_wrapper">
+              <div id="content_wrapper">
+               <div id="site_nav_local_views_wrapper">
+                <div id="site_nav_local_views"></div>
+                
                 <div id="content">
                      <div id="content_inner">
                         <h1>Install StatusNet</h1>
@@ -362,7 +369,13 @@ $installer->main();
 ?>
                    </div>
                 </div>
+
+                <div id="aside_primary" class="aside"></div>
+               </div>
+              </div>
+             </div>
             </div>
+            <div id="footer"></div>
         </div>
     </body>
 </html>

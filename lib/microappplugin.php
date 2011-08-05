@@ -193,6 +193,7 @@ abstract class MicroAppPlugin extends Plugin
     function isMyActivity($activity) {
         $types = $this->types();
         return (count($activity->objects) == 1 &&
+                ($activity->objects[0] instanceof ActivityObject) &&
                 in_array($activity->objects[0]->type, $types));
     }
 
@@ -345,7 +346,7 @@ abstract class MicroAppPlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onStartHandleFeedEntryWithProfile($activity, $oprofile)
+    function onStartHandleFeedEntryWithProfile($activity, $oprofile, &$notice)
     {
         if ($this->isMyActivity($activity)) {
 
@@ -364,7 +365,7 @@ abstract class MicroAppPlugin extends Plugin
                              'source' => 'ostatus');
 
             // $actor is an ostatus_profile
-            $this->saveNoticeFromActivity($activity, $actor->localProfile(), $options);
+            $notice = $this->saveNoticeFromActivity($activity, $actor->localProfile(), $options);
 
             return false;
         }
@@ -446,9 +447,9 @@ abstract class MicroAppPlugin extends Plugin
             $options = array('source' => 'atompub');
 
             // $user->getProfile() is a Profile
-            $this->saveNoticeFromActivity($activity,
-                                          $user->getProfile(),
-                                          $options);
+            $notice = $this->saveNoticeFromActivity($activity,
+                                                    $user->getProfile(),
+                                                    $options);
 
             return false;
         }

@@ -463,35 +463,241 @@ class Ostatus_profile extends Managed_DataObject
      * @param DOMElement $entry
      * @param DOMElement $feed for context
      * @param string $source identifier ("push" or "salmon")
+     *
+     * @return Notice Notice representing the new (or existing) activity
      */
+
     public function processEntry($entry, $feed, $source)
     {
         $activity = new Activity($entry, $feed);
+        return $this->processActivity($activity, $source);
+    }
 
-        if (Event::handle('StartHandleFeedEntryWithProfile', array($activity, $this)) &&
+    public function processActivity($activity, $source)
+    {
+        $notice = null;
+
+        // The "WithProfile" events were added later.
+
+        if (Event::handle('StartHandleFeedEntryWithProfile', array($activity, $this, &$notice)) &&
             Event::handle('StartHandleFeedEntry', array($activity))) {
-            // @todo process all activity objects
-            switch ($activity->objects[0]->type) {
-            case ActivityObject::ARTICLE:
-            case ActivityObject::BLOGENTRY:
-            case ActivityObject::NOTE:
-            case ActivityObject::STATUS:
-            case ActivityObject::COMMENT:
-            case null:
-                if ($activity->verb == ActivityVerb::POST) {
-                    $this->processPost($activity, $source);
-                } else {
-                    common_log(LOG_INFO, "Ignoring activity with unrecognized verb $activity->verb");
+
+            switch ($activity->verb) {
+            case ActivityVerb::POST:
+                // @todo process all activity objects
+                switch ($activity->objects[0]->type) {
+                case ActivityObject::ARTICLE:
+                case ActivityObject::BLOGENTRY:
+                case ActivityObject::NOTE:
+                case ActivityObject::STATUS:
+                case ActivityObject::COMMENT:
+                case null:
+                    $notice = $this->processPost($activity, $source);
+                    break;
+                default:
+                    // TRANS: Client exception.
+                    throw new ClientException(_m('Cannot handle that kind of post.'));
                 }
                 break;
+            case ActivityVerb::SHARE:
+                $notice = $this->processShare($activity, $source);
+                break;
             default:
-                // TRANS: Client exception.
-                throw new ClientException(_m('Cannot handle that kind of post.'));
+                common_log(LOG_INFO, "Ignoring activity with unrecognized verb $activity->verb");
             }
 
             Event::handle('EndHandleFeedEntry', array($activity));
-            Event::handle('EndHandleFeedEntryWithProfile', array($activity, $this));
+            Event::handle('EndHandleFeedEntryWithProfile', array($activity, $this, $notice));
         }
+        
+        return $notice;
+    }
+
+    public function processShare($activity, $method)
+    {
+        $notice = null;
+
+        $oprofile = $this->checkAuthorship($activity);
+
+        if (empty($oprofile)) {
+            common_log(LOG_INFO, "No author matched share activity");
+            return null;
+        }
+
+        if (count($activity->objects) != 1) {
+            throw new ClientException(_m("Can only handle share activities with exactly one object."));
+        }
+
+        $shared = $activity->objects[0];
+
+        if (!($shared instanceof Activity)) {
+            throw new ClientException(_m("Can only handle shared activities."));
+        }
+
+        $other = Ostatus_profile::ensureActivityObjectProfile($shared->actor);
+
+        // Save the item (or check for a dupe)
+
+        $sharedNotice = $other->processActivity($shared, $method);
+        
+        if (empty($sharedNotice)) {
+            $sharedId = ($shared->id) ? $shared->id : $shared->objects[0]->id;
+            throw new ClientException(sprintf(_m("Failed to save activity %s"),
+                                              $sharedId));
+        }
+
+        // The id URI will be used as a unique identifier for for the notice,
+        // protecting against duplicate saves. It isn't required to be a URL;
+        // tag: URIs for instance are found in Google Buzz feeds.
+
+        $sourceUri = $activity->id;
+
+        $dupe = Notice::staticGet('uri', $sourceUri);
+        if ($dupe) {
+            common_log(LOG_INFO, "OStatus: ignoring duplicate post: $sourceUri");
+            return $dupe;
+        }
+
+        // We'll also want to save a web link to the original notice, if provided.
+
+        $sourceUrl = null;
+        if ($activity->link) {
+            $sourceUrl = $activity->link;
+        } else if ($activity->link) {
+            $sourceUrl = $activity->link;
+        } else if (preg_match('!^https?://!', $activity->id)) {
+            $sourceUrl = $activity->id;
+        }
+
+        // Use summary as fallback for content
+
+        if (!empty($activity->content)) {
+            $sourceContent = $activity->content;
+        } else if (!empty($activity->summary)) {
+            $sourceContent = $activity->summary;
+        } else if (!empty($activity->title)) {
+            $sourceContent = $activity->title;
+        } else {
+            // @fixme fetch from $sourceUrl?
+            // TRANS: Client exception. %s is a source URI.
+            throw new ClientException(sprintf(_m('No content for notice %s.'),$sourceUri));
+        }
+
+        // Get (safe!) HTML and text versions of the content
+
+        $rendered = $this->purify($sourceContent);
+        $content = html_entity_decode(strip_tags($rendered), ENT_QUOTES, 'UTF-8');
+
+        $shortened = common_shorten_links($content);
+
+        // If it's too long, try using the summary, and make the
+        // HTML an attachment.
+
+        $attachment = null;
+
+        if (Notice::contentTooLong($shortened)) {
+            $attachment = $this->saveHTMLFile($activity->title, $rendered);
+            $summary = html_entity_decode(strip_tags($activity->summary), ENT_QUOTES, 'UTF-8');
+            if (empty($summary)) {
+                $summary = $content;
+            }
+            $shortSummary = common_shorten_links($summary);
+            if (Notice::contentTooLong($shortSummary)) {
+                $url = common_shorten_url($sourceUrl);
+                $shortSummary = substr($shortSummary,
+                                       0,
+                                       Notice::maxContent() - (mb_strlen($url) + 2));
+                $content = $shortSummary . ' ' . $url;
+
+                // We mark up the attachment link specially for the HTML output
+                // so we can fold-out the full version inline.
+
+                // @todo FIXME i18n: This tooltip will be saved with the site's default language
+                // TRANS: Shown when a notice is longer than supported and/or when attachments are present. At runtime
+                // TRANS: this will usually be replaced with localised text from StatusNet core messages.
+                $showMoreText = _m('Show more');
+                $attachUrl = common_local_url('attachment',
+                                              array('attachment' => $attachment->id));
+                $rendered = common_render_text($shortSummary) .
+                            '<a href="' . htmlspecialchars($attachUrl) .'"'.
+                            ' class="attachment more"' .
+                            ' title="'. htmlspecialchars($showMoreText) . '">' .
+                            '&#8230;' .
+                            '</a>';
+            }
+        }
+
+        $options = array('is_local' => Notice::REMOTE,
+                         'url' => $sourceUrl,
+                         'uri' => $sourceUri,
+                         'rendered' => $rendered,
+                         'replies' => array(),
+                         'groups' => array(),
+                         'peopletags' => array(),
+                         'tags' => array(),
+                         'urls' => array(),
+                         'repeat_of' => $sharedNotice->id,
+                         'scope' => $sharedNotice->scope);
+
+        // Check for optional attributes...
+
+        if (!empty($activity->time)) {
+            $options['created'] = common_sql_date($activity->time);
+        }
+
+        if ($activity->context) {
+            // Any individual or group attn: targets?
+            $replies = $activity->context->attention;
+            $options['groups'] = $this->filterReplies($oprofile, $replies);
+            $options['replies'] = $replies;
+
+            // Maintain direct reply associations
+            // @fixme what about conversation ID?
+            if (!empty($activity->context->replyToID)) {
+                $orig = Notice::staticGet('uri',
+                                          $activity->context->replyToID);
+                if (!empty($orig)) {
+                    $options['reply_to'] = $orig->id;
+                }
+            }
+
+            $location = $activity->context->location;
+            if ($location) {
+                $options['lat'] = $location->lat;
+                $options['lon'] = $location->lon;
+                if ($location->location_id) {
+                    $options['location_ns'] = $location->location_ns;
+                    $options['location_id'] = $location->location_id;
+                }
+            }
+        }
+
+        if ($this->isPeopletag()) {
+            $options['peopletags'][] = $this->localPeopletag();
+        }
+
+        // Atom categories <-> hashtags
+        foreach ($activity->categories as $cat) {
+            if ($cat->term) {
+                $term = common_canonical_tag($cat->term);
+                if ($term) {
+                    $options['tags'][] = $term;
+                }
+            }
+        }
+
+        // Atom enclosures -> attachment URLs
+        foreach ($activity->enclosures as $href) {
+            // @fixme save these locally or....?
+            $options['urls'][] = $href;
+        }
+
+        $notice = Notice::saveNew($oprofile->profile_id,
+                                  $content,
+                                  'ostatus',
+                                  $options);
+
+        return $notice;
     }
 
     /**
@@ -503,10 +709,12 @@ class Ostatus_profile extends Managed_DataObject
      */
     public function processPost($activity, $method)
     {
+        $notice = null;
+
         $oprofile = $this->checkAuthorship($activity);
 
         if (empty($oprofile)) {
-            return false;
+            return null;
         }
 
         // It's not always an ActivityObject::NOTE, but... let's just say it is.
@@ -520,7 +728,7 @@ class Ostatus_profile extends Managed_DataObject
         $dupe = Notice::staticGet('uri', $sourceUri);
         if ($dupe) {
             common_log(LOG_INFO, "OStatus: ignoring duplicate post: $sourceUri");
-            return false;
+            return $dupe;
         }
 
         // We'll also want to save a web link to the original notice, if provided.

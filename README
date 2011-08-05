@@ -2,19 +2,19 @@
 README
 ------
 
-StatusNet 0.9.7 "World Leader Pretend"
-17 March 2011
+StatusNet 1.0.0beta2
+2 August 2011
 
-This is the README file for StatusNet, the Open Source microblogging
-platform. It includes installation instructions, descriptions of
-options you can set, warnings, tips, and general info for
-administrators. Information on using StatusNet can be found in the
+This is the README file for StatusNet, the Open Source social
+networking platform. It includes installation instructions,
+descriptions of options you can set, warnings, tips, and general info
+for administrators. Information on using StatusNet can be found in the
 "doc" subdirectory or in the "help" section on-line.
 
 About
 =====
 
-StatusNet is a Free and Open Source microblogging platform. It helps
+StatusNet is a Free and Open Source social networking platform. It helps
 people in a community, company or group to exchange short (140
 characters, by default) messages over the Web. Users can choose which
 people to "follow" and receive only their friends' or colleagues'
@@ -96,47 +96,27 @@ for additional terms.
 New this version
 ================
 
-This is a security, bug and feature release since version 0.9.6 released on
-23 October 2010.
-
-For best compatibility with client software and site federation, and a
-lot of bug fixes, it is highly recommended that all public sites
-upgrade to the new version. Upgrades require new database indexes for
-best performance; see Upgrade below.
+This is a security release since version 0.9.7 released on 11 March
+2011. It fixes security bug #3260. All sites running version 0.9.7 or
+below are recommended to upgrade to 0.9.9 immediately.
 
 Notable changes this version:
 
-- GroupPrivateMessage plugin lets users send private messages
-  to a group. (Similar to "private groups" on Yammer.)
-- Support for Twitter streaming API in Twitter bridge plugin
-- Support for a new Activity Streams-based API using AtomPub, allowing
-  richer API data. See http://status.net/wiki/AtomPub for details.
-- Unified Facebook plugin, replacing previous Facebook application
-  and Facebook Connect plugin.
-- A plugin to send out a daily summary email to network users.
-- In-line thumbnails of some attachments (video, images) and oEmbed objects.
-- Local copies of remote profiles to let moderators manage OStatus users.
-- Upgrade upstream JS, minify everything.
-- Allow pushing plugin JS, CSS, and static files to a CDN.
-- Configurable nickname rules.
-- Better support for bit.ly URL shortener.
-- InProcessCache plugin for additional caching on top of memcached.
-- Support for Activity Streams JSON feeds on many streams.
-- User-initiated backup and restore of account data in Activity Streams
-  format.
-- Bookmark plugin for making del.icio.us-like social bookmarking sites,
-  including del.icio.us backup file import. Supports OStatus.
-- SQLProfile plugin to tune SQL queries.
-- Better sorting on timelines to support restored or imported data.
-- Hundreds of translations from http://translatewiki.net/
-- Hundreds of performance tunings, bug fixes, and UI improvements.
-- Remove deprecated data from Activity Streams Atom output, to the
-  extent possible.
-- NewMenu plugin for new layout of menu items.
-- Experimental support for moving an account from one server to
-  another, using new AtomPub API.
+- Fix bug #3260, a cross-site scripting (XSS) bug that allows an
+  attacker to inject JavaScript into a page with a carefully structured URL.
+- Updated code for Google Analytics to reflect new API.
+- Various fixes for Bookmark plugin.
+- Updates to reCAPTCHA plugin based on changes to API.
+- New plugin to move the site notice to the sidebar.
+- Add rss.me to notice source list.
+- Updates to data backup/restore.
+- Correct use of "likes" in Facebook plugin.
+- Ignore failures in Twitter plugin.
 
-A full changelog is available at http://status.net/wiki/StatusNet_0.9.7.
+A full changelog is available at http://status.net/wiki/StatusNet_0.9.9.
+
+NOTE: The short-lived StatusNet 0.9.8 ("Letter Never Sent") did not
+adequately fix bug #3260 as originally thought; thus this new release.
 
 Prerequisites
 =============
@@ -246,9 +226,9 @@ especially if you've previously installed PHP/MySQL packages.
 1. Unpack the tarball you downloaded on your Web server. Usually a
    command like this will work:
 
-       tar zxf statusnet-0.9.7.tar.gz
+       tar zxf statusnet-0.9.9.tar.gz
 
-   ...which will make a statusnet-0.9.7 subdirectory in your current
+   ...which will make a statusnet-0.9.9 subdirectory in your current
    directory. (If you don't have shell access on your Web server, you
    may have to unpack the tarball on your local computer and FTP the
    files to the server.)
@@ -256,7 +236,7 @@ especially if you've previously installed PHP/MySQL packages.
 2. Move the tarball to a directory of your choosing in your Web root
    directory. Usually something like this will work:
 
-       mv statusnet-0.9.7 /var/www/statusnet
+       mv statusnet-0.9.9 /var/www/statusnet
 
    This will make your StatusNet instance available in the statusnet path of
    your server, like "http://example.net/statusnet". "microblog" or
@@ -494,7 +474,7 @@ off of amd64 to another server.
 Public feed
 -----------
 
-You can send *all* messages from your microblogging site to a
+You can send *all* messages from your social networking site to a
 third-party service using XMPP. This can be useful for providing
 search, indexing, bridging, or other cool services.
 
@@ -634,7 +614,7 @@ Private
 
 The administrator can set the "private" flag for a site so that it's
 not visible to non-logged-in users. This might be useful for
-workgroups who want to share a microblogging site for project
+workgroups who want to share a social networking site for project
 management, but host it on a public server.
 
 Total privacy is not guaranteed or ensured. Also, privacy is
@@ -671,7 +651,7 @@ with this situation.
 If you've been using StatusNet 0.7, 0.6, 0.5 or lower, or if you've
 been tracking the "git" version of the software, you will probably
 want to upgrade and keep your existing data. There is no automated
-upgrade procedure in StatusNet 0.9.7. Try these step-by-step
+upgrade procedure in StatusNet 0.9.9. Try these step-by-step
 instructions; read to the end first before trying them.
 
 0. Download StatusNet and set up all the prerequisites as if you were
@@ -692,7 +672,7 @@ instructions; read to the end first before trying them.
 5. Once all writing processes to your site are turned off, make a
    final backup of the Web directory and database.
 6. Move your StatusNet directory to a backup spot, like "statusnet.bak".
-7. Unpack your StatusNet 0.9.7 tarball and move it to "statusnet" or
+7. Unpack your StatusNet 0.9.9 tarball and move it to "statusnet" or
    wherever your code used to be.
 8. Copy the config.php file and the contents of the avatar/, background/,
    file/, and local/ subdirectories from your old directory to your new
@@ -891,9 +871,8 @@ shorturllength: ignored. See 'url' section below.
 dupelimit: minimum time allowed for one person to say the same thing
     twice. Default 60s. Anything lower is considered a user
     or UI error.
-textlimit: default max size for texts in the site. Defaults to 140.
-    0 means no limit. Can be fine-tuned for notices, messages,
-    profile bios and group descriptions.
+textlimit: default max size for texts in the site. Defaults to 0 (no limit).
+    Can be fine-tuned for notices, messages, profile bios and group descriptions.
 
 db
 --
@@ -1753,8 +1732,8 @@ There are several ways to get more information about StatusNet.
 Feedback
 ========
 
-* Microblogging messages to http://support.status.net/ are very welcome.
-* The microblogging group http://identi.ca/group/statusnet is a good
+* Messages to http://support.status.net/ are very welcome.
+* The group http://identi.ca/group/statusnet is a good
   place to discuss the software.
 * StatusNet has a bug tracker for any defects you may find, or ideas for
   making things better. http://status.net/bugs

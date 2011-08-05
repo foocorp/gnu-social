@@ -147,7 +147,7 @@ class RealtimePlugin extends Plugin
             $pluginPath = common_path('plugins/Realtime/');
             $keepalive = common_local_url('keepalivechannel', array('channelkey' => $channel->channel_key));
             $close = common_local_url('closechannel', array('channelkey' => $channel->channel_key));
-            $realtimeUI = ' RealtimeUpdate.initActions("'.$url.'", "'.$timeline.'", "'. $pluginPath .'", "'.$keepalive.'", "'.$close.'"); ';
+            $realtimeUI = ' RealtimeUpdate.initActions('.json_encode($url).', '.json_encode($timeline).', '.json_encode($pluginPath).', '.json_encode($keepalive).', '.json_encode($close).'); ';
         }
 
         $script = ' $(document).ready(function() { '.

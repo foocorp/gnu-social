@@ -84,6 +84,17 @@ class EventForm extends Form
     function formData()
     {
         $this->out->elementStart('fieldset', array('id' => 'new_event_data'));
+
+        // Passing in the URL of the Ajax action that the .js for this form hits
+        // when selecting event start and end times. JavaScript will try to
+        // use a relative path, unless explicitely told where an action is,
+        // and that's a bit difficult to calculate since the event form is on
+        // so many pages with different paths. It might be worth solving this
+        // globally by putting the base site path in the Identifier-URL meta tag
+        // or something similar, so it would be easy to calculate the exact path
+        // for actions and other things in JavaScripts. -z
+        $this->out->hidden('timelist_action_url', common_local_url('timelist'));
+
         $this->out->elementStart('ul', 'form_data');
 
         $this->li();
@@ -97,49 +108,71 @@ class EventForm extends Form
         $this->unli();
 
         $this->li();
+
+        $today = new DateTime('today');
+        $today->setTimezone(new DateTimeZone(common_timezone()));
+
         $this->out->input('event-startdate',
                           // TRANS: Field label on event form.
                           _m('LABEL','Start date'),
-                          null,
+                          $today->format('m/d/Y'),
                           // TRANS: Field title on event form.
                           _m('Date the event starts.'),
                           'startdate');
         $this->unli();
 
         $this->li();
-        $this->out->input('event-starttime',
-                          // TRANS: Field label on event form.
-                          _m('LABEL','Start time'),
-                          null,
-                          // TRANS: Field title on event form.
-                          _m('Time the event starts.'),
-                          'starttime');
+
+        $times = EventTimeList::getTimes();
+
+        $this->out->dropdown(
+            'event-starttime',
+            // TRANS: Field label on event form.
+            _m('LABEL','Start time'),
+            $times,
+            // TRANS: Field title on event form.
+            _m('Time the event starts.'),
+            false,
+            null
+        );
+
         $this->unli();
 
         $this->li();
         $this->out->input('event-enddate',
                           // TRANS: Field label on event form.
                           _m('LABEL','End date'),
-                          null,
+                          $today->format('m/d/Y'),
                           // TRANS: Field title on event form.
                           _m('Date the event ends.'),
                           'enddate');
         $this->unli();
 
         $this->li();
-        $this->out->input('event-endtime',
-                          // TRANS: Field label on event form.
-                          _m('LABEL','End time'),
-                          null,
-                          // TRANS: Field title on event form.
-                          _m('Time the event ends.'),
-                          'endtime');
+
+        // XXX: Initial end time should be at least 30 mins out?  We could do
+        // every 15 minute instead -z
+        $keys   = array_keys($times);
+        $endStr = date('m/d/y', strtotime('now')) . " {$keys[0]}";
+        $end    = new DateTime($endStr);
+        $end->modify('+30');
+
+        $this->out->dropdown(
+            'event-endtime',
+            // TRANS: Field label on event form.
+            _m('LABEL','End time'),
+            EventTimeList::getTimes($end->format('c'), true),
+            // TRANS: Field title on event form.
+            _m('Time the event ends.'),
+            false,
+            null
+        );
         $this->unli();
 
         $this->li();
         $this->out->input('event-location',
                           // TRANS: Field label on event form.
-                          _m('LABEL','Location'),
+                          _m('LABEL','Where?'),
                           null,
                           // TRANS: Field title on event form.
                           _m('Event location.'),

@@ -116,15 +116,13 @@ function handleError($error)
                 common_config('site', 'name'),
                 common_config('site', 'email')
             );
-        } else {
-            // TRANS: Error message.
-            $msg = _('An important error occured, probably related to email setup. '.
-                'Check logfiles for more info.'
-            );
-        }
 
-        $dac = new DBErrorAction($msg, 500);
-        $dac->showPage();
+            $dac = new DBErrorAction($msg, 500);
+            $dac->showPage();
+        } else {
+            $sac = new ServerErrorAction($error->getMessage(), 500, $error);
+            $sac->showPage();
+        }
 
     } catch (Exception $e) {
         // TRANS: Error message.

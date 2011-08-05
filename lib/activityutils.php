@@ -146,6 +146,34 @@ class ActivityUtils
     }
 
     /**
+     * Gets all immediate child elements with the given tag
+     *
+     * @param DOMElement $element   element to pick at
+     * @param string     $tag       tag to look for
+     * @param string     $namespace Namespace to look under
+     *
+     * @return array found element or null
+     */
+
+    static function children(DOMNode $element, $tag, $namespace=self::ATOM)
+    {
+        $results = array();
+
+        $els = $element->childNodes;
+
+        if (!empty($els) && $els->length > 0) {
+            for ($i = 0; $i < $els->length; $i++) {
+                $el = $els->item($i);
+                if ($el->localName == $tag && $el->namespaceURI == $namespace) {
+                    $results[] = $el;
+                }
+            }
+        }
+
+        return $results;
+    }
+
+    /**
      * Grab the text content of a DOM element child of the current element
      *
      * @param DOMElement $element   Element whose children we examine

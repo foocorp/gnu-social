@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: DaSch
+# Author: Inkowik
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - LdapCommon\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:25:14+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:20:56+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:26+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-ldapcommon\n"
@@ -23,15 +24,15 @@ msgstr ""
 
 #. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
 msgid "A host must be specified."
-msgstr ""
+msgstr "Ein Host muss angegeben werden."
 
 #. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
 msgid "\"basedn\" must be specified."
-msgstr ""
+msgstr "\"Basedn\" muss angegeben werden."
 
 #. TRANS: Exception thrown when initialising the LDAP Common plugin fails because of an incorrect configuration.
 msgid "The username attribute must be set."
-msgstr ""
+msgstr "Das Benutzernamens-Attribut muss festgelegt werden."
 
 #. TRANS: Exception thrown in the LDAP Common plugin when LDAP server is not available.
 #. TRANS: %s is the error message.

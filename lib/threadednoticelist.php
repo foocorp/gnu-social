@@ -76,17 +76,18 @@ class ThreadedNoticeList extends NoticeList
         $this->out->element('h2', null, _m('HEADER','Notices'));
         $this->out->elementStart('ol', array('class' => 'notices threaded-notices xoxo'));
 
-        $cnt = 0;
+		$notices = $this->notice->fetchAll();
+		$total = count($notices);
+		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
+		
+    	self::prefill($notices);
+    	
         $conversations = array();
-        while ($this->notice->fetch() && $cnt <= NOTICES_PER_PAGE) {
-            $cnt++;
-
-            if ($cnt > NOTICES_PER_PAGE) {
-                break;
-            }
+        
+        foreach ($notices as $notice) {
 
             // Collapse repeats into their originals...
-            $notice = $this->notice;
+            
             if ($notice->repeat_of) {
                 $orig = Notice::staticGet('id', $notice->repeat_of);
                 if ($orig) {
@@ -119,7 +120,7 @@ class ThreadedNoticeList extends NoticeList
         $this->out->elementEnd('ol');
         $this->out->elementEnd('div');
 
-        return $cnt;
+        return $total;
     }
 
     /**
@@ -223,6 +224,7 @@ class ThreadedNoticeListItem extends NoticeListItem
                         $item = new ThreadedNoticeListMoreItem($moreCutoff, $this->out, count($notices));
                         $item->show();
                     }
+                    NoticeList::prefill($notices, AVATAR_MINI_SIZE);
                     foreach (array_reverse($notices) as $notice) {
                         if (Event::handle('StartShowThreadedNoticeSub', array($this, $this->notice, $notice))) {
                             $item = new ThreadedNoticeListSubItem($notice, $this->notice, $this->out);
@@ -468,9 +470,9 @@ class ThreadedNoticeListFavesItem extends NoticeListActorsItem
 {
     function getProfiles()
     {
-        $fave = Fave::byNotice($this->notice->id);
+        $faves = $this->notice->getFaves();
         $profiles = array();
-        while ($fave->fetch()) {
+        foreach ($faves as $fave) {
             $profiles[] = $fave->user_id;
         }
         return $profiles;

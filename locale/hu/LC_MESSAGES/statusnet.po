@@ -12,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:26:15+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:21:58+0000\n"
 "Language-Team: Hungarian <http://translatewiki.net/wiki/Portal:hu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:22:46+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: hu\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -158,10 +158,6 @@ msgstr "Nincs ilyen profil."
 msgid "No such list."
 msgstr "Nincs ilyen lista."
 
-#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
-msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr ""
-
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
 #, php-format
@@ -222,8 +218,6 @@ msgstr "Nincs ilyen lap."
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
 #. TRANS: Client error displayed when referring to non-existing user.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing user.
-#. TRANS: Form validation error on page for remote subscribe when no user was provided.
-#. TRANS: Form validation error on page for remote subscribe when no user profile was found.
 #. TRANS: Client error displayed when trying to reply to a non-exsting user.
 #. TRANS: Client error displayed when providing a non-existing nickname in a RSS 1.0 action.
 #. TRANS: Client error.
@@ -232,7 +226,6 @@ msgstr "Nincs ilyen lap."
 #. TRANS: Client error displayed trying to find a user by ID for a non-existing ID.
 #. TRANS: Client error displayed requesting groups for a non-existing user.
 #. TRANS: Client error displayed when user not found for an action.
-#. TRANS: Client error displayed providing a non-existing nickname.
 #. TRANS: Error text shown when trying to send a direct message to a user that does not exist.
 #. TRANS: Client error displayed when trying to perform a gallery action with an unknown user.
 #. TRANS: Client error displayed when trying to access a mailbox without providing a user.
@@ -312,6 +305,13 @@ msgid ""
 "Why not [register an account](%%%%action.register%%%%) and then nudge %s or "
 "post a notice to them."
 msgstr ""
+
+#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Less business/enterprise-oriented language for public sites.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Send invite"
+msgstr "Meghívások"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -433,6 +433,19 @@ msgstr "Nem sikerült a felhasználó blokkolása."
 #. TRANS: Server error displayed when unblocking a user has failed.
 msgid "Unblock user failed."
 msgstr "Nem sikerült a felhasználó blokkjának feloldása."
+
+#, fuzzy
+msgid "no conversation id"
+msgstr "Beszélgetés"
+
+#, php-format
+msgid "No conversation with id %d"
+msgstr ""
+
+#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "Beszélgetés"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -868,7 +881,6 @@ msgstr "Fiók"
 #. TRANS: Field label on OAuth API authorisation form.
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
-#. TRANS: Label for nickname on user authorisation page.
 #. TRANS: Field label on group edit form.
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Nickname"
@@ -1733,9 +1745,17 @@ msgstr "Cím ellenőrzése"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "A(z) „%s” cím meg van erősítve a fiókodhoz."
 
-#. TRANS: Title for page with a conversion (multiple notices in context).
-msgid "Conversation"
-msgstr "Beszélgetés"
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (Activity Streams JSON)"
+msgstr "%s Atom hírcsatornája"
+
+#. TRANS: Title for link to notice feed.
+#. TRANS: %s is a user nickname.
+#, fuzzy
+msgid "Conversation feed (RSS 2.0)"
+msgstr "%s RSS 2.0 hírcsatornája"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -2437,40 +2457,6 @@ msgstr "Nincs melléklet."
 #. TRANS: that could not be found.
 msgid "No uploaded attachments."
 msgstr "Nincs feltöltött melléklet."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and an unexpected response is received.
-msgid "Not expecting this response!"
-msgstr "Nem várt válasz!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that does not exist.
-msgid "User being listened to does not exist."
-msgstr "A felhasználó akire figyelsz nem létezik."
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is a local profile.
-#. TRANS: Client error displayed when using remote subscribe for a local entity.
-msgid "You can use the local subscription!"
-msgstr "Figyelemmel követheted helyben!"
-
-#. TRANS: Client error displayed when subscribing to a remote profile that is blocked form subscribing to.
-msgid "That user has blocked you from subscribing."
-msgstr "Az a felhasználó blokkolta hogy figyelemmel kövesd."
-
-#. TRANS: Client error displayed when subscribing to a remote profile without providing an authorised token.
-msgid "You are not authorized."
-msgstr "Nincs jogosultságod."
-
-#. TRANS: Client error displayed when subscribing to a remote profile and conversion of the request token to access token fails.
-msgid "Could not convert request token to access token."
-msgstr ""
-
-#. TRANS: Client error displayed when subscribing to a remote profile fails because of an unsupported version of the OMB protocol.
-msgid "Remote service uses unknown version of OMB protocol."
-msgstr ""
-
-#. TRANS: Server error displayed when subscribing to a remote profile fails because the remote profile could not be updated.
-#. TRANS: Exception thrown when updating a remote profile fails in OAuth store.
-msgid "Error updating remote profile."
-msgstr "Nem sikerült frissíteni a távoli profilt."
 
 #. TRANS: Client error displayed when requesting a non-existent file.
 msgid "No such file."
@@ -4014,16 +4000,6 @@ msgid ""
 "All default plugins have been disabled from the site's configuration file."
 msgstr ""
 
-#. TRANS: Client error displayed if the notice posted has too many characters.
-msgid "Invalid notice content."
-msgstr "Érvénytelen megjegyzéstartalom."
-
-#. TRANS: Exception thrown if a notice's license is not compatible with the StatusNet site license.
-#. TRANS: %1$s is the notice license, %2$s is the StatusNet site's license.
-#, fuzzy, php-format
-msgid "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-msgstr "A hír licence ‘%1$s’ nem kompatibilis a webhely licencével ‘%2$s’."
-
 #. TRANS: Client error displayed when trying to add an unindentified field to profile.
 #. TRANS: %s is a field name.
 #, php-format
@@ -4653,71 +4629,6 @@ msgid ""
 msgstr ""
 "(Hamarosan kapnod kell egy e-mailt az e-mail címed megerősítésére vonatkozó "
 "utasításokkal.)"
-
-#. TRANS: Page notice for remote subscribe. This message contains Markdown links.
-#. TRANS: Ensure to keep the correct markup of [link description](link).
-#, php-format
-msgid ""
-"To subscribe, you can [login](%%action.login%%), or [register](%%action."
-"register%%) a new  account. If you already have an account  on a [compatible "
-"microblogging site](%%doc.openmublog%%),  enter your profile URL below."
-msgstr ""
-
-#. TRANS: Page title for Remote subscribe.
-msgid "Remote subscribe"
-msgstr "Távoli feliratkozás"
-
-#. TRANS: Field legend on page for remote subscribe.
-msgid "Subscribe to a remote user"
-msgstr ""
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "User nickname"
-msgstr "Felhasználó beceneve"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "Nickname of the user you want to follow."
-msgstr ""
-
-#. TRANS: Field label on page for remote subscribe.
-msgid "Profile URL"
-msgstr "Profil URL"
-
-#. TRANS: Field title on page for remote subscribe.
-msgid "URL of your profile on another compatible microblogging service."
-msgstr ""
-
-#. TRANS: Button text on page for remote subscribe.
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Kövessük"
-
-#. TRANS: Form validation error on page for remote subscribe when an invalid profile URL was provided.
-msgid "Invalid profile URL (bad format)."
-msgstr "Érvénytelen profil URL-cím (hibás formátum)."
-
-#. TRANS: Form validation error on page for remote subscribe when no the provided profile URL
-#. TRANS: does not contain expected data.
-msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-msgstr ""
-
-#. TRANS: Form validation error on page for remote subscribe.
-#, fuzzy
-msgid "That is a local profile! Login to subscribe."
-msgstr "Az a felhasználó blokkolta hogy figyelemmel kövesd."
-
-#. TRANS: Form validation error on page for remote subscribe when the remote service is not providing a request token.
-#, fuzzy
-msgid "Could not get a request token."
-msgstr "Nem sikerült az üzenetet feldolgozni."
-
-#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
-msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-msgstr ""
 
 #. TRANS: Client error displayed when an unknown error occurs while delisting a user.
 #. TRANS: %s is a username.
@@ -5808,10 +5719,6 @@ msgstr "%1$s csoport, %2$d. oldal"
 msgid "A list of users awaiting approval to subscribe to you."
 msgstr "A csoportban lévő felhasználók listája."
 
-#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
-msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-msgstr ""
-
 #. TRANS: Page title when subscription succeeded.
 msgid "Subscribed"
 msgstr "Feliratkozott"
@@ -6045,16 +5952,6 @@ msgstr ""
 msgid "%1$s unsubscribed from list %2$s by %3$s"
 msgstr ""
 
-#. TRANS: Client error displayed when trying to update profile with an incompatible license.
-#. TRANS: %1$s is the license incompatible with site license %2$s.
-#. TRANS: Exception thrown when licenses are not compatible for an authorisation request.
-#. TRANS: %1$s is the license for the listenee, %2$s is the license for "this" StatusNet site.
-#, fuzzy, php-format
-msgid ""
-"Listenee stream license \"%1$s\" is not compatible with site license \"%2$s"
-"\"."
-msgstr "A hír licence ‘%1$s’ nem kompatibilis a webhely licencével ‘%2$s’."
-
 #. TRANS: Title of URL settings tab in profile settings.
 #, fuzzy
 msgid "URL settings"
@@ -6197,112 +6094,6 @@ msgstr ""
 #, fuzzy
 msgid "Save user settings."
 msgstr "Mentsük el a webhely beállításait"
-
-#. TRANS: Page title.
-msgid "Authorize subscription"
-msgstr "Feliratkozás engedélyezése"
-
-#. TRANS: Page notice on "Authorize subscription" page.
-msgid ""
-"Please check these details to make sure that you want to subscribe to this "
-"user’s notices. If you didn’t just ask to subscribe to someone’s notices, "
-"click \"Reject\"."
-msgstr ""
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to accept a group membership request on approve group form.
-#. TRANS: Submit button text to accept a subscription request on approve sub form.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Accept"
-msgstr "Elfogadás"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#. TRANS: Button title to subscribe to a user.
-#, fuzzy
-msgid "Subscribe to this user."
-msgstr "Ezen felhasználók híreire már feliratkoztál:"
-
-#. TRANS: Button text on Authorise Subscription page.
-#. TRANS: Submit button text to reject a group membership request on approve group form.
-#. TRANS: Submit button text to reject a subscription request on approve sub form.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Reject"
-msgstr "Visszautasítás"
-
-#. TRANS: Title for button on Authorise Subscription page.
-#, fuzzy
-msgid "Reject this subscription."
-msgstr "Feliratkozás engedélyezése"
-
-#. TRANS: Client error displayed for an empty authorisation request.
-msgid "No authorization request!"
-msgstr ""
-
-#. TRANS: Accept message header from Authorise subscription page.
-msgid "Subscription authorized"
-msgstr ""
-
-#. TRANS: Accept message text from Authorise subscription page.
-msgid ""
-"The subscription has been authorized, but no callback URL was passed. Check "
-"with the site's instructions for details on how to authorize the "
-"subscription. Your subscription token is:"
-msgstr ""
-
-#. TRANS: Reject message header from Authorise subscription page.
-msgid "Subscription rejected"
-msgstr "Feliratkozás visszautasítva"
-
-#. TRANS: Reject message from Authorise subscription page.
-msgid ""
-"The subscription has been rejected, but no callback URL was passed. Check "
-"with the site's instructions for details on how to fully reject the "
-"subscription."
-msgstr ""
-
-#. TRANS: Exception thrown when no valid user is found for an authorisation request.
-#. TRANS: %s is a listener URI.
-#, php-format
-msgid "Listener URI \"%s\" not found here."
-msgstr ""
-
-#. TRANS: Exception thrown when listenee URI is too long for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, fuzzy, php-format
-msgid "Listenee URI \"%s\" is too long."
-msgstr "A forrás URL túl hosszú."
-
-#. TRANS: Exception thrown when listenee URI is a local user for an authorisation request.
-#. TRANS: %s is a listenee URI.
-#, php-format
-msgid "Listenee URI \"%s\" is a local user."
-msgstr ""
-
-#. TRANS: Exception thrown when profile URL is a local user for an authorisation request.
-#. TRANS: %s is a profile URL.
-#, php-format
-msgid "Profile URL \"%s\" is for a local user."
-msgstr ""
-
-#. TRANS: Exception thrown when avatar URL is invalid for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, fuzzy, php-format
-msgid "Avatar URL \"%s\" is not valid."
-msgstr "A forrás URL nem érvényes."
-
-#. TRANS: Exception thrown when avatar URL could not be read for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Cannot read avatar URL \"%s\"."
-msgstr ""
-
-#. TRANS: Exception thrown when avatar URL return an invalid image type for an authorisation request.
-#. TRANS: %s is an avatar URL.
-#, php-format
-msgid "Wrong image type for avatar URL \"%s\"."
-msgstr ""
 
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
@@ -6504,6 +6295,10 @@ msgstr "Nem sikerült frissíteni a helyi csoportot."
 msgid "Could not create login token for %s"
 msgstr "Nem sikerült létrehozni %s bejelentkezési tokenjét."
 
+#, fuzzy
+msgid "Cannot instantiate class "
+msgstr "Nem sikerült elmenteni az új jelszót."
+
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr ""
@@ -6677,7 +6472,6 @@ msgid "Unable to save tag."
 msgstr "Nem sikerült elmenteni a címkét."
 
 #. TRANS: Exception thrown when trying to subscribe while being banned from subscribing.
-#. TRANS: Error message displayed to a banned user when they try to subscribe.
 msgid "You have been banned from subscribing."
 msgstr "Eltiltottak a feliratkozástól."
 
@@ -6695,10 +6489,6 @@ msgstr "Nem követed figyelemmel!"
 
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 msgid "Could not delete self-subscription."
-msgstr ""
-
-#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
-msgid "Could not delete subscription OMB token."
 msgstr ""
 
 #. TRANS: Exception thrown when a subscription could not be deleted on the server.
@@ -6829,6 +6619,14 @@ msgstr "Adminisztrátor"
 msgctxt "role"
 msgid "Moderator"
 msgstr "Moderátor"
+
+#. TRANS: Link text for link that will subscribe to a remote profile.
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Kövessük"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
@@ -7153,42 +6951,6 @@ msgstr "Nincs felhasználó a tokenhez társítva."
 msgid "Could not authenticate you."
 msgstr "Nem sikerült hitelesítenünk téged."
 
-#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
-#, fuzzy
-msgid "Could not create anonymous consumer."
-msgstr "Nem sikerült létrehozni az álneveket."
-
-#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
-#, fuzzy
-msgid "Could not create anonymous OAuth application."
-msgstr "Nem sikerült létrehozni az alkalmazást."
-
-#. TRANS: Exception thrown when no token association could be found.
-msgid ""
-"Could not find a profile and application associated with the request token."
-msgstr ""
-
-#. TRANS: Exception thrown when no access token can be issued.
-#, fuzzy
-msgid "Could not issue access token."
-msgstr "Nem sikerült az üzenetet feldolgozni."
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error inserting OAuth application user."
-msgstr ""
-
-#. TRANS: Exception thrown when a database error occurs.
-msgid "Database error updating OAuth application user."
-msgstr ""
-
-#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
-msgid "Tried to revoke unknown token."
-msgstr ""
-
-#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
-msgid "Failed to delete revoked token."
-msgstr ""
-
 #. TRANS: Form input field label for application icon.
 msgid "Icon"
 msgstr "Ikon"
@@ -7311,6 +7073,20 @@ msgstr ""
 msgctxt "BUTTON"
 msgid "Revoke"
 msgstr "Visszavonás"
+
+#. TRANS: Submit button text to accept a group membership request on approve group form.
+#. TRANS: Submit button text to accept a subscription request on approve sub form.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr "Elfogadás"
+
+#. TRANS: Submit button text to reject a group membership request on approve group form.
+#. TRANS: Submit button text to reject a subscription request on approve sub form.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Reject"
+msgstr "Visszautasítás"
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
 msgid "Author element must contain a name element."
@@ -8139,6 +7915,13 @@ msgstr "Népszerű csoportok"
 msgid "Active groups"
 msgstr "Aktív csoportok"
 
+#, fuzzy
+msgid "See all"
+msgstr "Összes megjelenítése"
+
+msgid "See all groups you belong to"
+msgstr ""
+
 #. TRANS: Title for group tag cloud section.
 #. TRANS: %s is a group name.
 #, php-format
@@ -8228,7 +8011,7 @@ msgctxt "TITLE"
 msgid "Trends"
 msgstr "Trendek"
 
-#. TRANS: Button text for inviting more users to the StatusNet instance.
+#. TRANS: Default button text for inviting more users to the StatusNet instance.
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
 msgstr "További kollégák meghívása"
@@ -8277,6 +8060,10 @@ msgstr "Csatlakozzunk"
 msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Távozzunk"
+
+#, fuzzy
+msgid "See all lists you have created"
+msgstr "Általad regisztrált alkalmazások"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -8797,6 +8584,9 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+msgid "More ▼"
+msgstr ""
+
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
 msgstr ""
@@ -8917,27 +8707,6 @@ msgstr "Megbök"
 #, fuzzy
 msgid "Send a nudge to this user."
 msgstr "Bökjük meg ezt a felhasználót"
-
-#. TRANS: Exception thrown when creating a new profile fails in OAuth store.
-msgid "Error inserting new profile."
-msgstr "Hiba az új profil beszúrásakor."
-
-#. TRANS: Exception thrown when creating a new avatar fails in OAuth store.
-msgid "Error inserting avatar."
-msgstr "Hiba az avatár beszúrásakor."
-
-#. TRANS: Exception thrown when creating a remote profile fails in OAuth store.
-msgid "Error inserting remote profile."
-msgstr "Hiba a távoli profil beszúrásakor."
-
-#. TRANS: Exception thrown when a notice is denied because it has been sent before.
-msgid "Duplicate notice."
-msgstr ""
-
-#. TRANS: Exception thrown when creating a new subscription fails in OAuth store.
-#, fuzzy
-msgid "Could not insert new subscription."
-msgstr "Nem sikerült beilleszteni a megerősítő kódot."
 
 #. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
 msgid "No oEmbed API endpoint available."
@@ -9531,6 +9300,42 @@ msgstr "A webhely híre"
 msgid "Silence this user"
 msgstr ""
 
+#. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
+#, fuzzy
+msgid "Could not create anonymous consumer."
+msgstr "Nem sikerült létrehozni az álneveket."
+
+#. TRANS: Server error displayed when trying to create an anynymous OAuth application.
+#, fuzzy
+msgid "Could not create anonymous OAuth application."
+msgstr "Nem sikerült létrehozni az alkalmazást."
+
+#. TRANS: Exception thrown when no token association could be found.
+msgid ""
+"Could not find a profile and application associated with the request token."
+msgstr ""
+
+#. TRANS: Exception thrown when no access token can be issued.
+#, fuzzy
+msgid "Could not issue access token."
+msgstr "Nem sikerült az üzenetet feldolgozni."
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error inserting OAuth application user."
+msgstr ""
+
+#. TRANS: Exception thrown when a database error occurs.
+msgid "Database error updating OAuth application user."
+msgstr ""
+
+#. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
+msgid "Tried to revoke unknown token."
+msgstr ""
+
+#. TRANS: Exception thrown when an attempt is made to remove a revoked token.
+msgid "Failed to delete revoked token."
+msgstr ""
+
 #. TRANS: Menu item in local navigation menu.
 #, fuzzy
 msgctxt "MENU"
@@ -9590,6 +9395,11 @@ msgstr ""
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Feliratkozás a felhasználóra"
+
+#. TRANS: Button title to subscribe to a user.
+#, fuzzy
+msgid "Subscribe to this user."
+msgstr "Ezen felhasználók híreire már feliratkoztál:"
 
 #. TRANS: Title of personal tag cloud section.
 msgid "People Tagcloud as self-tagged"
@@ -9943,3 +9753,86 @@ msgstr "Érvénytelen email cím."
 #, fuzzy, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Nem sikerült menteni a profilt."
+
+#~ msgid "Not expecting this response!"
+#~ msgstr "Nem várt válasz!"
+
+#~ msgid "User being listened to does not exist."
+#~ msgstr "A felhasználó akire figyelsz nem létezik."
+
+#~ msgid "You can use the local subscription!"
+#~ msgstr "Figyelemmel követheted helyben!"
+
+#~ msgid "That user has blocked you from subscribing."
+#~ msgstr "Az a felhasználó blokkolta hogy figyelemmel kövesd."
+
+#~ msgid "You are not authorized."
+#~ msgstr "Nincs jogosultságod."
+
+#~ msgid "Error updating remote profile."
+#~ msgstr "Nem sikerült frissíteni a távoli profilt."
+
+#~ msgid "Invalid notice content."
+#~ msgstr "Érvénytelen megjegyzéstartalom."
+
+#, fuzzy
+#~ msgid ""
+#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
+#~ msgstr "A hír licence ‘%1$s’ nem kompatibilis a webhely licencével ‘%2$s’."
+
+#~ msgid "Remote subscribe"
+#~ msgstr "Távoli feliratkozás"
+
+#~ msgid "User nickname"
+#~ msgstr "Felhasználó beceneve"
+
+#~ msgid "Profile URL"
+#~ msgstr "Profil URL"
+
+#~ msgid "Invalid profile URL (bad format)."
+#~ msgstr "Érvénytelen profil URL-cím (hibás formátum)."
+
+#, fuzzy
+#~ msgid "That is a local profile! Login to subscribe."
+#~ msgstr "Az a felhasználó blokkolta hogy figyelemmel kövesd."
+
+#, fuzzy
+#~ msgid "Could not get a request token."
+#~ msgstr "Nem sikerült az üzenetet feldolgozni."
+
+#, fuzzy
+#~ msgid ""
+#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
+#~ "$s\"."
+#~ msgstr "A hír licence ‘%1$s’ nem kompatibilis a webhely licencével ‘%2$s’."
+
+#~ msgid "Authorize subscription"
+#~ msgstr "Feliratkozás engedélyezése"
+
+#, fuzzy
+#~ msgid "Reject this subscription."
+#~ msgstr "Feliratkozás engedélyezése"
+
+#~ msgid "Subscription rejected"
+#~ msgstr "Feliratkozás visszautasítva"
+
+#, fuzzy
+#~ msgid "Listenee URI \"%s\" is too long."
+#~ msgstr "A forrás URL túl hosszú."
+
+#, fuzzy
+#~ msgid "Avatar URL \"%s\" is not valid."
+#~ msgstr "A forrás URL nem érvényes."
+
+#~ msgid "Error inserting new profile."
+#~ msgstr "Hiba az új profil beszúrásakor."
+
+#~ msgid "Error inserting avatar."
+#~ msgstr "Hiba az avatár beszúrásakor."
+
+#~ msgid "Error inserting remote profile."
+#~ msgstr "Hiba a távoli profil beszúrásakor."
+
+#, fuzzy
+#~ msgid "Could not insert new subscription."
+#~ msgstr "Nem sikerült beilleszteni a megerősítő kódot."

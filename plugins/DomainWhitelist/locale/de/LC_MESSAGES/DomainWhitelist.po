@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Giftpflanze
+# Author: Inkowik
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - DomainWhitelist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:12+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:20:12+0000\n"
 "Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:42+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
+"X-POT-Import-Date: 2011-06-18 16:19:17+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-domainwhitelist\n"
@@ -45,11 +46,11 @@ msgstr "E-Mail-Adressen müssen diese Domain benutzen: %s"
 
 #. TRANS: Title for invitiation deletion dialog.
 msgid "Confirmation Required"
-msgstr ""
+msgstr "Bestätigung erforderlich"
 
 #. TRANS: Confirmation text for invitation deletion dialog.
 msgid "Really delete this invitation?"
-msgstr ""
+msgstr "Diese Einladung wirklich löschen?"
 
 #. TRANS: Plugin description.
 msgid "Restrict domains for email users."
@@ -57,15 +58,15 @@ msgstr "Domains für E-Mail-Benutzer beschränken."
 
 #. TRANS: Form legend.
 msgid "Invite collegues"
-msgstr ""
+msgstr "Kollegen einladen"
 
 #. TRANS: Field label for a personal message to send to invitees.
 msgid "Personal message"
-msgstr ""
+msgstr "Persönliche Nachricht"
 
 #. TRANS: Field title for a personal message to send to invitees.
 msgid "Optionally add a personal message to the invitation."
-msgstr ""
+msgstr "Eine persönliche Nachricht zu der Einladung hinzufügen (optional)"
 
 #. TRANS: Link description to action to add another item to a list.
 msgid "Add another item"
@@ -74,8 +75,8 @@ msgstr ""
 #. TRANS: Send button for inviting friends.
 msgctxt "BUTTON"
 msgid "Send"
-msgstr ""
+msgstr "Senden"
 
 #. TRANS: Submit button title.
 msgid "Send invitations."
-msgstr ""
+msgstr "Einladungen senden"

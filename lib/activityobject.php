@@ -68,6 +68,7 @@ class ActivityObject
     const PLACE     = 'http://activitystrea.ms/schema/1.0/place';
     const COMMENT   = 'http://activitystrea.ms/schema/1.0/comment';
     // ^^^^^^^^^^ tea!
+    const ACTIVITY = 'http://activitystrea.ms/schema/1.0/activity';
 
     // Atom elements we snarf
 

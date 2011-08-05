@@ -1,6 +1,7 @@
 # Translation of StatusNet - UserLimit to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Crochet.david
 # Author: Peter17
 # Author: Verdy p
 # --
@@ -10,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserLimit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-01 09:23+0000\n"
-"PO-Revision-Date: 2011-07-01 09:26:47+0000\n"
+"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"PO-Revision-Date: 2011-07-21 12:22:31+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:51+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r91251); Translate extension (2011-06-24)\n"
+"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-userlimit\n"
@@ -24,7 +25,7 @@ msgstr ""
 
 #. TRANS: Error message given if creating a new user is not possible because a limit has been reached.
 #. TRANS: %d is the user limit (also available for plural).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Cannot register because the maximum number of users (%d) for this site was "
 "reached."
@@ -32,11 +33,11 @@ msgid_plural ""
 "Cannot register because the maximum number of users (%d) for this site was "
 "reached."
 msgstr[0] ""
-"Impossible de s’enregistrer ; le nombre maximum d’utilisateurs (%d) a été "
-"atteint."
+"Impossible d’enregistrer car le nombre maximal d’utilisateurs (%d) pour ce "
+"site a été atteint"
 msgstr[1] ""
-"Impossible de s’enregistrer ; le nombre maximum d’utilisateurs (%d) a été "
-"atteint."
+"Impossible d’enregistrer car le nombre maximal d’utilisateurs (%d) pour ce "
+"site a été atteint"
 
 #. TRANS: Plugin description.
 msgid "Limit the number of users who can register."
