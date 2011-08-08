@@ -221,7 +221,7 @@ function newJoin($u, $g)
 function testNoticeContent()
 {
     global $words;
-    
+
     if (is_null($words)) {
         return "test notice content";
     }
@@ -235,11 +235,11 @@ function testNoticeContent()
     }
 
     $text = implode(' ', $parts);
-    
+
     if (mb_strlen($text) > 80) {
         $text = substr($text, 0, 77) . "...";
     }
-    
+
     return $text;
 }
 
@@ -311,7 +311,7 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $tagmax)
     }
 }
 
-$defaultWordfile = '/usr/share/dict/words';
+$defaultWordsfile = '/usr/share/dict/words';
 
 $usercount   = (have_option('u', 'users')) ? get_option_value('u', 'users') : 100;
 $groupcount  = (have_option('g', 'groups')) ? get_option_value('g', 'groups') : 20;
@@ -321,14 +321,14 @@ $joinsavg    = (have_option('j', 'joins')) ? get_option_value('j', 'joins') : 5;
 $tagmax      = (have_option('t', 'tags')) ? get_option_value('t', 'tags') : 10000;
 $userprefix  = (have_option('x', 'prefix')) ? get_option_value('x', 'prefix') : 'testuser';
 $groupprefix = (have_option('z', 'groupprefix')) ? get_option_value('z', 'groupprefix') : 'testgroup';
-$wordsfile   = (have_option('w', 'words')) ? get_option_value('w', 'words') : $defaultWordfile;
+$wordsfile   = (have_option('w', 'words')) ? get_option_value('w', 'words') : $defaultWordsfile;
 
 if (is_readable($wordsfile)) {
     $words = file($wordsfile);
 } else {
-   if ($wordsfile != $defaultWordfile) {
+   if ($wordsfile != $defaultWordsfile) {
       // user specified words file couldn't be read
-      throw new Exception("Couldn't read words file: {$wordfile}.");
+      throw new Exception("Couldn't read words file: {$wordsfile}.");
     }
     $words = null;
 }
