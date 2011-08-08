@@ -2547,7 +2547,7 @@ class Notice extends Memcached_DataObject
 		}
     }
 
-    protected $_faves = -1;
+    protected $_faves;
 
     /**
      * All faves of this notice
@@ -2557,15 +2557,15 @@ class Notice extends Memcached_DataObject
 
     function getFaves()
     {
-        if ($this->_faves != -1) {
+        if (isset($this->_faves) && is_array($this->_faves)) {
             return $this->_faves;
         }
-        $faveMap = Memcached_DataObject::listGet('Fave', 'notice_id', array($noticeId));
-        $this->_faves = $faveMap[$noticeId];
+        $faveMap = Memcached_DataObject::listGet('Fave', 'notice_id', array($this->id));
+        $this->_faves = $faveMap[$this->id];
         return $this->_faves;
     }
 
-    function _setFaves($faves)
+    function _setFaves(&$faves)
     {
         $this->_faves = $faves;
     }
@@ -2574,6 +2574,14 @@ class Notice extends Memcached_DataObject
     {
         $ids = self::_idsOf($notices);
         $faveMap = Memcached_DataObject::listGet('Fave', 'notice_id', $ids);
+        $cnt = 0;
+        $faved = array();
+        foreach ($faveMap as $id => $faves) {
+            $cnt += count($faves);
+            if (count($faves) > 0) {
+                $faved[] = $id;
+            }
+        }
         foreach ($notices as $notice) {
             $notice->_setFaves($faveMap[$notice->id]);
         }
