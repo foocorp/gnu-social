@@ -267,10 +267,10 @@ class Memcached_DataObject extends Safe_DataObject
     function listGet($cls, $keyCol, $keyVals)
     {
     	$pkeyMap = array_fill_keys($keyVals, array());
-        $results = array_fill_keys($keyVals, array());
+        $result = array_fill_keys($keyVals, array());
 
         $pkeyCols = self::pkeyCols($cls);
-        
+
     	$toFetch = array();
         $allPkeys = array();
 
@@ -280,19 +280,23 @@ class Memcached_DataObject extends Safe_DataObject
     	    $l = self::cacheGet(sprintf("%s:list-ids:%s:%s", $cls, $keyCol, $keyVal));
     	    if ($l !== false) {
     	        $pkeyMap[$keyVal] = $l;
-                $allPkeys = array_merge($allPkeys, $l);
+                foreach ($l as $pkey) {
+                    $allPkeys[] = $pkey;
+                }
     	    } else {
     	        $toFetch[] = $keyVal;
     	    }
     	}
 
-        $keyResults = self::pivotGet($cls, $pkeyCols, $allPkeys);
+        if (count($allPkeys) > 0) {
+            $keyResults = self::pivotGet($cls, $pkeyCols, $allPkeys);
 
-        foreach ($pkeyMap as $keyVal => $pkeyList) {
-            foreach ($pkeyList as $pkeyVal) {
-                $i = $keyResults[$pkeyVal];
-                if (!empty($i)) {
-                    $results[$keyVal][] = $i;
+            foreach ($pkeyMap as $keyVal => $pkeyList) {
+                foreach ($pkeyList as $pkeyVal) {
+                    $i = $keyResults[implode(',',$pkeyVal)];
+                    if (!empty($i)) {
+                        $result[$keyVal][] = $i;
+                    }
                 }
             }
         }
@@ -304,6 +308,7 @@ class Memcached_DataObject extends Safe_DataObject
 	        }
             $i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
             if ($i->find()) {
+                sprintf("listGet() got {$i->N} results for class $cls key $keyCol");
                 while ($i->fetch()) {
                     $copy = clone($i);
                     $copy->encache();
@@ -320,7 +325,7 @@ class Memcached_DataObject extends Safe_DataObject
                                $pkeyMap[$keyVal]);
             }      
         }
-    	
+
     	return $result;        
     }
 
