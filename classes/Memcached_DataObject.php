@@ -105,23 +105,39 @@ class Memcached_DataObject extends Safe_DataObject
      */
     static function pivotGet($cls, $keyCol, $keyVals, $otherCols = array())
     {
-    	$result = array_fill_keys($keyVals, null);
+        if (is_array($keyCol)) {
+            foreach ($keyVals as $keyVal) {
+                $result[implode(',', $keyVal)] = null;
+            }
+        } else {
+            $result = array_fill_keys($keyVals, null);
+        }
     	
     	$toFetch = array();
     	
     	foreach ($keyVals as $keyVal) {
-    		
-    		$kv = array_merge($otherCols, array($keyCol => $keyVal));
+
+            if (is_array($keyCol)) {
+                $kv = array_combine($keyCol, $keyVal);
+            } else {
+                $kv = array($keyCol => $keyVal);
+            }
+
+    		$kv = array_merge($otherCols, $kv);
     		
         	$i = self::multicache($cls, $kv);
         	
         	if ($i !== false) {
-        		$result[$keyVal] = $i;
+                if (is_array($keyCol)) {
+                    $result[implode(',', $keyVal)] = $i;
+                } else {
+                    $result[$keyVal] = $i;
+                }
         	} else if (!empty($keyVal)) {
         		$toFetch[] = $keyVal;
         	}
     	}
-    	
+        
     	if (count($toFetch) > 0) {
             $i = DB_DataObject::factory($cls);
             if (empty($i)) {
@@ -130,20 +146,43 @@ class Memcached_DataObject extends Safe_DataObject
             foreach ($otherCols as $otherKeyCol => $otherKeyVal) {
                 $i->$otherKeyCol = $otherKeyVal;
             }
-    		$i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
+            if (is_array($keyCol)) {
+                $i->whereAdd(self::_inMultiKey($i, $keyCol, $toFetch));
+            } else {
+                $i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
+            }
     		if ($i->find()) {
     			while ($i->fetch()) {
     				$copy = clone($i);
     				$copy->encache();
-    				$result[$i->$keyCol] = $copy;
+                    if (is_array($keyCol)) {
+                        $vals = array();
+                        foreach ($keyCol as $k) {
+                            $vals[] = $i->$k;
+                        }
+                        $result[implode(',', $vals)] = $copy;
+                    } else {
+                        $result[$i->$keyCol] = $copy;
+                    }
     			}
     		}
     		
     		// Save state of DB misses
     		
     		foreach ($toFetch as $keyVal) {
-    			if (empty($result[$keyVal])) {
-    				$kv = array_merge($otherCols, array($keyCol => $keyVal));
+                $r = null;
+                if (is_array($keyCol)) {
+                    $r = $result[implode(',', $keyVal)];
+                } else {
+                    $r = $result[$keyVal];
+                }
+    			if (empty($r)) {
+                    if (is_array($keyCol)) {
+                        $kv = array_combine($keyCol, $keyVal);
+                    } else {
+                        $kv = array($keyCol => $keyVal);
+                    }
+                    $kv = array_merge($otherCols, $kv);
                 	// save the fact that no such row exists
                 	$c = self::memcache();
                 	if (!empty($c)) {
@@ -153,43 +192,133 @@ class Memcached_DataObject extends Safe_DataObject
     			}
     		}
     	}
-    	
+
     	return $result;
     }
-    
+
+    static function _inMultiKey($i, $cols, $values)
+    {
+        $types = array();
+
+        foreach ($cols as $col) {
+            $types[$col] = $i->columnType($col);
+        }
+
+        $first = true;
+
+        $query = '';
+
+        foreach ($values as $value) {
+            if ($first) {
+                $query .= '( ';
+                $first = false;
+            } else {
+                $query .= ' OR ';
+            }
+            $query .= '( ';
+            $i = 0;
+            $firstc = true;
+            foreach ($cols as $col) {
+                if (!$firstc) {
+                    $query .= ' AND ';
+                } else {
+                    $firstc = false;
+                }
+                switch ($types[$col]) {
+                case 'string':
+                case 'datetime':
+                    $query .= sprintf("%s = %s", $col, $i->_quote($value[$i]));
+                    break;
+                default:
+                    $query .= sprintf("%s = %s", $col, $value[$i]);
+                    break;
+                }
+            }
+            $query .= ') ';
+        }
+
+        if (!$first) {
+            $query .= ' )';
+        }
+
+        return $query;
+    }
+
+    static function pkeyCols($cls)
+    {
+        $i = DB_DataObject::factory($cls);
+        if (empty($i)) {
+            throw new Exception(_('Cannot instantiate a ' . $cls));
+        }
+        $types = $i->keyTypes();
+        ksort($types);
+
+        $pkey = array();
+
+        foreach ($types as $key => $type) {
+            if ($type == 'K' || $type == 'N') {
+                $pkey[] = $key;
+            }
+        }
+
+        return $pkey;
+    }
+
     function listGet($cls, $keyCol, $keyVals)
     {
-    	$result = array_fill_keys($keyVals, array());
-    	
+    	$pkeyMap = array_fill_keys($keyVals, array());
+        $results = array_fill_keys($keyVals, array());
+
+        $pkeyCols = self::pkeyCols($cls);
+        
     	$toFetch = array();
-    	
+        $allPkeys = array();
+
+        // We only cache keys -- not objects!
+
     	foreach ($keyVals as $keyVal) {
-    	    $l = self::cacheGet(sprintf("%s:list:%s:%s", $cls, $keyCol, $keyVal));
+    	    $l = self::cacheGet(sprintf("%s:list-ids:%s:%s", $cls, $keyCol, $keyVal));
     	    if ($l !== false) {
-    	        $result[$keyVal] = $l;
+    	        $pkeyMap[$keyVal] = $l;
+                $allPkeys = array_merge($allPkeys, $l);
     	    } else {
     	        $toFetch[] = $keyVal;
     	    }
     	}
-        
+
+        $keyResults = self::pivotGet($cls, $pkeyCols, $allPkeys);
+
+        foreach ($pkeyMap as $keyVal => $pkeyList) {
+            foreach ($pkeyList as $pkeyVal) {
+                $i = $keyResults[$pkeyVal];
+                if (!empty($i)) {
+                    $results[$keyVal][] = $i;
+                }
+            }
+        }
+
         if (count($toFetch) > 0) {
 	        $i = DB_DataObject::factory($cls);
 	        if (empty($i)) {
 	        	throw new Exception(_('Cannot instantiate class ' . $cls));
 	        }
-			$i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
-			if ($i->find()) {
-				while ($i->fetch()) {
-					$copy = clone($i);
-					$copy->encache();
-					$result[$i->$keyCol][] = $copy;
-				}
-			}        
-	    	foreach ($toFetch as $keyVal)
-	    	{
-	    		self::cacheSet(sprintf("%s:list:%s:%s", $cls, $keyCol, $keyVal),
-	    					   $result[$keyVal]);   
-	    	}      
+            $i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
+            if ($i->find()) {
+                while ($i->fetch()) {
+                    $copy = clone($i);
+                    $copy->encache();
+                    $result[$i->$keyCol][] = $copy;
+                    $pkeyVal = array();
+                    foreach ($pkeyCols as $pkeyCol) {
+                        $pkeyVal[] = $i->$pkeyCol;
+                    }
+                    $pkeyMap[$i->$keyCol][] = $pkeyVal;
+                }
+            }       
+	    	foreach ($toFetch as $keyVal) {
+                self::cacheSet(sprintf("%s:list-ids:%s:%s", $cls, $keyCol, $keyVal),
+                               $pkeyMap[$keyVal]);
+            }      
         }
     	
     	return $result;        
