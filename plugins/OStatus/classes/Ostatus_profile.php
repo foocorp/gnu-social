@@ -542,7 +542,7 @@ class Ostatus_profile extends Managed_DataObject
         
         if (empty($sharedNotice)) {
             $sharedId = ($shared->id) ? $shared->id : $shared->objects[0]->id;
-            throw new ClientException(sprintf(_m("Failed to save activity %s"),
+            throw new ClientException(sprintf(_m("Failed to save activity %s."),
                                               $sharedId));
         }
 
