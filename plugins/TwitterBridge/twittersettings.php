@@ -142,8 +142,7 @@ class TwittersettingsAction extends ProfileSettingsAction
                 $this->text($message);
                 $this->elementEnd('p');
             } else {
-                // TRANS: Form instructions. %s is a URL to the password settings.
-                // TRANS: %1$s is the StatusNet sitename.
+                // TRANS: Form instructions. %1$s is the StatusNet sitename.
                 $note = _m('Keep your %1$s account but disconnect from Twitter. ' .
                     'You can use your %1$s password to log in.');
                 $site = common_config('site', 'name');
