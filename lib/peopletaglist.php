@@ -169,8 +169,8 @@ class PeopletagListItem extends Widget
             array('href' => common_local_url('peopletagged',
                                               array('tagger' => $this->profile->nickname,
                                                     'tag' => $this->peopletag->tag))),
-            // TRANS: Link description for link to list of users tagged with a tag.
-            _('Tagged'));
+            // TRANS: Link description for link to list of users tagged with a tag (so part of a list).
+            _('Listed'));
         $this->out->raw($this->peopletag->taggedCount());
         $this->out->elementEnd('span');
 
