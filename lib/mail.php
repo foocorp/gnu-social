@@ -750,7 +750,7 @@ function mail_notify_attn($user, $notice)
         // TRANS: Body of @-reply notification e-mail.
         // TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
         // TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-        // TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+        // TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
         // TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
         $body = sprintf(_("%1\$s just sent a notice to your attention (an '@-reply') on %2\$s.\n\n".
                       "The notice is here:\n\n".
