@@ -213,7 +213,7 @@ class PeopletagsbyuserAction extends Action
                     '(http://en.wikipedia.org/wiki/Micro-blogging) service ' .
                     'based on the Free Software [StatusNet](http://status.net/) tool. ' .
                     'You can easily keep track of what they ' .
-                    'are doing by subscribing to the tag\'s timeline.' ), $this->tagger->nickname);
+                    'are doing by subscribing to the list\'s timeline.' ), $this->tagger->nickname);
         $this->elementStart('div', array('id' => 'anon_notice'));
         $this->raw(common_markup_to_html($notice));
         $this->elementEnd('div');
