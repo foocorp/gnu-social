@@ -1,6 +1,7 @@
 # Translation of StatusNet - YammerImport to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Od1n
 # Author: Peter17
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - YammerImport\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:39+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:44+0000\n"
+"Language-Team: French <//translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 13:28:10+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-yammerimport\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -58,7 +59,6 @@ msgid "Yammer import"
 msgstr "Import Yammer"
 
 #. TRANS: Menu item for Yammer import.
-#, fuzzy
 msgctxt "MENU"
 msgid "Yammer"
 msgstr "Yammer"
@@ -298,7 +298,6 @@ msgid "Verification code:"
 msgstr "Code de vérification :"
 
 #. TRANS: Button text for saving  Yammer authorisation data and starting Yammer import.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Continue"
 msgstr "Continuer"
@@ -344,10 +343,9 @@ msgid "Consumer secret:"
 msgstr "Secret de l'utilisateur :"
 
 #. TRANS: Button text for saving a Yammer API registration.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
-msgstr "Sauvegarder"
+msgstr "Enregistrer"
 
 #. TRANS: Button title for saving a Yammer API registration.
 #, fuzzy

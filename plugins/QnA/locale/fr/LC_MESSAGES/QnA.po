@@ -11,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:50+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:21:53+0000\n"
+"Language-Team: French <//translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-18 16:20:36+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -83,7 +83,6 @@ msgid "Answer"
 msgstr "Réponse"
 
 #. TRANS: Form title for sending an answer.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Answer"
 msgstr "Réponse"
@@ -115,9 +114,8 @@ msgid "Invalid or missing question."
 msgstr "Question invalide ou manquante."
 
 #. TRANS: Exception thrown trying to close another user's question.
-#, fuzzy
 msgid "You did not ask this question."
-msgstr "Vous n'avez pas posé la question."
+msgstr "Vous n’avez pas posé cette question."
 
 #. TRANS: Page title after sending an answer.
 #. TRANS: Page title after sending in a vote for a question or answer.
@@ -143,7 +141,6 @@ msgid "Question and Answers micro-app."
 msgstr "Micro-application Question and Answers"
 
 #. TRANS: Application title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Question"
 msgstr "Question"
@@ -186,7 +183,7 @@ msgstr "Votre réponse..."
 #. TRANS: Link description for link to full notice text if it is longer than
 #. TRANS: what will be dispplayed.
 msgid "…"
-msgstr ""
+msgstr "…"
 
 #. TRANS: Title for link that is an ellipsis in English.
 msgid "more..."
@@ -289,7 +286,6 @@ msgid "Save"
 msgstr "Enregistrer"
 
 #. TRANS: Form legend for revising the answer.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Question"
 msgstr "Question"

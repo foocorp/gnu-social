@@ -1,6 +1,7 @@
 # Translation of StatusNet - Poll to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: ChrisiPK
 # Author: Giftpflanze
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Poll\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:43+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:21:44+0000\n"
+"Language-Team: German <//translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:51:15+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-poll\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -59,12 +60,10 @@ msgid "Simple extension for supporting basic polls."
 msgstr "Einfache Erweiterung für die Unterstützung von einfachen Abstimmungen."
 
 #. TRANS: Exception thrown trying to respond to a poll without a poll reference.
-#, fuzzy
 msgid "Invalid poll response: No poll reference."
 msgstr "Ungültige Abstimmungsantwort: keine Abstimmungsreferenz."
 
 #. TRANS: Exception thrown trying to respond to a non-existing poll.
-#, fuzzy
 msgid "Invalid poll response: Poll is unknown."
 msgstr "Ungültige Abstimmungsantwort: Abstimmung unbekannt."
 

@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:23+0000\n"
-"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:21:25+0000\n"
+"Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:11+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
@@ -48,7 +48,6 @@ msgid "Continue"
 msgstr "استمر"
 
 #. TRANS: Button text to cancel OpenID identity verification.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Cancel"
 msgstr "ألغِ"
@@ -58,10 +57,9 @@ msgid "Unavailable action."
 msgstr ""
 
 #. TRANS: Tooltip for main menu option "Login"
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Login to the site."
-msgstr "لُج في الموقع"
+msgstr "لُج إلى الموقع."
 
 #. TRANS: Main menu option when not logged in to log in
 msgctxt "MENU"
@@ -79,10 +77,9 @@ msgid "Help"
 msgstr "مساعدة"
 
 #. TRANS: Tooltip for main menu option "Search"
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Search for people or text."
-msgstr "ابحث عن أشخاص أو نصوص"
+msgstr "ابحث عن أشخاص أو نصوص."
 
 #. TRANS: Main menu option when logged in or when the StatusNet instance is not private
 msgctxt "MENU"
@@ -97,14 +94,12 @@ msgid "OpenID"
 msgstr "هوية مفتوحة"
 
 #. TRANS: OpenID plugin tooltip for logon menu item.
-#, fuzzy
 msgid "Login or register with OpenID."
-msgstr "لُج أو سجّل بهوية مفتوحة"
+msgstr "لُج أو سجّل بهوية مفتوحة."
 
 #. TRANS: OpenID plugin tooltip for user settings menu item.
-#, fuzzy
 msgid "Add or remove OpenIDs."
-msgstr "أضف أو احذف هويات مفتوحة"
+msgstr "أضف أو احذف هويات مفتوحة."
 
 #. TRANS: Page notice for logged in users to try and get them to add an OpenID account to their StatusNet account.
 #. TRANS: This message contains Markdown links in the form (description)[link].
@@ -113,6 +108,8 @@ msgid ""
 "(Have an [OpenID](http://openid.net/)? [Add an OpenID to your account](%%"
 "action.openidsettings%%)!"
 msgstr ""
+"(ألديك [هوية مفتوحة](http://openid.net/)? [أضف هوية مفتوحة إلى حسابك](%%"
+"action.openidsettings%%)!"
 
 #. TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
 #. TRANS: This message contains Markdown links in the form (description)[link].
@@ -121,6 +118,8 @@ msgid ""
 "(Have an [OpenID](http://openid.net/)? Try our [OpenID registration](%%"
 "action.openidlogin%%)!)"
 msgstr ""
+"(ألديك [هوية مفتوحة](http://openid.net/)? جرب [التسجيل بالهوية المفتوحة](%%"
+"action.openidlogin%%)!)"
 
 #. TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
 #. TRANS: This message contains Markdown links in the form (description)[link].
@@ -129,6 +128,8 @@ msgid ""
 "(Have an [OpenID](http://openid.net/)? Try our [OpenID login](%%action."
 "openidlogin%%)!)"
 msgstr ""
+"(ألديك [هوية مفتوحة](http://openid.net/)? جرب [الولوج بالهوية المفتوحة](%%"
+"action.openidlogin%%)!)"
 
 #. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
 #, php-format
@@ -136,21 +137,21 @@ msgid ""
 "* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this "
 "service."
 msgstr ""
+"* [الهوية المفتوحة](%%doc.openid%%) - تعرف على الهوية المفتوحة وكيفية "
+"استخدامها على هذه الخدمة."
 
 #. TRANS: Tooltip for OpenID configuration menu item.
-#, fuzzy
 msgid "OpenID configuration."
-msgstr "ضبط الهوية المفتوحة"
+msgstr "ضبط الهوية المفتوحة."
 
 #. TRANS: Plugin description.
 msgid "Use <a href=\"http://openid.net/\">OpenID</a> to login to the site."
-msgstr "استخدم <a href=\"http://openid.net/\">هوية مفتوحة</a> للدخول للموقع."
+msgstr "استخدام <a href=\"http://openid.net/\">هوية مفتوحة</a> للدخول للموقع."
 
 #. TRANS: OpenID plugin logon form legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "OpenID login"
-msgstr "الدخول بهوية مفتوحة"
+msgstr "ولوج الهوية المفتوحة"
 
 #. TRANS: Field label.
 msgid "OpenID provider"
@@ -172,9 +173,8 @@ msgstr "مسار الهوية المفتوحة"
 
 #. TRANS: OpenID plugin logon form field instructions.
 #. TRANS: OpenID plugin logon form field title.
-#, fuzzy
 msgid "Your OpenID URL."
-msgstr "مسار هويتك المفتوحة"
+msgstr "مسار هويتك المفتوحة."
 
 #. TRANS: Client error message trying to log on with OpenID while already logged on.
 msgid "Already logged in."
@@ -204,7 +204,6 @@ msgid ""
 msgstr ""
 
 #. TRANS: Title
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Account Setup"
 msgstr "إعداد حساب هوية مفتوحة"
@@ -277,13 +276,12 @@ msgstr "ألغي استيثاق الهوية المفتوحة"
 #. TRANS: OpenID authentication failed; display the error message. %s is the error message.
 #. TRANS: OpenID authentication failed; display the error message.
 #. TRANS: %s is the error message.
-#, fuzzy, php-format
+#, php-format
 msgid "OpenID authentication failed: %s."
-msgstr "فشل استيثاق الهوية المفتوحة: %s"
+msgstr "فشل استيثاق الهوية المفتوحة: %s."
 
 #. TRANS: Message displayed when OpenID authentication is aborted.
 #. TRANS: OpenID authentication error.
-#, fuzzy
 msgid ""
 "OpenID authentication aborted: You are not allowed to login to this site."
 msgstr "أجهض استيثاق الهوية المفتوحة: لا يسمح لك بدخول هذا الموقع."
@@ -332,15 +330,15 @@ msgstr "ليست هوية مفتوحة صحيحة."
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication request fails.
 #. TRANS: %s is the failure message.
-#, fuzzy, php-format
+#, php-format
 msgid "OpenID failure: %s."
-msgstr "فشلت الهوية المفتوحة: %s"
+msgstr "فشلت الهوية المفتوحة: %s."
 
 #. TRANS: OpenID plugin server error. Given when the OpenID authentication request cannot be redirected.
 #. TRANS: %s is the failure message.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not redirect to server: %s."
-msgstr "تغذر التحويل للخادوم: %s"
+msgstr "تعذر التحويل للخادوم: %s."
 
 #. TRANS: OpenID plugin user instructions.
 msgid ""
@@ -377,7 +375,6 @@ msgid ""
 msgstr "إذا لم تُحوّل إلى مزود الولوج خلال ثوانٍ قليلة، حاول نقر الزر أدناه."
 
 #. TRANS: Title for OpenID bridge administration page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Settings"
 msgstr "إعدادات الهوية المفتوحة"
@@ -387,17 +384,14 @@ msgid "OpenID settings"
 msgstr "إعدادات الهوية المفتوحة"
 
 #. TRANS: Client error displayed when OpenID provider URL is too long.
-#, fuzzy
 msgid "Invalid provider URL. Maximum length is 255 characters."
 msgstr "مسار المزود غير صالح. أقصى طول 255 حرف."
 
 #. TRANS: Client error displayed when Launchpad team name is too long.
-#, fuzzy
 msgid "Invalid team name. Maximum length is 255 characters."
 msgstr "اسم فريق غير صالح. أقصى طول 255 حرف."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Trusted provider"
 msgstr "مزود موثوق"
@@ -438,7 +432,6 @@ msgid "Only allow logins from users in the given team (Launchpad extension)."
 msgstr ""
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Options"
 msgstr "خيارات"
@@ -454,15 +447,13 @@ msgid ""
 msgstr ""
 
 #. TRANS: Button text to save OpenID settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "احفظ"
 
 #. TRANS: Button title to save OpenID settings.
-#, fuzzy
 msgid "Save OpenID settings."
-msgstr "إعدادات الهوية المفتوحة"
+msgstr "إعدادات الهوية المفتوحة."
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
@@ -490,7 +481,6 @@ msgid "OpenID Login"
 msgstr "ولوج الهوية المفتوحة"
 
 #. TRANS: Title of OpenID settings page for a user.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID settings"
 msgstr "إعدادات الهوية المفتوحة"
@@ -506,7 +496,6 @@ msgstr ""
 "المستخدم. أدر هوياتك المفتوحة هنا."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Add OpenID"
 msgstr "أضف هوية مفتوحة"
@@ -519,13 +508,11 @@ msgstr ""
 "إذا أردت إضافة هوية مفتوحة إلى حسابك، أدخلها إلى الصندوق أدناه وانقر \"أضف\"."
 
 #. TRANS: Button text for adding an OpenID URL.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "أضف"
 
 #. TRANS: Header on OpenID settings page.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Remove OpenID"
 msgstr "أزل الهوية المفتوحة"
@@ -546,7 +533,6 @@ msgstr "يمكنك إزالة هوية مفتوحة من حسابك بنفر ا�
 
 #. TRANS: Button text to remove an OpenID.
 #. TRANS: Button text to remove an OpenID trustroot.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Remove"
 msgstr "أزل"
@@ -564,7 +550,6 @@ msgstr ""
 "القائمة لمنعه من الوصول إلى هويتك المفتوحة."
 
 #. TRANS: Form validation error if no OpenID providers can be added.
-#, fuzzy
 msgid "Cannot add new providers."
 msgstr "تعذرت إضافة مزودين جدد."
 

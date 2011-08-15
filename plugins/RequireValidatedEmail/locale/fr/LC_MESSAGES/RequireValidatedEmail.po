@@ -11,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:55+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:21:59+0000\n"
+"Language-Team: French <//translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-18 16:19:28+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -81,9 +81,8 @@ msgid "Set a password"
 msgstr "Définir un nouveau mot de passe"
 
 #. TRANS: Form legend.
-#, fuzzy
 msgid "Confirm email address"
-msgstr "Confirmer le courriel"
+msgstr "Confirmer l’adresse de courriel"
 
 #. TRANS: Field label.
 msgid "New password"
@@ -94,7 +93,6 @@ msgid "6 or more characters."
 msgstr "6 caractères ou plus."
 
 #. TRANS: Field label for repeat password field.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Confirmer"

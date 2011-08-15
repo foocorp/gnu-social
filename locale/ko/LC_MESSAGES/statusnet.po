@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:05+0000\n"
-"Language-Team: Korean <http://translatewiki.net/wiki/Portal:ko>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:14+0000\n"
+"Language-Team: Korean <//translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -35,14 +35,6 @@ msgstr ""
 "하지 않을 것입니다. 사이트 관리자는 아마도 이 문제를 알고 있겠지만, 확실히 문"
 "제를 전달하려면 %2$s 통해 관리자에게 연락할 수 있습니다. 아니면 몇 분 정도 기"
 "다렸다가 다시 시도하십시오."
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
-msgstr ""
-"전자메일 설치와 관련된 중요한 오류가 발생했습니다. 로그 파일에서 자세한 내용"
-"을 확인하십시오."
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -3771,13 +3763,13 @@ msgstr "이동"
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists created by **%s**. Lists are how you sort similar people on %"
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "다음은 **%s** 사용자가 만든 리스트입니다. 리스트는 %%%%site.name%%%% 사이트에"
 "서 사람들을 분류하는 수단입니다. %%%%site.name%%%%  사이트는 자유소프트웨어 "
@@ -3806,13 +3798,13 @@ msgstr "%1$s 사용자가 들어 있는 리스트, %2$d 페이지"
 #. TRANS: Message displayed for anonymous users on page that displays lists for a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists for **%s**. lists are how you sort similar people on %%%%"
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "다음은 **%s**님이 들어 있는 리스트입니다. 리스트는 %%%%site.name%%%% 사이트에"
 "서 사람들을 분류하는 수단입니다. %%%%site.name%%%%  사이트는 자유소프트웨어 "
@@ -4125,7 +4117,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "페이지 제한을 (%s) 넘어갔습니다."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "공개 스트림을 가져올 수 없습니다."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4141,19 +4134,22 @@ msgstr "공개 타임라인"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "공개 스트림 피드 (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "공개 스트림 피드 (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "공개 스트림 피드 (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "공개 스트림 피드 (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4715,8 +4711,9 @@ msgid "Feed will be restored. Please wait a few minutes for results."
 msgstr "피드를 복구했습니다. 결과가 나올 때까지 몇 분 기다리십시오."
 
 #. TRANS: Form instructions for feed restore.
+#, fuzzy
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 "백업한 스트림을 <a href=\"http://activitystrea.ms/\">Activity Streams</a> 형"
@@ -5107,6 +5104,7 @@ msgstr ""
 "[계정을 등록해](%%action.register%%) 이 타임라인 팔로우를 시작해 보세요!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr "리스트 포함"
 
@@ -5125,19 +5123,19 @@ msgstr "구독자"
 msgid "All subscribers"
 msgstr "모든 구독자"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "%2$s 태그가 붙은 %1$s의 글"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "%2$s 태그가 붙은 %1$s의 글, %3$d 페이지"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5179,7 +5177,7 @@ msgstr "%s의 글 피드 (Atom)"
 msgid "FOAF for %s"
 msgstr "%s의 FOAF"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "%1$s의 타임라인이지만, 아직 %1$s님이 글을 작성하지 않았습니다."
@@ -5191,7 +5189,7 @@ msgid ""
 msgstr ""
 "최근에 재미있는 일이 있었나요? 아직 올린 글이 없는데, 지금 시작해 보세요. :)"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5201,7 +5199,7 @@ msgstr ""
 "%1$s님을 찔러 보거나 [글을 써 볼 수 있습니다](%%%%action.newnotice%%%%?"
 "status_textarea=%2$s)."
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5218,7 +5216,7 @@ msgstr ""
 "[지금 가입해](%%%%action.register%%%%) to **%s**님 및 다른 많은 사람들의 글"
 "을 팔로우하세요! ([자세히 보기](%%%%doc.help%%%%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -8209,7 +8207,7 @@ msgstr "%1$s (@%2$s) 님이 관심을 가질 만한 글을 보냈습니다."
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -8652,10 +8650,6 @@ msgstr "편집"
 #, php-format
 msgid "Edit %s list by you."
 msgstr "나의 %s 리스트 편집."
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-msgid "Tagged"
-msgstr "태그 붙음"
 
 #. TRANS: Title for link to edit list settings.
 msgid "Edit list settings."
@@ -9572,171 +9566,12 @@ msgstr "올바른 메일 주소가 아닙니다."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "프로필을 저장 할 수 없습니다."
 
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr "이 동작으로 OMB 0.1 원격 프로필을 리스트에 넣을 수 없습니다."
-
-#~ msgid "Not expecting this response!"
-#~ msgstr "예상치 못한 응답입니다!"
-
-#~ msgid "User being listened to does not exist."
-#~ msgstr "살펴 보고 있는 사용자가 없습니다."
-
-#~ msgid "You can use the local subscription!"
-#~ msgstr "로컬 구독을 사용할 수 있습니다."
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "이 사용자는 내 구독을 차단했습니다."
-
-#~ msgid "You are not authorized."
-#~ msgstr "인증하지 않았습니다."
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "요청 토큰을 접근 권한 토큰으로 변환할 수 없습니다."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "원격 서비스가 OMB 프로토콜의 알려지지 않은 버전을 사용합니다."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "원격 프로필 프로필 업데이트 오류."
-
-#~ msgid "Invalid notice content."
-#~ msgstr "글 내용이 잘못되었습니다."
-
 #~ msgid ""
-#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
+#~ "An important error occured, probably related to email setup. Check "
+#~ "logfiles for more info."
 #~ msgstr ""
-#~ "글의 \"%1$s\" 라이선스가 사이트의 \"%2$s\" 라이선스와 호환되지 않습니다."
+#~ "전자메일 설치와 관련된 중요한 오류가 발생했습니다. 로그 파일에서 자세한 내"
+#~ "용을 확인하십시오."
 
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "구독하려면, [로그인](%%action.login%%)하거나, 새로 [가입](%%action."
-#~ "register%%)하십시오. 이미 계정이 [호환되는 마이크로블로깅 사이트]((%%doc."
-#~ "openmublog%%)에 계정이 있으면, 아래에 프로파일 URL을 입력하십시오."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "원격 구독"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "원격 사용자에 구독"
-
-#~ msgid "User nickname"
-#~ msgstr "사용자 이름"
-
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "팔로우할 사용자의 이름"
-
-#~ msgid "Profile URL"
-#~ msgstr "프로필 URL"
-
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr "다른 호환 마이크로블로깅 서비스의 자기 프로필 URL."
-
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "잘못된 프로필 URL (형식이 잘못됨)."
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr ""
-#~ "올바른 프로필 URL이 아닙니다. (YADIS 문서가 없거나 잘못된 XRDS가 정의되었"
-#~ "습니다.)"
-
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "로컬 프로파일입니다! 구독하려면 로그인하십시오."
-
-#~ msgid "Could not get a request token."
-#~ msgstr "요청 토큰을 얻을 수 없습니다."
-
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "이 동작으로 OMB 0.1 원격 프로필을 리스트에 넣을 수 (또는 뺼 수) 없습니다."
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr "이 동작으로 OMB 0.1 원격 프로필에 구독할 수 없습니다."
-
-#~ msgid ""
-#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
-#~ "$s\"."
-#~ msgstr ""
-#~ "받는 스트림 라이선스 \"%1$s\"은(는) 사이트 라이선스인 \"%2$s\"과(와) 호환"
-#~ "되지 않습니다."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "구독 허가"
-
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "자세한 정보를 보고 이 사용자의 글을 구독할지 확인하십시오. 글을 구독하지 "
-#~ "않으려면 \"거절\"을 누르십시오."
-
-#~ msgid "Reject this subscription."
-#~ msgstr "이 구독을 거절."
-
-#~ msgid "No authorization request!"
-#~ msgstr "인증 요청이 없습니다!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "구독 허락되었습니다"
-
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "구독이 허락되었지만, 콜백 URL이 통과되지 않았습니다. 사이트 안내를 따라 "
-#~ "이 구독을 승인하는 방법을 보십시오. 구독 토큰은 다음과 같습니다 :"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "구독 거절되었습니다"
-
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr ""
-#~ "구독이 거절되었지만, 콜백 URL이 통과 되지 않았습니다. 사이트의 안내에 따"
-#~ "라 구독을 완전히 거절하는 방법을 보십시오."
-
-#~ msgid "Listener URI \"%s\" not found here."
-#~ msgstr "리스너 URI \"%s\"이(가) 여기 없습니다."
-
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "리스너 URI \"%s\"이(가) 너무 깁니다."
-
-#~ msgid "Listenee URI \"%s\" is a local user."
-#~ msgstr "리스너 URI \"%s\"이(가) 로컬 사용자입니다."
-
-#~ msgid "Profile URL \"%s\" is for a local user."
-#~ msgstr "프로필 URI \"%s\"이(가) 로컬 사용자용입니다."
-
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "아바타 URL \"%s\"이(가) 올바르지 않습니다."
-
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "아바타 URL \"%s\"을(를) 읽을 수 없습니다."
-
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "아바타 URL \"%s\"의 이미지 종류가 잘못되었습니다."
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "구독 OMB 토큰을 삭제할 수 없습니다."
-
-#~ msgid "Error inserting new profile."
-#~ msgstr "새 프로필을 만드는데 오류."
-
-#~ msgid "Error inserting avatar."
-#~ msgstr "아바타를 새로 만드는데 오류."
-
-#~ msgid "Error inserting remote profile."
-#~ msgstr "원격 프로필을 새로 만드는데 오류."
-
-#~ msgid "Duplicate notice."
-#~ msgstr "동일한 글."
-
-#~ msgid "Could not insert new subscription."
-#~ msgstr "새 구독을 새로 만들 수 없습니다."
+#~ msgid "Tagged"
+#~ msgstr "태그 붙음"

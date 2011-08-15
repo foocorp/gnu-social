@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,6 +51,6 @@ msgid "Could not delete subscription OMB token."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: OMBPlugin.php:387
+#: OMBPlugin.php:399
 msgid "A sample plugin to show basics of development for new hackers."
 msgstr ""

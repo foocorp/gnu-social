@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:39+0000\n"
-"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:21:41+0000\n"
+"Language-Team: Interlingua <//translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:13+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-07-21 13:51:27+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -736,14 +736,14 @@ msgid "RSS feed without a channel."
 msgstr "Syndication RSS sin canal."
 
 msgid "Can only handle share activities with exactly one object."
-msgstr ""
+msgstr "Pote solmente manear activitates de divulgation con un sol objecto."
 
 msgid "Can only handle shared activities."
-msgstr ""
+msgstr "Pote solmente manear activitates divulgate."
 
-#, php-format
-msgid "Failed to save activity %s"
-msgstr ""
+#, fuzzy, php-format
+msgid "Failed to save activity %s."
+msgstr "Falleva de salveguardar le activitate %s"
 
 #. TRANS: Client exception. %s is a source URI.
 #, php-format

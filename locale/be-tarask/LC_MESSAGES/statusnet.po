@@ -12,15 +12,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:32+0000\n"
-"Language-Team: Belarusian (Taraškievica orthography) <http://translatewiki."
-"net/wiki/Portal:be-tarask>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:21:38+0000\n"
+"Language-Team: Belarusian (Taraškievica orthography) <//translatewiki.net/"
+"wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: be-tarask\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -37,14 +37,6 @@ msgstr ""
 "працаваць слушна. Адміністратары сайту, верагодна, ведаюць пра праблему, але "
 "Вы можаце зьвязацца зь імі на %2$s каб у гэтым упэўніцца. У адваротным "
 "выпадку, пачакайце некалькі хвілінаў і паспрабуйце ізноў."
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
-msgstr ""
-"Узьнікла важная памылка, верагодна зьвязаная з наладамі электроннай пошты. "
-"Праверце файлы журналаў для дадатковай інфармацыі."
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -319,10 +311,9 @@ msgstr ""
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr "Дасылаць мне абвяшчэньні"
+msgstr "Даслаць запрашэньне"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -447,13 +438,12 @@ msgstr "Памылка блякаваньня карыстальніка."
 msgid "Unblock user failed."
 msgstr "Памылка разблякаваньня карыстальніка."
 
-#, fuzzy
 msgid "no conversation id"
-msgstr "Размова"
+msgstr "няма ідэнтыфікатару размовы"
 
 #, php-format
 msgid "No conversation with id %d"
-msgstr ""
+msgstr "Няма размовы з ідэнтыфікатарам %d"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
 #. TRANS: Title for page with a conversion (multiple notices in context).
@@ -1752,15 +1742,13 @@ msgstr "Адрас «%s» быў пацьверджаны для Вашага р
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
-#, fuzzy
 msgid "Conversation feed (Activity Streams JSON)"
-msgstr "Стужка для сяброў %s (стужкі актыўнасьці JSON)"
+msgstr "Стужка размовы (стужкі актыўнасьці JSON)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
-#, fuzzy
 msgid "Conversation feed (RSS 2.0)"
-msgstr "Размова"
+msgstr "Стужка размовы (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -2658,8 +2646,8 @@ msgid ""
 "Search for groups on %%site.name%% by their name, location, or description. "
 "Separate the terms by spaces; they must be 3 characters or more."
 msgstr ""
-"Пошук групаў %%site.name%% па назьве, месцазнаходжаньні ці апісаньні. "
-"Падзяляйце словы прабеламі; яны павінны ўтрымліваць 3 ці болей сымбаляў."
+"Пошук групаў на %%site.name%% па назьве, месцазнаходжаньні ці апісаньні. "
+"Падзяляйце словы прагаламі; яны павінны ўтрымліваць 3 ці болей сымбаляў."
 
 #. TRANS: Title for page where groups can be searched.
 msgid "Group search"
@@ -3609,7 +3597,7 @@ msgstr "Афармленьне"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Server for themes."
-msgstr "Сэрвэр для афармленьняў."
+msgstr "Сэрвэр афармленьняў."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Web path to themes."
@@ -3625,105 +3613,105 @@ msgstr "SSL-сэрвэр для афармленьняў (па змоўчван�
 
 #. TRANS: Field label in Paths admin panel.
 msgid "SSL path"
-msgstr ""
+msgstr "SSL-шлях"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "SSL path to themes (default: /theme/)."
-msgstr ""
+msgstr "SSL-шлях да тэмаў (па змоўчваньні: /theme/)."
 
 #. TRANS: Field label in Paths admin panel.
 msgid "Directory"
-msgstr ""
+msgstr "Дырэкторыя"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Directory where themes are located."
-msgstr ""
+msgstr "Дырэкторыя, у якой знаходзяцца тэмы."
 
 #. TRANS: Fieldset legend in Paths admin panel.
 msgid "Avatars"
-msgstr ""
+msgstr "Аватары"
 
 #. TRANS: Field label in Paths admin panel.
 msgid "Avatar server"
-msgstr ""
+msgstr "Сэрвэр аватараў"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Server for avatars."
-msgstr ""
+msgstr "Сэрвэр для аватараў."
 
 #. TRANS: Field label in Paths admin panel.
 msgid "Avatar path"
-msgstr ""
+msgstr "Шлях да аватараў"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Web path to avatars."
-msgstr ""
+msgstr "Ўэб-шлях да аватараў."
 
 #. TRANS: Field label in Paths admin panel.
 msgid "Avatar directory"
-msgstr ""
+msgstr "Дырэкторыя аватараў"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Directory where avatars are located."
-msgstr ""
+msgstr "Дырэкторыя, у якой знаходзяцца аватары."
 
 #. TRANS: Fieldset legens in Paths admin panel.
 msgid "Attachments"
-msgstr ""
+msgstr "Далучэньні"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Server for attachments."
-msgstr ""
+msgstr "Сэрвэр далучэньняў."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Web path to attachments."
-msgstr ""
+msgstr "Ўэб-шлях да далучэньняў."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Server for attachments on SSL pages."
-msgstr ""
+msgstr "Сэрвэр для далучэньняў на SSL-старонках."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Web path to attachments on SSL pages."
-msgstr ""
+msgstr "Уэб-шлях для далучэньняў на SSL-старонках."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Directory where attachments are located."
-msgstr ""
+msgstr "Дырэкторыя, у якой знаходзяцца далучэньні."
 
 #. TRANS: Fieldset legend in Paths admin panel.
 msgctxt "LEGEND"
 msgid "SSL"
-msgstr ""
+msgstr "SSL"
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
 #. TRANS: Option in dropdown for snapshot method in admin panel for snapshots.
 msgid "Never"
-msgstr ""
+msgstr "Ніколі"
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
 msgid "Sometimes"
-msgstr ""
+msgstr "Часам"
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
 msgid "Always"
-msgstr ""
+msgstr "Заўсёды"
 
 #. TRANS: Drop down label in Paths admin panel.
 msgid "Use SSL"
-msgstr ""
+msgstr "Выкарыстоўваць SSL"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "When to use SSL."
-msgstr ""
+msgstr "Калі выкарыстоўваць SSL."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Server to direct SSL requests to."
-msgstr ""
+msgstr "Сэрвэр, на які перанакіроўваць SSL-запыты."
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
 msgid "Save paths"
-msgstr ""
+msgstr "Захаваць шляхі"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -3732,22 +3720,24 @@ msgid ""
 "Search for people on %%site.name%% by their name, location, or interests. "
 "Separate the terms by spaces; they must be 3 characters or more."
 msgstr ""
+"Пошук людзей на %%site.name%% па імені, месцазнаходжаньні ці інтарэсах. "
+"Падзяляйце словы прагаламі; яны павінны ўтрымліваць 3 ці болей сымбаляў."
 
 #. TRANS: Title of a page where users can search for other users.
 msgid "People search"
-msgstr ""
+msgstr "Пошук людзей"
 
 #. TRANS: Title for list page.
 #. TRANS: %s is a list.
 #, php-format
 msgid "Public list %s"
-msgstr ""
+msgstr "Публічны сьпіс %s"
 
 #. TRANS: Title for list page.
 #. TRANS: %1$s is a list, %2$d is a page number.
 #, php-format
 msgid "Public list %1$s, page %2$d"
-msgstr ""
+msgstr "Публічны сьпіс %1$s, старонка %2$d"
 
 #. TRANS: Message for anonymous users on list page.
 #. TRANS: This message contains Markdown links in the form [description](link).
@@ -3758,129 +3748,144 @@ msgid ""
 "Software [StatusNet](http://status.net/) tool. You can then easily keep "
 "track of what they are doing by subscribing to the list's timeline."
 msgstr ""
+"Сьпісы — спосаб групоўкі падобных людзей на %%site.name%%, сэрвісе "
+"[мікраблёгаў](http://en.wikipedia.org/wiki/Micro-blogging), які працуе з "
+"дапамогай вольнага праграмнага забесьпячэньня [StatusNet](http://status."
+"net/). Вы можаце зь лёгкасьцю сачыць за тым, што яны робяць, падпісаўшыся на "
+"стужку паведамленьняў гэтага сьпісу."
 
 #. TRANS: Client error displayed when a tagger is expected but not provided.
 msgid "No tagger."
-msgstr ""
+msgstr "Няма аўтара тэга."
 
 #. TRANS: Title for list of people listed by the user.
 #. TRANS: %1$s is a list, %2$s is a username.
 #, php-format
 msgid "People listed in %1$s by %2$s"
-msgstr ""
+msgstr "Людзі пазначаныя ў сьпісе %1$s карыстальнікам %2$s"
 
 #. TRANS: Title for list of people listed by the user.
 #. TRANS: %1$s is a list, %2$s is a username, %2$s is a page number.
 #, php-format
 msgid "People listed in %1$s by %2$s, page %3$d"
-msgstr ""
+msgstr "Людзі пазначаныя ў сьпісе %1$s карыстальнікам %2$s, старонка %3$d"
 
 #. TRANS: Addition in tag membership list for creator of a tag.
 #. TRANS: Addition in tag subscribers list for creator of a tag.
 msgid "Creator"
-msgstr ""
+msgstr "Аўтар"
 
 #. TRANS: Title for lists by a user page for a private tag.
 msgid "Private lists by you"
-msgstr ""
+msgstr "Вашыя асабістыя сьпісы"
 
 #. TRANS: Title for lists by a user page for a public tag.
 msgid "Public lists by you"
-msgstr ""
+msgstr "Вашыя публічныя сьпісы"
 
 #. TRANS: Title for lists by a user page.
 msgid "Lists by you"
-msgstr ""
+msgstr "Вашыя сьпісы"
 
 #. TRANS: Title for lists by a user page.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Lists by %s"
-msgstr ""
+msgstr "Сьпісы %s"
 
 #. TRANS: Title for lists by a user page.
 #. TRANS: %1$s is a user nickname, %2$d is a page number.
 #, php-format
 msgid "Lists by %1$s, page %2$d"
-msgstr ""
+msgstr "Сьпісы %1$s, старонка %2$d"
 
 #. TRANS: Client error displayed when trying view another user's private lists.
 msgid "You cannot view others' private lists"
-msgstr ""
+msgstr "Вы ня можаце праглядаць прыватныя сьпісы іншых карыстальнікаў"
 
 #. TRANS: Mode selector label.
 msgid "Mode"
-msgstr ""
+msgstr "Рэжым"
 
 #. TRANS: Link text to show lists for user %s.
 #, php-format
 msgid "Lists for %s"
-msgstr ""
+msgstr "Сьпісы для %s"
 
 #. TRANS: Fieldset legend.
 #. TRANS: Fieldset legend on gallery action page.
 msgid "Select tag to filter"
-msgstr ""
+msgstr "Выберыце тэг для фільтраваньня"
 
 #. TRANS: Checkbox title.
 msgid "Show private tags."
-msgstr ""
+msgstr "Паказваць прыватныя тэгі."
 
 #. TRANS: Checkbox label to show public tags.
 msgctxt "LABEL"
 msgid "Public"
-msgstr ""
+msgstr "Публічныя"
 
 #. TRANS: Checkbox title.
 msgid "Show public tags."
-msgstr ""
+msgstr "Паказваць публічныя тэгі."
 
 #. TRANS: Submit button text for tag filter form.
 #. TRANS: Submit button text on gallery action page.
 msgctxt "BUTTON"
 msgid "Go"
-msgstr ""
+msgstr "Перайсьці"
 
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists created by **%s**. Lists are how you sort similar people on %"
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
+"Тут пададзеныя сьпісы створаныя **%s**. Сьпісы — спосаб групоўкі падобных "
+"людзей на %%site.name%%, сэрвісе [мікраблёгаў](http://en.wikipedia.org/wiki/"
+"Micro-blogging), які працуе з дапамогай вольнага праграмнага забесьпячэньня "
+"[StatusNet](http://status.net/). Вы можаце зь лёгкасьцю сачыць за тым, што "
+"яны робяць, падпісаўшыся на стужку паведамленьняў гэтага сьпісу."
 
 #. TRANS: Message displayed on page that displays lists by a user when there are none.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
 #, php-format
 msgid "%s has not created any [lists](%%%%doc.lists%%%%) yet."
-msgstr ""
+msgstr "%s яшчэ не стварыў ніводнага [сьпісу](%%%%doc.lists%%%%)."
 
 #. TRANS: Page title. %s is a tagged user's nickname.
 #, php-format
 msgid "Lists with %s in them"
-msgstr ""
+msgstr "Сьпісы, да якіх належыць %s"
 
 #. TRANS: Page title. %1$s is a tagged user's nickname, %2$s is a page number.
 #, php-format
 msgid "Lists with %1$s, page %2$d"
-msgstr ""
+msgstr "Сьпісы з %1$s, старонка %2$d"
 
 #. TRANS: Message displayed for anonymous users on page that displays lists for a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists for **%s**. lists are how you sort similar people on %%%%"
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
+"Тут пададзеныя сьпісы для **%s**. Сьпісы — спосаб групоўкі падобных людзей "
+"на %%%%site.name%%%%, сэрвісе [мікраблёгаў](http://en.wikipedia.org/wiki/"
+"Micro-blogging), які працуе з дапамогай вольнага праграмнага забесьпячэньня "
+"[StatusNet](http://status.net/). Вы можаце зь лёгкасьцю сачыць за тым, што "
+"яны робяць, падпісаўшыся на стужку паведамленьняў гэтага сьпісу."
 
 #. TRANS: Message displayed on page that displays lists a user was added to when there are none.
 #. TRANS: This message contains Markdown links in the form [description](links).
@@ -3888,30 +3893,32 @@ msgstr ""
 #, php-format
 msgid "%s has not been [listed](%%%%doc.lists%%%%) by anyone yet."
 msgstr ""
+"%s яшчэ не ўваходзіць ні ў які [сьпіс](%%%%doc.lists%%%%) іншых "
+"карыстальнікаў."
 
 #. TRANS: Page title for list of list subscribers.
 #. TRANS: %1$s is a list, %2$s is a user nickname.
 #, php-format
 msgid "Subscribers to list %1$s by %2$s"
-msgstr ""
+msgstr "Падпісаныя на сьпіс %1$s карыстальніка %2$s"
 
 #. TRANS: Page title for list of list subscribers.
 #. TRANS: %1$s is a list, %2$s is a user nickname, %3$d is a page number.
 #, php-format
 msgid "Subscribers to list %1$s by %2$s, page %3$d"
-msgstr ""
+msgstr "Падпісаныя на сьпіс %1$s карыстальніка %2$s, старонка %3$d"
 
 #. TRANS: Title for page that displays lists subscribed to by a user.
 #. TRANS: %s is a profile nickname.
 #, php-format
 msgid "Lists subscribed to by %s"
-msgstr ""
+msgstr "Сьпісы, на якія падпісаны %s"
 
 #. TRANS: Title for page that displays lists subscribed to by a user.
 #. TRANS: %1$s is a profile nickname, %2$d is a page number.
 #, php-format
 msgid "Lists subscribed to by %1$s, page %2$d"
-msgstr ""
+msgstr "Сьпісы, на якія падпісаны %1$s, старонка %2$d"
 
 #. TRANS: Message displayed for anonymous users on page that displays lists subscribed to by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
@@ -3924,11 +3931,17 @@ msgid ""
 "net/) tool. You can easily keep track of what they are doing by subscribing "
 "to the list's timeline."
 msgstr ""
+"Тут пададзеныя сьпісы, на якія падпісаны **%s**. Сьпісы — спосаб групоўкі "
+"падобных людзей на %%site.name%%, сэрвісе [мікраблёгаў](http://en.wikipedia."
+"org/wiki/Micro-blogging), які працуе з дапамогай вольнага праграмнага "
+"забесьпячэньня [StatusNet](http://status.net/). Вы можаце зь лёгкасьцю "
+"сачыць за тым, што яны робяць, падпісаўшыся на стужку паведамленьняў гэтага "
+"сьпісу."
 
 #. TRANS: Page title for AJAX form return when a disabling a plugin.
 msgctxt "plugin"
 msgid "Disabled"
-msgstr ""
+msgstr "Выключаны"
 
 #. TRANS: Client error displayed when trying to use another method than POST.
 #. TRANS: Do not translate POST.
@@ -3936,25 +3949,25 @@ msgstr ""
 #. TRANS: Do not translate POST.
 #. TRANS: Client error displayed when trying to use another method than POST.
 msgid "This action only accepts POST requests."
-msgstr ""
+msgstr "Гэтае дзеяньне прымае толькі POST-запыты."
 
 #. TRANS: Client error displayed when trying to enable or disable a plugin without access rights.
 msgid "You cannot administer plugins."
-msgstr ""
+msgstr "Вы ня можаце кіраваць дапаўненьнямі."
 
 #. TRANS: Client error displayed when trying to enable or disable a non-existing plugin.
 msgid "No such plugin."
-msgstr ""
+msgstr "Няма такога дапаўненьня."
 
 #. TRANS: Page title for AJAX form return when enabling a plugin.
 msgctxt "plugin"
 msgid "Enabled"
-msgstr ""
+msgstr "Уключаны"
 
 #. TRANS: Tab and title for plugins admin panel.
 msgctxt "TITLE"
 msgid "Plugins"
-msgstr ""
+msgstr "Дапаўненьні"
 
 #. TRANS: Instructions at top of plugin admin page.
 msgid ""
@@ -3962,67 +3975,73 @@ msgid ""
 "\"http://status.net/wiki/Plugins\">online plugin documentation</a> for more "
 "details."
 msgstr ""
+"Дадатковыя дапаўненьні можна ўключыць і наладжваць уручную. Глядзіце <a href="
+"\"http://status.net/wiki/Plugins\">дакумэнтацыю</a>, каб атрымаць дадатковую "
+"інфармацыю."
 
 #. TRANS: Admin form section header
 msgid "Default plugins"
-msgstr ""
+msgstr "Дапаўненьні па змоўчваньні"
 
 #. TRANS: Text displayed on plugin admin page when no plugin are enabled.
 msgid ""
 "All default plugins have been disabled from the site's configuration file."
 msgstr ""
+"Усе дапаўненьні па змоўчваньні былі адключаныя ў файле канфігурацыі сайта."
 
 #. TRANS: Client error displayed when trying to add an unindentified field to profile.
 #. TRANS: %s is a field name.
 #, php-format
 msgid "Unidentified field %s."
-msgstr ""
+msgstr "Невядомае поле %s."
 
 #. TRANS: Page title.
 msgctxt "TITLE"
 msgid "Search results"
-msgstr ""
+msgstr "Вынікі пошуку"
 
 #. TRANS: Error message in case a search is shorter than three characters.
 msgid "The search string must be at least 3 characters long."
-msgstr ""
+msgstr "Радок пошуку павінен утрымліваць ня меней 3 сымбаляў."
 
 #. TRANS: Page title for profile settings.
 msgid "Profile settings"
-msgstr ""
+msgstr "Налады профілю"
 
 #. TRANS: Usage instructions for profile settings.
 msgid ""
 "You can update your personal profile info here so people know more about you."
 msgstr ""
+"Вы можаце абнавіць Вашую асабістую інфармацыю ў профілі, каб людзі "
+"даведаліся пра Вас болей."
 
 #. TRANS: Profile settings form legend.
 msgid "Profile information"
-msgstr ""
+msgstr "Інфармацыя пра профіль"
 
 #. TRANS: Tooltip for field label in form for profile settings.
 #. TRANS: Field title on account registration page.
 #. TRANS: Field title on group edit form.
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
-msgstr ""
+msgstr "1-64 малых літараў ці лічбаў, без сымбаляў пунктуацыі і прагалаў."
 
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
 #. TRANS: Field label on group edit form.
 msgid "Full name"
-msgstr ""
+msgstr "Поўнае імя"
 
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
 #. TRANS: Form input field label.
 #. TRANS: Field label on group edit form; points to "more info" for a group.
 msgid "Homepage"
-msgstr ""
+msgstr "Хатняя старонка"
 
 #. TRANS: Tooltip for field label in form for profile settings.
 #. TRANS: Field title on account registration page.
 msgid "URL of your homepage, blog, or profile on another site."
-msgstr ""
+msgstr "URL-адрас Вашай хатняй старонкі, блёгу ці профілю на іншым сайце."
 
 #. TRANS: Tooltip for field label in form for profile settings. Plural
 #. TRANS: is decided by the number of characters available for the
@@ -4033,19 +4052,19 @@ msgstr ""
 #, php-format
 msgid "Describe yourself and your interests in %d character."
 msgid_plural "Describe yourself and your interests in %d characters."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Апішыце сябе і Вашыя зацікаўленасьці ўклаўшыся ў %d сымбаль."
+msgstr[1] "Апішыце сябе і Вашыя зацікаўленасьці ўклаўшыся ў %d сымбалі."
 
 #. TRANS: Tooltip for field label in form for profile settings.
 #. TRANS: Text area title on account registration page.
 msgid "Describe yourself and your interests."
-msgstr ""
+msgstr "Апішыце сябе і Вашыя зацікаўленасьці."
 
 #. TRANS: Text area label in form for profile settings where users can provide
 #. TRANS: their biography.
 #. TRANS: Text area label on account registration page.
 msgid "Bio"
-msgstr ""
+msgstr "Біяграфія"
 
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Field label on account registration page.
@@ -4174,8 +4193,9 @@ msgid "Beyond the page limit (%s)."
 msgstr ""
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
-msgstr ""
+#, fuzzy
+msgid "Could not retrieve public timeline."
+msgstr "Немагчыма стварыць дастасаваньне."
 
 #. TRANS: Title for all public timeline pages but the first.
 #. TRANS: %d is the page number.
@@ -4189,19 +4209,20 @@ msgid "Public timeline"
 msgstr ""
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Activity Streams JSON)"
+#, fuzzy
+msgid "Public Timeline Feed (Activity Streams JSON)"
+msgstr "Стужка размовы (стужкі актыўнасьці JSON)"
+
+#. TRANS: Link description for public timeline feed.
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr ""
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr ""
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
-msgstr ""
-
-#. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+msgid "Public Timeline Feed (Atom)"
 msgstr ""
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4728,7 +4749,7 @@ msgstr ""
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 
@@ -5100,6 +5121,7 @@ msgid ""
 msgstr ""
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr ""
 
@@ -5118,19 +5140,19 @@ msgstr ""
 msgid "All subscribers"
 msgstr ""
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr ""
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr ""
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5172,7 +5194,7 @@ msgstr ""
 msgid "FOAF for %s"
 msgstr ""
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr ""
@@ -5183,7 +5205,7 @@ msgid ""
 "would be a good time to start :)"
 msgstr ""
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5191,7 +5213,7 @@ msgid ""
 "%?status_textarea=%2$s)."
 msgstr ""
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5201,7 +5223,7 @@ msgid ""
 "follow **%s**'s notices and many more! ([Read more](%%%%doc.help%%%%))"
 msgstr ""
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -8085,7 +8107,7 @@ msgstr ""
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -8502,10 +8524,6 @@ msgstr ""
 #. TRANS: %s is a list.
 #, php-format
 msgid "Edit %s list by you."
-msgstr ""
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-msgid "Tagged"
 msgstr ""
 
 #. TRANS: Title for link to edit list settings.
@@ -9414,31 +9432,9 @@ msgstr ""
 msgid "Could not find a valid profile for \"%s\"."
 msgstr ""
 
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
+#~ msgid ""
+#~ "An important error occured, probably related to email setup. Check "
+#~ "logfiles for more info."
 #~ msgstr ""
-#~ "Вы ня можаце унесьці ў сьпіс аддалены профіль OMB 0.1 з дапамогай гэтага "
-#~ "дзеяньня."
-
-#~ msgid "Not expecting this response!"
-#~ msgstr "Нечаканы адказ!"
-
-#~ msgid "User being listened to does not exist."
-#~ msgstr "Карыстальнік якога слухалі, больш не існуе."
-
-#~ msgid "You can use the local subscription!"
-#~ msgstr "Вы можаце выкарыстоўваць лякальную падпіску!"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "Гэты карыстальнік заблякаваў Вас на яго падпіску."
-
-#~ msgid "You are not authorized."
-#~ msgstr "Вы не аўтарызаваны."
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "Немагчыма канвэртаваць ключ запыту ў ключ доступу."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "Аддалены сэрвіс выкарыстоўвае невядомую вэрсію пратаколу OMB."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "Немагчыма абнавіць аддалены профіль."
+#~ "Узьнікла важная памылка, верагодна зьвязаная з наладамі электроннай "
+#~ "пошты. Праверце файлы журналаў для дадатковай інфармацыі."

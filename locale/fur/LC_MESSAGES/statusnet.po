@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:52+0000\n"
-"Language-Team: Friulian <http://translatewiki.net/wiki/Portal:fur>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:21:59+0000\n"
+"Language-Team: Friulian <//translatewiki.net/wiki/Portal:fur>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: fur\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -33,12 +33,6 @@ msgstr ""
 "funzionarà. I aministradôrs dal sît probabilmentri a son za stâts informâts "
 "dal probleme, ma tu ju puedis contatâ su %2$s par jessi sigûr. Se no, spiete "
 "cualchi minût par tornâ a provâ."
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
-msgstr ""
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -92,7 +86,7 @@ msgstr "Dome invîts"
 
 #. TRANS: Checkbox instructions for admin setting "Closed" (no new registrations).
 msgid "Disable new registrations."
-msgstr ""
+msgstr "Disative lis gnovis regjistrazions."
 
 #. TRANS: Checkbox label for disabling new user registrations.
 msgid "Closed"
@@ -309,10 +303,9 @@ msgstr ""
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr "Mande invîts."
+msgstr "Invide"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -431,9 +424,8 @@ msgstr ""
 msgid "Unblock user failed."
 msgstr ""
 
-#, fuzzy
 msgid "no conversation id"
-msgstr "Tabaiade"
+msgstr "nissun id de tabaiade"
 
 #, php-format
 msgid "No conversation with id %d"
@@ -3272,7 +3264,7 @@ msgstr ""
 #. TRANS: %s is a path.
 #, php-format
 msgid "\"%s\" not found."
-msgstr ""
+msgstr "\"%s\" nol è stât cjatât."
 
 #. TRANS: Server error displayed in oEmbed action when notice not found.
 #. TRANS: %s is a notice.
@@ -3757,13 +3749,13 @@ msgstr "Va"
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists created by **%s**. Lists are how you sort similar people on %"
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "Chestis a son lis listis creadis di **%s**. Lis listis a son un mût par meti "
 "in ordin personis similis su %%site.name%%, un servizi di [microblogging]"
@@ -3791,13 +3783,13 @@ msgstr "Listis che a contegnin %1$s, pagjine %2$d"
 #. TRANS: Message displayed for anonymous users on page that displays lists for a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists for **%s**. lists are how you sort similar people on %%%%"
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "Chestis a son lis listis par **%s**. Lis listis a son un mût par meti in "
 "ordin personis similis su %%site.name%%, un servizi di [microblogging]"
@@ -4107,8 +4099,9 @@ msgid "Beyond the page limit (%s)."
 msgstr ""
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
-msgstr ""
+#, fuzzy
+msgid "Could not retrieve public timeline."
+msgstr "No si à podût creâ il preferît."
 
 #. TRANS: Title for all public timeline pages but the first.
 #. TRANS: %d is the page number.
@@ -4122,19 +4115,23 @@ msgid "Public timeline"
 msgstr "Ativitât publiche"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Activity Streams JSON)"
+#, fuzzy
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "Canâl de ativitât publiche (Activity Streams JSON)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "Canâl de ativitât publiche (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "Canâl de ativitât publiche (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "Canâl de ativitât publiche (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4690,7 +4687,7 @@ msgstr ""
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 
@@ -5078,6 +5075,7 @@ msgstr ""
 "scomencis a seguî cheste ativitât!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr "Metût te liste"
 
@@ -5096,19 +5094,19 @@ msgstr "Sotscritôrs"
 msgid "All subscribers"
 msgstr "Ducj i sotscritôrs"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "Avîs di %1$s cun etichete %2$s"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "Avîs di %1$s cun etichete %2$s, pagjine %3$d"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5150,7 +5148,7 @@ msgstr "Canâl dai avîs par %s (Atom)"
 msgid "FOAF for %s"
 msgstr "FOAF di %s"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "Cheste e je la ativitât di %1$s, ma %1$s nol à ancjemò publicât nuie."
@@ -5163,7 +5161,7 @@ msgstr ""
 "No âstu viodût nuie di interessant tai ultins timps? No tu âs publicât "
 "ancjemò nissun avîs, cumò al sarès un bon moment par scomençâ :)"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5173,7 +5171,7 @@ msgstr ""
 "Tu puedis provâ a pocâ %1$s o ben [mandâi un avîs](%%%%action.newnotice%%%%?"
 "status_textarea=%2$s)."
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5187,7 +5185,7 @@ msgstr ""
 "[StatusNet](http://status.net/) tool. [Join now](%%%%action.register%%%%) to "
 "follow **%s**'s notices and many more! ([Read more](%%%%doc.help%%%%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -6179,9 +6177,8 @@ msgstr ""
 msgid "Could not create login token for %s"
 msgstr ""
 
-#, fuzzy
 msgid "Cannot instantiate class "
-msgstr "No si pues salvâ la gnove password."
+msgstr "No si pues istanziâ la clas"
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
@@ -7754,9 +7751,8 @@ msgstr "Grups popolârs"
 msgid "Active groups"
 msgstr "Grups atîfs"
 
-#, fuzzy
 msgid "See all"
-msgstr "Mostre dut"
+msgstr "Viôt dut"
 
 msgid "See all groups you belong to"
 msgstr ""
@@ -7895,9 +7891,8 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Lasse"
 
-#, fuzzy
 msgid "See all lists you have created"
-msgstr "Lis aplicazions che tu âs regjistrât"
+msgstr "Cjale dutis lis listis che tu âs creât"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -8122,7 +8117,7 @@ msgstr ""
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -8347,7 +8342,7 @@ msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
 msgid "More ▼"
-msgstr ""
+msgstr "Plui ▼"
 
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
@@ -8544,10 +8539,6 @@ msgstr "Cambie"
 #, php-format
 msgid "Edit %s list by you."
 msgstr "Cambie la tô liste %s."
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-msgid "Tagged"
-msgstr "Etichetât"
 
 #. TRANS: Title for link to edit list settings.
 msgid "Edit list settings."
@@ -9460,49 +9451,5 @@ msgstr "La direzion di pueste eletroniche no je valide."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "No si à podût cjatâ un profîl valit par \"%s\","
 
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "Chest utent ti à blocât e no tu puedis sotscrivilu."
-
-#~ msgid "You are not authorized."
-#~ msgstr "No tu sês autorizât."
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "Par sotscriviti, tu puedis [jentrâ](%%action.login%%), o [regjistrâ](%%"
-#~ "action.register%%) une gnove identitât. Se tu âs za une identitât suntun "
-#~ "[sît di microblogging compatibil](%%doc.openmublog%%),  inserìs ca sot la "
-#~ "URL dal to profîl."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "Sotscrizion remote"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "Sostscriviti a un utent remot"
-
-#~ msgid "User nickname"
-#~ msgstr "Sorenon dal utent"
-
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "Sorenon dal utent che tu vuelis seguî."
-
-#~ msgid "Profile URL"
-#~ msgstr "URL dal profîl"
-
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr "URL dal to profîl suntun altri servizi di microblogging compatibil."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "Autorize la sotscrizion"
-
-#~ msgid "Reject this subscription."
-#~ msgstr "Refude la sotscrizion"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "Sotscrizion autorizade"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "Sotscrizion refudade"
+#~ msgid "Tagged"
+#~ msgstr "Etichetât"

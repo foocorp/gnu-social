@@ -14,18 +14,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:38+0000\n"
-"Language-Team: Czech <http://translatewiki.net/wiki/Portal:cs>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:21:45+0000\n"
+"Language-Team: Czech <//translatewiki.net/wiki/Portal:cs>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: cs\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ( (n >= 2 && n <= 4) ? 1 : "
 "2 );\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -34,12 +34,6 @@ msgid ""
 "properly. The site admins probably know about the problem, but you can "
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
-msgstr ""
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
 msgstr ""
 
 #. TRANS: Error message.
@@ -3959,7 +3953,7 @@ msgid ""
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "**%s** je skupina uživatelů na %%%%site.name%%%%, [mikro-blogovací](http://"
 "drbz.cz/i/napoveda-faq#mikroblog) službě založené na Free Software nástroji "
@@ -3992,7 +3986,7 @@ msgid ""
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "**%s** je skupina uživatelů na %%%%site.name%%%%, [mikro-blogovací](http://"
 "drbz.cz/i/napoveda-faq#mikroblog) službě založené na Free Software nástroji "
@@ -4318,7 +4312,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "Přes limit stránky (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "Nepodařilo se získat veřejný proud."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4334,19 +4329,22 @@ msgstr "Veřejné zprávy"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "Veřejný Stream Feed (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "Veřejný Stream Feed (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "Veřejný Stream Feed (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "Veřejný Stream Feed (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4940,7 +4938,7 @@ msgstr ""
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 
@@ -5349,6 +5347,7 @@ msgstr ""
 "Proč ne [zaregistrovat účet](%%action.register%%) a poslat něco jako první!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 #, fuzzy
 msgid "Listed"
 msgstr "Licence"
@@ -5368,19 +5367,19 @@ msgstr "Odběratelé"
 msgid "All subscribers"
 msgstr "Všichni odběratelé"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "%1$s, strana %2$d"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "Oznámení označená %1$s, strana %2$d"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5422,7 +5421,7 @@ msgstr "Feed oznámení pro %1$s (Atom)"
 msgid "FOAF for %s"
 msgstr "FOAF pro %s"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, fuzzy, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "Toto je časová osa pro %1$s, ale %2$s zatím ničím nepřispěli."
@@ -5435,7 +5434,7 @@ msgstr ""
 "Viděli jste v poslední době zajímavého? Nemáte zatím žádné oznámení, teď by "
 "byl dobrý čas začít:)"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5445,7 +5444,7 @@ msgstr ""
 "Můžete se pokusit uživatele %1$s postrčit nebo [jim něco poslat](%%%%action."
 "newnotice%%%%?status_textarea=%2$s)."
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5459,7 +5458,7 @@ msgstr ""
 "(http://status.net/). [Zaregistrujte se](%%%%action.register%%%%) a sledujte "
 "oznámení od **%s**a mnoha dalších! ([Čtěte více](%%%%doc.help%%%%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -8627,7 +8626,7 @@ msgstr "%s (@%s) poslal oznámení žádající o vaši pozornost"
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, fuzzy, php-format
 msgid ""
@@ -9102,11 +9101,6 @@ msgstr "Editovat"
 #, fuzzy, php-format
 msgid "Edit %s list by you."
 msgstr "Upravit skupinu %s"
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-#, fuzzy
-msgid "Tagged"
-msgstr "Značka"
 
 #. TRANS: Title for link to edit list settings.
 #, fuzzy
@@ -10100,179 +10094,5 @@ msgid "Could not find a valid profile for \"%s\"."
 msgstr "Nepodařilo se uložit profil."
 
 #, fuzzy
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "Touto akcí se nemůžete přihlásit k odběru vzdáleného OMB 0.1 profilu."
-
-#~ msgid "Not expecting this response!"
-#~ msgstr "Nečekaná odpověď!"
-
-#~ msgid "User being listened to does not exist."
-#~ msgstr "Úživatel, kterému nasloucháte neexistuje."
-
-#~ msgid "You can use the local subscription!"
-#~ msgstr "Můžete použít místní odebírání."
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "Uživatel vaše odebírání zablokoval."
-
-#~ msgid "You are not authorized."
-#~ msgstr "Nejste autorizován."
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "Nemohu převést žádost token na přístup token."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "Vzdálená služba používá neznámou verzi protokolu OMB."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "Chyba při aktualizaci vzdáleného profilu."
-
-#~ msgid "Invalid notice content."
-#~ msgstr "Neplatná velikost"
-
-#, fuzzy
-#~ msgid ""
-#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-#~ msgstr "Licence hlášky ‘%1$s’ není kompatibilní s licencí webu ‘%2$s’."
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "Pro odebírání, se musíte [přihlásit](%%action.login%%), nebo [registrovat]"
-#~ "(%%action.register%%) nový účet. Pokud již máte účet na [kompatibilních "
-#~ "mikroblozích](%%doc.openmublog%%), vložte níže adresu."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "Vzdálený odběr"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "Přihlásit se ke vzdálenému uživateli"
-
-#~ msgid "User nickname"
-#~ msgstr "Přezdívka uživatele"
-
-#, fuzzy
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "Přezdívka uživatele, kterého chcete sledovat"
-
-#~ msgid "Profile URL"
-#~ msgstr "Adresa Profilu"
-
-#, fuzzy
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr "Adresa profilu na jiných kompatibilních mikroblozích."
-
-#, fuzzy
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "Neplatná adresa profilu (špatný formát)"
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr ""
-#~ "Není platnou adresou profilu (není YADIS dokumentem nebo definováno "
-#~ "neplatné XRDS)."
-
-#, fuzzy
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "To je místní profil! Pro přihlášení k odběru se přihlášte."
-
-#, fuzzy
-#~ msgid "Could not get a request token."
-#~ msgstr "Nelze získat řetězec požadavku."
-
-#, fuzzy
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "Touto akcí se nemůžete se přihlásit k odběru vzdáleného OMB 0.1 profilu."
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "Touto akcí se nemůžete se přihlásit k odběru vzdáleného OMB 0.1 profilu."
-
-#, fuzzy
-#~ msgid ""
-#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
-#~ "$s\"."
-#~ msgstr ""
-#~ "Licence naslouchaného '%1$s' není kompatibilní s licencí stránky '%2$s'."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "Autorizujte přihlášení"
-
-#, fuzzy
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "Prosím zkontrolujte tyto detailu, a ujistěte se že opravdu chcete "
-#~ "odebírat sdělení tohoto uživatele. Pokud jste právě nepožádali o "
-#~ "přihlášení k tomuto uživteli, klikněte na \"Zrušit\""
-
-#, fuzzy
-#~ msgid "Reject this subscription."
-#~ msgstr "Odmítnout toto přihlášení"
-
-#~ msgid "No authorization request!"
-#~ msgstr "Žádná žádost o autorizaci!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "Odběr autorizován"
-
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "Odběr byl autorizován, ale nepřišla žádná callback adresa. Zkontrolujte v "
-#~ "nápovědě jak správně postupovat při autorizování odběru. Váš řetězec "
-#~ "odběru je:"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "Odběr odmítnut"
-
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr ""
-#~ "Odebírání bylo zamítnuto, ale nepřišla žádná callback adresa. "
-#~ "Zkontrolujte v nápovědě jak správně postupovat pro plné zamítnutí odběru."
-
-#, fuzzy
-#~ msgid "Listener URI \"%s\" not found here."
-#~ msgstr "Naslouchací URI ‘%s’ zde nebyl nalezen."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "Naslouchací URI ‘%s’ je příliš dlouhý."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is a local user."
-#~ msgstr "Naslouchací URI ‘%s’ je místní uživatel."
-
-#, fuzzy
-#~ msgid "Profile URL \"%s\" is for a local user."
-#~ msgstr "URL profilu '%s' je pro místního uživatele."
-
-#, fuzzy
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "URL avataru ‘%s’ není platný."
-
-#, fuzzy
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "Nelze načíst avatara z URL '%s'"
-
-#, fuzzy
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "Špatný typ obrázku na URL '%s'"
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "Nelze smazat OMB token přihlášení."
-
-#, fuzzy
-#~ msgid "Could not insert new subscription."
-#~ msgstr "Nelze vložit odebírání"
+#~ msgid "Tagged"
+#~ msgstr "Značka"

@@ -19,17 +19,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:15+0000\n"
-"Language-Team: Portuguese <http://translatewiki.net/wiki/Portal:pt>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:24+0000\n"
+"Language-Team: Portuguese <//translatewiki.net/wiki/Portal:pt>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: pt\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -38,12 +38,6 @@ msgid ""
 "properly. The site admins probably know about the problem, but you can "
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
-msgstr ""
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
 msgstr ""
 
 #. TRANS: Error message.
@@ -3891,7 +3885,7 @@ msgid ""
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "**%s** é um grupo de utilizadores no site %%%%site.name%%%%, um serviço de "
 "[microblogues](http://en.wikipedia.org/wiki/Micro-blogging) baseado no "
@@ -3924,7 +3918,7 @@ msgid ""
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "**%s** é um grupo de utilizadores no site %%%%site.name%%%%, um serviço de "
 "[microblogues](http://en.wikipedia.org/wiki/Micro-blogging) baseado no "
@@ -4247,7 +4241,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "Além do limite de página (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "Não foi possível importar as notas públicas."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4263,19 +4258,22 @@ msgstr "Notas públicas"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "Fonte de Notas Públicas (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "Fonte de Notas Públicas (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "Fonte de Notas Públicas (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "Fonte de Notas Públicas (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4875,7 +4873,7 @@ msgstr ""
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 
@@ -5282,6 +5280,7 @@ msgstr ""
 "publicar uma!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 #, fuzzy
 msgid "Listed"
 msgstr "Licença"
@@ -5302,19 +5301,19 @@ msgstr "Subscritores"
 msgid "All subscribers"
 msgstr "Todos os subscritores"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "%1$s etiquetado como %2$s"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "Notas categorizadas com %1$s, página %2$d"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5356,7 +5355,7 @@ msgstr "Fonte de notas para %s (Atom)"
 msgid "FOAF for %s"
 msgstr "FOAF para %s"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, fuzzy, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "Estas são as notas de %1$s, mas %2$s ainda não publicou nenhuma."
@@ -5369,7 +5368,7 @@ msgstr ""
 "Viu algo de interessante ultimamente? Como ainda não publicou nenhuma nota, "
 "esta seria uma óptima altura para começar :)"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5379,7 +5378,7 @@ msgstr ""
 "Pode tentar dar um toque em %1$s ou [endereçar-lhe uma nota](%%%%action."
 "newnotice%%%%?status_textarea=%2$s)."
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5394,7 +5393,7 @@ msgstr ""
 "action.register%%%%) para seguir as notas de **%s** e de muitos mais! "
 "([Saber mais](%%%%doc.help%%%%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -8556,7 +8555,7 @@ msgstr "%s (@%s) enviou uma nota à sua atenção"
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, fuzzy, php-format
 msgid ""
@@ -9033,11 +9032,6 @@ msgstr "Editar"
 #, fuzzy, php-format
 msgid "Edit %s list by you."
 msgstr "Editar grupo %s"
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-#, fuzzy
-msgid "Tagged"
-msgstr "Categoria"
 
 #. TRANS: Title for link to edit list settings.
 #, fuzzy
@@ -10025,194 +10019,5 @@ msgid "Could not find a valid profile for \"%s\"."
 msgstr "Não foi possível gravar o perfil."
 
 #, fuzzy
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr "Não pode subscrever um perfil remoto OMB 0.1 com esta operação."
-
-#~ msgid "Not expecting this response!"
-#~ msgstr "Não esperava esta resposta!"
-
-#~ msgid "User being listened to does not exist."
-#~ msgstr "O utilizador que está a escutar não existe."
-
-#~ msgid "You can use the local subscription!"
-#~ msgstr "Pode usar a subscrição local!"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "Esse utilizador bloqueou-o, impedindo que o subscreva."
-
-#~ msgid "You are not authorized."
-#~ msgstr "Não tem autorização."
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "Não foi possível converter a chave de pedido numa chave de acesso."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "Serviço remoto usa uma versão desconhecida do protocolo OMB."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "Erro ao actualizar o perfil remoto."
-
-#~ msgid "Invalid notice content."
-#~ msgstr "Conteúdo da nota é inválido."
-
-#, fuzzy
-#~ msgid ""
-#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-#~ msgstr ""
-#~ "A licença ‘%1$s’ da nota não é compatível com a licença ‘%2$s’ do site."
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "Para subscrever, pode [iniciar sessão](%%action.login%%), ou [registar](%%"
-#~ "action.register%%) uma conta nova. Se já tem conta num [serviço de "
-#~ "microblogues compatível](%%doc.openmublog%%), introduza abaixo a URL do "
-#~ "seu perfil lá."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "Subscrição remota"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "Subscrever um utilizador remoto"
-
-#~ msgid "User nickname"
-#~ msgstr "Nome do utilizador"
-
-#, fuzzy
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "Nome do utilizador que pretende seguir"
-
-#~ msgid "Profile URL"
-#~ msgstr "URL do perfil"
-
-#, fuzzy
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr "URL do seu perfil noutro serviço de microblogues compatível"
-
-#, fuzzy
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "URL de perfil inválido (formato incorrecto)"
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr ""
-#~ "URL do perfil não é válida (não há um documento Yadis, ou foi definido um "
-#~ "XRDS inválido)."
-
-#, fuzzy
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "Esse perfil é local! Inicie uma sessão para o subscrever."
-
-#, fuzzy
-#~ msgid "Could not get a request token."
-#~ msgstr "Não foi possível obter uma chave de pedido."
-
-#, fuzzy
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr "Não pode subscrever um perfil remoto OMB 0.1 com esta operação."
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr "Não pode subscrever um perfil remoto OMB 0.1 com esta operação."
-
-#, fuzzy
-#~ msgid ""
-#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
-#~ "$s\"."
-#~ msgstr ""
-#~ "Licença ‘%1$s’ da listenee stream não é compatível com a licença ‘%2$s’ "
-#~ "do site."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "Autorizar subscrição"
-
-#, fuzzy
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "Por favor, verifique estes detalhes para se certificar de que deseja "
-#~ "subscrever as notas deste utilizador. Se não fez um pedido para "
-#~ "subscrever as notas de alguém, simplesmente clique \"Rejeitar\"."
-
-#, fuzzy
-#~ msgid "Reject this subscription."
-#~ msgstr "Rejeitar esta subscrição"
-
-#~ msgid "No authorization request!"
-#~ msgstr "Não há pedido de autorização!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "Subscrição autorizada"
-
-#, fuzzy
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "A subscrição foi autorizada, mas não foi enviada nenhuma URL de retorno. "
-#~ "Verifique as instruções do site para saber como autorizar a subscrição. A "
-#~ "sua chave de subscrição é:"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "Subscrição rejeitada"
-
-#, fuzzy
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr ""
-#~ "A subscrição foi rejeitada, mas não foi enviada nenhuma URL de retorno. "
-#~ "Verifique as instruções do site para saber como rejeitar completamente a "
-#~ "subscrição."
-
-#, fuzzy
-#~ msgid "Listener URI \"%s\" not found here."
-#~ msgstr "A listener URI ‘%s’ não foi encontrada aqui."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "URI do escutado ‘%s’ é demasiado longo."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is a local user."
-#~ msgstr "URI do ouvido ‘%s’ é um utilizador local."
-
-#, fuzzy
-#~ msgid "Profile URL \"%s\" is for a local user."
-#~ msgstr "A URL ‘%s’ do perfil é de um utilizador local."
-
-#, fuzzy
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "A URL ‘%s’ do avatar é inválida."
-
-#, fuzzy
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "Não é possível ler a URL do avatar ‘%s’."
-
-#, fuzzy
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "Tipo de imagem incorrecto para o avatar da URL ‘%s’."
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "Não foi possível apagar a chave OMB da subscrição."
-
-#~ msgid "Error inserting new profile."
-#~ msgstr "Erro ao inserir perfil novo."
-
-#~ msgid "Error inserting avatar."
-#~ msgstr "Erro ao inserir avatar."
-
-#~ msgid "Error inserting remote profile."
-#~ msgstr "Erro ao inserir perfil remoto."
-
-#~ msgid "Duplicate notice."
-#~ msgstr "Nota duplicada."
-
-#, fuzzy
-#~ msgid "Could not insert new subscription."
-#~ msgstr "Não foi possível inserir nova subscrição."
+#~ msgid "Tagged"
+#~ msgstr "Categoria"
