@@ -31,7 +31,6 @@
  *  Class to get fancy times for the dropdowns on the new event form
  */
 class EventTimeList {
-
     /**
      * Round up to the nearest half hour
      *
@@ -73,7 +72,6 @@ class EventTimeList {
         $len   = 0;
 
         for ($i = 0; $i < 48; $i++) {
-
             // make sure we store the time as UTC
             $newTime->setTimezone(new DateTimeZone('UTC'));
             $utcTime = $newTime->format('H:i:s');
@@ -86,22 +84,22 @@ class EventTimeList {
             if ($duration) {
                 $len += 30;
                 $hours    = $len / 60;
-                // for i18n
-                $hourStr  = _m('hour');
-                $hoursStr = _m('hrs');
-                $minStr   = _m('mins');
                 switch ($hours) {
                 case 0:
-                    $total = " (0 {$minStr})";
+                    // TRANS: 0 minutes abbreviated. Used in a list.
+                    $total = ' ' . _m('(0 min)');
                     break;
                 case .5:
-                    $total = " (30 {$minStr})";
+                    // TRANS: 30 minutes abbreviated. Used in a list.
+                    $total = ' ' . _m('(30 min)');
                     break;
                 case 1:
-                    $total = " (1 {$hourStr})";
+                    // TRANS: 1 hour. Used in a list.
+                    $total = ' ' . _m('(1 hour)');
                     break;
                 default:
-                    $total = " ({$hours} " . $hoursStr . ')';
+                    // TRANS: Number of hours (%d). Used in a list.
+                    $total = ' ' . sprintf(_m('(%d hour)','(%d hours)',$hours), $hours);
                     break;
                 }
                 $localTime .= $total;
@@ -113,7 +111,4 @@ class EventTimeList {
 
         return $times;
     }
-
 }
-
-
