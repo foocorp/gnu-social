@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:57:54+0000\n"
-"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:30+0000\n"
+"Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:45+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
@@ -27,10 +27,11 @@ msgstr ""
 msgid "Twitter settings"
 msgstr "إعدادات تويتر"
 
+#. TRANS: Instructions for page with Twitter integration settings.
 msgid ""
 "Connect your Twitter account to share your updates with your Twitter friends "
 "and vice-versa."
-msgstr ""
+msgstr "اربط حسابك على تويتر لتشارك مستجداتك مع أصدقائك على تويتر والعكس."
 
 #. TRANS: Fieldset legend.
 msgid "Twitter account"
@@ -51,20 +52,20 @@ msgid ""
 "Disconnecting your Twitter account could make it impossible to log in! "
 "Please [set a password](%s) first."
 msgstr ""
+"قد يجعل فصل حسابك على تويتر الولوج مستحيلا! الرجاء [تعيين كلمة سر](%s) أولا."
 
-#. TRANS: Form instructions. %s is a URL to the password settings.
-#. TRANS: %1$s is the StatusNet sitename.
+#. TRANS: Form instructions. %1$s is the StatusNet sitename.
 #, php-format
 msgid ""
 "Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
 "password to log in."
 msgstr ""
+"أبق حسابك على %1$s لكن افصله من تويتر. يمكن أن تستخدم كلمة سر %1$s للولوج."
 
 #. TRANS: Button text for disconnecting a Twitter account.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Disconnect"
-msgstr "اربط"
+msgstr "اقطع الارتباط"
 
 #. TRANS: Fieldset legend.
 msgid "Preferences"
@@ -72,29 +73,27 @@ msgstr "تفضيلات"
 
 #. TRANS: Checkbox label.
 msgid "Automatically send my notices to Twitter."
-msgstr ""
+msgstr "أرسل إشعاراتي تلقائيا إلى تويتر."
 
 #. TRANS: Checkbox label.
 msgid "Send local \"@\" replies to Twitter."
-msgstr ""
+msgstr "أرسل ردود \"@\" المحلية إلى تويتر."
 
 #. TRANS: Checkbox label.
 msgid "Subscribe to my Twitter friends here."
-msgstr ""
+msgstr "اشترك بأصدقائي على تويتر هنا."
 
 #. TRANS: Checkbox label.
 msgid "Import my friends timeline."
-msgstr ""
+msgstr "استورد المسار الزمني لأصدقائي."
 
 #. TRANS: Button text for saving Twitter integration settings.
 #. TRANS: Button text for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "احفظ"
 
 #. TRANS: Button text for adding Twitter integration.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "أضف"
@@ -117,12 +116,11 @@ msgstr ""
 
 #. TRANS: Success message displayed after disconnecting a Twitter account.
 msgid "Twitter account disconnected."
-msgstr ""
+msgstr "قطع الارتباط بحساب تويتر."
 
 #. TRANS: Server error displayed when saving Twitter integration preferences fails.
-#, fuzzy
 msgid "Could not save Twitter preferences."
-msgstr "حُفظت تفضيلات تويتر."
+msgstr "تعذر حفظ تفضيلات تويتر."
 
 #. TRANS: Success message after saving Twitter integration preferences.
 msgid "Twitter preferences saved."
@@ -134,7 +132,7 @@ msgstr ""
 
 #. TRANS: Form validation error displayed when an unhandled error occurs.
 msgid "Something weird happened."
-msgstr ""
+msgstr "حدث شيء غريب."
 
 #. TRANS: Server error displayed when linking to a Twitter account fails.
 msgid "Could not link your Twitter account."
@@ -167,6 +165,8 @@ msgid ""
 "My text and files are available under %s except this private data: password, "
 "email address, IM address, and phone number."
 msgstr ""
+"تخضع نصوصي وملفات ل%s إلا البيانات الخاصة التالية: كلمة السر وعنوان البريد "
+"الإلكتروني وعنوان المراسلة الفورية ورقم الهاتف."
 
 #. TRANS: Fieldset legend.
 msgid "Create new account"
@@ -182,7 +182,7 @@ msgstr "الاسم المستعار الجديد"
 
 #. TRANS: Field title for nickname field.
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
-msgstr ""
+msgstr "1-64 حرفًا إنجليزيًا أو رقمًا، بدون نقاط أو مسافات."
 
 #. TRANS: Field label.
 msgctxt "LABEL"
@@ -194,7 +194,6 @@ msgid "Used only for updates, announcements, and password recovery"
 msgstr ""
 
 #. TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "أنشئ"
@@ -219,7 +218,6 @@ msgid "Password"
 msgstr "كلمة السر"
 
 #. TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "اربط"
@@ -255,7 +253,6 @@ msgid "Invalid username or password."
 msgstr "اسم مستخدم أو كلمة سر غير صالحة."
 
 #. TRANS: Page title for Twitter administration panel.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter"
 msgstr "تويتر"
@@ -318,7 +315,7 @@ msgstr ""
 
 #. TRANS: Checkbox label for global setting.
 msgid "Enable Twitter import"
-msgstr ""
+msgstr "مكّن الاستيراد من تويتر"
 
 #. TRANS: Checkbox title for global setting.
 msgid ""
@@ -327,9 +324,8 @@ msgid ""
 msgstr ""
 
 #. TRANS: Button title for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgid "Save the Twitter bridge settings."
-msgstr "إعدادات جسر تويتر"
+msgstr "احفظ إعدادات جسر تويتر."
 
 #. TRANS: Server exception thrown when an invalid URL scheme is detected.
 msgid "Invalid URL scheme for HTTP stream reader."
@@ -365,24 +361,24 @@ msgstr ""
 
 #. TRANS: Menu item in login navigation.
 #. TRANS: Menu item in connection settings navigation.
-#, fuzzy
 msgctxt "MENU"
 msgid "Twitter"
 msgstr "تويتر"
 
 #. TRANS: Title for menu item in login navigation.
-#, fuzzy
 msgid "Login or register using Twitter."
-msgstr "خطأ في تسجيل مستخدم."
+msgstr "لُج أو سجّل باستخدام تويتر."
 
 #. TRANS: Title for menu item in connection settings navigation.
 msgid "Twitter integration options"
-msgstr ""
+msgstr "خيارات التكامل مع تويتر"
 
+#. TRANS: Menu item in administrative panel that leads to the Twitter bridge configuration.
 msgid "Twitter"
 msgstr "تويتر"
 
-msgid "Twitter bridge configuration"
+#. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
+msgid "Twitter bridge configuration page."
 msgstr ""
 
 #. TRANS: Plugin description.
@@ -396,18 +392,17 @@ msgid "Already logged in."
 msgstr "والج بالفعل."
 
 #. TRANS: Title for login using Twitter page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter Login"
-msgstr "حساب تويتر"
+msgstr "ولوج بتويتر"
 
 #. TRANS: Instructions for login using Twitter page.
 msgid "Login with your Twitter account"
-msgstr ""
+msgstr "لُج بحسابك على تويتر"
 
 #. TRANS: Alternative text for "sign in with Twitter" image.
 msgid "Sign in with Twitter"
-msgstr ""
+msgstr "سجل دخولك بتويتر"
 
 #. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
 msgid "Your Twitter bridge has been disabled"
@@ -430,9 +425,18 @@ msgid ""
 "Regards,\n"
 "%3$s"
 msgstr ""
+"مرحبا، %1$s. يؤسفنا إخبارك أنه تم تعطيل ارتباطك بتويتر. يبدو أنه لم يعد يسمح "
+"لنا بتحديث حالتك على تويتر. هل قمت بإلغاء السماح ل%3$s؟\n"
+"\n"
+"يمكنك إعادة تفعيل جسر تويتر بزيارة صفحة إعدادات تويتر:\n"
+"\n"
+"%2$s\n"
+"\n"
+"مع تحياتنا،\n"
+"%3$s"
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
 #, php-format
 msgid "RT @%1$s %2$s"
-msgstr ""
+msgstr "RT @%1$s %2$s"

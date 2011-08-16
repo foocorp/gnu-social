@@ -1,0 +1,60 @@
+# Translation of StatusNet - OMB to Dutch (Nederlands)
+# Exported from translatewiki.net
+#
+# Author: Siebrand
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - OMB\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:21:17+0000\n"
+"Language-Team: Dutch <//translatewiki.net/wiki/Portal:nl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-08-15 14:12:05+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Language-Code: nl\n"
+"X-Message-Group: #out-statusnet-plugin-omb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Button text on page for remote subscribe.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Abonneren"
+
+#. TRANS: Button text on Authorise Subscription page.
+msgctxt "BUTTON"
+msgid "Accept"
+msgstr "Aanvaarden"
+
+#. TRANS: Button text on Authorise Subscription page.
+msgctxt "BUTTON"
+msgid "Reject"
+msgstr "Weigeren"
+
+msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
+msgstr ""
+"U kunt via deze handeling niet abonneren op een extern OMB 1.0-profiel."
+
+msgid "You cannot list an OMB 0.1 remote profile with this action."
+msgstr ""
+"U kunt een extern OMB 1.0-profiel niet opnemen in een lijst via deze "
+"handeling."
+
+msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
+msgstr ""
+"U kunt een extern OMB 1.0-profiel niet opnemen in of verwijderen uit een "
+"lijst via deze handeling."
+
+msgid "Could not delete subscription OMB token."
+msgstr ""
+"Het was niet mogelijk om het OMB-token voor het abonnement te verwijderen."
+
+#. TRANS: Plugin description.
+msgid "A sample plugin to show basics of development for new hackers."
+msgstr ""
+"Een voorbeeldplug-in als basis voor ontwikkelingen door nieuwe hackers."

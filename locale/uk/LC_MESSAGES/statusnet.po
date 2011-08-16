@@ -12,18 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:24+0000\n"
-"Language-Team: Ukrainian <http://translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:33+0000\n"
+"Language-Team: Ukrainian <//translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -37,14 +37,6 @@ msgstr ""
 "неправильно. Адміністратори сайту, напевно, знають про цю проблему, втім ви "
 "можете зв’язатися з ними на %2$s, щоби в тому упевнитись. В іншому випадку, "
 "зачекайте декілька хвилин і спробуйте знову."
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
-msgstr ""
-"Трапилася важлива помилка, ймовірно, пов’язана з налаштуванням електронної "
-"пошти. Перевірте файли конфігурації для отримання докладнішої інформації."
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -3867,13 +3859,13 @@ msgstr "Перейти"
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists created by **%s**. Lists are how you sort similar people on %"
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "Тут представлено списки, створені **%s**. Списки — це спосіб групувати "
 "схожих користувачів на %%%%site.name%%%%, сервісі [мікроблоґів](http://uk."
@@ -3902,13 +3894,13 @@ msgstr "Списки, до яких входить %1$s, сторінка %2$d"
 #. TRANS: Message displayed for anonymous users on page that displays lists for a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists for **%s**. lists are how you sort similar people on %%%%"
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "Тут представлено списки для **%s**. Списки — це спосіб групувати схожих "
 "користувачів на %%%%site.name%%%%, сервісі [мікроблоґів](http://uk.wikipedia."
@@ -4227,7 +4219,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "Перевищено ліміт сторінки (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "Не вдається відновити загальну стрічку."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4243,19 +4236,22 @@ msgstr "Загальна стрічка"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "Стрічка публічних дописів (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "Стрічка публічних дописів (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "Стрічка публічних дописів (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "Стрічка публічних дописів (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4837,8 +4833,9 @@ msgstr ""
 "Веб-стрічку невдовзі буде відновлено. Зачекайте, будь ласка, декілька хвилин."
 
 #. TRANS: Form instructions for feed restore.
+#, fuzzy
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 "Ви можете завантажити резервну копію у форматі <a href=\"http://"
@@ -5236,6 +5233,7 @@ msgstr ""
 "відслідковувати цю стрічку дописів!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr "У списку"
 
@@ -5254,19 +5252,19 @@ msgstr "Підписані"
 msgid "All subscribers"
 msgstr "Всі підписані"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "Дописи %1$s позначені теґом %2$s"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "Дописи %1$s позначені теґом %2$s, сторінка %3$d"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5308,7 +5306,7 @@ msgstr "Стрічка дописів для %s (Atom)"
 msgid "FOAF for %s"
 msgstr "FOAF для %s"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "Це стрічка дописів %1$s, але %1$s ще нічого не написав."
@@ -5321,7 +5319,7 @@ msgstr ""
 "Побачили щось цікаве нещодавно? Ви ще нічого не написали і це слушна нагода "
 "аби розпочати! :)"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5331,7 +5329,7 @@ msgstr ""
 "Ви можете «розштовхати» %1$s або [щось йому написати](%%%%action.newnotice%%%"
 "%?status_textarea=%2$s)."
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5346,7 +5344,7 @@ msgstr ""
 "register%%%%) зараз і слідкуйте за дописами **%s**, також на вас чекає "
 "багато іншого! ([Дізнатися більше](%%%%doc.help%%%%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -8423,7 +8421,7 @@ msgstr "%1$s (@%2$s) пропонує до вашої уваги наступн�
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -8871,10 +8869,6 @@ msgstr "Змінити"
 #, php-format
 msgid "Edit %s list by you."
 msgstr "Змінити свій список %s."
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-msgid "Tagged"
-msgstr "З теґом"
 
 #. TRANS: Title for link to edit list settings.
 msgid "Edit list settings."
@@ -9815,173 +9809,13 @@ msgstr "Це недійсна електронна адреса."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Не вдалося зберегти профіль."
 
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr "Цією дією ви не можете додати віддалений профіль OMB 0.1 до списку."
-
-#~ msgid "Not expecting this response!"
-#~ msgstr "Ця відповідь не очікується!"
-
-#~ msgid "User being listened to does not exist."
-#~ msgstr ""
-#~ "Користувача, який слідкував за вашими повідомленнями, більше не існує."
-
-#~ msgid "You can use the local subscription!"
-#~ msgstr "Ви можете користуватись локальними підписками!"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "Цей користувач позбавив вас можливості підписатись до нього."
-
-#~ msgid "You are not authorized."
-#~ msgstr "Не авторизовано."
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "Не вдалося перетворити токени запиту на токени звернення."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "Невідома версія протоколу OMB."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "Помилка при оновленні віддаленого профілю."
-
-#~ msgid "Invalid notice content."
-#~ msgstr "Недійсний зміст допису."
-
 #~ msgid ""
-#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-#~ msgstr "Ліцензія допису «%1$s» є несумісною з ліцензією сайту «%2$s»."
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
+#~ "An important error occured, probably related to email setup. Check "
+#~ "logfiles for more info."
 #~ msgstr ""
-#~ "Щоб підписатись, ви можете [увійти](%%action.login%%), або [зареєструвати]"
-#~ "(%%action.register%%) новий  акаунт. Якщо ви вже маєте акаунт на "
-#~ "[сумісному сайті](%%doc.openmublog%%), введіть URL-адресу вашого профілю "
-#~ "нижче."
+#~ "Трапилася важлива помилка, ймовірно, пов’язана з налаштуванням "
+#~ "електронної пошти. Перевірте файли конфігурації для отримання докладнішої "
+#~ "інформації."
 
-#~ msgid "Remote subscribe"
-#~ msgstr "Віддалена підписка"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "Підписатись до віддаленого користувача"
-
-#~ msgid "User nickname"
-#~ msgstr "Ім’я користувача"
-
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "Ім’я користувача, дописи якого ви хотіли б читати."
-
-#~ msgid "Profile URL"
-#~ msgstr "URL-адреса профілю"
-
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr "URL-адреса вашого профілю на іншому сумісному сервісі мікроблоґів."
-
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "Неприпустима URL-адреса профілю (неправильний формат)."
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr ""
-#~ "Неправильна URL-адреса профілю (немає документа YADIS, або помилковий "
-#~ "XRDS)."
-
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "Це локальний профіль! Увійдіть, щоб підписатись."
-
-#~ msgid "Could not get a request token."
-#~ msgstr "Не вдалося отримати токен запиту."
-
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "Ви можете цією дією додати/видалити віддалений профіль OMB 0.1 до списку."
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr "Цією дією ви не зможете підписатися до віддаленого профілю OMB 0.1."
-
-#~ msgid ""
-#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
-#~ "$s\"."
-#~ msgstr "Ліцензія потоку «%1$s» є несумісною з ліцензією сайту «%2$s»."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "Авторизувати підписку"
-
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "Будь ласка, перевірте всі деталі, аби упевнитись, що ви дійсно бажаєте "
-#~ "підписатись на дописи цього користувача. Якщо ви не збираєтесь "
-#~ "підписуватись, то просто натисніть «Відмінити»."
-
-#~ msgid "Reject this subscription."
-#~ msgstr "Відхилити підписку."
-
-#~ msgid "No authorization request!"
-#~ msgstr "Немає запиту на авторизацію!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "Підписку авторизовано"
-
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "Підписку було авторизовано, але URL-адреса у відповідь не передавалася. "
-#~ "Звіртесь з інструкціями на сайті для більш конкретної інформації про те, "
-#~ "як авторизувати підписку. Ваш підписний токен:"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "Підписку скинуто"
-
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr ""
-#~ "Підписку було скинуто, але URL-адреса у відповідь не передавалася. "
-#~ "Звіртесь з інструкціями на сайті для більш конкретної інформації про те, "
-#~ "як скинути підписку."
-
-#~ msgid "Listener URI \"%s\" not found here."
-#~ msgstr "URI слухача «%s» тут не знайдено."
-
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "URI слухача «%s» задовге."
-
-#~ msgid "Listenee URI \"%s\" is a local user."
-#~ msgstr "URI слухача «%s» — це локальний користувач."
-
-#~ msgid "Profile URL \"%s\" is for a local user."
-#~ msgstr "URL-адреса профілю «%s» для локального користувача."
-
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "URL-адреса аватари «%s» не є дійсною."
-
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "Не вдалося прочитати URL аватари «%s»."
-
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "Неправильний тип зображення для URL аватари «%s»."
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "Не вдається видалити токен підписки OMB."
-
-#~ msgid "Error inserting new profile."
-#~ msgstr "Помилка при додаванні нового профілю."
-
-#~ msgid "Error inserting avatar."
-#~ msgstr "Помилка при додаванні аватари."
-
-#~ msgid "Error inserting remote profile."
-#~ msgstr "Помилка при додаванні віддаленого профілю."
-
-#~ msgid "Duplicate notice."
-#~ msgstr "Дублікат допису."
-
-#~ msgid "Could not insert new subscription."
-#~ msgstr "Не вдалося вставити нову підписку."
+#~ msgid "Tagged"
+#~ msgstr "З теґом"

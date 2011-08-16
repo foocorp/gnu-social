@@ -11,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SearchSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:03+0000\n"
-"Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:06+0000\n"
+"Language-Team: French <//translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-18 16:20:39+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-searchsub\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -129,7 +129,7 @@ msgstr "Cesser la surveillance de cette recherche"
 
 #. TRANS: Page title when search unsubscription succeeded.
 msgid "Unsubscribed"
-msgstr "désabonné"
+msgstr "Désabonné"
 
 #. TRANS: Error text shown a user tries to track a search query they're already subscribed to.
 #, php-format
@@ -208,9 +208,8 @@ msgid "Subscribe"
 msgstr "S’abonner"
 
 #. TRANS: Button title for subscribing to a search.
-#, fuzzy
 msgid "Subscribe to this search."
-msgstr "S’abonner à cette recherche"
+msgstr "S’abonner à cette recherche."
 
 #. TRANS: Message given having failed to cancel one of the search subs with 'track off' command.
 #. TRANS: %s is the search for which the subscription removal failed.

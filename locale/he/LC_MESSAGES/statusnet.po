@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:55+0000\n"
-"Language-Team: Hebrew <http://translatewiki.net/wiki/Portal:he>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:02+0000\n"
+"Language-Team: Hebrew <//translatewiki.net/wiki/Portal:he>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: he\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -33,14 +33,6 @@ msgstr ""
 "מסד הנתונים של %1$s אינו מגיב באופן תקין, אז האתר אינו יכול לעבוד כראוי. "
 "מנהלי האתר כנראה יודעים על הבעיה הזאת, אבל אפשר ליצור אִתם קשר דרך %2$s כדי "
 "לוודא. אפשר להמתין מספר דקות ולנסות שוב."
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
-msgstr ""
-"אירעה שגיאה חשובה, שכנראה קשורה להגדרות דואר אלקטרוני. חפשו מידע נוסף בקובצי "
-"יומן."
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -247,9 +239,9 @@ msgstr "ציר הזמן בדף הבית של %s"
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
 #. TRANS: %s is tagger's nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Feed for friends of %s (Activity Streams JSON)"
-msgstr "הזנות עבור החברים של %s‏ (Atom)"
+msgstr "הזנה עבור החברים של %s‏ (Activity Streams JSON)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -310,10 +302,9 @@ msgstr ""
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr "שליחת עדכון"
+msgstr "שליחת הזמנה"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -434,13 +425,12 @@ msgstr "חסימת משתמש נכשלה."
 msgid "Unblock user failed."
 msgstr "הסרת החסימה ממשתמש נכשלה."
 
-#, fuzzy
 msgid "no conversation id"
-msgstr "שיחה"
+msgstr "אין מזהה שיחה"
 
 #, php-format
 msgid "No conversation with id %d"
-msgstr ""
+msgstr "אין שיחה עם מזהה %d"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
 #. TRANS: Title for page with a conversion (multiple notices in context).
@@ -749,7 +739,7 @@ msgstr ""
 #. TRANS: Client error displayed trying to perform an action related to a non-existing list.
 #. TRANS: Client error displayed when referring to a non-existing list.
 msgid "List not found."
-msgstr ""
+msgstr "הרשימה לא נמצאה"
 
 #. TRANS: Client error displayed when trying to update another user's list.
 msgid "You cannot update lists that do not belong to you."
@@ -760,7 +750,7 @@ msgstr ""
 #. TRANS: Client error displayed when an unknown error occurs in the list subscribers action.
 #. TRANS: Client error displayed when an unknown error occurs unsubscribing from a list.
 msgid "An error occured."
-msgstr ""
+msgstr "אירעה שגיאה."
 
 #. TRANS: Client error displayed when trying to delete another user's list.
 msgid "You cannot delete lists that do not belong to you."
@@ -788,7 +778,7 @@ msgstr ""
 
 #. TRANS: Client error displayed when trying to create a list without a name.
 msgid "A list must have a name."
-msgstr ""
+msgstr "לרשימה צריך להיות שם."
 
 #. TRANS: Client error displayed when a membership check for a user is nagative.
 msgid "The specified user is not a subscriber of this list."
@@ -812,7 +802,7 @@ msgstr ""
 
 #. TRANS: Client error given when an invalid request token was passed to the OAuth API.
 msgid "Invalid request token."
-msgstr ""
+msgstr "אסימון בקשה בלתי־תקין."
 
 #. TRANS: Client error given when an invalid request token was passed to the OAuth API.
 msgid "Request token already authorized."
@@ -845,7 +835,7 @@ msgstr ""
 
 #. TRANS: Fieldset legend.
 msgid "Allow or deny access"
-msgstr ""
+msgstr "לאפשר או למנוע גישה."
 
 #. TRANS: User notification of external application requesting account access.
 #. TRANS: %3$s is the access type requested (read-write or read-only), %4$s is the StatusNet sitename.
@@ -1507,7 +1497,7 @@ msgstr "תמונת המשתמש נמחקה."
 #. TRANS: Title for backup account page.
 #. TRANS: Option in profile settings to create a backup of the account of the currently logged in user.
 msgid "Backup account"
-msgstr ""
+msgstr "גיבוי חשבון"
 
 #. TRANS: Client exception thrown when trying to backup an account while not logged in.
 msgid "Only logged-in users can backup their account."
@@ -1608,7 +1598,7 @@ msgstr "לבטל חסימה של משתמש מקבוצה"
 #. TRANS: Button text for unblocking a user from a group.
 msgctxt "BUTTON"
 msgid "Unblock"
-msgstr ""
+msgstr "שחרור חסימה"
 
 #. TRANS: Tooltip for button for unblocking a user from a group.
 #. TRANS: Description of the form to unblock a user.
@@ -1648,7 +1638,7 @@ msgstr ""
 #. TRANS: Title after unsubscribing from a group.
 msgctxt "TITLE"
 msgid "Unsubscribed"
-msgstr ""
+msgstr "המינוי בוטל"
 
 #. TRANS: Client error displayed when not providing a confirmation code in the contact address confirmation action.
 msgid "No confirmation code."
@@ -1698,15 +1688,13 @@ msgstr "הכתובת \"%s\" אושרה עבור חשבונך."
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
-#, fuzzy
 msgid "Conversation feed (Activity Streams JSON)"
-msgstr "הזנת עדכונים של %s‏ (Atom)"
+msgstr "הזנת שיחות (Activity Streams JSON)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
-#, fuzzy
 msgid "Conversation feed (RSS 2.0)"
-msgstr "הזנת עדכונים של %s‏ (RSS 2.0)"
+msgstr "הזנת שיחות (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -1734,7 +1722,7 @@ msgstr ""
 
 #. TRANS: Confirmation that a user account has been deleted.
 msgid "Account deleted."
-msgstr ""
+msgstr "החשבון נמחק."
 
 #. TRANS: Page title for page on which a user account can be deleted.
 #. TRANS: Option in profile settings to delete the account of the currently logged in user.
@@ -2737,7 +2725,7 @@ msgstr ""
 
 #. TRANS: Client error displayed when trying to sent invites while they have been disabled.
 msgid "Invites have been disabled."
-msgstr ""
+msgstr "הזמנות כובו."
 
 #. TRANS: Client error displayed when trying to sent invites while not logged in.
 #. TRANS: %s is the StatusNet site name.
@@ -2904,7 +2892,7 @@ msgstr "בעלים"
 
 #. TRANS: Field title in the license admin panel.
 msgid "Name of the owner of the site's content (if applicable)."
-msgstr ""
+msgstr "שם בעלי תוכן האתר (אם זמין)."
 
 #. TRANS: Field label in the license admin panel.
 msgid "License Title"
@@ -3208,7 +3196,7 @@ msgstr "אינך משתמש ביישום ההוא"
 #. TRANS: %s is the application ID revoking access failed for.
 #, php-format
 msgid "Unable to revoke access for application: %s."
-msgstr ""
+msgstr "אין אפשרות לשלול גישה מיישום: %s."
 
 #. TRANS: Success message after revoking access for an application.
 #. TRANS: %1$s is the application name, %2$s is the first part of the user token.
@@ -3720,7 +3708,7 @@ msgid ""
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 
 #. TRANS: Message displayed on page that displays lists by a user when there are none.
@@ -3749,7 +3737,7 @@ msgid ""
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 
 #. TRANS: Message displayed on page that displays lists a user was added to when there are none.
@@ -4044,7 +4032,8 @@ msgid "Beyond the page limit (%s)."
 msgstr ""
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "אחזור זרם ציבורי נכשל."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4060,19 +4049,22 @@ msgstr "קו זמן ציבורי"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
-msgstr "הזנת זרם ציבורי (Atom)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
+msgstr "הזנת זרם ציבורי (Activity Streams JSON)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "הזנת זרם ציבורי (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "הזנת זרם ציבורי (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "הזנת זרם ציבורי (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4485,9 +4477,9 @@ msgstr "תגובות למשתמש %1$s, דף %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Replies feed for %s (Activity Streams JSON)"
-msgstr "תגובת עבור %s"
+msgstr "הזנת תגובות עבור %s‏ (Activity Streams JSON)"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
@@ -4601,7 +4593,7 @@ msgstr ""
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 
@@ -4736,9 +4728,9 @@ msgid "Could not retrieve favorite notices."
 msgstr "אחזור עדכונים אהובים לא הצליח."
 
 #. TRANS: Feed link text. %s is a username.
-#, fuzzy, php-format
+#, php-format
 msgid "Feed for favorites of %s (Activity Streams JSON)"
-msgstr "הזנות האהובים של %s‏ (Atom)"
+msgstr "הזנות האהובים של %s‏ (Activity Streams JSON)"
 
 #. TRANS: Feed link text. %s is a username.
 #, php-format
@@ -4795,9 +4787,9 @@ msgid "%1$s group, page %2$d"
 msgstr "הקבוצה %1$s, דף %2$d"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice feed for %s group (Activity Streams JSON)"
-msgstr "הזנת עדכונים של הקבוצה %s‏ (Atom)"
+msgstr "הזנת עדכונים של הקבוצה %s‏ (Activity Streams JSON)"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
@@ -4973,6 +4965,7 @@ msgid ""
 msgstr ""
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr ""
 
@@ -4991,19 +4984,19 @@ msgstr "מנויים"
 msgid "All subscribers"
 msgstr "כל המנויים"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr ""
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr ""
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5017,9 +5010,9 @@ msgstr "הזנת עדכונים של %1$s עם התג %2$s‏ (RSS 1.0)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice feed for %s (Activity Streams JSON)"
-msgstr "הזנת עדכונים של %s‏ (Atom)"
+msgstr "הזנת עדכונים של %s‏ (Activity Streams JSON)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
@@ -5045,7 +5038,7 @@ msgstr "הזנת עדכונים של %s‏ (Atom)"
 msgid "FOAF for %s"
 msgstr ""
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr ""
@@ -5056,7 +5049,7 @@ msgid ""
 "would be a good time to start :)"
 msgstr ""
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5066,7 +5059,7 @@ msgstr ""
 "אפשר לנסות לדחוף את %1$s או [לשלוח להם משהו](%%%%action.newnotice%%%%?"
 "status_textarea=%2$s)."
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5076,7 +5069,7 @@ msgid ""
 "follow **%s**'s notices and many more! ([Read more](%%%%doc.help%%%%))"
 msgstr ""
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5232,9 +5225,8 @@ msgid "SSL logo"
 msgstr ""
 
 #. TRANS: Button title for saving site settings.
-#, fuzzy
 msgid "Save the site settings."
-msgstr "הגדרות הפרופיל"
+msgstr "שמירת הגדרות אתר."
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
 msgid "Site Notice"
@@ -5611,9 +5603,9 @@ msgstr "עדכונים עם התג %1$s, דף %2$d"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice feed for tag %s (Activity Streams JSON)"
-msgstr "הזנת עדכונים לתג %s‏ (Atom)"
+msgstr "הזנת עדכונים לתג %s‏ (Activity Streams JSON)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -7966,7 +7958,7 @@ msgstr ""
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -8383,10 +8375,6 @@ msgstr ""
 #. TRANS: %s is a list.
 #, php-format
 msgid "Edit %s list by you."
-msgstr ""
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-msgid "Tagged"
 msgstr ""
 
 #. TRANS: Title for link to edit list settings.
@@ -8896,7 +8884,7 @@ msgstr ""
 #. TRANS: Menu item in local navigation menu.
 msgctxt "MENU"
 msgid "Subscriptions"
-msgstr ""
+msgstr "מינויים"
 
 #. TRANS: Menu item title in local navigation menu.
 #. TRANS: %s is a user nickname.
@@ -9036,7 +9024,7 @@ msgstr[1] ""
 #. TRANS: Reference to the logged in user in favourite list.
 msgctxt "FAVELIST"
 msgid "You"
-msgstr ""
+msgstr "אני"
 
 #. TRANS: For building a list such as "Jim, Bob, Mary and 5 others like this".
 #. TRANS: %1$s is a list of users, separated by a separator (default: ", "), %2$s is the last user in the list.
@@ -9048,7 +9036,7 @@ msgstr ""
 #. TRANS: List message for notice favoured by logged in user.
 msgctxt "FAVELIST"
 msgid "You like this."
-msgstr ""
+msgstr "אהבת את זה."
 
 #. TRANS: List message for when more than 4 people like something.
 #. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
@@ -9088,11 +9076,11 @@ msgstr ""
 
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Everything"
-msgstr ""
+msgstr "הכול"
 
 #. TRANS: Dropdown option for searching in profiles.
 msgid "Fullname"
-msgstr ""
+msgstr "שם מלא"
 
 #. TRANS: Dropdown option for searching in profiles.
 msgid "URI (Remote users)"
@@ -9101,7 +9089,7 @@ msgstr ""
 #. TRANS: Dropdown field label.
 msgctxt "LABEL"
 msgid "Search in"
-msgstr ""
+msgstr "חיפוש בתוך"
 
 #. TRANS: Dropdown field title.
 msgid "Choose a field to search."
@@ -9121,12 +9109,12 @@ msgstr ""
 
 #. TRANS: Title for top posters section.
 msgid "Top posters"
-msgstr ""
+msgstr "כותבים ראשיים"
 
 #. TRANS: Option in drop-down of potential addressees.
 msgctxt "SENDTO"
 msgid "Everyone"
-msgstr ""
+msgstr "כולם"
 
 #. TRANS: Option in drop-down of potential addressees.
 #. TRANS: %s is a StatusNet sitename.
@@ -9137,11 +9125,11 @@ msgstr ""
 #. TRANS: Label for drop-down of potential addressees.
 msgctxt "LABEL"
 msgid "To:"
-msgstr ""
+msgstr "אל:"
 
 #. TRANS: Checkbox label in widget for selecting potential addressees to mark the notice private.
 msgid "Private?"
-msgstr ""
+msgstr "פרטי?"
 
 #. TRANS: Client exception thrown in widget for selecting potential addressees when an invalid fill option was received.
 #, php-format
@@ -9151,12 +9139,12 @@ msgstr ""
 #. TRANS: Title for the form to unblock a user.
 msgctxt "TITLE"
 msgid "Unblock"
-msgstr ""
+msgstr "ביטול חסימה"
 
 #. TRANS: Title for unsandbox form.
 msgctxt "TITLE"
 msgid "Unsandbox"
-msgstr ""
+msgstr "הוצאה מארגז חול"
 
 #. TRANS: Description for unsandbox form.
 msgid "Unsandbox this user"
@@ -9164,7 +9152,7 @@ msgstr "להוציא את המשתמש הזה מארגז החול"
 
 #. TRANS: Title for unsilence form.
 msgid "Unsilence"
-msgstr ""
+msgstr "ביטול השתקה"
 
 #. TRANS: Form description for unsilence form.
 msgid "Unsilence this user"
@@ -9179,7 +9167,7 @@ msgstr "לבטל את הרישום למשתמש הזה"
 #. TRANS: Button text for unsubscribing from a list.
 msgctxt "BUTTON"
 msgid "Unsubscribe"
-msgstr ""
+msgstr "ביטול מינוי"
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -9251,7 +9239,7 @@ msgstr ""
 
 #. TRANS: Exception.
 msgid "Invalid XML."
-msgstr ""
+msgstr "XML בלתי־תקין."
 
 #. TRANS: Exception.
 msgid "Invalid XML, missing XRD root."
@@ -9263,121 +9251,41 @@ msgid "Getting backup from file '%s'."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid avatar URL %s."
-msgstr "כינוי לא תקין: \"%s\"."
+msgstr "כתובת תמונה בלתי־תקינה %s."
 
 #. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
+#, php-format
 msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "שגיאה בעדכון פרופיל מרוחק."
+msgstr "ניסיון להעלות תמונה לדף משתמש מרוחק שלא נשמר %s."
 
 #. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Unable to fetch avatar from %s."
-msgstr "לא מצליח לשמור תג."
+msgstr "לא ניתן לאחזר תמונה מתוך %s."
 
 #. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not reach profile page %s."
-msgstr "שמירת הפרופיל נכשלה."
+msgstr "לא ניתן להשיג את דף המשתמש %s."
 
 #. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find a feed URL for profile page %s."
-msgstr "לא המצא משתמש עם הכינוי %s."
+msgstr "לא נמצאה כתובת הזמנה עבור דף המשתמש %s."
 
 #. TRANS: Exception.
-#, fuzzy
 msgid "Not a valid webfinger address."
-msgstr "כתובת דואר אלקטרוני לא תקינה."
+msgstr "זאת לא כתובת ובפינגר תקינה."
 
-#, fuzzy, php-format
+#, php-format
 msgid "Could not find a valid profile for \"%s\"."
-msgstr "שמירת הפרופיל נכשלה."
-
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr "אי־אפשר לרשום פרופיל מרוחק של OMB 0.1 באמצעות הפעולה הזאת."
-
-#~ msgid "Not expecting this response!"
-#~ msgstr "זו תגובה לא צפויה!"
-
-#~ msgid "User being listened to does not exist."
-#~ msgstr "המשתמש שאליו אתה מאזין אינו קיים."
-
-#~ msgid "You can use the local subscription!"
-#~ msgstr "ניתן להשתמש במנוי המקומי!"
-
-#~ msgid "You are not authorized."
-#~ msgstr "ההרשמה אושרה"
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "המרת אסימון הבקשה לאסימון גישה לא הצליחה."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "השירות המרוחק משתמש בגרסה לא מוכרת של פרוטוקול OMB."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "שגיאה בעדכון פרופיל מרוחק."
-
-#~ msgid "Invalid notice content."
-#~ msgstr "תוכן עדכון לא תקין."
+msgstr "לא נמצא דף משתמש תקין עבור \"%s\"."
 
 #~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
+#~ "An important error occured, probably related to email setup. Check "
+#~ "logfiles for more info."
 #~ msgstr ""
-#~ "כדי לעשות מנוי, עליך [להיכנס למערכת](%%action.login%%), או [להירשם](%%"
-#~ "action.register%%) לחשבון חדשה. אם יש לך כבר חשבון [במערכת מיקרובלוג "
-#~ "תואמת](%%doc.openmublog%%), הכנס את כתובת הפרופיל שלך למטה. "
-
-#~ msgid "Remote subscribe"
-#~ msgstr "הרשמה מרוחקת"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "הרשמה למשתמש מרוחק"
-
-#~ msgid "User nickname"
-#~ msgstr "כינוי משתמש"
-
-#~ msgid "Profile URL"
-#~ msgstr "כתובת הפרופיל"
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr "לא כתובת תקינה לדף משתמש (אין מסמך YADIS או שמוגדר XRDS בלתי תקין)"
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr "אינך יכול להירשם לפרופיל מרוחק של OMB 0.01 על־ידי הפעולה הזאת."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "אשר מנוי"
-
-#~ msgid "No authorization request!"
-#~ msgstr "לא התבקש אישור!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "ההרשמה אושרה"
-
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "המנוי אושר, אבל לא התקבלה כתובת אליה ניתן לחזור. בדוק את הוראות האתר וחפש "
-#~ "כיצד לאשר מנוי. אסימון המנוי שלך הוא:"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "ההרשמה נדחתה"
-
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr ""
-#~ "המנוי נדחה, אבל לא התקבלה כתובת לחזרה. בדוק את הוראות האתר וחפש כיצד "
-#~ "להשלים דחיית מנוי."
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "הכנסת מנוי חדש נכשלה."
+#~ "אירעה שגיאה חשובה, שכנראה קשורה להגדרות דואר אלקטרוני. חפשו מידע נוסף "
+#~ "בקובצי יומן."

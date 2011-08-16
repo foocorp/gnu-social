@@ -1,6 +1,7 @@
 # Translation of StatusNet - SearchSub to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: ChrisiPK
 # Author: Giftpflanze
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SearchSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:03+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:06+0000\n"
+"Language-Team: German <//translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-18 16:20:39+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-searchsub\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -127,9 +128,8 @@ msgid "Unsubscribe"
 msgstr "Abbestellen"
 
 #. TRANS: Button title for unsubscribing from a text search.
-#, fuzzy
 msgid "Unsubscribe from this search."
-msgstr "Diese Suche nicht länger verfolgen"
+msgstr "Diese Suche nicht länger verfolgen."
 
 #. TRANS: Page title when search unsubscription succeeded.
 msgid "Unsubscribed"
@@ -197,13 +197,13 @@ msgstr "Du verfolgst keine Suchen."
 #. TRANS: Separator for list of tracked searches.
 msgctxt "SEPARATOR"
 msgid "\", \""
-msgstr ""
+msgstr "“, „"
 
 #. TRANS: Message given having disabled all search subscriptions with 'track off'.
 #. TRANS: %s is a list of searches. Separator default is '", "'.
-#, fuzzy, php-format
+#, php-format
 msgid "You are tracking searches for: \"%s\"."
-msgstr "Du verfolgst Suchen für: %s"
+msgstr "Du verfolgst Suchen für: „%s“."
 
 #. TRANS: Form legend.
 msgid "Subscribe to this search"
@@ -215,9 +215,8 @@ msgid "Subscribe"
 msgstr "Abonnieren"
 
 #. TRANS: Button title for subscribing to a search.
-#, fuzzy
 msgid "Subscribe to this search."
-msgstr "Diese Suche abonnieren"
+msgstr "Diese Suche abonnieren."
 
 #. TRANS: Message given having failed to cancel one of the search subs with 'track off' command.
 #. TRANS: %s is the search for which the subscription removal failed.

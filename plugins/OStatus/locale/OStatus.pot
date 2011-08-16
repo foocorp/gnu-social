@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -865,7 +865,7 @@ msgstr ""
 
 #: classes/Ostatus_profile.php:545
 #, php-format
-msgid "Failed to save activity %s"
+msgid "Failed to save activity %s."
 msgstr ""
 
 #. TRANS: Client exception. %s is a source URI.

@@ -10,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:22+0000\n"
-"Language-Team: Tagalog <http://translatewiki.net/wiki/Portal:tl>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:32+0000\n"
+"Language-Team: Tagalog <//translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -35,15 +35,6 @@ msgstr ""
 "ng sityo ang tungkol sa suliranin, ngunit maaari kang makipag-ugnayan sa "
 "kanila sa %2$s upang makatiyak.  Kung hindi, maghintay ng ilang mga minuto "
 "at subukan uli."
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
-msgstr ""
-"Naganap ang isang mahalagang kamalian, maaaring may kaugnayan sa katakdaan "
-"ng e-liham.  Suriin ang mga talaksan ng talaan para sa mas marami pang "
-"kabatiran."
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -3920,13 +3911,13 @@ msgstr "Pumunta"
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists created by **%s**. Lists are how you sort similar people on %"
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "Ito ay mga talaang nilikha ni **%s**. Ang mga talaan ay kung paano mo "
 "pinagpapangkat-pangkat ang magkakahalintulad na mga tao sa %%site.name%%, "
@@ -3957,13 +3948,13 @@ msgstr "Mga talaang may %1$s, pahina %2$d"
 #. TRANS: Message displayed for anonymous users on page that displays lists for a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists for **%s**. lists are how you sort similar people on %%%%"
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "Ito ay mga talaan para sa **%s**. Ang mga talaan ay kung paano mo "
 "pinagpapangkat-pangkat ang magkakahalintulad na mga tao sa %%site.name%%, "
@@ -4292,7 +4283,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "Lampas sa haggahan ng pahina (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "Hindi makuhang muli ang pangmadlang batis."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4308,19 +4300,22 @@ msgstr "Pangmadlang guhit ng panahon"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "Pasubo ng Pangmadlang Batis (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "Pasubo ng Pangmadlang Batis (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "Pasubo ng Pangmadlang Batis (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "Pasubo ng Pangmadlang Batis (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4924,8 +4919,9 @@ msgstr ""
 "mga kinalabasan."
 
 #. TRANS: Form instructions for feed restore.
+#, fuzzy
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 "Makapagkakarga ka ng isang pamalit na kopya ng batis na nasa anyong <a href="
@@ -5336,6 +5332,7 @@ msgstr ""
 "magsimulang sundan ang guhit ng panahong ito!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr "Naitala na"
 
@@ -5354,19 +5351,19 @@ msgstr "Mga nagpapasipi"
 msgid "All subscribers"
 msgstr "Lahat ng mga nagpapasipi"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "Mga pabatid ni %1$s na natatakan ng %2$s"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "Mga pabatid ni %1$s na tinatakan ng %2$s, pahina %3$d"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5408,7 +5405,7 @@ msgstr "Pasubong pabatid para sa %s (Atom)"
 msgid "FOAF for %s"
 msgstr "FOAF para sa %s"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr ""
@@ -5424,7 +5421,7 @@ msgstr ""
 "Hindi ka pa nagpapaskil ng anumang mga pabatid, ngayon na ang isang mabuting "
 "panahon upang magsimula :)"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5434,7 +5431,7 @@ msgstr ""
 "Maaari mong subukang dunggulin si %1$s o [magpaskil ng isang bagay sa kanila]"
 "(%%%%action.newnotice%%%%?status_textarea=%2$s)."
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5450,7 +5447,7 @@ msgstr ""
 "pabatid ng **%s** at marami pang iba! ([Magbasa pa ng marami](%%%%doc.help%%%"
 "%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -8582,7 +8579,7 @@ msgstr ""
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -9037,10 +9034,6 @@ msgstr "Baguhin"
 #, php-format
 msgid "Edit %s list by you."
 msgstr "Baguhin ang talaan mong %s."
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-msgid "Tagged"
-msgstr "Natatakan na"
 
 #. TRANS: Title for link to edit list settings.
 msgid "Edit list settings."
@@ -9986,187 +9979,13 @@ msgstr "Hindi isang katanggap-tanggap na tirahan ng e-liham."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Hindi masagip ang balangkas."
 
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "Hindi mo maitatala ang isang malayong balangkas ng OMB 0.1 sa pamamagitan "
-#~ "ng ganitong galaw."
-
-#~ msgid "Not expecting this response!"
-#~ msgstr "Hindi inaasahan ang tugong ito!"
-
-#~ msgid "User being listened to does not exist."
-#~ msgstr "Hindi umiiral ang tagagamit na pinakikinggan."
-
-#~ msgid "You can use the local subscription!"
-#~ msgstr "Maaari mong gamitin ang katutubong pagpapasipi!"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "Hinadlangan ka ng tagagamit na iyan mula sa pagpapasipi."
-
-#~ msgid "You are not authorized."
-#~ msgstr "Wala kang kapahintulutan."
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr ""
-#~ "Hindi magawang baguhin ang kahalip ng kahilangan upang maging kahalip ng "
-#~ "pagpunta."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr ""
-#~ "Gumagamit ang malayong palingkuran ng hindi nalalamang bersyon ng "
-#~ "protokol ng OMB."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "Kamalian sa pagsasapanahon ng pangmalayuang balangkas."
-
-#~ msgid "Invalid notice content."
-#~ msgstr "Hindi katanggap-tanggap na nilalaman ng pabatid."
-
 #~ msgid ""
-#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
+#~ "An important error occured, probably related to email setup. Check "
+#~ "logfiles for more info."
 #~ msgstr ""
-#~ "Hindi akma ang lisensiyang \"%1$s\" ng pabatid sa lisensiyang \"%2$s\" ng "
-#~ "sityo."
+#~ "Naganap ang isang mahalagang kamalian, maaaring may kaugnayan sa "
+#~ "katakdaan ng e-liham.  Suriin ang mga talaksan ng talaan para sa mas "
+#~ "marami pang kabatiran."
 
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "Upang makapagpasipi, maaari kang [lumagda](%%action.login%%), o "
-#~ "[magpatala](%%action.register%%) ng isang bagong akawnt. Kung mayroon ka "
-#~ "nang isang akawnt sa isang [kaakmang sityo ng maliitang pagboblog](%%doc."
-#~ "openmublog%%),  ipasok ang URL mo ng balangkas sa ibaba."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "Magpasipi ng malayo"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "Magpasipi mula sa isang malayong tagagamit"
-
-#~ msgid "User nickname"
-#~ msgstr "Palayaw ng tagagamit"
-
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "Palayaw ng tagagamit na nais mong sundan."
-
-#~ msgid "Profile URL"
-#~ msgstr "URL ng balangkas"
-
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr ""
-#~ "URL ng balangkas mo sa ibang kaakmang palingkuran ng maliitang pagboblog."
-
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "Hindi katanggap-tanggap na URL ng balangkas (masamang anyo)."
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr ""
-#~ "Isang hindi katanggap-tanggap na URL ng balangkas (walang binigyang "
-#~ "kahulugan na kasulatang YADIS o hindi katanggap-tanggap na XRDS)."
-
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "Iyan ay isang katutubong balangkas! Lumagda upang makapagpasipi."
-
-#~ msgid "Could not get a request token."
-#~ msgstr "Hindi makakuha ng isang kahalip ng kahilingan."
-
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "Hindi mo (hindi) maitatala ang isang malayong balangkas ng OMB 0.1 sa "
-#~ "pamamagitan ng ganitong galaw."
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "Hindi ka maaaring magpasipi sa isang malayong balangkas ng OMB 0.1 sa "
-#~ "pamamagitan ng galaw na ito."
-
-#~ msgid ""
-#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
-#~ "$s\"."
-#~ msgstr ""
-#~ "Hindi akma ang lisensiya ng agos na \"%1$s\" ng pabatid sa lisensiyang \"%"
-#~ "2$s\" ng sityo."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "Pahintulutan ang pagpapasipi"
-
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "Pakisuri ang mga detalyeng ito upang matiyak na nais mong magpasipi ng "
-#~ "mga pabatid ng tagagamit na ito.  Kung hindi ka humiling na magpasipi ng "
-#~ "mga pabatid mula kaninuman, pindutin ang \"Tanggihan\"."
-
-#~ msgid "Reject this subscription."
-#~ msgstr "Tanggihan ang pagpapasiping ito."
-
-#~ msgid "No authorization request!"
-#~ msgstr "Walang hiling ng pagpapahintulot!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "Pinahintulutan ang pagpapasipi"
-
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "Pinahintulutan ang pagpapasipi, ngunit walang ipinasang URL ng pagtawag "
-#~ "na pabalik. Suriin ang panuto ng sityo para sa mga detalye kung paano "
-#~ "papahintulutan ang pagpapasipi. Ang kahalip ng pagpapasipi mo ay:"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "Tinanggihan ang pagpapasipi"
-
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr ""
-#~ "Tinanggihan ang pagpapasipi, ngunit walang ipinasang URL ng pagtawag na "
-#~ "pabalik. Suriin ang panuto ng sityo para sa mga detalye kung paano "
-#~ "tanggihan nang buo ang pagpapasipi."
-
-#~ msgid "Listener URI \"%s\" not found here."
-#~ msgstr "URI na \"%s\" ng tagapakinig hindi natagpuan dito."
-
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "URI na \"%s\" ng tagapakinig ay masyadong mahaba."
-
-#~ msgid "Listenee URI \"%s\" is a local user."
-#~ msgstr "URI na \"%s\" ng tagapakinig ay isang katutubong tagagamit."
-
-#~ msgid "Profile URL \"%s\" is for a local user."
-#~ msgstr ""
-#~ "Ang URL na \"%s\" ng balangkas ay para sa isang katutubong tagagamit."
-
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "Hindi katanggap-tanggap ang URL na \"%s\" ng huwaran."
-
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "Hindi mabasa ang URL na \"%s\" ng huwaran."
-
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "Maling uri ng larawan para sa URL na \"%s\" ng huwaran."
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "Hindi mabura ang kahalip na OMB ng pagpapasipi."
-
-#~ msgid "Error inserting new profile."
-#~ msgstr "Kamalian sa pagsisingit ng bagong balangkas."
-
-#~ msgid "Error inserting avatar."
-#~ msgstr "Kamalian sa pagsisingit ng huwaran."
-
-#~ msgid "Error inserting remote profile."
-#~ msgstr "Kamalian sa pagsisingit ng malayong balangkas."
-
-#~ msgid "Duplicate notice."
-#~ msgstr "Nagkadalawang pabatid."
-
-#~ msgid "Could not insert new subscription."
-#~ msgstr "Hindi maisingit ang bagong pagpapasipi."
+#~ msgid "Tagged"
+#~ msgstr "Natatakan na"

@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: SPQRobin
+# Author: Siebrand
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:19:52+0000\n"
-"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:20:02+0000\n"
+"Language-Team: Dutch <//translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-07-01 11:17:57+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-blog\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -38,26 +39,26 @@ msgid "Blog entry saved"
 msgstr "Blogbericht is opgeslagen"
 
 msgid "Let users write and share long-form texts."
-msgstr ""
+msgstr "Laat gebruikers langere teksten schrijven en delen."
 
 msgid "Blog"
 msgstr "Blog"
 
 #. TRANS: Exception thrown when there are too many activity objects.
 msgid "Too many activity objects."
-msgstr ""
+msgstr "Te veel activiteitobjecten."
 
 #. TRANS: Exception thrown when blog plugin comes across a non-event type object.
 msgid "Wrong type for object."
-msgstr ""
+msgstr "Verkeerde type voor object."
 
 #. TRANS: Exception thrown when blog plugin comes across a undefined verb.
 msgid "Unknown verb for blog entries."
-msgstr ""
+msgstr "Onbekende werkwoord voor blogberichten."
 
 #. TRANS: Client exception thrown when referring to a non-existing blog entry.
 msgid "No such entry."
-msgstr ""
+msgstr "Geen dergelijke vermelding."
 
 msgid "Untitled"
 msgstr "Zonder titel"

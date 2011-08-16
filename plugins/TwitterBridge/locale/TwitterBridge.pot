@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,9 +52,8 @@ msgid ""
 "Please [set a password](%s) first."
 msgstr ""
 
-#. TRANS: Form instructions. %s is a URL to the password settings.
-#. TRANS: %1$s is the StatusNet sitename.
-#: twittersettings.php:147
+#. TRANS: Form instructions. %1$s is the StatusNet sitename.
+#: twittersettings.php:146
 #, php-format
 msgid ""
 "Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
@@ -62,81 +61,81 @@ msgid ""
 msgstr ""
 
 #. TRANS: Button text for disconnecting a Twitter account.
-#: twittersettings.php:155
+#: twittersettings.php:154
 msgctxt "BUTTON"
 msgid "Disconnect"
 msgstr ""
 
 #. TRANS: Fieldset legend.
-#: twittersettings.php:163
+#: twittersettings.php:162
 msgid "Preferences"
 msgstr ""
 
 #. TRANS: Checkbox label.
-#: twittersettings.php:168
+#: twittersettings.php:167
 msgid "Automatically send my notices to Twitter."
 msgstr ""
 
 #. TRANS: Checkbox label.
-#: twittersettings.php:176
+#: twittersettings.php:175
 msgid "Send local \"@\" replies to Twitter."
 msgstr ""
 
 #. TRANS: Checkbox label.
-#: twittersettings.php:184
+#: twittersettings.php:183
 msgid "Subscribe to my Twitter friends here."
 msgstr ""
 
 #. TRANS: Checkbox label.
-#: twittersettings.php:194
+#: twittersettings.php:193
 msgid "Import my friends timeline."
 msgstr ""
 
 #. TRANS: Button text for saving Twitter integration settings.
 #. TRANS: Button text for saving the administrative Twitter bridge settings.
-#: twittersettings.php:211 twitteradminpanel.php:311
+#: twittersettings.php:210 twitteradminpanel.php:311
 msgctxt "BUTTON"
 msgid "Save"
 msgstr ""
 
 #. TRANS: Button text for adding Twitter integration.
-#: twittersettings.php:214
+#: twittersettings.php:213
 msgctxt "BUTTON"
 msgid "Add"
 msgstr ""
 
 #. TRANS: Client error displayed when the session token does not match or is not given.
-#: twittersettings.php:239 twitterauthorization.php:121
+#: twittersettings.php:238 twitterauthorization.php:121
 msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 
 #. TRANS: Client error displayed when the submitted form contains unexpected data.
-#: twittersettings.php:250
+#: twittersettings.php:249
 msgid "Unexpected form submission."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to remove a connected Twitter account when there isn't one connected.
-#: twittersettings.php:266
+#: twittersettings.php:265
 msgid "No Twitter connection to remove."
 msgstr ""
 
 #. TRANS: Server error displayed when trying to remove a connected Twitter account fails.
-#: twittersettings.php:275
+#: twittersettings.php:274
 msgid "Could not remove Twitter user."
 msgstr ""
 
 #. TRANS: Success message displayed after disconnecting a Twitter account.
-#: twittersettings.php:280
+#: twittersettings.php:279
 msgid "Twitter account disconnected."
 msgstr ""
 
 #. TRANS: Server error displayed when saving Twitter integration preferences fails.
-#: twittersettings.php:302 twittersettings.php:315
+#: twittersettings.php:301 twittersettings.php:314
 msgid "Could not save Twitter preferences."
 msgstr ""
 
 #. TRANS: Success message after saving Twitter integration preferences.
-#: twittersettings.php:324
+#: twittersettings.php:323
 msgid "Twitter preferences saved."
 msgstr ""
 

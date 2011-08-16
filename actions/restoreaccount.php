@@ -339,7 +339,7 @@ class RestoreAccountForm extends Form
         $this->out->elementStart('p', 'instructions');
 
         // TRANS: Form instructions for feed restore.
-        $this->out->raw(_('You can upload a backed-up stream in '.
+        $this->out->raw(_('You can upload a backed-up timeline in '.
                           '<a href="http://activitystrea.ms/">Activity Streams</a> format.'));
 
         $this->out->elementEnd('p');

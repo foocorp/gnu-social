@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:21+0000\n"
-"Language-Team: Telugu <http://translatewiki.net/wiki/Portal:te>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:30+0000\n"
+"Language-Team: Telugu <//translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -29,12 +29,6 @@ msgid ""
 "properly. The site admins probably know about the problem, but you can "
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
-msgstr ""
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
 msgstr ""
 
 #. TRANS: Error message.
@@ -3819,7 +3813,7 @@ msgid ""
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "**%s** అనేది [స్టేటస్‌నెట్](http://status.net/) అనే స్వేచ్ఛా ఉపకరణ అధారిత [సూక్ష్మ-బ్లాగింగు]"
 "(http://en.wikipedia.org/wiki/Micro-blogging) సేవ అయిన %%%%site.name%%%%లో ఒక "
@@ -3854,7 +3848,7 @@ msgid ""
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "**%s** అనేది [స్టేటస్‌నెట్](http://status.net/) అనే స్వేచ్ఛా ఉపకరణ అధారిత [సూక్ష్మ-బ్లాగింగు]"
 "(http://en.wikipedia.org/wiki/Micro-blogging) సేవ అయిన %%%%site.name%%%%లో ఒక "
@@ -4169,7 +4163,7 @@ msgstr ""
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
 #, fuzzy
-msgid "Could not retrieve public stream."
+msgid "Could not retrieve public timeline."
 msgstr "మారుపేర్లని సృష్టించలేకపోయాం."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4185,19 +4179,22 @@ msgstr "ప్రజా కాలరేఖ"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "ప్రజా వాహిని ఫీడు (ఆటమ్)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "ప్రజా వాహిని ఫీడు (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "ప్రజా వాహిని ఫీడు (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "ప్రజా వాహిని ఫీడు (ఆటమ్)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4764,7 +4761,7 @@ msgstr ""
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 
@@ -5158,6 +5155,7 @@ msgid ""
 msgstr "[ఒక ఖాతాని నమోదుచేసుకుని](%%action.register%%) మీరే మొదట వ్రాసేవారు ఎందుకు కాకూడదు!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 #, fuzzy
 msgid "Listed"
 msgstr "లైసెన్సు"
@@ -5177,19 +5175,19 @@ msgstr "చందాదార్లు"
 msgid "All subscribers"
 msgstr "అందరు చందాదార్లు"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "%1$s, %2$dవ పేజీ"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "%2$sలో %1$s అనే ట్యాగుతో ఉన్న నోటీసులు!"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5231,7 +5229,7 @@ msgstr "%s కొరకు స్పందనల ఫీడు (ఆటమ్)"
 msgid "FOAF for %s"
 msgstr "%s గుంపు"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "ఇది %1$s యొక్క కాలరేఖ కానీ %1$s ఇంకా ఏమీ రాయలేదు."
@@ -5243,7 +5241,7 @@ msgid ""
 msgstr ""
 "ఈమధ్యే ఏదైనా ఆసక్తికరమైనది చూసారా? మీరు ఇంకా నోటీసులేమీ వ్రాయలేదు, మొదలుపెట్టడానికి ఇదే మంచి సమయం :)"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, fuzzy, php-format
 msgid ""
@@ -5252,7 +5250,7 @@ msgid ""
 msgstr ""
 "[ఈ విషయంపై](%%%%action.newnotice%%%%?status_textarea=%s) వ్రాసే మొదటివారు మీరే అవ్వండి!"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, fuzzy, php-format
 msgid ""
@@ -5268,7 +5266,7 @@ msgstr ""
 "చాల వాటిలో భాగస్తులవ్వడానికి [ఇప్పుడే చేరండి](%%%%action.register%%%%)! ([మరింత చదవండి](%%%%"
 "doc.help%%%%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, fuzzy, php-format
 msgid ""
@@ -8302,7 +8300,7 @@ msgstr "%1$s (@%2$s) మీ దృష్టికి ఒక నోటిసు�
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -8754,11 +8752,6 @@ msgstr "మార్చు"
 #, fuzzy, php-format
 msgid "Edit %s list by you."
 msgstr "%s గుంపుని మార్చు"
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-#, fuzzy
-msgid "Tagged"
-msgstr "ట్యాగు"
 
 #. TRANS: Title for link to edit list settings.
 #, fuzzy
@@ -9694,94 +9687,5 @@ msgid "Could not find a valid profile for \"%s\"."
 msgstr "ప్రొఫైలుని భద్రపరచలేకున్నాం."
 
 #, fuzzy
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr "ఈ సైటులో మీరు వాడుకరలకి పాత్రలను ఇవ్వలేరు."
-
-#~ msgid "You can use the local subscription!"
-#~ msgstr "మీరు స్థానిక చందాని ఉపయోగించవచ్చు!"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "ఆ వాడుకరి మిమ్మల్ని చందాచేరకుండా నిరోధించారు."
-
-#~ msgid "You are not authorized."
-#~ msgstr "మీకు అధీకరణ లేదు."
-
-#, fuzzy
-#~ msgid "Error updating remote profile."
-#~ msgstr "దూరపు ప్రొపైలుని తాజాకరించటంలో పొరపాటు"
-
-#~ msgid "Invalid notice content."
-#~ msgstr "తప్పుడు దస్త్రపుపేరు.."
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "చందా చేరడానికి, మీరు [ప్రవేశించవచ్చు](%%action.login%%), లేదా కొత్త ఖాతాని [నమోదుచేసుకోవచ్చు](%"
-#~ "%action.register%%). ఒకవేళ మీకు ఇప్పటికే ఏదైనా [పొసగే మైక్రోబ్లాగింగు సైటులో](%%doc."
-#~ "openmublog%%) ఖాతా ఉంటే, మీ ప్రొఫైలు చిరునామాని క్రింద ఇవ్వండి."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "సుదూర చందా"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "ఈ వాడుకరికి చందాచేరు"
-
-#~ msgid "User nickname"
-#~ msgstr "వాడుకరి పేరు"
-
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "మీరు అనుసరించాలనుకుంటున్న వాడుకరి యొక్క ముద్దుపేరు."
-
-#~ msgid "Profile URL"
-#~ msgstr "ప్రొఫైలు URL"
-
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "ప్రొపైల్ URL తప్పు (చెల్లని ఫార్మాట్)."
-
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "అది స్థానిక ప్రొఫైలు! చందాచేరడానికి ప్రవేశించండి."
-
-#, fuzzy
-#~ msgid "Could not get a request token."
-#~ msgstr "ట్యాగులని భద్రపరచలేకపోయాం."
-
-#, fuzzy
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr "ఈ సైటులో మీరు వాడుకరలకి పాత్రలను ఇవ్వలేరు."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "చందాని అధీకరించండి"
-
-#~ msgid "Reject this subscription."
-#~ msgstr "ఈ చందాని తిరస్కరించండి."
-
-#~ msgid "No authorization request!"
-#~ msgstr "అధీకరణ అభ్యర్థన లేదు!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "చందాని అధీకరించారు"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "చందాని తిరస్కరించారు."
-
-#, fuzzy
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "హోమ్ పేజీ URL సరైనది కాదు."
-
-#, fuzzy
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "'%s' అనే అవతారపు URL తప్పు"
-
-#, fuzzy
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "'%s' కొరకు తప్పుడు బొమ్మ రకం"
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "కొత్త చందాని చేర్చలేకపోయాం."
-
-#, fuzzy
-#~ msgid "Could not insert new subscription."
-#~ msgstr "కొత్త చందాని చేర్చలేకపోయాం."
+#~ msgid "Tagged"
+#~ msgstr "ట్యాగు"
