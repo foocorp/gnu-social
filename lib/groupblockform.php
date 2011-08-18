@@ -125,6 +125,6 @@ class GroupBlockForm extends Form
             'submit',
             null,
             // TRANS: Submit button title.
-            _m('TOOLTIP', 'Block this user'));
+            _m('TOOLTIP', 'Block this user so that they can no longer post messages to it.'));
     }
 }

@@ -252,7 +252,7 @@ class SnapshotAdminPanelForm extends AdminForm
             _m('BUTTON','Save'),
             'submit',
             null,
-            // TRANS: Title for button to save snapshot settings.
+            // TRANS: Button title to save snapshot settings.
             _('Save snapshot settings.')
         );
     }

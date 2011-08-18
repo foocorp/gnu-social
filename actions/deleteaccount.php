@@ -320,6 +320,6 @@ class DeleteAccountForm extends Form
                            'submit',
                            null,
                            // TRANS: Button title for user account deletion.
-                           _('Permanently delete your account'));
+                           _('Permanently delete your account.'));
     }
 }

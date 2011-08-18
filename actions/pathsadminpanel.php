@@ -462,7 +462,7 @@ class PathsAdminPanelForm extends AdminForm
         // TRANS: Button text to store form data in the Paths admin panel.
         $this->out->submit('save', _m('BUTTON','Save'), 'submit',
                            // TRANS: Button title text to store form data in the Paths admin panel.
-                           'save', _('Save paths'));
+                           'save', _('Save path settings.'));
     }
 
     /**
