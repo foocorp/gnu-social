@@ -51,7 +51,6 @@ class RealtimePlugin extends Plugin
      * When it's time to initialize the plugin, calculate and
      * pass the URLs we need.
      */
-
     function onInitializePlugin()
     {
         // FIXME: need to find a better way to pass this pattern in
@@ -59,14 +58,14 @@ class RealtimePlugin extends Plugin
                                             array('notice' => '0000000000'));
         return true;
     }
-    
+
     function onCheckSchema()
     {
         $schema = Schema::get();
         $schema->ensureTable('realtime_channel', Realtime_channel::schemaDef());
         return true;
     }
-    
+
     function onAutoload($cls)
     {
         $dir = dirname(__FILE__);
@@ -238,31 +237,31 @@ class RealtimePlugin extends Plugin
             $json = $this->noticeAsJson($notice);
 
             $this->_connect();
-            
+
             // XXX: We should probably fan-out here and do a
             // new queue item for each path
 
             foreach ($paths as $path) {
-            	
-            	list($action, $arg1, $arg2) = $path;
-            	
-            	$channels = Realtime_channel::getAllChannels($action, $arg1, $arg2);
-            	
-            	foreach ($channels as $channel) {
-            		
-            		// XXX: We should probably fan-out here and do a
-            		// new queue item for each user/path combo
-            
-            		if (is_null($channel->user_id)) {
-            			$profile = null;
-            		} else {
-            			$profile = Profile::staticGet('id', $channel->user_id);
-            		}
-            		if ($notice->inScope($profile)) {
-            			$timeline = $this->_pathToChannel(array($channel->channel_key));		
-                		$this->_publish($timeline, $json);
-            		}
-            	}
+
+                list($action, $arg1, $arg2) = $path;
+
+                $channels = Realtime_channel::getAllChannels($action, $arg1, $arg2);
+
+                foreach ($channels as $channel) {
+
+                    // XXX: We should probably fan-out here and do a
+                    // new queue item for each user/path combo
+
+                    if (is_null($channel->user_id)) {
+                        $profile = null;
+                    } else {
+                        $profile = Profile::staticGet('id', $channel->user_id);
+                    }
+                    if ($notice->inScope($profile)) {
+                        $timeline = $this->_pathToChannel(array($channel->channel_key));
+                        $this->_publish($timeline, $json);
+                    }
+                }
             }
 
             $this->_disconnect();
@@ -367,12 +366,11 @@ class RealtimePlugin extends Plugin
             $convurl = $conv->uri;
 
             if(empty($convurl)) {
-                $msg = sprintf(
-                    "Couldn't find Conversation ID %d to make 'in context'"
-                    . "link for Notice ID %d",
+                $msg = sprintf( _m("Could not find Conversation ID %d to make 'in context'"
+                    . "link for Notice ID %d.",
                     $notice->conversation,
                     $notice->id
-                );
+                ));
 
                 common_log(LOG_WARNING, $msg);
             } else {
@@ -455,26 +453,26 @@ class RealtimePlugin extends Plugin
     function _getChannel($action)
     {
         $timeline = null;
-		$arg1     = null;
-		$arg2	  = null;
-		
+        $arg1     = null;
+        $arg2     = null;
+
         $action_name = $action->trimmed('action');
 
-		// FIXME: lists
-		// FIXME: search (!)
-		// FIXME: profile + tag
-		
+        // FIXME: lists
+        // FIXME: search (!)
+        // FIXME: profile + tag
+
         switch ($action_name) {
          case 'public':
-         	// no arguments
+            // no arguments
             break;
          case 'tag':
             $tag = $action->trimmed('tag');
             if (empty($tag)) {
                 $arg1 = $tag;
             } else {
-            	$this->log(LOG_NOTICE, "Unexpected 'tag' action without tag argument");
-            	return null;
+                $this->log(LOG_NOTICE, "Unexpected 'tag' action without tag argument");
+                return null;
             }
             break;
          case 'showstream':
@@ -485,29 +483,29 @@ class RealtimePlugin extends Plugin
             if (!empty($nickname)) {
                 $arg1 = $nickname;
             } else {
-            	$this->log(LOG_NOTICE, "Unexpected $action_name action without nickname argument.");
-            	return null;
+                $this->log(LOG_NOTICE, "Unexpected $action_name action without nickname argument.");
+                return null;
             }
             break;
          default:
             return null;
         }
 
-		$user = common_current_user();
-		
-		$user_id = (!empty($user)) ? $user->id : null;
-		
-		$channel = Realtime_channel::getChannel($user_id,
-												$action_name,
-												$arg1,
-												$arg2);
+        $user = common_current_user();
+
+        $user_id = (!empty($user)) ? $user->id : null;
+
+        $channel = Realtime_channel::getChannel($user_id,
+                                                $action_name,
+                                                $arg1,
+                                                $arg2);
 
         return $channel;
     }
-    
+
     function onStartReadWriteTables(&$alwaysRW, &$rwdb)
     {
-    	$alwaysRW[] = 'realtime_channel';
-    	return true;
+        $alwaysRW[] = 'realtime_channel';
+        return true;
     }
 }

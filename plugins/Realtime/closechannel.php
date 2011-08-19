@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * action to close a channel
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class ClosechannelAction extends Action
 {
     protected $channelKey = null;
@@ -57,7 +56,6 @@ class ClosechannelAction extends Action
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
@@ -88,7 +86,6 @@ class ClosechannelAction extends Action
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         $this->channel->decrement();
@@ -107,7 +104,6 @@ class ClosechannelAction extends Action
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         return false;
