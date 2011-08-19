@@ -2139,6 +2139,29 @@ max-height:96px;
 margin-right:18px;
 float:left;
 }
+
+.oauth-desktop-mode #wrap {
+    min-width: 500px;
+}
+
+.oauth-desktop-mode #content {
+    width: 480px;
+    padding: 6px;
+    margin: 4px 0px 0px 4px;
+    border-top-left-radius: 7px;
+    -moz-border-radius-topleft: 7px;
+    -webkit-border-top-left-radius: 7px;
+}
+
+.oauth-desktop-mode fieldset {
+    margin-bottom: 10px !important;
+}
+
+#oauth_pin {
+    text-align: center;
+    font-size: 3em;
+}
+
 #showapplication .entity_profile {
 width:68%;
 }
@@ -2156,16 +2179,10 @@ margin-bottom:18px;
 #showapplication .entity_data h2 {
 display:none;
 }
-#showapplication .entity_data dl {
-margin-bottom:18px;
-}
-#showapplication .entity_data dt {
-font-weight:bold;
-}
 #showapplication .entity_data dd {
-margin-left:1.795%;
 font-family:monospace;
 font-size:1.3em;
+    margin-bottom: 10px;
 }
 .form_data #application_types label.radio,
 .form_data #default_access_types label.radio {
