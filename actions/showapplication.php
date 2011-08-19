@@ -251,21 +251,19 @@ class ShowApplicationAction extends Action
         $this->elementStart('div', 'entity_data');
         // TRANS: Header on the OAuth application page.
         $this->element('h2', null, _('Application info'));
-        $this->element('div',
-                       'entity_consumer_key',
-                       $consumer->consumer_key);
 
-        $this->element('div',
-                       'entity_consumer_secret',
-                       $consumer->consumer_secret);
-
-        $this->element('div',
-                       'entity_request_token_url',
-                       common_local_url('ApiOauthRequestToken'));
-
-        $this->element('div', 'entity_access_token_url', common_local_url('ApiOauthAccessToken'));
-
-        $this->element('div', 'entity_authorize_url', common_local_url('ApiOauthAuthorize'));
+        $this->elementStart('dl');
+        $this->element('dt', null, _('Consumer key'));
+        $this->element('dd', null, $consumer->consumer_key);
+        $this->element('dt', null, _('Consumer secret'));
+        $this->element('dd', null, $consumer->consumer_secret);
+        $this->element('dt', null, _('Request token URL'));
+        $this->element('dd', null, common_local_url('ApiOauthRequestToken'));
+        $this->element('dt', null, _('Access token URL'));
+        $this->element('dd', null, common_local_url('ApiOauthAccessToken'));
+        $this->element('dt', null, _('Authorize URL'));
+        $this->element('dd', null, common_local_url('ApiOauthAuthorize'));
+        $this->elementEnd('dl');
 
         $this->element('p', 'note',
             // TRANS: Note on the OAuth application page about signature support.
