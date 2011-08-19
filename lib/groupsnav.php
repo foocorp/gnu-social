@@ -84,8 +84,10 @@ class GroupsNav extends MoreMenu
     function seeAllItem() {
         return array('usergroups',
                      array('nickname' => $this->user->nickname),
+                     // TRANS: Link description for seeing all groups.
                      _('See all'),
-                     _('See all groups you belong to'));
+                     // TRANS: Link title for seeing all groups.
+                     _('See all groups you belong to.'));
     }
-    
+
 }

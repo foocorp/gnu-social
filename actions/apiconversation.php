@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Show a stream of notices in a particular conversation
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -46,12 +46,11 @@ require_once INSTALLDIR . '/lib/apiauth.php';
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class ApiconversationAction extends ApiAuthAction
 {
-	protected $conversation = null;
-	protected $notices      = null;
-	
+    protected $conversation = null;
+    protected $notices      = null;
+
     /**
      * For initializing members of the class.
      *
@@ -59,35 +58,36 @@ class ApiconversationAction extends ApiAuthAction
      *
      * @return boolean true
      */
-
     function prepare($argarray)
     {
         parent::prepare($argarray);
-        
+
         $convId = $this->trimmed('id');
-        
+
         if (empty($convId)) {
-        	throw new ClientException(_m('no conversation id'));
+            // TRANS: Client exception thrown when no conversation ID is given.
+            throw new ClientException(_('No conversation ID.'));
         }
-        
+
         $this->conversation = Conversation::staticGet('id', $convId);
-        
+
         if (empty($this->conversation)) {
-        	throw new ClientException(sprintf(_m('No conversation with id %d'), $convId),
-        							  404);
+            // TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+            throw new ClientException(sprintf(_('No conversation with ID %d.'), $convId),
+                                      404);
         }
-        
+
         $profile = Profile::current();
-        
+
         $stream = new ConversationNoticeStream($convId, $profile);
-        
+
         $notice = $stream->getNotices(($this->page-1) * $this->count,
                                       $this->count,
                                       $this->since_id,
                                       $this->max_id);
-        
+
         $this->notices = $notice->fetchAll();
-                                 
+
         return true;
     }
 
@@ -98,17 +98,16 @@ class ApiconversationAction extends ApiAuthAction
      *
      * @return void
      */
-
     function handle($argarray=null)
     {
         $sitename   = common_config('site', 'name');
         // TRANS: Timeline title for user and friends. %s is a user nickname.
-        $title      = _("Conversation");
+        $title      = _m('TITLE', 'Conversation');
         $id         = common_local_url('apiconversation', array('id' => $this->conversation->id, 'format' => $this->format));
         $link       = common_local_url('conversation', array('id' => $this->conversation->id));
 
         $self       = $id;
-        
+
         switch($this->format) {
         case 'xml':
             $this->showXmlTimeline($this->notices);
@@ -168,7 +167,6 @@ class ApiconversationAction extends ApiAuthAction
      *
      * @return boolean is read only action?
      */
-
     function isReadOnly($args)
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||
@@ -202,7 +200,6 @@ class ApiconversationAction extends ApiAuthAction
      *
      * @return string etag http header
      */
-
     function etag()
     {
         if (!empty($this->notices) && (count($this->notices) > 0)) {
@@ -220,7 +217,7 @@ class ApiconversationAction extends ApiAuthAction
             )
             . '"';
         }
-        
+
         return null;
     }
 
@@ -229,7 +226,6 @@ class ApiconversationAction extends ApiAuthAction
      *
      * @return boolean true if delete, else false
      */
-
     function requiresAuth()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' ||

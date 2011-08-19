@@ -120,13 +120,15 @@ class BlogPlugin extends MicroAppPlugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Blog',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Let users write and share long-form texts.'));
         return true;
     }
 
     function appTitle()
     {
-        return _m('Blog');
+        // TRANS: Blog application title.
+        return _m('TITLE','Blog');
     }
 
     function tag()
@@ -149,7 +151,7 @@ class BlogPlugin extends MicroAppPlugin
         $entryObj = $activity->objects[0];
 
         if ($entryObj->type != Blog_entry::TYPE) {
-            // TRANS: Exception thrown when blog plugin comes across a non-event type object.
+            // TRANS: Exception thrown when blog plugin comes across a non-blog entry type object.
             throw new ClientException(_m('Wrong type for object.'));
         }
 
@@ -175,7 +177,8 @@ class BlogPlugin extends MicroAppPlugin
         $entry = Blog_entry::fromNotice($notice);
 
         if (empty($entry)) {
-            throw new ClientException(sprintf(_('No blog entry for notice %s'),
+            // TRANS: Exception thrown when requesting a non-existing blog entry for notice.
+            throw new ClientException(sprintf(_m('No blog entry for notice %s.'),
                         $notice->id));
         }
 
@@ -204,7 +207,7 @@ class BlogPlugin extends MicroAppPlugin
         if ($notice->object_type == Blog_entry::TYPE) {
             return new BlogEntryListItem($nli);
         }
-        
+
         return null;
     }
 
