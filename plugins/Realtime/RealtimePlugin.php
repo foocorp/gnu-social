@@ -366,11 +366,11 @@ class RealtimePlugin extends Plugin
             $convurl = $conv->uri;
 
             if(empty($convurl)) {
-                $msg = sprintf( _m("Could not find Conversation ID %d to make 'in context'"
+                $msg = sprintf( "Could not find Conversation ID %d to make 'in context'"
                     . "link for Notice ID %d.",
                     $notice->conversation,
                     $notice->id
-                ));
+                );
 
                 common_log(LOG_WARNING, $msg);
             } else {
