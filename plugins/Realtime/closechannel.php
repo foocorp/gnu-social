@@ -61,18 +61,21 @@ class ClosechannelAction extends Action
         parent::prepare($argarray);
 
         if (!$this->isPost()) {
+            // TRANS: Client exception. Do not translate POST.
             throw new ClientException(_m('You have to POST it.'));
         }
 
         $this->channelKey = $this->trimmed('channelkey');
 
         if (empty($this->channelKey)) {
+            // TRANS: Client exception thrown when the channel key argument is missing.
             throw new ClientException(_m('No channel key argument.'));
         }
 
         $this->channel = Realtime_channel::staticGet('channel_key', $this->channelKey);
 
         if (empty($this->channel)) {
+            // TRANS: Client exception thrown when referring to a non-existing channel.
             throw new ClientException(_m('No such channel.'));
         }
 
