@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Show a blog entry
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,12 +44,11 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class ShowblogentryAction extends ShownoticeAction
 {
     protected $id;
     protected $entry;
-    
+
     function getNotice()
     {
         $this->id = $this->trimmed('id');
@@ -81,6 +80,7 @@ class ShowblogentryAction extends ShownoticeAction
     function title()
     {
         // XXX: check for double-encoding
+        // TRANS: Title for a blog entry without a title.
         return (empty($this->entry->title)) ? _m('Untitled') : $this->entry->title;
     }
 }
