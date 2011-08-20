@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:21:41+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:23+0000\n"
 "Language-Team: Interlingua <//translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-07-21 13:51:27+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-16 06:59:31+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -31,7 +31,8 @@ msgid "Subscribe"
 msgstr "Subscriber"
 
 #. TRANS: Fieldset legend.
-msgid "Tag remote profile"
+#, fuzzy
+msgid "List remote profile"
 msgstr "Etiquettar profilo remote"
 
 #. TRANS: Field label.
@@ -127,7 +128,7 @@ msgid "Follow list"
 msgstr "Sequer lista"
 
 #. TRANS: Success message for remote list follow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #, php-format
 msgid "%1$s is now following people listed in %2$s by %3$s."
 msgstr "%1$s seque ora le personas listate in \"%2$s\" de %3$s."
@@ -141,7 +142,7 @@ msgid "Unfollow list"
 msgstr "Non plus sequer lista"
 
 #. TRANS: Success message for remote list unfollow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #, php-format
 msgid "%1$s stopped following the list %2$s by %3$s."
 msgstr "%1$s cessava de sequer le lista \"%2$s\" de %3$s."
@@ -201,9 +202,10 @@ msgstr "Actualisation de profilo"
 msgid "%s has updated their profile page."
 msgstr "%s ha actualisate su pagina de profilo."
 
-#. TRANS: Link text for a user to tag an OStatus user.
-msgid "Tag"
-msgstr "Etiquettar"
+#. TRANS: Link text for a user to list an OStatus user.
+#, fuzzy
+msgid "List"
+msgstr "Listar"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -268,16 +270,17 @@ msgstr "Invalide hub.topic \"%s\". Lista non existe."
 msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "Invalide URL passate pro %1$s: \"%2$s\""
 
-#. TRANS: Client error displayed when trying to tag a local object as if it is remote.
-msgid "You can use the local tagging!"
-msgstr "Tu pote usar le etiquettas local!"
+#. TRANS: Client error displayed when trying to list a local object as if it is remote.
+#, fuzzy
+msgid "You can use the local list functionality!"
+msgstr "Tu pote usar le subscription local!"
 
-#. TRANS: Header for tagging a remote object. %s is a remote object's name.
-#, php-format
-msgid "Tag %s"
-msgstr "Etiquetta %s"
+#. TRANS: Header for listing a remote object. %s is a remote object's name.
+#, fuzzy, php-format
+msgid "List %s"
+msgstr "Listar"
 
-#. TRANS: Button text to tag a remote object.
+#. TRANS: Button text to list a remote object.
 msgctxt "BUTTON"
 msgid "Go"
 msgstr "Ir"
@@ -287,7 +290,8 @@ msgid "User nickname"
 msgstr "Pseudonymo del usator"
 
 #. TRANS: Field title.
-msgid "Nickname of the user you want to tag."
+#, fuzzy
+msgid "Nickname of the user you want to list."
 msgstr "Le pseudonymo del usator que tu vole etiquettar."
 
 #. TRANS: Field label.
@@ -495,27 +499,33 @@ msgid "Not a person object."
 msgstr "Non es un objecto de persona."
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being tagged."
+#, fuzzy
+msgid "Unidentified profile being listed."
 msgstr "Etiquettage de un profilo non identificate."
 
 #. TRANS: Client exception.
-msgid "This user is not the one being tagged."
+#, fuzzy
+msgid "This user is not the one being listed."
 msgstr "Iste non es le usator que es etiquettate."
 
 #. TRANS: Client exception.
-msgid "The tag could not be saved."
+#, fuzzy
+msgid "The listing could not be saved."
 msgstr "Le etiquetta non poteva esser salveguardate."
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being untagged."
+#, fuzzy
+msgid "Unidentified profile being unlisted."
 msgstr "Disetiquettage de un profilo non identificate."
 
 #. TRANS: Client exception.
-msgid "This user is not the one being untagged."
+#, fuzzy
+msgid "This user is not the one being unlisted."
 msgstr "Iste non es le usator que es disetiquettate."
 
 #. TRANS: Client exception.
-msgid "The tag could not be deleted."
+#, fuzzy
+msgid "The listing could not be deleted."
 msgstr "Le etiquetta non poteva esser delite."
 
 #. TRANS: Client exception.
@@ -651,7 +661,7 @@ msgctxt "BUTTON"
 msgid "Join"
 msgstr "Adherer"
 
-#. TRANS: Form legend. %1$s is a list, %2$s is a tagger's name.
+#. TRANS: Form legend. %1$s is a list, %2$s is a lister's name.
 #, php-format
 msgid "Subscribe to list %1$s by %2$s"
 msgstr "Subscriber al lista \"%1$s\" de %2$s"
@@ -735,15 +745,19 @@ msgstr "Formato de syndication incognite."
 msgid "RSS feed without a channel."
 msgstr "Syndication RSS sin canal."
 
+#. TRANS: Client exception thrown when trying to share multiple activities at once.
 msgid "Can only handle share activities with exactly one object."
 msgstr "Pote solmente manear activitates de divulgation con un sol objecto."
 
+#. TRANS: Client exception thrown when trying to share a non-activity object.
 msgid "Can only handle shared activities."
 msgstr "Pote solmente manear activitates divulgate."
 
-#, fuzzy, php-format
+#. TRANS: Client exception thrown when saving an activity share fails.
+#. TRANS: %s is a share ID.
+#, php-format
 msgid "Failed to save activity %s."
-msgstr "Falleva de salveguardar le activitate %s"
+msgstr "Falleva de salveguardar le activitate %s."
 
 #. TRANS: Client exception. %s is a source URI.
 #, php-format
@@ -923,13 +937,24 @@ msgid "This target does not understand leave events."
 msgstr "Iste destination non comprende eventos de quitar."
 
 #. TRANS: Client exception.
-msgid "This target does not understand tag events."
+#, fuzzy
+msgid "This target does not understand list events."
 msgstr "Iste destination non comprende eventos de etiquettage."
 
 #. TRANS: Client exception.
-msgid "This target does not understand untag events."
+#, fuzzy
+msgid "This target does not understand unlist events."
 msgstr "Iste destination non comprende eventos de disetiquettage."
 
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "Recipeva un claffo de salmon de un actor non identificate."
+
+#~ msgid "Tag"
+#~ msgstr "Etiquettar"
+
+#~ msgid "You can use the local tagging!"
+#~ msgstr "Tu pote usar le etiquettas local!"
+
+#~ msgid "Tag %s"
+#~ msgstr "Etiquetta %s"

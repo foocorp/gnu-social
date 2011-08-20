@@ -8,25 +8,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
+#. TRANS: 0 minutes abbreviated. Used in a list.
 #: eventtimelist.php:90
-msgid "hour"
+msgid "(0 min)"
 msgstr ""
 
-#: eventtimelist.php:91
-msgid "hrs"
+#. TRANS: 30 minutes abbreviated. Used in a list.
+#: eventtimelist.php:94
+msgid "(30 min)"
 msgstr ""
 
-#: eventtimelist.php:92
-msgid "mins"
+#. TRANS: 1 hour. Used in a list.
+#: eventtimelist.php:98
+msgid "(1 hour)"
 msgstr ""
+
+#. TRANS: Number of hours (%d). Used in a list.
+#: eventtimelist.php:102
+#, php-format
+msgid "(%d hour)"
+msgid_plural "(%d hours)"
+msgstr[0] ""
+msgstr[1] ""
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 #: Happening.php:125
@@ -52,11 +64,18 @@ msgid ""
 "$s</span> </span>"
 msgstr ""
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+#: timelist.php:65
+msgid "Not logged in."
+msgstr ""
+
+#. TRANS: Client error when submitting a form with unexpected information.
 #: timelist.php:73
 msgid "Unexpected form submission."
 msgstr ""
 
-#: timelist.php:81
+#. TRANS: Client error displayed when using an action in a non-AJAX way.
+#: timelist.php:82
 msgid "This action is AJAX only."
 msgstr ""
 
@@ -67,8 +86,6 @@ msgstr ""
 msgid "No such RSVP."
 msgstr ""
 
-#. TRANS: Client exception thrown when referring to a non-existing event.
-#. TRANS: Client exception thrown when requesting a non-exsting event.
 #. TRANS: Client exception thrown when referring to a non-existing event.
 #: showrsvp.php:68 newrsvp.php:82 newrsvp.php:89 cancelrsvp.php:96
 #: showevent.php:60 showevent.php:68

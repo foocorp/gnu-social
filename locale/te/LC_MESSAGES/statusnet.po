@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:22:30+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:37:07+0000\n"
 "Language-Team: Telugu <//translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
+"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -89,11 +89,12 @@ msgstr "కొత్త నమోదులను అచేతనంచేయి.
 msgid "Closed"
 msgstr "మూసివేయబడింది"
 
-#. TRANS: Title for button to save access settings in site admin panel.
-msgid "Save access settings"
+#. TRANS: Button title to save access settings in site admin panel.
+#, fuzzy
+msgid "Save access settings."
 msgstr "అందుబాటు అమరికలను భద్రపరచు"
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -418,16 +419,19 @@ msgstr "వాడుకరి నిరోధం విఫలమైంది."
 msgid "Unblock user failed."
 msgstr "వాడుకరి నిరోధం విఫలమైంది."
 
+#. TRANS: Client exception thrown when no conversation ID is given.
 #, fuzzy
-msgid "no conversation id"
+msgid "No conversation ID."
 msgstr "సంభాషణ"
 
-#, php-format
-msgid "No conversation with id %d"
-msgstr ""
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+#, fuzzy, php-format
+msgid "No conversation with ID %d."
+msgstr "సంభాషణ"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
-#. TRANS: Title for page with a conversion (multiple notices in context).
+#, fuzzy
+msgctxt "TITLE"
 msgid "Conversation"
 msgstr "సంభాషణ"
 
@@ -1705,6 +1709,10 @@ msgstr "చిరునామాని నిర్ధారించు"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "\"%s\" అనే చిరునామా మీ ఖాతాకి నిర్ధారితమైంది."
 
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "సంభాషణ"
+
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, fuzzy
@@ -1776,7 +1784,8 @@ msgid "Enter \"%s\" to confirm that you want to delete your account."
 msgstr "మీ ఖాతాను తొలగించుకోవాలనుకుంటున్నారని నిర్ధారించేందుకు \"%s\" అని టైపుచెయ్యండి."
 
 #. TRANS: Button title for user account deletion.
-msgid "Permanently delete your account"
+#, fuzzy
+msgid "Permanently delete your account."
 msgstr "మీ ఖాతాని శాశ్వతంగా తొలగించుకోండి"
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -2662,8 +2671,8 @@ msgstr "IM అమరికలు"
 #. TRANS: the order and formatting of link text and link should remain unchanged.
 #, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 
 #. TRANS: Message given in the IM settings if IM is not enabled on the site.
@@ -3670,8 +3679,8 @@ msgstr ""
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
 #, fuzzy
-msgid "Save paths"
-msgstr "కొత్త సందేశం"
+msgid "Save path settings."
+msgstr "సైటు అమరికలను భద్రపరచు"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -4881,6 +4890,28 @@ msgstr ""
 msgid "Application info"
 msgstr "ఉపకరణ సమాచారం"
 
+#. TRANS: Field label on application page.
+msgid "Consumer key"
+msgstr ""
+
+#. TRANS: Field label on application page.
+msgid "Consumer secret"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Request token URL"
+msgstr "తప్పుడు పాత్ర."
+
+#. TRANS: Field label on application page.
+msgid "Access token URL"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Authorize URL"
+msgstr "మూలము"
+
 #. TRANS: Note on the OAuth application page about signature support.
 msgid ""
 "Note: HMAC-SHA1 signatures are supported. The plaintext signature method is "
@@ -5457,7 +5488,7 @@ msgstr "సైటు గమనిక పాఠ్యం"
 msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr "సైటు-వారీ నోటీసు పాఠ్యం (255 అక్షరాలు గరిష్ఠం; HTML ఇవ్వొచ్చు)"
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 msgid "Save site notice."
 msgstr "సైటు గమనికను భద్రపరచండి."
 
@@ -5652,7 +5683,7 @@ msgstr ""
 msgid "Snapshots will be sent to this URL."
 msgstr ""
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 #, fuzzy
 msgid "Save snapshot settings."
 msgstr "సైటు అమరికలను భద్రపరచు"
@@ -6067,7 +6098,7 @@ msgstr "ఆహ్వానాలని చేతనంచేసాం"
 msgid "Whether to allow users to invite new users."
 msgstr "వాడుకరులను కొత్త వారిని ఆహ్వానించడానికి అనుమతించాలా వద్దా."
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 msgid "Save user settings."
 msgstr "వాడుకరి అమరికలను భద్రపరచు."
 
@@ -6268,8 +6299,9 @@ msgstr "స్థానిక గుంపుని తాజాకరించ�
 msgid "Could not create login token for %s"
 msgstr "మారుపేర్లని సృష్టించలేకపోయాం."
 
-#, fuzzy
-msgid "Cannot instantiate class "
+#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#, fuzzy, php-format
+msgid "Cannot instantiate class %s."
 msgstr "కొత్త సంకేతపదాన్ని భద్రపరచలేకున్నాం."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7002,13 +7034,14 @@ msgid "Default access for this application: read-only, or read-write"
 msgstr ""
 
 #. TRANS: Submit button title.
-msgid "Cancel"
-msgstr "రద్దుచేయి"
+#, fuzzy
+msgid "Cancel application changes."
+msgstr "సంధానిత ఉపకరణాలు"
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "భద్రపరచు"
+#, fuzzy
+msgid "Save application changes."
+msgstr "కొత్త ఉపకరణం"
 
 #. TRANS: Name for an anonymous application in application list.
 msgid "Unknown application"
@@ -7656,7 +7689,6 @@ msgid "Unable to find services for %s."
 msgstr "మీ ఉపకరణాన్ని మార్చడానికి ఈ ఫారాన్ని ఉపయోగించండి."
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
 #, fuzzy
 msgid "Disfavor this notice"
 msgstr "ఈ నోటీసుని తొలగించు"
@@ -7667,8 +7699,12 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "ఇష్టాంశాలకు చేర్చు"
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+#, fuzzy
+msgid "Remove this notice from your list of favorite notices."
+msgstr "ఇష్టాంశాన్ని సృష్టించలేకపోయాం."
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
 msgid "Favor this notice"
 msgstr "ఈ నోటీసుని పునరావృతించు"
 
@@ -7676,6 +7712,11 @@ msgstr "ఈ నోటీసుని పునరావృతించు"
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "ఇష్టపడండి"
+
+#. TRANS: Button title for adding the favourite status to a notice.
+#, fuzzy
+msgid "Add this notice to your list of favorite notices."
+msgstr "ఇష్టాంశాన్ని సృష్టించలేకపోయాం."
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -7735,8 +7776,8 @@ msgstr "నిరోధించు"
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Block this user"
-msgstr "ఈ వాడుకరిని నిరోధించు"
+msgid "Block this user so that they can no longer post messages to it."
+msgstr ""
 
 #. TRANS: Field title on group edit form.
 #, fuzzy
@@ -7875,11 +7916,14 @@ msgstr "ప్రసిద్ధ గుంపులు"
 msgid "Active groups"
 msgstr "క్రియాశీల గుంపులు"
 
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
 #, fuzzy
 msgid "See all"
 msgstr "అన్నీ చూపించు"
 
-msgid "See all groups you belong to"
+#. TRANS: Link title for seeing all groups.
+msgid "See all groups you belong to."
 msgstr ""
 
 #. TRANS: Title for group tag cloud section.
@@ -8019,8 +8063,9 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr "వైదొలగండి"
 
+#. TRANS: Link title for seeing all lists.
 #, fuzzy
-msgid "See all lists you have created"
+msgid "See all lists you have created."
 msgstr "మీరు నమోదు చేసివున్న ఉపకరణాలు"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -8431,8 +8476,9 @@ msgid "Make Admin"
 msgstr "నిర్వాహకున్ని చేయి"
 
 #. TRANS: Submit button title.
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
+msgid "Make this user an admin."
 msgstr "ఈ వాడుకరిని నిర్వాహకున్ని చేయి"
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
@@ -8548,6 +8594,7 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+#. TRANS: Link description to show more items in a list.
 msgid "More ▼"
 msgstr ""
 
@@ -8638,7 +8685,8 @@ msgid "Repeated by"
 msgstr "%s యొక్క పునరావృతం"
 
 #. TRANS: Link title in notice list item to reply to a notice.
-msgid "Reply to this notice"
+#, fuzzy
+msgid "Reply to this notice."
 msgstr "ఈ నోటీసుపై స్పందించండి"
 
 #. TRANS: Link text in notice list item to reply to a notice.
@@ -8646,8 +8694,9 @@ msgid "Reply"
 msgstr "స్పందించండి"
 
 #. TRANS: Link title in notice list item to delete a notice.
-msgid "Delete this notice"
-msgstr "ఈ నోటీసుని తొలగించు"
+#, fuzzy
+msgid "Delete this notice from the timeline."
+msgstr "ఈ నోటీసుని తొలగించు."
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
 msgid "Notice repeated."
@@ -8698,6 +8747,10 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "గుంపు లేదా విషయాన్ని గురించి %d అక్షరాల్లో వివరించండి"
 msgstr[1] "గుంపు లేదా విషయాన్ని గురించి %d అక్షరాల్లో వివరించండి"
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "భద్రపరచు"
 
 #. TRANS: Button title to delete a list.
 #, fuzzy
@@ -9561,7 +9614,6 @@ msgid "Unsilence this user"
 msgstr "ఈ వాడుకరిని తొలగించు"
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user"
 msgstr "ఈ వాడుకరి నుండి చందామాను"
 
@@ -9570,6 +9622,11 @@ msgstr "ఈ వాడుకరి నుండి చందామాను"
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "చందామాను"
+
+#. TRANS: Button title on unsubscribe form.
+#, fuzzy
+msgid "Unsubscribe from this user."
+msgstr "ఈ వాడుకరి నుండి చందామాను"
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -9687,5 +9744,15 @@ msgid "Could not find a valid profile for \"%s\"."
 msgstr "ప్రొఫైలుని భద్రపరచలేకున్నాం."
 
 #, fuzzy
-#~ msgid "Tagged"
-#~ msgstr "ట్యాగు"
+#~ msgid "Save paths"
+#~ msgstr "కొత్త సందేశం"
+
+#~ msgid "Cancel"
+#~ msgstr "రద్దుచేయి"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "Block this user"
+#~ msgstr "ఈ వాడుకరిని నిరోధించు"
+
+#~ msgid "Delete this notice"
+#~ msgstr "ఈ నోటీసుని తొలగించు"

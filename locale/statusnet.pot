@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -99,12 +99,12 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#. TRANS: Title for button to save access settings in site admin panel.
+#. TRANS: Button title to save access settings in site admin panel.
 #: actions/accessadminpanel.php:191
-msgid "Save access settings"
+msgid "Save access settings."
 msgstr ""
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -427,7 +427,7 @@ msgstr ""
 #: actions/apiaccountratelimitstatus.php:70
 #: actions/apiaccountupdatedeliverydevice.php:92
 #: actions/apiaccountupdateprofile.php:94
-#: actions/apiaccountverifycredentials.php:68 actions/apiconversation.php:157
+#: actions/apiaccountverifycredentials.php:68 actions/apiconversation.php:156
 #: actions/apidirectmessage.php:157 actions/apifavoritecreate.php:98
 #: actions/apifavoritedestroy.php:98 actions/apifriendshipscreate.php:99
 #: actions/apifriendshipsdestroy.php:99 actions/apifriendshipsshow.php:124
@@ -589,18 +589,20 @@ msgstr ""
 msgid "Unblock user failed."
 msgstr ""
 
-#: actions/apiconversation.php:70
-msgid "no conversation id"
+#. TRANS: Client exception thrown when no conversation ID is given.
+#: actions/apiconversation.php:69
+msgid "No conversation ID."
 msgstr ""
 
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
 #: actions/apiconversation.php:76
 #, php-format
-msgid "No conversation with id %d"
+msgid "No conversation with ID %d."
 msgstr ""
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
-#. TRANS: Title for page with a conversion (multiple notices in context).
-#: actions/apiconversation.php:106 actions/conversation.php:113
+#: actions/apiconversation.php:105
+msgctxt "TITLE"
 msgid "Conversation"
 msgstr ""
 
@@ -2155,6 +2157,11 @@ msgstr ""
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr ""
 
+#. TRANS: Title for page with a conversion (multiple notices in context).
+#: actions/conversation.php:113
+msgid "Conversation"
+msgstr ""
+
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #: actions/conversation.php:146 actions/conversation.php:162
@@ -2238,7 +2245,7 @@ msgstr ""
 
 #. TRANS: Button title for user account deletion.
 #: actions/deleteaccount.php:323
-msgid "Permanently delete your account"
+msgid "Permanently delete your account."
 msgstr ""
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -3264,8 +3271,8 @@ msgstr ""
 #: actions/imsettings.php:69
 #, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 
 #. TRANS: Message given in the IM settings if IM is not enabled on the site.
@@ -4442,7 +4449,7 @@ msgstr ""
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
 #: actions/pathsadminpanel.php:465
-msgid "Save paths"
+msgid "Save path settings."
 msgstr ""
 
 #. TRANS: Instructions for the "People search" page.
@@ -5779,15 +5786,40 @@ msgstr ""
 msgid "Application info"
 msgstr ""
 
+#. TRANS: Field label on application page.
+#: actions/showapplication.php:257
+msgid "Consumer key"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#: actions/showapplication.php:260
+msgid "Consumer secret"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#: actions/showapplication.php:263
+msgid "Request token URL"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#: actions/showapplication.php:266
+msgid "Access token URL"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#: actions/showapplication.php:269
+msgid "Authorize URL"
+msgstr ""
+
 #. TRANS: Note on the OAuth application page about signature support.
-#: actions/showapplication.php:272
+#: actions/showapplication.php:275
 msgid ""
 "Note: HMAC-SHA1 signatures are supported. The plaintext signature method is "
 "not supported."
 msgstr ""
 
 #. TRANS: Text in confirmation dialog to reset consumer key and secret for an OAuth application.
-#: actions/showapplication.php:293
+#: actions/showapplication.php:296
 msgid "Are you sure you want to reset your consumer key and secret?"
 msgstr ""
 
@@ -6428,7 +6460,7 @@ msgstr ""
 msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr ""
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 #: actions/sitenoticeadminpanel.php:201
 msgid "Save site notice."
 msgstr ""
@@ -6657,7 +6689,7 @@ msgstr ""
 msgid "Snapshots will be sent to this URL."
 msgstr ""
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 #: actions/snapshotadminpanel.php:256
 msgid "Save snapshot settings."
 msgstr ""
@@ -7134,7 +7166,7 @@ msgstr ""
 msgid "Whether to allow users to invite new users."
 msgstr ""
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 #: actions/useradminpanel.php:304
 msgid "Save user settings."
 msgstr ""
@@ -7370,12 +7402,14 @@ msgstr ""
 msgid "Could not create login token for %s"
 msgstr ""
 
-#: classes/Memcached_DataObject.php:128 classes/Memcached_DataObject.php:178
-msgid "Cannot instantiate class "
+#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#: classes/Memcached_DataObject.php:129 classes/Memcached_DataObject.php:180
+#, php-format
+msgid "Cannot instantiate class %s."
 msgstr ""
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
-#: classes/Memcached_DataObject.php:708
+#: classes/Memcached_DataObject.php:710
 msgid "No database name or DSN found anywhere."
 msgstr ""
 
@@ -8231,13 +8265,12 @@ msgstr ""
 
 #. TRANS: Submit button title.
 #: lib/applicationeditform.php:353
-msgid "Cancel"
+msgid "Cancel application changes."
 msgstr ""
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-#: lib/applicationeditform.php:357 lib/peopletageditform.php:168
-msgid "Save"
+#: lib/applicationeditform.php:357
+msgid "Save application changes."
 msgstr ""
 
 #. TRANS: Name for an anonymous application in application list.
@@ -8983,8 +9016,7 @@ msgid "Unable to find services for %s."
 msgstr ""
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
-#: lib/disfavorform.php:108 lib/disfavorform.php:140
+#: lib/disfavorform.php:108
 msgid "Disfavor this notice"
 msgstr ""
 
@@ -8994,9 +9026,13 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr ""
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+#: lib/disfavorform.php:140
+msgid "Remove this notice from your list of favorite notices."
+msgstr ""
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
-#: lib/favorform.php:108 lib/favorform.php:139
+#: lib/favorform.php:108
 msgid "Favor this notice"
 msgstr ""
 
@@ -9004,6 +9040,11 @@ msgstr ""
 #: lib/favorform.php:135
 msgctxt "BUTTON"
 msgid "Favor"
+msgstr ""
+
+#. TRANS: Button title for adding the favourite status to a notice.
+#: lib/favorform.php:139
+msgid "Add this notice to your list of favorite notices."
 msgstr ""
 
 #. TRANS: Feed type name.
@@ -9078,7 +9119,7 @@ msgstr ""
 #. TRANS: Submit button title.
 #: lib/groupblockform.php:128
 msgctxt "TOOLTIP"
-msgid "Block this user"
+msgid "Block this user so that they can no longer post messages to it."
 msgstr ""
 
 #. TRANS: Field title on group edit form.
@@ -9240,12 +9281,15 @@ msgstr ""
 msgid "Active groups"
 msgstr ""
 
-#: lib/groupsnav.php:87 lib/listsnav.php:87
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
+#: lib/groupsnav.php:88 lib/listsnav.php:88
 msgid "See all"
 msgstr ""
 
-#: lib/groupsnav.php:88
-msgid "See all groups you belong to"
+#. TRANS: Link title for seeing all groups.
+#: lib/groupsnav.php:90
+msgid "See all groups you belong to."
 msgstr ""
 
 #. TRANS: Title for group tag cloud section.
@@ -9408,8 +9452,9 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr ""
 
-#: lib/listsnav.php:88
-msgid "See all lists you have created"
+#. TRANS: Link title for seeing all lists.
+#: lib/listsnav.php:90
+msgid "See all lists you have created."
 msgstr ""
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -9785,7 +9830,7 @@ msgstr ""
 #. TRANS: Submit button title.
 #: lib/makeadminform.php:124
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
+msgid "Make this user an admin."
 msgstr ""
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
@@ -9921,7 +9966,8 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
-#: lib/moremenu.php:96
+#. TRANS: Link description to show more items in a list.
+#: lib/moremenu.php:93
 msgid "More ▼"
 msgstr ""
 
@@ -10029,7 +10075,7 @@ msgstr ""
 
 #. TRANS: Link title in notice list item to reply to a notice.
 #: lib/noticelistitem.php:629
-msgid "Reply to this notice"
+msgid "Reply to this notice."
 msgstr ""
 
 #. TRANS: Link text in notice list item to reply to a notice.
@@ -10039,7 +10085,7 @@ msgstr ""
 
 #. TRANS: Link title in notice list item to delete a notice.
 #: lib/noticelistitem.php:657
-msgid "Delete this notice"
+msgid "Delete this notice from the timeline."
 msgstr ""
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
@@ -10097,6 +10143,11 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] ""
 msgstr[1] ""
+
+#. TRANS: Button text to save a list.
+#: lib/peopletageditform.php:168
+msgid "Save"
+msgstr ""
 
 #. TRANS: Button title to delete a list.
 #: lib/peopletageditform.php:175
@@ -11104,8 +11155,7 @@ msgid "Unsilence this user"
 msgstr ""
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
-#: lib/unsubscribeform.php:109 lib/unsubscribeform.php:134
+#: lib/unsubscribeform.php:109
 msgid "Unsubscribe from this user"
 msgstr ""
 
@@ -11114,6 +11164,11 @@ msgstr ""
 #: lib/unsubscribeform.php:132 lib/unsubscribepeopletagform.php:106
 msgctxt "BUTTON"
 msgid "Unsubscribe"
+msgstr ""
+
+#. TRANS: Button title on unsubscribe form.
+#: lib/unsubscribeform.php:134
+msgid "Unsubscribe from this user."
 msgstr ""
 
 #. TRANS: Exception text shown when no profile can be found for a user.

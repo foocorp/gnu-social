@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GroupPrivateMessage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:20:53+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:35:32+0000\n"
 "Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:18+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
@@ -32,7 +32,7 @@ msgstr ""
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "User %s is not allowed to send private messages."
-msgstr ""
+msgstr "لا يسمح للمستخدم %s بإرسال رسائل خاصة."
 
 #. TRANS: Client exception thrown when trying to send a private group message to a non-existing group.
 #. TRANS: Client exception thrown when trying to view group inbox for non-existing group.
@@ -159,11 +159,11 @@ msgstr ""
 
 #. TRANS: Indicator on the group page that the group is (essentially) private.
 msgid "Private"
-msgstr "خاص"
+msgstr "خاصة"
 
 #. TRANS: Plugin description.
 msgid "Allow posting private messages to groups."
-msgstr ""
+msgstr "السماح بإرسال رسائل خاصة للمجموعات."
 
 #. TRANS: Client exception thrown when trying to view group inbox while not logged in.
 msgid "Only for logged-in users."
@@ -175,18 +175,18 @@ msgstr "فقط للأعضاء."
 
 #. TRANS: Text of group inbox if no private messages were sent to it.
 msgid "This group has not received any private messages."
-msgstr ""
+msgstr "لم تتلقَ هذه المجموعة أي رسائل خاصة."
 
 #. TRANS: Title of inbox for group %s.
 #, php-format
 msgid "%s group inbox"
-msgstr ""
+msgstr "صندوق مجموعة %s الوارد"
 
 #. TRANS: Page title for any but first group page.
 #. TRANS: %1$s is a group name, $2$s is a page number.
 #, php-format
 msgid "%1$s group inbox, page %2$d"
-msgstr ""
+msgstr "صندوق مجموعة %1$s الوارد، الصفحة %2$d"
 
 #. TRANS: Instructions for user inbox page.
 msgid ""

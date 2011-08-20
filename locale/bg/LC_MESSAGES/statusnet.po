@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:21:40+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:19+0000\n"
 "Language-Team: Bulgarian <//translatewiki.net/wiki/Portal:bg>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: bg\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
+"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -90,11 +90,12 @@ msgstr "Изключване на новите регистрации."
 msgid "Closed"
 msgstr "Затворен"
 
-#. TRANS: Title for button to save access settings in site admin panel.
-msgid "Save access settings"
+#. TRANS: Button title to save access settings in site admin panel.
+#, fuzzy
+msgid "Save access settings."
 msgstr "Запазване настройките за достъп"
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -417,16 +418,19 @@ msgstr "Грешка при блокиране на потребителя."
 msgid "Unblock user failed."
 msgstr "Грешка при разблокиране на потребителя."
 
+#. TRANS: Client exception thrown when no conversation ID is given.
 #, fuzzy
-msgid "no conversation id"
+msgid "No conversation ID."
 msgstr "Разговор"
 
-#, php-format
-msgid "No conversation with id %d"
-msgstr ""
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+#, fuzzy, php-format
+msgid "No conversation with ID %d."
+msgstr "Разговор"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
-#. TRANS: Title for page with a conversion (multiple notices in context).
+#, fuzzy
+msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Разговор"
 
@@ -1736,6 +1740,10 @@ msgstr "Потвърждаване на адрес"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "Адресът \"%s\" е потвърден за сметката ви."
 
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "Разговор"
+
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, fuzzy
@@ -1811,7 +1819,7 @@ msgstr "Не можете да изтривате потребители."
 
 #. TRANS: Button title for user account deletion.
 #, fuzzy
-msgid "Permanently delete your account"
+msgid "Permanently delete your account."
 msgstr "Не можете да изтривате потребители."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -2706,8 +2714,8 @@ msgstr "Настройки за SMS"
 #. TRANS: the order and formatting of link text and link should remain unchanged.
 #, fuzzy, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 "Можете да получавате съобщения по Jabber/GTalk [instant messages](%%doc.im%"
 "%). Въведете адреса си в настройките по-долу."
@@ -3751,8 +3759,9 @@ msgid "Server to direct SSL requests to."
 msgstr ""
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-msgid "Save paths"
-msgstr "Запазване на пътищата"
+#, fuzzy
+msgid "Save path settings."
+msgstr "Запазване настройките на сайта"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -4955,6 +4964,28 @@ msgstr ""
 msgid "Application info"
 msgstr "Данни за приложението"
 
+#. TRANS: Field label on application page.
+msgid "Consumer key"
+msgstr ""
+
+#. TRANS: Field label on application page.
+msgid "Consumer secret"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Request token URL"
+msgstr "Неправилен размер."
+
+#. TRANS: Field label on application page.
+msgid "Access token URL"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Authorize URL"
+msgstr "Изходен код"
+
 #. TRANS: Note on the OAuth application page about signature support.
 msgid ""
 "Note: HMAC-SHA1 signatures are supported. The plaintext signature method is "
@@ -5517,7 +5548,7 @@ msgstr "Изтриване на бележката"
 msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr ""
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 #, fuzzy
 msgid "Save site notice."
 msgstr "Запазване настройките на сайта"
@@ -5719,7 +5750,7 @@ msgstr ""
 msgid "Snapshots will be sent to this URL."
 msgstr ""
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 #, fuzzy
 msgid "Save snapshot settings."
 msgstr "Запазване настройките на сайта"
@@ -6143,7 +6174,7 @@ msgstr "Поканите са включени"
 msgid "Whether to allow users to invite new users."
 msgstr ""
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 #, fuzzy
 msgid "Save user settings."
 msgstr "Запазване настройките на сайта"
@@ -6353,8 +6384,9 @@ msgstr "Грешка при обновяване на групата."
 msgid "Could not create login token for %s"
 msgstr "Грешка при отбелязване като любима."
 
-#, fuzzy
-msgid "Cannot instantiate class "
+#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#, fuzzy, php-format
+msgid "Cannot instantiate class %s."
 msgstr "Грешка при запазване на новата парола."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7123,13 +7155,14 @@ msgid "Default access for this application: read-only, or read-write"
 msgstr ""
 
 #. TRANS: Submit button title.
-msgid "Cancel"
-msgstr "Отказ"
+#, fuzzy
+msgid "Cancel application changes."
+msgstr "Изтриване на приложението"
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Запазване"
+#, fuzzy
+msgid "Save application changes."
+msgstr "Ново приложение"
 
 #. TRANS: Name for an anonymous application in application list.
 #, fuzzy
@@ -7799,7 +7832,6 @@ msgid "Unable to find services for %s."
 msgstr "Използвайте тази бланка за създаване на нова група."
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
 msgid "Disfavor this notice"
 msgstr "Отбелязване като любимо"
 
@@ -7809,8 +7841,12 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "Добавяне към любимите"
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+#, fuzzy
+msgid "Remove this notice from your list of favorite notices."
+msgstr "Грешка при изтегляне на любимите бележки"
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
 msgid "Favor this notice"
 msgstr "Отбелязване като любимо"
 
@@ -7819,6 +7855,11 @@ msgstr "Отбелязване като любимо"
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "Любимо"
+
+#. TRANS: Button title for adding the favourite status to a notice.
+#, fuzzy
+msgid "Add this notice to your list of favorite notices."
+msgstr "Грешка при изтегляне на любимите бележки"
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -7880,8 +7921,8 @@ msgstr "Блокиране"
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Block this user"
-msgstr "Блокиране на този потребител"
+msgid "Block this user so that they can no longer post messages to it."
+msgstr ""
 
 #. TRANS: Field title on group edit form.
 #, fuzzy
@@ -8028,10 +8069,13 @@ msgstr "Популярни бележки"
 msgid "Active groups"
 msgstr "Всички групи"
 
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
 msgid "See all"
 msgstr ""
 
-msgid "See all groups you belong to"
+#. TRANS: Link title for seeing all groups.
+msgid "See all groups you belong to."
 msgstr ""
 
 #. TRANS: Title for group tag cloud section.
@@ -8175,7 +8219,8 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Напускане"
 
-msgid "See all lists you have created"
+#. TRANS: Link title for seeing all lists.
+msgid "See all lists you have created."
 msgstr ""
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -8521,9 +8566,10 @@ msgid "Make Admin"
 msgstr ""
 
 #. TRANS: Submit button title.
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
-msgstr ""
+msgid "Make this user an admin."
+msgstr "За да редактирате групата, трябва да сте й администратор."
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
 msgid "There was a database error while saving your file. Please try again."
@@ -8642,6 +8688,7 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+#. TRANS: Link description to show more items in a list.
 msgid "More ▼"
 msgstr ""
 
@@ -8732,7 +8779,8 @@ msgid "Repeated by"
 msgstr "Повторено от"
 
 #. TRANS: Link title in notice list item to reply to a notice.
-msgid "Reply to this notice"
+#, fuzzy
+msgid "Reply to this notice."
 msgstr "Отговаряне на тази бележка"
 
 #. TRANS: Link text in notice list item to reply to a notice.
@@ -8740,7 +8788,8 @@ msgid "Reply"
 msgstr "Отговор"
 
 #. TRANS: Link title in notice list item to delete a notice.
-msgid "Delete this notice"
+#, fuzzy
+msgid "Delete this notice from the timeline."
 msgstr "Изтриване на бележката"
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
@@ -8794,6 +8843,10 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Опишете групата или темата в до %d букви"
 msgstr[1] "Опишете групата или темата в до %d букви"
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Запазване"
 
 #. TRANS: Button title to delete a list.
 #, fuzzy
@@ -9709,7 +9762,6 @@ msgid "Unsilence this user"
 msgstr "Заглушаване на този потребител."
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user"
 msgstr "Отписване от този потребител"
 
@@ -9719,6 +9771,11 @@ msgstr "Отписване от този потребител"
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Отписване"
+
+#. TRANS: Button title on unsubscribe form.
+#, fuzzy
+msgid "Unsubscribe from this user."
+msgstr "Отписване от този потребител"
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -9837,6 +9894,15 @@ msgstr "Неправилен адрес на е-поща."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Грешка при запазване на профила."
 
-#, fuzzy
-#~ msgid "Tagged"
-#~ msgstr "Етикет"
+#~ msgid "Save paths"
+#~ msgstr "Запазване на пътищата"
+
+#~ msgid "Cancel"
+#~ msgstr "Отказ"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "Block this user"
+#~ msgstr "Блокиране на този потребител"
+
+#~ msgid "Delete this notice"
+#~ msgstr "Изтриване на бележката"

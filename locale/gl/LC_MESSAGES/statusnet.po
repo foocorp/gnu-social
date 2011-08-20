@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:22:01+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:39+0000\n"
 "Language-Team: Galician <//translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-07-21 13:51:19+0000\n"
+"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -91,11 +91,12 @@ msgstr "Desactivar os novos rexistros."
 msgid "Closed"
 msgstr "Pechado"
 
-#. TRANS: Title for button to save access settings in site admin panel.
-msgid "Save access settings"
+#. TRANS: Button title to save access settings in site admin panel.
+#, fuzzy
+msgid "Save access settings."
 msgstr "Gardar a configuración de acceso"
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -431,16 +432,19 @@ msgstr "Non se puido bloquear o usuario."
 msgid "Unblock user failed."
 msgstr "Non se puido desbloquear o usuario."
 
+#. TRANS: Client exception thrown when no conversation ID is given.
 #, fuzzy
-msgid "no conversation id"
+msgid "No conversation ID."
 msgstr "Conversa"
 
-#, php-format
-msgid "No conversation with id %d"
-msgstr ""
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+#, fuzzy, php-format
+msgid "No conversation with ID %d."
+msgstr "Conversa"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
-#. TRANS: Title for page with a conversion (multiple notices in context).
+#, fuzzy
+msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Conversa"
 
@@ -1748,6 +1752,10 @@ msgstr "Confirmar o enderezo"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "Confirmouse o enderezo \"%s\" para a súa conta."
 
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "Conversa"
+
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, fuzzy
@@ -1825,7 +1833,7 @@ msgstr "Non pode borrar usuarios."
 
 #. TRANS: Button title for user account deletion.
 #, fuzzy
-msgid "Permanently delete your account"
+msgid "Permanently delete your account."
 msgstr "Non pode borrar usuarios."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -2735,8 +2743,8 @@ msgstr "Configuración da mensaxería instantánea"
 #. TRANS: the order and formatting of link text and link should remain unchanged.
 #, fuzzy, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 "Pode enviar e recibir notas mediante [mensaxes instantáneas](%%doc.im%%) de "
 "Jabber/GTalk. Configure a continuación o seu enderezo e preferencias."
@@ -3792,8 +3800,9 @@ msgid "Server to direct SSL requests to."
 msgstr "Servidor ao que dirixir as solicitudes SSL"
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-msgid "Save paths"
-msgstr "Gardar as rutas"
+#, fuzzy
+msgid "Save path settings."
+msgstr "Gardar a configuración do sitio"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -5054,6 +5063,29 @@ msgstr "Restablecer o contrasinal ou a pregunta secreta"
 msgid "Application info"
 msgstr "Información da aplicación"
 
+#. TRANS: Field label on application page.
+msgid "Consumer key"
+msgstr ""
+
+#. TRANS: Field label on application page.
+msgid "Consumer secret"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Request token URL"
+msgstr "Pase de solicitude incorrecto."
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Access token URL"
+msgstr "Pase de acceso incorrecto."
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Authorize URL"
+msgstr "URL de orixe"
+
 #. TRANS: Note on the OAuth application page about signature support.
 #, fuzzy
 msgid ""
@@ -5660,7 +5692,7 @@ msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr ""
 "Texto da nota global do sitio (255 caracteres como máximo, pode conter HTML)"
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 #, fuzzy
 msgid "Save site notice."
 msgstr "Gardar a nota do sitio"
@@ -5864,7 +5896,7 @@ msgstr "URL de envío"
 msgid "Snapshots will be sent to this URL."
 msgstr "As instantáneas enviaranse a este URL"
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 #, fuzzy
 msgid "Save snapshot settings."
 msgstr "Gardar a configuración das instantáneas"
@@ -6298,7 +6330,7 @@ msgstr "Activáronse as invitacións"
 msgid "Whether to allow users to invite new users."
 msgstr "Permitir ou non que os usuarios poidan invitar a novos usuarios."
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 #, fuzzy
 msgid "Save user settings."
 msgstr "Gardar a configuración do usuario"
@@ -6521,8 +6553,9 @@ msgstr "Non se puido actualizar o grupo local."
 msgid "Could not create login token for %s"
 msgstr "Non se puido crear un pase de sesión para %s"
 
-#, fuzzy
-msgid "Cannot instantiate class "
+#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#, fuzzy, php-format
+msgid "Cannot instantiate class %s."
 msgstr "Non se puido gardar o novo contrasinal."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7286,13 +7319,14 @@ msgstr ""
 "Permisos por defecto para esta aplicación: lectura ou lectura e escritura"
 
 #. TRANS: Submit button title.
-msgid "Cancel"
-msgstr "Cancelar"
+#, fuzzy
+msgid "Cancel application changes."
+msgstr "Aplicacións conectadas"
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Gardar"
+#, fuzzy
+msgid "Save application changes."
+msgstr "Aplicación nova"
 
 #. TRANS: Name for an anonymous application in application list.
 #, fuzzy
@@ -7957,7 +7991,6 @@ msgid "Unable to find services for %s."
 msgstr "Non se puido revogar o acceso da aplicación: %s."
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
 msgid "Disfavor this notice"
 msgstr "Desmarcar esta nota como favorita"
 
@@ -7967,8 +8000,12 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "Desmarcar como favorita"
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+#, fuzzy
+msgid "Remove this notice from your list of favorite notices."
+msgstr "Non se puideron obter as notas favoritas."
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
 msgid "Favor this notice"
 msgstr "Marcar esta nota como favorita"
 
@@ -7977,6 +8014,11 @@ msgstr "Marcar esta nota como favorita"
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "Marcar como favorito"
+
+#. TRANS: Button title for adding the favourite status to a notice.
+#, fuzzy
+msgid "Add this notice to your list of favorite notices."
+msgstr "Non se puideron obter as notas favoritas."
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -8038,8 +8080,8 @@ msgstr "Bloquear"
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Block this user"
-msgstr "Bloquear este usuario"
+msgid "Block this user so that they can no longer post messages to it."
+msgstr ""
 
 #. TRANS: Field title on group edit form.
 #, fuzzy
@@ -8189,11 +8231,14 @@ msgstr "Notas populares"
 msgid "Active groups"
 msgstr "Todos os grupos"
 
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
 #, fuzzy
 msgid "See all"
 msgstr "Mostrar máis"
 
-msgid "See all groups you belong to"
+#. TRANS: Link title for seeing all groups.
+msgid "See all groups you belong to."
 msgstr ""
 
 #. TRANS: Title for group tag cloud section.
@@ -8336,8 +8381,9 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Deixar"
 
+#. TRANS: Link title for seeing all lists.
 #, fuzzy
-msgid "See all lists you have created"
+msgid "See all lists you have created."
 msgstr "Aplicacións que rexistrou"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -8769,8 +8815,9 @@ msgid "Make Admin"
 msgstr "Converter en administrador"
 
 #. TRANS: Submit button title.
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
+msgid "Make this user an admin."
 msgstr "Converter a este usuario en administrador"
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
@@ -8889,6 +8936,7 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+#. TRANS: Link description to show more items in a list.
 msgid "More ▼"
 msgstr ""
 
@@ -8980,7 +9028,8 @@ msgid "Repeated by"
 msgstr "Repetida por"
 
 #. TRANS: Link title in notice list item to reply to a notice.
-msgid "Reply to this notice"
+#, fuzzy
+msgid "Reply to this notice."
 msgstr "Responder a esta nota"
 
 #. TRANS: Link text in notice list item to reply to a notice.
@@ -8988,7 +9037,8 @@ msgid "Reply"
 msgstr "Responder"
 
 #. TRANS: Link title in notice list item to delete a notice.
-msgid "Delete this notice"
+#, fuzzy
+msgid "Delete this notice from the timeline."
 msgstr "Borrar esta nota"
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
@@ -9045,6 +9095,10 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Describa o grupo ou o tema en %d caracteres"
 msgstr[1] "Describa o grupo ou o tema en %d caracteres"
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Gardar"
 
 #. TRANS: Button title to delete a list.
 #, fuzzy
@@ -9929,7 +9983,6 @@ msgid "Unsilence this user"
 msgstr "Darlle voz a este usuario"
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user"
 msgstr "Cancelar a subscrición a este usuario"
 
@@ -9939,6 +9992,11 @@ msgstr "Cancelar a subscrición a este usuario"
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Cancelar a subscrición"
+
+#. TRANS: Button title on unsubscribe form.
+#, fuzzy
+msgid "Unsubscribe from this user."
+msgstr "Cancelar a subscrición a este usuario"
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -10057,5 +10115,15 @@ msgstr "O enderezo de correo electrónico é incorrecto."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Non se puido gardar o perfil."
 
-#~ msgid "Tagged"
-#~ msgstr "Etiquetado"
+#~ msgid "Save paths"
+#~ msgstr "Gardar as rutas"
+
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "Block this user"
+#~ msgstr "Bloquear este usuario"
+
+#~ msgid "Delete this notice"
+#~ msgstr "Borrar esta nota"
