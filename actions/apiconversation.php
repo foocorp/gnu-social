@@ -101,7 +101,7 @@ class ApiconversationAction extends ApiAuthAction
     function handle($argarray=null)
     {
         $sitename   = common_config('site', 'name');
-        // TRANS: Timeline title for user and friends. %s is a user nickname.
+        // TRANS: Title for conversion timeline.
         $title      = _m('TITLE', 'Conversation');
         $id         = common_local_url('apiconversation', array('id' => $this->conversation->id, 'format' => $this->format));
         $link       = common_local_url('conversation', array('id' => $this->conversation->id));
