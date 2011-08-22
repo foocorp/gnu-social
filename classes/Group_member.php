@@ -3,7 +3,7 @@
  * Table Definition for group_member
  */
 
-class Group_member extends Memcached_DataObject
+class Group_member extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -21,6 +21,33 @@ class Group_member extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'group_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to user_group'),
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
+                'is_admin' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'is this user an admin?'),
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universal identifier'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('group_id', 'profile_id'),
+            'unique keys' => array(
+                'group_member_uri_key' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'group_member_group_id_fkey' => array('user_group', array('group_id' => 'id')),
+                'group_member_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
+            ),
+            'indexes' => array(
+                // @fixme probably we want a (profile_id, created) index here?
+                'group_member_profile_id_idx' => array('profile_id'),
+                'group_member_created_idx' => array('created'),
+            ),
+        );
+    }
 
     function pkeyGet($kv)
     {

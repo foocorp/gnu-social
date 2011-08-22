@@ -3,7 +3,7 @@
  * Table Definition for user_group
  */
 
-class User_group extends Memcached_DataObject
+class User_group extends Managed_DataObject
 {
     const JOIN_POLICY_OPEN = 0;
     const JOIN_POLICY_MODERATE = 1;
@@ -41,6 +41,41 @@ class User_group extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+
+                'nickname' => array('type' => 'varchar', 'length' => 64, 'description' => 'nickname for addressing'),
+                'fullname' => array('type' => 'varchar', 'length' => 255, 'description' => 'display name'),
+                'homepage' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL, cached so we dont regenerate'),
+                'description' => array('type' => 'text', 'description' => 'group description'),
+                'location' => array('type' => 'varchar', 'length' => 255, 'description' => 'related physical location, if any'),
+
+                'original_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'original size logo'),
+                'homepage_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'homepage (profile) size logo'),
+                'stream_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'stream-sized logo'),
+                'mini_logo' => array('type' => 'varchar', 'length' => 255, 'description' => 'mini logo'),
+
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universal identifier'),
+                'mainpage' => array('type' => 'varchar', 'length' => 255, 'description' => 'page for group info to link to'),
+                'join_policy' => array('type' => 'int', 'size' => 'tiny', 'description' => '0=open; 1=requires admin approval'),      
+                'force_scope' => array('type' => 'int', 'size' => 'tiny', 'description' => '0=never,1=sometimes,-1=always'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'user_group_uri_key' => array('uri'),
+            ),
+            'indexes' => array(
+                'user_group_nickname_idx' => array('nickname'),
+            ),
+        );
+    }
 
     function defaultLogo($size)
     {

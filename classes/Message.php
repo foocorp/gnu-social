@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Message extends Memcached_DataObject
+class Message extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -26,6 +26,39 @@ class Message extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier'),
+                'from_profile' => array('type' => 'int', 'not null' => true, 'description' => 'who the message is from'),
+                'to_profile' => array('type' => 'int', 'not null' => true, 'description' => 'who the message is to'),
+                'content' => array('type' => 'text', 'description' => 'message content'),
+                'rendered' => array('type' => 'text', 'description' => 'HTML version of the content'),
+                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL of any attachment (image, video, bookmark, whatever)'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+                'source' => array('type' => 'varchar', 'length' => 32, 'description' => 'source of comment, like "web", "im", or "clientname"'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'message_uri_key' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'message_from_profile_fkey' => array('profile', array('from_profile' => 'id')),
+                'message_to_profile_fkey' => array('profile', array('to_profile' => 'id')),
+            ),
+            'indexes' => array(
+                // @fixme these are really terrible indexes, since you can only sort on one of them at a time.
+                // looks like we really need a (to_profile, created) for inbox and a (from_profile, created) for outbox
+                'message_from_idx' => array('from_profile'),
+                'message_to_idx' => array('to_profile'),
+                'message_created_idx' => array('created'),
+            ),
+        );
+    }
 
     function getFrom()
     {

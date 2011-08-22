@@ -29,7 +29,7 @@
 
 require_once INSTALLDIR . '/classes/Memcached_DataObject.php';
 
-class Conversation extends Memcached_DataObject
+class Conversation extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -45,6 +45,22 @@ class Conversation extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+                'uri' => array('type' => 'varchar', 'length' => 225, 'description' => 'URI of the conversation'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'conversation_uri_key' => array('uri'),
+            ),
+        );
+    }
 
     /**
      * Factory method for creating a new conversation

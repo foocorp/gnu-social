@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Oauth_application extends Memcached_DataObject
+class Oauth_application extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -158,5 +158,36 @@ class Oauth_application extends Memcached_DataObject
         $oauser = new Oauth_application_user();
         $oauser->application_id = $this->id;
         $oauser->delete();
+    }
+
+    public static function schemaDef()
+    {
+        return array(
+            'description' => 'OAuth application registration record',
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+                'owner' => array('type' => 'int', 'not null' => true, 'description' => 'owner of the application'),
+                'consumer_key' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'application consumer key'),
+                'name' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'name of the application'),
+                'description' => array('type' => 'varchar', 'length' => 255, 'description' => 'description of the application'),
+                'icon' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'application icon'),
+                'source_url' => array('type' => 'varchar', 'length' => 255, 'description' => 'application homepage - used for source link'),
+                'organization' => array('type' => 'varchar', 'length' => 255, 'description' => 'name of the organization running the application'),
+                'homepage' => array('type' => 'varchar', 'length' => 255, 'description' => 'homepage for the organization'),
+                'callback_url' => array('type' => 'varchar', 'length' => 255, 'description' => 'url to redirect to after authentication'),
+                'type' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'type of app, 1 = browser, 2 = desktop'),
+                'access_type' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'default access type, bit 1 = read, bit 2 = write'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'oauth_application_name_key' => array('name'), // in the long run, we should perhaps not force these unique, and use another source id
+            ),
+            'foreign keys' => array(
+                'oauth_application_owner_fkey' => array('profile', array('owner' => 'id')), // Are remote users allowed to create oauth application records?
+                'oauth_application_consumer_key_fkey' => array('consumer', array('consumer_key' => 'consumer_key')),
+            ),
+        );
     }
 }

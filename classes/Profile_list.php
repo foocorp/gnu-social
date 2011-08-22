@@ -30,7 +30,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Profile_list extends Memcached_DataObject
+class Profile_list extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -53,6 +53,41 @@ class Profile_list extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+                'tagger' => array('type' => 'int', 'not null' => true, 'description' => 'user making the tag'),
+                'tag' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'people tag'),
+                'description' => array('type' => 'text', 'description' => 'description of the people tag'),
+                'private' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'is this tag private'),
+
+                'created' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date the tag was added'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date the tag was modified'),
+
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universal identifier'),
+                'mainpage' => array('type' => 'varchar', 'length' => 255, 'description' => 'page to link to'),
+                'tagged_count' => array('type' => 'int', 'default' => 0, 'description' => 'number of people tagged with this tag by this user'),
+                'subscriber_count' => array('type' => 'int', 'default' => 0, 'description' => 'number of subscribers to this tag'),
+            ),
+            'primary key' => array('tagger', 'tag'),
+            'unique keys' => array(
+                'profile_list_id_key' => array('id')
+            ),
+            'foreign keys' => array(
+                'profile_list_tagger_fkey' => array('profile', array('tagger' => 'id')),
+            ),
+            'indexes' => array(
+                'profile_list_modified_idx' => array('modified'),
+                'profile_list_tag_idx' => array('tag'),
+                'profile_list_tagger_tag_idx' => array('tagger', 'tag'),
+                'profile_list_tagged_count_idx' => array('tagged_count'),
+                'profile_list_subscriber_count_idx' => array('subscriber_count'),
+            ),
+        );
+    }
 
     /**
      * return a profile_list record, given its tag and tagger.

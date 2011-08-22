@@ -28,7 +28,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 require_once 'Validate.php';
 
-class User extends Memcached_DataObject
+class User extends Managed_DataObject
 {
     const SUBSCRIBE_POLICY_OPEN = 0;
     const SUBSCRIBE_POLICY_MODERATE = 1;
@@ -70,6 +70,58 @@ class User extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'description' => 'local users',
+            'fields' => array(
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
+                'nickname' => array('type' => 'varchar', 'length' => 64, 'description' => 'nickname or username, duped in profile'),
+                'password' => array('type' => 'varchar', 'length' => 255, 'description' => 'salted password, can be null for OpenID users'),
+                'email' => array('type' => 'varchar', 'length' => 255, 'description' => 'email address for password recovery etc.'),
+                'incomingemail' => array('type' => 'varchar', 'length' => 255, 'description' => 'email address for post-by-email'),
+                'emailnotifysub' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of subscriptions'),
+                'emailnotifyfav' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of favorites'),
+                'emailnotifynudge' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of nudges'),
+                'emailnotifymsg' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of direct messages'),
+                'emailnotifyattn' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Notify by email of @-replies'),
+                'emailmicroid' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'whether to publish email microid'),
+                'language' => array('type' => 'varchar', 'length' => 50, 'description' => 'preferred language'),
+                'timezone' => array('type' => 'varchar', 'length' => 50, 'description' => 'timezone'),
+                'emailpost' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'Post by email'),
+                'sms' => array('type' => 'varchar', 'length' => 64, 'description' => 'sms phone number'),
+                'carrier' => array('type' => 'int', 'description' => 'foreign key to sms_carrier'),
+                'smsnotify' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to send notices to SMS'),
+                'smsreplies' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to send notices to SMS on replies'),
+                'smsemail' => array('type' => 'varchar', 'length' => 255, 'description' => 'built from sms and carrier'),
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'autosubscribe' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'automatically subscribe to users who subscribe to us'),
+                'subscribe_policy' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => '0 = anybody can subscribe; 1 = require approval'),
+                'urlshorteningservice' => array('type' => 'varchar', 'length' => 50, 'default' => 'internal', 'description' => 'service to use for auto-shortening URLs'),
+                'inboxed' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'has an inbox been created for this user?'),
+                'private_stream' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'whether to limit all notices to followers only'),
+
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'user_nickname_key' => array('nickname'),
+                'user_email_key' => array('email'),
+                'user_incomingemail_key' => array('incomingemail'),
+                'user_sms_key' => array('sms'),
+                'user_uri_key' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'user_id_fkey' => array('profile', array('id' => 'id')),
+                'user_carrier_fkey' => array('sms_carrier', array('carrier' => 'id')),
+            ),
+            'indexes' => array(
+                'user_smsemail_idx' => array('smsemail'),
+            ),
+        );
+    }
 
     protected $_profile = -1;
 

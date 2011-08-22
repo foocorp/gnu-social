@@ -24,7 +24,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Remote_profile extends Memcached_DataObject
+class Remote_profile extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -53,5 +53,27 @@ class Remote_profile extends Memcached_DataObject
             // TRANS: Exception thrown when a right for a non-existing user profile is checked.
             throw new Exception(_("Missing profile."));
         }
+    }
+
+    public static function schemaDef()
+    {
+        return array(
+            'description' => 'remote people (OMB)',
+            'fields' => array(
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'postnoticeurl' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL we use for posting notices'),
+                'updateprofileurl' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL we use for updates to this profile'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'remote_profile_uri_key' => array('uri'),
+            ),
+            'foreign keys' => array(
+                'remote_profile_id_fkey' => array('profile', array('id' => 'id')),
+            ),
+        );
     }
 }

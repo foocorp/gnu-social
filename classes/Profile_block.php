@@ -25,7 +25,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Profile_block extends Memcached_DataObject
+class Profile_block extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -41,6 +41,22 @@ class Profile_block extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'blocker' => array('type' => 'int', 'not null' => true, 'description' => 'user making the block'),
+                'blocked' => array('type' => 'int', 'not null' => true, 'description' => 'profile that is blocked'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date of blocking'),
+            ),
+            'foreign keys' => array(
+                'profile_block_blocker_fkey' => array('user', array('blocker' => 'id')),
+                'profile_block_blocked_fkey' => array('profile', array('blocked' => 'id')),
+            ),
+            'primary key' => array('blocker', 'blocked'),
+        );
+    }
 
     function get($blocker, $blocked)
     {

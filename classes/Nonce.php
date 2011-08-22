@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Nonce extends Memcached_DataObject
+class Nonce extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -35,5 +35,22 @@ class Nonce extends Memcached_DataObject
     function links()
     {
         return array('consumer_key,token' => 'token:consumer_key,token');
+    }
+
+    public static function schemaDef()
+    {
+        return array(
+            'description' => 'OAuth nonce record',
+            'fields' => array(
+                'consumer_key' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'unique identifier, root URL'),
+                'tok' => array('type' => 'char', 'length' => 32, 'description' => 'buggy old value, ignored'),
+                'nonce' => array('type' => 'char', 'length' => 32, 'not null' => true, 'description' => 'nonce'),
+                'ts' => array('type' => 'datetime', 'not null' => true, 'description' => 'timestamp sent'),
+
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('consumer_key', 'ts', 'nonce'),
+        );
     }
 }
