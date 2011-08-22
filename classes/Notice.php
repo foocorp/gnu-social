@@ -72,6 +72,7 @@ class Notice extends Memcached_DataObject
     public $location_id;                     // int(4)
     public $location_ns;                     // int(4)
     public $repeat_of;                       // int(4)
+    public $verb;                            // varchar(255)
     public $object_type;                     // varchar(255)
     public $scope;                           // int(4)
 
@@ -264,6 +265,7 @@ class Notice extends Memcached_DataObject
      *                           notice in place of extracting links from content
      *              boolean 'distribute' whether to distribute the notice, default true
      *              string 'object_type' URL of the associated object type (default ActivityObject::NOTE)
+     *              string 'verb' URL of the associated verb (default ActivityVerb::POST)
      *              int 'scope' Scope bitmask; default to SITE_SCOPE on private sites, 0 otherwise
      *
      * @fixme tag override
@@ -277,7 +279,9 @@ class Notice extends Memcached_DataObject
                           'reply_to' => null,
                           'repeat_of' => null,
                           'scope' => null,
-                          'distribute' => true);
+                          'distribute' => true,
+                          'object_type' => null,
+                          'verb' => null);
 
         if (!empty($options) && is_array($options)) {
             $options = array_merge($defaults, $options);
@@ -446,6 +450,17 @@ class Notice extends Memcached_DataObject
             $notice->rendered = $rendered;
         } else {
             $notice->rendered = common_render_content($final, $notice);
+        }
+
+        if (empty($verb)) {
+            if (!empty($notice->repeat_of)) {
+                $notice->verb        = ActivityVerb::SHARE;
+                $notice->object_type = ActivityVerb::ACTIVITY;
+            } else {
+                $notice->verb        = ActivityVerb::POST;
+            }
+        } else {
+            $notice->verb = $verb;
         }
 
         if (empty($object_type)) {
@@ -1444,18 +1459,13 @@ class Notice extends Memcached_DataObject
             $act->actor            = ActivityObject::fromProfile($profile);
             $act->actor->extra[]   = $profile->profileInfo($cur);
 
+            $act->verb = $this->verb;
+
             if ($this->repeat_of) {
-
                 $repeated = Notice::staticGet('id', $this->repeat_of);
-
-                $act->verb             = ActivityVerb::SHARE;
-                $act->objects[]        = $repeated->asActivity($cur);
-
+                $act->objects[] = $repeated->asActivity($cur);
             } else {
-
-                $act->verb             = ActivityVerb::POST;
-                $act->objects[]        = ActivityObject::fromNotice($this);
-
+                $act->objects[] = ActivityObject::fromNotice($this);
             }
 
             // XXX: should this be handled by default processing for object entry?

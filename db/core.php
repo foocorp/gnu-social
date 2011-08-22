@@ -201,6 +201,7 @@ $schema['notice'] = array(
         'location_ns' => array('type' => 'int', 'description' => 'namespace for location'),
         'repeat_of' => array('type' => 'int', 'description' => 'notice this is a repeat of'),
         'object_type' => array('type' => 'varchar', 'length' => 255, 'description' => 'URI representing activity streams object type', 'default' => 'http://activitystrea.ms/schema/1.0/note'),
+        'verb' => array('type' => 'varchar', 'length' => 255, 'description' => 'URI representing activity streams verb', 'default' => 'http://activitystrea.ms/schema/1.0/post'),
         'scope' => array('type' => 'int',
                          'default' => '1',
                          'description' => 'bit map for distribution scope; 0 = everywhere; 1 = this server only; 2 = addressees; 4 = followers'),
