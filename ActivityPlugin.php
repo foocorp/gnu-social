@@ -49,6 +49,14 @@ class ActivityPlugin extends Plugin
 {
     const VERSION = '0.1';
 
+    // Flags to switch off certain activity notices
+    public $StartFollowUser = true;
+    public $StopFollowUser  = true;
+    public $JoinGroup = true;
+    public $LeaveGroup = true;
+    public $StartLike = true;
+    public $StopLike = true;
+
     /**
      * Database schema setup
      *
@@ -91,6 +99,8 @@ class ActivityPlugin extends Plugin
 
     function onEndSubscribe($subscriber, $other)
     {
+        // Only do this if config is enabled
+        if(!$this->StartFollowUser) return true;
         $user = User::staticGet('id', $subscriber->id);
         if (!empty($user)) {
             $rendered = sprintf(_m('<em>Started following <a href="%s">%s</a></em>.'),
@@ -114,6 +124,8 @@ class ActivityPlugin extends Plugin
 
     function onEndUnsubscribe($subscriber, $other)
     {
+        // Only do this if config is enabled
+        if(!$this->StopFollowUser) return true;
         $user = User::staticGet('id', $subscriber->id);
         if (!empty($user)) {
             $rendered = sprintf(_m('<em>Stopped following <a href="%s">%s</a></em>.'),
@@ -137,6 +149,8 @@ class ActivityPlugin extends Plugin
 
     function onEndFavorNotice($profile, $notice)
     {
+        //  Only do this if config is enabled
+        if(!$this->StartLike) return true;
         $user = User::staticGet('id', $profile->id);
 
         if (!empty($user)) {
@@ -162,6 +176,8 @@ class ActivityPlugin extends Plugin
 
     function onEndDisfavorNotice($profile, $notice)
     {
+        // Only do this if config is enabled
+        if(!$this->StopLike) return true;
         $user = User::staticGet('id', $profile->id);
 
         if (!empty($user)) {
@@ -187,6 +203,8 @@ class ActivityPlugin extends Plugin
 
     function onEndJoinGroup($group, $user)
     {
+        // Only do this if config is enabled
+        if(!$this->JoinGroup) return true;
         $rendered = sprintf(_m('<em>Joined the group &quot;<a href="%s">%s</a>&quot;</em>.'),
                             $group->homeUrl(),
                             $group->getBestName());
@@ -207,6 +225,8 @@ class ActivityPlugin extends Plugin
 
     function onEndLeaveGroup($group, $user)
     {
+        // Only do this if config is enabled
+        if(!$this->LeaveGroup) return true;
         $rendered = sprintf(_m('<em>Left the group &quot;<a href="%s">%s</a>&quot;</em>.'),
                             $group->homeUrl(),
                             $group->getBestName());
