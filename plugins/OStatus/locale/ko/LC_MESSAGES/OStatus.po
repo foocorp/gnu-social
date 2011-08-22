@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:21:41+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:23+0000\n"
 "Language-Team: Korean <//translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-07-21 13:51:27+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-16 06:59:31+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -31,7 +31,8 @@ msgid "Subscribe"
 msgstr "구독"
 
 #. TRANS: Fieldset legend.
-msgid "Tag remote profile"
+#, fuzzy
+msgid "List remote profile"
 msgstr "원격 프로필 태그"
 
 #. TRANS: Field label.
@@ -126,7 +127,7 @@ msgid "Follow list"
 msgstr "리스트 팔로우"
 
 #. TRANS: Success message for remote list follow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #, fuzzy, php-format
 msgid "%1$s is now following people listed in %2$s by %3$s."
 msgstr "%1$s님이 %3$s의 %2$s 리스트 팔로우를 중단했습니다."
@@ -140,7 +141,7 @@ msgid "Unfollow list"
 msgstr "리스트 팔로우 취소"
 
 #. TRANS: Success message for remote list unfollow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #, php-format
 msgid "%1$s stopped following the list %2$s by %3$s."
 msgstr "%1$s님이 %3$s의 %2$s 리스트 팔로우를 중단했습니다."
@@ -200,9 +201,9 @@ msgstr "프로필 업데이트"
 msgid "%s has updated their profile page."
 msgstr "%s님이 프로필 페이지를 업데이트했습니다."
 
-#. TRANS: Link text for a user to tag an OStatus user.
-msgid "Tag"
-msgstr "태그"
+#. TRANS: Link text for a user to list an OStatus user.
+msgid "List"
+msgstr ""
 
 #. TRANS: Plugin description.
 msgid ""
@@ -266,16 +267,17 @@ msgstr "잘못된 hub.topic \"%s\". 리스트가 없습니다."
 msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "잘못된 URL을 %1$s에 넘겼습니다: \"%2$s\""
 
-#. TRANS: Client error displayed when trying to tag a local object as if it is remote.
-msgid "You can use the local tagging!"
-msgstr "로컬 태깅을 사용할 수 있습니다!"
+#. TRANS: Client error displayed when trying to list a local object as if it is remote.
+#, fuzzy
+msgid "You can use the local list functionality!"
+msgstr "로컬 구독을 사용할 수 없습니다!"
 
-#. TRANS: Header for tagging a remote object. %s is a remote object's name.
+#. TRANS: Header for listing a remote object. %s is a remote object's name.
 #, php-format
-msgid "Tag %s"
-msgstr "태그 %s"
+msgid "List %s"
+msgstr ""
 
-#. TRANS: Button text to tag a remote object.
+#. TRANS: Button text to list a remote object.
 #, fuzzy
 msgctxt "BUTTON"
 msgid "Go"
@@ -287,7 +289,7 @@ msgstr "사용자 이름"
 
 #. TRANS: Field title.
 #, fuzzy
-msgid "Nickname of the user you want to tag."
+msgid "Nickname of the user you want to list."
 msgstr "태그를 추가하려는 사용자의 이름"
 
 #. TRANS: Field label.
@@ -492,27 +494,27 @@ msgid "Not a person object."
 msgstr ""
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being tagged."
+msgid "Unidentified profile being listed."
 msgstr ""
 
 #. TRANS: Client exception.
-msgid "This user is not the one being tagged."
+msgid "This user is not the one being listed."
 msgstr ""
 
 #. TRANS: Client exception.
-msgid "The tag could not be saved."
+msgid "The listing could not be saved."
 msgstr ""
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being untagged."
+msgid "Unidentified profile being unlisted."
 msgstr ""
 
 #. TRANS: Client exception.
-msgid "This user is not the one being untagged."
+msgid "This user is not the one being unlisted."
 msgstr ""
 
 #. TRANS: Client exception.
-msgid "The tag could not be deleted."
+msgid "The listing could not be deleted."
 msgstr ""
 
 #. TRANS: Client exception.
@@ -650,7 +652,7 @@ msgctxt "BUTTON"
 msgid "Join"
 msgstr "가입"
 
-#. TRANS: Form legend. %1$s is a list, %2$s is a tagger's name.
+#. TRANS: Form legend. %1$s is a list, %2$s is a lister's name.
 #, php-format
 msgid "Subscribe to list %1$s by %2$s"
 msgstr "%2$s의 %1$s 리스트에 구독"
@@ -736,12 +738,16 @@ msgstr "피드 형식을 알 수 없습니다."
 msgid "RSS feed without a channel."
 msgstr "채널이 하나도 없는 RSS 피드입니다."
 
+#. TRANS: Client exception thrown when trying to share multiple activities at once.
 msgid "Can only handle share activities with exactly one object."
 msgstr ""
 
+#. TRANS: Client exception thrown when trying to share a non-activity object.
 msgid "Can only handle shared activities."
 msgstr ""
 
+#. TRANS: Client exception thrown when saving an activity share fails.
+#. TRANS: %s is a share ID.
 #, php-format
 msgid "Failed to save activity %s."
 msgstr ""
@@ -922,13 +928,24 @@ msgid "This target does not understand leave events."
 msgstr "이 대상은 행사 떠나기를 인식하지 못합니다."
 
 #. TRANS: Client exception.
-msgid "This target does not understand tag events."
+#, fuzzy
+msgid "This target does not understand list events."
 msgstr "이 대상은 이벤트 태그를 인식하지 못합니다."
 
 #. TRANS: Client exception.
-msgid "This target does not understand untag events."
+#, fuzzy
+msgid "This target does not understand unlist events."
 msgstr "이 대상은 이벤트 태그 취소를 인식하지 못합니다."
 
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "알지 못하는 actor에서 salmon slap을 받았습니다."
+
+#~ msgid "Tag"
+#~ msgstr "태그"
+
+#~ msgid "You can use the local tagging!"
+#~ msgstr "로컬 태깅을 사용할 수 있습니다!"
+
+#~ msgid "Tag %s"
+#~ msgstr "태그 %s"

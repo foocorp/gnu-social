@@ -32,7 +32,6 @@ if (!defined('STATUSNET')) {
  * Callback handler to populate end time dropdown
  */
 class TimelistAction extends Action {
-
     private $start;
     private $duration;
 
@@ -63,13 +62,14 @@ class TimelistAction extends Action {
 
         if (!common_logged_in()) {
             // TRANS: Error message displayed when trying to perform an action that requires a logged in user.
-            $this->clientError(_('Not logged in.'));
+            $this->clientError(_m('Not logged in.'));
             return;
         }
 
         if (!empty($this->start)) {
             $times = EventTimeList::getTimes($this->start, $this->duration);
         } else {
+            // TRANS: Client error when submitting a form with unexpected information.
             $this->clientError(_m('Unexpected form submission.'));
             return;
         }
@@ -78,6 +78,7 @@ class TimelistAction extends Action {
             header('Content-Type: application/json; charset=utf-8');
             print json_encode($times);
         } else {
+            // TRANS: Client error displayed when using an action in a non-AJAX way.
             $this->clientError(_m('This action is AJAX only.'));
         }
     }

@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:21:41+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:24+0000\n"
 "Language-Team: Tagalog <//translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-07-21 13:51:27+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-16 06:59:31+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -31,7 +31,8 @@ msgid "Subscribe"
 msgstr "Pumayag na tumanggap ng sipi"
 
 #. TRANS: Fieldset legend.
-msgid "Tag remote profile"
+#, fuzzy
+msgid "List remote profile"
 msgstr "Tatakan ang malayong balangkas"
 
 #. TRANS: Field label.
@@ -127,7 +128,7 @@ msgid "Follow list"
 msgstr "Sundan ang talaan"
 
 #. TRANS: Success message for remote list follow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #, php-format
 msgid "%1$s is now following people listed in %2$s by %3$s."
 msgstr ""
@@ -142,7 +143,7 @@ msgid "Unfollow list"
 msgstr "Huwag sundan ang talaan"
 
 #. TRANS: Success message for remote list unfollow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #, php-format
 msgid "%1$s stopped following the list %2$s by %3$s."
 msgstr "Tumigil si %1$s sa pagsunod sa talaang %2$s ni %3$s."
@@ -202,9 +203,10 @@ msgstr "Pagsasapanahon ng balangkas"
 msgid "%s has updated their profile page."
 msgstr "Si %s ay nagsapanahon ng kanilang pahina ng balangkas."
 
-#. TRANS: Link text for a user to tag an OStatus user.
-msgid "Tag"
-msgstr "Tatakan"
+#. TRANS: Link text for a user to list an OStatus user.
+#, fuzzy
+msgid "List"
+msgstr "Itala"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -276,16 +278,17 @@ msgstr "Hindi katanggap-tanggap na hub.topic na %s; hindi umiiral ang talaan."
 msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "Hindi katanggap-tanggap na URL ang ipinasa para sa %1$s: \"%2$s\""
 
-#. TRANS: Client error displayed when trying to tag a local object as if it is remote.
-msgid "You can use the local tagging!"
-msgstr "Maaari mong gamitin ang katutubong pagtatatak!"
+#. TRANS: Client error displayed when trying to list a local object as if it is remote.
+#, fuzzy
+msgid "You can use the local list functionality!"
+msgstr "Maaari mong gamitin ang katutubong pagpapasipi!"
 
-#. TRANS: Header for tagging a remote object. %s is a remote object's name.
-#, php-format
-msgid "Tag %s"
-msgstr "Tatakan si %s"
+#. TRANS: Header for listing a remote object. %s is a remote object's name.
+#, fuzzy, php-format
+msgid "List %s"
+msgstr "Itala"
 
-#. TRANS: Button text to tag a remote object.
+#. TRANS: Button text to list a remote object.
 msgctxt "BUTTON"
 msgid "Go"
 msgstr "Gawin"
@@ -295,7 +298,8 @@ msgid "User nickname"
 msgstr "Palayaw ng tagagamit"
 
 #. TRANS: Field title.
-msgid "Nickname of the user you want to tag."
+#, fuzzy
+msgid "Nickname of the user you want to list."
 msgstr "Palayaw ng tagagamit na nais mong tatakan."
 
 #. TRANS: Field label.
@@ -504,27 +508,33 @@ msgid "Not a person object."
 msgstr "Hindi isang bagay ng tao."
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being tagged."
+#, fuzzy
+msgid "Unidentified profile being listed."
 msgstr "Tinatatakang balangkas na hindi nakikilala."
 
 #. TRANS: Client exception.
-msgid "This user is not the one being tagged."
+#, fuzzy
+msgid "This user is not the one being listed."
 msgstr "Hindi ito ang tagagamit na tinatatakan."
 
 #. TRANS: Client exception.
-msgid "The tag could not be saved."
+#, fuzzy
+msgid "The listing could not be saved."
 msgstr "Hindi masasagip ang tatak."
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being untagged."
+#, fuzzy
+msgid "Unidentified profile being unlisted."
 msgstr "Ang hindi nakikilalang balangkas na hindi na tinatakan."
 
 #. TRANS: Client exception.
-msgid "This user is not the one being untagged."
+#, fuzzy
+msgid "This user is not the one being unlisted."
 msgstr "Hindi ito ang tagagamit na hindi na tinatatakan."
 
 #. TRANS: Client exception.
-msgid "The tag could not be deleted."
+#, fuzzy
+msgid "The listing could not be deleted."
 msgstr "Hindi mabubura ang tatak."
 
 #. TRANS: Client exception.
@@ -667,7 +677,7 @@ msgctxt "BUTTON"
 msgid "Join"
 msgstr "Sumali"
 
-#. TRANS: Form legend. %1$s is a list, %2$s is a tagger's name.
+#. TRANS: Form legend. %1$s is a list, %2$s is a lister's name.
 #, php-format
 msgid "Subscribe to list %1$s by %2$s"
 msgstr "Magpasipi sa talaang %1$s ni %2$s"
@@ -759,12 +769,16 @@ msgstr "Hindi nalalamang anyo ng pasubo."
 msgid "RSS feed without a channel."
 msgstr "Pasubong RSS na walang libuyan."
 
+#. TRANS: Client exception thrown when trying to share multiple activities at once.
 msgid "Can only handle share activities with exactly one object."
 msgstr ""
 
+#. TRANS: Client exception thrown when trying to share a non-activity object.
 msgid "Can only handle shared activities."
 msgstr ""
 
+#. TRANS: Client exception thrown when saving an activity share fails.
+#. TRANS: %s is a share ID.
 #, php-format
 msgid "Failed to save activity %s."
 msgstr ""
@@ -955,12 +969,14 @@ msgstr ""
 "Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng paglisan."
 
 #. TRANS: Client exception.
-msgid "This target does not understand tag events."
+#, fuzzy
+msgid "This target does not understand list events."
 msgstr ""
 "Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng pagtatatak."
 
 #. TRANS: Client exception.
-msgid "This target does not understand untag events."
+#, fuzzy
+msgid "This target does not understand unlist events."
 msgstr ""
 "Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng hindi "
 "pagtatatak."
@@ -968,3 +984,12 @@ msgstr ""
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "Tumanggap ng isang sampal ng salmon mula sa hindi nakikilalang aktor."
+
+#~ msgid "Tag"
+#~ msgstr "Tatakan"
+
+#~ msgid "You can use the local tagging!"
+#~ msgstr "Maaari mong gamitin ang katutubong pagtatatak!"
+
+#~ msgid "Tag %s"
+#~ msgstr "Tatakan si %s"

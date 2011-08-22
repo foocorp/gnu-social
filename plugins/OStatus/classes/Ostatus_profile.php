@@ -25,7 +25,6 @@ if (!defined('STATUSNET')) {
  * @package OStatusPlugin
  * @maintainer Brion Vibber <brion@status.net>
  */
-
 class Ostatus_profile extends Managed_DataObject
 {
     public $__table = 'ostatus_profile';
@@ -141,7 +140,7 @@ class Ostatus_profile extends Managed_DataObject
      *
      * Assumes that 'activity' namespace has been previously defined.
      *
-     * @fixme replace with wrappers on asActivityObject when it's got everything.
+     * @todo FIXME: Replace with wrappers on asActivityObject when it's got everything.
      *
      * @param string $element one of 'actor', 'subject', 'object', 'target'
      * @return string
@@ -301,7 +300,7 @@ class Ostatus_profile extends Managed_DataObject
                                $actor->getURI(),
                                common_date_iso8601(time()));
 
-            // @fixme consolidate all these NS settings somewhere
+            // @todo FIXME: Consolidate all these NS settings somewhere.
             $attributes = array('xmlns' => Activity::ATOM,
                                 'xmlns:activity' => 'http://activitystrea.ms/spec/1.0/',
                                 'xmlns:thr' => 'http://purl.org/syndication/thread/1.0',
@@ -414,7 +413,7 @@ class Ostatus_profile extends Managed_DataObject
 
         if ($feed->localName == 'feed' && $feed->namespaceURI == Activity::ATOM) {
             $this->processAtomFeed($feed, $source);
-        } else if ($feed->localName == 'rss') { // @fixme check namespace
+        } else if ($feed->localName == 'rss') { // @todo FIXME: Check namespace.
             $this->processRssFeed($feed, $source);
         } else {
             // TRANS: Exception.
@@ -466,7 +465,6 @@ class Ostatus_profile extends Managed_DataObject
      *
      * @return Notice Notice representing the new (or existing) activity
      */
-
     public function processEntry($entry, $feed, $source)
     {
         $activity = new Activity($entry, $feed);
@@ -509,7 +507,7 @@ class Ostatus_profile extends Managed_DataObject
             Event::handle('EndHandleFeedEntry', array($activity));
             Event::handle('EndHandleFeedEntryWithProfile', array($activity, $this, $notice));
         }
-        
+
         return $notice;
     }
 
@@ -525,13 +523,15 @@ class Ostatus_profile extends Managed_DataObject
         }
 
         if (count($activity->objects) != 1) {
-            throw new ClientException(_m("Can only handle share activities with exactly one object."));
+            // TRANS: Client exception thrown when trying to share multiple activities at once.
+            throw new ClientException(_m('Can only handle share activities with exactly one object.'));
         }
 
         $shared = $activity->objects[0];
 
         if (!($shared instanceof Activity)) {
-            throw new ClientException(_m("Can only handle shared activities."));
+            // TRANS: Client exception thrown when trying to share a non-activity object.
+            throw new ClientException(_m('Can only handle shared activities.'));
         }
 
         $other = Ostatus_profile::ensureActivityObjectProfile($shared->actor);
@@ -539,10 +539,12 @@ class Ostatus_profile extends Managed_DataObject
         // Save the item (or check for a dupe)
 
         $sharedNotice = $other->processActivity($shared, $method);
-        
+
         if (empty($sharedNotice)) {
             $sharedId = ($shared->id) ? $shared->id : $shared->objects[0]->id;
-            throw new ClientException(sprintf(_m("Failed to save activity %s."),
+            // TRANS: Client exception thrown when saving an activity share fails.
+            // TRANS: %s is a share ID.
+            throw new ClientException(sprintf(_m('Failed to save activity %s.'),
                                               $sharedId));
         }
 
@@ -578,7 +580,7 @@ class Ostatus_profile extends Managed_DataObject
         } else if (!empty($activity->title)) {
             $sourceContent = $activity->title;
         } else {
-            // @fixme fetch from $sourceUrl?
+            // @todo FIXME: Fetch from $sourceUrl?
             // TRANS: Client exception. %s is a source URI.
             throw new ClientException(sprintf(_m('No content for notice %s.'),$sourceUri));
         }
@@ -652,7 +654,7 @@ class Ostatus_profile extends Managed_DataObject
             $options['replies'] = $replies;
 
             // Maintain direct reply associations
-            // @fixme what about conversation ID?
+            // @todo FIXME: What about conversation ID?
             if (!empty($activity->context->replyToID)) {
                 $orig = Notice::staticGet('uri',
                                           $activity->context->replyToID);
@@ -688,7 +690,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // Atom enclosures -> attachment URLs
         foreach ($activity->enclosures as $href) {
-            // @fixme save these locally or....?
+            // @todo FIXME: Save these locally or....?
             $options['urls'][] = $href;
         }
 
@@ -705,7 +707,7 @@ class Ostatus_profile extends Managed_DataObject
      * @param Activity $activity
      * @param string $method 'push' or 'salmon'
      * @return mixed saved Notice or false
-     * @fixme break up this function, it's getting nasty long
+     * @todo FIXME: Break up this function, it's getting nasty long
      */
     public function processPost($activity, $method)
     {
@@ -750,7 +752,7 @@ class Ostatus_profile extends Managed_DataObject
         } else if (!empty($note->title)) {
             $sourceContent = $note->title;
         } else {
-            // @fixme fetch from $sourceUrl?
+            // @todo FIXME: Fetch from $sourceUrl?
             // TRANS: Client exception. %s is a source URI.
             throw new ClientException(sprintf(_m('No content for notice %s.'),$sourceUri));
         }
@@ -822,7 +824,7 @@ class Ostatus_profile extends Managed_DataObject
             $options['replies'] = $replies;
 
             // Maintain direct reply associations
-            // @fixme what about conversation ID?
+            // @todo FIXME: What about conversation ID?
             if (!empty($activity->context->replyToID)) {
                 $orig = Notice::staticGet('uri',
                                           $activity->context->replyToID);
@@ -858,7 +860,7 @@ class Ostatus_profile extends Managed_DataObject
 
         // Atom enclosures -> attachment URLs
         foreach ($activity->enclosures as $href) {
-            // @fixme save these locally or....?
+            // @todo FIXME: Save these locally or....?
             $options['urls'][] = $href;
         }
 
@@ -907,7 +909,7 @@ class Ostatus_profile extends Managed_DataObject
             // Is the recipient a local user?
             $user = User::staticGet('uri', $recipient);
             if ($user) {
-                // @fixme sender verification, spam etc?
+                // @todo FIXME: Sender verification, spam etc?
                 $replies[] = $recipient;
                 continue;
             }
@@ -936,7 +938,7 @@ class Ostatus_profile extends Managed_DataObject
                 $oprofile = Ostatus_profile::ensureProfileURI($recipient);
                 if ($oprofile->isGroup()) {
                     // Deliver to local members of this remote group.
-                    // @fixme sender verification?
+                    // @todo FIXME: Sender verification?
                     $groups[] = $oprofile->group_id;
                 } else {
                     // may be canonicalized or something
@@ -1129,7 +1131,7 @@ class Ostatus_profile extends Managed_DataObject
      *
      * @param DOMElement $feedEl root element of a loaded Atom feed
      * @param array $hints additional discovery information passed from higher levels
-     * @fixme should this be marked public?
+     * @todo FIXME: Should this be marked public?
      * @return Ostatus_profile
      * @throws Exception
      */
@@ -1155,7 +1157,7 @@ class Ostatus_profile extends Managed_DataObject
      *
      * @param DOMElement $feedEl root element of a loaded RSS feed
      * @param array $hints additional discovery information passed from higher levels
-     * @fixme should this be marked public?
+     * @todo FIXME: Should this be marked public?
      * @return Ostatus_profile
      * @throws Exception
      */
@@ -1181,7 +1183,7 @@ class Ostatus_profile extends Managed_DataObject
             }
         }
 
-        // @fixme we should check whether this feed has elements
+        // @todo FIXME: We should check whether this feed has elements
         // with different <author> or <dc:creator> elements, and... I dunno.
         // Do something about that.
 
@@ -1219,7 +1221,7 @@ class Ostatus_profile extends Managed_DataObject
                 $this->uri));
         }
 
-        // @fixme this should be better encapsulated
+        // @todo FIXME: This should be better encapsulated
         // ripped from oauthstore.php (for old OMB client)
         $temp_filename = tempnam(sys_get_temp_dir(), 'listener_avatar');
         try {
@@ -1233,7 +1235,7 @@ class Ostatus_profile extends Managed_DataObject
             } else {
                 $id = $this->profile_id;
             }
-            // @fixme should we be using different ids?
+            // @todo FIXME: Should we be using different ids?
             $imagefile = new ImageFile($id, $temp_filename);
             $filename = Avatar::filename($id,
                                          image_type_to_extension($imagefile->type),
@@ -1244,7 +1246,7 @@ class Ostatus_profile extends Managed_DataObject
             unlink($temp_filename);
             throw $e;
         }
-        // @fixme hardcoded chmod is lame, but seems to be necessary to
+        // @todo FIXME: Hardcoded chmod is lame, but seems to be necessary to
         // keep from accidentally saving images from command-line (queues)
         // that can't be read from web server, which causes hard-to-notice
         // problems later on:
@@ -1253,7 +1255,7 @@ class Ostatus_profile extends Managed_DataObject
         chmod(Avatar::path($filename), 0644);
 
         $profile = $this->localProfile();
-        
+
         if (!empty($profile)) {
             $profile->setOriginal($filename);
         }
@@ -1426,7 +1428,7 @@ class Ostatus_profile extends Managed_DataObject
     }
 
     /**
-     * @fixme validate stuff somewhere
+     * @todo FIXME: Validate stuff somewhere.
      */
 
     /**
@@ -1519,7 +1521,7 @@ class Ostatus_profile extends Managed_DataObject
 
             $oprofile->profile_id = $profile->insert();
             if (!$oprofile->profile_id) {
-            // TRANS: Server exception.
+                // TRANS: Server exception.
                 throw new ServerException(_m('Cannot save local profile.'));
             }
         } else if ($object->type == ActivityObject::GROUP) {
@@ -1652,7 +1654,7 @@ class Ostatus_profile extends Managed_DataObject
             }
         }
 
-        // @fixme tags/categories
+        // @todo FIXME: tags/categories
         // @todo tags from categories
 
         if ($profile->id) {
@@ -1887,7 +1889,7 @@ class Ostatus_profile extends Managed_DataObject
             $xrd = $disco->lookup($addr);
         } catch (Exception $e) {
             // Save negative cache entry so we don't waste time looking it up again.
-            // @fixme distinguish temporary failures?
+            // @todo FIXME: Distinguish temporary failures?
             self::cacheSet(sprintf('ostatus_profile:webfinger:%s', $addr), null);
             // TRANS: Exception.
             throw new Exception(_m('Not a valid webfinger address.'));
@@ -1930,14 +1932,14 @@ class Ostatus_profile extends Managed_DataObject
                 return $oprofile;
             } catch (OStatusShadowException $e) {
                 // We've ended up with a remote reference to a local user or group.
-                // @fixme ideally we should be able to say who it was so we can
+                // @todo FIXME: Ideally we should be able to say who it was so we can
                 // go back and refer to it the regular way
                 throw $e;
             } catch (Exception $e) {
                 common_log(LOG_WARNING, "Failed creating profile from profile URL '$profileUrl': " . $e->getMessage());
                 // keep looking
                 //
-                // @fixme this means an error discovering from profile page
+                // @todo FIXME: This means an error discovering from profile page
                 // may give us a corrupt entry using the webfinger URI, which
                 // will obscure the correct page-keyed profile later on.
             }

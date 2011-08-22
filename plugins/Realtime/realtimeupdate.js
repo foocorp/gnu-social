@@ -412,7 +412,7 @@ RealtimeUpdate = {
             $.ajax({
                 type: 'POST',
                 url: RealtimeUpdate._keepaliveurl});
-	    
+
 	}, 15 * 60 * 1000 ); // every 15 min; timeout in 30 min
 
         RealtimeUpdate.initPlayPause();

@@ -63,44 +63,44 @@ class Memcached_DataObject extends Safe_DataObject
         }
         return $i;
     }
-    
+
     /**
      * Get multiple items from the database by key
-     * 
+     *
      * @param string  $cls       Class to fetch
      * @param string  $keyCol    name of column for key
      * @param array   $keyVals   key values to fetch
      * @param boolean $skipNulls return only non-null results?
-     * 
+     *
      * @return array Array of objects, in order
      */
     function multiGet($cls, $keyCol, $keyVals, $skipNulls=true)
     {
-    	$result = self::pivotGet($cls, $keyCol, $keyVals);
-    	
-    	$values = array_values($result);
-    	
-    	if ($skipNulls) {
-    		$tmp = array();
-    		foreach ($values as $value) {
-    			if (!empty($value)) {
-    				$tmp[] = $value;
-    			}
-    		}
-    		$values = $tmp;
-    	}
-    	
-    	return new ArrayWrapper($values);
+        $result = self::pivotGet($cls, $keyCol, $keyVals);
+
+        $values = array_values($result);
+
+        if ($skipNulls) {
+            $tmp = array();
+            foreach ($values as $value) {
+                if (!empty($value)) {
+                    $tmp[] = $value;
+                }
+            }
+            $values = $tmp;
+        }
+
+        return new ArrayWrapper($values);
     }
-    
+
     /**
      * Get multiple items from the database by key
-     * 
+     *
      * @param string  $cls       Class to fetch
      * @param string  $keyCol    name of column for key
      * @param array   $keyVals   key values to fetch
      * @param boolean $otherCols Other columns to hold fixed
-     * 
+     *
      * @return array Array mapping $keyVals to objects, or null if not found
      */
     static function pivotGet($cls, $keyCol, $keyVals, $otherCols = array())
@@ -346,7 +346,7 @@ class Memcached_DataObject extends Safe_DataObject
 	}
 	
     /**
-     * @fixme Should this return false on lookup fail to match staticGet?
+     * @todo FIXME: Should this return false on lookup fail to match staticGet?
      */
     function pkeyGet($cls, $kv)
     {
@@ -359,13 +359,13 @@ class Memcached_DataObject extends Safe_DataObject
                 return false;
             }
             foreach ($kv as $k => $v) {
-            	if (is_null($v)) {
-            		// XXX: possible SQL injection...? Don't 
-            		// pass keys from the browser, eh.
-            		$i->whereAdd("$k is null");
-            	} else {
-                	$i->$k = $v;
-            	}
+                if (is_null($v)) {
+                    // XXX: possible SQL injection...? Don't
+                    // pass keys from the browser, eh.
+                    $i->whereAdd("$k is null");
+                } else {
+                    $i->$k = $v;
+                }
             }
             if ($i->find(true)) {
                 $i->encache();
@@ -696,7 +696,7 @@ class Memcached_DataObject extends Safe_DataObject
                     continue;
                 }
                 if (in_array($func, $ignoreStatic)) {
-                    continue; // @fixme this shouldn't be needed?
+                    continue; // @todo FIXME: This shouldn't be needed?
                 }
                 $here = get_class($frame['object']) . '->' . $func;
                 break;
@@ -839,7 +839,7 @@ class Memcached_DataObject extends Safe_DataObject
 
         if (!$dsn) {
             // TRANS: Exception thrown when database name or Data Source Name could not be found.
-            throw new Exception(_("No database name or DSN found anywhere."));
+            throw new Exception(_('No database name or DSN found anywhere.'));
         }
 
         return $dsn;

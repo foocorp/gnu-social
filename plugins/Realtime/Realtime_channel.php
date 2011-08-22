@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * A channel for real-time browser data
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ if (!defined('STATUSNET')) {
 
 /**
  * A channel for real-time browser data
- * 
+ *
  * For each user currently browsing the site, we want to know which page they're on
  * so we can send real-time updates to their browser.
  *
@@ -46,20 +46,19 @@ if (!defined('STATUSNET')) {
  *
  * @see      DB_DataObject
  */
-
 class Realtime_channel extends Managed_DataObject
 {
-	const TIMEOUT = 1800; // 30 minutes
-	
+    const TIMEOUT = 1800; // 30 minutes
+
     public $__table = 'realtime_channel'; // table name
-    
+
     public $user_id;       // int -> user.id, can be null
     public $action;        // string
     public $arg1;          // argument
     public $arg2;          // argument, usually null
     public $channel_key;   // 128-bit shared secret key
     public $audience;      // listener count
-    public $created;	   // created date
+    public $created;       // created date
     public $modified;      // modified date
 
     /**
@@ -71,7 +70,6 @@ class Realtime_channel extends Managed_DataObject
      * @param mixed  $v Value to lookup
      *
      * @return Realtime_channel object found, or null for no hits
-     *
      */
     function staticGet($k, $v=null)
     {
@@ -84,7 +82,6 @@ class Realtime_channel extends Managed_DataObject
      * @param array $kv array of key-value mappings
      *
      * @return Realtime_channel object found, or null for no hits
-     *
      */
     function pkeyGet($kv)
     {
@@ -100,34 +97,34 @@ class Realtime_channel extends Managed_DataObject
             'description' => 'A channel of realtime notice data',
             'fields' => array(
                 'user_id' => array('type' => 'int',
-				 				   'not null' => false,
-				 				   'description' => 'user viewing page; can be null'),
+                                   'not null' => false,
+                                   'description' => 'user viewing page; can be null'),
                 'action' => array('type' => 'varchar',
-                				  'length' => 255,
-				 				  'not null' => true,
-				 				  'description' => 'page being viewed'),
-				'arg1' => array('type' => 'varchar',
-							    'length' => 255,
-							    'not null' => false,
-							    'description' => 'page argument, like username or tag'),
-			    'arg2' => array('type' => 'varchar',
-			    				'length' => 255,
-			    				'not null' => false,
-			    				'description' => 'second page argument, like tag for showstream'),
-			    'channel_key' => array('type' => 'varchar',
-			    			   'length' => 32,
-			    			   'not null' => true,
-			    			   'description' => 'shared secret key for this channel'),
-			    'audience' => array('type' => 'integer',
+                                  'length' => 255,
+                                  'not null' => true,
+                                  'description' => 'page being viewed'),
+                'arg1' => array('type' => 'varchar',
+                                'length' => 255,
+                                'not null' => false,
+                                'description' => 'page argument, like username or tag'),
+                'arg2' => array('type' => 'varchar',
+                                'length' => 255,
+                                'not null' => false,
+                                'description' => 'second page argument, like tag for showstream'),
+                'channel_key' => array('type' => 'varchar',
+                               'length' => 32,
+                               'not null' => true,
+                               'description' => 'shared secret key for this channel'),
+                'audience' => array('type' => 'integer',
                                     'not null' => true,
                                     'default' => 0,
                                     'description' => 'reference count'),
                 'created' => array('type' => 'datetime',
-				   				   'not null' => true,
-				   				   'description' => 'date this record was created'),
+                                   'not null' => true,
+                                   'description' => 'date this record was created'),
                 'modified' => array('type' => 'datetime',
-				    				'not null' => true,
-				    			    'description' => 'date this record was modified'),
+                                    'not null' => true,
+                                    'description' => 'date this record was modified'),
             ),
             'primary key' => array('channel_key'),
             'unique keys' => array('realtime_channel_user_page_idx' => array('user_id', 'action', 'arg1', 'arg2')),
@@ -140,107 +137,107 @@ class Realtime_channel extends Managed_DataObject
             ),
         );
     }
-    
+
     static function saveNew($user_id, $action, $arg1, $arg2)
     {
-    	$channel = new Realtime_channel();
-    	
-    	$channel->user_id = $user_id;
-    	$channel->action  = $action;
-    	$channel->arg1    = $arg1;
-    	$channel->arg2    = $arg2;
-    	$channel->audience  = 1;
-    	
-    	$channel->channel_key = common_good_rand(16); // 128-bit key, 32 hex chars
-    	
-    	$channel->created  = common_sql_now();
-    	$channel->modified = $channel->created;
-    	
-		$channel->insert();
-		
-		return $channel;
+        $channel = new Realtime_channel();
+
+        $channel->user_id = $user_id;
+        $channel->action  = $action;
+        $channel->arg1    = $arg1;
+        $channel->arg2    = $arg2;
+        $channel->audience  = 1;
+
+        $channel->channel_key = common_good_rand(16); // 128-bit key, 32 hex chars
+
+        $channel->created  = common_sql_now();
+        $channel->modified = $channel->created;
+
+        $channel->insert();
+
+        return $channel;
     }
-    
+
     static function getChannel($user_id, $action, $arg1, $arg2)
     {
-    	$channel = self::fetchChannel($user_id, $action, $arg1, $arg2);
-    	
-    	// Ignore (and delete!)	old channels
-    				   
-    	if (!empty($channel)) {
-			$modTime = strtotime($channel->modified);
-			if ((time() - $modTime) > self::TIMEOUT) {
-				$channel->delete();
-				$channel = null;
-			}
-    	}
-    	
-    	if (empty($channel)) {
-    		$channel = self::saveNew($user_id, $action, $arg1, $arg2);
-    	}
-    	
-    	return $channel;
+        $channel = self::fetchChannel($user_id, $action, $arg1, $arg2);
+
+        // Ignore (and delete!) old channels
+
+        if (!empty($channel)) {
+            $modTime = strtotime($channel->modified);
+            if ((time() - $modTime) > self::TIMEOUT) {
+                $channel->delete();
+                $channel = null;
+            }
+        }
+
+        if (empty($channel)) {
+            $channel = self::saveNew($user_id, $action, $arg1, $arg2);
+        }
+
+        return $channel;
     }
-    
+
     static function getAllChannels($action, $arg1, $arg2)
     {
-    	$channel = new Realtime_channel();
-    	
-    	$channel->action = $action;
-    	
-    	if (is_null($arg1)) {
-    		$channel->whereAdd('arg1 is null');
-    	} else {
-    		$channel->arg1 = $arg1;
-    	}
-    	
-    	if (is_null($arg2)) {
-    		$channel->whereAdd('arg2 is null');
-    	} else {
-    		$channel->arg2 = $arg2;
-    	}
-    	
-    	$channel->whereAdd('modified > "' . common_sql_date(time() - self::TIMEOUT) . '"');
-    	
-    	$channels = array();
-    	
-    	if ($channel->find()) {
-    		$channels = $channel->fetchAll();
-    	}
-    	
-    	return $channels;
+        $channel = new Realtime_channel();
+
+        $channel->action = $action;
+
+        if (is_null($arg1)) {
+            $channel->whereAdd('arg1 is null');
+        } else {
+            $channel->arg1 = $arg1;
+        }
+
+        if (is_null($arg2)) {
+            $channel->whereAdd('arg2 is null');
+        } else {
+            $channel->arg2 = $arg2;
+        }
+
+        $channel->whereAdd('modified > "' . common_sql_date(time() - self::TIMEOUT) . '"');
+
+        $channels = array();
+
+        if ($channel->find()) {
+            $channels = $channel->fetchAll();
+        }
+
+        return $channels;
     }
-    
+
     static function fetchChannel($user_id, $action, $arg1, $arg2)
-    {	
-    	$channel = new Realtime_channel();
-    	
-    	if (is_null($user_id)) {
-    		$channel->whereAdd('user_id is null');
-    	} else {
-    		$channel->user_id = $user_id;
-    	}
-    	
-    	$channel->action = $action;
-    	
-    	if (is_null($arg1)) {
-    		$channel->whereAdd('arg1 is null');
-    	} else {
-    		$channel->arg1 = $arg1;
-    	}
-    	
-    	if (is_null($arg2)) {
-    		$channel->whereAdd('arg2 is null');
-    	} else {
-    		$channel->arg2 = $arg2;
-    	}
-    	
-    	if ($channel->find(true)) {
+    {
+        $channel = new Realtime_channel();
+
+        if (is_null($user_id)) {
+            $channel->whereAdd('user_id is null');
+        } else {
+            $channel->user_id = $user_id;
+        }
+
+        $channel->action = $action;
+
+        if (is_null($arg1)) {
+            $channel->whereAdd('arg1 is null');
+        } else {
+            $channel->arg1 = $arg1;
+        }
+
+        if (is_null($arg2)) {
+            $channel->whereAdd('arg2 is null');
+        } else {
+            $channel->arg2 = $arg2;
+        }
+
+        if ($channel->find(true)) {
             $channel->increment();
-    		return $channel;
-    	} else {
-    		return null;
-    	}
+            return $channel;
+        } else {
+            return null;
+        }
     }
 
     function increment()

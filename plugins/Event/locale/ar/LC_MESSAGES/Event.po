@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:20:32+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:35:10+0000\n"
 "Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:05+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-16 06:59:38+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
@@ -23,14 +23,28 @@ msgstr ""
 "2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
 "99) ? 4 : 5 ) ) ) );\n"
 
-msgid "hour"
+#. TRANS: 0 minutes abbreviated. Used in a list.
+msgid "(0 min)"
 msgstr ""
 
-msgid "hrs"
+#. TRANS: 30 minutes abbreviated. Used in a list.
+msgid "(30 min)"
 msgstr ""
 
-msgid "mins"
+#. TRANS: 1 hour. Used in a list.
+msgid "(1 hour)"
 msgstr ""
+
+#. TRANS: Number of hours (%d). Used in a list.
+#, php-format
+msgid "(%d hour)"
+msgid_plural "(%d hours)"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -57,9 +71,15 @@ msgstr ""
 "$s</a> (<span class=\"location\">%6$s</span>): <span class=\"description\">%7"
 "$s</span> </span>"
 
+#. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
+msgid "Not logged in."
+msgstr ""
+
+#. TRANS: Client error when submitting a form with unexpected information.
 msgid "Unexpected form submission."
 msgstr ""
 
+#. TRANS: Client error displayed when using an action in a non-AJAX way.
 msgid "This action is AJAX only."
 msgstr ""
 
@@ -69,8 +89,6 @@ msgstr ""
 msgid "No such RSVP."
 msgstr ""
 
-#. TRANS: Client exception thrown when referring to a non-existing event.
-#. TRANS: Client exception thrown when requesting a non-exsting event.
 #. TRANS: Client exception thrown when referring to a non-existing event.
 msgid "No such event."
 msgstr ""
@@ -409,7 +427,3 @@ msgstr "الحضور:"
 #, php-format
 msgid "Yes: %1$d No: %2$d Maybe: %3$d"
 msgstr "نعم: %1$d لا: %2$d ربما: %3$d"
-
-#~ msgctxt "LABEL"
-#~ msgid "Location"
-#~ msgstr "المكان"

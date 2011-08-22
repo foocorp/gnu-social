@@ -228,16 +228,14 @@ class OMBPlugin extends Plugin
         $omb01 = Remote_profile::staticGet('id', $other_id);
 
         if (!empty($omb01)) {
-            // TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
             throw new ClientException(
-                _m(
-                    'You cannot subscribe to an OMB 0.1 '
+                // TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
+                _m('You cannot subscribe to an OMB 0.1 '
                     . 'remote profile with this action.'
                 )
             );
             return false;
         }
-
     }
 
     /**
@@ -257,10 +255,9 @@ class OMBPlugin extends Plugin
         $omb01 = Remote_profile::staticGet('id', $tagged_profile->id);
 
         if (!empty($omb01)) {
-            // TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
             $this->clientError(
-                _m(
-                    'You cannot list an OMB 0.1 '
+                // TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
+                _m('You cannot list an OMB 0.1 '
                    .'remote profile with this action.')
             );
         }
@@ -282,10 +279,9 @@ class OMBPlugin extends Plugin
         $omb01 = Remote_profile::staticGet('id', $ptag->tagged);
 
         if (!empty($omb01)) {
-            // TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
             $this->clientError(
-                _m(
-                    'You cannot (un)list an OMB 0.1 '
+                // TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
+                _m('You cannot (un)list an OMB 0.1 '
                     . 'remote profile with this action.')
             );
             return false;
@@ -317,8 +313,8 @@ class OMBPlugin extends Plugin
 
                 if (!$result) {
                     common_log_db_error($token, 'DELETE', __FILE__);
-                    // TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
                     throw new Exception(
+                        // TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
                         _m('Could not delete subscription OMB token.')
                     );
                 }
@@ -394,12 +390,10 @@ class OMBPlugin extends Plugin
             'version'        => STATUSNET_VERSION,
             'author'         => 'Zach Copley',
             'homepage'       => 'http://status.net/wiki/Plugin:Sample',
-            'rawdescription' =>
             // TRANS: Plugin description.
-            _m('A sample plugin to show basics of development for new hackers.')
+            'rawdescription' => _m('A sample plugin to show basics of development for new hackers.')
         );
 
         return true;
     }
 }
-

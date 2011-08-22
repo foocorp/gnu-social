@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * A menu with a More... button to show more elements
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,12 +44,11 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class MoreMenu extends Menu
 {
     const SOFT_MAX = 5;
     const HARD_MAX = 15;
-    
+
     /**
      * Show a menu with a limited number of elements
      *
@@ -57,7 +56,6 @@ class MoreMenu extends Menu
      *
      * @return
      */
-
     function show()
     {
         $items = $this->getItems();
@@ -72,7 +70,6 @@ class MoreMenu extends Menu
         }
 
         if (Event::handle('StartNav', array($this, &$tag, &$items))) {
-
             $this->out->elementStart('ul', $attrs);
 
             $total = count($items);
@@ -89,10 +86,10 @@ class MoreMenu extends Menu
             }
 
             if ($total > self::SOFT_MAX + 1) {
-
                 $this->out->elementStart('li', array('class' => 'more_link'));
                 $this->out->element('a', array('href' => '#',
                                                'onclick' => 'SN.U.showMoreMenuItems("'.$menuID.'"); return false;'),
+                                    // TRANS: Link description to show more items in a list.
                                     _('More ▼'));
                 $this->out->elementEnd('li');
 
@@ -112,7 +109,7 @@ class MoreMenu extends Menu
                     }
                 }
             }
-            
+
             $this->out->elementEnd('ul');
 
             Event::handle('EndNav', array($this, $tag, $items));
@@ -123,5 +120,4 @@ class MoreMenu extends Menu
     {
         return null;
     }
-    
 }

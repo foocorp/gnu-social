@@ -136,7 +136,7 @@ class FavorForm extends Form
                            'submit',
                            null,
                            // TRANS: Button title for adding the favourite status to a notice.
-                           _('Add this notice to your list of favorite notices.');
+                           _('Add this notice to your list of favorite notices.'));
     }
 
     /**

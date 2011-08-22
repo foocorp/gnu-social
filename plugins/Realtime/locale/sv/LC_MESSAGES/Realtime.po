@@ -9,24 +9,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Realtime\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:21:55+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:37+0000\n"
 "Language-Team: Swedish <//translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-07-21 13:52:10+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-plugin-realtime\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#. TRANS: Client exception. Do not translate POST.
 msgid "You have to POST it."
 msgstr ""
 
+#. TRANS: Client exception thrown when the channel key argument is missing.
 msgid "No channel key argument."
 msgstr ""
 
+#. TRANS: Client exception thrown when referring to a non-existing channel.
 msgid "No such channel."
 msgstr ""
 
