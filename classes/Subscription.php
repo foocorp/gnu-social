@@ -39,6 +39,7 @@ class Subscription extends Memcached_DataObject
     public $sms;                             // tinyint(1)   default_1
     public $token;                           // varchar(255)
     public $secret;                          // varchar(255)
+    public $uri;                             // varchar(255)
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -138,6 +139,9 @@ class Subscription extends Memcached_DataObject
         $sub->jabber     = 1;
         $sub->sms        = 1;
         $sub->created    = common_sql_now();
+        $sub->uri        = self::newURI($sub->subscriber,
+                                        $sub->subscribed,
+                                        $sub->created);
 
         $result = $sub->insert();
 
@@ -238,10 +242,7 @@ class Subscription extends Memcached_DataObject
 
         // XXX: rationalize this with the URL
 
-        $act->id   = TagURI::mint('follow:%d:%d:%s',
-                                  $subscriber->id,
-                                  $subscribed->id,
-                                  common_date_iso8601($this->created));
+        $act->id   = $this->getURI();
 
         $act->time    = strtotime($this->created);
         // TRANS: Activity title when subscribing to another person.
@@ -403,5 +404,22 @@ class Subscription extends Memcached_DataObject
         self::blow('subscription:by-subscribed:'.$this->subscribed);
 
         return $result;
+    }
+
+    function getURI()
+    {
+        if (!empty($this->uri)) {
+            return $this->uri;
+        } else {
+            return self::newURI($this->subscriber, $this->subscribed, $this->created);
+        }
+    }
+
+    static function newURI($subscriber_id, $subscribed_id, $created)
+    {
+        return TagURI::mint('follow:%d:%d:%s',
+                            $subscriber_id,
+                            $subscribed_id,
+                            common_date_iso8601($created));
     }
 }

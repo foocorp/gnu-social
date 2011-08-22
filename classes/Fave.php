@@ -12,6 +12,7 @@ class Fave extends Memcached_DataObject
     public $__table = 'fave';                            // table name
     public $notice_id;                       // int(4)  primary_key not_null
     public $user_id;                         // int(4)  primary_key not_null
+    public $uri;                             // varchar(255)
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
     /* Static get */
@@ -39,7 +40,10 @@ class Fave extends Memcached_DataObject
 
             $fave->user_id   = $profile->id;
             $fave->notice_id = $notice->id;
-
+            $fave->modified  = common_sql_now();
+            $fave->uri       = self::newURI($fave->user_id,
+                                            $fave->notice_id,
+                                            $fave->modified);
             if (!$fave->insert()) {
                 common_log_db_error($fave, 'INSERT', __FILE__);
                 return false;
@@ -102,10 +106,7 @@ class Fave extends Memcached_DataObject
 
         // FIXME: rationalize this with URL below
 
-        $act->id   = TagURI::mint('favor:%d:%d:%s',
-                                  $profile->id,
-                                  $notice->id,
-                                  common_date_iso8601($this->modified));
+        $act->id   = $this->getURI();
 
         $act->time    = strtotime($this->modified);
         // TRANS: Activity title when marking a notice as favorite.
@@ -155,5 +156,22 @@ class Fave extends Memcached_DataObject
         $fav->find();
 
         return $fav;
+    }
+
+    function getURI()
+    {
+        if (!empty($this->uri)) {
+            return $this->uri;
+        } else {
+            return self::newURI($this->user_id, $this->notice_id, $this->modified);
+        }
+    }
+
+    static function newURI($profile_id, $notice_id, $modified)
+    {
+        return TagURI::mint('favor:%d:%d:%s',
+                            $profile_id,
+                            $notice_id,
+                            common_date_iso8601($modified));
     }
 }

@@ -170,10 +170,14 @@ $schema['subscription'] = array(
         'sms' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'deliver sms messages'),
         'token' => array('type' => 'varchar', 'length' => 255, 'description' => 'authorization token'),
         'secret' => array('type' => 'varchar', 'length' => 255, 'description' => 'token secret'),
+        'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier'),
         'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
         'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
     ),
     'primary key' => array('subscriber', 'subscribed'),
+    'unique keys' => array(
+        'subscription_uri_key' => array('uri'),
+    ),
     'indexes' => array(
         'subscription_subscriber_idx' => array('subscriber', 'created'),
         'subscription_subscribed_idx' => array('subscribed', 'created'),
@@ -263,9 +267,13 @@ $schema['fave'] = array(
     'fields' => array(
         'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice that is the favorite'),
         'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user who likes this notice'),
+        'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
         'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
     ),
     'primary key' => array('notice_id', 'user_id'),
+    'unique keys' => array(
+        'fave_uri_key' => array('uri'),
+    ),
     'foreign keys' => array(
         'fave_notice_id_fkey' => array('notice', array('notice_id' => 'id')),
         'fave_user_id_fkey' => array('profile', array('user_id' => 'id')), // note: formerly referenced notice.id, but we can now record remote users' favorites
@@ -742,11 +750,14 @@ $schema['group_member'] = array(
         'group_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to user_group'),
         'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'foreign key to profile table'),
         'is_admin' => array('type' => 'int', 'size' => 'tiny', 'default' => 0, 'description' => 'is this user an admin?'),
-
+        'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universal identifier'),
         'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
         'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
     ),
     'primary key' => array('group_id', 'profile_id'),
+    'unique keys' => array(
+        'group_member_uri_key' => array('uri'),
+    ),
     'foreign keys' => array(
         'group_member_group_id_fkey' => array('user_group', array('group_id' => 'id')),
         'group_member_profile_id_fkey' => array('profile', array('profile_id' => 'id')),

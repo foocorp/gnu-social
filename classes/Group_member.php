@@ -12,6 +12,7 @@ class Group_member extends Memcached_DataObject
     public $group_id;                        // int(4)  primary_key not_null
     public $profile_id;                      // int(4)  primary_key not_null
     public $is_admin;                        // tinyint(1)
+    public $uri;                             // varchar(255)
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
@@ -43,6 +44,7 @@ class Group_member extends Memcached_DataObject
         $member->group_id   = $group_id;
         $member->profile_id = $profile_id;
         $member->created    = common_sql_now();
+        $member->uri        = self::newURI($profile_id, $group_id, $member->created);
 
         $result = $member->insert();
 
@@ -134,10 +136,7 @@ class Group_member extends Memcached_DataObject
 
         $act = new Activity();
 
-        $act->id = TagURI::mint('join:%d:%d:%s',
-                                $member->id,
-                                $group->id,
-                                common_date_iso8601($this->created));
+        $act->id = $this->getURI();
 
         $act->actor     = ActivityObject::fromProfile($member);
         $act->verb      = ActivityVerb::JOIN;
@@ -170,5 +169,22 @@ class Group_member extends Memcached_DataObject
     public function notify()
     {
         mail_notify_group_join($this->getGroup(), $this->getMember());
+    }
+
+    function getURI()
+    {
+        if (!empty($this->uri)) {
+            return $this->uri;
+        } else {
+            return self::newURI($this->member_id, $this->group_id, $this->created);
+        }
+    }
+
+    static function newURI($member_id, $group_id, $created)
+    {
+        return TagURI::mint('join:%d:%d:%s',
+                            $member_id,
+                            $group_id,
+                            common_date_iso8601($created));
     }
 }
