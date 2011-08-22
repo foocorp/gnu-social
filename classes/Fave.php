@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Fave extends Memcached_DataObject
+class Fave extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -20,6 +20,27 @@ class Fave extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'notice_id' => array('type' => 'int', 'not null' => true, 'description' => 'notice that is the favorite'),
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user who likes this notice'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('notice_id', 'user_id'),
+            'foreign keys' => array(
+                'fave_notice_id_fkey' => array('notice', array('notice_id' => 'id')),
+                'fave_user_id_fkey' => array('profile', array('user_id' => 'id')), // note: formerly referenced notice.id, but we can now record remote users' favorites
+            ),
+            'indexes' => array(
+                'fave_notice_id_idx' => array('notice_id'),
+                'fave_user_id_idx' => array('user_id', 'modified'),
+                'fave_modified_idx' => array('modified'),
+            ),
+        );
+    }
 
     /**
      * Save a favorite record.

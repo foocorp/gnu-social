@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Profile_tag extends Memcached_DataObject
+class Profile_tag extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -21,6 +21,30 @@ class Profile_tag extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+
+            'fields' => array(
+                'tagger' => array('type' => 'int', 'not null' => true, 'description' => 'user making the tag'),
+                'tagged' => array('type' => 'int', 'not null' => true, 'description' => 'profile tagged'),
+                'tag' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'hash tag associated with this notice'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date the tag was added'),
+            ),
+            'primary key' => array('tagger', 'tagged', 'tag'),
+            'foreign keys' => array(
+                'profile_tag_tagger_fkey' => array('profile', array('tagger' => 'id')),
+                'profile_tag_tagged_fkey' => array('profile', array('tagged' => 'id')),
+                'profile_tag_tag_fkey' => array('profile_list', array('tag' => 'tag')),
+            ),
+            'indexes' => array(
+                'profile_tag_modified_idx' => array('modified'),
+                'profile_tag_tagger_tag_idx' => array('tagger', 'tag'),
+                'profile_tag_tagged_idx' => array('tagged'),
+            ),
+        );
+    }
 
     function pkeyGet($kv) {
         return Memcached_DataObject::pkeyGet('Profile_tag', $kv);

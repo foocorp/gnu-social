@@ -3,7 +3,7 @@
  * Table Definition for group_member
  */
 
-class Group_member extends Memcached_DataObject
+class Group_member extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */

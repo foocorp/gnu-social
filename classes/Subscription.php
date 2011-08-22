@@ -24,7 +24,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Subscription extends Memcached_DataObject
+class Subscription extends Managed_DataObject
 {
     const CACHE_WINDOW = 201;
     const FORCE = true;
@@ -41,6 +41,28 @@ class Subscription extends Memcached_DataObject
     public $secret;                          // varchar(255)
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'subscriber' => array('type' => 'int', 'not null' => true, 'description' => 'profile listening'),
+                'subscribed' => array('type' => 'int', 'not null' => true, 'description' => 'profile being listened to'),
+                'jabber' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'deliver jabber messages'),
+                'sms' => array('type' => 'int', 'size' => 'tiny', 'default' => 1, 'description' => 'deliver sms messages'),
+                'token' => array('type' => 'varchar', 'length' => 255, 'description' => 'authorization token'),
+                'secret' => array('type' => 'varchar', 'length' => 255, 'description' => 'token secret'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('subscriber', 'subscribed'),
+            'indexes' => array(
+                'subscription_subscriber_idx' => array('subscriber', 'created'),
+                'subscription_subscribed_idx' => array('subscribed', 'created'),
+                'subscription_token_idx' => array('token'),
+            ),
+        );
+    }    
 
     /* Static get */
     function staticGet($k,$v=null)

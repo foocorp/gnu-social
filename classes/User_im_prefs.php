@@ -29,7 +29,7 @@
 
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class User_im_prefs extends Memcached_DataObject
+class User_im_prefs extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -55,6 +55,30 @@ class User_im_prefs extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user'),
+                'screenname' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'screenname on this service'),
+                'transport' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'transport (ex xmpp, aim)'),
+                'notify' => array('type' => 'int', 'size' => 'tiny', 'not null' => true, 'default' => 0, 'description' => 'Notify when a new notice is sent'),
+                'replies' => array('type' => 'int', 'size' => 'tiny', 'not null' => true, 'default' => 0, 'description' => 'Send replies  from people not subscribed to'),
+                'microid' => array('type' => 'int', 'size' => 'tiny', 'not null' => true, 'default' => 1, 'description' => 'Publish a MicroID'),
+                'updatefrompresence' => array('type' => 'int', 'size' => 'tiny', 'not null' => true, 'default' => 0, 'description' => 'Send replies from people not subscribed to.'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('user_id', 'transport'),
+            'unique keys' => array(
+                'transport_screenname_key' => array('transport', 'screenname'),
+            ),
+            'foreign keys' => array(
+                'user_im_prefs_user_id_fkey' => array('user', array('user_id' => 'id')),
+            ),
+        );
+    }
 
     /*
     DB_DataObject calculates the sequence key(s) by taking the first key returned by the keys() function.

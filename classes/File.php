@@ -29,7 +29,7 @@ require_once INSTALLDIR.'/classes/File_to_post.php';
 /**
  * Table Definition for file
  */
-class File extends Memcached_DataObject
+class File extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -50,6 +50,28 @@ class File extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true),
+                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'destination URL after following redirections'),
+                'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
+                'size' => array('type' => 'int', 'description' => 'size of resource when available'),
+                'title' => array('type' => 'varchar', 'length' => 255, 'description' => 'title of resource when available'),
+                'date' => array('type' => 'int', 'description' => 'date of resource according to http query'),
+                'protected' => array('type' => 'int', 'description' => 'true when URL is private (needs login)'),
+                'filename' => array('type' => 'varchar', 'length' => 255, 'description' => 'if a local file, name of the file'),
+
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'file_url_key' => array('url'),
+            ),
+        );
+    }
 
     function isProtected($url) {
         return 'http://www.facebook.com/login.php' === $url;
