@@ -362,13 +362,6 @@ class StatusNet
                                         $config_files);
         }
 
-        // Fixup for statusnet.ini
-        $_db_name = substr($config['db']['database'], strrpos($config['db']['database'], '/') + 1);
-
-        if ($_db_name != 'statusnet' && !array_key_exists('ini_'.$_db_name, $config['db'])) {
-            $config['db']['ini_'.$_db_name] = INSTALLDIR.'/classes/statusnet.ini';
-        }
-
         // Backwards compatibility
         if (array_key_exists('memcached', $config)) {
             if ($config['memcached']['enabled']) {
