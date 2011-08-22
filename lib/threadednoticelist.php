@@ -559,12 +559,14 @@ class ThreadedNoticeListRepeatsItem extends NoticeListActorsItem
 {
     function getProfiles()
     {
-        $rep = $this->notice->repeatStream();
+        $repeats = $this->notice->getRepeats();
 
         $profiles = array();
-        while ($rep->fetch()) {
+
+        foreach ($repeats as $rep) {
             $profiles[] = $rep->profile_id;
         }
+
         return $profiles;
     }
 

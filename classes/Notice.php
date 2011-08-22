@@ -581,7 +581,9 @@ class Notice extends Memcached_DataObject
         self::blow('conversation::notice_count:%d', $this->conversation);
 
         if (!empty($this->repeat_of)) {
+            // XXX: we should probably only use one of these
             $this->blowStream('notice:repeats:%d', $this->repeat_of);
+            self::blow('notice:list-ids:repeat_of:%d', $this->repeat_of);
         }
 
         $original = Notice::staticGet('id', $this->repeat_of);
@@ -2432,7 +2434,7 @@ class Notice extends Memcached_DataObject
     function __sleep()
     {
         $vars = parent::__sleep();
-        $skip = array('_original', '_profile', '_groups', '_attachments', '_faves', '_replies');
+        $skip = array('_original', '_profile', '_groups', '_attachments', '_faves', '_replies', '_repeats');
         return array_diff($vars, $skip);
     }
     
@@ -2595,6 +2597,32 @@ class Notice extends Memcached_DataObject
                 $ids[] = $reply->profile_id;
             }
             $notice->_setReplies($ids);
+        }
+    }
+
+    protected $_repeats;
+
+    function getRepeats()
+    {
+        if (isset($this->_repeats) && is_array($this->_repeats)) {
+            return $this->_repeats;
+        }
+        $repeatMap = Memcached_DataObject::listGet('Notice', 'repeat_of', array($this->id));
+        $this->_repeats = $repeatMap[$this->id];
+        return $this->_repeats;
+    }
+
+    function _setRepeats(&$repeats)
+    {
+        $this->_repeats = $repeats;
+    }
+
+    static function fillRepeats(&$notices)
+    {
+        $ids = self::_idsOf($notices);
+        $repeatMap = Memcached_DataObject::listGet('Notice', 'repeat_of', $ids);
+        foreach ($notices as $notice) {
+            $notice->_setRepeats($repeatMap[$notice->id]);
         }
     }
 }

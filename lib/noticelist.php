@@ -128,6 +128,8 @@ class NoticeList extends Widget
         Notice::fillAttachments($notices);
         // Prefill attachments
         Notice::fillFaves($notices);
+        // Prefill repeat data
+        Notice::fillRepeats($notices);
     	// Prefill the profiles
     	$profiles = Notice::fillProfiles($notices);
     	// Prefill the avatars
@@ -135,13 +137,14 @@ class NoticeList extends Widget
     	
     	$p = Profile::current();
     	
-    	$ids = array();
-    	
-    	foreach ($notices as $notice) {
-    	    $ids[] = $notice->id;
-    	}
-    	
     	if (!empty($p)) {
+
+            $ids = array();
+    	
+            foreach ($notices as $notice) {
+                $ids[] = $notice->id;
+            }
+    	
     		Memcached_DataObject::pivotGet('Fave', 'notice_id', $ids, array('user_id' => $p->id));
     		Memcached_DataObject::pivotGet('Notice', 'repeat_of', $ids, array('profile_id' => $p->id));
     	}
