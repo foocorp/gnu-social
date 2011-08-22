@@ -26,9 +26,6 @@ class Confirm_address extends Managed_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    function sequenceKey()
-    { return array(false, false); }
-
     public static function schemaDef()
     {
         return array(

@@ -61,11 +61,6 @@ class Inbox extends Managed_DataObject
         );
     }
 
-    function sequenceKey()
-    {
-        return array(false, false, false);
-    }
-
     /**
      * Create a new inbox from existing Notice_inbox stuff
      */

@@ -80,19 +80,6 @@ class User_im_prefs extends Managed_DataObject
         );
     }
 
-    /*
-    DB_DataObject calculates the sequence key(s) by taking the first key returned by the keys() function.
-    In this case, the keys() function returns user_id as the first key. user_id is not a sequence, but
-    DB_DataObject's sequenceKey() will incorrectly think it is. Then, since the sequenceKey() is a numeric
-    type, but is not set to autoincrement in the database, DB_DataObject will create a _seq table and
-    manage the sequence itself. This is not the correct behavior for the user_id in this class.
-    So we override that incorrect behavior, and simply say there is no sequence key.
-    */
-    function sequenceKey()
-    {
-        return array(false,false);
-    }
-
     /**
      * We have two compound keys with unique constraints:
      * (transport, user_id) which is our primary key, and

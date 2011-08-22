@@ -79,11 +79,6 @@ class File_oembed extends Managed_DataObject
         );
     }
 
-    function sequenceKey()
-    {
-        return array(false, false, false);
-    }
-
     function _getOembed($url) {
         $parameters = array(
             'maxwidth' => common_config('attachments', 'thumb_width'),

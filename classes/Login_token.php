@@ -58,19 +58,6 @@ class Login_token extends Managed_DataObject
 
     const TIMEOUT = 120; // seconds after which to timeout the token
 
-    /*
-    DB_DataObject calculates the sequence key(s) by taking the first key returned by the keys() function.
-    In this case, the keys() function returns user_id as the first key. user_id is not a sequence, but
-    DB_DataObject's sequenceKey() will incorrectly think it is. Then, since the sequenceKey() is a numeric
-    type, but is not set to autoincrement in the database, DB_DataObject will create a _seq table and
-    manage the sequence itself. This is not the correct behavior for the user_id in this class.
-    So we override that incorrect behavior, and simply say there is no sequence key.
-    */
-    function sequenceKey()
-    {
-        return array(false,false);
-    }
-
     function makeNew($user)
     {
         $login_token = Login_token::staticGet('user_id', $user->id);

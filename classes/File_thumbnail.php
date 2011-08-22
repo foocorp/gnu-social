@@ -63,11 +63,6 @@ class File_thumbnail extends Managed_DataObject
         );
     }
 
-    function sequenceKey()
-    {
-        return array(false, false, false);
-    }
-
     /**
      * Save oEmbed-provided thumbnail data
      *
