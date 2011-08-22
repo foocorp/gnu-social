@@ -577,10 +577,7 @@ class Notice extends Memcached_DataObject
             $this->blowStream('public');
         }
 
-        // XXX: Before we were blowing the casche only if the notice id
-        // was not the root of the conversation.  What to do now?
-
-        self::blow('notice:conversation_ids:%d', $this->conversation);
+        self::blow('notice:list-ids:conversation:%s', $this->conversation);
         self::blow('conversation::notice_count:%d', $this->conversation);
 
         if (!empty($this->repeat_of)) {
