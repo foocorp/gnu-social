@@ -64,6 +64,9 @@ class ActivityPlugin extends Plugin
         switch ($cls)
         {
         case 'JoinListItem':
+        case 'LeaveListItem':
+        case 'FollowListItem':
+        case 'UnfollowListItem':
             include_once $dir . '/'.strtolower($cls).'.php';
             return false;
         default:
@@ -287,6 +290,15 @@ class ActivityPlugin extends Plugin
 		switch ($notice->verb) {
 		case ActivityVerb::JOIN:
 			$adapter = new JoinListItem($nli);
+			break;
+		case ActivityVerb::LEAVE:
+			$adapter = new JoinListItem($nli);
+			break;
+		case ActivityVerb::FOLLOW:
+			$adapter = new FollowListItem($nli);
+			break;
+		case ActivityVerb::UNFOLLOW:
+			$adapter = new UnfollowListItem($nli);
 			break;
 		}
 
