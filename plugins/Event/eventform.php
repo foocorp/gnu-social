@@ -109,7 +109,7 @@ class EventForm extends Form
 
         $this->li();
 
-        $today = new DateTime('today');
+        $today = new DateTime('now');
         $today->setTimezone(new DateTimeZone(common_timezone()));
 
         $this->out->input('event-startdate',
