@@ -34,11 +34,12 @@ class Memcached_DataObject extends Safe_DataObject
     {
         if (is_null($v)) {
             $v = $k;
-            // XXX: HACK!
-            $i = new $cls;
-            $keys = $i->keys();
+            $keys = self::pkeyCols($cls);
+            if (count($keys) > 1) {
+            	// FIXME: maybe call pkeyGet() ourselves?
+                throw new Exception('Use pkeyGet() for compound primary keys');
+            }
             $k = $keys[0];
-            unset($i);
         }
         $i = Memcached_DataObject::getcached($cls, $k, $v);
         if ($i === false) { // false == cache miss
