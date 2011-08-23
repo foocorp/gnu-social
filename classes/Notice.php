@@ -2624,7 +2624,7 @@ class Notice extends Managed_DataObject
         return $this->_faves;
     }
 
-    function _setFaves(&$faves)
+    function _setFaves($faves)
     {
         $this->_faves = $faves;
     }
@@ -2643,7 +2643,7 @@ class Notice extends Managed_DataObject
         }
         foreach ($notices as $notice) {
         	$faves = $faveMap[$notice->id];
-            $notice->_setFaves(&$faves);
+            $notice->_setFaves($faves);
         }
     }
 
@@ -2673,7 +2673,7 @@ class Notice extends Managed_DataObject
         return $this->_repeats;
     }
 
-    function _setRepeats(&$repeats)
+    function _setRepeats($repeats)
     {
         $this->_repeats = $repeats;
     }
@@ -2684,7 +2684,7 @@ class Notice extends Managed_DataObject
         $repeatMap = Memcached_DataObject::listGet('Notice', 'repeat_of', $ids);
         foreach ($notices as $notice) {
         	$repeats = $repeatMap[$notice->id];
-            $notice->_setRepeats(&$repeats);
+            $notice->_setRepeats($repeats);
         }
     }
 }
