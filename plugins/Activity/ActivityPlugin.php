@@ -78,7 +78,7 @@ class ActivityPlugin extends Plugin
                                            	   'subscribed' => $other->id));
             $rendered = sprintf(_m('<em><a href="%s">%s</a> started following <a href="%s">%s</a></em>.'),
             					$subscriber->profileurl,
-            					$usbscriber->getBestName(),
+            					$subscriber->getBestName(),
                                 $other->profileurl,
                                 $other->getBestName());
             $content  = sprintf(_m('%s (%s) started following %s (%s).'),
