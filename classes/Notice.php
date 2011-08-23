@@ -2624,7 +2624,7 @@ class Notice extends Managed_DataObject
         return $this->_faves;
     }
 
-    function _setFaves(&$faves)
+    function _setFaves($faves)
     {
         $this->_faves = $faves;
     }
@@ -2673,7 +2673,7 @@ class Notice extends Managed_DataObject
         return $this->_repeats;
     }
 
-    function _setRepeats(&$repeats)
+    function _setRepeats($repeats)
     {
         $this->_repeats = $repeats;
     }
