@@ -55,7 +55,6 @@ class JoinListItem extends NoticeListItemAdapter
     
     function showNotice()
     {
-    	common_debug("Showing notice from JoinListItem");
         $out = $this->nli->out;
         $out->elementStart('div', 'entry-title');
         $this->showContent();
