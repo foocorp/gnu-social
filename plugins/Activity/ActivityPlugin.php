@@ -141,8 +141,8 @@ class ActivityPlugin extends Plugin
         if (!empty($user)) {
         	
             $author = $notice->getProfile();
-            $fave   = Fave::staticGet(array('user_id' => $user->id,
-            						  		'notice_id' => $notice->id));
+            $fave   = Fave::pkeyGet(array('user_id' => $user->id,
+            						  	  'notice_id' => $notice->id));
             
             $rendered = sprintf(_m('<em><a href="%s">%s</a> liked <a href="%s">%s\'s update</a></em>.'),
             					$profile->profileurl,
@@ -160,7 +160,7 @@ class ActivityPlugin extends Plugin
                                       'activity',
                                       array('rendered' => $rendered,
                                       		'uri' => $fave->getURI(),
-                                      		'verb' => ActivityVerb::FAVOR,
+                                      		'verb' => ActivityVerb::FAVORITE,
                                       		'object_type' => (($notice->verb == ActivityVerb::POST) ?
                                       						 $notice->object_type : ActivityObject::ACTIVITY)));
         }
