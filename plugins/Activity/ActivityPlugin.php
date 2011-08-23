@@ -63,6 +63,9 @@ class ActivityPlugin extends Plugin
 
         switch ($cls)
         {
+        case 'JoinListItem':
+            include_once $dir . '/'.strtolower($cls).'.php';
+            return false;
         default:
             return true;
         }
@@ -274,12 +277,34 @@ class ActivityPlugin extends Plugin
                                   		'object_type' => ActivityObject::GROUP));
         return true;
     }
+    
+    function onStartShowNoticeItem($nli)
+    {
+		$notice = $nli->notice;
+		
+		$adapter = null;
+		
+		switch ($notice->verb) {
+		case ActivityVerb::JOIN:
+			$adapter = new JoinListItem($nli);
+			break;
+		}
+
+        if (!empty($adapter)) {
+            $adapter->showNotice();
+            $adapter->showNoticeAttachments();
+            $adapter->showNoticeInfo();
+            $adapter->showNoticeOptions();
+            return false;
+        }
+        
+        return true;
+    }
 
     function onEndNoticeAsActivity($notice, &$activity)
     {
     	return true;
     }
-
 
     function onPluginVersion(&$versions)
     {
