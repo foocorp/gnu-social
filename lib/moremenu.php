@@ -101,7 +101,12 @@ class MoreMenu extends Menu
                 $extended = array_slice($items, self::SOFT_MAX, self::HARD_MAX - self::SOFT_MAX);
 
                 foreach ($extended as $item) {
-                    list($actionName, $args, $label, $description, $id) = $item;
+            		if (count($item) == 5) {
+                		list($actionName, $args, $label, $description, $id) = $item;
+            		} else {
+                		list($actionName, $args, $label, $description) = $item;
+                		$id = null;            	    
+            		}
                     $this->item($actionName, $args, $label, $description, $id, 'extended_menu');
                 }
 
@@ -109,7 +114,12 @@ class MoreMenu extends Menu
                     $seeAll = $this->seeAllItem();
 
                     if (!empty($seeAll)) {
-                        list($actionName, $args, $label, $description, $id) = $seeAll;
+            			if (count($seeAll) == 5) {
+                			list($actionName, $args, $label, $description, $id) = $seeAll;
+            			} else {
+                			list($actionName, $args, $label, $description) = $seeAll;
+                			$id = null;            	    
+            			}
                         $this->item($actionName, $args, $label, $description, $id, 'extended_menu see_all');
                     }
                 }
