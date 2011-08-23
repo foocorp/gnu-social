@@ -81,7 +81,12 @@ class MoreMenu extends Menu
             }
 
             foreach ($toShow as $item) {
-                list($actionName, $args, $label, $description, $id) = $item;
+            	if (count($item) == 5) {
+                	list($actionName, $args, $label, $description, $id) = $item;
+            	} else {
+                	list($actionName, $args, $label, $description) = $item;
+                	$id = null;            	    
+            	}
                 $this->item($actionName, $args, $label, $description, $id);
             }
 
