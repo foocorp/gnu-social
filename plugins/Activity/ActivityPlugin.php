@@ -203,14 +203,18 @@ class ActivityPlugin extends Plugin
         return true;
     }
 
-    function onEndJoinGroup($group, $user)
+    function onEndJoinGroup($group, $profile)
     {
         // Only do this if config is enabled
         if(!$this->JoinGroup) return true;
         
-        $profile = $user->getProfile();
+        $user = $profile->getUser();
         
-        $rendered = sprintf(_m('<em><a href="%s">%s</a> joined the group &quot;<a href="%s">%s</a>&quot;</em>.'),
+        if (empty($user)) {
+            return true;
+        }
+        
+        $rendered = sprintf(_m('<em><a href="%s">%s</a> joined the group <a href="%s">%s</a></em>.'),
             				$profile->profileurl,
             				$profile->getBestName(),
                             $group->homeUrl(),
@@ -221,8 +225,8 @@ class ActivityPlugin extends Plugin
                             $group->getBestName(),
 			    			$group->homeUrl());
 
-		$mem = Group_member::staticGet(array('group_id' => $group->id,
-											 'profile_id' => $profile->id));
+		$mem = Group_member::pkeyGet(array('group_id' => $group->id,
+										   'profile_id' => $profile->id));
 											 
         $notice = Notice::saveNew($user->id,
                                   $content,
@@ -234,14 +238,18 @@ class ActivityPlugin extends Plugin
         return true;
     }
 
-    function onEndLeaveGroup($group, $user)
+    function onEndLeaveGroup($group, $profile)
     {
         // Only do this if config is enabled
         if(!$this->LeaveGroup) return true;
         
-        $profile = $user->getProfile();
+        $user = $profile->getUser();
         
-        $rendered = sprintf(_m('<em><a href="%s">%s</a> left the group &quot;<a href="%s">%s</a>&quot;</em>.'),
+        if (empty($user)) {
+            return true;
+        }
+        
+        $rendered = sprintf(_m('<em><a href="%s">%s</a> left the group <a href="%s">%s</a></em>.'),
             				$profile->profileurl,
             				$profile->getBestName(),
                             $group->homeUrl(),
