@@ -529,6 +529,18 @@ class User_group extends Managed_DataObject
         // MAGICALLY put fields into current scope
         // @fixme kill extract(); it makes debugging absurdly hard
 
+		$defaults = array('nickname' => null,
+						  'fullname' => null,
+						  'homepage' => null,
+						  'description' => null,
+						  'location' => null,
+						  'uri' => null,
+						  'mainpage' => null,
+						  'aliases' => array(),
+						  'userid' => null);
+		
+		$fields = array_merge($defaults, $fields);
+		
         extract($fields);
 
         $group = new User_group();
