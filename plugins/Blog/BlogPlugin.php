@@ -194,7 +194,7 @@ class BlogPlugin extends MicroAppPlugin
     {
         if ($notice->object_type == Blog_entry::TYPE) {
             $entry = Blog_entry::fromNotice($notice);
-            if (exists($entry)) {
+            if (!empty($entry)) {
                 $entry->delete();
             }
         }
