@@ -71,15 +71,31 @@ class BlogEntryListItem extends NoticeListItemAdapter
         $out->element('a', array('href' => $notice->bestUrl()), $entry->title);
         $out->elementEnd('h4');
 
-        if (!empty($entry->summary)) {
-            $out->elementStart('div', 'blog-entry-summary');
-            $out->raw($entry->summary);
-            $out->elementEnd('div');
-        } else {
-            // XXX: hide content initially; click More... for full text.
+        // XXX: kind of a hack
+
+        $actionName = $out->trimmed('action');
+
+        if ($actionName == 'shownotice' ||
+            $actionName == 'showblogentry' ||
+            $actionName == 'conversation') {
+
             $out->elementStart('div', 'blog-entry-content');
             $out->raw($entry->content);
             $out->elementEnd('div');
+
+        } else {
+
+            if (!empty($entry->summary)) {
+                $out->elementStart('div', 'blog-entry-summary');
+                $out->raw($entry->summary);
+                $out->elementEnd('div');
+            }
+
+            $url = ($entry->url) ? $entry->url : $notice->bestUrl();
+            $out->element('a',
+                          array('href' => $url,
+                                'class' => 'blog-entry-link'),
+                          _('More...'));
         }
     }
 }
