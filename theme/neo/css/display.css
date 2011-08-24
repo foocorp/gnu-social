@@ -580,7 +580,6 @@ div.entry-content a.response:after {
     text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
 }
 
-
 #form_login p.form_guide, #form_register #settings_rememberme p.form_guide, #form_openid_login #settings_rememberme p.form_guide, #settings_twitter_remove p.form_guide, #design_background-image_onoff p.form_guide {
     margin-left: 26%;
 }
@@ -839,9 +838,8 @@ ul.bookmark-tags a:hover {
     color: #777;
 }
 
-#bookmarkpopup #submit {
-    float: right;
-    margin-right: 0px;
+#bookmarkpopup #bookmark-submit {
+    min-width: 100px;
 }
 
 #bookmarkpopup fieldset fieldset {
@@ -1158,6 +1156,11 @@ td.entity_profile {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FB6104', endColorstr='#fc8035',GradientType=0 );
 }
 
+#wrap .vevent form.processing input.submit {
+    text-indent: 0;
+    background: #ff9d63;
+}
+
 #input_form_event .form_settings .form_data {
     float: left;
 }
@@ -1343,6 +1346,10 @@ li.notice-answer + li.notice {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9d63', endColorstr='#FB6104',GradientType=0 );
 }
 
+#qna-answer-submit {
+    min-width: 100px;
+}
+
 .question .question-description input.submit:hover, .question .answer-content input.submit:hover {
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.6);
     background: #ff9d63;
@@ -1379,6 +1386,10 @@ label[for=blog-entry-content] {
 
 .notice div.poll-content {
     opacity: 1;
+}
+
+#poll-response-submit {
+    min-width: 100px;
 }
 
 /* SNOD CompanyLogo styling */
