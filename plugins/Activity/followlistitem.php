@@ -45,34 +45,7 @@ if (!defined('STATUSNET')) {
  * @link      http://status.net/
  */
 
-class FollowListItem extends NoticeListItemAdapter
+class FollowListItem extends SystemListItem
 {
-    /**
-     * Show the join activity
-     *
-     * @return void
-     */
-    
-    function showNotice()
-    {
-        $out = $this->nli->out;
-        $out->elementStart('div', 'entry-title');
-        $this->showContent();
-        $out->elementEnd('div');
-    }
-
-    function showContent()
-    {
-        $notice = $this->nli->notice;
-        $out    = $this->nli->out;
-		
-		// FIXME: get the actual data on the leave
-		
-        $out->elementStart('div', 'follow-activity');
-
-        $out->raw($notice->rendered);
-        
-        $out->elementEnd('div');
-    } 
 }
 

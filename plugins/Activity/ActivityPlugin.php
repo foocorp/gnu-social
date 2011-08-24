@@ -67,6 +67,7 @@ class ActivityPlugin extends Plugin
         case 'LeaveListItem':
         case 'FollowListItem':
         case 'UnfollowListItem':
+        case 'SystemListItem':
             include_once $dir . '/'.strtolower($cls).'.php';
             return false;
         default:

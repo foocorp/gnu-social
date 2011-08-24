@@ -3,7 +3,7 @@
  * StatusNet - the distributed open-source microblogging tool
  * Copyright (C) 2011, StatusNet, Inc.
  *
- * List item for when you join a group
+ * Superclass for system event items
  * 
  * PHP version 5
  *
@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @category  Cache
+ * @category  Activity
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @copyright 2011 StatusNet, Inc.
@@ -35,7 +35,7 @@ if (!defined('STATUSNET')) {
 }
 
 /**
- * NoticeListItemAdapter for join activities
+ * NoticeListItemAdapter for system activities
  *
  * @category  General
  * @package   StatusNet
@@ -45,29 +45,47 @@ if (!defined('STATUSNET')) {
  * @link      http://status.net/
  */
 
-class JoinListItem extends SystemListItem
+abstract class SystemListItem extends NoticeListItemAdapter
 {
+    /**
+     * Show the activity
+     *
+     * @return void
+     */
+    
+    function showNotice()
+    {
+        $out = $this->nli->out;
+        $out->elementStart('div', 'entry-title');
+        $this->showContent();
+        $out->elementEnd('div');
+    }
+
     function showContent()
     {
         $notice = $this->nli->notice;
         $out    = $this->nli->out;
-
-		$mem = Group_member::staticGet('uri', $notice->uri);
 		
-        if (!empty($mem)) {
-            $out->elementStart('div', 'join-activity');
-        	$profile = $mem->getMember();
-        	$group = $mem->getGroup();
-        	$out->raw(sprintf(_m('<em><a href="%s">%s</a> joined the group <a href="%s">%s</a></em>.'),
-            					$profile->profileurl,
-            					$profile->getBestName(),
-                            	$group->homeUrl(),
-                            	$group->getBestName()));
-        
-            $out->elementEnd('div');
-        } else {
-            parent::showContent();
-        }
-    } 
-}
+		// FIXME: get the actual data on the leave
+		
+        $out->elementStart('div', 'system-activity');
 
+        $out->raw($notice->rendered);
+        
+        $out->elementEnd('div');
+    } 
+
+    function showNoticeOptions()
+    {
+        if (Event::handle('StartShowNoticeOptions', array($this))) {
+            $user = common_current_user();
+            if (!empty($user)) {
+                $this->nli->out->elementStart('div', 'notice-options');
+                $this->showFaveForm();
+                $this->showReplyLink();
+                $this->nli->out->elementEnd('div');
+            }
+            Event::handle('EndShowNoticeOptions', array($this));
+        }
+    }
+}

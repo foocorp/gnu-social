@@ -3,7 +3,7 @@
  * StatusNet - the distributed open-source microblogging tool
  * Copyright (C) 2011, StatusNet, Inc.
  *
- * Title of module
+ * List item for when you leave a group
  * 
  * PHP version 5
  *
@@ -35,7 +35,7 @@ if (!defined('STATUSNET')) {
 }
 
 /**
- * NoticeListItemAdapter for join activities
+ * NoticeListItemAdapter for leave activities
  *
  * @category  General
  * @package   StatusNet
@@ -45,34 +45,7 @@ if (!defined('STATUSNET')) {
  * @link      http://status.net/
  */
 
-class LeaveListItem extends NoticeListItemAdapter
+class LeaveListItem extends SystemListItem
 {
-    /**
-     * Show the join activity
-     *
-     * @return void
-     */
-    
-    function showNotice()
-    {
-        $out = $this->nli->out;
-        $out->elementStart('div', 'entry-title');
-        $this->showContent();
-        $out->elementEnd('div');
-    }
-
-    function showContent()
-    {
-        $notice = $this->nli->notice;
-        $out    = $this->nli->out;
-		
-		// FIXME: get the actual data on the leave
-		
-        $out->elementStart('div', 'leave-activity');
-
-        $out->raw($notice->rendered);
-        
-        $out->elementEnd('div');
-    } 
 }
 
