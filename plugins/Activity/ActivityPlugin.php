@@ -289,6 +289,10 @@ class ActivityPlugin extends Plugin
 		$adapter = null;
 		
 		switch ($notice->verb) {
+        case ActivityVerb::FAVORITE:
+        case ActivityVerb::UNFAVORITE:
+			$adapter = new SystemListItem($nli);
+			break;
 		case ActivityVerb::JOIN:
 			$adapter = new JoinListItem($nli);
 			break;
