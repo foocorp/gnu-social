@@ -278,7 +278,7 @@ class Memcached_DataObject extends Safe_DataObject
         // We only cache keys -- not objects!
 
     	foreach ($keyVals as $keyVal) {
-    	    $l = self::cacheGet(sprintf("%s:list-ids:%s:%s", $cls, $keyCol, $keyVal));
+    	    $l = self::cacheGet(sprintf("%s:list-ids:%s:%s", strtolower($cls), $keyCol, $keyVal));
     	    if ($l !== false) {
     	        $pkeyMap[$keyVal] = $l;
                 foreach ($l as $pkey) {
@@ -322,7 +322,7 @@ class Memcached_DataObject extends Safe_DataObject
                 }
             }       
 	    	foreach ($toFetch as $keyVal) {
-                self::cacheSet(sprintf("%s:list-ids:%s:%s", $cls, $keyCol, $keyVal),
+                self::cacheSet(sprintf("%s:list-ids:%s:%s", strtolower($cls), $keyCol, $keyVal),
                                $pkeyMap[$keyVal]);
             }      
         }
