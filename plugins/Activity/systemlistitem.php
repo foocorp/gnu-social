@@ -45,7 +45,7 @@ if (!defined('STATUSNET')) {
  * @link      http://status.net/
  */
 
-abstract class SystemListItem extends NoticeListItemAdapter
+class SystemListItem extends NoticeListItemAdapter
 {
     /**
      * Show the activity
@@ -56,7 +56,7 @@ abstract class SystemListItem extends NoticeListItemAdapter
     function showNotice()
     {
         $out = $this->nli->out;
-        $out->elementStart('div', 'entry-title');
+        $out->elementStart('div');
         $this->showContent();
         $out->elementEnd('div');
     }
