@@ -99,6 +99,7 @@ class ActivityPlugin extends Plugin
                                       $content,
                                       ActivityPlugin::SOURCE,
                                       array('rendered' => $rendered,
+                                            'replies' => array($other->getUri()),
                                       		'verb' => ActivityVerb::FOLLOW,
                                       		'object_type' => ActivityObject::PERSON,
                                       		'uri' => $sub->uri));
@@ -132,6 +133,7 @@ class ActivityPlugin extends Plugin
                                       $content,
                                       ActivityPlugin::SOURCE,
                                       array('rendered' => $rendered,
+                                            'replies' => array($other->getUri()),
                                       		'uri' => $uri,
                                       		'verb' => ActivityVerb::UNFOLLOW,
                                       		'object_type' => ActivityObject::PERSON));
@@ -167,6 +169,7 @@ class ActivityPlugin extends Plugin
                                       $content,
                                       ActivityPlugin::SOURCE,
                                       array('rendered' => $rendered,
+                                            'replies' => array($author->getUri()),
                                       		'uri' => $fave->getURI(),
                                       		'verb' => ActivityVerb::FAVORITE,
                                       		'object_type' => (($notice->verb == ActivityVerb::POST) ?
@@ -203,6 +206,7 @@ class ActivityPlugin extends Plugin
                                       $content,
                                       ActivityPlugin::SOURCE,
                                       array('rendered' => $rendered,
+                                            'replies' => array($author->getUri()),
                                       		'uri' => $uri,
                                       		'verb' => ActivityVerb::UNFAVORITE,
                                       		'object_type' => (($notice->verb == ActivityVerb::POST) ?
@@ -240,6 +244,7 @@ class ActivityPlugin extends Plugin
                                   $content,
                                   ActivityPlugin::SOURCE,
                                   array('rendered' => $rendered,
+                                        'groups' => array($group->id),
                                   		'uri' => $mem->getURI(),
                                   		'verb' => ActivityVerb::JOIN,
                                   		'object_type' => ActivityObject::GROUP));
@@ -277,6 +282,7 @@ class ActivityPlugin extends Plugin
                                   $content,
                                   ActivityPlugin::SOURCE,
                                   array('rendered' => $rendered,
+                                        'groups' => array($group->id),
                                   		'uri' => $uri,
                                   		'verb' => ActivityVerb::LEAVE,
                                   		'object_type' => ActivityObject::GROUP));
