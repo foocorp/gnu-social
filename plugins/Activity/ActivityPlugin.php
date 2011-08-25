@@ -48,6 +48,7 @@ if (!defined('STATUSNET')) {
 class ActivityPlugin extends Plugin
 {
     const VERSION = '0.1';
+    const SOURCE  = 'system';
 
     // Flags to switch off certain activity notices
     public $StartFollowUser = true;
@@ -96,7 +97,7 @@ class ActivityPlugin extends Plugin
 
             $notice = Notice::saveNew($user->id,
                                       $content,
-                                      'activity',
+                                      ActivityPlugin::SOURCE,
                                       array('rendered' => $rendered,
                                       		'verb' => ActivityVerb::FOLLOW,
                                       		'object_type' => ActivityObject::PERSON,
@@ -129,7 +130,7 @@ class ActivityPlugin extends Plugin
                             
             $notice = Notice::saveNew($user->id,
                                       $content,
-                                      'activity',
+                                      ActivityPlugin::SOURCE,
                                       array('rendered' => $rendered,
                                       		'uri' => $uri,
                                       		'verb' => ActivityVerb::UNFOLLOW,
@@ -164,7 +165,7 @@ class ActivityPlugin extends Plugin
 
             $notice = Notice::saveNew($user->id,
                                       $content,
-                                      'activity',
+                                      ActivityPlugin::SOURCE,
                                       array('rendered' => $rendered,
                                       		'uri' => $fave->getURI(),
                                       		'verb' => ActivityVerb::FAVORITE,
@@ -200,7 +201,7 @@ class ActivityPlugin extends Plugin
                             	
             $notice = Notice::saveNew($user->id,
                                       $content,
-                                      'activity',
+                                      ActivityPlugin::SOURCE,
                                       array('rendered' => $rendered,
                                       		'uri' => $uri,
                                       		'verb' => ActivityVerb::UNFAVORITE,
@@ -237,7 +238,7 @@ class ActivityPlugin extends Plugin
 											 
         $notice = Notice::saveNew($user->id,
                                   $content,
-                                  'activity',
+                                  ActivityPlugin::SOURCE,
                                   array('rendered' => $rendered,
                                   		'uri' => $mem->getURI(),
                                   		'verb' => ActivityVerb::JOIN,
@@ -274,7 +275,7 @@ class ActivityPlugin extends Plugin
 
         $notice = Notice::saveNew($user->id,
                                   $content,
-                                  'activity',
+                                  ActivityPlugin::SOURCE,
                                   array('rendered' => $rendered,
                                   		'uri' => $uri,
                                   		'verb' => ActivityVerb::LEAVE,
