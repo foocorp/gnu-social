@@ -320,6 +320,50 @@ class ActivityPlugin extends Plugin
 
     function onEndNoticeAsActivity($notice, &$activity)
     {
+		switch ($notice->verb) {
+        case ActivityVerb::FAVORITE:
+            $fave = Fave::staticGet('uri', $notice->uri);
+            if (!empty($fave)) {
+                $notice = Notice::staticGet('id', $fave->notice_id);
+                if (!empty($notice)) {
+                    $target = $notice->asActivity();
+                    if ($target->verb == ActivityVerb::POST) {
+                        // "I like the thing you posted"
+                        $activity->objects = $target->objects;
+                    } else {
+                        // "I like that you did whatever you did"
+                        $activity->objects = array($target);
+                    }
+                }
+            }
+            break;
+        case ActivityVerb::UNFAVORITE:
+            // FIXME: do something here
+			break;
+		case ActivityVerb::JOIN:
+            $mem = Group_member::staticGet('uri', $notice->uri);
+            if (!empty($mem)) {
+                $group = $mem->getGroup();
+                $activity->objects = array(ActivityObject::fromGroup($group));
+            }
+            break;
+		case ActivityVerb::LEAVE:
+            // FIXME: ????
+			break;
+		case ActivityVerb::FOLLOW:
+            $sub = Subscription::staticGet('uri', $notice->uri);
+            if (!empty($sub)) {
+                $profile = Profile::staticGet('id', $sub->subscribed);
+                if (!empty($profile)) {
+                    $activity->objects = array(ActivityObject::fromProfile($profile));
+                }
+            }
+			break;
+		case ActivityVerb::UNFOLLOW:
+            // FIXME: ????
+			break;
+		}
+
     	return true;
     }
 
