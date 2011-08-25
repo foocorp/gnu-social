@@ -699,7 +699,7 @@ class ActivityObject
                 // XXX: Not sure what the best avatar is to use for the
                 // author's "image". For now, I'm using the large size.
 
-                $avatarLarge      = null;
+                $imgLink          = null;
                 $avatarMediaLinks = array();
 
                 foreach ($this->avatarLinks as $a) {
@@ -724,7 +724,9 @@ class ActivityObject
                 $object['avatarLinks'] = $avatarMediaLinks; // extension
 
                 // image
-                $object['image']  = $imgLink->asArray();
+                if (!empty($imgLink)) {
+                    $object['image']  = $imgLink->asArray();
+                }
             }
 
             // objectType
