@@ -239,7 +239,6 @@ class ThreadedNoticeListItem extends NoticeListItem
                         $item = new ThreadedNoticeListMoreItem($moreCutoff, $this->out, count($notices));
                         $item->show();
                     }
-                    NoticeList::prefill($notices, AVATAR_MINI_SIZE);
                     foreach (array_reverse($notices) as $notice) {
                         if (Event::handle('StartShowThreadedNoticeSub', array($this, $this->notice, $notice))) {
                             $item = new ThreadedNoticeListSubItem($notice, $this->notice, $this->out);
