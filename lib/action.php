@@ -277,6 +277,11 @@ class Action extends HTMLOutputter // lawsuit
             $this->cssLink('css/display.css', $baseTheme, $media);
         }
         $this->cssLink('css/display.css', $mainTheme, $media);
+
+        // Additional styles for RTL languages
+        if (is_rtl(common_language())) {
+            $this->cssLink('css/rtl.css', $mainTheme, $media);
+        }
     }
 
     /**

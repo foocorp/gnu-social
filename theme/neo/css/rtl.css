@@ -1,0 +1,157 @@
+body {
+    direction: rtl;
+}
+
+span.rtl{
+    direction: rtl !important;
+}
+
+#content .notice .entry-title{
+    direction: ltr;
+}
+
+.form_notice textarea{
+    direction: ltr;
+}
+
+#site_nav_global_primary ul{
+    float: left;
+}
+
+.notice div.entry-content {
+    float: right;
+}
+
+#content .notice .threaded-replies .notice div.entry-content{
+    clear: right;
+    float: right;
+}
+
+.threaded-replies {
+    border-right: 3px solid #ECECF2;
+    border-left: 0;
+    margin-right: 59px;
+    margin-left: 0;
+}
+
+address{
+    float: right;
+}
+
+#site_nav_global_primary {
+    left: 0;
+    right: auto;
+}
+
+.input_form .form_settings .submit{
+    float: left;
+}
+
+.input_form .form_settings fieldset fieldset{
+    float: right;
+}
+
+.input_form fieldset fieldset label{
+    right: 6px;
+    text-align: right;
+}
+
+#input_form_event .form_settings .form_data li{
+    float: right;
+}
+
+.notice .author {
+    direction: rtl;
+    float: right;
+    margin-left: 8px;
+    margin-right: 0;
+}
+
+.section .notice .author {
+    margin-left: 0;
+}
+
+.threaded-replies .form_notice #notice_action-submit {
+    right: 10px;
+}
+
+.form_notice input.submit{
+    float: right;
+}
+
+#export_data li a{
+    padding-right: 30px;
+    padding-left: 0;
+    background-position: right center;
+}
+
+#content .notice .threaded-replies .notice .entry-title{
+    margin: 2px 35px 0 7px;
+}
+
+#content .notice .entry-title {
+    margin: 2px 59px 0 7px;
+}
+
+#content .notice .author .photo{
+    right: 0;
+}
+
+.notice-options{
+    float: left;
+}
+
+.notice div.entry-content {
+    margin-right: 59px;
+    margin-left: 0;
+}
+
+#core .vcard .photo {
+    margin-left: 11px;
+    margin-right: 0;
+}
+
+.threaded-replies .notice-reply-comments {
+    margin: 2px 10px 4px 0;
+}
+
+#shownotice .notice div.entry-content {
+    margin-right: 0;
+}
+
+.notice .addressees:before {
+    content: "◂";
+}
+
+#content thead th {
+    text-align: right;
+}
+
+.profile_list th.current a {
+    background-position: left top;
+    padding-left: 25px;
+}
+
+.form_settings .form_data textarea, .form_settings .form_data select, .form_settings .form_data input {
+    float: right;
+}
+
+.form_settings .form_data label {
+    float: right;
+}
+
+.form_settings label {
+    text-align: left;
+}
+
+#form_search input.submit {
+    margin-right: 5px;
+}
+
+#site_nav_local_views {
+    float: right;
+}
+
+#content {
+    float: right;
+}
