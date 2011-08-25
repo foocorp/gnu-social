@@ -258,14 +258,18 @@ class ApiTimelinePublicAction extends ApiPrivateAuthAction
     {
         $notices = array();
 
-        $notice = Notice::publicStream(
-            ($this->page - 1) * $this->count, $this->count, $this->since_id,
-            $this->max_id
-        );
+        $profile = ($this->auth_user) ? $this->auth_user->getProfile() : null;
 
-        while ($notice->fetch()) {
-            $notices[] = clone($notice);
-        }
+        $stream = new PublicNoticeStream($profile);
+
+        $notice = $stream->getNotices(($this->page - 1) * $this->count,
+                                      $this->count,
+                                      $this->since_id,
+                                      $this->max_id);
+
+        $notices = $notice->fetchAll();
+
+        NoticeList::prefill($notices);
 
         return $notices;
     }
