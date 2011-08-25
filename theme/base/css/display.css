@@ -1514,6 +1514,15 @@ content:'☠';
 font-size:150%;
 }
 
+#content .notice-source-system div.entry-title, .notice-source-system div.entry-content {
+    margin-left: 0;
+} 
+
+#content .notice-source-system div.entry-title {
+    font-style: italic;
+    min-height: 0;
+} 
+
 /* override OStatus plugin style */
 
 #form_ostatus_connect.form_settings.dialogbox, #form_ostatus_sub.dialogbox {

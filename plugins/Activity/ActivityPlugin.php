@@ -84,7 +84,7 @@ class ActivityPlugin extends Plugin
         if (!empty($user)) {
         	$sub = Subscription::pkeyGet(array('subscriber' => $subscriber->id,
                                            	   'subscribed' => $other->id));
-            $rendered = sprintf(_m('<em><a href="%s">%s</a> started following <a href="%s">%s</a></em>.'),
+            $rendered = sprintf(_m('<a href="%s">%s</a> started following <a href="%s">%s</a>.'),
             					$subscriber->profileurl,
             					$subscriber->getBestName(),
                                 $other->profileurl,
@@ -113,7 +113,7 @@ class ActivityPlugin extends Plugin
         if(!$this->StopFollowUser) return true;
         $user = $subscriber->getUser();
         if (!empty($user)) {
-            $rendered = sprintf(_m('<em><a href="%s">%s</a> stopped following <a href="%s">%s</a></em>.'),
+            $rendered = sprintf(_m('<a href="%s">%s</a> stopped following <a href="%s">%s</a>.'),
             					$subscriber->profileurl,
             					$subscriber->getBestName(),
                                 $other->profileurl,
@@ -154,7 +154,7 @@ class ActivityPlugin extends Plugin
             $fave   = Fave::pkeyGet(array('user_id' => $user->id,
             						  	  'notice_id' => $notice->id));
             
-            $rendered = sprintf(_m('<em><a href="%s">%s</a> liked <a href="%s">%s\'s update</a></em>.'),
+            $rendered = sprintf(_m('<a href="%s">%s</a> liked <a href="%s">%s\'s update</a>.'),
             					$profile->profileurl,
             					$profile->getBestName(),
                                 $notice->bestUrl(),
@@ -186,7 +186,7 @@ class ActivityPlugin extends Plugin
 
         if (!empty($user)) {
             $author = Profile::staticGet('id', $notice->profile_id);
-            $rendered = sprintf(_m('<em><a href="%s">%s</a> stopped liking <a href="%s">%s\'s update</a></em>.'),
+            $rendered = sprintf(_m('<a href="%s">%s</a> stopped liking <a href="%s">%s\'s update</a>.'),
             					$profile->profileurl,
             					$profile->getBestName(),
                                 $notice->bestUrl(),
@@ -226,7 +226,7 @@ class ActivityPlugin extends Plugin
             return true;
         }
         
-        $rendered = sprintf(_m('<em><a href="%s">%s</a> joined the group <a href="%s">%s</a></em>.'),
+        $rendered = sprintf(_m('<a href="%s">%s</a> joined the group <a href="%s">%s</a>.'),
             				$profile->profileurl,
             				$profile->getBestName(),
                             $group->homeUrl(),
@@ -262,7 +262,7 @@ class ActivityPlugin extends Plugin
             return true;
         }
         
-        $rendered = sprintf(_m('<em><a href="%s">%s</a> left the group <a href="%s">%s</a></em>.'),
+        $rendered = sprintf(_m('<a href="%s">%s</a> left the group <a href="%s">%s</a>.'),
             				$profile->profileurl,
             				$profile->getBestName(),
                             $group->homeUrl(),

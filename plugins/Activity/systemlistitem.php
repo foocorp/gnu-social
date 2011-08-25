@@ -56,7 +56,7 @@ class SystemListItem extends NoticeListItemAdapter
     function showNotice()
     {
         $out = $this->nli->out;
-        $out->elementStart('div');
+        $out->elementStart('div', 'entry-title');
         $this->showContent();
         $out->elementEnd('div');
     }
