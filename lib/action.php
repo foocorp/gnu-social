@@ -280,7 +280,9 @@ class Action extends HTMLOutputter // lawsuit
 
         // Additional styles for RTL languages
         if (is_rtl(common_language())) {
-            $this->cssLink('css/rtl.css', $mainTheme, $media);
+            if (file_exists(Theme::file('css/rtl.css'))) {
+                $this->cssLink('css/rtl.css', $mainTheme, $media);
+            }
         }
     }
 
