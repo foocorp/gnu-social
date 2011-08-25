@@ -1521,6 +1521,13 @@ font-size:150%;
 #content .notice-source-system div.entry-title {
     font-style: italic;
     min-height: 0;
+}
+
+span.rtl {
+    display: block;
+    direction: rtl;
+    text-align: right;
+    float: right;
 } 
 
 /* override OStatus plugin style */
