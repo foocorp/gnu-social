@@ -58,7 +58,7 @@ class JoinListItem extends SystemListItem
             $out->elementStart('div', 'join-activity');
         	$profile = $mem->getMember();
         	$group = $mem->getGroup();
-        	$out->raw(sprintf(_m('<em><a href="%s">%s</a> joined the group <a href="%s">%s</a></em>.'),
+        	$out->raw(sprintf(_m('<a href="%s">%s</a> joined the group <a href="%s">%s</a>.'),
             					$profile->profileurl,
             					$profile->getBestName(),
                             	$group->homeUrl(),

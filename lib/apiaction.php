@@ -241,13 +241,13 @@ class ApiAction extends Action
 
         // Is the requesting user following this user?
         $twitter_user['following'] = false;
-        $twitter_user['statusnet:blocking'] = false;
+        $twitter_user['statusnet_blocking'] = false;
         $twitter_user['notifications'] = false;
 
         if (isset($this->auth_user)) {
 
             $twitter_user['following'] = $this->auth_user->isSubscribed($profile);
-            $twitter_user['statusnet:blocking']  = $this->auth_user->hasBlocked($profile);
+            $twitter_user['statusnet_blocking']  = $this->auth_user->hasBlocked($profile);
 
             // Notifications on?
             $sub = Subscription::pkeyGet(array('subscriber' =>
@@ -317,6 +317,7 @@ class ApiAction extends Action
 
         $twitter_status['source'] = $source;
         $twitter_status['id'] = intval($notice->id);
+        $twitter_status['statusnet_conversation_id'] = intval($notice->conversation);
 
         $replier_profile = null;
 
