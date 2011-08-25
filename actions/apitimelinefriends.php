@@ -267,15 +267,14 @@ class ApiTimelineFriendsAction extends ApiBareAuthAction
             break;
         case 'as':
             header('Content-Type: ' . ActivityStreamJSONDocument::CONTENT_TYPE);
-            $doc = new ActivityStreamJSONDocument($this->auth_user);
-            $doc->setTitle($title);
-            $doc->addLink($link,'alternate', 'text/html');
+            $doc = new ActivityStreamJSONDocument($this->auth_user, $title);
+            $doc->addLink($link, 'alternate', 'text/html');
             $doc->addItemsFromNotices($this->notices);
             $this->raw($doc->asString());
             break;
         default:
             // TRANS: Client error displayed when coming across a non-supported API method.
-            $this->clientError(_('API method not found.'), $code = 404);
+            $this->clientError(_('API method not found.'), 404);
             break;
         }
     }
