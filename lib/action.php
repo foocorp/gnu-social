@@ -575,6 +575,14 @@ class Action extends HTMLOutputter // lawsuit
         $this->elementStart('div', array('id' => 'site_nav_global_primary'));
         $pn = new PrimaryNav($this);
         $pn->show();
+
+        $user = common_current_user();
+
+        if (!empty($user) || !common_config('site', 'private')) {
+            $form = new SearchForm($this);
+            $form->show();
+        }
+
         $this->elementEnd('div');
     }
 
