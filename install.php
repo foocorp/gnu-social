@@ -248,6 +248,20 @@ class WebInstaller extends Installer
                     </li>
                 </ul>
             </fieldset>
+            <fieldset id="settings_profile">
+                <legend>Installation profile</legend>
+                <ul class="form_data">
+                    <li>
+                        <label for="profile">Profile</label>
+                        <select id="profile" name="profile">
+                            <option value="private">Private</option>
+                            <option value="community">Community</option>
+                            <option value ="public">Public</option>
+                        </select>
+                        <p class="form_guide">Initial access settings for your site</p>
+                    </li>
+                </ul>
+            </fieldset>
             <input type="submit" name="submit" class="submit" value="Submit" />
         </fieldset>
     </form>
