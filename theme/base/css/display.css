@@ -1346,6 +1346,7 @@ margin-left:11px;
 .form_settings .form_data li {
 width:100%;
 float:left;
+    margin-bottom: 22px;
 }
 .form_settings .form_data label {
 float:left;
@@ -1356,6 +1357,12 @@ float:left;
 margin-left:1.795%;
 float:left;
 }
+
+.form_settings .form_data select {
+    margin-top: 0px;
+}
+
+
 .form_settings .form_data input {
 width:39%;
 }
@@ -1374,17 +1381,13 @@ margin-left:0;
 
 .form_settings label {
 margin-top:2px;
-width:24%;
+    width: 25%;
     text-align: right;
 }
 
-.form_settings label.checkbox {
-    text-align: left;
-}
-
 .form_settings input.checkbox, .form_settings input.radio {
-    margin-left: 24%;
-    margin-top: 2px;
+    margin-left: 25%;
+    margin-top: 3px;
     position: relative;
     left: -14px;
 }
@@ -1393,17 +1396,21 @@ width:24%;
     width: auto;
     max-width: 60%;
     position: relative;
-    left: -30px;
+    left: -25px;
+}
+
+.form_settings label.checkbox {
+    text-align: left;
+    line-height: 1.2em;
+}
+
+.form_settings label.radio {
+    text-align: left;
+    margin: 0px;
 }
 
 .form_settings li input.radio {
     clear: left;
-}
-
-.form_settings label.radio {
-    margin-left: 10px;
-    margin-right: 10px;
-    text-align: left;
 }
 
 .form_actions label {
@@ -1457,41 +1464,14 @@ width:50px;
 
 .form_settings .form_data p.form_guide {
 clear:both;
-margin-left:26%;
+    margin-left: 27%;
 margin-bottom:0;
+    line-height: 1.2em;
+    padding-top: 4px;
 }
 
 .form_settings p {
 margin-bottom:11px;
-}
-
-.form_settings input.checkbox,
-.form_settings input.radio {
-margin-top:3px;
-margin-left:0;
-}
-.form_settings label.checkbox {
-font-weight:normal;
-margin-top:0;
-margin-right:0;
-margin-left:11px;
-float:left;
-width:90%;
-}
-.form_settings label.radio {
-margin-top:0;
-margin-right:47px;
-margin-left:11px;
-width:auto;
-}
-
-#form_login p.form_guide,
-#form_register #settings_rememberme p.form_guide,
-#form_openid_login #settings_rememberme p.form_guide,
-#settings_twitter_remove p.form_guide,
-#form_search ul.form_data #q,
-#design_background-image_onoff p.form_guide {
-margin-left:0;
 }
 
 .form_settings .form_note {
@@ -1593,7 +1573,7 @@ background:none;
 }
 
 .form_settings .form_note {
-background-color:#9BB43E;
+    background-color: #d1f7cb;
 }
 
 #form_settings_photo .form_data {
@@ -2187,8 +2167,8 @@ width:68%;
 #showapplication .entity_profile .entity_fn {
 margin-left:0;
 }
-#showapplication .entity_profile .entity_fn .fn:before,
-#showapplication .entity_profile .entity_fn .fn:after {
+#showapplication .entity_profile .fn:before,
+#showapplication .entity_profile .fn:after {
 content:'';
 }
 #showapplication .entity_data {

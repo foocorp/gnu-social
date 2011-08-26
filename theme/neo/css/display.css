@@ -598,20 +598,16 @@ div.entry-content a.response:after {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FB6104', endColorstr='#fc8035',GradientType=0 );
 }
 
-.form_settings input#settings_design_reset, .form_settings input.cancel {
-    background: #e2e2e2;
-    color: #8e181b;
-    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
-}
-
-.form_settings input#settings_design_reset:hover, .form_settings input.cancel:hover {
+.form_settings input#settings_design_reset, .form_settings input#cancel, #form_action-no {
     background: #f2f2f2;
-    color: #8e181b;
+    color: #d7621c;
     text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
 }
 
-#form_login p.form_guide, #form_register #settings_rememberme p.form_guide, #form_openid_login #settings_rememberme p.form_guide, #settings_twitter_remove p.form_guide, #design_background-image_onoff p.form_guide {
-    margin-left: 26%;
+.form_settings input#settings_design_reset:hover, .form_settings input#cancel:hover, #form_action-no:hover {
+    background: #fff;
+    color: #d7621c;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 .form_settings fieldset fieldset {
