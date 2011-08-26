@@ -89,7 +89,7 @@ class SearchForm extends Form
 
     function id()
     {
-        return 'search';
+        return 'header-search';
     }
 
     /**
