@@ -152,4 +152,18 @@ abstract class Managed_DataObject extends Memcached_DataObject
 
         return $style;
     }
+
+    function links()
+    {
+        $links = array();
+
+        $table = call_user_func(array(get_class($this), 'schemaDef'));
+
+        foreach ($table['foreign keys'] as $keyname => $keydef) {
+            if (count($keydef) == 2 && is_string($keydef[0]) && is_array($keydef[1]) && count($keydef[1]) == 1) {
+                $links[$keydef[1][0]] = $keydef[0].':'.$keydef[1][1];
+            }
+        }
+        return $links;
+    }
 }
