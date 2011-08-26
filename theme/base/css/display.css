@@ -176,13 +176,17 @@ option {
 address {
     float: left;
     position: relative;
-    top: 1px;
-    left: 2px;
-    margin: 0px;
+    margin: -2px 0 3px 0;
     padding: 0px;
-    height: 24px;
-    width: 148px;
     z-index: 99;
+}
+
+address a, address img {
+    display: block;
+}
+
+address img {
+    max-width: 158px;
 }
 
 address img + .fn {

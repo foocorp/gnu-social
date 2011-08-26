@@ -12,8 +12,8 @@
 }
 
 address {
-    width: auto;
-    left: 0px;
+    margin: 1px 0 0;
+    height: 24px;
 }
 
 address img {
