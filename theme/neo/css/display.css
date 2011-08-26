@@ -519,24 +519,18 @@ div.entry-content a.response:after {
     top: 46px;
 }
 
-#aside_primary #entity_remote_subscribe a:hover {
-    background-color: #fff !important;
+.entity_subscribe .dialogbox, .entity_tag .dialogbox {
+    border: 1px solid #aaa;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
 }
 
-#entity_remote_subscribe .dialogbox {
-    border: 1px solid #7B4E82;
-    border-radius: 8px;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-}
-
-#entity_remote_subscribe input {
-    padding-left: 4px;
-}
-
-#entity_remote_subscribe .submit_dialogbox {
-    margin-top: 10px;
-    float: right;
+.entity_subscribe .dialogbox input.submit_dialogbox, .entity_tag .dialogbox input.submit_dialogbox {
+    color: #fff !important;
 }
 
 #filter_tags_item .submit {
@@ -572,7 +566,10 @@ div.entry-content a.response:after {
 }
 
 
-.form_notice input.submit, .form_settings input.submit, .form_settings input.cancel, #form_invite input.submit {
+.form_notice input.submit, .form_settings input.submit, .form_settings input.cancel, #form_invite input.submit,
+.entity_subscribe .dialogbox input.submit_dialogbox,
+.entity_tag .dialogbox input.submit_dialogbox
+ {
     height: 1.9em;
     padding: 0px 10px;
     color:#fff;
@@ -590,7 +587,10 @@ div.entry-content a.response:after {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9d63', endColorstr='#FB6104',GradientType=0 );
 }
 
-.form_notice input.submit:hover, .form_settings input.submit:hover, .form_settings input.cancel:hover, #form_invite input.submit:hover {
+.form_notice input.submit:hover, .form_settings input.submit:hover, .form_settings input.cancel:hover, #form_invite input.submit:hover,
+.entity_subscribe .dialogbox input.submit_dialogbox:hover,
+.entity_tag .dialogbox input.submit_dialogbox:hover
+ {
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.6);
     background: #ff9d63;
     background: -moz-linear-gradient(top, #FB6104 , #fc8035);

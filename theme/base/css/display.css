@@ -1517,48 +1517,6 @@ span.rtl {
     float: right;
 } 
 
-/* override OStatus plugin style */
-
-#form_ostatus_connect.form_settings.dialogbox, #form_ostatus_sub.dialogbox {
-    width: 76%;
-}
-
-#form_ostatus_connect.form_settings.dialogbox legend {
-    font-size: 1.4em;
-    font-weight: normal;
-    padding-bottom: 10px;    
-}
-
-#form_ostatus_connect.dialogbox .form_data label,
-#form_ostatus_sub.dialogbox .form_data label {
-    font-weight: normal;
-    font-size: 1.2em;
-    width:34%;
-}
-
-#form_ostatus_connect.dialogbox .form_data input,
-#form_ostatus_sub.dialogbox .form_data input {
-    float: right;
-    width: 52% !important;
-}
-
-#form_ostatus_connect.dialogbox .form_data .form_guide,
-#form_ostatus_sub.dialogbox .form_data .form_guide {
-    background: none !important;
-    text-align: right;
-    margin-right: 16px;
-}
-
-.section .entity_actions {
-    margin-right: 0px !important;
-}
-
-.section .entity_remote_subscribe {
-    color:#000 !important;
-    padding-left: 26px !important;
-    background-position: 4px -1183px !important;
-}
-
 #filter_tags ul li,
 .entity_send-a-message .form_notice,
 .form_settings fieldset fieldset,
@@ -1759,11 +1717,6 @@ display:block;
 text-align:left;
 width:100%;
 }
-.entity_actions a {
-text-decoration:none;
-font-weight:bold;
-display:block;
-}
 
 .entity_actions a, .entity_actions input, .entity_actions p {
     color: #333 !important;
@@ -1772,6 +1725,8 @@ display:block;
 }
 
 .entity_actions a {
+text-decoration:none;
+display:block;
     padding: 3px 4px 4px 28px;
 }
 
