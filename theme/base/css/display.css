@@ -218,6 +218,13 @@ address .poweredby {
     margin-right: 0px;
 }
 
+#header-search {
+    float: right;
+    position: relative;
+    top: -8px;
+    margin-left: 10px;
+}
+
 #site_notice { 
     float: right;
     width: 300px;
