@@ -132,12 +132,6 @@ class GroupqueueAction extends GroupAction
                        _('A list of users awaiting approval to join this group.'));
     }
 
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
-    }
-
     function showContent()
     {
         $offset = ($this->page-1) * PROFILES_PER_PAGE;
