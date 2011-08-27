@@ -122,12 +122,6 @@ class BlockedfromgroupAction extends GroupAction
                        _('A list of the users blocked from joining this group.'));
     }
 
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
-    }
-
     function showContent()
     {
         $offset = ($this->page-1) * PROFILES_PER_PAGE;

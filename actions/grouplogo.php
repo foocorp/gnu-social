@@ -457,10 +457,4 @@ class GrouplogoAction extends GroupAction
 
         $this->autofocus('avatarfile');
     }
-
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
-    }
 }

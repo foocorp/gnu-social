@@ -139,12 +139,6 @@ class EditgroupAction extends GroupAction
         $this->showPage();
     }
 
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
-    }
-
     function showContent()
     {
         $form = new GroupEditForm($this, $this->group);
