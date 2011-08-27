@@ -92,15 +92,6 @@ class GroupNav extends Menu
                                          $action_name == 'groupqueue',
                                          'nav_group_pending');
                 }
-                $this->out->menuItem(common_local_url('grouplogo', array('nickname' =>
-                                                                         $nickname)),
-                                     // TRANS: Menu item in the group navigation page. Only shown for group administrators.
-                                     _m('MENU','Logo'),
-                                     // TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-                                     // TRANS: %s is the nickname of the group.
-                                     sprintf(_m('TOOLTIP','Add or edit %s logo'), $nickname),
-                                     $action_name == 'grouplogo',
-                                     'nav_group_logo');
             }
             Event::handle('EndGroupGroupNav', array($this));
         }

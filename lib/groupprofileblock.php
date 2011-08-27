@@ -122,6 +122,15 @@ class GroupProfileBlock extends ProfileBlock
                                     // TRANS: Link text for link on user profile.
                                     _m('BUTTON','Edit'));
                 $this->out->elementEnd('li');
+                $this->out->elementStart('li', 'entity_edit');
+                $this->out->element('a', array('href' => common_local_url('grouplogo',
+                                                                          array('nickname' => $this->group->nickname)),
+                                               // TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
+                                               // TRANS: %s is the nickname of the group.
+                                               'title' => sprintf(_m('TOOLTIP','Add or edit %s logo'), $nickname)),
+                                    // TRANS: Link text for link on user profile.
+                                    _m('MENU','Logo'));
+                $this->out->elementEnd('li');
             }
             if ($cur && $cur->hasRight(Right::DELETEGROUP)) {
                 $this->out->elementStart('li', 'entity_delete');
