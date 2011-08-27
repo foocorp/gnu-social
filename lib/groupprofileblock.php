@@ -112,12 +112,24 @@ class GroupProfileBlock extends ProfileBlock
                 Event::handle('EndGroupSubscribe', array($this, $this->group));
             }
             $this->out->elementEnd('li');
+            if ($cur && $cur->isAdmin($this->group)) {
+                $this->out->elementStart('li', 'entity_edit');
+                $this->out->element('a', array('href' => common_local_url('editgroup',
+                                                                          array('nickname' => $this->group->nickname)),
+                                               // TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
+                                               // TRANS: %s is the nickname of the group.
+                                               'title' => sprintf(_m('TOOLTIP','Edit %s group properties'), $nickname)),
+                                    // TRANS: Link text for link on user profile.
+                                    _m('BUTTON','Edit'));
+                $this->out->elementEnd('li');
+            }
             if ($cur && $cur->hasRight(Right::DELETEGROUP)) {
                 $this->out->elementStart('li', 'entity_delete');
                 $df = new DeleteGroupForm($this->out, $this->group);
                 $df->show();
                 $this->out->elementEnd('li');
             }
+
             Event::handle('EndGroupActionsList', array($this, $this->group));
         }
         $this->out->elementEnd('ul');
