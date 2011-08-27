@@ -778,7 +778,7 @@ class Profile extends Managed_DataObject
 
         $faves = new Fave();
         $faves->user_id = $this->id;
-        $cnt = (int) $faves->count('distinct notice_id');
+        $cnt = (int) $faves->count('notice_id');
 
         if (!empty($c)) {
             $c->set(Cache::key('profile:fave_count:'.$this->id), $cnt);
