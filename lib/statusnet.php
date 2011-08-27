@@ -113,6 +113,10 @@ class StatusNet
         StatusNet::initDefaults($server, $path);
         StatusNet::loadConfigFile($conffile);
 
+        $sprofile = common_config('site', 'profile');
+        if (!empty($sprofile)) {
+            StatusNet::loadSiteProfile($sprofile);
+        }
         // Load settings from database; note we need autoload for this
         Config::loadSettings();
 
@@ -300,6 +304,13 @@ class StatusNet
             /* Work internally in UTC */
             date_default_timezone_set('UTC');
         }
+    }
+
+    public static function loadSiteProfile($name)
+    {
+        global $config;
+        $settings = SiteProfile::getSettings($name);
+        $config = array_replace_recursive($config, $settings);
     }
 
     protected function _sn_to_path($sn)
