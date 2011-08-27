@@ -63,7 +63,7 @@ class User_openid extends Memcached_DataObject
         return array(false, false, false);
     }
 
-    Static function hasOpenID($user_id)
+    static function hasOpenID($user_id)
     {
         $oid = new User_openid();
 
