@@ -233,6 +233,7 @@ class NeweventAction extends Action
         } catch (ClientException $ce) {
             if ($this->boolean('ajax')) {
                 $this->outputAjaxError($ce->getMessage());
+                return;
             } else {
                 $this->error = $ce->getMessage();
                 $this->showPage();
