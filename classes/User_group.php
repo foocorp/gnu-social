@@ -209,6 +209,16 @@ class User_group extends Managed_DataObject
         return $member_count;
     }
 
+    function getBlockedCount()
+    {
+        // XXX: WORM cache this
+
+        $block = new Group_block();
+        $block->group_id = $this->id;
+
+        return $block->count();
+    }
+
     function getAdmins($offset=0, $limit=null)
     {
         $qry =

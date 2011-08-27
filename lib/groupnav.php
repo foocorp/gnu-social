@@ -92,15 +92,6 @@ class GroupNav extends Menu
                                          $action_name == 'groupqueue',
                                          'nav_group_pending');
                 }
-                $this->out->menuItem(common_local_url('blockedfromgroup', array('nickname' =>
-                                                                                $nickname)),
-                                     // TRANS: Menu item in the group navigation page. Only shown for group administrators.
-                                     _m('MENU','Blocked'),
-                                     // TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-                                     // TRANS: %s is the nickname of the group.
-                                     sprintf(_m('TOOLTIP','%s blocked users'), $nickname),
-                                     $action_name == 'blockedfromgroup',
-                                     'nav_group_blocked');
                 $this->out->menuItem(common_local_url('grouplogo', array('nickname' =>
                                                                          $nickname)),
                                      // TRANS: Menu item in the group navigation page. Only shown for group administrators.

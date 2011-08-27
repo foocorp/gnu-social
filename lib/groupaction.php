@@ -126,6 +126,10 @@ class GroupAction extends Action
     function showSections()
     {
         $this->showMembers();
+        $cur = common_current_user();
+        if ($cur && $cur->isAdmin($this->group)) {
+            $this->showBlocked();
+        }
         $this->showAdmins();
         $cloud = new GroupTagCloudSection($this, $this->group);
         $cloud->show();
@@ -179,6 +183,53 @@ class GroupAction extends Action
             }
 
             Event::handle('EndShowGroupMembersMiniList', array($this));
+        }
+
+        $this->elementEnd('div');
+    }
+
+    function showBlocked()
+    {
+        $member = $this->group->getBlocked(0, MEMBERS_PER_SECTION);
+
+        if (!$member) {
+            return;
+        }
+
+        $this->elementStart('div', array('id' => 'entity_blocked',
+                                         'class' => 'section'));
+
+        if (Event::handle('StartShowGroupBlockedMiniList', array($this))) {
+             
+            $this->elementStart('h2');
+
+            $this->element('a', array('href' => common_local_url('blockedfromgroup', array('nickname' =>
+                                                                                           $this->group->nickname))),
+                           _('Blocked'));
+
+            $this->text(' ');
+
+            $this->text($this->group->getBlockedCount());
+            
+            $this->elementEnd('h2');
+
+            $gmml = new GroupBlockedMiniList($member, $this);
+            $cnt = $gmml->show();
+            if ($cnt == 0) {
+                // TRANS: Description for mini list of group members on a group page when the group has no members.
+                $this->element('p', null, _('(None)'));
+            }
+
+            // @todo FIXME: Should be shown if a group has more than 27 members, but I do not see it displayed at
+            //              for example http://identi.ca/group/statusnet. Broken?
+            if ($cnt > MEMBERS_PER_SECTION) {
+                $this->element('a', array('href' => common_local_url('blockedfromgroup',
+                                                                     array('nickname' => $this->group->nickname))),
+                               // TRANS: Link to all group members from mini list of group members if group has more than n members.
+                               _('All members'));
+            }
+
+            Event::handle('EndShowGroupBlockedMiniList', array($this));
         }
 
         $this->elementEnd('div');
@@ -250,6 +301,28 @@ class GroupMembersMiniList extends ProfileMiniList
 }
 
 class GroupMembersMiniListItem extends ProfileMiniListItem
+{
+    function linkAttributes()
+    {
+        $aAttrs = parent::linkAttributes();
+
+        if (common_config('nofollow', 'members')) {
+            $aAttrs['rel'] .= ' nofollow';
+        }
+
+        return $aAttrs;
+    }
+}
+
+class GroupBlockedMiniList extends ProfileMiniList
+{
+    function newListItem($profile)
+    {
+        return new GroupBlockedMiniListItem($profile, $this->action);
+    }
+}
+
+class GroupBlockedMiniListItem extends ProfileMiniListItem
 {
     function linkAttributes()
     {
