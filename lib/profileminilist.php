@@ -58,22 +58,15 @@ class ProfileMiniList extends ProfileList
         return new ProfileMiniListItem($profile, $this->action);
     }
 
-    function showProfiles()
+    function maxProfiles()
     {
-        $cnt = 0;
-
-        while ($this->profile->fetch()) {
-            $cnt++;
-            if ($cnt > PROFILES_PER_MINILIST) {
-                break;
-            }
-            $pli = $this->newListItem($this->profile);
-            $pli->show();
-        }
-
-        return $cnt;
+        return PROFILES_PER_MINILIST;
     }
 
+    function avatarSize()
+    {
+        return AVATAR_MINI_SIZE;
+    }
 }
 
 class ProfileMiniListItem extends ProfileListItem

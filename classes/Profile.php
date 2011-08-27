@@ -98,12 +98,16 @@ class Profile extends Managed_DataObject
         return $this->_user;
     }
 
-	protected $_avatars = array();
+	protected $_avatars;
 	
     function getAvatar($width, $height=null)
     {
         if (is_null($height)) {
             $height = $width;
+        }
+
+        if (!isset($this->_avatars)) {
+            $this->_avatars = array();
         }
 
 		if (array_key_exists($width, $this->_avatars)) {
