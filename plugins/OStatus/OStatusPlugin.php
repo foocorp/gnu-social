@@ -350,8 +350,7 @@ class OStatusPlugin extends Plugin
      */
     function onStartProfileCompletionSearch($action, $profile, $search_engine) {
         if ($action->field == 'uri') {
-            $user = new User();
-            $profile->joinAdd($user);
+            $profile->joinAdd(array('id', 'user:id'));
             $profile->whereAdd('uri LIKE "%' . $profile->escape($q) . '%"');
             $profile->query();
 
