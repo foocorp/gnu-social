@@ -55,43 +55,8 @@ class GroupmembersAction extends GroupAction
     function prepare($args)
     {
         parent::prepare($args);
+
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
-
-        $nickname_arg = $this->arg('nickname');
-        $nickname = common_canonical_nickname($nickname_arg);
-
-        // Permanent redirect on non-canonical nickname
-
-        if ($nickname_arg != $nickname) {
-            $args = array('nickname' => $nickname);
-            if ($this->page != 1) {
-                $args['page'] = $this->page;
-            }
-            common_redirect(common_local_url('groupmembers', $args), 301);
-            return false;
-        }
-
-        if (!$nickname) {
-            // TRANS: Client error displayed when trying to view group members without providing a group nickname.
-            $this->clientError(_('No nickname.'), 404);
-            return false;
-        }
-
-        $local = Local_group::staticGet('nickname', $nickname);
-
-        if (!$local) {
-            // TRANS: Client error displayed when trying to view group members for a non-existing group.
-            $this->clientError(_('No such group.'), 404);
-            return false;
-        }
-
-        $this->group = User_group::staticGet('id', $local->group_id);
-
-        if (!$this->group) {
-            // TRANS: Client error displayed when trying to view group members for an object that is not a group.
-            $this->clientError(_('No such group.'), 404);
-            return false;
-        }
 
         return true;
     }
@@ -123,12 +88,6 @@ class GroupmembersAction extends GroupAction
         $this->element('p', 'instructions',
                        // TRANS: Page notice for group members page.
                        _('A list of the users in this group.'));
-    }
-
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
     }
 
     function showContent()

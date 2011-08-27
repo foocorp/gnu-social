@@ -35,8 +35,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 require_once INSTALLDIR.'/lib/noticelist.php';
 require_once INSTALLDIR.'/lib/feedlist.php';
 
-define('MEMBERS_PER_SECTION', 27);
-
 /**
  * Group main page
  *
@@ -46,7 +44,7 @@ define('MEMBERS_PER_SECTION', 27);
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
  */
-class ShowgroupAction extends Action
+class ShowgroupAction extends GroupAction
 {
     /** page we're viewing. */
     var $page = null;
@@ -99,52 +97,6 @@ class ShowgroupAction extends Action
 
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
 
-        $nickname_arg = $this->arg('nickname');
-        $nickname = common_canonical_nickname($nickname_arg);
-
-        // Permanent redirect on non-canonical nickname
-
-        if ($nickname_arg != $nickname) {
-            $args = array('nickname' => $nickname);
-            if ($this->page != 1) {
-                $args['page'] = $this->page;
-            }
-            common_redirect(common_local_url('showgroup', $args), 301);
-            return false;
-        }
-
-        if (!$nickname) {
-            // TRANS: Client error displayed if no nickname argument was given requesting a group page.
-            $this->clientError(_('No nickname.'), 404);
-            return false;
-        }
-
-        $local = Local_group::staticGet('nickname', $nickname);
-
-        if (!$local) {
-            $alias = Group_alias::staticGet('alias', $nickname);
-            if ($alias) {
-                $args = array('id' => $alias->group_id);
-                if ($this->page != 1) {
-                    $args['page'] = $this->page;
-                }
-                common_redirect(common_local_url('groupbyid', $args), 301);
-                return false;
-            } else {
-                common_log(LOG_NOTICE, "Couldn't find local group for nickname '$nickname'");
-                // TRANS: Client error displayed if no remote group with a given name was found requesting group page.
-                $this->clientError(_('No such group.'), 404);
-                return false;
-            }
-        }
-
-        $this->group = User_group::staticGet('id', $local->group_id);
-
-        if (!$this->group) {
-                // TRANS: Client error displayed if no local group with a given name was found requesting group page.
-            $this->clientError(_('No such group.'), 404);
-            return false;
-        }
 
         $this->userProfile = Profile::current();
 
@@ -169,17 +121,6 @@ class ShowgroupAction extends Action
     function handle($args)
     {
         $this->showPage();
-    }
-
-    /**
-     * Local menu
-     *
-     * @return void
-     */
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
     }
 
     /**
@@ -255,102 +196,6 @@ class ShowgroupAction extends Action
                                        $this->group->nickname)));
     }
 
-    /**
-     * Fill in the sidebar.
-     *
-     * @return void
-     */
-    function showSections()
-    {
-        $this->showMembers();
-        $this->showStatistics();
-        $this->showAdmins();
-        $cloud = new GroupTagCloudSection($this, $this->group);
-        $cloud->show();
-    }
-
-    /**
-     * Show mini-list of members
-     *
-     * @return void
-     */
-    function showMembers()
-    {
-        $member = $this->group->getMembers(0, MEMBERS_PER_SECTION);
-
-        if (!$member) {
-            return;
-        }
-
-        $this->elementStart('div', array('id' => 'entity_members',
-                                         'class' => 'section'));
-
-        if (Event::handle('StartShowGroupMembersMiniList', array($this))) {
-
-            // TRANS: Header for mini list of group members on a group page (h2).
-            $this->element('h2', null, _('Members'));
-
-            $gmml = new GroupMembersMiniList($member, $this);
-            $cnt = $gmml->show();
-            if ($cnt == 0) {
-                // TRANS: Description for mini list of group members on a group page when the group has no members.
-                $this->element('p', null, _('(None)'));
-            }
-
-            // @todo FIXME: Should be shown if a group has more than 27 members, but I do not see it displayed at
-            //              for example http://identi.ca/group/statusnet. Broken?
-            if ($cnt > MEMBERS_PER_SECTION) {
-                $this->element('a', array('href' => common_local_url('groupmembers',
-                                                                     array('nickname' => $this->group->nickname))),
-                               // TRANS: Link to all group members from mini list of group members if group has more than n members.
-                               _('All members'));
-            }
-
-            Event::handle('EndShowGroupMembersMiniList', array($this));
-        }
-
-        $this->elementEnd('div');
-    }
-
-    /**
-     * Show list of admins
-     *
-     * @return void
-     */
-    function showAdmins()
-    {
-        $adminSection = new GroupAdminSection($this, $this->group);
-        $adminSection->show();
-    }
-
-    /**
-     * Show some statistics
-     *
-     * @return void
-     */
-    function showStatistics()
-    {
-        $this->elementStart('div', array('id' => 'entity_statistics',
-                                         'class' => 'section'));
-
-        // TRANS: Header for group statistics on a group page (h2).
-        $this->element('h2', null, _('Statistics'));
-
-        $this->elementStart('dl');
-
-        // TRANS: Label for group creation date.
-        $this->element('dt', null, _m('LABEL','Created'));
-        $this->element('dd', 'entity_created', date('j M Y',
-                                                 strtotime($this->group->created)));
-        // @todo FIXME: i18n issue. This label gets a colon added from somewhere. Should be part of the message.
-        // TRANS: Label for member count in statistics on group page.
-        $this->element('dt', null, _m('LABEL','Members'));
-        $this->element('dd', null, $this->group->getMemberCount());
-        $this->elementEnd('dl');
-
-        $this->elementEnd('div');
-    }
-
     function showAnonymousMessage()
     {
         if (!(common_config('site','closed') || common_config('site','inviteonly'))) {
@@ -377,79 +222,5 @@ class ShowgroupAction extends Action
         $this->elementStart('div', array('id' => 'anon_notice'));
         $this->raw(common_markup_to_html($m));
         $this->elementEnd('div');
-    }
-
-    function noticeFormOptions()
-    {
-        $options = parent::noticeFormOptions();
-        $cur = common_current_user();
-
-        if (!empty($cur) && $cur->isMember($this->group)) {
-            $options['to_group'] =  $this->group;
-        }
-
-        return $options;
-    }
-}
-
-class GroupAdminSection extends ProfileSection
-{
-    var $group;
-
-    function __construct($out, $group)
-    {
-        parent::__construct($out);
-        $this->group = $group;
-    }
-
-    function getProfiles()
-    {
-        return $this->group->getAdmins();
-    }
-
-    function title()
-    {
-        // TRANS: Title for list of group administrators on a group page.
-        return _m('TITLE','Admins');
-    }
-
-    function divId()
-    {
-        return 'group_admins';
-    }
-
-    function moreUrl()
-    {
-        return null;
-    }
-}
-
-class GroupMembersMiniList extends ProfileMiniList
-{
-    function newListItem($profile)
-    {
-        return new GroupMembersMiniListItem($profile, $this->action);
-    }
-}
-
-class GroupMembersMiniListItem extends ProfileMiniListItem
-{
-    function linkAttributes()
-    {
-        $aAttrs = parent::linkAttributes();
-
-        if (common_config('nofollow', 'members')) {
-            $aAttrs['rel'] .= ' nofollow';
-        }
-
-        return $aAttrs;
-    }
-}
-
-class ThreadingGroupNoticeStream extends ThreadingNoticeStream
-{
-    function __construct($group, $profile)
-    {
-        parent::__construct(new GroupNoticeStream($group, $profile));
     }
 }
