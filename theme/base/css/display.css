@@ -297,7 +297,7 @@ address .poweredby {
     display: none;
 }
 
-.form_notice #notice_data-text-label { /* XXX remove? */
+.form_notice #notice_data-text-label { /* TODO can remove this now? */
     display: none;
 }
 
@@ -524,7 +524,7 @@ address .poweredby {
 
 .checkbox-wrapper.unchecked label.checkbox {
     padding-left: 20px;
-    background: url(../images/lock_open.png) no-repeat 0px 0px;
+    background: url(../images/icons/lock_open.png) no-repeat 0px 0px;
     opacity: 0.6;
 }
 
@@ -535,7 +535,7 @@ address .poweredby {
 
 .checkbox-wrapper.checked label.checkbox {
     padding-left: 20px;
-    background: url(../images/lock.png) no-repeat 0px 0px;
+    background: url(../images/icons/lock.png) no-repeat 0px 0px;
     color: red;
     opacity: 1;
 }
@@ -597,10 +597,6 @@ address .poweredby {
     clear: both;
     width: 100%;
     margin-bottom: 20px;
-}
-
-body[id$=adminpanel] #aside_primary {
-    display:none;
 }
 
 
@@ -834,7 +830,7 @@ clear:both;
 
 #jOverlayContent,
 #jOverlayContent #content,
-#jOverlayContent #content_inner { /* XXX still needed? */
+#jOverlayContent #content_inner { /* TODO can remove this now? */
 width: auto !important;
 margin-bottom:0;
 }
@@ -1479,10 +1475,11 @@ margin-bottom:11px;
 }
 
 .form_settings .form_note {
-border-radius:4px;
--moz-border-radius:4px;
--webkit-border-radius:4px;
 padding:0 7px;
+}
+
+.form_settings .form_response {
+    margin-top: 10px;
 }
 
 .form_settings input {

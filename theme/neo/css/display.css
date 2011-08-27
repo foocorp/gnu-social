@@ -102,7 +102,7 @@ h6 {font-size: 1em;}
     background: #364A84;
     background: -moz-linear-gradient(top, #516499 , #364a84);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#516499), color-stop(100%,#364a84));
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#516499', endColorstr='#364a84',GradientType=0 ); /* XXX move all to ie.css */ 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#516499', endColorstr='#364a84',GradientType=0 ); /* TODO move all filters to ie.css */ 
 }
 
 #site_nav_global_primary li {
@@ -222,7 +222,7 @@ h6 {font-size: 1em;}
 .form_notice textarea ,
 .input_form .form_settings li input,
 .input_form .form_settings li textarea,
-.threaded-replies .placeholder {
+.threaded-replies .placeholder { /* TODO combine all these declarations */
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -446,6 +446,25 @@ div.entry-content a.response:after {
     margin-top: 4px;
 }
 
+.notice-options .form_repeat.dialogbox {
+    margin-right: 0px;
+    border: 1px solid #aaa;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+    -webkit-box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.4);
+}
+
+.notice-options .form_repeat.dialogbox legend {
+    padding-top: 10px;
+}
+
+.notice-options .form_repeat.dialogbox input.submit_dialogbox {
+    min-width: 80px;
+}
+
 #content .threaded-replies .notice .author .photo {
     box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
@@ -568,8 +587,9 @@ div.entry-content a.response:after {
 
 .form_notice input.submit, .form_settings input.submit, .form_settings input.cancel, #form_invite input.submit,
 .entity_subscribe .dialogbox input.submit_dialogbox,
-.entity_tag .dialogbox input.submit_dialogbox
- {
+.entity_tag .dialogbox input.submit_dialogbox,
+.form_repeat.dialogbox input.submit_dialogbox
+{ /* TODO combine all these declarations */
     height: 1.9em;
     padding: 0px 10px;
     color:#fff;
@@ -589,8 +609,9 @@ div.entry-content a.response:after {
 
 .form_notice input.submit:hover, .form_settings input.submit:hover, .form_settings input.cancel:hover, #form_invite input.submit:hover,
 .entity_subscribe .dialogbox input.submit_dialogbox:hover,
-.entity_tag .dialogbox input.submit_dialogbox:hover
- {
+.entity_tag .dialogbox input.submit_dialogbox:hover,
+.form_repeat.dialogbox input.submit_dialogbox:hover
+{
     text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.6);
     background: #ff9d63;
     background: -moz-linear-gradient(top, #FB6104 , #fc8035);
@@ -742,7 +763,61 @@ padding-right:0;
     margin-top: 60px;
 }
 
+/* Limited-scope */
+
+.limited-scope .entry-content .timestamp {
+    padding-left: 20px;
+    position: relative;
+}
+
+.limited-scope .entry-content .timestamp:before {
+    content: url(../images/lock.png);
+    position: absolute;
+    top: -2px;
+    left: 0px;
+}
+
+.limited-scope li .entry-content .timestamp {
+    padding-left: 0px;
+}
+
+.limited-scope li .entry-content .timestamp:before {
+    content: none;
+}
+
+.limited-scope li.limited-scope .entry-content .timestamp {
+    padding-left: 20px;
+}
+
+.limited-scope li.limited-scope .entry-content .timestamp:before {
+    content: url(../images/lock.png);
+    position: absolute;
+    top: -2px;
+    left: 0px;
+}
+
+/* Blog */
+
+label[for=blog-entry-content] {
+    display: none !important;
+}
+
+#input_form_blog td {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+#input_form_blog td.mceToolbar {
+    padding-top: 4px;
+}
+
+h4.blog-entry-title {
+    margin-bottom: 8px;
+    line-height: 1.2em;
+}
+
 /* Bookmark specific styles */
+/* TODO separate base styles and move to plugin */
 
 .bookmark h3 {
     margin: 0px 0px 8px 0px;
@@ -824,10 +899,6 @@ ul.bookmark-tags a:hover {
     opacity: 1;
 }
 
-.bookmark .notice-options {
-    margin-top: 16px;
-}
-
 #bookmarkpopup {
     min-width: 600px;
     margin-top: 0px;
@@ -883,6 +954,7 @@ ul.bookmark-tags a:hover {
 }
 
 /* Onboard specific styles */
+/* TODO move to plugin */
 
 #cboxOverlay{
     background: url(../images/lightbox_bg.png) repeat 0 0 !important;
@@ -968,6 +1040,7 @@ ul.bookmark-tags a:hover {
 }
 
 /* Billing specific styles */
+/* TODO move to plugin */
 
 #content table.billing_info {
     margin-top: 10px;
@@ -992,6 +1065,7 @@ ul.bookmark-tags a:hover {
 }
 
 /* Directory specific styles */
+/* TODO separate base styles and move to plugin */
 
 div#profile_directory div.alpha_nav > a {
     border-left: 1px solid #ccc !important;
@@ -1132,6 +1206,7 @@ td.entity_profile {
 }
 
 /* Event specific styles */
+/* TODO separate base styles and move to plugin */
 
 .notice .vevent div {
     margin-bottom: 8px;
@@ -1215,40 +1290,7 @@ label[for=event-starttime], label[for=event-endtime] {
     width: 120px;
 }
 
-/* Limited-scope specific styles */
-
-.limited-scope .entry-content .timestamp {
-    padding-left: 20px;
-    position: relative;
-}
-
-.limited-scope .entry-content .timestamp:before {
-    content: url(../images/lock.png);
-    position: absolute;
-    top: -2px;
-    left: 0px;
-}
-
-.limited-scope li .entry-content .timestamp {
-    padding-left: 0px;
-}
-
-.limited-scope li .entry-content .timestamp:before {
-    content: none;
-}
-
-.limited-scope li.limited-scope .entry-content .timestamp {
-    padding-left: 20px;
-}
-
-.limited-scope li.limited-scope .entry-content .timestamp:before {
-    content: url(../images/lock.png);
-    position: absolute;
-    top: -2px;
-    left: 0px;
-}
-
-/* QnA specific styles */
+/* QnA */
 
 .question div.question-description {
     font-size: 1em;
@@ -1315,21 +1357,6 @@ label[for=event-starttime], label[for=event-endtime] {
     content: none !important;
 }
 
-/* Blog specific styles */
-
-label[for=blog-entry-content] {
-    display: none !important;
-}
-
-#input_form_blog td {
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
-#input_form_blog td.mceToolbar {
-    padding-top: 4px;
-}
-
 /* Poll specific styles */
 
 .notice div.poll-content {
@@ -1341,6 +1368,7 @@ label[for=blog-entry-content] {
 }
 
 /* SNOD CompanyLogo styling */
+/* TODO move to plugin */
 
 #site_nav_local_views a.company_logo {
     width: 138px;
