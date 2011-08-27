@@ -257,6 +257,7 @@ class WebInstaller extends Installer
                             <option value="private">Private</option>
                             <option value="community">Community</option>
                             <option value ="public">Public</option>
+                            <option value ="singleuser">Single User</option>
                         </select>
                         <p class="form_guide">Initial access settings for your site</p>
                     </li>
