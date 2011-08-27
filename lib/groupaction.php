@@ -106,19 +106,6 @@ class GroupAction extends Action
     }
 
     /**
-     * Local menu
-     *
-     * @return void
-     */
-
-    function showObjectNav()
-    {
-        $nav = new GroupNav($this, $this->group);
-        $nav->show();
-    }
-
-
-    /**
      * Fill in the sidebar.
      *
      * @return void
