@@ -447,7 +447,7 @@ class ApiTimelineUserAction extends ApiBareAuthAction
                 } else {
                     $group = User_group::staticGet('uri', $uri);
                     if (!empty($group)) {
-                        $options['groups'][] = $uri;
+                        $options['groups'][] = $group->id;
                     } else {
                         // @fixme: hook for discovery here
                         common_log(LOG_WARNING, sprintf('AtomPub post with unknown attention URI %s', $uri));
