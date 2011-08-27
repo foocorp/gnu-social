@@ -1381,8 +1381,10 @@ class Notice extends Memcached_DataObject
 
             if (!empty($this->repeat_of)) {
                 $repeat = Notice::staticGet('id', $this->repeat_of);
-                $ctx->forwardID  = $repeat->uri;
-                $ctx->forwardUrl = $repeat->bestUrl();
+                if (!empty($repeat)) {
+                    $ctx->forwardID  = $repeat->uri;
+                    $ctx->forwardUrl = $repeat->bestUrl();
+                }
             }
 
             $act->context = $ctx;
