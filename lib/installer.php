@@ -414,7 +414,8 @@ abstract class Installer
             'path' => $this->path,
             'db_database' => $this->db['database'],
             'db_type' => $this->db['type'],
-            'site_profile' => $this->siteProfile
+            'site_profile' => $this->siteProfile,
+            'nickname' => $this->adminNick
         ));
 
         // assemble configuration file in a string
@@ -437,7 +438,13 @@ abstract class Installer
                 "\$config['db']['type'] = {$vals['db_type']};\n\n".
 
                 // site profile
-                "\$config['site']['profile'] = {$vals['site_profile']};\n\n";
+                "\$config['site']['profile'] = {$vals['site_profile']};\n";
+
+        if ($this->siteProfile == "singleuser") {
+            $cfg .= "\$config['singleuser']['nickname'] = {$vals['nickname']};\n\n";
+        } else {
+            $cfg .= "\n";
+        }
 
         // Normalize line endings for Windows servers
         $cfg = str_replace("\n", PHP_EOL, $cfg);
