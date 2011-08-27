@@ -128,6 +128,7 @@ class GroupAction extends Action
         $this->showMembers();
         $cur = common_current_user();
         if ($cur && $cur->isAdmin($this->group)) {
+            $this->showPending();
             $this->showBlocked();
         }
         $this->showAdmins();
@@ -188,11 +189,56 @@ class GroupAction extends Action
         $this->elementEnd('div');
     }
 
+
+    function showPending()
+    {
+        if ($this->group->join_policy != User_group::JOIN_POLICY_MODERATE) {
+            return;
+        }
+
+        $pending = $this->group->getQueueCount();
+
+        if (!$pending) {
+            return;
+        }
+
+        $request = $this->group->getRequests(0, MEMBERS_PER_SECTION);
+
+        if (!$request) {
+            return;
+        }
+
+        $this->elementStart('div', array('id' => 'entity_pending',
+                                         'class' => 'section'));
+
+        if (Event::handle('StartShowGroupPendingMiniList', array($this))) {
+             
+            $this->elementStart('h2');
+
+            $this->element('a', array('href' => common_local_url('groupqueue', array('nickname' =>
+                                                                                     $this->group->nickname))),
+                           _('Pending'));
+
+            $this->text(' ');
+
+            $this->text($pending);
+            
+            $this->elementEnd('h2');
+
+            $gmml = new ProfileMiniList($request, $this);
+            $gmml->show();
+
+            Event::handle('EndShowGroupPendingMiniList', array($this));
+        }
+
+        $this->elementEnd('div');
+    }
+
     function showBlocked()
     {
-        $member = $this->group->getBlocked(0, MEMBERS_PER_SECTION);
+        $blocked = $this->group->getBlocked(0, MEMBERS_PER_SECTION);
 
-        if (!$member) {
+        if (!$blocked) {
             return;
         }
 
@@ -213,7 +259,7 @@ class GroupAction extends Action
             
             $this->elementEnd('h2');
 
-            $gmml = new GroupBlockedMiniList($member, $this);
+            $gmml = new GroupBlockedMiniList($blocked, $this);
             $cnt = $gmml->show();
             if ($cnt == 0) {
                 // TRANS: Description for mini list of group members on a group page when the group has no members.
