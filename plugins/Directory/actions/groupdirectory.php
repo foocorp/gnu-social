@@ -124,7 +124,7 @@ class GroupdirectoryAction extends Action
         // TRANS: Page instructions.
         return _m("After you join a group you can send messages to all other members\n".
                  "using the syntax \"!groupname\".\n\n".
-                 "Browse groups, or search for groups on by their name, location or topic.\n".
+                 "Browse groups, or search for groups by their name, location or topic.\n".
                  "Separate the terms by spaces; they must be three characters or more.") . "\n";
     }
 
