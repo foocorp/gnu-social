@@ -249,11 +249,11 @@ class WebInstaller extends Installer
                 </ul>
             </fieldset>
             <fieldset id="settings_profile">
-                <legend>Installation profile</legend>
+                <legend>Site profile</legend>
                 <ul class="form_data">
                     <li>
-                        <label for="profile">Profile</label>
-                        <select id="profile" name="profile">
+                        <label for="site_profile">Type of site</label>
+                        <select id="site_profile" name="site_profile">
                             <option value="private">Private</option>
                             <option value="community">Community</option>
                             <option value ="public">Public</option>
@@ -298,7 +298,7 @@ STR;
     /**
      * Read and validate input data.
      * May output side effects.
-     * 
+     *
      * @return boolean success
      */
     function prepare()
@@ -318,6 +318,8 @@ STR;
         $this->adminEmail   = $post->string('admin_email');
         $this->adminUpdates = $post->string('admin_updates');
 
+        $this->siteProfile = $post->string('site_profile');
+
         $this->server = $_SERVER['HTTP_HOST'];
         $this->path = substr(dirname($_SERVER['PHP_SELF']), 1);
 
@@ -329,12 +331,16 @@ STR;
         if (!$this->validateAdmin()) {
             $fail = true;
         }
-        
+
         if ($this->adminPass != $adminPass2) {
             $this->updateStatus("Administrator passwords do not match. Did you mistype?", true);
             $fail = true;
         }
-        
+
+        if (!$this->validateSiteProfile()) {
+            $fail = true;
+        }
+
         return !$fail;
     }
 
@@ -373,11 +379,11 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
               <div id="content_wrapper">
                <div id="site_nav_local_views_wrapper">
                 <div id="site_nav_local_views"></div>
-                
+
                 <div id="content">
                      <div id="content_inner">
                         <h1>Install StatusNet</h1>
-<?php 
+<?php
 $installer = new WebInstaller();
 $installer->main();
 ?>
