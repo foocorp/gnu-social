@@ -75,24 +75,6 @@ class GroupNav extends Menu
 
         $this->out->elementStart('ul', array('class' => 'nav'));
         if (Event::handle('StartGroupGroupNav', array($this))) {
-            $this->out->menuItem(common_local_url('showgroup', array('nickname' =>
-                                                                     $nickname)),
-                                 // TRANS: Menu item in the group navigation page.
-                                 _m('MENU','Group'),
-                                 // TRANS: Tooltip for menu item in the group navigation page.
-                                 // TRANS: %s is the nickname of the group.
-                                 sprintf(_m('TOOLTIP','%s group'), $nickname),
-                                 $action_name == 'showgroup',
-                                 'nav_group_group');
-            $this->out->menuItem(common_local_url('groupmembers', array('nickname' =>
-                                                                        $nickname)),
-                                 // TRANS: Menu item in the group navigation page.
-                                 _m('MENU','Members'),
-                                 // TRANS: Tooltip for menu item in the group navigation page.
-                                 // TRANS: %s is the nickname of the group.
-                                 sprintf(_m('TOOLTIP','%s group members'), $nickname),
-                                 $action_name == 'groupmembers',
-                                 'nav_group_members');
 
             $cur = common_current_user();
 

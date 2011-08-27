@@ -126,7 +126,6 @@ class GroupAction extends Action
     function showSections()
     {
         $this->showMembers();
-        $this->showStatistics();
         $this->showAdmins();
         $cloud = new GroupTagCloudSection($this, $this->group);
         $cloud->show();
@@ -149,9 +148,19 @@ class GroupAction extends Action
                                          'class' => 'section'));
 
         if (Event::handle('StartShowGroupMembersMiniList', array($this))) {
-
+             
             // TRANS: Header for mini list of group members on a group page (h2).
-            $this->element('h2', null, _('Members'));
+            $this->elementStart('h2');
+
+            $this->element('a', array('href' => common_local_url('groupmembers', array('nickname' =>
+                                                                                       $this->group->nickname))),
+                           _('Members'));
+
+            $this->text(' ');
+
+            $this->text($this->group->getMemberCount());
+            
+            $this->elementEnd('h2');
 
             $gmml = new GroupMembersMiniList($member, $this);
             $cnt = $gmml->show();
@@ -184,34 +193,6 @@ class GroupAction extends Action
     {
         $adminSection = new GroupAdminSection($this, $this->group);
         $adminSection->show();
-    }
-
-    /**
-     * Show some statistics
-     *
-     * @return void
-     */
-    function showStatistics()
-    {
-        $this->elementStart('div', array('id' => 'entity_statistics',
-                                         'class' => 'section'));
-
-        // TRANS: Header for group statistics on a group page (h2).
-        $this->element('h2', null, _('Statistics'));
-
-        $this->elementStart('dl');
-
-        // TRANS: Label for group creation date.
-        $this->element('dt', null, _m('LABEL','Created'));
-        $this->element('dd', 'entity_created', date('j M Y',
-                                                 strtotime($this->group->created)));
-        // @todo FIXME: i18n issue. This label gets a colon added from somewhere. Should be part of the message.
-        // TRANS: Label for member count in statistics on group page.
-        $this->element('dt', null, _m('LABEL','Members'));
-        $this->element('dd', null, $this->group->getMemberCount());
-        $this->elementEnd('dl');
-
-        $this->elementEnd('div');
     }
 
 

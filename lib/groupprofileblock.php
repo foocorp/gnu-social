@@ -68,7 +68,7 @@ class GroupProfileBlock extends ProfileBlock
 
     function url()
     {
-        return $this->group->mainpage;
+        return $this->group->homeUrl();
     }
 
     function location()
