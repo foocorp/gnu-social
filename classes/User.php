@@ -981,7 +981,7 @@ class User extends Managed_DataObject
             return $user->nickname;
         } catch (Exception $e) {
             if (common_config('singleuser', 'enabled') && common_config('singleuser', 'nickname')) {
-                common_log(LOG_WARN, "Warning: code attempting to pull single-user nickname when the account does not exist. If this is not setup time, this is probably a bug.");
+                common_log(LOG_WARNING, "Warning: code attempting to pull single-user nickname when the account does not exist. If this is not setup time, this is probably a bug.");
                 return common_config('singleuser', 'nickname');
             }
             throw $e;
