@@ -1511,6 +1511,10 @@ font-size:150%;
     min-height: 0;
 }
 
+#content .notice-source-system .notice div.entry-title {
+    font-style: normal;
+}
+
 span.rtl {
     display: block;
     direction: rtl;
