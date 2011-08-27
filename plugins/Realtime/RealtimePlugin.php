@@ -172,6 +172,13 @@ class RealtimePlugin extends Plugin
 
         // Add to the author's timeline
 
+        try {
+            $profile = $notice->getProfile();
+        } catch (Exception $e) {
+            $this->log(LOG_ERR, $e->getMessage());
+            return true;
+        }
+
         $user = User::staticGet('id', $notice->profile_id);
 
         if (!empty($user)) {
