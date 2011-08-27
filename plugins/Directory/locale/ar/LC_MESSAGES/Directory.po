@@ -10,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:20:06+0000\n"
-"Language-Team: Arabic <http://translatewiki.net/wiki/Portal:ar>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:20:14+0000\n"
+"Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-18 16:19:15+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
@@ -40,9 +40,9 @@ msgstr "دليل المستخدمين - %s"
 
 #. TRANS: Page title for user directory.
 #. TRANS: %1$s is the applied filter, %2$d is a page number.
-#, fuzzy, php-format
+#, php-format
 msgid "User directory - %1$s, page %2$d"
-msgstr "دليل المستخدمين - %s، الصفحة %d"
+msgstr "دليل المستخدمين - %1$s، الصفحة %2$d"
 
 #. TRANS: %%site.name%% is the name of the StatusNet site.
 #, php-format
@@ -87,8 +87,8 @@ msgid ""
 "* Try fewer keywords."
 msgstr ""
 "* تأكد من أن كل الكلمات صحيحة التهجئة.\n"
-"*حاول بكلمات متعددة.\n"
-"* حاول بكلمات أكثر عموماّ.\n"
+"*حاول بكلمات أخرى.\n"
+"* حاول بكلمات أكثر عمومًا.\n"
 "* حاول بكلمات أقل."
 
 #. TRANS: Title for group directory page. %d is a page number.
@@ -154,15 +154,15 @@ msgstr "الاسم المستعار"
 
 #. TRANS: Column header in table for timestamp when user was created.
 msgid "Created"
-msgstr "تم إنشاءه"
+msgstr "أنشئ في"
 
 #. TRANS: Column header for number of subscriptions.
 msgid "Subscriptions"
-msgstr ""
+msgstr "الاشتراكات"
 
 #. TRANS: Column header for number of notices.
 msgid "Notices"
-msgstr ""
+msgstr "الإشعارات"
 
 #. TRANS: Column header in table for members of a group.
 msgid "Members"

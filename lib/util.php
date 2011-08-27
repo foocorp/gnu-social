@@ -413,7 +413,7 @@ function common_remembered_user()
         return null;
     }
 
-    $rm = Remember_me::staticGet($code);
+    $rm = Remember_me::staticGet('code', $code);
 
     if (!$rm) {
         common_log(LOG_WARNING, 'No such remember code: ' . $code);
@@ -427,7 +427,7 @@ function common_remembered_user()
         return null;
     }
 
-    $user = User::staticGet($rm->user_id);
+    $user = User::staticGet('id', $rm->user_id);
 
     if (!$user) {
         common_log(LOG_WARNING, 'No such user for rememberme: ' . $rm->user_id);

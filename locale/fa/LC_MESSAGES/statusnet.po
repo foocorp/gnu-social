@@ -19,19 +19,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:48+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:33+0000\n"
 "Last-Translator: Ahmad Sufi Mahmudi\n"
-"Language-Team: Persian <http://translatewiki.net/wiki/Portal:fa>\n"
+"Language-Team: Persian <//translatewiki.net/wiki/Portal:fa>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Language-Code: fa\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -40,12 +40,6 @@ msgid ""
 "properly. The site admins probably know about the problem, but you can "
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
-msgstr ""
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
 msgstr ""
 
 #. TRANS: Error message.
@@ -107,11 +101,12 @@ msgstr "غیر فعال کردن نام‌نوبسی تازه"
 msgid "Closed"
 msgstr "بسته‌شده"
 
-#. TRANS: Title for button to save access settings in site admin panel.
-msgid "Save access settings"
+#. TRANS: Button title to save access settings in site admin panel.
+#, fuzzy
+msgid "Save access settings."
 msgstr "ذخیرهٔ تنظیمات دسترسی"
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -442,16 +437,19 @@ msgstr "مسدود کردن کاربر شکست خورد."
 msgid "Unblock user failed."
 msgstr "باز کردن کاربر ناموفق بود."
 
+#. TRANS: Client exception thrown when no conversation ID is given.
 #, fuzzy
-msgid "no conversation id"
+msgid "No conversation ID."
 msgstr "مکالمه"
 
-#, php-format
-msgid "No conversation with id %d"
-msgstr ""
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+#, fuzzy, php-format
+msgid "No conversation with ID %d."
+msgstr "مکالمه"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
-#. TRANS: Title for page with a conversion (multiple notices in context).
+#, fuzzy
+msgctxt "TITLE"
 msgid "Conversation"
 msgstr "مکالمه"
 
@@ -1759,6 +1757,10 @@ msgstr "تایید نشانی"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "نشانی «%s« برای شما تصدیق شد."
 
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "مکالمه"
+
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, fuzzy
@@ -1832,7 +1834,7 @@ msgstr "«%s» را برای تأیید اینکه می‌خواهید حساب�
 
 #. TRANS: Button title for user account deletion.
 #, fuzzy
-msgid "Permanently delete your account"
+msgid "Permanently delete your account."
 msgstr "شما نمی‌توانید کاربران را پاک کنید."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -2684,7 +2686,7 @@ msgid ""
 "Separate the terms by spaces; they must be 3 characters or more."
 msgstr ""
 "برای جست‌وجوی گروه‌ها در %%site.name%% از نام، مکان یا توصیف‌شان استفاده کنید. "
-"عبارت‌ها را با فاصله جدا کنید؛ آن‌ها باید ۳ نویسه یا بیش‌تر باشند."
+"عبارت‌ها را با فاصله جدا کنید؛ آن‌ها باید ۳ نویسه یا بیشتر باشند."
 
 #. TRANS: Title for page where groups can be searched.
 msgid "Group search"
@@ -2739,8 +2741,8 @@ msgstr "تنظیمات پیام‌رسان فوری"
 #. TRANS: the order and formatting of link text and link should remain unchanged.
 #, fuzzy, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 "شما می‌توانید پیام‌های خود را با استفاده از [پیام‌رسان‌های](%%doc.im%%) Jabber "
 "یا Gtalk ارسال/دریافت کنید. نشانی خود را در این قسمت تنظیم کنید"
@@ -2762,7 +2764,7 @@ msgid ""
 "with further instructions. (Did you add %2$s to your buddy list?)"
 msgstr ""
 "منتظر تایید این نشانی هستیم. لطفا Jabber/Gtalk خود را برای دریافت توضیحات "
-"بیش‌تر بررسی کنید. (آیا %s را به فهرست خود اضافه کرده اید؟) "
+"بیشتر بررسی کنید. (آیا %s را به فهرست خود اضافه کرده اید؟)"
 
 #. TRANS: Field label for IM address.
 msgid "IM address"
@@ -3785,8 +3787,9 @@ msgid "Server to direct SSL requests to."
 msgstr "کارگزار برای هدایت درخواست‌های SSL به"
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-msgid "Save paths"
-msgstr "نشانی ذخیره سازی"
+#, fuzzy
+msgid "Save path settings."
+msgstr "ذخیرهٔ تنظیمات وب‌گاه"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -3929,7 +3932,7 @@ msgid ""
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "**%s** یک گروه کاربری در %%%%site.name%%%%، یک سرویس [میکروبلاگینگ](http://"
 "fa.wikipedia.org/wiki/%D9%85%DB%8C%DA%A9%D8%B1%D9%88%D8%A8%D9%84%D8%A7%DA%AF%"
@@ -3963,7 +3966,7 @@ msgid ""
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "**%s** یک گروه کاربری در %%%%site.name%%%%، یک سرویس [میکروبلاگینگ](http://"
 "fa.wikipedia.org/wiki/%D9%85%DB%8C%DA%A9%D8%B1%D9%88%D8%A8%D9%84%D8%A7%DA%AF%"
@@ -4287,7 +4290,8 @@ msgid "Beyond the page limit (%s)."
 msgstr ""
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "نمی‌توان جریان عمومی را دریافت کرد."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4303,19 +4307,22 @@ msgstr "خط‌زمانی عمومی"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "خوراک جریان عمومی (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "خوراک جریان عمومی (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "خوراک جریان عمومی (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "خوراک جریان عمومی (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4905,7 +4912,7 @@ msgstr ""
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 
@@ -5027,6 +5034,28 @@ msgstr ""
 #. TRANS: Header on the OAuth application page.
 msgid "Application info"
 msgstr "اطلاعات برنامه"
+
+#. TRANS: Field label on application page.
+msgid "Consumer key"
+msgstr ""
+
+#. TRANS: Field label on application page.
+msgid "Consumer secret"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Request token URL"
+msgstr "رمز نامعتبر است."
+
+#. TRANS: Field label on application page.
+msgid "Access token URL"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Authorize URL"
+msgstr "نشانی اینترنتی منبع"
 
 #. TRANS: Note on the OAuth application page about signature support.
 #, fuzzy
@@ -5312,6 +5341,7 @@ msgstr ""
 "باشید که چیزی می‌فرستد!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 #, fuzzy
 msgid "Listed"
 msgstr "مجوز"
@@ -5331,19 +5361,19 @@ msgstr "مشترک‌ها"
 msgid "All subscribers"
 msgstr "تمام مشترک‌ها"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "%1$s، صفحهٔ %2$d"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "پیام‌های برچسب‌دار شده با %1$s، صفحهٔ %2$d"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5385,7 +5415,7 @@ msgstr "خوراک پیام‌های %s (Atom)"
 msgid "FOAF for %s"
 msgstr "FOAF برای %s"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, fuzzy, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "این خط‌زمانی %1$s است، اما %2$s تاکنون چیزی نفرستاده است."
@@ -5398,7 +5428,7 @@ msgstr ""
 "اخیرا چیز جالب توجهی دیده‌اید؟ شما تاکنون پیامی نفرستاده‌اید، الان می‌تواند "
 "زمان خوبی برای شروع باشد :)"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5408,7 +5438,7 @@ msgstr ""
 "اولین کسی باشید که در [این موضوع](%%%%action.newnotice%%%%?status_textarea=%"
 "s) پیام می‌فرستد."
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5423,7 +5453,7 @@ msgstr ""
 "،دارد. ]اکنون بپیوندید[(%%%%action.register%%%%) تا پیام‌های **%s** و بلکه "
 "بیش‌تر را دنبال کنید! (]بیش‌تر بخوانید[(%%%%doc.help%%%%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5626,7 +5656,7 @@ msgstr "متن پیام وب‌گاه"
 msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr "متن پیام عمومی وب‌گاه (حداکثر ۲۵۵ نویسه؛ می‌توان از HTML استفاده کرد)"
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 #, fuzzy
 msgid "Save site notice."
 msgstr "ذخیرهٔ پیام وب‌گاه"
@@ -5828,7 +5858,7 @@ msgstr "نشانی اینترنتی گزارش"
 msgid "Snapshots will be sent to this URL."
 msgstr "تصاویر لحظه‌ای به این نشانی اینترنتی فرستاده می‌شوند"
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 #, fuzzy
 msgid "Save snapshot settings."
 msgstr "ذخیرهٔ تنظیمات تصویر لحظه‌ای"
@@ -6258,7 +6288,7 @@ msgstr "دعوت نامه ها فعال شدند"
 msgid "Whether to allow users to invite new users."
 msgstr "چنان‌که به کاربران اجازهٔ دعوت‌کردن کاربران تازه داده شود."
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 #, fuzzy
 msgid "Save user settings."
 msgstr "ذخیرهٔ تنظیمات وب‌گاه"
@@ -6476,8 +6506,9 @@ msgstr "نمی‌توان گروه محلی را به‌هنگام‌سازی ک
 msgid "Could not create login token for %s"
 msgstr "نمی‌توان رمز ورود را برای %s ایجاد کرد"
 
-#, fuzzy
-msgid "Cannot instantiate class "
+#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#, fuzzy, php-format
+msgid "Cannot instantiate class %s."
 msgstr "نمی‌توان گذرواژهٔ جدید را ذخیره کرد."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7232,13 +7263,14 @@ msgid "Default access for this application: read-only, or read-write"
 msgstr "دسترسی پیش‌فرض برای این برنامه: تنها خواندنی یا خواندن-نوشتن"
 
 #. TRANS: Submit button title.
-msgid "Cancel"
-msgstr "انصراف"
+#, fuzzy
+msgid "Cancel application changes."
+msgstr "برنامه‌های وصل‌شده"
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "ذخیره‌کردن"
+#, fuzzy
+msgid "Save application changes."
+msgstr "برنامهٔ تازه"
 
 #. TRANS: Name for an anonymous application in application list.
 #, fuzzy
@@ -7895,7 +7927,6 @@ msgid "Unable to find services for %s."
 msgstr "نمی‌توان دسترسی را برای برنامهٔ %s لغو کرد."
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
 msgid "Disfavor this notice"
 msgstr "خارج‌کردن این پیام از برگزیده‌ها"
 
@@ -7905,8 +7936,12 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "خارج‌کردن از برگزیده‌ها"
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+#, fuzzy
+msgid "Remove this notice from your list of favorite notices."
+msgstr "نمی‌توان پیام‌های برگزیده را دریافت کرد."
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
 msgid "Favor this notice"
 msgstr "برگزیده‌کردن این پیام"
 
@@ -7915,6 +7950,11 @@ msgstr "برگزیده‌کردن این پیام"
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "برگزیده‌کردن"
+
+#. TRANS: Button title for adding the favourite status to a notice.
+#, fuzzy
+msgid "Add this notice to your list of favorite notices."
+msgstr "نمی‌توان پیام‌های برگزیده را دریافت کرد."
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -7977,8 +8017,8 @@ msgstr ""
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Block this user"
-msgstr "بستن کاربر"
+msgid "Block this user so that they can no longer post messages to it."
+msgstr ""
 
 #. TRANS: Field title on group edit form.
 #, fuzzy
@@ -8120,10 +8160,13 @@ msgstr "پیام‌های برگزیده"
 msgid "Active groups"
 msgstr "تمام گروه‌ها"
 
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
 msgid "See all"
 msgstr ""
 
-msgid "See all groups you belong to"
+#. TRANS: Link title for seeing all groups.
+msgid "See all groups you belong to."
 msgstr ""
 
 #. TRANS: Title for group tag cloud section.
@@ -8264,8 +8307,9 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr "ترک کردن"
 
+#. TRANS: Link title for seeing all lists.
 #, fuzzy
-msgid "See all lists you have created"
+msgid "See all lists you have created."
 msgstr "برنامه‌هایی که ثبت کرده‌اید"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -8567,7 +8611,7 @@ msgstr "%s (@%s) به توجه شما یک پیام فرستاد"
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, fuzzy, php-format
 msgid ""
@@ -8701,8 +8745,9 @@ msgid "Make Admin"
 msgstr ""
 
 #. TRANS: Submit button title.
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
+msgid "Make this user an admin."
 msgstr "کاربر را مدیر کن"
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
@@ -8822,6 +8867,7 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+#. TRANS: Link description to show more items in a list.
 msgid "More ▼"
 msgstr ""
 
@@ -8913,7 +8959,8 @@ msgid "Repeated by"
 msgstr "تکرار از"
 
 #. TRANS: Link title in notice list item to reply to a notice.
-msgid "Reply to this notice"
+#, fuzzy
+msgid "Reply to this notice."
 msgstr "به این پیام پاسخ دهید"
 
 #. TRANS: Link text in notice list item to reply to a notice.
@@ -8921,7 +8968,8 @@ msgid "Reply"
 msgstr "پاسخ"
 
 #. TRANS: Link title in notice list item to delete a notice.
-msgid "Delete this notice"
+#, fuzzy
+msgid "Delete this notice from the timeline."
 msgstr "این پیام را پاک کن"
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
@@ -8976,6 +9024,10 @@ msgstr "گروه یا موضوع را توصیف کنید"
 msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "گروه یا موضوع را در %d نویسه توصیف کنید"
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "ذخیره‌کردن"
 
 #. TRANS: Button title to delete a list.
 #, fuzzy
@@ -9034,11 +9086,6 @@ msgstr "ویرایش"
 #, fuzzy, php-format
 msgid "Edit %s list by you."
 msgstr "ویرایش گروه %s"
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-#, fuzzy
-msgid "Tagged"
-msgstr "برچسب"
 
 #. TRANS: Title for link to edit list settings.
 #, fuzzy
@@ -9888,7 +9935,6 @@ msgid "Unsilence this user"
 msgstr "این کاربر از حالت سکوت خارج شود"
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user"
 msgstr "لغو مشترک‌شدن از این کاربر"
 
@@ -9898,6 +9944,11 @@ msgstr "لغو مشترک‌شدن از این کاربر"
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "لغو اشتراک"
+
+#. TRANS: Button title on unsubscribe form.
+#, fuzzy
+msgid "Unsubscribe from this user."
+msgstr "لغو مشترک‌شدن از این کاربر"
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -10012,159 +10063,15 @@ msgstr "یک نشانی پست الکترونیکی معتبر نیست."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "نمی‌توان نمایه را ذخیره کرد."
 
-#, fuzzy
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr "نمی‌توان با این کار مشترک یک نمایهٔ از راه دور OMB 0.1شد."
+#~ msgid "Save paths"
+#~ msgstr "نشانی ذخیره سازی"
 
-#~ msgid "Not expecting this response!"
-#~ msgstr "انتظار چنین واکنشی وجود نداشت!"
+#~ msgid "Cancel"
+#~ msgstr "انصراف"
 
-#~ msgid "User being listened to does not exist."
-#~ msgstr "کاربری که دنبالش هستید وجود ندارد."
+#~ msgctxt "TOOLTIP"
+#~ msgid "Block this user"
+#~ msgstr "بستن کاربر"
 
-#~ msgid "You can use the local subscription!"
-#~ msgstr "شما می‌توانید از دنبال کردن محلی استفاده کنید!"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "این کاربر شما را از دنبال کردن خودش منع کرده است."
-
-#~ msgid "You are not authorized."
-#~ msgstr "شما شناسایی نشده اید."
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "نمی‌توان نشانهٔ درخواست شما را به نشانهٔ دسترسی تبدیل کرد."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "خدمات مورد نظر از نسخهٔ نامفهومی از قرارداد OMB استفاده می‌کند."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "خطا هنگام به‌هنگام‌سازی نمایهٔ از راه دور."
-
-#~ msgid "Invalid notice content."
-#~ msgstr "محتوای پیام نامعتبر است."
-
-#, fuzzy
-#~ msgid ""
-#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-#~ msgstr "مجوز پیام «%1$s» با مجوز وب‌گاه «%2$s» سازگار نیست."
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "برای اشتراک، شما می‌توانید ]وارد[(%%action.login%%) شوید، یا یک حساب جدید ]"
-#~ "ثبت کنید[(%%action.register%%). اگر شما یک حساب در یک ]وب‌گاه میکروبلاگینگ "
-#~ "سازگار[(%%doc.openmublog%%) دارید، نشانی نمایهٔ خود را در زیر وارد کنید."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "اشتراک از راه دور"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "اشتراک یک کاربر از راه دور"
-
-#~ msgid "User nickname"
-#~ msgstr "نام کاربری کاربر"
-
-#, fuzzy
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "نام کاربری، کاربری که می خواهید او را دنبال کنید"
-
-#~ msgid "Profile URL"
-#~ msgstr "نشانی نمایه"
-
-#, fuzzy
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr "نشانی اینترنتی نمایهٔ شما در سرویس میکروبلاگینگ سازگار دیگری"
-
-#, fuzzy
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "نشانی اینترنتی نمایه نامعتبر است (فرمت نامناسب است)"
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr ""
-#~ "این یک نشانی نمایهٔ صحیح نیست (هیچ سند YADIS وجود ندارد و یا XRDS مشخص شده "
-#~ "نامعتبر است)."
-
-#, fuzzy
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "این یک نمایهٔ محلی است! برای اشتراک وارد شوید."
-
-#, fuzzy
-#~ msgid "Could not get a request token."
-#~ msgstr "نمی‌توان یک نشانهٔ درخواست را به‌دست آورد."
-
-#, fuzzy
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr "نمی‌توان با این کار مشترک یک نمایهٔ از راه دور OMB 0.1شد."
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr "نمی‌توان با این کار مشترک یک نمایهٔ از راه دور OMB 0.1شد."
-
-#, fuzzy
-#~ msgid ""
-#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
-#~ "$s\"."
-#~ msgstr "مجوز پیام «%1$s» با مجوز وب‌گاه «%2$s» سازگار نیست."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "تصدیق اشتراک"
-
-#, fuzzy
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "لطفا این جزئیات را برای اطمینان از این‌که می‌خواهید مشترک پیام‌های این کاربر "
-#~ "شوید، بررسی کنید. اگر شما درخواست اشتراک پیام‌های کسی را نداده‌اید، روی «رد "
-#~ "کردن» کلیک کنید."
-
-#, fuzzy
-#~ msgid "Reject this subscription."
-#~ msgstr "رد کردن این اشتراک"
-
-#~ msgid "No authorization request!"
-#~ msgstr "هیچ درخواست اجازه‌ای وجود ندارد!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "اشتراک تصدیق شد"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "اشتراک پذیرفته نشد"
-
-#, fuzzy
-#~ msgid "Listener URI \"%s\" not found here."
-#~ msgstr "نشانی تصویر چهره «%s» معتبر نیست."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "نشانی تصویر چهره «%s» معتبر نیست."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is a local user."
-#~ msgstr "نشانی اینترنتی نمایهٔ «%s» برای یک کاربر محلی است."
-
-#, fuzzy
-#~ msgid "Profile URL \"%s\" is for a local user."
-#~ msgstr "نشانی اینترنتی نمایهٔ «%s» برای یک کاربر محلی است."
-
-#, fuzzy
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "نشانی تصویر چهره «%s» معتبر نیست."
-
-#, fuzzy
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "نمی‌توان نشانی اینترنتی چهره را خواند«%s»."
-
-#, fuzzy
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "نوع تصویر برای نشانی اینترنتی چهره نادرست است «%s»."
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "نمی‌توان اشتراک را ذخیره کرد."
-
-#, fuzzy
-#~ msgid "Could not insert new subscription."
-#~ msgstr "نمی‌توان اشتراک تازه‌ای افزود."
+#~ msgid "Delete this notice"
+#~ msgstr "این پیام را پاک کن"

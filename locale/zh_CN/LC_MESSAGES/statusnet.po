@@ -18,18 +18,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:25+0000\n"
-"Language-Team: Simplified Chinese <http://translatewiki.net/wiki/Portal:zh-"
-"hans>\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:37:11+0000\n"
+"Language-Team: Simplified Chinese <//translatewiki.net/wiki/Portal:zh-hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -41,12 +40,6 @@ msgid ""
 msgstr ""
 "%1$s 的数据库响应不正确，所以该站点将无法正常工作。站点管理员可能知道该问题，"
 "但是你可以通过 %2$s 联系他们确认。或几分钟后重试一下。"
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
-msgstr "出现了一个重要错误，可能与电子邮件设置有关。详细信息请检查日志文件。"
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -106,11 +99,12 @@ msgstr "禁止新用户注册。"
 msgid "Closed"
 msgstr "封闭（不允许新用户注册）"
 
-#. TRANS: Title for button to save access settings in site admin panel.
-msgid "Save access settings"
+#. TRANS: Button title to save access settings in site admin panel.
+#, fuzzy
+msgid "Save access settings."
 msgstr "保存访问设置"
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -435,16 +429,19 @@ msgstr "屏蔽用户失败。"
 msgid "Unblock user failed."
 msgstr "取消屏蔽用户失败。"
 
+#. TRANS: Client exception thrown when no conversation ID is given.
 #, fuzzy
-msgid "no conversation id"
+msgid "No conversation ID."
 msgstr "对话"
 
-#, php-format
-msgid "No conversation with id %d"
-msgstr ""
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+#, fuzzy, php-format
+msgid "No conversation with ID %d."
+msgstr "对话"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
-#. TRANS: Title for page with a conversion (multiple notices in context).
+#, fuzzy
+msgctxt "TITLE"
 msgid "Conversation"
 msgstr "对话"
 
@@ -1701,6 +1698,10 @@ msgstr "确认地址"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "你账户的地址 \"%s\" 已被确认。"
 
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "对话"
+
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, fuzzy
@@ -1772,7 +1773,8 @@ msgid "Enter \"%s\" to confirm that you want to delete your account."
 msgstr "输入\"%s\"，以确认您要删除您的帐户。"
 
 #. TRANS: Button title for user account deletion.
-msgid "Permanently delete your account"
+#, fuzzy
+msgid "Permanently delete your account."
 msgstr "永久删除您的帐户"
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -2632,10 +2634,10 @@ msgstr "IM 设置"
 #. TRANS: Instant messaging settings page instructions.
 #. TRANS: [instant messages] is link text, "(%%doc.im%%)" is the link.
 #. TRANS: the order and formatting of link text and link should remain unchanged.
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 "你可以通过即时通讯 [即时通讯工具](%%doc.im%%)发送和接收消息。在这里配置它们。"
 
@@ -3609,8 +3611,9 @@ msgid "Server to direct SSL requests to."
 msgstr "直接SSL请求的服务器"
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-msgid "Save paths"
-msgstr "保存路径"
+#, fuzzy
+msgid "Save path settings."
+msgstr "保存网站设置。"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -3736,13 +3739,13 @@ msgstr "转到"
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists created by **%s**. Lists are how you sort similar people on %"
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "这些是由 **%s** 创建的名单。名单可以方便汇集相似的人在 %%%%site.name%%%%里，"
 "一个 [微博客](http://en.wikipedia.org/wiki/Micro-blogging) 服务，基于自由软"
@@ -3769,13 +3772,13 @@ msgstr "有 %1$s 的名单，第 %2$d 页"
 #. TRANS: Message displayed for anonymous users on page that displays lists for a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists for **%s**. lists are how you sort similar people on %%%%"
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "这些是有 **%s** 的名单。名单可以方便汇集相似的人在 %%%%site.name%%%%里，一个 "
 "[微博客](http://en.wikipedia.org/wiki/Micro-blogging) 服务，基于自由软件 "
@@ -4078,7 +4081,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "超出页面限制(%s)。"
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "无法获取到公共的时间线。"
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4093,19 +4097,23 @@ msgid "Public timeline"
 msgstr "公共时间线"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Activity Streams JSON)"
+#, fuzzy
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "公共流饲料 （活动流 JSON）"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "公开的 RSS 聚合 (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "公开的 RSS 聚合 (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "公开的 RSS 聚合 (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4652,8 +4660,9 @@ msgid "Feed will be restored. Please wait a few minutes for results."
 msgstr "将还原订阅源。请等待几分钟。"
 
 #. TRANS: Form instructions for feed restore.
+#, fuzzy
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 "你可以以<a href=\"http://activitystrea.ms/\">Activity Streams</a>格式上传一个"
@@ -4767,6 +4776,29 @@ msgstr "重置key和secret"
 #. TRANS: Header on the OAuth application page.
 msgid "Application info"
 msgstr "应用程序信息"
+
+#. TRANS: Field label on application page.
+msgid "Consumer key"
+msgstr ""
+
+#. TRANS: Field label on application page.
+msgid "Consumer secret"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Request token URL"
+msgstr "无效的 token。"
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Access token URL"
+msgstr "无效的 access token。"
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Authorize URL"
+msgstr "来源网址"
 
 #. TRANS: Note on the OAuth application page about signature support.
 msgid ""
@@ -5039,6 +5071,7 @@ msgid ""
 msgstr "为何不[加入我们](%%action.register%%)开始关注这时间线呢！"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr "已有名单"
 
@@ -5057,19 +5090,19 @@ msgstr "关注者"
 msgid "All subscribers"
 msgstr "所有关注者"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "%1$s 带有标签 %2$s 的消息"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "%1$s 带有标签 %2$s 的消息，第 %3$d 页"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5111,7 +5144,7 @@ msgstr "%s的消息聚合 (Atom)"
 msgid "FOAF for %s"
 msgstr "%s的FOAF"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "这是%1$s的时间线，但是%1$s还没有发布任何内容。"
@@ -5122,7 +5155,7 @@ msgid ""
 "would be a good time to start :)"
 msgstr "最近看到了什么有趣的消息了么？你还没有发布消息呢，现在开始吧 :)"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5132,7 +5165,7 @@ msgstr ""
 "你可以试着呼叫%1$s或给他们 [发一些消息](%%%%action.newnotice%%%%?"
 "status_textarea=%2$s)。"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5146,7 +5179,7 @@ msgstr ""
 "E5%BE%AE%E5%8D%9A%E5%AE%A2)服务。[现在加入](%%%%action.register%%%%)并关注**%"
 "s**的消息和享受更多乐趣! （[阅读更多](%%%%doc.help%%%%)）"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5332,7 +5365,7 @@ msgstr "网站公告文字"
 msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr "整个网站的公告文字（最长255字符；可使用HTML）"
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 msgid "Save site notice."
 msgstr "保存网站公告。"
 
@@ -5521,7 +5554,7 @@ msgstr "报告 URL"
 msgid "Snapshots will be sent to this URL."
 msgstr "快照将被发送到这个 URL。"
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 msgid "Save snapshot settings."
 msgstr "保存快照设置"
 
@@ -5923,7 +5956,7 @@ msgstr "邀请已启用"
 msgid "Whether to allow users to invite new users."
 msgstr "是否允许用户发送注册邀请。"
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 msgid "Save user settings."
 msgstr "保存用户设置。"
 
@@ -6125,8 +6158,9 @@ msgstr "无法更新本地小组。"
 msgid "Could not create login token for %s"
 msgstr "无法创建别名。"
 
-#, fuzzy
-msgid "Cannot instantiate class "
+#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#, fuzzy, php-format
+msgid "Cannot instantiate class %s."
 msgstr "无法保存新密码。"
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -6840,13 +6874,14 @@ msgid "Default access for this application: read-only, or read-write"
 msgstr "该应用默认的访问权限：只读或读写"
 
 #. TRANS: Submit button title.
-msgid "Cancel"
-msgstr "取消"
+#, fuzzy
+msgid "Cancel application changes."
+msgstr "关联的应用"
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "保存"
+#, fuzzy
+msgid "Save application changes."
+msgstr "新应用"
 
 #. TRANS: Name for an anonymous application in application list.
 msgid "Unknown application"
@@ -7467,7 +7502,6 @@ msgid "Unable to find services for %s."
 msgstr "无法找到 %s 的服务。"
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
 msgid "Disfavor this notice"
 msgstr "取消收藏这个消息"
 
@@ -7476,8 +7510,12 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "不赞成的最爱"
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+#, fuzzy
+msgid "Remove this notice from your list of favorite notices."
+msgstr "无法获取收藏的消息。"
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
 msgid "Favor this notice"
 msgstr "收藏"
 
@@ -7485,6 +7523,11 @@ msgstr "收藏"
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "请"
+
+#. TRANS: Button title for adding the favourite status to a notice.
+#, fuzzy
+msgid "Add this notice to your list of favorite notices."
+msgstr "无法获取收藏的消息。"
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -7544,8 +7587,8 @@ msgstr "屏蔽"
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Block this user"
-msgstr "屏蔽这个用户"
+msgid "Block this user so that they can no longer post messages to it."
+msgstr ""
 
 #. TRANS: Field title on group edit form.
 msgid "URL of the homepage or blog of the group or topic."
@@ -7680,11 +7723,14 @@ msgstr "热门的小组"
 msgid "Active groups"
 msgstr "活跃的小组"
 
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
 #, fuzzy
 msgid "See all"
 msgstr "显示全部"
 
-msgid "See all groups you belong to"
+#. TRANS: Link title for seeing all groups.
+msgid "See all groups you belong to."
 msgstr ""
 
 #. TRANS: Title for group tag cloud section.
@@ -7818,8 +7864,9 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr "离开"
 
+#. TRANS: Link title for seeing all lists.
 #, fuzzy
-msgid "See all lists you have created"
+msgid "See all lists you have created."
 msgstr "你已经登记的程序。"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -8118,7 +8165,7 @@ msgstr "%1$s (@%2$s) 给你发送了一条消息"
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, fuzzy, php-format
 msgid ""
@@ -8250,8 +8297,9 @@ msgid "Make Admin"
 msgstr "设置管理员"
 
 #. TRANS: Submit button title.
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
+msgid "Make this user an admin."
 msgstr "将这个用户设为管理员"
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
@@ -8364,6 +8412,7 @@ msgstr "不知道如何处理这种类型的目标。"
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+#. TRANS: Link description to show more items in a list.
 msgid "More ▼"
 msgstr ""
 
@@ -8451,7 +8500,8 @@ msgid "Repeated by"
 msgstr "转发来自"
 
 #. TRANS: Link title in notice list item to reply to a notice.
-msgid "Reply to this notice"
+#, fuzzy
+msgid "Reply to this notice."
 msgstr "回复"
 
 #. TRANS: Link text in notice list item to reply to a notice.
@@ -8459,8 +8509,9 @@ msgid "Reply"
 msgstr "回复"
 
 #. TRANS: Link title in notice list item to delete a notice.
-msgid "Delete this notice"
-msgstr "删除"
+#, fuzzy
+msgid "Delete this notice from the timeline."
+msgstr "删除此通知。"
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
 msgid "Notice repeated."
@@ -8509,6 +8560,10 @@ msgstr "描述列表或主题。"
 msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "用不超过%d个字符描述你的应用"
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "保存"
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -8561,10 +8616,6 @@ msgstr "编辑"
 #, php-format
 msgid "Edit %s list by you."
 msgstr "编辑 %s 由您的列表。"
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-msgid "Tagged"
-msgstr "标签"
 
 #. TRANS: Title for link to edit list settings.
 msgid "Edit list settings."
@@ -9344,7 +9395,6 @@ msgid "Unsilence this user"
 msgstr "取消对这个用户的禁言"
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user"
 msgstr "取消关注这个用户"
 
@@ -9353,6 +9403,11 @@ msgstr "取消关注这个用户"
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "取消关注"
+
+#. TRANS: Button title on unsubscribe form.
+#, fuzzy
+msgid "Unsubscribe from this user."
+msgstr "取消关注这个用户"
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -9465,163 +9520,15 @@ msgstr "不是有效的电子邮件。"
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "无法保存个人信息。"
 
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr "你无法这样操作一个OMB 0.1的远程用户"
+#~ msgid "Save paths"
+#~ msgstr "保存路径"
 
-#~ msgid "Not expecting this response!"
-#~ msgstr "未预料的响应！"
+#~ msgid "Cancel"
+#~ msgstr "取消"
 
-#~ msgid "User being listened to does not exist."
-#~ msgstr "要查看的用户不存在。"
+#~ msgctxt "TOOLTIP"
+#~ msgid "Block this user"
+#~ msgstr "屏蔽这个用户"
 
-#~ msgid "You can use the local subscription!"
-#~ msgstr "你可以使用本地关注！"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "该用户屏蔽了你，无法关注。"
-
-#~ msgid "You are not authorized."
-#~ msgstr "你没有被授权。"
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "无法将 request token 转换为 access token。"
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "远程服务使用了未知版本的 OMB 协议。"
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "更新远程的个人信息时出错。"
-
-#~ msgid "Invalid notice content."
-#~ msgstr "无效的消息内容。"
-
-#~ msgid ""
-#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-#~ msgstr "消息的许可协议 “%1$s” 与这个站点的许可协议 “%2$s” 不兼容。"
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "要关注用户或小组，你需要[登录](%%action.login%%)，或[注册](%%action."
-#~ "register%%) 一个新账户。如果你已经在另一个[兼容的微博客](%%doc.openmublog%"
-#~ "%)有账户，请填入你的资料页 URL。"
-
-#~ msgid "Remote subscribe"
-#~ msgstr "远程关注"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "关注一个远程用户"
-
-#~ msgid "User nickname"
-#~ msgstr "昵称"
-
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "您要执行的用户的别名。"
-
-#~ msgid "Profile URL"
-#~ msgstr "资料页 URL"
-
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr "另一种兼容的微博客服务配置文件的 URL。"
-
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "无效的用户 URL (格式错误)。"
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr "不是有效的资料页 URL (没有YADIS 文档或定义了无效的 XRDS)。"
-
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "这是一个本地用户！请登录以关注。"
-
-#~ msgid "Could not get a request token."
-#~ msgstr "无法获得一个 request token。"
-
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr "你不能用这个操作(取消)纳入一个 OMB 0.1 远程用户。"
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr "你不能用这个操作关注一个 OMB 0.1 远程用户。"
-
-#~ msgid ""
-#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
-#~ "$s\"."
-#~ msgstr "消息的许可协议 “%1$s” 与这个站点的许可协议 “%2$s” 不兼容。"
-
-#~ msgid "Authorize subscription"
-#~ msgstr "授权关注"
-
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "请检查这些详细信息，请确保您要订阅此用户的通知。如果您不只是要求某人的通知"
-#~ "订阅，请单击\"拒绝\"。"
-
-#~ msgid "Reject this subscription."
-#~ msgstr "拒绝此订阅。"
-
-#~ msgid "No authorization request!"
-#~ msgstr "没有授权请求！"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "已授权关注"
-
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "已授权关注，但是没有回传 URL。请到网站查看如何授权关注。你的 subscription "
-#~ "token 是："
-
-#~ msgid "Subscription rejected"
-#~ msgstr "关注已拒绝"
-
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr "关注已拒绝，但是没有回传 URL。请到网站查看如何完全拒绝关注。"
-
-#~ msgid "Listener URI \"%s\" not found here."
-#~ msgstr "Listener URI ‘%s’ 没有找到。"
-
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "Listenee URI ‘%s’ 过长。"
-
-#~ msgid "Listenee URI \"%s\" is a local user."
-#~ msgstr "Listenee URI ‘%s’ 是一个本地用户。"
-
-#~ msgid "Profile URL \"%s\" is for a local user."
-#~ msgstr "个人信息 URL “%s” 是为本地用户的。"
-
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "头像地址‘%s’无效。"
-
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "无法读取头像 URL '%s'。"
-
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "头像 URL ‘%s’ 图像格式错误。"
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "无法删除关注 OMB token。"
-
-#~ msgid "Error inserting new profile."
-#~ msgstr "添加新个人信息出错。"
-
-#~ msgid "Error inserting avatar."
-#~ msgstr "添加头像出错。"
-
-#~ msgid "Error inserting remote profile."
-#~ msgstr "添加远程个人信息时出错。"
-
-#~ msgid "Duplicate notice."
-#~ msgstr "复制消息。"
-
-#~ msgid "Could not insert new subscription."
-#~ msgstr "无法插入新的订阅。"
+#~ msgid "Delete this notice"
+#~ msgstr "删除"

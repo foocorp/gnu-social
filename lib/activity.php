@@ -362,15 +362,16 @@ class Activity
         // actor
         $activity['actor'] = $this->actor->asArray();
 
-        // body
-        $activity['body'] = $this->content;
+        // content
+        $activity['content'] = $this->content;
 
         // generator <-- We could use this when we know a notice is created
         //               locally. Or if we know the upstream Generator.
 
-        // icon <-- I've decided to use the posting user's stream avatar here
-        //          for now (also included in the avatarLinks extension)
+        // icon <-- possibly a mini object representing verb?
 
+        // id
+        $activity['id'] = $this->id;
 
         // object
         if ($this->verb == ActivityVerb::POST && count($this->objects) == 1) {
@@ -399,9 +400,9 @@ class Activity
 
             // Instead of adding enclosures as an extension to JSON
             // Activities, it seems like we should be using the
-            // attachedObjects property of ActivityObject
+            // attachements property of ActivityObject
 
-            $attachedObjects = array();
+            $attachments = array();
 
             // XXX: OK, this is kinda cheating. We should probably figure out
             // what kind of objects these are based on mime-type and then
@@ -413,11 +414,11 @@ class Activity
 
                 if (is_string($enclosure)) {
 
-                    $attachedObjects[]['id']  = $enclosure;
+                    $attachments[]['id']  = $enclosure;
 
                 } else {
 
-                    $attachedObjects[]['id']  = $enclosure->url;
+                    $attachments[]['id']  = $enclosure->url;
 
                     $mediaLink = new ActivityStreamsMediaLink(
                         $enclosure->url,
@@ -427,16 +428,16 @@ class Activity
                         // XXX: Add 'size' as an extension to MediaLink?
                     );
 
-                    $attachedObjects[]['mediaLink'] = $mediaLink->asArray(); // extension
+                    $attachments[]['mediaLink'] = $mediaLink->asArray(); // extension
 
                     if ($enclosure->title) {
-                        $attachedObjects[]['displayName'] = $enclosure->title;
+                        $attachments[]['displayName'] = $enclosure->title;
                     }
                }
             }
 
-            if (!empty($attachedObjects)) {
-                $activity['object']['attachedObjects'] = $attachedObjects;
+            if (!empty($attachments)) {
+                $activity['object']['attachments'] = $attachments;
             }
 
         } else {
@@ -452,7 +453,8 @@ class Activity
             }
         }
 
-        $activity['postedTime'] = self::iso8601Date($this->time); // Change to exactly be RFC3339?
+        // published
+        $activity['published'] = self::iso8601Date($this->time);
 
         // provider
         $provider = array(
@@ -471,14 +473,17 @@ class Activity
         // title
         $activity['title'] = $this->title;
 
-        // updatedTime <-- Should we use this to indicate the time we received
-        //                 a remote notice? Probably not.
+        // updated <-- Optional. Should we use this to indicate the time we r
+        //             eceived a remote notice? Probably not.
 
         // verb
         //
         // We can probably use the whole schema URL here but probably the
         // relative simple name is easier to parse
         $activity['verb'] = substr($this->verb, strrpos($this->verb, '/') + 1);
+
+        // url
+        $activity['url'] = $this->id;
 
         /* Purely extensions hereafter */
 

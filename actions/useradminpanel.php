@@ -300,7 +300,7 @@ class UserAdminPanelForm extends AdminForm
                            _m('BUTTON','Save'),
                            'submit',
                            null,
-                           // TRANS: Title for button to save user settings in user admin panel.
+                           // TRANS: Button title to save user settings in user admin panel.
                            _('Save user settings.'));
     }
 }

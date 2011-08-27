@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:04+0000\n"
-"Language-Team: Georgian <http://translatewiki.net/wiki/Portal:ka>\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:50+0000\n"
+"Language-Team: Georgian <//translatewiki.net/wiki/Portal:ka>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ka\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -28,12 +28,6 @@ msgid ""
 "properly. The site admins probably know about the problem, but you can "
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
-msgstr ""
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
 msgstr ""
 
 #. TRANS: Error message.
@@ -95,11 +89,12 @@ msgstr "ახალი რეგისტრაციების გაუქ�
 msgid "Closed"
 msgstr "დახურული"
 
-#. TRANS: Title for button to save access settings in site admin panel.
-msgid "Save access settings"
+#. TRANS: Button title to save access settings in site admin panel.
+#, fuzzy
+msgid "Save access settings."
 msgstr "შეინახე შესვლის პარამეტრები"
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -432,16 +427,19 @@ msgstr "მომხმარებლის დაბლოკვა ვერ 
 msgid "Unblock user failed."
 msgstr "ვერ მოხერხდა მომხმარებელზე ბლოკის მოხსნა."
 
+#. TRANS: Client exception thrown when no conversation ID is given.
 #, fuzzy
-msgid "no conversation id"
+msgid "No conversation ID."
 msgstr "საუბარი"
 
-#, php-format
-msgid "No conversation with id %d"
-msgstr ""
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+#, fuzzy, php-format
+msgid "No conversation with ID %d."
+msgstr "საუბარი"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
-#. TRANS: Title for page with a conversion (multiple notices in context).
+#, fuzzy
+msgctxt "TITLE"
 msgid "Conversation"
 msgstr "საუბარი"
 
@@ -1745,6 +1743,10 @@ msgstr "მისამართის დასტური"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "მისამართი \"%s\" დადასტურდა თქვენი ანგარიშისთვის."
 
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "საუბარი"
+
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, fuzzy
@@ -1822,7 +1824,7 @@ msgstr "თქვენ ვერ შეძლებთ მომხმარე
 
 #. TRANS: Button title for user account deletion.
 #, fuzzy
-msgid "Permanently delete your account"
+msgid "Permanently delete your account."
 msgstr "თქვენ ვერ შეძლებთ მომხმარებლების წაშლას."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -2729,8 +2731,8 @@ msgstr "IM პარამეტრები"
 #. TRANS: the order and formatting of link text and link should remain unchanged.
 #, fuzzy, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 "თქვენ შეგიძლიათ მიიღოთ და გააგზავნოთ შეტყობინებები Jabber/GTalk [ჩეთით](%%"
 "doc.im%%). მომართეთ თქვენი მისამართი და პარამეტრები ქვევით."
@@ -3773,8 +3775,9 @@ msgid "Server to direct SSL requests to."
 msgstr "სერვერი რომელზეც მიემართოს SSL მოთხოვნები"
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-msgid "Save paths"
-msgstr "გზების დამახსოვრება"
+#, fuzzy
+msgid "Save path settings."
+msgstr "საიტის პარამეტრების შენახვა"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -3915,7 +3918,7 @@ msgid ""
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "რს არის %%site.name%%, [მიკრო–ბლოგინგის](http://en.wikipedia.org/wiki/Micro-"
 "blogging) სერვისი, დაფუძნებული უფასო [StatusNet](http://status.net/) კოდზე."
@@ -3946,7 +3949,7 @@ msgid ""
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "რს არის %%site.name%%, [მიკრო–ბლოგინგის](http://en.wikipedia.org/wiki/Micro-"
 "blogging) სერვისი, დაფუძნებული უფასო [StatusNet](http://status.net/) კოდზე."
@@ -4265,7 +4268,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "გვერსიდ საზღვრის მიღმა (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "საჯარო ნაკადის გამოთხოვნა ვერ ხერხდება."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4280,20 +4284,24 @@ msgid "Public timeline"
 msgstr "საჯარო განახლებების ნაკადი"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Activity Streams JSON)"
-msgstr ""
+#, fuzzy
+msgid "Public Timeline Feed (Activity Streams JSON)"
+msgstr "შეტყობინებების RSS მონიშნული %s-თ (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
-msgstr ""
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
+msgstr "საჯარო განახლებების ნაკადი, გვერდი %d"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
-msgstr ""
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
+msgstr "საჯარო განახლებების ნაკადი, გვერდი %d"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
-msgstr ""
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
+msgstr "საჯარო განახლებების ნაკადი, გვერდი %d"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
 #, php-format
@@ -4882,7 +4890,7 @@ msgstr ""
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 
@@ -5002,6 +5010,28 @@ msgstr "გასაღების და საიდუმლოს გად
 #. TRANS: Header on the OAuth application page.
 msgid "Application info"
 msgstr "ინფო აპლიკაციაზე"
+
+#. TRANS: Field label on application page.
+msgid "Consumer key"
+msgstr ""
+
+#. TRANS: Field label on application page.
+msgid "Consumer secret"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Request token URL"
+msgstr "არასწორი როლი."
+
+#. TRANS: Field label on application page.
+msgid "Access token URL"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Authorize URL"
+msgstr "წყაროს URL"
 
 #. TRANS: Note on the OAuth application page about signature support.
 #, fuzzy
@@ -5276,6 +5306,7 @@ msgid ""
 msgstr "[დარეგისტრირდი](%%action.register%%) და დაპოსტე პირველმა!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 #, fuzzy
 msgid "Listed"
 msgstr "ლიცენზია"
@@ -5295,19 +5326,19 @@ msgstr "გამომწერები"
 msgid "All subscribers"
 msgstr "ყველა გამომწერი"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "%1$s - %2$s"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "შეტყობინებები მონიშნული %1$s-ით, გვერდი %2$d"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5349,7 +5380,7 @@ msgstr ""
 msgid "FOAF for %s"
 msgstr ""
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, fuzzy, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr ""
@@ -5362,7 +5393,7 @@ msgid ""
 "would be a good time to start :)"
 msgstr ""
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5370,7 +5401,7 @@ msgid ""
 "%?status_textarea=%2$s)."
 msgstr ""
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5380,7 +5411,7 @@ msgid ""
 "follow **%s**'s notices and many more! ([Read more](%%%%doc.help%%%%))"
 msgstr ""
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5579,7 +5610,7 @@ msgstr "საიტის შეტყობინების ტექსტ�
 msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr "საერთო სასაიტო შეტყობინების ტექსტი (მაქს. 255 სიმბოლო; HTML შეიძლება)"
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 #, fuzzy
 msgid "Save site notice."
 msgstr "შეინახე საერთოსასაიტო შეტყობინება"
@@ -5784,7 +5815,7 @@ msgstr ""
 msgid "Snapshots will be sent to this URL."
 msgstr "მდგომარეობა გაიგზავნება ამ URL-ზე"
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 #, fuzzy
 msgid "Save snapshot settings."
 msgstr "დაიმახსოვრე მდგომარეობის პარამეტრები"
@@ -6217,7 +6248,7 @@ msgstr "მოსაწვევები გააქტიურებულ�
 msgid "Whether to allow users to invite new users."
 msgstr "მიეცეთ თუ არა მომხმარებლებს სხვების მოწვევის უფლება."
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 #, fuzzy
 msgid "Save user settings."
 msgstr "საიტის პარამეტრების შენახვა"
@@ -6436,8 +6467,9 @@ msgstr "ლოკალური ჯგუფის განახლება 
 msgid "Could not create login token for %s"
 msgstr "შესასვლელი ტოკენის შექმნა %s-სთვის ვერ მოხერხდა."
 
-#, fuzzy
-msgid "Cannot instantiate class "
+#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#, fuzzy, php-format
+msgid "Cannot instantiate class %s."
 msgstr "ვერ ვინახავ ახალ პაროლს."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7195,13 +7227,14 @@ msgstr ""
 "კითხვა-წერადი"
 
 #. TRANS: Submit button title.
-msgid "Cancel"
-msgstr "გაუქმება"
+#, fuzzy
+msgid "Cancel application changes."
+msgstr "მიერთებული აპლიკაციები"
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "შენახვა"
+#, fuzzy
+msgid "Save application changes."
+msgstr "ახალი აპლიკაცია"
 
 #. TRANS: Name for an anonymous application in application list.
 #, fuzzy
@@ -7854,7 +7887,6 @@ msgid "Unable to find services for %s."
 msgstr "%s აპლიკაციის მიერ ზვდომის გაუქმება ვერ ხერხდება."
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
 msgid "Disfavor this notice"
 msgstr "ამოშალე რჩეულებიდან ეს შეტყობინება"
 
@@ -7864,8 +7896,12 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "რჩეულის გაუქმება"
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+#, fuzzy
+msgid "Remove this notice from your list of favorite notices."
+msgstr "რჩეული შეტყობინებების გამოთხოვნა ვერ მოხერხდა."
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
 msgid "Favor this notice"
 msgstr "ჩაამატე რჩეულებში ეს შეტყობინება"
 
@@ -7874,6 +7910,11 @@ msgstr "ჩაამატე რჩეულებში ეს შეტყო
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "რჩეული"
+
+#. TRANS: Button title for adding the favourite status to a notice.
+#, fuzzy
+msgid "Add this notice to your list of favorite notices."
+msgstr "რჩეული შეტყობინებების გამოთხოვნა ვერ მოხერხდა."
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -7935,7 +7976,7 @@ msgstr ""
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Block this user"
+msgid "Block this user so that they can no longer post messages to it."
 msgstr ""
 
 #. TRANS: Field title on group edit form.
@@ -8081,10 +8122,13 @@ msgstr "პოპულარული შეტყობინებები"
 msgid "Active groups"
 msgstr "ყველა ჯგუფი"
 
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
 msgid "See all"
 msgstr ""
 
-msgid "See all groups you belong to"
+#. TRANS: Link title for seeing all groups.
+msgid "See all groups you belong to."
 msgstr ""
 
 #. TRANS: Title for group tag cloud section.
@@ -8224,8 +8268,9 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr "დატოვება"
 
+#. TRANS: Link title for seeing all lists.
 #, fuzzy
-msgid "See all lists you have created"
+msgid "See all lists you have created."
 msgstr "თქვენს მიერ დარეგისტრირებული აპლიკაციები"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -8527,7 +8572,7 @@ msgstr "%s-მა (@%s) გამოაგზავნა შეტყობი�
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -8644,9 +8689,10 @@ msgid "Make Admin"
 msgstr ""
 
 #. TRANS: Submit button title.
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
-msgstr ""
+msgid "Make this user an admin."
+msgstr "მიანიჭე მომხმარებელს ჯგუფის ადმინობა"
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
 msgid "There was a database error while saving your file. Please try again."
@@ -8764,6 +8810,7 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+#. TRANS: Link description to show more items in a list.
 msgid "More ▼"
 msgstr ""
 
@@ -8854,7 +8901,8 @@ msgid "Repeated by"
 msgstr ""
 
 #. TRANS: Link title in notice list item to reply to a notice.
-msgid "Reply to this notice"
+#, fuzzy
+msgid "Reply to this notice."
 msgstr "უპასუხე ამ შეტყობინებას"
 
 #. TRANS: Link text in notice list item to reply to a notice.
@@ -8862,7 +8910,8 @@ msgid "Reply"
 msgstr "პასუხი"
 
 #. TRANS: Link title in notice list item to delete a notice.
-msgid "Delete this notice"
+#, fuzzy
+msgid "Delete this notice from the timeline."
 msgstr "შეტყობინების წაშლა"
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
@@ -8917,6 +8966,10 @@ msgstr "აღწერე ჯგუფი ან თემა"
 msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "არწერე ჯგუფი ან თემა %d სიმბოლოთი"
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "შენახვა"
 
 #. TRANS: Button title to delete a list.
 #, fuzzy
@@ -8975,11 +9028,6 @@ msgstr "რედაქტირება"
 #, fuzzy, php-format
 msgid "Edit %s list by you."
 msgstr "%s ჯგუფის რედაქტირება"
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-#, fuzzy
-msgid "Tagged"
-msgstr "სანიშნე"
 
 #. TRANS: Title for link to edit list settings.
 #, fuzzy
@@ -9829,7 +9877,6 @@ msgid "Unsilence this user"
 msgstr "ამ მომხმარებლის დადუმების მოხსნა"
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user"
 msgstr "ამ მომხმარებლის გამოწერის გაუქმება"
 
@@ -9839,6 +9886,11 @@ msgstr "ამ მომხმარებლის გამოწერის 
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "გამოწერის გაუქმება"
+
+#. TRANS: Button title on unsubscribe form.
+#, fuzzy
+msgid "Unsubscribe from this user."
+msgstr "ამ მომხმარებლის გამოწერის გაუქმება"
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -9954,186 +10006,11 @@ msgstr "არასწორი ელ. ფოსტის მისამა�
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "პროფილის შენახვა ვერ მოხერხდა."
 
-#, fuzzy
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "თქვენ არ შეგიძლიათ გამოიწეროთ 0მბ-იანი 0.1 დაშორებული პროფილი ამ "
-#~ "მოქმედებით."
+#~ msgid "Save paths"
+#~ msgstr "გზების დამახსოვრება"
 
-#~ msgid "Not expecting this response!"
-#~ msgstr "ეს უკუქმედება არ არის მოსალოდნელი."
+#~ msgid "Cancel"
+#~ msgstr "გაუქმება"
 
-#~ msgid "User being listened to does not exist."
-#~ msgstr "მისადევნებელი მომხმარებელი არ არსებობს."
-
-#~ msgid "You can use the local subscription!"
-#~ msgstr "შეგიძლიათ გამოიყენოთ ადგილობრივი გამოწერა!"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "ამ მომხმარებელმა აგიკრძალათ მიდევნება."
-
-#~ msgid "You are not authorized."
-#~ msgstr "თქვენ არ ხართ ავტორიზირებული."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "დაშორებული სერვისი OMB პროტოკოლის უცნობ ვერსიას იყენებს."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "შეცდომა დაშორებული პროფილის განახლებისას."
-
-#~ msgid "Invalid notice content."
-#~ msgstr "შეტყობინების არასწორი შიგთავსი."
-
-#, fuzzy
-#~ msgid ""
-#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-#~ msgstr ""
-#~ "შეტყობინების ლიცენზია ‘%1$s’ შეუთავსებელია საიტის ლიცენზიასთან ‘%2$s’."
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "გამოსაწერად, თქვენ შეგიძლიათ [შეხვიდეთ](%%action.login%%), ან "
-#~ "[დაარეგისტრიროთ](%%action.register%%) ახალი ანგარიში. თუ თქვენ უკვე გაქვთ "
-#~ "ანგარიში [თავსებად მიკრობლოგინგის საიტზე](%%doc.openmublog%%), მაშინ "
-#~ "შეიყვანეთ თქვენი პროფილის URL ქვევით."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "დაშორებული გამოწერა"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "გამოიწერე დაშორებული მომხმარებელი"
-
-#~ msgid "User nickname"
-#~ msgstr "მომხმარებლის მეტსახელი"
-
-#, fuzzy
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "მომხმარებლის მეტსახელი რომელსაც გინდათ რომ მიჰყვეთ"
-
-#~ msgid "Profile URL"
-#~ msgstr "პროფილის URL"
-
-#, fuzzy
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr "თქვენი პროფილის URL სხვა თავსებად მიკრობლოგინგის სერვისზე"
-
-#, fuzzy
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "პროფილის არასწორი URL (ცუდი ფორმატი)"
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr ""
-#~ "ეს არ არის პროფილის სწორი URL (YADIS დოკუმენტი არ არის, ან არასწორი XRDS–"
-#~ "ა განსაზღვრული)."
-
-#, fuzzy
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "ეს ადგილობრივი პროფილია! შედით რომ გამოიწეროთ."
-
-#, fuzzy
-#~ msgid "Could not get a request token."
-#~ msgstr "შეტყობინების ჩასმა ვერ მოხერხდა."
-
-#, fuzzy
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "თქვენ არ შეგიძლიათ გამოიწეროთ 0მბ-იანი 0.1 დაშორებული პროფილი ამ "
-#~ "მოქმედებით."
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "თქვენ არ შეგიძლიათ გამოიწეროთ 0მბ-იანი 0.1 დაშორებული პროფილი ამ "
-#~ "მოქმედებით."
-
-#, fuzzy
-#~ msgid ""
-#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
-#~ "$s\"."
-#~ msgstr ""
-#~ "გამოსაწერი მომხმარებლის ნაკადის ლიცენზია ‘%1$s’ შეუთავსებელია საიტის "
-#~ "ლიცენზიასთან ‘%2$s’."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "გამოწერის ავტორიზაცია"
-
-#, fuzzy
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "გთხოვთ გადახედოთ ამ დეტალებს, რომ დარწმუნდეთ რომ გინდათ ამ მომხმარებლის "
-#~ "განახლებების გამოწერა. თუ თქვენ არ გინდოდათ გამოწერა, მაშინ გააჭირეთ "
-#~ "ღილაკს \"უარყოფა\"."
-
-#, fuzzy
-#~ msgid "Reject this subscription."
-#~ msgstr "ამ გამოწერის უარყოფა"
-
-#~ msgid "No authorization request!"
-#~ msgstr "ავტორიზაციის მოთხოვნა არ არის!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "გამოწერა ავტორიზირებულია"
-
-#, fuzzy
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "გამოწერა ავტორიზირებულია, მაგრამ უკან დასაბრუნებელი URL არ მოწოდებულა. "
-#~ "გადაამოწმეთ საიტის ინსტრუქციებში გამოწერის ავტორიზირების დეტალები. თქვენი "
-#~ "გამოწერის ტოკენია:"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "გამოწერა უარყოფილია"
-
-#, fuzzy
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr ""
-#~ "გამოწერა უარყოფილია, მაგრამ უკან დასაბრუნებელი URL არ მოწოდებულა. "
-#~ "გადაამოწმეთ საიტის ინსტრუქციებში გამოწერის მთლიანად უარყოფის შესახებ "
-#~ "დეტალები."
-
-#, fuzzy
-#~ msgid "Listener URI \"%s\" not found here."
-#~ msgstr "მსმენელის  URI ‘%s’ აქ ვერ მოიძებნა."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "წყაროს URL ძალიან გრძელია."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is a local user."
-#~ msgstr "პროფილის URL ‘%s’ ლოკალური მომხმარებლისთვისაა განკუთვნილი."
-
-#, fuzzy
-#~ msgid "Profile URL \"%s\" is for a local user."
-#~ msgstr "პროფილის URL ‘%s’ ლოკალური მომხმარებლისთვისაა განკუთვნილი."
-
-#, fuzzy
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "ავატარის URL ‘%s’ არ არის სწორი."
-
-#, fuzzy
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "ვერ ვკითხულობ ავატარის URL ‘%s’."
-
-#, fuzzy
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "ავატარის სურათის ფორმატი არასწორია URL ‘%s’."
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "გამოწერის წაშლა ვერ მოხერხდა. 0მბ-იანი ტოკენი"
-
-#, fuzzy
-#~ msgid "Could not insert new subscription."
-#~ msgstr "ახალი გამოწერის ჩასმა ვერ მოხერხდა."
+#~ msgid "Delete this notice"
+#~ msgstr "შეტყობინების წაშლა"

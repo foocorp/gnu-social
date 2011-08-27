@@ -23,7 +23,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Session extends Memcached_DataObject
+class Session extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -39,6 +39,22 @@ class Session extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'description' => 'session ID'),
+                'session_data' => array('type' => 'text', 'description' => 'session data'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'indexes' => array(
+                'session_modified_idx' => array('modified'),
+            ),
+        );
+    }
 
     static function logdeb($msg)
     {

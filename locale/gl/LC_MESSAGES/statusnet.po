@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:54+0000\n"
-"Language-Team: Galician <http://translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:39+0000\n"
+"Language-Team: Galician <//translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -31,12 +31,6 @@ msgid ""
 "properly. The site admins probably know about the problem, but you can "
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
-msgstr ""
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
 msgstr ""
 
 #. TRANS: Error message.
@@ -97,11 +91,12 @@ msgstr "Desactivar os novos rexistros."
 msgid "Closed"
 msgstr "Pechado"
 
-#. TRANS: Title for button to save access settings in site admin panel.
-msgid "Save access settings"
+#. TRANS: Button title to save access settings in site admin panel.
+#, fuzzy
+msgid "Save access settings."
 msgstr "Gardar a configuración de acceso"
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -437,16 +432,19 @@ msgstr "Non se puido bloquear o usuario."
 msgid "Unblock user failed."
 msgstr "Non se puido desbloquear o usuario."
 
+#. TRANS: Client exception thrown when no conversation ID is given.
 #, fuzzy
-msgid "no conversation id"
+msgid "No conversation ID."
 msgstr "Conversa"
 
-#, php-format
-msgid "No conversation with id %d"
-msgstr ""
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+#, fuzzy, php-format
+msgid "No conversation with ID %d."
+msgstr "Conversa"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
-#. TRANS: Title for page with a conversion (multiple notices in context).
+#, fuzzy
+msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Conversa"
 
@@ -1754,6 +1752,10 @@ msgstr "Confirmar o enderezo"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "Confirmouse o enderezo \"%s\" para a súa conta."
 
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "Conversa"
+
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, fuzzy
@@ -1831,7 +1833,7 @@ msgstr "Non pode borrar usuarios."
 
 #. TRANS: Button title for user account deletion.
 #, fuzzy
-msgid "Permanently delete your account"
+msgid "Permanently delete your account."
 msgstr "Non pode borrar usuarios."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -2741,8 +2743,8 @@ msgstr "Configuración da mensaxería instantánea"
 #. TRANS: the order and formatting of link text and link should remain unchanged.
 #, fuzzy, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 "Pode enviar e recibir notas mediante [mensaxes instantáneas](%%doc.im%%) de "
 "Jabber/GTalk. Configure a continuación o seu enderezo e preferencias."
@@ -3798,8 +3800,9 @@ msgid "Server to direct SSL requests to."
 msgstr "Servidor ao que dirixir as solicitudes SSL"
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-msgid "Save paths"
-msgstr "Gardar as rutas"
+#, fuzzy
+msgid "Save path settings."
+msgstr "Gardar a configuración do sitio"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -3941,7 +3944,7 @@ msgid ""
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "**%s** é un grupo de usuarios de %%%%site.name%%%%, un servizo de [mensaxes "
 "de blogue curtas](http://en.wikipedia.org/wiki/Microblogging) (en inglés) "
@@ -3974,7 +3977,7 @@ msgid ""
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "**%s** é un grupo de usuarios de %%%%site.name%%%%, un servizo de [mensaxes "
 "de blogue curtas](http://en.wikipedia.org/wiki/Microblogging) (en inglés) "
@@ -4302,7 +4305,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "Alén do límite da páxina (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "Non se puido obter o fluxo público."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4318,19 +4322,22 @@ msgstr "Liña do tempo pública"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "Fonte de novas no fluxo público (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "Fonte de novas no fluxo público (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "Fonte de novas no fluxo público (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "Fonte de novas no fluxo público (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4934,7 +4941,7 @@ msgstr ""
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 
@@ -5055,6 +5062,29 @@ msgstr "Restablecer o contrasinal ou a pregunta secreta"
 #. TRANS: Header on the OAuth application page.
 msgid "Application info"
 msgstr "Información da aplicación"
+
+#. TRANS: Field label on application page.
+msgid "Consumer key"
+msgstr ""
+
+#. TRANS: Field label on application page.
+msgid "Consumer secret"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Request token URL"
+msgstr "Pase de solicitude incorrecto."
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Access token URL"
+msgstr "Pase de acceso incorrecto."
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Authorize URL"
+msgstr "URL de orixe"
 
 #. TRANS: Note on the OAuth application page about signature support.
 #, fuzzy
@@ -5341,6 +5371,7 @@ msgstr ""
 "publicar unha?"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 #, fuzzy
 msgid "Listed"
 msgstr "Licenza"
@@ -5361,19 +5392,19 @@ msgstr "Subscritores"
 msgid "All subscribers"
 msgstr "Todos os subscritores"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "%1$s, páxina %2$d"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "Notas etiquetadas con %1$s, páxina %2$d"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5415,7 +5446,7 @@ msgstr "Fonte de novas das notas para %s (Atom)"
 msgid "FOAF for %s"
 msgstr "Amigo dun amigo para %s"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, fuzzy, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "Esta é a liña do tempo para %1$s pero %2$s aínda non publicou nada."
@@ -5428,7 +5459,7 @@ msgstr ""
 "Viu algo interesante hoxe? Aínda non publicou ningunha nota, este sería un "
 "bo momento para comezar :)"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5438,7 +5469,7 @@ msgstr ""
 "Pode probar a facerlle un aceno a %1$s ou [publicar algo dirixido a el ou "
 "ela](%%%%action.newnotice%%%%?status_textarea=%2$s)."
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5453,7 +5484,7 @@ msgstr ""
 "[Únase agora](%%%%action.register%%%%) para seguir as notas de **%s** e de "
 "moita máis xente! ([Máis información](%%%%doc.help%%%%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5661,7 +5692,7 @@ msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr ""
 "Texto da nota global do sitio (255 caracteres como máximo, pode conter HTML)"
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 #, fuzzy
 msgid "Save site notice."
 msgstr "Gardar a nota do sitio"
@@ -5865,7 +5896,7 @@ msgstr "URL de envío"
 msgid "Snapshots will be sent to this URL."
 msgstr "As instantáneas enviaranse a este URL"
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 #, fuzzy
 msgid "Save snapshot settings."
 msgstr "Gardar a configuración das instantáneas"
@@ -6299,7 +6330,7 @@ msgstr "Activáronse as invitacións"
 msgid "Whether to allow users to invite new users."
 msgstr "Permitir ou non que os usuarios poidan invitar a novos usuarios."
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 #, fuzzy
 msgid "Save user settings."
 msgstr "Gardar a configuración do usuario"
@@ -6522,8 +6553,9 @@ msgstr "Non se puido actualizar o grupo local."
 msgid "Could not create login token for %s"
 msgstr "Non se puido crear un pase de sesión para %s"
 
-#, fuzzy
-msgid "Cannot instantiate class "
+#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#, fuzzy, php-format
+msgid "Cannot instantiate class %s."
 msgstr "Non se puido gardar o novo contrasinal."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7287,13 +7319,14 @@ msgstr ""
 "Permisos por defecto para esta aplicación: lectura ou lectura e escritura"
 
 #. TRANS: Submit button title.
-msgid "Cancel"
-msgstr "Cancelar"
+#, fuzzy
+msgid "Cancel application changes."
+msgstr "Aplicacións conectadas"
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Gardar"
+#, fuzzy
+msgid "Save application changes."
+msgstr "Aplicación nova"
 
 #. TRANS: Name for an anonymous application in application list.
 #, fuzzy
@@ -7958,7 +7991,6 @@ msgid "Unable to find services for %s."
 msgstr "Non se puido revogar o acceso da aplicación: %s."
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
 msgid "Disfavor this notice"
 msgstr "Desmarcar esta nota como favorita"
 
@@ -7968,8 +8000,12 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "Desmarcar como favorita"
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+#, fuzzy
+msgid "Remove this notice from your list of favorite notices."
+msgstr "Non se puideron obter as notas favoritas."
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
 msgid "Favor this notice"
 msgstr "Marcar esta nota como favorita"
 
@@ -7978,6 +8014,11 @@ msgstr "Marcar esta nota como favorita"
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "Marcar como favorito"
+
+#. TRANS: Button title for adding the favourite status to a notice.
+#, fuzzy
+msgid "Add this notice to your list of favorite notices."
+msgstr "Non se puideron obter as notas favoritas."
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -8039,8 +8080,8 @@ msgstr "Bloquear"
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Block this user"
-msgstr "Bloquear este usuario"
+msgid "Block this user so that they can no longer post messages to it."
+msgstr ""
 
 #. TRANS: Field title on group edit form.
 #, fuzzy
@@ -8190,11 +8231,14 @@ msgstr "Notas populares"
 msgid "Active groups"
 msgstr "Todos os grupos"
 
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
 #, fuzzy
 msgid "See all"
 msgstr "Mostrar máis"
 
-msgid "See all groups you belong to"
+#. TRANS: Link title for seeing all groups.
+msgid "See all groups you belong to."
 msgstr ""
 
 #. TRANS: Title for group tag cloud section.
@@ -8337,8 +8381,9 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Deixar"
 
+#. TRANS: Link title for seeing all lists.
 #, fuzzy
-msgid "See all lists you have created"
+msgid "See all lists you have created."
 msgstr "Aplicacións que rexistrou"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -8637,7 +8682,7 @@ msgstr "%s (@%s) enviou unha nota á súa atención"
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, fuzzy, php-format
 msgid ""
@@ -8770,8 +8815,9 @@ msgid "Make Admin"
 msgstr "Converter en administrador"
 
 #. TRANS: Submit button title.
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
+msgid "Make this user an admin."
 msgstr "Converter a este usuario en administrador"
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
@@ -8890,6 +8936,7 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+#. TRANS: Link description to show more items in a list.
 msgid "More ▼"
 msgstr ""
 
@@ -8981,7 +9028,8 @@ msgid "Repeated by"
 msgstr "Repetida por"
 
 #. TRANS: Link title in notice list item to reply to a notice.
-msgid "Reply to this notice"
+#, fuzzy
+msgid "Reply to this notice."
 msgstr "Responder a esta nota"
 
 #. TRANS: Link text in notice list item to reply to a notice.
@@ -8989,7 +9037,8 @@ msgid "Reply"
 msgstr "Responder"
 
 #. TRANS: Link title in notice list item to delete a notice.
-msgid "Delete this notice"
+#, fuzzy
+msgid "Delete this notice from the timeline."
 msgstr "Borrar esta nota"
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
@@ -9047,6 +9096,10 @@ msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Describa o grupo ou o tema en %d caracteres"
 msgstr[1] "Describa o grupo ou o tema en %d caracteres"
 
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Gardar"
+
 #. TRANS: Button title to delete a list.
 #, fuzzy
 msgid "Delete this list."
@@ -9099,10 +9152,6 @@ msgstr "Modificar"
 #, fuzzy, php-format
 msgid "Edit %s list by you."
 msgstr "Editar o grupo %s"
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-msgid "Tagged"
-msgstr "Etiquetado"
 
 #. TRANS: Title for link to edit list settings.
 #, fuzzy
@@ -9934,7 +9983,6 @@ msgid "Unsilence this user"
 msgstr "Darlle voz a este usuario"
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user"
 msgstr "Cancelar a subscrición a este usuario"
 
@@ -9944,6 +9992,11 @@ msgstr "Cancelar a subscrición a este usuario"
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Cancelar a subscrición"
+
+#. TRANS: Button title on unsubscribe form.
+#, fuzzy
+msgid "Unsubscribe from this user."
+msgstr "Cancelar a subscrición a este usuario"
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -10062,196 +10115,15 @@ msgstr "O enderezo de correo electrónico é incorrecto."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Non se puido gardar o perfil."
 
-#, fuzzy
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr "Non se pode subscribir a un perfil remoto OMB 0.1 con esta acción."
+#~ msgid "Save paths"
+#~ msgstr "Gardar as rutas"
 
-#~ msgid "Not expecting this response!"
-#~ msgstr "Non se esperaba esta resposta!"
+#~ msgid "Cancel"
+#~ msgstr "Cancelar"
 
-#~ msgid "User being listened to does not exist."
-#~ msgstr "Non existe o usuario ao que está seguindo."
+#~ msgctxt "TOOLTIP"
+#~ msgid "Block this user"
+#~ msgstr "Bloquear este usuario"
 
-#~ msgid "You can use the local subscription!"
-#~ msgstr "Pode usar a subscrición local!"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "Ese usuario bloqueouno fronte á subscrición a el."
-
-#~ msgid "You are not authorized."
-#~ msgstr "Non está autorizado."
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "Non se puido converter a ficha da solicitude nun pase."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "O servizo remoto utiliza unha versión descoñecida do protocolo OMB."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "Houbo un erro ao actualizar o perfil remoto."
-
-#~ msgid "Invalid notice content."
-#~ msgstr "O contido da nota é incorrecto."
-
-#, fuzzy
-#~ msgid ""
-#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-#~ msgstr ""
-#~ "A licenza \"%1$s\" da nota non é compatible coa licenza \"%2$s\" do sitio."
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "Para subscribirse, pode [identificarse](%%action.login%%) ou [rexistrar](%"
-#~ "%action.register%%) unha conta nova. Se xa ten unha conta nun [sitio de "
-#~ "mensaxes de blogue curtas compatible](%%doc.openmublog%%), introduza a "
-#~ "continuación o URL do seu perfil."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "Subscribirse remotamente"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "Subscribirse a un usuario remoto"
-
-#~ msgid "User nickname"
-#~ msgstr "Alcume do usuario"
-
-#, fuzzy
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "Alcume do usuario ao que quere seguir"
-
-#~ msgid "Profile URL"
-#~ msgstr "URL do perfil"
-
-#, fuzzy
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr ""
-#~ "URL do seu perfil noutro servizo de mensaxes de blogue curtas compatible"
-
-#, fuzzy
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "O enderezo URL do perfil é incorrecto (formato erróneo)"
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr ""
-#~ "Non é un URL de perfil correcto (non hai un documento YADIS ou definiuse "
-#~ "un XRDS incorrecto)."
-
-#, fuzzy
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "Ese é un perfil local! Identifíquese para subscribirse."
-
-#, fuzzy
-#~ msgid "Could not get a request token."
-#~ msgstr "Non se puido obter o pase solicitado."
-
-#, fuzzy
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr "Non se pode subscribir a un perfil remoto OMB 0.1 con esta acción."
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr "Non se pode subscribir a un perfil remoto OMB 0.1 con esta acción."
-
-#, fuzzy
-#~ msgid ""
-#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
-#~ "$s\"."
-#~ msgstr ""
-#~ "A licenza \"%1$s\" das transmisións da persoa seguida non é compatible "
-#~ "coa licenza deste sitio: \"%2$s\"."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "Autorizar a subscrición"
-
-#, fuzzy
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "Verifique estes detalles para certificar que quere subscribirse ás notas "
-#~ "deste usuario. Se non pediu a subscrición ás notas de alguén, prema en "
-#~ "\"Rexeitar\"."
-
-#, fuzzy
-#~ msgid "Reject this subscription."
-#~ msgstr "Rexeitar esta subscrición"
-
-#~ msgid "No authorization request!"
-#~ msgstr "Non se solicitou a autorización!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "Autorizouse a subscrición"
-
-#, fuzzy
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "Autorizouse a subscrición, pero non se devolveu ningún URL. Bote unha "
-#~ "ollada ás instrucións do sitio para saber máis sobre como autorizar a "
-#~ "subscrición. O pase da súa subscrición é:"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "Rexeitouse a subscrición"
-
-#, fuzzy
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr ""
-#~ "Rexeitouse a subscrición, pero non se devolveu ningún URL. Bote unha "
-#~ "ollada ás instrucións do sitio para obter máis información sobre como "
-#~ "rexeitar completamente a subscrición."
-
-#, fuzzy
-#~ msgid "Listener URI \"%s\" not found here."
-#~ msgstr "Non se atopou o URI do seguidor, \"%s\", aquí."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "O URI do seguidor, \"%s\", é longo de máis."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is a local user."
-#~ msgstr "O URI do seguidor, \"%s\", é dun usuario local."
-
-#, fuzzy
-#~ msgid "Profile URL \"%s\" is for a local user."
-#~ msgstr "O URL do perfil, \"%s\", pertence a un usuario local."
-
-#, fuzzy
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "O URL do avatar, \"%s\", é incorrecto."
-
-#, fuzzy
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "Non se puido ler o URL do avatar, \"%s\"."
-
-#, fuzzy
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "O tipo de imaxe do URL do avatar, \"%s\", é incorrecto."
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "Non se puido borrar o pase de subscrición OMB."
-
-#~ msgid "Error inserting new profile."
-#~ msgstr "Houbo un erro ao inserir o novo perfil."
-
-#~ msgid "Error inserting avatar."
-#~ msgstr "Houbo un erro ao inserir o avatar."
-
-#~ msgid "Error inserting remote profile."
-#~ msgstr "Houbo un erro ao inserir o perfil remoto."
-
-#~ msgid "Duplicate notice."
-#~ msgstr "Nota duplicada."
-
-#, fuzzy
-#~ msgid "Could not insert new subscription."
-#~ msgstr "Non se puido inserir unha subscrición nova."
+#~ msgid "Delete this notice"
+#~ msgstr "Borrar esta nota"

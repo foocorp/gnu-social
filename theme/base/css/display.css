@@ -176,13 +176,17 @@ option {
 address {
     float: left;
     position: relative;
-    top: 1px;
-    left: 2px;
-    margin: 0px;
+    margin: -2px 0 3px 0;
     padding: 0px;
-    height: 24px;
-    width: 148px;
     z-index: 99;
+}
+
+address a, address img {
+    display: block;
+}
+
+address img {
+    max-width: 158px;
 }
 
 address img + .fn {
@@ -216,6 +220,13 @@ address .poweredby {
 
 #site_nav_global_primary li:last-child {
     margin-right: 0px;
+}
+
+#header-search {
+    float: right;
+    position: relative;
+    top: -8px;
+    margin-left: 10px;
 }
 
 #site_notice { 
@@ -286,7 +297,7 @@ address .poweredby {
     display: none;
 }
 
-.form_notice #notice_data-text-label { /* XXX remove? */
+.form_notice #notice_data-text-label { /* TODO can remove this now? */
     display: none;
 }
 
@@ -513,7 +524,7 @@ address .poweredby {
 
 .checkbox-wrapper.unchecked label.checkbox {
     padding-left: 20px;
-    background: url(../images/lock_open.png) no-repeat 0px 0px;
+    background: url(../images/icons/lock_open.png) no-repeat 0px 0px;
     opacity: 0.6;
 }
 
@@ -524,7 +535,7 @@ address .poweredby {
 
 .checkbox-wrapper.checked label.checkbox {
     padding-left: 20px;
-    background: url(../images/lock.png) no-repeat 0px 0px;
+    background: url(../images/icons/lock.png) no-repeat 0px 0px;
     color: red;
     opacity: 1;
 }
@@ -586,10 +597,6 @@ address .poweredby {
     clear: both;
     width: 100%;
     margin-bottom: 20px;
-}
-
-body[id$=adminpanel] #aside_primary {
-    display:none;
 }
 
 
@@ -735,6 +742,7 @@ left:0;
     float: right;    
     margin-top: 12px;
     margin-right: -6px;
+    margin-bottom: 10px;
 }
 
 .notice-options fieldset {
@@ -822,7 +830,7 @@ clear:both;
 
 #jOverlayContent,
 #jOverlayContent #content,
-#jOverlayContent #content_inner { /* XXX still needed? */
+#jOverlayContent #content_inner { /* TODO can remove this now? */
 width: auto !important;
 margin-bottom:0;
 }
@@ -1145,12 +1153,6 @@ display:none;
 
 /* secondary elements */
 
-.processing { /* XXX ? */
-background-image:url(../images/icons/icon_processing.gif);
-background-repeat:no-repeat;
-background-position:47% 47%;
-}
-
 .error, .success, .notice-status {
     background-color: #F7E8E8;
     padding: 4px 10px;
@@ -1247,14 +1249,6 @@ padding-left:4px;
 margin-bottom:0;
 }
 
-#wrap form.processing input.submit,
-.entity_actions a.processing,
-.dialogbox.processing .submit_dialogbox {
-cursor:wait;
-outline:none;
-text-indent:-9999px;
-}
-
 #pagination {
     background-color: #f2f2f2;
     clear: left;
@@ -1273,6 +1267,15 @@ text-indent:-9999px;
 
 #pagination .nav_next {
     float: right;
+}
+
+#wrap form.processing input.submit,
+#wrap a.processing,
+.dialogbox.processing .submit_dialogbox {
+    background: url(../images/icons/icon_processing.gif) no-repeat 47% 47%;
+    cursor: wait;
+    outline: none;
+    text-indent: -9999px;
 }
 
 /* footer elements */
@@ -1343,6 +1346,7 @@ margin-left:11px;
 .form_settings .form_data li {
 width:100%;
 float:left;
+    margin-bottom: 22px;
 }
 .form_settings .form_data label {
 float:left;
@@ -1353,6 +1357,12 @@ float:left;
 margin-left:1.795%;
 float:left;
 }
+
+.form_settings .form_data select {
+    margin-top: 0px;
+}
+
+
 .form_settings .form_data input {
 width:39%;
 }
@@ -1371,17 +1381,13 @@ margin-left:0;
 
 .form_settings label {
 margin-top:2px;
-width:24%;
+    width: 25%;
     text-align: right;
 }
 
-.form_settings label.checkbox {
-    text-align: left;
-}
-
 .form_settings input.checkbox, .form_settings input.radio {
-    margin-left: 24%;
-    margin-top: 2px;
+    margin-left: 25%;
+    margin-top: 3px;
     position: relative;
     left: -14px;
 }
@@ -1390,17 +1396,21 @@ width:24%;
     width: auto;
     max-width: 60%;
     position: relative;
-    left: -30px;
+    left: -25px;
+}
+
+.form_settings label.checkbox {
+    text-align: left;
+    line-height: 1.2em;
+}
+
+.form_settings label.radio {
+    text-align: left;
+    margin: 0px;
 }
 
 .form_settings li input.radio {
     clear: left;
-}
-
-.form_settings label.radio {
-    margin-left: 10px;
-    margin-right: 10px;
-    text-align: left;
 }
 
 .form_actions label {
@@ -1454,48 +1464,22 @@ width:50px;
 
 .form_settings .form_data p.form_guide {
 clear:both;
-margin-left:26%;
+    margin-left: 27%;
 margin-bottom:0;
+    line-height: 1.2em;
+    padding-top: 4px;
 }
 
 .form_settings p {
 margin-bottom:11px;
 }
 
-.form_settings input.checkbox,
-.form_settings input.radio {
-margin-top:3px;
-margin-left:0;
-}
-.form_settings label.checkbox {
-font-weight:normal;
-margin-top:0;
-margin-right:0;
-margin-left:11px;
-float:left;
-width:90%;
-}
-.form_settings label.radio {
-margin-top:0;
-margin-right:47px;
-margin-left:11px;
-width:auto;
-}
-
-#form_login p.form_guide,
-#form_register #settings_rememberme p.form_guide,
-#form_openid_login #settings_rememberme p.form_guide,
-#settings_twitter_remove p.form_guide,
-#form_search ul.form_data #q,
-#design_background-image_onoff p.form_guide {
-margin-left:0;
-}
-
 .form_settings .form_note {
-border-radius:4px;
--moz-border-radius:4px;
--webkit-border-radius:4px;
 padding:0 7px;
+}
+
+.form_settings .form_response {
+    margin-top: 10px;
 }
 
 .form_settings input {
@@ -1518,47 +1502,21 @@ content:'☠';
 font-size:150%;
 }
 
-/* override OStatus plugin style */
+#content .notice-source-system div.entry-title, .notice-source-system div.entry-content {
+    margin-left: 0;
+} 
 
-#form_ostatus_connect.form_settings.dialogbox, #form_ostatus_sub.dialogbox {
-    width: 76%;
+#content .notice-source-system div.entry-title {
+    font-style: italic;
+    min-height: 0;
 }
 
-#form_ostatus_connect.form_settings.dialogbox legend {
-    font-size: 1.4em;
-    font-weight: normal;
-    padding-bottom: 10px;    
-}
-
-#form_ostatus_connect.dialogbox .form_data label,
-#form_ostatus_sub.dialogbox .form_data label {
-    font-weight: normal;
-    font-size: 1.2em;
-    width:34%;
-}
-
-#form_ostatus_connect.dialogbox .form_data input,
-#form_ostatus_sub.dialogbox .form_data input {
-    float: right;
-    width: 52% !important;
-}
-
-#form_ostatus_connect.dialogbox .form_data .form_guide,
-#form_ostatus_sub.dialogbox .form_data .form_guide {
-    background: none !important;
+span.rtl {
+    display: block;
+    direction: rtl;
     text-align: right;
-    margin-right: 16px;
-}
-
-.section .entity_actions {
-    margin-right: 0px !important;
-}
-
-.section .entity_remote_subscribe {
-    color:#000 !important;
-    padding-left: 26px !important;
-    background-position: 4px -1183px !important;
-}
+    float: right;
+} 
 
 #filter_tags ul li,
 .entity_send-a-message .form_notice,
@@ -1574,7 +1532,7 @@ background:none;
 }
 
 .form_settings .form_note {
-background-color:#9BB43E;
+    background-color: #d1f7cb;
 }
 
 #form_settings_photo .form_data {
@@ -1760,11 +1718,6 @@ display:block;
 text-align:left;
 width:100%;
 }
-.entity_actions a {
-text-decoration:none;
-font-weight:bold;
-display:block;
-}
 
 .entity_actions a, .entity_actions input, .entity_actions p {
     color: #333 !important;
@@ -1773,6 +1726,8 @@ display:block;
 }
 
 .entity_actions a {
+text-decoration:none;
+display:block;
     padding: 3px 4px 4px 28px;
 }
 
@@ -2139,14 +2094,37 @@ max-height:96px;
 margin-right:18px;
 float:left;
 }
+
+.oauth-desktop-mode #wrap {
+    min-width: 500px;
+}
+
+.oauth-desktop-mode #content {
+    width: 480px;
+    padding: 6px;
+    margin: 4px 0px 0px 4px;
+    border-top-left-radius: 7px;
+    -moz-border-radius-topleft: 7px;
+    -webkit-border-top-left-radius: 7px;
+}
+
+.oauth-desktop-mode fieldset {
+    margin-bottom: 10px !important;
+}
+
+#oauth_pin {
+    text-align: center;
+    font-size: 3em;
+}
+
 #showapplication .entity_profile {
 width:68%;
 }
 #showapplication .entity_profile .entity_fn {
 margin-left:0;
 }
-#showapplication .entity_profile .entity_fn .fn:before,
-#showapplication .entity_profile .entity_fn .fn:after {
+#showapplication .entity_profile .fn:before,
+#showapplication .entity_profile .fn:after {
 content:'';
 }
 #showapplication .entity_data {
@@ -2156,16 +2134,10 @@ margin-bottom:18px;
 #showapplication .entity_data h2 {
 display:none;
 }
-#showapplication .entity_data dl {
-margin-bottom:18px;
-}
-#showapplication .entity_data dt {
-font-weight:bold;
-}
 #showapplication .entity_data dd {
-margin-left:1.795%;
 font-family:monospace;
 font-size:1.3em;
+    margin-bottom: 10px;
 }
 .form_data #application_types label.radio,
 .form_data #default_access_types label.radio {

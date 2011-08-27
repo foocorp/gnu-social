@@ -293,7 +293,7 @@ class OStatusPlugin extends Plugin
 
         $action->elementStart('fieldset');
         // TRANS: Fieldset legend.
-        $action->element('legend', null, _m('Tag remote profile'));
+        $action->element('legend', null, _m('List remote profile'));
         $action->hidden('token', common_session_token());
 
         $user = common_current_user();
@@ -883,7 +883,7 @@ class OStatusPlugin extends Plugin
             // TRANS: Title for following a remote list.
             $act->title = _m('TITLE','Follow list');
             // TRANS: Success message for remote list follow through OStatus.
-            // TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+            // TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
             $act->content = sprintf(_m('%1$s is now following people listed in %2$s by %3$s.'),
                                     $sub->getBestName(),
                                     $oprofile->getBestName(),
@@ -933,7 +933,7 @@ class OStatusPlugin extends Plugin
             // TRANS: Title for unfollowing a remote list.
             $act->title = _m('Unfollow list');
             // TRANS: Success message for remote list unfollow through OStatus.
-            // TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+            // TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
             $act->content = sprintf(_m('%1$s stopped following the list %2$s by %3$s.'),
                                     $sub->getBestName(),
                                     $oprofile->getBestName(),
@@ -1284,8 +1284,8 @@ class OStatusPlugin extends Plugin
                                         array('nickname' => $profileUser->nickname));
                 $output->element('a', array('href' => $url,
                                             'class' => 'entity_remote_tag'),
-                                  // TRANS: Link text for a user to tag an OStatus user.
-                                 _m('Tag'));
+                                  // TRANS: Link text for a user to list an OStatus user.
+                                 _m('List'));
                 $output->elementEnd('li');
             }
         }

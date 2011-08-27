@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,23 +34,27 @@ msgctxt "BUTTON"
 msgid "Reject"
 msgstr ""
 
-#: OMBPlugin.php:234
+#. TRANS: Client error displayed trying to subscribe to an OMB 0.1 remote profile.
+#: OMBPlugin.php:233
 msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
 msgstr ""
 
-#: OMBPlugin.php:263
+#. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
+#: OMBPlugin.php:260
 msgid "You cannot list an OMB 0.1 remote profile with this action."
 msgstr ""
 
-#: OMBPlugin.php:288
+#. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
+#: OMBPlugin.php:284
 msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
 msgstr ""
 
-#: OMBPlugin.php:322
+#. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
+#: OMBPlugin.php:318
 msgid "Could not delete subscription OMB token."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: OMBPlugin.php:387
+#: OMBPlugin.php:394
 msgid "A sample plugin to show basics of development for new hackers."
 msgstr ""

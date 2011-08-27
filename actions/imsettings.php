@@ -67,7 +67,7 @@ class ImsettingsAction extends SettingsAction
         // TRANS: [instant messages] is link text, "(%%doc.im%%)" is the link.
         // TRANS: the order and formatting of link text and link should remain unchanged.
         return _('You can send and receive notices through '.
-                 'instant messaging [instant messages](%%doc.im%%). '.
+                 '[instant messaging](%%doc.im%%). '.
                  'Configure your addresses and settings below.');
     }
 

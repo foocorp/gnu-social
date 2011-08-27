@@ -167,6 +167,9 @@ class NoticeListItem extends Widget
             if ($this->notice->scope != 0 && $this->notice->scope != 1) {
                 $class .= ' limited-scope';
             }
+            if (!empty($this->notice->source)) {
+                $class .= ' notice-source-'.$this->notice->source;
+            }
             $this->out->elementStart('li', array('class' => $class,
                                                  'id' => 'notice-' . $id));
             Event::handle('EndOpenNoticeListItemElement', array($this));
@@ -626,7 +629,7 @@ class NoticeListItem extends Widget
             $this->out->elementStart('a', array('href' => $reply_url,
                                                 'class' => 'notice_reply',
                                                 // TRANS: Link title in notice list item to reply to a notice.
-                                                'title' => _('Reply to this notice')));
+                                                'title' => _('Reply to this notice.')));
             // TRANS: Link text in notice list item to reply to a notice.
             $this->out->text(_('Reply'));
             $this->out->text(' ');
@@ -654,7 +657,7 @@ class NoticeListItem extends Widget
             $this->out->element('a', array('href' => $deleteurl,
                                            'class' => 'notice_delete',
                                            // TRANS: Link title in notice list item to delete a notice.
-                                           'title' => _('Delete this notice')),
+                                           'title' => _('Delete this notice from the timeline.')),
                                            // TRANS: Link text in notice list item to delete a notice.
                                            _('Delete'));
         }

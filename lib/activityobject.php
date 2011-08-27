@@ -679,16 +679,19 @@ class ActivityObject
         $object = array();
 
         if (Event::handle('StartActivityObjectOutputJson', array($this, &$object))) {
-            // XXX: attachedObjects are added by Activity
+            // XXX: attachments are added by Activity
+
+            // author (Add object for author? Could be useful for repeats.)
+
+            // content (Add rendered version of the notice?)
 
             // displayName
             $object['displayName'] = $this->title;
 
-            // TODO: downstreamDuplicates
-
-            // embedCode (used for video)
+            // downstreamDuplicates
 
             // id
+            $object['id'] = $this->id;
             //
             // XXX: Should we use URL here? or a crazy tag URI?
             $object['id'] = $this->id;
@@ -699,7 +702,7 @@ class ActivityObject
                 // XXX: Not sure what the best avatar is to use for the
                 // author's "image". For now, I'm using the large size.
 
-                $avatarLarge      = null;
+                $imgLink          = null;
                 $avatarMediaLinks = array();
 
                 foreach ($this->avatarLinks as $a) {
@@ -724,7 +727,9 @@ class ActivityObject
                 $object['avatarLinks'] = $avatarMediaLinks; // extension
 
                 // image
-                $object['image']  = $imgLink->asArray();
+                if (!empty($imgLink)) {
+                    $object['image']  = $imgLink->asArray();
+                }
             }
 
             // objectType
@@ -734,8 +739,12 @@ class ActivityObject
             // @fixme this breaks extension URIs
             $object['type'] = substr($this->type, strrpos($this->type, '/') + 1);
 
+            // published (probably don't need. Might be useful for repeats.)
+
             // summary
             $object['summary'] = $this->summary;
+
+            // udpated (probably don't need this)
 
             // TODO: upstreamDuplicates
 
@@ -751,8 +760,6 @@ class ActivityObject
                 $object[$objectName] = $props;
             }
 
-            // GeoJSON
-
             if (!empty($this->geopoint)) {
 
                 list($lat, $long) = explode(' ', $this->geopoint);
@@ -764,7 +771,7 @@ class ActivityObject
             }
 
             if (!empty($this->poco)) {
-                $object['contact'] = $this->poco->asArray();
+                $object['contact'] = array_filter($this->poco->asArray());
             }
             Event::handle('EndActivityObjectOutputJson', array($this, &$object));
         }

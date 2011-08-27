@@ -26,7 +26,7 @@ require_once INSTALLDIR.'/classes/File_redirection.php';
  * Table Definition for file_oembed
  */
 
-class File_oembed extends Memcached_DataObject
+class File_oembed extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -53,9 +53,30 @@ class File_oembed extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    function sequenceKey()
+    public static function schemaDef()
     {
-        return array(false, false, false);
+        return array(
+            'fields' => array(
+                'file_id' => array('type' => 'int', 'not null' => true, 'description' => 'oEmbed for that URL/file'),
+                'version' => array('type' => 'varchar', 'length' => 20, 'description' => 'oEmbed spec. version'),
+                'type' => array('type' => 'varchar', 'length' => 20, 'description' => 'oEmbed type: photo, video, link, rich'),
+                'mimetype' => array('type' => 'varchar', 'length' => 50, 'description' => 'mime type of resource'),
+                'provider' => array('type' => 'varchar', 'length' => 50, 'description' => 'name of this oEmbed provider'),
+                'provider_url' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL of this oEmbed provider'),
+                'width' => array('type' => 'int', 'description' => 'width of oEmbed resource when available'),
+                'height' => array('type' => 'int', 'description' => 'height of oEmbed resource when available'),
+                'html' => array('type' => 'text', 'description' => 'html representation of this oEmbed resource when applicable'),
+                'title' => array('type' => 'varchar', 'length' => 255, 'description' => 'title of oEmbed resource when available'),
+                'author_name' => array('type' => 'varchar', 'length' => 50, 'description' => 'author name for this oEmbed resource'),
+                'author_url' => array('type' => 'varchar', 'length' => 255, 'description' => 'author URL for this oEmbed resource'),
+                'url' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL for this oEmbed resource when applicable (photo, link)'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('file_id'),
+            'foreign keys' => array(
+                'file_oembed_file_id_fkey' => array('file', array('file_id' => 'id')),
+            ),
+        );
     }
 
     function _getOembed($url) {

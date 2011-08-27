@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:39+0000\n"
-"Language-Team: Macedonian <http://translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:23+0000\n"
+"Language-Team: Macedonian <//translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:13+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-16 06:59:31+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
@@ -31,7 +31,8 @@ msgid "Subscribe"
 msgstr "Претплати се"
 
 #. TRANS: Fieldset legend.
-msgid "Tag remote profile"
+#, fuzzy
+msgid "List remote profile"
 msgstr "Означи далечински профил"
 
 #. TRANS: Field label.
@@ -126,7 +127,7 @@ msgid "Follow list"
 msgstr "Список на следења"
 
 #. TRANS: Success message for remote list follow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #, php-format
 msgid "%1$s is now following people listed in %2$s by %3$s."
 msgstr "%1$s сега следи луѓе на списокот %2$s од %3$s."
@@ -140,7 +141,7 @@ msgid "Unfollow list"
 msgstr "Престани со следење на списокот"
 
 #. TRANS: Success message for remote list unfollow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #, php-format
 msgid "%1$s stopped following the list %2$s by %3$s."
 msgstr "%1$s престана да го следи списокот %2$s од %3$s."
@@ -200,9 +201,10 @@ msgstr "Поднова на профил"
 msgid "%s has updated their profile page."
 msgstr "%s ја поднови својата профилна страница."
 
-#. TRANS: Link text for a user to tag an OStatus user.
-msgid "Tag"
-msgstr "Означи"
+#. TRANS: Link text for a user to list an OStatus user.
+#, fuzzy
+msgid "List"
+msgstr "Наведи"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -266,16 +268,17 @@ msgstr "Неважечки hub.topic %s. Списокот не постои."
 msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "Добив неважечка URL-адреса за %1$s: „%2$s“"
 
-#. TRANS: Client error displayed when trying to tag a local object as if it is remote.
-msgid "You can use the local tagging!"
-msgstr "Можете да го користите локалното означување!"
+#. TRANS: Client error displayed when trying to list a local object as if it is remote.
+#, fuzzy
+msgid "You can use the local list functionality!"
+msgstr "Можете да ја користите локалната претплата!"
 
-#. TRANS: Header for tagging a remote object. %s is a remote object's name.
-#, php-format
-msgid "Tag %s"
-msgstr "Означи го/ја %s"
+#. TRANS: Header for listing a remote object. %s is a remote object's name.
+#, fuzzy, php-format
+msgid "List %s"
+msgstr "Наведи"
 
-#. TRANS: Button text to tag a remote object.
+#. TRANS: Button text to list a remote object.
 msgctxt "BUTTON"
 msgid "Go"
 msgstr "Оди"
@@ -285,7 +288,8 @@ msgid "User nickname"
 msgstr "Прекар на корисникот"
 
 #. TRANS: Field title.
-msgid "Nickname of the user you want to tag."
+#, fuzzy
+msgid "Nickname of the user you want to list."
 msgstr "Прекарот на корисникот што сакате да го означите."
 
 #. TRANS: Field label.
@@ -492,27 +496,33 @@ msgid "Not a person object."
 msgstr "Објектот не е лице."
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being tagged."
+#, fuzzy
+msgid "Unidentified profile being listed."
 msgstr "Се означува непрепознаен профил."
 
 #. TRANS: Client exception.
-msgid "This user is not the one being tagged."
+#, fuzzy
+msgid "This user is not the one being listed."
 msgstr "Ова не е корисникот што се означува."
 
 #. TRANS: Client exception.
-msgid "The tag could not be saved."
+#, fuzzy
+msgid "The listing could not be saved."
 msgstr "Не можев да ја зачувам ознаката."
 
 #. TRANS: Client exception.
-msgid "Unidentified profile being untagged."
+#, fuzzy
+msgid "Unidentified profile being unlisted."
 msgstr "Се означува непрепознаен профил."
 
 #. TRANS: Client exception.
-msgid "This user is not the one being untagged."
+#, fuzzy
+msgid "This user is not the one being unlisted."
 msgstr "Ова не е корисникот кому му се трга ознаката."
 
 #. TRANS: Client exception.
-msgid "The tag could not be deleted."
+#, fuzzy
+msgid "The listing could not be deleted."
 msgstr "Не можев да ја избришам ознаката."
 
 #. TRANS: Client exception.
@@ -652,7 +662,7 @@ msgctxt "BUTTON"
 msgid "Join"
 msgstr "Зачлени се"
 
-#. TRANS: Form legend. %1$s is a list, %2$s is a tagger's name.
+#. TRANS: Form legend. %1$s is a list, %2$s is a lister's name.
 #, php-format
 msgid "Subscribe to list %1$s by %2$s"
 msgstr "Претплати се на списокот %1$s од %2$s"
@@ -740,15 +750,19 @@ msgstr "Непознат формат на каналско емитување."
 msgid "RSS feed without a channel."
 msgstr "RSS-емитување без канал."
 
+#. TRANS: Client exception thrown when trying to share multiple activities at once.
 msgid "Can only handle share activities with exactly one object."
-msgstr ""
+msgstr "Може да работи само со активности за споделување со точно еден објект."
 
+#. TRANS: Client exception thrown when trying to share a non-activity object.
 msgid "Can only handle shared activities."
-msgstr ""
+msgstr "Може да работи само за активности за споделување."
 
+#. TRANS: Client exception thrown when saving an activity share fails.
+#. TRANS: %s is a share ID.
 #, php-format
-msgid "Failed to save activity %s"
-msgstr ""
+msgid "Failed to save activity %s."
+msgstr "Не можев да ја зачувам активноста %s."
 
 #. TRANS: Client exception. %s is a source URI.
 #, php-format
@@ -928,13 +942,24 @@ msgid "This target does not understand leave events."
 msgstr "Оваа цел не разбира напуштање на настани."
 
 #. TRANS: Client exception.
-msgid "This target does not understand tag events."
+#, fuzzy
+msgid "This target does not understand list events."
 msgstr "Оваа цел не разбира означување на настани."
 
 #. TRANS: Client exception.
-msgid "This target does not understand untag events."
+#, fuzzy
+msgid "This target does not understand unlist events."
 msgstr "Оваа цел не разбира отстранување на ознаки на настани."
 
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "Примив Salmon-шамар од непознат учесник."
+
+#~ msgid "Tag"
+#~ msgstr "Означи"
+
+#~ msgid "You can use the local tagging!"
+#~ msgstr "Можете да го користите локалното означување!"
+
+#~ msgid "Tag %s"
+#~ msgstr "Означи го/ја %s"

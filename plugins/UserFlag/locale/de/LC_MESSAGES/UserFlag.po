@@ -1,6 +1,7 @@
 # Translation of StatusNet - UserFlag to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: ChrisiPK
 # Author: Giftpflanze
 # Author: Habi
 # --
@@ -10,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserFlag\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:30+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:33+0000\n"
+"Language-Team: German <//translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:50+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-userflag\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -88,9 +89,9 @@ msgstr "Durch %s markiert"
 
 #. TRANS: Server exception given when flags could not be cleared.
 #. TRANS: %s is a profile nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not clear flags for profile \"%s\"."
-msgstr "Konnte Markierung für Profil \"%s\" nicht entfernen."
+msgstr "Konnte Markierungen für Profil „%s“ nicht entfernen."
 
 #. TRANS: Title for AJAX form to indicated that flags were removed.
 msgid "Flags cleared"
@@ -102,6 +103,6 @@ msgstr "Gelöscht"
 
 #. TRANS: Server exception.
 #. TRANS: %d is a profile ID (number).
-#, fuzzy, php-format
+#, php-format
 msgid "Could not flag profile \"%d\" for review."
-msgstr "Konnte Profil „%d“ nicht zur Überprüfung flaggen."
+msgstr "Konnte Profil „%d“ nicht zur Überprüfung markieren."

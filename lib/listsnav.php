@@ -58,11 +58,11 @@ class ListsNav extends MoreMenu
     {
         return 'lists';
     }
-    
+
     function getItems()
     {
         $items = array();
-        
+
         while ($this->lists->fetch()) {
                 $mode = $this->lists->private ? 'private' : 'public';
                 $items[] = array('showprofiletag',
@@ -84,7 +84,9 @@ class ListsNav extends MoreMenu
     {
         return array('peopletagsbyuser',
                      array('nickname' => $this->profile->nickname),
+                     // TRANS: Link description for seeing all lists.
                      _('See all'),
-                     _('See all lists you have created'));
+                     // TRANS: Link title for seeing all lists.
+                     _('See all lists you have created.'));
     }
 }

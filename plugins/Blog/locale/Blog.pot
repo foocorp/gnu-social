@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,61 +36,72 @@ msgstr ""
 msgid "Blog entry saved"
 msgstr ""
 
-#: BlogPlugin.php:123
+#. TRANS: Plugin description.
+#: BlogPlugin.php:124
 msgid "Let users write and share long-form texts."
 msgstr ""
 
-#: BlogPlugin.php:129
+#. TRANS: Blog application title.
+#: BlogPlugin.php:131
+msgctxt "TITLE"
 msgid "Blog"
 msgstr ""
 
 #. TRANS: Exception thrown when there are too many activity objects.
-#: BlogPlugin.php:146
+#: BlogPlugin.php:148
 msgid "Too many activity objects."
 msgstr ""
 
-#. TRANS: Exception thrown when blog plugin comes across a non-event type object.
-#: BlogPlugin.php:153
+#. TRANS: Exception thrown when blog plugin comes across a non-blog entry type object.
+#: BlogPlugin.php:155
 msgid "Wrong type for object."
 msgstr ""
 
 #. TRANS: Exception thrown when blog plugin comes across a undefined verb.
-#: BlogPlugin.php:167
+#: BlogPlugin.php:169
 msgid "Unknown verb for blog entries."
 msgstr ""
 
+#. TRANS: Exception thrown when requesting a non-existing blog entry for notice.
+#: BlogPlugin.php:181
+#, php-format
+msgid "No blog entry for notice %s."
+msgstr ""
+
 #. TRANS: Client exception thrown when referring to a non-existing blog entry.
-#: showblogentry.php:61 showblogentry.php:68
+#: showblogentry.php:60 showblogentry.php:67
 msgid "No such entry."
 msgstr ""
 
+#. TRANS: Title for a blog entry without a title.
 #: showblogentry.php:84
 msgid "Untitled"
 msgstr ""
 
 #. TRANS: Field label on blog entry form.
-#: blogentryform.php:93
+#: blogentryform.php:92
 msgctxt "LABEL"
 msgid "Title"
 msgstr ""
 
 #. TRANS: Field title on blog entry form.
-#: blogentryform.php:96
+#: blogentryform.php:95
 msgid "Title of the blog entry."
 msgstr ""
 
-#. TRANS: Field label on event form.
-#: blogentryform.php:103
+#. TRANS: Field label on blog entry form.
+#: blogentryform.php:102
 msgctxt "LABEL"
 msgid "Text"
 msgstr ""
 
-#. TRANS: Field title on event form.
-#: blogentryform.php:106
+#. TRANS: Field title on blog entry form.
+#: blogentryform.php:105
 msgid "Text of the blog entry."
 msgstr ""
 
-#: blogentryform.php:129
+#. TRANS: Button text to save a blog entry.
+#: blogentryform.php:128
 msgctxt "BUTTON"
 msgid "Save"
 msgstr ""

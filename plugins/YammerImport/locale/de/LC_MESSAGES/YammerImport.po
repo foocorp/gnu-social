@@ -4,6 +4,7 @@
 # Author: George Animal
 # Author: Giftpflanze
 # Author: Habi
+# Author: Welathêja
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -11,14 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - YammerImport\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:39+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:44+0000\n"
+"Language-Team: German <//translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 13:28:10+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-yammerimport\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -300,7 +301,6 @@ msgid "Verification code:"
 msgstr "Bestätigunts-Code:"
 
 #. TRANS: Button text for saving  Yammer authorisation data and starting Yammer import.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Continue"
 msgstr "Fortfahren"
@@ -345,7 +345,6 @@ msgid "Consumer secret:"
 msgstr "Verbrauchergeheimnis:"
 
 #. TRANS: Button text for saving a Yammer API registration.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Speichern"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,7 +29,7 @@ msgstr ""
 
 #. TRANS: Fieldset legend.
 #: OStatusPlugin.php:296
-msgid "Tag remote profile"
+msgid "List remote profile"
 msgstr ""
 
 #. TRANS: Field label.
@@ -138,7 +138,7 @@ msgid "Follow list"
 msgstr ""
 
 #. TRANS: Success message for remote list follow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #: OStatusPlugin.php:887
 #, php-format
 msgid "%1$s is now following people listed in %2$s by %3$s."
@@ -155,7 +155,7 @@ msgid "Unfollow list"
 msgstr ""
 
 #. TRANS: Success message for remote list unfollow through OStatus.
-#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the tagger's name.
+#. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
 #: OStatusPlugin.php:937
 #, php-format
 msgid "%1$s stopped following the list %2$s by %3$s."
@@ -224,9 +224,9 @@ msgstr ""
 msgid "%s has updated their profile page."
 msgstr ""
 
-#. TRANS: Link text for a user to tag an OStatus user.
+#. TRANS: Link text for a user to list an OStatus user.
 #: OStatusPlugin.php:1288
-msgid "Tag"
+msgid "List"
 msgstr ""
 
 #. TRANS: Plugin description.
@@ -298,18 +298,18 @@ msgstr ""
 msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr ""
 
-#. TRANS: Client error displayed when trying to tag a local object as if it is remote.
+#. TRANS: Client error displayed when trying to list a local object as if it is remote.
 #: actions/ostatustag.php:40
-msgid "You can use the local tagging!"
+msgid "You can use the local list functionality!"
 msgstr ""
 
-#. TRANS: Header for tagging a remote object. %s is a remote object's name.
+#. TRANS: Header for listing a remote object. %s is a remote object's name.
 #: actions/ostatustag.php:55
 #, php-format
-msgid "Tag %s"
+msgid "List %s"
 msgstr ""
 
-#. TRANS: Button text to tag a remote object.
+#. TRANS: Button text to list a remote object.
 #: actions/ostatustag.php:57
 msgctxt "BUTTON"
 msgid "Go"
@@ -322,7 +322,7 @@ msgstr ""
 
 #. TRANS: Field title.
 #: actions/ostatustag.php:71
-msgid "Nickname of the user you want to tag."
+msgid "Nickname of the user you want to list."
 msgstr ""
 
 #. TRANS: Field label.
@@ -524,7 +524,7 @@ msgstr ""
 
 #. TRANS: Client exception thrown when an undefied activity is performed.
 #. TRANS: Client exception.
-#: actions/usersalmon.php:73 classes/Ostatus_profile.php:499
+#: actions/usersalmon.php:73 classes/Ostatus_profile.php:497
 msgid "Cannot handle that kind of post."
 msgstr ""
 
@@ -570,32 +570,32 @@ msgstr ""
 
 #. TRANS: Client exception.
 #: actions/usersalmon.php:204
-msgid "Unidentified profile being tagged."
+msgid "Unidentified profile being listed."
 msgstr ""
 
 #. TRANS: Client exception.
 #: actions/usersalmon.php:209
-msgid "This user is not the one being tagged."
+msgid "This user is not the one being listed."
 msgstr ""
 
 #. TRANS: Client exception.
 #: actions/usersalmon.php:220
-msgid "The tag could not be saved."
+msgid "The listing could not be saved."
 msgstr ""
 
 #. TRANS: Client exception.
 #: actions/usersalmon.php:238
-msgid "Unidentified profile being untagged."
+msgid "Unidentified profile being unlisted."
 msgstr ""
 
 #. TRANS: Client exception.
 #: actions/usersalmon.php:243
-msgid "This user is not the one being untagged."
+msgid "This user is not the one being unlisted."
 msgstr ""
 
 #. TRANS: Client exception.
 #: actions/usersalmon.php:255
-msgid "The tag could not be deleted."
+msgid "The listing could not be deleted."
 msgstr ""
 
 #. TRANS: Client exception.
@@ -755,7 +755,7 @@ msgctxt "BUTTON"
 msgid "Join"
 msgstr ""
 
-#. TRANS: Form legend. %1$s is a list, %2$s is a tagger's name.
+#. TRANS: Form legend. %1$s is a list, %2$s is a lister's name.
 #: actions/ostatusinit.php:108
 #, php-format
 msgid "Subscribe to list %1$s by %2$s"
@@ -820,178 +820,182 @@ msgid "Attempting to end PuSH subscription for feed with no hub."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URI
-#: classes/Ostatus_profile.php:174 classes/Ostatus_profile.php:192
+#: classes/Ostatus_profile.php:173 classes/Ostatus_profile.php:191
 #, php-format
 msgid "Invalid ostatus_profile state: Two or more IDs set for %s."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URI
-#: classes/Ostatus_profile.php:177 classes/Ostatus_profile.php:195
+#: classes/Ostatus_profile.php:176 classes/Ostatus_profile.php:194
 #, php-format
 msgid "Invalid ostatus_profile state: All IDs empty for %s."
 msgstr ""
 
 #. TRANS: Server exception.
 #. TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.
-#: classes/Ostatus_profile.php:292
+#: classes/Ostatus_profile.php:291
 #, php-format
 msgid "Invalid actor passed to %1$s: %2$s."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:388
+#: classes/Ostatus_profile.php:387
 msgid ""
 "Invalid type passed to Ostatus_profile::notify. It must be XML string or "
 "Activity entry."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:421
+#: classes/Ostatus_profile.php:420
 msgid "Unknown feed format."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:445
+#: classes/Ostatus_profile.php:444
 msgid "RSS feed without a channel."
 msgstr ""
 
-#: classes/Ostatus_profile.php:528
+#. TRANS: Client exception thrown when trying to share multiple activities at once.
+#: classes/Ostatus_profile.php:527
 msgid "Can only handle share activities with exactly one object."
 msgstr ""
 
+#. TRANS: Client exception thrown when trying to share a non-activity object.
 #: classes/Ostatus_profile.php:534
 msgid "Can only handle shared activities."
 msgstr ""
 
-#: classes/Ostatus_profile.php:545
+#. TRANS: Client exception thrown when saving an activity share fails.
+#. TRANS: %s is a share ID.
+#: classes/Ostatus_profile.php:547
 #, php-format
-msgid "Failed to save activity %s"
+msgid "Failed to save activity %s."
 msgstr ""
 
 #. TRANS: Client exception. %s is a source URI.
-#: classes/Ostatus_profile.php:583 classes/Ostatus_profile.php:755
+#: classes/Ostatus_profile.php:585 classes/Ostatus_profile.php:757
 #, php-format
 msgid "No content for notice %s."
 msgstr ""
 
 #. TRANS: Shown when a notice is longer than supported and/or when attachments are present. At runtime
 #. TRANS: this will usually be replaced with localised text from StatusNet core messages.
-#: classes/Ostatus_profile.php:618 classes/Ostatus_profile.php:790
+#: classes/Ostatus_profile.php:620 classes/Ostatus_profile.php:792
 msgid "Show more"
 msgstr ""
 
 #. TRANS: Exception. %s is a profile URL.
-#: classes/Ostatus_profile.php:987
+#: classes/Ostatus_profile.php:989
 #, php-format
 msgid "Could not reach profile page %s."
 msgstr ""
 
 #. TRANS: Exception. %s is a URL.
-#: classes/Ostatus_profile.php:1045
+#: classes/Ostatus_profile.php:1047
 #, php-format
 msgid "Could not find a feed URL for profile page %s."
 msgstr ""
 
 #. TRANS: Feed sub exception.
-#: classes/Ostatus_profile.php:1143
+#: classes/Ostatus_profile.php:1145
 msgid "Cannot find enough profile information to make a feed."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URL.
-#: classes/Ostatus_profile.php:1207
+#: classes/Ostatus_profile.php:1209
 #, php-format
 msgid "Invalid avatar URL %s."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:1218
+#: classes/Ostatus_profile.php:1220
 #, php-format
 msgid "Tried to update avatar for unsaved remote profile %s."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URL.
-#: classes/Ostatus_profile.php:1228
+#: classes/Ostatus_profile.php:1230
 #, php-format
 msgid "Unable to fetch avatar from %s."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1425
+#: classes/Ostatus_profile.php:1427
 msgid "No author ID URI found."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1451
+#: classes/Ostatus_profile.php:1453
 msgid "No profile URI."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1457
+#: classes/Ostatus_profile.php:1459
 msgid "Local user cannot be referenced as remote."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1462
+#: classes/Ostatus_profile.php:1464
 msgid "Local group cannot be referenced as remote."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1470
+#: classes/Ostatus_profile.php:1472
 msgid "Local list cannot be referenced as remote."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1523 classes/Ostatus_profile.php:1534
+#: classes/Ostatus_profile.php:1525 classes/Ostatus_profile.php:1536
 msgid "Cannot save local profile."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1545
+#: classes/Ostatus_profile.php:1547
 msgid "Cannot save local list."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:1553
+#: classes/Ostatus_profile.php:1555
 msgid "Cannot save OStatus profile."
 msgstr ""
 
 #. TRANS: Exception.
-#: classes/Ostatus_profile.php:1866 classes/Ostatus_profile.php:1893
+#: classes/Ostatus_profile.php:1868 classes/Ostatus_profile.php:1895
 msgid "Not a valid webfinger address."
 msgstr ""
 
 #. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1971
+#: classes/Ostatus_profile.php:1973
 #, php-format
 msgid "Could not save profile for \"%s\"."
 msgstr ""
 
 #. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1990
+#: classes/Ostatus_profile.php:1992
 #, php-format
 msgid "Could not save OStatus profile for \"%s\"."
 msgstr ""
 
 #. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:1998
+#: classes/Ostatus_profile.php:2000
 #, php-format
 msgid "Could not find a valid profile for \"%s\"."
 msgstr ""
 
 #. TRANS: Server exception.
-#: classes/Ostatus_profile.php:2041
+#: classes/Ostatus_profile.php:2043
 msgid "Could not store HTML content of long post as file."
 msgstr ""
 
 #. TRANS: Server exception.
 #. TRANS: %1$s is a protocol, %2$s is a URI.
-#: classes/Ostatus_profile.php:2073
+#: classes/Ostatus_profile.php:2075
 #, php-format
 msgid "Unrecognized URI protocol for profile: %1$s (%2$s)."
 msgstr ""
 
 #. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:2080
+#: classes/Ostatus_profile.php:2082
 #, php-format
 msgid "No URI protocol for profile: %s."
 msgstr ""
@@ -1085,12 +1089,12 @@ msgstr ""
 
 #. TRANS: Client exception.
 #: lib/salmonaction.php:184
-msgid "This target does not understand tag events."
+msgid "This target does not understand list events."
 msgstr ""
 
 #. TRANS: Client exception.
 #: lib/salmonaction.php:190
-msgid "This target does not understand untag events."
+msgid "This target does not understand unlist events."
 msgstr ""
 
 #. TRANS: Exception.

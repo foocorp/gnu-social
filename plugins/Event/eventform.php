@@ -130,8 +130,8 @@ class EventForm extends Form
             // TRANS: Field label on event form.
             _m('LABEL','Start time'),
             $times,
-            // TRANS: Field title on event form.
-            _m('Time the event starts.'),
+            // TRANS: Field title on event form. %s is the abbreviated timezone
+            sprintf(_m("Time the event starts (%s)."), $today->format("T")),
             false,
             null
         );

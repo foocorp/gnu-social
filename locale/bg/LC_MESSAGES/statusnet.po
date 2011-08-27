@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:21:34+0000\n"
-"Language-Team: Bulgarian <http://translatewiki.net/wiki/Portal:bg>\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:36:19+0000\n"
+"Language-Team: Bulgarian <//translatewiki.net/wiki/Portal:bg>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: bg\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -30,12 +30,6 @@ msgid ""
 "properly. The site admins probably know about the problem, but you can "
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
-msgstr ""
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
 msgstr ""
 
 #. TRANS: Error message.
@@ -96,11 +90,12 @@ msgstr "Изключване на новите регистрации."
 msgid "Closed"
 msgstr "Затворен"
 
-#. TRANS: Title for button to save access settings in site admin panel.
-msgid "Save access settings"
+#. TRANS: Button title to save access settings in site admin panel.
+#, fuzzy
+msgid "Save access settings."
 msgstr "Запазване настройките за достъп"
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -423,16 +418,19 @@ msgstr "Грешка при блокиране на потребителя."
 msgid "Unblock user failed."
 msgstr "Грешка при разблокиране на потребителя."
 
+#. TRANS: Client exception thrown when no conversation ID is given.
 #, fuzzy
-msgid "no conversation id"
+msgid "No conversation ID."
 msgstr "Разговор"
 
-#, php-format
-msgid "No conversation with id %d"
-msgstr ""
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+#, fuzzy, php-format
+msgid "No conversation with ID %d."
+msgstr "Разговор"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
-#. TRANS: Title for page with a conversion (multiple notices in context).
+#, fuzzy
+msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Разговор"
 
@@ -1742,6 +1740,10 @@ msgstr "Потвърждаване на адрес"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "Адресът \"%s\" е потвърден за сметката ви."
 
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "Разговор"
+
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, fuzzy
@@ -1817,7 +1819,7 @@ msgstr "Не можете да изтривате потребители."
 
 #. TRANS: Button title for user account deletion.
 #, fuzzy
-msgid "Permanently delete your account"
+msgid "Permanently delete your account."
 msgstr "Не можете да изтривате потребители."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -2712,8 +2714,8 @@ msgstr "Настройки за SMS"
 #. TRANS: the order and formatting of link text and link should remain unchanged.
 #, fuzzy, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 "Можете да получавате съобщения по Jabber/GTalk [instant messages](%%doc.im%"
 "%). Въведете адреса си в настройките по-долу."
@@ -3757,8 +3759,9 @@ msgid "Server to direct SSL requests to."
 msgstr ""
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-msgid "Save paths"
-msgstr "Запазване на пътищата"
+#, fuzzy
+msgid "Save path settings."
+msgstr "Запазване настройките на сайта"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -3895,7 +3898,7 @@ msgid ""
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 
 #. TRANS: Message displayed on page that displays lists by a user when there are none.
@@ -3924,7 +3927,7 @@ msgid ""
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 
 #. TRANS: Message displayed on page that displays lists a user was added to when there are none.
@@ -4237,7 +4240,8 @@ msgid "Beyond the page limit (%s)."
 msgstr ""
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "Грешка при изтегляне на общия поток"
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4253,19 +4257,22 @@ msgstr "Общ поток"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "Емисия на общия поток (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "Емисия на общия поток (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "Емисия на общия поток (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "Емисия на общия поток (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4834,7 +4841,7 @@ msgstr ""
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 
@@ -4956,6 +4963,28 @@ msgstr ""
 #. TRANS: Header on the OAuth application page.
 msgid "Application info"
 msgstr "Данни за приложението"
+
+#. TRANS: Field label on application page.
+msgid "Consumer key"
+msgstr ""
+
+#. TRANS: Field label on application page.
+msgid "Consumer secret"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Request token URL"
+msgstr "Неправилен размер."
+
+#. TRANS: Field label on application page.
+msgid "Access token URL"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Authorize URL"
+msgstr "Изходен код"
 
 #. TRANS: Note on the OAuth application page about signature support.
 msgid ""
@@ -5220,6 +5249,7 @@ msgid ""
 msgstr ""
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 #, fuzzy
 msgid "Listed"
 msgstr "Лиценз"
@@ -5239,19 +5269,19 @@ msgstr "Абонати"
 msgid "All subscribers"
 msgstr "Всички абонати"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "%1$s, страница %2$d"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "Бележки с етикет %s"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, fuzzy, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5293,7 +5323,7 @@ msgstr "Емисия с бележки на %s (Atom)"
 msgid "FOAF for %s"
 msgstr "FOAF за %s"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr ""
@@ -5304,7 +5334,7 @@ msgid ""
 "would be a good time to start :)"
 msgstr ""
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5312,7 +5342,7 @@ msgid ""
 "%?status_textarea=%2$s)."
 msgstr ""
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5322,7 +5352,7 @@ msgid ""
 "follow **%s**'s notices and many more! ([Read more](%%%%doc.help%%%%))"
 msgstr ""
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5518,7 +5548,7 @@ msgstr "Изтриване на бележката"
 msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr ""
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 #, fuzzy
 msgid "Save site notice."
 msgstr "Запазване настройките на сайта"
@@ -5720,7 +5750,7 @@ msgstr ""
 msgid "Snapshots will be sent to this URL."
 msgstr ""
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 #, fuzzy
 msgid "Save snapshot settings."
 msgstr "Запазване настройките на сайта"
@@ -6144,7 +6174,7 @@ msgstr "Поканите са включени"
 msgid "Whether to allow users to invite new users."
 msgstr ""
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 #, fuzzy
 msgid "Save user settings."
 msgstr "Запазване настройките на сайта"
@@ -6354,8 +6384,9 @@ msgstr "Грешка при обновяване на групата."
 msgid "Could not create login token for %s"
 msgstr "Грешка при отбелязване като любима."
 
-#, fuzzy
-msgid "Cannot instantiate class "
+#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#, fuzzy, php-format
+msgid "Cannot instantiate class %s."
 msgstr "Грешка при запазване на новата парола."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7124,13 +7155,14 @@ msgid "Default access for this application: read-only, or read-write"
 msgstr ""
 
 #. TRANS: Submit button title.
-msgid "Cancel"
-msgstr "Отказ"
+#, fuzzy
+msgid "Cancel application changes."
+msgstr "Изтриване на приложението"
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Запазване"
+#, fuzzy
+msgid "Save application changes."
+msgstr "Ново приложение"
 
 #. TRANS: Name for an anonymous application in application list.
 #, fuzzy
@@ -7800,7 +7832,6 @@ msgid "Unable to find services for %s."
 msgstr "Използвайте тази бланка за създаване на нова група."
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
 msgid "Disfavor this notice"
 msgstr "Отбелязване като любимо"
 
@@ -7810,8 +7841,12 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "Добавяне към любимите"
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+#, fuzzy
+msgid "Remove this notice from your list of favorite notices."
+msgstr "Грешка при изтегляне на любимите бележки"
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
 msgid "Favor this notice"
 msgstr "Отбелязване като любимо"
 
@@ -7820,6 +7855,11 @@ msgstr "Отбелязване като любимо"
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "Любимо"
+
+#. TRANS: Button title for adding the favourite status to a notice.
+#, fuzzy
+msgid "Add this notice to your list of favorite notices."
+msgstr "Грешка при изтегляне на любимите бележки"
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -7881,8 +7921,8 @@ msgstr "Блокиране"
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Block this user"
-msgstr "Блокиране на този потребител"
+msgid "Block this user so that they can no longer post messages to it."
+msgstr ""
 
 #. TRANS: Field title on group edit form.
 #, fuzzy
@@ -8029,10 +8069,13 @@ msgstr "Популярни бележки"
 msgid "Active groups"
 msgstr "Всички групи"
 
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
 msgid "See all"
 msgstr ""
 
-msgid "See all groups you belong to"
+#. TRANS: Link title for seeing all groups.
+msgid "See all groups you belong to."
 msgstr ""
 
 #. TRANS: Title for group tag cloud section.
@@ -8176,7 +8219,8 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Напускане"
 
-msgid "See all lists you have created"
+#. TRANS: Link title for seeing all lists.
+msgid "See all lists you have created."
 msgstr ""
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -8409,7 +8453,7 @@ msgstr "%s (@%s) отбеляза бележката ви като любима"
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -8522,9 +8566,10 @@ msgid "Make Admin"
 msgstr ""
 
 #. TRANS: Submit button title.
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
-msgstr ""
+msgid "Make this user an admin."
+msgstr "За да редактирате групата, трябва да сте й администратор."
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
 msgid "There was a database error while saving your file. Please try again."
@@ -8643,6 +8688,7 @@ msgstr ""
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
+#. TRANS: Link description to show more items in a list.
 msgid "More ▼"
 msgstr ""
 
@@ -8733,7 +8779,8 @@ msgid "Repeated by"
 msgstr "Повторено от"
 
 #. TRANS: Link title in notice list item to reply to a notice.
-msgid "Reply to this notice"
+#, fuzzy
+msgid "Reply to this notice."
 msgstr "Отговаряне на тази бележка"
 
 #. TRANS: Link text in notice list item to reply to a notice.
@@ -8741,7 +8788,8 @@ msgid "Reply"
 msgstr "Отговор"
 
 #. TRANS: Link title in notice list item to delete a notice.
-msgid "Delete this notice"
+#, fuzzy
+msgid "Delete this notice from the timeline."
 msgstr "Изтриване на бележката"
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
@@ -8795,6 +8843,10 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Опишете групата или темата в до %d букви"
 msgstr[1] "Опишете групата или темата в до %d букви"
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Запазване"
 
 #. TRANS: Button title to delete a list.
 #, fuzzy
@@ -8853,11 +8905,6 @@ msgstr "Редактиране"
 #, fuzzy, php-format
 msgid "Edit %s list by you."
 msgstr "Редактиране на групата %s"
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-#, fuzzy
-msgid "Tagged"
-msgstr "Етикет"
 
 #. TRANS: Title for link to edit list settings.
 #, fuzzy
@@ -9715,7 +9762,6 @@ msgid "Unsilence this user"
 msgstr "Заглушаване на този потребител."
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user"
 msgstr "Отписване от този потребител"
 
@@ -9725,6 +9771,11 @@ msgstr "Отписване от този потребител"
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Отписване"
+
+#. TRANS: Button title on unsubscribe form.
+#, fuzzy
+msgid "Unsubscribe from this user."
+msgstr "Отписване от този потребител"
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -9843,158 +9894,15 @@ msgstr "Неправилен адрес на е-поща."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Грешка при запазване на профила."
 
-#, fuzzy
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr "Не сте абонирани за този профил"
+#~ msgid "Save paths"
+#~ msgstr "Запазване на пътищата"
 
-#~ msgid "Not expecting this response!"
-#~ msgstr "Неочакван отговор."
+#~ msgid "Cancel"
+#~ msgstr "Отказ"
 
-#, fuzzy
-#~ msgid "User being listened to does not exist."
-#~ msgstr "Потребителят, когото проследявате, не съществува. "
+#~ msgctxt "TOOLTIP"
+#~ msgid "Block this user"
+#~ msgstr "Блокиране на този потребител"
 
-#~ msgid "You can use the local subscription!"
-#~ msgstr "Можете да ползвате локален абонамент!"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "Потребителят е забранил да се абонирате за него."
-
-#~ msgid "You are not authorized."
-#~ msgstr "Не сте абонирани за никого."
-
-#, fuzzy
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "Грешка при преобразуване на tokens за одобрение в tokens за достъп."
-
-#, fuzzy
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "Непозната версия на протокола OMB."
-
-#, fuzzy
-#~ msgid "Error updating remote profile."
-#~ msgstr "Грешка при обновяване на отдалечен профил"
-
-#~ msgid "Invalid notice content."
-#~ msgstr "Неправилен размер."
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "За да се абонирате, можете да  [влезете](%%action.login%%) или да "
-#~ "[регистрирате](%%action.register%%) нова сметка. Ако имате сметка на "
-#~ "друга, [подобна услуга за микроблогване](%%doc.openmublog%%), въведете "
-#~ "адреса на профила си в нея по-долу."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "Отдалечен абонамент"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "Абониране за отдалечен потребител"
-
-#~ msgid "User nickname"
-#~ msgstr "Потребителски псевдоним"
-
-#, fuzzy
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "Псевдоним на потребител, когото искате да следите"
-
-#~ msgid "Profile URL"
-#~ msgstr "Адрес на профила"
-
-#, fuzzy
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr "Адрес на профила ви в друга, съвместима услуга за микроблогване"
-
-#, fuzzy
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "Неправилен адрес на профил (грешен формат)"
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr ""
-#~ "Неправилен адрес на профил (няма документ YADIS или XRDS е неправилен)."
-
-#, fuzzy
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "Това е локален профил! Влезте, за да се абонирате."
-
-#, fuzzy
-#~ msgid "Could not get a request token."
-#~ msgstr "Не е получен token за одобрение."
-
-#, fuzzy
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr "Не сте абонирани за този профил"
-
-#, fuzzy
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr "Не сте абонирани за този профил"
-
-#~ msgid "Authorize subscription"
-#~ msgstr "Одобряване на абонамента"
-
-#, fuzzy
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "Проверете тези детайли и се уверете, че искате да се абонирате за "
-#~ "бележките на този потребител. Ако не искате абонамента, натиснете \"Cancel"
-#~ "\" (Отказ)."
-
-#, fuzzy
-#~ msgid "Reject this subscription."
-#~ msgstr "Абонаменти на %s"
-
-#~ msgid "No authorization request!"
-#~ msgstr "Няма заявка за одобрение."
-
-#~ msgid "Subscription authorized"
-#~ msgstr "Абонаментът е одобрен"
-
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "Абонаментът е одобрен, но не е зададен callback URL. За да завършите "
-#~ "одобряването, проверете инструкциите на сайта. Вашият token за абонамент "
-#~ "е:"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "Абонаментът е отказан"
-
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr ""
-#~ "Абонаментът е отказан, но не е зададен callback URL. За да откажете "
-#~ "напълно абонамента, проверете инструкциите на сайта."
-
-#, fuzzy
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "Изходният адрес е твърде дълъг."
-
-#, fuzzy
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "Адресът на личната страница не е правилен URL."
-
-#, fuzzy
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "Грешка при четене адреса на аватара '%s'"
-
-#, fuzzy
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "Грешен вид изображение за '%s'"
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "Грешка при добавяне на нов абонамент."
-
-#, fuzzy
-#~ msgid "Could not insert new subscription."
-#~ msgstr "Грешка при добавяне на нов абонамент."
+#~ msgid "Delete this notice"
+#~ msgstr "Изтриване на бележката"

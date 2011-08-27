@@ -1,6 +1,7 @@
 # Translation of StatusNet - WikiHowProfile to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: ChrisiPK
 # Author: Giftpflanze
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - WikiHowProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:32+0000\n"
-"Language-Team: German <http://translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2011-08-15 14:19+0000\n"
+"PO-Revision-Date: 2011-08-15 14:22:37+0000\n"
+"Language-Team: German <//translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:54+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-wikihowprofile\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -31,11 +32,11 @@ msgstr ""
 
 #. TRANS: Exception thrown when fetching a WikiHow profile page fails.
 msgid "WikiHow profile page fetch failed."
-msgstr ""
+msgstr "Laden des WikiHow-Profils fehlgeschlagen."
 
 #. TRANS: Exception thrown when parsing a WikiHow profile page fails.
 msgid "HTML parse failure during check for WikiHow avatar."
-msgstr ""
+msgstr "HTML-Parsingfehler bei der Suche des WikiHow-Avatars."
 
 #. TRANS: Server exception thrown when an avatar URL is invalid.
 #. TRANS: %s is the invalid avatar URL.

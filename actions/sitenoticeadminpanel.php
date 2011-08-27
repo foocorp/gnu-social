@@ -197,7 +197,7 @@ class SiteNoticeAdminPanelForm extends AdminForm
             _m('BUTTON','Save'),
             'submit',
             null,
-            // TRANS: Title for button to save site notice in admin panel.
+            // TRANS: Button title to save site notice in admin panel.
             _('Save site notice.')
         );
     }

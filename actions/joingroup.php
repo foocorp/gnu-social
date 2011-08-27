@@ -131,6 +131,10 @@ class JoingroupAction extends Action
         try {
             $result = $cur->joinGroup($this->group);
         } catch (Exception $e) {
+        	common_log(LOG_ERR, sprintf("Couldn't join user %s to group %s: '%s'",
+        								$cur->nickname,
+        								$this->group->nickname,
+        								$e->getMessage()));
             // TRANS: Server error displayed when joining a group failed in the database.
             // TRANS: %1$s is the joining user's nickname, $2$s is the group nickname for which the join failed.
             $this->serverError(sprintf(_('Could not join user %1$s to group %2$s.'),

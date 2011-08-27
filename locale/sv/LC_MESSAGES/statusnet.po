@@ -15,17 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:22:20+0000\n"
-"Language-Team: Swedish <http://translatewiki.net/wiki/Portal:sv>\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:37:05+0000\n"
+"Language-Team: Swedish <//translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-07-01 11:17:02+0000\n"
+"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -39,14 +39,6 @@ msgstr ""
 "fungera korrekt. Webbplatsadministratörerna känner säkert till problemet, "
 "men du kan kontakta dem på %2$s för försäkra dig. Annars vänta ett par "
 "minuter och försök igen."
-
-#. TRANS: Error message.
-msgid ""
-"An important error occured, probably related to email setup. Check logfiles "
-"for more info."
-msgstr ""
-"Ett viktigt fel uppstod, förmodligen relaterat till e-postinställningar. "
-"Kontrollera loggfiler för mer info."
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -109,11 +101,12 @@ msgstr "Inaktivera nya registreringar."
 msgid "Closed"
 msgstr "Stängd"
 
-#. TRANS: Title for button to save access settings in site admin panel.
-msgid "Save access settings"
+#. TRANS: Button title to save access settings in site admin panel.
+#, fuzzy
+msgid "Save access settings."
 msgstr "Spara inställningar för åtkomst"
 
-#. TRANS: Tooltip for button to save access settings in site admin panel.
+#. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
 #. TRANS: Button label to save IM preferences.
 #. TRANS: Button text in the license admin panel.
@@ -446,16 +439,19 @@ msgstr "Blockering av användare misslyckades."
 msgid "Unblock user failed."
 msgstr "Hävning av blockering av användare misslyckades."
 
+#. TRANS: Client exception thrown when no conversation ID is given.
 #, fuzzy
-msgid "no conversation id"
+msgid "No conversation ID."
 msgstr "Konversationer"
 
-#, php-format
-msgid "No conversation with id %d"
-msgstr ""
+#. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
+#, fuzzy, php-format
+msgid "No conversation with ID %d."
+msgstr "Konversationer"
 
 #. TRANS: Timeline title for user and friends. %s is a user nickname.
-#. TRANS: Title for page with a conversion (multiple notices in context).
+#, fuzzy
+msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Konversationer"
 
@@ -1736,6 +1732,10 @@ msgstr "Bekräfta adress"
 msgid "The address \"%s\" has been confirmed for your account."
 msgstr "Adressen \"%s\" har blivit bekräftad för ditt konto."
 
+#. TRANS: Title for page with a conversion (multiple notices in context).
+msgid "Conversation"
+msgstr "Konversationer"
+
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, fuzzy
@@ -1811,7 +1811,8 @@ msgid "Enter \"%s\" to confirm that you want to delete your account."
 msgstr "Ange \"%s\" för att bekräfta att du vill ta bort ditt konto."
 
 #. TRANS: Button title for user account deletion.
-msgid "Permanently delete your account"
+#, fuzzy
+msgid "Permanently delete your account."
 msgstr "Ta bort ditt konto permanent."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
@@ -2697,10 +2698,10 @@ msgstr "Inställningar för snabbmeddelanden"
 #. TRANS: Instant messaging settings page instructions.
 #. TRANS: [instant messages] is link text, "(%%doc.im%%)" is the link.
 #. TRANS: the order and formatting of link text and link should remain unchanged.
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"You can send and receive notices through instant messaging [instant messages]"
-"(%%doc.im%%). Configure your addresses and settings below."
+"You can send and receive notices through [instant messaging](%%doc.im%%). "
+"Configure your addresses and settings below."
 msgstr ""
 "Du kan skicka och ta emot meddelanden via [snabbmeddelanden](%%doc.im%%). "
 "Konfigurera adresser och inställningarna nedan."
@@ -3694,8 +3695,9 @@ msgid "Server to direct SSL requests to."
 msgstr "Server att dirigera SSL-begäran till."
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-msgid "Save paths"
-msgstr "Spara sökvägar"
+#, fuzzy
+msgid "Save path settings."
+msgstr "Spara webbplatsinställningar"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -3822,13 +3824,13 @@ msgstr "Gå"
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists created by **%s**. Lists are how you sort similar people on %"
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "Dessa är listor som skapats av **%s**. Listor är hur du sorterar liknande "
 "personer på %%site.name%%, en [mikroblogg](http://sv.wikipedia.org/wiki/"
@@ -3856,13 +3858,13 @@ msgstr "Listor med %1$s, sida %2$d"
 #. TRANS: Message displayed for anonymous users on page that displays lists for a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "These are lists for **%s**. lists are how you sort similar people on %%%%"
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool. You can easily keep track of what they are doing by subscribing to the "
-"tag's timeline."
+"list's timeline."
 msgstr ""
 "Dessa är listor för **%s**. Listor är hur du sorterar liknande personer på %%"
 "site.name%%, en [mikroblogg](http://sv.wikipedia.org/wiki/Mikroblogg)-tjänst "
@@ -4180,7 +4182,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "Bortom sidbegränsningen (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-msgid "Could not retrieve public stream."
+#, fuzzy
+msgid "Could not retrieve public timeline."
 msgstr "Kunde inte hämta publik ström."
 
 #. TRANS: Title for all public timeline pages but the first.
@@ -4196,19 +4199,22 @@ msgstr "Publik tidslinje"
 
 #. TRANS: Link description for public timeline feed.
 #, fuzzy
-msgid "Public Stream Feed (Activity Streams JSON)"
+msgid "Public Timeline Feed (Activity Streams JSON)"
 msgstr "Publikt flöde av ström (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 1.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 1.0)"
 msgstr "Publikt flöde av ström (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (RSS 2.0)"
+#, fuzzy
+msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "Publikt flöde av ström (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-msgid "Public Stream Feed (Atom)"
+#, fuzzy
+msgid "Public Timeline Feed (Atom)"
 msgstr "Publikt flöde av ström (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
@@ -4787,8 +4793,9 @@ msgid "Feed will be restored. Please wait a few minutes for results."
 msgstr "Flöde kommer att återställas. Vänta några minuter för resultat."
 
 #. TRANS: Form instructions for feed restore.
+#, fuzzy
 msgid ""
-"You can upload a backed-up stream in <a href=\"http://activitystrea.ms/"
+"You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
 "Du kan ladda upp ett säkerhetskopierat flöde i <a href=\"http://"
@@ -4903,6 +4910,29 @@ msgstr "Återställ nyckel & hemlighet"
 #. TRANS: Header on the OAuth application page.
 msgid "Application info"
 msgstr "Information om applikation"
+
+#. TRANS: Field label on application page.
+msgid "Consumer key"
+msgstr ""
+
+#. TRANS: Field label on application page.
+msgid "Consumer secret"
+msgstr ""
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Request token URL"
+msgstr "Ogiltig begäran-token."
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Access token URL"
+msgstr "Felaktig åtkomst-token."
+
+#. TRANS: Field label on application page.
+#, fuzzy
+msgid "Authorize URL"
+msgstr "URL för källa"
 
 #. TRANS: Note on the OAuth application page about signature support.
 msgid ""
@@ -5183,6 +5213,7 @@ msgstr ""
 "följa denna tidslinje!"
 
 #. TRANS: Header on show list page.
+#. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr "Listade"
 
@@ -5201,19 +5232,19 @@ msgstr "Prenumeranter"
 msgid "All subscribers"
 msgstr "Alla prenumeranter"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
 msgid "Notices by %1$s tagged %2$s"
 msgstr "Notiser av %1$s taggade %2$s"
 
-#. TRANS: Page title showing tagged notices in one user's stream.
+#. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
 msgstr "Notiser av %1$s taggade %2$s , sida %3$d"
 
-#. TRANS: Extended page title showing tagged notices in one user's stream.
+#. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, php-format
 msgid "Notices by %1$s, page %2$d"
@@ -5255,7 +5286,7 @@ msgstr "Flöde av notiser för %s (Atom)"
 msgid "FOAF for %s"
 msgstr "FOAF för %s"
 
-#. TRANS: First sentence of empty list message for a stream. $1%s is a user nickname.
+#. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
 msgstr "Detta är tidslinjen för %1$s, men %1$s har inte skrivit något ännu."
@@ -5268,7 +5299,7 @@ msgstr ""
 "Sett något intressant nyligen? Du har inte postat några notiser än. Varför "
 "inte börja nu?"
 
-#. TRANS: Second sentence of empty  list message for a non-self stream. %1$s is a user nickname, %2$s is a part of a URL.
+#. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5278,7 +5309,7 @@ msgstr ""
 "Var den första att [skriva i detta ämne](%%%%action.newnotice%%%%?"
 "status_textarea=%s)!"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are open.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5292,7 +5323,7 @@ msgstr ""
 "[StatusNet](http://status.net/). [Gå med nu](%%%%action.register%%%%) för "
 "att följa **%s**s notiser och många fler! ([Läs mer](%%%%doc.help%%%%))"
 
-#. TRANS: Announcement for anonymous users showing a stream if site registrations are closed or invite only.
+#. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
 #, php-format
 msgid ""
@@ -5483,7 +5514,7 @@ msgstr "Text för webbplatsnotis"
 msgid "Site-wide notice text (255 characters maximum; HTML allowed)"
 msgstr "Notistext för hela webbplatsen (max 255 tecken; HTML tillåts)"
 
-#. TRANS: Title for button to save site notice in admin panel.
+#. TRANS: Button title to save site notice in admin panel.
 msgid "Save site notice."
 msgstr "Spara webbplatsnotis."
 
@@ -5676,7 +5707,7 @@ msgstr "URL för rapport"
 msgid "Snapshots will be sent to this URL."
 msgstr "Ögonblicksbilder kommer att skickas till denna webbadress."
 
-#. TRANS: Title for button to save snapshot settings.
+#. TRANS: Button title to save snapshot settings.
 msgid "Save snapshot settings."
 msgstr "Spara inställningar för ögonblicksbild."
 
@@ -6092,7 +6123,7 @@ msgstr "Inbjudningar aktiverade"
 msgid "Whether to allow users to invite new users."
 msgstr "Hurvida användare skall tillåtas bjuda in nya användare."
 
-#. TRANS: Title for button to save user settings in user admin panel.
+#. TRANS: Button title to save user settings in user admin panel.
 msgid "Save user settings."
 msgstr "Spara användarinställningar."
 
@@ -6313,8 +6344,9 @@ msgstr "Kunde inte uppdatera lokal grupp."
 msgid "Could not create login token for %s"
 msgstr "Kunde inte skapa inloggnings-token för %s"
 
-#, fuzzy
-msgid "Cannot instantiate class "
+#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#, fuzzy, php-format
+msgid "Cannot instantiate class %s."
 msgstr "Kan inte spara nya lösenordet."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7037,13 +7069,14 @@ msgstr ""
 "Standardåtkomst för denna applikation: skrivskyddad, eller läs och skriv"
 
 #. TRANS: Submit button title.
-msgid "Cancel"
-msgstr "Avbryt"
+#, fuzzy
+msgid "Cancel application changes."
+msgstr "Anslutna applikationer"
 
 #. TRANS: Submit button title.
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Spara"
+#, fuzzy
+msgid "Save application changes."
+msgstr "Ny applikation"
 
 #. TRANS: Name for an anonymous application in application list.
 msgid "Unknown application"
@@ -7674,7 +7707,6 @@ msgid "Unable to find services for %s."
 msgstr "Det gick inte att hitta tjänster för %s."
 
 #. TRANS: Form legend for removing the favourite status for a favourite notice.
-#. TRANS: Title for button text for removing the favourite status for a favourite notice.
 msgid "Disfavor this notice"
 msgstr "Avmarkera denna notis som favorit"
 
@@ -7683,8 +7715,12 @@ msgctxt "BUTTON"
 msgid "Disfavor favorite"
 msgstr "Ta bort märkning som favorit"
 
+#. TRANS: Button title for removing the favourite status for a favourite notice.
+#, fuzzy
+msgid "Remove this notice from your list of favorite notices."
+msgstr "Kunde inte hämta favoritnotiser."
+
 #. TRANS: Form legend for adding the favourite status to a notice.
-#. TRANS: Title for button text for adding the favourite status to a notice.
 msgid "Favor this notice"
 msgstr "Markera denna notis som favorit"
 
@@ -7692,6 +7728,11 @@ msgstr "Markera denna notis som favorit"
 msgctxt "BUTTON"
 msgid "Favor"
 msgstr "Markera som favorit"
+
+#. TRANS: Button title for adding the favourite status to a notice.
+#, fuzzy
+msgid "Add this notice to your list of favorite notices."
+msgstr "Kunde inte hämta favoritnotiser."
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -7751,8 +7792,8 @@ msgstr "Blockera"
 
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
-msgid "Block this user"
-msgstr "Blockera denna användare"
+msgid "Block this user so that they can no longer post messages to it."
+msgstr ""
 
 #. TRANS: Field title on group edit form.
 msgid "URL of the homepage or blog of the group or topic."
@@ -7896,11 +7937,14 @@ msgstr "Populära grupper"
 msgid "Active groups"
 msgstr "Aktiva grupper"
 
+#. TRANS: Link description for seeing all groups.
+#. TRANS: Link description for seeing all lists.
 #, fuzzy
 msgid "See all"
 msgstr "Visa alla"
 
-msgid "See all groups you belong to"
+#. TRANS: Link title for seeing all groups.
+msgid "See all groups you belong to."
 msgstr ""
 
 #. TRANS: Title for group tag cloud section.
@@ -8043,8 +8087,9 @@ msgctxt "BUTTON"
 msgid "Leave"
 msgstr "Leave"
 
+#. TRANS: Link title for seeing all lists.
 #, fuzzy
-msgid "See all lists you have created"
+msgid "See all lists you have created."
 msgstr "Applikationer du har registrerat"
 
 #. TRANS: Menu item for logging in to the StatusNet site.
@@ -8329,7 +8374,7 @@ msgstr "%1$s (@%2$s) skickade en notis för din uppmärksamhet"
 #. TRANS: Body of @-reply notification e-mail.
 #. TRANS: %1$s is the sending user's name, $2$s is the StatusNet sitename,
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
-#. TRANS: %5$s is a URL to the full conversion if it exists (otherwise empty),
+#. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
 #, php-format
 msgid ""
@@ -8459,8 +8504,9 @@ msgid "Make Admin"
 msgstr "Gör till administratör"
 
 #. TRANS: Submit button title.
+#, fuzzy
 msgctxt "TOOLTIP"
-msgid "Make this user an admin"
+msgid "Make this user an admin."
 msgstr "Gör denna användare till administratör"
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
@@ -8577,6 +8623,7 @@ msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 "Du måste implementera antingen adaptNoticeListItem() eller showNotice()."
 
+#. TRANS: Link description to show more items in a list.
 msgid "More ▼"
 msgstr ""
 
@@ -8667,7 +8714,8 @@ msgid "Repeated by"
 msgstr "Upprepad av"
 
 #. TRANS: Link title in notice list item to reply to a notice.
-msgid "Reply to this notice"
+#, fuzzy
+msgid "Reply to this notice."
 msgstr "Svara på denna notis"
 
 #. TRANS: Link text in notice list item to reply to a notice.
@@ -8675,8 +8723,9 @@ msgid "Reply"
 msgstr "Svara"
 
 #. TRANS: Link title in notice list item to delete a notice.
-msgid "Delete this notice"
-msgstr "Ta bort denna notis"
+#, fuzzy
+msgid "Delete this notice from the timeline."
+msgstr "Ta bort denna notis."
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
 msgid "Notice repeated."
@@ -8723,6 +8772,10 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Beskriv listan eller ämnet med %d tecken."
 msgstr[1] "Beskriv listan eller ämnet med %d tecken."
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Spara"
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -8775,10 +8828,6 @@ msgstr "Redigera"
 #, php-format
 msgid "Edit %s list by you."
 msgstr "Redigera %s-listan av dig."
-
-#. TRANS: Link description for link to list of users tagged with a tag.
-msgid "Tagged"
-msgstr "Taggade"
 
 #. TRANS: Title for link to edit list settings.
 msgid "Edit list settings."
@@ -9580,7 +9629,6 @@ msgid "Unsilence this user"
 msgstr "Häv nedtystning av denna användare"
 
 #. TRANS: Form legend on unsubscribe form.
-#. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user"
 msgstr "Avsluta prenumerationen på denna användare"
 
@@ -9589,6 +9637,11 @@ msgstr "Avsluta prenumerationen på denna användare"
 msgctxt "BUTTON"
 msgid "Unsubscribe"
 msgstr "Avsluta pren."
+
+#. TRANS: Button title on unsubscribe form.
+#, fuzzy
+msgid "Unsubscribe from this user."
+msgstr "Avsluta prenumerationen på denna användare"
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -9705,177 +9758,15 @@ msgstr "Inte en giltig e-postadress."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Kunde inte spara profil."
 
-#~ msgid "You cannot list an OMB 0.1 remote profile with this action."
-#~ msgstr "Du kan inte lista en OMB 0,1-fjärrprofil med denna åtgärd."
+#~ msgid "Save paths"
+#~ msgstr "Spara sökvägar"
 
-#~ msgid "Not expecting this response!"
-#~ msgstr "Väntade mig inte denna respons!"
+#~ msgid "Cancel"
+#~ msgstr "Avbryt"
 
-#~ msgid "User being listened to does not exist."
-#~ msgstr "Användaren som lyssnas på existerar inte."
+#~ msgctxt "TOOLTIP"
+#~ msgid "Block this user"
+#~ msgstr "Blockera denna användare"
 
-#~ msgid "You can use the local subscription!"
-#~ msgstr "Du kan använda den lokala prenumerationen!"
-
-#~ msgid "That user has blocked you from subscribing."
-#~ msgstr "Denna användaren har blockerat dig från att prenumerera."
-
-#~ msgid "You are not authorized."
-#~ msgstr "Du har inte tillstånd."
-
-#~ msgid "Could not convert request token to access token."
-#~ msgstr "Kunde inte konvertera token för begäran till token för åtkomst."
-
-#~ msgid "Remote service uses unknown version of OMB protocol."
-#~ msgstr "Fjärrtjänsten använder en okänd version av OMB-protokollet."
-
-#~ msgid "Error updating remote profile."
-#~ msgstr "Fel vid uppdatering av fjärrprofil."
-
-#~ msgid "Invalid notice content."
-#~ msgstr "Ogiltigt notisinnehåll."
-
-#~ msgid ""
-#~ "Notice license \"%1$s\" is not compatible with site license \"%2$s\"."
-#~ msgstr ""
-#~ "Licensen för notiser \"%1$s\" är inte förenlig webbplatslicensen \"%2$s\"."
-
-#~ msgid ""
-#~ "To subscribe, you can [login](%%action.login%%), or [register](%%action."
-#~ "register%%) a new  account. If you already have an account  on a "
-#~ "[compatible microblogging site](%%doc.openmublog%%),  enter your profile "
-#~ "URL below."
-#~ msgstr ""
-#~ "För att prenumerera kan du [logga in](%%action.login%%) eller [registrera]"
-#~ "(%%action.register%%) ett nytt konto. Om du redan har ett konto på en "
-#~ "[kompatibel mikrobloggwebbplats](%%doc.openmublog%%), fyll i din profils "
-#~ "URL nedan."
-
-#~ msgid "Remote subscribe"
-#~ msgstr "Fjärrprenumerera"
-
-#~ msgid "Subscribe to a remote user"
-#~ msgstr "Prenumerera på en fjärranvändare"
-
-#~ msgid "User nickname"
-#~ msgstr "Användarens smeknamn"
-
-#~ msgid "Nickname of the user you want to follow."
-#~ msgstr "Smeknamn på den användare som du vill följa."
-
-#~ msgid "Profile URL"
-#~ msgstr "Profil-URL"
-
-#~ msgid "URL of your profile on another compatible microblogging service."
-#~ msgstr ""
-#~ "Webbadressen till din profil på en annan kompatibel mikrobloggtjänst."
-
-#~ msgid "Invalid profile URL (bad format)."
-#~ msgstr "Ogiltig profil-URL (dåligt format)."
-
-#~ msgid "Not a valid profile URL (no YADIS document or invalid XRDS defined)."
-#~ msgstr ""
-#~ "Inte en giltig profil-URL (inget YADIS-dokument eller ogiltig XRDS "
-#~ "definerad)."
-
-#~ msgid "That is a local profile! Login to subscribe."
-#~ msgstr "Det är en lokal profil! Logga in för att prenumerera."
-
-#~ msgid "Could not get a request token."
-#~ msgstr "Kunde inte få en förfrågan-token."
-
-#~ msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-#~ msgstr ""
-#~ "Du kan inte lägga till eller ta bort en OMB 0.1-fjärrprofil från en lista "
-#~ "med denna åtgärd."
-
-#~ msgid "You cannot subscribe to an OMB 0.1 remote profile with this action."
-#~ msgstr "Du kan inte prenumerera på en 0MB 0.1-fjärrprofil med denna åtgärd."
-
-#~ msgid ""
-#~ "Listenee stream license \"%1$s\" is not compatible with site license \"%2"
-#~ "$s\"."
-#~ msgstr ""
-#~ "Licensen för lyssnarströmmen \"%1$s\" är inte förenlig med "
-#~ "webbplatslicensen \"%2$s\"."
-
-#~ msgid "Authorize subscription"
-#~ msgstr "Godkänn prenumeration"
-
-#~ msgid ""
-#~ "Please check these details to make sure that you want to subscribe to "
-#~ "this user’s notices. If you didn’t just ask to subscribe to someone’s "
-#~ "notices, click \"Reject\"."
-#~ msgstr ""
-#~ "Vänligen kontrollera dessa detaljer för att försäkra dig om att du vill "
-#~ "prenumerera på denna användares notiser. Om du inte bett om att "
-#~ "prenumerera på någons meddelanden, klicka på \"Avvisa\"."
-
-#~ msgid "Reject this subscription."
-#~ msgstr "Avvisa den här prenumerationen."
-
-#~ msgid "No authorization request!"
-#~ msgstr "Ingen begäran om godkännande!"
-
-#~ msgid "Subscription authorized"
-#~ msgstr "Prenumeration godkänd"
-
-#~ msgid ""
-#~ "The subscription has been authorized, but no callback URL was passed. "
-#~ "Check with the site's instructions for details on how to authorize the "
-#~ "subscription. Your subscription token is:"
-#~ msgstr ""
-#~ "Prenumerationen har godkänts, men ingen anrops-URL har gått igenom. Kolla "
-#~ "med webbplatsens instruktioner hur du bekräftar en prenumeration. Din "
-#~ "prenumerations-token är:"
-
-#~ msgid "Subscription rejected"
-#~ msgstr "Prenumeration avvisad"
-
-#~ msgid ""
-#~ "The subscription has been rejected, but no callback URL was passed. Check "
-#~ "with the site's instructions for details on how to fully reject the "
-#~ "subscription."
-#~ msgstr ""
-#~ "Prenumerationen har blivit avvisad, men ingen URL har gått igenom. Kolla "
-#~ "med webbplatsens instruktioner för detaljer om hur du fullständingt "
-#~ "avvisar prenumerationen."
-
-#~ msgid "Listener URI \"%s\" not found here."
-#~ msgstr "URI för lyssnare \"%s\" hittades inte här."
-
-#~ msgid "Listenee URI \"%s\" is too long."
-#~ msgstr "URI för lyssnare \"%s\" är för lång."
-
-#~ msgid "Listenee URI \"%s\" is a local user."
-#~ msgstr "URI för lyssnare \"%s\" är en lokal användare."
-
-#~ msgid "Profile URL \"%s\" is for a local user."
-#~ msgstr "Profil-URL \"%s\" är för en lokal användare."
-
-#~ msgid "Avatar URL \"%s\" is not valid."
-#~ msgstr "Avatar-URL \"%s\" är inte giltig."
-
-#~ msgid "Cannot read avatar URL \"%s\"."
-#~ msgstr "Kan inte läsa avatar-URL \"%s\"."
-
-#~ msgid "Wrong image type for avatar URL \"%s\"."
-#~ msgstr "Fel bildtyp för avatar-URL \"%s\"."
-
-#~ msgid "Could not delete subscription OMB token."
-#~ msgstr "Kunde inte spara prenumeration."
-
-#~ msgid "Error inserting new profile."
-#~ msgstr "Fel vid infogning av ny profil."
-
-#~ msgid "Error inserting avatar."
-#~ msgstr "Fel vid infogning av avatar."
-
-#~ msgid "Error inserting remote profile."
-#~ msgstr "Fel vid infogning av fjärrprofil."
-
-#~ msgid "Duplicate notice."
-#~ msgstr "Duplicera notis."
-
-#~ msgid "Could not insert new subscription."
-#~ msgstr "Kunde inte infoga ny prenumeration."
+#~ msgid "Delete this notice"
+#~ msgstr "Ta bort denna notis"

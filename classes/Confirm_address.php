@@ -4,7 +4,7 @@
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Confirm_address extends Memcached_DataObject 
+class Confirm_address extends Managed_DataObject 
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -26,8 +26,25 @@ class Confirm_address extends Memcached_DataObject
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
-    function sequenceKey()
-    { return array(false, false); }
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'code' => array('type' => 'varchar', 'length' => 32, 'not null' => true, 'description' => 'good random code'),
+                'user_id' => array('type' => 'int', 'not null' => true, 'description' => 'user who requested confirmation'),
+                'address' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'address (email, xmpp, SMS, etc.)'),
+                'address_extra' => array('type' => 'varchar', 'length' => 255, 'not null' => true, 'description' => 'carrier ID, for SMS'),
+                'address_type' => array('type' => 'varchar', 'length' => 8, 'not null' => true, 'description' => 'address type ("email", "xmpp", "sms")'),
+                'claimed' => array('type' => 'datetime', 'description' => 'date this was claimed for queueing'),
+                'sent' => array('type' => 'datetime', 'description' => 'date this was sent for queueing'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('code'),
+            'foreign keys' => array(
+                'confirm_address_user_id_fkey' => array('user', array('user_id' => 'id')),
+            ),
+        );
+    }
 
     static function getAddress($address, $addressType)
     {

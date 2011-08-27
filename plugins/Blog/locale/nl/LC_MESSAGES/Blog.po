@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: SPQRobin
+# Author: Siebrand
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:19:52+0000\n"
-"Language-Team: Dutch <http://translatewiki.net/wiki/Portal:nl>\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:34:40+0000\n"
+"Language-Team: Dutch <//translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-07-01 11:17:57+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-blog\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -37,28 +38,38 @@ msgstr "Inhoud is verplicht."
 msgid "Blog entry saved"
 msgstr "Blogbericht is opgeslagen"
 
+#. TRANS: Plugin description.
 msgid "Let users write and share long-form texts."
-msgstr ""
+msgstr "Laat gebruikers langere teksten schrijven en delen."
 
+#. TRANS: Blog application title.
+#, fuzzy
+msgctxt "TITLE"
 msgid "Blog"
 msgstr "Blog"
 
 #. TRANS: Exception thrown when there are too many activity objects.
 msgid "Too many activity objects."
-msgstr ""
+msgstr "Te veel activiteitobjecten."
 
-#. TRANS: Exception thrown when blog plugin comes across a non-event type object.
+#. TRANS: Exception thrown when blog plugin comes across a non-blog entry type object.
 msgid "Wrong type for object."
-msgstr ""
+msgstr "Verkeerde type voor object."
 
 #. TRANS: Exception thrown when blog plugin comes across a undefined verb.
 msgid "Unknown verb for blog entries."
+msgstr "Onbekende werkwoord voor blogberichten."
+
+#. TRANS: Exception thrown when requesting a non-existing blog entry for notice.
+#, php-format
+msgid "No blog entry for notice %s."
 msgstr ""
 
 #. TRANS: Client exception thrown when referring to a non-existing blog entry.
 msgid "No such entry."
-msgstr ""
+msgstr "Geen dergelijke vermelding."
 
+#. TRANS: Title for a blog entry without a title.
 msgid "Untitled"
 msgstr "Zonder titel"
 
@@ -71,15 +82,16 @@ msgstr "Titel"
 msgid "Title of the blog entry."
 msgstr "Titel van het blogbericht."
 
-#. TRANS: Field label on event form.
+#. TRANS: Field label on blog entry form.
 msgctxt "LABEL"
 msgid "Text"
 msgstr "Tekst"
 
-#. TRANS: Field title on event form.
+#. TRANS: Field title on blog entry form.
 msgid "Text of the blog entry."
 msgstr "Tekst van het blogbericht."
 
+#. TRANS: Button text to save a blog entry.
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Opslaan"

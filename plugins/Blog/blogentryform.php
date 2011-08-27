@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class BlogEntryForm extends Form
 {
     /**
@@ -96,13 +95,13 @@ class BlogEntryForm extends Form
                           _m('Title of the blog entry.'),
                           'title');
         $this->unli();
-        
+
         $this->li();
         $this->out->textarea('blog-entry-content',
-                             // TRANS: Field label on event form.
+                             // TRANS: Field label on blog entry form.
                              _m('LABEL','Text'),
                             null,
-                            // TRANS: Field title on event form.
+                            // TRANS: Field title on blog entry form.
                             _m('Text of the blog entry.'),
                             'content');
         $this->unli();
@@ -124,8 +123,8 @@ class BlogEntryForm extends Form
      */
     function formActions()
     {
-        // TRANS: Button text to save an event..
         $this->out->submit('blog-entry-submit',
+                           // TRANS: Button text to save a blog entry.
                            _m('BUTTON', 'Save'),
                            'submit',
                            'submit');

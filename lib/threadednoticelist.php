@@ -80,7 +80,7 @@ class ThreadedNoticeList extends NoticeList
 		$total = count($notices);
 		$notices = array_slice($notices, 0, NOTICES_PER_PAGE);
 		
-    	self::prefill($notices);
+    	self::prefill(self::_allNotices($notices));
     	
         $conversations = array();
         
@@ -121,6 +121,21 @@ class ThreadedNoticeList extends NoticeList
         $this->out->elementEnd('div');
 
         return $total;
+    }
+
+    function _allNotices($notices)
+    {
+        $convId = array();
+        foreach ($notices as $notice) {
+            $convId[] = $notice->conversation;
+        }
+        $convId = array_unique($convId);
+        $allMap = Memcached_DataObject::listGet('Notice', 'conversation', $convId);
+        $allArray = array();
+        foreach ($allMap as $convId => $convNotices) {
+            $allArray = array_merge($allArray, $convNotices);
+        }
+        return $allArray;
     }
 
     /**
@@ -224,7 +239,6 @@ class ThreadedNoticeListItem extends NoticeListItem
                         $item = new ThreadedNoticeListMoreItem($moreCutoff, $this->out, count($notices));
                         $item->show();
                     }
-                    NoticeList::prefill($notices, AVATAR_MINI_SIZE);
                     foreach (array_reverse($notices) as $notice) {
                         if (Event::handle('StartShowThreadedNoticeSub', array($this, $this->notice, $notice))) {
                             $item = new ThreadedNoticeListSubItem($notice, $this->notice, $this->out);
@@ -544,12 +558,14 @@ class ThreadedNoticeListRepeatsItem extends NoticeListActorsItem
 {
     function getProfiles()
     {
-        $rep = $this->notice->repeatStream();
+        $repeats = $this->notice->getRepeats();
 
         $profiles = array();
-        while ($rep->fetch()) {
+
+        foreach ($repeats as $rep) {
             $profiles[] = $rep->profile_id;
         }
+
         return $profiles;
     }
 

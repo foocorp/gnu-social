@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-21 12:19+0000\n"
-"PO-Revision-Date: 2011-07-21 12:19:52+0000\n"
-"Language-Team: Interlingua <http://translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"PO-Revision-Date: 2011-08-20 18:34:40+0000\n"
+"Language-Team: Interlingua <//translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-07-01 11:17:57+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r92662); Translate extension (2011-07-09)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-blog\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -37,9 +37,13 @@ msgstr "Contento requirite."
 msgid "Blog entry saved"
 msgstr "Articulo de blog salveguardate"
 
+#. TRANS: Plugin description.
 msgid "Let users write and share long-form texts."
 msgstr "Permitte que usatores scribe e divide textos longe."
 
+#. TRANS: Blog application title.
+#, fuzzy
+msgctxt "TITLE"
 msgid "Blog"
 msgstr "Blog"
 
@@ -47,7 +51,7 @@ msgstr "Blog"
 msgid "Too many activity objects."
 msgstr "Troppo de objectos de activitate."
 
-#. TRANS: Exception thrown when blog plugin comes across a non-event type object.
+#. TRANS: Exception thrown when blog plugin comes across a non-blog entry type object.
 msgid "Wrong type for object."
 msgstr "Typo errate pro iste objecto."
 
@@ -55,10 +59,16 @@ msgstr "Typo errate pro iste objecto."
 msgid "Unknown verb for blog entries."
 msgstr "Verbo incognite pro articulos de blog."
 
+#. TRANS: Exception thrown when requesting a non-existing blog entry for notice.
+#, php-format
+msgid "No blog entry for notice %s."
+msgstr ""
+
 #. TRANS: Client exception thrown when referring to a non-existing blog entry.
 msgid "No such entry."
 msgstr "Articulo non existe."
 
+#. TRANS: Title for a blog entry without a title.
 msgid "Untitled"
 msgstr "Sin titulo"
 
@@ -71,15 +81,16 @@ msgstr "Titulo"
 msgid "Title of the blog entry."
 msgstr "Le titulo del articulo de blog."
 
-#. TRANS: Field label on event form.
+#. TRANS: Field label on blog entry form.
 msgctxt "LABEL"
 msgid "Text"
 msgstr "Texto"
 
-#. TRANS: Field title on event form.
+#. TRANS: Field title on blog entry form.
 msgid "Text of the blog entry."
 msgstr "Le texto del articulo de blog."
 
+#. TRANS: Button text to save a blog entry.
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Salveguardar"

@@ -113,6 +113,10 @@ class StatusNet
         StatusNet::initDefaults($server, $path);
         StatusNet::loadConfigFile($conffile);
 
+        $sprofile = common_config('site', 'profile');
+        if (!empty($sprofile)) {
+            StatusNet::loadSiteProfile($sprofile);
+        }
         // Load settings from database; note we need autoload for this
         Config::loadSettings();
 
@@ -302,6 +306,13 @@ class StatusNet
         }
     }
 
+    public static function loadSiteProfile($name)
+    {
+        global $config;
+        $settings = SiteProfile::getSettings($name);
+        $config = array_replace_recursive($config, $settings);
+    }
+
     protected function _sn_to_path($sn)
     {
         $past_root = substr($sn, 1);
@@ -360,13 +371,6 @@ class StatusNet
         if (!self::$have_config) {
             throw new NoConfigException("No configuration file found.",
                                         $config_files);
-        }
-
-        // Fixup for statusnet.ini
-        $_db_name = substr($config['db']['database'], strrpos($config['db']['database'], '/') + 1);
-
-        if ($_db_name != 'statusnet' && !array_key_exists('ini_'.$_db_name, $config['db'])) {
-            $config['db']['ini_'.$_db_name] = INSTALLDIR.'/classes/statusnet.ini';
         }
 
         // Backwards compatibility

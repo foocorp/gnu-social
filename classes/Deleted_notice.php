@@ -26,7 +26,7 @@ if (!defined('STATUSNET')) {
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Deleted_notice extends Memcached_DataObject
+class Deleted_notice extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -43,4 +43,24 @@ class Deleted_notice extends Memcached_DataObject
 
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
+
+    public static function schemaDef()
+    {
+        return array(
+            'fields' => array(
+                'id' => array('type' => 'int', 'not null' => true, 'description' => 'identity of notice'),
+                'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'author of the notice'),
+                'uri' => array('type' => 'varchar', 'length' => 255, 'description' => 'universally unique identifier, usually a tag URI'),
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date the notice record was created'),
+                'deleted' => array('type' => 'datetime', 'not null' => true, 'description' => 'date the notice record was created'),
+            ),
+            'primary key' => array('id'),
+            'unique keys' => array(
+                'deleted_notice_uri_key' => array('uri'),
+            ),
+            'indexes' => array(
+                'deleted_notice_profile_id_idx' => array('profile_id'),
+            ),
+        );
+    }
 }

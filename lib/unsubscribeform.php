@@ -131,6 +131,6 @@ class UnsubscribeForm extends Form
         // TRANS: Button text on unsubscribe form.
         $this->out->submit('submit', _m('BUTTON','Unsubscribe'), 'submit', null,
                            // TRANS: Button title on unsubscribe form.
-                           _('Unsubscribe from this user'));
+                           _('Unsubscribe from this user.'));
     }
 }

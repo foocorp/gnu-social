@@ -277,6 +277,13 @@ class Action extends HTMLOutputter // lawsuit
             $this->cssLink('css/display.css', $baseTheme, $media);
         }
         $this->cssLink('css/display.css', $mainTheme, $media);
+
+        // Additional styles for RTL languages
+        if (is_rtl(common_language())) {
+            if (file_exists(Theme::file('css/rtl.css'))) {
+                $this->cssLink('css/rtl.css', $mainTheme, $media);
+            }
+        }
     }
 
     /**
@@ -573,6 +580,14 @@ class Action extends HTMLOutputter // lawsuit
     function showPrimaryNav()
     {
         $this->elementStart('div', array('id' => 'site_nav_global_primary'));
+
+        $user = common_current_user();
+
+        if (!empty($user) || !common_config('site', 'private')) {
+            $form = new SearchForm($this);
+            $form->show();
+        }
+
         $pn = new PrimaryNav($this);
         $pn->show();
         $this->elementEnd('div');

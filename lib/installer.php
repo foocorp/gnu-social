@@ -42,7 +42,7 @@
 abstract class Installer
 {
     /** Web site info */
-    public $sitename, $server, $path, $fancy;
+    public $sitename, $server, $path, $fancy, $siteProfile;
     /** DB info */
     public $host, $database, $dbtype, $username, $password, $db;
     /** Administrator info */
@@ -73,7 +73,7 @@ abstract class Installer
         error_reporting($old);
         return $ok;
     }
-    
+
     /**
      * Check if all is ready for installation
      *
@@ -185,7 +185,7 @@ abstract class Installer
     /**
      * Basic validation on the database paramters
      * Side effects: error output if not valid
-     * 
+     *
      * @return boolean success
      */
     function validateDb()
@@ -218,7 +218,7 @@ abstract class Installer
     /**
      * Basic validation on the administrator user paramters
      * Side effects: error output if not valid
-     * 
+     *
      * @return boolean success
      */
     function validateAdmin()
@@ -252,9 +252,28 @@ abstract class Installer
     }
 
     /**
+     * Make sure a site profile was selected
+     *
+     * @return type boolean success
+     */
+    function validateSiteProfile()
+    {
+        $fail = false;
+
+        $sprofile = $this->siteProfile;
+
+        if (empty($sprofile))  {
+            $this->updateStatus("No site profile selected.", true);
+            $fail = true;
+        }
+
+        return !$fail;
+    }
+
+    /**
      * Set up the database with the appropriate function for the selected type...
      * Saves database info into $this->db.
-     * 
+     *
      * @fixme escape things in the connection string in case we have a funny pass etc
      * @return mixed array of database connection params on success, false on failure
      */
@@ -316,7 +335,7 @@ abstract class Installer
      * Open a connection to the database.
      *
      * @param <type> $dsn
-     * @return <type> 
+     * @return <type>
      */
     function connectDatabase($dsn)
     {
@@ -384,7 +403,7 @@ abstract class Installer
      * Write a stock configuration file.
      *
      * @return boolean success
-     * 
+     *
      * @fixme escape variables in output in case we have funny chars, apostrophes etc
      */
     function writeConf()
@@ -395,6 +414,7 @@ abstract class Installer
             'path' => $this->path,
             'db_database' => $this->db['database'],
             'db_type' => $this->db['type'],
+            'site_profile' => $this->siteProfile
         ));
 
         // assemble configuration file in a string
@@ -414,7 +434,10 @@ abstract class Installer
                 // database
                 "\$config['db']['database'] = {$vals['db_database']};\n\n".
                 ($this->db['type'] == 'pgsql' ? "\$config['db']['quote_identifiers'] = true;\n\n":'').
-                "\$config['db']['type'] = {$vals['db_type']};\n\n";
+                "\$config['db']['type'] = {$vals['db_type']};\n\n".
+
+                // site profile
+                "\$config['site']['profile'] = {$vals['site_profile']};\n\n";
 
         // Normalize line endings for Windows servers
         $cfg = str_replace("\n", PHP_EOL, $cfg);
@@ -479,7 +502,7 @@ abstract class Installer
         $user->grantRole('owner');
         $user->grantRole('moderator');
         $user->grantRole('administrator');
-        
+
         // Attempt to do a remote subscribe to update@status.net
         // Will fail if instance is on a private network.
 
@@ -499,9 +522,9 @@ abstract class Installer
     /**
      * The beef of the installer!
      * Create database, config file, and admin user.
-     * 
+     *
      * Prerequisites: validation of input data.
-     * 
+     *
      * @return boolean success
      */
     function doInstall()

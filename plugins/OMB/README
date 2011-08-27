@@ -28,4 +28,3 @@ Note: once you have a sizable number of users, sending OMB messages whenever
 someone posts a message can really slow down your site; it may cause posting
 to timeout. You may wish to enable queuing and handle OMB communication
 offline. See the "queues and daemons" section of the main StatusNet README.
-

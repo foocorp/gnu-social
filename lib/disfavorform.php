@@ -136,8 +136,8 @@ class DisfavorForm extends Form
                            _m('BUTTON','Disfavor favorite'),
                            'submit',
                            null,
-                           // TRANS: Title for button text for removing the favourite status for a favourite notice.
-                           _('Disfavor this notice'));
+                           // TRANS: Button title for removing the favourite status for a favourite notice.
+                           _('Remove this notice from your list of favorite notices.'));
     }
 
     /**

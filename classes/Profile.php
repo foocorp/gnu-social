@@ -24,7 +24,7 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
  */
 require_once INSTALLDIR.'/classes/Memcached_DataObject.php';
 
-class Profile extends Memcached_DataObject
+class Profile extends Managed_DataObject
 {
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -47,6 +47,36 @@ class Profile extends Memcached_DataObject
     /* Static get */
     function staticGet($k,$v=NULL) {
         return Memcached_DataObject::staticGet('Profile',$k,$v);
+    }
+
+    public static function schemaDef()
+    {
+        return array(
+            'description' => 'local and remote users have profiles',
+            'fields' => array(
+                'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
+                'nickname' => array('type' => 'varchar', 'length' => 64, 'not null' => true, 'description' => 'nickname or username'),
+                'fullname' => array('type' => 'varchar', 'length' => 255, 'description' => 'display name'),
+                'profileurl' => array('type' => 'varchar', 'length' => 255, 'description' => 'URL, cached so we dont regenerate'),
+                'homepage' => array('type' => 'varchar', 'length' => 255, 'description' => 'identifying URL'),
+                'bio' => array('type' => 'text', 'description' => 'descriptive biography'),
+                'location' => array('type' => 'varchar', 'length' => 255, 'description' => 'physical location'),
+                'lat' => array('type' => 'numeric', 'precision' => 10, 'scale' => 7, 'description' => 'latitude'),
+                'lon' => array('type' => 'numeric', 'precision' => 10, 'scale' => 7, 'description' => 'longitude'),
+                'location_id' => array('type' => 'int', 'description' => 'location id if possible'),
+                'location_ns' => array('type' => 'int', 'description' => 'namespace for location'),
+
+                'created' => array('type' => 'datetime', 'not null' => true, 'description' => 'date this record was created'),
+                'modified' => array('type' => 'timestamp', 'not null' => true, 'description' => 'date this record was modified'),
+            ),
+            'primary key' => array('id'),
+            'indexes' => array(
+                'profile_nickname_idx' => array('nickname'),
+            ),
+            'fulltext indexes' => array(
+                'nickname' => array('nickname', 'fullname', 'location', 'bio', 'homepage')
+            ),
+        );
     }
 
 	function multiGet($keyCol, $keyVals, $skipNulls=true)
@@ -405,6 +435,7 @@ class Profile extends Memcached_DataObject
         $tags->tagged = $this->id;
 
         $lists->joinAdd($tags);
+
         #@fixme: postgres (round(date_part('epoch', my_date)))
         $lists->selectAdd('unix_timestamp(profile_tag.modified) as "cursor"');
 
@@ -477,7 +508,8 @@ class Profile extends Memcached_DataObject
         $lists = new Profile_list();
         $subs = new Profile_tag_subscription();
 
-        $lists->joinAdd($subs);
+        $lists->joinAdd('id', 'profile_tag_subscription:profile_tag_id');
+
         #@fixme: postgres (round(date_part('epoch', my_date)))
         $lists->selectAdd('unix_timestamp(profile_tag_subscription.created) as "cursor"');
 
