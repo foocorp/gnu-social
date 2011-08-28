@@ -317,7 +317,6 @@ class ApiAction extends Action
 
         $twitter_status['source'] = $source;
         $twitter_status['id'] = intval($notice->id);
-        $twitter_status['statusnet_conversation_id'] = intval($notice->conversation);
 
         $replier_profile = null;
 
@@ -376,6 +375,7 @@ class ApiAction extends Action
         // StatusNet-specific
 
         $twitter_status['statusnet_html'] = $notice->rendered;
+        $twitter_status['statusnet_conversation_id'] = intval($notice->conversation);
 
         return $twitter_status;
     }
