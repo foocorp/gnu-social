@@ -376,7 +376,6 @@ class ApiAction extends Action
         // StatusNet-specific
 
         $twitter_status['statusnet_html'] = $notice->rendered;
-        $twitter_status['statusnet_conversation_id'] = $notice->conversation;
 
         return $twitter_status;
     }
