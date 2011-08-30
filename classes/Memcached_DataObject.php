@@ -36,7 +36,7 @@ class Memcached_DataObject extends Safe_DataObject
             $v = $k;
             $keys = self::pkeyCols($cls);
             if (count($keys) > 1) {
-            	// FIXME: maybe call pkeyGet() ourselves?
+                // FIXME: maybe call pkeyGet() ourselves?
                 throw new Exception('Use pkeyGet() for compound primary keys');
             }
             $k = $keys[0];
@@ -113,10 +113,10 @@ class Memcached_DataObject extends Safe_DataObject
         } else {
             $result = array_fill_keys($keyVals, null);
         }
-    	
-    	$toFetch = array();
-    	
-    	foreach ($keyVals as $keyVal) {
+
+        $toFetch = array();
+
+        foreach ($keyVals as $keyVal) {
 
             if (is_array($keyCol)) {
                 $kv = array_combine($keyCol, $keyVal);
@@ -124,25 +124,25 @@ class Memcached_DataObject extends Safe_DataObject
                 $kv = array($keyCol => $keyVal);
             }
 
-    		$kv = array_merge($otherCols, $kv);
-    		
-        	$i = self::multicache($cls, $kv);
-        	
-        	if ($i !== false) {
+            $kv = array_merge($otherCols, $kv);
+
+            $i = self::multicache($cls, $kv);
+
+            if ($i !== false) {
                 if (is_array($keyCol)) {
                     $result[implode(',', $keyVal)] = $i;
                 } else {
                     $result[$keyVal] = $i;
                 }
-        	} else if (!empty($keyVal)) {
-        		$toFetch[] = $keyVal;
-        	}
-    	}
-        
-    	if (count($toFetch) > 0) {
+            } else if (!empty($keyVal)) {
+                $toFetch[] = $keyVal;
+            }
+        }
+
+        if (count($toFetch) > 0) {
             $i = DB_DataObject::factory($cls);
             if (empty($i)) {
-            	throw new Exception(_('Cannot instantiate class ' . $cls));
+                throw new Exception(sprintf(_('Cannot instantiate class %s.'),$cls));
             }
             foreach ($otherCols as $otherKeyCol => $otherKeyVal) {
                 $i->$otherKeyCol = $otherKeyVal;
@@ -152,10 +152,10 @@ class Memcached_DataObject extends Safe_DataObject
             } else {
                 $i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
             }
-    		if ($i->find()) {
-    			while ($i->fetch()) {
-    				$copy = clone($i);
-    				$copy->encache();
+            if ($i->find()) {
+                while ($i->fetch()) {
+                    $copy = clone($i);
+                    $copy->encache();
                     if (is_array($keyCol)) {
                         $vals = array();
                         foreach ($keyCol as $k) {
@@ -165,36 +165,36 @@ class Memcached_DataObject extends Safe_DataObject
                     } else {
                         $result[$i->$keyCol] = $copy;
                     }
-    			}
-    		}
-    		
-    		// Save state of DB misses
-    		
-    		foreach ($toFetch as $keyVal) {
+                }
+            }
+
+            // Save state of DB misses
+
+            foreach ($toFetch as $keyVal) {
                 $r = null;
                 if (is_array($keyCol)) {
                     $r = $result[implode(',', $keyVal)];
                 } else {
                     $r = $result[$keyVal];
                 }
-    			if (empty($r)) {
+                if (empty($r)) {
                     if (is_array($keyCol)) {
                         $kv = array_combine($keyCol, $keyVal);
                     } else {
                         $kv = array($keyCol => $keyVal);
                     }
                     $kv = array_merge($otherCols, $kv);
-                	// save the fact that no such row exists
-                	$c = self::memcache();
-                	if (!empty($c)) {
-                    	$ck = self::multicacheKey($cls, $kv);
-                    	$c->set($ck, null);
-                	}	
-    			}
-    		}
-    	}
+                    // save the fact that no such row exists
+                    $c = self::memcache();
+                    if (!empty($c)) {
+                        $ck = self::multicacheKey($cls, $kv);
+                        $c->set($ck, null);
+                    }
+                }
+            }
+        }
 
-    	return $result;
+        return $result;
     }
 
     static function _inMultiKey($i, $cols, $values)
@@ -267,27 +267,27 @@ class Memcached_DataObject extends Safe_DataObject
 
     function listGet($cls, $keyCol, $keyVals)
     {
-    	$pkeyMap = array_fill_keys($keyVals, array());
+        $pkeyMap = array_fill_keys($keyVals, array());
         $result = array_fill_keys($keyVals, array());
 
         $pkeyCols = self::pkeyCols($cls);
 
-    	$toFetch = array();
+        $toFetch = array();
         $allPkeys = array();
 
         // We only cache keys -- not objects!
 
-    	foreach ($keyVals as $keyVal) {
-    	    $l = self::cacheGet(sprintf("%s:list-ids:%s:%s", strtolower($cls), $keyCol, $keyVal));
-    	    if ($l !== false) {
-    	        $pkeyMap[$keyVal] = $l;
+        foreach ($keyVals as $keyVal) {
+            $l = self::cacheGet(sprintf("%s:list-ids:%s:%s", strtolower($cls), $keyCol, $keyVal));
+            if ($l !== false) {
+                $pkeyMap[$keyVal] = $l;
                 foreach ($l as $pkey) {
                     $allPkeys[] = $pkey;
                 }
-    	    } else {
-    	        $toFetch[] = $keyVal;
-    	    }
-    	}
+            } else {
+                $toFetch[] = $keyVal;
+            }
+        }
 
         if (count($allPkeys) > 0) {
             $keyResults = self::pivotGet($cls, $pkeyCols, $allPkeys);
@@ -303,10 +303,10 @@ class Memcached_DataObject extends Safe_DataObject
         }
 
         if (count($toFetch) > 0) {
-	        $i = DB_DataObject::factory($cls);
-	        if (empty($i)) {
-	        	throw new Exception(_('Cannot instantiate class ' . $cls));
-	        }
+            $i = DB_DataObject::factory($cls);
+            if (empty($i)) {
+                throw new Exception(_('Cannot instantiate class ' . $cls));
+            }
             $i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
             if ($i->find()) {
                 sprintf("listGet() got {$i->N} results for class $cls key $keyCol");
@@ -320,32 +320,32 @@ class Memcached_DataObject extends Safe_DataObject
                     }
                     $pkeyMap[$i->$keyCol][] = $pkeyVal;
                 }
-            }       
-	    	foreach ($toFetch as $keyVal) {
+            }
+            foreach ($toFetch as $keyVal) {
                 self::cacheSet(sprintf("%s:list-ids:%s:%s", strtolower($cls), $keyCol, $keyVal),
                                $pkeyMap[$keyVal]);
-            }      
+            }
         }
 
-    	return $result;        
+        return $result;
     }
 
-	function columnType($columnName)
-	{
-		$keys = $this->table();
-		if (!array_key_exists($columnName, $keys)) {
-			throw new Exception('Unknown key column ' . $columnName . ' in ' . join(',', array_keys($keys)));
-		}
-		
-		$def = $keys[$columnName];
-		
-		if ($def & DB_DATAOBJECT_INT) {
-			return 'integer';
-		} else {
-			return 'string';
-		}
-	}
-	
+    function columnType($columnName)
+    {
+        $keys = $this->table();
+        if (!array_key_exists($columnName, $keys)) {
+            throw new Exception('Unknown key column ' . $columnName . ' in ' . join(',', array_keys($keys)));
+        }
+
+        $def = $keys[$columnName];
+
+        if ($def & DB_DATAOBJECT_INT) {
+            return 'integer';
+        } else {
+            return 'string';
+        }
+    }
+
     /**
      * @todo FIXME: Should this return false on lookup fail to match staticGet?
      */
