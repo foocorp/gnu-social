@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Superclass for system event items
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class SystemListItem extends NoticeListItemAdapter
 {
     /**
@@ -52,7 +51,6 @@ class SystemListItem extends NoticeListItemAdapter
      *
      * @return void
      */
-    
     function showNotice()
     {
         $out = $this->nli->out;
@@ -65,15 +63,15 @@ class SystemListItem extends NoticeListItemAdapter
     {
         $notice = $this->nli->notice;
         $out    = $this->nli->out;
-		
-		// FIXME: get the actual data on the leave
-		
+
+        // FIXME: get the actual data on the leave
+
         $out->elementStart('div', 'system-activity');
 
         $out->raw($notice->rendered);
-        
+
         $out->elementEnd('div');
-    } 
+    }
 
     function showNoticeOptions()
     {
