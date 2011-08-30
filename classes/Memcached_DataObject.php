@@ -142,6 +142,7 @@ class Memcached_DataObject extends Safe_DataObject
         if (count($toFetch) > 0) {
             $i = DB_DataObject::factory($cls);
             if (empty($i)) {
+                // TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
                 throw new Exception(sprintf(_('Cannot instantiate class %s.'),$cls));
             }
             foreach ($otherCols as $otherKeyCol => $otherKeyVal) {
