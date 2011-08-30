@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-30 08:58+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: joinlistitem.php:60 ActivityPlugin.php:232
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> joined the group <a href=\"%3$s\">%4$s</a>."
+msgstr ""
+
+#: ActivityPlugin.php:86
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> started following <a href=\"%2$s\">%4$s</a>."
+msgstr ""
+
+#: ActivityPlugin.php:91
+#, php-format
+msgid "%1$s (%2$s) started following %3$s (%4$s)."
+msgstr ""
+
+#: ActivityPlugin.php:116
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> stopped following <a href=\"%3$s\">%4$s</a>."
+msgstr ""
+
+#: ActivityPlugin.php:121
+#, php-format
+msgid "%1$s (%2$s) stopped following %3$s (%4$s)."
+msgstr ""
+
+#: ActivityPlugin.php:158
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> liked <a href=\"%3$s\">%4$s's update</a>."
+msgstr ""
+
+#: ActivityPlugin.php:163
+#, php-format
+msgid "%1$s (%2$s) liked %3$s's status (%4$s)"
+msgstr ""
+
+#: ActivityPlugin.php:191
+#, php-format
+msgid ""
+"<a href=\"%1$s\">%2$s</a> stopped liking <a href=\"%3$s\">%4$s's update</a>."
+msgstr ""
+
+#: ActivityPlugin.php:196
+#, php-format
+msgid "%1$s (%2$s) stopped liking %3$s's status (%4$s)"
+msgstr ""
+
+#: ActivityPlugin.php:237
+#, php-format
+msgid "%1$s (%2$s) joined the group %3$s (%4$s)."
+msgstr ""
+
+#: ActivityPlugin.php:269
+#, php-format
+msgid "<a href=\"%1$s\">%2$s</a> left the group <a href=\"%3$s\">%4$s</a>."
+msgstr ""
+
+#: ActivityPlugin.php:274
+#, php-format
+msgid "%1$s (%2$s) left the group %3$s (%4$s)"
+msgstr ""
+
+#. TRANS: Plugin description.
+#: ActivityPlugin.php:390
+msgid "Emits notices when social activities happen."
+msgstr ""
