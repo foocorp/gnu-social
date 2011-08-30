@@ -72,7 +72,8 @@ class SearchForm extends Form
     function formActions()
     {
         $this->out->element('input', array('type' => 'submit',
-                                           'value' => _('Search')));
+                                           // TRANS: Button text for search button on search form.
+                                           'value' => _m('BUTTON','Search')));
     }
 
     /**
