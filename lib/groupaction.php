@@ -92,7 +92,7 @@ class GroupAction extends Action
         $this->group = User_group::staticGet('id', $local->group_id);
 
         if (!$this->group) {
-                // TRANS: Client error displayed if no local group with a given name was found requesting group page.
+            // TRANS: Client error displayed if no local group with a given name was found requesting group page.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -139,12 +139,11 @@ class GroupAction extends Action
                                          'class' => 'section'));
 
         if (Event::handle('StartShowGroupMembersMiniList', array($this))) {
-
-            // TRANS: Header for mini list of group members on a group page (h2).
             $this->elementStart('h2');
 
             $this->element('a', array('href' => common_local_url('groupmembers', array('nickname' =>
                                                                                        $this->group->nickname))),
+                           // TRANS: Header for mini list of group members on a group page (h2).
                            _('Members'));
 
             $this->text(' ');
@@ -202,6 +201,7 @@ class GroupAction extends Action
 
             $this->element('a', array('href' => common_local_url('groupqueue', array('nickname' =>
                                                                                      $this->group->nickname))),
+                           // TRANS: Header for mini list of users with a pending membership request on a group page (h2).
                            _('Pending'));
 
             $this->text(' ');
@@ -236,6 +236,7 @@ class GroupAction extends Action
 
             $this->element('a', array('href' => common_local_url('blockedfromgroup', array('nickname' =>
                                                                                            $this->group->nickname))),
+                           // TRANS: Header for mini list of users that are blocked in a group page (h2).
                            _('Blocked'));
 
             $this->text(' ');
