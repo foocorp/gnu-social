@@ -1,6 +1,7 @@
 # Translation of StatusNet - GroupPrivateMessage to Arabic (العربية)
 # Exported from translatewiki.net
 #
+# Author: Majid Al-Dharrab
 # Author: OsamaK
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GroupPrivateMessage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:35:32+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:29:13+0000\n"
 "Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:18+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
@@ -25,7 +26,7 @@ msgstr ""
 
 #. TRANS: Client exception thrown when trying to send a private group message while not logged in.
 msgid "Must be logged in."
-msgstr ""
+msgstr "يجب الولوج."
 
 #. TRANS: Exception thrown when user %s is not allowed to send a private group message.
 #. TRANS: Exception thrown when trying to send group private message without having the right to do that.
@@ -247,12 +248,15 @@ msgstr "إعدادات الخصوصية للمجموعة %s غير معروفة.
 #, php-format
 msgid "That's too long. Maximum message size is %d character."
 msgid_plural "That's too long. Maximum message size is %d characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "هذا أطول من الحد المسموح به. لا يسمح بوضع حرف واحد في الرسالة."
+msgstr[1] "هذا أطول من الحد المسموح به. لا يسمح بوضع أكثر حرف واحد في الرسالة."
+msgstr[2] "هذا أطول من الحد المسموح به. لا يسمح بوضع أكثر من حرفين في الرسالة."
 msgstr[3] ""
+"هذا أطول من الحد المسموح به. لا يسمح بوضع أكثر من %d أحرف في الرسالة."
 msgstr[4] ""
+"هذا أطول من الحد المسموح به. لا يسمح بوضع أكثر من %d حرفًا في الرسالة."
 msgstr[5] ""
+"هذا أطول من الحد المسموح به. لا يسمح بوضع أكثر من %d حرف في الرسالة."
 
 #. TRANS: Exception thrown when trying to send group private message to a non-existing group.
 msgid "No group for group message."

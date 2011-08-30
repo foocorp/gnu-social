@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:35:10+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:28:52+0000\n"
 "Language-Team: Breton <//translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-16 06:59:38+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-20 19:38:23+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
@@ -23,22 +23,22 @@ msgstr ""
 
 #. TRANS: 0 minutes abbreviated. Used in a list.
 msgid "(0 min)"
-msgstr ""
+msgstr "(0 mun)"
 
 #. TRANS: 30 minutes abbreviated. Used in a list.
 msgid "(30 min)"
-msgstr ""
+msgstr "(30 mun)"
 
 #. TRANS: 1 hour. Used in a list.
 msgid "(1 hour)"
-msgstr ""
+msgstr "(1 eurvezh)"
 
 #. TRANS: Number of hours (%d). Used in a list.
 #, php-format
 msgid "(%d hour)"
 msgid_plural "(%d hours)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "(%d eurvezh)"
+msgstr[1] "(%d eurvezh)"
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -63,7 +63,7 @@ msgstr ""
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
-msgstr ""
+msgstr "Nann-kevreet."
 
 #. TRANS: Client error when submitting a form with unexpected information.
 msgid "Unexpected form submission."
@@ -134,7 +134,7 @@ msgstr "Nullañ an RSVP"
 
 #. TRANS: Content for a deleted RSVP list item (RSVP stands for "please respond").
 msgid "Deleted."
-msgstr ""
+msgstr "Bet diverket."
 
 #. TRANS: Field label on form to RSVP ("please respond") for an event.
 msgid "RSVP:"
@@ -178,9 +178,10 @@ msgctxt "LABEL"
 msgid "Start time"
 msgstr "Eurvezh kregiñ"
 
-#. TRANS: Field title on event form.
-msgid "Time the event starts."
-msgstr ""
+#. TRANS: Field title on event form. %s is the abbreviated timezone
+#, fuzzy, php-format
+msgid "Time the event starts (%s)."
+msgstr "An eurvezh evit pehini e krog an darvoud."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -198,12 +199,12 @@ msgstr "Eurvezh echuiñ"
 
 #. TRANS: Field title on event form.
 msgid "Time the event ends."
-msgstr ""
+msgstr "An eurvezh evit pehini ec'h echu an darvoud."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
 msgid "Where?"
-msgstr ""
+msgstr "Pelec'h ?"
 
 #. TRANS: Field title on event form.
 msgid "Event location."

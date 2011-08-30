@@ -11,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:36:31+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:30:12+0000\n"
 "Language-Team: Basque <//translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -449,7 +449,7 @@ msgstr "Elkarrizketa"
 msgid "No conversation with ID %d."
 msgstr "Elkarrizketa"
 
-#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for conversion timeline.
 #, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
@@ -1203,8 +1203,6 @@ msgstr "Saioa hasi behar duzu taldea uzteko."
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
-#. TRANS: Client error displayed when trying to view group members for a non-existing group.
-#. TRANS: Client error displayed when trying to view group members for an object that is not a group.
 #. TRANS: Client error displayed when requesting a group RSS feed for group that does not exist.
 #. TRANS: Client error displayed when requesting a group RSS feed for an object that is not a group.
 #. TRANS: Client error displayed when trying to unblock a user from a non-existing group.
@@ -1213,10 +1211,10 @@ msgstr "Saioa hasi behar duzu taldea uzteko."
 #. TRANS: Client error displayed when trying to leave a non-local group.
 #. TRANS: Client error displayed when trying to leave a non-existing group.
 #. TRANS: Client error displayed when providing an invalid group ID on the Make Admin page.
-#. TRANS: Client error displayed if no remote group with a given name was found requesting group page.
-#. TRANS: Client error displayed if no local group with a given name was found requesting group page.
 #. TRANS: Command exception text shown when a group is requested that does not exist.
 #. TRANS: Error text shown when trying to leave a group that does not exist.
+#. TRANS: Client error displayed if no remote group with a given name was found requesting group page.
+#. TRANS: Client error displayed if no local group with a given name was found requesting group page.
 msgid "No such group."
 msgstr "Talde hori ez dago."
 
@@ -3534,12 +3532,6 @@ msgid "Avatar directory not writable: %s."
 msgstr "Ezin da idatzi avatarren direktorioan: %s."
 
 #. TRANS: Client error in Paths admin panel.
-#. TRANS: %s is the background directory that could not be written to.
-#, php-format
-msgid "Background directory not writable: %s."
-msgstr "Ezin da idatzi atzeko planoen direktorioan: %s."
-
-#. TRANS: Client error in Paths admin panel.
 #. TRANS: %s is the locales directory that could not be read from.
 #, php-format
 msgid "Locales directory not readable: %s."
@@ -4077,6 +4069,8 @@ msgid "Share my current location when posting notices"
 msgstr "Partekatu nire uneko kokalekua oharrak bidaltzean"
 
 #. TRANS: Field label in form for profile settings.
+#. TRANS: Title for group tag cloud section.
+#. TRANS: %s is a group name.
 msgid "Tags"
 msgstr "Etiketak"
 
@@ -5069,40 +5063,6 @@ msgstr "Oharren jarioa %s taldearentzat (Atom)"
 msgid "FOAF for %s group"
 msgstr "FOAF %s taldearentzat"
 
-#. TRANS: Header for mini list of group members on a group page (h2).
-msgid "Members"
-msgstr "Kideak"
-
-#. TRANS: Description for mini list of group members on a group page when the group has no members.
-#. TRANS: Content of "Listed" page if there are no listed users.
-#. TRANS: Content of "People following tag x" if there are no subscribed users.
-#. TRANS: Empty list message for tags.
-#. TRANS: Text for user subscription statistics if the user has no subscriptions.
-#. TRANS: Text for user subscriber statistics if user has no subscribers.
-#. TRANS: Text for user user group membership statistics if user is not a member of any group.
-#. TRANS: Default content for section/sidebar widget.
-msgid "(None)"
-msgstr "(Bat ere ez)"
-
-#. TRANS: Link to all group members from mini list of group members if group has more than n members.
-msgid "All members"
-msgstr "Kide guztiak"
-
-#. TRANS: Header for group statistics on a group page (h2).
-#. TRANS: H2 text for user statistics.
-msgid "Statistics"
-msgstr "Estatistikak"
-
-#. TRANS: Label for group creation date.
-msgctxt "LABEL"
-msgid "Created"
-msgstr "Sortua"
-
-#. TRANS: Label for member count in statistics on group page.
-msgctxt "LABEL"
-msgid "Members"
-msgstr "Kideak"
-
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
 #. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
 #. TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
@@ -5136,11 +5096,6 @@ msgstr ""
 "[mikroblogintza](http://eu.wikipedia.org/wiki/Mikroblogintza) %%%%site.name%%"
 "%% guneko erabiltzaile-talde bat da,  Taldekideek mezu laburrak partekatzen "
 "dituzte beren bizitza eta zaletasunen inguruan. "
-
-#. TRANS: Title for list of group administrators on a group page.
-msgctxt "TITLE"
-msgid "Admins"
-msgstr "Administratzaileak"
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -5241,6 +5196,17 @@ msgstr ""
 #. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr "Zerrendatuta"
+
+#. TRANS: Content of "Listed" page if there are no listed users.
+#. TRANS: Content of "People following tag x" if there are no subscribed users.
+#. TRANS: Description for mini list of group members on a group page when the group has no members.
+#. TRANS: Empty list message for tags.
+#. TRANS: Text for user subscription statistics if the user has no subscriptions.
+#. TRANS: Text for user subscriber statistics if user has no subscribers.
+#. TRANS: Text for user user group membership statistics if user is not a member of any group.
+#. TRANS: Default content for section/sidebar widget.
+msgid "(None)"
+msgstr "(Bat ere ez)"
 
 #. TRANS: Link for more "People in list x by a user"
 #. TRANS: if there are more than the mini list's maximum.
@@ -6189,9 +6155,9 @@ msgstr "StatusNet %s"
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"This site is powered by %1$s version %2$s, Copyright 2008-2010 StatusNet, "
+"This site is powered by %1$s version %2$s, Copyright 2008-2011 StatusNet, "
 "Inc. and contributors."
 msgstr ""
 "Gune hau %1$s(e)n %2$s bertsioak kudeatzen du, Copyright 2008-2011 "
@@ -6364,9 +6330,17 @@ msgstr "Ezin izan da talde lokala eguneratu."
 msgid "Could not create login token for %s"
 msgstr "Ezin izan da saioa hasteko tokena sortu %s(e)rako"
 
-#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
 #, fuzzy, php-format
 msgid "Cannot instantiate class %s."
+msgstr "Ezin da pasahitz berria gorde."
+
+#, fuzzy
+msgid "Cannot instantiate a "
+msgstr "Ezin da pasahitz berria gorde."
+
+#, fuzzy
+msgid "Cannot instantiate class "
 msgstr "Ezin da pasahitz berria gorde."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7821,6 +7795,29 @@ msgstr "Hautatu etiketa bat zerrenda mugatzeko."
 msgid "Grant this user the \"%s\" role"
 msgstr "Eman \"%s\" rola erabiltzaile honi"
 
+#. TRANS: Header for mini list of group members on a group page (h2).
+msgid "Members"
+msgstr "Kideak"
+
+#. TRANS: Link to all group members from mini list of group members if group has more than n members.
+msgid "All members"
+msgstr "Kide guztiak"
+
+#. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
+#, fuzzy
+msgid "Pending"
+msgstr "Erabakitzeke (%d)"
+
+#. TRANS: Header for mini list of users that are blocked in a group page (h2).
+#, fuzzy
+msgid "Blocked"
+msgstr "Blokeatuta"
+
+#. TRANS: Title for list of group administrators on a group page.
+msgctxt "TITLE"
+msgid "Admins"
+msgstr "Administratzaileak"
+
 #. TRANS: Button text for the form that will block a user from a group.
 msgctxt "BUTTON"
 msgid "Block"
@@ -7886,63 +7883,9 @@ msgctxt "GROUPADMIN"
 msgid "Admin"
 msgstr "Admin"
 
-#. TRANS: Menu item in the group navigation page.
-msgctxt "MENU"
-msgid "Group"
-msgstr "Taldea"
-
-#. TRANS: Tooltip for menu item in the group navigation page.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s group"
-msgstr "%s taldea"
-
-#. TRANS: Menu item in the group navigation page.
-msgctxt "MENU"
-msgid "Members"
-msgstr "Kideak"
-
-#. TRANS: Tooltip for menu item in the group navigation page.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s group members"
-msgstr "%s taldeko kideak"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %d is the number of pending members.
-#, php-format
-msgctxt "MENU"
-msgid "Pending members (%d)"
-msgid_plural "Pending members (%d)"
-msgstr[0] "Zain dauden kideak (%d)"
-msgstr[1] "Zain dauden kideak (%d)"
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s pending members"
-msgstr "Zain dauden %s kide"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-msgctxt "MENU"
-msgid "Blocked"
-msgstr "Blokeatuta"
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s blocked users"
-msgstr "%s erabiltzaile blokeatuta"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in primary navigation panel.
-msgctxt "MENU"
-msgid "Admin"
-msgstr "Admin"
+#. TRANS: Group actions header (h2). Text hidden by default.
+msgid "Group actions"
+msgstr "Talde-ekintzak"
 
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %s is the nickname of the group.
@@ -7951,11 +7894,6 @@ msgctxt "TOOLTIP"
 msgid "Edit %s group properties"
 msgstr "Editatu %s taldearen ezaugarriak"
 
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-msgctxt "MENU"
-msgid "Logo"
-msgstr "Logotipoa"
-
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %s is the nickname of the group.
 #, php-format
@@ -7963,9 +7901,10 @@ msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr "Gehitu edo aldatu %s(r)en logoa"
 
-#. TRANS: Group actions header (h2). Text hidden by default.
-msgid "Group actions"
-msgstr "Talde-ekintzak"
+#. TRANS: Link text for link on user profile.
+msgctxt "MENU"
+msgid "Logo"
+msgstr "Logotipoa"
 
 #. TRANS: Title for groups with the most members section.
 msgid "Popular groups"
@@ -7984,12 +7923,6 @@ msgstr "Erakutsi dena"
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
 msgstr ""
-
-#. TRANS: Title for group tag cloud section.
-#. TRANS: %s is a group name.
-#, php-format
-msgid "Tags in %s group's notices"
-msgstr "Etiketak %s taldearen oharretan"
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -9023,6 +8956,11 @@ msgstr "Ezarpenak"
 msgid "Change your personal settings."
 msgstr "Aldatu zure ezarpen pertsonalak."
 
+#. TRANS: Menu item in primary navigation panel.
+msgctxt "MENU"
+msgid "Admin"
+msgstr "Admin"
+
 #. TRANS: Menu item title in primary navigation panel.
 msgid "Site configuration."
 msgstr "Gune konfigurazioa."
@@ -9040,15 +8978,6 @@ msgstr "Saioa itxi gunean."
 msgid "Login to the site."
 msgstr "Saioa hasi gunean."
 
-#. TRANS: Menu item in primary navigation panel.
-msgctxt "MENU"
-msgid "Search"
-msgstr "Bilatu"
-
-#. TRANS: Menu item title in primary navigation panel.
-msgid "Search the site."
-msgstr "Bilatu gunean."
-
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
 msgstr "Jarraitzen"
@@ -9056,6 +8985,10 @@ msgstr "Jarraitzen"
 #. TRANS: H2 text for user subscriber statistics.
 msgid "Followers"
 msgstr "Jarraitzaileak"
+
+#. TRANS: H2 text for user statistics.
+msgid "Statistics"
+msgstr "Estatistikak"
 
 #. TRANS: Label for user statistics.
 msgid "User ID"
@@ -9154,6 +9087,7 @@ msgid "Keyword(s)"
 msgstr "Hitz gakoa(k)"
 
 #. TRANS: Button text for searching site.
+#. TRANS: Button text for search button on search form.
 #. TRANS: Button text to search profiles.
 msgctxt "BUTTON"
 msgid "Search"
@@ -9797,15 +9731,53 @@ msgstr "Ezin izan da baliozko webfinger-helbidea aurkitu."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Ezin izan da baliozko profilik aurkitu \"%s\"(e)rako."
 
-#~ msgid "Save paths"
-#~ msgstr "Gorde bideak"
+#~ msgid "Background directory not writable: %s."
+#~ msgstr "Ezin da idatzi atzeko planoen direktorioan: %s."
 
-#~ msgid "Cancel"
-#~ msgstr "Utzi"
+#~ msgctxt "LABEL"
+#~ msgid "Created"
+#~ msgstr "Sortua"
+
+#~ msgctxt "LABEL"
+#~ msgid "Members"
+#~ msgstr "Kideak"
+
+#~ msgctxt "MENU"
+#~ msgid "Group"
+#~ msgstr "Taldea"
 
 #~ msgctxt "TOOLTIP"
-#~ msgid "Block this user"
-#~ msgstr "Blokeatu erabiltzaile hau"
+#~ msgid "%s group"
+#~ msgstr "%s taldea"
 
-#~ msgid "Delete this notice"
-#~ msgstr "Ezabatu ohar hau"
+#~ msgctxt "MENU"
+#~ msgid "Members"
+#~ msgstr "Kideak"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "%s group members"
+#~ msgstr "%s taldeko kideak"
+
+#~ msgctxt "MENU"
+#~ msgid "Pending members (%d)"
+#~ msgid_plural "Pending members (%d)"
+#~ msgstr[0] "Zain dauden kideak (%d)"
+#~ msgstr[1] "Zain dauden kideak (%d)"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "%s pending members"
+#~ msgstr "Zain dauden %s kide"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "%s blocked users"
+#~ msgstr "%s erabiltzaile blokeatuta"
+
+#~ msgid "Tags in %s group's notices"
+#~ msgstr "Etiketak %s taldearen oharretan"
+
+#~ msgctxt "MENU"
+#~ msgid "Search"
+#~ msgstr "Bilatu"
+
+#~ msgid "Search the site."
+#~ msgstr "Bilatu gunean."

@@ -1,6 +1,7 @@
 # Translation of StatusNet - OpenID to Arabic (العربية)
 # Exported from translatewiki.net
 #
+# Author: Majid Al-Dharrab
 # Author: OsamaK
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:21:25+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:29:49+0000\n"
 "Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:11+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
@@ -34,12 +35,12 @@ msgstr ""
 "يجب أن يتم الوصول إلى هذه الصفحة أثناء معالجة الهوية المفتوحة وليس مباشرة."
 
 #. TRANS: Page notice. %s is a trustroot name.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%s has asked to verify your identity. Click Continue to verify your identity "
 "and login without creating a new password."
 msgstr ""
-"طلب %s التحقق من هويتك. انقر استمر لتؤكد هويتك وتدخل دون إنشاء كلمة سر."
+"طلب %s التحقق من هويتك. انقر استمر لتؤكد هويتك وتدخل دون إنشاء كلمة سر جديدة."
 
 #. TRANS: Button text to continue OpenID identity verification.
 #. TRANS: button label for OAuth authorization page when needing OpenID authentication first.
@@ -108,7 +109,7 @@ msgid ""
 "(Have an [OpenID](http://openid.net/)? [Add an OpenID to your account](%%"
 "action.openidsettings%%)!"
 msgstr ""
-"(ألديك [هوية مفتوحة](http://openid.net/)? [أضف هوية مفتوحة إلى حسابك](%%"
+"(ألديك [هوية مفتوحة](http://openid.net/)؟ [أضف هوية مفتوحة إلى حسابك](%%"
 "action.openidsettings%%)!"
 
 #. TRANS: Page notice for anonymous users to try and get them to register with an OpenID account.
@@ -118,7 +119,7 @@ msgid ""
 "(Have an [OpenID](http://openid.net/)? Try our [OpenID registration](%%"
 "action.openidlogin%%)!)"
 msgstr ""
-"(ألديك [هوية مفتوحة](http://openid.net/)? جرب [التسجيل بالهوية المفتوحة](%%"
+"(ألديك [هوية مفتوحة](http://openid.net/)؟ جرب [التسجيل بالهوية المفتوحة](%%"
 "action.openidlogin%%)!)"
 
 #. TRANS: Page notice on the login page to try and get them to log on with an OpenID account.
@@ -128,7 +129,7 @@ msgid ""
 "(Have an [OpenID](http://openid.net/)? Try our [OpenID login](%%action."
 "openidlogin%%)!)"
 msgstr ""
-"(ألديك [هوية مفتوحة](http://openid.net/)? جرب [الولوج بالهوية المفتوحة](%%"
+"(ألديك [هوية مفتوحة](http://openid.net/)؟ جرب [الولوج بالهوية المفتوحة](%%"
 "action.openidlogin%%)!)"
 
 #. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
@@ -186,7 +187,6 @@ msgid "There was a problem with your session token. Try again, please."
 msgstr ""
 
 #. TRANS: Message given if user does not agree with the site's license.
-#, fuzzy
 msgid "You cannot register if you do not agree to the license."
 msgstr "لا يمكن أن تسجل ما لم توافق على الرخصة."
 
@@ -239,6 +239,8 @@ msgid ""
 "My text and files are available under %s except this private data: password, "
 "email address, IM address, and phone number."
 msgstr ""
+"تخضع نصوصي وملفاتي ل%s إلا البيانات الخاصة التالية: كلمة السر وعنوان البريد "
+"الإلكتروني وعنوان المراسلة الفورية ورقم الهاتف."
 
 #. TRANS: Button label in form in which to create a new user on the site for an OpenID.
 msgctxt "BUTTON"
@@ -472,9 +474,8 @@ msgid "Error connecting user."
 msgstr ""
 
 #. TRANS: Message in case the user or the user profile cannot be saved in StatusNet.
-#, fuzzy
 msgid "Error updating profile."
-msgstr "خطأ أثناء حفظ الملف."
+msgstr "خطأ أثناء تحديث الملف الشخصي."
 
 #. TRANS: Title after getting the status of the OpenID authorisation request.
 msgid "OpenID Login"
@@ -498,7 +499,7 @@ msgstr ""
 #. TRANS: Fieldset legend.
 msgctxt "LEGEND"
 msgid "Add OpenID"
-msgstr "أضف هوية مفتوحة"
+msgstr "إضافة هوية مفتوحة"
 
 #. TRANS: Form guide.
 msgid ""
@@ -515,7 +516,7 @@ msgstr "أضف"
 #. TRANS: Header on OpenID settings page.
 msgctxt "HEADER"
 msgid "Remove OpenID"
-msgstr "أزل الهوية المفتوحة"
+msgstr "إزالة هوية مفتوحة"
 
 #. TRANS: Form guide.
 msgid ""
@@ -604,16 +605,14 @@ msgid "Login with an [OpenID](%%doc.openid%%) account."
 msgstr "لُج بحساب [هوية مفتوحة](%%doc.openid%%)"
 
 #. TRANS: OpenID plugin message. Title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Login"
 msgstr "ولوج الهوية المفتوحة"
 
 #. TRANS: Field label.
-#, fuzzy
 msgctxt "LABEL"
 msgid "OpenID provider"
-msgstr "مزود هوية مفتوحة"
+msgstr "مزود الهوية المفتوحة"
 
 #. TRANS: OpenID plugin logon form checkbox label for setting to put the OpenID information in a cookie.
 msgid "Remember me"

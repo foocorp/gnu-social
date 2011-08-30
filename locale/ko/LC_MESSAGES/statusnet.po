@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:36:51+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:30:31+0000\n"
 "Language-Team: Korean <//translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
+"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -438,7 +438,7 @@ msgstr "대화"
 msgid "No conversation with ID %d."
 msgstr "대화"
 
-#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for conversion timeline.
 #, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
@@ -1186,8 +1186,6 @@ msgstr "그룹을 떠나려면 로그인해야 합니다."
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
-#. TRANS: Client error displayed when trying to view group members for a non-existing group.
-#. TRANS: Client error displayed when trying to view group members for an object that is not a group.
 #. TRANS: Client error displayed when requesting a group RSS feed for group that does not exist.
 #. TRANS: Client error displayed when requesting a group RSS feed for an object that is not a group.
 #. TRANS: Client error displayed when trying to unblock a user from a non-existing group.
@@ -1196,10 +1194,10 @@ msgstr "그룹을 떠나려면 로그인해야 합니다."
 #. TRANS: Client error displayed when trying to leave a non-local group.
 #. TRANS: Client error displayed when trying to leave a non-existing group.
 #. TRANS: Client error displayed when providing an invalid group ID on the Make Admin page.
-#. TRANS: Client error displayed if no remote group with a given name was found requesting group page.
-#. TRANS: Client error displayed if no local group with a given name was found requesting group page.
 #. TRANS: Command exception text shown when a group is requested that does not exist.
 #. TRANS: Error text shown when trying to leave a group that does not exist.
+#. TRANS: Client error displayed if no remote group with a given name was found requesting group page.
+#. TRANS: Client error displayed if no local group with a given name was found requesting group page.
 msgid "No such group."
 msgstr "그런 그룹이 없습니다."
 
@@ -3471,12 +3469,6 @@ msgid "Avatar directory not writable: %s."
 msgstr "아바타 디렉터리에 쓸 수 없습니다: %s."
 
 #. TRANS: Client error in Paths admin panel.
-#. TRANS: %s is the background directory that could not be written to.
-#, php-format
-msgid "Background directory not writable: %s."
-msgstr "배경 디렉터리에 쓸 수 없습니다: %s"
-
-#. TRANS: Client error in Paths admin panel.
 #. TRANS: %s is the locales directory that could not be read from.
 #, php-format
 msgid "Locales directory not readable: %s."
@@ -4015,6 +4007,8 @@ msgid "Share my current location when posting notices"
 msgstr "글을 쓸 때 현재 위치를 공유."
 
 #. TRANS: Field label in form for profile settings.
+#. TRANS: Title for group tag cloud section.
+#. TRANS: %s is a group name.
 msgid "Tags"
 msgstr "태그"
 
@@ -4857,7 +4851,6 @@ msgid "Access token URL"
 msgstr "접근 토큰이 잘못되었습니다."
 
 #. TRANS: Field label on application page.
-#, fuzzy
 msgid "Authorize URL"
 msgstr "소스 URL"
 
@@ -4972,40 +4965,6 @@ msgstr "%s 그룹의 글 피드 (Atom)"
 msgid "FOAF for %s group"
 msgstr "%s 그룹의 FOAF"
 
-#. TRANS: Header for mini list of group members on a group page (h2).
-msgid "Members"
-msgstr "회원"
-
-#. TRANS: Description for mini list of group members on a group page when the group has no members.
-#. TRANS: Content of "Listed" page if there are no listed users.
-#. TRANS: Content of "People following tag x" if there are no subscribed users.
-#. TRANS: Empty list message for tags.
-#. TRANS: Text for user subscription statistics if the user has no subscriptions.
-#. TRANS: Text for user subscriber statistics if user has no subscribers.
-#. TRANS: Text for user user group membership statistics if user is not a member of any group.
-#. TRANS: Default content for section/sidebar widget.
-msgid "(None)"
-msgstr "(없음)"
-
-#. TRANS: Link to all group members from mini list of group members if group has more than n members.
-msgid "All members"
-msgstr "모든 회원"
-
-#. TRANS: Header for group statistics on a group page (h2).
-#. TRANS: H2 text for user statistics.
-msgid "Statistics"
-msgstr "통계"
-
-#. TRANS: Label for group creation date.
-msgctxt "LABEL"
-msgid "Created"
-msgstr "만듦"
-
-#. TRANS: Label for member count in statistics on group page.
-msgctxt "LABEL"
-msgid "Members"
-msgstr "회원"
-
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
 #. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
 #. TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
@@ -5038,11 +4997,6 @@ msgstr ""
 "소프트웨어 [StatusNet](http://status.net/) 소프트웨어를 사용하는 [마이크로블"
 "로깅)(http://en.wikipedia.org/wiki/Micro-blogging) 서비스입니다. 그룹 회원들"
 "은 일상과 관심사에 대해 글을 공유합니다."
-
-#. TRANS: Title for list of group administrators on a group page.
-msgctxt "TITLE"
-msgid "Admins"
-msgstr "관리자"
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -5140,6 +5094,17 @@ msgstr ""
 #. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
 msgstr "리스트 포함"
+
+#. TRANS: Content of "Listed" page if there are no listed users.
+#. TRANS: Content of "People following tag x" if there are no subscribed users.
+#. TRANS: Description for mini list of group members on a group page when the group has no members.
+#. TRANS: Empty list message for tags.
+#. TRANS: Text for user subscription statistics if the user has no subscriptions.
+#. TRANS: Text for user subscriber statistics if user has no subscribers.
+#. TRANS: Text for user user group membership statistics if user is not a member of any group.
+#. TRANS: Default content for section/sidebar widget.
+msgid "(None)"
+msgstr "(없음)"
 
 #. TRANS: Link for more "People in list x by a user"
 #. TRANS: if there are more than the mini list's maximum.
@@ -6080,9 +6045,9 @@ msgstr "StatusNet %s"
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"This site is powered by %1$s version %2$s, Copyright 2008-2010 StatusNet, "
+"This site is powered by %1$s version %2$s, Copyright 2008-2011 StatusNet, "
 "Inc. and contributors."
 msgstr ""
 "이 사이트는 %1$s %2$s 버전으로 운영됩니다. Copyright 2008-2010 StatusNet, "
@@ -6246,9 +6211,17 @@ msgstr "로컬 그룹을 업데이트 할 수 없습니다."
 msgid "Could not create login token for %s"
 msgstr "%s 에 대한 로그인 토큰을 만들 수 없습니다."
 
-#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
 #, fuzzy, php-format
 msgid "Cannot instantiate class %s."
+msgstr "새 비밀번호를 저장할 수 없습니다."
+
+#, fuzzy
+msgid "Cannot instantiate a "
+msgstr "새 비밀번호를 저장할 수 없습니다."
+
+#, fuzzy
+msgid "Cannot instantiate class "
 msgstr "새 비밀번호를 저장할 수 없습니다."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7678,6 +7651,29 @@ msgstr "작은 리스트에서 태그 고르기"
 msgid "Grant this user the \"%s\" role"
 msgstr "이 사용자에 \"%s\" 역할 부여"
 
+#. TRANS: Header for mini list of group members on a group page (h2).
+msgid "Members"
+msgstr "회원"
+
+#. TRANS: Link to all group members from mini list of group members if group has more than n members.
+msgid "All members"
+msgstr "모든 회원"
+
+#. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
+#, fuzzy
+msgid "Pending"
+msgstr "대기 중 (%d)"
+
+#. TRANS: Header for mini list of users that are blocked in a group page (h2).
+#, fuzzy
+msgid "Blocked"
+msgstr "차단"
+
+#. TRANS: Title for list of group administrators on a group page.
+msgctxt "TITLE"
+msgid "Admins"
+msgstr "관리자"
+
 #. TRANS: Button text for the form that will block a user from a group.
 msgctxt "BUTTON"
 msgid "Block"
@@ -7733,62 +7729,9 @@ msgctxt "GROUPADMIN"
 msgid "Admin"
 msgstr "관리자"
 
-#. TRANS: Menu item in the group navigation page.
-msgctxt "MENU"
-msgid "Group"
-msgstr "그룹"
-
-#. TRANS: Tooltip for menu item in the group navigation page.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s group"
-msgstr "%s 그룹"
-
-#. TRANS: Menu item in the group navigation page.
-msgctxt "MENU"
-msgid "Members"
-msgstr "회원"
-
-#. TRANS: Tooltip for menu item in the group navigation page.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s group members"
-msgstr "%s 그룹 회원"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %d is the number of pending members.
-#, php-format
-msgctxt "MENU"
-msgid "Pending members (%d)"
-msgid_plural "Pending members (%d)"
-msgstr[0] ""
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s pending members"
-msgstr "%s 밀린 회원"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-msgctxt "MENU"
-msgid "Blocked"
-msgstr "차단"
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s blocked users"
-msgstr "%s 차단 사용자"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in primary navigation panel.
-msgctxt "MENU"
-msgid "Admin"
-msgstr "관리"
+#. TRANS: Group actions header (h2). Text hidden by default.
+msgid "Group actions"
+msgstr "그룹 동작"
 
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %s is the nickname of the group.
@@ -7797,11 +7740,6 @@ msgctxt "TOOLTIP"
 msgid "Edit %s group properties"
 msgstr "%s 그룹 속성 편집"
 
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-msgctxt "MENU"
-msgid "Logo"
-msgstr "로고"
-
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %s is the nickname of the group.
 #, php-format
@@ -7809,9 +7747,10 @@ msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr "%s 로고 추가 또는 편집"
 
-#. TRANS: Group actions header (h2). Text hidden by default.
-msgid "Group actions"
-msgstr "그룹 동작"
+#. TRANS: Link text for link on user profile.
+msgctxt "MENU"
+msgid "Logo"
+msgstr "로고"
 
 #. TRANS: Title for groups with the most members section.
 msgid "Popular groups"
@@ -7830,12 +7769,6 @@ msgstr "모두 보기"
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
 msgstr ""
-
-#. TRANS: Title for group tag cloud section.
-#. TRANS: %s is a group name.
-#, php-format
-msgid "Tags in %s group's notices"
-msgstr "%s 그룹의 글에 있는 태그"
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -8864,6 +8797,11 @@ msgstr "설정"
 msgid "Change your personal settings."
 msgstr "개인 설정 바꾸기"
 
+#. TRANS: Menu item in primary navigation panel.
+msgctxt "MENU"
+msgid "Admin"
+msgstr "관리"
+
 #. TRANS: Menu item title in primary navigation panel.
 msgid "Site configuration."
 msgstr "사이트 설정."
@@ -8881,15 +8819,6 @@ msgstr "이 사이트에서 로그아웃."
 msgid "Login to the site."
 msgstr "이 사이트에 로그인."
 
-#. TRANS: Menu item in primary navigation panel.
-msgctxt "MENU"
-msgid "Search"
-msgstr "검색"
-
-#. TRANS: Menu item title in primary navigation panel.
-msgid "Search the site."
-msgstr "사이트 검색."
-
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
 msgstr "팔로잉"
@@ -8897,6 +8826,10 @@ msgstr "팔로잉"
 #. TRANS: H2 text for user subscriber statistics.
 msgid "Followers"
 msgstr "팔로워"
+
+#. TRANS: H2 text for user statistics.
+msgid "Statistics"
+msgstr "통계"
 
 #. TRANS: Label for user statistics.
 msgid "User ID"
@@ -8995,6 +8928,7 @@ msgid "Keyword(s)"
 msgstr "검색어"
 
 #. TRANS: Button text for searching site.
+#. TRANS: Button text for search button on search form.
 #. TRANS: Button text to search profiles.
 msgctxt "BUTTON"
 msgid "Search"
@@ -9625,15 +9559,47 @@ msgstr "올바른 메일 주소가 아닙니다."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "프로필을 저장 할 수 없습니다."
 
-#~ msgid "Save paths"
-#~ msgstr "경로 저장"
+#~ msgid "Background directory not writable: %s."
+#~ msgstr "배경 디렉터리에 쓸 수 없습니다: %s"
 
-#~ msgid "Cancel"
-#~ msgstr "취소"
+#~ msgctxt "LABEL"
+#~ msgid "Created"
+#~ msgstr "만듦"
+
+#~ msgctxt "LABEL"
+#~ msgid "Members"
+#~ msgstr "회원"
+
+#~ msgctxt "MENU"
+#~ msgid "Group"
+#~ msgstr "그룹"
 
 #~ msgctxt "TOOLTIP"
-#~ msgid "Block this user"
-#~ msgstr "이 사용자 차단"
+#~ msgid "%s group"
+#~ msgstr "%s 그룹"
 
-#~ msgid "Delete this notice"
-#~ msgstr "이 글 삭제"
+#~ msgctxt "MENU"
+#~ msgid "Members"
+#~ msgstr "회원"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "%s group members"
+#~ msgstr "%s 그룹 회원"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "%s pending members"
+#~ msgstr "%s 밀린 회원"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "%s blocked users"
+#~ msgstr "%s 차단 사용자"
+
+#~ msgid "Tags in %s group's notices"
+#~ msgstr "%s 그룹의 글에 있는 태그"
+
+#~ msgctxt "MENU"
+#~ msgid "Search"
+#~ msgstr "검색"
+
+#~ msgid "Search the site."
+#~ msgstr "사이트 검색."

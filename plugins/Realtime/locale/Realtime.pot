@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,37 +32,37 @@ msgid "No such channel."
 msgstr ""
 
 #. TRANS: Text label for realtime view "play" button, usually replaced by an icon.
-#: RealtimePlugin.php:405
+#: RealtimePlugin.php:412
 msgctxt "BUTTON"
 msgid "Play"
 msgstr ""
 
 #. TRANS: Tooltip for realtime view "play" button.
-#: RealtimePlugin.php:407
+#: RealtimePlugin.php:414
 msgctxt "TOOLTIP"
 msgid "Play"
 msgstr ""
 
 #. TRANS: Text label for realtime view "pause" button
-#: RealtimePlugin.php:409
+#: RealtimePlugin.php:416
 msgctxt "BUTTON"
 msgid "Pause"
 msgstr ""
 
 #. TRANS: Tooltip for realtime view "pause" button
-#: RealtimePlugin.php:411
+#: RealtimePlugin.php:418
 msgctxt "TOOLTIP"
 msgid "Pause"
 msgstr ""
 
 #. TRANS: Text label for realtime view "popup" button, usually replaced by an icon.
-#: RealtimePlugin.php:413
+#: RealtimePlugin.php:420
 msgctxt "BUTTON"
 msgid "Pop up"
 msgstr ""
 
 #. TRANS: Tooltip for realtime view "popup" button.
-#: RealtimePlugin.php:415
+#: RealtimePlugin.php:422
 msgctxt "TOOLTIP"
 msgid "Pop up in a window"
 msgstr ""

@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:36:23+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:30:06+0000\n"
 "Language-Team: Interlingua <//translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-16 06:59:31+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-20 19:38:15+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -31,9 +31,8 @@ msgid "Subscribe"
 msgstr "Subscriber"
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgid "List remote profile"
-msgstr "Etiquettar profilo remote"
+msgstr "Listar profilo remote"
 
 #. TRANS: Field label.
 msgctxt "LABEL"
@@ -203,7 +202,6 @@ msgid "%s has updated their profile page."
 msgstr "%s ha actualisate su pagina de profilo."
 
 #. TRANS: Link text for a user to list an OStatus user.
-#, fuzzy
 msgid "List"
 msgstr "Listar"
 
@@ -271,14 +269,13 @@ msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "Invalide URL passate pro %1$s: \"%2$s\""
 
 #. TRANS: Client error displayed when trying to list a local object as if it is remote.
-#, fuzzy
 msgid "You can use the local list functionality!"
-msgstr "Tu pote usar le subscription local!"
+msgstr "Tu pote usar le functionalitate de lista local!"
 
 #. TRANS: Header for listing a remote object. %s is a remote object's name.
-#, fuzzy, php-format
+#, php-format
 msgid "List %s"
-msgstr "Listar"
+msgstr "Listar %s"
 
 #. TRANS: Button text to list a remote object.
 msgctxt "BUTTON"
@@ -290,9 +287,8 @@ msgid "User nickname"
 msgstr "Pseudonymo del usator"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Nickname of the user you want to list."
-msgstr "Le pseudonymo del usator que tu vole etiquettar."
+msgstr "Le pseudonymo del usator que tu vole listar."
 
 #. TRANS: Field label.
 msgid "Profile Account"
@@ -499,34 +495,28 @@ msgid "Not a person object."
 msgstr "Non es un objecto de persona."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "Unidentified profile being listed."
-msgstr "Etiquettage de un profilo non identificate."
+msgstr "Listage de un profilo non identificate."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This user is not the one being listed."
-msgstr "Iste non es le usator que es etiquettate."
+msgstr "Iste non es le usator que es listate."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "The listing could not be saved."
-msgstr "Le etiquetta non poteva esser salveguardate."
+msgstr "Le lista non poteva esser salveguardate."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "Unidentified profile being unlisted."
-msgstr "Disetiquettage de un profilo non identificate."
+msgstr "Dislistage de un profilo non identificate."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This user is not the one being unlisted."
-msgstr "Iste non es le usator que es disetiquettate."
+msgstr "Iste non es le usator que es dislistate."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "The listing could not be deleted."
-msgstr "Le etiquetta non poteva esser delite."
+msgstr "Le entrata non poteva esser removite del lista."
 
 #. TRANS: Client exception.
 msgid "Cannot favorite/unfavorite without an object."
@@ -937,24 +927,13 @@ msgid "This target does not understand leave events."
 msgstr "Iste destination non comprende eventos de quitar."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand list events."
-msgstr "Iste destination non comprende eventos de etiquettage."
+msgstr "Iste destination non comprende eventos de listage."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand unlist events."
-msgstr "Iste destination non comprende eventos de disetiquettage."
+msgstr "Iste destination non comprende eventos de dislistage."
 
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "Recipeva un claffo de salmon de un actor non identificate."
-
-#~ msgid "Tag"
-#~ msgstr "Etiquettar"
-
-#~ msgid "You can use the local tagging!"
-#~ msgstr "Tu pote usar le etiquettas local!"
-
-#~ msgid "Tag %s"
-#~ msgstr "Etiquetta %s"

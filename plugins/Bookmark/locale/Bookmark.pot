@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,18 +16,13 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. TRANS: Client exception thrown when a file upload is incorrect.
-#: deliciousbackupimporter.php:89
-msgid "Bad import file."
-msgstr ""
-
 #. TRANS: Client exception thrown when a bookmark in an import file is incorrectly formatted.
-#: deliciousbackupimporter.php:174
+#: deliciousbackupimporter.php:181
 msgid "No <A> tag in a <DT>."
 msgstr ""
 
 #. TRANS: Client exception thrown when a bookmark in an import file is private.
-#: deliciousbackupimporter.php:183
+#: deliciousbackupimporter.php:190
 msgid "Skipping private bookmark."
 msgstr ""
 

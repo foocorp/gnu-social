@@ -12,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Irc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:20:58+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:29:19+0000\n"
 "Language-Team: French <//translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:23+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-irc\n"
@@ -42,19 +42,19 @@ msgstr ""
 
 #. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
 msgid "You must specify a host."
-msgstr ""
+msgstr "Vous devez indiquer un hôte."
 
 #. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
 msgid "You must specify a username."
-msgstr ""
+msgstr "Vous devez indiquer un nom d'utilisateur"
 
 #. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
 msgid "You must specify a \"real name\"."
-msgstr ""
+msgstr "Vous devez indiquer un « vrai nom »."
 
 #. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
 msgid "You must specify a nickname."
-msgstr ""
+msgstr "Vous devez indiquer un pseudonyme."
 
 #. TRANS: Plugin description.
 msgid ""
@@ -67,7 +67,7 @@ msgstr ""
 #. TRANS: %d is the object ID for which the count could not be updated.
 #, php-format
 msgid "Could not increment attempts count for %d."
-msgstr ""
+msgstr "Impossible d'augmenter le décompte de l'objet %d"
 
 #. TRANS: Message given when using an unregistered IRC nickname.
 msgid "Your nickname is not registered so IRC connectivity cannot be enabled."

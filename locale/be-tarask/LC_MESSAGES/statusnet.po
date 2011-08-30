@@ -12,14 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:36:17+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:30:00+0000\n"
 "Language-Team: Belarusian (Taraškievica orthography) <//translatewiki.net/"
 "wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: be-tarask\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -101,9 +101,8 @@ msgid "Closed"
 msgstr "Закрыта"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
-msgstr "Захаваць устаноўкі доступу"
+msgstr "Захаваць налады доступу."
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -238,13 +237,13 @@ msgstr "Няма такога карыстальніка."
 
 #. TRANS: Title of a user's own start page.
 msgid "Home timeline"
-msgstr "Хатняя стужка часу"
+msgstr "Хатняя стужка паведамленьняў"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
 #, php-format
 msgid "%s's home timeline"
-msgstr "Хатняя стужка часу %s"
+msgstr "Хатняя стужка паведамленьняў %s"
 
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
@@ -404,7 +403,7 @@ msgstr "Галоўная"
 #. TRANS: Title in atom user notice feed. %s is a user name.
 #, php-format
 msgid "%s timeline"
-msgstr "Лінія часу %s"
+msgstr "Стужка паведамленьняў %s"
 
 #. TRANS: Title for Atom feed with a user's subscriptions. %s is a user nickname.
 #. TRANS: Title for Atom subscription feed.
@@ -440,17 +439,15 @@ msgid "Unblock user failed."
 msgstr "Памылка разблякаваньня карыстальніка."
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "няма ідэнтыфікатару размовы"
+msgstr "Няма ідэнтыфікатару размовы."
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "No conversation with ID %d."
-msgstr "Няма размовы з ідэнтыфікатарам %d"
+msgstr "Няма размовы з ідэнтыфікатарам %d."
 
-#. TRANS: Timeline title for user and friends. %s is a user nickname.
-#, fuzzy
+#. TRANS: Title for conversion timeline.
 msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Размова"
@@ -1094,7 +1091,7 @@ msgstr "%1$s абнавіў гэты адказ на абнаўленьні ад
 #. TRANS: Public RSS feed title. %s is the StatusNet site name.
 #, php-format
 msgid "%s public timeline"
-msgstr "%s публічная часавая стужка"
+msgstr "%s публічная стужка паведамленьняў"
 
 #. TRANS: Subtitle for site timeline. %s is the StatusNet sitename.
 #, php-format
@@ -1146,7 +1143,7 @@ msgstr "Абнаўленьні з тэгам %1$s на %2$s!"
 
 #. TRANS: Client error displayed trying to add a notice to another user's timeline.
 msgid "Only the user can add to their own timeline."
-msgstr "Толькі карыстальнік можа дадаваць ва уласную лінію часу."
+msgstr "Толькі карыстальнік можа дадаваць ва уласную стужку паведамленьняў."
 
 #. TRANS: Client error displayed when using another format than AtomPub.
 msgid "Only accept AtomPub for Atom feeds."
@@ -1216,8 +1213,6 @@ msgstr "Вы павінны ўвайсьці ў сыстэму, каб пакі�
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
-#. TRANS: Client error displayed when trying to view group members for a non-existing group.
-#. TRANS: Client error displayed when trying to view group members for an object that is not a group.
 #. TRANS: Client error displayed when requesting a group RSS feed for group that does not exist.
 #. TRANS: Client error displayed when requesting a group RSS feed for an object that is not a group.
 #. TRANS: Client error displayed when trying to unblock a user from a non-existing group.
@@ -1226,10 +1221,10 @@ msgstr "Вы павінны ўвайсьці ў сыстэму, каб пакі�
 #. TRANS: Client error displayed when trying to leave a non-local group.
 #. TRANS: Client error displayed when trying to leave a non-existing group.
 #. TRANS: Client error displayed when providing an invalid group ID on the Make Admin page.
-#. TRANS: Client error displayed if no remote group with a given name was found requesting group page.
-#. TRANS: Client error displayed if no local group with a given name was found requesting group page.
 #. TRANS: Command exception text shown when a group is requested that does not exist.
 #. TRANS: Error text shown when trying to leave a group that does not exist.
+#. TRANS: Client error displayed if no remote group with a given name was found requesting group page.
+#. TRANS: Client error displayed if no local group with a given name was found requesting group page.
 msgid "No such group."
 msgstr "Няма такой групы."
 
@@ -1822,9 +1817,8 @@ msgid "Enter \"%s\" to confirm that you want to delete your account."
 msgstr "Увядзіце «%s» каб пацьвердзіць, што Вы жадаеце выдаліць Ваш рахунак."
 
 #. TRANS: Button title for user account deletion.
-#, fuzzy
 msgid "Permanently delete your account."
-msgstr "Поўнае выдаленьне Вашага рахунку"
+msgstr "Выдаліць Ваш рахунак назаўсёды."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
 msgid "You must be logged in to delete an application."
@@ -1901,7 +1895,7 @@ msgid ""
 msgstr ""
 "Вы ўпэўнены, што жадаеце выдаліць гэтую групу? Гэта выдаліць усе зьвесткі "
 "пра групу з базы зьвестак, без магчымасьці аднаўленьня. Публічныя "
-"паведамленьні ў гэтай групе застануцца ў асабістых часавых стужках."
+"паведамленьні ў гэтай групе застануцца ў асабістых стужках паведамленьняў."
 
 #. TRANS: Submit button title for 'No' when deleting a group.
 msgid "Do not delete this group."
@@ -2710,14 +2704,13 @@ msgstr "Налады IM"
 #. TRANS: Instant messaging settings page instructions.
 #. TRANS: [instant messages] is link text, "(%%doc.im%%)" is the link.
 #. TRANS: the order and formatting of link text and link should remain unchanged.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can send and receive notices through [instant messaging](%%doc.im%%). "
 "Configure your addresses and settings below."
 msgstr ""
-"Вы можаце дасылаць ці атрымліваць абвешчаньні праз сыстэму імгненных "
-"паведамленьняў [instant messages](%%doc.im%%). Наладзьце Вашыя адрасы і "
-"ўстаноўкі ніжэй."
+"Вы можаце дасылаць ці атрымліваць абвешчаньні праз [сыстэму імгненных "
+"паведамленьняў](%%doc.im%%). Наладзьце Вашыя адрасы і ўстаноўкі ніжэй."
 
 #. TRANS: Message given in the IM settings if IM is not enabled on the site.
 msgid "IM is not available."
@@ -3548,12 +3541,6 @@ msgid "Avatar directory not writable: %s."
 msgstr "Дырэкторыя аватараў недаступная для запісу: %s."
 
 #. TRANS: Client error in Paths admin panel.
-#. TRANS: %s is the background directory that could not be written to.
-#, php-format
-msgid "Background directory not writable: %s."
-msgstr "Дырэкторыя фонавых выяваў недаступная для запісу: %s."
-
-#. TRANS: Client error in Paths admin panel.
 #. TRANS: %s is the locales directory that could not be read from.
 #, php-format
 msgid "Locales directory not readable: %s."
@@ -3720,9 +3707,8 @@ msgid "Server to direct SSL requests to."
 msgstr "Сэрвэр, на які перанакіроўваць SSL-запыты."
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-#, fuzzy
 msgid "Save path settings."
-msgstr "Захаваць устаноўкі доступу"
+msgstr "Захаваць налады шляху."
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -4095,6 +4081,8 @@ msgid "Share my current location when posting notices"
 msgstr "Паказваць маё цяперашняе месцазнаходжаньне, падчас адпраўкі запісаў"
 
 #. TRANS: Field label in form for profile settings.
+#. TRANS: Title for group tag cloud section.
+#. TRANS: %s is a group name.
 msgid "Tags"
 msgstr "Тэгі"
 
@@ -4178,69 +4166,69 @@ msgstr "Мова занадта доўгая (максымальна 50 сымб
 #. TRANS: %s is the invalid tag.
 #, php-format
 msgid "Invalid tag: \"%s\"."
-msgstr ""
+msgstr "Няслушны тэг: «%s»."
 
 #. TRANS: Server error thrown when user profile settings could not be updated to
 #. TRANS: automatically subscribe to any subscriber.
 msgid "Could not update user for autosubscribe or subscribe_policy."
 msgstr ""
+"Немагчыма абнавіць карыстальніка для аўтаматычнай подпіскі ці умоваў "
+"падпіскі."
 
 #. TRANS: Server error thrown when user profile location preference settings could not be updated.
 msgid "Could not save location prefs."
-msgstr ""
+msgstr "Немагчыма захаваць налады месцазнаходжаньня."
 
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
-msgstr ""
+msgstr "Немагчыма захаваць тэгі."
 
 #. TRANS: Confirmation shown when user profile settings are saved.
 #. TRANS: Message after successful saving of administrative settings.
 msgid "Settings saved."
-msgstr ""
+msgstr "Налады захаваныя."
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
 msgid "Restore account"
-msgstr ""
+msgstr "Аднавіць рахунак"
 
 #. TRANS: Client error displayed when requesting a public timeline page beyond the page limit.
 #. TRANS: %s is the page limit.
 #, php-format
 msgid "Beyond the page limit (%s)."
-msgstr ""
+msgstr "Перавышанае абмежаваньне старонкі (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-#, fuzzy
 msgid "Could not retrieve public timeline."
-msgstr "Немагчыма стварыць дастасаваньне."
+msgstr "Немагчыма вярнуць публічную стужку паведамленьняў."
 
 #. TRANS: Title for all public timeline pages but the first.
 #. TRANS: %d is the page number.
 #, php-format
 msgid "Public timeline, page %d"
-msgstr ""
+msgstr "Агульная стужка паведамленьняў, старонка %d"
 
 #. TRANS: Title for the first public timeline page.
 #. TRANS: Menu item title in search group navigation panel.
 msgid "Public timeline"
-msgstr ""
+msgstr "Агульная стужка паведамленьняў"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (Activity Streams JSON)"
-msgstr "Стужка размовы (стужкі актыўнасьці JSON)"
+msgstr "Агульная стужка паведамленьняў (стужкі актыўнасьці JSON)"
 
 #. TRANS: Link description for public timeline feed.
 msgid "Public Timeline Feed (RSS 1.0)"
-msgstr ""
+msgstr "Агульная стужка паведамленьняў (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
 msgid "Public Timeline Feed (RSS 2.0)"
-msgstr ""
+msgstr "Агульная стужка паведамленьняў (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
 msgid "Public Timeline Feed (Atom)"
-msgstr ""
+msgstr "Агульная стужка паведамленьняў (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
 #, php-format
@@ -4248,16 +4236,20 @@ msgid ""
 "This is the public timeline for %%site.name%% but no one has posted anything "
 "yet."
 msgstr ""
+"Гэта агульная стужка паведамленьняў %%site.name%%, але ніхто яшчэ нічога не "
+"даслаў."
 
 #. TRANS: Additional text displayed for public feed when there are no public notices for a logged in user.
 msgid "Be the first to post!"
-msgstr ""
+msgstr "Дашліце што-небудзь першым!"
 
 #. TRANS: Additional text displayed for public feed when there are no public notices for a not logged in user.
 #, php-format
 msgid ""
 "Why not [register an account](%%action.register%%) and be the first to post!"
 msgstr ""
+"Чаму не [стварыць рахунак](%%action.register%%) і стаць першым, хто што-"
+"небудзь дашле!"
 
 #. TRANS: Message for not logged in users at an invite-only site trying to view the public feed of notices.
 #. TRANS: This message contains Markdown links. Please mind the formatting.
@@ -4268,6 +4260,11 @@ msgid ""
 "tool. [Join now](%%action.register%%) to share notices about yourself with "
 "friends, family, and colleagues! ([Read more](%%doc.help%%))"
 msgstr ""
+"Гэта %%site.name%%, сэрвіс [мікраблёгаў](http://en.wikipedia.org/wiki/Micro-"
+"blogging), заснаваны на вольным праграмным забесьпячэньні [StatusNet](http://"
+"status.net/). [Далучыцеся зараз](%%action.register%%), каб дзяліцца "
+"паведамленьнямі пра сябе з сябрамі, роднымі і калегамі! ([Даведацца болей](%%"
+"doc.help%%))"
 
 #. TRANS: Message for not logged in users at a closed site trying to view the public feed of notices.
 #. TRANS: This message contains Markdown links. Please mind the formatting.
@@ -4277,26 +4274,29 @@ msgid ""
 "blogging) service based on the Free Software [StatusNet](http://status.net/) "
 "tool."
 msgstr ""
+"%%site.name%% — сэрвіс [мікраблёгаў](http://en.wikipedia.org/wiki/Micro-"
+"blogging), заснаваны на вольным праграмным забесьпячэньні [StatusNet](http://"
+"status.net/)."
 
 #. TRANS: Title for page with public list cloud.
 msgid "Public list cloud"
-msgstr ""
+msgstr "Воблака публічных сьпісаў"
 
 #. TRANS: Page notice for page with public list cloud.
 #. TRANS: %s is a StatusNet sitename.
 #, php-format
 msgid "These are largest lists on %s"
-msgstr ""
+msgstr "Гэта самыя вялікія сьпісы на %s"
 
 #. TRANS: Empty list message on page with public list cloud.
 #. TRANS: This message contains Markdown links in the form [description](link).
 #, php-format
 msgid "No one has [listed](%%doc.tags%%) anyone yet."
-msgstr ""
+msgstr "Пакуль што ніхто не дадаў да [сьпісаў](%%doc.tags%%)."
 
 #. TRANS: Additional empty list message on page with public list cloud for logged in users.
 msgid "Be the first to list someone!"
-msgstr ""
+msgstr "Будзьце першым, хто стварыў сьпіс!"
 
 #. TRANS: Additional empty list message on page with public list cloud for anonymous users.
 #. TRANS: This message contains Markdown links in the form [description](link).
@@ -4305,26 +4305,28 @@ msgid ""
 "Why not [register an account](%%action.register%%) and be the first to list "
 "someone!"
 msgstr ""
+"Чаму не [стварыць рахунак](%%action.register%%) і стаць першым, хто створыць "
+"новы сьпіс!"
 
 #. TRANS: DT element on on page with public list cloud.
 msgid "List cloud"
-msgstr ""
+msgstr "Воблака сьпісаў"
 
 #. TRANS: Link title for number of listed people. %d is the number of listed people.
 #, php-format
 msgid "1 person listed"
 msgid_plural "%d people listed"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 асоба ў сьпісе"
+msgstr[1] "%d асобы ў сьпісе"
 
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
 #, php-format
 msgid "%s updates from everyone."
-msgstr ""
+msgstr "%s абнаўленьняў ад усіх."
 
 #. TRANS: Title for public tag cloud.
 msgid "Public tag cloud"
-msgstr ""
+msgstr "Воблака публічных тэгаў"
 
 #. TRANS: Instructions (more used like an explanation/header).
 #. TRANS: %s is the StatusNet sitename.
@@ -5005,40 +5007,6 @@ msgstr ""
 msgid "FOAF for %s group"
 msgstr ""
 
-#. TRANS: Header for mini list of group members on a group page (h2).
-msgid "Members"
-msgstr ""
-
-#. TRANS: Description for mini list of group members on a group page when the group has no members.
-#. TRANS: Content of "Listed" page if there are no listed users.
-#. TRANS: Content of "People following tag x" if there are no subscribed users.
-#. TRANS: Empty list message for tags.
-#. TRANS: Text for user subscription statistics if the user has no subscriptions.
-#. TRANS: Text for user subscriber statistics if user has no subscribers.
-#. TRANS: Text for user user group membership statistics if user is not a member of any group.
-#. TRANS: Default content for section/sidebar widget.
-msgid "(None)"
-msgstr ""
-
-#. TRANS: Link to all group members from mini list of group members if group has more than n members.
-msgid "All members"
-msgstr ""
-
-#. TRANS: Header for group statistics on a group page (h2).
-#. TRANS: H2 text for user statistics.
-msgid "Statistics"
-msgstr ""
-
-#. TRANS: Label for group creation date.
-msgctxt "LABEL"
-msgid "Created"
-msgstr ""
-
-#. TRANS: Label for member count in statistics on group page.
-msgctxt "LABEL"
-msgid "Members"
-msgstr ""
-
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
 #. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
 #. TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
@@ -5061,11 +5029,6 @@ msgid ""
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool. Its members share short messages about "
 "their life and interests. "
-msgstr ""
-
-#. TRANS: Title for list of group administrators on a group page.
-msgctxt "TITLE"
-msgid "Admins"
 msgstr ""
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
@@ -5161,6 +5124,17 @@ msgstr ""
 #. TRANS: Header on show list page.
 #. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
+msgstr ""
+
+#. TRANS: Content of "Listed" page if there are no listed users.
+#. TRANS: Content of "People following tag x" if there are no subscribed users.
+#. TRANS: Description for mini list of group members on a group page when the group has no members.
+#. TRANS: Empty list message for tags.
+#. TRANS: Text for user subscription statistics if the user has no subscriptions.
+#. TRANS: Text for user subscriber statistics if user has no subscribers.
+#. TRANS: Text for user user group membership statistics if user is not a member of any group.
+#. TRANS: Default content for section/sidebar widget.
+msgid "(None)"
 msgstr ""
 
 #. TRANS: Link for more "People in list x by a user"
@@ -6070,7 +6044,7 @@ msgstr ""
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
 #, php-format
 msgid ""
-"This site is powered by %1$s version %2$s, Copyright 2008-2010 StatusNet, "
+"This site is powered by %1$s version %2$s, Copyright 2008-2011 StatusNet, "
 "Inc. and contributors."
 msgstr ""
 
@@ -6226,9 +6200,17 @@ msgstr ""
 msgid "Could not create login token for %s"
 msgstr ""
 
-#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
 #, fuzzy, php-format
 msgid "Cannot instantiate class %s."
+msgstr "Немагчыма захаваць новы пароль."
+
+#, fuzzy
+msgid "Cannot instantiate a "
+msgstr "Немагчыма захаваць новы пароль."
+
+#, fuzzy
+msgid "Cannot instantiate class "
 msgstr "Немагчыма захаваць новы пароль."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7644,6 +7626,28 @@ msgstr ""
 msgid "Grant this user the \"%s\" role"
 msgstr ""
 
+#. TRANS: Header for mini list of group members on a group page (h2).
+msgid "Members"
+msgstr ""
+
+#. TRANS: Link to all group members from mini list of group members if group has more than n members.
+msgid "All members"
+msgstr ""
+
+#. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
+msgid "Pending"
+msgstr ""
+
+#. TRANS: Header for mini list of users that are blocked in a group page (h2).
+#, fuzzy
+msgid "Blocked"
+msgstr "Заблякаваць карыстальніка"
+
+#. TRANS: Title for list of group administrators on a group page.
+msgctxt "TITLE"
+msgid "Admins"
+msgstr ""
+
 #. TRANS: Button text for the form that will block a user from a group.
 msgctxt "BUTTON"
 msgid "Block"
@@ -7701,62 +7705,8 @@ msgctxt "GROUPADMIN"
 msgid "Admin"
 msgstr ""
 
-#. TRANS: Menu item in the group navigation page.
-msgctxt "MENU"
-msgid "Group"
-msgstr ""
-
-#. TRANS: Tooltip for menu item in the group navigation page.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s group"
-msgstr ""
-
-#. TRANS: Menu item in the group navigation page.
-msgctxt "MENU"
-msgid "Members"
-msgstr ""
-
-#. TRANS: Tooltip for menu item in the group navigation page.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s group members"
-msgstr ""
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %d is the number of pending members.
-#, php-format
-msgctxt "MENU"
-msgid "Pending members (%d)"
-msgid_plural "Pending members (%d)"
-msgstr[0] ""
-msgstr[1] ""
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s pending members"
-msgstr ""
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-msgctxt "MENU"
-msgid "Blocked"
-msgstr ""
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s blocked users"
-msgstr ""
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in primary navigation panel.
-msgctxt "MENU"
-msgid "Admin"
+#. TRANS: Group actions header (h2). Text hidden by default.
+msgid "Group actions"
 msgstr ""
 
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
@@ -7766,11 +7716,6 @@ msgctxt "TOOLTIP"
 msgid "Edit %s group properties"
 msgstr ""
 
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-msgctxt "MENU"
-msgid "Logo"
-msgstr ""
-
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %s is the nickname of the group.
 #, php-format
@@ -7778,8 +7723,9 @@ msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr ""
 
-#. TRANS: Group actions header (h2). Text hidden by default.
-msgid "Group actions"
+#. TRANS: Link text for link on user profile.
+msgctxt "MENU"
+msgid "Logo"
 msgstr ""
 
 #. TRANS: Title for groups with the most members section.
@@ -7797,12 +7743,6 @@ msgstr ""
 
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
-msgstr ""
-
-#. TRANS: Title for group tag cloud section.
-#. TRANS: %s is a group name.
-#, php-format
-msgid "Tags in %s group's notices"
 msgstr ""
 
 #. TRANS: Client exception 406
@@ -8743,6 +8683,11 @@ msgstr ""
 msgid "Change your personal settings."
 msgstr ""
 
+#. TRANS: Menu item in primary navigation panel.
+msgctxt "MENU"
+msgid "Admin"
+msgstr ""
+
 #. TRANS: Menu item title in primary navigation panel.
 msgid "Site configuration."
 msgstr ""
@@ -8760,21 +8705,16 @@ msgstr ""
 msgid "Login to the site."
 msgstr ""
 
-#. TRANS: Menu item in primary navigation panel.
-msgctxt "MENU"
-msgid "Search"
-msgstr ""
-
-#. TRANS: Menu item title in primary navigation panel.
-msgid "Search the site."
-msgstr ""
-
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
 msgstr ""
 
 #. TRANS: H2 text for user subscriber statistics.
 msgid "Followers"
+msgstr ""
+
+#. TRANS: H2 text for user statistics.
+msgid "Statistics"
 msgstr ""
 
 #. TRANS: Label for user statistics.
@@ -8874,6 +8814,7 @@ msgid "Keyword(s)"
 msgstr ""
 
 #. TRANS: Button text for searching site.
+#. TRANS: Button text for search button on search form.
 #. TRANS: Button text to search profiles.
 msgctxt "BUTTON"
 msgid "Search"
@@ -9496,11 +9437,5 @@ msgstr ""
 msgid "Could not find a valid profile for \"%s\"."
 msgstr ""
 
-#~ msgid "Save paths"
-#~ msgstr "Захаваць шляхі"
-
-#~ msgid "Cancel"
-#~ msgstr "Скасаваць"
-
-#~ msgid "Delete this notice"
-#~ msgstr "Выдаліць гэтае паведамленьне"
+#~ msgid "Background directory not writable: %s."
+#~ msgstr "Дырэкторыя фонавых выяваў недаступная для запісу: %s."

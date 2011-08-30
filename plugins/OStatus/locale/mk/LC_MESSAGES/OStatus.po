@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:36:23+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:30:06+0000\n"
 "Language-Team: Macedonian <//translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-16 06:59:31+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-20 19:38:15+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -31,9 +31,8 @@ msgid "Subscribe"
 msgstr "Претплати се"
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgid "List remote profile"
-msgstr "Означи далечински профил"
+msgstr "Заведи далечински профил"
 
 #. TRANS: Field label.
 msgctxt "LABEL"
@@ -202,9 +201,8 @@ msgid "%s has updated their profile page."
 msgstr "%s ја поднови својата профилна страница."
 
 #. TRANS: Link text for a user to list an OStatus user.
-#, fuzzy
 msgid "List"
-msgstr "Наведи"
+msgstr "Заведи"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -269,14 +267,13 @@ msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "Добив неважечка URL-адреса за %1$s: „%2$s“"
 
 #. TRANS: Client error displayed when trying to list a local object as if it is remote.
-#, fuzzy
 msgid "You can use the local list functionality!"
-msgstr "Можете да ја користите локалната претплата!"
+msgstr "Можете да ја користите можноста за локално заведување!"
 
 #. TRANS: Header for listing a remote object. %s is a remote object's name.
-#, fuzzy, php-format
+#, php-format
 msgid "List %s"
-msgstr "Наведи"
+msgstr "Заведи %s"
 
 #. TRANS: Button text to list a remote object.
 msgctxt "BUTTON"
@@ -288,9 +285,8 @@ msgid "User nickname"
 msgstr "Прекар на корисникот"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Nickname of the user you want to list."
-msgstr "Прекарот на корисникот што сакате да го означите."
+msgstr "Прекарот на корисникот што сакате да го заведете."
 
 #. TRANS: Field label.
 msgid "Profile Account"
@@ -496,34 +492,28 @@ msgid "Not a person object."
 msgstr "Објектот не е лице."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "Unidentified profile being listed."
-msgstr "Се означува непрепознаен профил."
+msgstr "Се заведува непрепознаен профил."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This user is not the one being listed."
-msgstr "Ова не е корисникот што се означува."
+msgstr "Ова не е корисникот што се заведува."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "The listing could not be saved."
-msgstr "Не можев да ја зачувам ознаката."
+msgstr "Не можев да го зачувам заведеното."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "Unidentified profile being unlisted."
-msgstr "Се означува непрепознаен профил."
+msgstr "Се отстранува непрепознаен профил од заведените."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This user is not the one being unlisted."
-msgstr "Ова не е корисникот кому му се трга ознаката."
+msgstr "Ова не е корисникот што се отстранува од заведените."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "The listing could not be deleted."
-msgstr "Не можев да ја избришам ознаката."
+msgstr "Не можев да го избришам заведеното."
 
 #. TRANS: Client exception.
 msgid "Cannot favorite/unfavorite without an object."
@@ -942,24 +932,13 @@ msgid "This target does not understand leave events."
 msgstr "Оваа цел не разбира напуштање на настани."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand list events."
-msgstr "Оваа цел не разбира означување на настани."
+msgstr "Оваа цел не разбира заведување на настани."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand unlist events."
-msgstr "Оваа цел не разбира отстранување на ознаки на настани."
+msgstr "Оваа цел не разбира отстранување на заведени настани."
 
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
 msgstr "Примив Salmon-шамар од непознат учесник."
-
-#~ msgid "Tag"
-#~ msgstr "Означи"
-
-#~ msgid "You can use the local tagging!"
-#~ msgstr "Можете да го користите локалното означување!"
-
-#~ msgid "Tag %s"
-#~ msgstr "Означи го/ја %s"

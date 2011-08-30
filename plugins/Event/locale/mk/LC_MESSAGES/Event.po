@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:35:10+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:28:52+0000\n"
 "Language-Team: Macedonian <//translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-16 06:59:38+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-20 19:38:23+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
@@ -23,23 +23,22 @@ msgstr ""
 
 #. TRANS: 0 minutes abbreviated. Used in a list.
 msgid "(0 min)"
-msgstr ""
+msgstr "(0 мин)"
 
 #. TRANS: 30 minutes abbreviated. Used in a list.
 msgid "(30 min)"
-msgstr ""
+msgstr "(30 мин)"
 
 #. TRANS: 1 hour. Used in a list.
-#, fuzzy
 msgid "(1 hour)"
-msgstr "час"
+msgstr "(1 час)"
 
 #. TRANS: Number of hours (%d). Used in a list.
-#, fuzzy, php-format
+#, php-format
 msgid "(%d hour)"
 msgid_plural "(%d hours)"
-msgstr[0] "час"
-msgstr[1] "час"
+msgstr[0] "(%d час)"
+msgstr[1] "(%d часа)"
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -68,7 +67,7 @@ msgstr ""
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
-msgstr ""
+msgstr "Не сте најавени."
 
 #. TRANS: Client error when submitting a form with unexpected information.
 msgid "Unexpected form submission."
@@ -181,8 +180,9 @@ msgctxt "LABEL"
 msgid "Start time"
 msgstr "Време на почеток"
 
-#. TRANS: Field title on event form.
-msgid "Time the event starts."
+#. TRANS: Field title on event form. %s is the abbreviated timezone
+#, fuzzy, php-format
+msgid "Time the event starts (%s)."
 msgstr "Во колку часот почнува настанот."
 
 #. TRANS: Field label on event form.
@@ -422,9 +422,3 @@ msgstr "Присуство:"
 #, php-format
 msgid "Yes: %1$d No: %2$d Maybe: %3$d"
 msgstr "Да: %1$d Не: %2$d Можеби: %3$d"
-
-#~ msgid "hrs"
-#~ msgstr "часа"
-
-#~ msgid "mins"
-#~ msgstr "минути"
