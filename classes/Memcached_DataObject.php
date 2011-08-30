@@ -250,7 +250,8 @@ class Memcached_DataObject extends Safe_DataObject
     {
         $i = DB_DataObject::factory($cls);
         if (empty($i)) {
-            throw new Exception(_('Cannot instantiate a ' . $cls));
+            // TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
+            throw new Exception(sprintf(_('Cannot instantiate class %s.'),$cls));
         }
         $types = $i->keyTypes();
         ksort($types);
@@ -306,7 +307,8 @@ class Memcached_DataObject extends Safe_DataObject
         if (count($toFetch) > 0) {
             $i = DB_DataObject::factory($cls);
             if (empty($i)) {
-                throw new Exception(_('Cannot instantiate class ' . $cls));
+                // TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
+                throw new Exception(sprintf(_('Cannot instantiate class %s.'),$cls));
             }
             $i->whereAddIn($keyCol, $toFetch, $i->columnType($keyCol));
             if ($i->find()) {
