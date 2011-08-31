@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:20:40+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:29:00+0000\n"
 "Language-Team: Breton <//translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:07+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
@@ -36,12 +36,10 @@ msgid "Login with Facebook"
 msgstr "Kevreañ gant Facebook"
 
 #. TRANS: Title for "Login with Facebook" image.
-#, fuzzy
 msgid "Login with Facebook."
-msgstr "Kevreañ gant Facebook"
+msgstr "Kevreañ gant Facebook."
 
 #. TRANS: Title for Facebook administration panel.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Facebook integration settings"
 msgstr "Arventennoù enframmañ Facebook"
@@ -67,9 +65,8 @@ msgid "Application ID"
 msgstr "ID ar poellad"
 
 #. TRANS: Field title for Facebook application ID.
-#, fuzzy
 msgid "ID of your Facebook application."
-msgstr "ID ho poellad Facebook"
+msgstr "ID ho poellad Facebook."
 
 #. TRANS: Field label for Facebook secret key.
 msgid "Secret"
@@ -87,16 +84,14 @@ msgid "Save"
 msgstr "Enrollañ"
 
 #. TRANS: Button title to save Facebook integration settings.
-#, fuzzy
 msgid "Save Facebook settings."
-msgstr "Enrollañ arventennoù Facebook"
+msgstr "Enrollañ arventennoù Facebook."
 
 #. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
 msgstr "Ur gudenn 'zo bet gant ho jedaouer dalc'h. Mar plij adklaskit."
 
 #. TRANS: Page title for Facebook settings.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Facebook settings"
 msgstr "Arventennoù Facebook"
@@ -190,7 +185,7 @@ msgstr ""
 
 #. TRANS: Page title.
 msgid "Facebook Setup"
-msgstr ""
+msgstr "Kefluniadur Facebook"
 
 #. TRANS: Fieldset legend.
 msgid "Connection options"

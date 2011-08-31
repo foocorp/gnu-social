@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * List item for when you join a group
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class JoinListItem extends SystemListItem
 {
     function showContent()
@@ -52,22 +51,25 @@ class JoinListItem extends SystemListItem
         $notice = $this->nli->notice;
         $out    = $this->nli->out;
 
-		$mem = Group_member::staticGet('uri', $notice->uri);
-		
+        $mem = Group_member::staticGet('uri', $notice->uri);
+
         if (!empty($mem)) {
             $out->elementStart('div', 'join-activity');
-        	$profile = $mem->getMember();
-        	$group = $mem->getGroup();
-        	$out->raw(sprintf(_m('<a href="%s">%s</a> joined the group <a href="%s">%s</a>.'),
-            					$profile->profileurl,
-            					$profile->getBestName(),
-                            	$group->homeUrl(),
-                            	$group->getBestName()));
-        
+            $profile = $mem->getMember();
+            $group = $mem->getGroup();
+
+            // TRANS: Text for "joined list" item in activity plugin.
+            // TRANS: %1$s is a profile URL, %2$s is a profile name,
+            // TRANS: %3$s is a group home URL, %4$s is a group name.
+            $out->raw(sprintf(_m('<a href="%1$s">%2$s</a> joined the group <a href="%3$s">%4$s</a>.'),
+                                $profile->profileurl,
+                                $profile->getBestName(),
+                                $group->homeUrl(),
+                                $group->getBestName()));
+
             $out->elementEnd('div');
         } else {
             parent::showContent();
         }
-    } 
+    }
 }
-

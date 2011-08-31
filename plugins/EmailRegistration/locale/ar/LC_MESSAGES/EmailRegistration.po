@@ -1,6 +1,7 @@
 # Translation of StatusNet - EmailRegistration to Arabic (العربية)
 # Exported from translatewiki.net
 #
+# Author: Majid Al-Dharrab
 # Author: OsamaK
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailRegistration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:20:25+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:28:44+0000\n"
 "Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-emailregistration\n"
@@ -25,11 +26,11 @@ msgstr ""
 
 #. TRANS: Client exception trown when registration by e-mail is not allowed.
 msgid "Registration not allowed."
-msgstr ""
+msgstr "لا يُسمح بالتسجيل."
 
 #. TRANS: Client exception trown when trying to register without an invitation.
 msgid "Sorry, only invited people can register."
-msgstr ""
+msgstr "عذرًا، الأشخاص المدعوون وحدهم يستطيعون التسجيل."
 
 #. TRANS: Client exception thrown when no confirmation code was provided.
 msgid "No confirmation code."

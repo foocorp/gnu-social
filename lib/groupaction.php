@@ -41,7 +41,6 @@ define('MEMBERS_PER_SECTION', 27);
  * @author   Zach Copley <zach@status.net>
  * @license  http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link     http://status.net/
- *
  */
 class GroupAction extends Action
 {
@@ -93,7 +92,7 @@ class GroupAction extends Action
         $this->group = User_group::staticGet('id', $local->group_id);
 
         if (!$this->group) {
-                // TRANS: Client error displayed if no local group with a given name was found requesting group page.
+            // TRANS: Client error displayed if no local group with a given name was found requesting group page.
             $this->clientError(_('No such group.'), 404);
             return false;
         }
@@ -140,18 +139,17 @@ class GroupAction extends Action
                                          'class' => 'section'));
 
         if (Event::handle('StartShowGroupMembersMiniList', array($this))) {
-             
-            // TRANS: Header for mini list of group members on a group page (h2).
             $this->elementStart('h2');
 
             $this->element('a', array('href' => common_local_url('groupmembers', array('nickname' =>
                                                                                        $this->group->nickname))),
+                           // TRANS: Header for mini list of group members on a group page (h2).
                            _('Members'));
 
             $this->text(' ');
 
             $this->text($this->group->getMemberCount());
-            
+
             $this->elementEnd('h2');
 
             $gmml = new GroupMembersMiniList($member, $this);
@@ -176,7 +174,6 @@ class GroupAction extends Action
         $this->elementEnd('div');
     }
 
-
     function showPending()
     {
         if ($this->group->join_policy != User_group::JOIN_POLICY_MODERATE) {
@@ -199,17 +196,18 @@ class GroupAction extends Action
                                          'class' => 'section'));
 
         if (Event::handle('StartShowGroupPendingMiniList', array($this))) {
-             
+
             $this->elementStart('h2');
 
             $this->element('a', array('href' => common_local_url('groupqueue', array('nickname' =>
                                                                                      $this->group->nickname))),
+                           // TRANS: Header for mini list of users with a pending membership request on a group page (h2).
                            _('Pending'));
 
             $this->text(' ');
 
             $this->text($pending);
-            
+
             $this->elementEnd('h2');
 
             $gmml = new ProfileMiniList($request, $this);
@@ -233,17 +231,18 @@ class GroupAction extends Action
                                          'class' => 'section'));
 
         if (Event::handle('StartShowGroupBlockedMiniList', array($this))) {
-             
+
             $this->elementStart('h2');
 
             $this->element('a', array('href' => common_local_url('blockedfromgroup', array('nickname' =>
                                                                                            $this->group->nickname))),
+                           // TRANS: Header for mini list of users that are blocked in a group page (h2).
                            _('Blocked'));
 
             $this->text(' ');
 
             $this->text($this->group->getBlockedCount());
-            
+
             $this->elementEnd('h2');
 
             $gmml = new GroupBlockedMiniList($blocked, $this);
@@ -278,7 +277,6 @@ class GroupAction extends Action
         $adminSection = new GroupAdminSection($this, $this->group);
         $adminSection->show();
     }
-
 
     function noticeFormOptions()
     {
@@ -376,4 +374,3 @@ class ThreadingGroupNoticeStream extends ThreadingNoticeStream
         parent::__construct(new GroupNoticeStream($group, $profile));
     }
 }
-

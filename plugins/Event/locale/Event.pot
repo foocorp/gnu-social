@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,7 +139,7 @@ msgstr ""
 
 #. TRANS: Page title after creating an event.
 #. TRANS: Page title after sending a notice.
-#: newrsvp.php:163 cancelrsvp.php:158 newevent.php:249
+#: newrsvp.php:163 cancelrsvp.php:158 newevent.php:250
 msgid "Event saved"
 msgstr ""
 
@@ -205,9 +205,10 @@ msgctxt "LABEL"
 msgid "Start time"
 msgstr ""
 
-#. TRANS: Field title on event form.
+#. TRANS: Field title on event form. %s is the abbreviated timezone
 #: eventform.php:134
-msgid "Time the event starts."
+#, php-format
+msgid "Time the event starts (%s)."
 msgstr ""
 
 #. TRANS: Field label on event form.

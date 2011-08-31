@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - YammerImport\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:22:43+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:31:12+0000\n"
 "Language-Team: Breton <//translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 13:28:10+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-yammerimport\n"
@@ -260,9 +260,9 @@ msgid "Pause import"
 msgstr "Ober un tamm ehan gant an enporzh"
 
 #. TRANS: Error message. %s are the error details.
-#, fuzzy, php-format
+#, php-format
 msgid "Encountered error \"%s\"."
-msgstr "C'hoarvezet eo ar fazi \"%s\""
+msgstr "C'hoarvezet eo ar fazi \"%s\"."
 
 #. TRANS: Fieldset legend for a paused import.
 msgid "Paused"
@@ -297,7 +297,6 @@ msgid "Verification code:"
 msgstr "Kod gwiriekaat :"
 
 #. TRANS: Button text for saving  Yammer authorisation data and starting Yammer import.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Continue"
 msgstr "Kenderc'hel"
@@ -342,7 +341,6 @@ msgid "Consumer secret:"
 msgstr "Sekred an implijer :"
 
 #. TRANS: Button text for saving a Yammer API registration.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Enrollañ"

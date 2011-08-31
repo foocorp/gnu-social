@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class ActivityPlugin extends Plugin
 {
     const VERSION = '0.1';
@@ -82,18 +81,24 @@ class ActivityPlugin extends Plugin
         if(!$this->StartFollowUser) return true;
         $user = $subscriber->getUser();
         if (!empty($user)) {
-        	$sub = Subscription::pkeyGet(array('subscriber' => $subscriber->id,
-                                           	   'subscribed' => $other->id));
-            $rendered = sprintf(_m('<a href="%s">%s</a> started following <a href="%s">%s</a>.'),
-            					$subscriber->profileurl,
-            					$subscriber->getBestName(),
+            $sub = Subscription::pkeyGet(array('subscriber' => $subscriber->id,
+                                               'subscribed' => $other->id));
+            // TRANS: Text for "started following" item in activity plugin.
+            // TRANS: %1$s is a profile URL, %2$s is a profile name,
+            // TRANS: %3$s is a profile URL, %4$s is a profile name.
+            $rendered = sprintf(_m('<a href="%1$s">%2$s</a> started following <a href="%2$s">%4$s</a>.'),
+                                $subscriber->profileurl,
+                                $subscriber->getBestName(),
                                 $other->profileurl,
                                 $other->getBestName());
-            $content  = sprintf(_m('%s (%s) started following %s (%s).'),
-            					$subscriber->getBestName(),
-            					$subscriber->profileurl,
+            // TRANS: Text for "started following" item in activity plugin.
+            // TRANS: %1$s is a profile name, %2$s is a profile URL,
+            // TRANS: %3$s is a profile name, %4$s is a profile URL.
+            $content  = sprintf(_m('%1$s (%2$s) started following %3$s (%4$s).'),
+                                $subscriber->getBestName(),
+                                $subscriber->profileurl,
                                 $other->getBestName(),
-								$other->profileurl);
+                                $other->profileurl);
 
             $notice = Notice::saveNew($user->id,
                                       $content,
@@ -101,9 +106,9 @@ class ActivityPlugin extends Plugin
                                       array('rendered' => $rendered,
                                             'urls' => array(),
                                             'replies' => array($other->getUri()),
-                                      		'verb' => ActivityVerb::FOLLOW,
-                                      		'object_type' => ActivityObject::PERSON,
-                                      		'uri' => $sub->uri));
+                                            'verb' => ActivityVerb::FOLLOW,
+                                            'object_type' => ActivityObject::PERSON,
+                                            'uri' => $sub->uri));
         }
         return true;
     }
@@ -114,31 +119,37 @@ class ActivityPlugin extends Plugin
         if(!$this->StopFollowUser) return true;
         $user = $subscriber->getUser();
         if (!empty($user)) {
-            $rendered = sprintf(_m('<a href="%s">%s</a> stopped following <a href="%s">%s</a>.'),
-            					$subscriber->profileurl,
-            					$subscriber->getBestName(),
+            // TRANS: Text for "stopped following" item in activity plugin.
+            // TRANS: %1$s is a profile URL, %2$s is a profile name,
+            // TRANS: %3$s is a profile URL, %4$s is a profile name.
+            $rendered = sprintf(_m('<a href="%1$s">%2$s</a> stopped following <a href="%3$s">%4$s</a>.'),
+                                $subscriber->profileurl,
+                                $subscriber->getBestName(),
                                 $other->profileurl,
                                 $other->getBestName());
-            $content  = sprintf(_m('%s (%s) stopped following %s (%s).'),
-            					$subscriber->getBestName(),
-            					$subscriber->profileurl,
+            // TRANS: Text for "stopped following" item in activity plugin.
+            // TRANS: %1$s is a profile name, %2$s is a profile URL,
+            // TRANS: %3$s is a profile name, %4$s is a profile URL.
+            $content  = sprintf(_m('%1$s (%2$s) stopped following %3$s (%4$s).'),
+                                $subscriber->getBestName(),
+                                $subscriber->profileurl,
                                 $other->getBestName(),
-								$other->profileurl);
+                                $other->profileurl);
 
-			$uri = TagURI::mint('stop-following:%d:%d:%s',
-                            	$subscriber->id,
-                            	$other->id,
-                            	common_date_iso8601(common_sql_now()));
-                            
+            $uri = TagURI::mint('stop-following:%d:%d:%s',
+                                $subscriber->id,
+                                $other->id,
+                                common_date_iso8601(common_sql_now()));
+
             $notice = Notice::saveNew($user->id,
                                       $content,
                                       ActivityPlugin::SOURCE,
                                       array('rendered' => $rendered,
                                             'urls' => array(),
                                             'replies' => array($other->getUri()),
-                                      		'uri' => $uri,
-                                      		'verb' => ActivityVerb::UNFOLLOW,
-                                      		'object_type' => ActivityObject::PERSON));
+                                            'uri' => $uri,
+                                            'verb' => ActivityVerb::UNFOLLOW,
+                                            'object_type' => ActivityObject::PERSON));
         }
         return true;
     }
@@ -147,25 +158,31 @@ class ActivityPlugin extends Plugin
     {
         //  Only do this if config is enabled
         if(!$this->StartLike) return true;
-        
+
         $user = $profile->getUser();
-        
+
         if (!empty($user)) {
-        	
+
             $author = $notice->getProfile();
             $fave   = Fave::pkeyGet(array('user_id' => $user->id,
-            						  	  'notice_id' => $notice->id));
-            
-            $rendered = sprintf(_m('<a href="%s">%s</a> liked <a href="%s">%s\'s update</a>.'),
-            					$profile->profileurl,
-            					$profile->getBestName(),
+                                          'notice_id' => $notice->id));
+
+            // TRANS: Text for "liked" item in activity plugin.
+            // TRANS: %1$s is a profile URL, %2$s is a profile name,
+            // TRANS: %3$s is a notice URL, %4$s is an author name.
+            $rendered = sprintf(_m('<a href="%1$s">%2$s</a> liked <a href="%3$s">%4$s\'s update</a>.'),
+                                $profile->profileurl,
+                                $profile->getBestName(),
                                 $notice->bestUrl(),
                                 $author->getBestName());
-            $content  = sprintf(_m('%s (%s) liked %s\'s status (%s)'),
-            					$profile->getBestName(),
-            					$profile->profileurl,
-                                $author->getBestName(), 
-								$notice->bestUrl());
+            // TRANS: Text for "liked" item in activity plugin.
+            // TRANS: %1$s is a profile name, %2$s is a profile URL,
+            // TRANS: %3$s is an author name, %4$s is a notice URL.
+            $content  = sprintf(_m('%1$s (%2$s) liked %3$s\'s status (%4$s).'),
+                                $profile->getBestName(),
+                                $profile->profileurl,
+                                $author->getBestName(),
+                                $notice->bestUrl());
 
             $notice = Notice::saveNew($user->id,
                                       $content,
@@ -173,10 +190,10 @@ class ActivityPlugin extends Plugin
                                       array('rendered' => $rendered,
                                             'urls' => array(),
                                             'replies' => array($author->getUri()),
-                                      		'uri' => $fave->getURI(),
-                                      		'verb' => ActivityVerb::FAVORITE,
-                                      		'object_type' => (($notice->verb == ActivityVerb::POST) ?
-                                      						 $notice->object_type : ActivityObject::ACTIVITY)));
+                                            'uri' => $fave->getURI(),
+                                            'verb' => ActivityVerb::FAVORITE,
+                                            'object_type' => (($notice->verb == ActivityVerb::POST) ?
+                                                             $notice->object_type : ActivityObject::ACTIVITY)));
         }
         return true;
     }
@@ -189,32 +206,38 @@ class ActivityPlugin extends Plugin
 
         if (!empty($user)) {
             $author = Profile::staticGet('id', $notice->profile_id);
-            $rendered = sprintf(_m('<a href="%s">%s</a> stopped liking <a href="%s">%s\'s update</a>.'),
-            					$profile->profileurl,
-            					$profile->getBestName(),
+            // TRANS: Text for "stopped liking" item in activity plugin.
+            // TRANS: %1$s is a profile URL, %2$s is a profile name,
+            // TRANS: %3$s is a notice URL, %4$s is an author name.
+            $rendered = sprintf(_m('<a href="%1$s">%2$s</a> stopped liking <a href="%3$s">%4$s\'s update</a>.'),
+                                $profile->profileurl,
+                                $profile->getBestName(),
                                 $notice->bestUrl(),
                                 $author->getBestName());
-            $content  = sprintf(_m('%s (%s) stopped liking %s\'s status (%s)'),
-            					$profile->getBestName(),
-            					$profile->profileurl,
-                                $author->getBestName(), 
-								$notice->bestUrl());
-								
-			$uri = TagURI::mint('unlike:%d:%d:%s',
-                            	$profile->id,
-                            	$notice->id,
-                            	common_date_iso8601(common_sql_now()));
-                            	
+            // TRANS: Text for "stopped liking" item in activity plugin.
+            // TRANS: %1$s is a profile name, %2$s is a profile URL,
+            // TRANS: %3$s is an author name, %4$s is a notice URL.
+            $content  = sprintf(_m('%1$s (%2$s) stopped liking %3$s\'s status (%4$s).'),
+                                $profile->getBestName(),
+                                $profile->profileurl,
+                                $author->getBestName(),
+                                $notice->bestUrl());
+
+            $uri = TagURI::mint('unlike:%d:%d:%s',
+                                $profile->id,
+                                $notice->id,
+                                common_date_iso8601(common_sql_now()));
+
             $notice = Notice::saveNew($user->id,
                                       $content,
                                       ActivityPlugin::SOURCE,
                                       array('rendered' => $rendered,
                                             'urls' => array(),
                                             'replies' => array($author->getUri()),
-                                      		'uri' => $uri,
-                                      		'verb' => ActivityVerb::UNFAVORITE,
-                                      		'object_type' => (($notice->verb == ActivityVerb::POST) ?
-                                      						 $notice->object_type : ActivityObject::ACTIVITY)));
+                                            'uri' => $uri,
+                                            'verb' => ActivityVerb::UNFAVORITE,
+                                            'object_type' => (($notice->verb == ActivityVerb::POST) ?
+                                                             $notice->object_type : ActivityObject::ACTIVITY)));
         }
         return true;
     }
@@ -223,36 +246,42 @@ class ActivityPlugin extends Plugin
     {
         // Only do this if config is enabled
         if(!$this->JoinGroup) return true;
-        
+
         $user = $profile->getUser();
-        
+
         if (empty($user)) {
             return true;
         }
-        
-        $rendered = sprintf(_m('<a href="%s">%s</a> joined the group <a href="%s">%s</a>.'),
-            				$profile->profileurl,
-            				$profile->getBestName(),
+
+        // TRANS: Text for "joined group" item in activity plugin.
+        // TRANS: %1$s is a profile URL, %2$s is a profile name,
+        // TRANS: %3$s is a group URL, %4$s is a group name.
+        $rendered = sprintf(_m('<a href="%1$s">%2$s</a> joined the group <a href="%3$s">%4$s</a>.'),
+                            $profile->profileurl,
+                            $profile->getBestName(),
                             $group->homeUrl(),
                             $group->getBestName());
-        $content  = sprintf(_m('%s (%s) joined the group %s (%s).'),
-            				$profile->getBestName(),
-            				$profile->profileurl,
+        // TRANS: Text for "joined group" item in activity plugin.
+        // TRANS: %1$s is a profile name, %2$s is a profile URL,
+        // TRANS: %3$s is a group name, %4$s is a group URL.
+        $content  = sprintf(_m('%1$s (%2$s) joined the group %3$s (%4$s).'),
+                            $profile->getBestName(),
+                            $profile->profileurl,
                             $group->getBestName(),
-			    			$group->homeUrl());
+                            $group->homeUrl());
 
-		$mem = Group_member::pkeyGet(array('group_id' => $group->id,
-										   'profile_id' => $profile->id));
-											 
+        $mem = Group_member::pkeyGet(array('group_id' => $group->id,
+                                           'profile_id' => $profile->id));
+
         $notice = Notice::saveNew($user->id,
                                   $content,
                                   ActivityPlugin::SOURCE,
                                   array('rendered' => $rendered,
                                         'urls' => array(),
                                         'groups' => array($group->id),
-                                  		'uri' => $mem->getURI(),
-                                  		'verb' => ActivityVerb::JOIN,
-                                  		'object_type' => ActivityObject::GROUP));
+                                        'uri' => $mem->getURI(),
+                                        'verb' => ActivityVerb::JOIN,
+                                        'object_type' => ActivityObject::GROUP));
         return true;
     }
 
@@ -260,25 +289,31 @@ class ActivityPlugin extends Plugin
     {
         // Only do this if config is enabled
         if(!$this->LeaveGroup) return true;
-        
+
         $user = $profile->getUser();
-        
+
         if (empty($user)) {
             return true;
         }
-        
-        $rendered = sprintf(_m('<a href="%s">%s</a> left the group <a href="%s">%s</a>.'),
-            				$profile->profileurl,
-            				$profile->getBestName(),
+
+        // TRANS: Text for "left group" item in activity plugin.
+        // TRANS: %1$s is a profile URL, %2$s is a profile name,
+        // TRANS: %3$s is a group URL, %4$s is a group name.
+        $rendered = sprintf(_m('<a href="%1$s">%2$s</a> left the group <a href="%3$s">%4$s</a>.'),
+                            $profile->profileurl,
+                            $profile->getBestName(),
                             $group->homeUrl(),
                             $group->getBestName());
-        $content  = sprintf(_m('%s (%s) left the group %s (%s)'),
-            				$profile->getBestName(),
-             				$profile->profileurl,
+        // TRANS: Text for "left group" item in activity plugin.
+        // TRANS: %1$s is a profile name, %2$s is a profile URL,
+        // TRANS: %3$s is a group name, %4$s is a group URL.
+        $content  = sprintf(_m('%1$s (%2$s) left the group %3$s (%4$s).'),
+                            $profile->getBestName(),
+                            $profile->profileurl,
                             $group->getBestName(),
-			    			$group->homeUrl());
-			    
-		$uri = TagURI::mint('leave:%d:%d:%s',
+                            $group->homeUrl());
+
+        $uri = TagURI::mint('leave:%d:%d:%s',
                             $user->id,
                             $group->id,
                             common_date_iso8601(common_sql_now()));
@@ -289,36 +324,36 @@ class ActivityPlugin extends Plugin
                                   array('rendered' => $rendered,
                                         'urls' => array(),
                                         'groups' => array($group->id),
-                                  		'uri' => $uri,
-                                  		'verb' => ActivityVerb::LEAVE,
-                                  		'object_type' => ActivityObject::GROUP));
+                                        'uri' => $uri,
+                                        'verb' => ActivityVerb::LEAVE,
+                                        'object_type' => ActivityObject::GROUP));
         return true;
     }
-    
+
     function onStartShowNoticeItem($nli)
     {
-		$notice = $nli->notice;
-		
-		$adapter = null;
-		
-		switch ($notice->verb) {
+        $notice = $nli->notice;
+
+        $adapter = null;
+
+        switch ($notice->verb) {
         case ActivityVerb::FAVORITE:
         case ActivityVerb::UNFAVORITE:
-			$adapter = new SystemListItem($nli);
-			break;
-		case ActivityVerb::JOIN:
-			$adapter = new JoinListItem($nli);
-			break;
-		case ActivityVerb::LEAVE:
-			$adapter = new JoinListItem($nli);
-			break;
-		case ActivityVerb::FOLLOW:
-			$adapter = new FollowListItem($nli);
-			break;
-		case ActivityVerb::UNFOLLOW:
-			$adapter = new UnfollowListItem($nli);
-			break;
-		}
+            $adapter = new SystemListItem($nli);
+            break;
+        case ActivityVerb::JOIN:
+            $adapter = new JoinListItem($nli);
+            break;
+        case ActivityVerb::LEAVE:
+            $adapter = new JoinListItem($nli);
+            break;
+        case ActivityVerb::FOLLOW:
+            $adapter = new FollowListItem($nli);
+            break;
+        case ActivityVerb::UNFOLLOW:
+            $adapter = new UnfollowListItem($nli);
+            break;
+        }
 
         if (!empty($adapter)) {
             $adapter->showNotice();
@@ -327,13 +362,13 @@ class ActivityPlugin extends Plugin
             $adapter->showNoticeOptions();
             return false;
         }
-        
+
         return true;
     }
 
     function onEndNoticeAsActivity($notice, &$activity)
     {
-		switch ($notice->verb) {
+        switch ($notice->verb) {
         case ActivityVerb::FAVORITE:
             $fave = Fave::staticGet('uri', $notice->uri);
             if (!empty($fave)) {
@@ -352,18 +387,18 @@ class ActivityPlugin extends Plugin
             break;
         case ActivityVerb::UNFAVORITE:
             // FIXME: do something here
-			break;
-		case ActivityVerb::JOIN:
+            break;
+        case ActivityVerb::JOIN:
             $mem = Group_member::staticGet('uri', $notice->uri);
             if (!empty($mem)) {
                 $group = $mem->getGroup();
                 $activity->objects = array(ActivityObject::fromGroup($group));
             }
             break;
-		case ActivityVerb::LEAVE:
+        case ActivityVerb::LEAVE:
             // FIXME: ????
-			break;
-		case ActivityVerb::FOLLOW:
+            break;
+        case ActivityVerb::FOLLOW:
             $sub = Subscription::staticGet('uri', $notice->uri);
             if (!empty($sub)) {
                 $profile = Profile::staticGet('id', $sub->subscribed);
@@ -371,13 +406,13 @@ class ActivityPlugin extends Plugin
                     $activity->objects = array(ActivityObject::fromProfile($profile));
                 }
             }
-			break;
-		case ActivityVerb::UNFOLLOW:
+            break;
+        case ActivityVerb::UNFOLLOW:
             // FIXME: ????
-			break;
-		}
+            break;
+        }
 
-    	return true;
+        return true;
     }
 
     function onPluginVersion(&$versions)
@@ -387,6 +422,7 @@ class ActivityPlugin extends Plugin
                             'author' => 'Evan Prodromou',
                             'homepage' => 'http://status.net/wiki/Plugin:Activity',
                             'rawdescription' =>
+                            // TRANS: Plugin description.
                             _m('Emits notices when social activities happen.'));
         return true;
     }

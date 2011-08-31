@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:36:39+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:30:19+0000\n"
 "Language-Team: Galician <//translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-16 06:58:31+0000\n"
+"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -442,7 +442,7 @@ msgstr "Conversa"
 msgid "No conversation with ID %d."
 msgstr "Conversa"
 
-#. TRANS: Timeline title for user and friends. %s is a user nickname.
+#. TRANS: Title for conversion timeline.
 #, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
@@ -1214,8 +1214,6 @@ msgstr "Ten que identificarse para deixar un grupo."
 #. TRANS: Client error displayed when trying to update logo settings for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for a non-existing group.
 #. TRANS: Client error displayed when trying to view group members for an object that is not a group.
-#. TRANS: Client error displayed when trying to view group members for a non-existing group.
-#. TRANS: Client error displayed when trying to view group members for an object that is not a group.
 #. TRANS: Client error displayed when requesting a group RSS feed for group that does not exist.
 #. TRANS: Client error displayed when requesting a group RSS feed for an object that is not a group.
 #. TRANS: Client error displayed when trying to unblock a user from a non-existing group.
@@ -1224,10 +1222,10 @@ msgstr "Ten que identificarse para deixar un grupo."
 #. TRANS: Client error displayed when trying to leave a non-local group.
 #. TRANS: Client error displayed when trying to leave a non-existing group.
 #. TRANS: Client error displayed when providing an invalid group ID on the Make Admin page.
-#. TRANS: Client error displayed if no remote group with a given name was found requesting group page.
-#. TRANS: Client error displayed if no local group with a given name was found requesting group page.
 #. TRANS: Command exception text shown when a group is requested that does not exist.
 #. TRANS: Error text shown when trying to leave a group that does not exist.
+#. TRANS: Client error displayed if no remote group with a given name was found requesting group page.
+#. TRANS: Client error displayed if no local group with a given name was found requesting group page.
 msgid "No such group."
 msgstr "Non existe tal grupo."
 
@@ -3614,12 +3612,6 @@ msgid "Avatar directory not writable: %s."
 msgstr "Non se pode escribir no directorio de avatares: %s."
 
 #. TRANS: Client error in Paths admin panel.
-#. TRANS: %s is the background directory that could not be written to.
-#, php-format
-msgid "Background directory not writable: %s."
-msgstr "Non se pode escribir no directorio de fondos: %s."
-
-#. TRANS: Client error in Paths admin panel.
 #. TRANS: %s is the locales directory that could not be read from.
 #, php-format
 msgid "Locales directory not readable: %s."
@@ -4183,6 +4175,8 @@ msgid "Share my current location when posting notices"
 msgstr "Compartir o lugar onde vivo ao publicar notas"
 
 #. TRANS: Field label in form for profile settings.
+#. TRANS: Title for group tag cloud section.
+#. TRANS: %s is a group name.
 msgid "Tags"
 msgstr "Etiquetas"
 
@@ -5065,26 +5059,23 @@ msgstr "Información da aplicación"
 
 #. TRANS: Field label on application page.
 msgid "Consumer key"
-msgstr ""
+msgstr "Clave do consumidor"
 
 #. TRANS: Field label on application page.
 msgid "Consumer secret"
-msgstr ""
+msgstr "Pregunta secreta do consumidor"
 
 #. TRANS: Field label on application page.
-#, fuzzy
 msgid "Request token URL"
-msgstr "Pase de solicitude incorrecto."
+msgstr "Solicitar un URL de pase"
 
 #. TRANS: Field label on application page.
-#, fuzzy
 msgid "Access token URL"
-msgstr "Pase de acceso incorrecto."
+msgstr "Acceder ao URL do pase"
 
 #. TRANS: Field label on application page.
-#, fuzzy
 msgid "Authorize URL"
-msgstr "URL de orixe"
+msgstr "Autorizar o URL"
 
 #. TRANS: Note on the OAuth application page about signature support.
 #, fuzzy
@@ -5202,40 +5193,6 @@ msgstr "Fonte de novas das notas do grupo %s (Atom)"
 msgid "FOAF for %s group"
 msgstr "Amigo dun amigo para o grupo %s"
 
-#. TRANS: Header for mini list of group members on a group page (h2).
-msgid "Members"
-msgstr "Membros"
-
-#. TRANS: Description for mini list of group members on a group page when the group has no members.
-#. TRANS: Content of "Listed" page if there are no listed users.
-#. TRANS: Content of "People following tag x" if there are no subscribed users.
-#. TRANS: Empty list message for tags.
-#. TRANS: Text for user subscription statistics if the user has no subscriptions.
-#. TRANS: Text for user subscriber statistics if user has no subscribers.
-#. TRANS: Text for user user group membership statistics if user is not a member of any group.
-#. TRANS: Default content for section/sidebar widget.
-msgid "(None)"
-msgstr "(Ningún)"
-
-#. TRANS: Link to all group members from mini list of group members if group has more than n members.
-msgid "All members"
-msgstr "Todos os membros"
-
-#. TRANS: Header for group statistics on a group page (h2).
-#. TRANS: H2 text for user statistics.
-msgid "Statistics"
-msgstr "Estatísticas"
-
-#. TRANS: Label for group creation date.
-msgctxt "LABEL"
-msgid "Created"
-msgstr "Creado"
-
-#. TRANS: Label for member count in statistics on group page.
-msgctxt "LABEL"
-msgid "Members"
-msgstr "Membros"
-
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
 #. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
 #. TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
@@ -5269,12 +5226,6 @@ msgstr ""
 "de blogue curtas](http://en.wikipedia.org/wiki/Microblogging) (en inglés) "
 "baseado na ferramenta de software libre [StatusNet](http://status.net/). Os "
 "seus membros comparten mensaxes curtas sobre as súas vidas e intereses. "
-
-#. TRANS: Title for list of group administrators on a group page.
-#, fuzzy
-msgctxt "TITLE"
-msgid "Admins"
-msgstr "Administradores"
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -5375,6 +5326,17 @@ msgstr ""
 #, fuzzy
 msgid "Listed"
 msgstr "Licenza"
+
+#. TRANS: Content of "Listed" page if there are no listed users.
+#. TRANS: Content of "People following tag x" if there are no subscribed users.
+#. TRANS: Description for mini list of group members on a group page when the group has no members.
+#. TRANS: Empty list message for tags.
+#. TRANS: Text for user subscription statistics if the user has no subscriptions.
+#. TRANS: Text for user subscriber statistics if user has no subscribers.
+#. TRANS: Text for user user group membership statistics if user is not a member of any group.
+#. TRANS: Default content for section/sidebar widget.
+msgid "(None)"
+msgstr "(Ningún)"
 
 #. TRANS: Link for more "People in list x by a user"
 #. TRANS: if there are more than the mini list's maximum.
@@ -6373,9 +6335,9 @@ msgstr "%s de StatusNet"
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
-#, php-format
+#, fuzzy, php-format
 msgid ""
-"This site is powered by %1$s version %2$s, Copyright 2008-2010 StatusNet, "
+"This site is powered by %1$s version %2$s, Copyright 2008-2011 StatusNet, "
 "Inc. and contributors."
 msgstr ""
 "Este sitio foi desenvolvido sobre a versión %2$s de %1$s, propiedade de "
@@ -6553,9 +6515,17 @@ msgstr "Non se puido actualizar o grupo local."
 msgid "Could not create login token for %s"
 msgstr "Non se puido crear un pase de sesión para %s"
 
-#. TRANS: Exception thrown when a class (%s) could not be instantiated.
+#. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
 #, fuzzy, php-format
 msgid "Cannot instantiate class %s."
+msgstr "Non se puido gardar o novo contrasinal."
+
+#, fuzzy
+msgid "Cannot instantiate a "
+msgstr "Non se puido gardar o novo contrasinal."
+
+#, fuzzy
+msgid "Cannot instantiate class "
 msgstr "Non se puido gardar o novo contrasinal."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -8073,6 +8043,30 @@ msgstr "Escolla unha etiqueta para reducir a lista"
 msgid "Grant this user the \"%s\" role"
 msgstr "Outorgarlle a este usuario o rol \"%s\""
 
+#. TRANS: Header for mini list of group members on a group page (h2).
+msgid "Members"
+msgstr "Membros"
+
+#. TRANS: Link to all group members from mini list of group members if group has more than n members.
+msgid "All members"
+msgstr "Todos os membros"
+
+#. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
+#, fuzzy
+msgid "Pending"
+msgstr "Pendentes (%d)"
+
+#. TRANS: Header for mini list of users that are blocked in a group page (h2).
+#, fuzzy
+msgid "Blocked"
+msgstr "Bloqueado"
+
+#. TRANS: Title for list of group administrators on a group page.
+#, fuzzy
+msgctxt "TITLE"
+msgid "Admins"
+msgstr "Administradores"
+
 #. TRANS: Button text for the form that will block a user from a group.
 msgctxt "BUTTON"
 msgid "Block"
@@ -8140,63 +8134,9 @@ msgctxt "GROUPADMIN"
 msgid "Admin"
 msgstr "Administrador"
 
-#. TRANS: Menu item in the group navigation page.
-msgctxt "MENU"
-msgid "Group"
-msgstr "Grupo"
-
-#. TRANS: Tooltip for menu item in the group navigation page.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s group"
-msgstr "Grupo %s"
-
-#. TRANS: Menu item in the group navigation page.
-msgctxt "MENU"
-msgid "Members"
-msgstr "Membros"
-
-#. TRANS: Tooltip for menu item in the group navigation page.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s group members"
-msgstr "Membros do grupo %s"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %d is the number of pending members.
-#, php-format
-msgctxt "MENU"
-msgid "Pending members (%d)"
-msgid_plural "Pending members (%d)"
-msgstr[0] ""
-msgstr[1] ""
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, fuzzy, php-format
-msgctxt "TOOLTIP"
-msgid "%s pending members"
-msgstr "Membros do grupo %s"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-msgctxt "MENU"
-msgid "Blocked"
-msgstr "Bloqueado"
-
-#. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: %s is the nickname of the group.
-#, php-format
-msgctxt "TOOLTIP"
-msgid "%s blocked users"
-msgstr "Usuarios bloqueados en %s"
-
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-#. TRANS: Menu item in primary navigation panel.
-msgctxt "MENU"
-msgid "Admin"
-msgstr "Administrador"
+#. TRANS: Group actions header (h2). Text hidden by default.
+msgid "Group actions"
+msgstr "Accións do grupo"
 
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %s is the nickname of the group.
@@ -8205,11 +8145,6 @@ msgctxt "TOOLTIP"
 msgid "Edit %s group properties"
 msgstr "Modificar as propiedades do grupo %s"
 
-#. TRANS: Menu item in the group navigation page. Only shown for group administrators.
-msgctxt "MENU"
-msgid "Logo"
-msgstr "Logotipo"
-
 #. TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
 #. TRANS: %s is the nickname of the group.
 #, php-format
@@ -8217,9 +8152,10 @@ msgctxt "TOOLTIP"
 msgid "Add or edit %s logo"
 msgstr "Engadir ou modificar o logotipo de %s"
 
-#. TRANS: Group actions header (h2). Text hidden by default.
-msgid "Group actions"
-msgstr "Accións do grupo"
+#. TRANS: Link text for link on user profile.
+msgctxt "MENU"
+msgid "Logo"
+msgstr "Logotipo"
 
 #. TRANS: Title for groups with the most members section.
 #, fuzzy
@@ -8240,12 +8176,6 @@ msgstr "Mostrar máis"
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
 msgstr ""
-
-#. TRANS: Title for group tag cloud section.
-#. TRANS: %s is a group name.
-#, php-format
-msgid "Tags in %s group's notices"
-msgstr "Etiquetas nas notas do grupo %s"
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -9319,6 +9249,11 @@ msgstr "Configuración dos SMS"
 msgid "Change your personal settings."
 msgstr "Cambie a configuración do seu perfil"
 
+#. TRANS: Menu item in primary navigation panel.
+msgctxt "MENU"
+msgid "Admin"
+msgstr "Administrador"
+
 #. TRANS: Menu item title in primary navigation panel.
 #, fuzzy
 msgid "Site configuration."
@@ -9339,16 +9274,6 @@ msgstr "Saír ao anonimato"
 msgid "Login to the site."
 msgstr "Identificarse no sitio"
 
-#. TRANS: Menu item in primary navigation panel.
-msgctxt "MENU"
-msgid "Search"
-msgstr "Buscar"
-
-#. TRANS: Menu item title in primary navigation panel.
-#, fuzzy
-msgid "Search the site."
-msgstr "Buscar no sitio"
-
 #. TRANS: H2 text for user subscription statistics.
 #, fuzzy
 msgid "Following"
@@ -9358,6 +9283,10 @@ msgstr "Seguir"
 #, fuzzy
 msgid "Followers"
 msgstr "Seguir"
+
+#. TRANS: H2 text for user statistics.
+msgid "Statistics"
+msgstr "Estatísticas"
 
 #. TRANS: Label for user statistics.
 msgid "User ID"
@@ -9462,6 +9391,7 @@ msgid "Keyword(s)"
 msgstr "Termos de busca"
 
 #. TRANS: Button text for searching site.
+#. TRANS: Button text for search button on search form.
 #. TRANS: Button text to search profiles.
 msgctxt "BUTTON"
 msgid "Search"
@@ -10115,15 +10045,49 @@ msgstr "O enderezo de correo electrónico é incorrecto."
 msgid "Could not find a valid profile for \"%s\"."
 msgstr "Non se puido gardar o perfil."
 
-#~ msgid "Save paths"
-#~ msgstr "Gardar as rutas"
+#~ msgid "Background directory not writable: %s."
+#~ msgstr "Non se pode escribir no directorio de fondos: %s."
 
-#~ msgid "Cancel"
-#~ msgstr "Cancelar"
+#~ msgctxt "LABEL"
+#~ msgid "Created"
+#~ msgstr "Creado"
+
+#~ msgctxt "LABEL"
+#~ msgid "Members"
+#~ msgstr "Membros"
+
+#~ msgctxt "MENU"
+#~ msgid "Group"
+#~ msgstr "Grupo"
 
 #~ msgctxt "TOOLTIP"
-#~ msgid "Block this user"
-#~ msgstr "Bloquear este usuario"
+#~ msgid "%s group"
+#~ msgstr "Grupo %s"
 
-#~ msgid "Delete this notice"
-#~ msgstr "Borrar esta nota"
+#~ msgctxt "MENU"
+#~ msgid "Members"
+#~ msgstr "Membros"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "%s group members"
+#~ msgstr "Membros do grupo %s"
+
+#, fuzzy
+#~ msgctxt "TOOLTIP"
+#~ msgid "%s pending members"
+#~ msgstr "Membros do grupo %s"
+
+#~ msgctxt "TOOLTIP"
+#~ msgid "%s blocked users"
+#~ msgstr "Usuarios bloqueados en %s"
+
+#~ msgid "Tags in %s group's notices"
+#~ msgstr "Etiquetas nas notas do grupo %s"
+
+#~ msgctxt "MENU"
+#~ msgid "Search"
+#~ msgstr "Buscar"
+
+#, fuzzy
+#~ msgid "Search the site."
+#~ msgstr "Buscar no sitio"

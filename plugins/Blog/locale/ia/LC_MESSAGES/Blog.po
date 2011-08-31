@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:34:40+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:28:20+0000\n"
 "Language-Team: Interlingua <//translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-07-01 11:17:57+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-20 19:38:26+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-blog\n"
@@ -42,7 +42,6 @@ msgid "Let users write and share long-form texts."
 msgstr "Permitte que usatores scribe e divide textos longe."
 
 #. TRANS: Blog application title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Blog"
 msgstr "Blog"
@@ -62,7 +61,7 @@ msgstr "Verbo incognite pro articulos de blog."
 #. TRANS: Exception thrown when requesting a non-existing blog entry for notice.
 #, php-format
 msgid "No blog entry for notice %s."
-msgstr ""
+msgstr "Nulle articulo de blog pro le nota %s."
 
 #. TRANS: Client exception thrown when referring to a non-existing blog entry.
 msgid "No such entry."

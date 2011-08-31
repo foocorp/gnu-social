@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:20:40+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:29:00+0000\n"
 "Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:07+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-facebookbridge\n"
@@ -102,7 +102,7 @@ msgstr "إعدادات فيسبك"
 
 #. TRANS: Form note. User is connected to facebook.
 msgid "Connected Facebook user"
-msgstr "مستخدم فيسبك متصل"
+msgstr "مستخدم فيسبك مربوط"
 
 #. TRANS: Checkbox label in Facebook settings.
 msgid "Publish my notices to Facebook."
@@ -114,7 +114,7 @@ msgstr "أرسل الردود \"@\" إلى فيسبك."
 
 #. TRANS: Fieldset legend for form to disconnect from Facebook.
 msgid "Disconnect my account from Facebook"
-msgstr "اقطع اتصال حسابي بفيسبك."
+msgstr "اقطع ربط حسابي بفيسبك."
 
 #. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
 #, php-format
@@ -122,7 +122,7 @@ msgid ""
 "Disconnecting your Faceboook would make it impossible to log in! Please [set "
 "a password](%s) first."
 msgstr ""
-"قطع اتصال حسابك بفيسبك سيجعل دخولك مستحيلا! الرجاء [تعيين كلمة سر](%s) أولا."
+"قطع ربط حسابك بفيسبك سيجعل دخولك مستحيلا! الرجاء [تعيين كلمة سر](%s) أولا."
 
 #. TRANS: Message displayed when initiating disconnect of a StatusNet user
 #. TRANS: from a Facebook account. %1$s is the StatusNet site name.
@@ -131,13 +131,13 @@ msgid ""
 "Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
 "password to log in."
 msgstr ""
-"أبقِ حسابك على %1$s واقطع الاتصال بفيسبك. سوف يتعين عليك استخدام كلمة السر "
-"على %1$s للدخول."
+"أبقِ حسابك على %1$s واقطع الربط بفيسبك. سوف يتعين عليك استخدام كلمة السر على %"
+"1$s للدخول."
 
 #. TRANS: Submit button.
 msgctxt "BUTTON"
 msgid "Disconnect"
-msgstr "اقطع الاتصال"
+msgstr "اقطع الربط"
 
 #. TRANS: Notice in case saving of synchronisation preferences fail.
 msgid "There was a problem saving your sync preferences."
@@ -153,7 +153,7 @@ msgstr "تعذر حذف ارتباط فيسبك."
 
 #. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
 msgid "You have disconnected from Facebook."
-msgstr "لقد قطعت الاتصال من فيسبك."
+msgstr "لقد قطعت الربط بفيسبك."
 
 #. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
 msgid ""
@@ -188,7 +188,7 @@ msgstr "ضبط فيسبك"
 
 #. TRANS: Fieldset legend.
 msgid "Connection options"
-msgstr "خيارات الاتصال"
+msgstr "خيارات الربط"
 
 #. TRANS: %s is the name of the license used by the user for their status updates.
 #, php-format
@@ -196,7 +196,7 @@ msgid ""
 "My text and files are available under %s except this private data: password, "
 "email address, IM address, and phone number."
 msgstr ""
-"تخضع نصوصي وملفات ل%s إلا البيانات الخاصة التالية: كلمة السر وعنوان البريد "
+"تخضع نصوصي وملفاتي ل%s إلا البيانات الخاصة التالية: كلمة السر وعنوان البريد "
 "الإلكتروني وعنوان المراسلة الفورية ورقم الهاتف."
 
 #. TRANS: Fieldset legend.
@@ -205,7 +205,7 @@ msgstr "أنشئ حسابًا جديدًا"
 
 #. TRANS: Form instructions.
 msgid "Create a new user with this nickname."
-msgstr ""
+msgstr "أنشئ مستخدمًا جديدًا بهذا الاسم المستعار."
 
 #. TRANS: Field label.
 msgid "New nickname"
@@ -213,7 +213,7 @@ msgstr "الاسم المستعار الجديد"
 
 #. TRANS: Field title.
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
-msgstr ""
+msgstr "1-64 حرفًا إنجليزيًا أو رقمًا، بدون نقاط أو مسافات."
 
 #. TRANS: Submit button to create a new account.
 msgctxt "BUTTON"
@@ -222,7 +222,7 @@ msgstr "أنشئ"
 
 #. TRANS: Fieldset legend.
 msgid "Connect existing account"
-msgstr ""
+msgstr "اربط حسابا موجودا"
 
 #. TRANS: Form instructions.
 msgid ""
@@ -292,7 +292,7 @@ msgstr ""
 
 #. TRANS: E-mail subject.
 msgid "Your Facebook connection has been removed"
-msgstr ""
+msgstr "أزيل ارتباطك بفيسبك"
 
 #. TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
 #, php-format

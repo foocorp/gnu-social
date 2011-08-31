@@ -48,7 +48,7 @@ class SiteProfile
         $sprofileClass = ucfirst($name) . "Site";
 
         if (class_exists($sprofileClass)) {
-            return $sprofileClass::getSettings();
+            return call_user_func(array($sprofileClass, 'getSettings'));
         } else {
             common_log(
                 LOG_ERR,

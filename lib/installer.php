@@ -413,9 +413,7 @@ abstract class Installer
             'server' => $this->server,
             'path' => $this->path,
             'db_database' => $this->db['database'],
-            'db_type' => $this->db['type'],
-            'site_profile' => $this->siteProfile,
-            'nickname' => $this->adminNick
+            'db_type' => $this->db['type']
         ));
 
         // assemble configuration file in a string
@@ -435,10 +433,36 @@ abstract class Installer
                 // database
                 "\$config['db']['database'] = {$vals['db_database']};\n\n".
                 ($this->db['type'] == 'pgsql' ? "\$config['db']['quote_identifiers'] = true;\n\n":'').
-                "\$config['db']['type'] = {$vals['db_type']};\n\n".
+                "\$config['db']['type'] = {$vals['db_type']};\n\n";
 
-                // site profile
-                "\$config['site']['profile'] = {$vals['site_profile']};\n";
+        // Normalize line endings for Windows servers
+        $cfg = str_replace("\n", PHP_EOL, $cfg);
+
+        // write configuration file out to install directory
+        $res = file_put_contents(INSTALLDIR.'/config.php', $cfg);
+
+        return $res;
+    }
+
+    /**
+     * Write the site profile. We do this after creating the initial user
+     * in case the site profile is set to single user. This gets around the
+     * 'chicken-and-egg' problem of the system requiring a valid user for
+     * single user mode, before the intial user is actually created. Yeah,
+     * we should probably do this in smarter way.
+     *
+     * @return int res number of bytes written
+     */
+    function writeSiteProfile()
+    {
+        $vals = $this->phpVals(array(
+            'site_profile' => $this->siteProfile,
+            'nickname' => $this->adminNick
+        ));
+
+        $cfg =
+        // site profile
+        "\$config['site']['profile'] = {$vals['site_profile']};\n";
 
         if ($this->siteProfile == "singleuser") {
             $cfg .= "\$config['singleuser']['nickname'] = {$vals['nickname']};\n\n";
@@ -450,7 +474,7 @@ abstract class Installer
         $cfg = str_replace("\n", PHP_EOL, $cfg);
 
         // write configuration file out to install directory
-        $res = file_put_contents(INSTALLDIR.'/config.php', $cfg);
+        $res = file_put_contents(INSTALLDIR.'/config.php', $cfg, FILE_APPEND);
 
         return $res;
     }
@@ -557,6 +581,9 @@ abstract class Installer
             return false;
         }
 
+        // Make sure we can write to the file twice
+        $oldUmask = umask(000); 
+
         if (!$this->skipConfig) {
             $this->updateStatus("Writing config file...");
             $res = $this->writeConf();
@@ -582,6 +609,21 @@ abstract class Installer
             }
         }
 
+        if (!$this->skipConfig) {
+            $this->updateStatus("Setting site profile...");
+            $res = $this->writeSiteProfile();
+
+            if (!$res) {
+                $this->updateStatus("Can't write to config file.", true);
+                return false;
+            }
+        }
+
+        // Restore original umask
+        umask($oldUmask);
+        // Set permissions back to something decent
+        chmod(INSTALLDIR.'/config.php', 0644);
+        
         /*
             TODO https needs to be considered
         */

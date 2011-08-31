@@ -24,7 +24,7 @@
  * @author    Evan Prodromou <evan@status.net>
  * @author    Zach Copley <zach@status.net>
  * @author    Sarven Capadisli <csarven@status.net>
- * @copyright 2008-2010 StatusNet, Inc.
+ * @copyright 2008-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -92,7 +92,6 @@ class PathsadminpanelAction extends AdminPanelAction
                                  'site' => array('path', 'locale_path', 'ssl', 'sslserver'),
                                  'theme' => array('server', 'dir', 'path', 'sslserver', 'sslpath'),
                                  'avatar' => array('server', 'dir', 'path'),
-                                 'background' => array('server', 'dir', 'path', 'sslserver', 'sslpath'),
                                  'attachments' => array('server', 'dir', 'path', 'sslserver', 'sslpath')
                                  );
 
@@ -161,14 +160,6 @@ class PathsadminpanelAction extends AdminPanelAction
             // TRANS: Client error in Paths admin panel.
             // TRANS: %s is the avatar directory that could not be written to.
             $this->clientError(sprintf(_('Avatar directory not writable: %s.'), $values['avatar']['dir']));
-        }
-
-        // Validate background dir
-
-        if (empty($values['background']['dir']) || !is_writable($values['background']['dir'])) {
-            // TRANS: Client error in Paths admin panel.
-            // TRANS: %s is the background directory that could not be written to.
-            $this->clientError(sprintf(_('Background directory not writable: %s.'), $values['background']['dir']));
         }
 
         // Validate locales dir

@@ -10,23 +10,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Bookmark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:20:06+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:28:24+0000\n"
 "Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:49:50+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-bookmark\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
 "2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
 "99) ? 4 : 5 ) ) ) );\n"
-
-#. TRANS: Client exception thrown when a file upload is incorrect.
-msgid "Bad import file."
-msgstr "ملف الاستيراد فاسد."
 
 #. TRANS: Client exception thrown when a bookmark in an import file is incorrectly formatted.
 msgid "No <A> tag in a <DT>."
@@ -269,3 +265,6 @@ msgstr "أرسلت العلامة"
 #, php-format
 msgid "Getting backup from file \"%s\"."
 msgstr "جلب النسخة الاحتياطية من \"%s\"."
+
+#~ msgid "Bad import file."
+#~ msgstr "ملف الاستيراد فاسد."

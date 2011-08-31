@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Form for searching a StatusNet site
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class SearchForm extends Form
 {
     /**
@@ -55,7 +54,6 @@ class SearchForm extends Form
      *
      * @return void
      */
-
     function formData()
     {
         $this->out->element('input', array('name' => 'q',
@@ -71,11 +69,11 @@ class SearchForm extends Form
      *
      * @return void
      */
-
     function formActions()
     {
         $this->out->element('input', array('type' => 'submit',
-                                           'value' => _('Search')));
+                                           // TRANS: Button text for search button on search form.
+                                           'value' => _m('BUTTON','Search')));
     }
 
     /**
@@ -86,7 +84,6 @@ class SearchForm extends Form
      *
      * @return int ID of the form
      */
-
     function id()
     {
         return 'header-search';
@@ -100,7 +97,6 @@ class SearchForm extends Form
      *
      * @return string URL to post to
      */
-
     function action()
     {
         return common_local_url('noticesearch');

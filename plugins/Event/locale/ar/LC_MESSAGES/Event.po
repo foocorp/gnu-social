@@ -1,6 +1,7 @@
 # Translation of StatusNet - Event to Arabic (العربية)
 # Exported from translatewiki.net
 #
+# Author: Majid Al-Dharrab
 # Author: OsamaK
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-20 18:34+0000\n"
-"PO-Revision-Date: 2011-08-20 18:35:10+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:28:52+0000\n"
 "Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-16 06:59:38+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95098); Translate extension (2011-07-09)\n"
+"X-POT-Import-Date: 2011-08-20 19:38:23+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
@@ -39,12 +40,12 @@ msgstr ""
 #, php-format
 msgid "(%d hour)"
 msgid_plural "(%d hours)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "(ولا ساعة)"
+msgstr[1] "(ساعة واحدة)"
+msgstr[2] "(ساعتان)"
+msgstr[3] "(%d ساعات)"
+msgstr[4] "(%d ساعة)"
+msgstr[5] "(%d ساعة)"
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -73,7 +74,7 @@ msgstr ""
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
-msgstr ""
+msgstr "لست والجًا."
 
 #. TRANS: Client error when submitting a form with unexpected information.
 msgid "Unexpected form submission."
@@ -186,8 +187,9 @@ msgctxt "LABEL"
 msgid "Start time"
 msgstr "وقت البدء"
 
-#. TRANS: Field title on event form.
-msgid "Time the event starts."
+#. TRANS: Field title on event form. %s is the abbreviated timezone
+#, fuzzy, php-format
+msgid "Time the event starts (%s)."
 msgstr "وقت بدء الحدث."
 
 #. TRANS: Field label on event form.
@@ -211,7 +213,7 @@ msgstr "وقت نهاية الحدث."
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
 msgid "Where?"
-msgstr ""
+msgstr "أين؟"
 
 #. TRANS: Field title on event form.
 msgid "Event location."

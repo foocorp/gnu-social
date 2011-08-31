@@ -1,6 +1,7 @@
 # Translation of StatusNet - YammerImport to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Hashar
 # Author: Od1n
 # Author: Peter17
 # --
@@ -10,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - YammerImport\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:22:44+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:31:12+0000\n"
 "Language-Team: French <//translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 13:28:10+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-yammerimport\n"
@@ -52,7 +53,7 @@ msgstr "Mis en pause depuis le panneau d’administration"
 
 #. TRANS: Client exception thrown when encountering an unhandled sub action.
 msgid "Invalid POST"
-msgstr ""
+msgstr "POST invalide."
 
 #. TRANS: Page title for Yammer import administration panel.
 msgid "Yammer import"

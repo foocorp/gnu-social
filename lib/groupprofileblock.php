@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Profile block to show for a group
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class GroupProfileBlock extends ProfileBlock
 {
     protected $group = null;

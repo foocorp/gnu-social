@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Unfollow list item
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -44,7 +44,6 @@ if (!defined('STATUSNET')) {
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
-
 class UnfollowListItem extends SystemListItem
 {
     /**
@@ -52,7 +51,6 @@ class UnfollowListItem extends SystemListItem
      *
      * @return void
      */
-    
     function showNotice()
     {
         $out = $this->nli->out;
@@ -65,14 +63,13 @@ class UnfollowListItem extends SystemListItem
     {
         $notice = $this->nli->notice;
         $out    = $this->nli->out;
-		
+
 		// FIXME: get the actual data on the leave
-		
+
         $out->elementStart('div', 'unfollow-activity');
 
         $out->raw($notice->rendered);
-        
-        $out->elementEnd('div');
-    } 
-}
 
+        $out->elementEnd('div');
+    }
+}

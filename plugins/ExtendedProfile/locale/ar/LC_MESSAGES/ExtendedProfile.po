@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 14:19+0000\n"
-"PO-Revision-Date: 2011-08-15 14:20:35+0000\n"
+"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"PO-Revision-Date: 2011-08-30 09:28:55+0000\n"
 "Language-Team: Arabic <//translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:06+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r94516); Translate extension (2011-07-09)\n"
+"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
 "X-Translation-Project: translatewiki.net at //translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
@@ -30,7 +30,7 @@ msgstr ""
 #. TRANS: Usage instructions for profile settings.
 msgid ""
 "You can update your personal profile info here so people know more about you."
-msgstr ""
+msgstr "يمكن أن تحدث معلومات ملفك الشخصي ليعرف الناس عنك أكثر."
 
 #. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
@@ -60,7 +60,7 @@ msgstr ""
 #. TRANS: %s is the invalid URL.
 #, php-format
 msgid "Invalid URL: %s."
-msgstr ""
+msgstr "مسار غير صالح: %s."
 
 #. TRANS: Server error displayed when a field could not be saved in the database.
 msgid "Could not save profile details."
@@ -70,15 +70,15 @@ msgstr ""
 #. TRANS: %s is an invalid tag.
 #, php-format
 msgid "Invalid tag: \"%s\"."
-msgstr ""
+msgstr "وسم غير صالح: \"%s\"."
 
 #. TRANS: Server error thrown when user profile settings could not be saved.
 msgid "Could not save profile."
-msgstr ""
+msgstr "تعذر حفظ الملف الشخصي."
 
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
-msgstr ""
+msgstr "تعذّر حفظ الوسوم."
 
 #. TRANS: Link title for link on user profile.
 msgid "Edit extended profile settings"
@@ -116,19 +116,19 @@ msgstr "الشركة"
 
 #. TRANS: Field label in extended profile (when did one start a position or education).
 msgid "Start"
-msgstr ""
+msgstr "البدء"
 
 #. TRANS: Field label in extended profile (when did one end a position or education).
 msgid "End"
-msgstr ""
+msgstr "الانتهاء"
 
 #. TRANS: Field value in experience area of extended profile (one still holds a position).
 msgid "(Current)"
-msgstr ""
+msgstr "الحالية"
 
 #. TRANS: Checkbox label in experience edit area of extended profile (one still works at a company).
 msgid "Current"
-msgstr ""
+msgstr "حالي"
 
 #. TRANS: Field label in education area of extended profile.
 #. TRANS: Field label in education edit area of extended profile.
@@ -138,7 +138,7 @@ msgstr "المنشأة"
 
 #. TRANS: Field label in extended profile for specifying an academic degree.
 msgid "Degree"
-msgstr ""
+msgstr "الشهادة"
 
 #. TRANS: Field label in education area of extended profile.
 #. TRANS: Field label in education edit area of extended profile.
@@ -147,7 +147,7 @@ msgstr "الوصف"
 
 #. TRANS: Link description in extended profile page to add another profile element.
 msgid "Add another item"
-msgstr ""
+msgstr "أضف عنصرا آخرا"
 
 #. TRANS: Field label for undefined field in extended profile.
 #, php-format
@@ -166,11 +166,11 @@ msgstr "احفظ التفاصيل"
 
 #. TRANS: Field label for extended profile properties.
 msgid "Phone"
-msgstr ""
+msgstr "الهاتف"
 
 #. TRANS: Field label for extended profile properties (Instant Messaging).
 msgid "IM"
-msgstr ""
+msgstr "المراسلة الفورية"
 
 #. TRANS: Field label for extended profile properties.
 msgid "Website"
