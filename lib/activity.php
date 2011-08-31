@@ -570,18 +570,6 @@ class Activity
 
         if ($author) {
             $this->actor->outputTo($xs, 'author');
-
-            // XXX: Remove <activity:actor> ASAP! Author information
-            // has been moved to the author element in the Activity
-            // Streams spec. We're outputting actor only for backward
-            // compatibility with clients that can only parse
-            // activities based on older versions of the spec.
-
-            $depMsg = 'Deprecation warning: activity:actor is present '
-                . 'only for backward compatibility. It will be '
-                . 'removed in the next version of StatusNet.';
-            $xs->comment($depMsg);
-            $this->actor->outputTo($xs, 'activity:actor');
         }
 
         if ($this->verb != ActivityVerb::POST || count($this->objects) != 1 || $tag != 'entry') {
