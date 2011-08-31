@@ -175,7 +175,7 @@ abstract class MicroAppPlugin extends Plugin
      */
     function isMyNotice($notice) {
         $types = $this->types();
-        return in_array($notice->object_type, $types);
+        return ($notice->verb == ActivityVerb::POST) && in_array($notice->object_type, $types);
     }
 
     /**
@@ -194,6 +194,7 @@ abstract class MicroAppPlugin extends Plugin
         $types = $this->types();
         return (count($activity->objects) == 1 &&
                 ($activity->objects[0] instanceof ActivityObject) &&
+                ($activity->verb == ActivityVerb::POST) &&
                 in_array($activity->objects[0]->type, $types));
     }
 
