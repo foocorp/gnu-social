@@ -374,7 +374,8 @@ class ActivityPlugin extends Plugin
             if (!empty($fave)) {
                 $notice = Notice::staticGet('id', $fave->notice_id);
                 if (!empty($notice)) {
-                    $target = $notice->asActivity();
+                    $cur = common_current_user();
+                    $target = $notice->asActivity($cur);
                     if ($target->verb == ActivityVerb::POST) {
                         // "I like the thing you posted"
                         $activity->objects = $target->objects;
