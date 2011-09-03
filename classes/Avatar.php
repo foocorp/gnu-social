@@ -103,7 +103,11 @@ class Avatar extends Memcached_DataObject
     {
         $server = common_config('avatar', 'server');
         if ($server) {
-            return Avatar::url($this->filename);
+           if (common_config('avatar', 'server_modulo') && common_config('avatar', 'server_modulo') > 1 ){
+                return str_replace( '_rrdns_', ( $this->profile_id % common_config('avatar', 'server_modulo') ), Avatar::url($this->filename) );
+            }else{
+                return Avatar::url($this->filename);
+	    }
         } else {
             return $this->url;
         }
