@@ -617,6 +617,7 @@ class NoticeListItem extends Widget
             $this->out->elementStart('span', 'repeat vcard');
 
             $this->out->raw(_('Repeated by'));
+            $this->out->raw(' ');
 
             $this->out->elementStart('a', $attrs);
             $this->out->element('span', 'fn nickname', $repeater->nickname);
