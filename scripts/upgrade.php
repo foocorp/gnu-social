@@ -42,6 +42,7 @@ function main()
     fixupNoticeConversation();
     initConversation();
     fixupGroupURI();
+    initInbox();
 }
 
 function tableDefs()
@@ -178,6 +179,50 @@ function initConversation()
                        $conv->escape($uri),
                        $conv->escape(common_sql_now()));
         $conv->query($sql);
+    }
+
+    printfnq("DONE.\n");
+}
+
+function initInbox()
+{
+    printfnq("Ensuring all users have an inbox...");
+
+    $user = new User();
+    $user->whereAdd('not exists (select user_id from inbox where user_id = user.id)');
+    $user->orderBy('id');
+
+    if ($user->find()) {
+
+        while ($user->fetch()) {
+
+            try {
+                $notice = new Notice();
+
+                $notice->selectAdd();
+                $notice->selectAdd('id');
+                $notice->joinAdd(array('profile_id', 'subscription:subscribed'));
+                $notice->whereAdd('subscription.subscriber = ' . $user->id);
+                $notice->whereAdd('notice.created >= subscription.created');
+
+                $ids = array();
+
+                if ($notice->find()) {
+                    while ($notice->fetch()) {
+                        $ids[] = $notice->id;
+                    }
+                }
+
+                $notice = null;
+
+                $inbox = new Inbox();
+                $inbox->user_id = $user->id;
+                $inbox->pack($ids);
+                $inbox->insert();
+            } catch (Exception $e) {
+                printv("Error initializing inbox: " . $e->getMessage());
+            }
+        }
     }
 
     printfnq("DONE.\n");
