@@ -40,6 +40,7 @@ function main()
 
     fixupNoticeRendered();
     fixupNoticeConversation();
+    fixupGroupURI();
 }
 
 function tableDefs()
@@ -128,6 +129,24 @@ function fixupNoticeConversation()
             unset($orig);
         } catch (Exception $e) {
             printv("Error setting conversation: " . $e->getMessage());
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+function fixupGroupURI()
+{
+    printfnq("Ensuring all groups have an URI...");
+
+    $group = new User_group();
+    $group->whereAdd('uri IS NULL');
+
+    if ($group->find()) {
+        while ($group->fetch()) {
+            $orig = User_group::staticGet('id', $group->id);
+            $group->uri = $group->getUri();
+            $group->update($orig);
         }
     }
 
