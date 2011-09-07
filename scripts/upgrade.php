@@ -40,6 +40,7 @@ function main()
 
     fixupNoticeRendered();
     fixupNoticeConversation();
+    initConversation();
     fixupGroupURI();
 }
 
@@ -148,6 +149,35 @@ function fixupGroupURI()
             $group->uri = $group->getUri();
             $group->update($orig);
         }
+    }
+
+    printfnq("DONE.\n");
+}
+
+function initConversation()
+{
+    printfnq("Ensuring all conversations have a row in conversation table...");
+
+    $notice = new Notice();
+    $notice->query('select distinct notice.conversation from notice '.
+                   'where notice.conversation is not null '.
+                   'and not exists (select conversation.id from conversation where id = notice.conversation)');
+
+    while ($notice->fetch()) {
+
+        $id = $notice->conversation;
+
+        $uri = common_local_url('conversation', array('id' => $id));
+
+        // @fixme db_dataobject won't save our value for an autoincrement
+        // so we're bypassing the insert wrappers
+        $conv = new Conversation();
+        $sql = "insert into conversation (id,uri,created) values(%d,'%s','%s')";
+        $sql = sprintf($sql,
+                       $id,
+                       $conv->escape($uri),
+                       $conv->escape(common_sql_now()));
+        $conv->query($sql);
     }
 
     printfnq("DONE.\n");
