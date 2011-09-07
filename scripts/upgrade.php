@@ -44,6 +44,7 @@ function main()
     initInbox();
     fixupGroupURI();
     initLocalGroup();
+    initNoticeReshare();
 }
 
 function tableDefs()
@@ -252,6 +253,30 @@ function initLocalGroup()
             }
         } catch (Exception $e) {
             printfv("Error initializing local group for {$group->nickname}:" . $e->getMessage());
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+function initNoticeReshare()
+{
+    printfnq("Ensuring all reshares have the correct verb and object-type...");
+    
+    $notice = new Notice();
+    $notice->whereAdd('repeat_of is not null');
+    $notice->whereAdd('(verb != "'.ActivityVerb::SHARE.'" OR object_type != "'.ActivityObject::ACTIVITY.'")');
+
+    if ($notice->find()) {
+        while ($notice->fetch()) {
+            try {
+                $orig = Notice::staticGet('id', $notice->id);
+                $notice->verb = ActivityVerb::SHARE;
+                $notice->object_type = ActivityObject::ACTIVITY;
+                $notice->update($orig);
+            } catch (Exception $e) {
+                printfv("Error updating verb and object_type for {$notice->id}:" . $e->getMessage());
+            }
         }
     }
 
