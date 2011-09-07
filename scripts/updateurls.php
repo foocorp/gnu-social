@@ -104,11 +104,14 @@ function updateAvatarUrls($profile)
 
 function updateGroupUrls()
 {
+    printfnq("Updating group URLs...\n");
+
     $group = new User_group();
 
     if ($group->find()) {
         while ($group->fetch()) {
             try {
+                printfv("Updating group {$group->nickname}...");
                 $orig = User_group::staticGet('id', $group->id);
                 if (!empty($group->original_logo)) {
                     $group->original_logo = Avatar::url(basename($group->original_logo));
@@ -124,9 +127,12 @@ function updateGroupUrls()
                                                         array('nickname' => $group->nickname));
                 }
                 $group->update($orig);
+                printfv("DONE.");
             } catch (Exception $e) {
                 printv("Can't update avatars for group " . $group->nickname . ": ". $e->getMessage());
             }
         }
     }
 }
+
+main();
