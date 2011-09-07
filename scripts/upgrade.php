@@ -38,7 +38,8 @@ function main()
 
     // These replace old "fixup_*" scripts
 
-    fixupNoticesRendered();
+    fixupNoticeRendered();
+    fixupNoticeConversation();
 }
 
 function tableDefs()
@@ -50,7 +51,7 @@ function tableDefs()
 
 function updateSchemaCore()
 {
-    printfnq("Upgrading core schema");
+    printfnq("Upgrading core schema...");
 
     $schema = Schema::get();
     $schemaUpdater = new SchemaUpdater($schema);
@@ -58,18 +59,22 @@ function updateSchemaCore()
         $schemaUpdater->register($table, $def);
     }
     $schemaUpdater->checkSchema();
+
+    printfnq("DONE.\n");
 }
 
 function updateSchemaPlugins()
 {
-    printfnq("Upgrading plugin schema");
+    printfnq("Upgrading plugin schema...");
 
     Event::handle('CheckSchema');
+
+    printfnq("DONE.\n");
 }
 
-function fixupNoticesRendered()
+function fixupNoticeRendered()
 {
-    printfnq("Ensuring all notices have rendered HTML");
+    printfnq("Ensuring all notices have rendered HTML...");
 
     $notice = new Notice();
 
@@ -81,6 +86,52 @@ function fixupNoticesRendered()
         $notice->rendered = common_render_content($notice->content, $notice);
         $notice->update($original);
     }
+
+    printfnq("DONE.\n");
+}
+
+function fixupNoticeConversation()
+{
+    printfnq("Ensuring all notices have a conversation ID...");
+
+    $notice = new Notice();
+    $notice->whereAdd('conversation is null');
+    $notice->orderBy('id'); // try to get originals before replies
+    $notice->find();
+
+    while ($notice->fetch()) {
+        try {
+            $cid = null;
+    
+            $orig = clone($notice);
+    
+            if (empty($notice->reply_to)) {
+                $notice->conversation = $notice->id;
+            } else {
+                $reply = Notice::staticGet('id', $notice->reply_to);
+
+                if (empty($reply)) {
+                    $notice->conversation = $notice->id;
+                } else if (empty($reply->conversation)) {
+                    $notice->conversation = $notice->id;
+                } else {
+                    $notice->conversation = $reply->conversation;
+                }
+	
+                unset($reply);
+                $reply = null;
+            }
+
+            $result = $notice->update($orig);
+
+            $orig = null;
+            unset($orig);
+        } catch (Exception $e) {
+            printv("Error setting conversation: " . $e->getMessage());
+        }
+    }
+
+    printfnq("DONE.\n");
 }
 
 main();
