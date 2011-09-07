@@ -41,8 +41,9 @@ function main()
     fixupNoticeRendered();
     fixupNoticeConversation();
     initConversation();
-    fixupGroupURI();
     initInbox();
+    fixupGroupURI();
+    initLocalGroup();
 }
 
 function tableDefs()
@@ -222,6 +223,35 @@ function initInbox()
             } catch (Exception $e) {
                 printv("Error initializing inbox: " . $e->getMessage());
             }
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+function initLocalGroup()
+{
+    printfnq("Ensuring all local user groups have a local_group...");
+
+    $group = new User_group();
+    $group->whereAdd('NOT EXISTS (select group_id from local_group where group_id = user_group.id)');
+    $group->find();
+
+    while ($group->fetch()) {
+        try {
+            // Hack to check for local groups
+            if ($group->getUri() == common_local_url('groupbyid', array('id' => $group->id))) {
+                $lg = new Local_group();
+
+                $lg->group_id = $group->id;
+                $lg->nickname = $group->nickname;
+                $lg->created  = $group->created; // XXX: common_sql_now() ?
+                $lg->modified = $group->modified;
+
+                $lg->insert();
+            }
+        } catch (Exception $e) {
+            printfv("Error initializing local group for {$group->nickname}:" . $e->getMessage());
         }
     }
 
