@@ -1,17 +1,9 @@
 Upgrading
 =========
 
-IMPORTANT NOTE: StatusNet 0.7.4 introduced a fix for some
-incorrectly-stored international characters ("UTF-8"). For new
-installations, it will now store non-ASCII characters correctly.
-However, older installations will have the incorrect storage, and will
-consequently show up "wrong" in browsers. See below for how to deal
-with this situation.
-
-If you've been using StatusNet 0.7, 0.6, 0.5 or lower, or if you've
+If you've been using StatusNet 0.9.9 or lower, or if you've
 been tracking the "git" version of the software, you will probably
-want to upgrade and keep your existing data. There is no automated
-upgrade procedure in StatusNet 0.9.9. Try these step-by-step
+want to upgrade and keep your existing data. Try these step-by-step
 instructions; read to the end first before trying them.
 
 0. Download StatusNet and set up all the prerequisites as if you were
@@ -32,58 +24,28 @@ instructions; read to the end first before trying them.
 5. Once all writing processes to your site are turned off, make a
    final backup of the Web directory and database.
 6. Move your StatusNet directory to a backup spot, like "statusnet.bak".
-7. Unpack your StatusNet 0.9.9 tarball and move it to "statusnet" or
+7. Unpack your StatusNet 1.0.0 tarball and move it to "statusnet" or
    wherever your code used to be.
 8. Copy the config.php file and the contents of the avatar/, background/,
    file/, and local/ subdirectories from your old directory to your new
    directory.
 9. Copy htaccess.sample to .htaccess in the new directory. Change the
    RewriteBase to use the correct path.
-10. Rebuild the database.
+10. Upgrade the database.
 
     NOTE: this step is destructive and cannot be
     reversed. YOU CAN EASILY DESTROY YOUR SITE WITH THIS STEP. Don't
     do it without a known-good backup!
 
-    If your database is at version 0.8.0 or higher in the 0.8.x line, you can run a
-    special upgrade script:
+    In your new StatusNet 1.0.0 directory and AFTER YOU MAKE A
+    BACKUP run the upgrade.php script like this:
 
-        mysql -u<rootuser> -p<rootpassword> <database> db/08to09.sql
+        php ./scripts/upgrade.php
 
-    If you are upgrading from any 0.9.x version like 0.9.6, run this script:
-
-        mysql -u<rootuser> -p<rootpassword> <database> db/096to097.sql
-
-    Despite the name, it should work for any 0.9.x branch.
-
-    Otherwise, go to your StatusNet directory and AFTER YOU MAKE A
-    BACKUP run the rebuilddb.sh script like this:
-
-        ./scripts/rebuilddb.sh rootuser rootpassword database db/statusnet.sql
-
-    Here, rootuser and rootpassword are the username and password for a
-    user who can drop and create databases as well as tables; typically
-    that's _not_ the user StatusNet runs as. Note that rebuilddb.sh drops
-    your database and rebuilds it; if there is an error you have no
-    database. Make sure you have a backup.
-    For PostgreSQL databases there is an equivalent, rebuilddb_psql.sh,
-    which operates slightly differently. Read the documentation in that
-    script before running it.
 11. Use mysql or psql client to log into your database and make sure that
     the notice, user, profile, subscription etc. tables are non-empty.
 12. Turn back on the Web server, and check that things still work.
-13. Turn back on XMPP bots and email maildaemon. Note that the XMPP
-    bots have changed since version 0.5; see above for details.
-
-If you're upgrading from very old versions, you may want to look at
-the fixup_* scripts in the scripts directories. These will store some
-precooked data in the DB. All upgraders should check out the inboxes
-options below.
-
-NOTE: the database definition file, laconica.ini, has been renamed to
-statusnet.ini (since this is the recommended database name). If you
-have a line in your config.php pointing to the old name, you'll need
-to update it.
+13. Turn back on XMPP bots and email maildaemon.
 
 NOTE: the 1.0.0 version of StatusNet changed the URLs for all admin
 panels from /admin/* to /panel/*. This now allows the (popular)
@@ -91,14 +53,11 @@ username 'admin', but blocks the considerably less popular username
 'panel'. If you have an existing user named 'panel', you should rename
 them before upgrading.
 
-Notice inboxes
---------------
-
-Notice inboxes are now required. If you don't have inboxes enabled,
-StatusNet will no longer run.
-
 UTF-8 Database
 --------------
+
+If you are upgrading from a 0.8.x or 0.9.x version, you can safely
+skip this section.
 
 StatusNet 0.7.4 introduced a fix for some incorrectly-stored
 international characters ("UTF-8"). This fix is not
@@ -119,3 +78,21 @@ what to do.
    option enabled.
 2. When you're ready, set $config['db']['utf8'] to true, so that
    new notices will be stored correctly.
+
+Older versions
+==============
+
+IMPORTANT NOTE: StatusNet 0.7.4 introduced a fix for some
+incorrectly-stored international characters ("UTF-8"). For new
+installations, it will now store non-ASCII characters correctly.
+However, older installations will have the incorrect storage, and will
+consequently show up "wrong" in browsers. See below for how to deal
+with this situation.
+
+NOTE: the database definition file, laconica.ini, has been renamed to
+statusnet.ini (since this is the recommended database name). If you
+have a line in your config.php pointing to the old name, you'll need
+to update it.
+
+Note that the XMPP bots have changed since version 0.5; see above for
+details.
