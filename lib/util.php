@@ -851,7 +851,7 @@ function common_replace_urls_callback($text, $callback, $arg = null) {
  * @param callable $callback
  * @param mixed $arg optional argument to pass on as second param to callback
  * @return string
- * 
+ *
  * @access private
  */
 function callback_helper($matches, $callback, $arg=null) {
@@ -1425,6 +1425,7 @@ function common_redirect($url, $code=307)
 
     header('HTTP/1.1 '.$code.' '.$status[$code]);
     header("Location: $url");
+    header("Connection: close");
 
     $xo = new XMLOutputter();
     $xo->startXML('a',
