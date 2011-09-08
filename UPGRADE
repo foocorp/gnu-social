@@ -96,3 +96,22 @@ to update it.
 
 Note that the XMPP bots have changed since version 0.5; see above for
 details.
+
+Privacy
+=======
+
+With StatusNet 1.0, our default install profile is for private sites.
+
+If you did not specify the privacy level of your site previously, it
+was public. Now, it's private.
+
+If you upgrade a public site, you will need to reset the privacy
+level. You can do this in your config.php:
+
+       $config['site']['private'] = false;
+
+...or with setconfig.php in the db:
+
+       php setconfig.php site private false
+
+...or with the site admin panel.
