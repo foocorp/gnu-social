@@ -579,6 +579,10 @@ class Schema
             $this->appendAlterDropUnique($phrase, $keyName);
         }
 
+        if (isset($old['primary key']) && (!isset($def['primary key']) || $def['primary key'] != $old['primary key'])) {
+            $this->appendAlterDropPrimary($phrase);
+        }
+
         foreach ($fields['add'] as $columnName) {
             $this->appendAlterAddColumn($phrase, $columnName,
                     $def['fields'][$columnName]);
@@ -592,6 +596,10 @@ class Schema
 
         foreach ($fields['del'] as $columnName) {
             $this->appendAlterDropColumn($phrase, $columnName);
+        }
+
+        if (isset($def['primary key']) && (!isset($old['primary key']) || $old['primary key'] != $def['primary key'])) {
+            $this->appendAlterAddPrimary($phrase, $def['primary key']);
         }
 
         foreach ($uniques['mod'] + $uniques['add'] as $keyName) {
@@ -711,6 +719,19 @@ class Schema
         $sql[] = 'ADD';
         $this->appendForeignKeyDef($sql, $keyName, $def);
         $phrase[] = implode(' ', $sql);
+    }
+
+    function appendAlterAddPrimary(array &$phrase, array $def)
+    {
+        $sql = array();
+        $sql[] = 'ADD';
+        $this->appendPrimaryKeyDef($sql, $def);
+        $phrase[] = implode(' ', $sql);
+    }
+
+    function appendAlterDropPrimary(array &$phrase)
+    {
+        $phrase[] = 'DROP CONSTRAINT PRIMARY KEY';
     }
 
     function appendAlterDropUnique(array &$phrase, $keyName)
