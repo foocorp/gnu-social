@@ -124,9 +124,6 @@ class EventForm extends Form
         $this->li();
 
         $times = EventTimeList::getTimes($today->format('m/d/Y 12:00') . ' am ' . $today->format('T'));
-
-        common_debug(var_export($times, true));
-
         $start = EventTimeList::nearestHalfHour('@' . $today->getTimestamp());
         $start->setTimezone(new DateTimeZone(common_timezone()));
 
