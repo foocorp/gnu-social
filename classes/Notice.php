@@ -109,8 +109,7 @@ class Notice extends Managed_DataObject
                 'object_type' => array('type' => 'varchar', 'length' => 255, 'description' => 'URI representing activity streams object type', 'default' => 'http://activitystrea.ms/schema/1.0/note'),
                 'verb' => array('type' => 'varchar', 'length' => 255, 'description' => 'URI representing activity streams verb', 'default' => 'http://activitystrea.ms/schema/1.0/post'),
                 'scope' => array('type' => 'int',
-                                 'default' => '1',
-                                 'description' => 'bit map for distribution scope; 0 = everywhere; 1 = this server only; 2 = addressees; 4 = followers'),
+                                 'description' => 'bit map for distribution scope; 0 = everywhere; 1 = this server only; 2 = addressees; 4 = followers; null = default'),
             ),
             'primary key' => array('id'),
             'unique keys' => array(
@@ -2373,9 +2372,15 @@ class Notice extends Managed_DataObject
 
     protected function _inScope($profile)
     {
+        if (is_int($this->scope)) {
+            $scope = $this->scope;
+        } else {
+            $scope = self::defaultScope();
+        }
+
         // If there's no scope, anyone (even anon) is in scope.
 
-        if ($this->scope == 0) {
+        if ($scope == 0) {
             return true;
         }
 
@@ -2393,7 +2398,7 @@ class Notice extends Managed_DataObject
 
         // Only for users on this site
 
-        if ($this->scope & Notice::SITE_SCOPE) {
+        if ($scope & Notice::SITE_SCOPE) {
             $user = $profile->getUser();
             if (empty($user)) {
                 return false;
@@ -2402,7 +2407,7 @@ class Notice extends Managed_DataObject
 
         // Only for users mentioned in the notice
 
-        if ($this->scope & Notice::ADDRESSEE_SCOPE) {
+        if ($scope & Notice::ADDRESSEE_SCOPE) {
 
 			$repl = Reply::pkeyGet(array('notice_id' => $this->id,
 										 'profile_id' => $profile->id));
@@ -2414,7 +2419,7 @@ class Notice extends Managed_DataObject
 
         // Only for members of the given group
 
-        if ($this->scope & Notice::GROUP_SCOPE) {
+        if ($scope & Notice::GROUP_SCOPE) {
 
             // XXX: just query for the single membership
 
@@ -2436,7 +2441,7 @@ class Notice extends Managed_DataObject
 
         // Only for followers of the author
 
-        if ($this->scope & Notice::FOLLOWER_SCOPE) {
+        if ($scope & Notice::FOLLOWER_SCOPE) {
             $author = $this->getProfile();
             if (!Subscription::exists($profile, $author)) {
                 return false;
