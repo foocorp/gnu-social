@@ -59,9 +59,13 @@ class Config extends Managed_DataObject
 
     static function loadSettings()
     {
-        $settings = self::_getSettings();
-        if (!empty($settings)) {
-            self::_applySettings($settings);
+        try {
+            $settings = self::_getSettings();
+            if (!empty($settings)) {
+                self::_applySettings($settings);
+            }
+        } catch (Exception $e) {
+            return;
         }
     }
 
