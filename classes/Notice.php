@@ -2372,7 +2372,7 @@ class Notice extends Managed_DataObject
 
     protected function _inScope($profile)
     {
-        if (is_int($this->scope)) {
+        if (!is_null($this->scope)) {
             $scope = $this->scope;
         } else {
             $scope = self::defaultScope();
