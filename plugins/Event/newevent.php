@@ -130,12 +130,7 @@ class NeweventAction extends Action
             }
 
             $start = $startDate . ' ' . $startTime . ' ' . $tz;
-
-            common_debug("Event start: '$start'");
-
-            $end = $endDate . ' ' . $endTime . ' ' . $tz;
-
-            common_debug("Event start: '$end'");
+            $end   = $endDate . ' ' . $endTime . ' ' . $tz;
 
             $this->startTime = strtotime($start);
             $this->endTime   = strtotime($end);
@@ -195,6 +190,7 @@ class NeweventAction extends Action
     function newEvent()
     {
         try {
+
             if (empty($this->title)) {
                 // TRANS: Client exception thrown when trying to post an event without providing a title.
                 throw new ClientException(_m('Event must have a title.'));
@@ -208,6 +204,11 @@ class NeweventAction extends Action
             if (empty($this->endTime)) {
                 // TRANS: Client exception thrown when trying to post an event without providing an end time.
                 throw new ClientException(_m('Event must have an end time.'));
+            }
+
+            if (isset($this->url) && Validate::uri($this->url) === false) {
+                // TRANS: Client exception thrown when trying to post an event with an invalid URL.
+                throw new ClientException(_m('URL must be valid.'));
             }
 
             $options = array();
