@@ -101,6 +101,7 @@ class NeweventAction extends Action
             $this->location    = $this->trimmed('location');
             $this->url         = $this->trimmed('url');
             $this->description = $this->trimmed('description');
+            $tz                = $this->trimmed('tz');
 
             $startDate = $this->trimmed('startdate');
 
@@ -128,11 +129,11 @@ class NeweventAction extends Action
                 $endTime = '00:00';
             }
 
-            $start = $startDate . ' ' . $startTime;
+            $start = $startDate . ' ' . $startTime . ' ' . $tz;
 
             common_debug("Event start: '$start'");
 
-            $end = $endDate . ' ' . $endTime;
+            $end = $endDate . ' ' . $endTime . ' ' . $tz;
 
             common_debug("Event start: '$end'");
 
