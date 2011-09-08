@@ -161,7 +161,9 @@ abstract class Managed_DataObject extends Memcached_DataObject
 
         foreach ($table['foreign keys'] as $keyname => $keydef) {
             if (count($keydef) == 2 && is_string($keydef[0]) && is_array($keydef[1]) && count($keydef[1]) == 1) {
-                $links[$keydef[1][0]] = $keydef[0].':'.$keydef[1][1];
+                if (isset($keydef[1][0])) {
+                    $links[$keydef[1][0]] = $keydef[0].':'.$keydef[1][1];
+                }
             }
         }
         return $links;

@@ -39,10 +39,10 @@ class EventTimeList {
      */
     public static function nearestHalfHour($time)
     {
-        $start = strtotime($time);
+        $startd = new DateTime($time);
 
-        $minutes = date('i', $start);
-        $hour = date('H', $start);
+        $minutes = $startd->format('i');
+        $hour    = $startd->format('H');
 
         if ($minutes >= 30) {
             $minutes = '00';
@@ -51,39 +51,34 @@ class EventTimeList {
             $minutes = '30';
         }
 
-        $newTimeStr = date('m/d/y', $start) . " {$hour}:{$minutes}:00";
-        return new DateTime($newTimeStr);
+        $startd->setTime($hour, $minutes, 0);
+
+        return $startd;
     }
 
     /**
      * Output a list of times in half-hour intervals
      *
-     * @param string  $start       Time to start with (date/time string)
+     * @param string  $start       Time to start with (date string, usually a ts)
      * @param boolean $duration    Whether to include the duration of the event
      *                             (from the start)
-     * @return array  $times (UTC time string => localized time string)
+     * @return array  $times (localized 24 hour time string => fancy time string)
      */
     public static function getTimes($start = 'now', $duration = false)
     {
-        $newTime = self::nearestHalfHour($start);
+        $newTime = new DateTime($start);
+        $times   = array();
+        $len     = 0;
 
         $newTime->setTimezone(new DateTimeZone(common_timezone()));
-        $times = array();
-        $len   = 0;
 
-        for ($i = 0; $i < 48; $i++) {
-            // make sure we store the time as UTC
-            $newTime->setTimezone(new DateTimeZone('UTC'));
-            $utcTime = $newTime->format('H:i:s');
+        for ($i = 0; $i < 47; $i++) {
 
-            // localize time for user
-            $newTime->setTimezone(new DateTimeZone(common_timezone()));
-            $localTime = $newTime->format('g:ia');
+            $localTime = $newTime->format("g:ia");
 
             // pretty up the end-time option list a bit
             if ($duration) {
-                $len += 30;
-                $hours    = $len / 60;
+                $hours = $len / 60;
                 switch ($hours) {
                 case 0:
                     // TRANS: 0 minutes abbreviated. Used in a list.
@@ -98,14 +93,18 @@ class EventTimeList {
                     $total = ' ' . _m('(1 hour)');
                     break;
                 default:
-                    // TRANS: Number of hours (%d). Used in a list.
-                    $total = ' ' . sprintf(_m('(%d hour)','(%d hours)',$hours), $hours);
+                    // TRANS: Number of hours (%.1f and %d). Used in a list.
+                    $format = is_float($hours) 
+                        ? _m('(%.1f hours)')
+                        : _m('(%d hours)');
+                    $total = ' ' . sprintf($format, $hours);
                     break;
                 }
                 $localTime .= $total;
+                $len += 30;
             }
 
-            $times[$utcTime] = $localTime;
+            $times[$newTime->format('g:ia')] = $localTime;
             $newTime->modify('+30min'); // 30 min intervals
         }
 

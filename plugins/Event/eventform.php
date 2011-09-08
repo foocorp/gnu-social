@@ -123,7 +123,9 @@ class EventForm extends Form
 
         $this->li();
 
-        $times = EventTimeList::getTimes();
+        $times = EventTimeList::getTimes($today->format('m/d/Y 12:00') . ' am ' . $today->format('T'));
+        $start = EventTimeList::nearestHalfHour('@' . $today->getTimestamp());
+        $start->setTimezone(new DateTimeZone(common_timezone()));
 
         $this->out->dropdown(
             'event-starttime',
@@ -131,10 +133,14 @@ class EventForm extends Form
             _m('LABEL','Start time'),
             $times,
             // TRANS: Field title on event form. %s is the abbreviated timezone
-            sprintf(_m("Time the event starts (%s)."), $today->format("T")),
+            sprintf(_m("Time the event starts (%s)."), $today->format('T')),
             false,
-            null
+            $start->format('g:ia')
         );
+
+        // Need to keep JavaScript TZ in sync with PHP TZ
+        $this->out->hidden('tz', $today->format('T'));
+        $this->out->hidden('now', $today->format('F d, Y H:i:s T'));
 
         $this->unli();
 
@@ -150,18 +156,11 @@ class EventForm extends Form
 
         $this->li();
 
-        // XXX: Initial end time should be at least 30 mins out?  We could do
-        // every 15 minute instead -z
-        $keys   = array_keys($times);
-        $endStr = date('m/d/y', strtotime('now')) . " {$keys[0]}";
-        $end    = new DateTime($endStr);
-        $end->modify('+30');
-
         $this->out->dropdown(
             'event-endtime',
             // TRANS: Field label on event form.
             _m('LABEL','End time'),
-            EventTimeList::getTimes($end->format('c'), true),
+            EventTimeList::getTimes('@' . $start->getTimestamp(), true),
             // TRANS: Field title on event form.
             _m('Time the event ends.'),
             false,
