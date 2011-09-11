@@ -31,16 +31,6 @@ msgstr ""
 msgid "(1 hour)"
 msgstr ""
 
-#: eventtimelist.php:98
-#, php-format
-msgid "(%.1f hours)"
-msgstr ""
-
-#: eventtimelist.php:99
-#, php-format
-msgid "(%d hours)"
-msgstr ""
-
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 #: Happening.php:125
 msgid "Event already exists."
