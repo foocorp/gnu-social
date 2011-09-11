@@ -11,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:12+0000\n"
-"Language-Team: Basque <//translatewiki.net/wiki/Portal:eu>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:34+0000\n"
+"Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -6335,14 +6335,6 @@ msgstr "Ezin izan da saioa hasteko tokena sortu %s(e)rako"
 msgid "Cannot instantiate class %s."
 msgstr "Ezin da pasahitz berria gorde."
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "Ezin da pasahitz berria gorde."
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "Ezin da pasahitz berria gorde."
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "Ez da datubase izenik edo DSNrik aurkitu inon."
@@ -9698,86 +9690,23 @@ msgstr "XML baliogabea, XRD erroa falta da."
 msgid "Getting backup from file '%s'."
 msgstr "'%s'-ren babeskopia eskuratzen."
 
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Avatarraren %s URL baliogabea."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "Avatarraren %s URL baliogabea."
 
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Gorde gabeko urruneko %s profiletik saiatu zara igotzen avatarra."
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "Gorde gabeko urruneko %s profiletik saiatu zara igotzen avatarra."
 
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Ezin izan da %s URLtik avatarra igo."
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "Ezin izan da %s URLtik avatarra igo."
 
-#. TRANS: Exception. %s is a profile URL.
-#, php-format
-msgid "Could not reach profile page %s."
-msgstr "Ezin izan da profil-orria %s gunetik atzitu."
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "Ezin izan da profil-orria %s gunetik atzitu."
 
-#. TRANS: Exception. %s is a URL.
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Ezin izan da jario URL bat aurkitu profil-orriaren %s gunerako."
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "Ezin izan da jario URL bat aurkitu profil-orriaren %s gunerako."
 
-#. TRANS: Exception.
-msgid "Not a valid webfinger address."
-msgstr "Ezin izan da baliozko webfinger-helbidea aurkitu."
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "Ezin izan da baliozko webfinger-helbidea aurkitu."
 
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "Ezin izan da baliozko profilik aurkitu \"%s\"(e)rako."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "Ezin da idatzi atzeko planoen direktorioan: %s."
-
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "Sortua"
-
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Kideak"
-
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "Taldea"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "%s taldea"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "Kideak"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "%s taldeko kideak"
-
-#~ msgctxt "MENU"
-#~ msgid "Pending members (%d)"
-#~ msgid_plural "Pending members (%d)"
-#~ msgstr[0] "Zain dauden kideak (%d)"
-#~ msgstr[1] "Zain dauden kideak (%d)"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "Zain dauden %s kide"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "%s erabiltzaile blokeatuta"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Etiketak %s taldearen oharretan"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Bilatu"
-
-#~ msgid "Search the site."
-#~ msgstr "Bilatu gunean."
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "Ezin izan da baliozko profilik aurkitu \"%s\"(e)rako."

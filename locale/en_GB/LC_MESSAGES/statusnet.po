@@ -16,17 +16,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:08+0000\n"
-"Language-Team: British English <//translatewiki.net/wiki/Portal:en-gb>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:29+0000\n"
+"Language-Team: British English <https://translatewiki.net/wiki/Portal:en-"
+"gb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: en-gb\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6428,14 +6429,6 @@ msgstr "Could not create login token for %s"
 msgid "Cannot instantiate class %s."
 msgstr "Can't save new password."
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "Can't save new password."
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "Can't save new password."
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr ""
@@ -7931,9 +7924,8 @@ msgid "Pending"
 msgstr ""
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
-msgstr "Block"
+msgstr "Blocked"
 
 #. TRANS: Title for list of group administrators on a group page.
 #, fuzzy
@@ -9816,65 +9808,30 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Can’t read avatar URL ‘%s’."
-
-#. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Error updating remote profile."
-
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Use this form to edit your application."
-
-#. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
-msgid "Could not reach profile page %s."
-msgstr "Could not save profile."
-
-#. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Could not find a user with nickname %s."
-
-#. TRANS: Exception.
 #, fuzzy
-msgid "Not a valid webfinger address."
-msgstr "Not a valid e-mail address."
-
-#, fuzzy, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "Could not save profile."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "Background directory not writable: %s."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "Can’t read avatar URL ‘%s’."
 
 #, fuzzy
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "Created"
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "Error updating remote profile."
 
 #, fuzzy
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Members"
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "Use this form to edit your application."
 
 #, fuzzy
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "%s group members"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Tags in %s group's notices"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Search"
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "Could not save profile."
 
 #, fuzzy
-#~ msgid "Search the site."
-#~ msgstr "Search site"
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "Could not find a user with nickname %s."
+
+#, fuzzy
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "Not a valid e-mail address."
+
+#, fuzzy
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "Could not save profile."

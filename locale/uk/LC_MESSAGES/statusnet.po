@@ -12,18 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:47+0000\n"
-"Language-Team: Ukrainian <//translatewiki.net/wiki/Portal:uk>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:51:13+0000\n"
+"Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6371,14 +6371,6 @@ msgstr "Не вдалося створити токен входу для %s"
 msgid "Cannot instantiate class %s."
 msgstr "Не вдається зберегти новий пароль."
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "Не вдається зберегти новий пароль."
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "Не вдається зберегти новий пароль."
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "Немає імені бази даних або DSN ніде не знайдено"
@@ -7851,9 +7843,8 @@ msgid "Pending"
 msgstr "В очікуванні (%d)"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
-msgstr "Заблоковані"
+msgstr "Блок"
 
 #. TRANS: Title for list of group administrators on a group page.
 msgctxt "TITLE"
@@ -9764,88 +9755,30 @@ msgstr "Неправильний XML, корінь XRD відсутній."
 msgid "Getting backup from file '%s'."
 msgstr "Отримання резервної копії файлу «%s»."
 
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Не вдалося прочитати URL аватари «%s»."
-
-#. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Помилка при оновленні віддаленого профілю."
-
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Не вдається знайти послуги для %s."
-
-#. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
-msgid "Could not reach profile page %s."
-msgstr "Не створити профіль теґу."
-
-#. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Не вдалося знайти користувача з ім’ям %s."
-
-#. TRANS: Exception.
 #, fuzzy
-msgid "Not a valid webfinger address."
-msgstr "Це недійсна електронна адреса."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "Не вдалося прочитати URL аватари «%s»."
 
-#, fuzzy, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "Не вдалося зберегти профіль."
+#, fuzzy
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "Помилка при оновленні віддаленого профілю."
 
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "Директорія фонових зображень не доступна для запису:% s."
+#, fuzzy
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "Не вдається знайти послуги для %s."
 
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "Створено"
+#, fuzzy
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "Не створити профіль теґу."
 
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Учасники"
+#, fuzzy
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "Не вдалося знайти користувача з ім’ям %s."
 
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "Спільнота"
+#, fuzzy
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "Це недійсна електронна адреса."
 
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "Спільнота %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "Учасники"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "Учасники спільноти %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Pending members (%d)"
-#~ msgid_plural "Pending members (%d)"
-#~ msgstr[0] "В очікуванні учасників (%d)"
-#~ msgstr[1] "В очікуванні учасників (%d)"
-#~ msgstr[2] "В очікуванні учасників (%d)"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "Очікують підтвердження в %s"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "Заблоковані користувачі %s"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Теґи у дописах спільноти %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Пошук"
-
-#~ msgid "Search the site."
-#~ msgstr "Пошук на сайті."
+#, fuzzy
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "Не вдалося зберегти профіль."

@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:44+0000\n"
-"Language-Team: Telugu <//translatewiki.net/wiki/Portal:te>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:51:10+0000\n"
+"Language-Team: Telugu <https://translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6269,14 +6269,6 @@ msgstr "మారుపేర్లని సృష్టించలేకప�
 msgid "Cannot instantiate class %s."
 msgstr "కొత్త సంకేతపదాన్ని భద్రపరచలేకున్నాం."
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "కొత్త సంకేతపదాన్ని భద్రపరచలేకున్నాం."
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "కొత్త సంకేతపదాన్ని భద్రపరచలేకున్నాం."
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr ""
@@ -7756,9 +7748,8 @@ msgid "Pending"
 msgstr "వేచివున్నవి (%d)"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
-msgstr "నిరోధించు"
+msgstr "నిరోధించారు"
 
 #. TRANS: Title for list of group administrators on a group page.
 msgctxt "TITLE"
@@ -9641,84 +9632,30 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Invalid avatar URL %s."
-msgstr "'%s' అనే అవతారపు URL తప్పు"
-
-#. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "దూరపు ప్రొపైలుని తాజాకరించటంలో పొరపాటు"
-
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "మీ ఉపకరణాన్ని మార్చడానికి ఈ ఫారాన్ని ఉపయోగించండి."
-
-#. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
-msgid "Could not reach profile page %s."
-msgstr "ప్రొఫైలుని భద్రపరచలేకున్నాం."
-
-#. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "వాడుకరిని తాజాకరించలేకున్నాం."
-
-#. TRANS: Exception.
 #, fuzzy
-msgid "Not a valid webfinger address."
-msgstr "సరైన ఈమెయిల్ చిరునామా కాదు:"
-
-#, fuzzy, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "ప్రొఫైలుని భద్రపరచలేకున్నాం."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "'%s' అనే అవతారపు URL తప్పు"
 
 #, fuzzy
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "నేపథ్యాల సంచయం"
-
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "సృష్టితం"
-
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "సభ్యులు"
-
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "సమూహం"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "%s సమూహం"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "సభ్యులు"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "%s సమూహ సభ్యులు"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "%s వేచివున్న సభ్యులు"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "%s నుండి నిరోధించిన వాడుకరులు"
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "దూరపు ప్రొపైలుని తాజాకరించటంలో పొరపాటు"
 
 #, fuzzy
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "%s గుంపు లక్షణాలను మార్చు"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "వెతుకు"
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "మీ ఉపకరణాన్ని మార్చడానికి ఈ ఫారాన్ని ఉపయోగించండి."
 
 #, fuzzy
-#~ msgid "Search the site."
-#~ msgstr "సైటుని వెతుకు"
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "ప్రొఫైలుని భద్రపరచలేకున్నాం."
+
+#, fuzzy
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "వాడుకరిని తాజాకరించలేకున్నాం."
+
+#, fuzzy
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "సరైన ఈమెయిల్ చిరునామా కాదు:"
+
+#, fuzzy
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "ప్రొఫైలుని భద్రపరచలేకున్నాం."

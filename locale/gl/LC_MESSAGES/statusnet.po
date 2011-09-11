@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:19+0000\n"
-"Language-Team: Galician <//translatewiki.net/wiki/Portal:gl>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:42+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -443,7 +443,6 @@ msgid "No conversation with ID %d."
 msgstr "Conversa"
 
 #. TRANS: Title for conversion timeline.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Conversa"
@@ -1768,10 +1767,9 @@ msgstr "Fonte de novas das notas para %s (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Notice"
-msgstr "Notas"
+msgstr "Nota"
 
 #. TRANS: Client exception displayed trying to delete a user account while not logged in.
 #, fuzzy
@@ -2199,7 +2197,7 @@ msgstr "Enderezo de correo electrónico confirmado actualmente."
 #. TRANS: Button text to untag a profile.
 msgctxt "BUTTON"
 msgid "Remove"
-msgstr "Borrar"
+msgstr "Eliminar"
 
 #. TRANS: Form note in e-mail settings form.
 msgid ""
@@ -3542,7 +3540,6 @@ msgid "6 or more characters."
 msgstr "Seis ou máis caracteres"
 
 #. TRANS: Field label on page where to change password. In this field the new password should be typed a second time.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Confirmar"
@@ -3555,7 +3552,6 @@ msgid "Same as password above."
 msgstr "Igual ao contrasinal anterior"
 
 #. TRANS: Button text on page where to change password.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Change"
 msgstr "Cambiar"
@@ -3759,7 +3755,6 @@ msgid "Directory where attachments are located."
 msgstr "Ruta do directorio das traducións"
 
 #. TRANS: Fieldset legend in Paths admin panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "SSL"
 msgstr "SSL"
@@ -3782,9 +3777,8 @@ msgid "Use SSL"
 msgstr "Utilizar SSL"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
-#, fuzzy
 msgid "When to use SSL."
-msgstr "Cando utilizar SSL"
+msgstr "Cando utilizar SSL."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 #, fuzzy
@@ -3855,9 +3849,8 @@ msgstr "Respostas a %1$s, páxina %2$d"
 
 #. TRANS: Addition in tag membership list for creator of a tag.
 #. TRANS: Addition in tag subscribers list for creator of a tag.
-#, fuzzy
 msgid "Creator"
-msgstr "Creado"
+msgstr "Creador"
 
 #. TRANS: Title for lists by a user page for a private tag.
 #, fuzzy
@@ -4194,9 +4187,8 @@ msgid "Language"
 msgstr "Lingua"
 
 #. TRANS: Tooltip for dropdown list label in form for profile settings.
-#, fuzzy
 msgid "Preferred language."
-msgstr "Lingua escollida"
+msgstr "Lingua preferida."
 
 #. TRANS: Dropdownlist label in form for profile settings.
 msgid "Timezone"
@@ -6520,14 +6512,6 @@ msgstr "Non se puido crear un pase de sesión para %s"
 msgid "Cannot instantiate class %s."
 msgstr "Non se puido gardar o novo contrasinal."
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "Non se puido gardar o novo contrasinal."
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "Non se puido gardar o novo contrasinal."
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "Non se atopou por ningures o nome da base de datos ou DSN."
@@ -8057,7 +8041,6 @@ msgid "Pending"
 msgstr "Pendentes (%d)"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
 msgstr "Bloqueado"
 
@@ -10011,83 +9994,30 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Non se puido ler o URL do avatar, \"%s\"."
-
-#. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Houbo un erro ao actualizar o perfil remoto."
-
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Non se puido revogar o acceso da aplicación: %s."
-
-#. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
-msgid "Could not reach profile page %s."
-msgstr "Non se puido gardar o perfil."
-
-#. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Non se deu atopado ningún usuario co alcume %s."
-
-#. TRANS: Exception.
 #, fuzzy
-msgid "Not a valid webfinger address."
-msgstr "O enderezo de correo electrónico é incorrecto."
-
-#, fuzzy, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "Non se puido gardar o perfil."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "Non se pode escribir no directorio de fondos: %s."
-
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "Creado"
-
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Membros"
-
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "Grupo"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "Grupo %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "Membros"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "Membros do grupo %s"
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "Non se puido ler o URL do avatar, \"%s\"."
 
 #, fuzzy
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "Membros do grupo %s"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "Usuarios bloqueados en %s"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Etiquetas nas notas do grupo %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Buscar"
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "Houbo un erro ao actualizar o perfil remoto."
 
 #, fuzzy
-#~ msgid "Search the site."
-#~ msgstr "Buscar no sitio"
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "Non se puido revogar o acceso da aplicación: %s."
+
+#, fuzzy
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "Non se puido gardar o perfil."
+
+#, fuzzy
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "Non se deu atopado ningún usuario co alcume %s."
+
+#, fuzzy
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "O enderezo de correo electrónico é incorrecto."
+
+#, fuzzy
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "Non se puido gardar o perfil."

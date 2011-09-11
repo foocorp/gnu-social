@@ -16,17 +16,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:03+0000\n"
-"Language-Team: Catalan <//translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:22+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6350,14 +6350,6 @@ msgstr "No s'ha pogut crear un testimoni d'inici de sessió per a %s"
 msgid "Cannot instantiate class %s."
 msgstr "No es pot instanciar la classe "
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "No es pot instanciar la classe "
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "No es pot instanciar la classe "
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "No s'ha trobat el nom de la base de dades o el DSN enlloc."
@@ -7825,9 +7817,8 @@ msgid "Pending"
 msgstr "Pendent (%d)"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
-msgstr "Blocats"
+msgstr "Blocat"
 
 #. TRANS: Title for list of group administrators on a group page.
 msgctxt "TITLE"
@@ -9715,86 +9706,23 @@ msgstr "L'XML no és vàlid, hi manca l'arrel XRD."
 msgid "Getting backup from file '%s'."
 msgstr "Es recupera la còpia de seguretat del fitxer '%s'."
 
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr "L'URL «%s» de l'avatar no és vàlid."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "L'URL «%s» de l'avatar no és vàlid."
 
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "S'ha provat d'actualitzar l'avatar no desat del perfil remot %s."
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "S'ha provat d'actualitzar l'avatar no desat del perfil remot %s."
 
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "No s'ha pogut aconseguir l'avatar de %s."
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "No s'ha pogut aconseguir l'avatar de %s."
 
-#. TRANS: Exception. %s is a profile URL.
-#, php-format
-msgid "Could not reach profile page %s."
-msgstr "No s'ha pogut obtenir la pàgina del perfil %s."
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "No s'ha pogut obtenir la pàgina del perfil %s."
 
-#. TRANS: Exception. %s is a URL.
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "No s'ha pogut trobar un URL de canal de la pàgina del perfil %s."
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "No s'ha pogut trobar un URL de canal de la pàgina del perfil %s."
 
-#. TRANS: Exception.
-msgid "Not a valid webfinger address."
-msgstr "No és una adreça de webfinger vàlida."
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "No és una adreça de webfinger vàlida."
 
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "No s'ha pogut trobar un perfil de «%s» vàlid."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "No es pot escriure al directori de fons: %s"
-
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "S'ha creat"
-
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Membres"
-
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "Grup"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "Grup %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "Membres"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "Membres del grup %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Pending members (%d)"
-#~ msgid_plural "Pending members (%d)"
-#~ msgstr[0] "Membres pendents (%d)"
-#~ msgstr[1] "Membres pendents (%d)"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "%s membres pendents"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "%s usuaris blocats"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Etiquetes en els avisos del grup %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Cerca"
-
-#~ msgid "Search the site."
-#~ msgstr "Cerca al lloc"
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "No s'ha pogut trobar un perfil de «%s» vàlid."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -809,6 +809,42 @@ msgstr ""
 msgid "OStatus Connect"
 msgstr ""
 
+#. TRANS: Server exception. %s is a URL.
+#: scripts/update_ostatus_profiles.php:56 classes/Ostatus_profile.php:1209
+#, php-format
+msgid "Invalid avatar URL %s."
+msgstr ""
+
+#. TRANS: Server exception. %s is a URI.
+#: scripts/update_ostatus_profiles.php:67 classes/Ostatus_profile.php:1220
+#, php-format
+msgid "Tried to update avatar for unsaved remote profile %s."
+msgstr ""
+
+#. TRANS: Server exception. %s is a URL.
+#: scripts/update_ostatus_profiles.php:77 classes/Ostatus_profile.php:1230
+#, php-format
+msgid "Unable to fetch avatar from %s."
+msgstr ""
+
+#. TRANS: Exception. %s is a URL.
+#: scripts/update_ostatus_profiles.php:187 classes/Ostatus_profile.php:1047
+#, php-format
+msgid "Could not find a feed URL for profile page %s."
+msgstr ""
+
+#. TRANS: Exception.
+#: scripts/update_ostatus_profiles.php:212 classes/Ostatus_profile.php:1868
+#: classes/Ostatus_profile.php:1895
+msgid "Not a valid webfinger address."
+msgstr ""
+
+#. TRANS: Exception. %s is a webfinger address.
+#: scripts/update_ostatus_profiles.php:264 classes/Ostatus_profile.php:2000
+#, php-format
+msgid "Could not find a valid profile for \"%s\"."
+msgstr ""
+
 #. TRANS: Server exception.
 #: classes/FeedSub.php:253
 msgid "Attempting to start PuSH subscription for feed with no hub."
@@ -890,33 +926,9 @@ msgstr ""
 msgid "Could not reach profile page %s."
 msgstr ""
 
-#. TRANS: Exception. %s is a URL.
-#: classes/Ostatus_profile.php:1047
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr ""
-
 #. TRANS: Feed sub exception.
 #: classes/Ostatus_profile.php:1145
 msgid "Cannot find enough profile information to make a feed."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URL.
-#: classes/Ostatus_profile.php:1209
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URI.
-#: classes/Ostatus_profile.php:1220
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URL.
-#: classes/Ostatus_profile.php:1230
-#, php-format
-msgid "Unable to fetch avatar from %s."
 msgstr ""
 
 #. TRANS: Server exception.
@@ -959,11 +971,6 @@ msgstr ""
 msgid "Cannot save OStatus profile."
 msgstr ""
 
-#. TRANS: Exception.
-#: classes/Ostatus_profile.php:1868 classes/Ostatus_profile.php:1895
-msgid "Not a valid webfinger address."
-msgstr ""
-
 #. TRANS: Exception. %s is a webfinger address.
 #: classes/Ostatus_profile.php:1973
 #, php-format
@@ -974,12 +981,6 @@ msgstr ""
 #: classes/Ostatus_profile.php:1992
 #, php-format
 msgid "Could not save OStatus profile for \"%s\"."
-msgstr ""
-
-#. TRANS: Exception. %s is a webfinger address.
-#: classes/Ostatus_profile.php:2000
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
 msgstr ""
 
 #. TRANS: Server exception.

@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:28:52+0000\n"
-"Language-Team: Macedonian <//translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:49:09+0000\n"
+"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-20 19:38:23+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-30 10:06:28+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
@@ -33,12 +33,13 @@ msgstr "(30 мин)"
 msgid "(1 hour)"
 msgstr "(1 час)"
 
-#. TRANS: Number of hours (%d). Used in a list.
-#, php-format
-msgid "(%d hour)"
-msgid_plural "(%d hours)"
-msgstr[0] "(%d час)"
-msgstr[1] "(%d часа)"
+#, fuzzy, php-format
+msgid "(%.1f hours)"
+msgstr "(1 час)"
+
+#, fuzzy, php-format
+msgid "(%d hours)"
+msgstr "(%d час)"
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -181,9 +182,9 @@ msgid "Start time"
 msgstr "Време на почеток"
 
 #. TRANS: Field title on event form. %s is the abbreviated timezone
-#, fuzzy, php-format
+#, php-format
 msgid "Time the event starts (%s)."
-msgstr "Во колку часот почнува настанот."
+msgstr "Во колку часот почнува настанот (%s)."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -400,6 +401,10 @@ msgstr "Настанот мора да има почетно време."
 #. TRANS: Client exception thrown when trying to post an event without providing an end time.
 msgid "Event must have an end time."
 msgstr "Настанот мора да има завршно време."
+
+#. TRANS: Client exception thrown when trying to post an event with an invalid URL.
+msgid "URL must be valid."
+msgstr ""
 
 #. TRANS: Field label for event description.
 msgid "Time:"

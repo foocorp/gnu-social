@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:20+0000\n"
-"Language-Team: Hebrew <//translatewiki.net/wiki/Portal:he>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:43+0000\n"
+"Language-Team: Hebrew <https://translatewiki.net/wiki/Portal:he>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: he\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6039,12 +6039,6 @@ msgstr "לא הצליחה יצירת אסימון התחברות עבור %s"
 msgid "Cannot instantiate class %s."
 msgstr ""
 
-msgid "Cannot instantiate a "
-msgstr ""
-
-msgid "Cannot instantiate class "
-msgstr ""
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr ""
@@ -7477,7 +7471,6 @@ msgid "Pending"
 msgstr ""
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
 msgstr "חסימת משתמש"
 
@@ -9240,42 +9233,23 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr "כתובת תמונה בלתי־תקינה %s."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "כתובת תמונה בלתי־תקינה %s."
 
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "ניסיון להעלות תמונה לדף משתמש מרוחק שלא נשמר %s."
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "ניסיון להעלות תמונה לדף משתמש מרוחק שלא נשמר %s."
 
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "לא ניתן לאחזר תמונה מתוך %s."
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "לא ניתן לאחזר תמונה מתוך %s."
 
-#. TRANS: Exception. %s is a profile URL.
-#, php-format
-msgid "Could not reach profile page %s."
-msgstr "לא ניתן להשיג את דף המשתמש %s."
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "לא ניתן להשיג את דף המשתמש %s."
 
-#. TRANS: Exception. %s is a URL.
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "לא נמצאה כתובת הזמנה עבור דף המשתמש %s."
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "לא נמצאה כתובת הזמנה עבור דף המשתמש %s."
 
-#. TRANS: Exception.
-msgid "Not a valid webfinger address."
-msgstr "זאת לא כתובת ובפינגר תקינה."
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "זאת לא כתובת ובפינגר תקינה."
 
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "לא נמצא דף משתמש תקין עבור \"%s\"."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "תיקיית רקעים אינה ניתנת לכתיבה: %s."
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "חיפוש"
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "לא נמצא דף משתמש תקין עבור \"%s\"."

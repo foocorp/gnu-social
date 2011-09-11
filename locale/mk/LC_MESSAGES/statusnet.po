@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:32+0000\n"
-"Language-Team: Macedonian <//translatewiki.net/wiki/Portal:mk>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:55+0000\n"
+"Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3402,7 +3402,7 @@ msgstr "Пребарување на забелешки"
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
-msgstr "Нема назначено кориснички ID."
+msgstr "Нема назначено корисничка назнака."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a login token.
 msgid "No login token specified."
@@ -6148,13 +6148,13 @@ msgstr "StatusNet %s"
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This site is powered by %1$s version %2$s, Copyright 2008-2011 StatusNet, "
 "Inc. and contributors."
 msgstr ""
-"Ова мрежно место работи на %1$s верзија %2$s, Авторски права 2008-2010 "
-"StatusNet, Inc. и учесници."
+"Ова мрежно место работи на %1$s верзија %2$s, Авторски права 2008-2011 "
+"StatusNet, Inc. и учесниците."
 
 #. TRANS: Header for StatusNet contributors section on the version page.
 msgid "Contributors"
@@ -6330,14 +6330,6 @@ msgstr "Не можам да создадам најавен жетон за"
 #. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
 #, php-format
 msgid "Cannot instantiate class %s."
-msgstr "Не можам да ја опримерочам класата %s."
-
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "Не можам да ја опримерочам класата %s."
-
-#, fuzzy
-msgid "Cannot instantiate class "
 msgstr "Не можам да ја опримерочам класата %s."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7795,12 +7787,10 @@ msgid "All members"
 msgstr "Сите членови"
 
 #. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
-#, fuzzy
 msgid "Pending"
-msgstr "Во исчекување (%d)"
+msgstr "Во исчекување"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
 msgstr "Блокирани"
 
@@ -9686,87 +9676,24 @@ msgstr "Неважечки XML. Нема XRD-корен."
 msgid "Getting backup from file '%s'."
 msgstr "Земам резерва на податотеката „%s“."
 
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Не можам да ја прочитам URL-адресата на аватарот %s."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "Не можам да ја прочитам URL-адресата на аватарот %s."
 
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr ""
-"Се обидов да го подновувам аватарот за незачуваниот далечински профил %s."
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr ""
+#~ "Се обидов да го подновувам аватарот за незачуваниот далечински профил %s."
 
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Не можам да го добијам аватарот од: %s."
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "Не можам да го добијам аватарот од: %s."
 
-#. TRANS: Exception. %s is a profile URL.
-#, php-format
-msgid "Could not reach profile page %s."
-msgstr "Не можев да дојдам до профилната страница %s."
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "Не можев да дојдам до профилната страница %s."
 
-#. TRANS: Exception. %s is a URL.
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Не можев да пронајдам URL на канал за профилната страница %s."
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "Не можев да пронајдам URL на канал за профилната страница %s."
 
-#. TRANS: Exception.
-msgid "Not a valid webfinger address."
-msgstr "Ова не е важечка Webfinger-адреса."
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "Ова не е важечка Webfinger-адреса."
 
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "Не можев да пронајдам важечки профил за „%s“."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "Директориумот на позадината е нечитлив: %s."
-
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "Создадено"
-
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Членови"
-
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "Група"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "Група „%s“"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "Членови"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "Членови на групата „%s“"
-
-#~ msgctxt "MENU"
-#~ msgid "Pending members (%d)"
-#~ msgid_plural "Pending members (%d)"
-#~ msgstr[0] "Член во исчекување (%d)"
-#~ msgstr[1] "Членови во исчекување (%d)"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "Корисници во исчекување на одобрение за члнство во групата %s"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "Блокирани корисници од групата „%s“"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Ознаки во забелешките на групата %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Барај"
-
-#~ msgid "Search the site."
-#~ msgstr "Пребарај по мрежното место."
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "Не можев да пронајдам важечки профил за „%s“."

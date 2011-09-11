@@ -19,19 +19,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:14+0000\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:36+0000\n"
 "Last-Translator: Ahmad Sufi Mahmudi\n"
-"Language-Team: Persian <//translatewiki.net/wiki/Portal:fa>\n"
+"Language-Team: Persian <https://translatewiki.net/wiki/Portal:fa>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Language-Code: fa\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6473,14 +6473,6 @@ msgstr "نمی‌توان رمز ورود را برای %s ایجاد کرد"
 msgid "Cannot instantiate class %s."
 msgstr "نمی‌توان گذرواژهٔ جدید را ذخیره کرد."
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "نمی‌توان گذرواژهٔ جدید را ذخیره کرد."
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "نمی‌توان گذرواژهٔ جدید را ذخیره کرد."
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "هیچ پایگاه‌داده یا DSN هیچ‌جا پیدا نشد."
@@ -7993,9 +7985,8 @@ msgid "Pending"
 msgstr ""
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
-msgstr "بازداشتن"
+msgstr "مسدود شده"
 
 #. TRANS: Title for list of group administrators on a group page.
 #, fuzzy
@@ -9959,64 +9950,30 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Invalid avatar URL %s."
-msgstr "نمی‌توان نشانی اینترنتی چهره را خواند«%s»."
-
-#. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "خطا هنگام به‌هنگام‌سازی نمایهٔ از راه دور."
-
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "نمی‌توان دسترسی را برای برنامهٔ %s لغو کرد."
-
-#. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
-msgid "Could not reach profile page %s."
-msgstr "نمی‌توان نمایه را ذخیره کرد."
-
-#. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "نمی‌توان یک کاربر را با نام مستعار %s پیدا کرد."
-
-#. TRANS: Exception.
 #, fuzzy
-msgid "Not a valid webfinger address."
-msgstr "یک نشانی پست الکترونیکی معتبر نیست."
-
-#, fuzzy, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "نمی‌توان نمایه را ذخیره کرد."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "شاخهٔ پس زمینه‌ها قابل نوشتن نیست: %s."
-
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "ایجاد شد"
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "نمی‌توان نشانی اینترنتی چهره را خواند«%s»."
 
 #, fuzzy
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "اعضا"
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "خطا هنگام به‌هنگام‌سازی نمایهٔ از راه دور."
 
 #, fuzzy
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "اعضای گروه %s"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "برچسب‌ها در پیام‌های گروه %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "جست‌وجو"
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "نمی‌توان دسترسی را برای برنامهٔ %s لغو کرد."
 
 #, fuzzy
-#~ msgid "Search the site."
-#~ msgstr "جست‌وجوی وب‌گاه"
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "نمی‌توان نمایه را ذخیره کرد."
+
+#, fuzzy
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "نمی‌توان یک کاربر را با نام مستعار %s پیدا کرد."
+
+#, fuzzy
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "یک نشانی پست الکترونیکی معتبر نیست."
+
+#, fuzzy
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "نمی‌توان نمایه را ذخیره کرد."

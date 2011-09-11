@@ -11,17 +11,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:31+0000\n"
-"Language-Team: Korean <//translatewiki.net/wiki/Portal:ko>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:53+0000\n"
+"Language-Team: Korean <https://translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6216,14 +6216,6 @@ msgstr "%s 에 대한 로그인 토큰을 만들 수 없습니다."
 msgid "Cannot instantiate class %s."
 msgstr "새 비밀번호를 저장할 수 없습니다."
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "새 비밀번호를 저장할 수 없습니다."
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "새 비밀번호를 저장할 수 없습니다."
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "데이터베이스 이름이나 DSN이 어디에도 없습니다."
@@ -7665,7 +7657,6 @@ msgid "Pending"
 msgstr "대기 중 (%d)"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
 msgstr "차단"
 
@@ -9525,81 +9516,30 @@ msgstr "XML이 잘못되었습니다. XRD 루트가 없습니다."
 msgid "Getting backup from file '%s'."
 msgstr "'%s' 파일에서 백업을 가져옵니다."
 
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Invalid avatar URL %s."
-msgstr "아바타 URL \"%s\"을(를) 읽을 수 없습니다."
-
-#. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "원격 프로필 프로필 업데이트 오류."
-
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "%s에 대한 서비스를 찾을 수 없습니다."
-
-#. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
-msgid "Could not reach profile page %s."
-msgstr "프로필 태그를 만들 수 없습니다."
-
-#. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "이름이 %s인 사용자를 찾을 수 없습니다."
-
-#. TRANS: Exception.
 #, fuzzy
-msgid "Not a valid webfinger address."
-msgstr "올바른 메일 주소가 아닙니다."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "아바타 URL \"%s\"을(를) 읽을 수 없습니다."
 
-#, fuzzy, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "프로필을 저장 할 수 없습니다."
+#, fuzzy
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "원격 프로필 프로필 업데이트 오류."
 
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "배경 디렉터리에 쓸 수 없습니다: %s"
+#, fuzzy
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "%s에 대한 서비스를 찾을 수 없습니다."
 
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "만듦"
+#, fuzzy
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "프로필 태그를 만들 수 없습니다."
 
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "회원"
+#, fuzzy
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "이름이 %s인 사용자를 찾을 수 없습니다."
 
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "그룹"
+#, fuzzy
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "올바른 메일 주소가 아닙니다."
 
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "%s 그룹"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "회원"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "%s 그룹 회원"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "%s 밀린 회원"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "%s 차단 사용자"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "%s 그룹의 글에 있는 태그"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "검색"
-
-#~ msgid "Search the site."
-#~ msgstr "사이트 검색."
+#, fuzzy
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "프로필을 저장 할 수 없습니다."

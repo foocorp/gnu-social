@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7360,13 +7360,14 @@ msgid "Could not create login token for %s"
 msgstr ""
 
 #. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
-#: classes/Memcached_DataObject.php:146
+#: classes/Memcached_DataObject.php:146 classes/Memcached_DataObject.php:254
+#: classes/Memcached_DataObject.php:311
 #, php-format
 msgid "Cannot instantiate class %s."
 msgstr ""
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
-#: classes/Memcached_DataObject.php:844
+#: classes/Memcached_DataObject.php:846
 msgid "No database name or DSN found anywhere."
 msgstr ""
 
@@ -7387,96 +7388,96 @@ msgstr ""
 
 #. TRANS: Server exception thrown when a user profile for a notice cannot be found.
 #. TRANS: %1$d is a profile ID (number), %2$d is a notice ID (number).
-#: classes/Notice.php:165
+#: classes/Notice.php:164
 #, php-format
 msgid "No such profile (%1$d) for notice (%2$d)."
 msgstr ""
 
 #. TRANS: Server exception. %s are the error details.
-#: classes/Notice.php:272
+#: classes/Notice.php:271
 #, php-format
 msgid "Database error inserting hashtag: %s."
 msgstr ""
 
 #. TRANS: Client exception thrown if a notice contains too many characters.
-#: classes/Notice.php:358
+#: classes/Notice.php:357
 msgid "Problem saving notice. Too long."
 msgstr ""
 
 #. TRANS: Client exception thrown when trying to save a notice for an unknown user.
-#: classes/Notice.php:363
+#: classes/Notice.php:362
 msgid "Problem saving notice. Unknown user."
 msgstr ""
 
 #. TRANS: Client exception thrown when a user tries to post too many notices in a given time frame.
-#: classes/Notice.php:369
+#: classes/Notice.php:368
 msgid ""
 "Too many notices too fast; take a breather and post again in a few minutes."
 msgstr ""
 
 #. TRANS: Client exception thrown when a user tries to post too many duplicate notices in a given time frame.
-#: classes/Notice.php:376
+#: classes/Notice.php:375
 msgid ""
 "Too many duplicate messages too quickly; take a breather and post again in a "
 "few minutes."
 msgstr ""
 
 #. TRANS: Client exception thrown when a user tries to post while being banned.
-#: classes/Notice.php:384
+#: classes/Notice.php:383
 msgid "You are banned from posting notices on this site."
 msgstr ""
 
 #. TRANS: Client exception thrown in notice when trying to repeat a missing or deleted notice.
-#: classes/Notice.php:431
+#: classes/Notice.php:430
 msgid "Cannot repeat; original notice is missing or deleted."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to repeat an own notice.
-#: classes/Notice.php:436
+#: classes/Notice.php:435
 msgid "You cannot repeat your own notice."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to repeat a non-public notice.
-#: classes/Notice.php:442
+#: classes/Notice.php:441
 msgid "Cannot repeat a private notice."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to repeat a notice you cannot access.
-#: classes/Notice.php:448
+#: classes/Notice.php:447
 msgid "Cannot repeat a notice you cannot read."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to repeat an already repeated notice.
-#: classes/Notice.php:453
+#: classes/Notice.php:452
 msgid "You already repeated that notice."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to reply to a notice a the target has no access to.
 #. TRANS: %1$s is a user nickname, %2$d is a notice ID (number).
-#: classes/Notice.php:465
+#: classes/Notice.php:464
 #, php-format
 msgid "%1$s has no access to notice %2$d."
 msgstr ""
 
 #. TRANS: Server exception thrown when a notice cannot be saved.
 #. TRANS: Server exception thrown when a notice cannot be updated.
-#: classes/Notice.php:565 classes/Notice.php:592
+#: classes/Notice.php:564 classes/Notice.php:591
 msgid "Problem saving notice."
 msgstr ""
 
 #. TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
-#: classes/Notice.php:1143
+#: classes/Notice.php:1142
 msgid "Bad type provided to saveKnownGroups."
 msgstr ""
 
 #. TRANS: Server exception thrown when an update for a group inbox fails.
-#: classes/Notice.php:1235
+#: classes/Notice.php:1234
 msgid "Problem saving group inbox."
 msgstr ""
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1860
+#: classes/Notice.php:1861
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr ""
@@ -9851,27 +9852,27 @@ msgid "api"
 msgstr ""
 
 #. TRANS: Client exception thrown when no author for an activity was found.
-#: lib/microappplugin.php:357
+#: lib/microappplugin.php:358
 msgid "Cannot get author for activity."
 msgstr ""
 
 #. TRANS: Client exception thrown when ...
-#: lib/microappplugin.php:395
+#: lib/microappplugin.php:396
 msgid "Bookmark not posted to this group."
 msgstr ""
 
 #. TRANS: Client exception when ...
-#: lib/microappplugin.php:409
+#: lib/microappplugin.php:410
 msgid "Object not posted to this user."
 msgstr ""
 
 #. TRANS: Server exception thrown when a micro app plugin uses a target that cannot be handled.
-#: lib/microappplugin.php:413
+#: lib/microappplugin.php:414
 msgid "Do not know how to handle this kind of target."
 msgstr ""
 
 #. TRANS: Server exception thrown when a micro app plugin developer has not done his job too well.
-#: lib/microappplugin.php:555
+#: lib/microappplugin.php:556
 msgid "You must implement either adaptNoticeListItem() or showNotice()."
 msgstr ""
 
@@ -11176,44 +11177,4 @@ msgstr ""
 #: scripts/restoreuser.php:62
 #, php-format
 msgid "Getting backup from file '%s'."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URL.
-#: scripts/update_ostatus_profiles.php:56
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URI.
-#: scripts/update_ostatus_profiles.php:67
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URL.
-#: scripts/update_ostatus_profiles.php:77
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr ""
-
-#. TRANS: Exception. %s is a profile URL.
-#: scripts/update_ostatus_profiles.php:136
-#, php-format
-msgid "Could not reach profile page %s."
-msgstr ""
-
-#. TRANS: Exception. %s is a URL.
-#: scripts/update_ostatus_profiles.php:187
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr ""
-
-#. TRANS: Exception.
-#: scripts/update_ostatus_profiles.php:212
-msgid "Not a valid webfinger address."
-msgstr ""
-
-#: scripts/update_ostatus_profiles.php:264
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
 msgstr ""

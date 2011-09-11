@@ -30,17 +30,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:06+0000\n"
-"Language-Team: German <//translatewiki.net/wiki/Portal:de>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:27+0000\n"
+"Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -65,8 +65,8 @@ msgstr "Ein Fehler ist aufgetreten."
 msgid ""
 "No configuration file found. Try running the installation program first."
 msgstr ""
-"Keine Konfigurationsdatei gefunden. Versuchen Sie das Installationsprogramm "
-"zuerst auszuführen."
+"Keine Konfigurationsdatei gefunden. Versuchen Sie, zuerst das "
+"Installationsprogramm auszuführen."
 
 #. TRANS: Error message displayed when trying to access a non-existing page.
 msgid "Unknown page"
@@ -83,11 +83,11 @@ msgstr "Zugang"
 
 #. TRANS: Page notice.
 msgid "Site access settings"
-msgstr "Zugangseinstellungen speichern"
+msgstr "Zugangseinstellungen"
 
 #. TRANS: Form legend for registration form.
 msgid "Registration"
-msgstr "Registrieren"
+msgstr "Registrierung"
 
 #. TRANS: Checkbox instructions for admin setting "Private".
 msgid "Prohibit anonymous users (not logged in) from viewing site?"
@@ -118,7 +118,6 @@ msgid "Closed"
 msgstr "Geschlossen"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
 msgstr "Zugangs-Einstellungen speichern"
 
@@ -180,7 +179,7 @@ msgstr "Liste nicht gefunden."
 #. TRANS: %s is a username.
 #, php-format
 msgid "There was an unexpected error while listing %s."
-msgstr "Ein unerwarteter Fehler ist aufgetreten während der Auflistung von %s."
+msgstr "Ein unerwarteter Fehler ist während der Auflistung von %s aufgetreten."
 
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a profile URL.
@@ -189,8 +188,8 @@ msgid ""
 "There was a problem listing %s. The remote server is probably not responding "
 "correctly. Please try retrying later."
 msgstr ""
-"Es gab ein Problem beim Hinzufügen von %s. Der entfernt liegende Server "
-"antwortet vielleicht nicht richtig. Bitte später noch einmal versuchen."
+"Es gab ein Problem beim auflisten von %s. Der Server antwortet vielleicht "
+"nicht richtig. Bitte versuche es später noch einmal."
 
 #. TRANS: Title after adding a user to a list.
 msgctxt "TITLE"
@@ -201,7 +200,7 @@ msgstr "Hinzugefügt"
 #. TRANS: Server error when page not found (404)
 #. TRANS: Server error when page not found (404).
 msgid "No such page."
-msgstr "Seite nicht vorhanden"
+msgstr "Seite nicht vorhanden."
 
 #. TRANS: Client error when user not found for an action.
 #. TRANS: Client error when user not found for an rss related action.
@@ -313,7 +312,7 @@ msgid ""
 "to them](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
 "Du kannst versuchen, [%1$s in seinem Profil einen Stups zu geben](../%2$s) "
-"oder [ihm etwas posten](%%%%action.newnotice%%%%?status_textarea=%s)."
+"oder [ihm etwas posten](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
 #. TRANS: Encouragement displayed on empty timeline user pages for anonymous users.
 #. TRANS: %s is a user nickname. This message contains Markdown links. Keep "](" together.
@@ -517,7 +516,7 @@ msgstr "Empfänger nicht gefunden."
 #. TRANS: Client error displayed trying to direct message another user who's not a friend (403).
 msgid "Cannot send direct messages to users who aren't your friend."
 msgstr ""
-"Es können keine direkten Nachrichten an Benutzer geschickt werden mit denen "
+"Es können keine direkten Nachrichten an Benutzer geschickt werden, mit denen "
 "du nicht befreundet bist."
 
 #. TRANS: Client error displayed trying to direct message self (403).
@@ -542,11 +541,11 @@ msgstr "Diese Nachricht ist bereits ein Favorit!"
 #. TRANS: Server error displayed when trying to mark a notice as favorite fails in the database.
 #. TRANS: Error message text shown when a favorite could not be set.
 msgid "Could not create favorite."
-msgstr "Konnte keinen Favoriten erstellen."
+msgstr "Konnte den Favoriten nicht erstellen."
 
 #. TRANS: Client error displayed when trying to remove a favourite that was not a favourite.
 msgid "That status is not a favorite."
-msgstr "Diese Nachricht ist kein Favorit!"
+msgstr "Diese Nachricht ist kein Favorit."
 
 #. TRANS: Client error displayed when removing a favourite has failed.
 #. TRANS: Server error displayed when removing a favorite from the database fails.
@@ -570,7 +569,7 @@ msgstr "Kann Benutzer nicht entfolgen: Benutzer nicht gefunden."
 
 #. TRANS: Client error displayed when trying to unfollow self.
 msgid "You cannot unfollow yourself."
-msgstr "Du kannst dich nicht selbst entfolgen!"
+msgstr "Du kannst dich nicht selbst entfolgen."
 
 #. TRANS: Client error displayed when supplying invalid parameters to an API call checking if a friendship exists.
 msgid "Two valid IDs or nick names must be supplied."
@@ -582,7 +581,7 @@ msgstr "Konnte öffentlichen Stream nicht abrufen."
 
 #. TRANS: Client error displayed when a target user could not be determined showing friendship.
 msgid "Could not find target user."
-msgstr "Konnte keine Statusmeldungen finden."
+msgstr "Konnte Zielbenutzer nicht finden."
 
 #. TRANS: Client error trying to create a group with a nickname this is already in use.
 #. TRANS: API validation exception thrown when nickname is already used.
@@ -591,7 +590,7 @@ msgstr "Konnte keine Statusmeldungen finden."
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Form validation error displayed when trying to register with an existing nickname.
 msgid "Nickname already in use. Try another one."
-msgstr "Benutzername wird bereits verwendet. Suche dir einen anderen aus."
+msgstr "Benutzername wird bereits verwendet. Versuche einen anderen."
 
 #. TRANS: Client error in form for group creation.
 #. TRANS: API validation exception thrown when nickname does not validate.
@@ -611,8 +610,7 @@ msgstr "Ungültiger Benutzername."
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Form validation error displayed when trying to register with an invalid homepage URL.
 msgid "Homepage is not a valid URL."
-msgstr ""
-"Homepage ist keine gültige URL. URLs müssen ein Präfix wie http enthalten."
+msgstr "Die Homepage ist keine gültige URL."
 
 #. TRANS: Client error in form for group creation.
 #. TRANS: API validation exception thrown when full name does not validate.
@@ -639,8 +637,8 @@ msgstr "Der bürgerliche Name ist zu lang (maximal 255 Zeichen)."
 #, php-format
 msgid "Description is too long (maximum %d character)."
 msgid_plural "Description is too long (maximum %d characters)."
-msgstr[0] "Die Beschreibung ist zu lang (max. %d Zeichen)."
-msgstr[1] "Die Beschreibung ist zu lang (max. %d Zeichen)."
+msgstr[0] "Die Beschreibung ist zu lang (maximal %d Zeichen)."
+msgstr[1] "Die Beschreibung ist zu lang (maximal %d Zeichen)."
 
 #. TRANS: Client error shown when providing too long a location during group creation.
 #. TRANS: API validation exception thrown when location does not validate.
@@ -6449,14 +6447,6 @@ msgstr "Konnte keinen Login-Token für %s erstellen"
 msgid "Cannot instantiate class %s."
 msgstr "Kann neues Passwort nicht speichern."
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "Kann neues Passwort nicht speichern."
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "Kann neues Passwort nicht speichern."
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "Nirgendwo einen Datenbanknamen oder DSN gefunden."
@@ -7978,7 +7968,6 @@ msgid "Pending"
 msgstr "Ausstehend (%d)"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
 msgstr "Blockiert"
 
@@ -9985,89 +9974,30 @@ msgstr "Ungültiges XML, XRD-Root fehlt."
 msgid "Getting backup from file '%s'."
 msgstr "Hole Backup von der Datei „%s“."
 
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Konnte Avatar-URL nicht öffnen „%s“"
-
-#. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Fehler beim Aktualisieren des entfernten Profils."
-
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Kann Zugang dieses Programm nicht entfernen: %s."
-
-#. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
-msgid "Could not reach profile page %s."
-msgstr "Konnte Profil nicht speichern."
-
-#. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Konnte keinen Benutzer mit dem Namen „%s“ finden."
-
-#. TRANS: Exception.
 #, fuzzy
-msgid "Not a valid webfinger address."
-msgstr "Ungültige E-Mail-Adresse."
-
-#, fuzzy, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "Konnte Profil nicht speichern."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "Hintergrund-Verzeichnis ist nicht beschreibbar: %s."
-
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "Erstellt"
-
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Mitglieder"
-
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "Gruppe"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "%s-Gruppe"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "Mitglieder"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "%s-Gruppen-Mitglieder"
-
-#~ msgctxt "MENU"
-#~ msgid "Pending members (%d)"
-#~ msgid_plural "Pending members (%d)"
-#~ msgstr[0] "Ausstehende Mitglieder (%d)"
-#~ msgstr[1] "Ausstehende Mitglieder (%d)"
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "Konnte Avatar-URL nicht öffnen „%s“"
 
 #, fuzzy
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "%s Gruppen-Mitglieder"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "Blockierte Benutzer der Gruppe „%s“"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Tags in den Nachrichten der Gruppe „%s“"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Suchen"
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "Fehler beim Aktualisieren des entfernten Profils."
 
 #, fuzzy
-#~ msgid "Search the site."
-#~ msgstr "Website durchsuchen"
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "Kann Zugang dieses Programm nicht entfernen: %s."
+
+#, fuzzy
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "Konnte Profil nicht speichern."
+
+#, fuzzy
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "Konnte keinen Benutzer mit dem Namen „%s“ finden."
+
+#, fuzzy
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "Ungültige E-Mail-Adresse."
+
+#, fuzzy
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "Konnte Profil nicht speichern."

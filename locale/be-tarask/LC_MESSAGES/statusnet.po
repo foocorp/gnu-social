@@ -12,15 +12,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:00+0000\n"
-"Language-Team: Belarusian (Taraškievica orthography) <//translatewiki.net/"
-"wiki/Portal:be-tarask>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:14+0000\n"
+"Language-Team: Belarusian (Taraškievica orthography) <https://translatewiki."
+"net/wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: be-tarask\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -4316,7 +4316,7 @@ msgstr "Воблака сьпісаў"
 #, php-format
 msgid "1 person listed"
 msgid_plural "%d people listed"
-msgstr[0] "1 асоба ў сьпісе"
+msgstr[0] "%d асоба ў сьпісе"
 msgstr[1] "%d асобы ў сьпісе"
 
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
@@ -4332,19 +4332,19 @@ msgstr "Воблака публічных тэгаў"
 #. TRANS: %s is the StatusNet sitename.
 #, php-format
 msgid "These are most popular recent tags on %s"
-msgstr ""
+msgstr "Гэта самыя папулярныя апошнія тэгі на %s"
 
 #. TRANS: This message contains a Markdown URL. The link description is between
 #. TRANS: square brackets, and the link between parentheses. Do not separate "]("
 #. TRANS: and do not change the URL part.
 #, php-format
 msgid "No one has posted a notice with a [hashtag](%%doc.tags%%) yet."
-msgstr ""
+msgstr "Ніхто яшчэ не пакінуў запісаў з дапамогай [hashtag](%%doc.tags%%)."
 
 #. TRANS: Message shown to a logged in user for the public tag cloud
 #. TRANS: while no tags exist yet. "One" refers to the non-existing hashtag.
 msgid "Be the first to post one!"
-msgstr ""
+msgstr "Дашліце паведамленьне першым!"
 
 #. TRANS: Message shown to a anonymous user for the public tag cloud
 #. TRANS: while no tags exist yet. "One" refers to the non-existing hashtag.
@@ -4356,161 +4356,170 @@ msgid ""
 "Why not [register an account](%%action.register%%) and be the first to post "
 "one!"
 msgstr ""
+"Чаму не [стварыць рахунак](%%action.register%%) і стаць першым, хто дашле "
+"паведамленьне!"
 
 #. TRANS: Client error displayed trying to recover password while already logged in.
 msgid "You are already logged in!"
-msgstr ""
+msgstr "Вы ўжо ўвайшлі!"
 
 #. TRANS: Client error displayed when password recovery code is not correct.
 msgid "No such recovery code."
-msgstr ""
+msgstr "Няма такога коду аднаўленьня."
 
 #. TRANS: Client error displayed when no proper password recovery code was submitted.
 msgid "Not a recovery code."
-msgstr ""
+msgstr "Гэта не код аднаўленьня."
 
 #. TRANS: Server error displayed trying to recover password without providing a user.
 msgid "Recovery code for unknown user."
-msgstr ""
+msgstr "Код аднаўленьня для невядомага карыстальніка."
 
 #. TRANS: Server error displayed removing a password recovery code from the database.
 msgid "Error with confirmation code."
-msgstr ""
+msgstr "Памылка з кодам пацьверджаньня."
 
 #. TRANS: Client error displayed trying to recover password with too old a recovery code.
 msgid "This confirmation code is too old. Please start again."
-msgstr ""
+msgstr "Гэты код пацьверджаньня састарэў. Калі ласка, паспрабуйце яшчэ раз."
 
 #. TRANS: Server error displayed when updating a user's e-mail address in the database fails while recovering a password.
 msgid "Could not update user with confirmed email address."
 msgstr ""
+"Немагчыма абнавіць карыстальніка з пацьверджаным адрасам электроннай пошты."
 
 #. TRANS: Page notice for password recovery page.
 msgid ""
 "If you have forgotten or lost your password, you can get a new one sent to "
 "the email address you have stored in your account."
 msgstr ""
+"Калі Вы забылі ці страцілі Ваш пароль, Вы можаце атрымаць новы, даслаўшы "
+"запыт на адрас электроннай пошты, які Вы пазначылі ў Вашым рахунку."
 
 #. TRANS: Page notice for password change page.
 msgid "You have been identified. Enter a new password below."
-msgstr ""
+msgstr "Вы былі ідэнтыфікаваны. Увядзіце новы пароль ніжэй."
 
 #. TRANS: Fieldset legend for password recovery page.
 msgid "Password recovery"
-msgstr ""
+msgstr "Аднаўленьне паролю"
 
 #. TRANS: Field label on password recovery page.
 msgid "Nickname or email address"
-msgstr ""
+msgstr "Імя карыстальніка альбо адрас электроннай пошты"
 
 #. TRANS: Title for field label on password recovery page.
 msgid "Your nickname on this server, or your registered email address."
 msgstr ""
+"Вашае імя на гэтым сэрвэры ці Ваш зарэгістраваны адрас электроннай пошты."
 
 #. TRANS: Field label on password recovery page.
 msgid "Recover"
-msgstr ""
+msgstr "Аднавіць"
 
 #. TRANS: Button text on password recovery page.
 msgctxt "BUTTON"
 msgid "Recover"
-msgstr ""
+msgstr "Аднавіць"
 
 #. TRANS: Title for password recovery page in password reset mode.
 msgid "Reset password"
-msgstr ""
+msgstr "Ачысьціць пароль"
 
 #. TRANS: Title for password recovery page in password recover mode.
 msgid "Recover password"
-msgstr ""
+msgstr "Аднавіць пароль"
 
 #. TRANS: Title for password recovery page in email sent mode.
 #. TRANS: Subject for password recovery e-mail.
 msgid "Password recovery requested"
-msgstr ""
+msgstr "Запытанае аднаўленьне паролю"
 
 #. TRANS: Title for password recovery page in password saved mode.
 msgid "Password saved"
-msgstr ""
+msgstr "Пароль захаваны"
 
 #. TRANS: Title for field label for password reset form.
 msgid "6 or more characters, and do not forget it!"
-msgstr ""
+msgstr "6 ці болей сымбаляў, і не забывайце яго!"
 
 #. TRANS: Button text for password reset form.
 msgctxt "BUTTON"
 msgid "Reset"
-msgstr ""
+msgstr "Скінуць"
 
 #. TRANS: Form instructions for password recovery form.
 msgid "Enter a nickname or email address."
-msgstr ""
+msgstr "Увядзіце імя ці адрас электроннай пошты."
 
 #. TRANS: User notification after an e-mail with instructions was sent from the password recovery form.
 msgid ""
 "Instructions for recovering your password have been sent to the email "
 "address registered to your account."
 msgstr ""
+"Інструкцыі для аднаўленьня Вашага паролю былі дасланыя на адрас электроннай "
+"пошты, пададзены падчас стварэньня Вашага рахунку."
 
 #. TRANS: Client error displayed when trying to reset as password without providing a user.
 msgid "Unexpected password reset."
-msgstr ""
+msgstr "Нечаканае скіданьне паролю."
 
 #. TRANS: Reset password form validation error message.
 msgid "Password must be 6 characters or more."
-msgstr ""
+msgstr "Пароль павінен утрымліваць 6 сымбаляў ці больш."
 
 #. TRANS: Reset password form validation error message.
 msgid "Password and confirmation do not match."
-msgstr ""
+msgstr "Пароль і пацьверджаньне не супадаюць."
 
 #. TRANS: Server error displayed when something does wrong with the user object during password reset.
 #. TRANS: Server error displayed when saving fails during user registration.
 msgid "Error setting user."
-msgstr ""
+msgstr "Памылка наладаў карыстальніка."
 
 #. TRANS: Success message for user after password reset.
 msgid "New password successfully saved. You are now logged in."
-msgstr ""
+msgstr "Новы пароль захаваны пасьпяхова. Цяпер вы ўвайшлі ў сыстэму."
 
 #. TRANS: Client exception thrown when no ID parameter was provided.
 msgid "No id parameter."
-msgstr ""
+msgstr "Няма парамэтру id."
 
 #. TRANS: Client exception thrown when an invalid ID parameter was provided for a file.
 #. TRANS: %d is the provided ID for which the file is not present (number).
 #, php-format
 msgid "No such file \"%d\"."
-msgstr ""
+msgstr "Няма такога файла «%d»."
 
 #. TRANS: Client error displayed when trying to register to an invite-only site without an invitation.
 msgid "Sorry, only invited people can register."
-msgstr ""
+msgstr "Прабачце, стварэньне рахункаў толькі па запрашэньні."
 
 #. TRANS: Client error displayed when trying to register to an invite-only site without a valid invitation.
 msgid "Sorry, invalid invitation code."
-msgstr ""
+msgstr "Прабачце, няслушны код запрашэньня."
 
 #. TRANS: Title for registration page after a succesful registration.
 msgid "Registration successful"
-msgstr ""
+msgstr "Рахунак створаны пасьпяхова"
 
 #. TRANS: Title for registration page.
 msgctxt "TITLE"
 msgid "Register"
-msgstr ""
+msgstr "Стварыць рахунак"
 
 #. TRANS: Client error displayed when trying to register to a closed site.
 msgid "Registration not allowed."
-msgstr ""
+msgstr "Стварэньне рахунку не дазволенае."
 
 #. TRANS: Form validation error displayed when trying to register without agreeing to the site license.
 msgid "You cannot register if you do not agree to the license."
 msgstr ""
+"Вы ня можаце стварыць рахунак, калі ня згодзіцеся з ліцэнзійным пагадненьнем."
 
 #. TRANS: Form validation error displayed when trying to register with an already registered e-mail address.
 msgid "Email address already exists."
-msgstr ""
+msgstr "Гэты адрас электроннай пошты ўжо выкарыстоўваецца."
 
 #. TRANS: Form validation error displayed when trying to register with an invalid username or password.
 msgid "Invalid username or password."
@@ -6203,14 +6212,6 @@ msgstr ""
 #. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
 #, fuzzy, php-format
 msgid "Cannot instantiate class %s."
-msgstr "Немагчыма захаваць новы пароль."
-
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "Немагчыма захаваць новы пароль."
-
-#, fuzzy
-msgid "Cannot instantiate class "
 msgstr "Немагчыма захаваць новы пароль."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -9403,39 +9404,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr ""
-
-#. TRANS: Exception. %s is a profile URL.
-#, php-format
-msgid "Could not reach profile page %s."
-msgstr ""
-
-#. TRANS: Exception. %s is a URL.
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr ""
-
-#. TRANS: Exception.
-msgid "Not a valid webfinger address."
-msgstr ""
-
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr ""
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "Дырэкторыя фонавых выяваў недаступная для запісу: %s."

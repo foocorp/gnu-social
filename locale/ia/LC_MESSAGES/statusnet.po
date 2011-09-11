@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:25+0000\n"
-"Language-Team: Interlingua <//translatewiki.net/wiki/Portal:ia>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:48+0000\n"
+"Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6128,12 +6128,12 @@ msgstr "StatusNet %s"
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This site is powered by %1$s version %2$s, Copyright 2008-2011 StatusNet, "
 "Inc. and contributors."
 msgstr ""
-"Iste sito es realisate per %1$s version %2$s, copyright 2008-2010 StatusNet, "
+"Iste sito es realisate per %1$s version %2$s, copyright 2008-2011 StatusNet, "
 "Inc. e contributores."
 
 #. TRANS: Header for StatusNet contributors section on the version page.
@@ -6305,14 +6305,6 @@ msgstr "Non poteva crear indicio de identification pro %s"
 #. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
 #, php-format
 msgid "Cannot instantiate class %s."
-msgstr "Impossibile crear un instantia del classe %s."
-
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "Impossibile crear un instantia del classe %s."
-
-#, fuzzy
-msgid "Cannot instantiate class "
 msgstr "Impossibile crear un instantia del classe %s."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
@@ -7765,12 +7757,10 @@ msgid "All members"
 msgstr "Tote le membros"
 
 #. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
-#, fuzzy
 msgid "Pending"
-msgstr "Pendente (%d)"
+msgstr "Pendente"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
 msgstr "Blocate"
 
@@ -9663,86 +9653,23 @@ msgstr "XML invalide, radice XRD mancante."
 msgid "Getting backup from file '%s'."
 msgstr "Obtene copia de reserva ex file '%s'."
 
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Invalid avatar URL %s."
-msgstr "URL de avatar %s invalide."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "URL de avatar %s invalide."
 
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Tentava actualisar avatar pro profilo remote non salveguardate %s."
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "Tentava actualisar avatar pro profilo remote non salveguardate %s."
 
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Incapace de obtener avatar ab %s."
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "Incapace de obtener avatar ab %s."
 
-#. TRANS: Exception. %s is a profile URL.
-#, php-format
-msgid "Could not reach profile page %s."
-msgstr "Non poteva attinger pagina de profilo %s."
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "Non poteva attinger pagina de profilo %s."
 
-#. TRANS: Exception. %s is a URL.
-#, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Non poteva trovar un URL de syndication pro pagina de profilo %s."
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "Non poteva trovar un URL de syndication pro pagina de profilo %s."
 
-#. TRANS: Exception.
-msgid "Not a valid webfinger address."
-msgstr "Adresse webfinger invalide."
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "Adresse webfinger invalide."
 
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "Non poteva trovar un profilo valide pro \"%s\"."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "Directorio de fundo non scriptibile: %s."
-
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "Create"
-
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Membros"
-
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "Gruppo"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "Gruppo %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "Membros"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "Membros del gruppo %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Pending members (%d)"
-#~ msgid_plural "Pending members (%d)"
-#~ msgstr[0] "Membro pendente"
-#~ msgstr[1] "Membros pendente (%d)"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "%s membros pendente"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "%s usatores blocate"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Etiquettas in le notas del gruppo %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Cercar"
-
-#~ msgid "Search the site."
-#~ msgstr "Cercar in le sito."
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "Non poteva trovar un profilo valide pro \"%s\"."

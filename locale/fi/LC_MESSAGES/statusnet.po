@@ -18,17 +18,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:15+0000\n"
-"Language-Team: Finnish <//translatewiki.net/wiki/Portal:fi>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:38+0000\n"
+"Language-Team: Finnish <https://translatewiki.net/wiki/Portal:fi>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: fi\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, fuzzy, php-format
@@ -6372,14 +6372,6 @@ msgstr "Ei voitu lisätä aliasta."
 msgid "Cannot instantiate class %s."
 msgstr "Uutta salasanaa ei voida tallentaa."
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "Uutta salasanaa ei voida tallentaa."
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "Uutta salasanaa ei voida tallentaa."
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr ""
@@ -9753,79 +9745,30 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Kuvan URL-osoitetta '%s' ei voi avata."
-
-#. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Virhe tapahtui päivitettäessä etäprofiilia."
-
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Käytä tätä lomaketta muokataksesi ryhmää."
-
-#. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
-msgid "Could not reach profile page %s."
-msgstr "Profiilin tallennus epäonnistui."
-
-#. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Ei voitu päivittää käyttäjälle vahvistettua sähköpostiosoitetta."
-
-#. TRANS: Exception.
 #, fuzzy
-msgid "Not a valid webfinger address."
-msgstr "Tuo ei ole kelvollinen sähköpostiosoite."
-
-#, fuzzy, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "Profiilin tallennus epäonnistui."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "Taustahakemistoon ei voi kirjoittaa: %s."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "Kuvan URL-osoitetta '%s' ei voi avata."
 
 #, fuzzy
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "Luotu"
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "Virhe tapahtui päivitettäessä etäprofiilia."
 
 #, fuzzy
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Jäsenet"
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "Käytä tätä lomaketta muokataksesi ryhmää."
 
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "Ryhmä"
+#, fuzzy
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "Profiilin tallennus epäonnistui."
 
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "Ryhmä %s"
+#, fuzzy
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "Ei voitu päivittää käyttäjälle vahvistettua sähköpostiosoitetta."
 
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "Ryhmän %s jäsenet"
+#, fuzzy
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "Tuo ei ole kelvollinen sähköpostiosoite."
 
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "Ryhmän %s jäsenyyttä hakeneet"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "Ryhmän %s estetyt käyttäjät"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Tagit ryhmän %s päivityksissä"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Haku"
-
-#~ msgid "Search the site."
-#~ msgstr "Hae sivustolta."
+#, fuzzy
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "Profiilin tallennus epäonnistui."

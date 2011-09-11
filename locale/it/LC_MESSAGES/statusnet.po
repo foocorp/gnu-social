@@ -15,17 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:26+0000\n"
-"Language-Team: Italian <//translatewiki.net/wiki/Portal:it>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:49+0000\n"
+"Language-Team: Italian <https://translatewiki.net/wiki/Portal:it>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: it\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6473,14 +6473,6 @@ msgstr "Impossibile creare il token di accesso per %s"
 msgid "Cannot instantiate class %s."
 msgstr "Impossibile salvare la nuova password."
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "Impossibile salvare la nuova password."
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "Impossibile salvare la nuova password."
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr "Non è stato trovato un nome di database o DNS."
@@ -8004,7 +7996,6 @@ msgid "Pending"
 msgstr ""
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
 msgstr "Bloccato"
 
@@ -9966,83 +9957,30 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Invalid avatar URL %s."
-msgstr "Impossibile leggere l'URL \"%s\" dell'immagine."
-
-#. TRANS: Server exception. %s is a URI.
-#, fuzzy, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr "Errore nell'aggiornare il profilo remoto."
-
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr "Impossibile revocare l'accesso per l'applicazione: %s."
-
-#. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
-msgid "Could not reach profile page %s."
-msgstr "Impossibile salvare il profilo."
-
-#. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "Impossibile trovare un utente col soprannome %s."
-
-#. TRANS: Exception.
 #, fuzzy
-msgid "Not a valid webfinger address."
-msgstr "Non è un indirizzo email valido."
-
-#, fuzzy, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "Impossibile salvare il profilo."
-
-#~ msgid "Background directory not writable: %s."
-#~ msgstr "Directory degli sfondi non scrivibile: %s."
-
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "Creato"
-
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Membri"
-
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "Gruppo"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "Gruppo %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "Membri"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "Membri del gruppo %s"
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "Impossibile leggere l'URL \"%s\" dell'immagine."
 
 #, fuzzy
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "Membri del gruppo %s"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "Utenti bloccati di %s"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Etichette nei messaggi del gruppo %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Cerca"
+#~ msgid "Tried to update avatar for unsaved remote profile %s."
+#~ msgstr "Errore nell'aggiornare il profilo remoto."
 
 #, fuzzy
-#~ msgid "Search the site."
-#~ msgstr "Cerca nel sito"
+#~ msgid "Unable to fetch avatar from %s."
+#~ msgstr "Impossibile revocare l'accesso per l'applicazione: %s."
+
+#, fuzzy
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "Impossibile salvare il profilo."
+
+#, fuzzy
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "Impossibile trovare un utente col soprannome %s."
+
+#, fuzzy
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "Non è un indirizzo email valido."
+
+#, fuzzy
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "Impossibile salvare il profilo."

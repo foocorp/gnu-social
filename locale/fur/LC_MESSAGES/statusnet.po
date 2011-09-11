@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 09:27+0000\n"
-"PO-Revision-Date: 2011-08-30 09:30:17+0000\n"
-"Language-Team: Friulian <//translatewiki.net/wiki/Portal:fur>\n"
+"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"PO-Revision-Date: 2011-09-11 13:50:40+0000\n"
+"Language-Team: Friulian <https://translatewiki.net/wiki/Portal:fur>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-20 19:35:32+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r95739); Translate extension (2011-08-26)\n"
-"X-Translation-Project: translatewiki.net at //translatewiki.net\n"
+"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: fur\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -6179,14 +6179,6 @@ msgstr ""
 msgid "Cannot instantiate class %s."
 msgstr "No si pues istanziâ la clas"
 
-#, fuzzy
-msgid "Cannot instantiate a "
-msgstr "No si pues istanziâ la clas"
-
-#, fuzzy
-msgid "Cannot instantiate class "
-msgstr "No si pues istanziâ la clas"
-
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
 msgstr ""
@@ -9408,84 +9400,21 @@ msgstr ""
 msgid "Getting backup from file '%s'."
 msgstr ""
 
-#. TRANS: Server exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Invalid avatar URL %s."
-msgstr "La etichete no je valide: \"%s\"."
-
-#. TRANS: Server exception. %s is a URI.
-#, php-format
-msgid "Tried to update avatar for unsaved remote profile %s."
-msgstr ""
-
-#. TRANS: Server exception. %s is a URL.
-#, php-format
-msgid "Unable to fetch avatar from %s."
-msgstr ""
-
-#. TRANS: Exception. %s is a profile URL.
-#, fuzzy, php-format
-msgid "Could not reach profile page %s."
-msgstr "No si à podût salvâ il profîl."
-
-#. TRANS: Exception. %s is a URL.
-#, fuzzy, php-format
-msgid "Could not find a feed URL for profile page %s."
-msgstr "No si à podût salvâ il profîl."
-
-#. TRANS: Exception.
 #, fuzzy
-msgid "Not a valid webfinger address."
-msgstr "La direzion di pueste eletroniche no je valide."
+#~ msgid "Invalid avatar URL %s."
+#~ msgstr "La etichete no je valide: \"%s\"."
 
-#, php-format
-msgid "Could not find a valid profile for \"%s\"."
-msgstr "No si à podût cjatâ un profîl valit par \"%s\","
+#, fuzzy
+#~ msgid "Could not reach profile page %s."
+#~ msgstr "No si à podût salvâ il profîl."
 
-#~ msgctxt "LABEL"
-#~ msgid "Created"
-#~ msgstr "Creât"
+#, fuzzy
+#~ msgid "Could not find a feed URL for profile page %s."
+#~ msgstr "No si à podût salvâ il profîl."
 
-#~ msgctxt "LABEL"
-#~ msgid "Members"
-#~ msgstr "Membris"
+#, fuzzy
+#~ msgid "Not a valid webfinger address."
+#~ msgstr "La direzion di pueste eletroniche no je valide."
 
-#~ msgctxt "MENU"
-#~ msgid "Group"
-#~ msgstr "Grup"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group"
-#~ msgstr "Grup %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Members"
-#~ msgstr "Membris"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s group members"
-#~ msgstr "Membris dal grup %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Pending members (%d)"
-#~ msgid_plural "Pending members (%d)"
-#~ msgstr[0] "Membri in spiete (%d)"
-#~ msgstr[1] "Membris in spiete (%d)"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s pending members"
-#~ msgstr "membris in spiete su %s"
-
-#~ msgctxt "TOOLTIP"
-#~ msgid "%s blocked users"
-#~ msgstr "Utents blocâts in %s"
-
-#~ msgid "Tags in %s group's notices"
-#~ msgstr "Etichetis dai avîs dal grup %s"
-
-#~ msgctxt "MENU"
-#~ msgid "Search"
-#~ msgstr "Cîr"
-
-#~ msgid "Search the site."
-#~ msgstr "Cîr tal sît"
+#~ msgid "Could not find a valid profile for \"%s\"."
+#~ msgstr "No si à podût cjatâ un profîl valit par \"%s\","
