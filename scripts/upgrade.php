@@ -300,10 +300,12 @@ function initFaveURI()
             try {
                 $fave->decache();
                 $fave->query(sprintf('update fave '.
-                                     'set uri = "%s" '.
+                                     'set uri = "%s", '.
+                                     '    modified = "%s" '.
                                      'where user_id = %d '.
                                      'and notice_id = %d',
                                      Fave::newURI($fave->user_id, $fave->notice_id, $fave->modified),
+                                     common_sql_date(strtotime($fave->modified)),
                                      $fave->user_id,
                                      $fave->notice_id));
             } catch (Exception $e) {
