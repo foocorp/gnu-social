@@ -203,14 +203,14 @@ class Group_member extends Managed_DataObject
         if (!empty($this->uri)) {
             return $this->uri;
         } else {
-            return self::newURI($this->member_id, $this->group_id, $this->created);
+            return self::newURI($this->profile_id, $this->group_id, $this->created);
         }
     }
 
-    static function newURI($member_id, $group_id, $created)
+    static function newURI($profile_id, $group_id, $created)
     {
         return TagURI::mint('join:%d:%d:%s',
-                            $member_id,
+                            $profile_id,
                             $group_id,
                             common_date_iso8601($created));
     }
