@@ -92,9 +92,6 @@ class ShowstreamAction extends ProfileAction
 
         // For YADIS discovery, we also have a <meta> tag
 
-        header('X-XRDS-Location: '. common_local_url('xrds', array('nickname' =>
-                                                                   $this->user->nickname)));
-
         $this->showPage();
     }
 
@@ -171,11 +168,6 @@ class ShowstreamAction extends ProfileAction
 
     function extraHead()
     {
-        // for remote subscriptions etc.
-        $this->element('meta', array('http-equiv' => 'X-XRDS-Location',
-                                     'content' => common_local_url('xrds', array('nickname' =>
-                                                                                 $this->user->nickname))));
-
         if ($this->profile->bio) {
             $this->element('meta', array('name' => 'description',
                                          'content' => $this->profile->bio));
