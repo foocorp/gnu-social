@@ -2312,3 +2312,31 @@ function common_is_email($str)
 {
     return (strpos($str, '@') !== false);
 }
+
+function common_init_stats()
+{
+    global $_mem, $_ts;
+
+    $_mem = memory_get_usage(true);
+    $_ts  = microtime(true);
+}
+
+function common_log_delta($comment=null)
+{
+    global $_mem, $_ts;
+
+    $mold = $_mem;
+    $told = $_ts;
+
+    $_mem = memory_get_usage(true);
+    $_ts  = microtime(true);
+
+    $mtotal = $_mem - $mold;
+    $ttotal = $_ts - $told;
+
+    if (empty($comment)) {
+        $comment = 'Delta';
+    }
+
+    common_debug(sprintf("%s: %d %d", $comment, $mtotal, round($ttotal * 1000000)));
+}
