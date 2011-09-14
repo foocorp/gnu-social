@@ -59,7 +59,7 @@ class URLMapper
     protected $variables = array();
     protected $reverse = array();
 
-    function connect($path, $args, $paramPatterns=null)
+    function connect($path, $args, $paramPatterns=array())
     {
         if (!array_key_exists(self::ACTION, $args)) {
             throw new Exception(sprintf("Can't connect %s; path has no action.", $path));
