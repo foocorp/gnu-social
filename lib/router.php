@@ -69,19 +69,7 @@ class Router
     function __construct()
     {
         if (empty($this->m)) {
-            if (!common_config('router', 'cache')) {
-                $this->m = $this->initialize();
-            } else {
-                $k = self::cacheKey();
-                $c = Cache::instance();
-                $m = $c->get($k);
-                if (!empty($m)) {
-                    $this->m = $m;
-                } else {
-                    $this->m = $this->initialize();
-                    $c->set($k, $this->m);
-                }
-            }
+            $this->m = $this->initialize();
         }
     }
 
