@@ -1237,12 +1237,12 @@ function common_local_url($action, $args=null, $params=null, $fragment=null, $ad
         $ssl = common_is_sensitive($action);
 
         if (common_config('site','fancy')) {
-            $url = common_path(mb_substr($path, 1), $ssl, $addSession);
+            $url = common_path($path, $ssl, $addSession);
         } else {
             if (mb_strpos($path, '/index.php') === 0) {
-                $url = common_path(mb_substr($path, 1), $ssl, $addSession);
+                $url = common_path($path, $ssl, $addSession);
             } else {
-                $url = common_path('index.php'.$path, $ssl, $addSession);
+                $url = common_path('index.php/'.$path, $ssl, $addSession);
             }
         }
         Event::handle('EndLocalURL', array(&$action, &$params, &$fragment, &$addSession, &$url));
