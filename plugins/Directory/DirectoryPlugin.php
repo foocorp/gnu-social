@@ -132,6 +132,11 @@ class DirectoryPlugin extends Plugin
             array('filter' => '([0-9a-zA-Z_]{1,64}|0-9)')
         );
 
+        $m->connect(
+            'groups',
+            array('action' => 'groupdirectory')
+        );
+
         return true;
     }
 

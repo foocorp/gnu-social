@@ -1237,12 +1237,12 @@ function common_local_url($action, $args=null, $params=null, $fragment=null, $ad
         $ssl = common_is_sensitive($action);
 
         if (common_config('site','fancy')) {
-            $url = common_path(mb_substr($path, 1), $ssl, $addSession);
+            $url = common_path($path, $ssl, $addSession);
         } else {
             if (mb_strpos($path, '/index.php') === 0) {
-                $url = common_path(mb_substr($path, 1), $ssl, $addSession);
+                $url = common_path($path, $ssl, $addSession);
             } else {
-                $url = common_path('index.php'.$path, $ssl, $addSession);
+                $url = common_path('index.php/'.$path, $ssl, $addSession);
             }
         }
         Event::handle('EndLocalURL', array(&$action, &$params, &$fragment, &$addSession, &$url));
@@ -2311,4 +2311,32 @@ function common_log_perf_counters()
 function common_is_email($str)
 {
     return (strpos($str, '@') !== false);
+}
+
+function common_init_stats()
+{
+    global $_mem, $_ts;
+
+    $_mem = memory_get_usage(true);
+    $_ts  = microtime(true);
+}
+
+function common_log_delta($comment=null)
+{
+    global $_mem, $_ts;
+
+    $mold = $_mem;
+    $told = $_ts;
+
+    $_mem = memory_get_usage(true);
+    $_ts  = microtime(true);
+
+    $mtotal = $_mem - $mold;
+    $ttotal = $_ts - $told;
+
+    if (empty($comment)) {
+        $comment = 'Delta';
+    }
+
+    common_debug(sprintf("%s: %d %d", $comment, $mtotal, round($ttotal * 1000000)));
 }
