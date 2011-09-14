@@ -147,7 +147,7 @@ class URLMapper
                     }
                 }
                 // success
-                return $tryPath;
+                $path = $tryPath;
             } else {
                 list($tryArgs, $format, $paramNames) = $candidate;
 
@@ -171,14 +171,17 @@ class URLMapper
                 }
 
                 $path = vsprintf($format, $toFormat);
-
-                if (!empty($qstring)) {
-                    $path .= '?' . http_build_query($qstring);
-                }
-
-                return $path;
             }
+
+            if (!empty($qstring)) { 
+                $formatted = http_build_query($qstring);
+                $path .= '?' . $formatted;
+            }
+
+            return $path;
         }
+
+        // failure; some reporting twiddles
 
         unset($args['action']);
 
