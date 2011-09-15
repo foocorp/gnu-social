@@ -551,4 +551,25 @@ class BookmarkPlugin extends MicroAppPlugin
         // TRANS: Application title.
         return _m('TITLE','Bookmark');
     }
+
+    function onEndUpgrade()
+    {
+        // Version 0.9.x of the plugin didn't stamp notices
+        // with verb and object-type (for obvious reasons). Update
+        // those notices here.
+
+        $notice = new Notice();
+        
+        $notice->whereAdd('exists (select uri from bookmark where bookmark.uri = notice.uri)');
+        $notice->whereAdd('((object_type is null) or (object_type = "' .ActivityObject::NOTE.'"))');
+
+        $notice->find();
+
+        while ($notice->fetch()) {
+            $original = clone($notice);
+            $notice->verb        = ActivityVerb::POST;
+            $notice->object_type = ActivityObject::BOOKMARK;
+            $notice->update($original);
+        }
+    }
 }
