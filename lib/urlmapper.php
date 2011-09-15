@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * URL mapper
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ if (!defined('STATUSNET')) {
  * Converts a path into a set of parameters, and vice versa
  *
  * We used to use Net_URL_Mapper, so there's a wrapper class at Router, q.v.
- * 
+ *
  * NUM's vagaries are the main reason we have weirdnesses here.
  *
  * @category  URL
@@ -58,12 +58,15 @@ class URLMapper
     protected $statics = array();
     protected $variables = array();
     protected $reverse = array();
+    protected $allpaths = array();
 
     function connect($path, $args, $paramPatterns=array())
     {
         if (!array_key_exists(self::ACTION, $args)) {
             throw new Exception(sprintf("Can't connect %s; path has no action.", $path));
         }
+
+        $allpaths[] = $path;
 
         $action = $args[self::ACTION];
 
@@ -119,7 +122,7 @@ class URLMapper
                 return $results;
             }
         }
-        
+
         throw new Exception(sprintf('No match for path "%s"', $path));
     }
 
@@ -173,7 +176,7 @@ class URLMapper
                 $path = vsprintf($format, $toFormat);
             }
 
-            if (!empty($qstring)) { 
+            if (!empty($qstring)) {
                 $formatted = http_build_query($qstring);
                 $path .= '?' . $formatted;
             }
@@ -222,6 +225,11 @@ class URLMapper
         $format = preg_replace('/(:\w+)/', '%s', $path);
 
         return $format;
+    }
+
+    public function getPaths()
+    {
+        return $this->allpaths;
     }
 }
 
