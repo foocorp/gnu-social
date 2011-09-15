@@ -212,7 +212,7 @@ class URLMapper
                                        array($pr, 'toPattern'),
                                        $path);
 
-        $regex = '#' . str_replace('#', '\#', $regex) . '#';
+        $regex = '#^' . str_replace('#', '\#', $regex) . '$#';
 
         return $regex;
     }
