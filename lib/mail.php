@@ -71,18 +71,25 @@ function mail_backend()
  */
 function mail_send($recipients, $headers, $body)
 {
-    // XXX: use Mail_Queue... maybe
-    $backend = mail_backend();
-    if (!isset($headers['Content-Type'])) {
-        $headers['Content-Type'] = 'text/plain; charset=UTF-8';
-    }
-    assert($backend); // throws an error if it's bad
-    $sent = $backend->send($recipients, $headers, $body);
-    if (PEAR::isError($sent)) {
-        common_log(LOG_ERR, 'Email error: ' . $sent->getMessage());
+    try {
+        // XXX: use Mail_Queue... maybe
+        $backend = mail_backend();
+
+        if (!isset($headers['Content-Type'])) {
+           $headers['Content-Type'] = 'text/plain; charset=UTF-8';
+        }
+
+        assert($backend); // throws an error if it's bad
+        $sent = $backend->send($recipients, $headers, $body);
+        return true;
+    } catch (PEAR_Exception $e) {
+        common_log(
+            LOG_ERR,
+            "Unable to send email - '{$e->getMessage()}'. "
+            . 'Is your mail subsystem set up correctly?'
+        );
         return false;
     }
-    return true;
 }
 
 /**
