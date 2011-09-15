@@ -20,7 +20,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @category  Cache
+ * @category  URL
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
  * @copyright 2011 StatusNet, Inc.
@@ -212,7 +212,7 @@ class URLMapper
                                        array($pr, 'toPattern'),
                                        $path);
 
-        $regex = '#' . str_replace('#', '\#', $regex) . '#';
+        $regex = '#^' . str_replace('#', '\#', $regex) . '$#';
 
         return $regex;
     }
