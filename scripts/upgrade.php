@@ -33,23 +33,27 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 function main()
 {
-    updateSchemaCore();
-    updateSchemaPlugins();
+    if (Event::handle('StartUpgrade')) {
+        updateSchemaCore();
+        updateSchemaPlugins();
 
-    // These replace old "fixup_*" scripts
+        // These replace old "fixup_*" scripts
 
-    fixupNoticeRendered();
-    fixupNoticeConversation();
-    initConversation();
-    initInbox();
-    fixupGroupURI();
+        fixupNoticeRendered();
+        fixupNoticeConversation();
+        initConversation();
+        initInbox();
+        fixupGroupURI();
 
-    initLocalGroup();
-    initNoticeReshare();
+        initLocalGroup();
+        initNoticeReshare();
     
-    initFaveURI();
-    initSubscriptionURI();
-    initGroupMemberURI();
+        initFaveURI();
+        initSubscriptionURI();
+        initGroupMemberURI();
+
+        Event::handle('EndUpgrade');
+    }
 }
 
 function tableDefs()

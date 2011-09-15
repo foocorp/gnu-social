@@ -1418,3 +1418,7 @@ StartShowInvitationSuccess: Right before showing invitations success msg
 EndShowInvitationSuccess: After showing invitations success msg
 - $action: invitation action
 
+StartUpgrade: when starting a site upgrade
+
+EndUpgrade: when ending a site upgrade; good place to do your own upgrades
+
