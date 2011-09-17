@@ -85,4 +85,23 @@ class SearchSubMenu extends MoreMenu
 
         return $items;
     } 
+
+    function item($actionName, $args, $label, $description, $id=null, $cls=null)
+    {
+        if (empty($id)) {
+            $id = $this->menuItemID($actionName, $args);
+        }
+
+        // Add 'q' as a search param, not part of the url path
+
+        $url = common_local_url($actionName, array(), $args);
+
+        $this->out->menuItem($url,
+                             $label,
+                             $description,
+                             $this->isCurrent($actionName, $args),
+                             $id,
+                             $cls);
+    }
 }
+

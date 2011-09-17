@@ -33,18 +33,27 @@ require_once INSTALLDIR.'/scripts/commandline.inc';
 
 function main()
 {
-    updateSchemaCore();
-    updateSchemaPlugins();
+    if (Event::handle('StartUpgrade')) {
+        updateSchemaCore();
+        updateSchemaPlugins();
 
-    // These replace old "fixup_*" scripts
+        // These replace old "fixup_*" scripts
 
-    fixupNoticeRendered();
-    fixupNoticeConversation();
-    initConversation();
-    initInbox();
-    fixupGroupURI();
-    initLocalGroup();
-    initNoticeReshare();
+        fixupNoticeRendered();
+        fixupNoticeConversation();
+        initConversation();
+        initInbox();
+        fixupGroupURI();
+
+        initLocalGroup();
+        initNoticeReshare();
+    
+        initFaveURI();
+        initSubscriptionURI();
+        initGroupMemberURI();
+
+        Event::handle('EndUpgrade');
+    }
 }
 
 function tableDefs()
@@ -277,6 +286,88 @@ function initNoticeReshare()
             } catch (Exception $e) {
                 printfv("Error updating verb and object_type for {$notice->id}:" . $e->getMessage());
             }
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+function initFaveURI() 
+{
+    printfnq("Ensuring all faves have a URI...");
+
+    $fave = new Fave();
+    $fave->whereAdd('uri IS NULL');
+
+    if ($fave->find()) {
+        while ($fave->fetch()) {
+            try {
+                $fave->decache();
+                $fave->query(sprintf('update fave '.
+                                     'set uri = "%s", '.
+                                     '    modified = "%s" '.
+                                     'where user_id = %d '.
+                                     'and notice_id = %d',
+                                     Fave::newURI($fave->user_id, $fave->notice_id, $fave->modified),
+                                     common_sql_date(strtotime($fave->modified)),
+                                     $fave->user_id,
+                                     $fave->notice_id));
+            } catch (Exception $e) {
+                common_log(LOG_ERR, "Error updated fave URI: " . $e->getMessage());
+            }
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+function initSubscriptionURI()
+{
+    printfnq("Ensuring all subscriptions have a URI...");
+
+    $sub = new Subscription();
+    $sub->whereAdd('uri IS NULL');
+
+    if ($sub->find()) {
+        while ($sub->fetch()) {
+            try {
+                $sub->decache();
+                $sub->query(sprintf('update subscription '.
+                                    'set uri = "%s" '.
+                                    'where subscriber = %d '.
+                                    'and subscribed = %d',
+                                    Subscription::newURI($sub->subscriber, $sub->subscribed, $sub->created),
+                                    $sub->subscriber,
+                                    $sub->subscribed));
+            } catch (Exception $e) {
+                common_log(LOG_ERR, "Error updated subscription URI: " . $e->getMessage());
+            }
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+function initGroupMemberURI()
+{
+    printfnq("Ensuring all group memberships have a URI...");
+
+    $mem = new Group_member();
+    $mem->whereAdd('uri IS NULL');
+
+    if ($mem->find()) {
+        while ($mem->fetch()) {
+            try {
+                $mem->decache();
+                $mem->query(sprintf('update group_member set uri = "%s" '.
+                                    'where profile_id = %d ' . 
+                                    'and group_id = %d ',
+                                    Group_member::newURI($mem->profile_id, $mem->group_id, $mem->created),
+                                    $mem->profile_id,
+                                    $mem->group_id));
+            } catch (Exception $e) {
+                common_log(LOG_ERR, "Error updated membership URI: " . $e->getMessage());  
+          }
         }
     }
 

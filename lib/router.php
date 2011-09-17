@@ -31,73 +31,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
     exit(1);
 }
 
-require_once 'Net/URL/Mapper.php';
-
-class StatusNet_URL_Mapper extends Net_URL_Mapper
-{
-    private static $_singleton = null;
-    private $_actionToPath = array();
-
-    private function __construct()
-    {
-    }
-
-    public static function getInstance($id = '__default__')
-    {
-        if (empty(self::$_singleton)) {
-            self::$_singleton = new StatusNet_URL_Mapper();
-        }
-        return self::$_singleton;
-    }
-
-    public function connect($path, $defaults = array(), $rules = array())
-    {
-        $result = null;
-        if (Event::handle('StartConnectPath', array(&$path, &$defaults, &$rules, &$result))) {
-            $result = parent::connect($path, $defaults, $rules);
-            if (array_key_exists('action', $defaults)) {
-                $action = $defaults['action'];
-            } elseif (array_key_exists('action', $rules)) {
-                $action = $rules['action'];
-            } else {
-                $action = null;
-            }
-            $this->_mapAction($action, $result);
-            Event::handle('EndConnectPath', array($path, $defaults, $rules, $result));
-        }
-        return $result;
-    }
-
-    protected function _mapAction($action, $path)
-    {
-        if (!array_key_exists($action, $this->_actionToPath)) {
-            $this->_actionToPath[$action] = array();
-        }
-        $this->_actionToPath[$action][] = $path;
-        return;
-    }
-
-    public function generate($values = array(), $qstring = array(), $anchor = '')
-    {
-        if (!array_key_exists('action', $values)) {
-            return parent::generate($values, $qstring, $anchor);
-        }
-
-        $action = $values['action'];
-
-        if (!array_key_exists($action, $this->_actionToPath)) {
-            return parent::generate($values, $qstring, $anchor);
-        }
-
-        $oldPaths    = $this->paths;
-        $this->paths = $this->_actionToPath[$action];
-        $result      = parent::generate($values, $qstring, $anchor);
-        $this->paths = $oldPaths;
-
-        return $result;
-    }
-}
-
 /**
  * URL Router
  *
@@ -136,19 +69,7 @@ class Router
     function __construct()
     {
         if (empty($this->m)) {
-            if (!common_config('router', 'cache')) {
-                $this->m = $this->initialize();
-            } else {
-                $k = self::cacheKey();
-                $c = Cache::instance();
-                $m = $c->get($k);
-                if (!empty($m)) {
-                    $this->m = $m;
-                } else {
-                    $this->m = $this->initialize();
-                    $c->set($k, $this->m);
-                }
-            }
+            $this->m = $this->initialize();
         }
     }
 
@@ -159,8 +80,8 @@ class Router
      * you're running and the plugins that are enabled. To avoid having bad routes
      * get stuck in the cache, the key includes a list of plugins and the software
      * version.
-     *
-     * There can still be problems with a) differences in versions of the plugins and
+     * 
+    * There can still be problems with a) differences in versions of the plugins and
      * b) people running code between official versions, but these tend to be more
      * sophisticated users who can grok what's going on and clear their caches.
      *
@@ -183,7 +104,7 @@ class Router
 
     function initialize()
     {
-        $m = StatusNet_URL_Mapper::getInstance();
+        $m = new URLMapper();
 
         if (Event::handle('StartInitializeRouter', array(&$m))) {
 
@@ -1139,7 +1060,7 @@ class Router
     {
         try {
             $match = $this->m->match($path);
-        } catch (Net_URL_Mapper_InvalidException $e) {
+        } catch (Exception $e) {
             common_log(LOG_ERR, "Problem getting route for $path - " .
                        $e->getMessage());
             // TRANS: Client error on action trying to visit a non-existing page.
@@ -1161,7 +1082,6 @@ class Router
         }
 
         $url = $this->m->generate($args, $params, $fragment);
-
         // Due to a bug in the Net_URL_Mapper code, the returned URL may
         // contain a malformed query of the form ?p1=v1?p2=v2?p3=v3. We
         // repair that here rather than modifying the upstream code...
