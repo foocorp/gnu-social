@@ -206,7 +206,7 @@ class NeweventAction extends Action
                 throw new ClientException(_m('Event must have an end time.'));
             }
 
-            if (isset($this->url) && Validate::uri($this->url) === false) {
+            if (!empty($this->url) && Validate::uri($this->url) === false) {
                 // TRANS: Client exception thrown when trying to post an event with an invalid URL.
                 throw new ClientException(_m('URL must be valid.'));
             }
