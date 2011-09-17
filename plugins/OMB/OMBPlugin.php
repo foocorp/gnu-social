@@ -377,6 +377,20 @@ class OMBPlugin extends Plugin
         return true;
     }
 
+    function onStartProfileRemoteSubscribe($out, $profile)
+    {
+        $out->elementStart('li', 'entity_subscribe');
+        $url = common_local_url('remotesubscribe',
+                                array('nickname' => $this->profile->nickname));
+        $out->element('a', array('href' => $url,
+                                  'class' => 'entity_remote_subscribe'),
+                       // TRANS: Link text for link that will subscribe to a remote profile.
+                       _m('BUTTON','Subscribe'));
+        $out->elementEnd('li');
+
+        return false;
+    }
+
     /**
      * Plugin version info
      *

@@ -357,6 +357,75 @@ class TwitterauthorizationAction extends Action
         $this->elementStart('fieldset', array('id' => 'settings_twitter_connect_options'));
         // TRANS: Fieldset legend.
         $this->element('legend', null, _m('Connection options'));
+
+        $this->hidden('access_token_key', $this->access_token->key);
+        $this->hidden('access_token_secret', $this->access_token->secret);
+        $this->hidden('twuid', $this->twuid);
+        $this->hidden('tw_fields_screen_name', $this->tw_fields['screen_name']);
+        $this->hidden('tw_fields_name', $this->tw_fields['fullname']);
+        $this->hidden('token', common_session_token());
+
+        // Don't allow new account creation if site is flagged as invite only
+	if (common_config('site', 'inviteonly') == false) {
+            $this->elementStart('fieldset');
+            $this->element('legend', null,
+                           // TRANS: Fieldset legend.
+                           _m('Create new account'));
+            $this->element('p', null,
+                           // TRANS: Sub form introduction text.
+                          _m('Create a new user with this nickname.'));
+            $this->elementStart('ul', 'form_data');
+
+            // Hook point for captcha etc
+            Event::handle('StartRegistrationFormData', array($this));
+
+            $this->elementStart('li');
+            // TRANS: Field label.
+            $this->input('newname', _m('New nickname'),
+                         ($this->username) ? $this->username : '',
+                         // TRANS: Field title for nickname field.
+                         _m('1-64 lowercase letters or numbers, no punctuation or spaces.'));
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            // TRANS: Field label.
+            $this->input('email', _m('LABEL','Email'), $this->getEmail(),
+                         // TRANS: Field title for e-mail address field.
+                         _m('Used only for updates, announcements, '.
+                           'and password recovery'));
+            $this->elementEnd('li');
+
+            // Hook point for captcha etc
+            Event::handle('EndRegistrationFormData', array($this));
+
+            $this->elementEnd('ul');
+            // TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
+            $this->submit('create', _m('BUTTON','Create'));
+            $this->elementEnd('fieldset');
+        }
+
+        $this->elementStart('fieldset');
+        $this->element('legend', null,
+                       // TRANS: Fieldset legend.
+                       _m('Connect existing account'));
+        $this->element('p', null,
+                       // TRANS: Sub form introduction text.
+                       _m('If you already have an account, login with your username and password to connect it to your Twitter account.'));
+        $this->elementStart('ul', 'form_data');
+        $this->elementStart('li');
+        // TRANS: Field label.
+        $this->input('nickname', _m('Existing nickname'));
+        $this->elementEnd('li');
+        $this->elementStart('li');
+        // TRANS: Field label.
+        $this->password('password', _m('Password'));
+        $this->elementEnd('li');
+        $this->elementEnd('ul');
+        $this->elementEnd('fieldset');
+
+        $this->elementStart('fieldset');
+        $this->element('legend', null,
+                       // TRANS: Fieldset legend.
+                       _m('License'));
         $this->elementStart('ul', 'form_data');
         $this->elementStart('li');
         $this->element('input', array('type' => 'checkbox',
@@ -379,69 +448,9 @@ class TwitterauthorizationAction extends Action
         $this->elementEnd('label');
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        $this->hidden('access_token_key', $this->access_token->key);
-        $this->hidden('access_token_secret', $this->access_token->secret);
-        $this->hidden('twuid', $this->twuid);
-        $this->hidden('tw_fields_screen_name', $this->tw_fields['screen_name']);
-        $this->hidden('tw_fields_name', $this->tw_fields['fullname']);
-
-        $this->elementStart('fieldset');
-        $this->hidden('token', common_session_token());
-        $this->element('legend', null,
-                       // TRANS: Fieldset legend.
-                       _m('Create new account'));
-        $this->element('p', null,
-                       // TRANS: Sub form introduction text.
-                       _m('Create a new user with this nickname.'));
-        $this->elementStart('ul', 'form_data');
-
-        // Hook point for captcha etc
-        Event::handle('StartRegistrationFormData', array($this));
-
-        $this->elementStart('li');
-        // TRANS: Field label.
-        $this->input('newname', _m('New nickname'),
-                     ($this->username) ? $this->username : '',
-                     // TRANS: Field title for nickname field.
-                     _m('1-64 lowercase letters or numbers, no punctuation or spaces.'));
-        $this->elementEnd('li');
-        $this->elementStart('li');
-        // TRANS: Field label.
-        $this->input('email', _m('LABEL','Email'), $this->getEmail(),
-                     // TRANS: Field title for e-mail address field.
-                     _m('Used only for updates, announcements, '.
-                       'and password recovery'));
-        $this->elementEnd('li');
-
-        // Hook point for captcha etc
-        Event::handle('EndRegistrationFormData', array($this));
-
-        $this->elementEnd('ul');
-        // TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
-        $this->submit('create', _m('BUTTON','Create'));
         $this->elementEnd('fieldset');
-
-        $this->elementStart('fieldset');
-        $this->element('legend', null,
-                       // TRANS: Fieldset legend.
-                       _m('Connect existing account'));
-        $this->element('p', null,
-                       // TRANS: Sub form introduction text.
-                       _m('If you already have an account, login with your username and password to connect it to your Twitter account.'));
-        $this->elementStart('ul', 'form_data');
-        $this->elementStart('li');
-        // TRANS: Field label.
-        $this->input('nickname', _m('Existing nickname'));
-        $this->elementEnd('li');
-        $this->elementStart('li');
-        // TRANS: Field label.
-        $this->password('password', _m('Password'));
-        $this->elementEnd('li');
-        $this->elementEnd('ul');
         // TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
         $this->submit('connect', _m('BUTTON','Connect'));
-        $this->elementEnd('fieldset');
-
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }

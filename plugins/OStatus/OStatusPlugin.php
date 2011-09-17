@@ -246,7 +246,7 @@ class OStatusPlugin extends Plugin
         $cur = common_current_user();
 
         if (empty($cur)) {
-            $output->elementStart('li', 'entity_subscribe');
+            $widget->out->elementStart('li', 'entity_subscribe');
             $profile = $peopletag->getTagger();
             $url = common_local_url('ostatusinit',
                                     array('group' => $group->nickname));
@@ -255,7 +255,7 @@ class OStatusPlugin extends Plugin
                                 // TRANS: Link to subscribe to a remote entity.
                                 _m('Subscribe'));
 
-            $output->elementEnd('li');
+            $widget->out->elementEnd('li');
             return false;
         }
 

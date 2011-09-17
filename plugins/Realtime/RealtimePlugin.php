@@ -188,7 +188,7 @@ class RealtimePlugin extends Plugin
         // Add to the public timeline
 
         if ($notice->is_local == Notice::LOCAL_PUBLIC ||
-            ($notice->is_local == Notice::REMOTE_OMB && !common_config('public', 'localonly'))) {
+            ($notice->is_local == Notice::REMOTE && !common_config('public', 'localonly'))) {
             $paths[] = array('public', null, null);
         }
 
