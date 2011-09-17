@@ -62,10 +62,12 @@ class PublicGroupNav extends Menu
         $this->action->elementStart('ul', array('class' => 'nav'));
 
         if (Event::handle('StartPublicGroupNav', array($this))) {
-            // TRANS: Menu item in search group navigation panel.
-            $this->out->menuItem(common_local_url('public'), _m('MENU','Public'),
-                // TRANS: Menu item title in search group navigation panel.
-                _('Public timeline'), $this->actionName == 'public', 'nav_timeline_public');
+            if (!common_config('singleuser', 'enabled')) {
+                // TRANS: Menu item in search group navigation panel.
+                $this->out->menuItem(common_local_url('public'), _m('MENU','Public'),
+                                     // TRANS: Menu item title in search group navigation panel.
+                                     _('Public timeline'), $this->actionName == 'public', 'nav_timeline_public');
+            }
 
             // TRANS: Menu item in search group navigation panel.
             $this->out->menuItem(common_local_url('groups'), _m('MENU','Groups'),
@@ -84,10 +86,12 @@ class PublicGroupNav extends Menu
                     _('Featured users'), $this->actionName == 'featured', 'nav_featured');
             }
 
-            // TRANS: Menu item in search group navigation panel.
-            $this->out->menuItem(common_local_url('favorited'), _m('MENU','Popular'),
-                // TRANS: Menu item title in search group navigation panel.
-                _('Popular notices'), $this->actionName == 'favorited', 'nav_timeline_favorited');
+            if (!common_config('singleuser', 'enabled')) {
+                // TRANS: Menu item in search group navigation panel.
+                $this->out->menuItem(common_local_url('favorited'), _m('MENU','Popular'),
+                                     // TRANS: Menu item title in search group navigation panel.
+                                     _('Popular notices'), $this->actionName == 'favorited', 'nav_timeline_favorited');
+            }
 
             Event::handle('EndPublicGroupNav', array($this));
         }
