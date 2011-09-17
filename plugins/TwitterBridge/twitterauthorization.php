@@ -357,28 +357,7 @@ class TwitterauthorizationAction extends Action
         $this->elementStart('fieldset', array('id' => 'settings_twitter_connect_options'));
         // TRANS: Fieldset legend.
         $this->element('legend', null, _m('Connection options'));
-        $this->elementStart('ul', 'form_data');
-        $this->elementStart('li');
-        $this->element('input', array('type' => 'checkbox',
-                                      'id' => 'license',
-                                      'class' => 'checkbox',
-                                      'name' => 'license',
-                                      'value' => 'true'));
-        $this->elementStart('label', array('class' => 'checkbox', 'for' => 'license'));
-        // TRANS: Text for license agreement checkbox.
-        // TRANS: %s is the license as configured for the StatusNet site.
-        $message = _m('My text and files are available under %s ' .
-                     'except this private data: password, ' .
-                     'email address, IM address, and phone number.');
-        $link = '<a href="' .
-                htmlspecialchars(common_config('license', 'url')) .
-                '">' .
-                htmlspecialchars(common_config('license', 'title')) .
-                '</a>';
-        $this->raw(sprintf(htmlspecialchars($message), $link));
-        $this->elementEnd('label');
-        $this->elementEnd('li');
-        $this->elementEnd('ul');
+
         $this->hidden('access_token_key', $this->access_token->key);
         $this->hidden('access_token_secret', $this->access_token->secret);
         $this->hidden('twuid', $this->twuid);
@@ -443,6 +422,34 @@ class TwitterauthorizationAction extends Action
         $this->elementEnd('ul');
         // TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
         $this->submit('connect', _m('BUTTON','Connect'));
+        $this->elementEnd('fieldset');
+
+        $this->elementStart('fieldset');
+        $this->element('legend', null,
+                       // TRANS: Fieldset legend.
+                       _m('License'));
+        $this->elementStart('ul', 'form_data');
+        $this->elementStart('li');
+        $this->element('input', array('type' => 'checkbox',
+                                      'id' => 'license',
+                                      'class' => 'checkbox',
+                                      'name' => 'license',
+                                      'value' => 'true'));
+        $this->elementStart('label', array('class' => 'checkbox', 'for' => 'license'));
+        // TRANS: Text for license agreement checkbox.
+        // TRANS: %s is the license as configured for the StatusNet site.
+        $message = _m('My text and files are available under %s ' .
+                     'except this private data: password, ' .
+                     'email address, IM address, and phone number.');
+        $link = '<a href="' .
+                htmlspecialchars(common_config('license', 'url')) .
+                '">' .
+                htmlspecialchars(common_config('license', 'title')) .
+                '</a>';
+        $this->raw(sprintf(htmlspecialchars($message), $link));
+        $this->elementEnd('label');
+        $this->elementEnd('li');
+        $this->elementEnd('ul');
         $this->elementEnd('fieldset');
 
         $this->elementEnd('fieldset');
