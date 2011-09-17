@@ -385,41 +385,44 @@ class TwitterauthorizationAction extends Action
         $this->hidden('tw_fields_screen_name', $this->tw_fields['screen_name']);
         $this->hidden('tw_fields_name', $this->tw_fields['fullname']);
 
-        $this->elementStart('fieldset');
-        $this->hidden('token', common_session_token());
-        $this->element('legend', null,
-                       // TRANS: Fieldset legend.
-                       _m('Create new account'));
-        $this->element('p', null,
-                       // TRANS: Sub form introduction text.
-                       _m('Create a new user with this nickname.'));
-        $this->elementStart('ul', 'form_data');
+        // Don't allow new account creation if site is flagged as invite only
+	if (common_config('site', 'inviteonly') == false) {
+            $this->elementStart('fieldset');
+            $this->hidden('token', common_session_token());
+            $this->element('legend', null,
+                           // TRANS: Fieldset legend.
+                           _m('Create new account'));
+            $this->element('p', null,
+                           // TRANS: Sub form introduction text.
+                          _m('Create a new user with this nickname.'));
+            $this->elementStart('ul', 'form_data');
 
-        // Hook point for captcha etc
-        Event::handle('StartRegistrationFormData', array($this));
+            // Hook point for captcha etc
+            Event::handle('StartRegistrationFormData', array($this));
 
-        $this->elementStart('li');
-        // TRANS: Field label.
-        $this->input('newname', _m('New nickname'),
-                     ($this->username) ? $this->username : '',
-                     // TRANS: Field title for nickname field.
-                     _m('1-64 lowercase letters or numbers, no punctuation or spaces.'));
-        $this->elementEnd('li');
-        $this->elementStart('li');
-        // TRANS: Field label.
-        $this->input('email', _m('LABEL','Email'), $this->getEmail(),
-                     // TRANS: Field title for e-mail address field.
-                     _m('Used only for updates, announcements, '.
-                       'and password recovery'));
-        $this->elementEnd('li');
+            $this->elementStart('li');
+            // TRANS: Field label.
+            $this->input('newname', _m('New nickname'),
+                         ($this->username) ? $this->username : '',
+                         // TRANS: Field title for nickname field.
+                         _m('1-64 lowercase letters or numbers, no punctuation or spaces.'));
+            $this->elementEnd('li');
+            $this->elementStart('li');
+            // TRANS: Field label.
+            $this->input('email', _m('LABEL','Email'), $this->getEmail(),
+                         // TRANS: Field title for e-mail address field.
+                         _m('Used only for updates, announcements, '.
+                           'and password recovery'));
+            $this->elementEnd('li');
 
-        // Hook point for captcha etc
-        Event::handle('EndRegistrationFormData', array($this));
+            // Hook point for captcha etc
+            Event::handle('EndRegistrationFormData', array($this));
 
-        $this->elementEnd('ul');
-        // TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
-        $this->submit('create', _m('BUTTON','Create'));
-        $this->elementEnd('fieldset');
+            $this->elementEnd('ul');
+            // TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
+            $this->submit('create', _m('BUTTON','Create'));
+            $this->elementEnd('fieldset');
+        }
 
         $this->elementStart('fieldset');
         $this->element('legend', null,
