@@ -420,8 +420,6 @@ class TwitterauthorizationAction extends Action
         $this->password('password', _m('Password'));
         $this->elementEnd('li');
         $this->elementEnd('ul');
-        // TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
-        $this->submit('connect', _m('BUTTON','Connect'));
         $this->elementEnd('fieldset');
 
         $this->elementStart('fieldset');
@@ -451,7 +449,8 @@ class TwitterauthorizationAction extends Action
         $this->elementEnd('li');
         $this->elementEnd('ul');
         $this->elementEnd('fieldset');
-
+        // TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
+        $this->submit('connect', _m('BUTTON','Connect'));
         $this->elementEnd('fieldset');
         $this->elementEnd('form');
     }
