@@ -124,7 +124,7 @@ class EventForm extends Form
         $this->li();
 
         $times = EventTimeList::getTimes($today->format('m/d/Y 12:00') . ' am ' . $today->format('T'));
-        $start = EventTimeList::nearestHalfHour('@' . $today->getTimestamp());
+        $start = EventTimeList::nearestHalfHour($today->format('c'));
         $start->setTimezone(new DateTimeZone(common_timezone()));
 
         $this->out->dropdown(
@@ -160,7 +160,7 @@ class EventForm extends Form
             'event-endtime',
             // TRANS: Field label on event form.
             _m('LABEL','End time'),
-            EventTimeList::getTimes('@' . $start->getTimestamp(), true),
+            EventTimeList::getTimes($start->format('c'), true),
             // TRANS: Field title on event form.
             _m('Time the event ends.'),
             false,
