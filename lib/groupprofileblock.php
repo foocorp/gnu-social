@@ -117,7 +117,7 @@ class GroupProfileBlock extends ProfileBlock
                                                                           array('nickname' => $this->group->nickname)),
                                                // TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
                                                // TRANS: %s is the nickname of the group.
-                                               'title' => sprintf(_m('TOOLTIP','Edit %s group properties'), $nickname)),
+                                               'title' => sprintf(_m('TOOLTIP','Edit %s group properties'), $this->group->nickname)),
                                     // TRANS: Link text for link on user profile.
                                     _m('BUTTON','Edit'));
                 $this->out->elementEnd('li');
@@ -126,7 +126,7 @@ class GroupProfileBlock extends ProfileBlock
                                                                           array('nickname' => $this->group->nickname)),
                                                // TRANS: Tooltip for menu item in the group navigation page. Only shown for group administrators.
                                                // TRANS: %s is the nickname of the group.
-                                               'title' => sprintf(_m('TOOLTIP','Add or edit %s logo'), $nickname)),
+                                               'title' => sprintf(_m('TOOLTIP','Add or edit %s logo'), $this->group->nickname)),
                                     // TRANS: Link text for link on user profile.
                                     _m('MENU','Logo'));
                 $this->out->elementEnd('li');
