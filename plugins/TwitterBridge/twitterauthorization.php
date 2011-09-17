@@ -363,11 +363,11 @@ class TwitterauthorizationAction extends Action
         $this->hidden('twuid', $this->twuid);
         $this->hidden('tw_fields_screen_name', $this->tw_fields['screen_name']);
         $this->hidden('tw_fields_name', $this->tw_fields['fullname']);
+        $this->hidden('token', common_session_token());
 
         // Don't allow new account creation if site is flagged as invite only
 	if (common_config('site', 'inviteonly') == false) {
             $this->elementStart('fieldset');
-            $this->hidden('token', common_session_token());
             $this->element('legend', null,
                            // TRANS: Fieldset legend.
                            _m('Create new account'));
