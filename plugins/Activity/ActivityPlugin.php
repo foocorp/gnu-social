@@ -47,7 +47,7 @@ if (!defined('STATUSNET')) {
 class ActivityPlugin extends Plugin
 {
     const VERSION = '0.1';
-    const SOURCE  = 'system';
+    const SOURCE  = 'activity';
 
     // Flags to switch off certain activity notices
     public $StartFollowUser = true;
