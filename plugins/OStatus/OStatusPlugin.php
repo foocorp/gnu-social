@@ -54,19 +54,19 @@ class OStatusPlugin extends Plugin
         // Discovery actions
         $m->connect('main/ownerxrd',
                     array('action' => 'ownerxrd'));
-        $m->connect('main/ostatus',
-                    array('action' => 'ostatusinit'));
         $m->connect('main/ostatustag',
                     array('action' => 'ostatustag'));
         $m->connect('main/ostatustag?nickname=:nickname',
                     array('action' => 'ostatustag'), array('nickname' => '[A-Za-z0-9_-]+'));
-        $m->connect('main/ostatus?nickname=:nickname',
+        $m->connect('main/ostatus/nickname/:nickname',
                   array('action' => 'ostatusinit'), array('nickname' => '[A-Za-z0-9_-]+'));
-        $m->connect('main/ostatus?group=:group',
+        $m->connect('main/ostatus/group/:group',
                   array('action' => 'ostatusinit'), array('group' => '[A-Za-z0-9_-]+'));
-        $m->connect('main/ostatus?peopletag=:peopletag&tagger=:tagger',
+        $m->connect('main/ostatus/peopletag/:peopletag/tagger/:tagger',
                   array('action' => 'ostatusinit'), array('tagger' => '[A-Za-z0-9_-]+',
                                                           'peopletag' => '[A-Za-z0-9_-]+'));
+        $m->connect('main/ostatus',
+                    array('action' => 'ostatusinit'));
 
         // Remote subscription actions
         $m->connect('main/ostatussub',
@@ -251,7 +251,7 @@ class OStatusPlugin extends Plugin
             $url = common_local_url('ostatusinit',
                                     array('group' => $group->nickname));
             $widget->out->element('a', array('href' => $url,
-                                        'class' => 'entity_remote_subscribe'),
+                                             'class' => 'entity_remote_subscribe'),
                                 // TRANS: Link to subscribe to a remote entity.
                                 _m('Subscribe'));
 
