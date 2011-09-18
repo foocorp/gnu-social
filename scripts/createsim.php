@@ -149,7 +149,7 @@ function newNotice($i, $tagmax)
         $options['scope'] |= Notice::SITE_SCOPE;
     }
 
-    $notice = Notice::saveNew($user->id, $content, 'system', $options);
+    $notice = Notice::saveNew($user->id, $content, 'createsim', $options);
 }
 
 function newSub($i)
