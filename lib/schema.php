@@ -562,9 +562,15 @@ class Schema
         $uniques = $this->diffArrays($old, $def, 'unique keys');
         $indexes = $this->diffArrays($old, $def, 'indexes');
         $foreign = $this->diffArrays($old, $def, 'foreign keys');
+        $fulltext = $this->diffArrays($old, $def, 'fulltext indexes');
 
         // Drop any obsolete or modified indexes ahead...
         foreach ($indexes['del'] + $indexes['mod'] as $indexName) {
+            $this->appendDropIndex($statements, $tableName, $indexName);
+        }
+
+        // Drop any obsolete or modified fulltext indexes ahead...
+        foreach ($fulltext['del'] + $fulltext['mod'] as $indexName) {
             $this->appendDropIndex($statements, $tableName, $indexName);
         }
 
