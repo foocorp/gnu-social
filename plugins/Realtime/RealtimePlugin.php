@@ -294,9 +294,18 @@ class RealtimePlugin extends Plugin
         // root url from page output
 
         $action->elementStart('address');
+
+        if (common_config('singleuser', 'enabled')) {
+            $user = User::singleUser();
+            $url = common_local_url('showstream', array('nickname' => $user->nickname));
+        } else {
+            $url = common_local_url('public');
+        }
+
         $action->element('a', array('class' => 'url',
-                                  'href' => common_local_url('public')),
+                                    'href' => $url),
                          '');
+
         $action->elementEnd('address');
 
         $action->showContentBlock();
