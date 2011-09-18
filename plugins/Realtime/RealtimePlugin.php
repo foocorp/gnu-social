@@ -475,7 +475,7 @@ class RealtimePlugin extends Plugin
             break;
          case 'tag':
             $tag = $action->trimmed('tag');
-            if (empty($tag)) {
+            if (!empty($tag)) {
                 $arg1 = $tag;
             } else {
                 $this->log(LOG_NOTICE, "Unexpected 'tag' action without tag argument");
