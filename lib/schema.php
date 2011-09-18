@@ -630,6 +630,11 @@ class Schema
             $this->appendCreateIndex($statements, $tableName, $indexName, $def['indexes'][$indexName]);
         }
 
+        foreach ($fulltext['mod'] + $fulltext['add'] as $indexName) {
+            $colDef = $def['fulltext indexes'][$indexName];
+            $this->appendCreateFulltextIndex($statements, $tableName, $indexName, $colDef);
+        }
+
         return $statements;
     }
 

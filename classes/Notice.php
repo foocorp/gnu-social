@@ -87,7 +87,7 @@ class Notice extends Managed_DataObject
 
     public static function schemaDef()
     {
-        return array(
+        $def = array(
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
                 'profile_id' => array('type' => 'int', 'not null' => true, 'description' => 'who made the update'),
@@ -129,6 +129,12 @@ class Notice extends Managed_DataObject
                 'notice_repeatof_idx' => array('repeat_of'),
             )
         );
+
+        if (common_config('search', 'type') == 'fulltext') {
+            $def['fulltext indexes'] = array('content' => array('content'));
+        }
+
+        return $def;
     }
     
 	function multiGet($kc, $kvs, $skipNulls=true)

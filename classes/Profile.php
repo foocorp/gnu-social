@@ -51,7 +51,7 @@ class Profile extends Managed_DataObject
 
     public static function schemaDef()
     {
-        return array(
+        $def = array(
             'description' => 'local and remote users have profiles',
             'fields' => array(
                 'id' => array('type' => 'serial', 'not null' => true, 'description' => 'unique identifier'),
@@ -74,6 +74,14 @@ class Profile extends Managed_DataObject
                 'profile_nickname_idx' => array('nickname'),
             )
         );
+
+        // Add a fulltext index
+
+        if (common_config('search', 'type') == 'fulltext') {
+            $def['fulltext indexes'] = array('nickname' => array('nickname', 'fullname', 'location', 'bio', 'homepage'));
+        }
+
+        return $def;
     }
 
 	function multiGet($keyCol, $keyVals, $skipNulls=true)
