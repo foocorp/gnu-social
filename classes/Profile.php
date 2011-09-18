@@ -1430,4 +1430,11 @@ class Profile extends Managed_DataObject
     	    $profile->_fillAvatar($width, $avatars[$profile->id]);
     	}
     }
+    
+    // Can't seem to find how to fix this.
+
+    function getProfile()
+    {
+        return $this;
+    }
 }
