@@ -127,9 +127,6 @@ class Notice extends Managed_DataObject
                 'notice_created_idx' => array('created'),
                 'notice_replyto_idx' => array('reply_to'),
                 'notice_repeatof_idx' => array('repeat_of'),
-            ),
-            'fulltext indexes' => array(
-                'content' => array('content'),
             )
         );
     }
