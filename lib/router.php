@@ -227,14 +227,16 @@ class Router
                         array('action' => 'attachment_thumbnail'),
                         array('attachment' => '[0-9]+'));
 
-            $m->connect('notice/new', array('action' => 'newnotice'));
-            $m->connect('notice/new?replyto=:replyto',
-                        array('action' => 'newnotice'),
-                        array('replyto' => Nickname::DISPLAY_FMT));
             $m->connect('notice/new?replyto=:replyto&inreplyto=:inreplyto',
                         array('action' => 'newnotice'),
                         array('replyto' => Nickname::DISPLAY_FMT),
                         array('inreplyto' => '[0-9]+'));
+
+            $m->connect('notice/new?replyto=:replyto',
+                        array('action' => 'newnotice'),
+                        array('replyto' => Nickname::DISPLAY_FMT));
+
+            $m->connect('notice/new', array('action' => 'newnotice'));
 
             $m->connect('notice/:notice/file',
                         array('action' => 'file'),
@@ -243,10 +245,12 @@ class Router
             $m->connect('notice/:notice',
                         array('action' => 'shownotice'),
                         array('notice' => '[0-9]+'));
-            $m->connect('notice/delete', array('action' => 'deletenotice'));
+
             $m->connect('notice/delete/:notice',
                         array('action' => 'deletenotice'),
                         array('notice' => '[0-9]+'));
+
+            $m->connect('notice/delete', array('action' => 'deletenotice'));
 
             $m->connect('bookmarklet/new', array('action' => 'bookmarklet'));
 
