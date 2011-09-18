@@ -341,17 +341,13 @@ class Router
                         array('action' => 'ApiTimelinePublic',
                               'format' => '(xml|json|rss|atom|as)'));
 
-            $m->connect('api/statuses/friends_timeline.:format',
-                        array('action' => 'ApiTimelineFriends',
-                              'format' => '(xml|json|rss|atom|as)'));
-
             $m->connect('api/statuses/friends_timeline/:id.:format',
                         array('action' => 'ApiTimelineFriends',
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json|rss|atom|as)'));
 
-            $m->connect('api/statuses/home_timeline.:format',
-                        array('action' => 'ApiTimelineHome',
+            $m->connect('api/statuses/friends_timeline.:format',
+                        array('action' => 'ApiTimelineFriends',
                               'format' => '(xml|json|rss|atom|as)'));
 
             $m->connect('api/statuses/home_timeline/:id.:format',
@@ -359,8 +355,8 @@ class Router
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json|rss|atom|as)'));
 
-            $m->connect('api/statuses/user_timeline.:format',
-                        array('action' => 'ApiTimelineUser',
+            $m->connect('api/statuses/home_timeline.:format',
+                        array('action' => 'ApiTimelineHome',
                               'format' => '(xml|json|rss|atom|as)'));
 
             $m->connect('api/statuses/user_timeline/:id.:format',
@@ -368,8 +364,8 @@ class Router
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json|rss|atom|as)'));
 
-            $m->connect('api/statuses/mentions.:format',
-                        array('action' => 'ApiTimelineMentions',
+            $m->connect('api/statuses/user_timeline.:format',
+                        array('action' => 'ApiTimelineUser',
                               'format' => '(xml|json|rss|atom|as)'));
 
             $m->connect('api/statuses/mentions/:id.:format',
@@ -377,13 +373,17 @@ class Router
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json|rss|atom|as)'));
 
-            $m->connect('api/statuses/replies.:format',
+            $m->connect('api/statuses/mentions.:format',
                         array('action' => 'ApiTimelineMentions',
                               'format' => '(xml|json|rss|atom|as)'));
 
             $m->connect('api/statuses/replies/:id.:format',
                         array('action' => 'ApiTimelineMentions',
                               'id' => Nickname::INPUT_FMT,
+                              'format' => '(xml|json|rss|atom|as)'));
+
+            $m->connect('api/statuses/replies.:format',
+                        array('action' => 'ApiTimelineMentions',
                               'format' => '(xml|json|rss|atom|as)'));
 
             $m->connect('api/statuses/retweeted_by_me.:format',
@@ -398,17 +398,13 @@ class Router
                         array('action' => 'ApiTimelineRetweetsOfMe',
                               'format' => '(xml|json|atom|as)'));
 
-            $m->connect('api/statuses/friends.:format',
-                        array('action' => 'ApiUserFriends',
-                              'format' => '(xml|json)'));
-
             $m->connect('api/statuses/friends/:id.:format',
                         array('action' => 'ApiUserFriends',
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json)'));
 
-            $m->connect('api/statuses/followers.:format',
-                        array('action' => 'ApiUserFollowers',
+            $m->connect('api/statuses/friends.:format',
+                        array('action' => 'ApiUserFriends',
                               'format' => '(xml|json)'));
 
             $m->connect('api/statuses/followers/:id.:format',
@@ -416,26 +412,30 @@ class Router
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json)'));
 
-            $m->connect('api/statuses/show.:format',
-                        array('action' => 'ApiStatusesShow',
-                              'format' => '(xml|json|atom)'));
+            $m->connect('api/statuses/followers.:format',
+                        array('action' => 'ApiUserFollowers',
+                              'format' => '(xml|json)'));
 
             $m->connect('api/statuses/show/:id.:format',
                         array('action' => 'ApiStatusesShow',
                               'id' => '[0-9]+',
                               'format' => '(xml|json|atom)'));
 
+            $m->connect('api/statuses/show.:format',
+                        array('action' => 'ApiStatusesShow',
+                              'format' => '(xml|json|atom)'));
+
             $m->connect('api/statuses/update.:format',
                         array('action' => 'ApiStatusesUpdate',
-                              'format' => '(xml|json)'));
-
-            $m->connect('api/statuses/destroy.:format',
-                        array('action' => 'ApiStatusesDestroy',
                               'format' => '(xml|json)'));
 
             $m->connect('api/statuses/destroy/:id.:format',
                         array('action' => 'ApiStatusesDestroy',
                               'id' => '[0-9]+',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/statuses/destroy.:format',
+                        array('action' => 'ApiStatusesDestroy',
                               'format' => '(xml|json)'));
 
             $m->connect('api/statuses/retweet/:id.:format',
@@ -450,13 +450,13 @@ class Router
 
             // users
 
-            $m->connect('api/users/show.:format',
-                        array('action' => 'ApiUserShow',
-                              'format' => '(xml|json)'));
-
             $m->connect('api/users/show/:id.:format',
                         array('action' => 'ApiUserShow',
                               'id' => Nickname::INPUT_FMT,
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/users/show.:format',
+                        array('action' => 'ApiUserShow',
                               'format' => '(xml|json)'));
 
             $m->connect('api/users/profile_image/:screen_name.:format',
@@ -489,22 +489,22 @@ class Router
                         array('action' => 'ApiFriendshipsExists',
                               'format' => '(xml|json)'));
 
-            $m->connect('api/friendships/create.:format',
-                        array('action' => 'ApiFriendshipsCreate',
-                              'format' => '(xml|json)'));
-
-            $m->connect('api/friendships/destroy.:format',
-                        array('action' => 'ApiFriendshipsDestroy',
-                              'format' => '(xml|json)'));
-
             $m->connect('api/friendships/create/:id.:format',
                         array('action' => 'ApiFriendshipsCreate',
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json)'));
 
+            $m->connect('api/friendships/create.:format',
+                        array('action' => 'ApiFriendshipsCreate',
+                              'format' => '(xml|json)'));
+
             $m->connect('api/friendships/destroy/:id.:format',
                         array('action' => 'ApiFriendshipsDestroy',
                               'id' => Nickname::INPUT_FMT,
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/friendships/destroy.:format',
+                        array('action' => 'ApiFriendshipsDestroy',
                               'format' => '(xml|json)'));
 
             // Social graph
@@ -549,13 +549,13 @@ class Router
 
             // favorites
 
-            $m->connect('api/favorites.:format',
-                        array('action' => 'ApiTimelineFavorites',
-                              'format' => '(xml|json|rss|atom|as)'));
-
             $m->connect('api/favorites/:id.:format',
                         array('action' => 'ApiTimelineFavorites',
                               'id' => Nickname::INPUT_FMT,
+                              'format' => '(xml|json|rss|atom|as)'));
+
+            $m->connect('api/favorites.:format',
+                        array('action' => 'ApiTimelineFavorites',
                               'format' => '(xml|json|rss|atom|as)'));
 
             $m->connect('api/favorites/create/:id.:format',
@@ -569,12 +569,17 @@ class Router
                               'format' => '(xml|json)'));
             // blocks
 
+            $m->connect('api/blocks/create/:id.:format',
+                        array('action' => 'ApiBlockCreate',
+                              'id' => Nickname::INPUT_FMT,
+                              'format' => '(xml|json)'));
+
             $m->connect('api/blocks/create.:format',
                         array('action' => 'ApiBlockCreate',
                               'format' => '(xml|json)'));
 
-            $m->connect('api/blocks/create/:id.:format',
-                        array('action' => 'ApiBlockCreate',
+            $m->connect('api/blocks/destroy/:id.:format',
+                        array('action' => 'ApiBlockDestroy',
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json)'));
 
@@ -582,10 +587,6 @@ class Router
                         array('action' => 'ApiBlockDestroy',
                               'format' => '(xml|json)'));
 
-            $m->connect('api/blocks/destroy/:id.:format',
-                        array('action' => 'ApiBlockDestroy',
-                              'id' => Nickname::INPUT_FMT,
-                              'format' => '(xml|json)'));
             // help
 
             $m->connect('api/help/test.:format',
@@ -623,13 +624,17 @@ class Router
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json|rss|atom|as)'));
 
+            $m->connect('api/statusnet/groups/show/:id.:format',
+                        array('action' => 'ApiGroupShow',
+                              'id' => Nickname::INPUT_FMT,
+                              'format' => '(xml|json)'));
+
             $m->connect('api/statusnet/groups/show.:format',
                         array('action' => 'ApiGroupShow',
                               'format' => '(xml|json)'));
 
-            $m->connect('api/statusnet/groups/show/:id.:format',
-                        array('action' => 'ApiGroupShow',
-                              'id' => Nickname::INPUT_FMT,
+            $m->connect('api/statusnet/groups/join/:id.:format',
+                        array('action' => 'ApiGroupJoin',
                               'format' => '(xml|json)'));
 
             $m->connect('api/statusnet/groups/join.:format',
@@ -637,8 +642,8 @@ class Router
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json)'));
 
-            $m->connect('api/statusnet/groups/join/:id.:format',
-                        array('action' => 'ApiGroupJoin',
+            $m->connect('api/statusnet/groups/leave/:id.:format',
+                        array('action' => 'ApiGroupLeave',
                               'format' => '(xml|json)'));
 
             $m->connect('api/statusnet/groups/leave.:format',
@@ -646,34 +651,30 @@ class Router
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json)'));
 
-            $m->connect('api/statusnet/groups/leave/:id.:format',
-                        array('action' => 'ApiGroupLeave',
-                              'format' => '(xml|json)'));
-
             $m->connect('api/statusnet/groups/is_member.:format',
                         array('action' => 'ApiGroupIsMember',
                               'format' => '(xml|json)'));
-
-            $m->connect('api/statusnet/groups/list.:format',
-                        array('action' => 'ApiGroupList',
-                              'format' => '(xml|json|rss|atom)'));
 
             $m->connect('api/statusnet/groups/list/:id.:format',
                         array('action' => 'ApiGroupList',
                               'id' => Nickname::INPUT_FMT,
                               'format' => '(xml|json|rss|atom)'));
 
+            $m->connect('api/statusnet/groups/list.:format',
+                        array('action' => 'ApiGroupList',
+                              'format' => '(xml|json|rss|atom)'));
+
             $m->connect('api/statusnet/groups/list_all.:format',
                         array('action' => 'ApiGroupListAll',
                               'format' => '(xml|json|rss|atom)'));
 
-            $m->connect('api/statusnet/groups/membership.:format',
-                        array('action' => 'ApiGroupMembership',
-                              'format' => '(xml|json)'));
-
             $m->connect('api/statusnet/groups/membership/:id.:format',
                         array('action' => 'ApiGroupMembership',
                               'id' => Nickname::INPUT_FMT,
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/statusnet/groups/membership.:format',
+                        array('action' => 'ApiGroupMembership',
                               'format' => '(xml|json)'));
 
             $m->connect('api/statusnet/groups/create.:format',
@@ -709,13 +710,9 @@ class Router
                         array('action' => 'ApiListSubscriptions',
                               'user' => '[a-zA-Z0-9]+',
                               'format' => '(xml|json)'));
+
             $m->connect('api/lists.:format',
                         array('action' => 'ApiLists',
-                              'format' => '(xml|json)'));
-
-            $m->connect('api/:user/lists.:format',
-                        array('action' => 'ApiLists',
-                              'user' => '[a-zA-Z0-9]+',
                               'format' => '(xml|json)'));
 
             $m->connect('api/:user/lists/:id.:format',
@@ -724,23 +721,16 @@ class Router
                               'id' => '[a-zA-Z0-9]+',
                               'format' => '(xml|json)'));
 
+            $m->connect('api/:user/lists.:format',
+                        array('action' => 'ApiLists',
+                              'user' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+
             $m->connect('api/:user/lists/:id/statuses.:format',
                         array('action' => 'ApiTimelineList',
                               'user' => '[a-zA-Z0-9]+',
                               'id' => '[a-zA-Z0-9]+',
                               'format' => '(xml|json|rss|atom)'));
-
-            $m->connect('api/:user/:list_id/members.:format',
-                        array('action' => 'ApiListMembers',
-                              'user' => '[a-zA-Z0-9]+',
-                              'list_id' => '[a-zA-Z0-9]+',
-                              'format' => '(xml|json)'));
-
-            $m->connect('api/:user/:list_id/subscribers.:format',
-                        array('action' => 'ApiListSubscribers',
-                              'user' => '[a-zA-Z0-9]+',
-                              'list_id' => '[a-zA-Z0-9]+',
-                              'format' => '(xml|json)'));
 
             $m->connect('api/:user/:list_id/members/:id.:format',
                         array('action' => 'ApiListMember',
@@ -749,11 +739,23 @@ class Router
                               'id' => '[a-zA-Z0-9]+',
                               'format' => '(xml|json)'));
 
+            $m->connect('api/:user/:list_id/members.:format',
+                        array('action' => 'ApiListMembers',
+                              'user' => '[a-zA-Z0-9]+',
+                              'list_id' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+
             $m->connect('api/:user/:list_id/subscribers/:id.:format',
                         array('action' => 'ApiListSubscriber',
                               'user' => '[a-zA-Z0-9]+',
                               'list_id' => '[a-zA-Z0-9]+',
                               'id' => '[a-zA-Z0-9]+',
+                              'format' => '(xml|json)'));
+
+            $m->connect('api/:user/:list_id/subscribers.:format',
+                        array('action' => 'ApiListSubscribers',
+                              'user' => '[a-zA-Z0-9]+',
+                              'list_id' => '[a-zA-Z0-9]+',
                               'format' => '(xml|json)'));
 
             // Tags
