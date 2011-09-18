@@ -54,19 +54,19 @@ class OStatusPlugin extends Plugin
         // Discovery actions
         $m->connect('main/ownerxrd',
                     array('action' => 'ownerxrd'));
-        $m->connect('main/ostatus',
-                    array('action' => 'ostatusinit'));
         $m->connect('main/ostatustag',
                     array('action' => 'ostatustag'));
         $m->connect('main/ostatustag?nickname=:nickname',
                     array('action' => 'ostatustag'), array('nickname' => '[A-Za-z0-9_-]+'));
-        $m->connect('main/ostatus?nickname=:nickname',
+        $m->connect('main/ostatus/nickname/:nickname',
                   array('action' => 'ostatusinit'), array('nickname' => '[A-Za-z0-9_-]+'));
-        $m->connect('main/ostatus?group=:group',
+        $m->connect('main/ostatus/group/:group',
                   array('action' => 'ostatusinit'), array('group' => '[A-Za-z0-9_-]+'));
-        $m->connect('main/ostatus?peopletag=:peopletag&tagger=:tagger',
+        $m->connect('main/ostatus/peopletag/:peopletag/tagger/:tagger',
                   array('action' => 'ostatusinit'), array('tagger' => '[A-Za-z0-9_-]+',
                                                           'peopletag' => '[A-Za-z0-9_-]+'));
+        $m->connect('main/ostatus',
+                    array('action' => 'ostatusinit'));
 
         // Remote subscription actions
         $m->connect('main/ostatussub',
@@ -246,16 +246,16 @@ class OStatusPlugin extends Plugin
         $cur = common_current_user();
 
         if (empty($cur)) {
-            $output->elementStart('li', 'entity_subscribe');
-            $profile = $peopletag->getTagger();
+            $widget->out->elementStart('li', 'entity_subscribe');
+
             $url = common_local_url('ostatusinit',
                                     array('group' => $group->nickname));
             $widget->out->element('a', array('href' => $url,
-                                        'class' => 'entity_remote_subscribe'),
+                                             'class' => 'entity_remote_subscribe'),
                                 // TRANS: Link to subscribe to a remote entity.
                                 _m('Subscribe'));
 
-            $output->elementEnd('li');
+            $widget->out->elementEnd('li');
             return false;
         }
 
@@ -752,11 +752,11 @@ class OStatusPlugin extends Plugin
      * deny the join.
      *
      * @param User_group $group
-     * @param User $user
+     * @param Profile    $profile
      *
      * @return mixed hook return value
      */
-    function onStartJoinGroup($group, $user)
+    function onStartJoinGroup($group, $profile)
     {
         $oprofile = Ostatus_profile::staticGet('group_id', $group->id);
         if ($oprofile) {
@@ -768,15 +768,13 @@ class OStatusPlugin extends Plugin
             // NOTE: we don't use Group_member::asActivity() since that record
             // has not yet been created.
 
-            $member = Profile::staticGet($user->id);
-
             $act = new Activity();
             $act->id = TagURI::mint('join:%d:%d:%s',
-                                    $member->id,
+                                    $profile->id,
                                     $group->id,
                                     common_date_iso8601(time()));
 
-            $act->actor = ActivityObject::fromProfile($member);
+            $act->actor = ActivityObject::fromProfile($profile);
             $act->verb = ActivityVerb::JOIN;
             $act->object = $oprofile->asActivityObject();
 
@@ -786,10 +784,10 @@ class OStatusPlugin extends Plugin
             // TRANS: Success message for subscribe to group attempt through OStatus.
             // TRANS: %1$s is the member name, %2$s is the subscribed group's name.
             $act->content = sprintf(_m('%1$s has joined group %2$s.'),
-                                    $member->getBestName(),
+                                    $profile->getBestName(),
                                     $oprofile->getBestName());
 
-            if ($oprofile->notifyActivity($act, $member)) {
+            if ($oprofile->notifyActivity($act, $profile)) {
                 return true;
             } else {
                 $oprofile->garbageCollect();
@@ -809,7 +807,7 @@ class OStatusPlugin extends Plugin
      * it'll be left with a stray membership record.
      *
      * @param User_group $group
-     * @param Profile $user
+     * @param Profile $profile
      *
      * @return mixed hook return value
      */

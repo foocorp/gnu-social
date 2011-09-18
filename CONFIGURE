@@ -646,7 +646,7 @@ search
 Some stuff for search.
 
 type: type of search. Ignored if PostgreSQL or Sphinx are enabled. Can either
-    be 'fulltext' (default) or 'like'. The former is faster and more efficient
+    be 'fulltext' or 'like' (default). The former is faster and more efficient
     but requires the lame old MyISAM engine for MySQL. The latter
     will work with InnoDB but could be miserably slow on large
     systems. We'll probably add another type sometime in the future,

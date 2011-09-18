@@ -23,6 +23,8 @@ if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 class TagAction extends Action
 {
     var $notice;
+    var $tag;
+    var $page;
 
     function prepare($args)
     {

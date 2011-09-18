@@ -108,7 +108,6 @@ class SearchSubPlugin extends Plugin
         $m->connect('search/:search/unsubscribe',
                     array('action' => 'searchunsub'),
                     array('search' => Router::REGEX_TAG));
-
         $m->connect(':nickname/search-subscriptions',
                     array('action' => 'searchsubs'),
                     array('nickname' => Nickname::DISPLAY_FMT));

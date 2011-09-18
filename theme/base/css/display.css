@@ -1502,16 +1502,16 @@ content:'☠';
 font-size:150%;
 }
 
-#content .notice-source-system div.entry-title, .notice-source-system div.entry-content {
+#content .notice-source-activity div.entry-title, .notice-source-activity div.entry-content {
     margin-left: 0;
 } 
 
-#content .notice-source-system div.entry-title {
+#content .notice-source-activity div.entry-title {
     font-style: italic;
     min-height: 0;
 }
 
-#content .notice-source-system .notice div.entry-title {
+#content .notice-source-activity .notice div.entry-title {
     font-style: normal;
 }
 

@@ -81,15 +81,15 @@ class SubscriptionThrottlePlugin extends Plugin
     /**
      * Filter group joins to see if they're coming too fast.
      *
-     * @param Group $group The group being joined
-     * @param User  $user  The user joining
+     * @param Group   $group   The group being joined
+     * @param Profile $profile The profile joining
      *
      * @return boolean hook value
      */
-    function onStartJoinGroup($group, $user)
+    function onStartJoinGroup($group, $profile)
     {
         foreach ($this->groupLimits as $seconds => $limit) {
-            $mem = $this->_getNthMem($user, $limit);
+            $mem = $this->_getNthMem($profile, $limit);
             if (!empty($mem)) {
 
                 $jointime = strtotime($mem->created);
@@ -130,16 +130,16 @@ class SubscriptionThrottlePlugin extends Plugin
     /**
      * Get the Nth most recent group membership for this user
      *
-     * @param User    $user The user to get memberships for
-     * @param integer $n    How far to count back
+     * @param Profile $profile The user to get memberships for
+     * @param integer $n       How far to count back
      *
      * @return Group_member a membership or null
      */
-    private function _getNthMem($user, $n)
+    private function _getNthMem($profile, $n)
     {
         $mem = new Group_member();
 
-        $mem->profile_id = $user->id;
+        $mem->profile_id = $profile->id;
         $mem->orderBy('created DESC');
         $mem->limit($n - 1, 1);
 

@@ -55,6 +55,25 @@ require_once INSTALLDIR.'/lib/feedlist.php';
  */
 class ShowstreamAction extends ProfileAction
 {
+    var $notice;
+
+    function prepare($args)
+    {
+        parent::prepare($args);
+
+        $p = Profile::current();
+
+        if (empty($this->tag)) {
+            $stream = new ProfileNoticeStream($this->profile, $p);
+        } else {
+            $stream = new TaggedProfileNoticeStream($this->profile, $this->tag, $p);
+        }
+
+        $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
+
+        return true;
+    }
+
     function isReadOnly($args)
     {
         return true;
@@ -224,13 +243,9 @@ class ShowstreamAction extends ProfileAction
 
     function showNotices()
     {
-        $notice = empty($this->tag)
-          ? $this->user->getNotices(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1)
-            : $this->user->getTaggedNotices($this->tag, ($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1, 0, 0, null);
-
         $pnl = null;
-        if (Event::handle('ShowStreamNoticeList', array($notice, $this, &$pnl))) {
-            $pnl = new ProfileNoticeList($notice, $this);
+        if (Event::handle('ShowStreamNoticeList', array($this->notice, $this, &$pnl))) {
+            $pnl = new ProfileNoticeList($this->notice, $this);
         }
         $cnt = $pnl->show();
         if (0 == $cnt) {

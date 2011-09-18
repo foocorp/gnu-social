@@ -188,7 +188,7 @@ class RealtimePlugin extends Plugin
         // Add to the public timeline
 
         if ($notice->is_local == Notice::LOCAL_PUBLIC ||
-            ($notice->is_local == Notice::REMOTE_OMB && !common_config('public', 'localonly'))) {
+            ($notice->is_local == Notice::REMOTE && !common_config('public', 'localonly'))) {
             $paths[] = array('public', null, null);
         }
 
@@ -294,9 +294,18 @@ class RealtimePlugin extends Plugin
         // root url from page output
 
         $action->elementStart('address');
+
+        if (common_config('singleuser', 'enabled')) {
+            $user = User::singleUser();
+            $url = common_local_url('showstream', array('nickname' => $user->nickname));
+        } else {
+            $url = common_local_url('public');
+        }
+
         $action->element('a', array('class' => 'url',
-                                  'href' => common_local_url('public')),
+                                    'href' => $url),
                          '');
+
         $action->elementEnd('address');
 
         $action->showContentBlock();
@@ -475,7 +484,7 @@ class RealtimePlugin extends Plugin
             break;
          case 'tag':
             $tag = $action->trimmed('tag');
-            if (empty($tag)) {
+            if (!empty($tag)) {
                 $arg1 = $tag;
             } else {
                 $this->log(LOG_NOTICE, "Unexpected 'tag' action without tag argument");

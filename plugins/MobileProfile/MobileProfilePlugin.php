@@ -293,8 +293,16 @@ class MobileProfilePlugin extends WAP20Plugin
     function _showLogo($action)
     {
         $action->elementStart('address', 'vcard');
+        if (common_config('singleuser', 'enabled')) {
+            $user = User::singleUser();
+            $url = common_local_url('showstream', array('nickname' => $user->nickname));
+        } else {
+            $url = common_local_url('public');
+        }
+
         $action->elementStart('a', array('class' => 'url home bookmark',
-                                       'href' => common_local_url('public')));
+                                         'href' => $url));
+
         if (common_config('site', 'mobilelogo') ||
             file_exists(Theme::file('logo.png')) ||
             file_exists(Theme::file('mobilelogo.png'))) {
