@@ -74,7 +74,7 @@ select {
     padding-bottom: 0px;
     margin-top: -4px;
 }
-
+s
 option {
     padding-bottom: 0px;
 }
@@ -698,10 +698,6 @@ font-style:italic;
 
 #showstream .notice {
     min-height: 1em; 
-}
-
-#shownotice .vcard .photo {
-    margin-bottom: 4px;
 }
 
 #shownotice .notice .entry-title {
