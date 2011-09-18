@@ -125,6 +125,7 @@ class LeavegroupAction extends Action
         try {
             $cur->leaveGroup($this->group);
         } catch (Exception $e) {
+            common_log(LOG_ERR, "Error when {$cur->nickname} tried to leave {$this->group->nickname}: " . $e->getMessage());
             // TRANS: Server error displayed when leaving a group failed in the database.
             // TRANS: %1$s is the leaving user's nickname, $2$s is the group nickname for which the leave failed.
             $this->serverError(sprintf(_('Could not remove user %1$s from group %2$s.'),
