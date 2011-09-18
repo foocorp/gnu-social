@@ -196,12 +196,6 @@ class SitemapPlugin extends Plugin
                                                  null, false),
                                    new ColumnDef('modified', 'timestamp')));
 
-        $userCreated = $schema->getColumnDef('user', 'created');
-
-        if (empty($userCreated) || $userCreated->key != 'MUL') {
-            $schema->createIndex('user', 'created');
-        }
-
         return true;
     }
 
