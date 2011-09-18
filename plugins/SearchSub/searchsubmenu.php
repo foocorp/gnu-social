@@ -92,7 +92,7 @@ class SearchSubMenu extends MoreMenu
             $id = $this->menuItemID($actionName, $args);
         }
 
-        if ($actionname == 'searchsub') {
+        if ($actionName == 'noticesearch') {
             // Add 'q' as a search param, not part of the url path
             $url = common_local_url($actionName, array(), $args);
         } else {
