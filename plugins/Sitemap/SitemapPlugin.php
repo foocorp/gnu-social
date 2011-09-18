@@ -108,14 +108,14 @@ class SitemapPlugin extends Plugin
         $m->connect('sitemapindex.xml',
                     array('action' => 'sitemapindex'));
 
-        $m->connect('/notice-sitemap-:year-:month-:day-:index.xml',
+        $m->connect('notice-sitemap-:year-:month-:day-:index.xml',
                     array('action' => 'noticesitemap'),
                     array('year' => '[0-9]{4}',
                           'month' => '[01][0-9]',
                           'day' => '[0123][0-9]',
                           'index' => '[1-9][0-9]*'));
 
-        $m->connect('/user-sitemap-:year-:month-:day-:index.xml',
+        $m->connect('user-sitemap-:year-:month-:day-:index.xml',
                     array('action' => 'usersitemap'),
                     array('year' => '[0-9]{4}',
                           'month' => '[01][0-9]',
