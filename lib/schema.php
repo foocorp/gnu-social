@@ -107,9 +107,11 @@ class Schema
     {
         $td = $this->getTableDef($table);
 
-        foreach ($td->columns as $cd) {
-            if ($cd->name == $column) {
-                return $cd;
+        if (!empty($td) && !empty($td->columns)) {
+            foreach ($td->columns as $cd) {
+                if ($cd->name == $column) {
+                    return $cd;
+                }
             }
         }
 
