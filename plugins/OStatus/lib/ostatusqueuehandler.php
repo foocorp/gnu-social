@@ -53,6 +53,13 @@ class OStatusQueueHandler extends QueueHandler
         $this->notice = $notice;
         $this->user = User::staticGet('id', $notice->profile_id);
 
+        try {
+            $profile = $this->notice->getProfile();
+        } catch (Exception $e) {
+            common_log(LOG_ERR, "Can't get profile for notice; skipping: " . $e->getMessage());
+            return true;
+        }
+
         $this->pushUser();
 
         foreach ($notice->getGroups() as $group) {
