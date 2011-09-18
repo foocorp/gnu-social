@@ -71,8 +71,9 @@ class GroupsNav extends MoreMenu
         $items = array();
 
         while ($this->groups->fetch()) {
-            $items[] = array('showgroup',
-                             array('nickname' => $this->groups->nickname),
+            $items[] = array('placeholder',
+                             array('nickname' => $this->groups->nickname,
+                                   'mainpage' => $this->groups->homeUrl()),
                              $this->groups->getBestName(),
                              $this->groups->getBestName()
                             );
@@ -90,4 +91,23 @@ class GroupsNav extends MoreMenu
                      _('See all groups you belong to.'));
     }
 
+    function item($actionName, $args, $label, $description, $id=null, $cls=null)
+    {
+        if ($actionName != 'placeholder') {
+            return parent::item($actionName, $args, $label, $description, $id, $cls);
+        }
+
+        if (empty($id)) {
+            $id = $this->menuItemID('showgroup', array('nickname' => $args['nickname']));
+        }
+
+        $url = $args['mainpage'];
+
+        $this->out->menuItem($url,
+                             $label,
+                             $description,
+                             $this->isCurrent($actionName, $args),
+                             $id,
+                             $cls);
+    }
 }
