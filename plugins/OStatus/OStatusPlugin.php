@@ -811,14 +811,14 @@ class OStatusPlugin extends Plugin
      *
      * @return mixed hook return value
      */
-    function onEndLeaveGroup($group, $user)
+    function onEndLeaveGroup($group, $profile)
     {
         $oprofile = Ostatus_profile::staticGet('group_id', $group->id);
         if ($oprofile) {
             // Drop the PuSH subscription if there are no other subscribers.
             $oprofile->garbageCollect();
 
-            $member = Profile::staticGet($user->id);
+            $member = $profile;
 
             $act = new Activity();
             $act->id = TagURI::mint('leave:%d:%d:%s',
