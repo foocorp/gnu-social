@@ -247,7 +247,7 @@ class OStatusPlugin extends Plugin
 
         if (empty($cur)) {
             $widget->out->elementStart('li', 'entity_subscribe');
-            $profile = $peopletag->getTagger();
+
             $url = common_local_url('ostatusinit',
                                     array('group' => $group->nickname));
             $widget->out->element('a', array('href' => $url,
