@@ -72,10 +72,7 @@ class Profile extends Managed_DataObject
             'primary key' => array('id'),
             'indexes' => array(
                 'profile_nickname_idx' => array('nickname'),
-            ),
-            'fulltext indexes' => array(
-                'nickname' => array('nickname', 'fullname', 'location', 'bio', 'homepage')
-            ),
+            )
         );
     }
 
