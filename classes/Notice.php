@@ -507,7 +507,7 @@ class Notice extends Managed_DataObject
         if (empty($verb)) {
             if (!empty($notice->repeat_of)) {
                 $notice->verb        = ActivityVerb::SHARE;
-                $notice->object_type = ActivityVerb::ACTIVITY;
+                $notice->object_type = ActivityObject::ACTIVITY;
             } else {
                 $notice->verb        = ActivityVerb::POST;
             }
