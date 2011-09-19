@@ -210,8 +210,11 @@ class AllAction extends ProfileAction
             }
             $ibs->show();
         }
-        $pop = new PopularNoticeSection($this);
-        $pop->show();
+        // XXX: make this a little more convenient
+        if (common_config('site', 'private')) {
+            $pop = new PopularNoticeSection($this);
+            $pop->show();
+        }
         //        $pop = new InboxTagCloudSection($this, $this->user);
         //        $pop->show();
     }
