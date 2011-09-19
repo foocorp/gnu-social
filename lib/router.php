@@ -124,6 +124,20 @@ class Router
                         array('user_id' => '[0-9]+',
                               'token' => '.+'));
 
+            // these take a code; before the main part
+
+            foreach (array('register', 'confirmaddress', 'recoverpassword') as $c) {
+                $m->connect('main/'.$c.'/:code', array('action' => $c));
+            }
+
+            // Also need a block variant accepting ID on URL for mail links
+            $m->connect('main/block/:profileid',
+                        array('action' => 'block'),
+                        array('profileid' => '[0-9]+'));
+
+            $m->connect('main/sup/:seconds', array('action' => 'sup'),
+                        array('seconds' => '[0-9]+'));
+
             // main stuff is repetitive
 
             $main = array('login', 'logout', 'register', 'subscribe',
@@ -148,17 +162,10 @@ class Router
                 $m->connect('main/'.$a, array('action' => $a));
             }
 
-            // Also need a block variant accepting ID on URL for mail links
-            $m->connect('main/block/:profileid',
-                        array('action' => 'block'),
-                        array('profileid' => '[0-9]+'));
-
-            $m->connect('main/sup/:seconds', array('action' => 'sup'),
-                        array('seconds' => '[0-9]+'));
-
-            $m->connect('main/tagprofile', array('action' => 'tagprofile'));
             $m->connect('main/tagprofile/:id', array('action' => 'tagprofile'),
                                                array('id' => '[0-9]+'));
+
+            $m->connect('main/tagprofile', array('action' => 'tagprofile'));
 
             $m->connect('main/oembed',
                         array('action' => 'oembed'));
@@ -169,12 +176,6 @@ class Router
                         array('action' => 'hostmeta'));
             $m->connect('main/xrd',
                         array('action' => 'userxrd'));
-
-            // these take a code
-
-            foreach (array('register', 'confirmaddress', 'recoverpassword') as $c) {
-                $m->connect('main/'.$c.'/:code', array('action' => $c));
-            }
 
             // settings
 
@@ -202,18 +203,18 @@ class Router
             // search
 
             foreach (array('group', 'people', 'notice') as $s) {
-                $m->connect('search/'.$s, array('action' => $s.'search'));
                 $m->connect('search/'.$s.'?q=:q',
                             array('action' => $s.'search'),
                             array('q' => '.+'));
+                $m->connect('search/'.$s, array('action' => $s.'search'));
             }
 
             // The second of these is needed to make the link work correctly
             // when inserted into the page. The first is needed to match the
             // route on the way in. Seems to be another Net_URL_Mapper bug to me.
-            $m->connect('search/notice/rss', array('action' => 'noticesearchrss'));
             $m->connect('search/notice/rss?q=:q', array('action' => 'noticesearchrss'),
                         array('q' => '.+'));
+            $m->connect('search/notice/rss', array('action' => 'noticesearchrss'));
 
             $m->connect('attachment/:attachment',
                         array('action' => 'attachment'),
