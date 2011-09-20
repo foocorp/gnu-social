@@ -2,24 +2,35 @@
 README
 ------
 
-StatusNet 1.0.0beta4
-16 September 2011
+StatusNet 1.0.0rc1
+20 September 2011
 
 This is the README file for StatusNet, the Open Source social
-networking platform. It includes installation instructions,
-descriptions of options you can set, warnings, tips, and general info
-for administrators. Information on using StatusNet can be found in the
-"doc" subdirectory or in the "help" section on-line.
+networking platform. It includes general information about the
+software and the project.
+
+Some other files to review:
+
+- INSTALL: instructions on how to install the software.
+- UPGRADE: upgrading from earlier versions
+- CONFIGURE: configuration options in gruesome detail.
+- PLUGINS.txt: how to install and configure plugins.
+- EVENTS.txt: events supported by the plugin system
+- COPYING: full text of the software license
+
+Information on using StatusNet can be found in the "doc" subdirectory
+or in the "help" section on-line.
 
 About
 =====
 
-StatusNet is a Free and Open Source social networking platform. It helps
-people in a community, company or group to exchange short (140
-characters, by default) messages over the Web. Users can choose which
-people to "follow" and receive only their friends' or colleagues'
-status messages. It provides a similar service to sites like Twitter,
-Google Buzz, or Yammer.
+StatusNet is a Free and Open Source social networking platform. It
+helps people in a community, company or group to exchange short status
+updates, do polls, announce events, or other social activities (and
+you can add more!). Users can choose which people to "follow" and
+receive only their friends' or colleagues' status messages. It
+provides a similar service to sites like Twitter, Google+, Facebook or
+Yammer, but is much more awesome.
 
 With a little work, status messages can be sent to mobile phones,
 instant messenger programs (GTalk/Jabber), and specially-designed
@@ -96,27 +107,44 @@ for additional terms.
 New this version
 ================
 
-This is a security release since version 0.9.7 released on 11 March
-2011. It fixes security bug #3260. All sites running version 0.9.7 or
-below are recommended to upgrade to 0.9.9 immediately.
+This is a major feature release since 0.9.9, released 2 August
+2011. It is the first release of the new branch of StatusNet, and the
+first release in the 1.x timeline.
 
 Notable changes this version:
 
-- Fix bug #3260, a cross-site scripting (XSS) bug that allows an
-  attacker to inject JavaScript into a page with a carefully structured URL.
-- Updated code for Google Analytics to reflect new API.
-- Various fixes for Bookmark plugin.
-- Updates to reCAPTCHA plugin based on changes to API.
-- New plugin to move the site notice to the sidebar.
-- Add rss.me to notice source list.
-- Updates to data backup/restore.
-- Correct use of "likes" in Facebook plugin.
-- Ignore failures in Twitter plugin.
+- Support for private updates, including private-to-groups, private
+  within a site, and private to followers only.
+- Conversation mode in streams; notices appear along with all replies.
+- Microapps -- post different types of activities to timelines, with
+  interaction. Events, bookmarks, Q&A, and polls included by default.
+- New 3-column layout in 'neo' theme by default. Older, 2-column layout
+  themes have been removed.
+- Alphabetical, searchable user directory.
+- Alphabetical, searchable group directory.
+- Groups can require all posts to be private ('private groups'), and
+  limit members to the group.
+- Users can make all posts private to their followers ('private stream'),
+  and require authorization to follow.
+- General plugin for IM support; added AIM, IRC and MSN to existing
+  XMPP code.
+- Support for Twitter-like lists, to follow other users without 
+  interfering with the home timeline.
+- Subscription to searches.
+- Subscription to tags.
+- Drupal-style schema system ("schemax") allows in-place database
+  upgrades from various software versions.
+- Fine-grained control of URL shortening, and an internal URL shortener
+  available.
+- Extended profile for private, enterprise sites.
+- sites are private by default.
+- Blog plugin for extended posts.
+- Plugin to restrict all users of a site to a single email domain.
+- Plugin to send a daily email summary to site users.
+- Deeper integration with Activity Streams (http://activitystrea.ms) format.
+- Automated upgrade script.
 
-A full changelog is available at http://status.net/wiki/StatusNet_0.9.9.
-
-NOTE: The short-lived StatusNet 0.9.8 ("Letter Never Sent") did not
-adequately fix bug #3260 as originally thought; thus this new release.
+A full changelog is available at http://status.net/wiki/StatusNet_1.0.0.
 
 Troubleshooting
 ===============
@@ -129,32 +157,6 @@ If you're tracking the unstable version of StatusNet in the git
 repository (see below), and you get a compilation error ("unexpected
 T_STRING") in the browser, check to see that you don't have any
 conflicts in your code.
-
-If you upgraded to StatusNet 0.9.x without reading the "Notice
-inboxes" section above, and all your users' 'Personal' tabs are empty,
-read the "Notice inboxes" section above.
-
-Myths
-=====
-
-These are some myths you may see on the Web about StatusNet.
-Documentation from the core team about StatusNet has been pretty
-sparse, so some backtracking and guesswork resulted in some incorrect
-assumptions.
-
-- "Set $config['db']['debug'] = 5 to debug the database." This is an
-  extremely bad idea. It's a tool built into DB_DataObject that will
-  emit oodles of print lines directly to the browser of your users.
-  Among these lines will be your database username and password. Do
-  not enable this option on a production Web site for any reason.
-
-- "Edit dataobject.ini with the following settings..." dataobject.ini
-  is a development file for the DB_DataObject framework and is not
-  used by the running software. It was removed from the StatusNet
-  distribution because its presence was confusing. Do not bother
-  configuring dataobject.ini, and do not put your database username
-  and password into the file on a production Web server; unscrupulous
-  persons may try to read it to get your passwords.
 
 Unstable version
 ================
@@ -194,7 +196,7 @@ Feedback
 * The group http://identi.ca/group/statusnet is a good
   place to discuss the software.
 * StatusNet has a bug tracker for any defects you may find, or ideas for
-  making things better. http://status.net/bugs
+  making things better. http://status.net/open-source/issues
 
 Credits
 =======
