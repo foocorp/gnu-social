@@ -117,9 +117,13 @@ class GroupAction extends Action
             $this->showPending();
             $this->showBlocked();
         }
+
         $this->showAdmins();
-        $cloud = new GroupTagCloudSection($this, $this->group);
-        $cloud->show();
+
+        if (!common_config('performance', 'high')) {
+            $cloud = new GroupTagCloudSection($this, $this->group);
+            $cloud->show();
+        }
     }
 
     /**
