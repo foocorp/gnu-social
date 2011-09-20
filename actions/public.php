@@ -245,7 +245,7 @@ class PublicAction extends Action
 
         $pop = new PopularNoticeSection($this);
         $pop->show();
-        if (common_config('site', 'private')) {
+        if (common_config('performance', 'high')) {
             $cloud = new PublicTagCloudSection($this);
             $cloud->show();
         }

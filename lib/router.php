@@ -274,10 +274,12 @@ class Router
                         array('action' => 'userbyid'),
                         array('id' => '[0-9]+'));
 
-            $m->connect('tags/', array('action' => 'publictagcloud'));
-            $m->connect('tag/', array('action' => 'publictagcloud'));
-            $m->connect('tags', array('action' => 'publictagcloud'));
-            $m->connect('tag', array('action' => 'publictagcloud'));
+            if (!common_config('performance', 'high')) {
+                $m->connect('tags/', array('action' => 'publictagcloud'));
+                $m->connect('tag/', array('action' => 'publictagcloud'));
+                $m->connect('tags', array('action' => 'publictagcloud'));
+                $m->connect('tag', array('action' => 'publictagcloud'));
+            }
             $m->connect('tag/:tag/rss',
                         array('action' => 'tagrss'),
                         array('tag' => self::REGEX_TAG));
@@ -898,7 +900,9 @@ class Router
 
                 // people tags
 
-                $m->connect('peopletags', array('action' => 'publicpeopletagcloud'));
+                if (!common_config('performance', 'high')) {
+                    $m->connect('peopletags', array('action' => 'publicpeopletagcloud'));
+                }
 
                 $m->connect('peopletag/:tag', array('action' => 'peopletag',
                                                     'tag'    => self::REGEX_TAG));

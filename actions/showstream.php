@@ -285,8 +285,10 @@ class ShowstreamAction extends ProfileAction
     function showSections()
     {
         parent::showSections();
-        $cloud = new PersonalTagCloudSection($this, $this->user);
-        $cloud->show();
+        if (!common_config('performance', 'high')) {
+            $cloud = new PersonalTagCloudSection($this, $this->user);
+            $cloud->show();
+        }
     }
 
     function noticeFormOptions()

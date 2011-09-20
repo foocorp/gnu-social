@@ -211,12 +211,13 @@ class AllAction extends ProfileAction
             $ibs->show();
         }
         // XXX: make this a little more convenient
-        if (common_config('site', 'private')) {
+
+        if (!common_config('performance', 'high')) {
             $pop = new PopularNoticeSection($this);
             $pop->show();
+            $pop = new InboxTagCloudSection($this, $this->user);
+            $pop->show();
         }
-        //        $pop = new InboxTagCloudSection($this, $this->user);
-        //        $pop->show();
     }
 }
 

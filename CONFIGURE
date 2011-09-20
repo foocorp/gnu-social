@@ -852,3 +852,10 @@ path: Path to the plugin files. defaults to site/path + '/plugins/'. Expects tha
       each plugin will have a subdirectory at plugins/NameOfPlugin. Change this
       if you're using a CDN.
 sslpath: Path to use on the SSL server. Same as plugins/path.
+
+performance
+-----------
+
+high: if you need high performance, or if you're seeing bad
+      performance, set this to true. It will turn off some high-intensity code from
+      the site.
