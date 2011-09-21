@@ -620,6 +620,11 @@ abstract class ImPlugin extends Plugin
         return true;
     }
 
+    function onHaveImPlugin(&$haveImPlugin) {
+        $haveImPlugin = true; // set flag true (we're loaded, after all!)
+        return false; // stop looking
+    }
+
     function initialize()
     {
         if( ! common_config('queue', 'enabled'))

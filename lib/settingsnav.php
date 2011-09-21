@@ -121,7 +121,11 @@ class SettingsNav extends Menu
 
             Event::handle('EndAccountSettingsNav', array(&$this->action));
 
-            if (class_exists('XmppPlugin') || class_exists('IrcPlugin') || class_exists('MsnPlugin')) {
+            $haveImPlugin = false;
+
+            Event::handle('HaveImPlugin', array(&$haveImPlugin));
+
+            if ($haveImPlugin) {
                 $this->action->menuItem(common_local_url('imsettings'),
                                         // TRANS: Menu item in settings navigation panel.
                                         _m('MENU','IM'),
