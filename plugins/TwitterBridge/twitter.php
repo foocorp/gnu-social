@@ -1,7 +1,7 @@
 <?php
 /*
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008-2010 StatusNet, Inc.
+ * Copyright (C) 2008-2011 StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -22,8 +22,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 }
 
 define('TWITTER_SERVICE', 1); // Twitter is foreign_service ID 1
-
-require_once INSTALLDIR . '/plugins/TwitterBridge/twitteroauthclient.php';
 
 function add_twitter_user($twitter_id, $screen_name)
 {
@@ -104,13 +102,24 @@ function save_twitter_user($twitter_id, $screen_name)
 }
 
 function is_twitter_bound($notice, $flink) {
+
+    // Don't send activity activities (at least for now)
+    if ($notice->object_type == ActivityObject::ACTIVITY) {
+        return false;
+    }
+
+    // Don't send things that aren't posts (at least for now)
+    if ($notice->verb != ActivityVerb::POST) {
+        return false;
+    }
+
     // Check to see if notice should go to Twitter
-    if (!empty($flink) && ($flink->noticesync & FOREIGN_NOTICE_SEND)) {
+    if (!empty($flink) && ($flink->noticesync & FOREIGN_NOTICE_SEND == FOREIGN_NOTICE_SEND)) {
 
         // If it's not a Twitter-style reply, or if the user WANTS to send replies,
         // or if it's in reply to a twitter notice
         if (!preg_match('/^@[a-zA-Z0-9_]{1,15}\b/u', $notice->content) ||
-            ($flink->noticesync & FOREIGN_NOTICE_SEND_REPLY) ||
+            ($flink->noticesync & FOREIGN_NOTICE_SEND_REPLY == FOREIGN_NOTICE_SEND_REPLY) ||
             is_twitter_notice($notice->reply_to)) {
             return true;
         }
