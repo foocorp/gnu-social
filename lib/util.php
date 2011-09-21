@@ -1459,6 +1459,7 @@ function common_redirect($url, $code=307)
 
     header('HTTP/1.1 '.$code.' '.$status[$code]);
     header("Location: $url");
+    header("Connection: close");
 
     $xo = new XMLOutputter();
     $xo->startXML('a',
