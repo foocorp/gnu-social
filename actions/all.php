@@ -85,7 +85,7 @@ class AllAction extends ProfileAction
     function title()
     {
         $user = common_current_user();
-        if ($user->id == $this->user->id) {
+        if (!empty($user) && $user->id == $this->user->id) {
             // TRANS: Title of a user's own start page.
             return _('Home timeline');
         } else {
