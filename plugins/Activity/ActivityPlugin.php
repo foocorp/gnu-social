@@ -51,11 +51,11 @@ class ActivityPlugin extends Plugin
 
     // Flags to switch off certain activity notices
     public $StartFollowUser = true;
-    public $StopFollowUser  = true;
+    public $StopFollowUser  = false;
     public $JoinGroup = true;
-    public $LeaveGroup = true;
-    public $StartLike = true;
-    public $StopLike = true;
+    public $LeaveGroup = false;
+    public $StartLike = false;
+    public $StopLike = false;
 
     function onAutoload($cls)
     {
