@@ -94,8 +94,7 @@ class LoginAction extends Action
         parent::handle($args);
 
         if (common_is_real_login()) {
-            // TRANS: Client error displayed when trying to log in while already logged in.
-            $this->clientError(_('Already logged in.'));
+            common_redirect(common_local_url('index'));
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->checkLogin();
         } else {
