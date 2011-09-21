@@ -603,6 +603,7 @@ class NoticeListItem extends Widget
 
             // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
             $this->out->raw(_('Repeated by'));
+            $this->out->raw(_(' '));
 
             $this->out->elementStart('a', $attrs);
             $this->out->element('span', 'fn nickname', $repeater->nickname);
