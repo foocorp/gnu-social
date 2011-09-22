@@ -90,7 +90,7 @@ class PublicSite extends SiteProfileSettings
         global $config;
         return array(
             // We only want to change these values, not replace entire 'site' array
-            'site' => array_replace(
+            'site' => array_merge(
                 $config['site'], array(
                     'inviteonly' => false,
                     'private'    => false,
@@ -137,7 +137,7 @@ class PrivateSite extends SiteProfileSettings
         global $config;
         return array(
             // We only want to change these values, not replace entire 'site' array
-            'site' => array_replace(
+            'site' => array_merge(
                 $config['site'], array(
                     'inviteonly' => true,
                     'private'    => true,
@@ -200,7 +200,7 @@ class CommunitySite extends SiteProfileSettings
         global $config;
         return array(
             // We only want to change these values, not replace entire 'site' array
-            'site' => array_replace(
+            'site' => array_merge(
                 $config['site'], array(
                     'private'    => false,
                     'closed'     => false
@@ -245,7 +245,7 @@ class SingleuserSite extends SiteProfileSettings
         return array(
             'singleuser' => array('enabled' => true),
             // We only want to change these values, not replace entire 'site' array
-            'site' => array_replace(
+            'site' => array_merge(
                 $config['site'], array(
                     'private'    => false,
                     'closed'     => true,
