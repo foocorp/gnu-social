@@ -1420,14 +1420,18 @@ class Profile extends Managed_DataObject
     {
     	$ids = array();
     	foreach ($profiles as $profile) {
-    	    $ids[] = $profile->id;
+            if (!empty($profile)) {
+                $ids[] = $profile->id;
+            }
     	}
     	
     	$avatars = Avatar::pivotGet('profile_id', $ids, array('width' => $width,
 															  'height' => $width));
     	
     	foreach ($profiles as $profile) {
-    	    $profile->_fillAvatar($width, $avatars[$profile->id]);
+            if (!empty($profile)) { // ???
+                $profile->_fillAvatar($width, $avatars[$profile->id]);
+            }
     	}
     }
     
