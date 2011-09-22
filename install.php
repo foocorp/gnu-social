@@ -360,7 +360,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
         <link rel="stylesheet" type="text/css" href="theme/neo/css/display.css" media="screen, projection, tv"/>
         <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/base/css/ie.css" /><![endif]-->
         <!--[if lte IE 6]><link rel="stylesheet" type="text/css" theme/base/css/ie6.css" /><![endif]-->
-        <!--[if IE]><link rel="stylesheet" type="text/css" href="theme/neo/css/ie.css" /><![endif]-->
+        <!--[if lte IE 7]><link rel="stylesheet" type="text/css" theme/base/css/ie7.css" /><![endif]-->
         <script src="js/jquery.min.js"></script>
         <script src="js/install.js"></script>
     </head>

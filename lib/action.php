@@ -241,8 +241,10 @@ class Action extends HTMLOutputter // lawsuit
                                        'href="'.Theme::path('css/ie'.$ver.'.css', 'base').'?version='.STATUSNET_VERSION.'" /><![endif]');
                     }
                 }
-                $this->comment('[if IE]><link rel="stylesheet" type="text/css" '.
+                if (file_exists(Theme::file('css/ie.css'))) {
+                    $this->comment('[if IE]><link rel="stylesheet" type="text/css" '.
                                'href="'.Theme::path('css/ie.css', null).'?version='.STATUSNET_VERSION.'" /><![endif]');
+                }
                 Event::handle('EndShowUAStyles', array($this));
             }
 
