@@ -85,6 +85,10 @@ address{
     margin-left: 0;
 }
 
+.notice p.entry-content {
+    float: left;
+}
+
 .threaded-replies .form_notice #notice_action-submit {
     right: 10px;
 }
@@ -264,6 +268,29 @@ select {
     float: left;
 }
 
+.profile .entity_profile .fn, .profile .entity_profile .label {
+    margin-right: 11px;
+    margin-left: 0;
+}
+
+#core .vcard .photo {
+    float: right;
+}
+
+.profile_list .label {
+    margin-right: 59px !important;
+}
+
+.profile .entity_profile .note, .profile .entity_profile .url, .profile .entity_profile .entity_tags, .profile .entity_profile .form_subscription_edit {
+    margin-right: 59px;
+    margin-left: 0;
+}
+
+.profile_list .entity_actions ul {
+    left: 20px;
+    right: auto;
+}
+
 /*#site_nav_local_views {
     float: right;
 }
@@ -271,5 +298,6 @@ select {
 #content {
     float: right;
 }*/
+
 
 
