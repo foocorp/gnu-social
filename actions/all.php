@@ -46,7 +46,6 @@ require_once INSTALLDIR.'/lib/feedlist.php';
 class AllAction extends ProfileAction
 {
     var $notice;
-    var $mode = 'conversation';
 
     function isReadOnly($args)
     {
@@ -57,9 +56,9 @@ class AllAction extends ProfileAction
     {
         parent::prepare($args);
 
-        $this->mode = $this->trimmed('mode', 'conversation');
+        $user = common_current_user();
 
-        if ($this->mode == 'stream') {
+        if (!empty($user) && $user->useStreamMode()) {
             $stream = new InboxNoticeStream($this->user, Profile::current());
         } else {
             $stream = new ThreadingInboxNoticeStream($this->user, Profile::current());
@@ -183,7 +182,7 @@ class AllAction extends ProfileAction
                 $profile = $current_user->getProfile();
             }
 
-            if ($this->mode == 'stream') {
+            if (!empty($current_user) && $current_user->showStreamMode()) {
                 $nl = new NoticeList($this->notice, $this);
             } else {
                 $nl = new ThreadedNoticeList($this->notice, $this, $profile);

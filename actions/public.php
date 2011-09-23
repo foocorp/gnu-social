@@ -60,7 +60,6 @@ class PublicAction extends Action
     var $page = null;
     var $notice;
     var $userProfile = null;
-    var $mode = 'conversation';
 
     function isReadOnly($args)
     {
@@ -89,9 +88,9 @@ class PublicAction extends Action
 
         $this->userProfile = Profile::current();
 
-        $this->mode = $this->trimmed('mode', 'conversation');
+        $user = common_current_user();
 
-        if ($this->mode == 'stream') {
+        if (!empty($user) && $user->useStreamMode()) {
             $stream = new PublicNoticeStream($this->userProfile);
         } else {
             $stream = new ThreadingPublicNoticeStream($this->userProfile);
@@ -220,7 +219,9 @@ class PublicAction extends Action
      */
     function showContent()
     {
-        if ($this->mode == 'stream') {
+        $user = common_current_user();
+
+        if (!empty($user) && $user->useStreamMode()) {
             $nl = new NoticeList($this->notice, $this);
         } else {
             $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);

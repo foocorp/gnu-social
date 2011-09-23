@@ -1145,4 +1145,14 @@ class User extends Managed_DataObject
         // TRANS: Subject for password recovery e-mail.
         mail_to_user($user, _('Password recovery requested'), $body, $headers, $confirm->address);
     }
+
+    function showStreamMode()
+    {
+        $smp = Stream_mode_prefs::staticGet('user_id', $this->id);
+        if (!empty($smp)) {
+            return $smp->show_stream_mode;
+        } else {
+            return false;
+        }
+    }
 }
