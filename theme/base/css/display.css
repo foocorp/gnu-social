@@ -634,6 +634,10 @@ address .poweredby {
     content: '\25B8';
 }
 
+.notice .addressees .group {
+    font-style: italic;
+}
+
 .fn {
     overflow: hidden;
 }
