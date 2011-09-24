@@ -859,3 +859,12 @@ performance
 high: if you need high performance, or if you're seeing bad
       performance, set this to true. It will turn off some high-intensity code from
       the site.
+
+oldschool
+---------
+
+enabled: enable certain old-style user settings options, like stream-only mode,
+	 conversation trees, and nicknames in streams. Off by default, and
+	 may not be well supported in future versions.
+
+

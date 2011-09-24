@@ -1148,31 +1148,36 @@ class User extends Managed_DataObject
 
     function streamModeOnly()
     {
-        $osp = Old_school_prefs::staticGet('user_id', $this->id);
-        if (!empty($osp)) {
-            return $osp->stream_mode_only;
-        } else {
-            return false;
+        if (common_config('oldschool', 'enabled')) {
+            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            if (!empty($osp)) {
+                return $osp->stream_mode_only;
+            } 
         }
+
+        return false;
     }
 
     function conversationTree()
     {
-        $osp = Old_school_prefs::staticGet('user_id', $this->id);
-        if (!empty($osp)) {
-            return $osp->conversation_tree;
-        } else {
-            return false;
+        if (common_config('oldschool', 'enabled')) {
+            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            if (!empty($osp)) {
+                return $osp->conversation_tree;
+            }
         }
+
+        return false;
     }
 
     function streamNicknames()
     {
-        $osp = Old_school_prefs::staticGet('user_id', $this->id);
-        if (!empty($osp)) {
-            return $osp->stream_nicknames;
-        } else {
-            return false;
+        if (common_config('oldschool', 'enabled')) {
+            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            if (!empty($osp)) {
+                return $osp->stream_nicknames;
+            }
         }
+        return false;
     }
 }
