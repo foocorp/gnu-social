@@ -1145,4 +1145,39 @@ class User extends Managed_DataObject
         // TRANS: Subject for password recovery e-mail.
         mail_to_user($user, _('Password recovery requested'), $body, $headers, $confirm->address);
     }
+
+    function streamModeOnly()
+    {
+        if (common_config('oldschool', 'enabled')) {
+            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            if (!empty($osp)) {
+                return $osp->stream_mode_only;
+            } 
+        }
+
+        return false;
+    }
+
+    function conversationTree()
+    {
+        if (common_config('oldschool', 'enabled')) {
+            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            if (!empty($osp)) {
+                return $osp->conversation_tree;
+            }
+        }
+
+        return false;
+    }
+
+    function streamNicknames()
+    {
+        if (common_config('oldschool', 'enabled')) {
+            $osp = Old_school_prefs::staticGet('user_id', $this->id);
+            if (!empty($osp)) {
+                return $osp->stream_nicknames;
+            }
+        }
+        return false;
+    }
 }

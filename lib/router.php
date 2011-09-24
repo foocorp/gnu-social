@@ -184,6 +184,10 @@ class Router
                 $m->connect('settings/'.$s, array('action' => $s.'settings'));
             }
 
+            if (common_config('oldschool', 'enabled')) {
+                $m->connect('settings/oldschool', array('action' => 'oldschoolsettings'));
+            }
+
             $m->connect('settings/oauthapps/show/:id',
                         array('action' => 'showapplication'),
                         array('id' => '[0-9]+')

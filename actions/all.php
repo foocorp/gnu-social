@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2008, 2009, StatusNet, Inc.
+ * Copyright (C) 2008-2011, StatusNet, Inc.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -56,7 +56,13 @@ class AllAction extends ProfileAction
     {
         parent::prepare($args);
 
-        $stream = new ThreadingInboxNoticeStream($this->user, Profile::current());
+        $user = common_current_user();
+
+        if (!empty($user) && $user->streamModeOnly()) {
+            $stream = new InboxNoticeStream($this->user, Profile::current());
+        } else {
+            $stream = new ThreadingInboxNoticeStream($this->user, Profile::current());
+        }
 
         $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
                                             NOTICES_PER_PAGE + 1);
@@ -176,7 +182,11 @@ class AllAction extends ProfileAction
                 $profile = $current_user->getProfile();
             }
 
-            $nl = new ThreadedNoticeList($this->notice, $this, $profile);
+            if (!empty($current_user) && $current_user->streamModeOnly()) {
+                $nl = new NoticeList($this->notice, $this);
+            } else {
+                $nl = new ThreadedNoticeList($this->notice, $this, $profile);
+            }
 
             $cnt = $nl->show();
 
