@@ -150,6 +150,15 @@ class SettingsNav extends Menu
                                     _('Authorized connected applications'),
                                     $actionName == 'oauthconnectionsettings');
 
+            if (common_config('oldschool', 'enabled')) {
+                $this->action->menuItem(common_local_url('oldschoolsettings'),
+                                        // TRANS: Menu item in settings navigation panel.
+                                        _m('MENU','Old school'),
+                                        // TRANS: Menu item title in settings navigation panel.
+                                        _('UI tweaks for old-school users'),
+                                        $actionName == 'oldschoolsettings');
+            }
+
             Event::handle('EndConnectSettingsNav', array(&$this->action));
         }
 
