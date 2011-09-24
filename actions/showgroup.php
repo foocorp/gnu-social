@@ -101,7 +101,7 @@ class ShowgroupAction extends GroupAction
 
         $user = common_current_user();
 
-        if (!empty($user) && $user->useStreamMode()) {
+        if (!empty($user) && $user->streamModeOnly()) {
             $stream = new GroupNoticeStream($this->group, $this->userProfile);
         } else {
             $stream = new ThreadingGroupNoticeStream($this->group, $this->userProfile);
@@ -147,7 +147,7 @@ class ShowgroupAction extends GroupAction
     {
         $user = common_current_user();
 
-        if (!empty($user) && $user->useStreamMode()) {
+        if (!empty($user) && $user->streamModeOnly()) {
             $nl = new NoticeList($this->notice, $this);
         } else {
             $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);

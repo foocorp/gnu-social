@@ -58,7 +58,7 @@ class AllAction extends ProfileAction
 
         $user = common_current_user();
 
-        if (!empty($user) && $user->useStreamMode()) {
+        if (!empty($user) && $user->streamModeOnly()) {
             $stream = new InboxNoticeStream($this->user, Profile::current());
         } else {
             $stream = new ThreadingInboxNoticeStream($this->user, Profile::current());
@@ -182,7 +182,7 @@ class AllAction extends ProfileAction
                 $profile = $current_user->getProfile();
             }
 
-            if (!empty($current_user) && $current_user->showStreamMode()) {
+            if (!empty($current_user) && $current_user->streamModeOnly()) {
                 $nl = new NoticeList($this->notice, $this);
             } else {
                 $nl = new ThreadedNoticeList($this->notice, $this, $profile);

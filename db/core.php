@@ -86,6 +86,7 @@ $classes = array('Profile',
                  'Local_group',
                  'User_urlshortener_prefs',
                  'Schema_version',
+                 'Old_school_prefs',
 );
 
 foreach ($classes as $cls) {

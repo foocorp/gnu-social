@@ -1146,11 +1146,31 @@ class User extends Managed_DataObject
         mail_to_user($user, _('Password recovery requested'), $body, $headers, $confirm->address);
     }
 
-    function showStreamMode()
+    function streamModeOnly()
     {
-        $smp = Stream_mode_prefs::staticGet('user_id', $this->id);
-        if (!empty($smp)) {
-            return $smp->show_stream_mode;
+        $osp = Old_school_prefs::staticGet('user_id', $this->id);
+        if (!empty($osp)) {
+            return $osp->stream_mode_only;
+        } else {
+            return false;
+        }
+    }
+
+    function conversationTree()
+    {
+        $osp = Old_school_prefs::staticGet('user_id', $this->id);
+        if (!empty($osp)) {
+            return $osp->conversation_tree;
+        } else {
+            return false;
+        }
+    }
+
+    function streamNicknames()
+    {
+        $osp = Old_school_prefs::staticGet('user_id', $this->id);
+        if (!empty($osp)) {
+            return $osp->stream_nicknames;
         } else {
             return false;
         }
