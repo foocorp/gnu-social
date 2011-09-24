@@ -97,10 +97,15 @@ class ShowgroupAction extends GroupAction
 
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
 
-
         $this->userProfile = Profile::current();
 
-        $stream = new ThreadingGroupNoticeStream($this->group, $this->userProfile);
+        $user = common_current_user();
+
+        if (!empty($user) && $user->streamModeOnly()) {
+            $stream = new GroupNoticeStream($this->group, $this->userProfile);
+        } else {
+            $stream = new ThreadingGroupNoticeStream($this->group, $this->userProfile);
+        }
 
         $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
                                             NOTICES_PER_PAGE + 1);
@@ -140,7 +145,14 @@ class ShowgroupAction extends GroupAction
      */
     function showGroupNotices()
     {
-        $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);
+        $user = common_current_user();
+
+        if (!empty($user) && $user->streamModeOnly()) {
+            $nl = new NoticeList($this->notice, $this);
+        } else {
+            $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);
+        } 
+
         $cnt = $nl->show();
 
         $this->pagination($this->page > 1,

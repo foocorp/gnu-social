@@ -352,5 +352,6 @@ $default =
         array('cache' => true), // whether to cache the router object. Defaults to true, turn off for devel
         'discovery' =>
           array('cors' => false), // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
-        'performance' => array('high' => false) // disable some features for higher performance; default false
+       'performance' => array('high' => false), // disable some features for higher performance; default false
+       'oldschool' => array('enabled' => false) // enable users to use old-style UI
     );
