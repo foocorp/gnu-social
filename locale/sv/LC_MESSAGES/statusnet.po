@@ -15,17 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:51:08+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:37+0000\n"
 "Language-Team: Swedish <https://translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3023,12 +3023,6 @@ msgstr "Webbadress för en bild som visas med licensen."
 msgid "Save license settings."
 msgstr "Spara licensinsällningar."
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Redan inloggad."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Felaktigt användarnamn eller lösenord."
@@ -3378,6 +3372,33 @@ msgstr "Endast %s-webbadresser över vanlig HTTP."
 msgid "Not a supported data format."
 msgstr "Ett dataformat som inte stödjs"
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "Inställningar för snabbmeddelanden"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Inställningar sparade."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Spara"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Personsökning"
@@ -3385,6 +3406,11 @@ msgstr "Personsökning"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Notissökning"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Redan inloggad."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -4150,11 +4176,6 @@ msgstr "Kunde inte spara platsinställningar."
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
 msgstr "Kunde inte spara taggar."
-
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Inställningar sparade."
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
@@ -6616,13 +6637,6 @@ msgctxt "role"
 msgid "Moderator"
 msgstr "Moderator"
 
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Prenumerera"
-
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
@@ -7613,6 +7627,11 @@ msgstr "Du kanske vill köra installeraren för att åtgärda detta."
 #. TRANS: The text is link text that leads to the installer page.
 msgid "Go to the installer."
 msgstr "Gå till installeraren."
+
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Notiser"
 
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
@@ -8612,6 +8631,10 @@ msgstr "i sammanhang"
 msgid "Repeated by"
 msgstr "Upprepad av"
 
+#, fuzzy
+msgid " "
+msgstr ", "
+
 #. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice."
 msgstr "Svara på denna notis."
@@ -8669,10 +8692,6 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Beskriv listan eller ämnet med %d tecken."
 msgstr[1] "Beskriv listan eller ämnet med %d tecken."
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Spara"
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -8926,10 +8945,6 @@ msgstr "Användar-ID"
 #. TRANS: Label for user statistics.
 msgid "Member since"
 msgstr "Medlem sedan"
-
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Notiser"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
@@ -9204,6 +9219,15 @@ msgstr "Anslutningar"
 msgid "Authorized connected applications"
 msgstr "Tillåt anslutna applikationer"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
 msgid "Silence"
@@ -9303,6 +9327,12 @@ msgstr "Bjud in vänner och kollegor att gå med dig på %s."
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Prenumerera på denna användare"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Prenumerera"
 
 #. TRANS: Button title to subscribe to a user.
 msgid "Subscribe to this user."
@@ -9621,24 +9651,3 @@ msgstr "Ogiltig XML, saknar XRD-rot."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Hämtar säkerhetskopia från filen '%s'."
-
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "Ogiltig avatar-URL %s."
-
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr "Försökte uppdatera avatar för osparade fjärrprofilen %s."
-
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "Det gick inte att hämta avatar från %s."
-
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "Kunde inte nå profilsidan %s."
-
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "Kunde inte hitta en användare-URL för profilsidan %s."
-
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "Inte en giltig webbfinger-adress."
-
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "Kunde inte hitta en giltig profil för \"%s\"."

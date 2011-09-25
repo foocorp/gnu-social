@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:52:01+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:51+0000\n"
 "Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:45+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -173,17 +173,6 @@ msgstr "Configuració del compte del Twitter"
 msgid "Connection options"
 msgstr "Opcions de connexió"
 
-#. TRANS: Text for license agreement checkbox.
-#. TRANS: %s is the license as configured for the StatusNet site.
-#, php-format
-msgid ""
-"My text and files are available under %s except this private data: password, "
-"email address, IM address, and phone number."
-msgstr ""
-"El meu text i fitxers es troben disponibles sots %s excepte pel que fa a les "
-"dades privades: contrasenya, adreça de correu electrònic i MI, i número de "
-"telèfon."
-
 #. TRANS: Fieldset legend.
 msgid "Create new account"
 msgstr "Crea un compte nou"
@@ -211,7 +200,6 @@ msgstr ""
 "S'utilitza per a actualitzacions, anuncis i per recuperar la contrasenya"
 
 #. TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Crea"
@@ -236,8 +224,22 @@ msgstr "Sobrenom ja existent"
 msgid "Password"
 msgstr "Contrasenya"
 
+#. TRANS: Fieldset legend.
+msgid "License"
+msgstr ""
+
+#. TRANS: Text for license agreement checkbox.
+#. TRANS: %s is the license as configured for the StatusNet site.
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+"El meu text i fitxers es troben disponibles sots %s excepte pel que fa a les "
+"dades privades: contrasenya, adreça de correu electrònic i MI, i número de "
+"telèfon."
+
 #. TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Connecta"
@@ -393,15 +395,13 @@ msgstr ""
 
 #. TRANS: Menu item in login navigation.
 #. TRANS: Menu item in connection settings navigation.
-#, fuzzy
 msgctxt "MENU"
 msgid "Twitter"
 msgstr "Twitter"
 
 #. TRANS: Title for menu item in login navigation.
-#, fuzzy
 msgid "Login or register using Twitter."
-msgstr "Inicieu una sessió o registreu-vos fent servir el Twitter"
+msgstr "Inicieu una sessió o registreu-vos fent servir el Twitter."
 
 #. TRANS: Title for menu item in connection settings navigation.
 msgid "Twitter integration options"
@@ -412,9 +412,8 @@ msgid "Twitter"
 msgstr "Twitter"
 
 #. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
-#, fuzzy
 msgid "Twitter bridge configuration page."
-msgstr "Configuració del pont del Twitter"
+msgstr "Pàgina de configuració del pont del Twitter."
 
 #. TRANS: Plugin description.
 msgid ""
@@ -429,7 +428,6 @@ msgid "Already logged in."
 msgstr "Ja heu iniciat una sessió."
 
 #. TRANS: Title for login using Twitter page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter Login"
 msgstr "Inici de sessió del Twitter"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,18 +141,18 @@ msgid "No groups starting with %s."
 msgstr ""
 
 #. TRANS: Menu item text for user directory.
-#: DirectoryPlugin.php:237
+#: DirectoryPlugin.php:241
 msgctxt "MENU"
 msgid "Directory"
 msgstr ""
 
 #. TRANS: Menu item title for user directory.
-#: DirectoryPlugin.php:239
+#: DirectoryPlugin.php:243
 msgid "User Directory."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: DirectoryPlugin.php:258
+#: DirectoryPlugin.php:262
 msgid "Add a user directory."
 msgstr ""
 

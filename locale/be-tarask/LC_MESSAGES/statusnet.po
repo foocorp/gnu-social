@@ -12,14 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:50:14+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:44:48+0000\n"
 "Language-Team: Belarusian (Taraškievica orthography) <https://translatewiki."
 "net/wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: be-tarask\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -1545,8 +1545,8 @@ msgstr "Рэзэрвовая копія"
 #. TRANS: Client exception thrown when trying to backup an account while not logged in.
 msgid "Only logged-in users can backup their account."
 msgstr ""
-"Толькі карыстальнікі, якія увайшлі ў сыстэму могуць зрабіць рэзэрвовую копію "
-"іх рахунку."
+"Толькі карыстальнікі, якія увайшлі ў сыстэму, могуць зрабіць рэзэрвовую "
+"копію іх рахунку."
 
 #. TRANS: Client exception thrown when trying to backup an account without having backup rights.
 msgid "You may not backup your account."
@@ -1762,7 +1762,8 @@ msgstr "Заўвага"
 
 #. TRANS: Client exception displayed trying to delete a user account while not logged in.
 msgid "Only logged-in users can delete their account."
-msgstr "Толькі зарэгістраваныя карыстальнікі могуць выдаляць свае рахункі."
+msgstr ""
+"Толькі карыстальнікі, якія увайшлі ў сыстэму, могуць выдаляць свае рахункі."
 
 #. TRANS: Client exception displayed trying to delete a user account without have the rights to do that.
 msgid "You cannot delete your account."
@@ -3045,12 +3046,6 @@ msgstr "URL-адрас выявы для паказу з ліцэнзіяй."
 msgid "Save license settings."
 msgstr "Захаваць налады ліцэнзіі."
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Ужо ўвайшлі ў сыстэму."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Няслушнае імя карыстальніка ці пароль."
@@ -3403,6 +3398,33 @@ msgstr "Дазволеныя толькі URL-адрасы %s праз звыч�
 msgid "Not a supported data format."
 msgstr "Такі фармат зьвестак не падтрымліваецца."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "Налады IM"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Налады захаваныя."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Захаваць"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Пошук людзей"
@@ -3410,6 +3432,11 @@ msgstr "Пошук людзей"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Пошук запісаў"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Ужо ўвайшлі ў сыстэму."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -4183,11 +4210,6 @@ msgstr "Немагчыма захаваць налады месцазнаход�
 msgid "Could not save tags."
 msgstr "Немагчыма захаваць тэгі."
 
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Налады захаваныя."
-
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
 msgid "Restore account"
@@ -4523,36 +4545,39 @@ msgstr "Гэты адрас электроннай пошты ўжо выкар�
 
 #. TRANS: Form validation error displayed when trying to register with an invalid username or password.
 msgid "Invalid username or password."
-msgstr ""
+msgstr "Няслушнае імя карыстальніка ці пароль."
 
 #. TRANS: Page notice on registration page.
 msgid ""
 "With this form you can create a new account. You can then post notices and "
 "link up to friends and colleagues."
 msgstr ""
+"З дапамогай гэтай формы Вы можаце стварыць новы рахунак. Пасьля гэтага Вы "
+"можаце дасылаць паведамленьні і зносіцца з сябрамі і калегамі."
 
 #. TRANS: Field label on account registration page. In this field the password has to be entered a second time.
 msgctxt "PASSWORD"
 msgid "Confirm"
-msgstr ""
+msgstr "Пацьвердзіць"
 
 #. TRANS: Field label on account registration page.
 msgctxt "LABEL"
 msgid "Email"
-msgstr ""
+msgstr "Электронная пошта"
 
 #. TRANS: Field title on account registration page.
 msgid "Used only for updates, announcements, and password recovery."
 msgstr ""
+"Выкарыстоўваецца толькі для абнаўленьняў, абвяшчэньняў і аднаўленьняў паролю."
 
 #. TRANS: Field title on account registration page.
 msgid "Longer name, preferably your \"real\" name."
-msgstr ""
+msgstr "Поўнае імя, пажадана Вашае «сапраўднае» імя."
 
 #. TRANS: Button text to register a user on account registration page.
 msgctxt "BUTTON"
 msgid "Register"
-msgstr ""
+msgstr "Рэгістрацыя"
 
 #. TRANS: Copyright checkbox label in registration dialog, for private sites.
 #. TRANS: %1$s is the StatusNet sitename.
@@ -4560,20 +4585,22 @@ msgstr ""
 msgid ""
 "I understand that content and data of %1$s are private and confidential."
 msgstr ""
+"Я разумею, што зьмест і зьвесткі %1$s зьяўляюцца прыватнымі і "
+"канфідэнцыйнымі."
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved with a specified copyright owner.
 #. TRANS: %1$s is the license owner.
 #, php-format
 msgid "My text and files are copyright by %1$s."
-msgstr ""
+msgstr "Мой тэкст і файлы ахоўваюцца аўтарскімі правамі %1$s."
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved with ownership left to contributors.
 msgid "My text and files remain under my own copyright."
-msgstr ""
+msgstr "Мой тэкст і файлы застаюцца пад маімі аўтарскімі правамі."
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved.
 msgid "All rights reserved."
-msgstr ""
+msgstr "Усе правы абароненыя."
 
 #. TRANS: Copyright checkbox label in registration dialog, for Creative Commons-style licenses.
 #, php-format
@@ -4581,6 +4608,8 @@ msgid ""
 "My text and files are available under %s except this private data: password, "
 "email address, IM address, and phone number."
 msgstr ""
+"Мой тэкст і файлы даступныя на ўмовах %s за выключэньнем гэтых прыватных "
+"зьвестак: паролю, адрасу электроннай пошты, IM-адрасу і нумару тэлефона."
 
 #. TRANS: Text displayed after successful account registration.
 #. TRANS: %1$s is the registered nickname, %2$s is the profile URL.
@@ -4603,18 +4632,34 @@ msgid ""
 "\n"
 "Thanks for signing up and we hope you enjoy using this service."
 msgstr ""
+"Віншуем, %1$s! І вітаем у %%%%site.name%%%%. Цяпер Вы можаце…\n"
+"\n"
+"* Перайсьці ў [Ваш профіль](%2$s) і даслаць Вашае першае паведамленьне.\n"
+"* Дадаць [Jabber/GTalk-адрас](%%%%action.imsettings%%%%) каб мець "
+"магчымасьць дасылаць запісы праз імгненныя паведамленьні.\n"
+"* [Шукаць людзей](%%%%action.peoplesearch%%%%), якіх Вы, магчыма, ведаеце, "
+"ці якія падзяляюць Вашыя інтарэсы. \n"
+"* Абнаўляць [налады Вашага профілю](%%%%action.profilesettings%%%%) каб "
+"расказаць іншым болей пра Вас. \n"
+"* Даведацца болей у [дакумэнтацыі](%%%%doc.help%%%%) пра магчымасьці, якія "
+"Вы ня ведаеце. \n"
+"\n"
+"Дзякуй за рэгістрацыю, і мы спадзяемся, што Вам спадабаецца карыстацца нашым "
+"сэрвісам."
 
 #. TRANS: Instruction text on how to deal with the e-mail address confirmation e-mail.
 msgid ""
 "(You should receive a message by email momentarily, with instructions on how "
 "to confirm your email address.)"
 msgstr ""
+"(Вы павінны атрымаць электронную ліст, у якім будуць інструкцыі як "
+"пацьвердзіць Ваш адрас электроннай пошты.)"
 
 #. TRANS: Client error displayed when an unknown error occurs while delisting a user.
 #. TRANS: %s is a username.
 #, php-format
 msgid "There was an unexpected error while delisting %s."
-msgstr ""
+msgstr "Узьнікла нечаканая памылка падчас выдаленьня са сьпісу %s."
 
 #. TRANS: Client error displayed when an unknown error occurs while listing a user.
 #. TRANS: %s is a profile URL.
@@ -4623,28 +4668,30 @@ msgid ""
 "There was a problem listing %s. The remote server is probably not responding "
 "correctly, please try retrying later."
 msgstr ""
+"Немагчыма дадаць у сьпіс %s. Аддалены сэрвэр, верагодна, не адказвае слушна. "
+"Калі ласка, паспрабуйце потым."
 
 #. TRANS: Title after removing a user from a list.
 msgid "Unlisted"
-msgstr ""
+msgstr "Не ў сьпісе"
 
 #. TRANS: Client error displayed when trying to repeat a notice while not logged in.
 msgid "Only logged-in users can repeat notices."
-msgstr ""
+msgstr "Толькі карыстальнікі, якія ўвайшлі ў сыстэму, могуць паўтараць запісы."
 
 #. TRANS: Client error displayed when trying to repeat a notice while not providing a notice ID.
 #. TRANS: Client error displayed when trying to repeat a non-existing notice.
 msgid "No notice specified."
-msgstr ""
+msgstr "Запіс не пазначаны."
 
 #. TRANS: Title after repeating a notice.
 #. TRANS: Repeat form status in notice list when a notice has been repeated.
 msgid "Repeated"
-msgstr ""
+msgstr "Паўторана"
 
 #. TRANS: Confirmation text after repeating a notice.
 msgid "Repeated!"
-msgstr ""
+msgstr "Паўторана!"
 
 #. TRANS: Title for first page of replies for a user.
 #. TRANS: %s is a user nickname.
@@ -4653,37 +4700,37 @@ msgstr ""
 #. TRANS: %s is a username.
 #, php-format
 msgid "Replies to %s"
-msgstr ""
+msgstr "Адказы на %s"
 
 #. TRANS: Title for all but the first page of replies for a user.
 #. TRANS: %1$s is a user nickname, %2$d is a page number.
 #, php-format
 msgid "Replies to %1$s, page %2$d"
-msgstr ""
+msgstr "Адказы на %1$s, старонка %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (Activity Streams JSON)"
-msgstr ""
+msgstr "Стужка адказаў для %s (стужак актыўнасьці JSON)"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (RSS 1.0)"
-msgstr ""
+msgstr "Стужка адказаў для %s (RSS 1.0)"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (RSS 2.0)"
-msgstr ""
+msgstr "Стужка адказаў для %s (RSS 2.0)"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (Atom)"
-msgstr ""
+msgstr "Стужка адказаў для %s (Atom)"
 
 #. TRANS: Empty list message for page with replies for a user.
 #. TRANS: %1$s and %s$s are the user nickname.
@@ -4692,6 +4739,8 @@ msgid ""
 "This is the timeline showing replies to %1$s but %2$s hasn't received a "
 "notice to them yet."
 msgstr ""
+"Гэтая стужка ўтрымлівае адказы для %1$s, але %2$s яшчэ не атрымаў на іх "
+"абвяшчэньня."
 
 #. TRANS: Empty list message for page with replies for a user for the logged in user.
 #. TRANS: This message contains a Markdown link in the form [link text](link).
@@ -4700,6 +4749,8 @@ msgid ""
 "You can engage other users in a conversation, subscribe to more people or "
 "[join groups](%%action.groups%%)."
 msgstr ""
+"Вы можаце ўцягнуць у размову іншых карыстальнікаў, падпісацца на вялікую "
+"колькасьць людзей ці [далучыцца да групаў](%%action.groups%%)."
 
 #. TRANS: Empty list message for page with replies for a user for all logged in users but the user themselves.
 #. TRANS: %1$s, %2$s and %3$s are a user nickname. This message contains a Markdown link in the form [link text](link).
@@ -4708,100 +4759,109 @@ msgid ""
 "You can try to [nudge %1$s](../%2$s) or [post something to them](%%%%action."
 "newnotice%%%%?status_textarea=%3$s)."
 msgstr ""
+"Вы можаце паспрабаваць [падштурхнуць %1$s](../%2$s) альбо [даслаць што-"
+"небудзь да іх](%%%%action.newnotice%%%%?status_textarea=%3$s)."
 
 #. TRANS: RSS reply feed description.
 #. TRANS: %1$s is a user nickname, %2$s is the StatusNet site name.
 #, php-format
 msgid "Replies to %1$s on %2$s."
-msgstr ""
+msgstr "Адказы да %1$s на %2$s."
 
 #. TRANS: Client exception displayed when trying to restore an account while not logged in.
 msgid "Only logged-in users can restore their account."
 msgstr ""
+"Толькі карыстальнікі, якія увайшлі ў сыстэму, могуць аднаўляць свае рахункі."
 
 #. TRANS: Client exception displayed when trying to restore an account without having restore rights.
 msgid "You may not restore your account."
-msgstr ""
+msgstr "Вы ня можаце аднавіць свой рахунак."
 
 #. TRANS: Client exception displayed trying to restore an account while something went wrong uploading a file.
 #. TRANS: Client exception. No file; probably just a non-AJAX submission.
 msgid "No uploaded file."
-msgstr ""
+msgstr "Няма загружаных файлаў."
 
 #. TRANS: Client exception thrown when an uploaded file is larger than set in php.ini.
 msgid "The uploaded file exceeds the upload_max_filesize directive in php.ini."
-msgstr ""
+msgstr "Загружаны файл перавышае дырэктыву upload_max_filesize у php.ini."
 
 #. TRANS: Client exception.
 msgid ""
 "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in "
 "the HTML form."
 msgstr ""
+"Загружаны файл перавышае дырэктыву MAX_FILE_SIZE, якая была пазначаная ў "
+"HTML-форме."
 
 #. TRANS: Client exception.
 msgid "The uploaded file was only partially uploaded."
-msgstr ""
+msgstr "Файл быў загружаны толькі часткова."
 
 #. TRANS: Client exception thrown when a temporary folder is not present to store a file upload.
 msgid "Missing a temporary folder."
-msgstr ""
+msgstr "Няма часовага каталёгу."
 
 #. TRANS: Client exception thrown when writing to disk is not possible during a file upload operation.
 msgid "Failed to write file to disk."
-msgstr ""
+msgstr "Немагчыма запісаць файл на дыск."
 
 #. TRANS: Client exception thrown when a file upload operation has been stopped by an extension.
 msgid "File upload stopped by extension."
-msgstr ""
+msgstr "Загрузка файла спыненая з-за пашырэньня."
 
 #. TRANS: Client exception thrown when a file upload operation has failed with an unknown reason.
 #. TRANS: Exception thrown when uploading an image fails for an unknown reason.
 #. TRANS: Client exception thrown when a file upload operation has failed with an unknown reason.
 msgid "System error uploading file."
-msgstr ""
+msgstr "Сыстэмная памылка падчас загрузкі файла."
 
 #. TRANS: Client exception thrown when a feed is not an Atom feed.
 #. TRANS: Client exception thrown when an imported feed is not an Atom feed.
 msgid "Not an Atom feed."
-msgstr ""
+msgstr "Не зьяўляецца стужкай Atom."
 
 #. TRANS: Success message when a feed has been restored.
 msgid ""
 "Feed has been restored. Your old posts should now appear in search and your "
 "profile page."
 msgstr ""
+"Стужка была адноўленая. Вашыя старыя паведамленьні цяпер павінны зьявіцца ў "
+"полі пошуку і на старонцы Вашага профілю."
 
 #. TRANS: Message when a feed restore is in progress.
 msgid "Feed will be restored. Please wait a few minutes for results."
-msgstr ""
+msgstr "Стужка будзе адноўленая. Калі ласка, пачакайце некалькі хвілінаў."
 
 #. TRANS: Form instructions for feed restore.
 msgid ""
 "You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
+"Вы можаце загрузіць рэзэрвовую копію стужкі падзеяў у фармаце <a href="
+"\"http://activitystrea.ms/\">Activity Streams</a>."
 
 #. TRANS: Title for submit button to confirm upload of a user backup file for account restore.
 msgid "Upload the file"
-msgstr ""
+msgstr "Загрузіць файл"
 
 #. TRANS: Client error displayed when trying to revoke a role without having the right to do that.
 msgid "You cannot revoke user roles on this site."
-msgstr ""
+msgstr "Вы ня можаце пазбаўляць карыстальнікаў роляў на гэтым сайце."
 
 #. TRANS: Client error displayed when trying to revoke a role that is not set.
 msgid "User does not have this role."
-msgstr ""
+msgstr "Карыстальнік ня мае гэтай ролі."
 
 #. TRANS: Engine name for RSD.
 #. TRANS: Engine name.
 msgid "StatusNet"
-msgstr ""
+msgstr "StatusNet"
 
 #. TRANS: Client error displayed trying to sandbox users on a site where the feature is not enabled.
 #. TRANS: Client error on page to unsandbox a user when the feature is not enabled.
 msgid "You cannot sandbox users on this site."
-msgstr ""
+msgstr "Вы ня можаце абмяжоўваць пясочніцай карыстальнікаў на гэтым сайце."
 
 #. TRANS: Client error displayed trying to sandbox an already sandboxed user.
 msgid "User is already sandboxed."
@@ -6526,13 +6586,6 @@ msgctxt "role"
 msgid "Moderator"
 msgstr ""
 
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr ""
-
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
@@ -7512,6 +7565,11 @@ msgstr ""
 msgid "Go to the installer."
 msgstr ""
 
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Заўвагі"
+
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
 msgstr ""
@@ -8411,6 +8469,9 @@ msgstr ""
 msgid "Repeated by"
 msgstr ""
 
+msgid " "
+msgstr ""
+
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
 msgid "Reply to this notice."
@@ -8470,10 +8531,6 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] ""
 msgstr[1] ""
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Захаваць"
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -8725,10 +8782,6 @@ msgstr ""
 #. TRANS: Label for user statistics.
 msgid "Member since"
 msgstr ""
-
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Заўвагі"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
@@ -8990,6 +9043,15 @@ msgstr ""
 msgid "Authorized connected applications"
 msgstr ""
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
 msgid "Silence"
@@ -9086,6 +9148,12 @@ msgstr ""
 
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
+msgstr ""
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
 msgstr ""
 
 #. TRANS: Button title to subscribe to a user.

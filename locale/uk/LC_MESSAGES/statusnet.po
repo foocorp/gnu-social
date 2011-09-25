@@ -12,18 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:51:13+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:41+0000\n"
 "Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
 "2 && n%10 <= 4 && (n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3063,12 +3063,6 @@ msgstr "URL-адреса зображення (логотипу) для пока
 msgid "Save license settings."
 msgstr "Зберегти налаштування ліцензії."
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Тепер ви увійшли."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Неточне ім’я або пароль."
@@ -3425,6 +3419,33 @@ msgstr "URL-адреса %s лише в простому HTTP, будь ласк
 msgid "Not a supported data format."
 msgstr "Такий формат даних не підтримується."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "Налаштування ІМ"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Налаштування збережено."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Зберегти"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Пошук людей"
@@ -3432,6 +3453,11 @@ msgstr "Пошук людей"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Пошук дописів"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Тепер ви увійшли."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -4205,11 +4231,6 @@ msgstr "Не вдалося зберегти преференції розташ
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
 msgstr "Не вдалося зберегти теґи."
-
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Налаштування збережено."
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
@@ -6693,13 +6714,6 @@ msgctxt "role"
 msgid "Moderator"
 msgstr "Модератор"
 
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Підписатись"
-
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
@@ -6722,7 +6736,7 @@ msgstr "Відповісти"
 #. TRANS: Placeholder text for inline reply form. Clicking in this box will turn it into a mini notice form.
 #. TRANS: Field label for reply mini form.
 msgid "Write a reply..."
-msgstr "Пише відповідь..."
+msgstr "Написати відповідь..."
 
 #. TRANS: Tab on the notice form.
 msgctxt "TAB"
@@ -7712,6 +7726,11 @@ msgstr "Запустіть файл інсталяції, аби полагод�
 #. TRANS: The text is link text that leads to the installer page.
 msgid "Go to the installer."
 msgstr "Іти до файлу інсталяції."
+
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Дописи"
 
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
@@ -8728,6 +8747,10 @@ msgstr "у контексті"
 msgid "Repeated by"
 msgstr "Повторено"
 
+#, fuzzy
+msgid " "
+msgstr ", "
+
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
 msgid "Reply to this notice."
@@ -8788,10 +8811,6 @@ msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Опишіть список або тему, вкладаючись у %d знак"
 msgstr[1] "Опишіть список або тему, вкладаючись у %d знаків"
 msgstr[2] "Опишіть список або тему, вкладаючись у %d знаків"
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Зберегти"
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -9044,10 +9063,6 @@ msgstr "Ід. номер"
 #. TRANS: Label for user statistics.
 msgid "Member since"
 msgstr "Реєстрація"
-
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Дописи"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
@@ -9321,6 +9336,15 @@ msgstr "З’єднання"
 msgid "Authorized connected applications"
 msgstr "Авторизовані під’єднані додатки"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
 msgid "Silence"
@@ -9418,6 +9442,12 @@ msgstr "Запросіть друзів та колег приєднатися �
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Підписатись до цього користувача"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Підписатись"
 
 #. TRANS: Button title to subscribe to a user.
 msgid "Subscribe to this user."
@@ -9754,31 +9784,3 @@ msgstr "Неправильний XML, корінь XRD відсутній."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Отримання резервної копії файлу «%s»."
-
-#, fuzzy
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "Не вдалося прочитати URL аватари «%s»."
-
-#, fuzzy
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr "Помилка при оновленні віддаленого профілю."
-
-#, fuzzy
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "Не вдається знайти послуги для %s."
-
-#, fuzzy
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "Не створити профіль теґу."
-
-#, fuzzy
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "Не вдалося знайти користувача з ім’ям %s."
-
-#, fuzzy
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "Це недійсна електронна адреса."
-
-#, fuzzy
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "Не вдалося зберегти профіль."

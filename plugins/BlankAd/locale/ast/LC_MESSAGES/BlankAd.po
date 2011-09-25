@@ -1,0 +1,26 @@
+# Translation of StatusNet - BlankAd to Asturian (Asturianu)
+# Exported from translatewiki.net
+#
+# Author: Xuacu
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - BlankAd\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:43:08+0000\n"
+"Language-Team: Asturian <https://translatewiki.net/wiki/Portal:ast>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:49:49+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Language-Code: ast\n"
+"X-Message-Group: #out-statusnet-plugin-blankad\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Plugin for testing ad layout."
+msgstr "Complementu pa probar la maquetación de publicidad."

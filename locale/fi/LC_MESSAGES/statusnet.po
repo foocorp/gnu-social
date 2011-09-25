@@ -18,17 +18,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:50:38+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:05+0000\n"
 "Language-Team: Finnish <https://translatewiki.net/wiki/Portal:fi>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: fi\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
 
 #. TRANS: Database error message.
 #, fuzzy, php-format
@@ -3045,12 +3045,6 @@ msgstr "URL, jossa lisenssin yhteydessä näytettävä kuva."
 msgid "Save license settings."
 msgstr "Tallenna lisenssin asetukset."
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Olet jo kirjautunut sisään."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Väärä käyttäjätunnus tai salasana"
@@ -3413,6 +3407,33 @@ msgstr ""
 msgid "Not a supported data format."
 msgstr "Tuo ei ole tuettu tietomuoto."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "Profiilikuva-asetukset"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Asetukset tallennettu."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Tallenna"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Etsi ihmisiä"
@@ -3420,6 +3441,11 @@ msgstr "Etsi ihmisiä"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Etsi Päivityksistä"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Olet jo kirjautunut sisään."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -4204,11 +4230,6 @@ msgstr "Tageja ei voitu tallentaa."
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
 msgstr "Tagien tallennus epäonnistui."
-
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Asetukset tallennettu."
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
@@ -6706,13 +6727,6 @@ msgctxt "role"
 msgid "Moderator"
 msgstr ""
 
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Tilaa"
-
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, fuzzy, php-format
 msgid "%1$s - %2$s"
@@ -7740,6 +7754,11 @@ msgstr ""
 msgid "Go to the installer."
 msgstr "Kirjaudu sisään palveluun"
 
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Päivitykset"
+
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
 msgstr "Tietokantavirhe"
@@ -8688,6 +8707,9 @@ msgstr "Ei sisältöä!"
 msgid "Repeated by"
 msgstr "Luotu"
 
+msgid " "
+msgstr ""
+
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
 msgid "Reply to this notice."
@@ -8756,10 +8778,6 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Kuvaile itseäsi ja kiinnostuksen kohteitasi %d merkillä"
 msgstr[1] "Kuvaile itseäsi ja kiinnostuksen kohteitasi %d merkillä"
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Tallenna"
 
 #. TRANS: Button title to delete a list.
 #, fuzzy
@@ -9015,10 +9033,6 @@ msgstr "Käyttäjä"
 #. TRANS: Label for user statistics.
 msgid "Member since"
 msgstr "Käyttäjänä alkaen"
-
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Päivitykset"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
@@ -9306,6 +9320,15 @@ msgstr "Yhdistä"
 msgid "Authorized connected applications"
 msgstr ""
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
 msgid "Silence"
@@ -9410,6 +9433,12 @@ msgstr "Kutsu kavereita ja työkavereita liittymään palveluun %s"
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Tilaa tämä käyttäjä"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Tilaa"
 
 #. TRANS: Button title to subscribe to a user.
 #, fuzzy
@@ -9744,31 +9773,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "Kuvan URL-osoitetta '%s' ei voi avata."
-
-#, fuzzy
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr "Virhe tapahtui päivitettäessä etäprofiilia."
-
-#, fuzzy
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "Käytä tätä lomaketta muokataksesi ryhmää."
-
-#, fuzzy
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "Profiilin tallennus epäonnistui."
-
-#, fuzzy
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "Ei voitu päivittää käyttäjälle vahvistettua sähköpostiosoitetta."
-
-#, fuzzy
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "Tuo ei ole kelvollinen sähköpostiosoite."
-
-#, fuzzy
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "Profiilin tallennus epäonnistui."

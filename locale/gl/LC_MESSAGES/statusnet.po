@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:50:42+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:09+0000\n"
 "Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3098,12 +3098,6 @@ msgstr "URL dunha imaxe a mostrar coa licenza."
 msgid "Save license settings."
 msgstr "Gardar a configuración de licenza"
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Xa se identificou."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Nome de usuario ou contrasinal incorrectos."
@@ -3465,6 +3459,33 @@ msgstr "Só %s enderezos URL sobre HTTP simple."
 msgid "Not a supported data format."
 msgstr "Non se soporta ese formato de datos."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "Configuración da mensaxería instantánea"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Gardouse a configuración."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Gardar"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Busca de xente"
@@ -3472,6 +3493,11 @@ msgstr "Busca de xente"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Busca de notas"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Xa se identificou."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -4265,18 +4291,12 @@ msgid "Could not update user for autosubscribe or subscribe_policy."
 msgstr "Non se puido actualizar o usuario para subscribirse automaticamente."
 
 #. TRANS: Server error thrown when user profile location preference settings could not be updated.
-#, fuzzy
 msgid "Could not save location prefs."
-msgstr "Non se puideron gardar as preferencias de lugar."
+msgstr "Non se puideron gardar as preferencias de localización."
 
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
 msgstr "Non se puideron gardar as etiquetas."
-
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Gardouse a configuración."
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
@@ -6159,9 +6179,8 @@ msgid " (free service)"
 msgstr " (servizo libre)"
 
 #. TRANS: Default value for URL shortening settings.
-#, fuzzy
 msgid "[none]"
-msgstr "Ningún"
+msgstr "[ningún]"
 
 #. TRANS: Default value for URL shortening settings.
 msgid "[internal]"
@@ -6238,7 +6257,6 @@ msgid "Invalid default subscripton: \"%1$s\" is not a user."
 msgstr "Subscrición por defecto incorrecta. \"%1$s\" non é un usuario."
 
 #. TRANS: Fieldset legend in user administration panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Profile"
 msgstr "Perfil"
@@ -6382,25 +6400,21 @@ msgid "Plugins"
 msgstr "Complementos"
 
 #. TRANS: Column header for plugins table on version page.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Name"
 msgstr "Nome"
 
 #. TRANS: Column header for plugins table on version page.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Version"
 msgstr "Versión"
 
 #. TRANS: Column header for plugins table on version page.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Author(s)"
-msgstr "Autores"
+msgstr "Autor(es)"
 
 #. TRANS: Column header for plugins table on version page.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Description"
 msgstr "Descrición"
@@ -6723,7 +6737,6 @@ msgid "Could not delete subscription."
 msgstr "Non se puido borrar a subscrición."
 
 #. TRANS: Activity title when subscribing to another person.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Follow"
 msgstr "Seguir"
@@ -6810,23 +6823,19 @@ msgid "User deletion in progress..."
 msgstr "Procedendo a borrar o usuario..."
 
 #. TRANS: Link title for link on user profile.
-#, fuzzy
 msgid "Edit profile settings."
-msgstr "Modificar a configuración do perfil"
+msgstr "Modificar a configuración do perfil."
 
 #. TRANS: Link text for link on user profile.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Edit"
-msgstr "Modificar"
+msgstr "Modificar."
 
 #. TRANS: Link title for link on user profile.
-#, fuzzy
 msgid "Send a direct message to this user."
-msgstr "Enviarlle unha mensaxe directa a este usuario"
+msgstr "Enviarlle unha mensaxe directa a este usuario."
 
 #. TRANS: Link text for link on user profile.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Message"
 msgstr "Mensaxe"
@@ -6849,14 +6858,6 @@ msgctxt "role"
 msgid "Moderator"
 msgstr "Moderador"
 
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Subscribirse"
-
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
@@ -6872,7 +6873,6 @@ msgid "Show more"
 msgstr "Mostrar máis"
 
 #. TRANS: Inline reply form submit button: submits a reply comment.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Reply"
 msgstr "Responder"
@@ -6880,13 +6880,12 @@ msgstr "Responder"
 #. TRANS: Placeholder text for inline reply form. Clicking in this box will turn it into a mini notice form.
 #. TRANS: Field label for reply mini form.
 msgid "Write a reply..."
-msgstr ""
+msgstr "Escribir unha resposta..."
 
 #. TRANS: Tab on the notice form.
-#, fuzzy
 msgctxt "TAB"
 msgid "Status"
-msgstr "StatusNet"
+msgstr "Estado"
 
 #. TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is set.
 #. TRANS: Text between [] is a link description, text between () is the link itself.
@@ -7318,14 +7317,12 @@ msgstr "Revogar"
 
 #. TRANS: Submit button text to accept a group membership request on approve group form.
 #. TRANS: Submit button text to accept a subscription request on approve sub form.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Accept"
 msgstr "Aceptar"
 
 #. TRANS: Submit button text to reject a group membership request on approve group form.
 #. TRANS: Submit button text to reject a subscription request on approve sub form.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Reject"
 msgstr "Rexeitar"
@@ -7903,6 +7900,11 @@ msgstr "Pode que queira executar o instalador para arranxalo."
 #. TRANS: The text is link text that leads to the installer page.
 msgid "Go to the installer."
 msgstr "Ir ao instalador."
+
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Notas"
 
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
@@ -8940,6 +8942,9 @@ msgstr "no contexto"
 msgid "Repeated by"
 msgstr "Repetida por"
 
+msgid " "
+msgstr ""
+
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
 msgid "Reply to this notice."
@@ -9008,10 +9013,6 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Describa o grupo ou o tema en %d caracteres"
 msgstr[1] "Describa o grupo ou o tema en %d caracteres"
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Gardar"
 
 #. TRANS: Button title to delete a list.
 #, fuzzy
@@ -9280,10 +9281,6 @@ msgid "Member since"
 msgstr "Membro dende"
 
 #. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Notas"
-
-#. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
 msgid "Daily average"
 msgstr "Media diaria"
@@ -9549,6 +9546,15 @@ msgstr "Conexións"
 msgid "Authorized connected applications"
 msgstr "Aplicacións conectadas autorizadas"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
 msgid "Silence"
@@ -9654,6 +9660,12 @@ msgstr "Convide a amigos e compañeiros a unírselle en %s"
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Subscribirse a este usuario"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Subscribirse"
 
 #. TRANS: Button title to subscribe to a user.
 #, fuzzy
@@ -9993,31 +10005,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "Non se puido ler o URL do avatar, \"%s\"."
-
-#, fuzzy
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr "Houbo un erro ao actualizar o perfil remoto."
-
-#, fuzzy
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "Non se puido revogar o acceso da aplicación: %s."
-
-#, fuzzy
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "Non se puido gardar o perfil."
-
-#, fuzzy
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "Non se deu atopado ningún usuario co alcume %s."
-
-#, fuzzy
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "O enderezo de correo electrónico é incorrecto."
-
-#, fuzzy
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "Non se puido gardar o perfil."
