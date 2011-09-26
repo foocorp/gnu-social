@@ -221,7 +221,10 @@ class Profile_list extends Managed_DataObject
     {
         $subs = new Profile();
 
-        $subs->joinAdd(array('id', 'profile_tag_subscription:profile_tag_id'));
+        $subs->joinAdd(
+            array('id', 'profile_tag_subscription:profile_id')
+        );
+        $subs->whereAdd('profile_tag_subscription.profile_tag_id = ' . $this->id);
 
         $subs->selectAdd('unix_timestamp(profile_tag_subscription.' .
                          'created) as "cursor"');
