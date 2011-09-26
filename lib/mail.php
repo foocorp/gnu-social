@@ -831,7 +831,7 @@ function mail_notify_group_join($group, $joiner)
             // TRANS: Subject of group join notification e-mail.
             // TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
             $headers['Subject'] = sprintf(_('%1$s has joined '.
-                                            'your group %2$s on %3$s.'),
+                                            'your group %2$s on %3$s'),
                                           $joiner->getBestName(),
                                           $group->getBestName(),
                                           common_config('site', 'name'));

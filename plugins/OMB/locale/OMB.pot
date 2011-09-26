@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: Button text on page for remote subscribe.
-#: actions/remotesubscribe.php:147
+#. TRANS: Link text for link that will subscribe to a remote profile.
+#: actions/remotesubscribe.php:147 OMBPlugin.php:388
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr ""
@@ -55,6 +56,6 @@ msgid "Could not delete subscription OMB token."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: OMBPlugin.php:394
+#: OMBPlugin.php:408
 msgid "A sample plugin to show basics of development for new hackers."
 msgstr ""

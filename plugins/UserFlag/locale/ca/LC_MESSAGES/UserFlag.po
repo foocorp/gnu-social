@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserFlag\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:52:04+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:54+0000\n"
 "Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:50+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-userflag\n"
@@ -56,11 +56,11 @@ msgstr "Esborra tots els senyals"
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
-msgstr ""
+msgstr "No s'ha iniciat una sessió."
 
 #. TRANS: Error message displayed when trying to review profile flags while not authorised.
 msgid "You cannot review profile flags."
-msgstr ""
+msgstr "No podeu revisar els senyals del perfil."
 
 #. TRANS: Title for page with a list of profiles that were flagged for review.
 msgid "Flagged profiles"
@@ -87,7 +87,7 @@ msgstr "Senyalat per %s"
 
 #. TRANS: Server exception given when flags could not be cleared.
 #. TRANS: %s is a profile nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not clear flags for profile \"%s\"."
 msgstr "No s'han pogut esborrar els senyals del perfil «%s»."
 
@@ -101,6 +101,6 @@ msgstr "S'ha esborrat"
 
 #. TRANS: Server exception.
 #. TRANS: %d is a profile ID (number).
-#, fuzzy, php-format
+#, php-format
 msgid "Could not flag profile \"%d\" for review."
-msgstr "No s'ha pogut senyalar el perfil «%d» per revisar."
+msgstr "No s'ha pogut senyalar el perfil «%d» per a una revisió."

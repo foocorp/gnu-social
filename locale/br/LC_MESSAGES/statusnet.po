@@ -12,17 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:50:20+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:44:51+0000\n"
 "Language-Team: Breton <https://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -44,9 +44,8 @@ msgid ""
 msgstr ""
 
 #. TRANS: Error message displayed when trying to access a non-existing page.
-#, fuzzy
 msgid "Unknown page"
-msgstr "Dianav"
+msgstr "Pajenn dianav"
 
 #. TRANS: Error message displayed when trying to perform an undefined action.
 #. TRANS: Title for password recovery page when an unknown action has been specified.
@@ -94,9 +93,8 @@ msgid "Closed"
 msgstr "Serr"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
-msgstr "Enrollañ an arventennoù moned"
+msgstr "Enrollañ an arventennoù moned."
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -149,9 +147,8 @@ msgstr "N'eus ket eus ar profil-se."
 #. TRANS: Client error displayed trying to reference a non-existing list.
 #. TRANS: Client error displayed when referring to a non-existing list.
 #. TRANS: Client error displayed trying to reference a non-existing list.
-#, fuzzy
 msgid "No such list."
-msgstr "N'eus ket eus ar bajenn-se."
+msgstr "N'eus ket eus ar roll-se."
 
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
@@ -168,10 +165,9 @@ msgid ""
 msgstr ""
 
 #. TRANS: Title after adding a user to a list.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Listed"
-msgstr "Aotre implijout"
+msgstr "Rollet"
 
 #. TRANS: Server error when page not found (404).
 #. TRANS: Server error when page not found (404)
@@ -306,10 +302,9 @@ msgstr ""
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr "Pedadennoù"
+msgstr "Kas pedadennoù"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -429,17 +424,15 @@ msgid "Unblock user failed."
 msgstr "N'eus ket bet tu da zistankañ an implijer."
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "Kaozeadenn"
+msgstr "N'eus ID kaozeadenn ebet."
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "No conversation with ID %d."
-msgstr "Kaozeadenn"
+msgstr "Kaozeadenn ebet gant an ID %d."
 
 #. TRANS: Title for conversion timeline.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Kaozeadenn"
@@ -483,11 +476,10 @@ msgid "Recipient user not found."
 msgstr "N'eo ket bet kavet ar resever."
 
 #. TRANS: Client error displayed trying to direct message another user who's not a friend (403).
-#, fuzzy
 msgid "Cannot send direct messages to users who aren't your friend."
 msgstr ""
-"Ne c'helloc'h ket kas kemennadennoù personel d'an implijerien n'int ket ho "
-"mignoned."
+"Ne c'hellit ket kas kemennadennoù personel war-eeun d'an implijerien n'int "
+"ket ho mignoned."
 
 #. TRANS: Client error displayed trying to direct message self (403).
 #. TRANS: Client error displayed trying to send a direct message to self.
@@ -740,22 +732,21 @@ msgstr "Dibosupl eo krouiñ an aliasoù."
 
 #. TRANS: API validation exception thrown when nickname does not validate.
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
-#, fuzzy
 msgid "Nickname must have only lowercase letters and numbers and no spaces."
-msgstr "1 da 64 lizherenn vihan pe sifr, hep poentaouiñ nag esaouenn"
+msgstr ""
+"Ne c'heller kaout nemet lizherennoù vihan ha sifroù, hep esaouennoù, el "
+"lesanvioù."
 
 #. TRANS: API validation exception thrown when alias is the same as nickname.
 #. TRANS: Group create form validation error.
-#, fuzzy
 msgid "Alias cannot be the same as nickname."
 msgstr "Ne c'hell ket an alias bezañ ar memes hini eget al lesanv."
 
 #. TRANS: Client error displayed when referring to a non-existing list.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing list.
 #. TRANS: Client error displayed when referring to a non-existing list.
-#, fuzzy
 msgid "List not found."
-msgstr "N'eo ket bet kavet an implijer."
+msgstr "N'eo ket bet kavet ar roll."
 
 #. TRANS: Client error displayed when trying to update another user's list.
 msgid "You cannot update lists that do not belong to you."
@@ -766,7 +757,7 @@ msgstr ""
 #. TRANS: Client error displayed when an unknown error occurs in the list subscribers action.
 #. TRANS: Client error displayed when an unknown error occurs unsubscribing from a list.
 msgid "An error occured."
-msgstr ""
+msgstr "Ur fazi zo bet."
 
 #. TRANS: Client error displayed when trying to delete another user's list.
 msgid "You cannot delete lists that do not belong to you."
@@ -3035,12 +3026,6 @@ msgstr "URL ur skeudenn da ziskouez gant an aotre-implijout."
 msgid "Save license settings."
 msgstr "Enrollañ arventennoù an aotre-implijout"
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Kevreet oc'h dija."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Anv implijer pe ger-tremen direizh."
@@ -3396,6 +3381,33 @@ msgstr ""
 msgid "Not a supported data format."
 msgstr "Diembreget eo ar furmad-se."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "Arventennoù ar bostelerezh prim"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Enrollet eo bet an arventennoù."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Enrollañ"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Klask tud"
@@ -3403,6 +3415,11 @@ msgstr "Klask tud"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Klask alioù"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Kevreet oc'h dija."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -3574,9 +3591,8 @@ msgid "Site path."
 msgstr "Hent al lec'hienn"
 
 #. TRANS: Field label in Paths admin panel.
-#, fuzzy
 msgid "Locale directory"
-msgstr "Doser an temoù"
+msgstr "Kavlec'h lec'helaat"
 
 #. TRANS: Field title in Paths admin panel.
 msgid "Directory path to locales."
@@ -4200,11 +4216,6 @@ msgstr "Dibosupl eo enrollañ an dibaboù lec'hiadur."
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
 msgstr "Dibosupl eo enrollañ ar merkoù."
-
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Enrollet eo bet an arventennoù."
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
@@ -6671,14 +6682,6 @@ msgctxt "role"
 msgid "Moderator"
 msgstr "Habasker"
 
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "En em enskrivañ"
-
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
@@ -7703,6 +7706,11 @@ msgstr ""
 msgid "Go to the installer."
 msgstr "Mont d'ar meziant staliañ"
 
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Ali"
+
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
 msgstr "Fazi bank roadennoù"
@@ -8634,6 +8642,10 @@ msgstr "en amdro"
 msgid "Repeated by"
 msgstr "Adkemeret gant"
 
+#, fuzzy
+msgid " "
+msgstr ", "
+
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
 msgid "Reply to this notice."
@@ -8698,10 +8710,6 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Diskrivit ho poellad gant %d arouezenn"
 msgstr[1] "Diskrivit ho poellad gant %d arouezenn"
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Enrollañ"
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -8958,10 +8966,6 @@ msgstr "ID an implijer"
 #. TRANS: Label for user statistics.
 msgid "Member since"
 msgstr "Ezel abaoe"
-
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Ali"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
@@ -9225,6 +9229,15 @@ msgstr "Kevreadennoù"
 msgid "Authorized connected applications"
 msgstr "Poelladoù aotreet kevret"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
 msgid "Silence"
@@ -9327,6 +9340,13 @@ msgstr "Pediñ mignoned ha kenseurted da zont ganeoc'h war %s."
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "En em goumanantiñ d'an implijer-mañ"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "En em enskrivañ"
 
 #. TRANS: Button title to subscribe to a user.
 #, fuzzy
@@ -9652,31 +9672,3 @@ msgstr "XML direizh, mankout a ra ar wrizienn XRD."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "Dibosupl eo lenn URL an avatar \"%s\"."
-
-#, fuzzy
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr "Fazi en ur hizivaat ar profil a-bell."
-
-#, fuzzy
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "Dibosupl eo nullañ moned ar poellad : "
-
-#, fuzzy
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "Dibosupl eo enrollañ ar profil."
-
-#, fuzzy
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "Diposubl eo krouiñ an aliasoù."
-
-#, fuzzy
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "N'eo ket ur chomlec'h postel reizh."
-
-#, fuzzy
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "Dibosupl eo enrollañ ar profil."
