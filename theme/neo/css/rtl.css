@@ -29,6 +29,7 @@ span.rtl{
 
 .notice div.entry-content {
     float: right;
+    clear: right;
 }
 
 #content .notice .threaded-replies .notice div.entry-content{
@@ -113,6 +114,7 @@ address{
 
 #content .notice .author .photo{
     right: 0;
+    left: auto;
 }
 
 .notice-options{
@@ -291,13 +293,34 @@ select {
     right: auto;
 }
 
-/*#site_nav_local_views {
+.entity_actions input.submit {
+   text-align: right;
+}
+
+#entity_statistics dt, #entity_statistics dd {
+    margin-left: 11px;
+    margin-right: 0;
+}
+
+#showstream .notice .entry-title, #showstream .notice div.entry-content {
+    margin-right: 0;
+}
+
+.limited-scope .entry-content .timestamp:before {
+    right: 0;
+    left: auto;
+}
+
+.limited-scope .entry-content .timestamp {
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.section ul.entities {
     float: right;
 }
 
-#content {
+.section .entities li {
     float: right;
-}*/
-
-
+}
 
