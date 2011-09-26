@@ -62,7 +62,7 @@ class ConversationTree extends NoticeList
         $this->out->elementStart('div', array('id' =>'notices_primary'));
         // TRANS: Header on conversation page. Hidden by default (h2).
         $this->out->element('h2', null, _('Notices'));
-        $this->out->elementStart('ol', array('class' => 'notices xoxo'));
+        $this->out->elementStart('ol', array('class' => 'notices xoxo old-school'));
 
         if (array_key_exists('root', $this->tree)) {
             $rootid = $this->tree['root'][0];
