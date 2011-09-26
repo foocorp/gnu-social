@@ -72,17 +72,16 @@ class FacebookloginAction extends Action
 
         $facebook = Facebookclient::getFacebook();
 
+        $params = array(
+          'scope' => 'read_stream,publish_stream,offline_access,user_status,user_location,user_website,email',
+          'redirect_uri' => common_local_url('facebookfinishlogin')
+        );
+
         // Degrade to plain link if JavaScript is not available
         $this->elementStart(
             'a',
             array(
-                'href' => $facebook->getLoginUrl(
-                    array(
-                        'next'       => common_local_url('facebookfinishlogin'),
-                        'cancel'     => common_local_url('facebooklogin'),
-                        'req_perms'  => 'read_stream,publish_stream,offline_access,user_status,user_location,user_website,email'
-                    )
-                 ),
+                'href' => $facebook->getLoginUrl($params),
                 'id'    => 'facebook_button'
             )
         );

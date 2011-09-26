@@ -22,7 +22,7 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2010 StatusNet, Inc.
+ * @copyright 2010-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -33,39 +33,43 @@ if (!defined('STATUSNET')) {
 
 class FacebookfinishloginAction extends Action
 {
-    private $facebook = null; // Facebook client
-    private $fbuid    = null; // Facebook user ID
-    private $fbuser   = null; // Facebook user object (JSON)
+    private $fbuid       = null; // Facebook user ID
+    private $fbuser      = null; // Facebook user object (JSON)
+    private $accessToken = null; // Access token provided by Facebook JS API
 
     function prepare($args) {
         parent::prepare($args);
 
-        $this->facebook = new Facebook(
-            array(
-                'appId'  => common_config('facebook', 'appid'),
-                'secret' => common_config('facebook', 'secret'),
-                'cookie' => true,
+        // Check cookie for a valid access_token
+
+        $cookie = $this->get_facebook_cookie(
+            common_config('facebook', 'appid'),
+            common_config('facebook', 'secret')
+        );
+
+        $this->accessToken = $cookie['access_token'];
+
+        common_debug("cookie = " . var_export($cookie, true));
+
+        $this->fbuser = json_decode(
+            file_get_contents(
+                'https://graph.facebook.com/me?access_token='
+                . $this->accessToken
             )
         );
 
-        // Check for a Facebook user session
-
-        $session = $this->facebook->getSession();
-        $me      = null;
-
-        if ($session) {
-            try {
-                $this->fbuid  = $this->facebook->getUser();
-                $this->fbuser = $this->facebook->api('/me');
-            } catch (FacebookApiException $e) {
-                common_log(LOG_ERROR, $e, __FILE__);
-            }
-        }
-
         if (!empty($this->fbuser)) {
+
+            $this->fbuid  = $this->fbuser->id;
+            common_debug("fbuser = " . var_export($this->fbuser, true));
+            common_debug("fbuid = " . $this->fbuid);
+
             // OKAY, all is well... proceed to register
 
             common_debug("Found a valid Facebook user.", __FILE__);
+
+            return true;
+
         } else {
 
             // This shouldn't happen in the regular course of things
@@ -88,7 +92,28 @@ class FacebookfinishloginAction extends Action
             );
         }
 
-        return true;
+        return false;
+    }
+
+    function get_facebook_cookie($app_id, $app_secret) {
+        $args = array();
+
+        parse_str(trim($_COOKIE['fbs_' . $app_id], '\\"'), $args);
+
+        ksort($args);
+        $payload = '';
+
+        foreach ($args as $key => $value) {
+            if ($key != 'sig') {
+               $payload .= $key . '=' . $value;
+            }
+        }
+
+        if (md5($payload . $app_secret) != $args['sig']) {
+            return null;
+        }
+
+        return $args;
     }
 
     function handle($args)
@@ -97,39 +122,71 @@ class FacebookfinishloginAction extends Action
 
         if (common_is_real_login()) {
 
-            // User is already logged in, are her accounts already linked?
+            // This will throw a client exception if the user already
+            // has some sort of foreign_link to Facebook.
 
-            $flink = Foreign_link::getByForeignID($this->fbuid, FACEBOOK_SERVICE);
+            $this->checkForExistingLink();
 
-            if (!empty($flink)) {
+            // Possibly reconnect an existing account
 
-                // User already has a linked Facebook account and shouldn't be here!
-
-                common_debug(
-                    sprintf(
-                        'There\'s already a local user %d linked with Facebook user %s.',
-                        $flink->user_id,
-                        $this->fbuid
-                    )
-                );
-
-                $this->clientError(
-                    // TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
-                    // TRANS: in the same StatusNet site.
-                    _m('There is already a local account linked with that Facebook account.')
-                );
-
-            } else {
-
-                // Possibly reconnect an existing account
-
-                $this->connectUser();
-            }
+            $this->connectUser();
 
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->handlePost();
         } else {
             $this->tryLogin();
+        }
+    }
+
+    function checkForExistingLink() {
+
+        // User is already logged in, are her accounts already linked?
+
+        $flink = Foreign_link::getByForeignID($this->fbuid, FACEBOOK_SERVICE);
+
+        if (!empty($flink)) {
+
+            // User already has a linked Facebook account and shouldn't be here!
+
+            common_debug(
+                sprintf(
+                    'There\'s already a local user %d linked with Facebook user %s.',
+                    $flink->user_id,
+                    $this->fbuid
+                )
+            );
+
+            $this->clientError(
+                // TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+                // TRANS: in the same StatusNet site.
+                _m('There is already a local account linked with that Facebook account.')
+            );
+
+            return;
+       }
+
+       $cur = common_current_user();
+       $flink = Foreign_link::getByUserID($cur->id, FACEBOOK_SERVICE);
+
+       if (!empty($flink)) {
+
+            // There's already a local user linked to this Facebook account.
+
+            common_debug(
+                sprintf(
+                    'There\'s already a local user %d linked with Facebook user %s.',
+                    $cur->id,
+                    $this->fbuid
+                )
+            );
+
+            $this->clientError(
+                // TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+                // TRANS: in the same StatusNet site.
+                _m('There is already a local account linked with that Facebook account.')
+            );
+
+            return;
         }
     }
 
@@ -365,19 +422,19 @@ class FacebookfinishloginAction extends Action
         }
 
         $args = array(
-            'nickname'        => $nickname,
-            'fullname'        => $this->fbuser['first_name']
-                . ' ' . $this->fbuser['last_name'],
-            'homepage'        => $this->fbuser['website'],
-            'bio'             => $this->fbuser['about'],
-            'location'        => $this->fbuser['location']['name']
+            'nickname' => $nickname,
+            'fullname' => $this->fbuser->name,
+            'homepage' => $this->fbuser->website,
+            'location' => $this->fbuser->location->name
         );
 
         // It's possible that the email address is already in our
         // DB. It's a unique key, so we need to check
-        if ($this->isNewEmail($this->fbuser['email'])) {
-            $args['email']           = $this->fbuser['email'];
-            $args['email_confirmed'] = true;
+        if ($this->isNewEmail($this->fbuser->email)) {
+            $args['email']           = $this->fbuser->email;
+            if (isset($this->fuser->verified) && $this->fuser->verified == true) {
+                $args['email_confirmed'] = true;
+            }
         }
 
         if (!empty($invite)) {
@@ -407,7 +464,7 @@ class FacebookfinishloginAction extends Action
                 'Registered new user %s (%d) from Facebook user %s, (fbuid %d)',
                 $user->nickname,
                 $user->id,
-                $this->fbuser['name'],
+                $this->fbuser->name,
                 $this->fbuid
             ),
             __FILE__
@@ -474,7 +531,7 @@ class FacebookfinishloginAction extends Action
                                 . '%s (fbuid %d), filename = %s',
                              $user->nickname,
                              $user->id,
-                             $this->fbuser['name'],
+                             $this->fbuser->name,
                              $this->fbuid,
                              $filename
                         ),
@@ -537,7 +594,7 @@ class FacebookfinishloginAction extends Action
         common_debug(
             sprintf(
                 'Connected Facebook user %s (fbuid %d) to local user %s (%d)',
-                $this->fbuser['name'],
+                $this->fbuser->name,
                 $this->fbuid,
                 $user->nickname,
                 $user->id
@@ -616,7 +673,7 @@ class FacebookfinishloginAction extends Action
         $flink->service = FACEBOOK_SERVICE;
 
         // Pull the access token from the Facebook cookies
-        $flink->credentials = $this->facebook->getAccessToken();
+        $flink->credentials = $this->accessToken;
 
         $flink->created = common_sql_now();
 
@@ -627,8 +684,8 @@ class FacebookfinishloginAction extends Action
 
     function bestNewNickname()
     {
-        if (!empty($this->fbuser['name'])) {
-            $nickname = $this->nicknamize($this->fbuser['name']);
+        if (!empty($this->fbuser->username)) {
+            $nickname = $this->nicknamize($this->fbuser->username);
             if ($this->isNewNickname($nickname)) {
                 return $nickname;
             }
@@ -636,8 +693,7 @@ class FacebookfinishloginAction extends Action
 
         // Try the full name
 
-        $fullname = trim($this->fbuser['first_name'] .
-            ' ' . $this->fbuser['last_name']);
+        $fullname = $this->fbuser->name;
 
         if (!empty($fullname)) {
             $fullname = $this->nicknamize($fullname);
@@ -694,10 +750,8 @@ class FacebookfinishloginAction extends Action
          $result = User::staticGet('email', $email);
 
          if (empty($result)) {
-             common_debug("XXXXXXXXXXXXXXXXXX We've never seen this email before!!!");
              return true;
          }
-         common_debug("XXXXXXXXXXXXXXXXXX dupe email address!!!!");
 
          return false;
      }

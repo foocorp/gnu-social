@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2010, StatusNet, Inc.
+ * Copyright (C) 2010-2011, StatusNet, Inc.
  *
  * A plugin for integrating Facebook with StatusNet. Includes single-sign-on
  * and publishing notices to Facebook using Facebook's Graph API.
@@ -21,7 +21,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * @category  Pugin
+ * @category  Plugin
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
  * @copyright 2011 StatusNet, Inc.
@@ -41,7 +41,7 @@ define("FACEBOOK_SERVICE", 2);
  * @category  Plugin
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2010 StatusNet, Inc.
+ * @copyright 2010-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
@@ -108,6 +108,7 @@ class FacebookBridgePlugin extends Plugin
         switch ($cls)
         {
         case 'Facebook': // Facebook PHP SDK
+            include_once $dir . '/extlib/base_facebook.php';
             include_once $dir . '/extlib/facebook.php';
             return false;
         case 'FacebookloginAction':
@@ -351,26 +352,26 @@ class FacebookBridgePlugin extends Plugin
             $action->script('https://connect.facebook.net/en_US/all.js');
 
             $script = <<<ENDOFSCRIPT
-FB.init({appId: %1\$s, session: %2\$s, status: true, cookie: true, xfbml: true});
+FB.init({appId: %1\$s, status: true, cookie: true, xfbml: true, oauth: true});
 
 $('#facebook_button').bind('click', function(event) {
 
     event.preventDefault();
 
     FB.login(function(response) {
-        if (response.session && response.perms) {
-            window.location.href = '%3\$s';
+        if (response.authResponse) {
+            window.location.href = '%2\$s';
         } else {
             // NOP (user cancelled login)
         }
-    }, {perms:'read_stream,publish_stream,offline_access,user_status,user_location,user_website,email'});
+    }, {scope:'read_stream,publish_stream,offline_access,user_status,user_location,user_website,email'});
 });
 ENDOFSCRIPT;
 
             $action->inlineScript(
-                sprintf($script,
+                sprintf(
+                    $script,
                     json_encode($this->facebook->getAppId()),
-                    json_encode($this->facebook->getSession()),
                     common_local_url('facebookfinishlogin')
                 )
             );
@@ -385,18 +386,16 @@ ENDOFSCRIPT;
     function onEndLogout($action)
     {
         if ($this->hasApplication()) {
-            $session = $this->facebook->getSession();
+            //$session = $this->facebook->getSession();
             $fbuser  = null;
             $fbuid   = null;
 
-            if ($session) {
                 try {
                     $fbuid  = $this->facebook->getUser();
                     $fbuser = $this->facebook->api('/me');
                  } catch (FacebookApiException $e) {
                      common_log(LOG_ERROR, $e, __FILE__);
                  }
-            }
 
             if (!empty($fbuser)) {
 

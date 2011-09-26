@@ -916,7 +916,7 @@ class Facebookclient
     static function addFacebookUser($fbuser)
     {
         // remove any existing, possibly outdated, record
-        $luser = Foreign_user::getForeignUser($fbuser['id'], FACEBOOK_SERVICE);
+        $luser = Foreign_user::getForeignUser($fbuser->id, FACEBOOK_SERVICE);
 
         if (!empty($luser)) {
 
@@ -937,9 +937,9 @@ class Facebookclient
 
         $fuser = new Foreign_user();
 
-        $fuser->nickname = $fbuser['name'];
-        $fuser->uri      = $fbuser['link'];
-        $fuser->id       = $fbuser['id'];
+        $fuser->nickname = $fbuser->username;
+        $fuser->uri      = $fbuser->url;
+        $fuser->id       = $fbuser->id;
         $fuser->service  = FACEBOOK_SERVICE;
         $fuser->created  = common_sql_now();
 
@@ -950,8 +950,8 @@ class Facebookclient
                 LOG_WARNING,
                     sprintf(
                         'Failed to add new Facebook user: %s, fbuid %d',
-                        $fbuser['name'],
-                        $fbuser['id']
+                        $fbuser->username,
+                        $fbuser->id
                     ),
                     __FILE__
             );
@@ -962,8 +962,8 @@ class Facebookclient
                 LOG_INFO,
                 sprintf(
                     'Added new Facebook user: %s, fbuid %d',
-                    $fbuser['name'],
-                    $fbuser['id']
+                    $fbuser->name,
+                    $fbuser->id
                 ),
                 __FILE__
             );
