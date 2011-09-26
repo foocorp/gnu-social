@@ -1000,7 +1000,19 @@ content: ":";
     display: none;
 }
 
+/* old school conversation style */
 
+#conversation .notices .notices {
+    float: left;
+    background-color:rgba(200, 200, 200, 0.050);
+    margin-left: 15px;
+    width: auto;
+}
+
+#conversation .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices  {
+    background: none;
+    margin-left: 0px;
+}
 
 /* aside primary specific styles */
 
