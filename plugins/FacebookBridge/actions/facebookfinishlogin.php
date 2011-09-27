@@ -458,9 +458,13 @@ class FacebookfinishloginAction extends Action
                     common_log(LOG_WARNING, 'Couldn\'t save tmp Facebook avatar: ' . $tmpname, __FILE__);
                 } else {
                     // save it as an avatar
+
+                    $file = new ImageFile($user->id, Avatar::path($tmpname));
+                    $filename = $file->resize(180); // size of the biggest img we get from Facebook
+
                     $profile   = $user->getProfile();
 
-                    if ($profile->setOriginal($tmpname)) {
+                    if ($profile->setOriginal($filename)) {
                         common_log(
                             LOG_INFO,
                             sprintf(
@@ -475,7 +479,7 @@ class FacebookfinishloginAction extends Action
                              __FILE__
                         );
 
-                        // clean up
+                        // clean up tmp file
                         @unlink(Avatar::path($tmpname));
                     }
 
