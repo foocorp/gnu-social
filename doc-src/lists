@@ -56,10 +56,6 @@ private prepend a '.' to the tag in the tags editing box. To set
 an existing public tag as private or vice-versa, go to the tag's
 edit page.
 
-The most used public tags are displayed in the
-[public people tag cloud](%%action.publicpeopletagcloud%%). Their
-size shows their frequency of use.
-
 Remote people tags
 ------------------
 

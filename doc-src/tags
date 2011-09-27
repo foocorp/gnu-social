@@ -17,10 +17,6 @@ latin characters are not supported, and non-roman scripts are right out.
 The HTML for the notice will link to a stream of all the other notices
 with that tag. This can be a great way to keep track of a conversation.
 
-The most popular current tags on the site can be found in the [public
-tag cloud](%%action.publictagcloud%%). Their size shows their
-popularity and recency.
-
 Tagging yourself
 ----------------
 

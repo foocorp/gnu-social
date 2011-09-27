@@ -904,10 +904,6 @@ class Router
 
                 // people tags
 
-                if (!common_config('performance', 'high')) {
-                    $m->connect('peopletags', array('action' => 'publicpeopletagcloud'));
-                }
-
                 $m->connect('peopletag/:tag', array('action' => 'peopletag',
                                                     'tag'    => self::REGEX_TAG));
 
