@@ -44,10 +44,11 @@ class FacebookfinishloginAction extends Action
 
         if (isset($_COOKIE['fb_access_token'])) {
             $this->accessToken = $_COOKIE['fb_access_token'];
-            if (empty($this->accessToken)) {
-                $this->clientError(_m("Unable to authenticate you with Facebook."));
-                return false;
-            }
+        }
+
+        if (empty($this->accessToken)) {
+            $this->clientError(_m("Unable to authenticate you with Facebook."));
+            return false;
         }
 
         $graphUrl = 'https://graph.facebook.com/me?access_token=' . urlencode($this->accessToken);
