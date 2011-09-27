@@ -23,7 +23,7 @@
  * @package   StatusNet
  * @author    Craig Andrews <candrews@integralblue.com>
  * @author    Zach Copley <zach@status.net>
- * @copyright 2009-2010 StatusNet, Inc.
+ * @copyright 2009-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -927,8 +927,8 @@ class Facebookclient
                     LOG_INFO,
                     sprintf(
                         'Removed old Facebook user: %s, fbuid %d',
-                        $fbuid['name'],
-                        $fbuid['id']
+                        $fbuid->name,
+                        $fbuid->id
                     ),
                     __FILE__
                 );
@@ -938,7 +938,7 @@ class Facebookclient
         $fuser = new Foreign_user();
 
         $fuser->nickname = $fbuser->username;
-        $fuser->uri      = $fbuser->url;
+        $fuser->uri      = $fbuser->link;
         $fuser->id       = $fbuser->id;
         $fuser->service  = FACEBOOK_SERVICE;
         $fuser->created  = common_sql_now();

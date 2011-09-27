@@ -23,7 +23,7 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2010 StatusNet, Inc.
+ * @copyright 2010-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
@@ -98,16 +98,6 @@ class FacebookloginAction extends Action
 
         $this->elementEnd('a');
 
-        /*
-        $this->element('div', array('id' => 'fb-root'));
-        $this->script(
-            sprintf(
-                'http://connect.facebook.net/en_US/all.js#appId=%s&xfbml=1',
-                common_config('facebook', 'appid')
-            )
-        );
-        $this->element('fb:facepile', array('max-rows' => '2', 'width' =>'300'));
-        */
         $this->elementEnd('fieldset');
     }
 

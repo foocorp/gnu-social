@@ -103,8 +103,6 @@ class FacebookBridgePlugin extends Plugin
     {
         $dir = dirname(__FILE__);
 
-        //common_debug("class = " . $cls);
-
         switch ($cls)
         {
         case 'Facebook': // Facebook PHP SDK
@@ -352,6 +350,13 @@ class FacebookBridgePlugin extends Plugin
             $action->script('https://connect.facebook.net/en_US/all.js');
 
             $script = <<<ENDOFSCRIPT
+function setCookie(name, value) {
+    var date = new Date();
+    date.setTime(date.getTime() + (5 * 60 * 1000)); // 5 mins
+    var expires = "; expires=" + date.toGMTString();
+    document.cookie = name + "=" + value + expires + "; path=/";
+}
+
 FB.init({appId: %1\$s, status: true, cookie: true, xfbml: true, oauth: true});
 
 $('#facebook_button').bind('click', function(event) {
@@ -360,6 +365,8 @@ $('#facebook_button').bind('click', function(event) {
 
     FB.login(function(response) {
         if (response.authResponse) {
+            // put the access token in a cookie for the next step
+            setCookie('fb_access_token', response.authResponse.accessToken);
             window.location.href = '%2\$s';
         } else {
             // NOP (user cancelled login)
@@ -383,24 +390,30 @@ ENDOFSCRIPT;
      *
      * @param Action action the current action
      */
-    function onEndLogout($action)
+    function onStartLogout($action)
     {
         if ($this->hasApplication()) {
-            //$session = $this->facebook->getSession();
-            $fbuser  = null;
-            $fbuid   = null;
 
-                try {
-                    $fbuid  = $this->facebook->getUser();
-                    $fbuser = $this->facebook->api('/me');
-                 } catch (FacebookApiException $e) {
-                     common_log(LOG_ERROR, $e, __FILE__);
-                 }
+            $cur = common_current_user();
+            $flink = Foreign_link::getByUserID($cur->id, FACEBOOK_SERVICE);
 
-            if (!empty($fbuser)) {
+            if (!empty($flink)) {
+
+                $this->facebook->setAccessToken($flink->credentials);
+
+                if (common_config('singleuser', 'enabled')) {
+                    $user = User::singleUser();
+
+                    $destination = common_local_url(
+                        'showstream',
+                        array('nickname' => $user->nickname)
+                    );
+                } else {
+                    $destination = common_local_url('public');
+                }
 
                 $logoutUrl = $this->facebook->getLogoutUrl(
-                    array('next' => common_local_url('public'))
+                    array('next' => $destination)
                 );
 
                 common_log(
@@ -411,9 +424,14 @@ ENDOFSCRIPT;
                     ),
                     __FILE__
                 );
-                common_debug("LOGOUT URL = $logoutUrl");
+
+                $action->logout();
+
                 common_redirect($logoutUrl, 303);
+                return false; // probably never get here, but hey
             }
+
+            return true;
         }
     }
 
