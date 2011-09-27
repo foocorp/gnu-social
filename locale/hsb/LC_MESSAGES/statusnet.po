@@ -12,18 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:50:45+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:12+0000\n"
 "Language-Team: Upper Sorbian <https://translatewiki.net/wiki/Portal:hsb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: hsb\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : (n%100==3 || "
 "n%100==4) ? 2 : 3)\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -2994,12 +2994,6 @@ msgstr "URL za wobraz, kotryž ma so z licencu zwobraznić."
 msgid "Save license settings."
 msgstr "Licencne nastajenja składować."
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Hižo přizjewjeny."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Wopačne wužiwarske mjeno abo hesło."
@@ -3341,6 +3335,33 @@ msgstr ""
 msgid "Not a supported data format."
 msgstr "Njeje podpěrany datowy format."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "IM-nastajenja"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Nastajenja składowane."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Składować"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Ludźi pytać"
@@ -3348,6 +3369,11 @@ msgstr "Ludźi pytać"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Zdźělenku pytać"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Hižo přizjewjeny."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -4104,11 +4130,6 @@ msgstr "Nastajenja městna njedachu so składować."
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
 msgstr "Taflički njedadźa so składować."
-
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Nastajenja składowane."
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
@@ -6520,14 +6541,6 @@ msgctxt "role"
 msgid "Moderator"
 msgstr "Moderator"
 
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Abonować"
-
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
@@ -7569,6 +7582,11 @@ msgstr "Móže być, zo chceš instalaciski program startować, zo by to porjed�
 msgid "Go to the installer."
 msgstr "K instalaciji"
 
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Zdźělenki"
+
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
 msgstr "Zmylk w datowej bance"
@@ -8516,6 +8534,9 @@ msgstr "w konteksće"
 msgid "Repeated by"
 msgstr "Wospjetowany wot"
 
+msgid " "
+msgstr ""
+
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
 msgid "Reply to this notice."
@@ -8583,10 +8604,6 @@ msgstr[0] "Skupinu abo temu w %d znamješce abo mjenje wopisać"
 msgstr[1] "Skupinu abo temu w %d znamješkomaj abo mjenje wopisać"
 msgstr[2] "Skupinu abo temu w %d znamješkach abo mjenje wopisać"
 msgstr[3] "Skupinu abo temu w %d znamješkach abo mjenje wopisać"
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Składować"
 
 #. TRANS: Button title to delete a list.
 #, fuzzy
@@ -8861,10 +8878,6 @@ msgstr "Wužiwarski ID"
 #. TRANS: Label for user statistics.
 msgid "Member since"
 msgstr "Čłon wot"
-
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Zdźělenki"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
@@ -9146,6 +9159,15 @@ msgstr "Zwiski"
 msgid "Authorized connected applications"
 msgstr "Awtorizowane zwjazane aplikacije"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 #, fuzzy
 msgctxt "TITLE"
@@ -9245,6 +9267,13 @@ msgstr "Přećelow a kolegow přeprosyć, so tebi na %s  přidružić"
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Tutoho wužiwarja abonować"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Abonować"
 
 #. TRANS: Button title to subscribe to a user.
 msgid "Subscribe to this user."
@@ -9594,31 +9623,3 @@ msgstr "Njepłaćiwy XML, korjeń XRD faluje."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Wobstaruje so zawěsćenje z dataje \"%s\"-"
-
-#, fuzzy
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "Awatarowy URL \"%s\" njeda so čitać."
-
-#, fuzzy
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr "Zmylk při aktualizaciji zdaleneho profila."
-
-#, fuzzy
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "Njemóžno słužby za %s namakać."
-
-#, fuzzy
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "Profil njeje so składować dał."
-
-#, fuzzy
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "Wužiwar z přimjenom %s njeda so namakać."
-
-#, fuzzy
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "Njepłaćiwa e-mejlowa adresa."
-
-#, fuzzy
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "Profil njeje so składować dał."

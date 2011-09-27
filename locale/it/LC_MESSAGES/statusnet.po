@@ -15,17 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:50:49+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:18+0000\n"
 "Language-Team: Italian <https://translatewiki.net/wiki/Portal:it>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: it\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3098,12 +3098,6 @@ msgstr "Indirizzo di un'immagine da visualizzare con la licenza."
 msgid "Save license settings."
 msgstr "Salva impostazioni licenza"
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Accesso già effettuato."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Nome utente o password non corretto."
@@ -3459,6 +3453,33 @@ msgstr "Solo URL %s attraverso HTTP semplice."
 msgid "Not a supported data format."
 msgstr "Non è un formato di dati supportato."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "Impostazioni messaggistica istantanea"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Impostazioni salvate."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Salva"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Cerca persone"
@@ -3466,6 +3487,11 @@ msgstr "Cerca persone"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Cerca messaggi"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Accesso già effettuato."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -4267,11 +4293,6 @@ msgstr "Impossibile salvare le preferenze della posizione."
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
 msgstr "Impossibile salvare le etichette."
-
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Impostazioni salvate."
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
@@ -6809,14 +6830,6 @@ msgctxt "role"
 msgid "Moderator"
 msgstr "Moderatore"
 
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-#, fuzzy
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Abbonati"
-
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
@@ -7861,6 +7874,11 @@ msgstr ""
 msgid "Go to the installer."
 msgstr "Vai al programma d'installazione."
 
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Messaggi"
+
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
 msgstr "Errore del database"
@@ -8898,6 +8916,10 @@ msgstr "in una discussione"
 msgid "Repeated by"
 msgstr "Ripetuto da"
 
+#, fuzzy
+msgid " "
+msgstr ", "
+
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
 msgid "Reply to this notice."
@@ -8966,10 +8988,6 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Descrivi il gruppo o l'argomento in %d caratteri"
 msgstr[1] "Descrivi il gruppo o l'argomento in %d caratteri"
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Salva"
 
 #. TRANS: Button title to delete a list.
 #, fuzzy
@@ -9247,10 +9265,6 @@ msgid "Member since"
 msgstr "Membro dal"
 
 #. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Messaggi"
-
-#. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
 msgid "Daily average"
 msgstr "Media giornaliera"
@@ -9519,6 +9533,15 @@ msgstr "Connessioni"
 msgid "Authorized connected applications"
 msgstr "Applicazioni collegate autorizzate"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 #, fuzzy
 msgctxt "TITLE"
@@ -9622,6 +9645,13 @@ msgstr "Invita amici e colleghi a seguirti su %s"
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Abbonati a questo utente"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+#, fuzzy
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Abbonati"
 
 #. TRANS: Button title to subscribe to a user.
 #, fuzzy
@@ -9956,31 +9986,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "Impossibile leggere l'URL \"%s\" dell'immagine."
-
-#, fuzzy
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr "Errore nell'aggiornare il profilo remoto."
-
-#, fuzzy
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "Impossibile revocare l'accesso per l'applicazione: %s."
-
-#, fuzzy
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "Impossibile salvare il profilo."
-
-#, fuzzy
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "Impossibile trovare un utente col soprannome %s."
-
-#, fuzzy
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "Non è un indirizzo email valido."
-
-#, fuzzy
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "Impossibile salvare il profilo."

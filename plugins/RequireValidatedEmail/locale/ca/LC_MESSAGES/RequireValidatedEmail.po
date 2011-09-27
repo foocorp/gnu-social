@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RequireValidatedEmail\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 18:54+0000\n"
-"PO-Revision-Date: 2011-06-05 18:57:05+0000\n"
-"Language-Team: Catalan <http://translatewiki.net/wiki/Portal:ca>\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:14+0000\n"
+"Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:46:06+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89517); Translate extension (2011-06-02)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-18 16:19:28+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-requirevalidatedemail\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -57,11 +57,11 @@ msgstr ""
 
 #. TRANS: Client exception thrown when trying to register with too short a password.
 msgid "Password too short."
-msgstr ""
+msgstr "La contrasenya és massa curta."
 
 #. TRANS: Client exception thrown when trying to register without providing the same password twice.
 msgid "Passwords do not match."
-msgstr ""
+msgstr "Les contrasenyes no coincideixen."
 
 #. TRANS: Form instructions. %s is the nickname of the to be registered user.
 #, php-format
@@ -69,13 +69,14 @@ msgid ""
 "You have confirmed the email address for your new user account %s. Use the "
 "form below to set your new password."
 msgstr ""
+"Heu confirmat l'adreça electrònica del vostre nou compte d'usuari %s. "
+"Utilitzeu el formulari a sota per definir una contrasenya nova."
 
 #. TRANS: Page title.
 msgid "Set a password"
 msgstr "Definiu una contrasenya"
 
 #. TRANS: Form legend.
-#, fuzzy
 msgid "Confirm email address"
 msgstr "Confirmeu l'adreça electrònica"
 
@@ -88,7 +89,6 @@ msgid "6 or more characters."
 msgstr "6 o més caràcters."
 
 #. TRANS: Field label for repeat password field.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Confirm"
 msgstr "Confirma"
@@ -98,7 +98,6 @@ msgid "Same as password above."
 msgstr "La mateixa que la contrasenya de dalt."
 
 #. TRANS: Button text for completing registration by e-mail.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Desa"

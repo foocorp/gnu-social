@@ -350,17 +350,7 @@ class ShowprofiletagAction extends Action
                 }
             }
 
-            if ($cnt > PROFILES_PER_MINILIST) {
-                $this->elementStart('p');
-                $this->element('a', array('href' => common_local_url('profiletagsubscribers',
-                                                                     array('nickname' => $this->tagger->nickname,
-                                                                           'profiletag' => $this->peopletag->tag)),
-                                          'class' => 'more'),
-                               // TRANS: Link for more "People following tag x"
-                               // TRANS: if there are more than the mini list's maximum.
-                               _('All subscribers'));
-                $this->elementEnd('p');
-            }
+            // FIXME: link to full list
 
             Event::handle('EndShowProfileTagSubscribersMiniList', array($this));
         }
