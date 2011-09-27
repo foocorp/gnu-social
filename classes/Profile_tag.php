@@ -79,20 +79,17 @@ class Profile_tag extends Managed_DataObject
             return $tags;
         }
 
-        $profile_tag = new Profile_tag();
-        $profile_list->tagger = $tagger;
-        $profile_tag->tagged = $tagged;
+        $qry = 'select profile_list.* from profile_list left join '.
+               'profile_tag on (profile_list.tag = profile_tag.tag and '.
+               'profile_list.tagger = profile_tag.tagger) where '.
+               'profile_tag.tagger = %d and profile_tag.tagged = %d ';
+        $qry = sprintf($qry, $tagger, $tagged);
 
-        $profile_list->selectAdd();
+        if (!$include_priv) {
+            $qry .= ' and profile_list.private = 0';
+        }
 
-        // only fetch id, tag, mainpage and
-        // private hoping this will be faster
-        $profile_list->selectAdd('profile_list.id, ' .
-                                 'profile_list.tag, ' .
-                                 'profile_list.mainpage, ' .
-                                 'profile_list.private');
-        $profile_list->joinAdd($profile_tag);
-        $profile_list->find();
+        $profile_list->query($qry);
 
         Profile_list::setCache($key, $profile_list);
 
@@ -102,23 +99,26 @@ class Profile_tag extends Managed_DataObject
     static function getTagsArray($tagger, $tagged, $auth_user_id=null)
     {
         $ptag = new Profile_tag();
-        $ptag->tagger = $tagger;
-        $ptag->tagged = $tagged;
 
-        if ($tagger != $auth_user_id) {
-            $list = new Profile_list();
-            $list->private = false;
-            $ptag->joinAdd($list);
-            $ptag->selectAdd();
-            $ptag->selectAdd('profile_tag.tag');
+        $qry = sprintf('select profile_tag.tag '.
+                       'from profile_tag join profile_list '.
+                       ' on (profile_tag.tagger = profile_list.tagger ' .
+                       '     and profile_tag.tag = profile_list.tag) ' .
+                       'where profile_tag.tagger = %d ' .
+                       'and   profile_tag.tagged = %d ',
+                       $tagger, $tagged);
+
+        if ($auth_user_id != $tagger) {
+            $qry .= 'and profile_list.private = 0';
         }
 
         $tags = array();
-        $ptag->find();
+
+        $ptag->query($qry);
+
         while ($ptag->fetch()) {
             $tags[] = $ptag->tag;
         }
-        $ptag->free();
 
         return $tags;
     }

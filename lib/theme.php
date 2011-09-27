@@ -106,9 +106,9 @@ class Theme
 
         // Ruh roh. Fall back to default, then.
 
-        common_log(LOG_WARN, sprintf("Unable to find theme '%s', falling back to default theme '%s'",
-                                     $name,
-                                     Theme::FALLBACK));
+        common_log(LOG_WARNING, sprintf("Unable to find theme '%s', falling back to default theme '%s'",
+                                        $name,
+                                        Theme::FALLBACK));
 
         $this->name = Theme::FALLBACK;
         $this->dir  = $instroot.'/'.Theme::FALLBACK;
