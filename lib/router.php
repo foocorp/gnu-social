@@ -825,7 +825,7 @@ class Router
 
                 foreach (array('subscriptions', 'subscribers',
                                'all', 'foaf', 'replies',
-                               'microsummary', 'hcard') as $a) {
+                               'microsummary') as $a) {
                     $m->connect($a,
                                 array('action' => $a,
                                       'nickname' => $nickname));
@@ -893,7 +893,7 @@ class Router
 
                 foreach (array('subscriptions', 'subscribers',
                                'nudge', 'all', 'foaf', 'replies',
-                               'inbox', 'outbox', 'microsummary', 'hcard') as $a) {
+                               'inbox', 'outbox', 'microsummary') as $a) {
                     $m->connect(':nickname/'.$a,
                                 array('action' => $a),
                                 array('nickname' => Nickname::DISPLAY_FMT));
@@ -903,10 +903,6 @@ class Router
                             array('nickname' => Nickname::DISPLAY_FMT));
 
                 // people tags
-
-                if (!common_config('performance', 'high')) {
-                    $m->connect('peopletags', array('action' => 'publicpeopletagcloud'));
-                }
 
                 $m->connect('peopletag/:tag', array('action' => 'peopletag',
                                                     'tag'    => self::REGEX_TAG));

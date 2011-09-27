@@ -82,11 +82,6 @@ class XrdAction extends Action
                                   'type' => 'text/html',
                                   'href' => $profile->profileurl);
 
-            // hCard
-            $xrd->links[] = array('rel' => self::HCARD,
-                                  'type' => 'text/html',
-                                  'href' => common_local_url('hcard', array('nickname' => $nick)));
-
             // XFN
             $xrd->links[] = array('rel' => 'http://gmpg.org/xfn/11',
                                   'type' => 'text/html',

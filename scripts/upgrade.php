@@ -52,6 +52,8 @@ function main()
         initSubscriptionURI();
         initGroupMemberURI();
 
+        initProfileLists();
+
         Event::handle('EndUpgrade');
     }
 }
@@ -368,6 +370,49 @@ function initGroupMemberURI()
             } catch (Exception $e) {
                 common_log(LOG_ERR, "Error updated membership URI: " . $e->getMessage());  
           }
+        }
+    }
+
+    printfnq("DONE.\n");
+}
+
+function initProfileLists()
+{
+    printfnq("Ensuring all profile tags have a corresponding list...");
+
+    $ptag = new Profile_tag();
+    $ptag->selectAdd();
+    $ptag->selectAdd('tagger, tag, count(*) as tagged_count');
+    $ptag->whereAdd('NOT EXISTS (SELECT tagger, tagged from profile_list '.
+                    'where profile_tag.tagger = profile_list.tagger '.
+                    'and profile_tag.tag = profile_list.tag)');
+    $ptag->groupBy('tagger, tag');
+    $ptag->orderBy('tagger, tag');
+
+    if ($ptag->find()) {
+        while ($ptag->fetch()) {
+            $plist = new Profile_list();
+
+            $plist->tagger   = $ptag->tagger;
+            $plist->tag      = $ptag->tag;
+            $plist->private  = 0;
+            $plist->created  = common_sql_now();
+            $plist->modified = $plist->created;
+            $plist->mainpage = common_local_url('showprofiletag',
+                                                array('tagger' => $plist->getTagger()->nickname,
+                                                      'tag'    => $plist->tag));;
+
+            $plist->tagged_count     = $ptag->tagged_count;
+            $plist->subscriber_count = 0;
+
+            $plist->insert();
+
+            $orig = clone($plist);
+            // After insert since it uses auto-generated ID
+            $plist->uri      = common_local_url('profiletagbyid',
+                                        array('id' => $plist->id, 'tagger_id' => $plist->tagger));
+
+            $plist->update($orig);
         }
     }
 

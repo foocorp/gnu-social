@@ -2163,7 +2163,11 @@ function common_shorten_url($long_url, User $user=null, $force = false)
             } else {
                 $shortenedUrl = common_local_url('redirecturl',
                                                  array('id' => $f->id));
-                return $shortenedUrl;
+                if ((mb_strlen($shortenedUrl) < mb_strlen($long_url)) || $force) {
+                    return $shortenedUrl;
+                } else {
+                    return $long_url;
+                }
             }
         } else {
             return $long_url;
