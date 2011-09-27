@@ -100,13 +100,13 @@ class Profile_tag extends Managed_DataObject
     {
         $ptag = new Profile_tag();
 
-        $qry = sprint('select profile_tag.tag '.
-                      'from profile_tag join profile_list '.
-                      ' on (profile_tag.tagger = profile_list.tagger ' .
-                      '     and profile_tag.tag = profile_list.tag) ' .
-                      'where profile_tag.tagger = %d ' .
-                      'and   profile_tag.tagged = %d ',
-                      $tagger, $tagged);
+        $qry = sprintf('select profile_tag.tag '.
+                       'from profile_tag join profile_list '.
+                       ' on (profile_tag.tagger = profile_list.tagger ' .
+                       '     and profile_tag.tag = profile_list.tag) ' .
+                       'where profile_tag.tagger = %d ' .
+                       'and   profile_tag.tagged = %d ',
+                       $tagger, $tagged);
 
         if ($auth_user_id != $tagger) {
             $qry .= 'and profile_list.private = 0';
@@ -114,7 +114,7 @@ class Profile_tag extends Managed_DataObject
 
         $tags = array();
 
-        $ptag->query($sql);
+        $ptag->query($qry);
 
         while ($ptag->fetch()) {
             $tags[] = $ptag->tag;
