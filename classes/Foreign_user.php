@@ -44,20 +44,18 @@ class Foreign_user extends Managed_DataObject
         );
     }
 
-    // XXX:  This only returns a 1->1 single obj mapping.  Change?  Or make
-    // a getForeignUsers() that returns more than one? --Zach
     static function getForeignUser($id, $service) {
+
         $fuser = new Foreign_user();
-        $fuser->whereAdd("service = $service");
-        $fuser->whereAdd("id = $id");
+
+        $fuser->id      = $id;
+        $fuser->service = $service;
+
         $fuser->limit(1);
 
-        if ($fuser->find()) {
-            $fuser->fetch();
-            return $fuser;
-        }
+        $result = $fuser->find(true);
 
-        return null;
+        return empty($result) ? null : $fuser;
     }
 
     static function getByNickname($nickname, $service)
