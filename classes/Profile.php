@@ -436,42 +436,55 @@ class Profile extends Managed_DataObject
         return new ArrayWrapper($lists);
     }
 
+    /**
+     * Get tags that other people put on this profile, in reverse-chron order
+     *
+     * @param (Profile|User) $auth_user  Authorized user (used for privacy)
+     * @param int            $offset     Offset from latest
+     * @param int            $limit      Max number to get
+     * @param datetime       $since_id   max date
+     * @param datetime       $max_id     min date
+     *
+     * @return Profile_list resulting lists
+     */
+
     function getOtherTags($auth_user=null, $offset=0, $limit=null, $since_id=0, $max_id=0)
     {
-        $lists = new Profile_list();
+        $list = new Profile_list();
 
-        $tags = new Profile_tag();
-        $tags->tagged = $this->id;
+        $qry = sprintf('select profile_list.*, unix_timestamp(profile_tag.modified) as "cursor" ' .
+                       'from profile_tag join profile_list '.
+                       'on (profile_tag.tagger = profile_list.tagger ' .
+                       '    and profile_tag.tag = profile_list.tag) ' .
+                       'where profile_tag.tagged = %d ',
+                       $this->id);
 
-        $lists->joinAdd($tags);
-
-        #@fixme: postgres (round(date_part('epoch', my_date)))
-        $lists->selectAdd('unix_timestamp(profile_tag.modified) as "cursor"');
 
         if ($auth_user instanceof User || $auth_user instanceof Profile) {
-            $lists->whereAdd('( ( profile_list.private = false ) ' .
-                             'OR ( profile_list.tagger = ' . $auth_user->id . ' AND ' .
-                             'profile_list.private = true ) )');
+            $qry .= sprintf('AND ( ( profile_list.private = false ) ' .
+                            'OR ( profile_list.tagger = %d AND ' .
+                            'profile_list.private = true ) )',
+                            $auth_user->id);
         } else {
-            $lists->private = false;
+            $qry .= 'AND profile_list.private = 0 ';
         }
 
-        if ($since_id>0) {
-           $lists->whereAdd('cursor > '.$since_id);
+        if ($since_id > 0) {
+            $qry .= sprintf('AND (cursor > %d) ', $since_id);
         }
 
-        if ($max_id>0) {
-            $lists->whereAdd('cursor <= '.$max_id);
+        if ($max_id > 0) {
+            $qry .= sprintf('AND (cursor < %d) ', $max_id);
         }
 
-        if($offset>=0 && !is_null($limit)) {
-            $lists->limit($offset, $limit);
+        $qry .= 'ORDER BY profile_tag.modified DESC ';
+
+        if ($offset >= 0 && !is_null($limit)) {
+            $qry .= sprintf('LIMIT %d OFFSET %d ', $limit, $offset);
         }
 
-        $lists->orderBy('profile_tag.modified DESC');
-        $lists->find();
-
-        return $lists;
+        $list->query($qry);
+        return $list;
     }
 
     function getPrivateTags($offset=0, $limit=null, $since_id=0, $max_id=0)
@@ -1420,14 +1433,18 @@ class Profile extends Managed_DataObject
     {
     	$ids = array();
     	foreach ($profiles as $profile) {
-    	    $ids[] = $profile->id;
+            if (!empty($profile)) {
+                $ids[] = $profile->id;
+            }
     	}
     	
     	$avatars = Avatar::pivotGet('profile_id', $ids, array('width' => $width,
 															  'height' => $width));
     	
     	foreach ($profiles as $profile) {
-    	    $profile->_fillAvatar($width, $avatars[$profile->id]);
+            if (!empty($profile)) { // ???
+                $profile->_fillAvatar($width, $avatars[$profile->id]);
+            }
     	}
     }
     

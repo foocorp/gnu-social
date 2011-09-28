@@ -215,7 +215,7 @@ class ApiAction extends Action
             Avatar::defaultImage(AVATAR_STREAM_SIZE);
 
         $twitter_user['url'] = ($profile->homepage) ? $profile->homepage : null;
-        $twitter_user['protected'] = ($user->private_stream) ? true : false;
+        $twitter_user['protected'] = (!empty($user) && $user->private_stream) ? true : false;
         $twitter_user['followers_count'] = $profile->subscriberCount();
 
         // Note: some profiles don't have an associated user

@@ -16,17 +16,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:50:22+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:44:52+0000\n"
 "Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -104,9 +104,8 @@ msgid "Closed"
 msgstr "Tancat"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
-msgstr "Desa els paràmetres d'accés"
+msgstr "Desa els paràmetres d'accés."
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -447,17 +446,15 @@ msgid "Unblock user failed."
 msgstr "Ha fallat el desblocatge de l'usuari."
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "no hi ha un id de conversa"
+msgstr "No hi ha un identificador de conversa."
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "No conversation with ID %d."
-msgstr "No hi ha cap conversa amb l'id %d"
+msgstr "No hi ha cap conversa amb l'ID %d."
 
 #. TRANS: Title for conversion timeline.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Conversa"
@@ -1820,9 +1817,8 @@ msgid "Enter \"%s\" to confirm that you want to delete your account."
 msgstr "Introduïu «%s» per a confirmar que voleu eliminar el vostre compte."
 
 #. TRANS: Button title for user account deletion.
-#, fuzzy
 msgid "Permanently delete your account."
-msgstr "Elimina permanentment el compte"
+msgstr "Elimina permanentment el compte."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
 msgid "You must be logged in to delete an application."
@@ -2706,14 +2702,13 @@ msgstr "Paràmetres de missatgeria instantània"
 #. TRANS: Instant messaging settings page instructions.
 #. TRANS: [instant messages] is link text, "(%%doc.im%%)" is the link.
 #. TRANS: the order and formatting of link text and link should remain unchanged.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can send and receive notices through [instant messaging](%%doc.im%%). "
 "Configure your addresses and settings below."
 msgstr ""
-"Podeu enviar i rebre avisos a través de la missatgeria instantània "
-"[missatges instantanis](%%doc.im%%) de Jabber/GTalk. Configureu les adreces "
-"i paràmetres a continuació."
+"Podeu enviar i rebre avisos a través de [la missatgeria instantània](%%doc.im"
+"%%). Configureu les adreces i paràmetres a continuació."
 
 #. TRANS: Message given in the IM settings if IM is not enabled on the site.
 msgid "IM is not available."
@@ -3043,12 +3038,6 @@ msgstr "URL de la imatge que es mostrarà juntament amb la llicència."
 #. TRANS: Button title in the license admin panel.
 msgid "Save license settings."
 msgstr "Desa els paràmetres de la llicència."
-
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Ja hi heu iniciat una sessió."
 
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
@@ -3406,6 +3395,33 @@ msgstr "Si us plau, només URL %s sobre HTTP pla."
 msgid "Not a supported data format."
 msgstr "Format de data no suportat."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "Paràmetres de missatgeria instantània"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "S'ha desat la configuració."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Desa"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Cerca de gent"
@@ -3413,6 +3429,11 @@ msgstr "Cerca de gent"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Cerca d'avisos"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Ja hi heu iniciat una sessió."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -3710,9 +3731,8 @@ msgid "Server to direct SSL requests to."
 msgstr "Servidor on dirigir les sol·licituds SSL."
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-#, fuzzy
 msgid "Save path settings."
-msgstr "Desa els paràmetres del lloc."
+msgstr "Desa el camí del lloc."
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -3839,7 +3859,7 @@ msgstr "Vés-hi"
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "These are lists created by **%s**. Lists are how you sort similar people on %"
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
@@ -3851,7 +3871,7 @@ msgstr ""
 "agrupeu gent similar a %%%%site.name%%%%, un servei de [microblogging]"
 "(http://ca.wikipedia.org/wiki/Microblogging) basat en l'eina lliure "
 "[StatusNet](http://status.net/). Podeu seguir fàcilment què estan fent "
-"subscrivint-vos a la línia temporal d'una etiqueta."
+"subscrivint-vos a la línia temporal de la llista."
 
 #. TRANS: Message displayed on page that displays lists by a user when there are none.
 #. TRANS: This message contains Markdown links in the form [description](links).
@@ -3873,7 +3893,7 @@ msgstr "Llistes que contenen %1$s, pàgina %2$d"
 #. TRANS: Message displayed for anonymous users on page that displays lists for a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "These are lists for **%s**. lists are how you sort similar people on %%%%"
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
@@ -3885,7 +3905,7 @@ msgstr ""
 "similar a %%%%site.name%%%%, un servei de [microblogging](http://ca."
 "wikipedia.org/wiki/Microblogging) basat en l'eina lliure [StatusNet](http://"
 "status.net/). Podeu seguir fàcilment què estan fent subscrivint-vos a la "
-"línia temporal d'una etiqueta."
+"línia temporal d'una llista."
 
 #. TRANS: Message displayed on page that displays lists a user was added to when there are none.
 #. TRANS: This message contains Markdown links in the form [description](links).
@@ -4184,11 +4204,6 @@ msgstr "No s'han pogut desar les preferències d'ubicació."
 msgid "Could not save tags."
 msgstr "No s'han pogut guardar les etiquetes."
 
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "S'ha desat la configuració."
-
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
 msgid "Restore account"
@@ -4201,9 +4216,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "Més enllà del límit de la pàgina (%s)"
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-#, fuzzy
 msgid "Could not retrieve public timeline."
-msgstr "No s'ha pogut recuperar la conversa pública."
+msgstr "No s'ha pogut recuperar la línia temporal pública."
 
 #. TRANS: Title for all public timeline pages but the first.
 #. TRANS: %d is the page number.
@@ -4217,24 +4231,20 @@ msgid "Public timeline"
 msgstr "Línia temporal pública"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (Activity Streams JSON)"
-msgstr "Canal de flux públic (fluxos d'activitat JSON)"
+msgstr "Canal de la línia temporal pública (fluxos d'activitat JSON)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (RSS 1.0)"
-msgstr "Flux de canal públic (RSS 1.0)"
+msgstr "Canal de la línia temporal pública (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (RSS 2.0)"
-msgstr "Flux de canal públic (RSS 2.0)"
+msgstr "Canal de la línia temporal pública (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (Atom)"
-msgstr "Flux de canal públic (Atom)"
+msgstr "Canal de la línia temporal pública (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
 #, php-format
@@ -4818,13 +4828,12 @@ msgid "Feed will be restored. Please wait a few minutes for results."
 msgstr "Es restaurarà el perfil. Espereu uns pocs minuts per als resultats."
 
 #. TRANS: Form instructions for feed restore.
-#, fuzzy
 msgid ""
 "You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
-"Podeu pujar una còpia de seguretat de flux en format <a href=\"http://"
-"activitystrea.ms/\">Activity Streams</a>."
+"Podeu pujar una còpia de seguretat de la línia temporal en format <a href="
+"\"http://activitystrea.ms/\">Activity Streams</a>."
 
 #. TRANS: Title for submit button to confirm upload of a user backup file for account restore.
 msgid "Upload the file"
@@ -6167,12 +6176,12 @@ msgstr "StatusNet %s"
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This site is powered by %1$s version %2$s, Copyright 2008-2011 StatusNet, "
 "Inc. and contributors."
 msgstr ""
-"El lloc funciona gràcies a %1$s versió %2$s. Copyright 2008-2010 StatusNet, "
+"El lloc funciona gràcies a %1$s versió %2$s. Copyright 2008-2011 StatusNet, "
 "Inc. i col·laboradors."
 
 #. TRANS: Header for StatusNet contributors section on the version page.
@@ -6346,9 +6355,9 @@ msgid "Could not create login token for %s"
 msgstr "No s'ha pogut crear un testimoni d'inici de sessió per a %s"
 
 #. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
-#, fuzzy, php-format
+#, php-format
 msgid "Cannot instantiate class %s."
-msgstr "No es pot instanciar la classe "
+msgstr "No es pot instanciar la classe %s."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
@@ -6672,13 +6681,6 @@ msgstr "Administrador"
 msgctxt "role"
 msgid "Moderator"
 msgstr "Moderador"
-
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Subscriu-m'hi"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
@@ -7082,14 +7084,12 @@ msgstr ""
 "Accés per defecte per a l'aplicació: només lectura, o lectura i escriptura"
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgid "Cancel application changes."
-msgstr "Aplicacions connectades"
+msgstr "Cancel·la els canvis d'aplicació."
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgid "Save application changes."
-msgstr "Aplicació nova"
+msgstr "Desa els canvis d'aplicació."
 
 #. TRANS: Name for an anonymous application in application list.
 msgid "Unknown application"
@@ -7687,6 +7687,11 @@ msgstr "Podeu voler executar l'instal·lador per corregir-ho."
 msgid "Go to the installer."
 msgstr "Vés a l'instal·lador."
 
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Avisos"
+
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
 msgstr "Error de la base de dades"
@@ -7734,9 +7739,8 @@ msgid "Disfavor favorite"
 msgstr "Fes que deixi de ser preferit"
 
 #. TRANS: Button title for removing the favourite status for a favourite notice.
-#, fuzzy
 msgid "Remove this notice from your list of favorite notices."
-msgstr "No s'han pogut recuperar els avisos preferits."
+msgstr "Elimina aquest avís de la vostra llista d'avisos preferits."
 
 #. TRANS: Form legend for adding the favourite status to a notice.
 msgid "Favor this notice"
@@ -7748,9 +7752,8 @@ msgid "Favor"
 msgstr "Preferit"
 
 #. TRANS: Button title for adding the favourite status to a notice.
-#, fuzzy
 msgid "Add this notice to your list of favorite notices."
-msgstr "No s'han pogut recuperar els avisos preferits."
+msgstr "Afegeix aquest avís a la vostra llista d'avisos preferits."
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -7812,9 +7815,8 @@ msgid "All members"
 msgstr "Tots els membres"
 
 #. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
-#, fuzzy
 msgid "Pending"
-msgstr "Pendent (%d)"
+msgstr "Pendent"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
 msgid "Blocked"
@@ -7833,7 +7835,7 @@ msgstr "Bloca"
 #. TRANS: Submit button title.
 msgctxt "TOOLTIP"
 msgid "Block this user so that they can no longer post messages to it."
-msgstr ""
+msgstr "Bloca l'usuari per tal que no pugui tornar a publicar-hi missatges."
 
 #. TRANS: Field title on group edit form.
 msgid "URL of the homepage or blog of the group or topic."
@@ -7926,9 +7928,8 @@ msgid "See all"
 msgstr "Mostra-ho tot"
 
 #. TRANS: Link title for seeing all groups.
-#, fuzzy
 msgid "See all groups you belong to."
-msgstr "Mostra tots els grups que pertanyen a"
+msgstr "Mostra tots els grups en què pertanyeu."
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -8064,9 +8065,8 @@ msgid "Leave"
 msgstr "Deixa"
 
 #. TRANS: Link title for seeing all lists.
-#, fuzzy
 msgid "See all lists you have created."
-msgstr "Mostra totes les llistes que heu creat"
+msgstr "Mostra totes les llistes que heu creat."
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -8484,10 +8484,9 @@ msgid "Make Admin"
 msgstr "Fes-lo administrador"
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Make this user an admin."
-msgstr "Fes aquest usuari administrador"
+msgstr "Fes aquest usuari administrador."
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
 msgid "There was a database error while saving your file. Please try again."
@@ -8693,19 +8692,21 @@ msgstr "en context"
 msgid "Repeated by"
 msgstr "Repetit per"
 
-#. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
+msgid " "
+msgstr ", "
+
+#. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice."
-msgstr "Respon a aquest avís"
+msgstr "Respon a aquest avís."
 
 #. TRANS: Link text in notice list item to reply to a notice.
 msgid "Reply"
 msgstr "Respon"
 
 #. TRANS: Link title in notice list item to delete a notice.
-#, fuzzy
 msgid "Delete this notice from the timeline."
-msgstr "Elimina l'avís."
+msgstr "Elimina l'avís de la línia temporal."
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
 msgid "Notice repeated."
@@ -8752,10 +8753,6 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Descriviu la llista o la temàtica en %d caràcter."
 msgstr[1] "Descriviu la llista o la temàtica en %d caràcters."
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Desa"
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -9007,10 +9004,6 @@ msgstr "ID de l'usuari"
 #. TRANS: Label for user statistics.
 msgid "Member since"
 msgstr "Membre des de"
-
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Avisos"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
@@ -9284,6 +9277,15 @@ msgstr "Connexions"
 msgid "Authorized connected applications"
 msgstr "Aplicacions de connexió autoritzades"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
 msgid "Silence"
@@ -9384,6 +9386,12 @@ msgstr "Convida amics i companys perquè participin a %s."
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Subscriu-me a aquest usuari"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Subscriu-m'hi"
 
 #. TRANS: Button title to subscribe to a user.
 msgid "Subscribe to this user."
@@ -9621,9 +9629,8 @@ msgid "Unsubscribe"
 msgstr "Cancel·la la subscripció"
 
 #. TRANS: Button title on unsubscribe form.
-#, fuzzy
 msgid "Unsubscribe from this user."
-msgstr "Cancel·la la subscripció d'aquest usuari"
+msgstr "Cancel·la la subscripció d'aquest usuari."
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
@@ -9705,24 +9712,3 @@ msgstr "L'XML no és vàlid, hi manca l'arrel XRD."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Es recupera la còpia de seguretat del fitxer '%s'."
-
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "L'URL «%s» de l'avatar no és vàlid."
-
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr "S'ha provat d'actualitzar l'avatar no desat del perfil remot %s."
-
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "No s'ha pogut aconseguir l'avatar de %s."
-
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "No s'ha pogut obtenir la pàgina del perfil %s."
-
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "No s'ha pogut trobar un URL de canal de la pàgina del perfil %s."
-
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "No és una adreça de webfinger vàlida."
-
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "No s'ha pogut trobar un perfil de «%s» vàlid."

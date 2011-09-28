@@ -29,6 +29,7 @@ span.rtl{
 
 .notice div.entry-content {
     float: right;
+    clear: right;
 }
 
 #content .notice .threaded-replies .notice div.entry-content{
@@ -85,6 +86,10 @@ address{
     margin-left: 0;
 }
 
+.notice p.entry-content {
+    float: left;
+}
+
 .threaded-replies .form_notice #notice_action-submit {
     right: 10px;
 }
@@ -109,6 +114,7 @@ address{
 
 #content .notice .author .photo{
     right: 0;
+    left: auto;
 }
 
 .notice-options{
@@ -264,12 +270,57 @@ select {
     float: left;
 }
 
-/*#site_nav_local_views {
+.profile .entity_profile .fn, .profile .entity_profile .label {
+    margin-right: 11px;
+    margin-left: 0;
+}
+
+#core .vcard .photo {
     float: right;
 }
 
-#content {
-    float: right;
-}*/
+.profile_list .label {
+    margin-right: 59px !important;
+}
 
+.profile .entity_profile .note, .profile .entity_profile .url, .profile .entity_profile .entity_tags, .profile .entity_profile .form_subscription_edit {
+    margin-right: 59px;
+    margin-left: 0;
+}
+
+.profile_list .entity_actions ul {
+    left: 20px;
+    right: auto;
+}
+
+.entity_actions input.submit {
+   text-align: right;
+}
+
+#entity_statistics dt, #entity_statistics dd {
+    margin-left: 11px;
+    margin-right: 0;
+}
+
+#showstream .notice .entry-title, #showstream .notice div.entry-content {
+    margin-right: 0;
+}
+
+.limited-scope .entry-content .timestamp:before {
+    right: 0;
+    left: auto;
+}
+
+.limited-scope .entry-content .timestamp {
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+.section ul.entities {
+    float: right;
+}
+
+.section .entities li {
+    float: right;
+}
 

@@ -88,7 +88,13 @@ class PublicAction extends Action
 
         $this->userProfile = Profile::current();
 
-        $stream = new ThreadingPublicNoticeStream($this->userProfile);
+        $user = common_current_user();
+
+        if (!empty($user) && $user->streamModeOnly()) {
+            $stream = new PublicNoticeStream($this->userProfile);
+        } else {
+            $stream = new ThreadingPublicNoticeStream($this->userProfile);
+        }
 
         $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE,
                                             NOTICES_PER_PAGE + 1);
@@ -213,7 +219,13 @@ class PublicAction extends Action
      */
     function showContent()
     {
-        $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);
+        $user = common_current_user();
+
+        if (!empty($user) && $user->streamModeOnly()) {
+            $nl = new NoticeList($this->notice, $this);
+        } else {
+            $nl = new ThreadedNoticeList($this->notice, $this, $this->userProfile);
+        }
 
         $cnt = $nl->show();
 

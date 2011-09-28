@@ -11,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:50:34+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:01+0000\n"
 "Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -3035,12 +3035,6 @@ msgstr "Lizentziarekin batera bistaratzeko irudiaren URLa."
 msgid "Save license settings."
 msgstr "Gorde lizentzia-ezarpenak."
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Dagoeneko saioa hasita."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Erabiltzaile-izen edo pasahitz okerra."
@@ -3394,6 +3388,33 @@ msgstr "Mesedez, %s URLak soilik HTTP arrunta erabiliz."
 msgid "Not a supported data format."
 msgstr "Onartzen ez den datu-formatua."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "BM ezarpenak"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Ezarpenak gordeak."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Gorde"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Jendearen bilaketa"
@@ -3401,6 +3422,11 @@ msgstr "Jendearen bilaketa"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Oharren bilaketa"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Dagoeneko saioa hasita."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -4171,11 +4197,6 @@ msgstr "Ezin izan dira kokapen-hobespenak gorde."
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
 msgstr "Ezin izan dira etiketak gorde."
-
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Ezarpenak gordeak."
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
@@ -6660,13 +6681,6 @@ msgctxt "role"
 msgid "Moderator"
 msgstr "Moderatzailea"
 
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Harpidetu"
-
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
@@ -7670,6 +7684,11 @@ msgstr "Instalatzailea exekuta zenezake arazo hau konpontzeko."
 #. TRANS: The text is link text that leads to the installer page.
 msgid "Go to the installer."
 msgstr "Joan instalatzailera."
+
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Oharrak"
 
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
@@ -8675,6 +8694,9 @@ msgstr "testuinguruan"
 msgid "Repeated by"
 msgstr "Errepikatzailea"
 
+msgid " "
+msgstr ""
+
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
 msgid "Reply to this notice."
@@ -8734,10 +8756,6 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Deskribatu zerrenda edo gaia karaktere %dean."
 msgstr[1] "Deskribatu zerrenda edo gaia %d karakteretan."
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Gorde"
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -8989,10 +9007,6 @@ msgstr "Erabiltzaile IDa"
 #. TRANS: Label for user statistics.
 msgid "Member since"
 msgstr "Partaidea noiztik"
-
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Oharrak"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
@@ -9266,6 +9280,15 @@ msgstr "Konexioak"
 msgid "Authorized connected applications"
 msgstr "Baimendutako konektatutako aplikazioak"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
 msgid "Silence"
@@ -9364,6 +9387,12 @@ msgstr "Gonbidatu lagunak eta lankideak zurekin elkartzera %s(e)n."
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Harpidetu erabiltzaile honetara"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Harpidetu"
 
 #. TRANS: Button title to subscribe to a user.
 msgid "Subscribe to this user."
@@ -9689,24 +9718,3 @@ msgstr "XML baliogabea, XRD erroa falta da."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "'%s'-ren babeskopia eskuratzen."
-
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "Avatarraren %s URL baliogabea."
-
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr "Gorde gabeko urruneko %s profiletik saiatu zara igotzen avatarra."
-
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "Ezin izan da %s URLtik avatarra igo."
-
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "Ezin izan da profil-orria %s gunetik atzitu."
-
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "Ezin izan da jario URL bat aurkitu profil-orriaren %s gunerako."
-
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "Ezin izan da baliozko webfinger-helbidea aurkitu."
-
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "Ezin izan da baliozko profilik aurkitu \"%s\"(e)rako."

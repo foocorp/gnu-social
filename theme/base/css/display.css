@@ -634,6 +634,10 @@ address .poweredby {
     content: '\25B8';
 }
 
+.notice .addressees .group {
+    font-style: italic;
+}
+
 .fn {
     overflow: hidden;
 }
@@ -996,7 +1000,24 @@ content: ":";
     display: none;
 }
 
+/* old school conversation style */
 
+#conversation .notices .notices {
+    float: left;
+    background-color:rgba(200, 200, 200, 0.050);
+    margin-left: 15px;
+    width: auto;
+}
+
+#conversation .notices .threaded-replies {
+    margin-left: 59px;
+    background: #fafafa;
+}
+
+#conversation .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices .notices  {
+    background: none;
+    margin-left: 0px;
+}
 
 /* aside primary specific styles */
 

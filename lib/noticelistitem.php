@@ -219,8 +219,14 @@ class NoticeListItem extends Widget
         $this->out->elementStart('a', $attrs);
         $this->showAvatar();
         $this->out->text(' ');
-        $this->out->element('span',array('class' => 'fn'),
-                            $this->profile->getBestName());
+        $user = common_current_user();
+        if (!empty($user) && $user->streamNicknames()) {
+            $this->out->element('span',array('class' => 'fn'),
+                                $this->profile->nickname);
+        } else {
+            $this->out->element('span',array('class' => 'fn'),
+                                $this->profile->getBestName());
+        }
         $this->out->elementEnd('a');
 
         $this->out->elementEnd('span');
@@ -262,11 +268,15 @@ class NoticeListItem extends Widget
 
         $groups = $this->getGroups();
 
+        $user = common_current_user();
+        
+        $streamNicknames = !empty($user) && $user->streamNicknames();
+
         foreach ($groups as $group) {
             $ga[] = array('href' => $group->homeUrl(),
                           'title' => $group->nickname,
                           'class' => 'addressee group',
-                          'text' => $group->getBestName());
+                          'text' => ($streamNicknames) ? $group->nickname : $group->getBestName());
         }
 
         return $ga;
@@ -283,11 +293,15 @@ class NoticeListItem extends Widget
 
         $replies = $this->getReplyProfiles();
 
+        $user = common_current_user();
+        
+        $streamNicknames = !empty($user) && $user->streamNicknames();
+
         foreach ($replies as $reply) {
             $pa[] = array('href' => $reply->profileurl,
                           'title' => $reply->nickname,
                           'class' => 'addressee account',
-                          'text' => $reply->getBestName());
+                          'text' => ($streamNicknames) ? $reply->nickname : $reply->getBestName());
         }
 
         return $pa;
@@ -603,6 +617,7 @@ class NoticeListItem extends Widget
 
             // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
             $this->out->raw(_('Repeated by'));
+            $this->out->raw(_(' '));
 
             $this->out->elementStart('a', $attrs);
             $this->out->element('span', 'fn nickname', $repeater->nickname);

@@ -15,19 +15,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:50:12+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:44:46+0000\n"
 "Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
 "2) ? 2 : ( (n%100 >= 3 && n%100 <= 10) ? 3 : ( (n%100 >= 11 && n%100 <= "
 "99) ? 4 : 5 ) ) ) );\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -2998,12 +2998,6 @@ msgstr "مسار الصورة التي ستعرض مع الرخصة."
 msgid "Save license settings."
 msgstr "احفظ إعدادات الرخصة."
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "والج بالفعل."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "اسم المستخدم أو كلمة السر غير صحيحان."
@@ -3345,6 +3339,33 @@ msgstr ""
 msgid "Not a supported data format."
 msgstr "ليس نسق بيانات مدعوم."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "إعدادات المراسلة الفورية"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "حُفظت الإعدادات."
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "احفظ"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "بحث في الأشخاص"
@@ -3352,6 +3373,11 @@ msgstr "بحث في الأشخاص"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "بحث الإشعارات"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "والج بالفعل."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -4111,11 +4137,6 @@ msgstr "لم أتمكن من حفظ تفضيلات الموقع."
 msgid "Could not save tags."
 msgstr "تعذّر حفظ الوسوم."
 
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "حُفظت الإعدادات."
-
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
 msgid "Restore account"
@@ -4745,14 +4766,12 @@ msgstr "ستاتس نت"
 
 #. TRANS: Client error displayed trying to sandbox users on a site where the feature is not enabled.
 #. TRANS: Client error on page to unsandbox a user when the feature is not enabled.
-#, fuzzy
 msgid "You cannot sandbox users on this site."
-msgstr "لا يمكنك إسكات المستخدمين على هذا الموقع."
+msgstr "لا يمكنك الحجر على المستخدمين على هذا الموقع."
 
 #. TRANS: Client error displayed trying to sandbox an already sandboxed user.
-#, fuzzy
 msgid "User is already sandboxed."
-msgstr "المستخدم مسكت من قبل."
+msgstr "المستخدم محجور عليه من قبل."
 
 #. TRANS: Client error displayed when trying to list a profile with an invalid list.
 #. TRANS: %s is the invalid list name.
@@ -5866,7 +5885,7 @@ msgstr "لم تمنع هذا المستخدم."
 
 #. TRANS: Client error on page to unsilence a user when the to be unsandboxed user has not been sandboxed.
 msgid "User is not sandboxed."
-msgstr "المستخدم ليس في صندوق الرمل."
+msgstr "المستخدم ليس محجورا."
 
 #. TRANS: Client error on page to unsilence a user when the to be unsilenced user has not been silenced.
 msgid "User is not silenced."
@@ -6554,13 +6573,6 @@ msgstr "إداري"
 msgctxt "role"
 msgid "Moderator"
 msgstr "مراقب"
-
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "اشترك"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
@@ -7587,6 +7599,11 @@ msgstr ""
 msgid "Go to the installer."
 msgstr "اذهب إلى المُثبّت."
 
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "الإشعارات"
+
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
 msgstr "خطأ قاعدة بيانات"
@@ -8191,7 +8208,7 @@ msgstr ""
 #. TRANS: %1$s is the adding user's long name, %2$s is the adding user's nickname.
 #, php-format
 msgid "%1$s (@%2$s) added your notice as a favorite"
-msgstr "لقد أضاف %1$s (@%2$s) إشعارك إلى مفضلاته"
+msgstr "أضاف %1$s (@%2$s) إشعارك إلى مفضلاته"
 
 #. TRANS: Body for favorite notification e-mail.
 #. TRANS: %1$s is the adding user's long name, $2$s is the date the notice was created,
@@ -8296,7 +8313,7 @@ msgstr ""
 #. TRANS: %5$s is a link to the addressed user's e-mail settings.
 #, php-format
 msgid "%1$s has joined your group %2$s on %3$s."
-msgstr "لقد انضم %1$s للمجموعة %2$s على %3$s."
+msgstr "انضم %1$s للمجموعة %2$s على %3$s."
 
 #. TRANS: Subject of pending group join request notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
@@ -8376,10 +8393,9 @@ msgid "Make Admin"
 msgstr "اجعله إداريًا"
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Make this user an admin."
-msgstr "اجعل هذا المستخدم إداريًا"
+msgstr "اجعل هذا المستخدم إداريًا."
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
 msgid "There was a database error while saving your file. Please try again."
@@ -8585,6 +8601,10 @@ msgstr "في السياق"
 msgid "Repeated by"
 msgstr "كرره"
 
+#, fuzzy
+msgid " "
+msgstr " و "
+
 #. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice."
 msgstr "رُد على هذا الإشعار."
@@ -8629,10 +8649,8 @@ msgid "List"
 msgstr "اللائحة"
 
 #. TRANS: Field title for list.
-#, fuzzy
 msgid "Change the list (letters, numbers, -, ., and _ are allowed)."
-msgstr ""
-"سِم نفسك (حروف وأرقام و \"-\" و \".\" و \"_\")، افصلها بفاصلة (',') أو مسافة."
+msgstr "غير القائمة (يسمح بحروف وأرقام و \"-\" و \".\" و \"_\")"
 
 #. TRANS: Field title for description of list.
 msgid "Describe the list or topic."
@@ -8647,12 +8665,8 @@ msgstr[0] ""
 msgstr[1] "صِف القائمة أو الموضوع في حرف واحد"
 msgstr[2] "صِف المجموعة أو الموضوع في حرفين"
 msgstr[3] "صِف المجموعة أو الموضوع في %d حروف"
-msgstr[4] "صِف المجموعة أو الموضوع في %d حرف"
-msgstr[5] "صِف المجموعة أو الموضوع في %d حرفًا"
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "احفظ"
+msgstr[4] "صِف المجموعة أو الموضوع في %d حرفًا"
+msgstr[5] "صِف المجموعة أو الموضوع في %d حرف"
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -8907,10 +8921,6 @@ msgid "Member since"
 msgstr "عضو منذ"
 
 #. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "الإشعارات"
-
-#. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
 msgid "Daily average"
 msgstr "المُعدّل اليومي"
@@ -8977,14 +8987,13 @@ msgid "Page not found."
 msgstr "لم يتم إيحاد الصفحة."
 
 #. TRANS: Title of form to sandbox a user.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Sandbox"
-msgstr "أزل هذا المستخدم من صندوق الرمل"
+msgstr "احجر"
 
 #. TRANS: Description of form to sandbox a user.
 msgid "Sandbox this user"
-msgstr "أضف هذا المستخدم إلى صندوق الرمل"
+msgstr "احجر هذا المستخدم"
 
 #. TRANS: Fieldset legend for the search form.
 msgid "Search site"
@@ -9180,9 +9189,17 @@ msgid "Connections"
 msgstr "الارتباطات"
 
 #. TRANS: Menu item title in settings navigation panel.
-#, fuzzy
 msgid "Authorized connected applications"
-msgstr "تطبيقات OAuth"
+msgstr "التطبيقات المخولة المرتبطة"
+
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
 
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
@@ -9285,6 +9302,12 @@ msgstr "دعُ أصدقائك وزملائك للانضمام إليك في %s."
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "اشترك بهذا المستخدم"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "اشترك"
 
 #. TRANS: Button title to subscribe to a user.
 msgid "Subscribe to this user."
@@ -9405,8 +9428,8 @@ msgstr[0] ""
 msgstr[1] "%%s وشخص آخر أعجبه هذا."
 msgstr[2] "%%s وشخصان آخران أعجبهما هذا."
 msgstr[3] "%%s و%d أشخاص آخرين أعجبهم هذا"
-msgstr[4] "%%s و%d شخص آخر أعجبه هذا"
-msgstr[5] "%%s و%d شخصا آخرا أعجبه هذا."
+msgstr[4] "%%s و%d شخصًا آخرًا أعجبه هذا"
+msgstr[5] "%%s و%d شخص آخر أعجبه هذا."
 
 #. TRANS: List message for favoured notices.
 #. TRANS: %%s is a list of users liking a notice.
@@ -9511,14 +9534,13 @@ msgid "Unblock"
 msgstr "ألغِ المنع"
 
 #. TRANS: Title for unsandbox form.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Unsandbox"
-msgstr "أزل هذا المستخدم من صندوق الرمل"
+msgstr "ألغِ الحجر"
 
 #. TRANS: Description for unsandbox form.
 msgid "Unsandbox this user"
-msgstr "أزل هذا المستخدم من صندوق الرمل"
+msgstr "ألغِ حجر هذا المستخدم"
 
 #. TRANS: Title for unsilence form.
 msgid "Unsilence"
@@ -9584,7 +9606,7 @@ msgstr[1] "قبل حوالي ساعة واحدة"
 msgstr[2] "قبل حوالي ساعتين"
 msgstr[3] "قبل حوالي %d ساعات"
 msgstr[4] "قبل حوالي %d ساعة"
-msgstr[5] ""
+msgstr[5] "قبل حوالي %d ساعة"
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
 msgid "about a day ago"
@@ -9598,8 +9620,8 @@ msgstr[0] "قبل أقل من يوم"
 msgstr[1] "قبل يوم واحد تقريبا"
 msgstr[2] "قبل يومين تقريبا"
 msgstr[3] "قبل %d أيام تقريبا"
-msgstr[4] "قبل %d يوم تقريبا"
-msgstr[5] "قبل %d يوما تقريبا"
+msgstr[4] "قبل %d يومًا تقريبا"
+msgstr[5] "قبل %d يوم تقريبا"
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
 msgid "about a month ago"
@@ -9613,8 +9635,8 @@ msgstr[0] "قبل أقل من شهر"
 msgstr[1] "قبل شهر واحد تقريبا"
 msgstr[2] "قبل شهرين تقريبا"
 msgstr[3] "قبل %d أشهر تقريبا"
-msgstr[4] "قبل %d شهر تقريبا"
-msgstr[5] "قبل %d شهرا تقريبا"
+msgstr[4] "قبل %d شهرًا تقريبا"
+msgstr[5] "قبل %d شهر تقريبا"
 
 #. TRANS: Used in notices to indicate when the notice was made compared to now.
 msgid "about a year ago"
@@ -9639,26 +9661,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "مسار أفتار غير صالح %s."
-
-#, fuzzy
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr "خطأ أثناء تحديث الملف الشخصي البعيد."
-
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "تعذر جلب الأفتار من %s."
-
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "تعذر الوصول إلى صفحة الملف الشخصي %s."
-
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "تغذر إيجاد مسار تغذية الملف الشخصي %s."
-
-#, fuzzy
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "ليس عنوان بريد صالح."
-
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "تعذر إيجاد ملف شخصي صالح ل\"%s\"."

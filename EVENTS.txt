@@ -1422,3 +1422,6 @@ StartUpgrade: when starting a site upgrade
 
 EndUpgrade: when ending a site upgrade; good place to do your own upgrades
 
+HaveIMPlugin: is there an IM plugin loaded?
+- &$haveIMPlugin: set me to true if you're loaded!
+

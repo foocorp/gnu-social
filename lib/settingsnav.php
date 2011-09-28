@@ -121,7 +121,11 @@ class SettingsNav extends Menu
 
             Event::handle('EndAccountSettingsNav', array(&$this->action));
 
-            if (common_config('xmpp', 'enabled')) {
+            $haveImPlugin = false;
+
+            Event::handle('HaveImPlugin', array(&$haveImPlugin));
+
+            if ($haveImPlugin) {
                 $this->action->menuItem(common_local_url('imsettings'),
                                         // TRANS: Menu item in settings navigation panel.
                                         _m('MENU','IM'),
@@ -145,6 +149,15 @@ class SettingsNav extends Menu
                                     // TRANS: Menu item title in settings navigation panel.
                                     _('Authorized connected applications'),
                                     $actionName == 'oauthconnectionsettings');
+
+            if (common_config('oldschool', 'enabled')) {
+                $this->action->menuItem(common_local_url('oldschoolsettings'),
+                                        // TRANS: Menu item in settings navigation panel.
+                                        _m('MENU','Old school'),
+                                        // TRANS: Menu item title in settings navigation panel.
+                                        _('UI tweaks for old-school users'),
+                                        $actionName == 'oldschoolsettings');
+            }
 
             Event::handle('EndConnectSettingsNav', array(&$this->action));
         }

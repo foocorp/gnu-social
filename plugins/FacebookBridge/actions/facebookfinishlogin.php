@@ -22,7 +22,7 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Zach Copley <zach@status.net>
- * @copyright 2010 StatusNet, Inc.
+ * @copyright 2010-2011 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
@@ -33,42 +33,34 @@ if (!defined('STATUSNET')) {
 
 class FacebookfinishloginAction extends Action
 {
-    private $facebook = null; // Facebook client
-    private $fbuid    = null; // Facebook user ID
-    private $fbuser   = null; // Facebook user object (JSON)
+    private $fbuid       = null; // Facebook user ID
+    private $fbuser      = null; // Facebook user object (JSON)
+    private $accessToken = null; // Access token provided by Facebook JS API
 
     function prepare($args) {
         parent::prepare($args);
 
-        $this->facebook = new Facebook(
-            array(
-                'appId'  => common_config('facebook', 'appid'),
-                'secret' => common_config('facebook', 'secret'),
-                'cookie' => true,
-            )
-        );
+        // Check cookie for a valid access_token
 
-        // Check for a Facebook user session
-
-        $session = $this->facebook->getSession();
-        $me      = null;
-
-        if ($session) {
-            try {
-                $this->fbuid  = $this->facebook->getUser();
-                $this->fbuser = $this->facebook->api('/me');
-            } catch (FacebookApiException $e) {
-                common_log(LOG_ERROR, $e, __FILE__);
-            }
+        if (isset($_COOKIE['fb_access_token'])) {
+            $this->accessToken = $_COOKIE['fb_access_token'];
         }
 
-        if (!empty($this->fbuser)) {
-            // OKAY, all is well... proceed to register
+        if (empty($this->accessToken)) {
+            $this->clientError(_m("Unable to authenticate you with Facebook."));
+            return false;
+        }
 
-            common_debug("Found a valid Facebook user.", __FILE__);
+        $graphUrl = 'https://graph.facebook.com/me?access_token=' . urlencode($this->accessToken);
+        $this->fbuser = json_decode(file_get_contents($graphUrl));
+
+        if (!empty($this->fbuser)) {
+            $this->fbuid  = $this->fbuser->id;
+            // OKAY, all is well... proceed to register
+            return true;
         } else {
 
-            // This shouldn't happen in the regular course of things
+            // log badness
 
             list($proxy, $ip) = common_client_ip();
 
@@ -88,7 +80,7 @@ class FacebookfinishloginAction extends Action
             );
         }
 
-        return true;
+        return false;
     }
 
     function handle($args)
@@ -97,34 +89,14 @@ class FacebookfinishloginAction extends Action
 
         if (common_is_real_login()) {
 
-            // User is already logged in, are her accounts already linked?
+            // This will throw a client exception if the user already
+            // has some sort of foreign_link to Facebook.
 
-            $flink = Foreign_link::getByForeignID($this->fbuid, FACEBOOK_SERVICE);
+            $this->checkForExistingLink();
 
-            if (!empty($flink)) {
+            // Possibly reconnect an existing account
 
-                // User already has a linked Facebook account and shouldn't be here!
-
-                common_debug(
-                    sprintf(
-                        'There\'s already a local user %d linked with Facebook user %s.',
-                        $flink->user_id,
-                        $this->fbuid
-                    )
-                );
-
-                $this->clientError(
-                    // TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
-                    // TRANS: in the same StatusNet site.
-                    _m('There is already a local account linked with that Facebook account.')
-                );
-
-            } else {
-
-                // Possibly reconnect an existing account
-
-                $this->connectUser();
-            }
+            $this->connectUser();
 
         } else if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $this->handlePost();
@@ -133,10 +105,47 @@ class FacebookfinishloginAction extends Action
         }
     }
 
+    function checkForExistingLink() {
+
+        // User is already logged in, are her accounts already linked?
+
+        $flink = Foreign_link::getByForeignID($this->fbuid, FACEBOOK_SERVICE);
+
+        if (!empty($flink)) {
+
+            // User already has a linked Facebook account and shouldn't be here!
+
+            $this->clientError(
+                // TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+                // TRANS: in the same StatusNet site.
+                _m('There is already a local account linked with that Facebook account.')
+            );
+
+            return;
+       }
+
+       $cur = common_current_user();
+       $flink = Foreign_link::getByUserID($cur->id, FACEBOOK_SERVICE);
+
+       if (!empty($flink)) {
+
+            // There's already a local user linked to this Facebook account.
+
+            $this->clientError(
+                // TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
+                // TRANS: in the same StatusNet site.
+                _m('There is already a local account linked with that Facebook account.')
+            );
+
+            return;
+        }
+    }
+
     function handlePost()
     {
         $token = $this->trimmed('token');
 
+        // CSRF protection
         if (!$token || $token != common_session_token()) {
             $this->showForm(
                 // TRANS: Client error displayed when the session token does not match or is not given.
@@ -365,19 +374,19 @@ class FacebookfinishloginAction extends Action
         }
 
         $args = array(
-            'nickname'        => $nickname,
-            'fullname'        => $this->fbuser['first_name']
-                . ' ' . $this->fbuser['last_name'],
-            'homepage'        => $this->fbuser['website'],
-            'bio'             => $this->fbuser['about'],
-            'location'        => $this->fbuser['location']['name']
+            'nickname' => $nickname,
+            'fullname' => $this->fbuser->name,
+            'homepage' => $this->fbuser->website,
+            'location' => $this->fbuser->location->name
         );
 
         // It's possible that the email address is already in our
         // DB. It's a unique key, so we need to check
-        if ($this->isNewEmail($this->fbuser['email'])) {
-            $args['email']           = $this->fbuser['email'];
-            $args['email_confirmed'] = true;
+        if ($this->isNewEmail($this->fbuser->email)) {
+            $args['email']           = $this->fbuser->email;
+            if (isset($this->fuser->verified) && $this->fuser->verified == true) {
+                $args['email_confirmed'] = true;
+            }
         }
 
         if (!empty($invite)) {
@@ -407,7 +416,7 @@ class FacebookfinishloginAction extends Action
                 'Registered new user %s (%d) from Facebook user %s, (fbuid %d)',
                 $user->nickname,
                 $user->id,
-                $this->fbuser['name'],
+                $this->fbuser->name,
                 $this->fbuid
             ),
             __FILE__
@@ -424,64 +433,62 @@ class FacebookfinishloginAction extends Action
      */
     function setAvatar($user)
     {
-        $picUrl = sprintf(
-            'http://graph.facebook.com/%s/picture?type=large',
-            $this->fbuid
-        );
-
-        // fetch the picture from Facebook
-        $client = new HTTPClient();
-
-        // fetch the actual picture
-        $response = $client->get($picUrl);
-
-        if ($response->isOk()) {
-
-            $finalUrl = $client->getUrl();
-
-            // Make sure the filename is unique becuase it's possible for a user
-            // to deauthorize our app, and then come back in as a new user but
-            // have the same Facebook picture (avatar URLs have a unique index
-            // and their URLs are based on the filenames).
-            $filename = 'facebook-' . common_good_rand(4) . '-'
-                . substr(strrchr($finalUrl, '/'), 1);
-
-            $ok = file_put_contents(
-                Avatar::path($filename),
-                $response->getBody()
+         try {
+            $picUrl = sprintf(
+                'http://graph.facebook.com/%d/picture?type=large',
+                $this->fbuser->id
             );
 
-            if (!$ok) {
-                common_log(
-                    LOG_WARNING,
-                    sprintf(
-                        'Couldn\'t save Facebook avatar %s',
-                        $tmp
-                    ),
-                    __FILE__
+            // fetch the picture from Facebook
+            $client = new HTTPClient();
+
+            // fetch the actual picture
+            $response = $client->get($picUrl);
+
+            if ($response->isOk()) {
+
+                // seems to always be jpeg, but not sure
+                $tmpname = "facebook-avatar-tmp-" . common_good_rand(4);
+
+                $ok = file_put_contents(
+                    Avatar::path($tmpname),
+                    $response->getBody()
                 );
 
-            } else {
+                if (!$ok) {
+                    common_log(LOG_WARNING, 'Couldn\'t save tmp Facebook avatar: ' . $tmpname, __FILE__);
+                } else {
+                    // save it as an avatar
 
-                // save it as an avatar
-                $profile = $user->getProfile();
+                    $file = new ImageFile($user->id, Avatar::path($tmpname));
+                    $filename = $file->resize(180); // size of the biggest img we get from Facebook
 
-                if ($profile->setOriginal($filename)) {
-                    common_log(
-                        LOG_INFO,
-                        sprintf(
-                            'Saved avatar for %s (%d) from Facebook picture for '
-                                . '%s (fbuid %d), filename = %s',
-                             $user->nickname,
-                             $user->id,
-                             $this->fbuser['name'],
-                             $this->fbuid,
-                             $filename
-                        ),
-                        __FILE__
-                    );
+                    $profile   = $user->getProfile();
+
+                    if ($profile->setOriginal($filename)) {
+                        common_log(
+                            LOG_INFO,
+                            sprintf(
+                                'Saved avatar for %s (%d) from Facebook picture for '
+                                    . '%s (fbuid %d), filename = %s',
+                                 $user->nickname,
+                                 $user->id,
+                                 $this->fbuser->name,
+                                 $this->fbuid,
+                                 $filename
+                             ),
+                             __FILE__
+                        );
+
+                        // clean up tmp file
+                        @unlink(Avatar::path($tmpname));
+                    }
+
                 }
             }
+        } catch (Exception $e) {
+            common_log(LOG_WARNING, 'Couldn\'t save Facebook avatar: ' . $e->getMessage(), __FILE__);
+            // error isn't fatal, continue
         }
     }
 
@@ -498,21 +505,13 @@ class FacebookfinishloginAction extends Action
 
         $user = User::staticGet('nickname', $nickname);
 
-        if (!empty($user)) {
-            common_debug(
-                sprintf(
-                    'Found a legit user to connect to Facebook: %s (%d)',
-                    $user->nickname,
-                    $user->id
-                ),
-                __FILE__
-            );
-        }
-
         $this->tryLinkUser($user);
 
         common_set_user($user);
         common_real_login(true);
+
+        // clear out the stupid cookie
+        setcookie('fb_access_token', '', time() - 3600); // one hour ago
 
         $this->goHome($user->nickname);
     }
@@ -521,6 +520,9 @@ class FacebookfinishloginAction extends Action
     {
         $user = common_current_user();
         $this->tryLinkUser($user);
+
+        // clear out the stupid cookie
+        setcookie('fb_access_token', '', time() - 3600); // one hour ago
         common_redirect(common_local_url('facebookfinishlogin'), 303);
     }
 
@@ -533,29 +535,10 @@ class FacebookfinishloginAction extends Action
             $this->serverError(_m('Error connecting user to Facebook.'));
             return;
         }
-
-        common_debug(
-            sprintf(
-                'Connected Facebook user %s (fbuid %d) to local user %s (%d)',
-                $this->fbuser['name'],
-                $this->fbuid,
-                $user->nickname,
-                $user->id
-            ),
-            __FILE__
-        );
     }
 
     function tryLogin()
     {
-        common_debug(
-            sprintf(
-                'Trying login for Facebook user %s',
-                $this->fbuid
-            ),
-            __FILE__
-        );
-
         $flink = Foreign_link::getByForeignID($this->fbuid, FACEBOOK_SERVICE);
 
         if (!empty($flink)) {
@@ -576,19 +559,14 @@ class FacebookfinishloginAction extends Action
 
                 common_set_user($user);
                 common_real_login(true);
+
+                // clear out the stupid cookie
+                setcookie('fb_access_token', '', time() - 3600); // one hour ago
+
                 $this->goHome($user->nickname);
             }
 
         } else {
-
-            common_debug(
-                sprintf(
-                    'No flink found for fbuid: %s - new user',
-                    $this->fbuid
-                ),
-                __FILE__
-            );
-
             $this->showForm(null, $this->bestNewNickname());
         }
     }
@@ -611,14 +589,12 @@ class FacebookfinishloginAction extends Action
     function flinkUser($user_id, $fbuid)
     {
         $flink = new Foreign_link();
-        $flink->user_id = $user_id;
-        $flink->foreign_id = $fbuid;
-        $flink->service = FACEBOOK_SERVICE;
 
-        // Pull the access token from the Facebook cookies
-        $flink->credentials = $this->facebook->getAccessToken();
-
-        $flink->created = common_sql_now();
+        $flink->user_id     = $user_id;
+        $flink->foreign_id  = $fbuid;
+        $flink->service     = FACEBOOK_SERVICE;
+        $flink->credentials = $this->accessToken;
+        $flink->created     = common_sql_now();
 
         $flink_id = $flink->insert();
 
@@ -627,8 +603,8 @@ class FacebookfinishloginAction extends Action
 
     function bestNewNickname()
     {
-        if (!empty($this->fbuser['name'])) {
-            $nickname = $this->nicknamize($this->fbuser['name']);
+        if (!empty($this->fbuser->username)) {
+            $nickname = $this->nicknamize($this->fbuser->username);
             if ($this->isNewNickname($nickname)) {
                 return $nickname;
             }
@@ -636,8 +612,7 @@ class FacebookfinishloginAction extends Action
 
         // Try the full name
 
-        $fullname = trim($this->fbuser['first_name'] .
-            ' ' . $this->fbuser['last_name']);
+        $fullname = $this->fbuser->name;
 
         if (!empty($fullname)) {
             $fullname = $this->nicknamize($fullname);
@@ -694,10 +669,8 @@ class FacebookfinishloginAction extends Action
          $result = User::staticGet('email', $email);
 
          if (empty($result)) {
-             common_debug("XXXXXXXXXXXXXXXXXX We've never seen this email before!!!");
              return true;
          }
-         common_debug("XXXXXXXXXXXXXXXXXX dupe email address!!!!");
 
          return false;
      }

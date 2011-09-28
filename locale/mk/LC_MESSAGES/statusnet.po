@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
-"PO-Revision-Date: 2011-09-11 13:50:55+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"PO-Revision-Date: 2011-09-25 21:45:24+0000\n"
 "Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r96777); Translate extension (2011-08-30)\n"
+"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
-"X-POT-Import-Date: 2011-08-30 09:58:26+0000\n"
+"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3035,12 +3035,6 @@ msgstr "URL-адреса за слика што ќе се прикажува с�
 msgid "Save license settings."
 msgstr "Зачувај нагодувања на лиценцата."
 
-#. TRANS: Client error displayed when trying to log in while already logged in.
-#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
-#. TRANS: Client error displayed when trying to register while already logged in.
-msgid "Already logged in."
-msgstr "Веќе сте најавени."
-
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
 msgstr "Неточно корисничко име или лозинка"
@@ -3392,6 +3386,33 @@ msgstr "Ве молиме користете само %s URL-адреси врз
 msgid "Not a supported data format."
 msgstr "Ова не е поддржан формат на податотека."
 
+#. TRANS: Page title for profile settings.
+#, fuzzy
+msgid "Old school UI settings"
+msgstr "Нагодувања за НП"
+
+#. TRANS: Usage instructions for profile settings.
+msgid "If you like it \"the old way\", you can set that here."
+msgstr ""
+
+#. TRANS: Confirmation shown when user profile settings are saved.
+#. TRANS: Message after successful saving of administrative settings.
+msgid "Settings saved."
+msgstr "Нагодувањата се зачувани"
+
+msgid "Only stream mode (no conversations) in timelines"
+msgstr ""
+
+msgid "Show conversation page as hierarchical trees"
+msgstr ""
+
+msgid "Show nicknames (not full names) in timelines"
+msgstr ""
+
+#. TRANS: Button text to save a list.
+msgid "Save"
+msgstr "Зачувај"
+
 #. TRANS: ShortName in the OpenSearch interface when trying to find users.
 msgid "People Search"
 msgstr "Пребарување на луѓе"
@@ -3399,6 +3420,11 @@ msgstr "Пребарување на луѓе"
 #. TRANS: ShortName in the OpenSearch interface when trying to find notices.
 msgid "Notice Search"
 msgstr "Пребарување на забелешки"
+
+#. TRANS: Client error displayed trying to use "one time password login" when already logged in.
+#. TRANS: Client error displayed when trying to register while already logged in.
+msgid "Already logged in."
+msgstr "Веќе сте најавени."
 
 #. TRANS: Client error displayed trying to use "one time password login" without specifying a user.
 msgid "No user ID specified."
@@ -4169,11 +4195,6 @@ msgstr "Не можев да ги зачувам нагодувањата за �
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
 msgstr "Не можев да ги зачувам ознаките."
-
-#. TRANS: Confirmation shown when user profile settings are saved.
-#. TRANS: Message after successful saving of administrative settings.
-msgid "Settings saved."
-msgstr "Нагодувањата се зачувани"
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
@@ -6657,13 +6678,6 @@ msgctxt "role"
 msgid "Moderator"
 msgstr "Модератор"
 
-#. TRANS: Link text for link that will subscribe to a remote profile.
-#. TRANS: Button text to subscribe to a user.
-#. TRANS: Button text for subscribing to a list.
-msgctxt "BUTTON"
-msgid "Subscribe"
-msgstr "Претплати се"
-
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
@@ -7664,6 +7678,11 @@ msgstr "Препорачуваме да го пуштите инсталатер
 msgid "Go to the installer."
 msgstr "Оди на инсталаторот."
 
+#. TRANS: Header on conversation page. Hidden by default (h2).
+#. TRANS: Label for user statistics.
+msgid "Notices"
+msgstr "Забелешки"
+
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
 msgstr "Грешка во базата на податоци"
@@ -8663,6 +8682,10 @@ msgstr "во контекст"
 msgid "Repeated by"
 msgstr "Повторено од"
 
+#, fuzzy
+msgid " "
+msgstr ", "
+
 #. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice."
 msgstr "Одговори на забелешкава."
@@ -8720,10 +8743,6 @@ msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
 msgstr[0] "Опишете го списокот или темата со највеќе %d знак"
 msgstr[1] "Опишете ги списоците или темата со највеќе %d знаци"
-
-#. TRANS: Button text to save a list.
-msgid "Save"
-msgstr "Зачувај"
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -8976,10 +8995,6 @@ msgstr "Кориснички ID"
 #. TRANS: Label for user statistics.
 msgid "Member since"
 msgstr "Член од"
-
-#. TRANS: Label for user statistics.
-msgid "Notices"
-msgstr "Забелешки"
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
@@ -9253,6 +9268,15 @@ msgstr "Поврзувања"
 msgid "Authorized connected applications"
 msgstr "Овластени поврзани програми"
 
+#. TRANS: Menu item in settings navigation panel.
+msgctxt "MENU"
+msgid "Old school"
+msgstr ""
+
+#. TRANS: Menu item title in settings navigation panel.
+msgid "UI tweaks for old-school users"
+msgstr ""
+
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
 msgid "Silence"
@@ -9353,6 +9377,12 @@ msgstr "Поканете пријатели и колеги да Ви се пр�
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
 msgstr "Претплати се на корисников"
+
+#. TRANS: Button text to subscribe to a user.
+#. TRANS: Button text for subscribing to a list.
+msgctxt "BUTTON"
+msgid "Subscribe"
+msgstr "Претплати се"
 
 #. TRANS: Button title to subscribe to a user.
 msgid "Subscribe to this user."
@@ -9675,25 +9705,3 @@ msgstr "Неважечки XML. Нема XRD-корен."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Земам резерва на податотеката „%s“."
-
-#~ msgid "Invalid avatar URL %s."
-#~ msgstr "Не можам да ја прочитам URL-адресата на аватарот %s."
-
-#~ msgid "Tried to update avatar for unsaved remote profile %s."
-#~ msgstr ""
-#~ "Се обидов да го подновувам аватарот за незачуваниот далечински профил %s."
-
-#~ msgid "Unable to fetch avatar from %s."
-#~ msgstr "Не можам да го добијам аватарот од: %s."
-
-#~ msgid "Could not reach profile page %s."
-#~ msgstr "Не можев да дојдам до профилната страница %s."
-
-#~ msgid "Could not find a feed URL for profile page %s."
-#~ msgstr "Не можев да пронајдам URL на канал за профилната страница %s."
-
-#~ msgid "Not a valid webfinger address."
-#~ msgstr "Ова не е важечка Webfinger-адреса."
-
-#~ msgid "Could not find a valid profile for \"%s\"."
-#~ msgstr "Не можев да пронајдам важечки профил за „%s“."

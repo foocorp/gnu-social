@@ -123,9 +123,15 @@ class ConversationAction extends Action
      */
     function showContent()
     {
-        $tnl = new FullThreadedNoticeList($this->notices, $this, $this->userProfile);
+        $user = common_current_user();
 
-        $cnt = $tnl->show();
+        if (!empty($user) && $user->conversationTree()) {
+            $nl = new ConversationTree($this->notices, $this);
+        } else {
+            $nl = new FullThreadedNoticeList($this->notices, $this, $this->userProfile);
+        }
+
+        $cnt = $nl->show();
     }
 
     function isReadOnly()
@@ -162,3 +168,4 @@ class ConversationAction extends Action
                               _('Conversation feed (Activity Streams JSON)')));
     }
 }
+

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -159,44 +159,44 @@ msgid "You are subscribed to the search \"%s\"."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: SearchSubPlugin.php:133
+#: SearchSubPlugin.php:132
 msgid "Plugin to allow following all messages with a given search."
 msgstr ""
 
 #. TRANS: SearchSub plugin menu item on user settings page.
 #. TRANS: Sub menu for searches.
-#: SearchSubPlugin.php:236 SearchSubPlugin.php:299
+#: SearchSubPlugin.php:235 SearchSubPlugin.php:298
 msgctxt "MENU"
 msgid "Searches"
 msgstr ""
 
 #. TRANS: SearchSub plugin tooltip for user settings menu item.
-#: SearchSubPlugin.php:238
+#: SearchSubPlugin.php:237
 msgid "Configure search subscriptions"
 msgstr ""
 
 #. TRANS: Help message for IM/SMS command "track <word>"
-#: SearchSubPlugin.php:276
+#: SearchSubPlugin.php:275
 msgctxt "COMMANDHELP"
 msgid "Start following notices matching the given search query."
 msgstr ""
 
 #. TRANS: Help message for IM/SMS command "untrack <word>"
-#: SearchSubPlugin.php:278
+#: SearchSubPlugin.php:277
 msgctxt "COMMANDHELP"
 msgid "Stop following notices matching the given search query."
 msgstr ""
 
 #. TRANS: Help message for IM/SMS command "track off"
 #. TRANS: Help message for IM/SMS command "untrack all"
-#: SearchSubPlugin.php:280 SearchSubPlugin.php:282
+#: SearchSubPlugin.php:279 SearchSubPlugin.php:281
 msgctxt "COMMANDHELP"
 msgid "Disable all tracked search subscriptions."
 msgstr ""
 
 #. TRANS: Help message for IM/SMS command "tracks"
 #. TRANS: Help message for IM/SMS command "tracking"
-#: SearchSubPlugin.php:284 SearchSubPlugin.php:286
+#: SearchSubPlugin.php:283 SearchSubPlugin.php:285
 msgctxt "COMMANDHELP"
 msgid "List all your search subscriptions."
 msgstr ""

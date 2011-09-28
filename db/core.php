@@ -29,7 +29,8 @@
  *     double-check what we've been doing on postgres?
  */
 
-$classes = array('Profile',
+$classes = array('Schema_version',
+                 'Profile',
                  'Avatar',
                  'Sms_carrier',
                  'User',
@@ -85,7 +86,7 @@ $classes = array('Profile',
                  'Conversation',
                  'Local_group',
                  'User_urlshortener_prefs',
-                 'Schema_version',
+                 'Old_school_prefs',
 );
 
 foreach ($classes as $cls) {

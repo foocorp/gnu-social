@@ -51,11 +51,11 @@ class ActivityPlugin extends Plugin
 
     // Flags to switch off certain activity notices
     public $StartFollowUser = true;
-    public $StopFollowUser  = true;
+    public $StopFollowUser  = false;
     public $JoinGroup = true;
-    public $LeaveGroup = true;
-    public $StartLike = true;
-    public $StopLike = true;
+    public $LeaveGroup = false;
+    public $StartLike = false;
+    public $StopLike = false;
 
     function onAutoload($cls)
     {
@@ -86,7 +86,7 @@ class ActivityPlugin extends Plugin
             // TRANS: Text for "started following" item in activity plugin.
             // TRANS: %1$s is a profile URL, %2$s is a profile name,
             // TRANS: %3$s is a profile URL, %4$s is a profile name.
-            $rendered = sprintf(_m('<a href="%1$s">%2$s</a> started following <a href="%2$s">%4$s</a>.'),
+            $rendered = sprintf(_m('<a href="%1$s">%2$s</a> started following <a href="%3$s">%4$s</a>.'),
                                 $subscriber->profileurl,
                                 $subscriber->getBestName(),
                                 $other->profileurl,

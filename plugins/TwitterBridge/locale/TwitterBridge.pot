@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-11 13:47+0000\n"
+"POT-Creation-Date: 2011-09-25 21:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,115 +179,120 @@ msgstr ""
 msgid "Connection options"
 msgstr ""
 
-#. TRANS: Text for license agreement checkbox.
-#. TRANS: %s is the license as configured for the StatusNet site.
-#: twitterauthorization.php:370
-#, php-format
-msgid ""
-"My text and files are available under %s except this private data: password, "
-"email address, IM address, and phone number."
-msgstr ""
-
 #. TRANS: Fieldset legend.
-#: twitterauthorization.php:392
+#: twitterauthorization.php:373
 msgid "Create new account"
 msgstr ""
 
 #. TRANS: Sub form introduction text.
-#: twitterauthorization.php:395
+#: twitterauthorization.php:376
 msgid "Create a new user with this nickname."
 msgstr ""
 
 #. TRANS: Field label.
-#: twitterauthorization.php:403
+#: twitterauthorization.php:384
 msgid "New nickname"
 msgstr ""
 
 #. TRANS: Field title for nickname field.
-#: twitterauthorization.php:406
+#: twitterauthorization.php:387
 msgid "1-64 lowercase letters or numbers, no punctuation or spaces."
 msgstr ""
 
 #. TRANS: Field label.
-#: twitterauthorization.php:410
+#: twitterauthorization.php:391
 msgctxt "LABEL"
 msgid "Email"
 msgstr ""
 
 #. TRANS: Field title for e-mail address field.
-#: twitterauthorization.php:412
+#: twitterauthorization.php:393
 msgid "Used only for updates, announcements, and password recovery"
 msgstr ""
 
 #. TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
-#: twitterauthorization.php:421
+#: twitterauthorization.php:402
 msgctxt "BUTTON"
 msgid "Create"
 msgstr ""
 
 #. TRANS: Fieldset legend.
-#: twitterauthorization.php:427
+#: twitterauthorization.php:409
 msgid "Connect existing account"
 msgstr ""
 
 #. TRANS: Sub form introduction text.
-#: twitterauthorization.php:430
+#: twitterauthorization.php:412
 msgid ""
 "If you already have an account, login with your username and password to "
 "connect it to your Twitter account."
 msgstr ""
 
 #. TRANS: Field label.
-#: twitterauthorization.php:434
+#: twitterauthorization.php:416
 msgid "Existing nickname"
 msgstr ""
 
 #. TRANS: Field label.
-#: twitterauthorization.php:438
+#: twitterauthorization.php:420
 msgid "Password"
 msgstr ""
 
+#. TRANS: Fieldset legend.
+#: twitterauthorization.php:428
+msgid "License"
+msgstr ""
+
+#. TRANS: Text for license agreement checkbox.
+#. TRANS: %s is the license as configured for the StatusNet site.
+#: twitterauthorization.php:439
+#, php-format
+msgid ""
+"My text and files are available under %s except this private data: password, "
+"email address, IM address, and phone number."
+msgstr ""
+
 #. TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
-#: twitterauthorization.php:442
+#: twitterauthorization.php:453
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr ""
 
 #. TRANS: Client error displayed when trying to create a new user while creating new users is not allowed.
-#: twitterauthorization.php:489 twitterauthorization.php:499
+#: twitterauthorization.php:498 twitterauthorization.php:508
 msgid "Registration not allowed."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to create a new user with an invalid invitation code.
-#: twitterauthorization.php:507
+#: twitterauthorization.php:516
 msgid "Not a valid invitation code."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to create a new user with an invalid username.
-#: twitterauthorization.php:521
+#: twitterauthorization.php:530
 msgid "Nickname not allowed."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to create a new user with a username that is already in use.
-#: twitterauthorization.php:527
+#: twitterauthorization.php:536
 msgid "Nickname already in use. Try another one."
 msgstr ""
 
 #. TRANS: Server error displayed when creating a new user has failed.
-#: twitterauthorization.php:548
+#: twitterauthorization.php:557
 msgid "Error registering user."
 msgstr ""
 
 #. TRANS: Server error displayed when connecting a user to a Twitter user has failed.
 #. TRANS: Server error displayed connecting a user to a Twitter user has failed.
-#: twitterauthorization.php:560 twitterauthorization.php:603
-#: twitterauthorization.php:624
+#: twitterauthorization.php:569 twitterauthorization.php:612
+#: twitterauthorization.php:633
 msgid "Error connecting user to Twitter."
 msgstr ""
 
 #. TRANS: Form validation error displayed when connecting an existing user to a Twitter user fails because
 #. TRANS: the provided username and/or password are incorrect.
-#: twitterauthorization.php:584
+#: twitterauthorization.php:593
 msgid "Invalid username or password."
 msgstr ""
 
@@ -478,14 +483,14 @@ msgid "Sign in with Twitter"
 msgstr ""
 
 #. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
-#: twitter.php:427
+#: twitter.php:438
 msgid "Your Twitter bridge has been disabled"
 msgstr ""
 
 #. TRANS: Mail body after forwarding notices to Twitter has stopped working.
 #. TRANS: %1$ is the name of the user the mail is sent to, %2$s is a URL to the
 #. TRANS: Twitter settings, %3$s is the StatusNet sitename.
-#: twitter.php:434
+#: twitter.php:445
 #, php-format
 msgid ""
 "Hi, %1$s. We're sorry to inform you that your link to Twitter has been "
