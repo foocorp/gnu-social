@@ -111,6 +111,7 @@ class MobileProfilePlugin extends WAP20Plugin
                     'ipod',
                     'j2me',
                     'lg',
+                    'maemo',
                     'midp-',
                     'mobile',
                     'mot',
