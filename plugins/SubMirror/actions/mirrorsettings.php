@@ -153,10 +153,17 @@ class MirrorSettingsAction extends SettingsAction
     {
     }
 
+    /**
+     * Show the local navigation menu
+     *
+     * This is the same for all settings, so we show it here.
+     *
+     * @return void
+     */
     function showLocalNav()
     {
-        $nav = new SubGroupNav($this, common_current_user());
-        $nav->show();
+        $menu = new SettingsNav($this);
+        $menu->show();
     }
 
     function showScripts()
