@@ -152,14 +152,39 @@ class EventListItem extends NoticeListItemAdapter
 
         $out->elementStart('div', 'event-rsvps');
         // TRANS: Field label for event description.
-        $out->element('strong', null, _m('Attending:'));
-        $out->element('span', 'event-rsvps',
-                      // TRANS: RSVP counts.
-                      // TRANS: %1$d, %2$d and %3$d are numbers of RSVPs.
-                      sprintf(_m('Yes: %1$d No: %2$d Maybe: %3$d'),
-                              count($rsvps[RSVP::POSITIVE]),
-                              count($rsvps[RSVP::NEGATIVE]),
-                              count($rsvps[RSVP::POSSIBLE])));
+
+        $out->text(_('Attending:'));
+        $out->elementStart('ul', 'attending-list');
+
+        foreach ($rsvps as $verb => $responses) {
+            $out->elementStart('li', 'rsvp-list');
+            switch ($verb)
+            {
+            case RSVP::POSITIVE:
+                $out->text(_('Yes:'));
+                break;
+            case RSVP::NEGATIVE:
+                $out->text(_('No:'));
+                break;
+            case RSVP::POSSIBLE:
+                $out->text(_('Maybe:'));
+                break;
+            }
+            $ids = array();
+            foreach ($responses as $response) {
+                $ids[] = $response->profile_id;
+            }
+            common_debug("IDS = " . implode(',', $ids));
+            $profiles = Profile::pivotGet('id', $ids);
+            common_debug("Profiles = " . print_r($profiles, true));
+            $profile  = new ArrayWrapper(array_values($profiles));
+            $minilist = new ProfileMiniList($profile, $out);
+            $minilist->show();
+
+            $out->elementEnd('li');
+        }
+
+        $out->elementEnd('ul');
         $out->elementEnd('div');
 
         $user = common_current_user();

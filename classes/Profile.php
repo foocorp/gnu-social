@@ -1454,4 +1454,8 @@ class Profile extends Managed_DataObject
     {
         return $this;
     }
+
+    static function pivotGet($key, $values, $otherCols=array()) {
+        return Memcached_DataObject::pivotGet('Profile', $key, $values, $otherCols);
+    }
 }
