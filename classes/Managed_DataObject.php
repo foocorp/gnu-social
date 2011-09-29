@@ -182,14 +182,13 @@ abstract class Managed_DataObject extends Memcached_DataObject
         $ckeys = array();
 
         if (!empty($table['unique keys'])) {
-            foreach ($table['unique keys'] as $idx => $fields) {
+            $keyNames = $table['unique keys'];
+            foreach ($keyNames as $idx => $fields) {
                 $val = array();
                 foreach ($fields as $name) {
-                    $val[] = self::valueString($this->$name);
+                    $val[$name] = self::valueString($this->$name);
                 }
-                $keys = implode(',', $fields);
-                $vals = implode(',', $val);
-                $ckeys[] = $this->cacheKey($this->tableName(), $keys, $vals);
+                $ckeys[] = self::multicacheKey($this->tableName(), $val);
             }
         }
 
@@ -197,11 +196,9 @@ abstract class Managed_DataObject extends Memcached_DataObject
             $fields = $table['primary key'];
             $val = array();
             foreach ($fields as $name) {
-                $val[] = self::valueString($this->$name);
+                $val[$name] = self::valueString($this->$name);
             }
-            $keys = implode(',', $fields);
-            $vals = implode(',', $val);
-            $ckeys[] = $this->cacheKey($this->tableName(), $keys, $vals);
+            $ckeys[] = self::multicacheKey($this->tableName(), $val);
         }
         return $ckeys;
     }
