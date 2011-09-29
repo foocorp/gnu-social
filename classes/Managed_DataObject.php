@@ -168,4 +168,41 @@ abstract class Managed_DataObject extends Memcached_DataObject
         }
         return $links;
     }
+
+    /**
+     * Return a list of all primary/unique keys / vals that will be used for
+     * caching. This will understand compound unique keys, which
+     * Memcached_DataObject doesn't have enough info to handle properly.
+     *
+     * @return array of strings
+     */
+    function _allCacheKeys()
+    {
+        $table = call_user_func(array(get_class($this), 'schemaDef'));
+        $ckeys = array();
+
+        if (!empty($table['unique keys'])) {
+            foreach ($table['unique keys'] as $idx => $fields) {
+                $val = array();
+                foreach ($fields as $name) {
+                    $val[] = self::valueString($this->$name);
+                }
+                $keys = implode(',', $fields);
+                $vals = implode(',', $val);
+                $ckeys[] = $this->cacheKey($this->tableName(), $keys, $vals);
+            }
+        }
+
+        if (!empty($table['primary key'])) {
+            $fields = $table['primary key'];
+            $val = array();
+            foreach ($fields as $name) {
+                $val[] = self::valueString($this->$name);
+            }
+            $keys = implode(',', $fields);
+            $vals = implode(',', $val);
+            $ckeys[] = $this->cacheKey($this->tableName(), $keys, $vals);
+        }
+        return $ckeys;
+    }
 }
