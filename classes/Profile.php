@@ -350,6 +350,10 @@ class Profile extends Managed_DataObject
             self::cacheSet($keypart, implode(',', $ids));
         }
 
+        if (!is_null($offset) && !is_null($limit)) {
+            $ids = array_slice($ids, $offset, $limit);
+        }
+
         return User_group::multiGet('id', $ids);
     }
 
