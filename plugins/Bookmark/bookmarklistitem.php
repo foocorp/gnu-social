@@ -75,7 +75,7 @@ class BookmarkListItem extends NoticeListItemAdapter
             common_log(
                 LOG_ERR,
                 sprintf(
-                    _m('Bookmark %1$s (notice %2$d) has no attachments.'),
+                    'Bookmark %1$s (notice %2$d) has no attachments.',
                     $nb->id,
                     $notice->id
                 )
