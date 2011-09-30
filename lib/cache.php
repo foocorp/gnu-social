@@ -43,10 +43,22 @@
  */
 class Cache
 {
-    var $_items   = array();
+    /**
+     * @var array additional in-process cache for web requests;
+     *      disabled on CLI, unsafe for long-running daemons
+     */
+    var $_items = array();
+    var $_inlineCache = true;
     static $_inst = null;
 
     const COMPRESSED = 1;
+
+    private function __construct() {
+        // Potentially long-running daemons or maintenance scripts
+        // should not use an in-process cache as it becomes out of
+        // date.
+        $this->_inlineCache = (php_sapi_name() != 'cli');
+    }
 
     /**
      * Singleton constructor
@@ -166,7 +178,7 @@ class Cache
 
         common_perf_counter('Cache::get', $key);
         if (Event::handle('StartCacheGet', array(&$key, &$value))) {
-            if (array_key_exists($key, $this->_items)) {
+            if ($this->_inlineCache && array_key_exists($key, $this->_items)) {
                 $value = unserialize($this->_items[$key]);
             }
             Event::handle('EndCacheGet', array($key, &$value));
@@ -193,7 +205,9 @@ class Cache
         if (Event::handle('StartCacheSet', array(&$key, &$value, &$flag,
                                                  &$expiry, &$success))) {
 
-            $this->_items[$key] = serialize($value);
+            if ($this->_inlineCache) {
+                $this->_items[$key] = serialize($value);
+            }
 
             $success = true;
 
@@ -244,7 +258,7 @@ class Cache
 
         common_perf_counter('Cache::delete', $key);
         if (Event::handle('StartCacheDelete', array(&$key, &$success))) {
-            if (array_key_exists($key, $this->_items)) {
+            if ($this->_inlineCache && array_key_exists($key, $this->_items)) {
                 unset($this->_items[$key]);
             }
             $success = true;

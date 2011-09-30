@@ -80,26 +80,4 @@ class User_im_prefs extends Managed_DataObject
         );
     }
 
-    /**
-     * We have two compound keys with unique constraints:
-     * (transport, user_id) which is our primary key, and
-     * (transport, screenname) which is an additional constraint.
-     * 
-     * Currently there's not a way to represent that second key
-     * in the general keys list, so we're adding it here to the
-     * list of keys to use for caching, ensuring that it gets
-     * cleared as well when we change.
-     * 
-     * @return array of cache keys
-     */
-    function _allCacheKeys()
-    {
-        $ukeys = 'transport,screenname';
-        $uvals = $this->transport . ',' . $this->screenname;
-
-        $ckeys = parent::_allCacheKeys();
-        $ckeys[] = $this->cacheKey($this->tableName(), $ukeys, $uvals);
-        return $ckeys;
-    }
-
 }
