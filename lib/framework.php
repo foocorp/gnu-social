@@ -151,10 +151,19 @@ function PEAR_ErrorToPEAR_Exception($err)
     if ($err->getCode() == DB_DATAOBJECT_ERROR_NODATA) {
         return;
     }
+
+    $msg      = $err->getMessage();
+    $userInfo = $err->getUserInfo();
+
+    // Log this; push the message up as an exception
+
+    common_log(LOG_ERR, "PEAR Error: $msg ($userInfo)");
+
     if ($err->getCode()) {
-        throw new PEAR_Exception($err->getMessage(), $err->getCode());
+        throw new PEAR_Exception($msg, $err, $err->getCode());
+    } else {
+        throw new PEAR_Exception($msg, $err);
     }
-    throw new PEAR_Exception($err->getMessage());
 }
 
 PEAR::setErrorHandling(PEAR_ERROR_CALLBACK, 'PEAR_ErrorToPEAR_Exception');
