@@ -6,6 +6,9 @@
 (%%site.textlimit%% character) status messages which are broadcast to
 their friends and colleagues on the service and (optionally) onto the Web.
 
+You can also broadcast other types of data, like bookmarks, event
+invitations, polls, and questions.
+
 If you'd like to try it out, first [register](%%action.register%%) a new account.
 Then, on the [public timeline](%%action.top%%), enter your message into
 the textbox at the top of the page, and click "Send". It will go out on the
@@ -14,6 +17,3 @@ public timeline and to anyone who is subscribed to your notices.
 To subscribe to other people's notifications, go to their profile page
 and click the "subscribe" button. They'll get a notice that you're now
 subscribed to their notifications.
-
-You can also broadcast other types of data, like bookmarks, event
-invitations, polls, and questions.
