@@ -6,4 +6,4 @@ A bookmarklet is a small piece of javascript code used as a bookmark. This one w
 
 Drag-and-drop the following link to your bookmarks bar or right-click it and add it to your browser favorites to keep it handy.
 
-<a href="javascript:(function(){var%20d=document,w=window,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),f='http://%%site.server%%/%%site.path%%/index.php?action=bookmarkpopup',l=d.location,e=encodeURIComponent,g=f+'&title='+((e(s))?e(s):e(document.title))+'&url='+e(l.href);function%20a(){if(!w.open(g,'t','toolbar=0,resizable=0,scrollbars=1,status=1,width=650,height=470')){l.href=g;}}a();})()">Bookmark on %%site.name%%</a>
+<a href="javascript:(function(){var%20d=document,w=window,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),f='http://%%site.server%%/%%site.path%%/index.php?action=bookmarkpopup',l=d.location,e=encodeURIComponent,g=f+'&title='+((e(s))?e(s):e(document.title))+'&url='+e(l.href);function%20a(){if(!w.open(g,'t','toolbar=0,resizable=0,scrollbars=1,status=1,width=650,height=520')){l.href=g;}}a();})()">Bookmark on %%site.name%%</a>

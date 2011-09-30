@@ -20,12 +20,12 @@
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 define('STATUSNET_BASE_VERSION', '1.0.0');
-define('STATUSNET_LIFECYCLE', 'rc1'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
+define('STATUSNET_LIFECYCLE', ''); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
 define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . STATUSNET_LIFECYCLE);
 
 define('LACONICA_VERSION', STATUSNET_VERSION); // compatibility
 
-define('STATUSNET_CODENAME', 'The Sounds of Science');
+define('STATUSNET_CODENAME', 'It\'s the End of the World as We Know It');
 
 define('AVATAR_PROFILE_SIZE', 96);
 define('AVATAR_STREAM_SIZE', 48);
@@ -151,10 +151,19 @@ function PEAR_ErrorToPEAR_Exception($err)
     if ($err->getCode() == DB_DATAOBJECT_ERROR_NODATA) {
         return;
     }
+
+    $msg      = $err->getMessage();
+    $userInfo = $err->getUserInfo();
+
+    // Log this; push the message up as an exception
+
+    common_log(LOG_ERR, "PEAR Error: $msg ($userInfo)");
+
     if ($err->getCode()) {
-        throw new PEAR_Exception($err->getMessage(), $err->getCode());
+        throw new PEAR_Exception($msg, $err, $err->getCode());
+    } else {
+        throw new PEAR_Exception($msg, $err);
     }
-    throw new PEAR_Exception($err->getMessage());
 }
 
 PEAR::setErrorHandling(PEAR_ERROR_CALLBACK, 'PEAR_ErrorToPEAR_Exception');

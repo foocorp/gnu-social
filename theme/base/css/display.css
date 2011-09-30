@@ -1976,6 +1976,12 @@ display:block;
 width:auto;
 }
 
+.profile_block .group_aliases .group_alias {
+    display:inline;
+    list-style-type: none;
+    font-style: italic;
+}
+
 .profile_block .entity_tags dt {
 display: inline;
 margin-right: 3px;

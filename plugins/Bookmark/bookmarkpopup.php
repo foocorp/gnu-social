@@ -70,7 +70,7 @@ class BookmarkpopupAction extends NewbookmarkAction
         $this->elementStart('div', array('id' => 'header'));
         $this->elementStart('address');
         $this->element('a', array('class' => 'url',
-                                  'href' => common_local_url('public')),
+                                  'href' => common_local_url('top')),
                          '');
         $this->elementEnd('address');
         if (common_logged_in()) {

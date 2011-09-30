@@ -174,9 +174,8 @@ class EventListItem extends NoticeListItemAdapter
             foreach ($responses as $response) {
                 $ids[] = $response->profile_id;
             }
-            common_debug("IDS = " . implode(',', $ids));
+            $ids = array_slice($ids, 0, ProfileMiniList::MAX_PROFILES + 1);
             $profiles = Profile::pivotGet('id', $ids);
-            common_debug("Profiles = " . print_r($profiles, true));
             $profile  = new ArrayWrapper(array_values($profiles));
             $minilist = new ProfileMiniList($profile, $out);
             $minilist->show();

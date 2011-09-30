@@ -156,6 +156,7 @@ class Router
                           'backupaccount',
                           'deleteaccount',
                           'restoreaccount',
+                          'top',
             );
 
             foreach ($main as $a) {
@@ -331,6 +332,10 @@ class Router
                         array('id' => '[0-9]+'));
 
             $m->connect('group/:nickname',
+                        array('action' => 'showgroup'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
+
+            $m->connect('group/:nickname/',
                         array('action' => 'showgroup'),
                         array('nickname' => Nickname::DISPLAY_FMT));
 
@@ -1066,6 +1071,10 @@ class Router
                             array('nickname' => Nickname::DISPLAY_FMT));
 
                 $m->connect(':nickname',
+                            array('action' => 'showstream'),
+                            array('nickname' => Nickname::DISPLAY_FMT));
+
+                $m->connect(':nickname/',
                             array('action' => 'showstream'),
                             array('nickname' => Nickname::DISPLAY_FMT));
             }
