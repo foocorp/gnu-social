@@ -1,9 +1,0 @@
-<!-- Copyright 2008-2010 StatusNet Inc. and contributors. -->
-<!-- Document licensed under Creative Commons Attribution 3.0 Unported. See -->
-<!-- http://creativecommons.org/licenses/by/3.0/ for details. -->
-
-A bookmarklet is a small piece of javascript code used as a bookmark. This one will let you post to %%site.name%% simply by selecting some text on a page and pressing the bookmarklet.
-
-Drag-and-drop the following link to your bookmarks bar or right-click it and add it to your browser favorites to keep it handy.
-
-<a href="javascript:(function(){var%20d=document,w=window,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),f='http://%%site.server%%/%%site.path%%/index.php?action=bookmarklet',l=d.location,e=encodeURIComponent,g=f+'&status_textarea=%E2%80%9C'+((e(s))?e(s):e(document.title))+'%E2%80%9D%20%E2%80%94%20'+e(l.href);function%20a(){if(!w.open(g,'t','toolbar=0,resizable=0,scrollbars=1,status=1,width=450,height=200')){l.href=g;}}a();})()">Post to %%site.name%%</a>
