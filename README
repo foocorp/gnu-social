@@ -2,8 +2,8 @@
 README
 ------
 
-StatusNet 1.0.0rc1
-20 September 2011
+StatusNet 1.0.0
+30 September 2011
 
 This is the README file for StatusNet, the Open Source social
 networking platform. It includes general information about the
@@ -197,6 +197,7 @@ Feedback
   place to discuss the software.
 * StatusNet has a bug tracker for any defects you may find, or ideas for
   making things better. http://status.net/open-source/issues
+* The StatusNet forum is at http://forum.status.net/.
 
 Credits
 =======
