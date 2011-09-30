@@ -2,17 +2,18 @@
 <!-- Document licensed under Creative Commons Attribution 3.0 Unported. See -->
 <!-- http://creativecommons.org/licenses/by/3.0/ for details. -->
 
-%%site.name%% is a **microblogging service**. Users post short (%%site.textlimit%%
-character) notices which are broadcast to their friends and fans using
-the Web, RSS, or instant messages.
+%%site.name%% is a **social service**. Users can post short
+(%%site.textlimit%% character) status messages which are broadcast to
+their friends and colleagues on the service and (optionally) onto the Web.
 
 If you'd like to try it out, first [register](%%action.register%%) a new account.
 Then, on the [public timeline](%%action.top%%), enter your message into
 the textbox at the top of the page, and click "Send". It will go out on the
-public timeline and to anyone who is subscribed to your notices (probably nobody,
-at first).
+public timeline and to anyone who is subscribed to your notices.
 
 To subscribe to other people's notifications, go to their profile page
 and click the "subscribe" button. They'll get a notice that you're now
-subscribed to their notifications, and, who knows?, they might subscribe
-back.
+subscribed to their notifications.
+
+You can also broadcast other types of data, like bookmarks, event
+invitations, polls, and questions.
