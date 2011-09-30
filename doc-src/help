@@ -16,24 +16,3 @@ To subscribe to other people's notifications, go to their profile page
 and click the "subscribe" button. They'll get a notice that you're now
 subscribed to their notifications, and, who knows?, they might subscribe
 back.
-
-More help
----------
-
-Here are some documents that you might find helpful in understanding
-%%site.name%% and how to use it.
-
-* [About](%%doc.about%%) - an overview of the service
-* [FAQ](%%doc.faq%%) - frequently-asked questions about %%site.name%%
-* [Contact](%%doc.contact%%) - who to contact with questions about the service
-* [IM](%%doc.im%%) - using the instant-message (IM) features of %%site.name%%
-* [SMS](%%doc.sms%%) - tying your cellphone to %%site.name%%
-* [Tags](%%doc.tags%%) - different ways to use tagging
-* [Groups](%%doc.groups%%) - joining together in groups
-* [Lists](%%doc.lists%%) - organize your contacts
-* [OpenMicroBlogging](%%doc.openmublog%%) - subscribing to remote users
-* [Privacy](%%doc.privacy%%) - %%site.name%%'s privacy policy
-* [Source](%%doc.source%%) - How to get the StatusNet source code
-* [Badge](%%doc.badge%%) - How to put a StatusNet badge on your blog or homepage
-* [Bookmarklet](%%doc.bookmarklet%%) - Bookmarklet for posting Web pages
-* [API](%%doc.api%%) - API for use by external clients
