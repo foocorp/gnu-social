@@ -334,6 +334,10 @@ class Router
                         array('action' => 'showgroup'),
                         array('nickname' => Nickname::DISPLAY_FMT));
 
+            $m->connect('group/:nickname/',
+                        array('action' => 'showgroup'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
+
             $m->connect('group/', array('action' => 'groups'));
             $m->connect('group', array('action' => 'groups'));
             $m->connect('groups/', array('action' => 'groups'));
@@ -1066,6 +1070,10 @@ class Router
                             array('nickname' => Nickname::DISPLAY_FMT));
 
                 $m->connect(':nickname',
+                            array('action' => 'showstream'),
+                            array('nickname' => Nickname::DISPLAY_FMT));
+
+                $m->connect(':nickname/',
                             array('action' => 'showstream'),
                             array('nickname' => Nickname::DISPLAY_FMT));
             }
