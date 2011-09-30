@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Adapter to show bookmarks in a nicer way
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -68,22 +68,33 @@ class BookmarkListItem extends NoticeListItemAdapter
 
         $atts = $notice->attachments();
 
-        if (count($atts) < 1) {
-            // Something wrong; let default code deal with it.
-            // TRANS: Exception thrown when a bookmark has no attachments.
-            // TRANS: %1$s is a bookmark ID, %2$s is a notice ID (number).
-            throw new Exception(sprintf(_m('Bookmark %1$s (notice %2$d) has no attachments.'),
-                                        $nb->id,
-                                        $notice->id));
+        if (empty($atts)) {
+
+            // Something went wrong!
+
+            common_log(
+                LOG_ERR,
+                sprintf(
+                    'Bookmark %1$s (notice %2$d) has no attachments.',
+                    $nb->id,
+                    $notice->id
+                )
+            );
+
+            // try to show the notice as plain text
+
+            parent::showContent();
+            return;
+
         }
 
         $att = $atts[0];
 
         $out->elementStart('h3');
         $out->element('a',
-                      array('href' => $att->url,
-                            'class' => 'bookmark-title'),
-                      $nb->title);
+                  array('href' => $att->url,
+                        'class' => 'bookmark-title'),
+                  $nb->title);
         $out->elementEnd('h3');
 
         // Replies look like "for:" tags
