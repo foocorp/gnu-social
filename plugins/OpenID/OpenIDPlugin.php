@@ -536,15 +536,12 @@ class OpenIDPlugin extends Plugin
      *
      * @return boolean hook value
      */
-    function onEndLoadDoc($title, &$output)
-    {
-        if ($title == 'help') {
-            // TRANS: Item on help page. This message contains Markdown links in the form [description](link).
-            $menuitem = _m('* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this service.');
-
-            $output .= common_markup_to_html($menuitem);
-        }
-
+    function onEndDocsMenu(&$items) {
+        $items[] = array('doc', 
+                         array('title' => 'openid'),
+                         _m('MENU', 'OpenID'),
+                         _('Logging in with OpenID'),
+                         'nav_doc_openid');
         return true;
     }
 
