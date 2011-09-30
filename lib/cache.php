@@ -53,7 +53,7 @@ class Cache
 
     const COMPRESSED = 1;
 
-    private function __constructor() {
+    private function __construct() {
         // Potentially long-running daemons or maintenance scripts
         // should not use an in-process cache as it becomes out of
         // date.
