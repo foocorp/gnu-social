@@ -47,6 +47,7 @@ define('PROFILES_PER_MINILIST', 8);
 
 class ProfileMiniList extends ProfileList
 {
+    const MAX_PROFILES = PROFILES_PER_MINILIST; // put it in the class
 
     function startList()
     {
