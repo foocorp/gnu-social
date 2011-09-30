@@ -156,6 +156,7 @@ class Router
                           'backupaccount',
                           'deleteaccount',
                           'restoreaccount',
+                          'top',
             );
 
             foreach ($main as $a) {
