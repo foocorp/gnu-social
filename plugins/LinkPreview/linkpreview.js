@@ -7,7 +7,7 @@
      * Quickie wrapper around ooembed JSON lookup
      */
     var oEmbed = {
-        api: 'http://oohembed.com/oohembed',
+        api: 'https://noembed.com/embed',
         width: 100,
         height: 75,
         cache: {},
