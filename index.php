@@ -59,7 +59,7 @@ function getPath($req)
         $path = $_SERVER['PATH_INFO'];
         $script = $_SERVER['SCRIPT_NAME'];
         if (substr($path, 0, mb_strlen($script)) == $script) {
-            $p = substr($path, mb_strlen($script));
+            $p = substr($path, mb_strlen($script) + 1);
         } else {
             $p = $path;
         }
@@ -69,11 +69,7 @@ function getPath($req)
 
     // Trim all initial '/'
 
-    if (!empty($p)) {
-        while ($p[0] == '/') {
-            $p = substr($p, 1);
-        }
-    }
+    $p = ltrim($p, '/');
 
     return $p;
 }
