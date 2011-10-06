@@ -56,6 +56,31 @@ class OfflineBackupQueueHandler extends QueueHandler
     {
         $userId = $object;
 
+        $user = User::staticGet($userId);
+
+        $fileName = $this->makeBackupFile($user);
+
+        $this->notifyBackupFile($fileName);
+
         return true;
+    }
+
+    function makeBackupFile($user)
+    {
+        $fileName = File::filename($user->getProfile(), "backup", "application/atom+xml");
+        $fullPath = File::path($fileName);
+
+        // XXX: this is pretty lose-y;  try another way
+
+        $actstr = new UserActivityStream($user, true, UserActivityStream::OUTPUT_RAW);
+
+        file_put_contents($fullPath, $actstr->getString());
+
+        return $fileName;
+    }
+
+    function notifyBackupFile($fileName)
+    {
+        $fileUrl = 
     }
 }
