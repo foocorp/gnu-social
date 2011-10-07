@@ -72,7 +72,7 @@ class OfflineBackupQueueHandler extends QueueHandler
 
         // XXX: this is pretty lose-y;  try another way
 
-        $actstr = new UserActivityStream($user, true, UserActivityStream::OUTPUT_RAW);
+        $actstr = new UserActivityStream($user, true);
 
         file_put_contents($fullPath, $actstr->getString());
 
