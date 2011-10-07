@@ -86,4 +86,16 @@ class OfflineBackupPlugin extends Plugin
         $qm->connect('backoff', 'OfflineBackupQueueHandler');
         return true;
     }
+
+    function onPluginVersion(&$versions)
+    {
+        $versions[] = array('name' => 'OfflineBackup',
+                            'version' => STATUSNET_VERSION,
+                            'author' => 'Evan Prodromou',
+                            'homepage' => 'http://status.net/wiki/Plugin:OfflineBackup',
+                            'rawdescription' =>
+                          // TRANS: Plugin description.
+                            _m('Backup user data in offline queue and email when ready.'));
+        return true;
+    }
 }
