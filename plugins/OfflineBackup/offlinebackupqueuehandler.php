@@ -88,6 +88,10 @@ class OfflineBackupQueueHandler extends QueueHandler
         $fileName = File::filename($user->getProfile(), "backup", "application/atom+xml");
         $fullPath = File::path($fileName);
 
+        $this->makeActivityFeed($user, $tmpdir, $fullPath);
+
+        $this->delTree($tmpdir);
+
         return $fileName;
     }
 
@@ -233,5 +237,68 @@ class OfflineBackupQueueHandler extends QueueHandler
             common_debug("Got " . $mem->N . " results on search for groups.");
 
         } while ($mem->N > GROUPS_PER_PAGE);
+    }
+
+    function makeActivityFeed($user, $tmpdir, $fullPath)
+    {
+        $handle = fopen($fullPath, 'c');
+
+        $this->writeFeedHeader($user, $handle);
+
+        $objects = scandir($tmpdir);
+
+        rsort($objects);
+
+        foreach ($objects as $object) {
+            $objFull = $tmpdir . '/' . $object;
+            if (!is_dir($objFull)) {
+                $entry = file_get_contents($objFull);
+                fwrite($handle, $entry);
+                $entry = null;
+            }
+        }
+
+        $this->writeFeedFooter($user, $handle);
+        fclose($handle);
+    }
+
+    function writeFeedHeader($user, $handle)
+    {
+        fwrite($handle, '<?xml version="1.0" encoding="UTF-8"?>');
+        fwrite($handle, "\n");
+        fwrite($handle, '<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom" xmlns:thr="http://purl.org/syndication/thread/1.0" xmlns:georss="http://www.georss.org/georss" xmlns:activity="http://activitystrea.ms/spec/1.0/" xmlns:media="http://purl.org/syndication/atommedia" xmlns:poco="http://portablecontacts.net/spec/1.0" xmlns:ostatus="http://ostatus.org/schema/1.0" xmlns:statusnet="http://status.net/schema/api/1/">');
+        fwrite($handle, "\n");
+
+        $profile = $user->getProfile();
+
+        $author = ActivityObject::fromProfile($profile);
+
+        $xs = new XMLStringer();
+        $author->outputTo($xs, 'author');
+        fwrite($handle, $xs->getString());
+        fwrite($handle, "\n");
+    }
+
+    function writeFeedFooter($user, $handle)
+    {
+        fwrite($handle, '</feed>');
+    }
+
+    function delTree($dir)
+    {
+        if (is_dir($dir)) {
+            $objects = scandir($dir);
+            foreach ($objects as $object) {
+                if ($object != "." && $object != "..") {
+                    if (filetype($dir."/".$object) == "dir") {
+                        $this->delTree($dir."/".$object);
+                    } else {
+                        unlink($dir."/".$object);
+                    }
+                }
+            }
+            reset($objects);
+            rmdir($dir);
+        }
     }
 }
