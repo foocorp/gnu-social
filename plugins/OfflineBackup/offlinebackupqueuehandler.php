@@ -60,7 +60,7 @@ class OfflineBackupQueueHandler extends QueueHandler
 
         $fileName = $this->makeBackupFile($user);
 
-        $this->notifyBackupFile($fileName);
+        $this->notifyBackupFile($user, $fileName);
 
         return true;
     }
@@ -79,8 +79,19 @@ class OfflineBackupQueueHandler extends QueueHandler
         return $fileName;
     }
 
-    function notifyBackupFile($fileName)
+    function notifyBackupFile($user, $fileName)
     {
-        $fileUrl = 
+        $fileUrl = File::url($fileName);
+
+        $body = sprintf(_m("The backup file you requested is ready for download.\n\n".
+                           "%s\n".
+                           "Thanks for your time,\n",
+                           "%s\n"),
+                        $fileUrl,
+                        common_config('site', 'name'));
+
+        $headers = _mail_prepare_headers('offlinebackup', $user->nickname, $user->nickname);
+
+        mail_to_user($user, _('Backup file ready for download'), $body, $headers);
     }
 }
