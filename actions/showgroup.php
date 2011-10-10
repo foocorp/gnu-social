@@ -226,7 +226,7 @@ class ShowgroupAction extends GroupAction
             // TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
             $m = sprintf(_('**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
                 'based on the Free Software [StatusNet](http://status.net/) tool. Its members share ' .
-                'short messages about their life and interests. '),
+                'short messages about their life and interests.'),
                      $this->group->getBestName());
         }
         $this->elementStart('div', array('id' => 'anon_notice'));
