@@ -1,0 +1,36 @@
+# Translation of StatusNet - ForceGroup to Galician (Galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ForceGroup\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-10-10 13:38+0000\n"
+"PO-Revision-Date: 2011-10-10 13:39:21+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:09+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-forcegroup\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Server exception.
+#. TRANS: %1$s is a user nickname, %2$s is a group nickname.
+#, php-format
+msgid "Could not join user %1$s to group %2$s."
+msgstr "O usuario %1$s non se puido engadir ao grupo %2$s."
+
+#. TRANS: Plugin description.
+msgid ""
+"Allows forced group memberships and forces all notices to appear in groups "
+"that users were forced in."
+msgstr ""
+"Permite forzar a inscripción nun grupo e forza a que todas as notas aparezan "
+"nos grupos onde os usuarios se ven forzados a estar."

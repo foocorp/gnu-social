@@ -20,6 +20,7 @@
 # Author: Patcito
 # Author: Peter17
 # Author: Sherbrooke
+# Author: Valeryan 24
 # Author: Verdy p
 # Author: Y-M D
 # --
@@ -29,17 +30,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:06+0000\n"
+"POT-Creation-Date: 2011-10-10 13:38+0000\n"
+"PO-Revision-Date: 2011-10-10 13:40:32+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
+"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
+"X-POT-Import-Date: 2011-09-27 23:26:51+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -115,7 +116,6 @@ msgid "Closed"
 msgstr "Fermé"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
 msgstr "Sauvegarder les paramètres d’accès"
 
@@ -231,7 +231,6 @@ msgstr "Page non trouvée."
 #. TRANS: Client error displayed when trying to get the RSS feed with favorites of a user that does not exist.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed without providing a user nickname.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for an object that is not a user.
-#. TRANS: Client error displayed when trying to get a user hCard for a non-existing user.
 #. TRANS: Client error displayed trying to make a micro summary without providing a valid user.
 #. TRANS: Client error displayed trying to send a direct message to a non-existing user.
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
@@ -253,22 +252,21 @@ msgid "No such user."
 msgstr "Utilisateur non trouvé."
 
 #. TRANS: Title of a user's own start page.
-#, fuzzy
 msgid "Home timeline"
-msgstr "Activité de %s"
+msgstr "Accueil - Fil"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s's home timeline"
-msgstr "Activité de %s"
+msgstr "Fil d'activité de %s"
 
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
 #. TRANS: %s is tagger's nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Feed for friends of %s (Activity Streams JSON)"
-msgstr "Flux pour les amis de %s (Atom)"
+msgstr "Flux pour les amis de %s (flux d'activités JSON)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -343,8 +341,6 @@ msgstr "Envoyer des invitations"
 #. TRANS: Menu item title in administrator navigation panel.
 #. TRANS: %s is a username.
 #. TRANS: Menu item title in personal group navigation menu.
-#. TRANS: %s is a username.
-#. TRANS: Menu item title in settings navigation panel.
 #. TRANS: %s is a username.
 #, php-format
 msgid "%s and friends"
@@ -1447,9 +1443,9 @@ msgstr "Impossible de supprimer l’abonnement à soi-même."
 
 #. TRANS: Subtitle for Atom subscription feed.
 #. TRANS: %1$s is a user nickname, %s$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "People %1$s has subscribed to on %2$s"
-msgstr "Abonnés de %s"
+msgstr "%1$s s'est abonné à %2$s"
 
 #. TRANS: Client error displayed when not using the follow verb.
 #, fuzzy
@@ -1794,7 +1790,6 @@ msgstr "Flux des avis de %s (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Notice"
 msgstr "Avis"
@@ -2017,6 +2012,81 @@ msgstr "Ajouter aux favoris"
 #, fuzzy, php-format
 msgid "No such document \"%s\"."
 msgstr "Document « %s » non trouvé."
+
+#. TRANS: Menu item in administrator navigation panel.
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in personal group navigation menu.
+#, fuzzy
+msgctxt "MENU"
+msgid "Home"
+msgstr "Site personnel"
+
+msgctxt "MENU"
+msgid "Docs"
+msgstr ""
+
+#. TRANS: Secondary navigation menu item leading to help on StatusNet.
+msgctxt "MENU"
+msgid "Help"
+msgstr "Aide"
+
+#, fuzzy
+msgid "Getting started"
+msgstr "Préférences enregistrées."
+
+#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
+msgctxt "MENU"
+msgid "About"
+msgstr "À propos"
+
+#, fuzzy
+msgid "About this site"
+msgstr "Débloquer cet utilisateur"
+
+#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
+msgctxt "MENU"
+msgid "FAQ"
+msgstr "FAQ"
+
+msgid "Frequently asked questions"
+msgstr ""
+
+#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
+#. TRANS: StatusNet site, where to report bugs, ...
+msgctxt "MENU"
+msgid "Contact"
+msgstr "Contact"
+
+#, fuzzy
+msgid "Contact info"
+msgstr "Contact"
+
+#, fuzzy
+msgctxt "MENU"
+msgid "Tags"
+msgstr "Balises"
+
+msgid "Using tags"
+msgstr ""
+
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in search group navigation panel.
+#. TRANS: Menu item in local navigation menu.
+#, fuzzy
+msgctxt "MENU"
+msgid "Groups"
+msgstr "Groupes"
+
+#, fuzzy
+msgid "Using groups"
+msgstr "Groupes d’utilisateurs"
+
+msgctxt "MENU"
+msgid "API"
+msgstr ""
+
+msgid "RESTful API"
+msgstr ""
 
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
@@ -3884,7 +3954,7 @@ msgstr "Modifier le groupe %s"
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Lists by %s"
-msgstr ""
+msgstr "Listes de %s"
 
 #. TRANS: Title for lists by a user page.
 #. TRANS: %1$s is a user nickname, %2$d is a page number.
@@ -4307,24 +4377,20 @@ msgid "Public timeline"
 msgstr "Flux public"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (Activity Streams JSON)"
-msgstr "Fil du flux public (Atom)"
+msgstr "Flux public (Atom)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (RSS 1.0)"
-msgstr "Fil du flux public (RSS 1.0)"
+msgstr "Flux public (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (RSS 2.0)"
-msgstr "Fil du flux public (RSS 2.0)"
+msgstr "Flux public (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (Atom)"
-msgstr "Fil du flux public (Atom)"
+msgstr "Flux public (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
 #, php-format
@@ -4372,50 +4438,6 @@ msgid ""
 msgstr ""
 "%%site.name%% est un service de [micro-blogging](http://fr.wikipedia.org/"
 "wiki/Microblog) basé sur le logiciel libre [StatusNet](http://status.net/)."
-
-#. TRANS: Title for page with public list cloud.
-#, fuzzy
-msgid "Public list cloud"
-msgstr "Nuage de marques public"
-
-#. TRANS: Page notice for page with public list cloud.
-#. TRANS: %s is a StatusNet sitename.
-#, fuzzy, php-format
-msgid "These are largest lists on %s"
-msgstr "Ces étiquettes récentes sont les plus populaires sur %s"
-
-#. TRANS: Empty list message on page with public list cloud.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, fuzzy, php-format
-msgid "No one has [listed](%%doc.tags%%) anyone yet."
-msgstr ""
-"Personne n’a encore posté d’avis avec une [marque (hashtag)](%%doc.tags%%)."
-
-#. TRANS: Additional empty list message on page with public list cloud for logged in users.
-msgid "Be the first to list someone!"
-msgstr "Soyez le premier sur la liste quelqu’un !"
-
-#. TRANS: Additional empty list message on page with public list cloud for anonymous users.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, fuzzy, php-format
-msgid ""
-"Why not [register an account](%%action.register%%) and be the first to list "
-"someone!"
-msgstr ""
-"Pourquoi ne pas [créer un compte](%%action.register%%) et être le premier à "
-"en poster un !"
-
-#. TRANS: DT element on on page with public list cloud.
-#, fuzzy
-msgid "List cloud"
-msgstr "Page non trouvée."
-
-#. TRANS: Link title for number of listed people. %d is the number of listed people.
-#, php-format
-msgid "1 person listed"
-msgid_plural "%d people listed"
-msgstr[0] "1 personne listée"
-msgstr[1] "%d personnes listées"
 
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
 #, php-format
@@ -5173,7 +5195,7 @@ msgid "FOAF for %s group"
 msgstr "ami d’un ami pour le groupe %s"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
 #, php-format
@@ -5192,14 +5214,14 @@ msgstr ""
 "lire plus](%%%%doc.help%%%%))"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool. Its members share short messages about "
-"their life and interests. "
+"their life and interests."
 msgstr ""
 "**%s** est un groupe d’utilisateurs sur %%%%site.name%%%%, un service de "
 "[micro-blogging](http://fr.wikipedia.org/wiki/Microblog)  basé sur le "
@@ -5329,11 +5351,6 @@ msgstr "Tout afficher"
 #. TRANS: Link description for link to list of users subscribed to a tag.
 msgid "Subscribers"
 msgstr "Abonnés"
-
-#. TRANS: Link for more "People following tag x"
-#. TRANS: if there are more than the mini list's maximum.
-msgid "All subscribers"
-msgstr "Tous les abonnés"
 
 #. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
@@ -5962,13 +5979,12 @@ msgstr "Les avis de ces personnes sont suivis par %s."
 #. TRANS: This message contains Markdown URLs. The link description is between
 #. TRANS: square brackets, and the link between parentheses. Do not separate "]("
 #. TRANS: and do not change the URL part.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "You're not listening to anyone's notices right now, try subscribing to "
 "people you know. Try [people search](%%action.peoplesearch%%), look for "
 "members in groups you're interested in and in our [featured users](%%action."
-"featured%%). If you're a [Twitter user](%%action.twittersettings%%), you can "
-"automatically subscribe to people you already follow there."
+"featured%%)."
 msgstr ""
 "Vous ne suivez les avis de personne pour le moment, essayez de vous abonnez "
 "à des gens que vous connaissez. Essayez la [recherche de personnes](%%action."
@@ -7011,18 +7027,8 @@ msgid "saveSettings() not implemented."
 msgstr "saveSettings() n’a pas été implémentée."
 
 #. TRANS: Header in administrator navigation panel.
-#. TRANS: Header in settings navigation panel.
 #, fuzzy
 msgctxt "HEADER"
-msgid "Home"
-msgstr "Site personnel"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in personal group navigation menu.
-#. TRANS: Menu item in settings navigation panel.
-#, fuzzy
-msgctxt "MENU"
 msgid "Home"
 msgstr "Site personnel"
 
@@ -7871,14 +7877,6 @@ msgid "Public"
 msgstr "Public"
 
 #. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in search group navigation panel.
-#. TRANS: Menu item in local navigation menu.
-#, fuzzy
-msgctxt "MENU"
-msgid "Groups"
-msgstr "Groupes"
-
-#. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item title in local navigation menu.
 #, fuzzy
 msgctxt "MENU"
@@ -8111,6 +8109,11 @@ msgstr "Voir davantage"
 
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
+msgstr ""
+
+#. TRANS: Menu item title in personal group navigation menu.
+#. TRANS: %s is a username.
+msgid "Back to top"
 msgstr ""
 
 #. TRANS: Client exception 406
@@ -8353,9 +8356,9 @@ msgstr ""
 
 #. TRANS: Profile info line in notification e-mail.
 #. TRANS: %s is a URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Profile: %s"
-msgstr "Profil"
+msgstr "Profil : %s"
 
 #. TRANS: Profile info line in notification e-mail.
 #. TRANS: %s is biographical information.
@@ -8365,7 +8368,7 @@ msgstr "Bio : %s"
 
 #. TRANS: This is a paragraph in a new-subscriber e-mail.
 #. TRANS: %s is a URL where the subscriber can be reported as abusive.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "If you believe this account is being used abusively, you can block them from "
 "your subscribers list and report as spam to site administrators at %s."
@@ -8600,6 +8603,10 @@ msgstr ""
 
 #. TRANS: Subject of group join notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
+#, fuzzy, php-format
+msgid "%1$s has joined your group %2$s on %3$s"
+msgstr "%1$s a rejoint le groupe %2$s."
+
 #. TRANS: Main body of group join notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
 #. TRANS: %4$s is a block of profile info about the subscriber.
@@ -8782,12 +8789,12 @@ msgstr "Courriel"
 #. TRANS: A possible notice source (OpenMicroBlogging).
 msgctxt "SOURCE"
 msgid "omb"
-msgstr ""
+msgstr "OMB"
 
 #. TRANS: A possible notice source (Application Programming Interface).
 msgctxt "SOURCE"
 msgid "api"
-msgstr ""
+msgstr "API"
 
 #. TRANS: Client exception thrown when no author for an activity was found.
 msgid "Cannot get author for activity."
@@ -8813,7 +8820,7 @@ msgstr ""
 
 #. TRANS: Link description to show more items in a list.
 msgid "More ▼"
-msgstr ""
+msgstr "Plus"
 
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
@@ -8949,10 +8956,9 @@ msgid "No oEmbed API endpoint available."
 msgstr "La messagerie instantanée n’est pas disponible."
 
 #. TRANS: Field label for list.
-#, fuzzy
 msgctxt "LABEL"
 msgid "List"
-msgstr "Liens"
+msgstr "Liste"
 
 #. TRANS: Field title for list.
 #, fuzzy
@@ -8984,7 +8990,6 @@ msgid "Add or remove people"
 msgstr "Ajouter ou supprimer des personnes"
 
 #. TRANS: Header in list edit form.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Search"
 msgstr "Rechercher"
@@ -9078,7 +9083,7 @@ msgstr "Mises à jour avec « %s »"
 #, php-format
 msgctxt "MENU"
 msgid "Lists by %s"
-msgstr ""
+msgstr "Listes de %s"
 
 #. TRANS: Tooltip for menu item in the group navigation page.
 #. TRANS: %s is a user nickname.
@@ -9106,9 +9111,8 @@ msgid "Tags"
 msgstr "Balises"
 
 #. TRANS: Title for section contaning lists with the most subscribers.
-#, fuzzy
 msgid "Popular lists"
-msgstr "Avis populaires"
+msgstr "Listes populaires"
 
 #. TRANS: List summary. %1$d is the number of users in the list,
 #. TRANS: %2$d is the number of subscribers to the list.
@@ -9149,7 +9153,6 @@ msgid "Replies"
 msgstr "Réponses"
 
 #. TRANS: Menu item in personal group navigation menu.
-#, fuzzy
 msgctxt "MENU"
 msgid "Favorites"
 msgstr "Favoris"
@@ -9189,10 +9192,9 @@ msgid ""
 msgstr ""
 
 #. TRANS: Menu item in primary navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Settings"
-msgstr "Paramètres SMS"
+msgstr "Paramètres"
 
 #. TRANS: Menu item title in primary navigation panel.
 #, fuzzy
@@ -9285,15 +9287,14 @@ msgid "Featured"
 msgstr "En vedette"
 
 #. TRANS: Menu item in search group navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Popular"
-msgstr "Populaires"
+msgstr "Populaire"
 
 #. TRANS: Title for inbox tag cloud section.
 msgctxt "TITLE"
 msgid "Trending topics"
-msgstr ""
+msgstr "Tendances"
 
 #. TRANS: Client error displayed when return-to was defined without a target.
 msgid "No return-to arguments."
@@ -9374,7 +9375,6 @@ msgid "Find people on this site"
 msgstr "Chercher des personnes sur ce site"
 
 #. TRANS: Menu item in search group navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Notices"
 msgstr "Avis"
@@ -9386,21 +9386,6 @@ msgstr "Chercher dans le contenu des avis"
 #. TRANS: Menu item title in search group navigation panel.
 msgid "Find groups on this site"
 msgstr "Rechercher des groupes sur ce site"
-
-#. TRANS: Secondary navigation menu item leading to help on StatusNet.
-msgctxt "MENU"
-msgid "Help"
-msgstr "Aide"
-
-#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
-msgctxt "MENU"
-msgid "About"
-msgstr "À propos"
-
-#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
-msgctxt "MENU"
-msgid "FAQ"
-msgstr "FAQ"
 
 #. TRANS: Secondary navigation menu item leading to Terms of Service.
 msgctxt "MENU"
@@ -9421,18 +9406,6 @@ msgstr "Source"
 msgctxt "MENU"
 msgid "Version"
 msgstr "Version"
-
-#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
-#. TRANS: StatusNet site, where to report bugs, ...
-msgctxt "MENU"
-msgid "Contact"
-msgstr "Contact"
-
-#. TRANS: Secondary navigation menu item. Leads to information about embedding a timeline widget.
-#, fuzzy
-msgctxt "MENU"
-msgid "Badge"
-msgstr "Insigne"
 
 #. TRANS: Default title for section/sidebar widget.
 msgid "Untitled section"
@@ -9630,7 +9603,6 @@ msgstr "S’abonner à cet utilisateur"
 
 #. TRANS: Button text to subscribe to a user.
 #. TRANS: Button text for subscribing to a list.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Subscribe"
 msgstr "S’abonner"
@@ -9771,16 +9743,26 @@ msgstr[1] ""
 #. TRANS: List message for notice repeated by logged in user.
 #, fuzzy
 msgctxt "REPEATLIST"
-msgid "You have repeated this notice."
+msgid "You repeated this."
 msgstr "Vous avez déjà repris cet avis."
 
-#. TRANS: List message for repeated notices.
-#. TRANS: %d is the number of users that have repeated a notice.
+#. TRANS: List message for when more than 4 people repeat something.
+#. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
+#. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
+#, php-format
+msgid "%%s and %d other repeated this."
+msgid_plural "%%s and %d others repeated this."
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: List message for favoured notices.
+#. TRANS: %%s is a list of users liking a notice.
+#. TRANS: Plural is based on the number of of users that have favoured a notice.
 #, fuzzy, php-format
-msgid "One person has repeated this notice."
-msgid_plural "%d people have repeated this notice."
-msgstr[0] "Vous avez déjà repris cet avis."
-msgstr[1] "Vous avez déjà repris cet avis."
+msgid "%%s repeated this."
+msgid_plural "%%s repeated this."
+msgstr[0] "Repris pour %s"
+msgstr[1] "Repris pour %s"
 
 #. TRANS: Form legend.
 #, fuzzy, php-format
@@ -9881,13 +9863,11 @@ msgstr "Ne plus suivre cet utilisateur"
 
 #. TRANS: Button text on unsubscribe form.
 #. TRANS: Button text for unsubscribing from a list.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Unsubscribe"
-msgstr "Désabonnement"
+msgstr "Se désabonner"
 
 #. TRANS: Button title on unsubscribe form.
-#, fuzzy
 msgid "Unsubscribe from this user."
 msgstr "Ne plus suivre cet utilisateur"
 
@@ -9973,3 +9953,51 @@ msgstr "XML invalide, racine XRD manquante."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Obtention de la sauvegarde depuis le fichier « %s »."
+
+#, fuzzy
+#~ msgid "Public list cloud"
+#~ msgstr "Nuage de marques public"
+
+#, fuzzy
+#~ msgid "These are largest lists on %s"
+#~ msgstr "Ces étiquettes récentes sont les plus populaires sur %s"
+
+#, fuzzy
+#~ msgid "No one has [listed](%%doc.tags%%) anyone yet."
+#~ msgstr ""
+#~ "Personne n’a encore posté d’avis avec une [marque (hashtag)](%%doc.tags%"
+#~ "%)."
+
+#~ msgid "Be the first to list someone!"
+#~ msgstr "Soyez le premier sur la liste quelqu’un !"
+
+#, fuzzy
+#~ msgid ""
+#~ "Why not [register an account](%%action.register%%) and be the first to "
+#~ "list someone!"
+#~ msgstr ""
+#~ "Pourquoi ne pas [créer un compte](%%action.register%%) et être le premier "
+#~ "à en poster un !"
+
+#, fuzzy
+#~ msgid "List cloud"
+#~ msgstr "Page non trouvée."
+
+#~ msgid "1 person listed"
+#~ msgid_plural "%d people listed"
+#~ msgstr[0] "1 personne listée"
+#~ msgstr[1] "%d personnes listées"
+
+#~ msgid "All subscribers"
+#~ msgstr "Tous les abonnés"
+
+#, fuzzy
+#~ msgctxt "MENU"
+#~ msgid "Badge"
+#~ msgstr "Insigne"
+
+#, fuzzy
+#~ msgid "One person has repeated this notice."
+#~ msgid_plural "%d people have repeated this notice."
+#~ msgstr[0] "Vous avez déjà repris cet avis."
+#~ msgstr[1] "Vous avez déjà repris cet avis."

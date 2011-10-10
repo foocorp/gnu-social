@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"POT-Creation-Date: 2011-10-10 13:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -472,16 +472,4 @@ msgstr ""
 #. TRANS: Field label for event description.
 #: eventlistitem.php:146
 msgid "Description:"
-msgstr ""
-
-#. TRANS: Field label for event description.
-#: eventlistitem.php:155
-msgid "Attending:"
-msgstr ""
-
-#. TRANS: RSVP counts.
-#. TRANS: %1$d, %2$d and %3$d are numbers of RSVPs.
-#: eventlistitem.php:159
-#, php-format
-msgid "Yes: %1$d No: %2$d Maybe: %3$d"
 msgstr ""

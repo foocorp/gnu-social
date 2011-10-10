@@ -15,17 +15,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:19+0000\n"
+"POT-Creation-Date: 2011-10-10 13:38+0000\n"
+"PO-Revision-Date: 2011-10-10 13:40:45+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
+"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
+"X-POT-Import-Date: 2011-09-27 23:26:51+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -35,6 +35,9 @@ msgid ""
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
 msgstr ""
+"%1$s のデータベースは正しく応答しないため、サイトが正常に動作しませんが、サイ"
+"ト管理者はおそらく問題を知っています。%2$s を確認し連絡することができます。そ"
+"うでなければ、数分待ってから、やり直してください。"
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -168,6 +171,8 @@ msgid ""
 "There was a problem listing %s. The remote server is probably not responding "
 "correctly. Please try retrying later."
 msgstr ""
+"%s リストに問題がありました。リモートサーバーはおそらく正しく応答していませ"
+"ん。後で再試行してみてください。"
 
 #. TRANS: Title after adding a user to a list.
 msgctxt "TITLE"
@@ -209,7 +214,6 @@ msgstr "そのようなページはありません。"
 #. TRANS: Client error displayed when trying to get the RSS feed with favorites of a user that does not exist.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed without providing a user nickname.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for an object that is not a user.
-#. TRANS: Client error displayed when trying to get a user hCard for a non-existing user.
 #. TRANS: Client error displayed trying to make a micro summary without providing a valid user.
 #. TRANS: Client error displayed trying to send a direct message to a non-existing user.
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
@@ -319,8 +323,6 @@ msgstr "招待を送信する"
 #. TRANS: Menu item title in administrator navigation panel.
 #. TRANS: %s is a username.
 #. TRANS: Menu item title in personal group navigation menu.
-#. TRANS: %s is a username.
-#. TRANS: Menu item title in settings navigation panel.
 #. TRANS: %s is a username.
 #, php-format
 msgid "%s and friends"
@@ -1934,6 +1936,79 @@ msgstr "お気に入りに加える"
 msgid "No such document \"%s\"."
 msgstr "ドキュメント \"%s\" はありません。"
 
+#. TRANS: Menu item in administrator navigation panel.
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in personal group navigation menu.
+msgctxt "MENU"
+msgid "Home"
+msgstr "ホーム"
+
+msgctxt "MENU"
+msgid "Docs"
+msgstr ""
+
+#. TRANS: Secondary navigation menu item leading to help on StatusNet.
+msgctxt "MENU"
+msgid "Help"
+msgstr "ヘルプ"
+
+#, fuzzy
+msgid "Getting started"
+msgstr "設定が保存されました。"
+
+#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
+msgctxt "MENU"
+msgid "About"
+msgstr ""
+
+#, fuzzy
+msgid "About this site"
+msgstr "このユーザーをアンブロックする"
+
+#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
+msgctxt "MENU"
+msgid "FAQ"
+msgstr "よくある質問と回答"
+
+msgid "Frequently asked questions"
+msgstr ""
+
+#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
+#. TRANS: StatusNet site, where to report bugs, ...
+msgctxt "MENU"
+msgid "Contact"
+msgstr "連絡先"
+
+#, fuzzy
+msgid "Contact info"
+msgstr "連絡先"
+
+#, fuzzy
+msgctxt "MENU"
+msgid "Tags"
+msgstr "タグ"
+
+msgid "Using tags"
+msgstr ""
+
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in search group navigation panel.
+#. TRANS: Menu item in local navigation menu.
+msgctxt "MENU"
+msgid "Groups"
+msgstr "グループ"
+
+#, fuzzy
+msgid "Using groups"
+msgstr "ユーザーグループ"
+
+msgctxt "MENU"
+msgid "API"
+msgstr ""
+
+msgid "RESTful API"
+msgstr ""
+
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
 msgid "Edit application"
@@ -2812,7 +2887,7 @@ msgstr "新しいユーザーを招待"
 #. TRANS: Followed by a bullet list.
 msgid "You are already subscribed to this user:"
 msgid_plural "You are already subscribed to these users:"
-msgstr[0] "すでにこのユーザーをフォローしています:"
+msgstr[0] ""
 
 #. TRANS: Used as list item for already subscribed users (%1$s is nickname, %2$s is e-mail address).
 #. TRANS: Used as list item for already registered people (%1$s is nickname, %2$s is e-mail address).
@@ -2828,14 +2903,13 @@ msgid "This person is already a user and you were automatically subscribed:"
 msgid_plural ""
 "These people are already users and you were automatically subscribed to them:"
 msgstr[0] ""
-"この方は既にユーザーです、そして、この方を自動的にフォローしました。:"
 
 #. TRANS: Message displayed inviting users to use a StatusNet site. Plural form is
 #. TRANS: based on the number of invitations sent. Followed by a bullet list of
 #. TRANS: e-mail addresses to which invitations were sent.
 msgid "Invitation sent to the following person:"
 msgid_plural "Invitations sent to the following people:"
-msgstr[0] "招待状を以下の方に送信しました:"
+msgstr[0] ""
 
 #. TRANS: Generic message displayed after sending out one or more invitations to
 #. TRANS: people to join a StatusNet site.
@@ -3335,9 +3409,8 @@ msgid "Not a supported data format."
 msgstr "サポートされていないデータ形式。"
 
 #. TRANS: Page title for profile settings.
-#, fuzzy
 msgid "Old school UI settings"
-msgstr "IM 設定"
+msgstr "古い学校のUIの設定"
 
 #. TRANS: Usage instructions for profile settings.
 msgid "If you like it \"the old way\", you can set that here."
@@ -4228,46 +4301,6 @@ msgstr ""
 "net/) を基にした [ミニブログ](http://ja.wikipedia.org/wiki/%%E3%%83%%9F%%E3%%"
 "83%%8B%%E3%%83%%96%%E3%%83%%AD%%E3%%82%%B0) サービスです。"
 
-#. TRANS: Title for page with public list cloud.
-msgid "Public list cloud"
-msgstr "パブリックリストクラウド"
-
-#. TRANS: Page notice for page with public list cloud.
-#. TRANS: %s is a StatusNet sitename.
-#, php-format
-msgid "These are largest lists on %s"
-msgstr "これらは %s 上の最大のリストです。"
-
-#. TRANS: Empty list message on page with public list cloud.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, php-format
-msgid "No one has [listed](%%doc.tags%%) anyone yet."
-msgstr "まだ誰も [リスト](%%doc.tags%%) 付きのつぶやきを投稿していません。"
-
-#. TRANS: Additional empty list message on page with public list cloud for logged in users.
-msgid "Be the first to list someone!"
-msgstr "リストの1番目になってください！"
-
-#. TRANS: Additional empty list message on page with public list cloud for anonymous users.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, php-format
-msgid ""
-"Why not [register an account](%%action.register%%) and be the first to list "
-"someone!"
-msgstr ""
-"なぜ [アカウント登録](%%action.register%%) しないのですか、そして最初の投稿を"
-"してください！"
-
-#. TRANS: DT element on on page with public list cloud.
-msgid "List cloud"
-msgstr "クラウドリスト"
-
-#. TRANS: Link title for number of listed people. %d is the number of listed people.
-#, php-format
-msgid "1 person listed"
-msgid_plural "%d people listed"
-msgstr[0] ""
-
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
 #, php-format
 msgid "%s updates from everyone."
@@ -4520,7 +4553,7 @@ msgstr ""
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved.
 msgid "All rights reserved."
-msgstr ""
+msgstr "All rights reserved."
 
 #. TRANS: Copyright checkbox label in registration dialog, for Creative Commons-style licenses.
 #, php-format
@@ -4867,11 +4900,11 @@ msgstr "アプリケーション情報"
 
 #. TRANS: Field label on application page.
 msgid "Consumer key"
-msgstr ""
+msgstr "Consumer key"
 
 #. TRANS: Field label on application page.
 msgid "Consumer secret"
-msgstr ""
+msgstr "Consumer secret"
 
 #. TRANS: Field label on application page.
 msgid "Request token URL"
@@ -5000,7 +5033,7 @@ msgid "FOAF for %s group"
 msgstr "%s グループの FOAF"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
 #, php-format
@@ -5019,14 +5052,14 @@ msgstr ""
 "([もっと読む](%%%%doc.help%%%%))"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool. Its members share short messages about "
-"their life and interests. "
+"their life and interests."
 msgstr ""
 "**%s** は %%site.name%% 上のユーザーグループです。フリーソフトウェアツール "
 "[StatusNet](http://status.net/) を基にした [ミニブログ]http://ja.wikipedia."
@@ -5151,11 +5184,6 @@ msgstr "すべてを表示"
 #. TRANS: Link description for link to list of users subscribed to a tag.
 msgid "Subscribers"
 msgstr "フォローされている"
-
-#. TRANS: Link for more "People following tag x"
-#. TRANS: if there are more than the mini list's maximum.
-msgid "All subscribers"
-msgstr "すべてのフォローされている"
 
 #. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
@@ -5760,13 +5788,12 @@ msgstr "%s がつぶやきを聞いている人"
 #. TRANS: This message contains Markdown URLs. The link description is between
 #. TRANS: square brackets, and the link between parentheses. Do not separate "]("
 #. TRANS: and do not change the URL part.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "You're not listening to anyone's notices right now, try subscribing to "
 "people you know. Try [people search](%%action.peoplesearch%%), look for "
 "members in groups you're interested in and in our [featured users](%%action."
-"featured%%). If you're a [Twitter user](%%action.twittersettings%%), you can "
-"automatically subscribe to people you already follow there."
+"featured%%)."
 msgstr ""
 "今、だれのつぶやきも聞いていないなら、あなたが知っている人々をフォローしてみ"
 "てください。[ユーザー検索](%%action.peoplesearch%%) を試してください。そし"
@@ -6749,16 +6776,7 @@ msgid "saveSettings() not implemented."
 msgstr "saveSettings() は実装されていません。"
 
 #. TRANS: Header in administrator navigation panel.
-#. TRANS: Header in settings navigation panel.
 msgctxt "HEADER"
-msgid "Home"
-msgstr "ホーム"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in personal group navigation menu.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
 msgid "Home"
 msgstr "ホーム"
 
@@ -6864,7 +6882,7 @@ msgstr "API の使用は許可されていません。"
 
 #. TRANS: OAuth exception given when an incorrect access token was given for a user.
 msgid "Bad access token."
-msgstr ""
+msgstr "不正なアクセストークン"
 
 #. TRANS: OAuth exception given when no user was found for a given token (no token was found).
 msgid "No user for that token."
@@ -7191,7 +7209,7 @@ msgstr[0] ""
 #, php-format
 msgctxt "WHOIS"
 msgid "%1$s (%2$s)"
-msgstr ""
+msgstr "%1$s (%2$s)"
 
 #. TRANS: Whois output. %s is the full name of the queried user.
 #, php-format
@@ -7336,7 +7354,7 @@ msgstr "あなたはだれにもフォローされていません。"
 #. TRANS: hard coded space and a comma separated list of subscribed users.
 msgid "You are subscribed to this person:"
 msgid_plural "You are subscribed to these people:"
-msgstr[0] "あなたはこの人にフォローされています:"
+msgstr[0] ""
 
 #. TRANS: Text shown after requesting other users that are subscribed to a user
 #. TRANS: (followers) without having any subscribers.
@@ -7348,7 +7366,7 @@ msgstr "誰もフォローしていません。"
 #. TRANS: hard coded space and a comma separated list of subscribing users.
 msgid "This person is subscribed to you:"
 msgid_plural "These people are subscribed to you:"
-msgstr[0] "この人はあなたにフォローされています:"
+msgstr[0] ""
 
 #. TRANS: Text shown after requesting groups a user is subscribed to without having
 #. TRANS: any group subscriptions.
@@ -7360,7 +7378,7 @@ msgstr "あなたはどのグループのメンバーでもありません。"
 #. TRANS: hard coded space and a comma separated list of subscribed groups.
 msgid "You are a member of this group:"
 msgid_plural "You are a member of these groups:"
-msgstr[0] "あなたはこのグループのメンバーではありません:"
+msgstr[0] ""
 
 #. TRANS: Header line of help text for commands.
 msgctxt "COMMANDHELP"
@@ -7562,13 +7580,6 @@ msgid "Public"
 msgstr "パブリック"
 
 #. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in search group navigation panel.
-#. TRANS: Menu item in local navigation menu.
-msgctxt "MENU"
-msgid "Groups"
-msgstr "グループ"
-
-#. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item title in local navigation menu.
 msgctxt "MENU"
 msgid "Lists"
@@ -7616,19 +7627,19 @@ msgstr "お気に入りのつぶやきの一覧に、このつぶやきを追加
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
-msgstr ""
+msgstr "RSS 1.0"
 
 #. TRANS: Feed type name.
 msgid "RSS 2.0"
-msgstr ""
+msgstr "RSS 2.0"
 
 #. TRANS: Feed type name.
 msgid "Atom"
-msgstr ""
+msgstr "Atom"
 
 #. TRANS: Feed type name. FOAF stands for Friend of a Friend.
 msgid "FOAF"
-msgstr ""
+msgstr "FOAF"
 
 #. TRANS: Feed type name. See http://activitystrea.ms/
 msgid "Activity Streams"
@@ -7782,6 +7793,11 @@ msgstr "全てを見る"
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
 msgstr "所属する全てのグループを参照する。"
+
+#. TRANS: Menu item title in personal group navigation menu.
+#. TRANS: %s is a username.
+msgid "Back to top"
+msgstr ""
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -7964,7 +7980,7 @@ msgstr ""
 "もしそうでなければ、このメッセージを無視してください。\n"
 "\n"
 "あなたの時間をありがとうございます。\n"
-"%2$s\n"
+"%2$s"
 
 #. TRANS: Subject of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -8236,6 +8252,10 @@ msgstr ""
 
 #. TRANS: Subject of group join notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
+#, fuzzy, php-format
+msgid "%1$s has joined your group %2$s on %3$s"
+msgstr "%3$s のあなたのグループ %2$s に %1$s が参加しました。"
+
 #. TRANS: Main body of group join notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
 #. TRANS: %4$s is a block of profile info about the subscriber.
@@ -8988,21 +9008,6 @@ msgstr "つぶやきの内容を探す"
 msgid "Find groups on this site"
 msgstr "このサイト上のグループを検索する"
 
-#. TRANS: Secondary navigation menu item leading to help on StatusNet.
-msgctxt "MENU"
-msgid "Help"
-msgstr "ヘルプ"
-
-#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
-msgctxt "MENU"
-msgid "About"
-msgstr ""
-
-#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
-msgctxt "MENU"
-msgid "FAQ"
-msgstr "よくある質問と回答"
-
 #. TRANS: Secondary navigation menu item leading to Terms of Service.
 msgctxt "MENU"
 msgid "TOS"
@@ -9022,17 +9027,6 @@ msgstr "ソース"
 msgctxt "MENU"
 msgid "Version"
 msgstr "バージョン"
-
-#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
-#. TRANS: StatusNet site, where to report bugs, ...
-msgctxt "MENU"
-msgid "Contact"
-msgstr "連絡先"
-
-#. TRANS: Secondary navigation menu item. Leads to information about embedding a timeline widget.
-msgctxt "MENU"
-msgid "Badge"
-msgstr "バッジ"
 
 #. TRANS: Default title for section/sidebar widget.
 msgid "Untitled section"
@@ -9117,7 +9111,7 @@ msgstr "承認された接続アプリケーション"
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
 msgid "Old school"
-msgstr ""
+msgstr "古い学校"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "UI tweaks for old-school users"
@@ -9350,16 +9344,26 @@ msgid_plural "%%s like this."
 msgstr[0] ""
 
 #. TRANS: List message for notice repeated by logged in user.
+#, fuzzy
 msgctxt "REPEATLIST"
-msgid "You have repeated this notice."
+msgid "You repeated this."
 msgstr "そのつぶやきをリピートしました。"
 
-#. TRANS: List message for repeated notices.
-#. TRANS: %d is the number of users that have repeated a notice.
+#. TRANS: List message for when more than 4 people repeat something.
+#. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
+#. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
 #, php-format
-msgid "One person has repeated this notice."
-msgid_plural "%d people have repeated this notice."
+msgid "%%s and %d other repeated this."
+msgid_plural "%%s and %d others repeated this."
 msgstr[0] ""
+
+#. TRANS: List message for favoured notices.
+#. TRANS: %%s is a list of users liking a notice.
+#. TRANS: Plural is based on the number of of users that have favoured a notice.
+#, fuzzy, php-format
+msgid "%%s repeated this."
+msgid_plural "%%s repeated this."
+msgstr[0] "%s さんへリピート"
 
 #. TRANS: Form legend.
 #, php-format
@@ -9417,7 +9421,7 @@ msgstr "%s の私の同僚"
 #. TRANS: Label for drop-down of potential addressees.
 msgctxt "LABEL"
 msgid "To:"
-msgstr ""
+msgstr "To:"
 
 #. TRANS: Checkbox label in widget for selecting potential addressees to mark the notice private.
 msgid "Private?"
@@ -9540,3 +9544,32 @@ msgstr "無効なXMLです、XRD root が誤っています"
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "ファイル '%s' からバックアップを取得する。"
+
+#~ msgid "Public list cloud"
+#~ msgstr "パブリックリストクラウド"
+
+#~ msgid "These are largest lists on %s"
+#~ msgstr "これらは %s 上の最大のリストです。"
+
+#~ msgid "No one has [listed](%%doc.tags%%) anyone yet."
+#~ msgstr "まだ誰も [リスト](%%doc.tags%%) 付きのつぶやきを投稿していません。"
+
+#~ msgid "Be the first to list someone!"
+#~ msgstr "リストの1番目になってください！"
+
+#~ msgid ""
+#~ "Why not [register an account](%%action.register%%) and be the first to "
+#~ "list someone!"
+#~ msgstr ""
+#~ "なぜ [アカウント登録](%%action.register%%) しないのですか、そして最初の投"
+#~ "稿をしてください！"
+
+#~ msgid "List cloud"
+#~ msgstr "クラウドリスト"
+
+#~ msgid "All subscribers"
+#~ msgstr "すべてのフォローされている"
+
+#~ msgctxt "MENU"
+#~ msgid "Badge"
+#~ msgstr "バッジ"
