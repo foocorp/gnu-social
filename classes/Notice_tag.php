@@ -52,6 +52,7 @@ class Notice_tag extends Managed_DataObject
             'indexes' => array(
                 'notice_tag_created_idx' => array('created'),
                 'notice_tag_notice_id_idx' => array('notice_id'),
+                'notice_tag_tag_created_notice_id_idx' => array('tag', 'created', 'notice_id')
             ),
         );
     }

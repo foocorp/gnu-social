@@ -122,11 +122,11 @@ class Notice extends Managed_DataObject
                 'notice_repeat_of_fkey' => array('notice', array('repeat_of' => 'id')), # @fixme: what about repeats of deleted notices?
             ),
             'indexes' => array(
+                'notice_created_id_is_local_idx' => array('created', 'id', 'is_local'),
                 'notice_profile_id_idx' => array('profile_id', 'created', 'id'),
-                'notice_conversation_idx' => array('conversation'),
-                'notice_created_idx' => array('created'),
-                'notice_replyto_idx' => array('reply_to'),
-                'notice_repeatof_idx' => array('repeat_of'),
+                'notice_repeat_of_created_id_idx' => array('repeat_of', 'created', 'id'),
+                'notice_conversation_created_id_idx' => array('conversation', 'created', 'id'),
+                'notice_replyto_idx' => array('reply_to')
             )
         );
 

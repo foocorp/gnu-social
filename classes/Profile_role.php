@@ -55,6 +55,7 @@ class Profile_role extends Managed_DataObject
             'foreign keys' => array(
                 'profile_role_profile_id_fkey' => array('profile', array('profile_id' => 'id')),
             ),
+            'indexes' => array('profile_role_role_created_profile_id_idx' => array('role', 'created', 'profile_id')),
         );
     }
 

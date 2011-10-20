@@ -37,6 +37,7 @@ class Group_inbox extends Managed_DataObject
             'indexes' => array(
                 'group_inbox_created_idx' => array('created'),
                 'group_inbox_notice_id_idx' => array('notice_id'),
+                'group_inbox_group_id_created_notice_id_idx' => array('group_id', 'created', 'notice_id'),
             ),
         );
     }
