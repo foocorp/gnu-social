@@ -62,38 +62,37 @@ class BookmarkListItem extends NoticeListItemAdapter
 
         $nb = Bookmark::getByNotice($notice);
 
-        $profile = $notice->getProfile();
-
-        $atts = $notice->attachments();
-
-        if (empty($atts)) {
-
-            // Something went wrong!
-
-            common_log(
-                LOG_ERR,
-                sprintf(
-                    'Bookmark %1$s (notice %2$d) has no attachments.',
-                    $nb->id,
-                    $notice->id
-                )
-            );
-
-            // try to show the notice as plain text
-
+        if (empty($nb)) {
+            common_log(LOG_ERR, "No bookmark for notice {$notice->id}");
+            parent::showContent();
+            return;
+        } else if (empty($nb->url)) {
+            common_log(LOG_ERR, "No url for bookmark {$nb->id} for notice {$notice->id}");
             parent::showContent();
             return;
         }
 
+        $profile = $notice->getProfile();
+
         $out->elementStart('p', array('class' => 'entry-content'));
 
-        $att = $atts[0];
+        // Whether to nofollow
+
+        $attrs = array('href' => $nb->url,
+                       'class' => 'bookmark-title');
+
+        $nf = common_config('nofollow', 'external');
+
+        if ($nf == 'never' || ($nf == 'sometimes' and $out instanceof ShowstreamAction)) {
+            $attrs['rel'] = 'external';
+        } else {
+            $attrs['rel'] = 'nofollow external';
+        }
 
         $out->elementStart('h3');
         $out->element('a',
-                  array('href' => $att->url,
-                        'class' => 'bookmark-title'),
-                  $nb->title);
+                      $attrs,
+                      $nb->title);
         $out->elementEnd('h3');
 
         // Replies look like "for:" tags
