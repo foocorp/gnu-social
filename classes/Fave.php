@@ -74,6 +74,7 @@ class Fave extends Managed_DataObject
                 return false;
             }
             self::blow('fave:list-ids:notice_id:%d', $fave->notice_id);
+            self::blow('popular');
 
             Event::handle('EndFavorNotice', array($profile, $notice));
         }
@@ -92,6 +93,7 @@ class Fave extends Managed_DataObject
 
             $result = parent::delete();
             self::blow('fave:list-ids:notice_id:%d', $this->notice_id);
+            self::blow('popular');
 
             if ($result) {
                 Event::handle('EndDisfavorNotice', array($profile, $notice));
