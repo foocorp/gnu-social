@@ -223,7 +223,7 @@ class AllAction extends ProfileAction
         // XXX: make this a little more convenient
 
         if (!common_config('performance', 'high')) {
-            $pop = new PopularNoticeSection($this);
+            $pop = new PopularNoticeSection($this, Profile::current());
             $pop->show();
             $pop = new InboxTagCloudSection($this, $this->user);
             $pop->show();
