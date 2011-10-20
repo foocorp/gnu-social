@@ -60,8 +60,6 @@ class BookmarkListItem extends NoticeListItemAdapter
         $notice = $this->nli->notice;
         $out    = $this->nli->out;
 
-        $out->elementStart('p', array('class' => 'entry-content'));
-
         $nb = Bookmark::getByNotice($notice);
 
         $profile = $notice->getProfile();
@@ -85,8 +83,9 @@ class BookmarkListItem extends NoticeListItemAdapter
 
             parent::showContent();
             return;
-
         }
+
+        $out->elementStart('p', array('class' => 'entry-content'));
 
         $att = $atts[0];
 
