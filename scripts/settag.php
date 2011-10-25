@@ -66,12 +66,12 @@ if ($i !== false) {
         }
     } else {
         print "Already set.\n";
-        exit(-1);
+        exit(0);
     }
 } else {
     if (have_option('d', 'delete')) { // Delete
         print "No such tag.\n";
-        exit(-1);
+        exit(0);
     } else {
         $tags[] = $tag;
         $result = $sn->setTags($tags);
