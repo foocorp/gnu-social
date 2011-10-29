@@ -1,0 +1,29 @@
+# Translation of StatusNet - AccountManager to Basque (Euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AccountManager\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:08:27+0000\n"
+"Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-08-30 10:01:05+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Language-Code: eu\n"
+"X-Message-Group: #out-statusnet-plugin-accountmanager\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid ""
+"The Account Manager plugin implements the Account Manager specification."
+msgstr ""
+"Kontu Kudeatzaile pluginak Kontu Kudeatzaile zehaztapenak ezartzen ditu."

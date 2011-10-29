@@ -6,6 +6,7 @@
 # Author: Habi
 # Author: Marcel083
 # Author: Michael
+# Author: Tiin
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -13,13 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-10 13:38+0000\n"
-"PO-Revision-Date: 2011-10-10 13:41:23+0000\n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:11:39+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-09-25 22:08:46+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -69,7 +71,6 @@ msgstr ""
 "Passwort benutzen, um dich anzumelden."
 
 #. TRANS: Button text for disconnecting a Twitter account.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Disconnect"
 msgstr "Trennen"
@@ -96,13 +97,11 @@ msgstr "Importiere meine Freundezeitleiste."
 
 #. TRANS: Button text for saving Twitter integration settings.
 #. TRANS: Button text for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Speichern"
 
 #. TRANS: Button text for adding Twitter integration.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "Hinzufügen"
@@ -205,7 +204,6 @@ msgstr ""
 "Nur für Updates, Bekanntmachungen und Passwortwiederherstellung verwendet"
 
 #. TRANS: Button text for creating a new StatusNet account in the Twitter connect page.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Create"
 msgstr "Erstellen"
@@ -232,7 +230,7 @@ msgstr "Passwort"
 
 #. TRANS: Fieldset legend.
 msgid "License"
-msgstr ""
+msgstr "Lizenz"
 
 #. TRANS: Text for license agreement checkbox.
 #. TRANS: %s is the license as configured for the StatusNet site.
@@ -245,7 +243,6 @@ msgstr ""
 "sind unter %s verfügbar."
 
 #. TRANS: Button text for connecting an existing StatusNet account in the Twitter connect page..
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Connect"
 msgstr "Verbinden"
@@ -281,7 +278,6 @@ msgid "Invalid username or password."
 msgstr "Ungültiger Benutzername oder ungültiges Passwort."
 
 #. TRANS: Page title for Twitter administration panel.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter"
 msgstr "Twitter"
@@ -402,7 +398,6 @@ msgstr ""
 
 #. TRANS: Menu item in login navigation.
 #. TRANS: Menu item in connection settings navigation.
-#, fuzzy
 msgctxt "MENU"
 msgid "Twitter"
 msgstr "Twitter"

@@ -4,6 +4,7 @@
 # Author: George Animal
 # Author: Giftpflanze
 # Author: Habi
+# Author: Tiin
 # Author: Welathêja
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -12,13 +13,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - YammerImport\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-10 13:38+0000\n"
-"PO-Revision-Date: 2011-10-10 13:41:37+0000\n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:11:53+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 13:28:10+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-yammerimport\n"
@@ -61,15 +63,13 @@ msgid "Yammer import"
 msgstr "Yammer-Import"
 
 #. TRANS: Menu item for Yammer import.
-#, fuzzy
 msgctxt "MENU"
 msgid "Yammer"
 msgstr "Yammer"
 
 #. TRANS: Menu item title for Yammer import.
-#, fuzzy
 msgid "Yammer import module."
-msgstr "Yammer-Import"
+msgstr "Yammer-Import-Modul"
 
 #. TRANS: Exception thrown when a non-user item type is used, but expected.
 msgid "Wrong item type sent to Yammer user import processing."

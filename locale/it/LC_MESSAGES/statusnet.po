@@ -15,17 +15,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-10 13:38+0000\n"
-"PO-Revision-Date: 2011-10-10 13:40:43+0000\n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:11:05+0000\n"
 "Language-Team: Italian <https://translatewiki.net/wiki/Portal:it>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: it\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-09-27 23:26:51+0000\n"
+"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -9984,45 +9985,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Public list cloud"
-#~ msgstr "Insieme delle etichette"
-
-#, fuzzy
-#~ msgid "These are largest lists on %s"
-#~ msgstr "Queste sono le etichette più usate e recenti su %s "
-
-#, fuzzy
-#~ msgid "No one has [listed](%%doc.tags%%) anyone yet."
-#~ msgstr ""
-#~ "Nessuno ha ancora scritto un messaggio con un [hashtag](%%doc.tags%%)."
-
-#, fuzzy
-#~ msgid "Be the first to list someone!"
-#~ msgstr "Scrivilo tu!"
-
-#, fuzzy
-#~ msgid ""
-#~ "Why not [register an account](%%action.register%%) and be the first to "
-#~ "list someone!"
-#~ msgstr ""
-#~ "Perché non [crei un accout](%%action.register%%) e ne scrivi uno tu!"
-
-#, fuzzy
-#~ msgid "List cloud"
-#~ msgstr "Metodo delle API non trovato."
-
-#~ msgid "All subscribers"
-#~ msgstr "Tutti gli abbonati"
-
-#, fuzzy
-#~ msgctxt "MENU"
-#~ msgid "Badge"
-#~ msgstr "Badge"
-
-#, fuzzy
-#~ msgid "One person has repeated this notice."
-#~ msgid_plural "%d people have repeated this notice."
-#~ msgstr[0] "Hai già ripetuto quel messaggio."
-#~ msgstr[1] "Hai già ripetuto quel messaggio."
