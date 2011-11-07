@@ -1,6 +1,7 @@
 # Translation of StatusNet - ClientSideShorten to Russian (Русский)
 # Exported from translatewiki.net
 #
+# Author: Adata80
 # Author: Lockal
 # Author: Александр Сигачёв
 # --
@@ -10,13 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ClientSideShorten\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-10 13:38+0000\n"
-"PO-Revision-Date: 2011-10-10 13:38:43+0000\n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:09:01+0000\n"
 "Language-Team: Russian <https://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:49:52+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-clientsideshorten\n"
@@ -32,6 +34,5 @@ msgstr ""
 "вводе в форму веб-интерфейса перед отправкой записи."
 
 #. TRANS: Client exception thrown when a text argument is not present.
-#, fuzzy
 msgid "\"text\" argument must be specified."
-msgstr "Должен быть указан параметр «text»."
+msgstr "\"text\" параметр должен быть указан."

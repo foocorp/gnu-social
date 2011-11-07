@@ -1,0 +1,33 @@
+# Translation of StatusNet - LilUrl to Basque (Euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - LilUrl\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:09:58+0000\n"
+"Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:26+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Language-Code: eu\n"
+"X-Message-Group: #out-statusnet-plugin-lilurl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Exception thrown when URL shortening plugin was configured incorrectly.
+msgid "A serviceUrl must be specified."
+msgstr "serviceUrl bat zehaztu bhear da."
+
+#. TRANS: Plugin description.
+#. TRANS: %1$s is the service URL.
+#, php-format
+msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
+msgstr "<a href=\"http://%1$s/\">%1$s</a> URL-laburtze zerbitzua erabiltzen."

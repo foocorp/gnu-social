@@ -12,17 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-10 13:38+0000\n"
-"PO-Revision-Date: 2011-10-10 13:40:35+0000\n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:10:57+0000\n"
 "Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-09-27 23:26:51+0000\n"
+"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -1994,7 +1995,7 @@ msgstr "Inicio"
 
 msgctxt "MENU"
 msgid "Docs"
-msgstr ""
+msgstr "Documentos"
 
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 msgctxt "MENU"
@@ -2053,7 +2054,7 @@ msgstr "Grupos do usuario"
 
 msgctxt "MENU"
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "RESTful API"
 msgstr ""
@@ -8164,7 +8165,7 @@ msgstr ""
 #. TRANS: Title for inbox tag cloud section.
 msgctxt "TITLE"
 msgid "Trends"
-msgstr ""
+msgstr "Tendencias"
 
 #. TRANS: Default button text for inviting more users to the StatusNet instance.
 #, fuzzy
@@ -9893,45 +9894,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Public list cloud"
-#~ msgstr "Nube de etiquetas públicas"
-
-#, fuzzy
-#~ msgid "These are largest lists on %s"
-#~ msgstr "Estas son as etiquetas máis populares en %s "
-
-#, fuzzy
-#~ msgid "No one has [listed](%%doc.tags%%) anyone yet."
-#~ msgstr ""
-#~ "Ninguén publicou aínda ningunha nota cunha [etiqueta](%%doc.tags%%)."
-
-#, fuzzy
-#~ msgid "Be the first to list someone!"
-#~ msgstr "Sexa o primeiro en publicar unha!"
-
-#, fuzzy
-#~ msgid ""
-#~ "Why not [register an account](%%action.register%%) and be the first to "
-#~ "list someone!"
-#~ msgstr ""
-#~ "Por que non [rexistrar unha conta](%%action.register%%) e ser o primeiro "
-#~ "en publicar unha?"
-
-#, fuzzy
-#~ msgid "List cloud"
-#~ msgstr "Non se atopou o método da API."
-
-#~ msgid "All subscribers"
-#~ msgstr "Todos os subscritores"
-
-#~ msgctxt "MENU"
-#~ msgid "Badge"
-#~ msgstr "Insignia"
-
-#, fuzzy
-#~ msgid "One person has repeated this notice."
-#~ msgid_plural "%d people have repeated this notice."
-#~ msgstr[0] "Xa repetiu esa nota."
-#~ msgstr[1] "Xa repetiu esa nota."

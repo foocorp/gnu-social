@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-10 13:38+0000\n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2955,7 +2955,7 @@ msgstr ""
 #. TRANS: Page title for first page of favorited notices.
 #. TRANS: Title for favourited notices section.
 #. TRANS: Menu item title in search group navigation panel.
-#: actions/favorited.php:65 lib/popularnoticesection.php:62
+#: actions/favorited.php:65 lib/popularnoticesection.php:65
 #: lib/publicgroupnav.php:95
 msgid "Popular notices"
 msgstr ""
@@ -5147,7 +5147,7 @@ msgstr ""
 
 #. TRANS: Message for not logged in users at an invite-only site trying to view the public feed of notices.
 #. TRANS: This message contains Markdown links. Please mind the formatting.
-#: actions/public.php:273
+#: actions/public.php:275
 #, php-format
 msgid ""
 "This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
@@ -5158,7 +5158,7 @@ msgstr ""
 
 #. TRANS: Message for not logged in users at a closed site trying to view the public feed of notices.
 #. TRANS: This message contains Markdown links. Please mind the formatting.
-#: actions/public.php:280
+#: actions/public.php:282
 #, php-format
 msgid ""
 "This is %%site.name%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
@@ -7303,13 +7303,13 @@ msgid "Description"
 msgstr ""
 
 #. TRANS: Activity title when marking a notice as favorite.
-#: classes/Fave.php:138
+#: classes/Fave.php:140
 msgid "Favor"
 msgstr ""
 
 #. TRANS: Ntofication given when a user marks a notice as favorite.
 #. TRANS: %1$s is a user nickname or full name, %2$s is a notice URI.
-#: classes/Fave.php:141
+#: classes/Fave.php:143
 #, php-format
 msgid "%1$s marked notice %2$s as a favorite."
 msgstr ""
@@ -7364,41 +7364,41 @@ msgstr ""
 
 #. TRANS: Exception thrown providing an invalid profile ID.
 #. TRANS: %s is the invalid profile ID.
-#: classes/Group_join_queue.php:66 classes/Group_member.php:115
+#: classes/Group_join_queue.php:66 classes/Group_member.php:117
 #, php-format
 msgid "Profile ID %s is invalid."
 msgstr ""
 
 #. TRANS: Exception thrown providing an invalid group ID.
 #. TRANS: %s is the invalid group ID.
-#: classes/Group_join_queue.php:79 classes/Group_member.php:128
+#: classes/Group_join_queue.php:79 classes/Group_member.php:130
 #, php-format
 msgid "Group ID %s is invalid."
 msgstr ""
 
 #. TRANS: Exception thrown when joining a group fails.
-#: classes/Group_member.php:81
+#: classes/Group_member.php:83
 msgid "Group join failed."
 msgstr ""
 
 #. TRANS: Exception thrown when trying to leave a group the user is not a member of.
-#: classes/Group_member.php:94
+#: classes/Group_member.php:96
 msgid "Not part of group."
 msgstr ""
 
 #. TRANS: Exception thrown when trying to leave a group fails.
-#: classes/Group_member.php:102
+#: classes/Group_member.php:104
 msgid "Group leave failed."
 msgstr ""
 
 #. TRANS: Activity title.
-#: classes/Group_member.php:174
+#: classes/Group_member.php:176
 msgid "Join"
 msgstr ""
 
 #. TRANS: Success message for subscribe to group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the subscribed group's name.
-#: classes/Group_member.php:178
+#: classes/Group_member.php:180
 #, php-format
 msgid "%1$s has joined group %2$s."
 msgstr ""

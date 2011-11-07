@@ -9,17 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-10 13:38+0000\n"
-"PO-Revision-Date: 2011-10-10 13:40:42+0000\n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:11:04+0000\n"
 "Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-09-27 23:26:51+0000\n"
+"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -1971,25 +1972,23 @@ msgstr "Initio"
 
 msgctxt "MENU"
 msgid "Docs"
-msgstr ""
+msgstr "Documentation"
 
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 msgctxt "MENU"
 msgid "Help"
 msgstr "Adjuta"
 
-#, fuzzy
 msgid "Getting started"
-msgstr "Preferentias confirmate."
+msgstr "Como initiar"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
 msgctxt "MENU"
 msgid "About"
 msgstr "A proposito"
 
-#, fuzzy
 msgid "About this site"
-msgstr "Disblocar iste usator"
+msgstr "A proposito de iste sito"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
 msgctxt "MENU"
@@ -1997,7 +1996,7 @@ msgid "FAQ"
 msgstr "FAQ"
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "Folio a questiones"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
@@ -2005,17 +2004,15 @@ msgctxt "MENU"
 msgid "Contact"
 msgstr "Contacto"
 
-#, fuzzy
 msgid "Contact info"
-msgstr "Contacto"
+msgstr "Information de contacto"
 
-#, fuzzy
 msgctxt "MENU"
 msgid "Tags"
 msgstr "Etiquettas"
 
 msgid "Using tags"
-msgstr ""
+msgstr "Como usar etiquettas"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
@@ -2024,16 +2021,15 @@ msgctxt "MENU"
 msgid "Groups"
 msgstr "Gruppos"
 
-#, fuzzy
 msgid "Using groups"
-msgstr "Gruppos de usatores"
+msgstr "Como usar gruppos"
 
 msgctxt "MENU"
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "RESTful API"
-msgstr ""
+msgstr "API conforme a REST"
 
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
@@ -5105,7 +5101,7 @@ msgstr ""
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
 #. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
@@ -5114,8 +5110,8 @@ msgid ""
 msgstr ""
 "**%s** es un gruppo de usatores in %%%%site.name%%%%, un servicio de [micro-"
 "blogging](http://ia.wikipedia.org/wiki/Microblog) a base del software libere "
-"[StatusNet](http://status.net/). Su membros condivide breve messages super "
-"lor vita e interesses. "
+"[StatusNet](http://status.net/). Su membros intercambia breve messages super "
+"lor vita e interesses."
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -5842,7 +5838,7 @@ msgstr "%s seque le notas de iste personas."
 #. TRANS: This message contains Markdown URLs. The link description is between
 #. TRANS: square brackets, and the link between parentheses. Do not separate "]("
 #. TRANS: and do not change the URL part.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You're not listening to anyone's notices right now, try subscribing to "
 "people you know. Try [people search](%%action.peoplesearch%%), look for "
@@ -5852,9 +5848,7 @@ msgstr ""
 "Tu non seque le notas de alcuno in iste momento. Tenta subscriber te a "
 "personas que tu cognosce. Proba [le recerca de personas](%%action."
 "peoplesearch%%), cerca membros in le gruppos de tu interesse e in le "
-"[usatores in evidentia](%%action.featured%%). Si tu es [usator de Twitter](%%"
-"action.twittersettings%%), tu pote automaticamente subscriber te a personas "
-"que tu ja seque la."
+"[usatores in evidentia](%%action.featured%%)."
 
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user other
 #. TRANS: than the logged in user that has no subscriptions. %s is the user nickname.
@@ -7901,7 +7895,7 @@ msgstr "Vider tote le gruppos al quales tu pertine."
 #. TRANS: Menu item title in personal group navigation menu.
 #. TRANS: %s is a username.
 msgid "Back to top"
-msgstr ""
+msgstr "Retornar in alto"
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -8366,9 +8360,9 @@ msgstr ""
 
 #. TRANS: Subject of group join notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s has joined your group %2$s on %3$s"
-msgstr "%1$s ha adherite al gruppo %2$s in %3$s."
+msgstr "%1$s ha adherite a tu gruppo %2$s in %3$s"
 
 #. TRANS: Main body of group join notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
@@ -9475,28 +9469,27 @@ msgstr[0] "%%s apprecia isto."
 msgstr[1] "%%s apprecia isto."
 
 #. TRANS: List message for notice repeated by logged in user.
-#, fuzzy
 msgctxt "REPEATLIST"
 msgid "You repeated this."
-msgstr "Tu ha repetite iste nota."
+msgstr "Tu ha repetite isto."
 
 #. TRANS: List message for when more than 4 people repeat something.
 #. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
 #. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
-#, fuzzy, php-format
+#, php-format
 msgid "%%s and %d other repeated this."
 msgid_plural "%%s and %d others repeated this."
-msgstr[0] "%%s e %d alteres apprecia isto."
-msgstr[1] "%%s e %d alteres apprecia isto."
+msgstr[0] "%%s e %d alteres ha repetite isto."
+msgstr[1] "%%s e %d alteres ha repetite isto."
 
 #. TRANS: List message for favoured notices.
 #. TRANS: %%s is a list of users liking a notice.
 #. TRANS: Plural is based on the number of of users that have favoured a notice.
-#, fuzzy, php-format
+#, php-format
 msgid "%%s repeated this."
 msgid_plural "%%s repeated this."
-msgstr[0] "%%s apprecia isto."
-msgstr[1] "%%s apprecia isto."
+msgstr[0] "%%s ha repetite isto."
+msgstr[1] "%%s ha repetite isto."
 
 #. TRANS: Form legend.
 #, php-format
@@ -9681,42 +9674,3 @@ msgstr "XML invalide, radice XRD mancante."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Obtene copia de reserva ex file '%s'."
-
-#~ msgid "Public list cloud"
-#~ msgstr "Listario public"
-
-#~ msgid "These are largest lists on %s"
-#~ msgstr "Istes es le listas le plus grande in %s"
-
-#~ msgid "No one has [listed](%%doc.tags%%) anyone yet."
-#~ msgstr "Nemo ha ancora [listate](%%doc.tags%%) alcuno."
-
-#~ msgid "Be the first to list someone!"
-#~ msgstr "Sia le prime a listar alcuno!"
-
-#~ msgid ""
-#~ "Why not [register an account](%%action.register%%) and be the first to "
-#~ "list someone!"
-#~ msgstr ""
-#~ "!Proque non [crear un conto](%%action.register%%) e devenir le prime a "
-#~ "listar alcuno?"
-
-#~ msgid "List cloud"
-#~ msgstr "Listario"
-
-#~ msgid "1 person listed"
-#~ msgid_plural "%d people listed"
-#~ msgstr[0] "1 persona listate"
-#~ msgstr[1] "%d personas listate"
-
-#~ msgid "All subscribers"
-#~ msgstr "Tote le subscriptores"
-
-#~ msgctxt "MENU"
-#~ msgid "Badge"
-#~ msgstr "Insignia"
-
-#~ msgid "One person has repeated this notice."
-#~ msgid_plural "%d people have repeated this notice."
-#~ msgstr[0] "Un persona ha repetite iste nota."
-#~ msgstr[1] "%d personas ha repetite iste nota."

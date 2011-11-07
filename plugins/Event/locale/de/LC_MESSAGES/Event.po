@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Giftpflanze
+# Author: Tiin
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,13 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-10 13:38+0000\n"
-"PO-Revision-Date: 2011-10-10 13:39:07+0000\n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:09:25+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-09-11 15:10:57+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
+"X-POT-Import-Date: 2011-10-10 14:11:36+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
@@ -23,23 +25,23 @@ msgstr ""
 
 #. TRANS: 0 minutes abbreviated. Used in a list.
 msgid "(0 min)"
-msgstr ""
+msgstr "(0 min)"
 
 #. TRANS: 30 minutes abbreviated. Used in a list.
 msgid "(30 min)"
-msgstr ""
+msgstr "(30 min)"
 
 #. TRANS: 1 hour. Used in a list.
 msgid "(1 hour)"
-msgstr ""
+msgstr "(1 Stunde)"
 
-#, php-format
+#, fuzzy, php-format
 msgid "(%.1f hours)"
-msgstr ""
+msgstr "(1 Stunde)"
 
-#, php-format
+#, fuzzy, php-format
 msgid "(%d hours)"
-msgstr ""
+msgstr "(1 Stunde)"
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
@@ -68,11 +70,11 @@ msgstr ""
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
-msgstr ""
+msgstr "Nicht angemeldet."
 
 #. TRANS: Client error when submitting a form with unexpected information.
 msgid "Unexpected form submission."
-msgstr ""
+msgstr "Unerwartete Formulareingabe."
 
 #. TRANS: Client error displayed when using an action in a non-AJAX way.
 msgid "This action is AJAX only."
@@ -182,9 +184,9 @@ msgid "Start time"
 msgstr "Startzeit"
 
 #. TRANS: Field title on event form. %s is the abbreviated timezone
-#, fuzzy, php-format
+#, php-format
 msgid "Time the event starts (%s)."
-msgstr "Zeit, an der das Ereignis anfängt."
+msgstr "Zeit, an der das Ereignis anfängt (%s)."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
@@ -207,7 +209,7 @@ msgstr "Zeit, zu der das Ereignis zu Ende ist."
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
 msgid "Where?"
-msgstr ""
+msgstr "Wo?"
 
 #. TRANS: Field title on event form.
 msgid "Event location."
@@ -404,7 +406,7 @@ msgstr "Ereignis muss ein Enddatum haben."
 
 #. TRANS: Client exception thrown when trying to post an event with an invalid URL.
 msgid "URL must be valid."
-msgstr ""
+msgstr "URL muss gültig sein."
 
 #. TRANS: Field label for event description.
 msgid "Time:"
@@ -417,9 +419,3 @@ msgstr "Örtlichkeit:"
 #. TRANS: Field label for event description.
 msgid "Description:"
 msgstr "Beschreibung:"
-
-#~ msgid "Attending:"
-#~ msgstr "Teilnehmende:"
-
-#~ msgid "Yes: %1$d No: %2$d Maybe: %3$d"
-#~ msgstr "Ja: %1$d Nein: %2$d Vielleicht: %3$d"

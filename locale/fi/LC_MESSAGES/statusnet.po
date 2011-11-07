@@ -18,17 +18,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-10 13:38+0000\n"
-"PO-Revision-Date: 2011-10-10 13:40:30+0000\n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:10:51+0000\n"
 "Language-Team: Finnish <https://translatewiki.net/wiki/Portal:fi>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: fi\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-09-27 23:26:51+0000\n"
+"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
 
 #. TRANS: Database error message.
 #, fuzzy, php-format
@@ -9767,47 +9768,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#, fuzzy
-#~ msgid "Public list cloud"
-#~ msgstr "Julkinen tagipilvi"
-
-#, fuzzy
-#~ msgid "These are largest lists on %s"
-#~ msgstr "Nämä ovat suosituimmat viimeaikaiset tagit %s -palvelussa"
-
-#, fuzzy
-#~ msgid "No one has [listed](%%doc.tags%%) anyone yet."
-#~ msgstr ""
-#~ "Kukaan ei ole vielä lähettänyt päivitystä tagilla [hashtag](%%doc.tags%%) "
-#~ "vielä."
-
-#, fuzzy
-#~ msgid "Be the first to list someone!"
-#~ msgstr "Ole ensimmäinen joka lähettää päivityksen!"
-
-#, fuzzy
-#~ msgid ""
-#~ "Why not [register an account](%%action.register%%) and be the first to "
-#~ "list someone!"
-#~ msgstr ""
-#~ "Ole ensimmäinen joka [lähettää päivityksen tästä aiheesta](%%%%action."
-#~ "newnotice%%%%?status_textarea=%s)!"
-
-#, fuzzy
-#~ msgid "List cloud"
-#~ msgstr "API-metodia ei löytynyt."
-
-#~ msgid "All subscribers"
-#~ msgstr "Kaikki tilaajat"
-
-#, fuzzy
-#~ msgctxt "MENU"
-#~ msgid "Badge"
-#~ msgstr "Tönäise"
-
-#, fuzzy
-#~ msgid "One person has repeated this notice."
-#~ msgid_plural "%d people have repeated this notice."
-#~ msgstr[0] "Tätä päivitystä ei voi poistaa."
-#~ msgstr[1] "Tätä päivitystä ei voi poistaa."

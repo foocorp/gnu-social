@@ -12,14 +12,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-10 13:38+0000\n"
-"PO-Revision-Date: 2011-10-10 13:40:11+0000\n"
+"POT-Creation-Date: 2011-10-28 14:08+0000\n"
+"PO-Revision-Date: 2011-10-28 14:10:31+0000\n"
 "Language-Team: Belarusian (Taraškievica orthography) <https://translatewiki."
 "net/wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-09-27 23:26:51+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r99397); Translate extension (2011-10-07)\n"
+"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
+"27)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: be-tarask\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -141,7 +142,7 @@ msgstr "Узьнікла праблема з ключом Вашай сэсіі.
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
-msgstr "Не ўвайшлі ў сыстэму."
+msgstr "Вы не ўвайшлі ў сыстэму."
 
 #. TRANS: Client error displayed trying to perform an action related to a non-existing profile.
 #. TRANS: Client exception thrown when requesting a favorite feed for a non-existing profile.
@@ -1980,69 +1981,65 @@ msgstr "Няма такога дакумэнта «%s»."
 #. TRANS: Menu item in personal group navigation menu.
 msgctxt "MENU"
 msgid "Home"
-msgstr ""
+msgstr "Галоўная старонка"
 
 msgctxt "MENU"
 msgid "Docs"
-msgstr ""
+msgstr "Дакумэнтацыя"
 
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 msgctxt "MENU"
 msgid "Help"
-msgstr ""
+msgstr "Дапамога"
 
-#, fuzzy
 msgid "Getting started"
-msgstr "Налады захаваныя."
+msgstr "Пачатак працы"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
 msgctxt "MENU"
 msgid "About"
-msgstr ""
+msgstr "Пра"
 
-#, fuzzy
 msgid "About this site"
-msgstr "Разблякаваць гэтага карыстальніка"
+msgstr "Інфармацыя пра гэты сайт"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
 msgctxt "MENU"
 msgid "FAQ"
-msgstr ""
+msgstr "Частыя пытаньні"
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "Частыя пытаньні"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
 msgctxt "MENU"
 msgid "Contact"
-msgstr ""
+msgstr "Кантакты"
 
 msgid "Contact info"
-msgstr ""
+msgstr "Кантактная інфармацыя"
 
-#, fuzzy
 msgctxt "MENU"
 msgid "Tags"
 msgstr "Тэгі"
 
 msgid "Using tags"
-msgstr ""
+msgstr "Выкарыстоўваемыя тэгі"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
 #. TRANS: Menu item in local navigation menu.
 msgctxt "MENU"
 msgid "Groups"
-msgstr ""
+msgstr "Групы"
 
-#, fuzzy
 msgid "Using groups"
-msgstr "Групы %s"
+msgstr "Выкарыстоўваемыя групы"
 
 msgctxt "MENU"
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "RESTful API"
 msgstr ""
@@ -5135,7 +5132,7 @@ msgstr ""
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
 #. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
@@ -5146,7 +5143,7 @@ msgstr ""
 "(http://en.wikipedia.org/wiki/Micro-blogging), які працуе на падставе "
 "вольнага праграмнага забесьпячэньня [StatusNet](http://status.net/). Яе "
 "удзельнікі могуць абменьвацца кароткімі паведамленьнямі пра сваё жыцьцё і "
-"захапленьні. "
+"захапленьні."
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -5186,37 +5183,37 @@ msgstr "Прыватная стужка паведамленьняў для Ва
 #. TRANS: %1$s is a list, %2$s is a page number.
 #, php-format
 msgid "Timeline for %1$s list by you, page %2$d"
-msgstr ""
+msgstr "Стужка паведамленьняў для Вашага сьпісу %1$s, старонка %2$d"
 
 #. TRANS: Title for private list timeline.
 #. TRANS: %1$s is a list, %2$s is the tagger's nickname, %3$d is a page number.
 #, php-format
 msgid "Timeline for %1$s list by %2$s, page %3$d"
-msgstr ""
+msgstr "Стужка паведамленьняў сьпісу %1$s карыстальніка %2$s, старонка %3$d"
 
 #. TRANS: Title for private list timeline.
 #. TRANS: %s is a list.
 #, php-format
 msgid "Private timeline of %s list by you"
-msgstr ""
+msgstr "Прыватная стужка паведамленьняў Вашага сьпісу %s"
 
 #. TRANS: Title for public list timeline where the viewer is the tagger.
 #. TRANS: %s is a list.
 #, php-format
 msgid "Timeline for %s list by you"
-msgstr ""
+msgstr "Стужка паведамленьняў Вашага сьпісу %s"
 
 #. TRANS: Title for private list timeline.
 #. TRANS: %1$s is a list, %2$s is the tagger's nickname.
 #, php-format
 msgid "Timeline for %1$s list by %2$s"
-msgstr ""
+msgstr "Стужка паведамленьняў сьпісу %1$s карыстальніка %2$s"
 
 #. TRANS: Feed title.
 #. TRANS: %1$s is a list, %2$s is tagger's nickname.
 #, php-format
 msgid "Feed for %1$s list by %2$s (Atom)"
-msgstr ""
+msgstr "Стужка для сьпісу %1$s карыстальніка %2$s (Atom)"
 
 #. TRANS: Empty list message for list timeline.
 #. TRANS: %1$s is a list, %2$s is a tagger's nickname.
@@ -5224,11 +5221,11 @@ msgstr ""
 msgid ""
 "This is the timeline for %1$s list by %2$s but no one has posted anything "
 "yet."
-msgstr ""
+msgstr "Гэта стужка сьпісу %1$s карыстальніка %2$s, але яна яшчэ пустая."
 
 #. TRANS: Additional empty list message for list timeline for currently logged in user tagged tags.
 msgid "Try tagging more people."
-msgstr ""
+msgstr "Паспрабуйце пазначыць болей людзей."
 
 #. TRANS: Additional empty list message for list timeline.
 #. TRANS: This message contains Markdown links in the form [description](link).
@@ -5237,11 +5234,13 @@ msgid ""
 "Why not [register an account](%%%%action.register%%%%) and start following "
 "this timeline!"
 msgstr ""
+"Чаму б не [стварыць рахунак](%%%%action.register%%%%) і пачаць сачыць за "
+"гэтай стужкай!"
 
 #. TRANS: Header on show list page.
 #. TRANS: Link description for link to list of users tagged with a tag (so part of a list).
 msgid "Listed"
-msgstr ""
+msgstr "Унесены ў сьпіс"
 
 #. TRANS: Content of "Listed" page if there are no listed users.
 #. TRANS: Content of "People following tag x" if there are no subscribed users.
@@ -5252,82 +5251,84 @@ msgstr ""
 #. TRANS: Text for user user group membership statistics if user is not a member of any group.
 #. TRANS: Default content for section/sidebar widget.
 msgid "(None)"
-msgstr ""
+msgstr "(Няма)"
 
 #. TRANS: Link for more "People in list x by a user"
 #. TRANS: if there are more than the mini list's maximum.
 msgid "Show all"
-msgstr ""
+msgstr "Паказаць усе"
 
 #. TRANS: Header for tag subscribers.
 #. TRANS: Link description for link to list of users subscribed to a tag.
 msgid "Subscribers"
-msgstr ""
+msgstr "Падпісчыкі"
 
 #. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
 msgid "Notices by %1$s tagged %2$s"
-msgstr ""
+msgstr "Запісы %1$s з тэгам %2$s"
 
 #. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag, %3$d is the page number.
 #, php-format
 msgid "Notices by %1$s tagged %2$s, page %3$d"
-msgstr ""
+msgstr "Запісы %1$s з тэгам %2$s, старонка %3$d"
 
 #. TRANS: Extended page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$d is the page number.
 #, php-format
 msgid "Notices by %1$s, page %2$d"
-msgstr ""
+msgstr "Запісы %1$s, старонка %2$d"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %1$s is a user nickname, %2$s is a hashtag.
 #, php-format
 msgid "Notice feed for %1$s tagged %2$s (RSS 1.0)"
-msgstr ""
+msgstr "Стужка запісаў для %1$s з тэгам %2$s (RSS 1.0)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Notice feed for %s (Activity Streams JSON)"
-msgstr ""
+msgstr "Стужка запісаў для %s (стужка актыўнасьці JSON)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Notice feed for %s (RSS 1.0)"
-msgstr ""
+msgstr "Стужка запісаў для %s (RSS 1.0)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Notice feed for %s (RSS 2.0)"
-msgstr ""
+msgstr "Стужка запісаў для %s (RSS 2.0)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Notice feed for %s (Atom)"
-msgstr ""
+msgstr "Стужка запісаў для %s (Atom)"
 
 #. TRANS: Title for link to notice feed. FOAF stands for Friend of a Friend.
 #. TRANS: More information at http://www.foaf-project.org. %s is a user nickname.
 #, php-format
 msgid "FOAF for %s"
-msgstr ""
+msgstr "Сябры сяброў %s"
 
 #. TRANS: First sentence of empty list message for a timeline. $1%s is a user nickname.
 #, php-format
 msgid "This is the timeline for %1$s, but %1$s hasn't posted anything yet."
-msgstr ""
+msgstr "Гэта стужка падзеяў для %1$s, але %1$s яшчэ нічога не напісаў."
 
 #. TRANS: Second sentence of empty list message for a stream for the user themselves.
 msgid ""
 "Seen anything interesting recently? You haven't posted any notices yet, now "
 "would be a good time to start :)"
 msgstr ""
+"Нядаўна ўбачылі што-небудзь цікавае? Вы яшчэ нічога не напісалі, цяпер добры "
+"час, каб пачаць :)"
 
 #. TRANS: Second sentence of empty  list message for a non-self timeline. %1$s is a user nickname, %2$s is a part of a URL.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
@@ -5336,6 +5337,8 @@ msgid ""
 "You can try to nudge %1$s or [post something to them](%%%%action.newnotice%%%"
 "%?status_textarea=%2$s)."
 msgstr ""
+"Вы можаце паспрабаваць падштурхнуць %1$s ці [напісаць што-небудзь для яго](%%"
+"%%action.newnotice%%%%?status_textarea=%2$s)."
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are open.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
@@ -5346,6 +5349,11 @@ msgid ""
 "[StatusNet](http://status.net/) tool. [Join now](%%%%action.register%%%%) to "
 "follow **%s**'s notices and many more! ([Read more](%%%%doc.help%%%%))"
 msgstr ""
+"**%s** мае рахунак на %%%%site.name%%%%, сэрвісе [мікраблёгаў](http://en."
+"wikipedia.org/wiki/Micro-blogging), які працуе на базе вольнага праграмнага "
+"забесьпячэньня [StatusNet](http://status.net/). [Далучайцеся зараз](%%%%"
+"action.register%%%%), каб сачыць за паведамленьнямі **%s**'s і шмат чаго "
+"іншага! ([Чытаць падрабязьней](%%%%doc.help%%%%))"
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
@@ -5355,37 +5363,40 @@ msgid ""
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool. "
 msgstr ""
+"**%s** мае рахунак на %%%%site.name%%%%, сэрвісе [мікраблёгаў](http://en."
+"wikipedia.org/wiki/Micro-blogging), які працуе на базе вольнага праграмнага "
+"забесьпячэньня [StatusNet](http://status.net/)."
 
 #. TRANS: Link to the author of a repeated notice. %s is a linked nickname.
 #, php-format
 msgid "Repeat of %s"
-msgstr ""
+msgstr "Паўтор за %s"
 
 #. TRANS: Client error displayed trying to silence a user on a site where the feature is not enabled.
 #. TRANS: Client error on page to unsilence a user when the feature is not enabled.
 msgid "You cannot silence users on this site."
-msgstr ""
+msgstr "Вы ня можаце заглушаць карыстальнікаў на гэтым сайце."
 
 #. TRANS: Client error displayed trying to silence an already silenced user.
 msgid "User is already silenced."
-msgstr ""
+msgstr "Карыстальнік ужо заглушаны."
 
 #. TRANS: Title for site administration panel.
 msgctxt "TITLE"
 msgid "Site"
-msgstr ""
+msgstr "Сайт"
 
 #. TRANS: Instructions for site administration panel.
 msgid "Basic settings for this StatusNet site"
-msgstr ""
+msgstr "Асноўныя налады гэтага сайта StatusNet"
 
 #. TRANS: Client error displayed trying to save an empty site name.
 msgid "Site name must have non-zero length."
-msgstr ""
+msgstr "Назва сайту ня можа быць пустой."
 
 #. TRANS: Client error displayed trying to save site settings without a contact address.
 msgid "You must have a valid contact email address."
-msgstr ""
+msgstr "Вы павінны мець дзейны адрас электроннай пошты."
 
 #. TRANS: Client error displayed when a logo URL is not valid.
 msgid "Invalid logo URL."
@@ -5399,66 +5410,67 @@ msgstr "Няслушны URL-адрас лягатыпу SSL."
 #. TRANS: %s is the invalid language code.
 #, php-format
 msgid "Unknown language \"%s\"."
-msgstr ""
+msgstr "Невядомая мова «%s»."
 
 #. TRANS: Client error displayed trying to save site settings with a text limit below 0.
 msgid "Minimum text limit is 0 (unlimited)."
-msgstr ""
+msgstr "Мінімальнае абмежаваньне тэксту складае 0 (неабмежаваны)."
 
 #. TRANS: Client error displayed trying to save site settings with a text limit below 1.
 msgid "Dupe limit must be one or more seconds."
-msgstr ""
+msgstr "Абмежаваньне дублікатаў павінна складаць адну ці болей сэкундаў."
 
 #. TRANS: Fieldset legend on site settings panel.
 msgctxt "LEGEND"
 msgid "General"
-msgstr ""
+msgstr "Агульныя"
 
 #. TRANS: Field label on site settings panel.
 msgctxt "LABEL"
 msgid "Site name"
-msgstr ""
+msgstr "Назва сайта"
 
 #. TRANS: Field title on site settings panel.
 msgid "The name of your site, like \"Yourcompany Microblog\"."
-msgstr ""
+msgstr "Назва Вашага сайту, напрыклад «Мікраблёг кампаніі …»"
 
 #. TRANS: Field label on site settings panel.
 msgid "Brought by"
-msgstr ""
+msgstr "Прадстаўленае"
 
 #. TRANS: Field title on site settings panel.
 msgid "Text used for credits link in footer of each page."
 msgstr ""
+"Тэкст, які выкарыстоўваецца для пазначэньня аўтараў унізе кожнай старонкі."
 
 #. TRANS: Field label on site settings panel.
 msgid "Brought by URL"
-msgstr ""
+msgstr "URL-адрас прадстаўленага"
 
 #. TRANS: Field title on site settings panel.
 msgid "URL used for credits link in footer of each page."
-msgstr ""
+msgstr "URL-адрасы аўтараў унізе кожнай старонкі."
 
 #. TRANS: Field label on site settings panel.
 msgid "Email"
-msgstr ""
+msgstr "Электронная пошта"
 
 #. TRANS: Field title on site settings panel.
 msgid "Contact email address for your site."
-msgstr ""
+msgstr "Кантактны адрас электроннай пошты Вашага сайту."
 
 #. TRANS: Fieldset legend on site settings panel.
 msgctxt "LEGEND"
 msgid "Local"
-msgstr ""
+msgstr "Лякальная"
 
 #. TRANS: Dropdown label on site settings panel.
 msgid "Default timezone"
-msgstr ""
+msgstr "Часавы пас па змоўчваньні"
 
 #. TRANS: Dropdown title on site settings panel.
 msgid "Default timezone for the site; usually UTC."
-msgstr ""
+msgstr "Часавы пас па змоўчваньні для сайту; звычайна UTC."
 
 #. TRANS: Dropdown label on site settings panel.
 msgid "Default language"
@@ -9492,30 +9504,3 @@ msgstr ""
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
-
-#~ msgid "Public list cloud"
-#~ msgstr "Воблака публічных сьпісаў"
-
-#~ msgid "These are largest lists on %s"
-#~ msgstr "Гэта самыя вялікія сьпісы на %s"
-
-#~ msgid "No one has [listed](%%doc.tags%%) anyone yet."
-#~ msgstr "Пакуль што ніхто не дадаў да [сьпісаў](%%doc.tags%%)."
-
-#~ msgid "Be the first to list someone!"
-#~ msgstr "Будзьце першым, хто стварыў сьпіс!"
-
-#~ msgid ""
-#~ "Why not [register an account](%%action.register%%) and be the first to "
-#~ "list someone!"
-#~ msgstr ""
-#~ "Чаму не [стварыць рахунак](%%action.register%%) і стаць першым, хто "
-#~ "створыць новы сьпіс!"
-
-#~ msgid "List cloud"
-#~ msgstr "Воблака сьпісаў"
-
-#~ msgid "1 person listed"
-#~ msgid_plural "%d people listed"
-#~ msgstr[0] "%d асоба ў сьпісе"
-#~ msgstr[1] "%d асобы ў сьпісе"
