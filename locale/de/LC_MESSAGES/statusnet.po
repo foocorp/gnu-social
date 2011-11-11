@@ -31,13 +31,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-28 14:08+0000\n"
-"PO-Revision-Date: 2011-10-28 14:10:41+0000\n"
+"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"PO-Revision-Date: 2011-11-11 15:05:48+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
-"27)\n"
+"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -5403,11 +5403,11 @@ msgstr ""
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
-"[StatusNet](http://status.net/) tool. "
+"[StatusNet](http://status.net/) tool."
 msgstr ""
 "**%s** hat ein Konto auf %%%%site.name%%%%, einem [Mikroblogging](http://de."
 "wikipedia.org/wiki/Mikroblogging)-Dienst basierend auf der freien Software "
@@ -5511,7 +5511,6 @@ msgid "Contact email address for your site."
 msgstr "Kontakt-E-Mail-Adresse für deine Website."
 
 #. TRANS: Fieldset legend on site settings panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Local"
 msgstr "Lokal"
@@ -5529,7 +5528,6 @@ msgid "Default language"
 msgstr "Bevorzugte Sprache"
 
 #. TRANS: Dropdown title on site settings panel.
-#, fuzzy
 msgid ""
 "The site language when autodetection from browser settings is not available."
 msgstr ""
@@ -5537,10 +5535,9 @@ msgstr ""
 "Browser-Einstellungen nicht verfügbar ist."
 
 #. TRANS: Fieldset legend on site settings panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Limits"
-msgstr "Limit"
+msgstr "Limits"
 
 #. TRANS: Field label on site settings panel.
 msgid "Text limit"
@@ -5573,9 +5570,8 @@ msgid "SSL logo"
 msgstr "SSL-Logo"
 
 #. TRANS: Button title for saving site settings.
-#, fuzzy
 msgid "Save the site settings."
-msgstr "Website-Einstellungen speichern"
+msgstr "Die Website-Einstellungen speichern."
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
 msgid "Site Notice"
@@ -6050,7 +6046,6 @@ msgstr ""
 "Leerzeichen getrennt"
 
 #. TRANS: Title for personal tag cloud section.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Tags"
 msgstr "Tags"
@@ -6287,11 +6282,12 @@ msgid "License"
 msgstr "Lizenz"
 
 #. TRANS: Content part of StatusNet version page.
+#, fuzzy
 msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
 "Software Foundation, either version 3 of the License, or (at your option) "
-"any later version. "
+"any later version."
 msgstr ""
 "StatusNet ist freie Software: Sie dürfen es weiter verteilen und/oder "
 "verändern unter Berücksichtigung der Regeln zur GNU General Public License "
@@ -6299,11 +6295,12 @@ msgstr ""
 "der Lizenz, oder jede höhere Version."
 
 #. TRANS: Content part of StatusNet version page.
+#, fuzzy
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License "
-"for more details. "
+"for more details."
 msgstr ""
 "Dieses Programm wird in der Hoffnung vertrieben, dass es nützlich sein wird, "
 "aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der "
@@ -6754,9 +6751,8 @@ msgid "User deletion in progress..."
 msgstr "Löschung des Benutzers in Arbeit …"
 
 #. TRANS: Link title for link on user profile.
-#, fuzzy
 msgid "Edit profile settings."
-msgstr "Profil-Einstellungen ändern"
+msgstr "Profil-Einstellungen bearbeiten."
 
 #. TRANS: Link text for link on user profile.
 msgctxt "BUTTON"
@@ -6764,9 +6760,8 @@ msgid "Edit"
 msgstr "Bearbeiten"
 
 #. TRANS: Link title for link on user profile.
-#, fuzzy
 msgid "Send a direct message to this user."
-msgstr "Direkte Nachricht an Benutzer versenden"
+msgstr "Direkte Nachricht an diesen Benutzer versenden."
 
 #. TRANS: Link text for link on user profile.
 msgctxt "BUTTON"
@@ -8036,12 +8031,12 @@ msgstr "Alle zeigen"
 
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
-msgstr ""
+msgstr "Alle Gruppen, zu denen du gehörst, ansehen."
 
 #. TRANS: Menu item title in personal group navigation menu.
 #. TRANS: %s is a username.
 msgid "Back to top"
-msgstr ""
+msgstr "Zurück zum Anfang"
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -8246,15 +8241,15 @@ msgstr ""
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
 #. TRANS: Main body of new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s is now following you on %2$s."
-msgstr "%1$s folgt nun %2$s."
+msgstr "%1$s folgt dir nun auf %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s would like to listen to your notices on %2$s."
-msgstr "%1$s hat deine Nachrichten auf „%2$s“ abonniert."
+msgstr "%1$s würde gerne deine Nachrichten auf „%2$s“ abonnieren."
 
 #. TRANS: Main body of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
@@ -8269,7 +8264,7 @@ msgstr ""
 #. TRANS: Common footer block for StatusNet notification emails.
 #. TRANS: %1$s is the StatusNet sitename,
 #. TRANS: %2$s is a link to the addressed user's e-mail settings.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Faithfully yours,\n"
 "%1$s.\n"
@@ -8277,17 +8272,12 @@ msgid ""
 "----\n"
 "Change your email address or notification options at %2$s"
 msgstr ""
-"%1$s hat deine Nachrichten auf %2$s abonniert.\n"
-"\n"
-"%3$s\n"
-"\n"
-"%4$s%5$s%6$s\n"
 "Mit freundlichen Grüßen,\n"
-"%2$s.\n"
+"%1$s \n"
 "\n"
 "----\n"
-"Du kannst deine E-Mail-Adresse und die Benachrichtigungseinstellungen auf %7"
-"$s ändern.\n"
+"Du kannst deine E-Mail-Adresse und die Benachrichtigungseinstellungen auf %2"
+"$s ändern."
 
 #. TRANS: Profile info line in notification e-mail.
 #. TRANS: %s is a URL.
@@ -8303,7 +8293,7 @@ msgstr "Biografie: %s"
 
 #. TRANS: This is a paragraph in a new-subscriber e-mail.
 #. TRANS: %s is a URL where the subscriber can be reported as abusive.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "If you believe this account is being used abusively, you can block them from "
 "your subscribers list and report as spam to site administrators at %s."
@@ -8321,7 +8311,7 @@ msgstr "Neue E-Mail-Adresse, um auf „%s“ zu schreiben"
 #. TRANS: Body of notification mail for new posting email address.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the e-mail address to send
 #. TRANS: to to post by e-mail, %3$s is a URL to more instructions.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You have a new posting address on %1$s.\n"
 "\n"
@@ -8333,10 +8323,7 @@ msgstr ""
 "\n"
 "Schicke eine E-Mail an %2$s, um eine neue Nachricht hinzuzufügen.\n"
 "\n"
-"Weitere E-Mail-Anweisungen unter %3$s.\n"
-"\n"
-"Viele Grüße,\n"
-"%1$s"
+"Weitere E-Mail-Anweisungen unter %3$s."
 
 #. TRANS: Subject line for SMS-by-email notification messages.
 #. TRANS: %s is the posting user's nickname.
@@ -8365,7 +8352,7 @@ msgstr "Du wurdest von „%s“ angestupst"
 #. TRANS: Body for 'nudge' notification email.
 #. TRANS: %1$s is the nuding user's long name, $2$s is the nudging user's nickname,
 #. TRANS: %3$s is a URL to post notices at.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%1$s (%2$s) is wondering what you are up to these days and is inviting you "
 "to post some news.\n"
@@ -8383,10 +8370,7 @@ msgstr ""
 "\n"
 "%3$s\n"
 "\n"
-"Antworte nicht auf diese E-Mail, sie wird niemanden erreichen.\n"
-"\n"
-"Mit freundlichen Grüßen,\n"
-"%4$s\n"
+"Antworte nicht auf diese E-Mail, sie wird niemanden erreichen."
 
 #. TRANS: Subject for direct-message notification email.
 #. TRANS: %s is the sending user's nickname.
@@ -8397,7 +8381,7 @@ msgstr "Neue private Nachricht von „%s“"
 #. TRANS: Body for direct-message notification email.
 #. TRANS: %1$s is the sending user's long name, %2$s is the sending user's nickname,
 #. TRANS: %3$s is the message content, %4$s a URL to the message,
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%1$s (%2$s) sent you a private message:\n"
 "\n"
@@ -8421,10 +8405,7 @@ msgstr ""
 "\n"
 "%4$s\n"
 "\n"
-"Antworte nicht auf diese E-Mail, sie wird niemanden erreichen.\n"
-"\n"
-"Mit freundlichen Grüßen,\n"
-"%5$s"
+"Antworte nicht auf diese E-Mail, sie wird niemanden erreichen."
 
 #. TRANS: Subject for favorite notification e-mail.
 #. TRANS: %1$s is the adding user's long name, %2$s is the adding user's nickname.
@@ -8437,7 +8418,7 @@ msgstr "%1$s (@%2$s) hat deine Nachricht als Favorit gespeichert"
 #. TRANS: %3$s is a URL to the faved notice, %4$s is the faved notice text,
 #. TRANS: %5$s is a URL to all faves of the adding user, %6$s is the StatusNet sitename,
 #. TRANS: %7$s is the adding user's nickname.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%1$s (@%7$s) just added your notice from %2$s as one of their favorites.\n"
 "\n"
@@ -8458,11 +8439,8 @@ msgstr ""
 "%3$s\n"
 "Der Text der Nachricht ist:\n"
 "%4$s\n"
-"Die Favoritenliste von %1$s ist hier:\n"
-"%5$s\n"
-"\n"
-"Gruß,\n"
-"%6$s\n"
+"Die Favoritenliste von %1$s ist hier einsehbar:\n"
+"%5$s"
 
 #. TRANS: Line in @-reply notification e-mail. %s is conversation URL.
 #, php-format
@@ -8488,7 +8466,7 @@ msgstr ""
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
 #. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%1$s just sent a notice to your attention (an '@-reply') on %2$s.\n"
 "\n"
@@ -8508,8 +8486,7 @@ msgid ""
 "\n"
 "%7$s"
 msgstr ""
-"%1$s (@%9$s) hat dir gerade eine Nachricht (eine „@-Antwort“) auf „%2$s“ "
-"gesendet.\n"
+"%1$s hat dir gerade eine Nachricht (eine „@-Antwort“) auf „%2$s“ gesendet.\n"
 "\n"
 "Die Nachricht findest du hier:\n"
 "\n"
@@ -8525,32 +8502,27 @@ msgstr ""
 "\n"
 "Eine Liste aller @-Antworten an dich findest du hier:\n"
 "\n"
-"%7$s\n"
-"\n"
-"Hochachtungsvoll dein,\n"
-"%2$s\n"
-"\n"
-"P.S. Diese E-Mail Benachrichtigung kannst du hier deaktivieren: %8$s\n"
+"%7$s"
 
 #. TRANS: Subject of group join notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s has joined your group %2$s on %3$s"
-msgstr "%1$s ist der Gruppe „%2$s“ beigetreten."
+msgstr "%1$s ist deiner Gruppe „%2$s“ auf %3$s beigetreten"
 
 #. TRANS: Main body of group join notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
 #. TRANS: %4$s is a block of profile info about the subscriber.
 #. TRANS: %5$s is a link to the addressed user's e-mail settings.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s has joined your group %2$s on %3$s."
-msgstr "%1$s ist der Gruppe „%2$s“ beigetreten."
+msgstr "%1$s ist deiner Gruppe „%2$s“ auf %3$s beigetreten."
 
 #. TRANS: Subject of pending group join request notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s wants to join your group %2$s on %3$s."
-msgstr "%1$s ist der Gruppe „%2$s“ beigetreten."
+msgstr "%1$s will deiner Gruppe „%2$s“ auf %3$s beitreten."
 
 #. TRANS: Main body of pending group join request notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
@@ -8582,20 +8554,17 @@ msgid "Inbox"
 msgstr "Posteingang"
 
 #. TRANS: Menu item title in mailbox menu. Leads to incoming private messages.
-#, fuzzy
 msgid "Your incoming messages."
-msgstr "Deine eingehenden Nachrichten"
+msgstr "Deine eingehenden Nachrichten."
 
 #. TRANS: Menu item in mailbox menu. Leads to outgoing private messages.
-#, fuzzy
 msgctxt "MENU"
 msgid "Outbox"
 msgstr "Postausgang"
 
 #. TRANS: Menu item title in mailbox menu. Leads to outgoing private messages.
-#, fuzzy
 msgid "Your sent messages."
-msgstr "Deine gesendeten Nachrichten"
+msgstr "Deine gesendeten Nachrichten."
 
 #. TRANS: Error message in incoming mail handler used when an incoming e-mail cannot be processed.
 msgid "Could not parse message."
@@ -8781,9 +8750,8 @@ msgid "Attach"
 msgstr "Anhängen"
 
 #. TRANS: Title for input field to attach a file to a notice.
-#, fuzzy
 msgid "Attach a file."
-msgstr "Datei anhängen"
+msgstr "Datei anhängen."
 
 #. TRANS: Field label to add location to a notice.
 msgid "Share my location"
@@ -8855,9 +8823,8 @@ msgid "Reply"
 msgstr "Antworten"
 
 #. TRANS: Link title in notice list item to delete a notice.
-#, fuzzy
 msgid "Delete this notice from the timeline."
-msgstr "Nachricht löschen"
+msgstr "Diese Nachricht aus der Zeitleiste löschen."
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
 msgid "Notice repeated."
@@ -9157,14 +9124,12 @@ msgid "Login to the site."
 msgstr "Auf der Seite anmelden."
 
 #. TRANS: H2 text for user subscription statistics.
-#, fuzzy
 msgid "Following"
-msgstr "Folgen"
+msgstr "Folgend"
 
 #. TRANS: H2 text for user subscriber statistics.
-#, fuzzy
 msgid "Followers"
-msgstr "Folgen"
+msgstr "Folgende"
 
 #. TRANS: H2 text for user statistics.
 msgid "Statistics"
@@ -9201,7 +9166,6 @@ msgid "User groups"
 msgstr "Benutzer-Gruppen"
 
 #. TRANS: Menu item in search group navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Recent tags"
 msgstr "Aktuelle Tags"
@@ -9217,10 +9181,9 @@ msgid "Featured"
 msgstr "Beliebte Benutzer"
 
 #. TRANS: Menu item in search group navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Popular"
-msgstr "Beliebte Beiträge"
+msgstr "Beliebt"
 
 #. TRANS: Title for inbox tag cloud section.
 msgctxt "TITLE"
@@ -9236,7 +9199,6 @@ msgid "Repeat this notice?"
 msgstr "Diese Nachricht wiederholen?"
 
 #. TRANS: Button title to repeat a notice on notice repeat form.
-#, fuzzy
 msgid "Repeat this notice."
 msgstr "Diese Nachricht wiederholen"
 
@@ -9308,7 +9270,6 @@ msgstr ""
 "* [Collecta](http://collecta.com/#q=%s)"
 
 #. TRANS: Menu item in search group navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "People"
 msgstr "Leute"
@@ -9318,7 +9279,6 @@ msgid "Find people on this site"
 msgstr "Finde Leute auf dieser Seite"
 
 #. TRANS: Menu item in search group navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Notices"
 msgstr "Nachrichten"
@@ -9332,25 +9292,21 @@ msgid "Find groups on this site"
 msgstr "Finde Gruppen auf dieser Seite"
 
 #. TRANS: Secondary navigation menu item leading to Terms of Service.
-#, fuzzy
 msgctxt "MENU"
 msgid "TOS"
 msgstr "AGB"
 
 #. TRANS: Secondary navigation menu item leading to privacy policy.
-#, fuzzy
 msgctxt "MENU"
 msgid "Privacy"
 msgstr "Privatsphäre"
 
 #. TRANS: Secondary navigation menu item. Leads to information about StatusNet and its license.
-#, fuzzy
 msgctxt "MENU"
 msgid "Source"
 msgstr "Quellcode"
 
 #. TRANS: Secondary navigation menu item leading to version information on the StatusNet site.
-#, fuzzy
 msgctxt "MENU"
 msgid "Version"
 msgstr "Version"
@@ -9373,7 +9329,6 @@ msgid "Change your profile settings"
 msgstr "Ändern der Profileinstellungen"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Avatar"
 msgstr "Avatar"
@@ -9383,7 +9338,6 @@ msgid "Upload an avatar"
 msgstr "Avatar hochladen"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Password"
 msgstr "Passwort"
@@ -9393,17 +9347,15 @@ msgid "Change your password"
 msgstr "Ändere dein Passwort"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Email"
-msgstr "Email"
+msgstr "E-Mail"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Change email handling"
 msgstr "Ändere die E-Mail-Verarbeitung"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "URL"
 msgstr "URL"
@@ -9442,7 +9394,7 @@ msgstr "Programme mit Zugriffserlaubnis"
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
 msgid "Old school"
-msgstr ""
+msgstr "Alte Schule"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "UI tweaks for old-school users"
@@ -9481,9 +9433,8 @@ msgid "Database error inserting OAuth application user."
 msgstr "Datenbankfehler beim Einfügen des OAuth-Programm-Benutzers."
 
 #. TRANS: Exception thrown when a database error occurs.
-#, fuzzy
 msgid "Database error updating OAuth application user."
-msgstr "Datenbankfehler beim Einfügen des OAuth-Programm-Benutzers."
+msgstr "Datenbankfehler beim Aktualisieren des OAuth-Programm-Benutzers."
 
 #. TRANS: Exception thrown when an attempt is made to revoke an unknown token.
 msgid "Tried to revoke unknown token."
@@ -9569,7 +9520,6 @@ msgid "People Tagcloud as tagged"
 msgstr "Personen-Tag, wie markiert wurde"
 
 #. TRANS: Content displayed in a tag cloud section if there are no tags.
-#, fuzzy
 msgctxt "NOTAGS"
 msgid "None"
 msgstr "Nichts"
@@ -9644,11 +9594,11 @@ msgstr "Nachrichten"
 
 #. TRANS: Link to show replies for a notice.
 #. TRANS: %d is the number of replies to a notice and used for plural.
-#, fuzzy, php-format
+#, php-format
 msgid "Show reply"
 msgid_plural "Show all %d replies"
-msgstr[0] "Mehr anzeigen"
-msgstr[1] "Mehr anzeigen"
+msgstr[0] "Antwort anzeigen"
+msgstr[1] "Alle %d Antworten anzeigen"
 
 #. TRANS: Reference to the logged in user in favourite list.
 msgctxt "FAVELIST"
@@ -9767,15 +9717,13 @@ msgid "My colleagues at %s"
 msgstr "Meine Kollegen bei %s"
 
 #. TRANS: Label for drop-down of potential addressees.
-#, fuzzy
 msgctxt "LABEL"
 msgid "To:"
-msgstr "An"
+msgstr "An:"
 
 #. TRANS: Checkbox label in widget for selecting potential addressees to mark the notice private.
-#, fuzzy
 msgid "Private?"
-msgstr "Privat"
+msgstr "Privat?"
 
 #. TRANS: Client exception thrown in widget for selecting potential addressees when an invalid fill option was received.
 #, fuzzy, php-format

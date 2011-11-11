@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Dvdgmz
+# Author: Gemmaa
 # Author: Toniher
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -10,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Aim\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-28 14:08+0000\n"
-"PO-Revision-Date: 2011-10-28 14:08:34+0000\n"
+"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"PO-Revision-Date: 2011-11-11 15:03:35+0000\n"
 "Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-18 16:18:38+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
-"27)\n"
+"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-aim\n"
@@ -29,7 +30,7 @@ msgstr "Envia'm un missatge per publicar un avís"
 
 #. TRANS: Display name.
 msgid "AIM"
-msgstr ""
+msgstr "AIM"
 
 #. TRANS: Exception thrown in AIM plugin when user has not been specified.
 msgid "Must specify a user."
@@ -43,3 +44,5 @@ msgstr "Has d'especificar una contrassenya"
 msgid ""
 "The AIM plugin allows users to send and receive notices over the AIM network."
 msgstr ""
+"El connector XMPP permet als usuaris enviar i rebre avisos des de la xarxa "
+"XMPP/Jabber."

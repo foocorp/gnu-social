@@ -5,6 +5,7 @@
 # Author: Marcel083
 # Author: Michael
 # Author: The Evil IP address
+# Author: Tiin
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -12,14 +13,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - BitlyUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-28 14:08+0000\n"
-"PO-Revision-Date: 2011-10-28 14:08:44+0000\n"
+"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"PO-Revision-Date: 2011-11-11 15:03:47+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:49:47+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
-"27)\n"
+"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-bitlyurl\n"
@@ -42,7 +43,6 @@ msgstr ""
 "benutzerdefinierte Domains."
 
 #. TRANS: Client error displayed when using too long a key.
-#, fuzzy
 msgid "Invalid login. Maximum length is 255 characters."
 msgstr "Ungültige Anmeldung. Maximale Länge sind 255 Zeichen."
 
