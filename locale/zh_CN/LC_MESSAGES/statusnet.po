@@ -18,14 +18,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-28 14:08+0000\n"
-"PO-Revision-Date: 2011-10-28 14:11:32+0000\n"
+"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"PO-Revision-Date: 2011-11-11 15:06:50+0000\n"
 "Language-Team: Simplified Chinese <https://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
-"27)\n"
+"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -5194,11 +5194,11 @@ msgstr ""
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
-"[StatusNet](http://status.net/) tool. "
+"[StatusNet](http://status.net/) tool."
 msgstr ""
 "**%s**在%%%%site.name%%%%有一个账号，%%%%site.name%%%%是一个基于自由软件"
 "[StatusNet](http://status.net/)的[微博客](http://zh.wikipedia.org/zh-hans/%"
@@ -6026,21 +6026,23 @@ msgid "License"
 msgstr "许可协议"
 
 #. TRANS: Content part of StatusNet version page.
+#, fuzzy
 msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
 "Software Foundation, either version 3 of the License, or (at your option) "
-"any later version. "
+"any later version."
 msgstr ""
 "StatusNet 是一个免费软件，你可以在遵守自由软件基金会发布的 GNU Affero GPL 或"
 "第三版或以后的版本的情况下重新部署或者修改它，"
 
 #. TRANS: Content part of StatusNet version page.
+#, fuzzy
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License "
-"for more details. "
+"for more details."
 msgstr ""
 "这个程序的发布是希望它可以有用，但没有任何的担保；也没有售后性或者符合其他特"
 "别目的的担保。查看 GNU Affero GPL 了解更多信息。"

@@ -4,6 +4,7 @@
 # Author: Fujnky
 # Author: Giftpflanze
 # Author: MF-Warburg
+# Author: Tiin
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -11,14 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-28 14:08+0000\n"
-"PO-Revision-Date: 2011-10-28 14:11:26+0000\n"
+"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"PO-Revision-Date: 2011-11-11 15:06:56+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:33+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
-"27)\n"
+"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
@@ -66,10 +67,12 @@ msgstr "Ungültige Formulardaten."
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
 msgid "The mirror request failed, because no result was retrieved."
 msgstr ""
+"Die Spiegel-Anforderung ist fehlgeschlagen, weil kein Ergebnis abgerufen "
+"wurde."
 
 #. TRANS: Exception thrown when a feed provider could not be recognised.
 msgid "Internal form error: Unrecognized feed provider."
-msgstr ""
+msgstr "Interner Formfehler: Unerkannter Feed-Provider."
 
 #. TRANS: Exception thrown when a subscribing to a feed fails.
 msgid "Could not subscribe to feed."
@@ -137,7 +140,6 @@ msgid "Mirroring style"
 msgstr "Spiegelungs-Stil"
 
 #. TRANS: Feed mirror style (radio button option).
-#, fuzzy
 msgid ""
 "Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 msgstr ""
@@ -149,13 +151,11 @@ msgid "Repost the content under my account"
 msgstr "Den Inhalt mit meinem Konto erneut posten"
 
 #. TRANS: Button text to save feed mirror settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Speichern"
 
 #. TRANS: Button text to stop mirroring a feed.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Stop mirroring"
 msgstr "Mit dem Spiegeln aufhören"

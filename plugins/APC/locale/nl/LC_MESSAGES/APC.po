@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: McDutchie
+# Author: Siebrand
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - APC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-28 14:08+0000\n"
-"PO-Revision-Date: 2011-10-28 14:08:37+0000\n"
+"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"PO-Revision-Date: 2011-11-11 15:03:40+0000\n"
 "Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-18 16:18:40+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
-"27)\n"
+"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-apc\n"
@@ -28,4 +29,4 @@ msgid ""
 "to cache query results."
 msgstr ""
 "De variabelencache <a href=\"http://pecl.php.net/package/apc\">APC</a> "
-"gebruiken op resultaten van zoekopdrachten te cachen."
+"gebruiken om resultaten van zoekopdrachten te cachen."
