@@ -45,6 +45,8 @@ class Group_member extends Managed_DataObject
                 // @fixme probably we want a (profile_id, created) index here?
                 'group_member_profile_id_idx' => array('profile_id'),
                 'group_member_created_idx' => array('created'),
+                'group_member_profile_id_created_idx' => array('profile_id', 'created'),
+                'group_member_group_id_created_idx' => array('group_id', 'created'),
             ),
         );
     }

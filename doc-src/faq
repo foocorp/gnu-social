@@ -8,39 +8,43 @@ some answers.
 What is %%site.name%%?
 ----------------------
 
-%%site.name%% is a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service.
+%%site.name%% is a stream oriented social network service.
+
 You can use it to write short notices about yourself, where you are,
 and what you're doing, and those notices will be sent to all your friends
 and fans.
 
-How is %%site.name%% different from Twitter, Jaiku, Pownce, Plurk, others?
---------------------------------------------------------------------------
+You can also post event invitations, bookmarks, polls, and questions or
+other kinds of social broadcasts.
 
-%%site.name%% is an [Open Network Service](http://opendefinition.org/ossd). Our main
-goal is to provide a fair and transparent service that preserves users' autonomy. In
-particular, all the software used for %%site.name%% is [Free Software](http://en.wikipedia.org/wiki/Free_Software), and all the data is available
-under the [%%license.title%%](%%license.url%%) license, making it Open Data.
+How is %%site.name%% different from Twitter?
+--------------------------------------------
 
-The software also implements the [OpenMicroBlogging](http://openmicroblogging.org/) protocol, meaning that you can have friends on other microblogging services
-that can receive your notices.
+Like [Twitter](http://twitter.com/), %%site.name%% is a light service
+with a stream-oriented interface. It uses @-replies, hashtags,
+provides search, and has private messages. It provides an API, and can
+be integrated with SMS systems. You can create lists.
 
-The goal here is *autonomy* -- you deserve the right to manage your own on-line
-presence. If you don't like how %%site.name%% works, you can take your data and the source code and set up your own server (or move your account to another one).
+Unlike Twitter, %%site.name%% allows more data than just plain text
+and links to travel across the network. You can install the StatusNet
+software that runs %%site.name%% on your own servers, since it's Free
+and Open Source software. You can make groups, and share privately
+with those groups.
 
-Where is feature X?
--------------------
+You can make your site available only to people you choose. You can
+customize it with your own themes and plugins, or download plugins
+from the StatusNet site.
 
-The software we run, [StatusNet](http://status.net/), is still in its early stages,
-and many features people expect from microblogging sites are not yet implemented. Some important ones that are expected "soon":
+How is %%site.name%% different from Yammer, SocialCast, or Salesforce Chatter?
+------------------------------------------------------------------------------
 
-* More [AJAX](http://en.wikipedia.org/wiki/AJAX)-y interface
-* Maps
-* Cross-post to Pownce, Jaiku, etc.
-* Pull messages from Twitter, Pownce, Jaiku, etc.
-* [Facebook](http://www.facebook.com/) integration
-* Image, video, audio notices
+Like some enterprise social software services, StatusNet lets you
+share privately with other people in your company. You can use
+microapps to post richer kinds of data, use public and private groups
+to share with team members, use extended profiles to show more about
+yourself and your company, and review groups and users in a directory.
 
-There is [a list of bugs and features](http://status.net/bugs/) that you may find
-interesting. New ideas or complaints are very welcome.
-
+Unlike those other services, StatusNet is free and open source
+software. You can install it on your own servers. You can customize
+the theme and add plugins.
 

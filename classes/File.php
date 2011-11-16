@@ -85,14 +85,22 @@ class File extends Managed_DataObject
      * @return File
      */
     function saveNew(array $redir_data, $given_url) {
-        $x = new File;
-        $x->url = $given_url;
-        if (!empty($redir_data['protected'])) $x->protected = $redir_data['protected'];
-        if (!empty($redir_data['title'])) $x->title = $redir_data['title'];
-        if (!empty($redir_data['type'])) $x->mimetype = $redir_data['type'];
-        if (!empty($redir_data['size'])) $x->size = intval($redir_data['size']);
-        if (isset($redir_data['time']) && $redir_data['time'] > 0) $x->date = intval($redir_data['time']);
-        $file_id = $x->insert();
+
+        // I don't know why we have to keep doing this but I'm adding this last check to avoid
+        // uniqueness bugs.
+
+        $x = File::staticGet('url', $given_url);
+        
+        if (empty($x)) {
+            $x = new File;
+            $x->url = $given_url;
+            if (!empty($redir_data['protected'])) $x->protected = $redir_data['protected'];
+            if (!empty($redir_data['title'])) $x->title = $redir_data['title'];
+            if (!empty($redir_data['type'])) $x->mimetype = $redir_data['type'];
+            if (!empty($redir_data['size'])) $x->size = intval($redir_data['size']);
+            if (isset($redir_data['time']) && $redir_data['time'] > 0) $x->date = intval($redir_data['time']);
+            $file_id = $x->insert();
+        }
 
         $x->saveOembed($redir_data, $given_url);
         return $x;
@@ -192,7 +200,7 @@ class File extends Managed_DataObject
         }
 
         if (empty($x)) {
-            $x = File::staticGet($file_id);
+            $x = File::staticGet('id', $file_id);
             if (empty($x)) {
                 // @todo FIXME: This could possibly be a clearer message :)
                 // TRANS: Server exception thrown when... Robin thinks something is impossible!

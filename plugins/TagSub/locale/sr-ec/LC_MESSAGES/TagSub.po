@@ -9,14 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TagSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:43+0000\n"
+"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"PO-Revision-Date: 2011-11-11 15:07:01+0000\n"
 "Language-Team: Serbian (Cyrillic script) <https://translatewiki.net/wiki/"
 "Portal:sr-ec>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:36+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
+"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: sr-ec\n"
 "X-Message-Group: #out-statusnet-plugin-tagsub\n"
@@ -140,12 +141,12 @@ msgstr ""
 #. TRANS: than the logged in user that has no tag subscriptions. %s is the user nickname.
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
 #. TRANS: as an anonymous user. %s is the user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "%s is not following any tags."
-msgstr "%s не слуша ниједну ознаку."
+msgstr "%s не прати ниједну ознаку."
 
 #. TRANS: %1$s is a URL to a tag, %2$s is a tag,
 #. TRANS: %3$s a date string.
-#, fuzzy, php-format
+#, php-format
 msgid "#<a href=\"%1$s\">%2$s</a> since %3$s"
-msgstr "#<a href=\"%s\">%s</a> од %s"
+msgstr "#<a href=\"%1$s\">%2$s</a> од %3$s"

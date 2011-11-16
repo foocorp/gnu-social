@@ -229,7 +229,7 @@ class Action extends HTMLOutputter // lawsuit
                 Event::handle('EndShowLaconicaStyles', array($this));
             }
 
-            $this->cssLink(common_path('js/css/smoothness/jquery-ui.css'));
+            $this->cssLink(common_path('js/css/smoothness/jquery-ui.css', StatusNet::isHTTPS()));
 
             if (Event::handle('StartShowUAStyles', array($this))) {
                 $this->comment('[if IE]><link rel="stylesheet" type="text/css" '.
@@ -328,10 +328,8 @@ class Action extends HTMLOutputter // lawsuit
                 }
                 // This route isn't available in single-user mode.
                 // Not sure why, but it causes errors here.
-                if (!common_config('singleuser', 'enabled')) {
-                    $this->inlineScript('var _peopletagAC = "' .
-                                        common_local_url('peopletagautocomplete') . '";');
-                }
+                $this->inlineScript('var _peopletagAC = "' .
+                                    common_local_url('peopletagautocomplete') . '";');
                 $this->showScriptMessages();
                 // Anti-framing code to avoid clickjacking attacks in older browsers.
                 // This will show a blank page if the page is being framed, which is

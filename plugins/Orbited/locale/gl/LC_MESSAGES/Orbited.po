@@ -1,0 +1,31 @@
+# Translation of StatusNet - Orbited to Galician (Galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Orbited\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"PO-Revision-Date: 2011-11-11 15:05:52+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:13+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-orbited\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Server exception thrown when no connection can be made to a queue server.
+msgid "Failed to connect to queue server."
+msgstr "Erro ao conectar co servidor da cola de espera."
+
+#. TRANS: Plugin description.
+msgid "Plugin to make updates using Orbited and STOMP."
+msgstr "Complemento para realizar actualizacións mediante Orbited e STOMP."

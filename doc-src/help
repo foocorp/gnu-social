@@ -2,38 +2,18 @@
 <!-- Document licensed under Creative Commons Attribution 3.0 Unported. See -->
 <!-- http://creativecommons.org/licenses/by/3.0/ for details. -->
 
-%%site.name%% is a **microblogging service**. Users post short (%%site.textlimit%%
-character) notices which are broadcast to their friends and fans using
-the Web, RSS, or instant messages.
+%%site.name%% is a **social service**. Users can post short
+(%%site.textlimit%% character) status messages which are broadcast to
+their friends and colleagues on the service and (optionally) onto the Web.
+
+You can also broadcast other types of data, like bookmarks, event
+invitations, polls, and questions.
 
 If you'd like to try it out, first [register](%%action.register%%) a new account.
-Then, on the [public timeline](%%action.public%%), enter your message into
+Then, on the [public timeline](%%action.top%%), enter your message into
 the textbox at the top of the page, and click "Send". It will go out on the
-public timeline and to anyone who is subscribed to your notices (probably nobody,
-at first).
+public timeline and to anyone who is subscribed to your notices.
 
 To subscribe to other people's notifications, go to their profile page
 and click the "subscribe" button. They'll get a notice that you're now
-subscribed to their notifications, and, who knows?, they might subscribe
-back.
-
-More help
----------
-
-Here are some documents that you might find helpful in understanding
-%%site.name%% and how to use it.
-
-* [About](%%doc.about%%) - an overview of the service
-* [FAQ](%%doc.faq%%) - frequently-asked questions about %%site.name%%
-* [Contact](%%doc.contact%%) - who to contact with questions about the service
-* [IM](%%doc.im%%) - using the instant-message (IM) features of %%site.name%%
-* [SMS](%%doc.sms%%) - tying your cellphone to %%site.name%%
-* [Tags](%%doc.tags%%) - different ways to use tagging
-* [Groups](%%doc.groups%%) - joining together in groups
-* [Lists](%%doc.lists%%) - organize your contacts
-* [OpenMicroBlogging](%%doc.openmublog%%) - subscribing to remote users
-* [Privacy](%%doc.privacy%%) - %%site.name%%'s privacy policy
-* [Source](%%doc.source%%) - How to get the StatusNet source code
-* [Badge](%%doc.badge%%) - How to put a StatusNet badge on your blog or homepage
-* [Bookmarklet](%%doc.bookmarklet%%) - Bookmarklet for posting Web pages
-* [API](%%doc.api%%) - API for use by external clients
+subscribed to their notifications.

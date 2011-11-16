@@ -255,7 +255,9 @@ class PublicAction extends Action
             $ibs->show();
         }
 
-        $pop = new PopularNoticeSection($this);
+        $p = Profile::current();
+
+        $pop = new PopularNoticeSection($this, $p);
         $pop->show();
         if (!common_config('performance', 'high')) {
             $cloud = new PublicTagCloudSection($this);

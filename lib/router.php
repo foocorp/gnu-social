@@ -156,6 +156,7 @@ class Router
                           'backupaccount',
                           'deleteaccount',
                           'restoreaccount',
+                          'top',
             );
 
             foreach ($main as $a) {
@@ -331,6 +332,10 @@ class Router
                         array('id' => '[0-9]+'));
 
             $m->connect('group/:nickname',
+                        array('action' => 'showgroup'),
+                        array('nickname' => Nickname::DISPLAY_FMT));
+
+            $m->connect('group/:nickname/',
                         array('action' => 'showgroup'),
                         array('nickname' => Nickname::DISPLAY_FMT));
 
@@ -817,6 +822,22 @@ class Router
                         array('action' => 'getfile'),
                         array('filename' => '[A-Za-z0-9._-]+'));
 
+            // Common people-tag stuff
+
+            $m->connect('peopletag/:tag', array('action' => 'peopletag',
+                                                'tag'    => self::REGEX_TAG));
+
+            $m->connect('selftag/:tag', array('action' => 'selftag',
+                                              'tag'    => self::REGEX_TAG));
+
+            $m->connect('main/addpeopletag', array('action' => 'addpeopletag'));
+
+            $m->connect('main/removepeopletag', array('action' => 'removepeopletag'));
+
+            $m->connect('main/profilecompletion', array('action' => 'profilecompletion'));
+
+            $m->connect('main/peopletagautocomplete', array('action' => 'peopletagautocomplete'));
+
             // In the "root"
 
             if (common_config('singleuser', 'enabled')) {
@@ -880,6 +901,57 @@ class Router
                 $m->connect('',
                             array('action' => 'showstream',
                                   'nickname' => $nickname));
+
+                // peopletags
+
+                $m->connect('peopletags',
+                            array('action' => 'peopletagsbyuser'));
+
+                $m->connect('peopletags/private',
+                            array('action' => 'peopletagsbyuser',
+                                  'private' => 1));
+
+                $m->connect('peopletags/public',
+                            array('action' => 'peopletagsbyuser',
+                                  'public' => 1));
+
+                $m->connect('othertags',
+                            array('action' => 'peopletagsforuser'));
+
+                $m->connect('peopletagsubscriptions',
+                            array('action' => 'peopletagsubscriptions'));
+
+                $m->connect('all/:tag/subscribers',
+                            array('action' => 'peopletagsubscribers',
+                                  'tag' => self::REGEX_TAG));
+
+                $m->connect('all/:tag/tagged',
+                                array('action' => 'peopletagged',
+                                      'tag' => self::REGEX_TAG));
+
+                $m->connect('all/:tag/edit',
+                                array('action' => 'editpeopletag',
+                                      'tag' => self::REGEX_TAG));
+
+                foreach(array('subscribe', 'unsubscribe') as $v) {
+                    $m->connect('peopletag/:id/'.$v,
+                                    array('action' => $v.'peopletag',
+                                          'id' => '[0-9]{1,64}'));
+                }
+                $m->connect('user/:tagger_id/profiletag/:id/id',
+                                array('action' => 'profiletagbyid',
+                                      'tagger_id' => '[0-9]+',
+                                      'id' => '[0-9]+'));
+
+                $m->connect('all/:tag',
+                                array('action' => 'showprofiletag',
+                                      'tag' => self::REGEX_TAG));
+
+                foreach (array('subscriptions', 'subscribers') as $a) {
+                    $m->connect($a.'/:tag',
+                                array('action' => $a),
+                                array('tag' => self::REGEX_TAG));
+                }
             } else {
                 $m->connect('', array('action' => 'public'));
                 $m->connect('rss', array('action' => 'publicrss'));
@@ -903,20 +975,6 @@ class Router
                             array('nickname' => Nickname::DISPLAY_FMT));
 
                 // people tags
-
-                $m->connect('peopletag/:tag', array('action' => 'peopletag',
-                                                    'tag'    => self::REGEX_TAG));
-
-                $m->connect('selftag/:tag', array('action' => 'selftag',
-                                                  'tag'    => self::REGEX_TAG));
-
-                $m->connect('main/addpeopletag', array('action' => 'addpeopletag'));
-
-                $m->connect('main/removepeopletag', array('action' => 'removepeopletag'));
-
-                $m->connect('main/profilecompletion', array('action' => 'profilecompletion'));
-
-                $m->connect('main/peopletagautocomplete', array('action' => 'peopletagautocomplete'));
 
                 $m->connect(':nickname/peopletags',
                                 array('action' => 'peopletagsbyuser',
@@ -1013,6 +1071,10 @@ class Router
                             array('nickname' => Nickname::DISPLAY_FMT));
 
                 $m->connect(':nickname',
+                            array('action' => 'showstream'),
+                            array('nickname' => Nickname::DISPLAY_FMT));
+
+                $m->connect(':nickname/',
                             array('action' => 'showstream'),
                             array('nickname' => Nickname::DISPLAY_FMT));
             }

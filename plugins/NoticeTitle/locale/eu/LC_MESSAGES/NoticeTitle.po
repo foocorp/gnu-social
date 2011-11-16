@@ -1,0 +1,40 @@
+# Translation of StatusNet - NoticeTitle to Basque (Euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - NoticeTitle\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"PO-Revision-Date: 2011-11-11 15:05:35+0000\n"
+"Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:09+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Language-Code: eu\n"
+"X-Message-Group: #out-statusnet-plugin-noticetitle\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Adds optional titles to notices."
+msgstr "Oharrei tituluak gehitzen uzten du."
+
+#. TRANS: Exception thrown when a notice title is too long.
+#. TRANS: %d is the maximum number of characters allowed in a title (used for plural).
+#, php-format
+msgid "The notice title is too long (maximum %d character)."
+msgid_plural "The notice title is too long (maximum %d characters)."
+msgstr[0] "Oharraren titulua luzeegia da (gehienez ere karaktere %d)."
+msgstr[1] "Oharraren titulua luzeegia da (gehienez ere %d karaktere."
+
+#. TRANS: Page title. %1$s is the title, %2$s is the site name.
+#, php-format
+msgid "%1$s - %2$s"
+msgstr "%1$s - %2$s"

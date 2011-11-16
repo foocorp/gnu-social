@@ -153,4 +153,23 @@ class GroupProfileBlock extends ProfileBlock
         }
         $this->out->elementEnd('div');
     }
+
+    function showName()
+    {
+        parent::showName();
+        $this->showAliases();
+    }
+
+    function showAliases()
+    {
+        $aliases = $this->group->getAliases();
+
+        if (!empty($aliases)) {
+            $this->out->elementStart('ul', 'group_aliases');
+            foreach ($aliases as $alias) {
+                $this->out->element('li', 'group_alias', $alias);
+            }
+            $this->out->elementEnd('ul');
+        }
+    }
 }

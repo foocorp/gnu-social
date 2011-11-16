@@ -34,8 +34,6 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 require_once INSTALLDIR.'/lib/widget.php';
 
-define('GROUPS_PER_PAGE', 20);
-
 /**
  * Widget to show a list of groups
  *

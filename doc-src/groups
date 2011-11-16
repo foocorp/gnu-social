@@ -4,7 +4,8 @@
 
 Users on %%site.name%% can create *groups* that other users can join.
 Groups can be a great way to share information and entertainment with
-a group of people who have a common interest or background.
+a group of people who have a common interest or background; who work
+together on a team; or who have a particular knowledge or skill.
 
 You can find out about groups on the server on the
 [Groups](%%action.groups%%) page. You can join a group by clicking on
@@ -13,16 +14,16 @@ the "Join" button either in the group list or on the group's home page.
 Starting a new group
 --------------------
 
-If you want, you can start a new group for friends and people with
-common interests. Note that all groups are free for anyone to join.
+You can start a new group for friends and colleagues. Note that all
+groups are free for anyone to join.
 
 To start a new group, use the [new group](%%action.newgroup%%) tool
 and fill out the form. Describe your group as best you can if you want
 people to be able to find it.
 
 When choosing the nickname for your group, try to keep it short. The
-nickname is included in every message to and from the group, so the
-less chars the better. Try using acronyms for organizations, or
+nickname is sometimes included in messages to and from the group, so
+the less chars the better. Try using acronyms for organizations, or
 airport codes for places (like 'pdx' instead of 'portland').
 
 Sending messages to a group
@@ -33,14 +34,22 @@ anywhere in the message. If you have more than one group named, the
 notice will go to each group. Only members can send notices to a
 group, and groups do not respond to direct messages (DMs).
 
+You can also select the group from the "To:" drop down when posting.
+
+You can make a group message private by clicking the "private" button
+before posting.
+
 Receiving messages
 ------------------
 
 New group messages will appear in your inbox, and will also come to
 your phone or IM client if you've set them up to receive notices.
 
-Remote groups
--------------
+Private groups
+--------------
 
-While it's technically possible, this version of StatusNet does not
-support remote group membership.
+The administrator can make a group private. For a private group, all
+notices will marked as private for group members only. Also,
+administrators will have to approve all new members to the group.
+
+Private groups are visible in the group directory.

@@ -103,41 +103,61 @@ class Profile extends Managed_DataObject
         return $this->_user;
     }
 
-	protected $_avatars;
-	
+    protected $_avatars;
+
     function getAvatar($width, $height=null)
     {
         if (is_null($height)) {
             $height = $width;
         }
 
-        if (!isset($this->_avatars)) {
-            $this->_avatars = array();
+        $avatar = $this->_getAvatar($width);
+
+        if (empty($avatar)) {
+
+            if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
+                $avatar = Avatar::pkeyGet(
+                    array(
+                        'profile_id' => $this->id,
+                        'width'      => $width,
+                        'height'     => $height
+                    )
+                );
+                Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
+            }
+
+            $this->_fillAvatar($width, $avatar);
         }
 
-		if (array_key_exists($width, $this->_avatars)) {
-			return $this->_avatars[$width];
-		}
-		
-        $avatar = null;
-
-        if (Event::handle('StartProfileGetAvatar', array($this, $width, &$avatar))) {
-            $avatar = Avatar::pkeyGet(array('profile_id' => $this->id,
-                                            'width' => $width,
-                                            'height' => $height));
-            Event::handle('EndProfileGetAvatar', array($this, $width, &$avatar));
-        }
-
-		$this->_avatars[$width] = $avatar;
-		
         return $avatar;
     }
 
-	function _fillAvatar($width, $avatar)
-	{
-		$this->_avatars[$width] = $avatar;    
-	}
-	
+    // XXX: @Fix me gargargar
+    function _getAvatar($width)
+    {
+        if (empty($this->_avatars)) {
+            $this->_avatars = array();
+        }
+
+        // GAR! I cannot figure out where _avatars gets pre-filled with the avatar from
+        // the previously used profile! Please shoot me now! --Zach
+        if (array_key_exists($width, $this->_avatars)) {
+            // Don't return cached avatar unless it's really for this profile
+            if ($this->_avatars[$width]->profile_id == $this->id) {
+                return $this->_avatars[$width];
+            }
+        }
+
+        return null;
+    }
+
+    function _fillAvatar($width, $avatar)
+    {
+      //common_debug("Storing avatar of width: {$avatar->width} and profile_id {$avatar->profile_id} in profile {$this->id}.");
+        $this->_avatars[$width] = $avatar;
+
+    }
+
     function getOriginalAvatar()
     {
         $avatar = DB_DataObject::factory('avatar');
@@ -328,6 +348,10 @@ class Profile extends Managed_DataObject
             }
 
             self::cacheSet($keypart, implode(',', $ids));
+        }
+
+        if (!is_null($offset) && !is_null($limit)) {
+            $ids = array_slice($ids, $offset, $limit);
         }
 
         return User_group::multiGet('id', $ids);
@@ -1453,5 +1477,9 @@ class Profile extends Managed_DataObject
     function getProfile()
     {
         return $this;
+    }
+
+    static function pivotGet($key, $values, $otherCols=array()) {
+        return Memcached_DataObject::pivotGet('Profile', $key, $values, $otherCols);
     }
 }
