@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SearchSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-28 14:08+0000\n"
-"PO-Revision-Date: 2011-10-28 14:11:13+0000\n"
+"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"PO-Revision-Date: 2011-11-11 15:06:41+0000\n"
 "Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-18 16:20:39+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r101121); Translate extension (2011-10-"
-"27)\n"
+"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-searchsub\n"
@@ -108,39 +108,39 @@ msgstr "No existeix el perfil."
 
 #. TRANS: Page title when search subscription succeeded.
 msgid "Subscribed"
-msgstr ""
+msgstr "Subscrit"
 
 #. TRANS: Form legend.
 msgid "Unsubscribe from this search"
-msgstr ""
+msgstr "Cancel·la la subscripció d'aquesta cerca"
 
 #. TRANS: Button text for unsubscribing from a text search.
 msgctxt "BUTTON"
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Cancel·la la subscripció"
 
 #. TRANS: Button title for unsubscribing from a text search.
 msgid "Unsubscribe from this search."
-msgstr ""
+msgstr "Cancel·la la subscripció d'aquesta cerca."
 
 #. TRANS: Page title when search unsubscription succeeded.
 msgid "Unsubscribed"
-msgstr ""
+msgstr "S'ha cancel·lat la subscripció"
 
 #. TRANS: Error text shown a user tries to track a search query they're already subscribed to.
 #, php-format
 msgid "You are already tracking the search \"%s\"."
-msgstr ""
+msgstr "Ja esteu seguint la cerca «%s»."
 
 #. TRANS: Message given having failed to set up a search subscription by track command.
 #, php-format
 msgid "Could not start a search subscription for query \"%s\"."
-msgstr ""
+msgstr "No s'ha pogut iniciar una subscripció de cerca de la consulta «%s»."
 
 #. TRANS: Message given having added a search subscription by track command.
 #, php-format
 msgid "You are subscribed to the search \"%s\"."
-msgstr ""
+msgstr "Esteu subscrit a la cerca «%s»."
 
 #. TRANS: Plugin description.
 msgid "Plugin to allow following all messages with a given search."
@@ -188,7 +188,7 @@ msgstr "No esteu seguint cap cerca."
 #. TRANS: Separator for list of tracked searches.
 msgctxt "SEPARATOR"
 msgid "\", \""
-msgstr ""
+msgstr "\", \""
 
 #. TRANS: Message given having disabled all search subscriptions with 'track off'.
 #. TRANS: %s is a list of searches. Separator default is '", "'.
