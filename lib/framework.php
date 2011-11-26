@@ -164,7 +164,7 @@ function PEAR_ErrorToPEAR_Exception($err)
     // keep the same broken connection. We die here to get a new
     // process started.
 
-    if (php_sapi_name() == 'cli' && preg_match('/nativecode=2006/', $msg)) {
+    if (php_sapi_name() == 'cli' && preg_match('/nativecode=2006/', $userInfo)) {
         common_log(LOG_ERR, "Lost DB connection; dying.");
         exit(100);
     }
