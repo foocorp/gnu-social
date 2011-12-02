@@ -159,6 +159,15 @@ function PEAR_ErrorToPEAR_Exception($err)
 
     common_log(LOG_ERR, "PEAR Error: $msg ($userInfo)");
 
+    // HACK: queue handlers get kicked by the long-query killer, and 
+    // keep the same broken connection. We die here to get a new
+    // process started.
+
+    if (php_sapi_name() == 'cli' && preg_match('/nativecode=2006/', $userInfo)) {
+        common_log(LOG_ERR, "Lost DB connection; dying.");
+        exit(100);
+    }
+
     if ($err->getCode()) {
         throw new PEAR_Exception($err->getMessage(), $err->getCode());
     }
