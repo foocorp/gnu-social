@@ -1086,7 +1086,7 @@ class User extends Managed_DataObject
 
         if (!$user) {
             // TRANS: Information on password recovery form if no known username or e-mail address was specified.
-            throw new ClientError(_('No user with that email address or username.'));
+            throw new ClientException(_('No user with that email address or username.'));
             return;
         }
 

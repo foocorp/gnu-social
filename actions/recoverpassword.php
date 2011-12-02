@@ -288,10 +288,11 @@ class RecoverpasswordAction extends Action
                            'have been sent to the email address registered to your ' .
                            'account.');
             $this->success = true;
-            $this->showPage();
         } catch (Exception $e) {
             $this->success = false;
+            $this->msg = $e->getMessage();
         }
+        $this->showPage();
     }
 
     function resetPassword()
