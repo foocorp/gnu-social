@@ -362,6 +362,7 @@ class StatusNet
             if (@file_exists($_config_file)) {
                 // Ignore 0-byte config files
                 if (filesize($_config_file) > 0) {
+                    common_log(LOG_INFO, "Including config file: " . $_config_file);
                     include($_config_file);
                     self::$have_config = true;
                 }
