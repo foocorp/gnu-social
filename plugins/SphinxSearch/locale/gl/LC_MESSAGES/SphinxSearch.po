@@ -1,0 +1,35 @@
+# Translation of StatusNet - SphinxSearch to Galician (Galego)
+# Exported from translatewiki.net
+#
+# Author: Toliño
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - SphinxSearch\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-12-03 10:43+0000\n"
+"PO-Revision-Date: 2011-12-03 10:47:02+0000\n"
+"Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:51:37+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r105064); Translate extension (2011-10-"
+"30)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Language-Code: gl\n"
+"X-Message-Group: #out-statusnet-plugin-sphinxsearch\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Server exception thrown when a database name cannot be identified.
+msgid "Sphinx search could not identify database name."
+msgstr "A procura Sphinx non puido identificar o nome da base de datos."
+
+#. TRANS: Server exception.
+msgid "Sphinx PHP extension must be installed."
+msgstr "Cómpre que a extensión PHP Sphinx estea instalada."
+
+#. TRANS: Plugin description.
+msgid "Plugin for Sphinx search backend."
+msgstr "Complemento para o motor de procuras Sphinx."

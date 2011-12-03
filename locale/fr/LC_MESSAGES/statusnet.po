@@ -5,6 +5,7 @@
 # Author: Brion
 # Author: Brunoperel
 # Author: Crochet.david
+# Author: DavidL
 # Author: Hashar
 # Author: IAlex
 # Author: Iketsi
@@ -30,18 +31,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:06:02+0000\n"
+"POT-Creation-Date: 2011-12-03 10:43+0000\n"
+"PO-Revision-Date: 2011-12-03 10:45:53+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"X-Generator: MediaWiki 1.19alpha (r105064); Translate extension (2011-10-"
 "30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
+"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -457,17 +458,15 @@ msgid "Unblock user failed."
 msgstr "Le déblocage de l’utilisateur a échoué."
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "aucun ID de conversation"
+msgstr "Pas d'identifiant de conversation."
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "No conversation with ID %d."
-msgstr "Aucune conversation avec l’ID %d"
+msgstr "Aucune conversation avec l’ID %d."
 
 #. TRANS: Title for conversion timeline.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Conversation"
@@ -1548,9 +1547,8 @@ msgid "No file uploaded."
 msgstr "Aucun fichier n’a été téléversé."
 
 #. TRANS: Avatar upload form instruction after uploading a file.
-#, fuzzy
 msgid "Pick a square area of the image to be your avatar."
-msgstr "Sélectionnez une zone de forme carrée pour définir votre avatar"
+msgstr "Sélectionner une zone carrée de l’image pour être votre avatar."
 
 #. TRANS: Server error displayed if an avatar upload went wrong somehow server side.
 #. TRANS: Server error displayed trying to crop an uploaded group logo that is no longer present.
@@ -1598,10 +1596,9 @@ msgstr ""
 "ne sont pas sauvegardés."
 
 #. TRANS: Submit button to backup an account on the backup account page.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Backup"
-msgstr "Arrière plan"
+msgstr "Sauvegarde"
 
 #. TRANS: Title for submit button to backup an account on the backup account page.
 msgid "Backup your account."
@@ -1852,7 +1849,6 @@ msgid "Enter \"%s\" to confirm that you want to delete your account."
 msgstr "Entrez « %s » pour confirmer que vous souhaitez supprimer votre compte."
 
 #. TRANS: Button title for user account deletion.
-#, fuzzy
 msgid "Permanently delete your account."
 msgstr "Supprimer définitivement votre compte"
 
@@ -2010,39 +2006,36 @@ msgstr "Ajouter aux favoris"
 
 #. TRANS: Client exception thrown when requesting a document from the documentation that does not exist.
 #. TRANS: %s is the non-existing document.
-#, fuzzy, php-format
+#, php-format
 msgid "No such document \"%s\"."
-msgstr "Document « %s » non trouvé."
+msgstr "Aucun document de ce type \" %s \"."
 
 #. TRANS: Menu item in administrator navigation panel.
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in personal group navigation menu.
-#, fuzzy
 msgctxt "MENU"
 msgid "Home"
-msgstr "Site personnel"
+msgstr "Accueil"
 
 msgctxt "MENU"
 msgid "Docs"
-msgstr ""
+msgstr "Documentation"
 
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 msgctxt "MENU"
 msgid "Help"
 msgstr "Aide"
 
-#, fuzzy
 msgid "Getting started"
-msgstr "Préférences enregistrées."
+msgstr "Pour commencer"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
 msgctxt "MENU"
 msgid "About"
 msgstr "À propos"
 
-#, fuzzy
 msgid "About this site"
-msgstr "Débloquer cet utilisateur"
+msgstr "À propos de ce site"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
 msgctxt "MENU"
@@ -2050,7 +2043,7 @@ msgid "FAQ"
 msgstr "FAQ"
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "Foire aux questions"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
@@ -2062,7 +2055,6 @@ msgstr "Contact"
 msgid "Contact info"
 msgstr "Contact"
 
-#, fuzzy
 msgctxt "MENU"
 msgid "Tags"
 msgstr "Balises"
@@ -2073,7 +2065,6 @@ msgstr ""
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
 #. TRANS: Menu item in local navigation menu.
-#, fuzzy
 msgctxt "MENU"
 msgid "Groups"
 msgstr "Groupes"
@@ -2084,7 +2075,7 @@ msgstr "Groupes d’utilisateurs"
 
 msgctxt "MENU"
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "RESTful API"
 msgstr ""
@@ -2215,14 +2206,12 @@ msgid "Not a local user."
 msgstr "Ceci n’est pas un utilisateur local."
 
 #. TRANS: Client error displayed when reting to edit a tag that was not self-created.
-#, fuzzy
 msgid "You must be the creator of the tag to edit it."
-msgstr "Vous devez être administrateur pour modifier le groupe."
+msgstr "Vous devez être le créateur de la balise pour le modifier."
 
 #. TRANS: Form instruction for edit list form.
-#, fuzzy
 msgid "Use this form to edit the list."
-msgstr "Remplissez ce formulaire pour modifier les options du groupe."
+msgstr "Utilisez ce formulaire pour modifier la liste."
 
 #. TRANS: Form validation error displayed if the form data for deleting a tag was incorrect.
 #, fuzzy
@@ -2241,9 +2230,9 @@ msgstr "Balise non valide."
 
 #. TRANS: Form validation error displayed if a given tag is already present.
 #. TRANS: %s is the already present tag.
-#, fuzzy, php-format
+#, php-format
 msgid "You already have a tag named %s."
-msgstr "Vous avez déjà repris cet avis."
+msgstr "Vous avez déjà une balise nommée  %s ."
 
 #. TRANS: Text in confirmation dialog for setting a tag from public to private.
 msgid ""

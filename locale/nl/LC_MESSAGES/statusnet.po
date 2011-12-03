@@ -13,18 +13,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:06:30+0000\n"
+"POT-Creation-Date: 2011-12-03 10:43+0000\n"
+"PO-Revision-Date: 2011-12-03 10:46:10+0000\n"
 "Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"X-Generator: MediaWiki 1.19alpha (r105064); Translate extension (2011-10-"
 "30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
+"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -5384,7 +5384,7 @@ msgstr ""
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
@@ -5392,7 +5392,7 @@ msgid ""
 msgstr ""
 "**%s** heeft een gebruiker op %%%%site.name%%%%, een [microblogdienst]"
 "(http://en.wikipedia.org/wiki/Micro-blogging) gebaseerd op de Vrije Software "
-"[StatusNet](http://status.net/). "
+"[StatusNet](http://status.net/)."
 
 #. TRANS: Link to the author of a repeated notice. %s is a linked nickname.
 #, php-format
@@ -6244,7 +6244,6 @@ msgid "License"
 msgstr "Licentie"
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
@@ -6254,10 +6253,9 @@ msgstr ""
 "StatusNet is vrije software. U kunt het herdistribueren en/of wijzigen in "
 "overeenstemming met de voorwaarden van de GNU Affero General Public License "
 "zoals gepubliceerd door de Free Software Foundation, versie 3 van de "
-"Licentie, of (naar uw keuze) elke latere versie. "
+"Licentie, of (naar uw keuze) elke latere versie."
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -6267,7 +6265,7 @@ msgstr ""
 "Dit programma wordt verspreid in de hoop dat het bruikbaar is, maar ZONDER "
 "ENIGE GARANTIE; zelfs zonder de impliciete garantie van VERKOOPBAARHEID of "
 "GESCHIKTHEID VOOR EEN BEPAALD DOEL. Zie de GNU Affero General Public License "
-"voor meer details. "
+"voor meer details."
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".

@@ -12,18 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:05:42+0000\n"
+"POT-Creation-Date: 2011-12-03 10:43+0000\n"
+"PO-Revision-Date: 2011-12-03 10:45:39+0000\n"
 "Language-Team: Breton <https://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
+"X-Generator: MediaWiki 1.19alpha (r105064); Translate extension (2011-10-"
 "30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
+"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -4421,7 +4421,7 @@ msgstr ""
 
 #. TRANS: Client error displayed trying to recover password while already logged in.
 msgid "You are already logged in!"
-msgstr "Luget oc'h dija !"
+msgstr "Kevreet oc'h c'hoazh !"
 
 #. TRANS: Client error displayed when password recovery code is not correct.
 msgid "No such recovery code."
