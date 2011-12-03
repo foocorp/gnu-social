@@ -383,6 +383,7 @@ class StatusNet
                 $config['cache']['base'] = $config['memcached']['base'];
             }
         }
+
         if (array_key_exists('xmpp', $config)) {
             if ($config['xmpp']['enabled']) {
                 addPlugin('xmpp', array(
@@ -397,6 +398,12 @@ class StatusNet
                     'public' => $config['xmpp']['public']
                 ));
             }
+        }
+
+        // Check for database server; must exist!
+
+        if (empty($config['db']['database'])) {
+            throw new ServerException("No database server for this site.");
         }
     }
 
