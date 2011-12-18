@@ -55,7 +55,7 @@ class ClientSideShortenPlugin extends Plugin
             $user = common_current_user();
             $action->inlineScript('var maxNoticeLength = ' . User_urlshortener_prefs::maxNoticeLength($user));
             $action->inlineScript('var maxUrlLength = ' . User_urlshortener_prefs::maxUrlLength($user));
-            $action->script('plugins/ClientSideShorten/shorten.js');
+            $action->script($this->path('shorten.js'));
         }
     }
 
