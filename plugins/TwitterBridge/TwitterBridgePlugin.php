@@ -339,7 +339,7 @@ class TwitterBridgePlugin extends Plugin
         $versions[] = array(
             'name' => 'TwitterBridge',
             'version' => self::VERSION,
-            'author' => 'Zach Copley, Julien C',
+            'author' => 'Zach Copley, Julien C, Jean Baptiste Favre',
             'homepage' => 'http://status.net/wiki/Plugin:TwitterBridge',
             // TRANS: Plugin description.
             'rawdescription' => _m('The Twitter "bridge" plugin allows integration ' .
