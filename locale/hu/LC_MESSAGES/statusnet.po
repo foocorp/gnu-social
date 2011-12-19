@@ -14,13 +14,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-03 10:43+0000\n"
-"PO-Revision-Date: 2011-12-03 10:46:00+0000\n"
+"POT-Creation-Date: 2011-12-19 00:00+0000\n"
+"PO-Revision-Date: 2011-12-19 00:04:55+0000\n"
 "Language-Team: Hungarian <https://translatewiki.net/wiki/Portal:hu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r105064); Translate extension (2011-10-"
+"X-Generator: MediaWiki 1.19alpha (r106599); Translate extension (2011-10-"
 "30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: hu\n"
@@ -2427,7 +2427,6 @@ msgstr "Nincs bejövő e-mail cím."
 #. TRANS: Server error thrown on database error removing incoming e-mail address.
 #. TRANS: Server error thrown on database error adding incoming e-mail address.
 #. TRANS: Server error displayed when the user could not be updated in SMS settings.
-#, fuzzy
 msgid "Could not update user record."
 msgstr "Nem sikerült frissíteni a felhasználó rekordját."
 

@@ -12,14 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-03 10:43+0000\n"
-"PO-Revision-Date: 2011-12-03 10:45:36+0000\n"
+"POT-Creation-Date: 2011-12-19 00:00+0000\n"
+"PO-Revision-Date: 2011-12-19 00:03:54+0000\n"
 "Language-Team: Belarusian (Taraškievica orthography) <https://translatewiki."
 "net/wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r105064); Translate extension (2011-10-"
+"X-Generator: MediaWiki 1.19alpha (r106599); Translate extension (2011-10-"
 "30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: be-tarask\n"
@@ -6103,78 +6103,79 @@ msgstr "Няслушны тэкст вітаньня. Максымальная �
 #. TRANS: users in user admin panel. %1$s is the invalid nickname.
 #, php-format
 msgid "Invalid default subscripton: \"%1$s\" is not a user."
-msgstr ""
+msgstr "Няслушная падпіска па змоўчваньні: «%1$s» не зьяўляецца карыстальнікам."
 
 #. TRANS: Fieldset legend in user administration panel.
 msgctxt "LEGEND"
 msgid "Profile"
-msgstr ""
+msgstr "Профіль"
 
 #. TRANS: Field label in user admin panel for setting the character limit for the bio field.
 msgid "Bio Limit"
-msgstr ""
+msgstr "Абмежаваньне біяграфіі"
 
 #. TRANS: Tooltip in user admin panel for setting the character limit for the bio field.
 msgid "Maximum length of a profile bio in characters."
-msgstr ""
+msgstr "Максымальная даўжыня біяграфіі ў профілі ў сымбалях."
 
 #. TRANS: Form legend in user admin panel.
 msgid "New users"
-msgstr ""
+msgstr "Новыя карыстальнікі"
 
 #. TRANS: Field label in user admin panel for setting new user welcome text.
 msgid "New user welcome"
-msgstr ""
+msgstr "Вітаньні новым карыстальнікам"
 
 #. TRANS: Tooltip in user admin panel for setting new user welcome text.
 msgid "Welcome text for new users (maximum 255 characters)."
-msgstr ""
+msgstr "Тэкст вітаньня для новых карыстальнікаў (максымальна 255 сымбаляў)."
 
 #. TRANS: Field label in user admin panel for setting default subscription for new users.
 msgid "Default subscription"
-msgstr ""
+msgstr "Падпіска па змоўчваньні"
 
 #. TRANS: Tooltip in user admin panel for setting default subscription for new users.
 msgid "Automatically subscribe new users to this user."
-msgstr ""
+msgstr "Аўтаматычна падпісваць новых карыстальнікаў на гэтага карыстальніка."
 
 #. TRANS: Form legend in user admin panel.
 msgid "Invitations"
-msgstr ""
+msgstr "Запрашэньні"
 
 #. TRANS: Field label for checkbox in user admin panel for allowing users to invite friend using site e-mail.
 msgid "Invitations enabled"
-msgstr ""
+msgstr "Запрашэньні ўключаныя"
 
 #. TRANS: Tooltip for checkbox in user admin panel for allowing users to invite friend using site e-mail.
 msgid "Whether to allow users to invite new users."
-msgstr ""
+msgstr "Ці дазваляць карыстальнікам запрашаць новых карыстальнікаў."
 
 #. TRANS: Button title to save user settings in user admin panel.
 msgid "Save user settings."
-msgstr ""
+msgstr "Захаваць налады карыстальніка."
 
 #. TRANS: Page title for all but the first page of groups for a user.
 #. TRANS: %1$s is a nickname, %2$d is a page number.
 #, php-format
 msgid "%1$s groups, page %2$d"
-msgstr ""
+msgstr "Групы %1$s, старонка %2$d"
 
 #. TRANS: Link text on group page to search for groups.
 msgid "Search for more groups"
-msgstr ""
+msgstr "Шукаць іншыя групы"
 
 #. TRANS: Text on group page for a user that is not a member of any group.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "%s is not a member of any group."
-msgstr ""
+msgstr "%s не зьяўляецца ўдзельнікам ніводнай групы."
 
 #. TRANS: Text on group page for a user that is not a member of any group. This message contains
 #. TRANS: a Markdown link in the form [link text](link) and a variable that should not be changed.
 #, php-format
 msgid "Try [searching for groups](%%action.groupsearch%%) and joining them."
 msgstr ""
+"Паспрабуйце [пашукаць групы](%%action.groupsearch%%) і далучыцца да іх."
 
 #. TRANS: Message is used as link description. %1$s is a username, %2$s is a site name.
 #. TRANS: Message is used as a subtitle in atom group notice feed.
@@ -6183,12 +6184,12 @@ msgstr ""
 #. TRANS: %1$s is a user name, %2$s is a site name.
 #, php-format
 msgid "Updates from %1$s on %2$s!"
-msgstr ""
+msgstr "Абнаўленьні ад %1$s на %2$s!"
 
 #. TRANS: Title for version page. %s is the StatusNet version.
 #, php-format
 msgid "StatusNet %s"
-msgstr ""
+msgstr "StatusNet %s"
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
@@ -6197,14 +6198,16 @@ msgid ""
 "This site is powered by %1$s version %2$s, Copyright 2008-2011 StatusNet, "
 "Inc. and contributors."
 msgstr ""
+"Гэты сайт створаны на аснове %1$s вэрсіі %2$s. Аўтарскія правы 2008-2011 "
+"StatusNet, Inc. і распрацоўшчыкі."
 
 #. TRANS: Header for StatusNet contributors section on the version page.
 msgid "Contributors"
-msgstr ""
+msgstr "Аўтары"
 
 #. TRANS: Header for StatusNet license section on the version page.
 msgid "License"
-msgstr ""
+msgstr "Ліцэнзія"
 
 #. TRANS: Content part of StatusNet version page.
 msgid ""
@@ -6213,6 +6216,10 @@ msgid ""
 "Software Foundation, either version 3 of the License, or (at your option) "
 "any later version."
 msgstr ""
+"StatusNet — вольнае праграмнае забесьпячэньне: Вы можаце распаўсюджваць яго "
+"і/альбо зьмяняць яго ў адпаведнасьці з умовамі ліцэнзіі GNU Affero General "
+"Public, якая апублікаваная Фундацыяй Вольнага Праграмнага Забесьпячэньня, "
+"вэрсіі 3 ці любой больш позьняй."
 
 #. TRANS: Content part of StatusNet version page.
 msgid ""
@@ -6221,6 +6228,10 @@ msgid ""
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License "
 "for more details."
 msgstr ""
+"Гэтая праграма распаўсюджваецца з надзеяй, што яна будзе карыснай, але БЕЗ "
+"ГАРАНТЫІ; нават без няяўнай гарантыі ГАНДЛЁВАЙ ПРЫДАТНАСЬЦІ ці ПРЫДАТНАСЬЦІ "
+"ВЫКАРЫСТАНЬНЯ. Дадатковую інфармацыю глядзіце ў ліцэнзіі GNU Affero General "
+"Public."
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
@@ -6229,49 +6240,51 @@ msgid ""
 "You should have received a copy of the GNU Affero General Public License "
 "along with this program.  If not, see %s."
 msgstr ""
+"Вам неабходна атрымаць копію ліцэнзіі GNU Affero General Public з гэтай "
+"праграмай. Калі не, глядзіце %s."
 
 #. TRANS: Header for StatusNet plugins section on the version page.
 msgid "Plugins"
-msgstr ""
+msgstr "Дапаўненьні"
 
 #. TRANS: Column header for plugins table on version page.
 msgctxt "HEADER"
 msgid "Name"
-msgstr ""
+msgstr "Назва"
 
 #. TRANS: Column header for plugins table on version page.
 msgctxt "HEADER"
 msgid "Version"
-msgstr ""
+msgstr "Вэрсія"
 
 #. TRANS: Column header for plugins table on version page.
 msgctxt "HEADER"
 msgid "Author(s)"
-msgstr ""
+msgstr "Аўтар(ы)"
 
 #. TRANS: Column header for plugins table on version page.
 msgctxt "HEADER"
 msgid "Description"
-msgstr ""
+msgstr "Апісаньне"
 
 #. TRANS: Activity title when marking a notice as favorite.
 msgid "Favor"
-msgstr ""
+msgstr "Дадаць да ўлюблёных"
 
 #. TRANS: Ntofication given when a user marks a notice as favorite.
 #. TRANS: %1$s is a user nickname or full name, %2$s is a notice URI.
 #, php-format
 msgid "%1$s marked notice %2$s as a favorite."
-msgstr ""
+msgstr "%1$s дадаў запіс %2$s да ўлюблёных."
 
 #. TRANS: Server exception thrown when a URL cannot be processed.
 #, php-format
 msgid "Cannot process URL '%s'"
-msgstr ""
+msgstr "Немагчыма апрацаваць URL-адрас «%s»"
 
 #. TRANS: Server exception thrown when... Robin thinks something is impossible!
 msgid "Robin thinks something is impossible."
-msgstr ""
+msgstr "Робін лічыць, што гэта немагчыма."
 
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
@@ -6284,84 +6297,88 @@ msgid_plural ""
 "No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
 "Try to upload a smaller version."
 msgstr[0] ""
+"Файл ня можа быць болей %1$d байта, а дасланы Вамі файл ўтрымлівае %2$d "
+"байт. Паспрабуйце загрузіць меншую вэрсію."
 msgstr[1] ""
+"Файл ня можа быць болей %1$d байты, а дасланы Вамі файл ўтрымлівае %2$d "
+"байтаў. Паспрабуйце загрузіць меншую вэрсію."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
 #, php-format
 msgid "A file this large would exceed your user quota of %d byte."
 msgid_plural "A file this large would exceed your user quota of %d bytes."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Файл такога памеру перавысіць Вашую квоту карыстальніка ў %d байт."
+msgstr[1] "Файл такога памеру перавысіць Вашую квоту карыстальніка ў %d байты."
 
 #. TRANS: Message given id an upload would exceed a user's monthly quota.
 #. TRANS: $d (number) is the monthly user quota in bytes and is used for plural.
 #, php-format
 msgid "A file this large would exceed your monthly quota of %d byte."
 msgid_plural "A file this large would exceed your monthly quota of %d bytes."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Файл такога памеру перавысіць Вашую штомесячную квоту ў %d байт."
+msgstr[1] "Файл такога памеру перавысіць Вашую штомесячную квоту ў %d байты."
 
 #. TRANS: Client exception thrown if a file upload does not have a valid name.
 msgid "Invalid filename."
-msgstr ""
+msgstr "Няслушная назва файла."
 
 #. TRANS: Exception thrown providing an invalid profile ID.
 #. TRANS: %s is the invalid profile ID.
 #, php-format
 msgid "Profile ID %s is invalid."
-msgstr ""
+msgstr "Няслушны ідэнтыфікатар профілю %s."
 
 #. TRANS: Exception thrown providing an invalid group ID.
 #. TRANS: %s is the invalid group ID.
 #, php-format
 msgid "Group ID %s is invalid."
-msgstr ""
+msgstr "Няслушны ідэнтыфікатар групы %s."
 
 #. TRANS: Exception thrown when joining a group fails.
 msgid "Group join failed."
-msgstr ""
+msgstr "Памылка далучэньня да групы."
 
 #. TRANS: Exception thrown when trying to leave a group the user is not a member of.
 msgid "Not part of group."
-msgstr ""
+msgstr "Не зьяўляецца часткай групы."
 
 #. TRANS: Exception thrown when trying to leave a group fails.
 msgid "Group leave failed."
-msgstr ""
+msgstr "Памылка выхаду з групы."
 
 #. TRANS: Activity title.
 msgid "Join"
-msgstr ""
+msgstr "Далучыцца"
 
 #. TRANS: Success message for subscribe to group attempt through OStatus.
 #. TRANS: %1$s is the member name, %2$s is the subscribed group's name.
 #, php-format
 msgid "%1$s has joined group %2$s."
-msgstr ""
+msgstr "%1$s далучыўся да групы %2$s."
 
 #. TRANS: Server exception thrown when updating a local group fails.
 msgid "Could not update local group."
-msgstr ""
+msgstr "Немагчыма абнавіць лякальную групу."
 
 #. TRANS: Exception thrown when trying creating a login token failed.
 #. TRANS: %s is the user nickname for which token creation failed.
 #, php-format
 msgid "Could not create login token for %s"
-msgstr ""
+msgstr "Немагчыма стварыць ключ уваходу для %s"
 
 #. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
-#, fuzzy, php-format
+#, php-format
 msgid "Cannot instantiate class %s."
-msgstr "Немагчыма захаваць новы пароль."
+msgstr "Немагчыма стварыць экзэмпляр клясы %s."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
-msgstr ""
+msgstr "Ня знойдзеная назва базы зьвестак."
 
 #. TRANS: Client exception thrown when a user tries to send a direct message while being banned from sending them.
 msgid "You are banned from sending direct messages."
-msgstr ""
+msgstr "Вы заблякаваны ад дасылкі непасрэдных паведамленьняў."
 
 #. TRANS: Message given when a message could not be stored on the server.
 msgid "Could not insert message."

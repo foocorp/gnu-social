@@ -24,6 +24,7 @@
 # Author: Valeryan 24
 # Author: Verdy p
 # Author: Y-M D
+# Author: Zebulon84
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -31,12 +32,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-03 10:43+0000\n"
-"PO-Revision-Date: 2011-12-03 10:45:53+0000\n"
+"POT-Creation-Date: 2011-12-19 00:00+0000\n"
+"PO-Revision-Date: 2011-12-19 00:04:44+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r105064); Translate extension (2011-10-"
+"X-Generator: MediaWiki 1.19alpha (r106599); Translate extension (2011-10-"
 "30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: fr\n"
@@ -2060,7 +2061,7 @@ msgid "Tags"
 msgstr "Balises"
 
 msgid "Using tags"
-msgstr ""
+msgstr "Utiliser des balises"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
@@ -2069,9 +2070,8 @@ msgctxt "MENU"
 msgid "Groups"
 msgstr "Groupes"
 
-#, fuzzy
 msgid "Using groups"
-msgstr "Groupes d’utilisateurs"
+msgstr "Utiliser des groupes"
 
 msgctxt "MENU"
 msgid "API"
@@ -2214,9 +2214,8 @@ msgid "Use this form to edit the list."
 msgstr "Utilisez ce formulaire pour modifier la liste."
 
 #. TRANS: Form validation error displayed if the form data for deleting a tag was incorrect.
-#, fuzzy
 msgid "Delete aborted."
-msgstr "Supprimer cet avis"
+msgstr "Suppression annulée."
 
 #. TRANS: Text in confirmation dialog for deleting a tag.
 msgid ""
@@ -2725,7 +2724,7 @@ msgstr "Groupes, page %d"
 #. TRANS: Page notice of group list. %%%%site.name%%%% is the StatusNet site name,
 #. TRANS: %%%%action.groupsearch%%%% and %%%%action.newgroup%%%% are URLs. Do not change them.
 #. TRANS: This message contains Markdown links in the form [link text](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%%%%site.name%%%% groups let you find and talk with people of similar "
 "interests. After you join a group you can send messages to all other members "
@@ -2738,7 +2737,7 @@ msgstr ""
 "groupe, vous pouvez envoyer des messages à tous les autres membres en "
 "utilisant la syntaxe « !nomdugroupe ». Vous ne voyez aucun groupe qui vous "
 "intéresse ? Essayez d’en [rechercher un](%%%%action.groupsearch%%%%) ou de "
-"[créer le vôtre !](%%%%action.newgroup%%%%)"
+"[créer le vôtre](%%%%action.newgroup%%%%) !"
 
 #. TRANS: Link to create a new group on the group list page.
 #. TRANS: Link text on group page to create a new group.
@@ -3287,9 +3286,8 @@ msgid "New group"
 msgstr "Nouveau groupe"
 
 #. TRANS: Client exception thrown when a user tries to create a group while banned.
-#, fuzzy
 msgid "You are not allowed to create groups on this site."
-msgstr "Vous n’êtes pas autorisé à supprimer ce groupe."
+msgstr "Vous ne sont pas autorisés à créer des groupes sur ce site"
 
 #. TRANS: Form instructions for group create form.
 msgid "Use this form to create a new group."
@@ -3302,7 +3300,6 @@ msgstr "Nouveau message"
 
 #. TRANS: Client error displayed trying to send a direct message to a user while sender and
 #. TRANS: receiver are not subscribed to each other.
-#, fuzzy
 msgid "You cannot send a message to this user."
 msgstr "Vous ne pouvez pas envoyer de messages à cet utilisateur."
 
@@ -3975,7 +3972,6 @@ msgid "Show private tags."
 msgstr "Afficher les notices privées."
 
 #. TRANS: Checkbox label to show public tags.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Public"
 msgstr "Public"
@@ -3987,7 +3983,6 @@ msgstr "Cette marque n’existe pas."
 
 #. TRANS: Submit button text for tag filter form.
 #. TRANS: Submit button text on gallery action page.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Go"
 msgstr "Aller"
@@ -4913,9 +4908,8 @@ msgstr "Erreur système lors du transfert du fichier."
 
 #. TRANS: Client exception thrown when a feed is not an Atom feed.
 #. TRANS: Client exception thrown when an imported feed is not an Atom feed.
-#, fuzzy
 msgid "Not an Atom feed."
-msgstr "Tous les membres"
+msgstr "Pas un flux Atom."
 
 #. TRANS: Success message when a feed has been restored.
 msgid ""
@@ -4934,16 +4928,14 @@ msgid ""
 msgstr ""
 
 #. TRANS: Title for submit button to confirm upload of a user backup file for account restore.
-#, fuzzy
 msgid "Upload the file"
-msgstr "Importer un fichier"
+msgstr "Téléverser le fichier"
 
 #. TRANS: Client error displayed when trying to revoke a role without having the right to do that.
 msgid "You cannot revoke user roles on this site."
 msgstr "Vous ne pouvez pas révoquer les rôles des utilisateurs sur ce site."
 
 #. TRANS: Client error displayed when trying to revoke a role that is not set.
-#, fuzzy
 msgid "User does not have this role."
 msgstr "L'utilisateur ne possède pas ce rôle."
 
@@ -4970,9 +4962,9 @@ msgstr "Cette marque est invalide : %s."
 
 #. TRANS: Page title for page showing self tags.
 #. TRANS: %1$s is a tag, %2$d is a page number.
-#, fuzzy, php-format
+#, php-format
 msgid "Users self-tagged with %1$s, page %2$d"
-msgstr "Utilisateurs marqués par eux-mêmes avec %1$s - page %2$d"
+msgstr "Utilisateurs marqués par eux-mêmes avec %1$s, page %2$d"
 
 #. TRANS: Title for the sessions administration panel.
 msgctxt "TITLE"
@@ -4995,9 +4987,8 @@ msgstr "Gérer les sessions"
 
 #. TRANS: Checkbox title on the sessions administration panel.
 #. TRANS: Indicates if StatusNet should handle session administration.
-#, fuzzy
 msgid "Handle sessions ourselves."
-msgstr "S’il faut gérer les sessions nous-même."
+msgstr "Gérer les sessions nous-mêmes."
 
 #. TRANS: Checkbox label on the sessions administration panel.
 #. TRANS: Indicates if StatusNet should write session debugging output.
@@ -5005,9 +4996,8 @@ msgid "Session debugging"
 msgstr "Déboguage de session"
 
 #. TRANS: Checkbox title on the sessions administration panel.
-#, fuzzy
 msgid "Enable debugging output for sessions."
-msgstr "Activer la sortie de déboguage pour les sessions."
+msgstr "Activer la sortie de débogage pour les sessions."
 
 #. TRANS: Title for submit button on the sessions administration panel.
 #, fuzzy
@@ -5070,13 +5060,12 @@ msgid "Authorize URL"
 msgstr "Autoriser l’URL"
 
 #. TRANS: Note on the OAuth application page about signature support.
-#, fuzzy
 msgid ""
 "Note: HMAC-SHA1 signatures are supported. The plaintext signature method is "
 "not supported."
 msgstr ""
-"Note : Nous utilisons les signatures HMAC-SHA1. Nous n’utilisons pas la "
-"méthode de signature en texte clair."
+"Note : Les signatures HMAC-SHA1 sont supportées. La méthode de signature en "
+"clair n'est pas supportée."
 
 #. TRANS: Text in confirmation dialog to reset consumer key and secret for an OAuth application.
 msgid "Are you sure you want to reset your consumer key and secret?"

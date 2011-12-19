@@ -12,12 +12,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-03 10:43+0000\n"
-"PO-Revision-Date: 2011-12-03 10:45:58+0000\n"
+"POT-Creation-Date: 2011-12-19 00:00+0000\n"
+"PO-Revision-Date: 2011-12-19 00:04:53+0000\n"
 "Language-Team: Upper Sorbian <https://translatewiki.net/wiki/Portal:hsb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r105064); Translate extension (2011-10-"
+"X-Generator: MediaWiki 1.19alpha (r106599); Translate extension (2011-10-"
 "30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: hsb\n"
@@ -46,9 +46,8 @@ msgid ""
 msgstr ""
 
 #. TRANS: Error message displayed when trying to access a non-existing page.
-#, fuzzy
 msgid "Unknown page"
-msgstr "Njeznaty"
+msgstr "Njeznata strona"
 
 #. TRANS: Error message displayed when trying to perform an undefined action.
 #. TRANS: Title for password recovery page when an unknown action has been specified.
@@ -95,9 +94,8 @@ msgid "Closed"
 msgstr "Začinjeny"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
-msgstr "Přistupne nastajenja składować"
+msgstr "Přistupne nastajenja składować."
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -150,9 +148,8 @@ msgstr "Profil njeeksistuje."
 #. TRANS: Client error displayed trying to reference a non-existing list.
 #. TRANS: Client error displayed when referring to a non-existing list.
 #. TRANS: Client error displayed trying to reference a non-existing list.
-#, fuzzy
 msgid "No such list."
-msgstr "Taflička njeeksistuje."
+msgstr "Lisćina njeeksistuje."
 
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
@@ -169,10 +166,9 @@ msgid ""
 msgstr ""
 
 #. TRANS: Title after adding a user to a list.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Listed"
-msgstr "Licenca"
+msgstr "Nalistowany"
 
 #. TRANS: Server error when page not found (404).
 #. TRANS: Server error when page not found (404)
@@ -230,9 +226,8 @@ msgid "No such user."
 msgstr "Wužiwar njeeksistuje"
 
 #. TRANS: Title of a user's own start page.
-#, fuzzy
 msgid "Home timeline"
-msgstr "Druhdy"
+msgstr "Swójska časowa lajsta"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
@@ -243,9 +238,9 @@ msgstr ""
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
 #. TRANS: %s is tagger's nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Feed for friends of %s (Activity Streams JSON)"
-msgstr "Kanal za přećelow wužiwarja %s (Atom)"
+msgstr "Kanal za přećelow wužiwarja %s (Activity Streams JSON)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -300,10 +295,9 @@ msgstr ""
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr "Přeprošenja"
+msgstr "Přeprošenje pósłać"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -425,17 +419,15 @@ msgid "Unblock user failed."
 msgstr "Wotblokowanje wužiwarja je so njeporadźiło."
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "Konwersacija"
+msgstr "Žadyn konwersaciski ID."
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "No conversation with ID %d."
-msgstr "Konwersacija"
+msgstr "Žana konwersacija z ID %d."
 
 #. TRANS: Title for conversion timeline.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Konwersacija"
@@ -750,9 +742,8 @@ msgstr "Alias njemóže samsne kaž přimjeno być."
 #. TRANS: Client error displayed when referring to a non-existing list.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing list.
 #. TRANS: Client error displayed when referring to a non-existing list.
-#, fuzzy
 msgid "List not found."
-msgstr "Wužiwar njenamakany."
+msgstr "Lisćina njenamakana."
 
 #. TRANS: Client error displayed when trying to update another user's list.
 msgid "You cannot update lists that do not belong to you."
@@ -770,42 +761,36 @@ msgid "You cannot delete lists that do not belong to you."
 msgstr ""
 
 #. TRANS: Client error displayed when referring to a non-list member.
-#, fuzzy
 msgid "The specified user is not a member of this list."
-msgstr "Wužiwar njeje čłon skupiny."
+msgstr "Podaty wužiwar njeje čłon tuteje lisćiny."
 
 #. TRANS: Client error displayed when trying to add members to a list without having the right to do so.
-#, fuzzy
 msgid "You are not allowed to add members to this list."
-msgstr "Njesměš skupiny na tutym sydle zhašeć."
+msgstr "Njesměš tutej lisćinje čłonow přidać."
 
 #. TRANS: Client error displayed when trying to modify list members without specifying them.
-#, fuzzy
 msgid "You must specify a member."
-msgstr "Falowacy profil."
+msgstr "Dyrbiš čłon podać."
 
 #. TRANS: Client error displayed when trying to remove members from a list without having the right to do so.
-#, fuzzy
 msgid "You are not allowed to remove members from this list."
-msgstr "Njesměš skupiny na tutym sydle zhašeć."
+msgstr "Njesměš čłonow z tuteje lisćiny wotstronić."
 
 #. TRANS: Client error displayed when trying to remove a list member that is not part of a list.
 msgid "The user you are trying to remove from the list is not a member."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to create a list without a name.
-#, fuzzy
 msgid "A list must have a name."
-msgstr "Póst za Atom dyrbi  zapisk z Atoma być."
+msgstr "Lisćina dyrbi mjeno měć."
 
 #. TRANS: Client error displayed when a membership check for a user is nagative.
 msgid "The specified user is not a subscriber of this list."
 msgstr ""
 
 #. TRANS: Client error displayed when trying to unsubscribe from a non-subscribed list.
-#, fuzzy
 msgid "You are not subscribed to this list."
-msgstr "Njejsy tón profil abonował."
+msgstr "Njejsy tutu lisćinu abonował."
 
 #. TRANS: Client error displayed when uploading a media file has failed.
 msgid "Upload failed."
@@ -1054,9 +1039,9 @@ msgstr "Aktualizacije z %1$s  wot %2$s / %3$s faworizowane"
 
 #. TRANS: Server error displayed whe trying to get a timeline fails.
 #. TRANS: %s is the error message.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not generate feed for list - %s"
-msgstr "Njeje móžno było, přizjewjenske znamješko za %s wutworić"
+msgstr "Njeje móžno było, kanal za tutu lisćinu wutworić - %s"
 
 #. TRANS: Title for timeline of most recent mentions of a user.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is a user nickname.
@@ -1093,9 +1078,9 @@ msgstr "Do %s wospjetowany"
 
 #. TRANS: Subtitle for API action that shows most recent notices that are repeats in user's inbox.
 #. TRANS: %1$s is the sitename, %2$s is a user nickname, %3$s is a user profile name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s notices that were to repeated to %2$s / %3$s."
-msgstr "Aktualizacije z %1$s  wot %2$s / %3$s faworizowane"
+msgstr "%1$s - zdźělenki, kotrež su so na %2$s / %3$s wospjetowali"
 
 #. TRANS: Title of list of repeated notices of the logged in user.
 #. TRANS: %s is the nickname of the logged in user.
@@ -1105,9 +1090,9 @@ msgstr "Wospjetowanja wot %s"
 
 #. TRANS: Subtitle of API time with retweets of me.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is the user nickname, %3$s is the user profile name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s notices that %2$s / %3$s has repeated."
-msgstr "%1$s je zdźělenku %2$s jako faworit markěrował."
+msgstr "%1$s - zdźělenki, kotrež  %2$s / %3$s je wospjetował."
 
 #. TRANS: Title for timeline with lastest notices with a given tag.
 #. TRANS: %s is the tag.
@@ -1221,9 +1206,8 @@ msgstr "Žane přimjeno abo žadyn ID."
 
 #. TRANS: Client error displayed trying to approve group membership while not logged in.
 #. TRANS: Client error displayed when trying to leave a group while not logged in.
-#, fuzzy
 msgid "Must be logged in."
-msgstr "Njepřizjewjeny."
+msgstr "Dyrbiš přizjewjeny być."
 
 #. TRANS: Client error displayed trying to approve group membership while not a group administrator.
 #. TRANS: Client error displayed when trying to approve or cancel a group join request without
@@ -1233,17 +1217,16 @@ msgstr ""
 
 #. TRANS: Client error displayed trying to approve group membership without specifying a profile to approve.
 #. TRANS: Client error displayed trying to approve subscriptionswithout specifying a profile to approve.
-#, fuzzy
 msgid "Must specify a profile."
-msgstr "Falowacy profil."
+msgstr "Dyrbiš profil podać."
 
 #. TRANS: Client error displayed trying to approve group membership for a non-existing request.
 #. TRANS: %s is a nickname.
 #. TRANS: Client error displayed when trying to approve a non-existing group join request.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "%s is not in the moderation queue for this group."
-msgstr "Lisćina wužiwarjow w tutej skupinje."
+msgstr "%s w moderaciskej lisćinje za tutu skupinu njeje."
 
 #. TRANS: Client error displayed trying to approve/deny group membership.
 #. TRANS: Client error displayed trying to approve/deny subscription.

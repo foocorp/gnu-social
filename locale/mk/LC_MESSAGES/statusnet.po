@@ -10,12 +10,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-03 10:43+0000\n"
-"PO-Revision-Date: 2011-12-03 10:46:08+0000\n"
+"POT-Creation-Date: 2011-12-19 00:00+0000\n"
+"PO-Revision-Date: 2011-12-19 00:05:08+0000\n"
 "Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r105064); Translate extension (2011-10-"
+"X-Generator: MediaWiki 1.19alpha (r106599); Translate extension (2011-10-"
 "30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: mk\n"
@@ -5346,15 +5346,15 @@ msgstr ""
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool."
 msgstr ""
 "**%s** има сметка на %%%%site.name%%%%, мрежно место за [микроблогирање]"
-"(http://mk.wikipedia.org/wiki/Микроблогирање) заснована на слободната "
-"програмска алатка [StatusNet](http://status.net/). "
+"(http://mk.wikipedia.org/wiki/Микроблогирање) засновано на слободната "
+"програмска алатка [StatusNet](http://status.net/)."
 
 #. TRANS: Link to the author of a repeated notice. %s is a linked nickname.
 #, php-format
@@ -6204,30 +6204,28 @@ msgid "License"
 msgstr "Лиценца"
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
 "Software Foundation, either version 3 of the License, or (at your option) "
 "any later version."
 msgstr ""
-"StatusNet е слободен програм: можете да го редистрибуирате и/или менувате "
+"StatusNet е слободен програм: можете да го распространувате и/или менувате "
 "под условите на Општата јавна лиценца ГНУ Аферо според одредбите на "
-"Фондацијата за слободна програмска опрема, верзија 3 на лиценцата, или (по "
-"Ваш избор) било која подоцнежна верзија. "
+"Фондацијата за слободна програмска опрема, верзија 3 на Лиценцата, или (по "
+"Ваш избор) било која понова верзија."
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License "
 "for more details."
 msgstr ""
-"Овој програм е дистрибуиран со надеж дека ќе биде од корист, но БЕЗ БИЛО "
+"Овој програм се распространува со надеж дека ќе биде од корист, но БЕЗ БИЛО "
 "КАКВА ГАРАНЦИЈА; дури и без подразбирливата гаранција за ПАЗАРНА ПРОДАЖНОСТ "
-"или ПОГОДНОСТ ЗА ОПРЕДЕЛЕНА ЦЕЛ.  Погледајте ја Општата јавна лиценца ГНУ "
-"Аферо за повеќе подробности. "
+"или ПОГОДНОСТ ЗА ОПРЕДЕЛЕНА ЦЕЛ. Погледајте ја Општата јавна лиценца ГНУ "
+"Аферо за повеќе подробности."
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
