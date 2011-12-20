@@ -78,12 +78,8 @@ class ActivitySpamPlugin extends Plugin
 
     function onCheckSchema()
     {
-        $this->log(LOG_INFO, "Checking schema");
-
         $schema = Schema::get();
         $schema->ensureTable('spam_score', Spam_score::schemaDef());
-
-        $this->log(LOG_INFO, "Checked schema");
 
         return true;
     }
