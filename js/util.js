@@ -106,7 +106,7 @@ var SN = { // StatusNet
 
                 NDT = form.find('.notice_data-text:first');
 
-                NDT.bind('keyup', function(e) {
+                NDT.on('keyup', function(e) {
                     SN.U.Counter(form);
                 });
 
@@ -120,8 +120,8 @@ var SN = { // StatusNet
                     }, 50);
                 };
                 // Note there's still no event for mouse-triggered 'delete'.
-                NDT.bind('cut', delayedUpdate)
-                   .bind('paste', delayedUpdate);
+                NDT.on('cut', delayedUpdate)
+                   .on('paste', delayedUpdate);
             }
             else {
                 form.find('.count').text(jQuery.data(form[0], 'ElementData').MaxLength);
@@ -251,7 +251,7 @@ var SN = { // StatusNet
                         .addClass(SN.C.S.Processing)
                         .find('.submit')
                             .addClass(SN.C.S.Disabled)
-                            .attr(SN.C.S.Disabled, SN.C.S.Disabled);
+                            .prop(SN.C.S.Disabled, true);
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     // If the server end reported an error from StatusNet,
@@ -269,7 +269,7 @@ var SN = { // StatusNet
                         .removeClass(SN.C.S.Processing)
                         .find('.submit')
                             .removeClass(SN.C.S.Disabled)
-                            .removeAttr(SN.C.S.Disabled);
+                            .prop(SN.C.S.Disabled, false);
                 },
                 success: function(data, textStatus) {
                     if (typeof($('form', data)[0]) != 'undefined') {
@@ -360,7 +360,7 @@ var SN = { // StatusNet
                         .addClass(SN.C.S.Processing)
                         .find('.submit')
                             .addClass(SN.C.S.Disabled)
-                            .attr(SN.C.S.Disabled, SN.C.S.Disabled);
+                            .prop(SN.C.S.Disabled, true);
 
                     SN.U.normalizeGeoData(form);
 
@@ -371,7 +371,7 @@ var SN = { // StatusNet
                         .removeClass(SN.C.S.Processing)
                         .find('.submit')
                             .removeClass(SN.C.S.Disabled)
-                            .removeAttr(SN.C.S.Disabled, SN.C.S.Disabled);
+                            .prop(SN.C.S.Disabled, false);
                     removeFeedback();
                     if (textStatus == 'timeout') {
                         // @fixme i18n
@@ -471,14 +471,14 @@ var SN = { // StatusNet
                     form
                         .removeClass(SN.C.S.Processing)
                         .find('.submit')
-                            .removeAttr(SN.C.S.Disabled)
+                            .prop(SN.C.S.Disabled, false)
                             .removeClass(SN.C.S.Disabled);
 
                     form.find('[name=lat]').val(SN.C.I.NoticeDataGeo.NLat);
                     form.find('[name=lon]').val(SN.C.I.NoticeDataGeo.NLon);
                     form.find('[name=location_ns]').val(SN.C.I.NoticeDataGeo.NLNS);
                     form.find('[name=location_id]').val(SN.C.I.NoticeDataGeo.NLID);
-                    form.find('[name=notice_data-geo]').attr('checked', SN.C.I.NoticeDataGeo.NDG);
+                    form.find('[name=notice_data-geo]').prop('checked', SN.C.I.NoticeDataGeo.NDG);
                 }
             });
         },
@@ -494,7 +494,7 @@ var SN = { // StatusNet
                         .addClass(SN.C.S.Processing)
                         .find('.submit')
                             .addClass(SN.C.S.Disabled)
-                            .attr(SN.C.S.Disabled, SN.C.S.Disabled);
+                            .prop(SN.C.S.Disabled, true);
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     alert(errorThrown || textStatus);
@@ -513,7 +513,7 @@ var SN = { // StatusNet
                         .removeClass(SN.C.S.Processing)
                         .find('.submit')
                             .removeClass(SN.C.S.Disabled)
-                            .attr(SN.C.S.Disabled, false);
+                            .prop(SN.C.S.Disabled, false);
                 }
             });
         },
@@ -528,7 +528,7 @@ var SN = { // StatusNet
                     form.find('.submit')
                             .addClass(SN.C.S.Processing)
                             .addClass(SN.C.S.Disabled)
-                            .attr(SN.C.S.Disabled, SN.C.S.Disabled);
+                            .prop(SN.C.S.Disabled, true);
                 },
                 error: function (xhr, textStatus, errorThrown) {
                     alert(errorThrown || textStatus);
@@ -545,7 +545,7 @@ var SN = { // StatusNet
                         form.removeClass(SN.C.S.Processing)
                             .find('.submit')
                                 .removeClass(SN.C.S.Disabled)
-                                .attr(SN.C.S.Disabled, false);
+                                .prop(SN.C.S.Disabled, false);
                     }
                 }
             });
@@ -556,7 +556,7 @@ var SN = { // StatusNet
             SN.C.I.NoticeDataGeo.NLon = form.find('[name=lon]').val();
             SN.C.I.NoticeDataGeo.NLNS = form.find('[name=location_ns]').val();
             SN.C.I.NoticeDataGeo.NLID = form.find('[name=location_id]').val();
-            SN.C.I.NoticeDataGeo.NDG = form.find('[name=notice_data-geo]').attr('checked'); // @fixme
+            SN.C.I.NoticeDataGeo.NDG = form.find('[name=notice_data-geo]').prop('checked'); // @fixme (does this still need to be fixed somehow?)
 
             var cookieValue = $.cookie(SN.C.S.NoticeDataGeoCookie);
 
@@ -573,10 +573,10 @@ var SN = { // StatusNet
                 }
             }
             if (cookieValue == 'disabled') {
-                SN.C.I.NoticeDataGeo.NDG = form.find('[name=notice_data-geo]').attr('checked', false).attr('checked');
+                SN.C.I.NoticeDataGeo.NDG = form.find('[name=notice_data-geo]').prop('checked', false).prop('checked');
             }
             else {
-                SN.C.I.NoticeDataGeo.NDG = form.find('[name=notice_data-geo]').attr('checked', true).attr('checked');
+                SN.C.I.NoticeDataGeo.NDG = form.find('[name=notice_data-geo]').prop('checked', true).prop('checked');
             }
 
         },
@@ -613,7 +613,7 @@ var SN = { // StatusNet
          * @access private
          */
         NoticeReply: function() {
-            $('#content .notice_reply').live('click', function(e) {
+            $(document).on('click', '#content .notice_reply', function(e) {
                 e.preventDefault();
                 var notice = $(this).closest('li.notice');
                 SN.U.NoticeInlineReplyTrigger(notice);
@@ -678,8 +678,8 @@ var SN = { // StatusNet
                 replyForm.find('input[name=inreplyto]').val(id);
                 if (stripForm) {
                 	// Don't do this for old-school reply form, as they don't come back!
-	                replyForm.find('#notice_to').attr('disabled', 'disabled').hide();
-    	            replyForm.find('#notice_private').attr('disabled', 'disabled').hide();
+	                replyForm.find('#notice_to').prop('disabled', true).hide();
+    	            replyForm.find('#notice_private').prop('disabled', true).hide();
     	            replyForm.find('label[for=notice_to]').hide();
     	            replyForm.find('label[for=notice_private]').hide();
     	        }
@@ -759,17 +759,17 @@ var SN = { // StatusNet
          * Setup function -- DOES NOT apply immediately.
          *
          * Sets up event handlers for inline reply mini-form placeholders.
-         * Uses 'live' rather than 'bind', so applies to future as well as present items.
+         * Uses 'on' rather than 'live' or 'bind', so applies to future as well as present items.
          */
         NoticeInlineReplySetup: function() {
             $('li.notice-reply-placeholder input')
-                .live('focus', function() {
+                .on('focus', function() {
                     var notice = $(this).closest('li.notice');
                     SN.U.NoticeInlineReplyTrigger(notice);
                     return false;
                 });
             $('li.notice-reply-comments a')
-                .live('click', function() {
+                .on('click', function() {
                     var url = $(this).attr('href');
                     var area = $(this).closest('.threaded-replies');
                     $.get(url, {ajax: 1}, function(data, textStatus, xhr) {
@@ -788,11 +788,11 @@ var SN = { // StatusNet
          * Sets up event handlers for repeat forms to toss up a confirmation
          * popout before submitting.
          *
-         * Uses 'live' rather than 'bind', so applies to future as well as present items.
+         * Uses 'on' rather than 'live' or 'bind', so applies to future as well as present items.
          *
          */
         NoticeRepeat: function() {
-            $('.form_repeat').live('click', function(e) {
+            $('.form_repeat').on('click', function(e) {
                 e.preventDefault();
 
                 SN.U.NoticeRepeatConfirmation($(this));
@@ -824,7 +824,7 @@ var SN = { // StatusNet
                 .addClass('submit_dialogbox')
                 .removeClass('submit');
             form.append(submit);
-            submit.bind('click', function() { SN.U.FormXHR(form); return false; });
+            submit.on('click', function() { SN.U.FormXHR(form); return false; });
 
             submit_i.hide();
 
@@ -1072,7 +1072,7 @@ var SN = { // StatusNet
                 form.find('[name=lon]').val('');
                 form.find('[name=location_ns]').val('');
                 form.find('[name=location_id]').val('');
-                form.find('[name=notice_data-geo]').attr('checked', false);
+                form.find('[name=notice_data-geo]').prop('checked', false);
 
                 $.cookie(SN.C.S.NoticeDataGeoCookie, 'disabled', { path: '/' });
 
@@ -1114,7 +1114,7 @@ var SN = { // StatusNet
                     form.find('[name=lon]').val(data.lon);
                     form.find('[name=location_ns]').val(lns);
                     form.find('[name=location_id]').val(lid);
-                    form.find('[name=notice_data-geo]').attr('checked', true);
+                    form.find('[name=notice_data-geo]').prop('checked', true);
 
                     var cookieValue = {
                         NLat: data.lat,
@@ -1132,10 +1132,10 @@ var SN = { // StatusNet
 
             if (check.length > 0) {
                 if ($.cookie(SN.C.S.NoticeDataGeoCookie) == 'disabled') {
-                    check.attr('checked', false);
+                    check.prop('checked', false);
                 }
                 else {
-                    check.attr('checked', true);
+                    check.prop('checked', true);
                 }
 
                 var NGW = form.find('.notice_data-geo_wrap');
@@ -1145,7 +1145,7 @@ var SN = { // StatusNet
                     .attr('title', label.text());
 
                 check.change(function() {
-                    if (check.attr('checked') === true || $.cookie(SN.C.S.NoticeDataGeoCookie) === null) {
+                    if (check.prop('checked') === true || $.cookie(SN.C.S.NoticeDataGeoCookie) === null)
                         label
                             .attr('title', NoticeDataGeo_text.ShareDisable)
                             .addClass('checked');
@@ -1173,7 +1173,7 @@ var SN = { // StatusNet
                                                 removeNoticeDataGeo('Location permission denied.');
                                                 break;
                                             case error.TIMEOUT:
-                                                //$('#'+SN.C.S.NoticeDataGeo).attr('checked', false);
+                                                //$('#'+SN.C.S.NoticeDataGeo).prop('checked', false);
                                                 removeNoticeDataGeo('Location lookup timeout.');
                                                 break;
                                         }
@@ -1208,7 +1208,7 @@ var SN = { // StatusNet
                             form.find('[name=lon]').val(cookieValue.NLon);
                             form.find('[name=location_ns]').val(cookieValue.NLNS);
                             form.find('[name=location_id]').val(cookieValue.NLID);
-                            form.find('[name=notice_data-geo]').attr('checked', cookieValue.NDG);
+                            form.find('[name=notice_data-geo]').prop('checked', cookieValue.NDG);
 
                             SN.U.NoticeGeoStatus(form, cookieValue.NLN, cookieValue.NLat, cookieValue.NLon, cookieValue.NLNU);
                             label
@@ -1238,7 +1238,7 @@ var SN = { // StatusNet
             if (wrapper.length == 0) {
                 wrapper = $('<div class="'+SN.C.S.Success+' geo_status_wrapper"><button class="close" style="float:right">&#215;</button><div class="geo_status"></div></div>');
                 wrapper.find('button.close').click(function() {
-                    form.find('[name=notice_data-geo]').removeAttr('checked').change();
+                    form.find('[name=notice_data-geo]').prop('checked', false).change();
                     return false;
                 });
                 form.append(wrapper);
@@ -1275,7 +1275,7 @@ var SN = { // StatusNet
         NewDirectMessage: function() {
             NDM = $('.entity_send-a-message a');
             NDM.attr({'href':NDM.attr('href')+'&ajax=1'});
-            NDM.bind('click', function() {
+            NDM.on('click', function() {
                 var NDMF = $('.entity_send-a-message form');
                 if (NDMF.length === 0) {
                     $(this).addClass(SN.C.S.Processing);
@@ -1466,7 +1466,7 @@ var SN = { // StatusNet
                 });
 
                 // Make inline reply forms self-close when clicking out.
-                $('body').bind('click', function(e) {
+                $('body').on('click', function(e) {
                     var currentForm = $('#content .input_forms div.current');
                     if (currentForm.length > 0) {
                         if ($('#content .input_forms').has(e.target).length == 0) {
@@ -1553,15 +1553,15 @@ var SN = { // StatusNet
          */
         EntityActions: function() {
             if ($('body.user_in').length > 0) {
-                $('.form_user_subscribe').live('click', function() { SN.U.FormXHR($(this)); return false; });
-                $('.form_user_unsubscribe').live('click', function() { SN.U.FormXHR($(this)); return false; });
-                $('.form_group_join').live('click', function() { SN.U.FormXHR($(this)); return false; });
-                $('.form_group_leave').live('click', function() { SN.U.FormXHR($(this)); return false; });
-                $('.form_user_nudge').live('click', function() { SN.U.FormXHR($(this)); return false; });
-                $('.form_peopletag_subscribe').live('click', function() { SN.U.FormXHR($(this)); return false; });
-                $('.form_peopletag_unsubscribe').live('click', function() { SN.U.FormXHR($(this)); return false; });
-                $('.form_user_add_peopletag').live('click', function() { SN.U.FormXHR($(this)); return false; });
-                $('.form_user_remove_peopletag').live('click', function() { SN.U.FormXHR($(this)); return false; });
+                $(document).on('click', '.form_user_subscribe', function() { SN.U.FormXHR($(this)); return false; });
+                $(document).on('click', '.form_user_unsubscribe', function() { SN.U.FormXHR($(this)); return false; });
+                $(document).on('click', '.form_group_join', function() { SN.U.FormXHR($(this)); return false; });
+                $(document).on('click', '.form_group_leave', function() { SN.U.FormXHR($(this)); return false; });
+                $(document).on('click', '.form_user_nudge', function() { SN.U.FormXHR($(this)); return false; });
+                $(document).on('click', '.form_peopletag_subscribe', function() { SN.U.FormXHR($(this)); return false; });
+                $(document).on('click', '.form_peopletag_unsubscribe', function() { SN.U.FormXHR($(this)); return false; });
+                $(document).on('click', '.form_user_add_peopletag', function() { SN.U.FormXHR($(this)); return false; });
+                $(document).on('click', '.form_user_remove_peopletag', function() { SN.U.FormXHR($(this)); return false; });
 
                 SN.U.NewDirectMessage();
             }
@@ -1569,7 +1569,7 @@ var SN = { // StatusNet
 
         ProfileSearch: function() {
             if ($('body.user_in').length > 0) {
-                $('.form_peopletag_edit_user_search input.submit').live('click', function() {
+                $(document).on('click', '.form_peopletag_edit_user_search input.submit', function() {
                     SN.U.FormProfileSearchXHR($(this).parents('form')); return false;
                 });
             }
@@ -1591,7 +1591,7 @@ var SN = { // StatusNet
                 }
             }
 
-            $('#form_login').bind('submit', function() {
+            $('#form_login').on('submit', function() {
                 SN.U.StatusNetInstance.Set({Nickname: $('#form_login #nickname').val()});
                 return true;
             });
@@ -1613,7 +1613,7 @@ var SN = { // StatusNet
             }
 
             // don't navigate away from the field on tab when selecting an item
-            txtBox.live( "keydown", function( event ) {
+            txtBox.on( "keydown", function( event ) {
                 if ( event.keyCode === $.ui.keyCode.TAB &&
                         $(this).data( "autocomplete" ).menu.active ) {
                     event.preventDefault();
@@ -1663,7 +1663,7 @@ var SN = { // StatusNet
         PeopleTags: function() {
             $('.user_profile_tags .editable').append($('<button class="peopletags_edit_button"/>'));
 
-            $('.peopletags_edit_button').live('click', function() {
+            $(document).on('click', '.peopletags_edit_button', function() {
                 var form = $(this).parents('dd').eq(0).find('form');
                 // We can buy time from the above animation
 
@@ -1686,7 +1686,7 @@ var SN = { // StatusNet
                 $(this).parents('ul').eq(0).fadeOut(200, function() {form.fadeIn(200).find('input#tags')});
             });
 
-            $('.user_profile_tags form .submit').live('click', function() {
+            $(document).on('click', '.user_profile_tags form .submit', function() {
                 SN.U.FormPeopletagsXHR($(this).parents('form')); return false;
             });
         },
@@ -1695,11 +1695,11 @@ var SN = { // StatusNet
          * Set up any generic 'ajax' form so it submits via AJAX with auto-replacement.
          */
         AjaxForms: function() {
-            $('form.ajax').live('submit', function() {
+            $(document).on('submit', 'form.ajax', function() {
                 SN.U.FormXHR($(this));
                 return false;
             });
-            $('form.ajax input[type=submit]').live('click', function() {
+            $(document).on('click', 'form.ajax input[type=submit]', function() {
                 // Some forms rely on knowing which submit button was clicked.
                 // Save a hidden input field which'll be picked up during AJAX
                 // submit...
@@ -1742,15 +1742,15 @@ var SN = { // StatusNet
 	CheckBoxes: function() {
 	    $("span[class='checkbox-wrapper']").addClass("unchecked");
 	    $(".checkbox-wrapper").click(function(){
-	        if($(this).children("input").attr("checked")){
+	        if($(this).children("input").prop("checked")){
 		    // uncheck
-		    $(this).children("input").attr({checked: ""});
+		    $(this).children("input").prop("checked", false);
 		    $(this).removeClass("checked");
 		    $(this).addClass("unchecked");
 		    $(this).children("label").text("Private?");
 		}else{
 		    // check
-		    $(this).children("input").attr({checked: "checked"});
+		    $(this).children("input").prop("checked", true);
 		    $(this).removeClass("unchecked");
 		    $(this).addClass("checked");
 		    $(this).children("label").text("Private");
@@ -1767,7 +1767,7 @@ var SN = { // StatusNet
  * until that's done. To load scripts asynchronously without delaying setup,
  * don't start them loading until after DOM-ready time!
  */
-$(document).ready(function(){
+$(function() {
     SN.Init.AjaxForms();
     SN.Init.UploadForms();
     SN.Init.CheckBoxes();
