@@ -6,7 +6,7 @@
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
  * @link      http://status.net/
  */
-$(document).ready(function() {
+$(function() {
     function InitColors(i, E) {
         switch (parseInt(E.id.slice(-1))) {
             case 1: default:
@@ -107,11 +107,11 @@ $(document).ready(function() {
 
     var f, swatches;
     InitFarbtastic();
-    $('#form_settings_design').bind('reset', function(){
+    $('#form_settings_design').on('reset', function(){
         setTimeout(function(){
             swatches.each(function(){UpdateColors(this);});
             $('#color-picker').remove();
-            swatches.unbind();
+            swatches.off();
             InitFarbtastic();
         },10);
     });
