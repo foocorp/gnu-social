@@ -217,13 +217,20 @@ class File extends Managed_DataObject
     function isRespectsQuota($user,$fileSize) {
 
         if ($fileSize > common_config('attachments', 'file_quota')) {
+            // TRANS: Message used to be inserted as %2$s in  the text "No file may
+            // TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+            // TRANS: %1$d is the number of bytes of an uploaded file.
+            $fileSizeText = sprintf(_m('%1$d byte','%1$d bytes',$fileSize),$fileSize);
+
+            $fileQuota = common_config('attachments', 'file_quota');
             // TRANS: Message given if an upload is larger than the configured maximum.
-            // TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-            // TRANS: %1$s is used for plural.
-            return sprintf(_m('No file may be larger than %1$d byte and the file you sent was %2$d bytes. Try to upload a smaller version.',
-                              'No file may be larger than %1$d bytes and the file you sent was %2$d bytes. Try to upload a smaller version.',
-                              common_config('attachments', 'file_quota')),
-                           common_config('attachments', 'file_quota'), $fileSize);
+            // TRANS: %1$d (used for plural) is the byte limit for uploads,
+            // TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+            // TRANS: gettext support multiple plurals in the same message, unfortunately...
+            return sprintf(_m('No file may be larger than %1$d byte and the file you sent was %2$s. Try to upload a smaller version.',
+                              'No file may be larger than %1$d bytes and the file you sent was %2$s. Try to upload a smaller version.',
+                              $fileQuota),
+                           $fileQuota, $fileSizeText);
         }
 
         $query = "select sum(size) as total from file join file_to_post on file_to_post.file_id = file.id join notice on file_to_post.post_id = notice.id where profile_id = {$user->id} and file.url like '%/notice/%/file'";
