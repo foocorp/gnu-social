@@ -1,4 +1,4 @@
-# Translation of StatusNet - PostDebug to Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+# Translation of StatusNet - PostDebug to Norwegian Bokmål (‪Norsk (bokmål)‬)
 # Exported from translatewiki.net
 #
 # Author: Nghtwlkr
@@ -9,17 +9,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - PostDebug\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-19 00:01+0000\n"
-"PO-Revision-Date: 2011-12-19 00:06:02+0000\n"
-"Language-Team: Norwegian (bokmål)‬ <https://translatewiki.net/wiki/Portal:"
-"no>\n"
+"POT-Creation-Date: 2011-12-28 11:46+0000\n"
+"PO-Revision-Date: 2011-12-28 11:49:10+0000\n"
+"Language-Team: Norwegian Bokmål <https://translatewiki.net/wiki/Portal:nb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:51:20+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r106599); Translate extension (2011-10-"
+"X-Generator: MediaWiki 1.19alpha (r107479); Translate extension (2011-10-"
 "30)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
-"X-Language-Code: no\n"
+"X-Language-Code: nb\n"
 "X-Message-Group: #out-statusnet-plugin-postdebug\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
