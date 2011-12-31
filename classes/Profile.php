@@ -1139,11 +1139,20 @@ class Profile extends Managed_DataObject
     function silence()
     {
         $this->grantRole(Profile_role::SILENCED);
+        $this->blowRecentNoticeScope();
     }
 
     function unsilence()
     {
         $this->revokeRole(Profile_role::SILENCED);
+        $this->blowRecentNoticeScope();
+    }
+
+    function blowRecentNoticeScope() {
+        $notice = $this->getNotices(0, CachingNoticeStream::CACHE_WINDOW);
+        while ($notice->fetch()) {
+            self::blow(sprintf('notice:in-scope-for:%d:null', $notice->id));
+        }        
     }
 
     /**
