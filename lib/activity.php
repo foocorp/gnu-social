@@ -389,9 +389,32 @@ class Activity
 
                     $activity['geopoint'] = array(
                         'type'        => 'Point',
-                        'coordinates' => array($loc->lat, $loc->lon)
+                        'coordinates' => array($loc->lat, $loc->lon),
+                        'deprecated'  => true,
                     );
 
+                    $lat = $loc->lat + 0.0;
+                    $lon = $loc->lon + 0.0;
+
+                    $position = (($lat > 0.0) ? ("+".$lat) : $lat) . "." .
+                        (($lon > 0.0) ? ("+".$lon) : $lon) . "/";
+
+                    $activity['location'] = array(
+                        'objectType' => 'place',
+                        'position' => $position
+                    );
+
+                    $name = $loc->getName();
+
+                    if ($name) {
+                        $activity['location']['displayName'] = $name;
+                    }
+                    
+                    $url = $loc->getURL();
+
+                    if ($url) {
+                        $activity['location']['url'] = $url;
+                    }
                 }
 
                 $activity['to']      = $this->context->getToArray();
@@ -487,14 +510,19 @@ class Activity
 
         /* Purely extensions hereafter */
 
-        $tags = array();
-
-        // Use an Activity Object for term? Which object? Note?
-        foreach ($this->categories as $cat) {
-            $tags[] = $cat->term;
+        if ($activity['verb'] == 'post') {
+            $tags = array();
+            foreach ($this->categories as $cat) {
+                if (mb_strlen($cat->term) > 0) {
+                    // Couldn't figure out which object type to use, so...
+                    $tags[] = array('objectType' => 'http://activityschema.org/object/hashtag',
+                                    'displayName' => $cat->term);
+                }
+            }
+            if (count($tags) > 0) {
+                $activity['object']['tags'] = $tags;
+            }
         }
-
-        $activity['tags'] = $tags;
 
         // XXX: a bit of a hack... Since JSON isn't namespaced we probably
         // shouldn't be using 'statusnet:notice_info', but this will work
