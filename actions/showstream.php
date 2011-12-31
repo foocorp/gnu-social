@@ -63,6 +63,15 @@ class ShowstreamAction extends ProfileAction
 
         $p = Profile::current();
 
+        // Only the user him/herself, or someone with the power to unsilence,
+        // can view the page of a silenced user.
+
+        if (($this->profile->hasRole(Profile_role::SILENCED)) && 
+            (empty($p) || (($p->id != $this->profile->id) && (!$p->hasRight(Right::SILENCEUSER))))) {
+            throw new ServerException(sprintf(_("User %s has been silenced."), $this->profile->nickname),
+                                      403);
+        }
+
         if (empty($this->tag)) {
             $stream = new ProfileNoticeStream($this->profile, $p);
         } else {
