@@ -393,15 +393,9 @@ class Activity
                         'deprecated'  => true,
                     );
 
-                    $lat = $loc->lat + 0.0;
-                    $lon = $loc->lon + 0.0;
-
-                    $position = (($lat > 0.0) ? ("+".$lat) : $lat) . "." .
-                        (($lon > 0.0) ? ("+".$lon) : $lon) . "/";
-
                     $activity['location'] = array(
                         'objectType' => 'place',
-                        'position' => $position
+                        'position' => sprintf("%+02.5F.%+03.5F/", $loc->lat, $loc->lon);
                     );
 
                     $name = $loc->getName();
