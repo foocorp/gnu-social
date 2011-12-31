@@ -168,7 +168,7 @@ class ActivityStreamJSONDocument extends JSONActivityCollection
         $this->doc['generator'] = 'StatusNet ' . STATUSNET_VERSION; // extension
         $this->doc['title'] = $this->title;
         $this->doc['url']   = $this->url;
-        $this->doc['count'] = $this->count;
+        $this->doc['totalItems'] = $this->count;
         $this->doc['items'] = $this->items;
         $this->doc['links'] = $this->links; // extension
         return json_encode(array_filter($this->doc)); // filter out empty elements
