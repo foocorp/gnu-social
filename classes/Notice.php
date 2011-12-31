@@ -2381,22 +2381,6 @@ class Notice extends Managed_DataObject
             $scope = self::defaultScope();
         }
 
-        $author = $this->getProfile();
-
-        // Author is always in scope
-
-        if ($author->id == $profile->id) {
-            return true;
-        }
-
-        // If the author is silenced, only show to 
-        // folks who can un-silence; note ignores scope
-
-        if ($author->hasRole(Profile_role::SILENCED) &&
-            (empty($profile) || !$profile->hasRight(Right::SILENCEUSER))) {
-            return false;
-        }
-
         // If there's no scope, anyone (even anon) is in scope.
 
         if ($scope == 0) {
@@ -2407,6 +2391,12 @@ class Notice extends Managed_DataObject
 
         if (empty($profile)) {
             return false;
+        }
+
+        // Author is always in scope
+
+        if ($this->profile_id == $profile->id) {
+            return true;
         }
 
         // Only for users on this site
@@ -2455,6 +2445,7 @@ class Notice extends Managed_DataObject
         // Only for followers of the author
 
         if ($scope & Notice::FOLLOWER_SCOPE) {
+            $author = $this->getProfile();
             if (!Subscription::exists($profile, $author)) {
                 return false;
             }
