@@ -395,7 +395,7 @@ class Activity
 
                     $activity['location'] = array(
                         'objectType' => 'place',
-                        'position' => sprintf("%+02.5F.%+03.5F/", $loc->lat, $loc->lon);
+                        'position' => sprintf("%+02.5F.%+03.5F/", $loc->lat, $loc->lon),
                     );
 
                     $name = $loc->getName();
