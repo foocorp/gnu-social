@@ -1,0 +1,31 @@
+# Translation of StatusNet - Echo to Basque (Euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Echo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-01-20 18:05+0000\n"
+"PO-Revision-Date: 2012-01-20 18:09:08+0000\n"
+"Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:02+0000\n"
+"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
+"13)\n"
+"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Language-Code: eu\n"
+"X-Message-Group: #out-statusnet-plugin-echo\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Plugin description.
+msgid ""
+"Use <a href=\"http://aboutecho.com/\">Echo</a> to add commenting to notice "
+"pages."
+msgstr ""
+"Erabili <a href=\"http://aboutecho.com/\">Echo</a> oharren orriei iruzkinak "
+"gehitzeko."

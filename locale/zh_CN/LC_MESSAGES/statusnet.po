@@ -5,6 +5,7 @@
 # Author: Chenxiaoqino
 # Author: Happy
 # Author: Hydra
+# Author: Hzy980512
 # Author: March
 # Author: Shizhao
 # Author: Sweeite012f
@@ -18,14 +19,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-28 11:45+0000\n"
-"PO-Revision-Date: 2011-12-28 11:49:32+0000\n"
+"POT-Creation-Date: 2012-01-20 18:05+0000\n"
+"PO-Revision-Date: 2012-01-20 18:09:27+0000\n"
 "Language-Team: Simplified Chinese <https://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r107479); Translate extension (2011-10-"
-"30)\n"
+"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
+"13)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -102,9 +103,8 @@ msgid "Closed"
 msgstr "封闭（不允许新用户注册）"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
-msgstr "保存访问设置"
+msgstr "保存访问设置。"
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -308,7 +308,6 @@ msgstr ""
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Send invite"
 msgstr "发送邀请。"
@@ -429,14 +428,13 @@ msgid "Unblock user failed."
 msgstr "取消屏蔽用户失败。"
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "对话"
+msgstr "对话。"
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "No conversation with ID %d."
-msgstr "对话"
+msgstr "没有ID为%d的对话。"
 
 #. TRANS: Title for conversion timeline.
 #, fuzzy
@@ -1961,7 +1959,7 @@ msgid "FAQ"
 msgstr "FAQ"
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "常见问题"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
@@ -1994,7 +1992,7 @@ msgstr "用户小组"
 
 msgctxt "MENU"
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "RESTful API"
 msgstr ""
@@ -3701,9 +3699,8 @@ msgid "Server to direct SSL requests to."
 msgstr "直接SSL请求的服务器"
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-#, fuzzy
 msgid "Save path settings."
-msgstr "保存网站设置。"
+msgstr "保存路径设置。"
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -6106,6 +6103,7 @@ msgid "%1$d byte"
 msgid_plural "%1$d bytes"
 msgstr[0] ""
 
+#
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
@@ -6333,6 +6331,7 @@ msgstr ""
 "你已经创建了 %d 条或更多的标签，达到了标签数量的上限。试下删掉一些已经创建的"
 "标签。"
 
+#
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
 #, fuzzy, php-format
 msgid ""
@@ -7377,7 +7376,7 @@ msgstr "将带有所给 id 的消息标记为“收藏”"
 #. TRANS: Help message for IM/SMS command "repeat #<notice_id>".
 msgctxt "COMMANDHELP"
 msgid "repeat a notice with a given id"
-msgstr ""
+msgstr "用已给id重复通知"
 
 #. TRANS: Help message for IM/SMS command "repeat <nickname>".
 msgctxt "COMMANDHELP"
@@ -7387,7 +7386,7 @@ msgstr "转发用户的最后一条消息"
 #. TRANS: Help message for IM/SMS command "reply #<notice_id>".
 msgctxt "COMMANDHELP"
 msgid "reply to notice with a given id"
-msgstr ""
+msgstr "用已给出的id回复通知"
 
 #. TRANS: Help message for IM/SMS command "reply <nickname>".
 msgctxt "COMMANDHELP"
@@ -7706,7 +7705,7 @@ msgstr ""
 #. TRANS: Menu item title in personal group navigation menu.
 #. TRANS: %s is a username.
 msgid "Back to top"
-msgstr ""
+msgstr "返回顶部"
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -8270,10 +8269,9 @@ msgid "Make Admin"
 msgstr "设置管理员"
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Make this user an admin."
-msgstr "将这个用户设为管理员"
+msgstr "将此用户设为管理员"
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
 msgid "There was a database error while saving your file. Please try again."
@@ -9294,7 +9292,7 @@ msgstr ""
 #. TRANS: Dropdown field label.
 msgctxt "LABEL"
 msgid "Search in"
-msgstr "中搜索"
+msgstr "搜索于"
 
 #. TRANS: Dropdown field title.
 msgid "Choose a field to search."
@@ -9304,13 +9302,13 @@ msgstr "选择要搜索的字段。"
 #. TRANS: %1$s is a nickname, $2$s is a list.
 #, php-format
 msgid "Remove %1$s from list %2$s"
-msgstr "删除 %1$s 从 %2$s 列表中"
+msgstr "%2$s列表中删除%1$s"
 
 #. TRANS: Legend on form to add a profile to a list.
 #. TRANS: %1$s is a nickname, %2$s is a list.
 #, php-format
 msgid "Add %1$s to list %2$s"
-msgstr "添加 %1$s 到 %2$s 列表中"
+msgstr "添加%1$s到列表%2$s中"
 
 #. TRANS: Title for top posters section.
 msgid "Top posters"

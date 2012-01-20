@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-28 11:45+0000\n"
-"PO-Revision-Date: 2011-12-28 11:48:48+0000\n"
+"POT-Creation-Date: 2012-01-20 18:05+0000\n"
+"PO-Revision-Date: 2012-01-20 18:08:39+0000\n"
 "Language-Team: Friulian <https://translatewiki.net/wiki/Portal:fur>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r107479); Translate extension (2011-10-"
-"30)\n"
+"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
+"13)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: fur\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -1957,7 +1957,7 @@ msgid "FAQ"
 msgstr "Domandis plui frecuentis"
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "Domandis fatis plui spes"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
@@ -1968,7 +1968,6 @@ msgstr "Contats"
 msgid "Contact info"
 msgstr "Informazions di contat"
 
-#, fuzzy
 msgctxt "MENU"
 msgid "Tags"
 msgstr "Etichetis"
@@ -4991,7 +4990,7 @@ msgstr ""
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
 #. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
@@ -5001,7 +5000,7 @@ msgstr ""
 "**%s** al è un grup di utents su %%site.name%%, un servizi di [microblogging]"
 "(http://en.wikipedia.org/wiki/Micro-blogging) basât sul imprest libar "
 "[StatusNet](http://status.net/). I siei membris a condividin messaçs curts "
-"su la vite e i lôr interès. "
+"su la vite e i lôr interès."
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -5269,7 +5268,7 @@ msgstr ""
 #. TRANS: %s is the invalid language code.
 #, php-format
 msgid "Unknown language \"%s\"."
-msgstr ""
+msgstr "Lenghe \"%s\" no cognossude."
 
 #. TRANS: Client error displayed trying to save site settings with a text limit below 0.
 msgid "Minimum text limit is 0 (unlimited)."
@@ -5583,7 +5582,7 @@ msgstr ""
 
 #. TRANS: Input field label for snapshot report URL in admin panel for snapshots.
 msgid "Report URL"
-msgstr ""
+msgstr "Segnale URL"
 
 #. TRANS: Input field title for snapshot report URL in admin panel for snapshots.
 msgid "Snapshots will be sent to this URL."
@@ -5717,7 +5716,7 @@ msgstr "Chestis a son lis personis che %s al seguìs."
 #. TRANS: This message contains Markdown URLs. The link description is between
 #. TRANS: square brackets, and the link between parentheses. Do not separate "]("
 #. TRANS: and do not change the URL part.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You're not listening to anyone's notices right now, try subscribing to "
 "people you know. Try [people search](%%action.peoplesearch%%), look for "
@@ -5727,8 +5726,7 @@ msgstr ""
 "No tu stâs seguint i avîs di nissun par cumò, prove a sotscrivi cualchidun "
 "che tu cognossis. Prove a [cirî int](%%action.peoplesearch%%), cjalâ i "
 "membris di grups che ti interessin e i [utents plui famôs](%%action.featured%"
-"%). Se tu sês un [utent di Twitter](%%action.twittersettings%%), tu puedis "
-"in automatic sotscriviti ae int che tu seguivis di là."
+"%)."
 
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user other
 #. TRANS: than the logged in user that has no subscriptions. %s is the user nickname.
@@ -9218,20 +9216,20 @@ msgstr "Tu lu âs ripetût."
 #. TRANS: List message for when more than 4 people repeat something.
 #. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
 #. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
-#, fuzzy, php-format
+#, php-format
 msgid "%%s and %d other repeated this."
 msgid_plural "%%s and %d others repeated this."
-msgstr[0] "I plâs a %%s e %d altris."
-msgstr[1] "I plâs a %%s e %d altris."
+msgstr[0] "Ripetût di %%s e %d altri."
+msgstr[1] "Ripetût di %%s e %d altris."
 
 #. TRANS: List message for favoured notices.
 #. TRANS: %%s is a list of users liking a notice.
 #. TRANS: Plural is based on the number of of users that have favoured a notice.
-#, fuzzy, php-format
+#, php-format
 msgid "%%s repeated this."
 msgid_plural "%%s repeated this."
-msgstr[0] "Chest i plâs a %%s."
-msgstr[1] "Chest i plâs a %%s."
+msgstr[0] "%%s lu à ripetût."
+msgstr[1] "%%s lu àn ripetût."
 
 #. TRANS: Form legend.
 #, php-format

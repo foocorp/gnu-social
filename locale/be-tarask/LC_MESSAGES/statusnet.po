@@ -12,15 +12,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-28 11:45+0000\n"
-"PO-Revision-Date: 2011-12-28 11:48:19+0000\n"
+"POT-Creation-Date: 2012-01-20 18:05+0000\n"
+"PO-Revision-Date: 2012-01-20 18:08:09+0000\n"
 "Language-Team: Belarusian (Taraškievica orthography) <https://translatewiki."
 "net/wiki/Portal:be-tarask>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r107479); Translate extension (2011-10-"
-"30)\n"
+"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
+"13)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: be-tarask\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -5356,7 +5356,7 @@ msgstr ""
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
@@ -6295,6 +6295,7 @@ msgid_plural "%1$d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
+#
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
@@ -6535,6 +6536,7 @@ msgstr ""
 "Вы ўжо стварылі %d ці болей тэгаў, што зьяўляецца дазволенай колькасьцю "
 "тэгаў. Паспрабуйце выкарыстаць ці выдаліць некаторыя існуючыя тэгі."
 
+#
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
 #, fuzzy, php-format
 msgid ""
@@ -6587,151 +6589,152 @@ msgstr "Немагчыма выдаліць падпіску."
 #. TRANS: Activity title when subscribing to another person.
 msgctxt "TITLE"
 msgid "Follow"
-msgstr ""
+msgstr "Сачыць"
 
 #. TRANS: Notification given when one person starts following another.
 #. TRANS: %1$s is the subscriber, %2$s is the subscribed.
 #, php-format
 msgid "%1$s is now following %2$s."
-msgstr ""
+msgstr "%1$s цяпер сочыць за %2$s."
 
 #. TRANS: Notice given on user registration.
 #. TRANS: %1$s is the sitename, $2$s is the registering user's nickname.
 #, php-format
 msgid "Welcome to %1$s, @%2$s!"
-msgstr ""
+msgstr "Вітаем на %1$s, @%2$s!"
 
 #. TRANS: Exception thrown when trying view "repeated to me".
 msgid "Not implemented since inbox change."
-msgstr ""
+msgstr "Не рэалізавана з моманту зьмены ўваходзячых паведамленьняў."
 
 #. TRANS: Server exception.
 msgid "No single user defined for single-user mode."
-msgstr ""
+msgstr "Не вызначаны карыстальнік для рэжыму аднаго карыстальніка."
 
 #. TRANS: Server exception.
 msgid "Single-user mode code called when not enabled."
-msgstr ""
+msgstr "Выкліканы рэжым аднаго карыстальніка, калі не ўключаны."
 
 #. TRANS: Information on password recovery form if no known username or e-mail address was specified.
 msgid "No user with that email address or username."
-msgstr ""
+msgstr "Няма карыстальнікаў з такім адрасам электроннай пошты ці іменем."
 
 #. TRANS: Client error displayed on password recovery form if a user does not have a registered e-mail address.
 msgid "No registered email address for that user."
 msgstr ""
+"Няма зарэгістраваных адрасоў электроннай пошты для гэтага карыстальніка."
 
 #. TRANS: Server error displayed if e-mail address confirmation fails in the database on the password recovery form.
 msgid "Error saving address confirmation."
-msgstr ""
+msgstr "Памылка захаваньня пацьверджаньня адрасу."
 
 #. TRANS: Server exception thrown when creating a group failed.
 msgid "Could not create group."
-msgstr ""
+msgstr "Немагчыма стварыць групу."
 
 #. TRANS: Server exception thrown when updating a group URI failed.
 msgid "Could not set group URI."
-msgstr ""
+msgstr "Немагчыма ўстанавіць URI групы."
 
 #. TRANS: Server exception thrown when setting group membership failed.
 msgid "Could not set group membership."
-msgstr ""
+msgstr "Немагчыма ўстанавіць удзел у групе."
 
 #. TRANS: Server exception thrown when saving local group information failed.
 msgid "Could not save local group info."
-msgstr ""
+msgstr "Немагчыма захаваць інфармацыю пра лякальную групу."
 
 #. TRANS: Exception thrown when an account could not be located when it should be moved.
 #. TRANS: %s is the remote site.
 #, php-format
 msgid "Cannot locate account %s."
-msgstr ""
+msgstr "Немагчыма знайсьці рахунак %s."
 
 #. TRANS: Exception thrown when a service document could not be located account move.
 #. TRANS: %s is the remote site.
 #, php-format
 msgid "Cannot find XRD for %s."
-msgstr ""
+msgstr "Немагчыма знайсьці XRD для %s."
 
 #. TRANS: Exception thrown when an account could not be located when it should be moved.
 #. TRANS: %s is the remote site.
 #, php-format
 msgid "No AtomPub API service for %s."
-msgstr ""
+msgstr "Няма сэрвісу AtomPub API для %s."
 
 #. TRANS: H2 for user actions in a profile.
 #. TRANS: H2 for entity actions in a profile.
 msgid "User actions"
-msgstr ""
+msgstr "Дзеяньні карыстальніка"
 
 #. TRANS: Text shown in user profile of not yet compeltely deleted users.
 msgid "User deletion in progress..."
-msgstr ""
+msgstr "Ідзе выдаленьне карыстальніка…"
 
 #. TRANS: Link title for link on user profile.
 msgid "Edit profile settings."
-msgstr ""
+msgstr "Рэдагаваць налады профілю."
 
 #. TRANS: Link text for link on user profile.
 msgctxt "BUTTON"
 msgid "Edit"
-msgstr ""
+msgstr "Рэдагаваць"
 
 #. TRANS: Link title for link on user profile.
 msgid "Send a direct message to this user."
-msgstr ""
+msgstr "Даслаць непасрэднае паведамленьне гэтаму карыстальніку"
 
 #. TRANS: Link text for link on user profile.
 msgctxt "BUTTON"
 msgid "Message"
-msgstr ""
+msgstr "Паведамленьне"
 
 #. TRANS: Label text on user profile to select a user role.
 msgid "Moderate"
-msgstr ""
+msgstr "Марэрацыя"
 
 #. TRANS: Label text on user profile to select a user role.
 msgid "User role"
-msgstr ""
+msgstr "Роля карыстальніка"
 
 #. TRANS: Role that can be set for a user profile.
 msgctxt "role"
 msgid "Administrator"
-msgstr ""
+msgstr "Адміністратар"
 
 #. TRANS: Role that can be set for a user profile.
 msgctxt "role"
 msgid "Moderator"
-msgstr ""
+msgstr "Мадэратар"
 
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
-msgstr ""
+msgstr "%1$s — %2$s"
 
 #. TRANS: Page title for a page without a title set.
 msgid "Untitled page"
-msgstr ""
+msgstr "Старонка бяз назвы"
 
 #. TRANS: Localized tooltip for '...' expansion button on overlong remote messages.
 msgctxt "TOOLTIP"
 msgid "Show more"
-msgstr ""
+msgstr "Паказаць болей"
 
 #. TRANS: Inline reply form submit button: submits a reply comment.
 msgctxt "BUTTON"
 msgid "Reply"
-msgstr ""
+msgstr "Адказаць"
 
 #. TRANS: Placeholder text for inline reply form. Clicking in this box will turn it into a mini notice form.
 #. TRANS: Field label for reply mini form.
 msgid "Write a reply..."
-msgstr ""
+msgstr "Напісаць адказ…"
 
 #. TRANS: Tab on the notice form.
 msgctxt "TAB"
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
 #. TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is set.
 #. TRANS: Text between [] is a link description, text between () is the link itself.
@@ -6742,11 +6745,13 @@ msgid ""
 "**%%site.name%%** is a microblogging service brought to you by [%%site."
 "broughtby%%](%%site.broughtbyurl%%)."
 msgstr ""
+"**%%site.name%%** — сэрвіс мікраблёгінгу, прадстаўленая Вам [%%site.broughtby"
+"%%](%%site.broughtbyurl%%)."
 
 #. TRANS: First sentence of the StatusNet site license. Used if 'broughtby' is not set.
 #, php-format
 msgid "**%%site.name%%** is a microblogging service."
-msgstr ""
+msgstr "**%%site.name%%** — сэрвіс мікраблёгінгу."
 
 #. TRANS: Second sentence of the StatusNet site license. Mentions the StatusNet source code license.
 #. TRANS: Make sure there is no whitespace between "]" and "(".
@@ -6758,92 +6763,100 @@ msgid ""
 "s, available under the [GNU Affero General Public License](http://www.fsf."
 "org/licensing/licenses/agpl-3.0.html)."
 msgstr ""
+"Ён дзейнічае пры дапамозе праграмнага забесьпячэньня мікраблёгінгу "
+"[StatusNet](http://status.net/), вэрсіі %s, даступнага на ўмовах ліцэнзіі "
+"[GNU Affero General Public](http://www.fsf.org/licensing/licenses/agpl-3.0."
+"html)."
 
 #. TRANS: Content license displayed when license is set to 'private'.
 #. TRANS: %1$s is the site name.
 #, php-format
 msgid "Content and data of %1$s are private and confidential."
-msgstr ""
+msgstr "Зьмест і зьвесткі %1$s зьяўляюцца прыватнымі і канфідэнцыяльнымі."
 
 #. TRANS: Content license displayed when license is set to 'allrightsreserved'.
 #. TRANS: %1$s is the copyright owner.
 #, php-format
 msgid "Content and data copyright by %1$s. All rights reserved."
 msgstr ""
+"Аўтарскія правы на зьмест і зьвесткі належаць %1$s. Усе правы абароненыя."
 
 #. TRANS: Content license displayed when license is set to 'allrightsreserved' and no owner is set.
 msgid "Content and data copyright by contributors. All rights reserved."
 msgstr ""
+"Аўтарскія правы на зьмест і зьвесткі належаць распрацоўшчыкам. Усе правы "
+"абароненыя."
 
 #. TRANS: license message in footer.
 #. TRANS: %1$s is the site name, %2$s is a link to the license URL, with a licence name set in configuration.
 #, php-format
 msgid "All %1$s content and data are available under the %2$s license."
-msgstr ""
+msgstr "Увесь зьмест і зьвесткі %1$s даступныя на ўмовах ліцэнзіі %2$s."
 
 #. TRANS: Pagination message to go to a page displaying information more in the
 #. TRANS: present than the currently displayed information.
 msgid "After"
-msgstr ""
+msgstr "Наступная"
 
 #. TRANS: Pagination message to go to a page displaying information more in the
 #. TRANS: past than the currently displayed information.
 msgid "Before"
-msgstr ""
+msgstr "Папярэдняя"
 
 #. TRANS: Client exception thrown when a feed instance is a DOMDocument.
 msgid "Expecting a root feed element but got a whole XML document."
-msgstr ""
+msgstr "Чакаўся карэнны элемэнт стужкі, а атрыманы ўвесь XML-дакумэнт."
 
 #. TRANS: Client exception thrown when using an unknown verb for the activity importer.
 #, php-format
 msgid "Unknown verb: \"%s\"."
-msgstr ""
+msgstr "Невядомая каманда: «%s»."
 
 #. TRANS: Client exception thrown when trying to force a subscription for an untrusted user.
 msgid "Cannot force subscription for untrusted user."
-msgstr ""
+msgstr "Прымусовая падпіска для ненадзейных удзельнікаў немагчымая."
 
 #. TRANS: Client exception thrown when trying to force a remote user to subscribe.
 msgid "Cannot force remote user to subscribe."
-msgstr ""
+msgstr "Прымусовая падпіска для выдаленых удзельнікаў немагчымая."
 
 #. TRANS: Client exception thrown when trying to subscribe to an unknown profile.
 msgid "Unknown profile."
-msgstr ""
+msgstr "Невядомы профіль."
 
 #. TRANS: Client exception thrown when trying to import an event not related to the importing user.
 msgid "This activity seems unrelated to our user."
-msgstr ""
+msgstr "Гэтыя дзеяньні, здаецца, ня зьвязаная з нашым карыстальнікам."
 
 #. TRANS: Client exception thrown when trying to join a remote group that is not a group.
 msgid "Remote profile is not a group!"
-msgstr ""
+msgstr "Аддалены профіль не зьяўляецца групай!"
 
 #. TRANS: Client exception thrown when trying to join a group the importing user is already a member of.
 msgid "User is already a member of this group."
-msgstr ""
+msgstr "Карыстальнік ўжо зьяўляецца ўдзельнікам гэтай групы."
 
 #. TRANS: Client exception thrown when trying to import a notice by another user.
 #. TRANS: %1$s is the source URI of the notice, %2$s is the URI of the author.
 #, php-format
 msgid "Already know about notice %1$s and  it has a different author %2$s."
-msgstr ""
+msgstr "Запіс %1$s ужо вядомы і мае іншага аўтара %2$s."
 
 #. TRANS: Client exception thrown when trying to overwrite the author information for a non-trusted user during import.
 msgid "Not overwriting author info for non-trusted user."
 msgstr ""
+"Немагчыма перазапісаць аўтарскую інфармацыю пра ненадзейнага карыстальніка."
 
 #. TRANS: Client exception thrown when trying to import a notice without content.
 #. TRANS: %s is the notice URI.
 #, php-format
 msgid "No content for notice %s."
-msgstr ""
+msgstr "Няма зьместу для запісу %s."
 
 #. TRANS: Exception thrown if a non-existing user is provided. %s is a user ID.
 #, php-format
 msgid "No such user \"%s\"."
-msgstr ""
+msgstr "Няма такога ўдзельніка «%s»."
 
 #. TRANS: Client exception thrown when post to collection fails with a 400 status.
 #. TRANS: %1$s is a URL, %2$s is the status, %s$s is the fail reason.
@@ -6854,15 +6867,15 @@ msgstr ""
 #, php-format
 msgctxt "URLSTATUSREASON"
 msgid "%1$s %2$s %3$s"
-msgstr ""
+msgstr "%1$s %2$s %3$s"
 
 #. TRANS: Client exception thrown when there is no source attribute.
 msgid "Can't handle remote content yet."
-msgstr ""
+msgstr "Пакуль яшчэ немагчыма апрацоўваць аддалены зьмест."
 
 #. TRANS: Client exception thrown when there embedded XML content is found that cannot be processed yet.
 msgid "Can't handle embedded XML content yet."
-msgstr ""
+msgstr "Пакуль яшчэ немагчыма апрацоўваць убудаваны XML-зьмест."
 
 #. TRANS: Client exception thrown when base64 encoded content is found that cannot be processed yet.
 msgid "Can't handle embedded Base64 content yet."

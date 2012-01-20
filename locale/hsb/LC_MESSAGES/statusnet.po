@@ -12,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-28 11:45+0000\n"
-"PO-Revision-Date: 2011-12-28 11:48:53+0000\n"
+"POT-Creation-Date: 2012-01-20 18:05+0000\n"
+"PO-Revision-Date: 2012-01-20 18:08:46+0000\n"
 "Language-Team: Upper Sorbian <https://translatewiki.net/wiki/Portal:hsb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r107479); Translate extension (2011-10-"
-"30)\n"
+"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
+"13)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: hsb\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -44,6 +44,8 @@ msgstr "Zmylk je wustupił."
 msgid ""
 "No configuration file found. Try running the installation program first."
 msgstr ""
+"Žana konfiguraciska dataja njenamakana. Spytajće najprjedy instalaciski "
+"program wuwjesć."
 
 #. TRANS: Error message displayed when trying to access a non-existing page.
 msgid "Unknown page"
@@ -747,7 +749,7 @@ msgstr "Lisćina njenamakana."
 
 #. TRANS: Client error displayed when trying to update another user's list.
 msgid "You cannot update lists that do not belong to you."
-msgstr ""
+msgstr "Njemóžeš lisćiny aktualizować, kotrež ći njesłušeja."
 
 #. TRANS: Client error displayed when an unknown error occurs updating a list.
 #. TRANS: Client error displayed when an unknown error occurs viewing list members.
@@ -758,7 +760,7 @@ msgstr "Zmylk je wustupił."
 
 #. TRANS: Client error displayed when trying to delete another user's list.
 msgid "You cannot delete lists that do not belong to you."
-msgstr ""
+msgstr "Njemóžeš lisćiny zhašeć, kotrež ći njesłušeja."
 
 #. TRANS: Client error displayed when referring to a non-list member.
 msgid "The specified user is not a member of this list."
@@ -786,7 +788,7 @@ msgstr "Lisćina dyrbi mjeno měć."
 
 #. TRANS: Client error displayed when a membership check for a user is nagative.
 msgid "The specified user is not a subscriber of this list."
-msgstr ""
+msgstr "Podaty wužiwar njeje abonent tuteje lisćiny."
 
 #. TRANS: Client error displayed when trying to unsubscribe from a non-subscribed list.
 msgid "You are not subscribed to this list."
@@ -802,7 +804,7 @@ msgstr "Njepłaćiwe přizjewjenske znamješka."
 
 #. TRANS: Client error given when no oauth_token was passed to the OAuth API.
 msgid "No oauth_token parameter provided."
-msgstr ""
+msgstr "Žadyn parameter ouath_token njepodaty."
 
 #. TRANS: Client error given when an invalid request token was passed to the OAuth API.
 msgid "Invalid request token."
@@ -3375,7 +3377,7 @@ msgid "Only stream mode (no conversations) in timelines"
 msgstr ""
 
 msgid "Show conversation page as hierarchical trees"
-msgstr ""
+msgstr "Konwersacisku stronu jako hierarchiski štom pokazać"
 
 msgid "Show nicknames (not full names) in timelines"
 msgstr ""
@@ -3956,7 +3958,7 @@ msgstr "Pytanske wuslědki"
 
 #. TRANS: Error message in case a search is shorter than three characters.
 msgid "The search string must be at least 3 characters long."
-msgstr ""
+msgstr "Pytanski wuraz dyrbi znajmjeńša 3 znamješka dołhe być."
 
 #. TRANS: Page title for profile settings.
 msgid "Profile settings"
@@ -4456,7 +4458,7 @@ msgstr "Rozumju, zo wobsah a daty wot %1$s su priwatne a dowěrliwe."
 #. TRANS: %1$s is the license owner.
 #, php-format
 msgid "My text and files are copyright by %1$s."
-msgstr ""
+msgstr "%1$s ma awtorske prawo na mojim tekstom a mojimi datajemi."
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved with ownership left to contributors.
 msgid "My text and files remain under my own copyright."
@@ -5618,13 +5620,13 @@ msgstr "%1$s abonementow, strona %2$d"
 #. TRANS: Page notice for page with an overview of all subscriptions
 #. TRANS: of the logged in user's own profile.
 msgid "These are the people whose notices you listen to."
-msgstr ""
+msgstr "To su ludźo, kotrychž zdźělenki čitaš."
 
 #. TRANS: Page notice for page with an overview of all subscriptions of a user other
 #. TRANS: than the logged in user. %s is the user nickname.
 #, php-format
 msgid "These are the people whose notices %s listens to."
-msgstr ""
+msgstr "To su ludźo, kotrychž zdźělenki %s čita."
 
 #. TRANS: Subscription list text when the logged in user has no subscriptions.
 #. TRANS: This message contains Markdown URLs. The link description is between
@@ -5792,7 +5794,7 @@ msgstr "[žadyn]"
 
 #. TRANS: Default value for URL shortening settings.
 msgid "[internal]"
-msgstr ""
+msgstr "[internal]"
 
 #. TRANS: Label for dropdown with URL shortener services.
 msgid "Shorten URLs with"
@@ -6815,6 +6817,7 @@ msgstr "Popisujomny"
 #. TRANS: Form guide.
 msgid "Default access for this application: read-only, or read-write"
 msgstr ""
+"Standardny přistup za tutón program: jenož čitajomny abo čitajomny-pisajomny"
 
 #. TRANS: Submit button title.
 msgid "Cancel application changes."
@@ -6966,7 +6969,7 @@ msgstr "Tutón přikaz hišće njeje implementowany."
 
 #. TRANS: Command exception text shown when a user tries to nudge themselves.
 msgid "It does not make a lot of sense to nudge yourself!"
-msgstr ""
+msgstr "Je bjez zmysła, so samoho storčić!"
 
 #. TRANS: Message given having nudged another user.
 #. TRANS: %s is the nickname of the user that was nudged.
@@ -7091,6 +7094,8 @@ msgid ""
 "%s is a remote profile; you can only send direct messages to users on the "
 "same server."
 msgstr ""
+"%s je zdaleny profil; móžeš jenož wužiwarjam na samsnym serwerje direktne "
+"powěsće pósłać."
 
 #. TRANS: Message given if content is too long. %1$sd is used for plural.
 #. TRANS: %1$d is the maximum number of characters, %2$d is the number of submitted characters.
@@ -7321,7 +7326,7 @@ msgstr "Direktna powěsć wužiwarjej"
 #. TRANS: Help message for IM/SMS command "get <nickname>".
 msgctxt "COMMANDHELP"
 msgid "get last notice from user"
-msgstr ""
+msgstr "poslednju zdźělenku wužiwarja wotwołać"
 
 #. TRANS: Help message for IM/SMS command "whois <nickname>".
 msgctxt "COMMANDHELP"
@@ -7331,7 +7336,7 @@ msgstr "Profilowe informacije wo wužiwarju wotwołać"
 #. TRANS: Help message for IM/SMS command "lose <nickname>".
 msgctxt "COMMANDHELP"
 msgid "force user to stop following you"
-msgstr ""
+msgstr "wužiwarja nuzować, tebje wjace njeslědować"
 
 #. TRANS: Help message for IM/SMS command "fav <nickname>".
 msgctxt "COMMANDHELP"
@@ -7346,7 +7351,7 @@ msgstr ""
 #. TRANS: Help message for IM/SMS command "repeat #<notice_id>".
 msgctxt "COMMANDHELP"
 msgid "repeat a notice with a given id"
-msgstr ""
+msgstr "zdźělenku z datym ID wospjetować"
 
 #. TRANS: Help message for IM/SMS command "repeat <nickname>".
 msgctxt "COMMANDHELP"
@@ -7356,7 +7361,7 @@ msgstr "Poslednju zdźělenku wužiwarja wospjetować"
 #. TRANS: Help message for IM/SMS command "reply #<notice_id>".
 msgctxt "COMMANDHELP"
 msgid "reply to notice with a given id"
-msgstr ""
+msgstr "na zdźělenku z datym ID wotmołwić"
 
 #. TRANS: Help message for IM/SMS command "reply <nickname>".
 msgctxt "COMMANDHELP"
@@ -7381,7 +7386,7 @@ msgstr "Skupinu wopušćić"
 #. TRANS: Help message for IM/SMS command "stats".
 msgctxt "COMMANDHELP"
 msgid "get your stats"
-msgstr ""
+msgstr "twoju statistiku wotwołać"
 
 #. TRANS: Help message for IM/SMS command "stop".
 #. TRANS: Help message for IM/SMS command "quit".
@@ -7420,7 +7425,7 @@ msgstr "hišće njeimplementowany."
 #. TRANS: Help message for IM/SMS command "nudge <nickname>".
 msgctxt "COMMANDHELP"
 msgid "remind a user to update."
-msgstr ""
+msgstr "wužiwarja na aktualizaciju dopomnić."
 
 #. TRANS: Error message displayed when no configuration file was found for a StatusNet installation.
 msgid "No configuration file found."
@@ -7562,7 +7567,7 @@ msgstr "Wšitcy čłonojo"
 
 #. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
 msgid "Pending"
-msgstr ""
+msgstr "Njesčinjeny"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
 msgid "Blocked"
@@ -7630,6 +7635,8 @@ msgstr[3] ""
 msgid ""
 "New members must be approved by admin and all posts are forced to be private."
 msgstr ""
+"Nowi čłonojo dyrbja so wot administratora akceptować a wšě powěsće su "
+"priwatne."
 
 #. TRANS: Indicator in group members list that this user is a group administrator.
 msgctxt "GROUPADMIN"
@@ -7765,7 +7772,7 @@ msgstr ""
 
 #. TRANS: Server exception thrown trying to initialise an IM plugin without a transport method.
 msgid "Transport cannot be null."
-msgstr ""
+msgstr "Transport njemóže prózdny być."
 
 #. TRANS: Title for inbox tag cloud section.
 msgctxt "TITLE"
@@ -7884,6 +7891,8 @@ msgid ""
 "%1$s would like to listen to your notices on %2$s. You may approve or reject "
 "their subscription at %3$s"
 msgstr ""
+"%1$s by rady twoje zdźělenki na %2$s slědował. Móžeš jeho abonement na %3$s "
+"přiwzać abo wotpokazać"
 
 #. TRANS: Common footer block for StatusNet notification emails.
 #. TRANS: %1$s is the StatusNet sitename,
@@ -9207,7 +9216,7 @@ msgstr "Pytać w"
 
 #. TRANS: Dropdown field title.
 msgid "Choose a field to search."
-msgstr ""
+msgstr "wubjerće polo za pytanje."
 
 #. TRANS: Form legend.
 #. TRANS: %1$s is a nickname, $2$s is a list.

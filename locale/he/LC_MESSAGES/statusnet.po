@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-28 11:45+0000\n"
-"PO-Revision-Date: 2011-12-28 11:48:52+0000\n"
+"POT-Creation-Date: 2012-01-20 18:05+0000\n"
+"PO-Revision-Date: 2012-01-20 18:08:43+0000\n"
 "Language-Team: Hebrew <https://translatewiki.net/wiki/Portal:he>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r107479); Translate extension (2011-10-"
-"30)\n"
+"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
+"13)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: he\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -94,9 +94,8 @@ msgid "Closed"
 msgstr "סגורה"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
-msgstr "שמירת הגדרות גישה"
+msgstr "שמירת הגדרות גישה."
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -425,17 +424,15 @@ msgid "Unblock user failed."
 msgstr "הסרת החסימה ממשתמש נכשלה."
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "אין מזהה שיחה"
+msgstr "אין מזהה שיחה."
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "No conversation with ID %d."
-msgstr "אין שיחה עם מזהה %d"
+msgstr "אין שיחה עם מזהה %d."
 
 #. TRANS: Title for conversion timeline.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
 msgstr "שיחה"
@@ -1926,18 +1923,16 @@ msgctxt "MENU"
 msgid "Help"
 msgstr "עזרה"
 
-#, fuzzy
 msgid "Getting started"
-msgstr "ההגדרות נשמרו."
+msgstr "תחילת עבודה"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
 msgctxt "MENU"
 msgid "About"
 msgstr ""
 
-#, fuzzy
 msgid "About this site"
-msgstr "לבטל חסימת משתמש"
+msgstr "אודות האתר הזה"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
 msgctxt "MENU"
@@ -1970,9 +1965,8 @@ msgctxt "MENU"
 msgid "Groups"
 msgstr ""
 
-#, fuzzy
 msgid "Using groups"
-msgstr "קבוצות %s"
+msgstr "שימוש בקבוצות"
 
 msgctxt "MENU"
 msgid "API"

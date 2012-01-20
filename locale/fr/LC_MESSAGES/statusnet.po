@@ -32,13 +32,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-28 11:45+0000\n"
-"PO-Revision-Date: 2011-12-28 11:48:46+0000\n"
+"POT-Creation-Date: 2012-01-20 18:05+0000\n"
+"PO-Revision-Date: 2012-01-20 18:08:37+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r107479); Translate extension (2011-10-"
-"30)\n"
+"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
+"13)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -1746,9 +1746,8 @@ msgstr "Cette adresse a déjà été confirmée."
 
 #. TRANS: Server error displayed when updating IM preferences fails.
 #. TRANS: Server error thrown on database error removing a registered IM address.
-#, fuzzy
 msgid "Could not update user IM preferences."
-msgstr "Impossible de mettre à jour le dossier de l’utilisateur."
+msgstr "Impossible de mettre à jour les préférences de messagerie instantanée."
 
 #. TRANS: Server error displayed when adding IM preferences fails.
 #, fuzzy
@@ -2051,9 +2050,8 @@ msgctxt "MENU"
 msgid "Contact"
 msgstr "Contact"
 
-#, fuzzy
 msgid "Contact info"
-msgstr "Contact"
+msgstr "Infos de contact"
 
 msgctxt "MENU"
 msgid "Tags"
@@ -2077,7 +2075,7 @@ msgid "API"
 msgstr "API"
 
 msgid "RESTful API"
-msgstr ""
+msgstr "API RESTful"
 
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
@@ -2819,9 +2817,9 @@ msgid "IM is not available."
 msgstr "La messagerie instantanée n’est pas disponible."
 
 #. TRANS: Form note in IM settings form. %s is the type of IM address that was confirmed.
-#, fuzzy, php-format
+#, php-format
 msgid "Current confirmed %s address."
-msgstr "Adresse courriel actuellement confirmée."
+msgstr "Adresse %s actuellement confirmée."
 
 #. TRANS: Form note in IM settings form.
 #. TRANS: %s is the IM service name, %2$s is the IM address set.
@@ -3496,9 +3494,9 @@ msgstr "Statut de %1$s sur %2$s"
 
 #. TRANS: Server error displayed in oEmbed action when attachment not found.
 #. TRANS: %d is an attachment ID.
-#, fuzzy, php-format
+#, php-format
 msgid "Attachment %s not found."
-msgstr "Destinataire non trouvé."
+msgstr "Pièce jointe %s non trouvée."
 
 #. TRANS: Server error displayed in oEmbed request when a path is not supported.
 #. TRANS: %s is a path.
@@ -3957,9 +3955,9 @@ msgid "Mode"
 msgstr "Mode"
 
 #. TRANS: Link text to show lists for user %s.
-#, fuzzy, php-format
+#, php-format
 msgid "Lists for %s"
-msgstr "Boîte d’envoi de %s"
+msgstr "Listes pour %s"
 
 #. TRANS: Fieldset legend.
 #. TRANS: Fieldset legend on gallery action page.
@@ -4193,11 +4191,11 @@ msgstr ""
 #. TRANS: Text area title in form for account registration. Plural
 #. TRANS: is decided by the number of characters available for the
 #. TRANS: biography (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "Describe yourself and your interests in %d character."
 msgid_plural "Describe yourself and your interests in %d characters."
-msgstr[0] "Décrivez-vous avec vos intérêts en %d caractère"
-msgstr[1] "Décrivez-vous avec vos intérêts en %d caractères"
+msgstr[0] "Décrivez-vous avec vos centres d’intérêt en %d caractère."
+msgstr[1] "Décrivez-vous avec vos centres d’intérêt en %d caractères."
 
 #. TRANS: Tooltip for field label in form for profile settings.
 #. TRANS: Text area title on account registration page.
@@ -5229,9 +5227,8 @@ msgid "Message from %1$s on %2$s"
 msgstr "Message reçu de %1$s le %2$s"
 
 #. TRANS: Client exception thrown when trying a view a notice the user has no access to.
-#, fuzzy
 msgid "Not available."
-msgstr "La messagerie instantanée n’est pas disponible."
+msgstr "Non disponible."
 
 #. TRANS: Client error displayed trying to show a deleted notice.
 msgid "Notice deleted."
@@ -6401,6 +6398,7 @@ msgid_plural "%1$d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
+#
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
@@ -7022,10 +7020,9 @@ msgid "Home"
 msgstr "Accueil"
 
 #. TRANS: Header in administrator navigation panel.
-#, fuzzy
 msgctxt "HEADER"
 msgid "Admin"
-msgstr "Administrer"
+msgstr "Admin"
 
 #. TRANS: Menu item title in administrator navigation panel.
 msgid "Basic site configuration"
@@ -7859,17 +7856,15 @@ msgstr "Erreur de la base de données"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Public"
 msgstr "Public"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item title in local navigation menu.
-#, fuzzy
 msgctxt "MENU"
 msgid "Lists"
-msgstr "Limites"
+msgstr "Listes"
 
 #. TRANS: Title of form for deleting a user.
 #. TRANS: Link text in notice list item to delete a notice.
@@ -8080,14 +8075,12 @@ msgid "Logo"
 msgstr "Logo"
 
 #. TRANS: Title for groups with the most members section.
-#, fuzzy
 msgid "Popular groups"
-msgstr "Avis populaires"
+msgstr "Groupes populaires"
 
 #. TRANS: Title for groups with the most posts section.
-#, fuzzy
 msgid "Active groups"
-msgstr "Tous les groupes"
+msgstr "Groupes actifs"
 
 #. TRANS: Link description for seeing all groups.
 #. TRANS: Link description for seeing all lists.
@@ -8223,9 +8216,8 @@ msgid "Send"
 msgstr "Envoyer"
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgid "Send invitations."
-msgstr "Invitations"
+msgstr "Envoyer les invitations."
 
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
@@ -8545,7 +8537,7 @@ msgstr "%1$s (@%2$s) a envoyé un avis à votre attention"
 #. TRANS: %3$s is a URL to the notice, %4$s is the notice text,
 #. TRANS: %5$s is the text "The full conversation can be read here:" and a URL to the full conversion if it exists (otherwise empty),
 #. TRANS: %6$s is a URL to reply to the notice, %7$s is a URL to all @-replies for the addressed user,
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "%1$s just sent a notice to your attention (an '@-reply') on %2$s.\n"
 "\n"
@@ -8565,8 +8557,7 @@ msgid ""
 "\n"
 "%7$s"
 msgstr ""
-"%1$s (@%9$s) vient de soumettre un avis à votre attention (un « @-reply ») "
-"sur %2$s.\n"
+"%1$s vient de soumettre un avis à votre attention (un « @-reply ») sur %2$s.\n"
 "\n"
 "L'avis est ici :\n"
 "\n"
@@ -8582,32 +8573,27 @@ msgstr ""
 "\n"
 "La liste des @-replies qui vous sont destinées est ici :\n"
 "\n"
-"%7$s\n"
-"\n"
-"Cordialement,\n"
-"%2$s\n"
-"\n"
-"P.S. Vous pouvez désactiver ces notifications électroniques ici : %8$s\n"
+"%7$s"
 
 #. TRANS: Subject of group join notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s has joined your group %2$s on %3$s"
-msgstr "%1$s a rejoint le groupe %2$s."
+msgstr "%1$s a rejoint votre groupe %2$s sur %3$s"
 
 #. TRANS: Main body of group join notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
 #. TRANS: %4$s is a block of profile info about the subscriber.
 #. TRANS: %5$s is a link to the addressed user's e-mail settings.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s has joined your group %2$s on %3$s."
-msgstr "%1$s a rejoint le groupe %2$s."
+msgstr "%1$s a rejoint votre groupe %2$s sur %3$s."
 
 #. TRANS: Subject of pending group join request notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s wants to join your group %2$s on %3$s."
-msgstr "%1$s a rejoint le groupe %2$s."
+msgstr "%1$s souhaite rejoindre votre groupe %2$s sur %3$s."
 
 #. TRANS: Main body of pending group join request notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
@@ -8895,9 +8881,8 @@ msgstr "dans le contexte"
 msgid "Repeated by"
 msgstr "Repris par"
 
-#, fuzzy
 msgid " "
-msgstr ", "
+msgstr " "
 
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
@@ -9091,7 +9076,6 @@ msgid "Edit lists"
 msgstr "Cette marque est invalide : %s."
 
 #. TRANS: Label in self tags widget.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Tags"
 msgstr "Balises"
@@ -9351,7 +9335,6 @@ msgid ""
 msgstr ""
 
 #. TRANS: Menu item in search group navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "People"
 msgstr "Personnes"
@@ -9412,7 +9395,6 @@ msgid "Change your profile settings"
 msgstr "Modifier vos paramètres de profil"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Avatar"
 msgstr "Avatar"
@@ -9697,10 +9679,10 @@ msgstr "Vous"
 
 #. TRANS: For building a list such as "Jim, Bob, Mary and 5 others like this".
 #. TRANS: %1$s is a list of users, separated by a separator (default: ", "), %2$s is the last user in the list.
-#, fuzzy, php-format
+#, php-format
 msgctxt "FAVELIST"
 msgid "%1$s and %2$s"
-msgstr "%1$s - %2$s"
+msgstr "%1$s et %2$s"
 
 #. TRANS: List message for notice favoured by logged in user.
 #, fuzzy
@@ -9811,9 +9793,8 @@ msgid "To:"
 msgstr "À"
 
 #. TRANS: Checkbox label in widget for selecting potential addressees to mark the notice private.
-#, fuzzy
 msgid "Private?"
-msgstr "Privé"
+msgstr "Privé ?"
 
 #. TRANS: Client exception thrown in widget for selecting potential addressees when an invalid fill option was received.
 #, fuzzy, php-format

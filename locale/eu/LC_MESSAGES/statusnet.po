@@ -12,14 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-28 11:45+0000\n"
-"PO-Revision-Date: 2011-12-28 11:48:39+0000\n"
+"POT-Creation-Date: 2012-01-20 18:05+0000\n"
+"PO-Revision-Date: 2012-01-20 18:08:31+0000\n"
 "Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r107479); Translate extension (2011-10-"
-"30)\n"
+"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
+"13)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -5341,7 +5341,7 @@ msgstr ""
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
@@ -5349,7 +5349,7 @@ msgid ""
 msgstr ""
 "**%s**(e)k kontu bat du %%%%site.name%%%%n, [StatusNet](http://status.net/) "
 "software librean oinarritutako [mikroblogging](http://eu.wikipedia.org/wiki/"
-"Mikroblogging) zerbitzuan. "
+"Mikroblogging) zerbitzuan."
 
 #. TRANS: Link to the author of a repeated notice. %s is a linked nickname.
 #, php-format
@@ -6192,7 +6192,6 @@ msgid "License"
 msgstr "Lizentzia"
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
@@ -6201,10 +6200,9 @@ msgid ""
 msgstr ""
 "StatusNet software librea da: banatu edo aldatu dezakezu, Free Software "
 "Foundationak bezela, GNU Affero General Public License erabilita, baita "
-"lizentziaren 3 bertsiopean, edo (nahi baduzu) bertsio berriagoetan. "
+"lizentziaren 3 bertsiopean, edo (nahi baduzu) bertsio berriagoetan."
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -6214,7 +6212,7 @@ msgstr ""
 "Programa hau erabilgarria izateko itxaropenarekin zabaldu da, baina INOLAKO "
 "BERMERIK GABE; iradokitako MERKATURATZE edo PROPOSAMEN JAKIN BATERAKO "
 "EGOKITASUNIK gabe.  Ikusi GNU Affero General Public License xehetasun "
-"gehiagotarako. "
+"gehiagotarako."
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
@@ -6278,6 +6276,7 @@ msgid_plural "%1$d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
+#
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
@@ -6522,6 +6521,7 @@ msgstr ""
 "kopurura iritsi zara. Saiatu etiketa batzuk ezabatzen edo existitzen direnak "
 "erabiltzen."
 
+#
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
 #, fuzzy, php-format
 msgid ""

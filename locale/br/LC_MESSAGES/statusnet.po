@@ -12,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-28 11:45+0000\n"
-"PO-Revision-Date: 2011-12-28 11:48:24+0000\n"
+"POT-Creation-Date: 2012-01-20 18:05+0000\n"
+"PO-Revision-Date: 2012-01-20 18:08:14+0000\n"
 "Language-Team: Breton <https://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r107479); Translate extension (2011-10-"
-"30)\n"
+"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
+"13)\n"
 "X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -1967,25 +1967,23 @@ msgstr "Degemer"
 
 msgctxt "MENU"
 msgid "Docs"
-msgstr ""
+msgstr "Teuliadur"
 
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 msgctxt "MENU"
 msgid "Help"
 msgstr "Skoazell"
 
-#, fuzzy
 msgid "Getting started"
-msgstr "Enrollet eo bet an arventennoù."
+msgstr "Kregiñ ganti"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
 msgctxt "MENU"
 msgid "About"
 msgstr "Diwar-benn"
 
-#, fuzzy
 msgid "About this site"
-msgstr "Distankañ an implijer-mañ"
+msgstr "Diwar-benn al lec'hienn-mañ"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
 msgctxt "MENU"
@@ -1993,7 +1991,7 @@ msgid "FAQ"
 msgstr "FAG"
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "Foar ar Goulennoù"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
@@ -2005,13 +2003,12 @@ msgstr "Darempred"
 msgid "Contact info"
 msgstr "Darempred"
 
-#, fuzzy
 msgctxt "MENU"
 msgid "Tags"
 msgstr "Balizennoù"
 
 msgid "Using tags"
-msgstr ""
+msgstr "Implijout balizennoù"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
@@ -2020,13 +2017,12 @@ msgctxt "MENU"
 msgid "Groups"
 msgstr "Strolladoù"
 
-#, fuzzy
 msgid "Using groups"
-msgstr "Strolladoù implijerien"
+msgstr "Implijout strolladoù"
 
 msgctxt "MENU"
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "RESTful API"
 msgstr ""
@@ -2056,7 +2052,6 @@ msgstr "Ret eo lakaat un anv."
 
 #. TRANS: Validation error shown when providing too long a name in the "Edit application" form.
 #. TRANS: Validation error shown when providing too long a name in the "New application" form.
-#, fuzzy
 msgid "Name is too long (maximum 255 characters)."
 msgstr "Re hir eo an anv (255 arouezenn d'ar muiañ)."
 
@@ -2085,7 +2080,6 @@ msgid "Organization is required."
 msgstr "Ezhomm 'zo eus an aozadur."
 
 #. TRANS: Validation error shown when providing too long an arganisation name in the "Edit application" form.
-#, fuzzy
 msgid "Organization is too long (maximum 255 characters)."
 msgstr "Re hir eo an aozadur (255 arouezenn d'ar muiañ)."
 
@@ -2121,7 +2115,7 @@ msgstr "Rankout a reoc'h bezañ luget evit krouiñ ur strollad."
 
 #. TRANS: Form instructions for group edit form.
 msgid "Use this form to edit the group."
-msgstr "Leunit ar furmskrid-mañ evit kemmañ dibarzhioù ar strollad."
+msgstr "Implijit ar furmskrid-mañ evit kemmañ dibarzhioù ar strollad."
 
 #. TRANS: Group edit form validation error.
 #. TRANS: Group create form validation error.
@@ -2137,20 +2131,19 @@ msgstr "Enrollet eo bet ho dibarzhioù."
 
 #. TRANS: Title for edit list page after deleting a tag.
 #. TRANS: %s is a list.
-#, fuzzy, php-format
+#, php-format
 msgid "Delete %s list"
-msgstr "Diverkañ an implijer-mañ"
+msgstr "Diverkañ ar roll %s"
 
 #. TRANS: Title for edit list page.
 #. TRANS: %s is a list.
 #. TRANS: Form legend for list edit form.
 #. TRANS: %s is a list.
-#, fuzzy, php-format
+#, php-format
 msgid "Edit list %s"
-msgstr "N'eo ket reizh ar merk-se : %s."
+msgstr "Kemmañ ar roll %s"
 
 #. TRANS: Error message displayed when trying to perform an action that requires a tagging user or ID.
-#, fuzzy
 msgid "No tagger or ID."
 msgstr "Lesanv pe ID ebet."
 
@@ -2159,19 +2152,16 @@ msgid "Not a local user."
 msgstr "N'eo ket un implijer lec'hel."
 
 #. TRANS: Client error displayed when reting to edit a tag that was not self-created.
-#, fuzzy
 msgid "You must be the creator of the tag to edit it."
-msgstr "Rankout a reer bezañ merour evit kemmañ ar strollad."
+msgstr "Rankout a reer bezañ krouer ar balizenn evit kemmañ anezhi."
 
 #. TRANS: Form instruction for edit list form.
-#, fuzzy
 msgid "Use this form to edit the list."
-msgstr "Leunit ar furmskrid-mañ evit kemmañ dibarzhioù ar strollad."
+msgstr "Implijit ar furmskrid-mañ evit kemmañ dibarzhioù ar roll."
 
 #. TRANS: Form validation error displayed if the form data for deleting a tag was incorrect.
-#, fuzzy
 msgid "Delete aborted."
-msgstr "Dilemel un ali"
+msgstr "Diverkadenn bet nullet."
 
 #. TRANS: Text in confirmation dialog for deleting a tag.
 msgid ""
