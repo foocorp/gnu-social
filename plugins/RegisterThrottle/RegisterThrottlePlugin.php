@@ -223,6 +223,7 @@ class RegisterThrottlePlugin extends Plugin
     private function _getIpAddress()
     {
         $keys = array('HTTP_X_FORWARDED_FOR',
+                      'HTTP_X_CLIENT',
                       'CLIENT-IP',
                       'REMOTE_ADDR');
 
