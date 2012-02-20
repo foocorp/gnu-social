@@ -176,7 +176,8 @@ class Facebookclient
 
         // If it's not a reply, or if the user WANTS to send @-replies,
         // then, yeah, it can go to Facebook.
-        if (!preg_match('/@[a-zA-Z0-9_]{1,15}\b/u', $this->notice->content) ||
+
+        if ((empty($notice->reply_to) && !preg_match('/^@[a-zA-Z0-9_]{1,15}\b/u', $notice->content)) ||
             ($this->flink->noticesync & FOREIGN_NOTICE_SEND_REPLY)) {
             return true;
         }
