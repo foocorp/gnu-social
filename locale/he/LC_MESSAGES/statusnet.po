@@ -10,18 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-20 18:05+0000\n"
-"PO-Revision-Date: 2012-01-20 18:08:43+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:07+0000\n"
 "Language-Team: Hebrew <https://translatewiki.net/wiki/Portal:he>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
-"13)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: he\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -484,7 +483,7 @@ msgstr "לא ניתן לשלוח הודעות ישירות למשתמשים שא
 #. TRANS: Error text shown when trying to send a direct message to self.
 msgid ""
 "Do not send a message to yourself; just say it to yourself quietly instead."
-msgstr ""
+msgstr "אל תשלח לעצמך הודעה; פשוט אמור את זה לעצמך בשקט."
 
 #. TRANS: Client error displayed when requesting a status with a non-existing ID.
 #. TRANS: Client error displayed when trying to remove a favourite with an invalid ID.
@@ -8283,18 +8282,16 @@ msgid " "
 msgstr ""
 
 #. TRANS: Link title in notice list item to reply to a notice.
-#, fuzzy
 msgid "Reply to this notice."
-msgstr "להדהד את העדכון הזה."
+msgstr "להגיב לעדכון הזה।"
 
 #. TRANS: Link text in notice list item to reply to a notice.
 msgid "Reply"
 msgstr "תגובות"
 
 #. TRANS: Link title in notice list item to delete a notice.
-#, fuzzy
 msgid "Delete this notice from the timeline."
-msgstr "למחוק את העדכון הזה."
+msgstr "למחוק את העדכון הזה מציר הזמן."
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
 msgid "Notice repeated."
@@ -8302,7 +8299,7 @@ msgstr "העדכון הודהד."
 
 #. TRANS: Field label for notice text.
 msgid "Update your status..."
-msgstr ""
+msgstr "עדכון מצב॥।"
 
 #. TRANS: Form legend of form to nudge/ping another user.
 msgid "Nudge this user"

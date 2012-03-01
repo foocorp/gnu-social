@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: ArkBlitz
+# Author: Armando-Martin
 # Author: Barucomx
 # Author: Brion
 # Author: Crazymadlover
@@ -18,6 +19,7 @@
 # Author: Peter17
 # Author: Plaxed
 # Author: Translationista
+# Author: Xuacu
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -25,18 +27,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-20 18:05+0000\n"
-"PO-Revision-Date: 2012-01-20 18:08:29+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:52+0000\n"
 "Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
-"13)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -1080,7 +1081,7 @@ msgstr "No se pudo crear el canal para la lista - %s"
 #. TRANS: %1$s is the StatusNet sitename, %2$s is a user nickname.
 #, php-format
 msgid "%1$s / Updates mentioning %2$s"
-msgstr "%1$s / Actualizaciones que mencionan %2$s"
+msgstr "%1$s / Mensaxes que mencionen a %2$s"
 
 #. TRANS: Subtitle for timeline of most recent mentions of a user.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is a user nickname,
@@ -6300,15 +6301,14 @@ msgstr " Robin piensa que algo es imposible."
 #, php-format
 msgid "%1$d byte"
 msgid_plural "%1$d bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d byte"
+msgstr[1] "%1$d bytes"
 
-#
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
 #. TRANS: gettext support multiple plurals in the same message, unfortunately...
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
 "upload a smaller version."
@@ -6316,11 +6316,11 @@ msgid_plural ""
 "No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
 "upload a smaller version."
 msgstr[0] ""
-"Ningún archivo puede ser de tamaño mayor a %1$d bytes y el archivo que "
-"enviaste es de %2$d bytes. Trata de subir una versión más pequeña."
+"Ningún archivo puede ser de tamaño mayor a %1$d byte y el archivo que "
+"enviaste es de %2$s bytes. Trata de subir una versión más pequeña."
 msgstr[1] ""
 "Ningún archivo puede ser de tamaño mayor a %1$d bytes y el archivo que "
-"enviaste es de %2$d bytes. Trata de subir una versión más pequeña."
+"enviaste es de %2$s bytes. Trata de subir una versión más pequeña."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -6547,15 +6547,14 @@ msgstr ""
 "Ya ha creado  %d  o más etiquetas que el máximo permitido de etiquetas. "
 "Intente utilizar o eliminar algunas etiquetas existentes."
 
-#
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
 "allowed number. Try unlisting others first."
 msgstr ""
-"Ya tienes  %1$d  o más personas en lista de  %2$s , que es el máximo "
-"permitido. Pruebe a eliminar algunos primero."
+"Ya tienes %1$d o más personas en la lista %2$s, que es el máximo permitido. "
+"Pruebe a eliminar algunos primero."
 
 #. TRANS: Exception thrown when inserting a list subscription in the database fails.
 msgid "Adding list subscription failed."

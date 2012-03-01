@@ -12,15 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-20 18:05+0000\n"
-"PO-Revision-Date: 2012-01-20 18:08:31+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:54+0000\n"
 "Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
-"13)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -89,7 +88,7 @@ msgstr "Izena emateko gonbidapena soilik."
 
 #. TRANS: Checkbox label for configuring site as invite only.
 msgid "Invite only"
-msgstr "Gonbidatu soilik"
+msgstr "Gonbidapen bidez soilik"
 
 #. TRANS: Checkbox instructions for admin setting "Closed" (no new registrations).
 msgid "Disable new registrations."
@@ -1525,7 +1524,7 @@ msgstr "Avatarra ezabatua."
 #. TRANS: Title for backup account page.
 #. TRANS: Option in profile settings to create a backup of the account of the currently logged in user.
 msgid "Backup account"
-msgstr "Babeskopia-kontua"
+msgstr "Kontuaren babeskopia egin"
 
 #. TRANS: Client exception thrown when trying to backup an account while not logged in.
 msgid "Only logged-in users can backup their account."
@@ -2086,7 +2085,7 @@ msgstr "Erakundea luzeegia da (gehienez 255 karaktere)."
 #. TRANS: Form validation error show when an organisation name has not been provided in the edit application form.
 #. TRANS: Form validation error show when an organisation name has not been provided in the new application form.
 msgid "Organization homepage is required."
-msgstr "Erakundearen orri nagusia derrigorrezkoa da."
+msgstr "Erakundearen webgunea derrigorrezkoa da."
 
 #. TRANS: Validation error shown when providing too long a callback URL in the "Edit application" form.
 #. TRANS: Validation error shown when providing too long a callback URL in the "New application" form.
@@ -3200,7 +3199,7 @@ msgstr "Erabili formulario hau aplikazio berri bat erregistratzeko."
 
 #. TRANS: Validation error shown when not providing a source URL in the "New application" form.
 msgid "Source URL is required."
-msgstr "Sorburu URLa ezinbestekoa da."
+msgstr "Iturburu URLa ezinbestekoa da."
 
 #. TRANS: Server error displayed when an application could not be registered in the database through the "New application" form.
 msgid "Could not create application."
@@ -3673,7 +3672,7 @@ msgstr "Itxurentzako zerbitzaria."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Web path to themes."
-msgstr "Itzurentzako web bidea."
+msgstr "Itxurentzako web bidea."
 
 #. TRANS: Field label in Paths admin panel.
 msgid "SSL server"
@@ -4258,7 +4257,7 @@ msgstr "Ezin izan dira etiketak gorde."
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
 msgid "Restore account"
-msgstr "Leheneratu kontua"
+msgstr "Leheneratu babeskopiatik"
 
 #. TRANS: Client error displayed when requesting a public timeline page beyond the page limit.
 #. TRANS: %s is the page limit.
@@ -6106,7 +6105,7 @@ msgstr "Erabiltzaile berriak"
 
 #. TRANS: Field label in user admin panel for setting new user welcome text.
 msgid "New user welcome"
-msgstr "Erabiltzaile berriaren ongi etorria"
+msgstr "Erabiltzaile berriari ongi etorria"
 
 #. TRANS: Tooltip in user admin panel for setting new user welcome text.
 msgid "Welcome text for new users (maximum 255 characters)."
@@ -6118,7 +6117,7 @@ msgstr "Harpidetza lehenetsia"
 
 #. TRANS: Tooltip in user admin panel for setting default subscription for new users.
 msgid "Automatically subscribe new users to this user."
-msgstr "Erabiltzaile berriak erabiltzaile honi harpidetu automatikoki."
+msgstr "Erabiltzaile berriak beste hauetara harpidetu automatikoki."
 
 #. TRANS: Form legend in user admin panel.
 msgid "Invitations"
@@ -6276,7 +6275,6 @@ msgid_plural "%1$d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
@@ -6521,7 +6519,6 @@ msgstr ""
 "kopurura iritsi zara. Saiatu etiketa batzuk ezabatzen edo existitzen direnak "
 "erabiltzen."
 
-#
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
 #, fuzzy, php-format
 msgid ""
@@ -9609,7 +9606,7 @@ msgstr "Kendu erabiltzaile honekiko harpidetza"
 #. TRANS: Button text for unsubscribing from a list.
 msgctxt "BUTTON"
 msgid "Unsubscribe"
-msgstr "Kendu harpidetza"
+msgstr "Harpidetza kendu"
 
 #. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user."

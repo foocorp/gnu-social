@@ -9,18 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-20 18:05+0000\n"
-"PO-Revision-Date: 2012-01-20 18:08:50+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:13+0000\n"
 "Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
-"13)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3903,7 +3902,7 @@ msgstr "Monstrar etiquettas public."
 #. TRANS: Submit button text on gallery action page.
 msgctxt "BUTTON"
 msgid "Go"
-msgstr "Ir"
+msgstr "Va"
 
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
@@ -6264,15 +6263,14 @@ msgstr "Robin pensa que alique es impossibile."
 #, php-format
 msgid "%1$d byte"
 msgid_plural "%1$d bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d byte"
+msgstr[1] "%1$d bytes"
 
-#
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
 #. TRANS: gettext support multiple plurals in the same message, unfortunately...
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
 "upload a smaller version."
@@ -6281,10 +6279,10 @@ msgid_plural ""
 "upload a smaller version."
 msgstr[0] ""
 "Nulle file pote esser plus grande que %1$d byte e le file que tu inviava ha %"
-"2$d bytes. Tenta incargar un version minus grande."
+"2$s. Tenta incargar un version minus grande."
 msgstr[1] ""
 "Nulle file pote esser plus grande que %1$d bytes e le file que tu inviava ha "
-"%2$d bytes. Tenta incargar un version minus grande."
+"%2$s. Tenta incargar un version minus grande."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -6508,15 +6506,14 @@ msgstr ""
 "Tu ha jam create %d o plus etiquettas, que es le numero maxime de etiquettas "
 "permittite. Tenta usar o deler alcun etiquettas existente."
 
-#
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
 "allowed number. Try unlisting others first."
 msgstr ""
-"Il ha jam %1$d o plus personas in le lista %2$s, que es le numero maxime "
-"permittite. Tenta primo remover alteres del lista."
+"Il ha jam %1$d o plus personas in le lista %2$s, que es le maximo "
+"permittite. Remove alteres del lista primo."
 
 #. TRANS: Exception thrown when inserting a list subscription in the database fails.
 msgid "Adding list subscription failed."

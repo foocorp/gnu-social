@@ -13,18 +13,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-20 18:05+0000\n"
-"PO-Revision-Date: 2012-01-20 18:09:07+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:30+0000\n"
 "Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
-"13)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -2006,7 +2005,7 @@ msgstr "Documentatie"
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 msgctxt "MENU"
 msgid "Help"
-msgstr "Help"
+msgstr "Hulp"
 
 msgid "Getting started"
 msgstr "Aan de slag"
@@ -6326,15 +6325,14 @@ msgstr "Robin denkt dat iets onmogelijk is."
 #, php-format
 msgid "%1$d byte"
 msgid_plural "%1$d bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d byte"
+msgstr[1] "%1$d bytes"
 
-#
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
 #. TRANS: gettext support multiple plurals in the same message, unfortunately...
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
 "upload a smaller version."
@@ -6342,11 +6340,11 @@ msgid_plural ""
 "No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
 "upload a smaller version."
 msgstr[0] ""
-"Bestanden mogen niet groter zijn dan %1$d byte, en uw bestand was %2$d "
-"bytes. Probeer een kleinere versie te uploaden."
+"Bestanden mogen niet groter zijn dan %1$d byte, en uw bestand was %2$s. "
+"Probeer een kleinere versie te uploaden."
 msgstr[1] ""
-"Bestanden mogen niet groter zijn dan %1$d bytes, en uw bestand was %2$d "
-"bytes. Probeer een kleinere versie te uploaden."
+"Bestanden mogen niet groter zijn dan %1$d bytes, en uw bestand was %2$s. "
+"Probeer een kleinere versie te uploaden."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -6585,9 +6583,8 @@ msgstr ""
 "U hebt %d of meer labels aangemaakt. Meer labels aanmaken is niet mogelijk. "
 "Verwijder bestaande labels om nieuwe labels aan te kunnen maken."
 
-#
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
 "allowed number. Try unlisting others first."
@@ -8205,7 +8202,7 @@ msgstr ""
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
 #, php-format
 msgid "%1$s is now following you on %2$s."
-msgstr "%1$s volt u nu op %2$s."
+msgstr "%1$s volgt u nu op %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.

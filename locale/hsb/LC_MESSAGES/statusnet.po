@@ -12,19 +12,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-20 18:05+0000\n"
-"PO-Revision-Date: 2012-01-20 18:08:46+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:08+0000\n"
 "Language-Team: Upper Sorbian <https://translatewiki.net/wiki/Portal:hsb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
-"13)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: hsb\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : (n%100==3 || "
 "n%100==4) ? 2 : 3)\n"
-"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -132,7 +131,7 @@ msgstr "Składować"
 #. TRANS: Client error displayed when the session token is not okay.
 #. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
-msgstr ""
+msgstr "Bě problem z twojim posedźenskim tokenom. Spytaj prošu hišće raz."
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
@@ -157,7 +156,7 @@ msgstr "Lisćina njeeksistuje."
 #. TRANS: %s is a username.
 #, php-format
 msgid "There was an unexpected error while listing %s."
-msgstr ""
+msgstr "Při listowanju %s je njewočakowany zmylk wustupił."
 
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a profile URL.
@@ -3688,7 +3687,7 @@ msgstr "SSL wužiwać"
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "When to use SSL."
-msgstr ""
+msgstr "Hdy ma so SSL wužiwać."
 
 #. TRANS: Tooltip for field label in Paths admin panel.
 msgid "Server to direct SSL requests to."
@@ -3909,7 +3908,7 @@ msgstr "Znjemóžnjeny"
 #. TRANS: Do not translate POST.
 #. TRANS: Client error displayed when trying to use another method than POST.
 msgid "This action only accepts POST requests."
-msgstr ""
+msgstr "Tuta akcija jenož POST-naprašowanja akceptuje."
 
 #. TRANS: Client error displayed when trying to enable or disable a plugin without access rights.
 msgid "You cannot administer plugins."
@@ -4257,6 +4256,8 @@ msgid ""
 "Why not [register an account](%%action.register%%) and be the first to post "
 "one!"
 msgstr ""
+"Čehodla [njeregistruješ konto](%%action.register%%) a sy prěni, kiž powěsć "
+"wotpósćele!"
 
 #. TRANS: Client error displayed trying to recover password while already logged in.
 msgid "You are already logged in!"
@@ -5213,7 +5214,7 @@ msgstr "Mjeno twojeho sydła, kaž \"TwojePředewzaće - Mikroblog\"."
 
 #. TRANS: Field label on site settings panel.
 msgid "Brought by"
-msgstr ""
+msgstr "Dodaty wot"
 
 #. TRANS: Field title on site settings panel.
 msgid "Text used for credits link in footer of each page."
@@ -5221,7 +5222,7 @@ msgstr ""
 
 #. TRANS: Field label on site settings panel.
 msgid "Brought by URL"
-msgstr ""
+msgstr "Dodaty wot URL"
 
 #. TRANS: Field title on site settings panel.
 msgid "URL used for credits link in footer of each page."
@@ -5279,6 +5280,8 @@ msgstr "Limit duplikatow"
 #. TRANS: Field title on site settings panel.
 msgid "How long users must wait (in seconds) to post the same thing again."
 msgstr ""
+"Kak dołho wužiwar dyrbi čakać (w sekundach), zo by móhł samsnu powěsć hišće "
+"raz pósłać."
 
 #. TRANS: Fieldset legend for form to change logo.
 msgid "Logo"
@@ -5332,7 +5335,7 @@ msgstr "SMS-nastajenja"
 #. TRANS: %%site.name%% is the name of the site.
 #, php-format
 msgid "You can receive SMS messages through email from %%site.name%%."
-msgstr ""
+msgstr "Móžeš SMS-powěsće přez e-mejl wot %%site.name%% přijeć."
 
 #. TRANS: Message given in the SMS settings if SMS is not enabled on the site.
 msgid "SMS is not available."
@@ -5903,7 +5906,7 @@ msgstr "Přeprošenja zmóžnjene"
 
 #. TRANS: Tooltip for checkbox in user admin panel for allowing users to invite friend using site e-mail.
 msgid "Whether to allow users to invite new users."
-msgstr ""
+msgstr "Hač je dowolene, nowych wužiwarjow přeprosyć."
 
 #. TRANS: Button title to save user settings in user admin panel.
 msgid "Save user settings."
@@ -6034,10 +6037,10 @@ msgstr "Robin měni, zo něšto je njemóžno."
 #, php-format
 msgid "%1$d byte"
 msgid_plural "%1$d bytes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "%1$d bajt"
+msgstr[1] "%1$d bajtaj"
+msgstr[2] "%1d bajty"
+msgstr[3] "%1$d bajtow"
 
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
@@ -8997,7 +9000,7 @@ msgstr "Ludźo, kotřiž su %s abonowali."
 #, php-format
 msgctxt "MENU"
 msgid "Pending (%d)"
-msgstr ""
+msgstr "Njesčinjeny (%d)"
 
 #. TRANS: Menu item title in local navigation menu.
 #, php-format

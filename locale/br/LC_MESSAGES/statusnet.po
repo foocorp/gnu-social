@@ -12,18 +12,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-20 18:05+0000\n"
-"PO-Revision-Date: 2012-01-20 18:08:14+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:40+0000\n"
 "Language-Team: Breton <https://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
-"13)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -226,15 +225,14 @@ msgid "No such user."
 msgstr "N'eus ket eus an implijer-se."
 
 #. TRANS: Title of a user's own start page.
-#, fuzzy
 msgid "Home timeline"
-msgstr "Oberezhioù %s"
+msgstr "Degemer - neudennad"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s's home timeline"
-msgstr "Oberezhioù %s"
+msgstr "Neudennad oberezhioù %s"
 
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
@@ -762,42 +760,36 @@ msgid "You cannot delete lists that do not belong to you."
 msgstr ""
 
 #. TRANS: Client error displayed when referring to a non-list member.
-#, fuzzy
 msgid "The specified user is not a member of this list."
 msgstr "N'eo ket an implijer-mañ ezel eus ur strollad."
 
 #. TRANS: Client error displayed when trying to add members to a list without having the right to do so.
-#, fuzzy
 msgid "You are not allowed to add members to this list."
-msgstr "N'oc'h ket ezel eus ar strollad-mañ."
+msgstr "N'och ket aotreet da ouzhpennañ izili d'ar roll-mañ."
 
 #. TRANS: Client error displayed when trying to modify list members without specifying them.
-#, fuzzy
 msgid "You must specify a member."
-msgstr "Mankout a ra ar profil."
+msgstr "Rankout a rit spisaat un ezel."
 
 #. TRANS: Client error displayed when trying to remove members from a list without having the right to do so.
-#, fuzzy
 msgid "You are not allowed to remove members from this list."
-msgstr "N'oc'h ket ezel eus ar strollad-mañ."
+msgstr "N'och ket aotreet da zilemel izili deus ar roll-mañ."
 
 #. TRANS: Client error displayed when trying to remove a list member that is not part of a list.
 msgid "The user you are trying to remove from the list is not a member."
-msgstr ""
+msgstr "An implijer a glaskit dilemel n'eo ket ezel deus ar roll."
 
 #. TRANS: Client error displayed when trying to create a list without a name.
-#, fuzzy
 msgid "A list must have a name."
-msgstr "Ne c'hell ket an alias bezañ ar memes hini eget al lesanv."
+msgstr "Ur roll a rank kaout un anv."
 
 #. TRANS: Client error displayed when a membership check for a user is nagative.
 msgid "The specified user is not a subscriber of this list."
-msgstr ""
+msgstr "N'eo ket an implijer-mañ koumanantet d'ar roll."
 
 #. TRANS: Client error displayed when trying to unsubscribe from a non-subscribed list.
-#, fuzzy
 msgid "You are not subscribed to this list."
-msgstr "N'oc'h ket koumanantet d'ar profil-se."
+msgstr "N'oc'h ket koumanantet d'ar roll-mañ."
 
 #. TRANS: Client error displayed when uploading a media file has failed.
 msgid "Upload failed."
@@ -973,7 +965,7 @@ msgstr "N'eo ket skoret an hentenn HTTP."
 
 #. TRANS: Exception thrown requesting an unsupported notice output format.
 #. TRANS: %s is the requested output format.
-#, fuzzy, php-format
+#, php-format
 msgid "Unsupported format: %s."
 msgstr "Diembreget eo ar furmad : %s"
 
@@ -1600,9 +1592,8 @@ msgid "Yes"
 msgstr "Ya"
 
 #. TRANS: Submit button title for 'Yes' when blocking a user.
-#, fuzzy
 msgid "Block this user."
-msgstr "Stankañ an implijer-mañ"
+msgstr "Stankañ an implijer-mañ."
 
 #. TRANS: Server error displayed when blocking a user fails.
 msgid "Failed to save block information."

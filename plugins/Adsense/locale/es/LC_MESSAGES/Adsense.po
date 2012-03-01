@@ -1,6 +1,7 @@
 # Translation of StatusNet - Adsense to Spanish (Español)
 # Exported from translatewiki.net
 #
+# Author: Armando-Martin
 # Author: Erchache2000
 # Author: Translationista
 # --
@@ -10,15 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-19 00:00+0000\n"
-"PO-Revision-Date: 2011-12-19 00:01:23+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:33+0000\n"
 "Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 10:22:41+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r106599); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -82,18 +82,16 @@ msgid "Leaderboard"
 msgstr "Clasificación"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Leaderboard slot code."
-msgstr "Código de espacio de clasificación"
+msgstr "Código colocado en el panel de comandos"
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Skyscraper"
 msgstr "Banderola rascacielos"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Wide skyscraper slot code."
-msgstr "Código de espacio de banderola rascacielos ancha"
+msgstr "Código colocado en rectángulo (''banner'') vertical ancho"
 
 #. TRANS: Button text to save settings in AdSense administration panel.
 msgctxt "BUTTON"

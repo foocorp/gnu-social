@@ -10,18 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-20 18:05+0000\n"
-"PO-Revision-Date: 2012-01-20 18:09:01+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:24+0000\n"
 "Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
-"13)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
-"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6286,15 +6285,14 @@ msgstr "Робин мисли дека нешто е невозможно."
 #, php-format
 msgid "%1$d byte"
 msgid_plural "%1$d bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d бајт"
+msgstr[1] "%1$d бајти"
 
-#
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
 #. TRANS: gettext support multiple plurals in the same message, unfortunately...
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
 "upload a smaller version."
@@ -6303,10 +6301,10 @@ msgid_plural ""
 "upload a smaller version."
 msgstr[0] ""
 "Податотеките не смеат да бидат поголеми од %1$d бајт, а вие испративте "
-"податотека од %2$d бајти. Подигнете помала верзија."
+"податотека од %2$s бајти. Подигнете помала верзија."
 msgstr[1] ""
 "Податотеките не смеат да бидат поголеми од %1$d бајти, а вие испративте "
-"податотека од %2$d бајти. Подигнете помала верзија."
+"податотека од %2$s бајти. Подигнете помала верзија."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -6538,9 +6536,8 @@ msgstr ""
 "Веќе имате создадено %d или повеќе ознаки, што претставува максималниот "
 "дозволен број на ознаки. Искористете или избришете некои постоечки ознаки."
 
-#
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
 "allowed number. Try unlisting others first."

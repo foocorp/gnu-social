@@ -35,18 +35,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-01-20 18:05+0000\n"
-"PO-Revision-Date: 2012-01-20 18:08:22+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:47+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r109611); Translate extension (2012-01-"
-"13)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-12-03 10:15:09+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -4768,7 +4767,7 @@ msgstr "Antworten an %1$s, Seite %2$d"
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (Activity Streams JSON)"
-msgstr "Feed der Nachrichten von %s (Activity Streams JSON)"
+msgstr "Feed der Antworten von %s (Activity Streams JSON)"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
@@ -5390,7 +5389,7 @@ msgstr ""
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
@@ -5398,7 +5397,7 @@ msgid ""
 msgstr ""
 "**%s** hat ein Konto auf %%%%site.name%%%%, einem [Mikroblogging](http://de."
 "wikipedia.org/wiki/Mikroblogging)-Dienst basierend auf der freien Software "
-"[StatusNet](http://status.net/). "
+"[StatusNet](http://status.net/)."
 
 #. TRANS: Link to the author of a repeated notice. %s is a linked nickname.
 #, php-format
@@ -5799,9 +5798,10 @@ msgstr "%s Mitglieder warten auf Bestätigung"
 
 #. TRANS: Title of all but the first page showing pending subscribersmembers still awaiting approval.
 #. TRANS: %1$s is the name of the user, %2$d is the page number of the members list.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s subscribers awaiting approval, page %2$d"
-msgstr "%1$s Gruppen-Mitglieder, Seite %2$d"
+msgstr ""
+"Abonnenten von %1$s, die auf die Aufnahmebestätigung warten, Seite %2$d"
 
 #. TRANS: Page notice for group members page.
 msgid "A list of users awaiting approval to subscribe to you."
@@ -5924,9 +5924,9 @@ msgid "%s is not listening to anyone."
 msgstr "%s hat niemanden abonniert."
 
 #. TRANS: Atom feed title. %s is a profile nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Subscription feed for %s (Atom)"
-msgstr "Feed der Nachrichten von %s (Atom)"
+msgstr "Feed der Abonnementen von %s (Atom)"
 
 #. TRANS: Checkbox label for enabling IM messages for a profile in a subscriptions list.
 msgctxt "LABEL"
@@ -5945,9 +5945,9 @@ msgstr "Mit „%1$s“ getaggte Nachrichten, Seite %2$d"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice feed for tag %s (Activity Streams JSON)"
-msgstr "Nachrichten-Feed des Tags „%s“ (Atom)"
+msgstr "Feed der Nachrichten für den Tag %s (Activity Streams JSON)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -6000,10 +6000,9 @@ msgid "List user"
 msgstr "Limit"
 
 #. TRANS: Field label on list form.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Lists"
-msgstr "Limit"
+msgstr "Listen"
 
 #. TRANS: Field title on list form.
 #, fuzzy
@@ -6333,7 +6332,6 @@ msgid_plural "%1$d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
-#
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
@@ -6589,7 +6587,6 @@ msgstr ""
 "Du hast bereits %d oder mehr Tags erstellt, was die maximal zulässige Anzahl "
 "von Tags ist. Benutze oder lösche einige bereits vorhandene Tags."
 
-#
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
 #, fuzzy, php-format
 msgid ""
