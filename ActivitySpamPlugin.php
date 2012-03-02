@@ -1,7 +1,7 @@
 <?php
 /**
  * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2011, StatusNet, Inc.
+ * Copyright (C) 2011,2012, StatusNet, Inc.
  *
  * ActivitySpam Plugin
  *
@@ -23,7 +23,7 @@
  * @category  Spam
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2011 StatusNet, Inc.
+ * @copyright 2011,2012 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
@@ -40,7 +40,7 @@ if (!defined('STATUSNET')) {
  * @category  Spam
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @copyright 2011 StatusNet, Inc.
+ * @copyright 2011,2012 StatusNet, Inc.
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
  * @link      http://status.net/
  */
@@ -107,7 +107,11 @@ class ActivitySpamPlugin extends Plugin
     }
 
     /**
-     * This should probably be done in its own queue handler
+     * When a notice is saved, check its spam score
+     * 
+     * @param Notice $notice Notice that was just saved
+     *
+     * @return boolean hook value; true means continue processing, false means stop.
      */
 
     function onEndNoticeSave($notice)
@@ -135,9 +139,12 @@ class ActivitySpamPlugin extends Plugin
 
         $score = new Spam_score();
 
-        $score->notice_id = $notice->id;
-        $score->score     = $result->probability;
-        $score->created   = common_sql_now();
+        $score->notice_id      = $notice->id;
+        $score->score          = $result->probability;
+        $score->is_spam        = $result->isSpam;
+        $score->scaled         = (int) ($result->probability * Spam_score::MAX_SCALED);
+        $score->created        = common_sql_now();
+        $score->notice_created = $notice->created;
 
         $score->insert();
 

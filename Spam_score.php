@@ -1,32 +1,32 @@
 <?php
-/**
- * StatusNet - the distributed open-source microblogging tool
- * Copyright (C) 2011, StatusNet, Inc.
- *
- * Score of a notice by activity spam service
- * 
- * PHP version 5
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- * @category  Spam
- * @package   StatusNet
- * @author    Evan Prodromou <evan@status.net>
- * @copyright 2011 StatusNet, Inc.
- * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
- * @link      http://status.net/
- */
+  /**
+   * StatusNet - the distributed open-source microblogging tool
+   * Copyright (C) 2011, StatusNet, Inc.
+   *
+   * Score of a notice by activity spam service
+   * 
+   * PHP version 5
+   *
+   * This program is free software: you can redistribute it and/or modify
+   * it under the terms of the GNU Affero General Public License as published by
+   * the Free Software Foundation, either version 3 of the License, or
+   * (at your option) any later version.
+   *
+   * This program is distributed in the hope that it will be useful,
+   * but WITHOUT ANY WARRANTY; without even the implied warranty of
+   * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   * GNU Affero General Public License for more details.
+   *
+   * You should have received a copy of the GNU Affero General Public License
+   * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   *
+   * @category  Spam
+   * @package   StatusNet
+   * @author    Evan Prodromou <evan@status.net>
+   * @copyright 2011 StatusNet, Inc.
+   * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html AGPL 3.0
+   * @link      http://status.net/
+   */
 
 if (!defined('STATUSNET')) {
     exit(1);
@@ -46,6 +46,7 @@ if (!defined('STATUSNET')) {
 
 class Spam_score extends Managed_DataObject
 {
+    const MAX_SCALED = 1000000;
     public $__table = 'spam_score'; // table name
 
     public $notice_id;   // int
@@ -80,9 +81,15 @@ class Spam_score extends Managed_DataObject
                 'score' => array('type' => 'double',
                                  'not null' => true,
                                  'description' => 'score for the notice (0.0, 1.0)'),
+                'scaled' => array('type' => 'int',
+                                  'description' => 'scaled score for the notice (0, 1000000)'),
+                'is_spam' => array('type' => 'tinyint',
+                                   'description' => 'flag for spamosity'),
                 'created' => array('type' => 'datetime',
                                    'not null' => true,
                                    'description' => 'date this record was created'),
+                'notice_created' => array('type' => 'datetime',
+                                          'description' => 'date the notice was created'),
             ),
             'primary key' => array('notice_id'),
             'foreign keys' => array(
@@ -90,6 +97,7 @@ class Spam_score extends Managed_DataObject
             ),
             'indexes' => array(
                 'spam_score_created_idx' => array('created'),
+                'spam_score_scaled_idx' => array('scaled'),
             ),
         );
     }
