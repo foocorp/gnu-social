@@ -46,7 +46,7 @@ if (!defined('STATUSNET')) {
 
 class Spam_score extends Managed_DataObject
 {
-    const MAX_SCALED = 1000000;
+    const MAX_SCALED = 10000;
     public $__table = 'spam_score'; // table name
 
     public $notice_id;   // int
@@ -82,7 +82,7 @@ class Spam_score extends Managed_DataObject
                                  'not null' => true,
                                  'description' => 'score for the notice (0.0, 1.0)'),
                 'scaled' => array('type' => 'int',
-                                  'description' => 'scaled score for the notice (0, 1000000)'),
+                                  'description' => 'scaled score for the notice (0, 10000)'),
                 'is_spam' => array('type' => 'tinyint',
                                    'description' => 'flag for spamosity'),
                 'created' => array('type' => 'datetime',
@@ -100,5 +100,63 @@ class Spam_score extends Managed_DataObject
                 'spam_score_scaled_idx' => array('scaled'),
             ),
         );
+    }
+
+    public static function upgrade()
+    {
+        Spam_score::upgradeScaled();
+        Spam_score::upgradeIsSpam();
+        Spam_score::upgradeNoticeCreated();
+    }
+
+    protected static function upgradeScaled()
+    {
+        $score = new Spam_score();
+        $score->whereAdd('scaled IS NULL');
+        
+        if ($score->find()) {
+            while ($score->fetch()) {
+                $orig = clone($score);
+                $score->scaled = Spam_score::scale($score->score);
+                $score->update($orig);
+            }
+        }
+    }
+
+    protected static function upgradeIsSpam()
+    {
+        $score = new Spam_score();
+        $score->whereAdd('is_spam IS NULL');
+        
+        if ($score->find()) {
+            while ($score->fetch()) {
+                $orig = clone($score);
+                $score->is_spam = ($score->score >= 0.90) ? 1 : 0;
+                $score->update($orig);
+            }
+        }
+    }
+
+    protected static function upgradeNoticeCreated()
+    {
+        $score = new Spam_score();
+        $score->whereAdd('notice_created IS NULL');
+        
+        if ($score->find()) {
+            while ($score->fetch()) {
+                $notice = Notice::staticGet('id', $score->notice_id);
+                if (!empty($notice)) {
+                    $orig = clone($score);
+                    $score->notice_created = $notice->created;
+                    $score->update($orig);
+                }
+            }
+        }
+    }
+
+    protected static function scale($score)
+    {
+        $raw = round($score * Spam_score::MAX_SCALE);
+        return max(0, min(Spam_score::MAX_SCALE, $raw));
     }
 }

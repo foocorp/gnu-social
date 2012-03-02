@@ -81,6 +81,8 @@ class ActivitySpamPlugin extends Plugin
         $schema = Schema::get();
         $schema->ensureTable('spam_score', Spam_score::schemaDef());
 
+        Spam_score::upgrade();
+
         return true;
     }
 
@@ -142,7 +144,7 @@ class ActivitySpamPlugin extends Plugin
         $score->notice_id      = $notice->id;
         $score->score          = $result->probability;
         $score->is_spam        = $result->isSpam;
-        $score->scaled         = (int) ($result->probability * Spam_score::MAX_SCALED);
+        $score->scaled         = Spam_score::scale($score->score);
         $score->created        = common_sql_now();
         $score->notice_created = $notice->created;
 
