@@ -46,7 +46,7 @@ if (!defined('STATUSNET')) {
 
 class Spam_score extends Managed_DataObject
 {
-    const MAX_SCALED = 10000;
+    const MAX_SCALE = 10000;
     public $__table = 'spam_score'; // table name
 
     public $notice_id;   // int
