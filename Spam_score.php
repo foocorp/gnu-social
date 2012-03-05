@@ -67,6 +67,22 @@ class Spam_score extends Managed_DataObject
         return Managed_DataObject::staticGet('Spam_score', $k, $v);
     }
 
+    function saveNew($notice, $result) {
+
+        $score = new Spam_score();
+
+        $score->notice_id      = $notice->id;
+        $score->score          = $result->probability;
+        $score->is_spam        = $result->isSpam;
+        $score->scaled         = Spam_score::scale($score->score);
+        $score->created        = common_sql_now();
+        $score->notice_created = $notice->created;
+
+        $score->insert();
+        
+        return $score;
+    }
+
     /**
      * The One True Thingy that must be defined and declared.
      */

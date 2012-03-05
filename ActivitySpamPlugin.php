@@ -47,7 +47,6 @@ if (!defined('STATUSNET')) {
 class ActivitySpamPlugin extends Plugin
 {
     public $server = null;
-
     public $username = null;
     public $password = null;
 
@@ -63,6 +62,8 @@ class ActivitySpamPlugin extends Plugin
                 $this->$attr = common_config('activityspam', $attr);
             }
         }
+
+        $this->filter = new SpamFilter($this->server, $this->username, $this->password);
 
         return true;
     }
@@ -103,6 +104,9 @@ class ActivitySpamPlugin extends Plugin
         case 'Spam_score':
             include_once $dir . '/'.$cls.'.php';
             return false;
+        case 'SpamFilter':
+            include_once $dir . '/'.strtolower($cls).'.php';
+            return false;
         default:
             return true;
         }
@@ -118,39 +122,18 @@ class ActivitySpamPlugin extends Plugin
 
     function onEndNoticeSave($notice)
     {
-        // FIXME: need this to autoload ActivityStreamsMediaLink
-        $doc = new ActivityStreamJSONDocument();
+        try {
 
-        $activity = $notice->asActivity(null);
+            $result = $this->filter->test($notice);
 
-        $client = new HTTPClient($this->server . "/is-this-spam");
+            $score = Spam_score::saveNew($notice, $result);
 
-        $client->setMethod('POST');
-        $client->setAuth($this->username, $this->password);
-        $client->setHeader('Content-Type', 'application/json');
-        $client->setBody(json_encode($activity->asArray()));
+            $this->log(LOG_INFO, "Notice " . $notice->id . " has spam score " . $score->score);
 
-        $response = $client->send();
-
-        if (!$response->isOK()) {
-            $this->log(LOG_ERR, "Error " . $response->getStatus() . " checking spam score: " . $response->getBody());
-            return true;
+        } catch (Exception $e) {
+            // Log but continue 
+            $this->log(LOG_ERR, $e->getMessage());
         }
-
-        $result = json_decode($response->getBody());
-
-        $score = new Spam_score();
-
-        $score->notice_id      = $notice->id;
-        $score->score          = $result->probability;
-        $score->is_spam        = $result->isSpam;
-        $score->scaled         = Spam_score::scale($score->score);
-        $score->created        = common_sql_now();
-        $score->notice_created = $notice->created;
-
-        $score->insert();
-
-        $this->log(LOG_INFO, "Notice " . $notice->id . " has spam score " . $score->score);
 
         return true;
     }
