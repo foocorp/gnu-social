@@ -155,6 +155,14 @@ class ActivitySpamPlugin extends Plugin
         return true;
     }
 
+    function onNoticeDeleteRelated($notice) {
+        $score = Spam_score::staticGet('notice_id', $notice->id);
+        if (!empty($score)) {
+            $score->delete();
+        }
+        return true;
+    }
+
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'ActivitySpam',
