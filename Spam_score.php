@@ -154,7 +154,7 @@ class Spam_score extends Managed_DataObject
         }
     }
 
-    protected static function scale($score)
+    public static function scale($score)
     {
         $raw = round($score * Spam_score::MAX_SCALE);
         return max(0, min(Spam_score::MAX_SCALE, $raw));
