@@ -83,6 +83,33 @@ class Spam_score extends Managed_DataObject
         return $score;
     }
 
+    function save($notice, $result) {
+
+        $score = Spam_score::staticGet('notice_id', $notice->id);
+
+        if (empty($score)) {
+            $orig  = null;
+            $score = new Spam_score();
+        } else {
+            $orig = clone($score);
+        }
+
+        $score->notice_id      = $notice->id;
+        $score->score          = $result->probability;
+        $score->is_spam        = $result->isSpam;
+        $score->scaled         = Spam_score::scale($score->score);
+        $score->created        = common_sql_now();
+        $score->notice_created = $notice->created;
+
+        if (empty($orig)) {
+            $score->insert();
+        } else {
+            $score->update($orig);
+        }
+        
+        return $score;
+    }
+
     /**
      * The One True Thingy that must be defined and declared.
      */

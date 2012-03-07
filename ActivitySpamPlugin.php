@@ -50,6 +50,9 @@ class ActivitySpamPlugin extends Plugin
     public $username = null;
     public $password = null;
 
+    const REVIEWSPAM = 'ActivitySpamPlugin::REVIEWSPAM';
+    const TRAINSPAM = 'ActivitySpamPlugin::TRAINSPAM';
+
     /**
      * Initializer
      *
@@ -101,10 +104,15 @@ class ActivitySpamPlugin extends Plugin
 
         switch ($cls)
         {
+        case 'TrainAction':
+            include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
+            return false;
         case 'Spam_score':
             include_once $dir . '/'.$cls.'.php';
             return false;
         case 'SpamFilter':
+        case 'TrainSpamForm':
+        case 'TrainHamForm':
             include_once $dir . '/'.strtolower($cls).'.php';
             return false;
         default:
@@ -146,6 +154,45 @@ class ActivitySpamPlugin extends Plugin
         return true;
     }
 
+    function onUserRightsCheck($profile, $right, &$result) {
+        switch ($right) {
+        case self::REVIEWSPAM:
+        case self::TRAINSPAM:
+            $result = ($profile->hasRole(Profile_role::MODERATOR) || $profile->hasRole('modhelper'));
+            return false;
+        default:
+            return true;
+        }
+    }
+
+    function onGetSpamFilter(&$filter) {
+        $filter = $this->filter;
+        return false;
+    }
+
+    function onEndShowNoticeOptions(&$nli)
+    {
+        $notice = $nli->notice;
+        $out = $nli->out;
+
+        if (!empty($notice)) {
+
+            $score = Spam_score::staticGet('notice_id', $notice->id);
+
+            if (empty($score)) {
+                // XXX: show a question-mark or something
+            } else if ($score->is_spam) {
+                $form = new TrainHamForm($out, $notice);
+                $form->show();
+            } else if (!$score->is_spam) {
+                $form = new TrainSpamForm($out, $notice);
+                $form->show();
+            }
+        }
+
+        return true;
+    }
+    
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'ActivitySpam',
