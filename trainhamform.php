@@ -93,10 +93,10 @@ class TrainHamForm extends Form {
     function formActions()
     {
         $this->submit('train-ham-submit-' . $this->notice->id,
-                      _('Train ham'),
+                      _('Clear spam'),
                       'submit',
                       null,
-                      _("Mark as ham"));
+                      _("Clear spam"));
     }
 
     /**
