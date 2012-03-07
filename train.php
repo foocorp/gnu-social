@@ -89,7 +89,7 @@ class TrainAction extends Action
 
         $filter = null;
 
-        Event::handle('GetSpamFilter', &$filter);
+        Event::handle('GetSpamFilter', array(&$filter));
 
         if (empty($filter)) {
             throw new ServerException(_("No spam filter configured."));
