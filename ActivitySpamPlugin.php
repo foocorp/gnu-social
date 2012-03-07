@@ -174,8 +174,8 @@ class ActivitySpamPlugin extends Plugin
 
     function onStartShowNoticeOptions($nli)
     {
-        $notice = $nli->notice;
-        $out = $nli->out;
+        $notice = $nli->getNotice();
+        $out = $nli->getOut();
 
         if (!empty($notice)) {
 
