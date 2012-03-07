@@ -77,7 +77,7 @@ class TrainAction extends Action
             throw new ClientException(_('You cannot review spam on this site.'), 403);
         }
 
-        $id = $this->trim('notice');
+        $id = $this->trimmed('notice');
 
         $this->notice = Notice::staticGet('id', $id);
 
@@ -97,7 +97,7 @@ class TrainAction extends Action
 
         $this->filter = $filter;
 
-        $this->category = $this->trim('category');
+        $this->category = $this->trimmed('category');
 
         if ($this->category !== SpamFilter::SPAM &&
             $this->category !== SpamFilter::HAM)
