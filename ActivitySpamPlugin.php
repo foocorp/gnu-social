@@ -215,6 +215,14 @@ class ActivitySpamPlugin extends Plugin
         return true;
     }
 
+    function onEndShowStyles($action)
+    {
+        $action->element('style', null,
+                         'form_train_spam input.submit { background: url("'.$this->path('icons/bullet_black.png').'") no-repeat 0px 0px } ' . "\n" .
+                         'form_train_spam input.submit { background: url("'.$this->path('icons/exclamation.png').'") no-repeat 0px 0px } ');
+        return true;
+    }
+
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'ActivitySpam',
