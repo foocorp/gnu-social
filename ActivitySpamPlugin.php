@@ -180,6 +180,7 @@ class ActivitySpamPlugin extends Plugin
             $score = Spam_score::staticGet('notice_id', $notice->id);
 
             if (empty($score)) {
+                $this->debug("No score for notice " . $notice->id);
                 // XXX: show a question-mark or something
             } else if ($score->is_spam) {
                 $form = new TrainHamForm($out, $notice);
