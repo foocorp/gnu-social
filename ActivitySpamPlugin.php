@@ -170,7 +170,7 @@ class ActivitySpamPlugin extends Plugin
         return false;
     }
 
-    function onEndShowNoticeOptions(&$nli)
+    function onEndShowNoticeOptions($nli)
     {
         $notice = $nli->notice;
         $out = $nli->out;
