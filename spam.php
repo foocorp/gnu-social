@@ -54,6 +54,10 @@ class SpamAction extends Action
     var $page = null;
     var $notices = null;
 
+    function title() {
+        return _("Latest Spam");
+    }
+
     /**
      * For initializing members of the class.
      *
