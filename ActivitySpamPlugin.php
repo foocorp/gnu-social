@@ -105,12 +105,14 @@ class ActivitySpamPlugin extends Plugin
         switch ($cls)
         {
         case 'TrainAction':
+        case 'SpamAction':
             include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
         case 'Spam_score':
             include_once $dir . '/'.$cls.'.php';
             return false;
         case 'SpamFilter':
+        case 'SpamNoticeStream':
         case 'TrainSpamForm':
         case 'TrainHamForm':
             include_once $dir . '/'.strtolower($cls).'.php';
