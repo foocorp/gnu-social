@@ -720,4 +720,17 @@ class NoticeListItem extends Widget
             Event::handle('EndCloseNoticeListItemElement', array($this));
         }
     }
+
+    /**
+     * Get the notice in question
+     *
+     * For hooks, etc., this may be useful
+     *
+     * @return Notice The notice we're showing
+     */
+
+    function getNotice()
+    {
+        return $this->notice;
+    }
 }
