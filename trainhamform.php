@@ -78,7 +78,6 @@ class TrainHamForm extends Form {
 
     function formData()
     {
-        $this->hidden('category', SpamFilter::HAM);
         $this->hidden('notice', $this->notice->id);
     }
 
@@ -125,7 +124,7 @@ class TrainHamForm extends Form {
 
     function action()
     {
-        return common_local_url('train');
+        return common_local_url('train', array('category' => 'ham'));
     }
 
     /**

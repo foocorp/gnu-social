@@ -194,6 +194,23 @@ class ActivitySpamPlugin extends Plugin
         return true;
     }
     
+    /**
+     * Map URLs to actions
+     *
+     * @param Net_URL_Mapper $m path-to-action mapper
+     *
+     * @return boolean hook value; true means continue processing, false means stop.
+     */
+
+    function onRouterInitialized($m)
+    {
+        $m->connect('main/train/spam',
+                    array('action' => 'train', 'category' => 'spam'));
+        $m->connect('main/train/ham',
+                    array('action' => 'train', 'category' => 'ham'));
+        return true;
+    }
+
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'ActivitySpam',

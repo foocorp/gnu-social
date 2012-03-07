@@ -78,7 +78,6 @@ class TrainSpamForm extends Form {
 
     function formData()
     {
-        $this->hidden('category', SpamFilter::SPAM);
         $this->hidden('notice', $this->notice->id);
     }
 
@@ -125,7 +124,7 @@ class TrainSpamForm extends Form {
 
     function action()
     {
-        return common_local_url('train');
+        return common_local_url('train', array('category' => 'spam'));
     }
 
     /**
