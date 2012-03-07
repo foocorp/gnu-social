@@ -79,7 +79,9 @@ class Spam_score extends Managed_DataObject
         $score->notice_created = $notice->created;
 
         $score->insert();
-        
+
+        self::blow('spam_score:notice_ids');
+
         return $score;
     }
 
@@ -107,7 +109,16 @@ class Spam_score extends Managed_DataObject
             $score->update($orig);
         }
         
+        self::blow('spam_score:notice_ids');
+
         return $score;
+    }
+
+    function delete()
+    {
+        self::blow('spam_score:notice_ids');
+        self::blow('spam_score:notice_ids;last');
+        parent::delete();
     }
 
     /**

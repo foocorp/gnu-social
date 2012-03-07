@@ -212,6 +212,8 @@ class ActivitySpamPlugin extends Plugin
                     array('action' => 'train', 'category' => 'spam'));
         $m->connect('main/train/ham',
                     array('action' => 'train', 'category' => 'ham'));
+        $m->connect('main/spam',
+                    array('action' => 'spam'));
         return true;
     }
 
@@ -220,6 +222,22 @@ class ActivitySpamPlugin extends Plugin
         $action->element('style', null,
                          '.form-train-spam input.submit { background: url('.$this->path('icons/bullet_black.png').') no-repeat 0px 0px } ' . "\n" .
                          '.form-train-ham input.submit { background: url('.$this->path('icons/exclamation.png').') no-repeat 0px 0px } ');
+        return true;
+    }
+
+    function onEndPublicGroupNav($nav)
+    {
+        $user = common_current_user();
+
+        if (!empty($user) && $user->hasRight(self::REVIEWSPAM)) {
+            $nav->out->menuItem(common_local_url('spam'),
+                                _m('MENU','Spam'),
+                                // TRANS: Menu item title in search group navigation panel.
+                                _('Notices marked as spam'),
+                                $nav->actionName == 'spam',
+                                'nav_timeline_spam');
+        }
+
         return true;
     }
 
