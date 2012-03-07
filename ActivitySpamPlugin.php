@@ -218,8 +218,8 @@ class ActivitySpamPlugin extends Plugin
     function onEndShowStyles($action)
     {
         $action->element('style', null,
-                         '.form-train-spam input.submit { background: url("'.$this->path('icons/bullet_black.png').'") no-repeat 0px 0px } ' . "\n" .
-                         '.form-train-ham input.submit { background: url("'.$this->path('icons/exclamation.png').'") no-repeat 0px 0px } ');
+                         '.form-train-spam input.submit { background: url('.$this->path('icons/bullet_black.png').') no-repeat 0px 0px } ' . "\n" .
+                         '.form-train-ham input.submit { background: url('.$this->path('icons/exclamation.png').') no-repeat 0px 0px } ');
         return true;
     }
 
