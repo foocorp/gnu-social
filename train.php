@@ -128,7 +128,7 @@ class TrainAction extends Action
 
         // Update or insert
 
-        $score = Spam_score::save($notice, $result);
+        $score = Spam_score::save($this->notice, $result);
 
         // Show new toggle form
 
