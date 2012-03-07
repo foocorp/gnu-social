@@ -92,7 +92,7 @@ class TrainHamForm extends Form {
 
     function formActions()
     {
-        $this->submit('submit',
+        $this->submit('train-ham-submit-' . $this->notice->id,
                       _('Train ham'),
                       'submit',
                       null,
@@ -110,7 +110,7 @@ class TrainHamForm extends Form {
 
     function id()
     {
-        return 'train_ham_' . $this->notice->id;
+        return 'train-ham-' . $this->notice->id;
     }
 
     /**
@@ -141,6 +141,6 @@ class TrainHamForm extends Form {
 
     function formClass()
     {
-        return 'form_train_ham ajax';
+        return 'form-train-ham ajax';
     }
 }

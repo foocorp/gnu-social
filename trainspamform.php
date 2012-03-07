@@ -92,7 +92,7 @@ class TrainSpamForm extends Form {
 
     function formActions()
     {
-        $this->submit('submit',
+        $this->submit('train-spam-submit-' . $this->notice->id,
                       _('Train spam'),
                       'submit',
                       null,
@@ -110,7 +110,7 @@ class TrainSpamForm extends Form {
 
     function id()
     {
-        return 'train_spam_' . $this->notice->id;
+        return 'train-spam-' . $this->notice->id;
     }
 
     /**
@@ -141,6 +141,6 @@ class TrainSpamForm extends Form {
 
     function formClass()
     {
-        return 'form_train_spam ajax';
+        return 'form-train-spam ajax';
     }
 }
