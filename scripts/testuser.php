@@ -33,7 +33,7 @@ END_OF_TESTUSER_HELP;
 
 require_once INSTALLDIR.'/scripts/commandline.inc';
 
-function testAllUsers() {
+function testAllUsers($filter) {
     $found = false;
     $offset = 0;
     $limit  = 1000;
