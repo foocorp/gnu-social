@@ -58,6 +58,8 @@ function testAllUsers() {
 
 function testUser($filter, $user) {
 
+    printfnq("Testing user %s\n", $user->nickname);
+
     $profile = $user->getProfile();
 
     $str = new ProfileNoticeStream($profile, $profile);
@@ -68,10 +70,10 @@ function testUser($filter, $user) {
     do {
         $notice = $str->getNotices($offset, $limit);
         while ($notice->fetch()) {
-            print "Testing notice " . $notice->id . "...";
+            printfv("Testing notice %d...", $notice->id);
             $result = $filter->test($notice);
             Spam_score::save($notice, $result);
-            print (($result->isSpam) ? "SPAM" : "HAM")."\n";
+            printfv("%s\n", ($result->isSpam) ? "SPAM" : "HAM");
         }
         $offset += $notice->N;
     } while ($notice->N > 0);
