@@ -48,7 +48,11 @@ function testAllUsers($filter) {
 
         if ($found) {
             while ($user->fetch()) {
-                testUser($filter, $user);
+                try {
+                    testUser($filter, $user);
+                } catch (Exception $e) {
+                    printfnq("ERROR testing user %s\n: %s", $user->nickname, $e->getMessage());
+                }
             }
             $offset += $found;
         }
@@ -70,10 +74,14 @@ function testUser($filter, $user) {
     do {
         $notice = $str->getNotices($offset, $limit);
         while ($notice->fetch()) {
-            printfv("Testing notice %d...", $notice->id);
-            $result = $filter->test($notice);
-            Spam_score::save($notice, $result);
-            printfv("%s\n", ($result->isSpam) ? "SPAM" : "HAM");
+            try {
+                printfv("Testing notice %d...", $notice->id);
+                $result = $filter->test($notice);
+                Spam_score::save($notice, $result);
+                printfv("%s\n", ($result->isSpam) ? "SPAM" : "HAM");
+            } catch (Exception $e) {
+                printfnq("ERROR testing notice %d\n: %s", $notice->id, $e->getMessage());
+            }
         }
         $offset += $notice->N;
     } while ($notice->N > 0);
