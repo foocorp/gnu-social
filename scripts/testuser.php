@@ -60,7 +60,7 @@ function testUser($filter, $user) {
 
     printfnq("Testing user %s\n", $user->nickname);
 
-    $profile = $user->getProfile();
+    $profile = Profile::staticGet('id', $user->id);
 
     $str = new ProfileNoticeStream($profile, $profile);
 
