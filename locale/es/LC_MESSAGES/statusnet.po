@@ -255,9 +255,7 @@ msgstr "Línea de tiempo principal"
 #. TRANS: %s is the other user's name.
 #, php-format
 msgid "%s's home timeline"
-msgstr ""
-"\n"
-"Línea temporal de %s"
+msgstr "Línea temporal de %s"
 
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
