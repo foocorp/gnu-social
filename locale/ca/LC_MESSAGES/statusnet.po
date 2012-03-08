@@ -16,17 +16,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:44:52+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:42+0000\n"
 "Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -219,7 +219,6 @@ msgstr "No existeix la pàgina."
 #. TRANS: Client error displayed when trying to get the RSS feed with favorites of a user that does not exist.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed without providing a user nickname.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for an object that is not a user.
-#. TRANS: Client error displayed when trying to get a user hCard for a non-existing user.
 #. TRANS: Client error displayed trying to make a micro summary without providing a valid user.
 #. TRANS: Client error displayed trying to send a direct message to a non-existing user.
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
@@ -329,8 +328,6 @@ msgstr "Envia una invitació"
 #. TRANS: Menu item title in administrator navigation panel.
 #. TRANS: %s is a username.
 #. TRANS: Menu item title in personal group navigation menu.
-#. TRANS: %s is a username.
-#. TRANS: Menu item title in settings navigation panel.
 #. TRANS: %s is a username.
 #, php-format
 msgid "%s and friends"
@@ -1977,6 +1974,74 @@ msgstr "Afegeix als preferits"
 msgid "No such document \"%s\"."
 msgstr "No existeix el document «%s»"
 
+#. TRANS: Menu item in administrator navigation panel.
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in personal group navigation menu.
+msgctxt "MENU"
+msgid "Home"
+msgstr "Inici"
+
+msgctxt "MENU"
+msgid "Docs"
+msgstr "Documents"
+
+#. TRANS: Secondary navigation menu item leading to help on StatusNet.
+msgctxt "MENU"
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "Getting started"
+msgstr "Primers passos"
+
+#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
+msgctxt "MENU"
+msgid "About"
+msgstr "Quant a"
+
+msgid "About this site"
+msgstr "Quant a aquest lloc"
+
+#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
+msgctxt "MENU"
+msgid "FAQ"
+msgstr "Preguntes més freqüents"
+
+msgid "Frequently asked questions"
+msgstr "Preguntes més freqüents"
+
+#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
+#. TRANS: StatusNet site, where to report bugs, ...
+msgctxt "MENU"
+msgid "Contact"
+msgstr "Contacte"
+
+msgid "Contact info"
+msgstr "Informació de contacte"
+
+msgctxt "MENU"
+msgid "Tags"
+msgstr "Etiquetes"
+
+msgid "Using tags"
+msgstr "Ús de les etiquetes"
+
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in search group navigation panel.
+#. TRANS: Menu item in local navigation menu.
+msgctxt "MENU"
+msgid "Groups"
+msgstr "Grups"
+
+msgid "Using groups"
+msgstr "Ús dels grups"
+
+msgctxt "MENU"
+msgid "API"
+msgstr "API"
+
+msgid "RESTful API"
+msgstr "RESTful API"
+
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
 msgid "Edit application"
@@ -3396,13 +3461,12 @@ msgid "Not a supported data format."
 msgstr "Format de data no suportat."
 
 #. TRANS: Page title for profile settings.
-#, fuzzy
 msgid "Old school UI settings"
-msgstr "Paràmetres de missatgeria instantània"
+msgstr "Paràmetres d'interfície de la versió antiga"
 
 #. TRANS: Usage instructions for profile settings.
 msgid "If you like it \"the old way\", you can set that here."
-msgstr ""
+msgstr "Si us agrada a l'antiga, podeu definir-ho des d'aquí."
 
 #. TRANS: Confirmation shown when user profile settings are saved.
 #. TRANS: Message after successful saving of administrative settings.
@@ -3410,13 +3474,13 @@ msgid "Settings saved."
 msgstr "S'ha desat la configuració."
 
 msgid "Only stream mode (no conversations) in timelines"
-msgstr ""
+msgstr "Només mode de flux (sense converses) a les línies temporals"
 
 msgid "Show conversation page as hierarchical trees"
-msgstr ""
+msgstr "Mostra la pàgina de converses com arbres jeràrquics."
 
 msgid "Show nicknames (not full names) in timelines"
-msgstr ""
+msgstr "Mostra els sobrenoms (no els noms sencers) en les línies temporals"
 
 #. TRANS: Button text to save a list.
 msgid "Save"
@@ -4292,47 +4356,6 @@ msgstr ""
 "Això és %%site.name%%, un servei de [microblogging](http://ca.wikipedia.org/"
 "wiki/Microblogging) basat en l'eina lliure [StatusNet](http://status.net/)."
 
-#. TRANS: Title for page with public list cloud.
-msgid "Public list cloud"
-msgstr "Núvol públic de llistes"
-
-#. TRANS: Page notice for page with public list cloud.
-#. TRANS: %s is a StatusNet sitename.
-#, php-format
-msgid "These are largest lists on %s"
-msgstr "Aquestes són les llistes més extenses a %s"
-
-#. TRANS: Empty list message on page with public list cloud.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, php-format
-msgid "No one has [listed](%%doc.tags%%) anyone yet."
-msgstr "Ningú ha [llistat](%%doc.tags%%) encara ningú."
-
-#. TRANS: Additional empty list message on page with public list cloud for logged in users.
-msgid "Be the first to list someone!"
-msgstr "Sigueu el primer en llistar algú!"
-
-#. TRANS: Additional empty list message on page with public list cloud for anonymous users.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, php-format
-msgid ""
-"Why not [register an account](%%action.register%%) and be the first to list "
-"someone!"
-msgstr ""
-"Per què no hi [registreu un compte](%%action.register%%) i sou el primer en "
-"llistar algú!"
-
-#. TRANS: DT element on on page with public list cloud.
-msgid "List cloud"
-msgstr "Núvol de llistes"
-
-#. TRANS: Link title for number of listed people. %d is the number of listed people.
-#, php-format
-msgid "1 person listed"
-msgid_plural "%d people listed"
-msgstr[0] "S'ha llistat 1 persona"
-msgstr[1] "S'han llistat %d persones"
-
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
 #, php-format
 msgid "%s updates from everyone."
@@ -5079,7 +5102,7 @@ msgid "FOAF for %s group"
 msgstr "Safata de sortida per %s"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
 #, php-format
@@ -5098,19 +5121,19 @@ msgstr ""
 "%))"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
 #, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool. Its members share short messages about "
-"their life and interests. "
+"their life and interests."
 msgstr ""
 "**%s** és un grup d'usuaris a %%%%site.name%%%%, un servei de [microblogging]"
 "(http://ca.wikipedia.org/wiki/Microblogging) basat en l'eina lliure "
-"[StatusNet](http://status.net/). Els seus membre comparteixen missatges "
-"curts sobre llur vida i interessos. "
+"[StatusNet](http://status.net/). Els seus membres comparteixen missatges "
+"curts de llurs vides i interessos."
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -5232,11 +5255,6 @@ msgstr "Mostra-ho tot"
 msgid "Subscribers"
 msgstr "Subscriptors"
 
-#. TRANS: Link for more "People following tag x"
-#. TRANS: if there are more than the mini list's maximum.
-msgid "All subscribers"
-msgstr "Tots els subscriptors"
-
 #. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
@@ -5337,11 +5355,11 @@ msgstr ""
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
-"[StatusNet](http://status.net/) tool. "
+"[StatusNet](http://status.net/) tool."
 msgstr ""
 "**%s** té un compte a %%%%site.name%%%%, un servei de [microblogging](http://"
 "ca.wikipedia.org/wiki/Microblogging) basat en l'eina lliure [StatusNet]"
-"(http://status.net/). "
+"(http://status.net/)."
 
 #. TRANS: Link to the author of a repeated notice. %s is a linked nickname.
 #, php-format
@@ -5851,15 +5869,12 @@ msgid ""
 "You're not listening to anyone's notices right now, try subscribing to "
 "people you know. Try [people search](%%action.peoplesearch%%), look for "
 "members in groups you're interested in and in our [featured users](%%action."
-"featured%%). If you're a [Twitter user](%%action.twittersettings%%), you can "
-"automatically subscribe to people you already follow there."
+"featured%%)."
 msgstr ""
 "No esteu escoltant els avisos de ningú ara mateix, proveu de subscriure-us a "
 "gent que coneixeu. Proveu de [cercar gent](%%action.peoplesearch%%), trobar "
 "membres de grups en què esteu interessats i en els nostres [usuaris "
-"destacats](%%action.featured%%). Si sou un [usuari del Twitter](%%action."
-"twittersettings%%), podeu subscriure-us automàticament a gent que ja seguiu "
-"allà."
+"destacats](%%action.featured%%)."
 
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user other
 #. TRANS: than the logged in user that has no subscriptions. %s is the user nickname.
@@ -6197,24 +6212,24 @@ msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
 "Software Foundation, either version 3 of the License, or (at your option) "
-"any later version. "
+"any later version."
 msgstr ""
-"L'StatusNet és programari lliure; podeu redistribuir-lo i/o modificar-lo "
+"L'StatusNet és programari lliure: podeu redistribuir-lo i/o modificar-lo "
 "d'acord amb els termes de la llicència GNU Affero General Public License tal "
-"i com la publica la Free Software Foundation; tant per a la versió 3 de la "
-"llicència, com (a la vostra discreció) per a una versió posterior. "
+"com la publica la Free Software Foundation; tant per a la versió 3 de la "
+"llicència, com (a la vostra discreció) per a qualsevol versió posterior."
 
 #. TRANS: Content part of StatusNet version page.
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License "
-"for more details. "
+"for more details."
 msgstr ""
-"Aquest programa es distribueix amb la voluntat que sigui útil, perquè sense "
+"Aquest programa es distribueix amb la voluntat que sigui útil, però sense "
 "cap mena de garantia; sense tampoc cap garantia implícita respecte a la seva "
 "comercialització o idoneïtat per a cap propòsit en particular. Consulteu la "
-"llicència GNU Affero General Public License per a més detalls. "
+"llicència GNU Affero General Public License per a més detalls."
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
@@ -6269,22 +6284,32 @@ msgstr "No es pot processar l'URL «%s»"
 msgid "Robin thinks something is impossible."
 msgstr "El Robin pensa que quelcom és impossible."
 
+#. TRANS: Message used to be inserted as %2$s in  the text "No file may
+#. TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+#. TRANS: %1$d is the number of bytes of an uploaded file.
+#, php-format
+msgid "%1$d byte"
+msgid_plural "%1$d bytes"
+msgstr[0] "%1$d byte"
+msgstr[1] "%1$d bytes"
+
 #. TRANS: Message given if an upload is larger than the configured maximum.
-#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-#. TRANS: %1$s is used for plural.
+#. TRANS: %1$d (used for plural) is the byte limit for uploads,
+#. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+#. TRANS: gettext support multiple plurals in the same message, unfortunately...
 #, php-format
 msgid ""
-"No file may be larger than %1$d byte and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgid_plural ""
-"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgstr[0] ""
-"Cap fitxer pot ser major de %1$d byte i el fitxer que heu enviat era de %2$d "
-"bytes. Proveu de pujar una versió de mida menor."
+"Cap fitxer pot ser major de %1$d byte i el fitxer que heu enviat n'era d'%2"
+"$s. Proveu de pujar una versió de mida menor."
 msgstr[1] ""
-"Cap fitxer pot ser major de %1$d bytes i el fitxer que heu enviat era de %2"
-"$d bytes. Proveu de pujar una versió de mida menor."
+"Cap fitxer pot ser major de %1$d bytes i el fitxer que heu enviat n'era de %2"
+"$s bytes. Proveu de pujar una versió de mida menor."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -6517,10 +6542,10 @@ msgstr ""
 #, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
-"allowed number.Try unlisting others first."
+"allowed number. Try unlisting others first."
 msgstr ""
 "Ja teniu %1$d o més persones a la llista %2$s, que és el nombre màxim "
-"permès. Proveu de treure'n de la llista uns quants primer."
+"permès. Proveu de treure'n de la llista uns altres primer."
 
 #. TRANS: Exception thrown when inserting a list subscription in the database fails.
 msgid "Adding list subscription failed."
@@ -6877,16 +6902,7 @@ msgid "saveSettings() not implemented."
 msgstr "El saveSettings() no està implementat."
 
 #. TRANS: Header in administrator navigation panel.
-#. TRANS: Header in settings navigation panel.
 msgctxt "HEADER"
-msgid "Home"
-msgstr "Inici"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in personal group navigation menu.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
 msgid "Home"
 msgstr "Inici"
 
@@ -7703,13 +7719,6 @@ msgid "Public"
 msgstr "Públic"
 
 #. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in search group navigation panel.
-#. TRANS: Menu item in local navigation menu.
-msgctxt "MENU"
-msgid "Groups"
-msgstr "Grups"
-
-#. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item title in local navigation menu.
 msgctxt "MENU"
 msgid "Lists"
@@ -7930,6 +7939,11 @@ msgstr "Mostra-ho tot"
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
 msgstr "Mostra tots els grups en què pertanyeu."
+
+#. TRANS: Menu item title in personal group navigation menu.
+#. TRANS: %s is a username.
+msgid "Back to top"
+msgstr "Torna a dalt"
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -8396,6 +8410,10 @@ msgstr ""
 
 #. TRANS: Subject of group join notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
+#, php-format
+msgid "%1$s has joined your group %2$s on %3$s"
+msgstr "%1$s s'ha unit al grup %2$s a %3$s"
+
 #. TRANS: Main body of group join notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
 #. TRANS: %4$s is a block of profile info about the subscriber.
@@ -8692,9 +8710,8 @@ msgstr "en context"
 msgid "Repeated by"
 msgstr "Repetit per"
 
-#, fuzzy
 msgid " "
-msgstr ", "
+msgstr " "
 
 #. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice."
@@ -9151,21 +9168,6 @@ msgstr "Cerca el contingut dels avisos"
 msgid "Find groups on this site"
 msgstr "Cerca grups en aquest lloc"
 
-#. TRANS: Secondary navigation menu item leading to help on StatusNet.
-msgctxt "MENU"
-msgid "Help"
-msgstr "Ajuda"
-
-#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
-msgctxt "MENU"
-msgid "About"
-msgstr "Quant a"
-
-#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
-msgctxt "MENU"
-msgid "FAQ"
-msgstr "Preguntes més freqüents"
-
 #. TRANS: Secondary navigation menu item leading to Terms of Service.
 msgctxt "MENU"
 msgid "TOS"
@@ -9185,17 +9187,6 @@ msgstr "Font"
 msgctxt "MENU"
 msgid "Version"
 msgstr "Versió"
-
-#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
-#. TRANS: StatusNet site, where to report bugs, ...
-msgctxt "MENU"
-msgid "Contact"
-msgstr "Contacte"
-
-#. TRANS: Secondary navigation menu item. Leads to information about embedding a timeline widget.
-msgctxt "MENU"
-msgid "Badge"
-msgstr "Insígnia"
 
 #. TRANS: Default title for section/sidebar widget.
 msgid "Untitled section"
@@ -9280,11 +9271,12 @@ msgstr "Aplicacions de connexió autoritzades"
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
 msgid "Old school"
-msgstr ""
+msgstr "A l'antiga"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "UI tweaks for old-school users"
 msgstr ""
+"Modificacions d'interfícies per als usuaris que els hi agrada a l'antiga"
 
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
@@ -9518,16 +9510,26 @@ msgstr[1] "A %%s els hi agrada."
 
 #. TRANS: List message for notice repeated by logged in user.
 msgctxt "REPEATLIST"
-msgid "You have repeated this notice."
-msgstr "Heu repetit l'avís."
+msgid "You repeated this."
+msgstr "Ho heu repetit."
 
-#. TRANS: List message for repeated notices.
-#. TRANS: %d is the number of users that have repeated a notice.
+#. TRANS: List message for when more than 4 people repeat something.
+#. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
+#. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
 #, php-format
-msgid "One person has repeated this notice."
-msgid_plural "%d people have repeated this notice."
-msgstr[0] "Una persona ha repetit l'avís."
-msgstr[1] "%d persones ha repetit l'avís."
+msgid "%%s and %d other repeated this."
+msgid_plural "%%s and %d others repeated this."
+msgstr[0] "%%s i %d altre ho han repetit."
+msgstr[1] "%%s i %d altres ho han repetit."
+
+#. TRANS: List message for favoured notices.
+#. TRANS: %%s is a list of users liking a notice.
+#. TRANS: Plural is based on the number of of users that have favoured a notice.
+#, php-format
+msgid "%%s repeated this."
+msgid_plural "%%s repeated this."
+msgstr[0] "%%s ho ha repetit."
+msgstr[1] "%%s ho han repetit."
 
 #. TRANS: Form legend.
 #, php-format

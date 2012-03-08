@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:38+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:40+0000\n"
 "Language-Team: Telugu <https://translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -202,7 +202,6 @@ msgstr "అటువంటి పేజీ లేదు."
 #. TRANS: Client error displayed when trying to get the RSS feed with favorites of a user that does not exist.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed without providing a user nickname.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for an object that is not a user.
-#. TRANS: Client error displayed when trying to get a user hCard for a non-existing user.
 #. TRANS: Client error displayed trying to make a micro summary without providing a valid user.
 #. TRANS: Client error displayed trying to send a direct message to a non-existing user.
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
@@ -308,8 +307,6 @@ msgstr "ఆహ్వానాలు"
 #. TRANS: Menu item title in administrator navigation panel.
 #. TRANS: %s is a username.
 #. TRANS: Menu item title in personal group navigation menu.
-#. TRANS: %s is a username.
-#. TRANS: Menu item title in settings navigation panel.
 #. TRANS: %s is a username.
 #, php-format
 msgid "%s and friends"
@@ -1939,6 +1936,79 @@ msgstr "ఇష్టాంశాలకు చేర్చు"
 #, php-format
 msgid "No such document \"%s\"."
 msgstr "\"%s\" అనే పత్రం లేదు."
+
+#. TRANS: Menu item in administrator navigation panel.
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in personal group navigation menu.
+msgctxt "MENU"
+msgid "Home"
+msgstr "ముంగిలి"
+
+msgctxt "MENU"
+msgid "Docs"
+msgstr ""
+
+#. TRANS: Secondary navigation menu item leading to help on StatusNet.
+msgctxt "MENU"
+msgid "Help"
+msgstr "సహాయం"
+
+#, fuzzy
+msgid "Getting started"
+msgstr "అమరికలు భద్రమయ్యాయి."
+
+#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
+msgctxt "MENU"
+msgid "About"
+msgstr "గురించి"
+
+#, fuzzy
+msgid "About this site"
+msgstr "ఈ వాడుకరిని నిరోధించు"
+
+#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
+msgctxt "MENU"
+msgid "FAQ"
+msgstr "ప్రశ్నలు"
+
+msgid "Frequently asked questions"
+msgstr "తరచూ అడిగే ప్రశ్నలు"
+
+#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
+#. TRANS: StatusNet site, where to report bugs, ...
+msgctxt "MENU"
+msgid "Contact"
+msgstr "సంప్రదింపులు"
+
+#, fuzzy
+msgid "Contact info"
+msgstr "సంప్రదింపులు"
+
+#, fuzzy
+msgctxt "MENU"
+msgid "Tags"
+msgstr "ట్యాగులు"
+
+msgid "Using tags"
+msgstr ""
+
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in search group navigation panel.
+#. TRANS: Menu item in local navigation menu.
+msgctxt "MENU"
+msgid "Groups"
+msgstr "గుంపులు"
+
+#, fuzzy
+msgid "Using groups"
+msgstr "వాడుకరి గుంపులు"
+
+msgctxt "MENU"
+msgid "API"
+msgstr ""
+
+msgid "RESTful API"
+msgstr ""
 
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
@@ -4263,47 +4333,6 @@ msgstr ""
 "ఇది %%site.name%%, స్వేచ్ఛా మృదూపకరమైన [స్టేటస్‌నెట్](http://status.net/) అనే పనిముట్టుపై "
 "ఆధారపడిన ఒక [మైక్రో-బ్లాగింగు](http://en.wikipedia.org/wiki/Micro-blogging) సేవ."
 
-#. TRANS: Title for page with public list cloud.
-msgid "Public list cloud"
-msgstr "బహిరంగ జాబితా మేఘం"
-
-#. TRANS: Page notice for page with public list cloud.
-#. TRANS: %s is a StatusNet sitename.
-#, php-format
-msgid "These are largest lists on %s"
-msgstr "%sలో అత్యంత పెద్ద జాబితాలు ఇవి"
-
-#. TRANS: Empty list message on page with public list cloud.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, fuzzy, php-format
-msgid "No one has [listed](%%doc.tags%%) anyone yet."
-msgstr "[హ్యాష్‌ట్యాగు](%%doc.tags%%)తో ఇంకా ఎవరూ నోటీసులు వ్రాయలేదు."
-
-#. TRANS: Additional empty list message on page with public list cloud for logged in users.
-msgid "Be the first to list someone!"
-msgstr "మీరే ఇతరులను జాబితాలో పెట్టుకునే మొదటివారవ్వండి!"
-
-#. TRANS: Additional empty list message on page with public list cloud for anonymous users.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, php-format
-msgid ""
-"Why not [register an account](%%action.register%%) and be the first to list "
-"someone!"
-msgstr ""
-"[ఒక ఖాతాని నమోదుచేసుకుని](%%action.register%%) మీరే మొదటగా జాబితాలను సృష్టించేవారు ఎందుకు "
-"కాకూడదు!"
-
-#. TRANS: DT element on on page with public list cloud.
-msgid "List cloud"
-msgstr "జాబితా మేఘం"
-
-#. TRANS: Link title for number of listed people. %d is the number of listed people.
-#, php-format
-msgid "1 person listed"
-msgid_plural "%d people listed"
-msgstr[0] "1 వ్యక్తి"
-msgstr[1] "%d వ్యక్తులు"
-
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
 #, php-format
 msgid "%s updates from everyone."
@@ -5035,7 +5064,7 @@ msgid "FOAF for %s group"
 msgstr "%s గుంపు"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
 #, php-format
@@ -5054,14 +5083,14 @@ msgstr ""
 "doc.help%%%%))"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
 #, fuzzy, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool. Its members share short messages about "
-"their life and interests. "
+"their life and interests."
 msgstr ""
 "**%s** అనేది [స్టేటస్‌నెట్](http://status.net/) అనే స్వేచ్ఛా ఉపకరణ అధారిత [సూక్ష్మ-బ్లాగింగు]"
 "(http://en.wikipedia.org/wiki/Micro-blogging) సేవ అయిన %%%%site.name%%%%లో ఒక "
@@ -5187,11 +5216,6 @@ msgstr "అన్నీ చూపించు"
 msgid "Subscribers"
 msgstr "చందాదార్లు"
 
-#. TRANS: Link for more "People following tag x"
-#. TRANS: if there are more than the mini list's maximum.
-msgid "All subscribers"
-msgstr "అందరు చందాదార్లు"
-
 #. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, fuzzy, php-format
@@ -5289,7 +5313,7 @@ msgstr ""
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
-"[StatusNet](http://status.net/) tool. "
+"[StatusNet](http://status.net/) tool."
 msgstr ""
 "ఇది %%site.name%%, స్వేచ్ఛా మృదూపకరమైన [స్టేటస్‌నెట్](http://status.net/) అనే పనిముట్టుపై "
 "ఆధారపడిన ఒక [మైక్రో-బ్లాగింగు](http://en.wikipedia.org/wiki/Micro-blogging) సేవ."
@@ -5806,8 +5830,7 @@ msgid ""
 "You're not listening to anyone's notices right now, try subscribing to "
 "people you know. Try [people search](%%action.peoplesearch%%), look for "
 "members in groups you're interested in and in our [featured users](%%action."
-"featured%%). If you're a [Twitter user](%%action.twittersettings%%), you can "
-"automatically subscribe to people you already follow there."
+"featured%%)."
 msgstr ""
 
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user other
@@ -6146,7 +6169,7 @@ msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
 "Software Foundation, either version 3 of the License, or (at your option) "
-"any later version. "
+"any later version."
 msgstr ""
 
 #. TRANS: Content part of StatusNet version page.
@@ -6154,7 +6177,7 @@ msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License "
-"for more details. "
+"for more details."
 msgstr ""
 
 #. TRANS: Content part of StatusNet version page.
@@ -6208,16 +6231,26 @@ msgstr ""
 msgid "Robin thinks something is impossible."
 msgstr "ఏదో అసాధ్యమని రాబిన్ అనుకుంటున్నాడు."
 
+#. TRANS: Message used to be inserted as %2$s in  the text "No file may
+#. TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+#. TRANS: %1$d is the number of bytes of an uploaded file.
+#, php-format
+msgid "%1$d byte"
+msgid_plural "%1$d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
 #. TRANS: Message given if an upload is larger than the configured maximum.
-#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-#. TRANS: %1$s is used for plural.
+#. TRANS: %1$d (used for plural) is the byte limit for uploads,
+#. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+#. TRANS: gettext support multiple plurals in the same message, unfortunately...
 #, php-format
 msgid ""
-"No file may be larger than %1$d byte and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgid_plural ""
-"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -6451,7 +6484,7 @@ msgstr ""
 #, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
-"allowed number.Try unlisting others first."
+"allowed number. Try unlisting others first."
 msgstr ""
 
 #. TRANS: Exception thrown when inserting a list subscription in the database fails.
@@ -6806,16 +6839,7 @@ msgid "saveSettings() not implemented."
 msgstr ""
 
 #. TRANS: Header in administrator navigation panel.
-#. TRANS: Header in settings navigation panel.
 msgctxt "HEADER"
-msgid "Home"
-msgstr "ముంగిలి"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in personal group navigation menu.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
 msgid "Home"
 msgstr "ముంగిలి"
 
@@ -7646,13 +7670,6 @@ msgid "Public"
 msgstr "బహిరంగం"
 
 #. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in search group navigation panel.
-#. TRANS: Menu item in local navigation menu.
-msgctxt "MENU"
-msgid "Groups"
-msgstr "గుంపులు"
-
-#. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item title in local navigation menu.
 msgctxt "MENU"
 msgid "Lists"
@@ -7872,6 +7889,11 @@ msgstr "అన్నీ చూపించు"
 
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
+msgstr ""
+
+#. TRANS: Menu item title in personal group navigation menu.
+#. TRANS: %s is a username.
+msgid "Back to top"
 msgstr ""
 
 #. TRANS: Client exception 406
@@ -8329,6 +8351,10 @@ msgstr ""
 
 #. TRANS: Subject of group join notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
+#, fuzzy, php-format
+msgid "%1$s has joined your group %2$s on %3$s"
+msgstr "%3$s నందు %1$s మీ %2$s గుంపులో చేరారు."
+
 #. TRANS: Main body of group join notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
 #. TRANS: %4$s is a block of profile info about the subscriber.
@@ -8695,9 +8721,8 @@ msgstr[0] "గుంపు లేదా విషయాన్ని గురి
 msgstr[1] "గుంపు లేదా విషయాన్ని గురించి %d అక్షరాల్లో వివరించండి"
 
 #. TRANS: Button title to delete a list.
-#, fuzzy
 msgid "Delete this list."
-msgstr "ఈ వాడుకరిని తొలగించండి."
+msgstr "ఈ జాబితాను తొలగించండి."
 
 #. TRANS: Header in list edit form.
 msgid "Add or remove people"
@@ -9094,21 +9119,6 @@ msgstr ""
 msgid "Find groups on this site"
 msgstr "ఈ సైటులోని గుంపులని కనుగొనండి"
 
-#. TRANS: Secondary navigation menu item leading to help on StatusNet.
-msgctxt "MENU"
-msgid "Help"
-msgstr "సహాయం"
-
-#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
-msgctxt "MENU"
-msgid "About"
-msgstr "గురించి"
-
-#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
-msgctxt "MENU"
-msgid "FAQ"
-msgstr "ప్రశ్నలు"
-
 #. TRANS: Secondary navigation menu item leading to Terms of Service.
 msgctxt "MENU"
 msgid "TOS"
@@ -9129,17 +9139,6 @@ msgstr "మూలము"
 msgctxt "MENU"
 msgid "Version"
 msgstr "సంచిక"
-
-#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
-#. TRANS: StatusNet site, where to report bugs, ...
-msgctxt "MENU"
-msgid "Contact"
-msgstr "సంప్రదింపులు"
-
-#. TRANS: Secondary navigation menu item. Leads to information about embedding a timeline widget.
-msgctxt "MENU"
-msgid "Badge"
-msgstr "బాడ్జీ"
 
 #. TRANS: Default title for section/sidebar widget.
 msgid "Untitled section"
@@ -9463,17 +9462,28 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. TRANS: List message for notice repeated by logged in user.
+#, fuzzy
 msgctxt "REPEATLIST"
-msgid "You have repeated this notice."
+msgid "You repeated this."
 msgstr "మీరు ఈ నోటీసును పునరావృతించారు."
 
-#. TRANS: List message for repeated notices.
-#. TRANS: %d is the number of users that have repeated a notice.
+#. TRANS: List message for when more than 4 people repeat something.
+#. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
+#. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
+#, php-format
+msgid "%%s and %d other repeated this."
+msgid_plural "%%s and %d others repeated this."
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: List message for favoured notices.
+#. TRANS: %%s is a list of users liking a notice.
+#. TRANS: Plural is based on the number of of users that have favoured a notice.
 #, fuzzy, php-format
-msgid "One person has repeated this notice."
-msgid_plural "%d people have repeated this notice."
-msgstr[0] "ఒక వ్యక్తి"
-msgstr[1] "%d వ్యక్తులు"
+msgid "%%s repeated this."
+msgid_plural "%%s repeated this."
+msgstr[0] "%s యొక్క పునరావృతం"
+msgstr[1] "%s యొక్క పునరావృతం"
 
 #. TRANS: Form legend.
 #, fuzzy, php-format
@@ -9577,9 +9587,8 @@ msgid "Unsubscribe"
 msgstr "చందామాను"
 
 #. TRANS: Button title on unsubscribe form.
-#, fuzzy
 msgid "Unsubscribe from this user."
-msgstr "ఈ వాడుకరి నుండి చందామాను"
+msgstr "ఈ వాడుకరి నుండి చందాను విరమించండి."
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).

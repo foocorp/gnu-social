@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:51+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:47:19+0000\n"
 "Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:45+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:51:38+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -47,13 +47,13 @@ msgstr "Desconnecta el meu compte del Twitter"
 
 #. TRANS: Form guide. %s is a URL to the password settings.
 #. TRANS: This message contains a Markdown link in the form [description](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Disconnecting your Twitter account could make it impossible to log in! "
 "Please [set a password](%s) first."
 msgstr ""
-"En desconnectar el vostre Twitter podeu impossibilitar que torneu a iniciar "
-"una sessió! "
+"En desconnectar el vostre Twitter podeu fer que no pogueu tornar a iniciar "
+"una sessió!  [Definiu-ne una contrasenya](%s) abans de res."
 
 #. TRANS: Form instructions. %1$s is the StatusNet sitename.
 #, php-format
@@ -65,7 +65,6 @@ msgstr ""
 "emprar la vostra contrasenya %1$s per iniciar una sessió."
 
 #. TRANS: Button text for disconnecting a Twitter account.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Disconnect"
 msgstr "Desconnecta"
@@ -92,13 +91,11 @@ msgstr "Importa la línia temporal d'amics."
 
 #. TRANS: Button text for saving Twitter integration settings.
 #. TRANS: Button text for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Desa"
 
 #. TRANS: Button text for adding Twitter integration.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Add"
 msgstr "Afegeix"
@@ -118,16 +115,14 @@ msgid "No Twitter connection to remove."
 msgstr "No hi ha cap connexió del Twitter a suprimir."
 
 #. TRANS: Server error displayed when trying to remove a connected Twitter account fails.
-#, fuzzy
 msgid "Could not remove Twitter user."
-msgstr "No s'ha pogut suprimir l'usuari del Twitter."
+msgstr "No s'ha pogut eliminar l'usuari del Twitter."
 
 #. TRANS: Success message displayed after disconnecting a Twitter account.
 msgid "Twitter account disconnected."
 msgstr "S'ha desconnectat el compte del Twitter."
 
 #. TRANS: Server error displayed when saving Twitter integration preferences fails.
-#, fuzzy
 msgid "Could not save Twitter preferences."
 msgstr "No s'han pogut desar les preferències del Twitter."
 
@@ -148,14 +143,13 @@ msgid "Could not link your Twitter account."
 msgstr "No s'ha pogut enllaçar amb el compte del Twitter."
 
 #. TRANS: Server error displayed when linking to a Twitter account fails because of an incorrect oauth_token.
-#, fuzzy
 msgid "Could not link your Twitter account: oauth_token mismatch."
 msgstr ""
-"No s'ha pogut enllaçar amb el vostre compte del Twitter: no coincidència de "
-"l'oath_token."
+"No s'ha pogut enllaçar amb el vostre compte del Twitter: no hi ha "
+"coincidència de l'oath_token."
 
 #. TRANS: Page instruction. %s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "Twitter account to a local account. You can either create a new account, or "
@@ -226,7 +220,7 @@ msgstr "Contrasenya"
 
 #. TRANS: Fieldset legend.
 msgid "License"
-msgstr ""
+msgstr "Llicència"
 
 #. TRANS: Text for license agreement checkbox.
 #. TRANS: %s is the license as configured for the StatusNet site.
@@ -275,7 +269,6 @@ msgid "Invalid username or password."
 msgstr "Nom d'usuari o contrasenya no vàlida."
 
 #. TRANS: Page title for Twitter administration panel.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter"
 msgstr "Twitter"
@@ -285,15 +278,13 @@ msgid "Twitter bridge settings"
 msgstr "Paràmetres del pont del Twitter"
 
 #. TRANS: Client error displayed when a consumer key is invalid because it is too long.
-#, fuzzy
 msgid "Invalid consumer key. Maximum length is 255 characters."
-msgstr "Clau de consumidor no vàlida. La llargada màxima és 255 caràcters."
+msgstr "Clau de consumidor no vàlida. La longitud màxima és 255 caràcters."
 
 #. TRANS: Client error displayed when a consumer secret is invalid because it is too long.
-#, fuzzy
 msgid "Invalid consumer secret. Maximum length is 255 characters."
 msgstr ""
-"Clau secreta de consumidor no vàlida. La llargada màxima és 255 caràcters."
+"Clau secreta de consumidor no vàlida. La longitud màxima és 255 caràcters."
 
 #. TRANS: Fieldset legend for Twitter application settings.
 msgid "Twitter application settings"
@@ -304,32 +295,28 @@ msgid "Consumer key"
 msgstr "Clau de consumidor"
 
 #. TRANS: Field title for Twitter assigned consumer key.
-#, fuzzy
 msgid "The consumer key assigned by Twitter."
-msgstr "Clau de consumidor assignada pel Twitter"
+msgstr "Clau de consumidor assignada pel Twitter."
 
 #. TRANS: Field label for Twitter assigned consumer secret.
 msgid "Consumer secret"
 msgstr "Clau secreta de consumidor"
 
 #. TRANS: Field title for Twitter assigned consumer secret.
-#, fuzzy
 msgid "The consumer secret assigned by Twitter."
-msgstr "Clau secreta de consumidor assignada pel Twitter"
+msgstr "Clau secreta de consumidor assignada pel Twitter."
 
 #. TRANS: Form guide displayed when two required fields have already been provided.
-#, fuzzy
 msgid "Note: A global consumer key and secret are set."
-msgstr "Nota: es defineixen una clau pública i secreta de consumidor."
+msgstr "Nota: es defineix una clau pública i secreta de consumidor global."
 
 #. TRANS: Field label for Twitter application name.
 msgid "Integration source"
 msgstr "Font d'integració"
 
 #. TRANS: Field title for Twitter application name.
-#, fuzzy
 msgid "The name of your Twitter application."
-msgstr "Nom de la vostra aplicació del Twitter"
+msgstr "El nom de la vostra aplicació del Twitter."
 
 #. TRANS: Fieldset legend for Twitter integration options.
 msgid "Options"
@@ -340,9 +327,8 @@ msgid "Enable \"Sign-in with Twitter\""
 msgstr "Habilita l'inici de sessió amb el Twitter"
 
 #. TRANS: Checkbox title.
-#, fuzzy
 msgid "This allow users to login with their Twitter credentials."
-msgstr "Permet als usuaris iniciar una sessió amb les credencials del Twitter"
+msgstr "Permet als usuaris iniciar una sessió amb les credencials del Twitter."
 
 #. TRANS: Checkbox label for global setting.
 msgid "Enable Twitter import"
@@ -357,9 +343,8 @@ msgstr ""
 "que es configurin els dimonis manualment."
 
 #. TRANS: Button title for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgid "Save the Twitter bridge settings."
-msgstr "Paràmetres del pont del Twitter"
+msgstr "Desa els paràmetres del pont del Twitter."
 
 #. TRANS: Server exception thrown when an invalid URL scheme is detected.
 msgid "Invalid URL scheme for HTTP stream reader."

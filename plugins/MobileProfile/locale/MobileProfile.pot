@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"POT-Creation-Date: 2011-12-19 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,21 +17,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. TRANS: Client exception thrown when requesting a not supported media type.
-#: MobileProfilePlugin.php:199
+#: MobileProfilePlugin.php:200
 msgid "This page is not available in a media type you accept."
 msgstr ""
 
 #. TRANS: Link to switch site layout from mobile to desktop mode. Appears at very bottom of page.
-#: MobileProfilePlugin.php:376
+#: MobileProfilePlugin.php:377
 msgid "Switch to desktop site layout."
 msgstr ""
 
 #. TRANS: Link to switch site layout from desktop to mobile mode. Appears at very bottom of page.
-#: MobileProfilePlugin.php:380
+#: MobileProfilePlugin.php:381
 msgid "Switch to mobile site layout."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: MobileProfilePlugin.php:418
+#: MobileProfilePlugin.php:419
 msgid "XHTML MobileProfile output for supporting user agents."
 msgstr ""

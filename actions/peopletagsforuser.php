@@ -58,7 +58,12 @@ class PeopletagsforuserAction extends Action
     {
         parent::prepare($args);
 
-        $nickname_arg = $this->arg('nickname');
+        if (common_config('singleuser', 'enabled')) {
+            $nickname_arg = User::singleUserNickname();
+        } else {
+            $nickname_arg = $this->arg('nickname');
+        }
+
         $nickname = common_canonical_nickname($nickname_arg);
 
         // Permanent redirect on non-canonical nickname

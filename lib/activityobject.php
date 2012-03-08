@@ -692,9 +692,6 @@ class ActivityObject
 
             // id
             $object['id'] = $this->id;
-            //
-            // XXX: Should we use URL here? or a crazy tag URI?
-            $object['id'] = $this->id;
 
             if ($this->type == ActivityObject::PERSON
                 || $this->type == ActivityObject::GROUP) {
@@ -737,14 +734,17 @@ class ActivityObject
             // We can probably use the whole schema URL here but probably the
             // relative simple name is easier to parse
             // @fixme this breaks extension URIs
-            $object['type'] = substr($this->type, strrpos($this->type, '/') + 1);
-
-            // published (probably don't need. Might be useful for repeats.)
+            $object['objectType'] = substr($this->type, strrpos($this->type, '/') + 1);
 
             // summary
             $object['summary'] = $this->summary;
 
-            // udpated (probably don't need this)
+            // summary
+            $object['content'] = $this->content;
+
+            // published (probably don't need. Might be useful for repeats.)
+
+            // updated (probably don't need this)
 
             // TODO: upstreamDuplicates
 

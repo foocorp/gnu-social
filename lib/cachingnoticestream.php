@@ -51,11 +51,13 @@ class CachingNoticeStream extends NoticeStream
 
     public $stream   = null;
     public $cachekey = null;
+    public $useLast  = true;
 
-    function __construct($stream, $cachekey)
+    function __construct($stream, $cachekey, $useLast = true)
     {
         $this->stream   = $stream;
         $this->cachekey = $cachekey;
+        $this->useLast  = $useLast;
     }
 
     function getNoticeIds($offset, $limit, $sinceId, $maxId)
@@ -85,29 +87,31 @@ class CachingNoticeStream extends NoticeStream
             return $ids;
         }
 
-        // Check the cache to see if we have a "last-known-good" version.
-        // The actual cache gets blown away when new notices are added, but
-        // the "last" value holds a lot of info. We might need to only generate
-        // a few at the "tip", which can bound our queries and save lots
-        // of time.
+        if ($this->useLast) {
+            // Check the cache to see if we have a "last-known-good" version.
+            // The actual cache gets blown away when new notices are added, but
+            // the "last" value holds a lot of info. We might need to only generate
+            // a few at the "tip", which can bound our queries and save lots
+            // of time.
 
-        $laststr = $cache->get($idkey.';last');
+            $laststr = $cache->get($idkey.';last');
 
-        if ($laststr !== false) {
-            $window = explode(',', $laststr);
-            $last_id = $window[0];
-            $new_ids = $this->stream->getNoticeIds(0, self::CACHE_WINDOW, $last_id, 0);
+            if ($laststr !== false) {
+                $window = explode(',', $laststr);
+                $last_id = $window[0];
+                $new_ids = $this->stream->getNoticeIds(0, self::CACHE_WINDOW, $last_id, 0);
 
-            $new_window = array_merge($new_ids, $window);
+                $new_window = array_merge($new_ids, $window);
 
-            $new_windowstr = implode(',', $new_window);
+                $new_windowstr = implode(',', $new_window);
 
-            $result = $cache->set($idkey, $new_windowstr);
-            $result = $cache->set($idkey . ';last', $new_windowstr);
+                $result = $cache->set($idkey, $new_windowstr);
+                $result = $cache->set($idkey . ';last', $new_windowstr);
 
-            $ids = array_slice($new_window, $offset, $limit);
+                $ids = array_slice($new_window, $offset, $limit);
 
-            return $ids;
+                return $ids;
+            }
         }
 
         // No cache hits :( Generate directly and stick the results
@@ -118,7 +122,10 @@ class CachingNoticeStream extends NoticeStream
         $windowstr = implode(',', $window);
 
         $result = $cache->set($idkey, $windowstr);
-        $result = $cache->set($idkey . ';last', $windowstr);
+
+        if ($this->useLast) {
+            $result = $cache->set($idkey . ';last', $windowstr);
+        }
 
         // Return just the slice that was requested
 

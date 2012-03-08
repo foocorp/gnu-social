@@ -1,9 +1,12 @@
 # Translation of StatusNet - OStatus to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: Alphakilo
 # Author: Fujnky
+# Author: George Animal
 # Author: Giftpflanze
 # Author: Michael
+# Author: Tiin
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -11,14 +14,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:44:53+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:55+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-09-11 15:10:42+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:49:04+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -99,7 +102,6 @@ msgid "Could not set up remote group membership."
 msgstr "Konnte Remotegruppenmitgliedschaft nicht einrichten."
 
 #. TRANS: Title for joining a remote groep.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Join"
 msgstr "Beitreten"
@@ -115,7 +117,6 @@ msgid "Failed joining remote group."
 msgstr "Fehler beim Beitreten der Remotegruppe."
 
 #. TRANS: Title for leaving a remote group.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Leave"
 msgstr "Verlassen"
@@ -143,20 +144,18 @@ msgid "%1$s is now following people listed in %2$s by %3$s."
 msgstr "%1$s folgt %2$s nicht mehr."
 
 #. TRANS: Exception thrown when subscription to remote list fails.
-#, fuzzy
 msgid "Failed subscribing to remote list."
 msgstr "Fehler beim Beitreten der Remotegruppe."
 
 #. TRANS: Title for unfollowing a remote list.
-#, fuzzy
 msgid "Unfollow list"
-msgstr "Nicht mehr beachten"
+msgstr "Liste nicht länger verfolgen"
 
 #. TRANS: Success message for remote list unfollow through OStatus.
 #. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s stopped following the list %2$s by %3$s."
-msgstr "%1$s folgt %2$s nicht mehr."
+msgstr "%1$s folgt %2$s von %3$s nicht länger."
 
 #. TRANS: Title for listing a remote profile.
 msgctxt "TITLE"
@@ -165,18 +164,18 @@ msgstr ""
 
 #. TRANS: Success message for remote list addition through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the added list member, %3$s is the list name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s listed %2$s in the list %3$s."
-msgstr "%1$s folgt %2$s nicht mehr."
+msgstr "%1$s folgt %2$s der Liste %3$s nicht länger."
 
 #. TRANS: Exception thrown when subscribing to a remote list fails.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Could not complete subscription to remote profile's feed. List %s could not "
 "be saved."
 msgstr ""
-"Konnte Abonnement für den Feed des entfernt liegenden Profils nicht "
-"vollenden. Tag %s konnte nicht gespeichert werden."
+"Konnte Abonnement für den Feed des Remoteprofils nicht vollenden. Tag %s "
+"konnte nicht gespeichert werden."
 
 #. TRANS: Title for unlisting a remote profile.
 #, fuzzy
@@ -292,7 +291,6 @@ msgid "List %s"
 msgstr ""
 
 #. TRANS: Button text to list a remote object.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Go"
 msgstr "Ausführen"
@@ -302,16 +300,14 @@ msgid "User nickname"
 msgstr "Benutzername"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Nickname of the user you want to list."
-msgstr "Name des Benutzers, dem du folgen möchtest"
+msgstr "Name des Benutzers, dem du folgen möchtest."
 
 #. TRANS: Field label.
 msgid "Profile Account"
 msgstr "Profil-Konto"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Your account id (for example user@identi.ca)."
 msgstr "Deine Konto-ID (z.B. user@identi.ca)."
 
@@ -632,9 +628,8 @@ msgstr "Konnte Remotebenutzer %1$s nicht aus der Gruppe %2$s entfernen."
 
 #. TRANS: Client error displayed when referring to a non-existing list.
 #. TRANS: Client error.
-#, fuzzy
 msgid "No such list."
-msgstr "Unbekannter Benutzer."
+msgstr "Liste nicht gefunden."
 
 #. TRANS: Client error displayed when trying to send a message to a remote list.
 #, fuzzy

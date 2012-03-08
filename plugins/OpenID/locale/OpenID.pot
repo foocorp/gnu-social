@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"POT-Creation-Date: 2011-12-19 00:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr ""
 
 #. TRANS: Button text to continue OpenID identity verification.
 #. TRANS: button label for OAuth authorization page when needing OpenID authentication first.
-#: openidtrust.php:136 OpenIDPlugin.php:698
+#: openidtrust.php:136 OpenIDPlugin.php:695
 msgctxt "BUTTON"
 msgid "Continue"
 msgstr ""
@@ -92,7 +92,8 @@ msgstr ""
 #. TRANS: OpenID plugin menu item on site logon page.
 #. TRANS: OpenID plugin menu item on user settings page.
 #. TRANS: OpenID configuration menu item.
-#: OpenIDPlugin.php:296 OpenIDPlugin.php:332 OpenIDPlugin.php:640
+#: OpenIDPlugin.php:296 OpenIDPlugin.php:332 OpenIDPlugin.php:542
+#: OpenIDPlugin.php:637
 msgctxt "MENU"
 msgid "OpenID"
 msgstr ""
@@ -134,55 +135,47 @@ msgid ""
 "openidlogin%%)!)"
 msgstr ""
 
-#. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
-#: OpenIDPlugin.php:543
-#, php-format
-msgid ""
-"* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this "
-"service."
-msgstr ""
-
 #. TRANS: Tooltip for OpenID configuration menu item.
-#: OpenIDPlugin.php:642
+#: OpenIDPlugin.php:639
 msgid "OpenID configuration."
 msgstr ""
 
 #. TRANS: Plugin description.
-#: OpenIDPlugin.php:688
+#: OpenIDPlugin.php:685
 msgid "Use <a href=\"http://openid.net/\">OpenID</a> to login to the site."
 msgstr ""
 
 #. TRANS: OpenID plugin logon form legend.
-#: OpenIDPlugin.php:715 openidlogin.php:132
+#: OpenIDPlugin.php:712 openidlogin.php:132
 msgctxt "LEGEND"
 msgid "OpenID login"
 msgstr ""
 
 #. TRANS: Field label.
-#: OpenIDPlugin.php:723
+#: OpenIDPlugin.php:720
 msgid "OpenID provider"
 msgstr ""
 
 #. TRANS: Form guide.
-#: OpenIDPlugin.php:732 openidlogin.php:149
+#: OpenIDPlugin.php:729 openidlogin.php:149
 msgid "Enter your username."
 msgstr ""
 
 #. TRANS: Form guide.
-#: OpenIDPlugin.php:734 openidlogin.php:151
+#: OpenIDPlugin.php:731 openidlogin.php:151
 msgid "You will be sent to the provider's site for authentication."
 msgstr ""
 
 #. TRANS: OpenID plugin logon form field label.
 #. TRANS: Field label.
 #. TRANS: OpenID plugin logon form field label.
-#: OpenIDPlugin.php:738 openidsettings.php:110 openidlogin.php:155
+#: OpenIDPlugin.php:735 openidsettings.php:110 openidlogin.php:155
 msgid "OpenID URL"
 msgstr ""
 
 #. TRANS: OpenID plugin logon form field instructions.
 #. TRANS: OpenID plugin logon form field title.
-#: OpenIDPlugin.php:741 openidlogin.php:158
+#: OpenIDPlugin.php:738 openidlogin.php:158
 msgid "Your OpenID URL."
 msgstr ""
 

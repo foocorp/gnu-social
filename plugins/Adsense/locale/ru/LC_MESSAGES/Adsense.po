@@ -1,6 +1,7 @@
 # Translation of StatusNet - Adsense to Russian (Русский)
 # Exported from translatewiki.net
 #
+# Author: Eleferen
 # Author: Lockal
 # Author: Сrower
 # --
@@ -10,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:42:55+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:34+0000\n"
 "Language-Team: Russian <https://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:18:37+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 10:22:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
 "Plural-Forms: nplurals=3; plural=(n%10 == 1 && n%100 != 11) ? 0 : ( (n%10 >= "
@@ -58,9 +59,8 @@ msgid "Ad script URL"
 msgstr "URL-адрес скрипта рекламы"
 
 #. TRANS: Field title in AdSense administration panel.
-#, fuzzy
 msgid "Script URL (advanced)."
-msgstr "URL-адрес скрипта (расширенная настройка)"
+msgstr "URL-адрес скрипта (расширенная настройка)."
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Medium rectangle"
@@ -99,12 +99,10 @@ msgid "Wide skyscraper slot code."
 msgstr "Слот-код широкого небоскреба"
 
 #. TRANS: Button text to save settings in AdSense administration panel.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Сохранить"
 
 #. TRANS: Button title to save settings in AdSense administration panel.
-#, fuzzy
 msgid "Save AdSense settings."
-msgstr "Сохранить настройки AdSense"
+msgstr "Сохранить настройки AdSense."

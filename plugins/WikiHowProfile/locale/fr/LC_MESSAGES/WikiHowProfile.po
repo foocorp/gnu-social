@@ -1,6 +1,7 @@
 # Translation of StatusNet - WikiHowProfile to French (Français)
 # Exported from translatewiki.net
 #
+# Author: DavidL
 # Author: Verdy p
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - WikiHowProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:58+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:47:23+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:54+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-wikihowprofile\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -31,11 +32,12 @@ msgstr ""
 
 #. TRANS: Exception thrown when fetching a WikiHow profile page fails.
 msgid "WikiHow profile page fetch failed."
-msgstr ""
+msgstr "La recherche de la page de profile WikiHow a échoué."
 
 #. TRANS: Exception thrown when parsing a WikiHow profile page fails.
 msgid "HTML parse failure during check for WikiHow avatar."
 msgstr ""
+"Échec de l'interprétation HTML durant la vérification de l'avatar WikiHow."
 
 #. TRANS: Server exception thrown when an avatar URL is invalid.
 #. TRANS: %s is the invalid avatar URL.

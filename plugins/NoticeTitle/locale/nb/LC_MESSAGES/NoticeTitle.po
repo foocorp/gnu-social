@@ -1,4 +1,4 @@
-# Translation of StatusNet - NoticeTitle to Norwegian (bokmål)‬ (‪Norsk (bokmål)‬)
+# Translation of StatusNet - NoticeTitle to Norwegian Bokmål (‪Norsk (bokmål)‬)
 # Exported from translatewiki.net
 #
 # Author: Nghtwlkr
@@ -9,16 +9,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - NoticeTitle\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:44:28+0000\n"
-"Language-Team: Norwegian (bokmål)‬ <https://translatewiki.net/wiki/Portal:"
-"no>\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:50+0000\n"
+"Language-Team: Norwegian Bokmål <https://translatewiki.net/wiki/Portal:nb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:51:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
-"X-Language-Code: no\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Language-Code: nb\n"
 "X-Message-Group: #out-statusnet-plugin-noticetitle\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 

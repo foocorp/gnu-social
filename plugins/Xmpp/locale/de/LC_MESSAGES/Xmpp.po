@@ -4,6 +4,7 @@
 # Author: Giftpflanze
 # Author: Habi
 # Author: Inkowik
+# Author: Tiin
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -11,14 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Xmpp\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:46:01+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:47:24+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:56+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-xmpp\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -34,7 +35,7 @@ msgstr "XMPP/Jabber/GTalk"
 
 #. TRANS: Exception thrown when using too many @ signs in a Jabber ID.
 msgid "Invalid JID: too many @s."
-msgstr ""
+msgstr "Ungültige JID: zu viele @s."
 
 #. TRANS: Exception thrown when using @ sign not followed by a Jabber ID.
 msgid "Invalid JID: @ but no node"
@@ -52,19 +53,19 @@ msgstr ""
 
 #. TRANS: Exception thrown when using too long a Jabber domain (>1023).
 msgid "Invalid JID: domain too long."
-msgstr ""
+msgstr "Ungültige JID: Domain zu lang."
 
 #. TRANS: Exception thrown when using an invalid Jabber domain name.
 #. TRANS: %s is the invalid domain name.
 #, php-format
 msgid "Invalid JID domain name \"%s\"."
-msgstr ""
+msgstr "Ungültiger JID-Domainname „%s“."
 
 #. TRANS: Exception thrown when using an invalid Jabber resource.
 #. TRANS: %s is the invalid resource.
 #, php-format
 msgid "Invalid JID resource \"%s\"."
-msgstr ""
+msgstr "Ungültige JID-Quelle „%s“."
 
 #. TRANS: Link description to notice in conversation.
 #. TRANS: %s is a notice ID.

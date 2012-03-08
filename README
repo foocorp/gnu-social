@@ -2,8 +2,8 @@
 README
 ------
 
-StatusNet 1.0.0rc1
-20 September 2011
+StatusNet 1.0.1
+3 October 2011
 
 This is the README file for StatusNet, the Open Source social
 networking platform. It includes general information about the
@@ -107,11 +107,13 @@ for additional terms.
 New this version
 ================
 
-This is a major feature release since 0.9.9, released 2 August
-2011. It is the first release of the new branch of StatusNet, and the
-first release in the 1.x timeline.
+This is a minor bug fix release since 1.0.0, released 30 September
+2011. It fixes the following bugs:
 
-Notable changes this version:
+- Change default OEmbed provider from oohembed to noembed.
+- Fix problem with path matching on new installs.
+
+Notable additions in the 1.0.x series:
 
 - Support for private updates, including private-to-groups, private
   within a site, and private to followers only.
@@ -144,7 +146,7 @@ Notable changes this version:
 - Deeper integration with Activity Streams (http://activitystrea.ms) format.
 - Automated upgrade script.
 
-A full changelog is available at http://status.net/wiki/StatusNet_1.0.0.
+A full changelog is available at http://status.net/wiki/StatusNet_1.0.1.
 
 Troubleshooting
 ===============
@@ -197,6 +199,7 @@ Feedback
   place to discuss the software.
 * StatusNet has a bug tracker for any defects you may find, or ideas for
   making things better. http://status.net/open-source/issues
+* The StatusNet forum is at http://forum.status.net/.
 
 Credits
 =======

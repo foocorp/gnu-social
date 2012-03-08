@@ -212,6 +212,11 @@ class ShowstreamAction extends ProfileAction
         $this->element('link', array('rel' => 'EditURI',
                                      'type' => 'application/rsd+xml',
                                      'href' => $rsd));
+
+        if ($this->page != 1) {
+            $this->element('link', array('rel' => 'canonical',
+                                         'href' => $this->profile->profileurl));
+        }
     }
 
     function showEmptyListMessage()
@@ -274,7 +279,7 @@ class ShowstreamAction extends ProfileAction
             // TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
             // TRANS: This message contains a Markdown link. Keep "](" together.
             $m = sprintf(_('**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
-                           'based on the Free Software [StatusNet](http://status.net/) tool. '),
+                           'based on the Free Software [StatusNet](http://status.net/) tool.'),
                          $this->user->nickname, $this->user->nickname);
         }
         $this->elementStart('div', array('id' => 'anon_notice'));

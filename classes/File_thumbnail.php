@@ -56,10 +56,7 @@ class File_thumbnail extends Managed_DataObject
             'primary key' => array('file_id'),
             'foreign keys' => array(
                 'file_thumbnail_file_id_fkey' => array('file', array('file_id' => 'id')),
-            ),
-            'unique keys' => array(
-                'file_thumbnail_url_key' => array('url'),
-            ),
+            )
         );
     }
 

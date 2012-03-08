@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:07+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:47:01+0000\n"
 "Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:20:36+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:10:59+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -60,7 +60,7 @@ msgstr "Usuari sense perfil."
 #. TRANS: %1$s is the user who answered a question, %2$s is the question.
 #, php-format
 msgid "%1$s's answer to \"%2$s\""
-msgstr ""
+msgstr "Resposta de %1$s a «%2$s»"
 
 #. TRANS: Page title for revising a question
 msgid "Revise answer"
@@ -97,7 +97,7 @@ msgstr "No existeix l'avís de la resposta."
 #. TRANS: %1$s is the nickname of the user who asked the question, %2$s is the question.
 #, php-format
 msgid "%1$s's question: %2$s"
-msgstr ""
+msgstr "Pregunta de %1$s: %2$s"
 
 #. TRANS: Page title for close a question
 msgid "Close question"
@@ -105,15 +105,15 @@ msgstr "Tanca la pregunta"
 
 #. TRANS: Client exception thrown trying to close a question when not logged in
 msgid "You must be logged in to close a question."
-msgstr ""
+msgstr "Cal haver iniciat una sessió per tancar una pregunta."
 
 #. TRANS: Client exception thrown trying to respond to a non-existing question.
 msgid "Invalid or missing question."
-msgstr ""
+msgstr "La pregunta no és vàlida o no hi és."
 
 #. TRANS: Exception thrown trying to close another user's question.
 msgid "You did not ask this question."
-msgstr ""
+msgstr "No heu respost la pregunta."
 
 #. TRANS: Page title after sending an answer.
 #. TRANS: Page title after sending in a vote for a question or answer.
@@ -127,7 +127,7 @@ msgstr "Error d'Ajax"
 #. TRANS: Title for form to send answer to a question.
 msgctxt "TITLE"
 msgid "Your answer"
-msgstr ""
+msgstr "La vostra resposta"
 
 #. TRANS: Error message displayed when an answer has no content.
 #. TRANS: Error message displayed when answer data is not present.
@@ -136,42 +136,42 @@ msgstr "Manquen les dades de la resposta."
 
 #. TRANS: Plugin description.
 msgid "Question and Answers micro-app."
-msgstr ""
+msgstr "Microaplicació de preguntes i respostes."
 
 #. TRANS: Application title.
 msgctxt "TITLE"
 msgid "Question"
-msgstr ""
+msgstr "Pregunta"
 
 #. TRANS: Exception thrown when there are too many activity objects.
 msgid "Too many activity objects."
-msgstr ""
+msgstr "Masses objectes d'activitat."
 
 #. TRANS: Exception thrown when an incorrect object type is encountered.
 msgid "Wrong type for object."
-msgstr ""
+msgstr "Tipus d'objecte incorrecte."
 
 #. TRANS: Exception thrown when answering a non-existing question.
 msgid "Answer to unknown question."
-msgstr ""
+msgstr "Resposta a una pregunta desconeguda."
 
 #. TRANS: Exception thrown when an object type is encountered that cannot be handled.
 msgid "Unknown object type."
-msgstr ""
+msgstr "Tipus d'objecte desconegut."
 
 #. TRANS: Exception thrown when requesting a non-existing question notice.
 msgid "Unknown question notice."
-msgstr ""
+msgstr "Avís de pregunta desconegut."
 
 #. TRANS: Exception thrown when performing an unexpected action on a question.
 #. TRANS: %s is the unpexpected object type.
 #, php-format
 msgid "Unexpected type for QnA plugin: %s."
-msgstr ""
+msgstr "Tipus no esperat per al connector QnA: %s."
 
 #. TRANS: Error message displayed when question data is not present.
 msgid "Question data is missing."
-msgstr ""
+msgstr "Les dades de la pregunta no hi són."
 
 #. TRANS: Placeholder value for a possible answer to a question
 #. TRANS: by the logged in user.
@@ -191,7 +191,7 @@ msgstr "més..."
 #. TRANS: %s is the non-existing question ID.
 #, php-format
 msgid "No question with ID %s"
-msgstr ""
+msgstr "No hi ha cap pregunta amb ID %s"
 
 #. TRANS: Exception thown when getting a profile with a non-existing ID.
 #. TRANS: %s is the non-existing profile ID.
@@ -199,21 +199,21 @@ msgstr ""
 #. TRANS: %s is the provided profile ID.
 #, php-format
 msgid "No profile with ID %s"
-msgstr ""
+msgstr "No hi ha cap perfil amb ID %s"
 
 #. TRANS: %s is the number of answer revisions.
 #, php-format
 msgid "%s revision"
 msgid_plural "%s revisions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s revisió"
+msgstr[1] "%s revisions"
 
 #. TRANS: Text for a question that was answered.
 #. TRANS: %1$s is the user that answered, %2$s is the question title,
 #. TRANS: %2$s is the answer content.
 #, php-format
 msgid "%1$s answered the question \"%2$s\": %3$s"
-msgstr ""
+msgstr "%1$s ha respost la pregunta «%2$s»: %3$s"
 
 #. TRANS: Text for a question that was answered.
 #. TRANS: %s is the question title.
@@ -221,15 +221,15 @@ msgstr ""
 #. TRANS: %s a link to the question with question title as the link content.
 #, php-format
 msgid "answered \"%s\""
-msgstr ""
+msgstr "ha respost «%s»"
 
 #. TRANS: Number of given answers to a question.
 #. TRANS: %s is the number of given answers.
 #, php-format
 msgid "%s answer"
 msgid_plural "%s answers"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%s resposta"
+msgstr[1] "%s respostes"
 
 #. TRANS: Notification that a question cannot be answered anymore because it is closed.
 msgid "This question is closed."
@@ -268,36 +268,36 @@ msgstr "El títol de la vostra pregunta."
 #. TRANS: Field label for question details.
 msgctxt "LABEL"
 msgid "Description"
-msgstr ""
+msgstr "Descripció"
 
 #. TRANS: Field title for question details.
 msgid "Your question in detail."
-msgstr ""
+msgstr "La vostra pregunta en detall."
 
 #. TRANS: Button text for saving a new question.
 msgctxt "BUTTON"
 msgid "Save"
-msgstr ""
+msgstr "Desa"
 
 #. TRANS: Form legend for revising the answer.
 msgctxt "LEGEND"
 msgid "Question"
-msgstr ""
+msgstr "Pregunta"
 
 #. TRANS: Button text for closing a question.
 msgctxt "BUTTON"
 msgid "Close"
-msgstr ""
+msgstr "Tanca"
 
 #. TRANS: Title for button text for closing a question.
 msgid "Close the question to no one can answer it anymore."
-msgstr ""
+msgstr "Tanca la pregunta per tal que ningú pugui respondre-la més."
 
 #. TRANS: Button text for marking an answer as "best".
 msgctxt "BUTTON"
 msgid "Best"
-msgstr ""
+msgstr "Millor"
 
 #. TRANS: Title for button text marking an answer as "best".
 msgid "Mark this answer as the best answer."
-msgstr ""
+msgstr "Marca aquesta resposta com a millor resposta."

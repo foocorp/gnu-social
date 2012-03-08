@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
+"POT-Creation-Date: 2011-12-19 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -102,18 +102,18 @@ msgid "Pull feeds into your timeline!"
 msgstr ""
 
 #. TRANS: SubMirror plugin menu item on user settings page.
-#: SubMirrorPlugin.php:113
+#: SubMirrorPlugin.php:114
 msgctxt "MENU"
 msgid "Mirroring"
 msgstr ""
 
 #. TRANS: SubMirror plugin tooltip for user settings menu item.
-#: SubMirrorPlugin.php:115
+#: SubMirrorPlugin.php:116
 msgid "Configure mirroring of posts from other feeds"
 msgstr ""
 
 #. TRANS: Label in profile statistics section, followed by a count.
-#: SubMirrorPlugin.php:187
+#: SubMirrorPlugin.php:188
 msgid "Mirrored feeds"
 msgstr ""
 

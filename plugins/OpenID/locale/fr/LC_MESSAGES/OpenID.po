@@ -4,6 +4,7 @@
 # Author: Crochet.david
 # Author: Od1n
 # Author: Peter17
+# Author: Valeryan 24
 # Author: Verdy p
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -12,14 +13,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:44:37+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:52+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:11+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-10-10 14:11:22+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -60,7 +61,6 @@ msgid "Unavailable action."
 msgstr ""
 
 #. TRANS: Tooltip for main menu option "Login"
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Login to the site."
 msgstr "Connexion au site"
@@ -132,13 +132,6 @@ msgid ""
 "openidlogin%%)!)"
 msgstr ""
 
-#. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
-#, php-format
-msgid ""
-"* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this "
-"service."
-msgstr ""
-
 #. TRANS: Tooltip for OpenID configuration menu item.
 #, fuzzy
 msgid "OpenID configuration."
@@ -175,7 +168,6 @@ msgstr "Adresse URL OpenID"
 
 #. TRANS: OpenID plugin logon form field instructions.
 #. TRANS: OpenID plugin logon form field title.
-#, fuzzy
 msgid "Your OpenID URL."
 msgstr "Votre URL OpenID"
 
@@ -418,7 +410,6 @@ msgid "Invalid team name. Maximum length is 255 characters."
 msgstr "Nom d’équipe invalide. La taille maximale est de 255 caractères."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Trusted provider"
 msgstr "Fournisseur de confiance"
@@ -583,10 +574,9 @@ msgstr ""
 
 #. TRANS: Button text to remove an OpenID.
 #. TRANS: Button text to remove an OpenID trustroot.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Remove"
-msgstr "Enlever"
+msgstr "Supprimer"
 
 #. TRANS: Fieldset legend.
 msgid "OpenID Trusted Sites"

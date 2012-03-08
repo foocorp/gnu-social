@@ -58,7 +58,12 @@ class PeopletaggedAction extends Action
         parent::prepare($args);
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
 
-        $tagger_arg = $this->arg('tagger');
+        if (common_config('singleuser', 'enabled')) {
+            $tagger_arg = User::singleUserNickname();
+        } else {
+            $tagger_arg = $this->arg('tagger');
+        }
+
         $tag_arg = $this->arg('tag');
         $tagger = common_canonical_nickname($tagger_arg);
         $tag = common_canonical_tag($tag_arg);

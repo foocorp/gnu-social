@@ -13,17 +13,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:27+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:30+0000\n"
 "Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-09-11 15:11:17+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -216,7 +216,6 @@ msgstr "Deze pagina bestaat niet."
 #. TRANS: Client error displayed when trying to get the RSS feed with favorites of a user that does not exist.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed without providing a user nickname.
 #. TRANS: Client error displayed when requesting Friends of a Friend feed for an object that is not a user.
-#. TRANS: Client error displayed when trying to get a user hCard for a non-existing user.
 #. TRANS: Client error displayed trying to make a micro summary without providing a valid user.
 #. TRANS: Client error displayed trying to send a direct message to a non-existing user.
 #. TRANS: Client error displayed trying to use "one time password login" without using an existing user.
@@ -287,7 +286,7 @@ msgid ""
 "something yourself."
 msgstr ""
 "Probeer te abonneren op meer gebruikers, [word lid van een groep](%%action."
-"groups%%)  of plaats zelf berichten."
+"groups%%) of plaats zelf berichten."
 
 #. TRANS: %1$s is user nickname, %2$s is user nickname, %2$s is user nickname prefixed with "@".
 #. TRANS: This message contains Markdown links. Keep "](" together.
@@ -327,8 +326,6 @@ msgstr "Uitnodiging verzenden"
 #. TRANS: Menu item title in administrator navigation panel.
 #. TRANS: %s is a username.
 #. TRANS: Menu item title in personal group navigation menu.
-#. TRANS: %s is a username.
-#. TRANS: Menu item title in settings navigation panel.
 #. TRANS: %s is a username.
 #, php-format
 msgid "%s and friends"
@@ -433,7 +430,7 @@ msgstr "Lidmaatschappen van %s"
 
 #. TRANS: Client error displayed when users try to block themselves.
 msgid "You cannot block yourself!"
-msgstr "U kunt zichzelf niet blokkeren!"
+msgstr "U kunt uzelf niet blokkeren!"
 
 #. TRANS: Server error displayed when blocking a user has failed.
 msgid "Block user failed."
@@ -583,7 +580,7 @@ msgstr ""
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Form validation error displayed when trying to register with an invalid nickname.
 msgid "Not a valid nickname."
-msgstr "Ongeldige gebruikersnaam!"
+msgstr "Ongeldige gebruikersnaam."
 
 #. TRANS: Client error in form for group creation.
 #. TRANS: API validation exception thrown when homepage URL does not validate.
@@ -1084,14 +1081,14 @@ msgstr "Het was niet mogelijk een feed voor de lijst aan te maken - %s"
 #. TRANS: %1$s is the StatusNet sitename, %2$s is a user nickname.
 #, php-format
 msgid "%1$s / Updates mentioning %2$s"
-msgstr "%1$s / Updates over %2$s"
+msgstr "%1$s / Berichten over %2$s"
 
 #. TRANS: Subtitle for timeline of most recent mentions of a user.
 #. TRANS: %1$s is the StatusNet sitename, %2$s is a user nickname,
 #. TRANS: %3$s is a user's full name.
 #, php-format
 msgid "%1$s updates that reply to updates from %2$s / %3$s."
-msgstr "%1$s updates die een reactie zijn op updates van %2$s / %3$s."
+msgstr "Berichten van %1$s die een reactie zijn op berichten van %2$s / %3$s."
 
 #. TRANS: Title for site timeline. %s is the StatusNet sitename.
 #. TRANS: Public RSS feed title. %s is the StatusNet site name.
@@ -1102,7 +1099,7 @@ msgstr "%s publieke tijdlijn"
 #. TRANS: Subtitle for site timeline. %s is the StatusNet sitename.
 #, php-format
 msgid "%s updates from everyone!"
-msgstr "%s updates van iedereen"
+msgstr "Alle berichten van %s"
 
 #. TRANS: Server error displayed calling unimplemented API method for 'retweeted by me'.
 msgid "Unimplemented."
@@ -1145,7 +1142,7 @@ msgstr "Mededelingen met het label %s"
 #. TRANS: %1$s is the tag name, %2$s is the StatusNet sitename.
 #, php-format
 msgid "Updates tagged with %1$s on %2$s!"
-msgstr "Updates met het label %1$s op %2$s!"
+msgstr "Berichten met het label %1$s op %2$s!"
 
 #. TRANS: Client error displayed trying to add a notice to another user's timeline.
 msgid "Only the user can add to their own timeline."
@@ -1994,6 +1991,74 @@ msgstr "Aan favorieten toevoegen"
 msgid "No such document \"%s\"."
 msgstr "Onbekend document \"%s\"."
 
+#. TRANS: Menu item in administrator navigation panel.
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in personal group navigation menu.
+msgctxt "MENU"
+msgid "Home"
+msgstr "Hoofdmenu"
+
+msgctxt "MENU"
+msgid "Docs"
+msgstr "Documentatie"
+
+#. TRANS: Secondary navigation menu item leading to help on StatusNet.
+msgctxt "MENU"
+msgid "Help"
+msgstr "Hulp"
+
+msgid "Getting started"
+msgstr "Aan de slag"
+
+#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
+msgctxt "MENU"
+msgid "About"
+msgstr "Over"
+
+msgid "About this site"
+msgstr "Over deze site"
+
+#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
+msgctxt "MENU"
+msgid "FAQ"
+msgstr "Veel gestelde vragen"
+
+msgid "Frequently asked questions"
+msgstr "Veelgestelde vragen"
+
+#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
+#. TRANS: StatusNet site, where to report bugs, ...
+msgctxt "MENU"
+msgid "Contact"
+msgstr "Contact"
+
+msgid "Contact info"
+msgstr "Contactgegevens"
+
+msgctxt "MENU"
+msgid "Tags"
+msgstr "Labels"
+
+msgid "Using tags"
+msgstr "Labels gebruiken"
+
+#. TRANS: Menu item in default local navigation panel.
+#. TRANS: Menu item in search group navigation panel.
+#. TRANS: Menu item in local navigation menu.
+msgctxt "MENU"
+msgid "Groups"
+msgstr "Groepen"
+
+msgid "Using groups"
+msgstr "Groepen gebruiken"
+
+msgctxt "MENU"
+msgid "API"
+msgstr "API"
+
+msgid "RESTful API"
+msgstr "RESTful API"
+
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
 msgid "Edit application"
@@ -2194,8 +2259,8 @@ msgid ""
 "Awaiting confirmation on this address. Check your inbox (and spam box!) for "
 "a message with further instructions."
 msgstr ""
-"Er wordt gewacht op bevestiging van dit adres. Controleer uw inbox (en uw "
-"ongewenste berichten/spam) voor een bericht met nadere instructies."
+"Dit adres moet bevestigd worden. Controleer uw Postvak IN (en uw ongewenste "
+"berichten/spam) voor een bericht met nadere instructies."
 
 #. TRANS: Instructions for e-mail address input form. Do not translate
 #. TRANS: "example.org". It is one of the domain names reserved for
@@ -2225,7 +2290,7 @@ msgstr "Ik wil mededelingen per e-mail plaatsen."
 #. TRANS: Form instructions for incoming e-mail form in e-mail settings.
 #. TRANS: Form instructions for incoming SMS e-mail address form in SMS settings.
 msgid "Send email to this address to post new notices."
-msgstr "Stuur een email naar dit adres om een nieuw bericht te posten"
+msgstr "Stuur een e-mail naar dit adres om een nieuw bericht te plaatsen."
 
 #. TRANS: Instructions for incoming e-mail address input form, when an address has already been assigned.
 #. TRANS: Instructions for incoming SMS e-mail address input form.
@@ -2313,9 +2378,9 @@ msgid ""
 "A confirmation code was sent to the email address you added. Check your "
 "inbox (and spam box!) for the code and instructions on how to use it."
 msgstr ""
-"Een bevestigingscode is verzonden naar het e-mailadres dat u hebt "
-"toegevoegd. Controleer uw inbox (en spam box!) Voor de code en instructies "
-"hoe het te gebruiken."
+"Er is een bevestigingscode verzonden naar het e-mailadres dat u hebt "
+"toegevoegd. Controleer uw Postvak IN (en uw ongewenste berichten/spam) voor "
+"de code en instructies hoe deze te gebruiken."
 
 #. TRANS: Message given canceling e-mail address confirmation that is not pending.
 #. TRANS: Message given canceling Instant Messaging address confirmation that is not pending.
@@ -2411,7 +2476,7 @@ msgid ""
 "notice to your favorites!"
 msgstr ""
 "U kunt een [gebruiker aanmaken](%%action.register%%) en de eerste mededeling "
-"voor de favorietenlijst plaatsen!"
+"op uw favorietenlijst plaatsen!"
 
 #. TRANS: Title of RSS feed with favourite notices of a user.
 #. TRANS: %s is a user's nickname.
@@ -2433,13 +2498,13 @@ msgstr "Updates op de favorietenlijst van %1$s op %2$s."
 #. TRANS: Title for featured users section.
 #. TRANS: Menu item title in search group navigation panel.
 msgid "Featured users"
-msgstr "Nieuwe gebruikers"
+msgstr "Uitgelichte gebruikers"
 
 #. TRANS: Page title for all but first page of featured users.
 #. TRANS: %d is the page number being displayed.
 #, php-format
 msgid "Featured users, page %d"
-msgstr "Nieuwe gebruikers, pagina %d"
+msgstr "Uitgelichte gebruikers, pagina %d"
 
 #. TRANS: Description on page displaying featured users.
 #, php-format
@@ -2580,7 +2645,7 @@ msgstr "Selecteer een vierkant uit de afbeelding die het logo wordt."
 
 #. TRANS: Form success message after updating a group logo.
 msgid "Logo updated."
-msgstr "Logo geactualiseerd."
+msgstr "Het logo is bijgewerkt."
 
 #. TRANS: Form failure message after failing to update a group logo.
 msgid "Failed updating logo."
@@ -3424,13 +3489,13 @@ msgid "Not a supported data format."
 msgstr "Geen ondersteund gegevensformaat."
 
 #. TRANS: Page title for profile settings.
-#, fuzzy
 msgid "Old school UI settings"
-msgstr "IM-instellingen"
+msgstr "Oude gebruikersinterfaceinstellingen"
 
 #. TRANS: Usage instructions for profile settings.
 msgid "If you like it \"the old way\", you can set that here."
 msgstr ""
+"Als u de voorkeur geeft aan de \"oude manier\", dan kunt u dat hier aangeven."
 
 #. TRANS: Confirmation shown when user profile settings are saved.
 #. TRANS: Message after successful saving of administrative settings.
@@ -3438,13 +3503,13 @@ msgid "Settings saved."
 msgstr "De instellingen zijn opgeslagen."
 
 msgid "Only stream mode (no conversations) in timelines"
-msgstr ""
+msgstr "Alleen streammodus (geen gesprekken) in tijdlijnen"
 
 msgid "Show conversation page as hierarchical trees"
-msgstr ""
+msgstr "Gesprekkenpagina als hiërarchische boomstructuur weergeven"
 
 msgid "Show nicknames (not full names) in timelines"
-msgstr ""
+msgstr "Gebruikersnamen (geen volledige namen) weergeven in tijdlijnen"
 
 #. TRANS: Button text to save a list.
 msgid "Save"
@@ -4318,47 +4383,6 @@ msgstr ""
 "Micro-blogging) gebaseerd op de Vrije Software [StatusNet](http://status."
 "net/)"
 
-#. TRANS: Title for page with public list cloud.
-msgid "Public list cloud"
-msgstr "Publieke lijstwoordwolk"
-
-#. TRANS: Page notice for page with public list cloud.
-#. TRANS: %s is a StatusNet sitename.
-#, php-format
-msgid "These are largest lists on %s"
-msgstr "Dit zijn de grootste lijsten op %s"
-
-#. TRANS: Empty list message on page with public list cloud.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, php-format
-msgid "No one has [listed](%%doc.tags%%) anyone yet."
-msgstr "Niemand heeft nog iemand in een [lijst](%%doc.tags%%) opgenomen."
-
-#. TRANS: Additional empty list message on page with public list cloud for logged in users.
-msgid "Be the first to list someone!"
-msgstr "U kunt de eerste zijn die iemand in een lijst opneemt!"
-
-#. TRANS: Additional empty list message on page with public list cloud for anonymous users.
-#. TRANS: This message contains Markdown links in the form [description](link).
-#, php-format
-msgid ""
-"Why not [register an account](%%action.register%%) and be the first to list "
-"someone!"
-msgstr ""
-"U kunt een [gebruiker registeren](%%action.register%%) en dan de eerste zijn "
-"die iemand in een lijst opneemt!"
-
-#. TRANS: DT element on on page with public list cloud.
-msgid "List cloud"
-msgstr "Lijstwoordwolk"
-
-#. TRANS: Link title for number of listed people. %d is the number of listed people.
-#, php-format
-msgid "1 person listed"
-msgid_plural "%d people listed"
-msgstr[0] "Eén persoon in lijst"
-msgstr[1] "%d personen in de lijst"
-
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
 #, php-format
 msgid "%s updates from everyone."
@@ -4466,7 +4490,7 @@ msgstr "Herstellen"
 
 #. TRANS: Title for password recovery page in password reset mode.
 msgid "Reset password"
-msgstr "Wachtwoord herstellen"
+msgstr "Wachtwoord opnieuw instellen"
 
 #. TRANS: Title for password recovery page in password recover mode.
 msgid "Recover password"
@@ -4733,7 +4757,7 @@ msgstr "Antwoorden aan %1$s, pagina %2$d"
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "Replies feed for %s (Activity Streams JSON)"
-msgstr "!Antwoordenfeed voor %s (JSON-activiteitenstreams)"
+msgstr "Antwoordenfeed voor %s (JSON-activiteitenstreams)"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
@@ -5077,7 +5101,7 @@ msgstr "Dit is de manier om dat te delen wat u wilt."
 #. TRANS: Page title for first group page. %s is a group name.
 #, php-format
 msgid "%s group"
-msgstr "%s groep"
+msgstr "Groep %s"
 
 #. TRANS: Page title for any but first group page.
 #. TRANS: %1$s is a group name, $2$s is a page number.
@@ -5088,7 +5112,7 @@ msgstr "Groep %1$s, pagina %2$d"
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
 msgid "Notice feed for %s group (Activity Streams JSON)"
-msgstr "Mededelingenfeed voor groep %s (JSON-activiteitenstreams)"
+msgstr "Mededelingenfeed voor de groep %s (JSON-activiteitenstreams)"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
@@ -5111,7 +5135,7 @@ msgid "FOAF for %s group"
 msgstr "Vriend van een vriend voor de groep %s"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
 #, php-format
@@ -5130,19 +5154,19 @@ msgstr ""
 "%%)"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
-#. TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+#. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
 #, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool. Its members share short messages about "
-"their life and interests. "
+"their life and interests."
 msgstr ""
 "**%s** is een gebruikersgroep op %%%%site.name%%%%, een [microblogdienst]"
 "(http://en.wikipedia.org/wiki/Micro-blogging) gebaseerd op de Vrije Software "
 "[StatusNet](http://status.net/). De leden wisselen korte mededelingen uit "
-"over hun ervaringen en interesses. "
+"over hun ervaringen en interesses."
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -5264,11 +5288,6 @@ msgstr "Allemaal weergeven"
 msgid "Subscribers"
 msgstr "Abonnees"
 
-#. TRANS: Link for more "People following tag x"
-#. TRANS: if there are more than the mini list's maximum.
-msgid "All subscribers"
-msgstr "Alle abonnees"
-
 #. TRANS: Page title showing tagged notices in one user's timeline.
 #. TRANS: %1$s is the username, %2$s is the hash tag.
 #, php-format
@@ -5368,11 +5387,11 @@ msgstr ""
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
-"[StatusNet](http://status.net/) tool. "
+"[StatusNet](http://status.net/) tool."
 msgstr ""
 "**%s** heeft een gebruiker op %%%%site.name%%%%, een [microblogdienst]"
 "(http://en.wikipedia.org/wiki/Micro-blogging) gebaseerd op de Vrije Software "
-"[StatusNet](http://status.net/). "
+"[StatusNet](http://status.net/)."
 
 #. TRANS: Link to the author of a repeated notice. %s is a linked nickname.
 #, php-format
@@ -5464,7 +5483,7 @@ msgstr ""
 
 #. TRANS: Field label on site settings panel.
 msgid "Email"
-msgstr "E-mail"
+msgstr "E-mailadres"
 
 #. TRANS: Field title on site settings panel.
 msgid "Contact email address for your site."
@@ -5887,8 +5906,7 @@ msgid ""
 "You're not listening to anyone's notices right now, try subscribing to "
 "people you know. Try [people search](%%action.peoplesearch%%), look for "
 "members in groups you're interested in and in our [featured users](%%action."
-"featured%%). If you're a [Twitter user](%%action.twittersettings%%), you can "
-"automatically subscribe to people you already follow there."
+"featured%%)."
 msgstr ""
 "U bent op dit moment op geen enkele gebruiker geabonneerd. Abonneer u op "
 "gebruikers die u kent. [Zoek gebruikers](%%action.peoplesearch%%), bekijk de "
@@ -6229,24 +6247,24 @@ msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
 "Software Foundation, either version 3 of the License, or (at your option) "
-"any later version. "
+"any later version."
 msgstr ""
 "StatusNet is vrije software. U kunt het herdistribueren en/of wijzigen in "
 "overeenstemming met de voorwaarden van de GNU Affero General Public License "
 "zoals gepubliceerd door de Free Software Foundation, versie 3 van de "
-"Licentie, of (naar uw keuze) elke latere versie. "
+"Licentie, of (naar uw keuze) elke latere versie."
 
 #. TRANS: Content part of StatusNet version page.
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License "
-"for more details. "
+"for more details."
 msgstr ""
 "Dit programma wordt verspreid in de hoop dat het bruikbaar is, maar ZONDER "
 "ENIGE GARANTIE; zelfs zonder de impliciete garantie van VERKOOPBAARHEID of "
 "GESCHIKTHEID VOOR EEN BEPAALD DOEL. Zie de GNU Affero General Public License "
-"voor meer details. "
+"voor meer details."
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
@@ -6301,22 +6319,32 @@ msgstr "Het was niet mogelijk de URL \"%s\" te verwerken."
 msgid "Robin thinks something is impossible."
 msgstr "Robin denkt dat iets onmogelijk is."
 
+#. TRANS: Message used to be inserted as %2$s in  the text "No file may
+#. TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+#. TRANS: %1$d is the number of bytes of an uploaded file.
+#, php-format
+msgid "%1$d byte"
+msgid_plural "%1$d bytes"
+msgstr[0] "%1$d byte"
+msgstr[1] "%1$d bytes"
+
 #. TRANS: Message given if an upload is larger than the configured maximum.
-#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-#. TRANS: %1$s is used for plural.
+#. TRANS: %1$d (used for plural) is the byte limit for uploads,
+#. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+#. TRANS: gettext support multiple plurals in the same message, unfortunately...
 #, php-format
 msgid ""
-"No file may be larger than %1$d byte and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgid_plural ""
-"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgstr[0] ""
-"Bestanden mogen niet groter zijn dan %1$d byte, en uw bestand was %2$d "
-"bytes. Probeer een kleinere versie te uploaden."
+"Bestanden mogen niet groter zijn dan %1$d byte, en uw bestand was %2$s. "
+"Probeer een kleinere versie te uploaden."
 msgstr[1] ""
-"Bestanden mogen niet groter zijn dan %1$d bytes, en uw bestand was %2$d "
-"bytes. Probeer een kleinere versie te uploaden."
+"Bestanden mogen niet groter zijn dan %1$d bytes, en uw bestand was %2$s. "
+"Probeer een kleinere versie te uploaden."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -6559,7 +6587,7 @@ msgstr ""
 #, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
-"allowed number.Try unlisting others first."
+"allowed number. Try unlisting others first."
 msgstr ""
 "U hebt al %1$d of meer mensen in de lijst %2$s opgenomen. Meer mensen "
 "opnemen is niet mogelijk. Verwijder eerst mensen uit de lijst voordat u "
@@ -6924,16 +6952,7 @@ msgid "saveSettings() not implemented."
 msgstr "saveSettings() is nog niet geïmplementeerd."
 
 #. TRANS: Header in administrator navigation panel.
-#. TRANS: Header in settings navigation panel.
 msgctxt "HEADER"
-msgid "Home"
-msgstr "Hoofdmenu"
-
-#. TRANS: Menu item in administrator navigation panel.
-#. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in personal group navigation menu.
-#. TRANS: Menu item in settings navigation panel.
-msgctxt "MENU"
 msgid "Home"
 msgstr "Hoofdmenu"
 
@@ -7758,13 +7777,6 @@ msgid "Public"
 msgstr "Openbaar"
 
 #. TRANS: Menu item in default local navigation panel.
-#. TRANS: Menu item in search group navigation panel.
-#. TRANS: Menu item in local navigation menu.
-msgctxt "MENU"
-msgid "Groups"
-msgstr "Groepen"
-
-#. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item title in local navigation menu.
 msgctxt "MENU"
 msgid "Lists"
@@ -7986,6 +7998,11 @@ msgstr "Allemaal bekijken"
 msgid "See all groups you belong to."
 msgstr "Alle groepen bekijken waartoe u behoort."
 
+#. TRANS: Menu item title in personal group navigation menu.
+#. TRANS: %s is a username.
+msgid "Back to top"
+msgstr "Terug naar boven"
+
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
 msgstr "Deze pagina is niet beschikbaar in een mediatype dat u accepteert"
@@ -8185,7 +8202,7 @@ msgstr ""
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
 #, php-format
 msgid "%1$s is now following you on %2$s."
-msgstr "%1$s volt u nu op %2$s."
+msgstr "%1$s volgt u nu op %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.
@@ -8452,6 +8469,10 @@ msgstr ""
 
 #. TRANS: Subject of group join notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
+#, php-format
+msgid "%1$s has joined your group %2$s on %3$s"
+msgstr "%1$s is lid geworden van uw groep %2$s op %3$s."
+
 #. TRANS: Main body of group join notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
 #. TRANS: %4$s is a block of profile info about the subscriber.
@@ -8747,9 +8768,8 @@ msgstr "in context"
 msgid "Repeated by"
 msgstr "Herhaald door"
 
-#, fuzzy
 msgid " "
-msgstr ", "
+msgstr " "
 
 #. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice."
@@ -9207,21 +9227,6 @@ msgstr "Inhoud van mededelingen vinden"
 msgid "Find groups on this site"
 msgstr "Groepen op deze site vinden"
 
-#. TRANS: Secondary navigation menu item leading to help on StatusNet.
-msgctxt "MENU"
-msgid "Help"
-msgstr "Help"
-
-#. TRANS: Secondary navigation menu item leading to text about StatusNet site.
-msgctxt "MENU"
-msgid "About"
-msgstr "Over"
-
-#. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
-msgctxt "MENU"
-msgid "FAQ"
-msgstr "Veel gestelde vragen"
-
 #. TRANS: Secondary navigation menu item leading to Terms of Service.
 msgctxt "MENU"
 msgid "TOS"
@@ -9241,17 +9246,6 @@ msgstr "Broncode"
 msgctxt "MENU"
 msgid "Version"
 msgstr "Versie"
-
-#. TRANS: Secondary navigation menu item leading to e-mail contact information on the
-#. TRANS: StatusNet site, where to report bugs, ...
-msgctxt "MENU"
-msgid "Contact"
-msgstr "Contact"
-
-#. TRANS: Secondary navigation menu item. Leads to information about embedding a timeline widget.
-msgctxt "MENU"
-msgid "Badge"
-msgstr "Widget"
 
 #. TRANS: Default title for section/sidebar widget.
 msgid "Untitled section"
@@ -9336,11 +9330,11 @@ msgstr "Geautoriseerde verbonden applicaties"
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
 msgid "Old school"
-msgstr ""
+msgstr "Oude manier"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "UI tweaks for old-school users"
-msgstr ""
+msgstr "Gebruikersinterface-instellingen voor \"oude\" gebruikers"
 
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
@@ -9586,16 +9580,26 @@ msgstr[1] "%%s vinden dit leuk."
 
 #. TRANS: List message for notice repeated by logged in user.
 msgctxt "REPEATLIST"
-msgid "You have repeated this notice."
+msgid "You repeated this."
 msgstr "U hebt deze mededeling herhaald."
 
-#. TRANS: List message for repeated notices.
-#. TRANS: %d is the number of users that have repeated a notice.
+#. TRANS: List message for when more than 4 people repeat something.
+#. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
+#. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
 #, php-format
-msgid "One person has repeated this notice."
-msgid_plural "%d people have repeated this notice."
-msgstr[0] "Een persoon heeft deze mededeling herhaald."
-msgstr[1] "%d personen hebben deze mededeling herhaald."
+msgid "%%s and %d other repeated this."
+msgid_plural "%%s and %d others repeated this."
+msgstr[0] "%%s en een andere gebruiker hebben dit herhaald."
+msgstr[1] "%%s en %d andere gebruikers hebben dit herhaald."
+
+#. TRANS: List message for favoured notices.
+#. TRANS: %%s is a list of users liking a notice.
+#. TRANS: Plural is based on the number of of users that have favoured a notice.
+#, php-format
+msgid "%%s repeated this."
+msgid_plural "%%s repeated this."
+msgstr[0] "%%s heeft dit herhaald."
+msgstr[1] "%%s hebben dit herhaald."
 
 #. TRANS: Form legend.
 #, php-format

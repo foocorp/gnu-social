@@ -1,6 +1,7 @@
 # Translation of StatusNet - Bookmark to Arabic (العربية)
 # Exported from translatewiki.net
 #
+# Author: Majid Al-Dharrab
 # Author: Mutarjem horr
 # Author: OsamaK
 # --
@@ -10,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Bookmark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:43:14+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:49+0000\n"
 "Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-30 09:57:04+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-10-10 14:11:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-bookmark\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
@@ -34,7 +35,7 @@ msgstr ""
 
 #. TRANS: Client exception thrown when referring to a non-existing bookmark.
 msgid "No such bookmark."
-msgstr "لا يوجد علامة كهذه."
+msgstr "العلامة المقصودة غير موجودة."
 
 #. TRANS: Title for bookmark.
 #. TRANS: %1$s is a user nickname, %2$s is a bookmark title.
@@ -63,12 +64,6 @@ msgstr ""
 msgctxt "TITLE"
 msgid "Bookmark"
 msgstr "علامة"
-
-#. TRANS: Exception thrown when a bookmark has no attachments.
-#. TRANS: %1$s is a bookmark ID, %2$s is a notice ID (number).
-#, php-format
-msgid "Bookmark %1$s (notice %2$d) has no attachments."
-msgstr ""
 
 #. TRANS: Title for mini-posting window loaded from bookmarklet.
 #. TRANS: %s is the StatusNet site name.
@@ -197,12 +192,11 @@ msgstr "الملف \"%s\" غير قابل للقراءة."
 msgid ""
 "Bookmarks have been imported. Your bookmarks should now appear in search and "
 "your profile page."
-msgstr ""
-"تم استيراد العلامات. ينبغي أن تظهر علاماتك الآن عند البحث وفي صفحتك الشخصية."
+msgstr "استوردت العلامات. ستظهر علاماتك الآن عند البحث وفي صفحتك الشخصية."
 
 #. TRANS: Busy message for importing bookmarks.
 msgid "Bookmarks are being imported. Please wait a few minutes for results."
-msgstr "يتم استيراد العلامات. الرجاء الانتظار دقائق معدودة لتظهر النتيجة."
+msgstr "يستورد العلامات. الرجاء الانتظار دقائق معدودة لتظهر النتيجة."
 
 #. TRANS: Form instructions for importing bookmarks.
 msgid "You can upload a backed-up delicious.com bookmarks file."

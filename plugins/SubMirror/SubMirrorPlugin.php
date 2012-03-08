@@ -99,14 +99,15 @@ class SubMirrorPlugin extends Plugin
     /**
      * Menu item for personal subscriptions/groups area
      *
-     * @param Widget $widget Widget being executed
+     * @param Action $action action being executed
      *
      * @return boolean hook return
      */
-    function onEndSubGroupNav($widget)
+    function onEndAccountSettingsNav($action)
     {
-        $action = $widget->out;
         $action_name = $action->trimmed('action');
+
+        common_debug("ACTION NAME = " . $action_name);
 
         $action->menuItem(common_local_url('mirrorsettings'),
                           // TRANS: SubMirror plugin menu item on user settings page.
@@ -156,6 +157,10 @@ class SubMirrorPlugin extends Plugin
      */
     function onOstatus_profileSubscriberCount($oprofile, &$count)
     {
+        if (empty($oprofile) || !($oprofile instanceof Ostatus_profile)) {
+            return true;
+        }
+
         if ($oprofile->profile_id) {
             $mirror = new SubMirror();
             $mirror->subscribed = $oprofile->profile_id;
@@ -165,6 +170,7 @@ class SubMirrorPlugin extends Plugin
                 }
             }
         }
+
         return true;
     }
 

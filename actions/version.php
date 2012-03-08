@@ -171,14 +171,14 @@ class VersionAction extends Action
                        _('StatusNet is free software: you can redistribute it and/or modify '.
                          'it under the terms of the GNU Affero General Public License as published by '.
                          'the Free Software Foundation, either version 3 of the License, or '.
-                         '(at your option) any later version. '));
+                         '(at your option) any later version.'));
 
         $this->element('p', null,
                        // TRANS: Content part of StatusNet version page.
                        _('This program is distributed in the hope that it will be useful, '.
                          'but WITHOUT ANY WARRANTY; without even the implied warranty of '.
                          'MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the '.
-                         'GNU Affero General Public License for more details. '));
+                         'GNU Affero General Public License for more details.'));
 
         $this->elementStart('p');
         // TRANS: Content part of StatusNet version page.

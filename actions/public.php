@@ -159,6 +159,11 @@ class PublicAction extends Action
         $this->element('link', array('rel' => 'EditURI',
                                      'type' => 'application/rsd+xml',
                                      'href' => $rsd));
+
+        if ($this->page != 1) {
+            $this->element('link', array('rel' => 'canonical',
+                                         'href' => common_local_url('public')));
+        }
     }
 
     /**
@@ -255,7 +260,9 @@ class PublicAction extends Action
             $ibs->show();
         }
 
-        $pop = new PopularNoticeSection($this);
+        $p = Profile::current();
+
+        $pop = new PopularNoticeSection($this, $p);
         $pop->show();
         if (!common_config('performance', 'high')) {
             $cloud = new PublicTagCloudSection($this);

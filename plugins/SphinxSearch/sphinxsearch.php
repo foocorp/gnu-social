@@ -65,6 +65,9 @@ class SphinxSearch extends SearchEngine
     function query($q)
     {
         $result = $this->sphinx->query($q, $this->remote_table());
+        if ($result === false) {
+            throw new ServerException($this->sphinx->getLastError());
+        }
         if (!isset($result['matches'])) return false;
         $id_set = join(', ', array_keys($result['matches']));
         $this->target->whereAdd("id in ($id_set)");

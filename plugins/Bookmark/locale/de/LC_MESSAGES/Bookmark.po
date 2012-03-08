@@ -10,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Bookmark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:43:14+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:50+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-30 09:57:04+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-10-10 14:11:41+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-bookmark\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -61,12 +61,6 @@ msgstr "Lesezeichennotiz mit der falschen Anzahl an Anhängen."
 msgctxt "TITLE"
 msgid "Bookmark"
 msgstr "Lesezeichen"
-
-#. TRANS: Exception thrown when a bookmark has no attachments.
-#. TRANS: %1$s is a bookmark ID, %2$s is a notice ID (number).
-#, php-format
-msgid "Bookmark %1$s (notice %2$d) has no attachments."
-msgstr "Lesezeichen %1$s (Notiz %2$d) hat keine Anhänge."
 
 #. TRANS: Title for mini-posting window loaded from bookmarklet.
 #. TRANS: %s is the StatusNet site name.

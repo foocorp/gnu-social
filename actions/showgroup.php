@@ -211,28 +211,34 @@ class ShowgroupAction extends GroupAction
     function showAnonymousMessage()
     {
         if (!(common_config('site','closed') || common_config('site','inviteonly'))) {
-            // @todo FIXME: use group full name here if available instead of (uglier) primary alias.
             // TRANS: Notice on group pages for anonymous users for StatusNet sites that accept new registrations.
-            // TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+            // TRANS: %s is the group name, %%%%site.name%%%% is the site name,
             // TRANS: %%%%action.register%%%% is the URL for registration, %%%%doc.help%%%% is a URL to help.
             // TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
             $m = sprintf(_('**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
                 'based on the Free Software [StatusNet](http://status.net/) tool. Its members share ' .
                 'short messages about their life and interests. '.
                 '[Join now](%%%%action.register%%%%) to become part of this group and many more! ([Read more](%%%%doc.help%%%%))'),
-                     $this->group->nickname);
+                     $this->group->getBestName());
         } else {
-            // @todo FIXME: use group full name here if available instead of (uglier) primary alias.
             // TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
-            // TRANS: **%s** is the group alias, %%%%site.name%%%% is the site name,
+            // TRANS: %s is the group name, %%%%site.name%%%% is the site name,
             // TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
             $m = sprintf(_('**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-blogging) service ' .
                 'based on the Free Software [StatusNet](http://status.net/) tool. Its members share ' .
-                'short messages about their life and interests. '),
-                     $this->group->nickname);
+                'short messages about their life and interests.'),
+                     $this->group->getBestName());
         }
         $this->elementStart('div', array('id' => 'anon_notice'));
         $this->raw(common_markup_to_html($m));
         $this->elementEnd('div');
+    }
+
+    function extraHead()
+    {
+        if ($this->page != 1) {
+            $this->element('link', array('rel' => 'canonical',
+                                         'href' => $this->group->homeUrl()));
+        }
     }
 }

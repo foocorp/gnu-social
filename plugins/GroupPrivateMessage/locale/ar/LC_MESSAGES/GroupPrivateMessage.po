@@ -10,14 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GroupPrivateMessage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:44:03+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:29+0000\n"
 "Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:50:18+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:48:53+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
 "Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ( (n == 1) ? 1 : ( (n == "
@@ -38,7 +38,7 @@ msgstr "لا يسمح للمستخدم %s بإرسال رسائل خاصة."
 #. TRANS: Client exception thrown when trying to send a private group message to a non-existing group.
 #. TRANS: Client exception thrown when trying to view group inbox for non-existing group.
 msgid "No such group."
-msgstr "لا مجموعة كهذه."
+msgstr "لا توجد مجموعة بهذا الاسم."
 
 #. TRANS: Title after sending a private group message.
 msgid "Message sent"
@@ -47,7 +47,7 @@ msgstr "أُرسلت الرسالة"
 #. TRANS: Succes text after sending a direct message to group %s.
 #, php-format
 msgid "Direct message to %s sent."
-msgstr "تم إرسال رسالة مباشرة إلى %s."
+msgstr "أُرسلت رسالة مباشرة إلى %s."
 
 #. TRANS: Title of form for new private group message.
 #, php-format
@@ -123,7 +123,7 @@ msgstr "مطلقا"
 
 #. TRANS: Dropdown title in group settings page for if group allows private messages.
 msgid "Whether to allow private messages to this group."
-msgstr "السماح بالرسائل الخاصة لهذه المجموعة."
+msgstr "هل تود السماح بالرسائل الخاصة لهذه المجموعة؟"
 
 #. TRANS: Dropdown label in group settings page for who can send private messages to the group.
 msgid "Private senders"
@@ -164,7 +164,7 @@ msgstr "خاصة"
 
 #. TRANS: Plugin description.
 msgid "Allow posting private messages to groups."
-msgstr "السماح بإرسال رسائل خاصة للمجموعات."
+msgstr "هل تود السماح بإرسال رسائل خاصة للمجموعات؟"
 
 #. TRANS: Client exception thrown when trying to view group inbox while not logged in.
 msgid "Only for logged-in users."

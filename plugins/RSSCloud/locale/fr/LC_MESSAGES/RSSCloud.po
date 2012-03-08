@@ -3,6 +3,7 @@
 #
 # Author: Crochet.david
 # Author: Od1n
+# Author: Valeryan 24
 # Author: Verdy p
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -11,14 +12,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - RSSCloud\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:19+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:47:06+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-08-16 06:59:35+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-rsscloud\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -46,7 +47,7 @@ msgstr "Seuls les notifications HTTP POST sont pris en charge en ce moment."
 #. TRANS: List separator.
 msgctxt "SEPARATOR"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #. TRANS: Form validation error displayed when a request body is missing expected parameters.
 #. TRANS: %s is a list of parameters separated by a list separator (default: ", ").
@@ -70,7 +71,6 @@ msgid "Feed subscription failed: Not a valid feed."
 msgstr "L’abonnement au flux a échoué : ce n’est pas un flux RSS valide."
 
 #. TRANS: Form validation error displayed when feed subscription failed.
-#, fuzzy
 msgid ""
 "Feed subscription failed: Notification handler does not respond correctly."
 msgstr ""

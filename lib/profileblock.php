@@ -122,8 +122,14 @@ abstract class ProfileBlock extends Widget
 
     function showHomepage()
     {
+        $homepage = $this->homepage();
+
         if (!empty($homepage)) {
-            $this->out->element('a', 'profile_block_homepage', $homepage);
+            $this->out->element('a',
+                                array('href' => $homepage,
+                                      'rel' => 'me',
+                                      'class' => 'profile_block_homepage'),
+                                $homepage);
         }
     }
 

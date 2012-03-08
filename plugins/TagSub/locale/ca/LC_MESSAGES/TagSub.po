@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TagSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:43+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:47:16+0000\n"
 "Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:36+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:51:31+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-plugin-tagsub\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -81,7 +81,7 @@ msgstr ""
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
-msgstr ""
+msgstr "No s'ha iniciat una sessió."
 
 #. TRANS: Client error displayed trying to subscribe to a non-existing profile.
 msgid "No such profile."
@@ -95,7 +95,7 @@ msgstr "Subscrit."
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "%s's tag subscriptions"
-msgstr ""
+msgstr "Subscripcions d'etiqueta de %s"
 
 #. TRANS: Header for subscriptions overview for a user (not first page).
 #. TRANS: %1$s is a user nickname, %2$d is the page number.
@@ -132,10 +132,10 @@ msgstr ""
 #. TRANS: as an anonymous user. %s is the user nickname.
 #, php-format
 msgid "%s is not following any tags."
-msgstr ""
+msgstr "%s no està seguint cap etiqueta."
 
 #. TRANS: %1$s is a URL to a tag, %2$s is a tag,
 #. TRANS: %3$s a date string.
 #, php-format
 msgid "#<a href=\"%1$s\">%2$s</a> since %3$s"
-msgstr ""
+msgstr "#<a href=\"%1$s\">%2$s</a> des de %3$s"

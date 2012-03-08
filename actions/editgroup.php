@@ -159,7 +159,7 @@ class EditgroupAction extends GroupAction
     function showScripts()
     {
         parent::showScripts();
-        $this->autofocus('nickname');
+        $this->autofocus('newnickname');
     }
 
     function trySave()
@@ -173,7 +173,7 @@ class EditgroupAction extends GroupAction
 
         if (Event::handle('StartGroupSaveForm', array($this))) {
 
-            $nickname    = Nickname::normalize($this->trimmed('nickname'));
+            $nickname    = Nickname::normalize($this->trimmed('newnickname'));
             $fullname    = $this->trimmed('fullname');
             $homepage    = $this->trimmed('homepage');
             $description = $this->trimmed('description');

@@ -71,7 +71,11 @@ class EditpeopletagAction extends Action
         }
 
         $id = $this->arg('id');
-        $tagger_arg = $this->arg('tagger');
+        if (common_config('singleuser', 'enabled')) {
+            $tagger_arg = User::singleUserNickname();
+        } else {
+            $tagger_arg = $this->arg('tagger');
+        }
         $tag_arg = $this->arg('tag');
 
         $tagger = common_canonical_nickname($tagger_arg);

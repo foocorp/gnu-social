@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:42:52+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:32+0000\n"
 "Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-30 10:01:13+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-30 18:15:05+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-activity\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -35,10 +35,10 @@ msgstr ""
 #. TRANS: Text for "started following" item in activity plugin.
 #. TRANS: %1$s is a profile URL, %2$s is a profile name,
 #. TRANS: %3$s is a profile URL, %4$s is a profile name.
-#, fuzzy, php-format
+#, php-format
 msgid "<a href=\"%1$s\">%2$s</a> started following <a href=\"%3$s\">%4$s</a>."
 msgstr ""
-"<a href=\"%1$s\">%2$s</a> comenciava a sequer <a href=\"%2$s\">%4$s</a>."
+"<a href=\"%1$s\">%2$s</a> comenciava a sequer <a href=\"%3$s\">%4$s</a>."
 
 #. TRANS: Text for "started following" item in activity plugin.
 #. TRANS: %1$s is a profile name, %2$s is a profile URL,

@@ -259,7 +259,7 @@ class ProfileAction extends Action
             // TRANS: H2 text for user group membership statistics.
             $this->statsSectionLink('usergroups', _('Groups'));
             $this->text(' ');
-            $this->text($this->profile->getGroups()->N);
+            $this->text($this->profile->getGroups(0, null)->N);
             $this->elementEnd('h2');
 
             if ($groups) {

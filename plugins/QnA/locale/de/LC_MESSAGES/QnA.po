@@ -3,6 +3,7 @@
 #
 # Author: Giftpflanze
 # Author: Inkowik
+# Author: Tiin
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -10,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:45:07+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:47:02+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-18 16:20:36+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:10:59+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -82,7 +83,6 @@ msgid "Answer"
 msgstr "Antwort"
 
 #. TRANS: Form title for sending an answer.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Answer"
 msgstr "Antwort"
@@ -114,7 +114,6 @@ msgid "Invalid or missing question."
 msgstr "Ungültige oder fehlende Frage."
 
 #. TRANS: Exception thrown trying to close another user's question.
-#, fuzzy
 msgid "You did not ask this question."
 msgstr "Du hast diese Frage nicht gestellt."
 
@@ -142,7 +141,6 @@ msgid "Question and Answers micro-app."
 msgstr "Minianwendung für Fragen und Antworten."
 
 #. TRANS: Application title.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Question"
 msgstr "Frage"
@@ -185,7 +183,7 @@ msgstr "Deine Antwort …"
 #. TRANS: Link description for link to full notice text if it is longer than
 #. TRANS: what will be dispplayed.
 msgid "…"
-msgstr ""
+msgstr "…"
 
 #. TRANS: Title for link that is an ellipsis in English.
 msgid "more..."
@@ -193,9 +191,9 @@ msgstr "mehr …"
 
 #. TRANS: Exception thown when getting a question with a non-existing ID.
 #. TRANS: %s is the non-existing question ID.
-#, fuzzy, php-format
+#, php-format
 msgid "No question with ID %s"
-msgstr "Keine Frage für diese Antwort."
+msgstr "Keine Frage mit der ID %s"
 
 #. TRANS: Exception thown when getting a profile with a non-existing ID.
 #. TRANS: %s is the non-existing profile ID.
@@ -206,10 +204,10 @@ msgid "No profile with ID %s"
 msgstr "Kein Profil mit der ID %s."
 
 #. TRANS: %s is the number of answer revisions.
-#, fuzzy, php-format
+#, php-format
 msgid "%s revision"
 msgid_plural "%s revisions"
-msgstr[0] "%s Versionen"
+msgstr[0] "%s Version"
 msgstr[1] "%s Versionen"
 
 #. TRANS: Text for a question that was answered.
@@ -229,11 +227,11 @@ msgstr "antwortete „%s>“"
 
 #. TRANS: Number of given answers to a question.
 #. TRANS: %s is the number of given answers.
-#, fuzzy, php-format
+#, php-format
 msgid "%s answer"
 msgid_plural "%s answers"
-msgstr[0] "%s antwortet"
-msgstr[1] "%s antwortet"
+msgstr[0] "%s Antwort"
+msgstr[1] "%s Antworten"
 
 #. TRANS: Notification that a question cannot be answered anymore because it is closed.
 msgid "This question is closed."
@@ -261,26 +259,22 @@ msgid "Answer"
 msgstr "Antwort"
 
 #. TRANS: Field label for a new question.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Title"
 msgstr "Titel"
 
 #. TRANS: Field title for a new question.
-#, fuzzy
 msgid "The title of your question."
-msgstr "Titel deiner Frage"
+msgstr "Der Titel deiner Frage."
 
 #. TRANS: Field label for question details.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Description"
 msgstr "Beschreibung"
 
 #. TRANS: Field title for question details.
-#, fuzzy
 msgid "Your question in detail."
-msgstr "Deine Frage im Detail"
+msgstr "Deine Frage im Detail."
 
 #. TRANS: Button text for saving a new question.
 msgctxt "BUTTON"
@@ -288,7 +282,6 @@ msgid "Save"
 msgstr "Speichern"
 
 #. TRANS: Form legend for revising the answer.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Question"
 msgstr "Frage"
@@ -300,7 +293,7 @@ msgstr "Schließen"
 
 #. TRANS: Title for button text for closing a question.
 msgid "Close the question to no one can answer it anymore."
-msgstr ""
+msgstr "Die Frage schließen, sodass niemand mehr antworten kann."
 
 #. TRANS: Button text for marking an answer as "best".
 msgctxt "BUTTON"
@@ -308,6 +301,5 @@ msgid "Best"
 msgstr "Beste Antwort"
 
 #. TRANS: Title for button text marking an answer as "best".
-#, fuzzy
 msgid "Mark this answer as the best answer."
-msgstr "Als beste Antwort markieren"
+msgstr "Diese Antwort als die beste Antwort markieren."

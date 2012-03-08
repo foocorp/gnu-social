@@ -66,7 +66,7 @@ $default =
               'minify' => true, // true to use the minified versions of JS files; false to use orig files. Can aid during development
               ),
         'db' =>
-        array('database' => 'YOU HAVE TO SET THIS IN config.php',
+          array('database' => null, // must be set
               'schema_location' => INSTALLDIR . '/classes',
               'class_location' => INSTALLDIR . '/classes',
               'require_prefix' => 'classes/',
@@ -277,7 +277,7 @@ $default =
               'allow_tagging' => array('all' => true), // equivalent to array('local' => true, 'remote' => true)
               'desclimit' => null),
         'oembed' =>
-        array('endpoint' => 'http://oohembed.com/oohembed/',
+        array('endpoint' => 'https://noembed.com/embed/',
               'order' => array('built-in', 'well-known', 'service', 'discovery'),
         ),
         'search' =>
@@ -352,6 +352,5 @@ $default =
         array('cache' => true), // whether to cache the router object. Defaults to true, turn off for devel
         'discovery' =>
           array('cors' => false), // Allow Cross-Origin Resource Sharing for service discovery (host-meta, XRD, etc.)
-       'performance' => array('high' => false), // disable some features for higher performance; default false
-       'oldschool' => array('enabled' => false) // enable users to use old-style UI
+        'performance' => array('high' => false) // disable some features for higher performance; default false
     );

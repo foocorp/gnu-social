@@ -49,21 +49,29 @@ $action = null;
 
 function getPath($req)
 {
+    $p = null;
+
     if ((common_config('site', 'fancy') || !array_key_exists('PATH_INFO', $_SERVER))
         && array_key_exists('p', $req)
     ) {
-        return $req['p'];
+        $p = $req['p'];
     } else if (array_key_exists('PATH_INFO', $_SERVER)) {
         $path = $_SERVER['PATH_INFO'];
         $script = $_SERVER['SCRIPT_NAME'];
         if (substr($path, 0, mb_strlen($script)) == $script) {
-            return substr($path, mb_strlen($script));
+            $p = substr($path, mb_strlen($script) + 1);
         } else {
-            return $path;
+            $p = $path;
         }
     } else {
-        return null;
+        $p = null;
     }
+
+    // Trim all initial '/'
+
+    $p = ltrim($p, '/');
+
+    return $p;
 }
 
 /**

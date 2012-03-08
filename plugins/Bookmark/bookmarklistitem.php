@@ -4,7 +4,7 @@
  * Copyright (C) 2011, StatusNet, Inc.
  *
  * Adapter to show bookmarks in a nicer way
- * 
+ *
  * PHP version 5
  *
  * This program is free software: you can redistribute it and/or modify
@@ -60,29 +60,38 @@ class BookmarkListItem extends NoticeListItemAdapter
         $notice = $this->nli->notice;
         $out    = $this->nli->out;
 
-        $out->elementStart('p', array('class' => 'entry-content'));
-
         $nb = Bookmark::getByNotice($notice);
+
+        if (empty($nb)) {
+            common_log(LOG_ERR, "No bookmark for notice {$notice->id}");
+            parent::showContent();
+            return;
+        } else if (empty($nb->url)) {
+            common_log(LOG_ERR, "No url for bookmark {$nb->id} for notice {$notice->id}");
+            parent::showContent();
+            return;
+        }
 
         $profile = $notice->getProfile();
 
-        $atts = $notice->attachments();
+        $out->elementStart('p', array('class' => 'entry-content'));
 
-        if (count($atts) < 1) {
-            // Something wrong; let default code deal with it.
-            // TRANS: Exception thrown when a bookmark has no attachments.
-            // TRANS: %1$s is a bookmark ID, %2$s is a notice ID (number).
-            throw new Exception(sprintf(_m('Bookmark %1$s (notice %2$d) has no attachments.'),
-                                        $nb->id,
-                                        $notice->id));
+        // Whether to nofollow
+
+        $attrs = array('href' => $nb->url,
+                       'class' => 'bookmark-title');
+
+        $nf = common_config('nofollow', 'external');
+
+        if ($nf == 'never' || ($nf == 'sometimes' and $out instanceof ShowstreamAction)) {
+            $attrs['rel'] = 'external';
+        } else {
+            $attrs['rel'] = 'nofollow external';
         }
-
-        $att = $atts[0];
 
         $out->elementStart('h3');
         $out->element('a',
-                      array('href' => $att->url,
-                            'class' => 'bookmark-title'),
+                      $attrs,
                       $nb->title);
         $out->elementEnd('h3');
 

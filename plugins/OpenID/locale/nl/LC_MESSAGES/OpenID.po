@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-25 21:42+0000\n"
-"PO-Revision-Date: 2011-09-25 21:44:38+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:53+0000\n"
 "Last-Translator: Siebrand Mazeland <s.mazeland@xs4all.nl>\n"
 "Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-06-19 11:23:11+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r98079); Translate extension (2011-09-22)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-10-10 14:11:22+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
 
@@ -134,15 +134,6 @@ msgid ""
 msgstr ""
 "(Hebt u een[OpenID](http://openid.net/)? [Meld u aan via OpenID](%%action."
 "openidlogin%%)!)"
-
-#. TRANS: Item on help page. This message contains Markdown links in the form [description](link).
-#, php-format
-msgid ""
-"* [OpenID](%%doc.openid%%) - What OpenID is and how to use it with this "
-"service."
-msgstr ""
-"* [OpenID](%%doc.openid%%) - wat is OpenID en hoe u het kunt gebruiken met "
-"deze dienst."
 
 #. TRANS: Tooltip for OpenID configuration menu item.
 msgid "OpenID configuration."
@@ -324,7 +315,9 @@ msgstr "Het opgeslagen OpenID is niet aangetroffen."
 
 #. TRANS: OpenID plugin server error.
 msgid "Creating new account for OpenID that already has a user."
-msgstr "Poging tot aanmaken van een OpenID-account dat al een gebruiker heeft."
+msgstr ""
+"Poging tot aanmaken van een gebruiker voor een OpenID dat al een gebruiker "
+"heeft."
 
 #. TRANS: OpenID plugin message.
 msgid "Invalid username or password."
