@@ -85,7 +85,7 @@ try {
     if (empty($filter)) {
         throw new Exception(_("No spam filter."));
     }
-    if (get_option('a', 'all')) {
+    if (have_option('a', 'all')) {
         testAllUsers($filter);
     } else {
         $user = getUser();
