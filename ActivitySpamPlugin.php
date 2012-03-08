@@ -172,7 +172,7 @@ class ActivitySpamPlugin extends Plugin
         return false;
     }
 
-    function onStartShowNoticeOptions($nli)
+    function onEndShowNoticeOptionItems($nli)
     {
         $notice = $nli->getNotice();
         $out = $nli->getOut();
@@ -186,14 +186,10 @@ class ActivitySpamPlugin extends Plugin
                 // XXX: show a question-mark or something
             } else if ($score->is_spam) {
                 $form = new TrainHamForm($out, $notice);
-                $out->elementStart('div', 'notice-options');
                 $form->show();
-                $out->elementEnd('div');
             } else if (!$score->is_spam) {
                 $form = new TrainSpamForm($out, $notice);
-                $out->elementStart('div', 'notice-options');
                 $form->show();
-                $out->elementEnd('div');
             }
         }
 
