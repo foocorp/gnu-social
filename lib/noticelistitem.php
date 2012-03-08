@@ -144,10 +144,13 @@ class NoticeListItem extends Widget
             $user = common_current_user();
             if ($user) {
                 $this->out->elementStart('div', 'notice-options');
-                $this->showFaveForm();
-                $this->showReplyLink();
-                $this->showRepeatForm();
-                $this->showDeleteLink();
+                if (Event::handle('StartShowNoticeOptionItems', array($this))) {
+                    $this->showFaveForm();
+                    $this->showReplyLink();
+                    $this->showRepeatForm();
+                    $this->showDeleteLink();
+                    Event::handle('EndShowNoticeOptionItems', array($this));
+                }
                 $this->out->elementEnd('div');
             }
             Event::handle('EndShowNoticeOptions', array($this));
