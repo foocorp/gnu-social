@@ -80,16 +80,6 @@ class SpamAction extends Action
             throw new ClientException(_("You must be logged in to review."), 403);
         }
 
-        // It must be a "real" login, not saved cookie login
-
-        if (!common_is_real_login()) {
-            common_set_returnto($this->selfUrl());
-            if (Event::handle('RedirectToLogin', array($this, $user))) {
-                common_redirect(common_local_url('login'), 303);
-                return;
-            }
-        }
-
         // User must have the right to review spam
 
         if (!$user->hasRight(ActivitySpamPlugin::REVIEWSPAM)) {
