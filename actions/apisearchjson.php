@@ -63,8 +63,6 @@ class ApiSearchJSONAction extends ApiPrivateAuthAction
      */
     function prepare($args)
     {
-        common_debug("apisearchjson prepare()");
-
         parent::prepare($args);
 
         $this->query = $this->trimmed('q');

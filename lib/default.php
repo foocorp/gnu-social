@@ -66,7 +66,7 @@ $default =
               'minify' => true, // true to use the minified versions of JS files; false to use orig files. Can aid during development
               ),
         'db' =>
-        array('database' => 'YOU HAVE TO SET THIS IN config.php',
+          array('database' => null, // must be set
               'schema_location' => INSTALLDIR . '/classes',
               'class_location' => INSTALLDIR . '/classes',
               'require_prefix' => 'classes/',

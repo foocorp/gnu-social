@@ -362,6 +362,7 @@ class StatusNet
             if (@file_exists($_config_file)) {
                 // Ignore 0-byte config files
                 if (filesize($_config_file) > 0) {
+                    common_log(LOG_INFO, "Including config file: " . $_config_file);
                     include($_config_file);
                     self::$have_config = true;
                 }
@@ -383,6 +384,7 @@ class StatusNet
                 $config['cache']['base'] = $config['memcached']['base'];
             }
         }
+
         if (array_key_exists('xmpp', $config)) {
             if ($config['xmpp']['enabled']) {
                 addPlugin('xmpp', array(
@@ -397,6 +399,12 @@ class StatusNet
                     'public' => $config['xmpp']['public']
                 ));
             }
+        }
+
+        // Check for database server; must exist!
+
+        if (empty($config['db']['database'])) {
+            throw new ServerException("No database server for this site.");
         }
     }
 

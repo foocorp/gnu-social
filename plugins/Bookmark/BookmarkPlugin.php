@@ -572,4 +572,20 @@ class BookmarkPlugin extends MicroAppPlugin
             $notice->update($original);
         }
     }
+
+    public function activityObjectOutputJson(ActivityObject $obj, array &$out)
+    {
+        assert($obj->type == ActivityObject::BOOKMARK);
+
+        $bm = Bookmark::staticGet('uri', $obj->id);
+
+        if (empty($bm)) {
+            throw new ServerException("Unknown bookmark: " . $obj->id);
+        }
+
+        $out['displayName'] = $bm->title;
+        $out['targetUrl']   = $bm->url;
+
+        return true;
+    }
 }
