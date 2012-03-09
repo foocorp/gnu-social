@@ -19,8 +19,8 @@
 
 define('INSTALLDIR', realpath(dirname(__FILE__) . '/../../../..'));
 
-$shortoptions = 'i:n:';
-$longoptions = array('id=', 'nickname=');
+$shortoptions = 'i:n:t:';
+$longoptions = array('id=', 'nickname=', 'category=');
 
 $helptext = <<<END_OF_TRAINUSER_HELP
 trainuser.php [options]
