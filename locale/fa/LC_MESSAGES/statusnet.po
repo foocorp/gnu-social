@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:45:56+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:14:02+0000\n"
 "Last-Translator: Ahmad Sufi Mahmudi\n"
 "Language-Team: Persian <https://translatewiki.net/wiki/Portal:fa>\n"
 "MIME-Version: 1.0\n"
@@ -29,9 +29,9 @@ msgstr ""
 "X-Language-Code: fa\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
+"X-POT-Import-Date: 2012-03-11 19:51:52+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -610,10 +610,10 @@ msgstr "نام کامل خیلی طولانی است (حداکثر ۲۵۵ نوی
 #. TRANS: %d is the maximum number of characters for the description.
 #. TRANS: Group create form validation error.
 #. TRANS: %d is the maximum number of allowed characters.
-#, fuzzy, php-format
+#, php-format
 msgid "Description is too long (maximum %d character)."
 msgid_plural "Description is too long (maximum %d characters)."
-msgstr[0] "توصیف خیلی طولانی است (حداکثر %d نویسه)"
+msgstr[0] "توضیح خیلی طولانی است (حداکثر %d نویسه)."
 
 #. TRANS: Client error shown when providing too long a location during group creation.
 #. TRANS: API validation exception thrown when location does not validate.
@@ -1445,9 +1445,9 @@ msgstr ""
 
 #. TRANS: Client exception thrown when subscribing to a non-existing profile.
 #. TRANS: %s is the unknown profile ID.
-#, fuzzy, php-format
+#, php-format
 msgid "Unknown profile %s."
-msgstr "نوع فایل پشتیبانی نشده"
+msgstr "پروفایل ناشناخته %s."
 
 #. TRANS: Client error displayed trying to subscribe to an already subscribed profile.
 #. TRANS: %s is the profile the user already has a subscription on.
@@ -4301,7 +4301,7 @@ msgstr "شما معمولا در کدام منطقهٔ زمانی هستید؟"
 #. TRANS: Checkbox label in form for profile settings.
 #, fuzzy
 msgid ""
-"Automatically subscribe to whoever subscribes to me (best for non-humans)."
+"Automatically subscribe to whoever subscribes to me (best for non-humans)"
 msgstr ""
 "به صورت خودکار مشترک هر کسی بشو که مشترک من می‌شود (بهترین برای غیر انسان‌ها)"
 
