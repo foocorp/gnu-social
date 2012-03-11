@@ -4,6 +4,7 @@
 # Author: Brunoperel
 # Author: Iketsi
 # Author: Od1n
+# Author: Verdy p
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -11,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - GroupPrivateMessage\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:46:29+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:15:05+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:48:53+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-groupprivatemessage\n"
@@ -139,7 +140,7 @@ msgstr "Membre"
 
 #. TRANS: Dropdown option in group settings page for who can send private messages.
 msgid "Admin"
-msgstr "Admin"
+msgstr "Administrateur"
 
 #. TRANS: Dropdown title in group settings page for who can send private messages to the group.
 msgid "Who can send private messages to the group."

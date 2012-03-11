@@ -2,7 +2,9 @@
 # Exported from translatewiki.net
 #
 # Author: Brunoperel
+# Author: Davidtsm
 # Author: Iketsi
+# Author: Lucky
 # Author: Od1n
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -11,13 +13,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:45:58+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:14:16+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-08-30 09:57:06+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
@@ -166,11 +168,11 @@ msgstr "Créé"
 
 #. TRANS: Column header for number of subscriptions.
 msgid "Subscriptions"
-msgstr ""
+msgstr "Abonnements"
 
 #. TRANS: Column header for number of notices.
 msgid "Notices"
-msgstr ""
+msgstr "Notifications"
 
 #. TRANS: Column header in table for members of a group.
 msgid "Members"

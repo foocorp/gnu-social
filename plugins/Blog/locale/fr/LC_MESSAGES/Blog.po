@@ -1,8 +1,11 @@
 # Translation of StatusNet - Blog to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Davidtsm
 # Author: Karl1263
+# Author: Lucky
 # Author: Od1n
+# Author: Sherbrooke
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -10,13 +13,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:45:48+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:14:01+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-02-25 15:25:35+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-blog\n"
@@ -40,7 +43,7 @@ msgstr "Billet enregistré"
 
 #. TRANS: Plugin description.
 msgid "Let users write and share long-form texts."
-msgstr ""
+msgstr "Laissez les utilisateurs écrire et partager des textes longs"
 
 #. TRANS: Blog application title.
 msgctxt "TITLE"
@@ -49,7 +52,7 @@ msgstr "Blog"
 
 #. TRANS: Exception thrown when there are too many activity objects.
 msgid "Too many activity objects."
-msgstr ""
+msgstr "Trop d'objets d'activité"
 
 #. TRANS: Exception thrown when blog plugin comes across a non-blog entry type object.
 msgid "Wrong type for object."
@@ -66,7 +69,7 @@ msgstr ""
 
 #. TRANS: Client exception thrown when referring to a non-existing blog entry.
 msgid "No such entry."
-msgstr ""
+msgstr "Enregistrement introuvable"
 
 #. TRANS: Title for a blog entry without a title.
 msgid "Untitled"

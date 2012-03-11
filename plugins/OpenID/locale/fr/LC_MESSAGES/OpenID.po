@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Crochet.david
+# Author: Lucky
 # Author: Od1n
 # Author: Peter17
 # Author: Valeryan 24
@@ -13,13 +14,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:46:52+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:15:44+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-10-10 14:11:22+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
@@ -58,7 +59,7 @@ msgstr "Annuler"
 
 #. TRANS: Client exception thrown when an action is not available.
 msgid "Unavailable action."
-msgstr ""
+msgstr "Action non disponible."
 
 #. TRANS: Tooltip for main menu option "Login"
 msgctxt "TOOLTIP"
