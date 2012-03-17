@@ -47,8 +47,6 @@ if (!defined('STATUSNET')) {
 class ActivitySpamPlugin extends Plugin
 {
     public $server = null;
-    public $username = null;
-    public $password = null;
 
     const REVIEWSPAM = 'ActivitySpamPlugin::REVIEWSPAM';
     const TRAINSPAM = 'ActivitySpamPlugin::TRAINSPAM';
@@ -60,13 +58,9 @@ class ActivitySpamPlugin extends Plugin
      */
     function initialize()
     {
-        foreach (array('username', 'password', 'server') as $attr) {
-            if (!$this->$attr) {
-                $this->$attr = common_config('activityspam', $attr);
-            }
-        }
-
-        $this->filter = new SpamFilter($this->server, $this->username, $this->password);
+        $this->filter = new SpamFilter(common_config('activityspam', 'server'),
+                                       common_config('activityspam', 'consumerkey'),
+                                       common_config('activityspam', 'secret'));
 
         return true;
     }
