@@ -78,10 +78,6 @@ class SpamFilter extends OAuthClient {
 
         $response = $this->postJSON($this->server . "/is-this-spam", $activity->asArray());
 
-        if (!$response->isOK()) {
-            throw new Exception("Error " . $response->getStatus() . " checking spam score: " . $response->getBody());
-        }
-
         $result = json_decode($response->getBody());
 
         return $result;
@@ -108,10 +104,6 @@ class SpamFilter extends OAuthClient {
         }
 
         $response = $this->postJSON($this->server . $endpoint, $activity->asArray());
-
-        if (!$response->isOK()) {
-            throw new Exception("Error " . $response->getStatus() . " checking spam score: " . $response->getBody());
-        }
 
         // We don't do much with the results
         return true;
@@ -168,10 +160,10 @@ class SpamFilter extends OAuthClient {
         try {
             $response = $hclient->send();
             $code = $response->getStatus();
-            if ($code < 200 || $code >= 400) {
+            if (!$response->isOK()) {
                 throw new OAuthClientException($response->getBody(), $code);
             }
-            return $response->getBody();
+            return $response;
         } catch (Exception $e) {
             throw new OAuthClientException($e->getMessage(), $e->getCode());
         }
