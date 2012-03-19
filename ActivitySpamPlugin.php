@@ -257,10 +257,25 @@ class ActivitySpamPlugin extends Plugin
             return $score;
         }
 
-        $result = $this->filter->test($notice);
+        try {
 
-        $score = Spam_score::saveNew($notice, $result);
+            $result = $this->filter->test($notice);
+
+            $score = Spam_score::saveNew($notice, $result);
+
+            $this->log(LOG_INFO, "Notice " . $notice->id . " has spam score " . $score->score);
+
+        } catch (Exception $e) {
+            // Log but continue 
+            $this->log(LOG_ERR, $e->getMessage());
+            $score = null;
+        }
 
         return $score;
+    }
+
+    function onStartReadWriteTables(&$alwaysRW, &$rwdb) {
+        $alwaysRW[] = 'spam_score';
+        return true;
     }
 }
