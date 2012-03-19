@@ -173,7 +173,7 @@ class ActivitySpamPlugin extends Plugin
 
         if (!empty($notice)) {
 
-            $score = Spam_score::staticGet('notice_id', $notice->id);
+            $score = $this->getScore($notice);
 
             if (empty($score)) {
                 $this->debug("No score for notice " . $notice->id);
@@ -242,5 +242,20 @@ class ActivitySpamPlugin extends Plugin
                             'description' =>
                             _m('Test notices against the Activity Spam service.'));
         return true;
+    }
+
+    function getScore($notice)
+    {
+        $score = Spam_score::staticGet('notice_id', $notice->id);
+        
+        if (!empty($score)) {
+            return $score;
+        }
+
+        $result = $this->filter->test($notice);
+
+        $score = Spam_score::saveNew($notice, $result);
+
+        return $score;
     }
 }
