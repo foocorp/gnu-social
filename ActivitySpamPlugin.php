@@ -168,22 +168,27 @@ class ActivitySpamPlugin extends Plugin
 
     function onEndShowNoticeOptionItems($nli)
     {
-        $notice = $nli->getNotice();
-        $out = $nli->getOut();
+        $profile = Profile::current();
 
-        if (!empty($notice)) {
+        if (!empty($profile) && $profile->hasRight(self::TRAINSPAM)) {
 
-            $score = $this->getScore($notice);
+            $notice = $nli->getNotice();
+            $out = $nli->getOut();
 
-            if (empty($score)) {
-                $this->debug("No score for notice " . $notice->id);
-                // XXX: show a question-mark or something
-            } else if ($score->is_spam) {
-                $form = new TrainHamForm($out, $notice);
-                $form->show();
-            } else if (!$score->is_spam) {
-                $form = new TrainSpamForm($out, $notice);
-                $form->show();
+            if (!empty($notice)) {
+
+                $score = $this->getScore($notice);
+
+                if (empty($score)) {
+                    $this->debug("No score for notice " . $notice->id);
+                    // XXX: show a question-mark or something
+                } else if ($score->is_spam) {
+                    $form = new TrainHamForm($out, $notice);
+                    $form->show();
+                } else if (!$score->is_spam) {
+                    $form = new TrainSpamForm($out, $notice);
+                    $form->show();
+                }
             }
         }
 
