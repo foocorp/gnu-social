@@ -80,7 +80,7 @@ function testUser($filter, $user) {
                 Spam_score::save($notice, $result);
                 printfv("%s\n", ($result->isSpam) ? "SPAM" : "HAM");
             } catch (Exception $e) {
-                printfnq("ERROR testing notice %d\n: %s", $notice->id, $e->getMessage());
+                printfnq("ERROR testing notice %d: %s\n", $notice->id, $e->getMessage());
             }
         }
         $offset += $notice->N;
