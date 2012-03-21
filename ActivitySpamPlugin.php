@@ -47,6 +47,7 @@ if (!defined('STATUSNET')) {
 class ActivitySpamPlugin extends Plugin
 {
     public $server = null;
+    public $hideSpam = false;
 
     const REVIEWSPAM = 'ActivitySpamPlugin::REVIEWSPAM';
     const TRAINSPAM = 'ActivitySpamPlugin::TRAINSPAM';
@@ -61,6 +62,8 @@ class ActivitySpamPlugin extends Plugin
         $this->filter = new SpamFilter(common_config('activityspam', 'server'),
                                        common_config('activityspam', 'consumerkey'),
                                        common_config('activityspam', 'secret'));
+
+        $this->hideSpam = common_config('activityspam', 'hidespam');
 
         return true;
     }
@@ -281,15 +284,17 @@ class ActivitySpamPlugin extends Plugin
 
     function onEndNoticeInScope($notice, $profile, &$bResult)
     {
-        if ($bResult) {
+        if ($this->hideSpam) {
+            if ($bResult) {
 
-            $score = $this->getScore($notice);
+                $score = $this->getScore($notice);
 
-            if ($score->is_spam) {
-                if (empty($profile) ||
-                    ($profile->id !== $notice->profile_id &&
-                     !$profile->hasRight(self::REVIEWSPAM))) {
-                    $bResult = false;
+                if ($score->is_spam) {
+                    if (empty($profile) ||
+                        ($profile->id !== $notice->profile_id &&
+                         !$profile->hasRight(self::REVIEWSPAM))) {
+                        $bResult = false;
+                    }
                 }
             }
         }
