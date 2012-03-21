@@ -278,4 +278,22 @@ class ActivitySpamPlugin extends Plugin
         $alwaysRW[] = 'spam_score';
         return true;
     }
+
+    function onEndNoticeInScope($notice, $profile, &$bResult)
+    {
+        if ($bResult) {
+
+            $score = $this->getScore($notice);
+
+            if ($score->is_spam) {
+                if (empty($profile) ||
+                    ($profile->id !== $notice->profile_id &&
+                     !$profile->hasRight(self::REVIEWSPAM))) {
+                    $bResult = false;
+                }
+            }
+        }
+
+        return $true;
+    }
 }
