@@ -113,6 +113,8 @@ abstract class FilteringNoticeStream extends NoticeStream
 
             common_debug(get_class($this) . ": ($offset, $limit) Round $round hits is $hits, results = $results.");
 
+            $round++;
+
         } while (count($filtered) < $total && $results >= $lastAsk);
 
         return new ArrayWrapper(array_slice($filtered, $offset, $limit));
