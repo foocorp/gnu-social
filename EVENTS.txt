@@ -1441,4 +1441,12 @@ EndNoticeInScope: After checking if a notice should be visible to a user
 - $profile: The profile to check for scope
 - &$bResult: The boolean result; overwrite this if you so desire
 
+StartNoticeListPrefill: Before pre-filling a list of notices with extra data
+- &$notices: Notices to be pre-filled
+- $avatarSize: The avatar size for the list
+
+EndNoticeListPrefill: After pre-filling a list of notices with extra data
+- &$notices: Notices that were pre-filled
+- &$profiles: Profiles that were pre-filled 
+- $avatarSize: The avatar size for the list
 
