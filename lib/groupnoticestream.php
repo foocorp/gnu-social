@@ -74,7 +74,7 @@ class GroupNoticeStream extends ScopingNoticeStream
     function getNotices($offset, $limit, $sinceId = null, $maxId = null)
     {
         if ($this->impossibleStream()) {
-            return array();
+            return new ArrayWrapper(array());
         } else {
             return parent::getNotices($offset, $limit, $sinceId, $maxId);
         }
