@@ -80,5 +80,19 @@ class ScopingNoticeStream extends FilteringNoticeStream
             
         Notice::fillGroups($notices);
         Notice::fillReplies($notices);
+
+        if (common_config('notice', 'hidespam')) {
+
+            $profiles = Notice::getProfiles($notices);
+
+            foreach ($profiles as $profile) {
+                $pids[] = $profile->id;
+            }
+            
+            Memcached_DataObject::pivotGet('Profile_role',
+                                           'profile_id',
+                                           $pids,
+                                           array('role' => Profile_role::SILENCED));
+        }
     }
 }
