@@ -73,4 +73,12 @@ class ScopingNoticeStream extends FilteringNoticeStream
     {
         return $notice->inScope($this->profile);
     }
+
+    function prefill($notices)
+    {
+        // XXX: this should probably only be in the scoping one.
+            
+        Notice::fillGroups($notices);
+        Notice::fillReplies($notices);
+    }
 }
