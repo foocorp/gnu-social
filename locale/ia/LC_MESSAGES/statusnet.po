@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:46:13+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:14:21+0000\n"
 "Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
+"X-POT-Import-Date: 2012-03-11 19:51:52+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -4179,8 +4179,9 @@ msgid "What timezone are you normally in?"
 msgstr "In que fuso horari es tu normalmente?"
 
 #. TRANS: Checkbox label in form for profile settings.
+#, fuzzy
 msgid ""
-"Automatically subscribe to whoever subscribes to me (best for non-humans)."
+"Automatically subscribe to whoever subscribes to me (best for non-humans)"
 msgstr ""
 "Subscriber me automaticamente a qui se subscribe a me (utile pro non-"
 "humanos)."
@@ -9465,7 +9466,7 @@ msgstr "Tu apprecia isto."
 #, php-format
 msgid "%%s and %d others like this."
 msgid_plural "%%s and %d others like this."
-msgstr[0] "%%s e %d alteres apprecia isto."
+msgstr[0] "%%s e %d altere apprecia isto."
 msgstr[1] "%%s e %d alteres apprecia isto."
 
 #. TRANS: List message for favoured notices.

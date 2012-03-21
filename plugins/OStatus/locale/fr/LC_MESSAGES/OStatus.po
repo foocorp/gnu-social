@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Brunoperel
+# Author: Davidtsm
 # Author: IAlex
 # Author: Od1n
 # Author: Peter17
@@ -14,13 +15,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:46:55+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:15:50+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:49:04+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -652,9 +653,8 @@ msgid "Could not subscribe remote user %1$s to list %2$s."
 msgstr "Impossible d’inscrire l’utilisateur distant %1$s à la liste %2$s."
 
 #. TRANS: Client error displayed when trying to unsubscribe from non-existing list.
-#, fuzzy
 msgid "Cannot read profile to cancel list subscription."
-msgstr "Impossible de lire le profil pour annuler l’adhésion à une liste."
+msgstr "Ne peut pas lire le profile afin d'annuler l'inscription à la liste."
 
 #. TRANS: Client error displayed when trying to unsubscribe a remote user from a list fails.
 #. TRANS: %1$s is a profile URL, %2$s is a list name.
@@ -778,9 +778,9 @@ msgstr ""
 "pour %s."
 
 #. TRANS: Server exception. %s is a URI
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid ostatus_profile state: All IDs empty for %s."
-msgstr "État invalide du profil OStatus : aucun identifiant renseigné pour %s."
+msgstr "ostatus_profile invalide : aucun identifiant renseigné pour %s."
 
 #. TRANS: Server exception.
 #. TRANS: %1$s is the method name the exception occured in, %2$s is the actor type.

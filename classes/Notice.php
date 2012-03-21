@@ -645,7 +645,7 @@ class Notice extends Managed_DataObject
         }
 
         self::blow('notice:list-ids:conversation:%s', $this->conversation);
-        self::blow('conversation::notice_count:%d', $this->conversation);
+        self::blow('conversation:notice_count:%d', $this->conversation);
 
         if (!empty($this->repeat_of)) {
             // XXX: we should probably only use one of these

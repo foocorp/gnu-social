@@ -14,13 +14,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:46:55+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:15:50+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:49:04+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -946,42 +946,34 @@ msgid "Unrecognized activity type."
 msgstr "Unbekannter Aktivitätstyp."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand posts."
 msgstr "Dieses Ziel versteht keine Posts."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand follows."
 msgstr "Dieses Ziel versteht keine Follows."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand unfollows."
 msgstr "Dieses Ziel versteht keine Unfollows."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand favorites."
 msgstr "Dieses Ziel versteht keine Favoriten."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand unfavorites."
 msgstr "Dieses Ziel versteht keine Unfavorites."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand share events."
 msgstr "Dieses Ziel versteht das Teilen von Events nicht."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand joins."
 msgstr "Dieses Ziel versteht keine Joins."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand leave events."
 msgstr "Dieses Ziel versteht das Verlassen von Events nicht."
 

@@ -1,6 +1,7 @@
 # Translation of StatusNet - UserLimit to Spanish (Español)
 # Exported from translatewiki.net
 #
+# Author: Armando-Martin
 # Author: Translationista
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserLimit\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:47:21+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:16:34+0000\n"
 "Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:51+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-plugin-userlimit\n"
@@ -31,7 +32,11 @@ msgid_plural ""
 "Cannot register because the maximum number of users (%d) for this site was "
 "reached."
 msgstr[0] ""
+"No se puede registrar porque se alcanzó el número máximo de usuarios (%d) "
+"para este sitio."
 msgstr[1] ""
+"No se puede registrar porque se alcanzó el número máximo de usuarios (%d) "
+"para este sitio."
 
 #. TRANS: Plugin description.
 msgid "Limit the number of users who can register."
