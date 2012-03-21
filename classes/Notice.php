@@ -2387,75 +2387,101 @@ class Notice extends Managed_DataObject
 
         // If there's no scope, anyone (even anon) is in scope.
 
-        if ($scope == 0) {
-            return true;
-        }
+        if ($scope == 0) { // Not private
 
-        // If there's scope, anon cannot be in scope
+            return !$this->isHiddenSpam();
 
-        if (empty($profile)) {
-            return false;
-        }
+        } else { // Private, somehow
 
-        // Author is always in scope
+            // If there's scope, anon cannot be in scope
 
-        if ($this->profile_id == $profile->id) {
-            return true;
-        }
-
-        // Only for users on this site
-
-        if ($scope & Notice::SITE_SCOPE) {
-            $user = $profile->getUser();
-            if (empty($user)) {
+            if (empty($profile)) {
                 return false;
             }
-        }
 
-        // Only for users mentioned in the notice
+            // Author is always in scope
 
-        if ($scope & Notice::ADDRESSEE_SCOPE) {
-
-			$repl = Reply::pkeyGet(array('notice_id' => $this->id,
-										 'profile_id' => $profile->id));
-										 
-            if (empty($repl)) {
-                return false;
+            if ($this->profile_id == $profile->id) {
+                return true;
             }
-        }
 
-        // Only for members of the given group
+            // Only for users on this site
 
-        if ($scope & Notice::GROUP_SCOPE) {
-
-            // XXX: just query for the single membership
-
-            $groups = $this->getGroups();
-
-            $foundOne = false;
-
-            foreach ($groups as $group) {
-                if ($profile->isMember($group)) {
-                    $foundOne = true;
-                    break;
+            if ($scope & Notice::SITE_SCOPE) {
+                $user = $profile->getUser();
+                if (empty($user)) {
+                    return false;
                 }
             }
 
-            if (!$foundOne) {
-                return false;
+            // Only for users mentioned in the notice
+
+            if ($scope & Notice::ADDRESSEE_SCOPE) {
+
+                $repl = Reply::pkeyGet(array('notice_id' => $this->id,
+                                             'profile_id' => $profile->id));
+										 
+                if (empty($repl)) {
+                    return false;
+                }
             }
+
+            // Only for members of the given group
+
+            if ($scope & Notice::GROUP_SCOPE) {
+
+                // XXX: just query for the single membership
+
+                $groups = $this->getGroups();
+
+                $foundOne = false;
+
+                foreach ($groups as $group) {
+                    if ($profile->isMember($group)) {
+                        $foundOne = true;
+                        break;
+                    }
+                }
+
+                if (!$foundOne) {
+                    return false;
+                }
+            }
+
+            // Only for followers of the author
+
+            $author = null;
+
+            if ($scope & Notice::FOLLOWER_SCOPE) {
+
+                $author = $this->getProfile();
+        
+                if (!Subscription::exists($profile, $author)) {
+                    return false;
+                }
+            }
+
+            return !$this->isHiddenSpam();
         }
+    }
 
-        // Only for followers of the author
+    function isHiddenSpam() {
 
-        if ($scope & Notice::FOLLOWER_SCOPE) {
+        
+        // Hide posts by silenced users from everyone but moderators.
+
+        if (common_config('notice', 'hidespam')) {
+
             $author = $this->getProfile();
-            if (!Subscription::exists($profile, $author)) {
-                return false;
+
+            if ($author->hasRole(Profile_role::SILENCED)) {
+                if (!$profile->hasRole(Profile_role::MODERATOR)) {
+                    return true;
+                }
             }
         }
 
-        return true;
+        return false;
     }
 
     static function groupsFromText($text, $profile)
