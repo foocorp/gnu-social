@@ -47,14 +47,43 @@ if (!defined('STATUSNET')) {
 
 class ProfileNoticeStream extends ScopingNoticeStream
 {
+    var $streamProfile;
+
     function __construct($profile, $userProfile = -1)
     {
         if (is_int($userProfile) && $userProfile == -1) {
             $userProfile = Profile::current();
         }
+        $this->streamProfile = $profile;
         parent::__construct(new CachingNoticeStream(new RawProfileNoticeStream($profile),
                                                     'profile:notice_ids:' . $profile->id),
                             $userProfile);
+    }
+
+    function getNoticeIds($offset, $limit, $since_id, $max_id)
+    {
+        // Sanity check
+        if (common_config('notice', 'hidespam')) {
+            if ($this->streamProfile->hasRole(Profile_role::SILENCED) &&
+                (empty($this->profile) || !$this->profile->hasRole(Profile_role::MODERATOR))) {
+                throw new ClientException(_("This account silenced by moderators."), 403);
+            }
+        }
+
+        return parent::getNoticeIds($offset, $limit, $since_id, $max_id);
+    }
+
+    function getNotices($offset, $limit, $sinceId = null, $maxId = null)
+    {
+        // Sanity check
+        if (common_config('notice', 'hidespam')) {
+            if ($this->streamProfile->hasRole(Profile_role::SILENCED) &&
+                (empty($this->profile) || !$this->profile->hasRole(Profile_role::MODERATOR))) {
+                throw new ClientException(_("This account silenced by moderators."), 403);
+            }
+        }
+
+        return parent::getNotices($offset, $limit, $sinceId, $maxId);
     }
 }
 
