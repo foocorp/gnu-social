@@ -83,7 +83,7 @@ class GroupNoticeStream extends ScopingNoticeStream
     function impossibleStream() 
     {
         if ($this->group->force_scope &&
-            (empty($this->userProfile) || !$this->userProfile->isMember($group))) {
+            (empty($this->userProfile) || !$this->userProfile->isMember($this->group))) {
             return true;
         }
 
