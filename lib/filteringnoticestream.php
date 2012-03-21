@@ -72,6 +72,7 @@ abstract class FilteringNoticeStream extends NoticeStream
         $results = null;
 
         do {
+            common_debug(get_class($this) . ": ($offset, $limit) fetching $askFor notices starting at $startAt");
 
             $raw = $this->upstream->getNotices($startAt, $askFor, $sinceId, $maxId);
 
@@ -100,7 +101,14 @@ abstract class FilteringNoticeStream extends NoticeStream
             // XXX: make these smarter; factor hit rate into $askFor
 
             $startAt += $askFor;
-            $askFor   = max($total - count($filtered), NOTICES_PER_PAGE);
+            
+            $hits = count($filtered);
+
+            if ($hits === 0) {
+                $askFor = max(min(2 * $askFor, NOTICES_PER_PAGE * 50), NOTICES_PER_PAGE);
+            } else {
+                $askFor = max(min((($total - $hits)*$startAt)/$hits, NOTICES_PER_PAGE * 50), NOTICES_PER_PAGE);
+            }
 
         } while (count($filtered) < $total && $results !== 0);
 
