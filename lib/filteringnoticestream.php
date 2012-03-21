@@ -82,14 +82,11 @@ abstract class FilteringNoticeStream extends NoticeStream
                 break;
             }
 
-			$notices = $raw->fetchAll();
-			
-			// XXX: this should probably only be in the scoping one.
-			
-			Notice::fillGroups($notices);
-			Notice::fillReplies($notices);
-			
-			foreach ($notices as $notice) {
+            $notices = $raw->fetchAll();
+            
+            $this->prefill($notices);
+
+            foreach ($notices as $notice) {
                 if ($this->filter($notice)) {
                     $filtered[] = $notice;
                     if (count($filtered) >= $total) {
@@ -126,5 +123,10 @@ abstract class FilteringNoticeStream extends NoticeStream
         }
 
         return $ids;
+    }
+
+    function prefill($notices)
+    {
+        return;
     }
 }
