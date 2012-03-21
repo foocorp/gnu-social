@@ -282,14 +282,15 @@ class ActivitySpamPlugin extends Plugin
         return true;
     }
 
+
     function onEndNoticeInScope($notice, $profile, &$bResult)
     {
         if ($this->hideSpam) {
             if ($bResult) {
 
-                $score = $this->getScore($notice);
+                $score = Spam_score::staticGet('notice_id', $notice->id);
 
-                if ($score->is_spam) {
+                if (!empty($score) && $score->is_spam) {
                     if (empty($profile) ||
                         ($profile->id !== $notice->profile_id &&
                          !$profile->hasRight(self::REVIEWSPAM))) {
@@ -299,6 +300,19 @@ class ActivitySpamPlugin extends Plugin
             }
         }
 
+        return true;
+    }
+
+    /**
+     * Pre-cache our spam scores if needed.
+     */
+    function onEndNoticeListPrefill(&$notices, &$profiles, $avatarSize) {
+        if ($this->hideSpam) {
+            foreach ($notices as $notice) {
+                $ids[] = $notice->id;
+            }
+            Memcached_DataObject::multiGet('Spam_score', 'notice_id', $ids);
+        }
         return true;
     }
 }
