@@ -87,7 +87,7 @@ class ProfileNoticeStream extends ScopingNoticeStream
         // If it's a private stream, and no user or not a subscriber
 
         if (!empty($user) && $user->private_stream && 
-            empty($this->userProfile) || !$this->userProfile->isSubscribed($this->streamProfile)) {
+            (empty($this->userProfile) || !$this->userProfile->isSubscribed($this->streamProfile))) {
             return true;
         }
 
