@@ -2366,9 +2366,9 @@ class Notice extends Managed_DataObject
 
         if ($result === false) {
             $bResult = false;
-            if (Event::handle('StartNoticeInScope', array($notice, $profile, &$bResult))) {
+            if (Event::handle('StartNoticeInScope', array($this, $profile, &$bResult))) {
                 $bResult = $this->_inScope($profile);
-                Event::handle('EndNoticeInScope', array($notice, $profile, &$bResult));
+                Event::handle('EndNoticeInScope', array($this, $profile, &$bResult));
             }
             $result = ($bResult) ? 1 : 0;
             self::cacheSet($keypart, $result, 0, 300);
