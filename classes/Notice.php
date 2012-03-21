@@ -2389,7 +2389,7 @@ class Notice extends Managed_DataObject
 
         if ($scope == 0) { // Not private
 
-            return !$this->isHiddenSpam();
+            return !$this->isHiddenSpam($profile);
 
         } else { // Private, somehow
 
@@ -2461,12 +2461,11 @@ class Notice extends Managed_DataObject
                 }
             }
 
-            return !$this->isHiddenSpam();
+            return !$this->isHiddenSpam($profile);
         }
     }
 
-    function isHiddenSpam() {
-
+    function isHiddenSpam($profile) {
         
         // Hide posts by silenced users from everyone but moderators.
 
