@@ -48,6 +48,7 @@ if (!defined('STATUSNET')) {
 class ProfileNoticeStream extends ScopingNoticeStream
 {
     var $streamProfile;
+    var $userProfile;
 
     function __construct($profile, $userProfile = -1)
     {
@@ -55,6 +56,7 @@ class ProfileNoticeStream extends ScopingNoticeStream
             $userProfile = Profile::current();
         }
         $this->streamProfile = $profile;
+        $this->userProfile   = $userProfile;
         parent::__construct(new CachingNoticeStream(new RawProfileNoticeStream($profile),
                                                     'profile:notice_ids:' . $profile->id),
                             $userProfile);
@@ -85,7 +87,7 @@ class ProfileNoticeStream extends ScopingNoticeStream
         // If it's a private stream, and no user or not a subscriber
 
         if (!empty($user) && $user->private_stream && 
-            empty($this->profile) || !$this->profile->isSubscribed($this->streamProfile)) {
+            empty($this->userProfile) || !$this->userProfile->isSubscribed($this->streamProfile)) {
             return true;
         }
 
@@ -93,7 +95,7 @@ class ProfileNoticeStream extends ScopingNoticeStream
 
         if (common_config('notice', 'hidespam')) {
             if ($this->streamProfile->hasRole(Profile_role::SILENCED) &&
-                (empty($this->profile) || !$this->profile->hasRole(Profile_role::MODERATOR))) {
+                (empty($this->userProfile) || !$this->userProfile->hasRole(Profile_role::MODERATOR))) {
                 return true;
             }
         }

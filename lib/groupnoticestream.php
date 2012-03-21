@@ -47,6 +47,7 @@ if (!defined('STATUSNET')) {
 class GroupNoticeStream extends ScopingNoticeStream
 {
     var $group;
+    var $userProfile;
 
     function __construct($group, $profile = -1)
     {
@@ -54,6 +55,7 @@ class GroupNoticeStream extends ScopingNoticeStream
             $profile = Profile::current();
         }
         $this->group = $group;
+        $this->userProfile = $profile;
 
         parent::__construct(new CachingNoticeStream(new RawGroupNoticeStream($group),
                                                     'user_group:notice_ids:' . $group->id),
@@ -81,7 +83,7 @@ class GroupNoticeStream extends ScopingNoticeStream
     function impossibleStream() 
     {
         if ($this->group->force_scope &&
-            (empty($this->profile) || !$this->profile->isMember($group))) {
+            (empty($this->userProfile) || !$this->userProfile->isMember($group))) {
             return true;
         }
 
