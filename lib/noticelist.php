@@ -151,6 +151,20 @@ class NoticeList extends Widget
                 Memcached_DataObject::pivotGet('Notice', 'repeat_of', $ids, array('profile_id' => $p->id));
             }
 
+            if (common_config('notice', 'hidespam')) {
+
+                $pids = array();
+
+                foreach ($profiles as $profile) {
+                    $pids[] = $profile->id;
+                }
+                
+                Memcached_DataObject::pivotGet('Profile_role',
+                                               'profile_id',
+                                               $pids,
+                                               array('role' => Profile_role::SILENCED));
+            }
+
             Event::handle('EndNoticeListPrefill', array(&$notices, &$profiles, $avatarSize));
         }
     }
