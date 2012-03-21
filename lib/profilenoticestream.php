@@ -62,28 +62,43 @@ class ProfileNoticeStream extends ScopingNoticeStream
 
     function getNoticeIds($offset, $limit, $since_id, $max_id)
     {
-        // Sanity check
-        if (common_config('notice', 'hidespam')) {
-            if ($this->streamProfile->hasRole(Profile_role::SILENCED) &&
-                (empty($this->profile) || !$this->profile->hasRole(Profile_role::MODERATOR))) {
-                throw new ClientException(_("This account silenced by moderators."), 403);
-            }
+        if ($this->impossibleStream()) {
+            return array();
+        } else {
+            return parent::getNoticeIds($offset, $limit, $since_id, $max_id);
         }
-
-        return parent::getNoticeIds($offset, $limit, $since_id, $max_id);
     }
 
     function getNotices($offset, $limit, $sinceId = null, $maxId = null)
     {
-        // Sanity check
+        if ($this->impossibleStream()) {
+            return array();
+        } else {
+            return parent::getNotices($offset, $limit, $sinceId, $maxId);
+        }
+    }
+
+    function impossibleStream() 
+    {
+        $user = User::staticGet('id', $this->streamProfile->id);
+
+        // If it's a private stream, and no user or not a subscriber
+
+        if (!empty($user) && $user->private_stream && 
+            empty($this->profile) || !$this->profile->isSubscribed($this->streamProfile)) {
+            return true;
+        }
+
+        // If it's a spammy stream, and no user or not a moderator
+
         if (common_config('notice', 'hidespam')) {
             if ($this->streamProfile->hasRole(Profile_role::SILENCED) &&
                 (empty($this->profile) || !$this->profile->hasRole(Profile_role::MODERATOR))) {
-                throw new ClientException(_("This account silenced by moderators."), 403);
+                return true;
             }
         }
 
-        return parent::getNotices($offset, $limit, $sinceId, $maxId);
+        return false;
     }
 }
 
