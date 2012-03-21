@@ -299,6 +299,6 @@ class ActivitySpamPlugin extends Plugin
             }
         }
 
-        return $true;
+        return true;
     }
 }
