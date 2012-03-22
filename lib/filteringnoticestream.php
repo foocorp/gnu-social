@@ -108,7 +108,7 @@ abstract class FilteringNoticeStream extends NoticeStream
             if ($hits === 0) {
                 $askFor = max(min(2 * $askFor, NOTICES_PER_PAGE * 50), NOTICES_PER_PAGE);
             } else {
-                $askFor = max(min((($total - $hits)*$startAt)/$hits, NOTICES_PER_PAGE * 50), NOTICES_PER_PAGE);
+                $askFor = max(min(intval(ceil(($total - $hits)*$startAt/$hits)), NOTICES_PER_PAGE * 50), NOTICES_PER_PAGE);
             }
 
             common_debug(get_class($this) . ": ($offset, $limit) Round $round hits is $hits, results = $results.");
