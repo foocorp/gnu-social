@@ -1008,10 +1008,7 @@ class Notice extends Managed_DataObject
                 $users = $ptag->getUserSubscribers();
                 foreach ($users as $id) {
                     if (!array_key_exists($id, $ni)) {
-                        $user = User::staticGet('id', $id);
-                        if (!$user->hasBlocked($profile)) {
-                            $ni[$id] = NOTICE_INBOX_SOURCE_PROFILE_TAG;
-                        }
+                        $ni[$id] = NOTICE_INBOX_SOURCE_PROFILE_TAG;
                     }
                 }
             }
@@ -1020,23 +1017,24 @@ class Notice extends Managed_DataObject
                 if (!array_key_exists($recipient, $ni)) {
                     $ni[$recipient] = NOTICE_INBOX_SOURCE_REPLY;
                 }
+            }
 
-                // Exclude any deleted, non-local, or blocking recipients.
-                $profile = $this->getProfile();
-                $originalProfile = null;
-                if ($this->repeat_of) {
-                    // Check blocks against the original notice's poster as well.
-                    $original = Notice::staticGet('id', $this->repeat_of);
-                    if ($original) {
-                        $originalProfile = $original->getProfile();
-                    }
+            // Exclude any deleted, non-local, or blocking recipients.
+            $profile = $this->getProfile();
+            $originalProfile = null;
+            if ($this->repeat_of) {
+                // Check blocks against the original notice's poster as well.
+                $original = Notice::staticGet('id', $this->repeat_of);
+                if ($original) {
+                    $originalProfile = $original->getProfile();
                 }
-                foreach ($ni as $id => $source) {
-                    $user = User::staticGet('id', $id);
-                    if (empty($user) || $user->hasBlocked($profile) ||
-                        ($originalProfile && $user->hasBlocked($originalProfile))) {
-                        unset($ni[$id]);
-                    }
+            }
+
+            foreach ($ni as $id => $source) {
+                $user = User::staticGet('id', $id);
+                if (empty($user) || $user->hasBlocked($profile) ||
+                    ($originalProfile && $user->hasBlocked($originalProfile))) {
+                    unset($ni[$id]);
                 }
             }
 
