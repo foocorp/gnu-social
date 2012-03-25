@@ -49,27 +49,10 @@ class PopularNoticeStream extends ScopingNoticeStream
 {
     function __construct($profile=null)
     {
-        parent::__construct(new HideSilencedStream(new CachingNoticeStream(new RawPopularNoticeStream(),
-                                                                           'popular',
-                                                                           false)),
+        parent::__construct(new CachingNoticeStream(new RawPopularNoticeStream(),
+                                                    'popular',
+                                                    false),
                             $profile);
-    }
-}
-
-class HideSilencedStream extends FilteringNoticeStream
-{
-    /**
-     * Only return notices where the profile is in scope
-     *
-     * @param Notice $notice The notice to check
-     *
-     * @return boolean whether to include the notice
-     */
-
-    function filter($notice)
-    {
-        $author = $notice->getProfile();
-        return !$author->isSilenced();
     }
 }
 
