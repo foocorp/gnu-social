@@ -68,5 +68,7 @@ class Right
     const CREATEGROUP        = 'creategroup';
     const WEBLOGIN           = 'weblogin';
     const API                = 'api';
+    const REVIEWSPAM         = 'reviewspam';
+    const TRAINSPAM          = 'trainspam';
 }
 

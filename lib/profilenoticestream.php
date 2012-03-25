@@ -95,7 +95,7 @@ class ProfileNoticeStream extends ScopingNoticeStream
 
         if (common_config('notice', 'hidespam')) {
             if ($this->streamProfile->hasRole(Profile_role::SILENCED) &&
-                (empty($this->userProfile) || !$this->userProfile->hasRole(Profile_role::MODERATOR))) {
+                (empty($this->userProfile) || !$this->userProfile->hasRight(Right::REVIEWSPAM))) {
                 return true;
             }
         }

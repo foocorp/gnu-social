@@ -27,6 +27,8 @@ if (!defined('STATUSNET')) {
  */
 class ModHelperPlugin extends Plugin
 {
+    static $rights = array(Right::SILENCEUSER, Right::TRAINSPAM, Right::REVIEWSPAM);
+
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'ModHelper',
@@ -42,7 +44,7 @@ class ModHelperPlugin extends Plugin
 
     function onUserRightsCheck($profile, $right, &$result)
     {
-        if ($right == Right::SILENCEUSER) {
+        if (in_array($right, self::$rights)) {
             // Hrm.... really we should confirm that the *other* user isn't privleged. :)
             if ($profile->hasRole('modhelper')) {
                 $result = true;

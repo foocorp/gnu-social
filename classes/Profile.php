@@ -1190,6 +1190,8 @@ class Profile extends Managed_DataObject
             case Right::SILENCEUSER:
             case Right::DELETEUSER:
             case Right::DELETEGROUP:
+            case Right::TRAINSPAM:
+            case Right::REVIEWSPAM:
                 $result = $this->hasRole(Profile_role::MODERATOR);
                 break;
             case Right::CONFIGURESITE:
