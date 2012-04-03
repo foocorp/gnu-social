@@ -135,4 +135,30 @@ class RawInboxNoticeStream extends NoticeStream
 
         return $ids;
     }
+
+    function getNotices($offset, $limit, $sinceId, $maxId)
+    {
+        $all = array();
+
+        do {
+
+            $ids = $this->getNoticeIds($offset, $limit, $sinceId, $maxId);
+
+            $notices = Memcached_DataObject::pivotGet('Notice', 'id', $ids);
+
+            // By default, takes out false values
+
+            $notices = array_filter($notices);
+
+            $all = array_merge($all, $notices);
+
+            if (count($notices < count($ids))) {
+                $offset += $limit;
+                $limit  -= count($notices);
+            }
+
+        } while (count($notices) < count($ids) && count($ids) > 0);
+
+        return new ArrayWrapper($all);
+    }
 }
