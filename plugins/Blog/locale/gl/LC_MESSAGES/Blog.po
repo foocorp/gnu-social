@@ -9,38 +9,37 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:03:56+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:48+0000\n"
 "Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-08-20 19:38:26+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2012-02-25 15:25:35+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-blog\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Client exception thrown when trying to post a blog entry while not logged in.
 msgid "Must be logged in to post a blog entry."
-msgstr ""
+msgstr "Cómpre estar rexistrado para publicar unha entrada de blogue."
 
 #. TRANS: Client exception thrown when trying to post a blog entry without providing a title.
 msgid "Title required."
-msgstr "O título é obrigatorio"
+msgstr "O título é obrigatorio."
 
 #. TRANS: Client exception thrown when trying to post a blog entry without providing content.
 msgid "Content required."
-msgstr ""
+msgstr "Cómpre algún contido."
 
 #. TRANS: Page title after sending a notice.
 msgid "Blog entry saved"
-msgstr ""
+msgstr "Entrada de blogue gardada"
 
 #. TRANS: Plugin description.
 msgid "Let users write and share long-form texts."
-msgstr ""
+msgstr "Permite aos usuarios escribir e compartir textos longos."
 
 #. TRANS: Blog application title.
 msgctxt "TITLE"
@@ -49,24 +48,24 @@ msgstr "Blogue"
 
 #. TRANS: Exception thrown when there are too many activity objects.
 msgid "Too many activity objects."
-msgstr ""
+msgstr "Demasiados obxectos de actividade."
 
 #. TRANS: Exception thrown when blog plugin comes across a non-blog entry type object.
 msgid "Wrong type for object."
-msgstr ""
+msgstr "Tipo incorrecto para o obxecto."
 
 #. TRANS: Exception thrown when blog plugin comes across a undefined verb.
 msgid "Unknown verb for blog entries."
-msgstr ""
+msgstr "Verbo descoñecido para a entrada de blogue."
 
 #. TRANS: Exception thrown when requesting a non-existing blog entry for notice.
 #, php-format
 msgid "No blog entry for notice %s."
-msgstr ""
+msgstr "A nota %s non ten ningunha entrada de blogue."
 
 #. TRANS: Client exception thrown when referring to a non-existing blog entry.
 msgid "No such entry."
-msgstr ""
+msgstr "Non hai tal entrada."
 
 #. TRANS: Title for a blog entry without a title.
 msgid "Untitled"
@@ -79,7 +78,7 @@ msgstr "Título"
 
 #. TRANS: Field title on blog entry form.
 msgid "Title of the blog entry."
-msgstr ""
+msgstr "Título da entrada de blogue."
 
 #. TRANS: Field label on blog entry form.
 msgctxt "LABEL"
@@ -88,7 +87,7 @@ msgstr "Texto"
 
 #. TRANS: Field title on blog entry form.
 msgid "Text of the blog entry."
-msgstr ""
+msgstr "Texto da entrada de blogue."
 
 #. TRANS: Button text to save a blog entry.
 msgctxt "BUTTON"

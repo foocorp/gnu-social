@@ -5,6 +5,7 @@
 # Author: Crochet.david
 # Author: Iketsi
 # Author: Od1n
+# Author: OngolaBoy
 # Author: Valeryan 24
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -13,26 +14,25 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailRegistration\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:04:29+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:09+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-18 16:19:42+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-emailregistration\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. TRANS: Client exception trown when registration by e-mail is not allowed.
 msgid "Registration not allowed."
-msgstr ""
+msgstr "Inscription non autorisée."
 
 #. TRANS: Client exception trown when trying to register without an invitation.
 msgid "Sorry, only invited people can register."
-msgstr ""
+msgstr "Désolé, seulement les personnes invitées peuvent s'inscrire."
 
 #. TRANS: Client exception thrown when no confirmation code was provided.
 msgid "No confirmation code."
@@ -40,7 +40,7 @@ msgstr "Aucun code de confirmation."
 
 #. TRANS: Client exception trown when using an invitation multiple times.
 msgid "Invitation already used."
-msgstr ""
+msgstr "Invitation déjà utilisée."
 
 #. TRANS: Client exception thrown when given confirmation code was not issued.
 msgid "No such confirmation code."
@@ -90,7 +90,7 @@ msgstr "Les mots de passe ne correspondent pas."
 
 #. TRANS: Exception trown when using an invitation multiple times.
 msgid "Failed to register user."
-msgstr ""
+msgstr "Impossible d'enregistrer cet utilisateur."
 
 #. TRANS: Subject for confirmation e-mail.
 #. TRANS: %s is the StatusNet sitename.

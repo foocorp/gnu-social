@@ -29,8 +29,6 @@ class UserrssAction extends Rss10Action
 
     function prepare($args)
     {
-        common_debug("UserrssAction");
-
         parent::prepare($args);
         $nickname   = $this->trimmed('nickname');
         $this->user = User::staticGet('nickname', $nickname);

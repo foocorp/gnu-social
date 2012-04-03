@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"POT-Creation-Date: 2011-12-19 00:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,16 @@ msgstr ""
 #. TRANS: 1 hour. Used in a list.
 #: eventtimelist.php:93
 msgid "(1 hour)"
+msgstr ""
+
+#: eventtimelist.php:98
+#, php-format
+msgid "(%.1f hours)"
+msgstr ""
+
+#: eventtimelist.php:99
+#, php-format
+msgid "(%d hours)"
 msgstr ""
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.

@@ -9,42 +9,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserFlag\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:07:13+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:47:21+0000\n"
 "Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-19 11:23:50+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:51:36+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-plugin-userflag\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: AJAX form title for a flagged profile.
 msgid "Flagged for review"
-msgstr "Marcate pro revision"
+msgstr "Signalate pro revision"
 
 #. TRANS: Body text for AJAX form when a profile has been flagged for review.
 #. TRANS: Message added to a profile if it has been flagged for review.
 msgid "Flagged"
-msgstr "Marcate"
+msgstr "Signalate"
 
 #. TRANS: Plugin description.
 msgid ""
 "This plugin allows flagging of profiles for review and reviewing flagged "
 "profiles."
 msgstr ""
-"Iste plugin permitte marcar profilos pro revision e revider profilos marcate."
+"Iste plug-in permitte signalar profilos pro revision e revider profilos "
+"signalate."
 
 #. TRANS: Form title for flagging a profile for review.
 msgid "Flag"
-msgstr "Rader tote le marcas"
+msgstr "Signalar"
 
 #. TRANS: Form description.
 msgid "Flag profile for review."
-msgstr "Marcar profilo pro revision."
+msgstr "Signalar profilo pro revision."
 
 #. TRANS: Form title for action on a profile.
 msgid "Clear"
@@ -52,7 +52,7 @@ msgstr "Rader"
 
 #. TRANS: Form description for clearing flags from a profile.
 msgid "Clear all flags"
-msgstr "Rader tote le marcas"
+msgstr "Rader tote le signalamentos"
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
@@ -60,11 +60,11 @@ msgstr "Tu non ha aperite un session."
 
 #. TRANS: Error message displayed when trying to review profile flags while not authorised.
 msgid "You cannot review profile flags."
-msgstr "Tu non pote revider marcationes de profilo."
+msgstr "Tu non pote revider signalamentos de profilo."
 
 #. TRANS: Title for page with a list of profiles that were flagged for review.
 msgid "Flagged profiles"
-msgstr "Profilos marcate"
+msgstr "Profilos signalate"
 
 #. TRANS: Header for moderation menu with action buttons for flagged profiles (like 'sandbox', 'silence', ...).
 msgid "Moderate"
@@ -76,24 +76,24 @@ msgstr "Moderar"
 #, php-format
 msgid "Flagged by %1$s and %2$d other"
 msgid_plural "Flagged by %1$s and %2$d others"
-msgstr[0] "Marcate per %1$s e %2$d altere"
-msgstr[1] "Marcate per %1$s e %2$d alteres"
+msgstr[0] "Signalate per %1$s e %2$d altere"
+msgstr[1] "Signalate per %1$s e %2$d alteres"
 
 #. TRANS: Message displayed on a profile if it has been flagged.
 #. TRANS: %s is a comma separated list of at most 5 user nicknames that flagged.
 #, php-format
 msgid "Flagged by %s"
-msgstr "Marcate per %s"
+msgstr "Signalate per %s"
 
 #. TRANS: Server exception given when flags could not be cleared.
 #. TRANS: %s is a profile nickname.
 #, php-format
 msgid "Could not clear flags for profile \"%s\"."
-msgstr "Non poteva rader marcas pro le profilo \"%s\"."
+msgstr "Non poteva rader signalamentos pro le profilo \"%s\"."
 
 #. TRANS: Title for AJAX form to indicated that flags were removed.
 msgid "Flags cleared"
-msgstr "Marcas radite"
+msgstr "Signalamentos radite"
 
 #. TRANS: Body element for "flags cleared" form.
 msgid "Cleared"
@@ -103,4 +103,4 @@ msgstr "Radite"
 #. TRANS: %d is a profile ID (number).
 #, php-format
 msgid "Could not flag profile \"%d\" for review."
-msgstr "Non poteva marcar le profilo \"%d\" pro revision."
+msgstr "Non poteva signalar le profilo \"%d\" pro revision."

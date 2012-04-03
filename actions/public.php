@@ -159,6 +159,11 @@ class PublicAction extends Action
         $this->element('link', array('rel' => 'EditURI',
                                      'type' => 'application/rsd+xml',
                                      'href' => $rsd));
+
+        if ($this->page != 1) {
+            $this->element('link', array('rel' => 'canonical',
+                                         'href' => common_local_url('public')));
+        }
     }
 
     /**

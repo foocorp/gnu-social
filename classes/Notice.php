@@ -1008,10 +1008,7 @@ class Notice extends Managed_DataObject
                 $users = $ptag->getUserSubscribers();
                 foreach ($users as $id) {
                     if (!array_key_exists($id, $ni)) {
-                        $user = User::staticGet('id', $id);
-                        if (!$user->hasBlocked($profile)) {
-                            $ni[$id] = NOTICE_INBOX_SOURCE_PROFILE_TAG;
-                        }
+                        $ni[$id] = NOTICE_INBOX_SOURCE_PROFILE_TAG;
                     }
                 }
             }
@@ -1020,23 +1017,24 @@ class Notice extends Managed_DataObject
                 if (!array_key_exists($recipient, $ni)) {
                     $ni[$recipient] = NOTICE_INBOX_SOURCE_REPLY;
                 }
+            }
 
-                // Exclude any deleted, non-local, or blocking recipients.
-                $profile = $this->getProfile();
-                $originalProfile = null;
-                if ($this->repeat_of) {
-                    // Check blocks against the original notice's poster as well.
-                    $original = Notice::staticGet('id', $this->repeat_of);
-                    if ($original) {
-                        $originalProfile = $original->getProfile();
-                    }
+            // Exclude any deleted, non-local, or blocking recipients.
+            $profile = $this->getProfile();
+            $originalProfile = null;
+            if ($this->repeat_of) {
+                // Check blocks against the original notice's poster as well.
+                $original = Notice::staticGet('id', $this->repeat_of);
+                if ($original) {
+                    $originalProfile = $original->getProfile();
                 }
-                foreach ($ni as $id => $source) {
-                    $user = User::staticGet('id', $id);
-                    if (empty($user) || $user->hasBlocked($profile) ||
-                        ($originalProfile && $user->hasBlocked($originalProfile))) {
-                        unset($ni[$id]);
-                    }
+            }
+
+            foreach ($ni as $id => $source) {
+                $user = User::staticGet('id', $id);
+                if (empty($user) || $user->hasBlocked($profile) ||
+                    ($originalProfile && $user->hasBlocked($originalProfile))) {
+                    unset($ni[$id]);
                 }
             }
 
@@ -2365,7 +2363,11 @@ class Notice extends Managed_DataObject
         $result = self::cacheGet($keypart);
 
         if ($result === false) {
-            $bResult = $this->_inScope($profile);
+            $bResult = false;
+            if (Event::handle('StartNoticeInScope', array($this, $profile, &$bResult))) {
+                $bResult = $this->_inScope($profile);
+                Event::handle('EndNoticeInScope', array($this, $profile, &$bResult));
+            }
             $result = ($bResult) ? 1 : 0;
             self::cacheSet($keypart, $result, 0, 300);
         }
@@ -2383,75 +2385,100 @@ class Notice extends Managed_DataObject
 
         // If there's no scope, anyone (even anon) is in scope.
 
-        if ($scope == 0) {
-            return true;
-        }
+        if ($scope == 0) { // Not private
 
-        // If there's scope, anon cannot be in scope
+            return !$this->isHiddenSpam($profile);
 
-        if (empty($profile)) {
-            return false;
-        }
+        } else { // Private, somehow
 
-        // Author is always in scope
+            // If there's scope, anon cannot be in scope
 
-        if ($this->profile_id == $profile->id) {
-            return true;
-        }
-
-        // Only for users on this site
-
-        if ($scope & Notice::SITE_SCOPE) {
-            $user = $profile->getUser();
-            if (empty($user)) {
+            if (empty($profile)) {
                 return false;
             }
-        }
 
-        // Only for users mentioned in the notice
+            // Author is always in scope
 
-        if ($scope & Notice::ADDRESSEE_SCOPE) {
-
-			$repl = Reply::pkeyGet(array('notice_id' => $this->id,
-										 'profile_id' => $profile->id));
-										 
-            if (empty($repl)) {
-                return false;
+            if ($this->profile_id == $profile->id) {
+                return true;
             }
-        }
 
-        // Only for members of the given group
+            // Only for users on this site
 
-        if ($scope & Notice::GROUP_SCOPE) {
-
-            // XXX: just query for the single membership
-
-            $groups = $this->getGroups();
-
-            $foundOne = false;
-
-            foreach ($groups as $group) {
-                if ($profile->isMember($group)) {
-                    $foundOne = true;
-                    break;
+            if ($scope & Notice::SITE_SCOPE) {
+                $user = $profile->getUser();
+                if (empty($user)) {
+                    return false;
                 }
             }
 
-            if (!$foundOne) {
-                return false;
+            // Only for users mentioned in the notice
+
+            if ($scope & Notice::ADDRESSEE_SCOPE) {
+
+                $repl = Reply::pkeyGet(array('notice_id' => $this->id,
+                                             'profile_id' => $profile->id));
+										 
+                if (empty($repl)) {
+                    return false;
+                }
             }
+
+            // Only for members of the given group
+
+            if ($scope & Notice::GROUP_SCOPE) {
+
+                // XXX: just query for the single membership
+
+                $groups = $this->getGroups();
+
+                $foundOne = false;
+
+                foreach ($groups as $group) {
+                    if ($profile->isMember($group)) {
+                        $foundOne = true;
+                        break;
+                    }
+                }
+
+                if (!$foundOne) {
+                    return false;
+                }
+            }
+
+            // Only for followers of the author
+
+            $author = null;
+
+            if ($scope & Notice::FOLLOWER_SCOPE) {
+
+                $author = $this->getProfile();
+        
+                if (!Subscription::exists($profile, $author)) {
+                    return false;
+                }
+            }
+
+            return !$this->isHiddenSpam($profile);
         }
+    }
 
-        // Only for followers of the author
+    function isHiddenSpam($profile) {
+        
+        // Hide posts by silenced users from everyone but moderators.
 
-        if ($scope & Notice::FOLLOWER_SCOPE) {
+        if (common_config('notice', 'hidespam')) {
+
             $author = $this->getProfile();
-            if (!Subscription::exists($profile, $author)) {
-                return false;
+
+            if ($author->hasRole(Profile_role::SILENCED)) {
+                if (empty($profile) || !$profile->hasRight(Right::REVIEWSPAM)) {
+                    return true;
+                }
             }
         }
 
-        return true;
+        return false;
     }
 
     static function groupsFromText($text, $profile)

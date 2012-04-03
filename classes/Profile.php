@@ -1139,11 +1139,27 @@ class Profile extends Managed_DataObject
     function silence()
     {
         $this->grantRole(Profile_role::SILENCED);
+        if (common_config('notice', 'hidespam')) {
+            $this->flushVisibility();
+        }
     }
 
     function unsilence()
     {
         $this->revokeRole(Profile_role::SILENCED);
+        if (common_config('notice', 'hidespam')) {
+            $this->flushVisibility();
+        }
+    }
+
+    function flushVisibility()
+    {
+        // Get all notices
+        $stream = new ProfileNoticeStream($this, $this);
+        $ids = $stream->getNoticeIds(0, CachingNoticeStream::CACHE_WINDOW);
+        foreach ($ids as $id) {
+            self::blow('notice:in-scope-for:%d:null', $id);
+        }
     }
 
     /**
@@ -1174,6 +1190,8 @@ class Profile extends Managed_DataObject
             case Right::SILENCEUSER:
             case Right::DELETEUSER:
             case Right::DELETEGROUP:
+            case Right::TRAINSPAM:
+            case Right::REVIEWSPAM:
                 $result = $this->hasRole(Profile_role::MODERATOR);
                 break;
             case Right::CONFIGURESITE:

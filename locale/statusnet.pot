@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
+"POT-Creation-Date: 2011-12-28 11:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7325,23 +7325,34 @@ msgstr ""
 msgid "Robin thinks something is impossible."
 msgstr ""
 
-#. TRANS: Message given if an upload is larger than the configured maximum.
-#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-#. TRANS: %1$s is used for plural.
+#. TRANS: Message used to be inserted as %2$s in  the text "No file may
+#. TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+#. TRANS: %1$d is the number of bytes of an uploaded file.
 #: classes/File.php:223
 #, php-format
+msgid "%1$d byte"
+msgid_plural "%1$d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: Message given if an upload is larger than the configured maximum.
+#. TRANS: %1$d (used for plural) is the byte limit for uploads,
+#. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+#. TRANS: gettext support multiple plurals in the same message, unfortunately...
+#: classes/File.php:230
+#, php-format
 msgid ""
-"No file may be larger than %1$d byte and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgid_plural ""
-"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgstr[0] ""
 msgstr[1] ""
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
-#: classes/File.php:236
+#: classes/File.php:243
 #, php-format
 msgid "A file this large would exceed your user quota of %d byte."
 msgid_plural "A file this large would exceed your user quota of %d bytes."
@@ -7350,7 +7361,7 @@ msgstr[1] ""
 
 #. TRANS: Message given id an upload would exceed a user's monthly quota.
 #. TRANS: $d (number) is the monthly user quota in bytes and is used for plural.
-#: classes/File.php:248
+#: classes/File.php:255
 #, php-format
 msgid "A file this large would exceed your monthly quota of %d byte."
 msgid_plural "A file this large would exceed your monthly quota of %d bytes."
@@ -7358,7 +7369,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. TRANS: Client exception thrown if a file upload does not have a valid name.
-#: classes/File.php:295 classes/File.php:310
+#: classes/File.php:302 classes/File.php:317
 msgid "Invalid filename."
 msgstr ""
 
@@ -7603,7 +7614,7 @@ msgstr ""
 #, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
-"allowed number.Try unlisting others first."
+"allowed number. Try unlisting others first."
 msgstr ""
 
 #. TRANS: Exception thrown when inserting a list subscription in the database fails.

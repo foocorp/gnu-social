@@ -9,18 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:06:15+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:13+0000\n"
 "Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -3903,7 +3902,7 @@ msgstr "Monstrar etiquettas public."
 #. TRANS: Submit button text on gallery action page.
 msgctxt "BUTTON"
 msgid "Go"
-msgstr "Ir"
+msgstr "Va"
 
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
@@ -5328,15 +5327,15 @@ msgstr ""
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool."
 msgstr ""
 "**%s** ha un conto in %%%%site.name%%%%, un servicio de [micro-blogging]"
-"(http://en.wikipedia.org/wiki/Microblog) a base del software libere "
-"[StatusNet](http://status.net/). "
+"(http://ia.wikipedia.org/wiki/Microblog) a base del software libere "
+"[StatusNet](http://status.net/)."
 
 #. TRANS: Link to the author of a repeated notice. %s is a linked nickname.
 #, php-format
@@ -6182,7 +6181,6 @@ msgid "License"
 msgstr "Licentia"
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
@@ -6192,10 +6190,9 @@ msgstr ""
 "StatusNet es software libere: vos pote redistribuer lo e/o modificar lo sub "
 "le conditiones del GNU Affero General Public License como publicate per le "
 "Free Software Foundation, o version 3 de iste licentia, o (a vostre "
-"election) omne version plus recente. "
+"election) omne version plus recente."
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -6205,7 +6202,7 @@ msgstr ""
 "Iste programma es distribuite in le sperantia que illo essera utile, ma SIN "
 "ALCUN GARANTIA; sin mesmo le garantia implicite de COMMERCIABILITATE o de "
 "USABILITATE PRO UN PARTICULAR SCOPO. Vide le GNU Affero General Public "
-"License pro ulterior detalios. "
+"License pro ulterior detalios."
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
@@ -6260,22 +6257,32 @@ msgstr "Impossibile processar le URL '%s'"
 msgid "Robin thinks something is impossible."
 msgstr "Robin pensa que alique es impossibile."
 
+#. TRANS: Message used to be inserted as %2$s in  the text "No file may
+#. TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+#. TRANS: %1$d is the number of bytes of an uploaded file.
+#, php-format
+msgid "%1$d byte"
+msgid_plural "%1$d bytes"
+msgstr[0] "%1$d byte"
+msgstr[1] "%1$d bytes"
+
 #. TRANS: Message given if an upload is larger than the configured maximum.
-#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-#. TRANS: %1$s is used for plural.
+#. TRANS: %1$d (used for plural) is the byte limit for uploads,
+#. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+#. TRANS: gettext support multiple plurals in the same message, unfortunately...
 #, php-format
 msgid ""
-"No file may be larger than %1$d byte and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgid_plural ""
-"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgstr[0] ""
 "Nulle file pote esser plus grande que %1$d byte e le file que tu inviava ha %"
-"2$d bytes. Tenta incargar un version minus grande."
+"2$s. Tenta incargar un version minus grande."
 msgstr[1] ""
 "Nulle file pote esser plus grande que %1$d bytes e le file que tu inviava ha "
-"%2$d bytes. Tenta incargar un version minus grande."
+"%2$s. Tenta incargar un version minus grande."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -6503,10 +6510,10 @@ msgstr ""
 #, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
-"allowed number.Try unlisting others first."
+"allowed number. Try unlisting others first."
 msgstr ""
-"Il ha jam %1$d o plus personas in le lista %2$s, que es le numero maxime "
-"permittite. Tenta primo remover alteres del lista."
+"Il ha jam %1$d o plus personas in le lista %2$s, que es le maximo "
+"permittite. Remove alteres del lista primo."
 
 #. TRANS: Exception thrown when inserting a list subscription in the database fails.
 msgid "Adding list subscription failed."

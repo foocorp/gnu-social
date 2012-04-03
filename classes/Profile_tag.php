@@ -193,7 +193,7 @@ class Profile_tag extends Managed_DataObject
             if ($profile_list->taggedCount() >= common_config('peopletag', 'maxpeople')) {
                 // TRANS: Client exception thrown when trying to add more people than allowed to a list.
                 throw new ClientException(sprintf(_('You already have %1$d or more people in list %2$s, ' .
-                                                    'which is the maximum allowed number.' .
+                                                    'which is the maximum allowed number. ' .
                                                     'Try unlisting others first.'),
                                                     common_config('peopletag', 'maxpeople'), $tag));
                 return false;

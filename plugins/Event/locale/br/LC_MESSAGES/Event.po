@@ -10,15 +10,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:04:37+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:12+0000\n"
 "Language-Team: Breton <https://translatewiki.net/wiki/Portal:br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-10-10 14:11:36+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: br\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -35,17 +34,17 @@ msgstr "(30 mun)"
 msgid "(1 hour)"
 msgstr "(1 eurvezh)"
 
-#, fuzzy, php-format
+#, php-format
 msgid "(%.1f hours)"
-msgstr "(1 eurvezh)"
+msgstr ""
 
-#, fuzzy, php-format
+#, php-format
 msgid "(%d hours)"
-msgstr "(1 eurvezh)"
+msgstr ""
 
 #. TRANS: Client exception thrown when trying to create an event that already exists.
 msgid "Event already exists."
-msgstr "An darvoud zo anezhañ dija."
+msgstr "An darvoud-mañ zo anezhañ c'hoazh."
 
 #. TRANS: Event description. %1$s is a title, %2$s is start time, %3$s is end time,
 #. TRANS: %4$s is location, %5$s is a description.

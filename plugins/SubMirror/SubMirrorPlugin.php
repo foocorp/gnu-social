@@ -157,6 +157,10 @@ class SubMirrorPlugin extends Plugin
      */
     function onOstatus_profileSubscriberCount($oprofile, &$count)
     {
+        if (empty($oprofile) || !($oprofile instanceof Ostatus_profile)) {
+            return true;
+        }
+
         if ($oprofile->profile_id) {
             $mirror = new SubMirror();
             $mirror->subscribed = $oprofile->profile_id;
@@ -166,6 +170,7 @@ class SubMirrorPlugin extends Plugin
                 }
             }
         }
+
         return true;
     }
 

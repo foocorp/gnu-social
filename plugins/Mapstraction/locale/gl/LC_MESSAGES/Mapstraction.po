@@ -9,15 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Mapstraction\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:05:21+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:41+0000\n"
 "Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:30+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-mapstraction\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -35,18 +34,20 @@ msgid ""
 "Show maps of users' and friends' notices with <a href=\"http://www."
 "mapstraction.com/\">Mapstraction</a>."
 msgstr ""
+"Mostra mapas das notas dos usuarios e amigos con <a href=\"http://www."
+"mapstraction.com/\">Mapstraction</a>."
 
 #. TRANS: Page title.
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "%s friends map"
-msgstr ""
+msgstr "Mapa dos amigos de %s"
 
 #. TRANS: Page title.
 #. TRANS: %1$s is a user nickname, %2$d is a page number.
 #, php-format
 msgid "%1$s friends map, page %2$d"
-msgstr ""
+msgstr "Mapa dos amigos de %1$s, páxina %2$d"
 
 #. TRANS: Client error displayed when referring to a non-existing user.
 msgid "No such user."
@@ -60,4 +61,4 @@ msgstr "O usuario non ten perfil."
 #. TRANS: %s is a user name.
 #, php-format
 msgid "%s map"
-msgstr ""
+msgstr "Mapa de %s"

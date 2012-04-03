@@ -212,6 +212,11 @@ class ShowstreamAction extends ProfileAction
         $this->element('link', array('rel' => 'EditURI',
                                      'type' => 'application/rsd+xml',
                                      'href' => $rsd));
+
+        if ($this->page != 1) {
+            $this->element('link', array('rel' => 'canonical',
+                                         'href' => $this->profile->profileurl));
+        }
     }
 
     function showEmptyListMessage()

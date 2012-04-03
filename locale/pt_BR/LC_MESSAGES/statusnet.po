@@ -16,19 +16,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:06:38+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:35+0000\n"
 "Language-Team: Brazilian Portuguese <https://translatewiki.net/wiki/Portal:"
 "pt-br>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: pt-br\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -104,9 +103,8 @@ msgid "Closed"
 msgstr "Fechado"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
-msgstr "Salvar as configurações de acesso"
+msgstr "Salvar as configurações de acesso."
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -253,9 +251,9 @@ msgstr "Mensagens de %s"
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
 #. TRANS: %s is tagger's nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Feed for friends of %s (Activity Streams JSON)"
-msgstr "Fonte de mensagens dos amigos de %s (Atom)"
+msgstr "Fonte de mensagens dos amigos de %s (Activity Streams JSON)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -319,10 +317,9 @@ msgstr ""
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr "Convites"
+msgstr "Enviar convite"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -446,17 +443,15 @@ msgid "Unblock user failed."
 msgstr "Não foi possível desbloquear o usuário."
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "Conversa"
+msgstr "Nenhuma ID de conversação."
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "No conversation with ID %d."
-msgstr "Conversa"
+msgstr "Nenhuma conversa com a ID  %d ."
 
 #. TRANS: Title for conversion timeline.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
 msgstr "Conversa"
@@ -6335,16 +6330,26 @@ msgstr "Não é possível processar a URL '$s'"
 msgid "Robin thinks something is impossible."
 msgstr "o Robin acha que algo é impossível."
 
-#. TRANS: Message given if an upload is larger than the configured maximum.
-#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-#. TRANS: %1$s is used for plural.
+#. TRANS: Message used to be inserted as %2$s in  the text "No file may
+#. TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+#. TRANS: %1$d is the number of bytes of an uploaded file.
 #, php-format
+msgid "%1$d byte"
+msgid_plural "%1$d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#. TRANS: Message given if an upload is larger than the configured maximum.
+#. TRANS: %1$d (used for plural) is the byte limit for uploads,
+#. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+#. TRANS: gettext support multiple plurals in the same message, unfortunately...
+#, fuzzy, php-format
 msgid ""
-"No file may be larger than %1$d byte and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgid_plural ""
-"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgstr[0] ""
 "Nenhum arquivo pode ter mais de %1$d byte e o que você enviou tinha %2$d "
 "bytes. Tente enviar uma versão menor."
@@ -6576,11 +6581,13 @@ msgstr ""
 "permitidas. Experimente usar ou excluir algumas já existentes."
 
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
-#, php-format
+#, fuzzy, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
-"allowed number.Try unlisting others first."
+"allowed number. Try unlisting others first."
 msgstr ""
+"Você já criou %d ou mais etiquetas, atingindo o número máximo de etiquetas "
+"permitidas. Experimente usar ou excluir algumas já existentes."
 
 #. TRANS: Exception thrown when inserting a list subscription in the database fails.
 #, fuzzy
@@ -8601,7 +8608,7 @@ msgstr "Enviar uma mensagem direta"
 #. TRANS: This is the default entry in the drop-down box, doubling as instructions
 #. TRANS: and a brake against accidental submissions with the first user in the list.
 msgid "Select recipient:"
-msgstr "Selecione uma operadora:"
+msgstr "Selecione o destinatário:"
 
 #. TRANS: Entry in drop-down selection box in direct-message inbox/outbox when no one is available to message.
 msgid "No mutual subscribers."

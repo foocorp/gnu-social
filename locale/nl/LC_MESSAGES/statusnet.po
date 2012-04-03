@@ -13,18 +13,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:06:30+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:46:30+0000\n"
 "Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -2006,7 +2005,7 @@ msgstr "Documentatie"
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 msgctxt "MENU"
 msgid "Help"
-msgstr "Help"
+msgstr "Hulp"
 
 msgid "Getting started"
 msgstr "Aan de slag"
@@ -5384,7 +5383,7 @@ msgstr ""
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
@@ -5392,7 +5391,7 @@ msgid ""
 msgstr ""
 "**%s** heeft een gebruiker op %%%%site.name%%%%, een [microblogdienst]"
 "(http://en.wikipedia.org/wiki/Micro-blogging) gebaseerd op de Vrije Software "
-"[StatusNet](http://status.net/). "
+"[StatusNet](http://status.net/)."
 
 #. TRANS: Link to the author of a repeated notice. %s is a linked nickname.
 #, php-format
@@ -6244,7 +6243,6 @@ msgid "License"
 msgstr "Licentie"
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
@@ -6254,10 +6252,9 @@ msgstr ""
 "StatusNet is vrije software. U kunt het herdistribueren en/of wijzigen in "
 "overeenstemming met de voorwaarden van de GNU Affero General Public License "
 "zoals gepubliceerd door de Free Software Foundation, versie 3 van de "
-"Licentie, of (naar uw keuze) elke latere versie. "
+"Licentie, of (naar uw keuze) elke latere versie."
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
@@ -6267,7 +6264,7 @@ msgstr ""
 "Dit programma wordt verspreid in de hoop dat het bruikbaar is, maar ZONDER "
 "ENIGE GARANTIE; zelfs zonder de impliciete garantie van VERKOOPBAARHEID of "
 "GESCHIKTHEID VOOR EEN BEPAALD DOEL. Zie de GNU Affero General Public License "
-"voor meer details. "
+"voor meer details."
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
@@ -6322,22 +6319,32 @@ msgstr "Het was niet mogelijk de URL \"%s\" te verwerken."
 msgid "Robin thinks something is impossible."
 msgstr "Robin denkt dat iets onmogelijk is."
 
+#. TRANS: Message used to be inserted as %2$s in  the text "No file may
+#. TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+#. TRANS: %1$d is the number of bytes of an uploaded file.
+#, php-format
+msgid "%1$d byte"
+msgid_plural "%1$d bytes"
+msgstr[0] "%1$d byte"
+msgstr[1] "%1$d bytes"
+
 #. TRANS: Message given if an upload is larger than the configured maximum.
-#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-#. TRANS: %1$s is used for plural.
+#. TRANS: %1$d (used for plural) is the byte limit for uploads,
+#. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+#. TRANS: gettext support multiple plurals in the same message, unfortunately...
 #, php-format
 msgid ""
-"No file may be larger than %1$d byte and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgid_plural ""
-"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgstr[0] ""
-"Bestanden mogen niet groter zijn dan %1$d byte, en uw bestand was %2$d "
-"bytes. Probeer een kleinere versie te uploaden."
+"Bestanden mogen niet groter zijn dan %1$d byte, en uw bestand was %2$s. "
+"Probeer een kleinere versie te uploaden."
 msgstr[1] ""
-"Bestanden mogen niet groter zijn dan %1$d bytes, en uw bestand was %2$d "
-"bytes. Probeer een kleinere versie te uploaden."
+"Bestanden mogen niet groter zijn dan %1$d bytes, en uw bestand was %2$s. "
+"Probeer een kleinere versie te uploaden."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -6580,7 +6587,7 @@ msgstr ""
 #, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
-"allowed number.Try unlisting others first."
+"allowed number. Try unlisting others first."
 msgstr ""
 "U hebt al %1$d of meer mensen in de lijst %2$s opgenomen. Meer mensen "
 "opnemen is niet mogelijk. Verwijder eerst mensen uit de lijst voordat u "
@@ -8195,7 +8202,7 @@ msgstr ""
 #. TRANS: %1$s is the subscriber's long name, %2$s is the StatusNet sitename.
 #, php-format
 msgid "%1$s is now following you on %2$s."
-msgstr "%1$s volt u nu op %2$s."
+msgstr "%1$s volgt u nu op %2$s."
 
 #. TRANS: Subject of pending new-subscriber notification e-mail.
 #. TRANS: %1$s is the subscribing user's nickname, %2$s is the StatusNet sitename.

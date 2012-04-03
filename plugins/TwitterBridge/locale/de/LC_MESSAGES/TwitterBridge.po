@@ -1,6 +1,7 @@
 # Translation of StatusNet - TwitterBridge to German (Deutsch)
 # Exported from translatewiki.net
 #
+# Author: Alphakilo
 # Author: George Animal
 # Author: Giftpflanze
 # Author: Habi
@@ -14,15 +15,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:07:10+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:47:19+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-09-25 22:08:46+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-POT-Import-Date: 2011-12-03 13:51:38+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -359,7 +359,7 @@ msgstr "Ungültiges URL-Schema für den HTTP-Stream-Reader."
 
 #. TRANS: Exception thrown when input from an inexpected socket is encountered.
 msgid "Got input from unexpected socket!"
-msgstr ""
+msgstr "Eingabe erfolgte durch unerwarteten Socket"
 
 #. TRANS: Exception thrown when an invalid state is encountered in handleLine.
 #. TRANS: %s is the invalid state.

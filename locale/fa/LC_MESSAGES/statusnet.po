@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:05:58+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:56+0000\n"
 "Last-Translator: Ahmad Sufi Mahmudi\n"
 "Language-Team: Persian <https://translatewiki.net/wiki/Portal:fa>\n"
 "MIME-Version: 1.0\n"
@@ -29,10 +29,9 @@ msgstr ""
 "X-Language-Code: fa\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
-"X-POT-Import-Date: 2011-10-10 14:22:23+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -6443,16 +6442,25 @@ msgstr ""
 msgid "Robin thinks something is impossible."
 msgstr ""
 
+#. TRANS: Message used to be inserted as %2$s in  the text "No file may
+#. TRANS: be larger than %1$d byte and the file you sent was %2$s.".
+#. TRANS: %1$d is the number of bytes of an uploaded file.
+#, php-format
+msgid "%1$d byte"
+msgid_plural "%1$d bytes"
+msgstr[0] ""
+
 #. TRANS: Message given if an upload is larger than the configured maximum.
-#. TRANS: %1$d is the byte limit for uploads, %2$d is the byte count for the uploaded file.
-#. TRANS: %1$s is used for plural.
+#. TRANS: %1$d (used for plural) is the byte limit for uploads,
+#. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
+#. TRANS: gettext support multiple plurals in the same message, unfortunately...
 #, fuzzy, php-format
 msgid ""
-"No file may be larger than %1$d byte and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgid_plural ""
-"No file may be larger than %1$d bytes and the file you sent was %2$d bytes. "
-"Try to upload a smaller version."
+"No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
+"upload a smaller version."
 msgstr[0] ""
 "هیچ پرونده‌ای نباید بزرگ‌تر از %d بایت باشد و پرونده‌ای که شما فرستادید %d بایت "
 "بود. بارگذاری یک نسخهٔ کوچک‌تر را امتحان کنید."
@@ -6691,7 +6699,7 @@ msgstr ""
 #, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
-"allowed number.Try unlisting others first."
+"allowed number. Try unlisting others first."
 msgstr ""
 
 #. TRANS: Exception thrown when inserting a list subscription in the database fails.
@@ -7306,7 +7314,6 @@ msgstr "لغو کردن"
 
 #. TRANS: Submit button text to accept a group membership request on approve group form.
 #. TRANS: Submit button text to accept a subscription request on approve sub form.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Accept"
 msgstr "پذیرفتن"

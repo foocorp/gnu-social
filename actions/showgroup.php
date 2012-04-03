@@ -233,4 +233,12 @@ class ShowgroupAction extends GroupAction
         $this->raw(common_markup_to_html($m));
         $this->elementEnd('div');
     }
+
+    function extraHead()
+    {
+        if ($this->page != 1) {
+            $this->element('link', array('rel' => 'canonical',
+                                         'href' => $this->group->homeUrl()));
+        }
+    }
 }

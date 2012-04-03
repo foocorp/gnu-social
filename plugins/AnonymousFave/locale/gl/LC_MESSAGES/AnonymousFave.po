@@ -9,15 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - AnonymousFave\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-11 15:03+0000\n"
-"PO-Revision-Date: 2011-11-11 15:03:38+0000\n"
+"POT-Creation-Date: 2012-03-01 15:45+0000\n"
+"PO-Revision-Date: 2012-03-01 15:45:36+0000\n"
 "Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:49:09+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r102787); Translate extension (2011-10-"
-"30)\n"
-"X-Translation-Project: translatewiki.net at https://translatewiki.net\n"
+"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-plugin-anonymousfave\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -38,6 +37,8 @@ msgstr "Non se puido crear o favorito do aviso con ID %d."
 msgid ""
 "Could not disfavor notice! Please make sure your browser has cookies enabled."
 msgstr ""
+"Non se puido eliminar a nota dos favoritos! Asegúrese de que o navegador ten "
+"as cookies habilitadas."
 
 #. TRANS: Client error.
 msgid "There was a problem with your session token. Try again, please."
@@ -57,7 +58,7 @@ msgstr "Engadir aos favoritos"
 
 #. TRANS: Label for tally for number of times a notice was favored.
 msgid "Favored"
-msgstr ""
+msgstr "Favorita"
 
 #. TRANS: Server exception.
 msgid "Could not create anonymous user session."
@@ -65,12 +66,14 @@ msgstr "Non se puido crear a sesión de usuario anónimo."
 
 #. TRANS: Plugin description.
 msgid "Allow anonymous users to favorite notices."
-msgstr ""
+msgstr "Permitir aos usuarios anónimos marcar notas como favoritas."
 
 #. TRANS: Client error.
 msgid ""
 "Could not favor notice! Please make sure your browser has cookies enabled."
 msgstr ""
+"Non se puido engadir a nota aos favoritos! Asegúrese de que o navegador ten "
+"as cookies habilitadas."
 
 #. TRANS: Client error.
 msgid "This notice is already a favorite!"
