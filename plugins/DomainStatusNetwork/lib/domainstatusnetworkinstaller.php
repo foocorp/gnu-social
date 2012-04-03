@@ -117,7 +117,7 @@ class DomainStatusNetworkInstaller extends Installer
 
         $this->rootname = $config['ADMIN'];
         $this->rootpass = $config['ADMINPASS'];
-        $this->sitehost = $config['DBHOST'];
+        $this->sitehost = $config['SITEDBHOSTNAME'];
         $this->sitedb   = $config['SITEDB'];
 
         $tagstr = $config['TAGS'];
