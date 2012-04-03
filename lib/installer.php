@@ -322,7 +322,7 @@ abstract class Installer
             $this->updateStatus(sprintf("Adding %s data to database...", $name));
             $res = $this->runDbScript($scr.'.sql', $conn);
             if ($res === false) {
-                $this->updateStatus(sprintf("Can't run %d script.", $name), true);
+                $this->updateStatus(sprintf("Can't run %s script.", $name), true);
                 return false;
             }
         }
