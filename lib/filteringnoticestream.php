@@ -74,8 +74,6 @@ abstract class FilteringNoticeStream extends NoticeStream
 
         do {
 
-            common_debug(get_class($this) . ": ($offset, $limit) Round $round: fetching $askFor notices starting at $startAt");
-
             $raw = $this->upstream->getNotices($startAt, $askFor, $sinceId, $maxId);
 
             $results = $raw->N;
@@ -110,8 +108,6 @@ abstract class FilteringNoticeStream extends NoticeStream
             } else {
                 $askFor = max(min(intval(ceil(($total - $hits)*$startAt/$hits)), NOTICES_PER_PAGE * 50), NOTICES_PER_PAGE);
             }
-
-            common_debug(get_class($this) . ": ($offset, $limit) Round $round hits is $hits, results = $results.");
 
             $round++;
 
