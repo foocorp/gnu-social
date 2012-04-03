@@ -178,6 +178,7 @@ class DomainStatusNetworkInstaller extends Installer
         $sn->dbpass   = $this->password;
         $sn->dbname   = $this->database;
         $sn->sitename = $this->sitename;
+        $sn->created  = common_sql_now();
 
         $result = $sn->insert();
 
