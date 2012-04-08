@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Crochet.david
+# Author: JojoBoulix
 # Author: Lucky
 # Author: Od1n
 # Author: Peter17
@@ -14,13 +15,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-11 20:13+0000\n"
-"PO-Revision-Date: 2012-03-11 20:15:44+0000\n"
+"POT-Creation-Date: 2012-04-08 22:26+0000\n"
+"PO-Revision-Date: 2012-04-08 22:28:17+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-10-10 14:11:22+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
+"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
@@ -134,7 +135,6 @@ msgid ""
 msgstr ""
 
 #. TRANS: Tooltip for OpenID configuration menu item.
-#, fuzzy
 msgid "OpenID configuration."
 msgstr "Configuration d’OpenID"
 
@@ -184,7 +184,6 @@ msgstr ""
 "nouveau."
 
 #. TRANS: Message given if user does not agree with the site's license.
-#, fuzzy
 msgid "You cannot register if you do not agree to the license."
 msgstr "Vous ne pouvez pas vous inscrire si vous n’acceptez pas la licence."
 
@@ -206,7 +205,6 @@ msgstr ""
 "en avez un."
 
 #. TRANS: Title
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID Account Setup"
 msgstr "Configuration du compte OpenID"
@@ -285,9 +283,9 @@ msgstr "Authentification OpenID annulée."
 #. TRANS: OpenID authentication failed; display the error message. %s is the error message.
 #. TRANS: OpenID authentication failed; display the error message.
 #. TRANS: %s is the error message.
-#, fuzzy, php-format
+#, php-format
 msgid "OpenID authentication failed: %s."
-msgstr "L’authentification OpenID a échoué : %s"
+msgstr "L’authentification OpenID a échoué : %s."
 
 #. TRANS: Message displayed when OpenID authentication is aborted.
 #. TRANS: OpenID authentication error.
@@ -515,7 +513,6 @@ msgid "OpenID Login"
 msgstr "Connexion OpenID"
 
 #. TRANS: Title of OpenID settings page for a user.
-#, fuzzy
 msgctxt "TITLE"
 msgid "OpenID settings"
 msgstr "Paramètres OpenID"

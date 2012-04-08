@@ -12,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-11 20:13+0000\n"
-"PO-Revision-Date: 2012-03-11 20:13:59+0000\n"
+"POT-Creation-Date: 2012-04-08 22:26+0000\n"
+"PO-Revision-Date: 2012-04-08 22:27:24+0000\n"
 "Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2012-03-11 19:51:52+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
+"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
+"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -4181,7 +4181,6 @@ msgid "What timezone are you normally in?"
 msgstr "Zein ordu-eremutan zaude normalean?"
 
 #. TRANS: Checkbox label in form for profile settings.
-#, fuzzy
 msgid ""
 "Automatically subscribe to whoever subscribes to me (best for non-humans)"
 msgstr ""
@@ -4958,7 +4957,7 @@ msgstr "Aplikazioaren informazioa"
 
 #. TRANS: Field label on application page.
 msgid "Consumer key"
-msgstr "Kontsumitzaile giltza"
+msgstr "Kontsumitzaile gakoa"
 
 #. TRANS: Field label on application page.
 msgid "Consumer secret"
@@ -6273,8 +6272,8 @@ msgstr "Aitorrek zerbait ezinezkoa dela uste du."
 #, php-format
 msgid "%1$d byte"
 msgid_plural "%1$d bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "byte %1$d"
+msgstr[1] "%1$d byte"
 
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
@@ -6521,13 +6520,14 @@ msgstr ""
 "erabiltzen."
 
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
 "allowed number. Try unlisting others first."
 msgstr ""
 "Jadanik %1$d lagun edo gehiago dituzu %2$s zerrendan, eta onartutako "
-"gehieneko kopurura iritsi zara. Saiatu lehenengo lagunak zerrendatik kentzen."
+"gehieneko kopurura iritsi zara. Saiatu aurretik beste lagun batzuk "
+"zerrendatik kenduta."
 
 #. TRANS: Exception thrown when inserting a list subscription in the database fails.
 msgid "Adding list subscription failed."

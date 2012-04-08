@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Adsense\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:45:33+0000\n"
+"POT-Creation-Date: 2012-04-08 22:26+0000\n"
+"PO-Revision-Date: 2012-04-08 22:26:49+0000\n"
 "Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 10:22:41+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-plugin-adsense\n"
@@ -66,7 +66,7 @@ msgstr "Laukizuzen ertaina"
 
 #. TRANS: Field title in AdSense administration panel.
 msgid "Medium rectangle slot code."
-msgstr ""
+msgstr "Lauki ertaineko kodea."
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Rectangle"
@@ -74,15 +74,15 @@ msgstr "Laukizuzena"
 
 #. TRANS: Field title in AdSense administration panel.
 msgid "Rectangle slot code."
-msgstr ""
+msgstr "Laukiko kodea."
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Leaderboard"
-msgstr ""
+msgstr "Sailkapena"
 
 #. TRANS: Field title in AdSense administration panel.
 msgid "Leaderboard slot code."
-msgstr ""
+msgstr "Sailkapeneko kodea."
 
 #. TRANS: Field label in AdSense administration panel.
 msgid "Skyscraper"
@@ -90,7 +90,7 @@ msgstr "Etxe orratza"
 
 #. TRANS: Field title in AdSense administration panel.
 msgid "Wide skyscraper slot code."
-msgstr ""
+msgstr "Lauki bertikaleko kodea."
 
 #. TRANS: Button text to save settings in AdSense administration panel.
 msgctxt "BUTTON"
@@ -99,4 +99,4 @@ msgstr "Gorde"
 
 #. TRANS: Button title to save settings in AdSense administration panel.
 msgid "Save AdSense settings."
-msgstr ""
+msgstr "Gorde AdSense aukerak."

@@ -35,17 +35,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-11 20:13+0000\n"
-"PO-Revision-Date: 2012-03-11 20:13:48+0000\n"
+"POT-Creation-Date: 2012-04-08 22:26+0000\n"
+"PO-Revision-Date: 2012-04-08 22:27:14+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
+"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-03-11 19:51:52+0000\n"
+"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -4232,7 +4232,6 @@ msgid "What timezone are you normally in?"
 msgstr "In welcher Zeitzone befindest du dich üblicherweise?"
 
 #. TRANS: Checkbox label in form for profile settings.
-#, fuzzy
 msgid ""
 "Automatically subscribe to whoever subscribes to me (best for non-humans)"
 msgstr ""
@@ -6168,7 +6167,7 @@ msgstr "Willkommens-Nachricht für neue Benutzer (maximal 255 Zeichen)."
 
 #. TRANS: Field label in user admin panel for setting default subscription for new users.
 msgid "Default subscription"
-msgstr "Standard-Abonnement"
+msgstr "Standardabonnement"
 
 #. TRANS: Tooltip in user admin panel for setting default subscription for new users.
 msgid "Automatically subscribe new users to this user."

@@ -4,6 +4,7 @@
 # Author: Brunoperel
 # Author: Davidtsm
 # Author: IAlex
+# Author: JojoBoulix
 # Author: Od1n
 # Author: Peter17
 # Author: Valeryan 24
@@ -15,13 +16,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-11 20:13+0000\n"
-"PO-Revision-Date: 2012-03-11 20:15:50+0000\n"
+"POT-Creation-Date: 2012-04-08 22:26+0000\n"
+"PO-Revision-Date: 2012-04-08 22:28:21+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:49:04+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
+"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -311,9 +312,8 @@ msgid "Profile Account"
 msgstr "Compte de profil"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Your account id (for example user@identi.ca)."
-msgstr "Votre identifiant de compte (utilisateur@identi.ca, par exemple)."
+msgstr "Votre identifiant (utilisateur@identi.ca, par exemple)."
 
 #. TRANS: Client error displayed when remote profile could not be looked up.
 #. TRANS: Client error.
