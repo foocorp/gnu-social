@@ -958,9 +958,9 @@ class ApiAction extends Action
         $to_profile = $message->getTo();
 
         $dmsg['id'] = intval($message->id);
-        $dmsg['sender_id'] = intval($from_profile);
+        $dmsg['sender_id'] = intval($from_profile->id);
         $dmsg['text'] = trim($message->content);
-        $dmsg['recipient_id'] = intval($to_profile);
+        $dmsg['recipient_id'] = intval($to_profile->id);
         $dmsg['created_at'] = $this->dateTwitter($message->created);
         $dmsg['sender_screen_name'] = $from_profile->nickname;
         $dmsg['recipient_screen_name'] = $to_profile->nickname;
