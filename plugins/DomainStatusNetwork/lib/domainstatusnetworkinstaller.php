@@ -117,7 +117,7 @@ class DomainStatusNetworkInstaller extends Installer
 
         $this->rootname = $config['ADMIN'];
         $this->rootpass = $config['ADMINPASS'];
-        $this->sitehost = $config['DBHOST'];
+        $this->sitehost = $config['SITEDBHOSTNAME'];
         $this->sitedb   = $config['SITEDB'];
 
         $tagstr = $config['TAGS'];
@@ -178,6 +178,7 @@ class DomainStatusNetworkInstaller extends Installer
         $sn->dbpass   = $this->password;
         $sn->dbname   = $this->database;
         $sn->sitename = $this->sitename;
+        $sn->created  = common_sql_now();
 
         $result = $sn->insert();
 
