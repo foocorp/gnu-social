@@ -20,7 +20,7 @@
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
 define('STATUSNET_BASE_VERSION', '1.1.0');
-define('STATUSNET_LIFECYCLE', 'dev'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
+define('STATUSNET_LIFECYCLE', 'alpha1'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
 define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . STATUSNET_LIFECYCLE);
 
 define('LACONICA_VERSION', STATUSNET_VERSION); // compatibility
