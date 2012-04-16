@@ -2,7 +2,10 @@
 # Exported from translatewiki.net
 #
 # Author: Iketsi
+# Author: Lucky
+# Author: Od1n
 # Author: Peter17
+# Author: Sherbrooke
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -10,14 +13,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - DomainWhitelist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-05 09:13+0000\n"
-"PO-Revision-Date: 2011-06-05 09:14:12+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:14:24+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-05-05 21:44:42+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r89487); Translate extension (2011-06-02)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2012-01-02 10:11:33+0000\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-domainwhitelist\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -30,9 +33,9 @@ msgstr "Adresse de courriel doit être dans ce domaine : %s."
 
 #. TRANS: Client exception thrown when a given e-mailaddress is not in the domain whitelist.
 #. TRANS: %s are whitelisted e-mail domains separated by comma's (localisable).
-#, fuzzy, php-format
+#, php-format
 msgid "Email address must be in one of these domains: %s."
-msgstr "Adresse de courriel doit être dans ce domaine : %s."
+msgstr "Cette adresse de courriel doit appartenir à l'un de ces domaines : %s."
 
 #. TRANS: Separator for whitelisted domains.
 msgctxt "SEPARATOR"
@@ -40,17 +43,16 @@ msgid ", "
 msgstr ", "
 
 #. TRANS: Exception thrown when an e-mail address does not match the site's domain whitelist.
-#, fuzzy
 msgid "That email address is not allowed on this site."
-msgstr "Adresse de courriel doit être dans ce domaine : %s."
+msgstr "Cette adresse de courriel n'est pas autorisée sur ce site."
 
 #. TRANS: Title for invitiation deletion dialog.
 msgid "Confirmation Required"
-msgstr ""
+msgstr "Confirmation requise"
 
 #. TRANS: Confirmation text for invitation deletion dialog.
 msgid "Really delete this invitation?"
-msgstr ""
+msgstr "Voulez-vous vraiment effacer cette invitation?"
 
 #. TRANS: Plugin description.
 msgid "Restrict domains for email users."
@@ -75,7 +77,7 @@ msgstr ""
 #. TRANS: Send button for inviting friends.
 msgctxt "BUTTON"
 msgid "Send"
-msgstr ""
+msgstr "Envoyer"
 
 #. TRANS: Submit button title.
 msgid "Send invitations."

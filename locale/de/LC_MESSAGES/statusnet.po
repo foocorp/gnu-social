@@ -35,17 +35,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:45:47+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
+"PO-Revision-Date: 2012-03-11 20:13:48+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-02-25 15:22:46+0000\n"
+"X-POT-Import-Date: 2012-03-11 19:51:52+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -4232,8 +4232,9 @@ msgid "What timezone are you normally in?"
 msgstr "In welcher Zeitzone befindest du dich üblicherweise?"
 
 #. TRANS: Checkbox label in form for profile settings.
+#, fuzzy
 msgid ""
-"Automatically subscribe to whoever subscribes to me (best for non-humans)."
+"Automatically subscribe to whoever subscribes to me (best for non-humans)"
 msgstr ""
 "Abonniere automatisch alle Kontakte, die mich abonnieren (sinnvoll für Nicht-"
 "Menschen)."
@@ -5980,10 +5981,10 @@ msgstr "Benutzerprofil"
 
 #. TRANS: Title for list form when on a profile page.
 #. TRANS: %s is a profile nickname.
-#, fuzzy, php-format
+#, php-format
 msgctxt "ADDTOLIST"
 msgid "List %s"
-msgstr "Liste"
+msgstr "%s abonnieren"
 
 #. TRANS: Title for list form when an error has occurred.
 msgctxt "TITLE"
@@ -6245,17 +6246,16 @@ msgid "License"
 msgstr "Lizenz"
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
 "Software Foundation, either version 3 of the License, or (at your option) "
 "any later version."
 msgstr ""
-"StatusNet ist freie Software: Sie dürfen es weiter verteilen und/oder "
-"verändern unter Berücksichtigung der Regeln zur GNU General Public License "
-"wie veröffentlicht durch die Free Software Foundation, entweder Version 3 "
-"der Lizenz, oder jede höhere Version."
+"StatusNet ist freie Software: Sie dürfen sie weiter verteilen und/oder "
+"verändern unter Berücksichtigung der Bedingungen der GNU Affero General "
+"Public License wie durch die Free Software Foundation veröffentlicht, "
+"entweder Version 3 der Lizenz, oder (nach Ihrer Wahl) jede höhere Version."
 
 #. TRANS: Content part of StatusNet version page.
 #, fuzzy
@@ -6329,8 +6329,8 @@ msgstr "Robin denkt, dass etwas unmöglich ist."
 #, php-format
 msgid "%1$d byte"
 msgid_plural "%1$d bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d Byte"
+msgstr[1] "%1$d Bytes"
 
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
@@ -6697,9 +6697,9 @@ msgstr "Konnte die lokale Gruppen Information nicht speichern."
 
 #. TRANS: Exception thrown when an account could not be located when it should be moved.
 #. TRANS: %s is the remote site.
-#, fuzzy, php-format
+#, php-format
 msgid "Cannot locate account %s."
-msgstr "Kann Konto %s nicht finden."
+msgstr "Konto %s kann nicht gefunden werden."
 
 #. TRANS: Exception thrown when a service document could not be located account move.
 #. TRANS: %s is the remote site.
@@ -6905,9 +6905,9 @@ msgid "No content for notice %s."
 msgstr "Kein Inhalt für Nachricht %s."
 
 #. TRANS: Exception thrown if a non-existing user is provided. %s is a user ID.
-#, fuzzy, php-format
+#, php-format
 msgid "No such user \"%s\"."
-msgstr "Unbekannter Benutzer."
+msgstr "Unbekannter Benutzer „%s“."
 
 #. TRANS: Client exception thrown when post to collection fails with a 400 status.
 #. TRANS: %1$s is a URL, %2$s is the status, %s$s is the fail reason.
@@ -7036,7 +7036,6 @@ msgid "Plugins configuration"
 msgstr "Pfadkonfiguration"
 
 #. TRANS: Menu item in administrator navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Plugins"
 msgstr "Erweiterungen"
@@ -7193,7 +7192,6 @@ msgstr "Widerrufen"
 
 #. TRANS: Submit button text to accept a group membership request on approve group form.
 #. TRANS: Submit button text to accept a subscription request on approve sub form.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Accept"
 msgstr "Akzeptieren"
@@ -7205,9 +7203,8 @@ msgid "Reject"
 msgstr "Ablehnen"
 
 #. TRANS: Atom feed exception thrown when an author element does not contain a name element.
-#, fuzzy
 msgid "Author element must contain a name element."
-msgstr "Das „author“-Element muss ein „name“-Element erhaten."
+msgstr "Das „author“-Element muss ein „name“-Element enthalten."
 
 #. TRANS: Server exception thrown when using the method setActivitySubject() in the class Atom10Feed.
 #, fuzzy
@@ -8101,15 +8098,13 @@ msgid "Trends"
 msgstr "Trends"
 
 #. TRANS: Default button text for inviting more users to the StatusNet instance.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
-msgstr "Lade neue Leute ein"
+msgstr "Mehr Kollegen einladen"
 
 #. TRANS: Form legend.
-#, fuzzy
 msgid "Invite collegues"
-msgstr "Lade neue Leute ein"
+msgstr "Kollegen einladen"
 
 #. TRANS: Field label for a list of e-mail addresses.
 msgid "Email addresses"
@@ -8319,7 +8314,7 @@ msgstr ""
 
 #. TRANS: Subject for 'nudge' notification email.
 #. TRANS: %s is the nudging user.
-#, fuzzy, php-format
+#, php-format
 msgid "You have been nudged by %s"
 msgstr "Du wurdest von „%s“ angestupst"
 
@@ -8813,15 +8808,13 @@ msgid "Nudge this user"
 msgstr "Gib diesem Benutzer einen Stups"
 
 #. TRANS: Button text to nudge/ping another user.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Nudge"
 msgstr "Stups"
 
 #. TRANS: Button title to nudge/ping another user.
-#, fuzzy
 msgid "Send a nudge to this user."
-msgstr "Sende diesem Benutzer einen Stups"
+msgstr "Sende diesem Benutzer einen Stups."
 
 #. TRANS: Server exception thrown in oEmbed action if no API endpoint is available.
 #, fuzzy
@@ -8974,7 +8967,6 @@ msgid "Edit lists"
 msgstr "Ungültiger Personen-Tag: „%s“."
 
 #. TRANS: Label in self tags widget.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Tags"
 msgstr "Tags"
@@ -9056,17 +9048,17 @@ msgid "Enable"
 msgstr "Aktivieren"
 
 #. TRANS: Plugin description for a disabled plugin.
-#, fuzzy
 msgctxt "plugin-description"
 msgid ""
 "(The plugin description is unavailable when a plugin has been disabled.)"
-msgstr "(Plugin Beschreibung nicht verfügbar wenn deaktiviert.)"
+msgstr ""
+"(Die Plugin-Beschreibung ist nicht verfügbar, wenn ein Plugin deaktiviert "
+"wurde.)"
 
 #. TRANS: Menu item in primary navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "Settings"
-msgstr "SMS-Einstellungen"
+msgstr "Einstellungen"
 
 #. TRANS: Menu item title in primary navigation panel.
 msgid "Change your personal settings."
@@ -9373,7 +9365,6 @@ msgid "UI tweaks for old-school users"
 msgstr ""
 
 #. TRANS: Title of form to silence a user.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Silence"
 msgstr "Stummschalten"
@@ -9417,7 +9408,6 @@ msgid "Failed to delete revoked token."
 msgstr "Konnte ungültig gemachtes Token nicht löschen."
 
 #. TRANS: Menu item in local navigation menu.
-#, fuzzy
 msgctxt "MENU"
 msgid "Subscriptions"
 msgstr "Abonnements"
@@ -9605,8 +9595,8 @@ msgstr[1] "%%s und %d  ähnliche."
 #, php-format
 msgid "%%s likes this."
 msgid_plural "%%s like this."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%%s gefällt das."
+msgstr[1] "%%s gefällt das."
 
 #. TRANS: List message for notice repeated by logged in user.
 #, fuzzy

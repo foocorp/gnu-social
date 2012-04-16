@@ -86,6 +86,13 @@ class ProfileAction extends Action
             return false;
         }
 
+        $user = common_current_user();
+
+        if ($this->profile->hasRole(Profile_role::SILENCED) &&
+            (empty($user) || !$user->hasRight(Right::SILENCEUSER))) {
+            throw new ClientException(_('This profile has been silenced by site moderators'), 403);
+        }
+
         $this->tag = $this->trimmed('tag');
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
         common_set_returnto($this->selfUrl());

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-12-19 00:00+0000\n"
+"POT-Creation-Date: 2012-03-11 20:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -342,12 +342,12 @@ msgid "A plugin for integrating StatusNet with Facebook."
 msgstr ""
 
 #. TRANS: E-mail subject.
-#: lib/facebookclient.php:788
+#: lib/facebookclient.php:789
 msgid "Your Facebook connection has been removed"
 msgstr ""
 
 #. TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
-#: lib/facebookclient.php:791
+#: lib/facebookclient.php:792
 #, php-format
 msgid ""
 "Hi %1$s,\n"
@@ -367,14 +367,14 @@ msgid ""
 msgstr ""
 
 #. TRANS: E-mail subject. %s is the StatusNet sitename.
-#: lib/facebookclient.php:844
+#: lib/facebookclient.php:845
 #, php-format
 msgid "Contact the %s administrator to retrieve your account"
 msgstr ""
 
 #. TRANS: E-mail body. %1$s is a username,
 #. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail address.
-#: lib/facebookclient.php:848
+#: lib/facebookclient.php:849
 #, php-format
 msgid ""
 "Hi %1$s,\n"
