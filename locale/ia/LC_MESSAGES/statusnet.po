@@ -9,17 +9,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-11 20:13+0000\n"
-"PO-Revision-Date: 2012-03-11 20:14:21+0000\n"
+"POT-Creation-Date: 2012-04-08 22:26+0000\n"
+"PO-Revision-Date: 2012-04-08 22:27:44+0000\n"
 "Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
+"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-03-11 19:51:52+0000\n"
+"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -4179,12 +4179,10 @@ msgid "What timezone are you normally in?"
 msgstr "In que fuso horari es tu normalmente?"
 
 #. TRANS: Checkbox label in form for profile settings.
-#, fuzzy
 msgid ""
 "Automatically subscribe to whoever subscribes to me (best for non-humans)"
 msgstr ""
-"Subscriber me automaticamente a qui se subscribe a me (utile pro non-"
-"humanos)."
+"Subscriber me automaticamente a qui se subscribe a me (utile pro non-humanos)"
 
 #. TRANS: Dropdown field label on profile settings, for what policies to apply when someone else tries to subscribe to your updates.
 msgid "Subscription policy"
@@ -4325,7 +4323,7 @@ msgid ""
 msgstr ""
 "Isto es %%site.name%%, un servicio de [micro-blog](http://ia.wikipedia.org/"
 "wiki/Microblog) a base del software libere [StatusNet](http://status.net/). "
-"[Inscribe te ora](%%action.register%%) pro condivider notas super te con "
+"[Inscribe te ora](%%action.register%%) pro divider notas super te con "
 "amicos, familia e collegas! ([Leger plus](%%doc.help%%))"
 
 #. TRANS: Message for not logged in users at a closed site trying to view the public feed of notices.
@@ -5042,7 +5040,7 @@ msgstr ""
 
 #. TRANS: Page notice for show favourites page.
 msgid "This is a way to share what you like."
-msgstr "Isto es un modo de condivider lo que te place."
+msgstr "Isto es un modo de divider lo que te place."
 
 #. TRANS: Page title for first group page. %s is a group name.
 #, php-format
@@ -5094,8 +5092,8 @@ msgid ""
 msgstr ""
 "**%s** es un gruppo de usatores in %%%%site.name%%%%, un servicio de [micro-"
 "blogging](http://ia.wikipedia.org/wiki/Microblog) a base del software libere "
-"[StatusNet](http://status.net/). Su membros condivide breve messages super "
-"lor vita e interesses. [Crea un conto](%%%%action.register%%%%) pro devenir "
+"[StatusNet](http://status.net/). Su membros divide breve messages super lor "
+"vita e interesses. [Crea un conto](%%%%action.register%%%%) pro devenir "
 "parte de iste gruppo e multe alteres! ([Lege plus](%%%%doc.help%%%%))"
 
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.

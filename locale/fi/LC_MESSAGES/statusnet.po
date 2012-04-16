@@ -9,6 +9,7 @@
 # Author: Silvonen
 # Author: Str4nd
 # Author: Tne
+# Author: Tomi Toivio
 # Author: Wwwwolf
 # Author: XTL
 # --
@@ -18,17 +19,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-11 20:13+0000\n"
-"PO-Revision-Date: 2012-03-11 20:14:04+0000\n"
+"POT-Creation-Date: 2012-04-15 12:10+0000\n"
+"PO-Revision-Date: 2012-04-15 12:10:56+0000\n"
 "Language-Team: Finnish <https://translatewiki.net/wiki/Portal:fi>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
+"X-Generator: MediaWiki 1.20alpha (27b39a6); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fi\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-03-11 19:51:52+0000\n"
+"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
 
 #. TRANS: Database error message.
 #, fuzzy, php-format
@@ -254,7 +255,7 @@ msgstr "%s:n kotisivun aikajana"
 #. TRANS: %s is tagger's nickname.
 #, fuzzy, php-format
 msgid "Feed for friends of %s (Activity Streams JSON)"
-msgstr "Käyttäjän %s kavereiden syöte (Atom)"
+msgstr "Käyttäjän %s kavereiden syöte (Activity Streams JSON)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -317,10 +318,9 @@ msgstr ""
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr "Kutsu(t) lähetettiin"
+msgstr "Lähetä kutsu"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -443,14 +443,13 @@ msgid "Unblock user failed."
 msgstr "Käyttäjän eston poisto epäonnistui."
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "Keskustelu"
+msgstr "Keskustelun ID puuttuu."
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "No conversation with ID %d."
-msgstr "Keskustelu"
+msgstr "Ei keskustelua ID-tunnuksella %d."
 
 #. TRANS: Title for conversion timeline.
 #, fuzzy
@@ -1743,9 +1742,8 @@ msgstr "Syöte ryhmän %s päivityksille (Atom)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
-#, fuzzy
 msgid "Conversation feed (RSS 2.0)"
-msgstr "Syöte ryhmän %s päivityksille (RSS 2.0)"
+msgstr "Keskustelun syöte (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -1810,9 +1808,8 @@ msgid "Enter \"%s\" to confirm that you want to delete your account."
 msgstr "Kirjoita ”%s”, jos haluat todella poistaa käyttäjätilisi."
 
 #. TRANS: Button title for user account deletion.
-#, fuzzy
 msgid "Permanently delete your account."
-msgstr "Poista käyttäjätilini lopullisesti"
+msgstr "Poista käyttäjätilisi lopullisesti"
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
 msgid "You must be logged in to delete an application."
@@ -1980,54 +1977,47 @@ msgstr "Koti"
 
 msgctxt "MENU"
 msgid "Docs"
-msgstr ""
+msgstr "Dokumentaatio"
 
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 msgctxt "MENU"
 msgid "Help"
 msgstr "Ohje"
 
-#, fuzzy
 msgid "Getting started"
-msgstr "Asetukset tallennettu."
+msgstr "Aloittaminen"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
-#, fuzzy
 msgctxt "MENU"
 msgid "About"
 msgstr "Tietoa"
 
-#, fuzzy
 msgid "About this site"
-msgstr "Poista esto tältä käyttäjältä"
+msgstr "Tietoa tästä sivusta"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
-#, fuzzy
 msgctxt "MENU"
 msgid "FAQ"
 msgstr "UKK"
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "Usein kysytyt kysymykset"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
-#, fuzzy
 msgctxt "MENU"
 msgid "Contact"
 msgstr "Ota yhteyttä"
 
-#, fuzzy
 msgid "Contact info"
-msgstr "Ota yhteyttä"
+msgstr "Yhteystiedot"
 
-#, fuzzy
 msgctxt "MENU"
 msgid "Tags"
 msgstr "Tagit"
 
 msgid "Using tags"
-msgstr ""
+msgstr "Tagien käyttö"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
@@ -2036,16 +2026,15 @@ msgctxt "MENU"
 msgid "Groups"
 msgstr "Ryhmät"
 
-#, fuzzy
 msgid "Using groups"
-msgstr "Käyttäjäryhmät"
+msgstr "Ryhmien käyttö"
 
 msgctxt "MENU"
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "RESTful API"
-msgstr ""
+msgstr "RESTful API"
 
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
@@ -2656,9 +2645,9 @@ msgstr "Vain ​​ryhmän ylläpitäjä voi hyväksyä käyttäjiä."
 
 #. TRANS: Title of the first page showing pending group members still awaiting approval to join the group.
 #. TRANS: %s is the name of the group.
-#, fuzzy, php-format
+#, php-format
 msgid "%s group members awaiting approval"
-msgstr "%s ryhmien jäsenyydet"
+msgstr "%shyväksyntää odottavat ryhmän jäsenten"
 
 #. TRANS: Title of all but the first page showing pending group members still awaiting approval to join the group.
 #. TRANS: %1$s is the name of the group, %2$d is the page number of the members list.
@@ -2783,9 +2772,9 @@ msgid "IM is not available."
 msgstr "Pikaviestin ei ole käytettävissä."
 
 #. TRANS: Form note in IM settings form. %s is the type of IM address that was confirmed.
-#, fuzzy, php-format
+#, php-format
 msgid "Current confirmed %s address."
-msgstr "Tämän hetken vahvistettu sähköpostiosoite."
+msgstr "Nykyinen vahvistettu %s osoite."
 
 #. TRANS: Form note in IM settings form.
 #. TRANS: %s is the IM service name, %2$s is the IM address set.
@@ -4229,7 +4218,6 @@ msgid "What timezone are you normally in?"
 msgstr "Millä aikavyöhykkeellä olet tavallisesti?"
 
 #. TRANS: Checkbox label in form for profile settings.
-#, fuzzy
 msgid ""
 "Automatically subscribe to whoever subscribes to me (best for non-humans)"
 msgstr ""

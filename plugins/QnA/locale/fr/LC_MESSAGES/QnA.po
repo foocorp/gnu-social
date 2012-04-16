@@ -3,6 +3,7 @@
 #
 # Author: Brunoperel
 # Author: Iketsi
+# Author: JojoBoulix
 # Author: Od1n
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -11,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:47:02+0000\n"
+"POT-Creation-Date: 2012-04-08 22:26+0000\n"
+"PO-Revision-Date: 2012-04-08 22:28:29+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-02 10:10:59+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
@@ -191,9 +192,9 @@ msgstr "plus..."
 
 #. TRANS: Exception thown when getting a question with a non-existing ID.
 #. TRANS: %s is the non-existing question ID.
-#, fuzzy, php-format
+#, php-format
 msgid "No question with ID %s"
-msgstr "Pas question pour cette réponse."
+msgstr "Pas de question avec l'ID %s."
 
 #. TRANS: Exception thown when getting a profile with a non-existing ID.
 #. TRANS: %s is the non-existing profile ID.
