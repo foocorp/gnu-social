@@ -343,7 +343,6 @@ msgstr ""
 "Sinceramente,\n"
 "\n"
 "%2$s\n"
-" "
 
 #. TRANS: E-mail subject. %s is the StatusNet sitename.
 #, php-format
@@ -376,4 +375,4 @@ msgstr ""
 "Sinceramente\n"
 "\n"
 "%2$s\n"
-" "
+
