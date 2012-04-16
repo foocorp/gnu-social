@@ -1,6 +1,7 @@
 # Translation of StatusNet - Event to Ukrainian (Українська)
 # Exported from translatewiki.net
 #
+# Author: AS
 # Author: Boogie
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:46:14+0000\n"
+"POT-Creation-Date: 2012-04-08 22:26+0000\n"
+"PO-Revision-Date: 2012-04-08 22:27:35+0000\n"
 "Language-Team: Ukrainian <https://translatewiki.net/wiki/Portal:uk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: uk\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
@@ -110,7 +111,7 @@ msgstr "Ви могли б взяти участь у цьому заході."
 #. TRANS: Button text to cancel responding to an RSVP ("please respond") item.
 msgctxt "BUTTON"
 msgid "Cancel"
-msgstr "Відміна"
+msgstr "Скасувати"
 
 #. TRANS: Title for RSVP ("please respond") action.
 msgctxt "TITLE"

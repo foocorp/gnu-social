@@ -16,18 +16,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-11 20:13+0000\n"
-"PO-Revision-Date: 2012-03-11 20:13:52+0000\n"
+"POT-Creation-Date: 2012-04-15 12:10+0000\n"
+"PO-Revision-Date: 2012-04-15 12:10:44+0000\n"
 "Language-Team: British English <https://translatewiki.net/wiki/Portal:en-"
 "gb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
+"X-Generator: MediaWiki 1.20alpha (27b39a6); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: en-gb\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-03-11 19:51:52+0000\n"
+"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -4289,7 +4289,6 @@ msgid "What timezone are you normally in?"
 msgstr "In which timezone are you?"
 
 #. TRANS: Checkbox label in form for profile settings.
-#, fuzzy
 msgid ""
 "Automatically subscribe to whoever subscribes to me (best for non-humans)"
 msgstr ""
