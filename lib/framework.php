@@ -19,13 +19,13 @@
 
 if (!defined('STATUSNET') && !defined('LACONICA')) { exit(1); }
 
-define('STATUSNET_BASE_VERSION', '1.0.1');
-define('STATUSNET_LIFECYCLE', ''); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
-define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . STATUSNET_LIFECYCLE);
+define('STATUSNET_BASE_VERSION', '1.1.0');
+define('STATUSNET_LIFECYCLE', 'alpha1'); // 'dev', 'alpha[0-9]+', 'beta[0-9]+', 'rc[0-9]+', 'release'
+define('STATUSNET_VERSION', STATUSNET_BASE_VERSION . '-' . STATUSNET_LIFECYCLE);
 
 define('LACONICA_VERSION', STATUSNET_VERSION); // compatibility
 
-define('STATUSNET_CODENAME', 'Get It Together');
+define('STATUSNET_CODENAME', 'Fight for Your Right');
 
 define('AVATAR_PROFILE_SIZE', 96);
 define('AVATAR_STREAM_SIZE', 48);
@@ -34,7 +34,6 @@ define('AVATAR_MINI_SIZE', 24);
 define('NOTICES_PER_PAGE', 20);
 define('PROFILES_PER_PAGE', 20);
 define('MESSAGES_PER_PAGE', 20);
-define('GROUPS_PER_PAGE', 20);
 
 define('FOREIGN_NOTICE_SEND', 1);
 define('FOREIGN_NOTICE_RECV', 2);
@@ -170,10 +169,9 @@ function PEAR_ErrorToPEAR_Exception($err)
     }
 
     if ($err->getCode()) {
-        throw new PEAR_Exception($msg, $err, $err->getCode());
-    } else {
-        throw new PEAR_Exception($msg, $err);
+        throw new PEAR_Exception($err->getMessage(), $err->getCode());
     }
+    throw new PEAR_Exception($err->getMessage());
 }
 
 PEAR::setErrorHandling(PEAR_ERROR_CALLBACK, 'PEAR_ErrorToPEAR_Exception');

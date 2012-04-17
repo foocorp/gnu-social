@@ -2,7 +2,7 @@
 README
 ------
 
-StatusNet 1.0.1
+StatusNet 1.1.0-alpha1
 3 October 2011
 
 This is the README file for StatusNet, the Open Source social
@@ -107,46 +107,23 @@ for additional terms.
 New this version
 ================
 
-This is a minor bug fix release since 1.0.0, released 30 September
-2011. It fixes the following bugs:
+This is a minor bug fix and feature release since 1.0.1, released 3
+October 2011. (Because the plugin interface has changed in an upwardly
+compatible way, we've incremented the minor version number. See
+http://semver.org/ for the semantic versioning scheme we follow.)
 
-- Change default OEmbed provider from oohembed to noembed.
-- Fix problem with path matching on new installs.
+It includes the following changes:
 
-Notable additions in the 1.0.x series:
+- ActivitySpam plugin to check updates against spamicity.info
+- Options to hide users who've been silenced or have posted spammy updates.
+- OfflineBackup experimental plugin.
+- Fixes for TwitterBridge to correctly handle replies through the bridge.
+- Improvements in ActivityStreams JSON output to better match 1.0 spec.
+- Console scripts for managing groups.
+- Bug fix for conversation counts in conversation streams.
+- Rights for moderators to manage spam.
 
-- Support for private updates, including private-to-groups, private
-  within a site, and private to followers only.
-- Conversation mode in streams; notices appear along with all replies.
-- Microapps -- post different types of activities to timelines, with
-  interaction. Events, bookmarks, Q&A, and polls included by default.
-- New 3-column layout in 'neo' theme by default. Older, 2-column layout
-  themes have been removed.
-- Alphabetical, searchable user directory.
-- Alphabetical, searchable group directory.
-- Groups can require all posts to be private ('private groups'), and
-  limit members to the group.
-- Users can make all posts private to their followers ('private stream'),
-  and require authorization to follow.
-- General plugin for IM support; added AIM, IRC and MSN to existing
-  XMPP code.
-- Support for Twitter-like lists, to follow other users without 
-  interfering with the home timeline.
-- Subscription to searches.
-- Subscription to tags.
-- Drupal-style schema system ("schemax") allows in-place database
-  upgrades from various software versions.
-- Fine-grained control of URL shortening, and an internal URL shortener
-  available.
-- Extended profile for private, enterprise sites.
-- sites are private by default.
-- Blog plugin for extended posts.
-- Plugin to restrict all users of a site to a single email domain.
-- Plugin to send a daily email summary to site users.
-- Deeper integration with Activity Streams (http://activitystrea.ms) format.
-- Automated upgrade script.
-
-A full changelog is available at http://status.net/wiki/StatusNet_1.0.1.
+A full changelog is available at http://status.net/wiki/StatusNet_1.1.0-alpha1.
 
 Troubleshooting
 ===============
