@@ -330,6 +330,7 @@ function get_all_languages() {
         'en-gb'   => array('q' => 1, 'lang' => 'en_GB', 'name' => 'English (British)', 'direction' => 'ltr'),
         'en'      => array('q' => 1, 'lang' => 'en',    'name' => 'English (US)', 'direction' => 'ltr'),
         'es'      => array('q' => 1, 'lang' => 'es',    'name' => 'Spanish', 'direction' => 'ltr'),
+        'eu'      => array('q' => 1, 'lang' => 'eu',    'name' => 'Basque', 'direction' => 'ltr'),
         'fa'      => array('q' => 1, 'lang' => 'fa', 'name' => 'Persian', 'direction' => 'rtl'),
         'fi'      => array('q' => 1, 'lang' => 'fi', 'name' => 'Finnish', 'direction' => 'ltr'),
         'fr-fr'   => array('q' => 1, 'lang' => 'fr', 'name' => 'French', 'direction' => 'ltr'),
