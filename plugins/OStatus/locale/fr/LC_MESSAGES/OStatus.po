@@ -3,6 +3,7 @@
 #
 # Author: Brunoperel
 # Author: Davidtsm
+# Author: Gomoko
 # Author: IAlex
 # Author: JojoBoulix
 # Author: Od1n
@@ -16,13 +17,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-08 22:26+0000\n"
-"PO-Revision-Date: 2012-04-08 22:28:21+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:20:47+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:49:04+0000\n"
-"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -38,9 +39,8 @@ msgid "Subscribe"
 msgstr "S'abonner"
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgid "List remote profile"
-msgstr "Vous devez fournir un profil distant."
+msgstr "Lister le profil distant."
 
 #. TRANS: Field label.
 msgctxt "LABEL"
@@ -136,9 +136,9 @@ msgstr "Suivre la liste"
 
 #. TRANS: Success message for remote list follow through OStatus.
 #. TRANS: %1$s is the subscriber name, %2$s is the list, %3$s is the lister's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s is now following people listed in %2$s by %3$s."
-msgstr "%1$s a cessé de suivre %2$s par %3$s."
+msgstr "%1$s suit maintenant les personnes listées dans %2$s par %3$s."
 
 #. TRANS: Exception thrown when subscription to remote list fails.
 msgid "Failed subscribing to remote list."
@@ -161,40 +161,39 @@ msgstr "Liste"
 
 #. TRANS: Success message for remote list addition through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the added list member, %3$s is the list name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s listed %2$s in the list %3$s."
-msgstr "%1$s a cessé de suivre %2$s."
+msgstr "%1$s a listé %2$s dans la liste %3$s."
 
 #. TRANS: Exception thrown when subscribing to a remote list fails.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Could not complete subscription to remote profile's feed. List %s could not "
 "be saved."
 msgstr ""
-"Impossible de compléter l'adhésion à un flux de profil distant. La balise %s "
+"Impossible de compléter l'adhésion au flux d'un profil distant. La liste %s "
 "n'a pas pu être sauvegardée."
 
 #. TRANS: Title for unlisting a remote profile.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Unlist"
-msgstr "Ne plus suivre la liste"
+msgstr "Ne plus lister"
 
 #. TRANS: Success message for remote list removal through OStatus.
 #. TRANS: %1$s is the list creator's name, %2$s is the removed list member, %3$s is the list name.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s removed %2$s from the list %3$s."
-msgstr "%1$s a cessé de suivre %2$s."
+msgstr "%1$s a supprimé %2$s de la liste %3$s."
 
 #. TRANS: Title for unliking a remote notice.
 msgid "Unlike"
-msgstr ""
+msgstr "Ne plus aimer"
 
 #. TRANS: Success message for remove a favorite notice through OStatus.
 #. TRANS: %1$s is the unfavoring user's name, %2$s is URI to the no longer favored notice.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s no longer likes %2$s."
-msgstr "%1$s a cessé de suivre %2$s."
+msgstr "%1$s n'aime plus %2$s."
 
 #. TRANS: Link text for link to remote subscribe.
 msgid "Remote"
@@ -212,7 +211,7 @@ msgstr "%s a mis à jour sa page de profil."
 
 #. TRANS: Link text for a user to list an OStatus user.
 msgid "List"
-msgstr ""
+msgstr "Liste"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -262,20 +261,19 @@ msgstr ""
 "octets."
 
 #. TRANS: Client exception. %s is a feed URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid hub.topic \"%s\". User does not exist."
-msgstr ""
-"Le sujet de concentrateur « %s » est invalide. L’utilisateur n’existe pas."
+msgstr "hub.topic \"%s\" non valide. L'utilisateur n'existe pas."
 
 #. TRANS: Client exception. %s is a feed URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid hub.topic \"%s\". Group does not exist."
-msgstr "Le sujet de concentrateur « %s » est invalide. Le groupe n’existe pas."
+msgstr "hub.topic \"%s\" non valide. Le groupe n’existe pas."
 
 #. TRANS: Client exception. %s is a feed URL.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid hub.topic %s; list does not exist."
-msgstr "Le sujet de concentrateur « %s » est invalide. Le groupe n’existe pas."
+msgstr "hub.topic %s non valide; la liste n’existe pas."
 
 #. TRANS: Client exception.
 #. TRANS: %1$s is this argument to the method this exception occurs in, %2$s is a URL.
@@ -284,14 +282,13 @@ msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "URL invalide passée à la méthode « %1$s » : « %2$s »"
 
 #. TRANS: Client error displayed when trying to list a local object as if it is remote.
-#, fuzzy
 msgid "You can use the local list functionality!"
-msgstr "Vous pouvez utiliser l’abonnement local !"
+msgstr "Vous pouvez utiliser la fonctionnalité de liste locale!"
 
 #. TRANS: Header for listing a remote object. %s is a remote object's name.
 #, php-format
 msgid "List %s"
-msgstr ""
+msgstr "Liste %s"
 
 #. TRANS: Button text to list a remote object.
 msgctxt "BUTTON"
@@ -303,9 +300,8 @@ msgid "User nickname"
 msgstr "Pseudonyme de l’utilisateur"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Nickname of the user you want to list."
-msgstr "Pseudonyme de l’utilisateur que vous voulez marquer."
+msgstr "Pseudonyme de l’utilisateur que vous voulez lister."
 
 #. TRANS: Field label.
 msgid "Profile Account"
@@ -494,11 +490,11 @@ msgstr ""
 
 #. TRANS: Client exception.
 msgid "To the attention of user(s), not including this one."
-msgstr ""
+msgstr "À l'attention de(s) l'utilisateur(s), non compris celui-ci."
 
 #. TRANS: Client exception.
 msgid "Not to anyone in reply to anything."
-msgstr ""
+msgstr "Pas à quiconque en réponse à quelque chose."
 
 #. TRANS: Client exception.
 msgid "This is already a favorite."
@@ -510,45 +506,43 @@ msgstr "Impossible de sauvegarder le nouveau favori."
 
 #. TRANS: Client exception.
 msgid "Notice was not favorited!"
-msgstr ""
+msgstr "L'avis n'a pas été mis en favori!"
 
 #. TRANS: Client exception.
 msgid "Not a person object."
-msgstr ""
+msgstr "Pas un objet personne."
 
 #. TRANS: Client exception.
 msgid "Unidentified profile being listed."
-msgstr ""
+msgstr "Profil non identifié listé."
 
 #. TRANS: Client exception.
 msgid "This user is not the one being listed."
-msgstr ""
+msgstr "Cet utilisateur n'est pas celui listé."
 
 #. TRANS: Client exception.
 msgid "The listing could not be saved."
-msgstr ""
+msgstr "La liste n'a pas pu être sauvée."
 
 #. TRANS: Client exception.
 msgid "Unidentified profile being unlisted."
-msgstr ""
+msgstr "Profil non identifié retiré de la liste."
 
 #. TRANS: Client exception.
 msgid "This user is not the one being unlisted."
-msgstr ""
+msgstr "Cet utilisateur n'est pas celui retiré de la liste."
 
 #. TRANS: Client exception.
 msgid "The listing could not be deleted."
-msgstr ""
+msgstr "La liste n'a pas pu être supprimée."
 
 #. TRANS: Client exception.
 msgid "Cannot favorite/unfavorite without an object."
 msgstr "Impossible de mettre en favoris ou retirer des favoris sans un objet."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "Cannot handle that kind of object for liking/faving."
-msgstr ""
-"Impossible de gérer ce genre d’objet parmi les sujets appréciés ou favoris."
+msgstr "Impossible de gérer ce genre d’objet dans les aimés/favoris."
 
 #. TRANS: Client exception. %s is an object ID.
 #, php-format
@@ -565,10 +559,9 @@ msgid "Subscribe to list"
 msgstr "S'abonner à la liste"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Address of the OStatus list, like http://example.net/user/all/tag."
 msgstr ""
-"Une adresse de groupe OStatus, par exemple http://example.net/user/all/tag"
+"Adresse de la liste OStatus, par exemple http://example.net/user/all/tag."
 
 #. TRANS: Error text displayed when trying to subscribe to a list already a subscriber to.
 msgid "You are already subscribed to this list."
@@ -579,13 +572,12 @@ msgid "Confirm subscription to remote list"
 msgstr "Confirmer l’adhésion au groupe distant"
 
 #. TRANS: Instructions for OStatus list subscription form.
-#, fuzzy
 msgid ""
 "You can subscribe to lists from other supported sites. Paste the list's URI "
 "below:"
 msgstr ""
-"Vous pouvez souscrire aux groupes d’autres sites supportés. Collez l’adresse "
-"URI du profil du groupe ci-dessous :"
+"Vous pouvez vous abonner aux listes des autres sites supportés. Collez l’URI "
+"de la liste ci-dessous:"
 
 #. TRANS: Client error.
 msgid "No such group."
@@ -636,10 +628,9 @@ msgstr ""
 "Impossible d’accepter des envois distants de messages pour une liste distant."
 
 #. TRANS: Client error displayed when referring to a non-existing remote list.
-#, fuzzy
 msgid "Cannot read profile to set up list subscription."
 msgstr ""
-"Impossible de lire le profil pour mettre en place l’adhésion à un groupe."
+"Impossible de lire le profil pour mettre en place l'abonnement à une liste."
 
 #. TRANS: Client error displayed when trying to subscribe a group to a list.
 #. TRANS: Client error displayed when trying to unsubscribe a group from a list.
@@ -658,9 +649,9 @@ msgstr "Ne peut pas lire le profile afin d'annuler l'inscription à la liste."
 
 #. TRANS: Client error displayed when trying to unsubscribe a remote user from a list fails.
 #. TRANS: %1$s is a profile URL, %2$s is a list name.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not unsubscribe remote user %1$s from list %2$s."
-msgstr "Impossible d’inscrire l’utilisateur distant %1$s à la liste %2$s."
+msgstr "Impossible de désinscrire l’utilisateur distant %1$s de la liste %2$s."
 
 #. TRANS: Client error.
 msgid "You can use the local subscription!"
@@ -771,11 +762,11 @@ msgstr ""
 "concentrateur."
 
 #. TRANS: Server exception. %s is a URI
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid ostatus_profile state: Two or more IDs set for %s."
 msgstr ""
-"État invalide du profil OStatus : deux identifiants ou + ont été définis "
-"pour %s."
+"État ostatus_profile non valide: Deux ensembles d'identifiants ou plus ont "
+"été définis pour %s."
 
 #. TRANS: Server exception. %s is a URI
 #, php-format
@@ -807,16 +798,18 @@ msgstr "Flux RSS sans canal."
 #. TRANS: Client exception thrown when trying to share multiple activities at once.
 msgid "Can only handle share activities with exactly one object."
 msgstr ""
+"Peut seulement gérer le partage des activités avec exactement un unique "
+"objet."
 
 #. TRANS: Client exception thrown when trying to share a non-activity object.
 msgid "Can only handle shared activities."
-msgstr ""
+msgstr "Peut seulement gérer les activités partagées."
 
 #. TRANS: Client exception thrown when saving an activity share fails.
 #. TRANS: %s is a share ID.
 #, php-format
 msgid "Failed to save activity %s."
-msgstr ""
+msgstr "Échec à l'enregistrement de l'activité %s."
 
 #. TRANS: Client exception. %s is a source URI.
 #, php-format
@@ -841,7 +834,7 @@ msgstr ""
 
 #. TRANS: Server exception.
 msgid "No author ID URI found."
-msgstr ""
+msgstr "Aucune ID d'auteur de l'URI trouvé."
 
 #. TRANS: Exception.
 msgid "No profile URI."
@@ -942,9 +935,8 @@ msgid "This target does not understand posts."
 msgstr "Cette cible ne reconnaît pas les publications."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand follows."
-msgstr "Cette cible ne reconnaît pas les indications de début de suivi."
+msgstr "Cette cible ne reconnaît pas les suivis."
 
 #. TRANS: Client exception.
 msgid "This target does not understand unfollows."
@@ -971,14 +963,12 @@ msgid "This target does not understand leave events."
 msgstr "Cette cible ne reconnaît pas les indications de retrait d’événement."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand list events."
-msgstr "Cette cible ne reconnaît pas les évènements partagés."
+msgstr "Cette cible ne reconnaît pas les évènements de liste."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand unlist events."
-msgstr "Cette cible ne reconnaît pas les évènements partagés."
+msgstr "Cette cible ne reconnaît pas les évènements de retirer des listes."
 
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."

@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Brunoperel
+# Author: Gomoko
 # Author: Iketsi
 # Author: JojoBoulix
 # Author: Od1n
@@ -12,13 +13,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-08 22:26+0000\n"
-"PO-Revision-Date: 2012-04-08 22:28:29+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:20:56+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-02 10:10:59+0000\n"
-"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
@@ -94,7 +95,7 @@ msgstr "Aucune question semblable."
 
 #. TRANS: Client exception thrown trying to view a non-existing question notice.
 msgid "No such question notice."
-msgstr ""
+msgstr "Aucun avis de question."
 
 #. TRANS: Page title for a question.
 #. TRANS: %1$s is the nickname of the user who asked the question, %2$s is the question.
@@ -164,7 +165,7 @@ msgstr "Type d'objet inconnu."
 
 #. TRANS: Exception thrown when requesting a non-existing question notice.
 msgid "Unknown question notice."
-msgstr ""
+msgstr "Avis de question inconnu."
 
 #. TRANS: Exception thrown when performing an unexpected action on a question.
 #. TRANS: %s is the unpexpected object type.

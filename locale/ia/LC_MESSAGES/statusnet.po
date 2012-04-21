@@ -9,12 +9,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-08 22:26+0000\n"
-"PO-Revision-Date: 2012-04-08 22:27:44+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:19:38+0000\n"
 "Language-Team: Interlingua <https://translatewiki.net/wiki/Portal:ia>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ia\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -8961,6 +8961,9 @@ msgstr "Terminar le session del sito."
 msgid "Login to the site."
 msgstr "Authenticar te a iste sito."
 
+msgid "This profile has been silenced by site moderators"
+msgstr ""
+
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
 msgstr "Seque"
@@ -9339,17 +9342,17 @@ msgstr "Invitar amicos e collegas a accompaniar te in %s."
 
 #. TRANS: Form of form to subscribe to a user.
 msgid "Subscribe to this user"
-msgstr "Subscriber a iste usator"
+msgstr "Subscriber se a iste usator"
 
 #. TRANS: Button text to subscribe to a user.
 #. TRANS: Button text for subscribing to a list.
 msgctxt "BUTTON"
 msgid "Subscribe"
-msgstr "Subscriber"
+msgstr "Sequer"
 
 #. TRANS: Button title to subscribe to a user.
 msgid "Subscribe to this user."
-msgstr "Subscriber a iste usator."
+msgstr "Subscriber se a iste usator."
 
 #. TRANS: Title of personal tag cloud section.
 msgid "People Tagcloud as self-tagged"
@@ -9596,7 +9599,7 @@ msgstr "Cancellar subscription a iste usator"
 #. TRANS: Button text for unsubscribing from a list.
 msgctxt "BUTTON"
 msgid "Unsubscribe"
-msgstr "Cancellar subscription"
+msgstr "Non sequer"
 
 #. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user."

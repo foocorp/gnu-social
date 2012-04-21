@@ -13,12 +13,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-08 22:26+0000\n"
-"PO-Revision-Date: 2012-04-08 22:28:02+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:20:11+0000\n"
 "Language-Team: Dutch <https://translatewiki.net/wiki/Portal:nl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: nl\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -2227,7 +2227,7 @@ msgstr "Het was niet mogelijk de lijst bij te werken."
 
 #. TRANS: Title for e-mail settings.
 msgid "Email settings"
-msgstr "E-mailvoorkeuren"
+msgstr "E-mailinstellingen"
 
 #. TRANS: E-mail settings page instructions.
 #. TRANS: %%site.name%% is the name of the site.
@@ -9061,6 +9061,9 @@ msgstr "Van de site afmelden."
 msgid "Login to the site."
 msgstr "Bij de site aanmelden."
 
+msgid "This profile has been silenced by site moderators"
+msgstr ""
+
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
 msgstr "Abonnementen"
@@ -9698,7 +9701,7 @@ msgstr "Uitschrijven van deze gebruiker"
 #. TRANS: Button text for unsubscribing from a list.
 msgctxt "BUTTON"
 msgid "Unsubscribe"
-msgstr "Abonnement opheffen"
+msgstr "Uitschrijven"
 
 #. TRANS: Button title on unsubscribe form.
 msgid "Unsubscribe from this user."

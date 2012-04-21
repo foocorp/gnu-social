@@ -1,6 +1,7 @@
 # Translation of StatusNet - Msn to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Gomoko
 # Author: Hashar
 # Author: Od1n
 # --
@@ -10,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Msn\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:46:49+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:20:36+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:48:56+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-msn\n"
@@ -24,11 +25,11 @@ msgstr ""
 
 #. TRANS: MSN bot status message.
 msgid "Send me a message to post a notice"
-msgstr ""
+msgstr "M’envoyer un message pour publier un avis."
 
 #. TRANS: Server exception thrown when a message to be sent through MSN cannot be added to the database queue.
 msgid "Database error inserting queue item."
-msgstr ""
+msgstr "Erreur de base de données lors de l'insertion d'un élément de file."
 
 #. TRANS: Display name of the MSN instant messaging service.
 msgid "MSN"
@@ -44,7 +45,7 @@ msgstr "Il faut spécifier un mot de passe."
 
 #. TRANS: Exception thrown when configuration for the MSN plugin is incomplete.
 msgid "Must specify a nickname."
-msgstr ""
+msgstr "Il faut indiquer un pseudonyme."
 
 #. TRANS: Plugin description.
 msgid ""

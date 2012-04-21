@@ -1,6 +1,7 @@
 # Translation of StatusNet - DomainWhitelist to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Gomoko
 # Author: Iketsi
 # Author: Lucky
 # Author: Od1n
@@ -13,13 +14,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - DomainWhitelist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 12:10+0000\n"
-"PO-Revision-Date: 2012-04-15 12:10:56+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:19:10+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-02 10:11:33+0000\n"
-"X-Generator: MediaWiki 1.20alpha (27b39a6); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-domainwhitelist\n"
@@ -60,19 +61,19 @@ msgstr "Restreindre les domaines pour les utilisateurs de messagerie."
 
 #. TRANS: Form legend.
 msgid "Invite collegues"
-msgstr ""
+msgstr "Inviter des collègues"
 
 #. TRANS: Field label for a personal message to send to invitees.
 msgid "Personal message"
-msgstr ""
+msgstr "Message personnel"
 
 #. TRANS: Field title for a personal message to send to invitees.
 msgid "Optionally add a personal message to the invitation."
-msgstr ""
+msgstr "Ajouter éventuellement un message personnel à l’invitation."
 
 #. TRANS: Link description to action to add another item to a list.
 msgid "Add another item"
-msgstr ""
+msgstr "Ajouter un autre élément"
 
 #. TRANS: Send button for inviting friends.
 msgctxt "BUTTON"
@@ -81,4 +82,4 @@ msgstr "Envoyer"
 
 #. TRANS: Submit button title.
 msgid "Send invitations."
-msgstr ""
+msgstr "Envoyer les invitations."

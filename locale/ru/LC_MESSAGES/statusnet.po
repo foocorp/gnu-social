@@ -19,12 +19,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-08 22:26+0000\n"
-"PO-Revision-Date: 2012-04-08 22:28:10+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:20:24+0000\n"
 "Language-Team: Russian <https://translatewiki.net/wiki/Portal:ru>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ru\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -5145,7 +5145,7 @@ msgstr ""
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
 #. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
@@ -5155,7 +5155,7 @@ msgstr ""
 "**%s** — группа на %%%%site.name%%%%, сервисе [микроблоггинга](http://ru."
 "wikipedia.org/wiki/Микроблоггинг), основанном на свободном программном "
 "обеспечении [StatusNet](http://status.net/). Участники обмениваются "
-"короткими сообщениями о своей жизни и интересах. "
+"короткими сообщениями о своей жизни и интересах."
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -9043,6 +9043,9 @@ msgstr "Выход с сайта."
 msgid "Login to the site."
 msgstr "Вход на сайт."
 
+msgid "This profile has been silenced by site moderators"
+msgstr ""
+
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
 msgstr "Читает"
@@ -9556,7 +9559,7 @@ msgstr[2] "Это нравится %%s."
 #. TRANS: List message for notice repeated by logged in user.
 msgctxt "REPEATLIST"
 msgid "You repeated this."
-msgstr "Повторите это."
+msgstr "Вы повторили это."
 
 #. TRANS: List message for when more than 4 people repeat something.
 #. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.

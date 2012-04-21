@@ -3,6 +3,7 @@
 #
 # Author: Brunoperel
 # Author: Crochet.david
+# Author: Gomoko
 # Author: Iketsi
 # Author: Lucky
 # Author: Od1n
@@ -15,13 +16,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-11 20:13+0000\n"
-"PO-Revision-Date: 2012-03-11 20:14:37+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:19:22+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r113583); Translate 2012-03-02\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
@@ -78,11 +79,11 @@ msgstr "Vous n'êtes pas connecté"
 
 #. TRANS: Client error when submitting a form with unexpected information.
 msgid "Unexpected form submission."
-msgstr ""
+msgstr "Soumission de formulaire inattendue."
 
 #. TRANS: Client error displayed when using an action in a non-AJAX way.
 msgid "This action is AJAX only."
-msgstr ""
+msgstr "Cette action est uniquement en AJAX."
 
 #. TRANS: Client exception thrown when referring to a non-existing RSVP.
 #. TRANS: RSVP stands for "Please reply".
@@ -188,9 +189,9 @@ msgid "Start time"
 msgstr "Heure de début"
 
 #. TRANS: Field title on event form. %s is the abbreviated timezone
-#, fuzzy, php-format
+#, php-format
 msgid "Time the event starts (%s)."
-msgstr "Heure de début de l'événement."
+msgstr "Heure de début de l'événement (%s)."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"
