@@ -1513,7 +1513,9 @@ class Notice extends Managed_DataObject
 
             if ($this->repeat_of) {
                 $repeated = Notice::staticGet('id', $this->repeat_of);
-                $act->objects[] = $repeated->asActivity($cur);
+                if (!empty($repeated)) {
+                    $act->objects[] = $repeated->asActivity($cur);
+                }
             } else {
                 $act->objects[] = ActivityObject::fromNotice($this);
             }
