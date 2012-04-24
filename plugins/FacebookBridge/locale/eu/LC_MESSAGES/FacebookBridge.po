@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - FacebookBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-08 22:26+0000\n"
-"PO-Revision-Date: 2012-04-08 22:27:39+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:19:31+0000\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-10-10 14:11:31+0000\n"
+"X-POT-Import-Date: 2012-04-19 14:01:11+0000\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Client error displayed when trying to login while already logged in.
@@ -38,11 +38,11 @@ msgstr "Saioa hasi Facebookekin."
 #. TRANS: Title for Facebook administration panel.
 msgctxt "TITLE"
 msgid "Facebook integration settings"
-msgstr ""
+msgstr "Integrazio aukerak Facebookekin"
 
 #. TRANS: Instruction for Facebook administration panel.
 msgid "Facebook integration settings"
-msgstr ""
+msgstr "Integrazio aukerak Facebookekin"
 
 #. TRANS: Client error displayed when providing too long a Facebook application ID.
 msgid "Invalid Facebook ID. Maximum length is 255 characters."
@@ -54,23 +54,23 @@ msgstr "Facebook sekretu baliogabea. Luzera maximoa 255 karakterekoa da."
 
 #. TRANS: Fieldset legend.
 msgid "Facebook application settings"
-msgstr ""
+msgstr "Aplikazio aukerak Facebookekin"
 
 #. TRANS: Field label for Facebook application ID.
 msgid "Application ID"
-msgstr ""
+msgstr "Aplikazio IDa"
 
 #. TRANS: Field title for Facebook application ID.
 msgid "ID of your Facebook application."
-msgstr ""
+msgstr "Zure Facebook aplikazioaren IDa."
 
 #. TRANS: Field label for Facebook secret key.
 msgid "Secret"
-msgstr ""
+msgstr "Sekretua"
 
 #. TRANS: Field title for Facebook secret key.
 msgid "Application secret."
-msgstr ""
+msgstr "Aplikazio sekretua."
 
 #. TRANS: Button text to save Facebook integration settings.
 #. TRANS: Submit button to save synchronisation settings.
@@ -80,7 +80,7 @@ msgstr "Gorde"
 
 #. TRANS: Button title to save Facebook integration settings.
 msgid "Save Facebook settings."
-msgstr ""
+msgstr "Gorde Facebook aukerak."
 
 #. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
@@ -97,19 +97,19 @@ msgstr "Facebook aukerak."
 
 #. TRANS: Form note. User is connected to facebook.
 msgid "Connected Facebook user"
-msgstr ""
+msgstr "Konektaturiko Facebook erabiltzailea"
 
 #. TRANS: Checkbox label in Facebook settings.
 msgid "Publish my notices to Facebook."
-msgstr ""
+msgstr "Argitaratu nere oharrak Facebooken."
 
 #. TRANS: Checkbox label in Facebook settings.
 msgid "Send \"@\" replies to Facebook."
-msgstr ""
+msgstr "Bidali \"@\" erantzunak Facebookera."
 
 #. TRANS: Fieldset legend for form to disconnect from Facebook.
 msgid "Disconnect my account from Facebook"
-msgstr ""
+msgstr "Deskonektatu nere kontua Facebooketik"
 
 #. TRANS: Notice in disconnect from Facebook form if user has no local StatusNet password.
 #, php-format
@@ -117,6 +117,8 @@ msgid ""
 "Disconnecting your Faceboook would make it impossible to log in! Please [set "
 "a password](%s) first."
 msgstr ""
+"Zure Facebooketik deskonektatzen bazara ezinezkoa izango da saioa hastea! "
+"Mesedez aurretik [sartu pasahitza](%s)."
 
 #. TRANS: Message displayed when initiating disconnect of a StatusNet user
 #. TRANS: from a Facebook account. %1$s is the StatusNet site name.
@@ -125,40 +127,44 @@ msgid ""
 "Keep your %1$s account but disconnect from Facebook. You'll use your %1$s "
 "password to log in."
 msgstr ""
+"Mantendu zure %1$s kontua baina Facebooketik deskonektatu. Zure %1$s "
+"pasahitza erabiliko duzu saioa hasteko."
 
 #. TRANS: Submit button.
 msgctxt "BUTTON"
 msgid "Disconnect"
-msgstr "Saioa amaitu"
+msgstr "Deskonektatu"
 
 #. TRANS: Notice in case saving of synchronisation preferences fail.
 msgid "There was a problem saving your sync preferences."
-msgstr ""
+msgstr "Arazo bat egon da zure sinkronizazio hobespenak gordetzerakoan."
 
 #. TRANS: Confirmation that synchronisation settings have been saved into the system.
 msgid "Sync preferences saved."
-msgstr "Sync hobespenak gordeta."
+msgstr "Sinkronizazio hobespenak gordeta."
 
 #. TRANS: Server error displayed when deleting the link to a Facebook account fails.
 msgid "Could not delete link to Facebook."
-msgstr ""
+msgstr "Ezin izan da Facebookera esteka ezabatu."
 
 #. TRANS: Confirmation message. StatusNet account was unlinked from Facebook.
 msgid "You have disconnected from Facebook."
-msgstr ""
+msgstr "Facebooketik deskonektatu zara."
 
 msgid "Unable to authenticate you with Facebook."
-msgstr ""
+msgstr "Ezin izan zara Facebookekin autentikatu."
 
 #. TRANS: Client error displayed when trying to connect to Facebook while not logged in.
 msgid ""
 "You must be logged into Facebook to register a local account using Facebook."
 msgstr ""
+"Facebooken saioa hasi behar duzu kontu lokal bat Facebookeekin erregistratu "
+"nahi baduzu."
 
 #. TRANS: Client error displayed when trying to connect to a Facebook account that is already linked
 #. TRANS: in the same StatusNet site.
 msgid "There is already a local account linked with that Facebook account."
-msgstr ""
+msgstr "Dagoeneko kontu lokal bat dago Facebook kontu horrekin loturik."
 
 #. TRANS: Form validation error displayed when user has not agreed to the license.
 msgid "You cannot register if you do not agree to the license."
@@ -182,7 +188,7 @@ msgstr ""
 
 #. TRANS: Page title.
 msgid "Facebook Setup"
-msgstr ""
+msgstr "Facebook Konfigurazioa"
 
 #. TRANS: Fieldset legend.
 msgid "Connection options"
@@ -262,7 +268,7 @@ msgstr "Goitizen hori hartua dago. Saiatu beste batekin."
 
 #. TRANS: Server error displayed when connecting to Facebook fails.
 msgid "Error connecting user to Facebook."
-msgstr ""
+msgstr "Akatsa erabiltzailea Facebookera konektatzean."
 
 #. TRANS: Form validation error displayed when username/password combination is incorrect.
 msgid "Invalid username or password."
@@ -272,15 +278,15 @@ msgstr "Erabiltzaile edo pasahitz baliogabea."
 #. TRANS: Menu item for "Facebook" in user settings.
 msgctxt "MENU"
 msgid "Facebook"
-msgstr ""
+msgstr "Facebook"
 
 #. TRANS: Menu title for "Facebook" login.
 msgid "Login or register using Facebook."
-msgstr ""
+msgstr "Saioa hasi edo erregistratu Facebook erabiliz."
 
 #. TRANS: Menu title for "Facebook" in administration panel.
 msgid "Facebook integration configuration."
-msgstr ""
+msgstr "Facebook integrazio konfigurazioa."
 
 #. TRANS: Menu title for "Facebook" in user settings.
 msgid "Facebook settings."
@@ -288,11 +294,11 @@ msgstr "Facebook aukerak."
 
 #. TRANS: Plugin description.
 msgid "A plugin for integrating StatusNet with Facebook."
-msgstr ""
+msgstr "StatusNet Facebookekin lotzeko plugina."
 
 #. TRANS: E-mail subject.
 msgid "Your Facebook connection has been removed"
-msgstr ""
+msgstr "Zure Facebookera lotura ezabatua izan da"
 
 #. TRANS: E-mail body. %1$s is a username, %2$s is the StatusNet sitename.
 #, php-format
@@ -312,11 +318,26 @@ msgid ""
 "\n"
 "%2$s\n"
 msgstr ""
+"Kaixo %1$s,\n"
+"\n"
+"Sentitzen dugu jakinarazi behar izatea zure oharra Facebooken ezin izan "
+"dugula argitaratu \n"
+"eta zure %2$s(e)ko kontua eta Facebooken arteko koneksioa ezabatu dela.\n"
+"\n"
+"%2$s(e)ri Facebooken argitaratzeko baimenak kendu dizkiozulako izan daiteke, "
+"edo beharbada\n"
+"zure Facebook kontua ezgaitu duzu. %2$s(e)ko kontua Facebookekin lotu "
+"dezakezu berriro \n"
+"Facebookekin saio hasita.\n"
+"\n"
+"Ondo segi,\n"
+"\n"
+"%2$s\n"
 
 #. TRANS: E-mail subject. %s is the StatusNet sitename.
 #, php-format
 msgid "Contact the %s administrator to retrieve your account"
-msgstr ""
+msgstr "Kontaktatu %s(e)ko administratzailearekin zure kontua berreskuratzeko"
 
 #. TRANS: E-mail body. %1$s is a username,
 #. TRANS: %2$s is the StatusNet sitename, %3$s is the site contact e-mail address.
@@ -333,3 +354,17 @@ msgid ""
 "\n"
 "%2$s\n"
 msgstr ""
+"Kaixo%1$s,\n"
+"\n"
+"Konturatu gara Facebookekin konektatzeko %2$s(e)ko kontua baliogabetu "
+"duzula. Oraindik ez duzu \n"
+"zure %2$s(e)ko konturako pasahitzik zehaztu, beraz ezingo duzu saiorik hasi. "
+"%2$s(e)ko kontua\n"
+"erabiltzen jarraitu nahi baduzu jar zaitez guneko administratzailearekin (%3"
+"$s) kontaktuan pasahitz\n"
+"bat lortzeko.\n"
+"\n"
+"Ondo segi,\n"
+"\n"
+"%2$s\n"
+" "

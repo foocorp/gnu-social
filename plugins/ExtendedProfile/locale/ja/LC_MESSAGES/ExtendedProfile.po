@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Miwa ka
+# Author: Shirayuki
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-01 15:45+0000\n"
-"PO-Revision-Date: 2012-03-01 15:46:15+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:19:27+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:06+0000\n"
-"X-Generator: MediaWiki 1.20alpha (r112812); Translate 2012-02-26\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
@@ -107,7 +108,7 @@ msgstr "本当にこのエントリを削除しますか?"
 #. TRANS: Value between parentheses (phone number, website, or IM address).
 #, php-format
 msgid "(%s)"
-msgstr ""
+msgstr "(%s)"
 
 #. TRANS: Field label in experience area of extended profile.
 #. TRANS: Field label in experience edit area of extended profile (which company does one work for).
@@ -116,11 +117,11 @@ msgstr "会社"
 
 #. TRANS: Field label in extended profile (when did one start a position or education).
 msgid "Start"
-msgstr ""
+msgstr "開始"
 
 #. TRANS: Field label in extended profile (when did one end a position or education).
 msgid "End"
-msgstr ""
+msgstr "終了"
 
 #. TRANS: Field value in experience area of extended profile (one still holds a position).
 msgid "(Current)"

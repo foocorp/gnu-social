@@ -12,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 12:10+0000\n"
-"PO-Revision-Date: 2012-04-15 12:10:51+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:19:06+0000\n"
 "Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
-"X-Generator: MediaWiki 1.20alpha (27b39a6); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -5826,8 +5826,8 @@ msgid ""
 "%s has no subscribers. Why not [register an account](%%%%action.register%%%"
 "%) and be the first?"
 msgstr ""
-"%s erabiltzaileak ez dauka harpidedunik. Zergatik ez [kontu bat ireki](%%%"
-"action.register%%%) eta lehena izan?"
+"%s erabiltzaileak ez dauka harpidedunik. Zergatik ez [kontu bat ireki](%%%%"
+"action.register%%%%) eta lehena izan?"
 
 #. TRANS: Header for subscriptions overview for a user (not first page).
 #. TRANS: %1$s is a user nickname, %2$d is the page number.
@@ -6279,7 +6279,7 @@ msgstr[1] "%1$d byte"
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
 #. TRANS: gettext support multiple plurals in the same message, unfortunately...
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
 "upload a smaller version."
@@ -6288,10 +6288,10 @@ msgid_plural ""
 "upload a smaller version."
 msgstr[0] ""
 "Fitxategiek ezin dute byte %1$detik gorako tamainarik izan eta bidali "
-"duzunak %2$d dauzka. Saiatu fitxategi txikiagoa igotzen."
+"duzunak %2$s dauzka. Saiatu fitxategi txikiagoa igotzen."
 msgstr[1] ""
 "Fitxategiek ezin dute %1$d bytetik gorako tamainarik izan eta bidali duzunak "
-"%2$d dauzka. Saiatu fitxategi txikiagoa igotzen."
+"%2$s dauzka. Saiatu fitxategi txikiagoa igotzen."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -8550,12 +8550,12 @@ msgstr "Mezuak"
 #. TRANS: Followed by notice source (usually the client used to send the notice).
 #. TRANS: Followed by notice source.
 msgid "from"
-msgstr "nondik"
+msgstr "jatorria"
 
 #. TRANS: A possible notice source (web interface).
 msgctxt "SOURCE"
 msgid "web"
-msgstr "web"
+msgstr "web gunea"
 
 #. TRANS: A possible notice source (XMPP).
 msgctxt "SOURCE"
@@ -8979,6 +8979,9 @@ msgstr "Saioa itxi gunean."
 #. TRANS: Menu item title in primary navigation panel.
 msgid "Login to the site."
 msgstr "Saioa hasi gunean."
+
+msgid "This profile has been silenced by site moderators"
+msgstr ""
 
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"

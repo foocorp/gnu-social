@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Davidtsm
+# Author: Gomoko
 # Author: Karl1263
 # Author: Lucky
 # Author: Od1n
@@ -13,13 +14,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blog\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 12:10+0000\n"
-"PO-Revision-Date: 2012-04-15 12:10:39+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:18:46+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-02-25 15:25:35+0000\n"
-"X-Generator: MediaWiki 1.20alpha (27b39a6); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-blog\n"
@@ -56,16 +57,16 @@ msgstr "Trop d'objets d'activité"
 
 #. TRANS: Exception thrown when blog plugin comes across a non-blog entry type object.
 msgid "Wrong type for object."
-msgstr ""
+msgstr "Mauvais type d'objet."
 
 #. TRANS: Exception thrown when blog plugin comes across a undefined verb.
 msgid "Unknown verb for blog entries."
-msgstr ""
+msgstr "Verbe inconnu pour les entrées du blog."
 
 #. TRANS: Exception thrown when requesting a non-existing blog entry for notice.
 #, php-format
 msgid "No blog entry for notice %s."
-msgstr ""
+msgstr "Aucune entrée de blog pour l'avis %s."
 
 #. TRANS: Client exception thrown when referring to a non-existing blog entry.
 msgid "No such entry."
@@ -82,7 +83,7 @@ msgstr "Titre"
 
 #. TRANS: Field title on blog entry form.
 msgid "Title of the blog entry."
-msgstr ""
+msgstr "Titre de l'entrée de blog."
 
 #. TRANS: Field label on blog entry form.
 msgctxt "LABEL"
@@ -91,7 +92,7 @@ msgstr "Texte"
 
 #. TRANS: Field title on blog entry form.
 msgid "Text of the blog entry."
-msgstr ""
+msgstr "Texte de l'entrée de blog."
 
 #. TRANS: Button text to save a blog entry.
 msgctxt "BUTTON"

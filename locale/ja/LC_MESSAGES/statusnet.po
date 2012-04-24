@@ -6,6 +6,7 @@
 # Author: Fryed-peach
 # Author: Masakiyamaguchi
 # Author: Miwa ka
+# Author: Shirayuki
 # Author: Sonoda
 # Author: Whym
 # Author: 青子守歌
@@ -16,12 +17,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-08 22:26+0000\n"
-"PO-Revision-Date: 2012-04-08 22:27:48+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:19:44+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (c953a56); Translate 2012-03-13\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -142,7 +143,7 @@ msgstr "あなたのセッショントークンに問題がありました。再
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
-msgstr "ログインしていません"
+msgstr "ログインしていません。"
 
 #. TRANS: Client error displayed trying to perform an action related to a non-existing profile.
 #. TRANS: Client exception thrown when requesting a favorite feed for a non-existing profile.
@@ -1948,7 +1949,7 @@ msgstr "ホーム"
 
 msgctxt "MENU"
 msgid "Docs"
-msgstr ""
+msgstr "ドキュメント"
 
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 msgctxt "MENU"
@@ -1972,7 +1973,7 @@ msgid "FAQ"
 msgstr "よくある質問と回答"
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "よくある質問"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
@@ -2002,7 +2003,7 @@ msgstr "グループを使用する"
 
 msgctxt "MENU"
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "RESTful API"
 msgstr ""
@@ -3053,7 +3054,7 @@ msgstr "ライセンスを表示するイメージの URL。"
 
 #. TRANS: Button title in the license admin panel.
 msgid "Save license settings."
-msgstr "ライセンス設定を保存する。"
+msgstr "ライセンス設定を保存します。"
 
 #. TRANS: Form validation error displayed when trying to log in with incorrect credentials.
 msgid "Incorrect username or password."
@@ -3726,7 +3727,7 @@ msgstr "ときどき"
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
 msgid "Always"
-msgstr "いつも"
+msgstr "常に"
 
 #. TRANS: Drop down label in Paths admin panel.
 msgid "Use SSL"
@@ -7668,7 +7669,7 @@ msgstr "フィード"
 #. TRANS: List element on gallery action page to show all tags.
 msgctxt "TAGS"
 msgid "All"
-msgstr "全て"
+msgstr "すべて"
 
 #. TRANS: Dropdown field label on gallery action page for a list containing tags.
 msgid "Tag"
@@ -7919,7 +7920,7 @@ msgstr "送信"
 
 #. TRANS: Submit button title.
 msgid "Send invitations."
-msgstr "招待状を送る。"
+msgstr "招待状を送信します。"
 
 #. TRANS: Button text for joining a group.
 msgctxt "BUTTON"
@@ -8431,7 +8432,7 @@ msgstr ""
 #. TRANS: A possible notice source (XMPP).
 msgctxt "SOURCE"
 msgid "xmpp"
-msgstr ""
+msgstr "xmpp"
 
 #. TRANS: A possible notice source (e-mail).
 msgctxt "SOURCE"
@@ -8441,12 +8442,12 @@ msgstr "メール"
 #. TRANS: A possible notice source (OpenMicroBlogging).
 msgctxt "SOURCE"
 msgid "omb"
-msgstr ""
+msgstr "omb"
 
 #. TRANS: A possible notice source (Application Programming Interface).
 msgctxt "SOURCE"
 msgid "api"
-msgstr ""
+msgstr "api"
 
 #. TRANS: Client exception thrown when no author for an activity was found.
 msgid "Cannot get author for activity."
@@ -8518,7 +8519,7 @@ msgstr ""
 #. TRANS: Separator in profile addressees list.
 msgctxt "SEPARATOR"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #. TRANS: Used in coordinates as abbreviation of north.
 msgid "N"
@@ -8847,7 +8848,10 @@ msgstr "サイトからログアウトします"
 
 #. TRANS: Menu item title in primary navigation panel.
 msgid "Login to the site."
-msgstr "サイトへログインします"
+msgstr "サイトにログインします。"
+
+msgid "This profile has been silenced by site moderators"
+msgstr ""
 
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
@@ -9018,7 +9022,7 @@ msgstr "このサイト上のグループを検索する"
 #. TRANS: Secondary navigation menu item leading to Terms of Service.
 msgctxt "MENU"
 msgid "TOS"
-msgstr ""
+msgstr "サービス利用規約"
 
 #. TRANS: Secondary navigation menu item leading to privacy policy.
 msgctxt "MENU"

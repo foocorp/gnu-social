@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Brion
+# Author: Jezevec
 # Author: Koo6
 # Author: Kuvaly
 # Author: Tchoř
@@ -15,12 +16,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 12:10+0000\n"
-"PO-Revision-Date: 2012-04-15 12:10:38+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:18:49+0000\n"
 "Language-Team: Czech <https://translatewiki.net/wiki/Portal:cs>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (27b39a6); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: cs\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -900,7 +901,6 @@ msgstr ""
 "vašeho účtu na %4$s jen třetím stranám kterým věříte.."
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Account"
 msgstr "Účet"
@@ -1006,9 +1006,9 @@ msgstr "Metoda HTTP není podporována."
 
 #. TRANS: Exception thrown requesting an unsupported notice output format.
 #. TRANS: %s is the requested output format.
-#, fuzzy, php-format
+#, php-format
 msgid "Unsupported format: %s."
-msgstr "Nepodporovaný formát."
+msgstr "Nepodporovaný formát:  %s ."
 
 #. TRANS: Client error displayed requesting a deleted status.
 msgid "Status deleted."
@@ -1254,9 +1254,8 @@ msgstr "Žádná přezdívka nebo ID."
 
 #. TRANS: Client error displayed trying to approve group membership while not logged in.
 #. TRANS: Client error displayed when trying to leave a group while not logged in.
-#, fuzzy
 msgid "Must be logged in."
-msgstr "Nejste přihlášen(a)."
+msgstr "Musíte být přihlášen(a)."
 
 #. TRANS: Client error displayed trying to approve group membership while not a group administrator.
 #. TRANS: Client error displayed when trying to approve or cancel a group join request without
@@ -1398,9 +1397,8 @@ msgid "Unknown group."
 msgstr "Neznámé"
 
 #. TRANS: Client exception thrown when trying to subscribe to an already subscribed group.
-#, fuzzy
 msgid "Already a member."
-msgstr "Všichni členové"
+msgstr "Již jste členem."
 
 #. TRANS: Client exception thrown when trying to subscribe to group while blocked from that group.
 msgid "Blocked by admin."
@@ -1412,9 +1410,8 @@ msgid "No such favorite."
 msgstr "Žádný takový soubor."
 
 #. TRANS: Client exception thrown when trying to remove a favorite notice of another user.
-#, fuzzy
 msgid "Cannot delete someone else's favorite."
-msgstr "Nelze smazat oblíbenou položku."
+msgstr "Nelze smazat oblíbenou položku někoho jiného."
 
 #. TRANS: Client exception thrown when trying to show membership of a non-subscribed group
 #, fuzzy
@@ -1459,9 +1456,9 @@ msgstr ""
 
 #. TRANS: Client exception thrown when subscribing to a non-existing profile.
 #. TRANS: %s is the unknown profile ID.
-#, fuzzy, php-format
+#, php-format
 msgid "Unknown profile %s."
-msgstr "Neznámý typ souboru"
+msgstr "Neznámý profil  %s ."
 
 #. TRANS: Client error displayed trying to subscribe to an already subscribed profile.
 #. TRANS: %s is the profile the user already has a subscription on.
@@ -2088,7 +2085,6 @@ msgstr ""
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
 #. TRANS: Menu item in local navigation menu.
-#, fuzzy
 msgctxt "MENU"
 msgid "Groups"
 msgstr "Skupiny"
@@ -3089,7 +3085,7 @@ msgstr "Nejste členem této skupiny."
 #. TRANS: User admin panel title
 msgctxt "TITLE"
 msgid "License"
-msgstr ""
+msgstr "Licence"
 
 #. TRANS: Form instructions for the site license admin panel.
 msgid "License for this StatusNet site"
@@ -3138,11 +3134,11 @@ msgstr "Soukromí"
 
 #. TRANS: License option in the license admin panel.
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Všechna práva vyhrazena"
 
 #. TRANS: License option in the license admin panel.
 msgid "Creative Commons"
-msgstr ""
+msgstr "Creative Commons"
 
 #. TRANS: Dropdown field label in the license admin panel.
 msgid "Type"
@@ -3155,7 +3151,7 @@ msgstr "Vyberte operátora"
 
 #. TRANS: Form legend in the license admin panel.
 msgid "License details"
-msgstr ""
+msgstr "Podrobnosti o licenci"
 
 #. TRANS: Field label in the license admin panel.
 msgid "Owner"
@@ -3658,10 +3654,9 @@ msgid "6 or more characters."
 msgstr "6 a více znaků"
 
 #. TRANS: Field label on page where to change password. In this field the new password should be typed a second time.
-#, fuzzy
 msgctxt "LABEL"
 msgid "Confirm"
-msgstr "Potvrdit"
+msgstr "Potvrzení"
 
 #. TRANS: Field title on page where to change password.
 #. TRANS: Title for field label for password reset form where the password has to be typed again.
@@ -3671,7 +3666,6 @@ msgid "Same as password above."
 msgstr "Stejné jako heslo výše"
 
 #. TRANS: Button text on page where to change password.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Change"
 msgstr "Změnit"
@@ -9316,6 +9310,9 @@ msgstr "Odhlášení z webu"
 #, fuzzy
 msgid "Login to the site."
 msgstr "Přihlásit se na stránky"
+
+msgid "This profile has been silenced by site moderators"
+msgstr ""
 
 #. TRANS: H2 text for user subscription statistics.
 #, fuzzy

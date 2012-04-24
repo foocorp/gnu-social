@@ -3,6 +3,7 @@
 #
 # Author: Brunoperel
 # Author: Crochet.david
+# Author: Gomoko
 # Author: IAlex
 # Author: Iketsi
 # Author: Notafish
@@ -14,13 +15,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Bookmark\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 12:10+0000\n"
-"PO-Revision-Date: 2012-04-15 12:10:42+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
+"PO-Revision-Date: 2012-04-21 10:18:52+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-10-10 14:11:41+0000\n"
-"X-Generator: MediaWiki 1.20alpha (27b39a6); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-bookmark\n"
@@ -32,7 +33,7 @@ msgstr "Les balises <A> sont interdites au sein des balises <DT>."
 
 #. TRANS: Client exception thrown when a bookmark in an import file is private.
 msgid "Skipping private bookmark."
-msgstr ""
+msgstr "Sauter le signet privé."
 
 #. TRANS: Client exception thrown when referring to a non-existing bookmark.
 msgid "No such bookmark."
@@ -42,7 +43,7 @@ msgstr "Ce signet n'existe pas."
 #. TRANS: %1$s is a user nickname, %2$s is a bookmark title.
 #, php-format
 msgid "%1$s's bookmark for \"%2$s\""
-msgstr ""
+msgstr "Signet de %1$s pour \"%2$s\""
 
 #. TRANS: Plugin description.
 msgid "Simple extension for supporting bookmarks."
@@ -59,7 +60,7 @@ msgstr "Un seul lien rel=related doit être inclus dans un signet"
 
 #. TRANS: Server exception thrown when a bookmark has multiple attachments.
 msgid "Bookmark notice with the wrong number of attachments."
-msgstr ""
+msgstr "Avis de signet avec le mauvais nombre d'attachements."
 
 #. TRANS: Application title.
 msgctxt "TITLE"
@@ -114,13 +115,13 @@ msgstr "URL inconnu."
 #. TRANS: %s is the URL.
 #, php-format
 msgid "Notices linking to %s"
-msgstr ""
+msgstr "Notices faisant référence à %s"
 
 #. TRANS: Title of notice stream of notices with a given attachment (all but first page).
 #. TRANS: %1$s is the URL, %2$s is the page number.
 #, php-format
 msgid "Notices linking to %1$s, page %2$d"
-msgstr ""
+msgstr "Avis faisant référence à %1$s, page %2$d"
 
 #. TRANS: Client exception thrown when trying to import bookmarks without being logged in.
 msgid "Only logged-in users can import del.icio.us backups."

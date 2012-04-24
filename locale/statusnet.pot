@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-15 12:10+0000\n"
+"POT-Creation-Date: 2012-04-21 10:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5538,7 +5538,7 @@ msgstr ""
 
 #. TRANS: Title after repeating a notice.
 #. TRANS: Repeat form status in notice list when a notice has been repeated.
-#: actions/repeat.php:102 lib/noticelistitem.php:700
+#: actions/repeat.php:102 lib/noticelistitem.php:703
 msgid "Repeated"
 msgstr ""
 
@@ -6136,8 +6136,8 @@ msgstr ""
 #. TRANS: Default content for section/sidebar widget.
 #: actions/showprofiletag.php:315 actions/showprofiletag.php:353
 #: lib/groupaction.php:163 lib/groupaction.php:256 lib/peopletags.php:166
-#: lib/profileaction.php:140 lib/profileaction.php:172
-#: lib/profileaction.php:270 lib/section.php:117
+#: lib/profileaction.php:147 lib/profileaction.php:179
+#: lib/profileaction.php:277 lib/section.php:117
 msgid "(None)"
 msgstr ""
 
@@ -7533,18 +7533,18 @@ msgid "Problem saving notice."
 msgstr ""
 
 #. TRANS: Server exception thrown when no array is provided to the method saveKnownGroups().
-#: classes/Notice.php:1145
+#: classes/Notice.php:1143
 msgid "Bad type provided to saveKnownGroups."
 msgstr ""
 
 #. TRANS: Server exception thrown when an update for a group inbox fails.
-#: classes/Notice.php:1237
+#: classes/Notice.php:1235
 msgid "Problem saving group inbox."
 msgstr ""
 
 #. TRANS: Message used to repeat a notice. RT is the abbreviation of 'retweet'.
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
-#: classes/Notice.php:1864
+#: classes/Notice.php:1862
 #, php-format
 msgid "RT @%1$s %2$s"
 msgstr ""
@@ -8977,7 +8977,7 @@ msgstr ""
 
 #. TRANS: Header on conversation page. Hidden by default (h2).
 #. TRANS: Label for user statistics.
-#: lib/conversationtree.php:64 lib/profileaction.php:216
+#: lib/conversationtree.php:64 lib/profileaction.php:223
 msgid "Notices"
 msgstr ""
 
@@ -9002,7 +9002,7 @@ msgstr ""
 
 #. TRANS: Title of form for deleting a user.
 #. TRANS: Link text in notice list item to delete a notice.
-#: lib/deleteuserform.php:64 lib/noticelistitem.php:677
+#: lib/deleteuserform.php:64 lib/noticelistitem.php:680
 msgid "Delete"
 msgstr ""
 
@@ -9872,12 +9872,12 @@ msgstr ""
 
 #. TRANS: Followed by notice source (usually the client used to send the notice).
 #. TRANS: Followed by notice source.
-#: lib/messagelistitem.php:123 lib/noticelistitem.php:523
+#: lib/messagelistitem.php:123 lib/noticelistitem.php:526
 msgid "from"
 msgstr ""
 
 #. TRANS: A possible notice source (web interface).
-#: lib/messagelistitem.php:144 lib/noticelistitem.php:518
+#: lib/messagelistitem.php:144 lib/noticelistitem.php:521
 msgctxt "SOURCE"
 msgid "web"
 msgstr ""
@@ -9988,28 +9988,28 @@ msgid ""
 msgstr ""
 
 #. TRANS: Separator in profile addressees list.
-#: lib/noticelistitem.php:252
+#: lib/noticelistitem.php:255
 msgctxt "SEPARATOR"
 msgid ", "
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of north.
-#: lib/noticelistitem.php:446
+#: lib/noticelistitem.php:449
 msgid "N"
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of south.
-#: lib/noticelistitem.php:448
+#: lib/noticelistitem.php:451
 msgid "S"
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of east.
-#: lib/noticelistitem.php:450
+#: lib/noticelistitem.php:453
 msgid "E"
 msgstr ""
 
 #. TRANS: Used in coordinates as abbreviation of west.
-#: lib/noticelistitem.php:452
+#: lib/noticelistitem.php:455
 msgid "W"
 msgstr ""
 
@@ -10018,47 +10018,47 @@ msgstr ""
 #. TRANS: %3$s is lattitude seconds, %4$s is N (north) or S (south) depending on lattitude,
 #. TRANS: %5$s is longitude degrees, %6$s is longitude minutes,
 #. TRANS: %7$s is longitude seconds, %8$s is E (east) or W (west) depending on longitude,
-#: lib/noticelistitem.php:459
+#: lib/noticelistitem.php:462
 #, php-format
 msgid "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 msgstr ""
 
 #. TRANS: Followed by geo location.
-#: lib/noticelistitem.php:469
+#: lib/noticelistitem.php:472
 msgid "at"
 msgstr ""
 
 #. TRANS: Addition in notice list item if notice is part of a conversation.
-#: lib/noticelistitem.php:584
+#: lib/noticelistitem.php:587
 msgid "in context"
 msgstr ""
 
 #. TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
-#: lib/noticelistitem.php:619
+#: lib/noticelistitem.php:622
 msgid "Repeated by"
 msgstr ""
 
-#: lib/noticelistitem.php:620
+#: lib/noticelistitem.php:623
 msgid " "
 msgstr ""
 
 #. TRANS: Link title in notice list item to reply to a notice.
-#: lib/noticelistitem.php:647
+#: lib/noticelistitem.php:650
 msgid "Reply to this notice."
 msgstr ""
 
 #. TRANS: Link text in notice list item to reply to a notice.
-#: lib/noticelistitem.php:649
+#: lib/noticelistitem.php:652
 msgid "Reply"
 msgstr ""
 
 #. TRANS: Link title in notice list item to delete a notice.
-#: lib/noticelistitem.php:675
+#: lib/noticelistitem.php:678
 msgid "Delete this notice from the timeline."
 msgstr ""
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
-#: lib/noticelistitem.php:698
+#: lib/noticelistitem.php:701
 msgid "Notice repeated."
 msgstr ""
 
@@ -10389,44 +10389,48 @@ msgstr ""
 msgid "Login to the site."
 msgstr ""
 
+#: lib/profileaction.php:93
+msgid "This profile has been silenced by site moderators"
+msgstr ""
+
 #. TRANS: H2 text for user subscription statistics.
-#: lib/profileaction.php:128
+#: lib/profileaction.php:135
 msgid "Following"
 msgstr ""
 
 #. TRANS: H2 text for user subscriber statistics.
-#: lib/profileaction.php:160
+#: lib/profileaction.php:167
 msgid "Followers"
 msgstr ""
 
 #. TRANS: H2 text for user statistics.
-#: lib/profileaction.php:196
+#: lib/profileaction.php:203
 msgid "Statistics"
 msgstr ""
 
 #. TRANS: Label for user statistics.
-#: lib/profileaction.php:204
+#: lib/profileaction.php:211
 msgid "User ID"
 msgstr ""
 
 #. TRANS: Label for user statistics.
-#: lib/profileaction.php:210
+#: lib/profileaction.php:217
 msgid "Member since"
 msgstr ""
 
 #. TRANS: Label for user statistics.
 #. TRANS: Average count of posts made per day since account registration.
-#: lib/profileaction.php:223
+#: lib/profileaction.php:230
 msgid "Daily average"
 msgstr ""
 
 #. TRANS: H2 text for user group membership statistics.
-#: lib/profileaction.php:260
+#: lib/profileaction.php:267
 msgid "Groups"
 msgstr ""
 
 #. TRANS: H2 text for user list membership statistics.
-#: lib/profileaction.php:298
+#: lib/profileaction.php:305
 msgid "Lists"
 msgstr ""
 

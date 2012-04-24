@@ -194,12 +194,12 @@ function _m($msg/*, ...*/)
 function _mdomain($backtrace)
 {
     /*
-      0 => 
+      0 =>
         array
           'file' => string '/var/www/mublog/plugins/FeedSub/FeedSubPlugin.php' (length=49)
           'line' => int 77
           'function' => string '_m' (length=2)
-          'args' => 
+          'args' =>
             array
               0 => &string 'Feeds' (length=5)
     */
@@ -293,7 +293,7 @@ function get_nice_language_list()
  * Check whether a language is right-to-left
  *
  * @param string $lang language code of the language to check
- * 
+ *
  * @return boolean true if language is rtl
  */
 
@@ -318,6 +318,7 @@ function get_all_languages() {
         'af'      => array('q' => 0.8, 'lang' => 'af', 'name' => 'Afrikaans', 'direction' => 'ltr'),
         'ar'      => array('q' => 0.8, 'lang' => 'ar', 'name' => 'Arabic', 'direction' => 'rtl'),
         'arz'     => array('q' => 0.8, 'lang' => 'arz', 'name' => 'Egyptian Spoken Arabic', 'direction' => 'rtl'),
+        'be-tarask' => array('q' => 0.5, 'lang' => 'be-tarask', 'name' => 'Belarusian (Taraškievica orthography)', 'direction' => 'ltr'),
         'bg'      => array('q' => 0.8, 'lang' => 'bg', 'name' => 'Bulgarian', 'direction' => 'ltr'),
         'br'      => array('q' => 0.8, 'lang' => 'br', 'name' => 'Breton', 'direction' => 'ltr'),
         'ca'      => array('q' => 0.5, 'lang' => 'ca', 'name' => 'Catalan', 'direction' => 'ltr'),
@@ -347,6 +348,7 @@ function get_all_languages() {
         'ka'      => array('q' => 0.8, 'lang' => 'ka',    'name' => 'Georgian', 'direction' => 'ltr'),
         'ko'      => array('q' => 0.9, 'lang' => 'ko',    'name' => 'Korean', 'direction' => 'ltr'),
         'mk'      => array('q' => 0.5, 'lang' => 'mk', 'name' => 'Macedonian', 'direction' => 'ltr'),
+        'ml'      => array('q' => 0.5, 'lang' => 'ml', 'name' => 'Malayalam', 'direction' => 'ltr'),
         'nb'      => array('q' => 0.1, 'lang' => 'nb', 'name' => 'Norwegian (Bokmål)', 'direction' => 'ltr'),
         'no'      => array('q' => 0.1, 'lang' => 'nb', 'name' => 'Norwegian (Bokmål)', 'direction' => 'ltr'),
         'nn'      => array('q' => 1, 'lang' => 'nn', 'name' => 'Norwegian (Nynorsk)', 'direction' => 'ltr'),
