@@ -2474,7 +2474,7 @@ class Notice extends Managed_DataObject
             $author = $this->getProfile();
 
             if ($author->hasRole(Profile_role::SILENCED)) {
-                if (empty($profile) || !$profile->hasRight(Right::REVIEWSPAM)) {
+                if (empty($profile) || (($profile->id !== $author->id) && (!$profile->hasRight(Right::REVIEWSPAM)))) {
                     return true;
                 }
             }
