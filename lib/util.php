@@ -1311,7 +1311,7 @@ function common_inject_session($url, $serverpart = null)
             $serverpart = parse_url($url, PHP_URL_HOST);
         }
 
-        $currentServer = (array_has_key('HTTP_HOST')) ? $_SERVER['HTTP_HOST'] : null;
+        $currentServer = (array_key_exists('HTTP_HOST')) ? $_SERVER['HTTP_HOST'] : null;
 
         // Are we pointing to another server (like an SSL server?)
 
