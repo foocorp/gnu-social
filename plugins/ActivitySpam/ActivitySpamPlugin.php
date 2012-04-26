@@ -180,7 +180,7 @@ class ActivitySpamPlugin extends Plugin
 
             if (!empty($notice)) {
 
-                $score = $this->getScore($notice);
+                $score = Spam_score::staticGet('notice_id', $notice->id);
 
                 if (empty($score)) {
                     $this->debug("No score for notice " . $notice->id);
@@ -251,37 +251,6 @@ class ActivitySpamPlugin extends Plugin
                             _m('Test notices against the Activity Spam service.'));
         return true;
     }
-
-    function getScore($notice)
-    {
-        $score = Spam_score::staticGet('notice_id', $notice->id);
-        
-        if (!empty($score)) {
-            return $score;
-        }
-
-        try {
-
-            $result = $this->filter->test($notice);
-
-            $score = Spam_score::saveNew($notice, $result);
-
-            $this->log(LOG_INFO, "Notice " . $notice->id . " has spam score " . $score->score);
-
-        } catch (Exception $e) {
-            // Log but continue 
-            $this->log(LOG_ERR, $e->getMessage());
-            $score = null;
-        }
-
-        return $score;
-    }
-
-    function onStartReadWriteTables(&$alwaysRW, &$rwdb) {
-        $alwaysRW[] = 'spam_score';
-        return true;
-    }
-
 
     function onEndNoticeInScope($notice, $profile, &$bResult)
     {
