@@ -19,17 +19,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:19:13+0000\n"
+"POT-Creation-Date: 2012-04-29 23:03+0000\n"
+"PO-Revision-Date: 2012-04-29 23:04:50+0000\n"
 "Language-Team: Finnish <https://translatewiki.net/wiki/Portal:fi>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (87e6ff2); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fi\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
+"X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
 
 #. TRANS: Database error message.
 #, fuzzy, php-format
@@ -4183,7 +4183,7 @@ msgstr "Olinpaikka kuten \"Kaupunki, Maakunta (tai Lääni), Maa\""
 
 #. TRANS: Checkbox label in form for profile settings.
 msgid "Share my current location when posting notices"
-msgstr ""
+msgstr "Jaa nykyinen sijaintini viestejä lähettäessä."
 
 #. TRANS: Field label in form for profile settings.
 #. TRANS: Title for group tag cloud section.
@@ -4205,9 +4205,8 @@ msgid "Language"
 msgstr "Kieli"
 
 #. TRANS: Tooltip for dropdown list label in form for profile settings.
-#, fuzzy
 msgid "Preferred language."
-msgstr "Ensisijainen kieli"
+msgstr "Ensisijainen kieli."
 
 #. TRANS: Dropdownlist label in form for profile settings.
 msgid "Timezone"
@@ -4230,32 +4229,31 @@ msgid "Subscription policy"
 msgstr "Tilaukset"
 
 #. TRANS: Dropdown field option for following policy.
-#, fuzzy
 msgid "Let anyone follow me"
-msgstr "Vain henkilöitä voi seurata."
+msgstr "Anna kenen tahansa seurata minua"
 
 #. TRANS: Dropdown field option for following policy.
 msgid "Ask me first"
-msgstr ""
+msgstr "Kysy minulta ensin"
 
 #. TRANS: Dropdown field title on group edit form.
 msgid "Whether other users need your permission to follow your updates."
-msgstr ""
+msgstr "Tarvitsevatko muut käyttäjät lupaa seuratakseen päivityksiäsi."
 
 #. TRANS: Checkbox label in profile settings.
 msgid "Make updates visible only to my followers"
-msgstr ""
+msgstr "Näytä päivitykset vain seuraajilleni."
 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Plural form is used based on the maximum number of allowed
 #. TRANS: characters for the biography (%d).
 #. TRANS: Form validation error on registration page when providing too long a bio text.
 #. TRANS: %d is the maximum number of characters for bio; used for plural.
-#, fuzzy, php-format
+#, php-format
 msgid "Bio is too long (maximum %d character)."
 msgid_plural "Bio is too long (maximum %d characters)."
-msgstr[0] "kuvaus on liian pitkä (max %d merkkiä)."
-msgstr[1] "kuvaus on liian pitkä (max %d merkkiä)."
+msgstr[0] "Kuvaus on liian pitkä (korkeintaan %d merkkiä)."
+msgstr[1] "Kuvaus on liian pitkä (korkeintaan %d merkkiä)."
 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Client error displayed trying to save site settings without a timezone.
@@ -4272,7 +4270,7 @@ msgstr "Kieli on liian pitkä (enintään 50 merkkiä)."
 #. TRANS: %s is the invalid tag.
 #. TRANS: Error displayed if a given tag is invalid.
 #. TRANS: %s is the invalid tag.
-#, fuzzy, php-format
+#, php-format
 msgid "Invalid tag: \"%s\"."
 msgstr "Virheellinen tagi: \"%s\""
 
@@ -4283,9 +4281,8 @@ msgid "Could not update user for autosubscribe or subscribe_policy."
 msgstr "Ei voitu asettaa käyttäjälle automaattista tilausta."
 
 #. TRANS: Server error thrown when user profile location preference settings could not be updated.
-#, fuzzy
 msgid "Could not save location prefs."
-msgstr "Tageja ei voitu tallentaa."
+msgstr "Ei voitu tallentaa sijaintivalintoja."
 
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
@@ -4293,20 +4290,18 @@ msgstr "Tagien tallennus epäonnistui."
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
-#, fuzzy
 msgid "Restore account"
-msgstr "Luo uusi ryhmä"
+msgstr "Palauta käyttäjätili"
 
 #. TRANS: Client error displayed when requesting a public timeline page beyond the page limit.
 #. TRANS: %s is the page limit.
 #, php-format
 msgid "Beyond the page limit (%s)."
-msgstr ""
+msgstr "Ylittää sivun rajan ( %s )."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-#, fuzzy
 msgid "Could not retrieve public timeline."
-msgstr "Julkista päivitysvirtaa ei saatu."
+msgstr "Ei voi noutaa julkista aikajanaa."
 
 #. TRANS: Title for all public timeline pages but the first.
 #. TRANS: %d is the page number.
@@ -4320,33 +4315,29 @@ msgid "Public timeline"
 msgstr "Julkinen aikajana"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (Activity Streams JSON)"
-msgstr "Julkinen syöte (Atom)"
+msgstr "Julkisen aikajanan syöte (Activity Streams JSON)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (RSS 1.0)"
-msgstr "Julkinen syöte (RSS 1.0)"
+msgstr "Julkisen aikajanan syöte (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (RSS 2.0)"
 msgstr "Julkisen Aikajanan Syöte (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (Atom)"
-msgstr "Julkinen syöte (Atom)"
+msgstr "Julkisen aikajanan syöte (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the public timeline for %%site.name%% but no one has posted anything "
 "yet."
 msgstr ""
-"Tämä on käyttäjän %s ja kavereiden aikajana, mutta kukaan ei ole lähettyänyt "
-"vielä mitään."
+"Tämä on julkinen aikajana sivustolle %%site.name%% mutta kukaan ei ole vielä "
+"lähettänyt viestiä."
 
 #. TRANS: Additional text displayed for public feed when there are no public notices for a logged in user.
 msgid "Be the first to post!"
@@ -4357,6 +4348,8 @@ msgstr "Ole ensimmäinen joka lähettää päivityksen!"
 msgid ""
 "Why not [register an account](%%action.register%%) and be the first to post!"
 msgstr ""
+"Miksi et [rekisteröisi käyttäjätunnusta](%%action.register%%) ja lähettäisi "
+"ensimmäistä viestiä!"
 
 #. TRANS: Message for not logged in users at an invite-only site trying to view the public feed of notices.
 #. TRANS: This message contains Markdown links. Please mind the formatting.
@@ -4367,6 +4360,11 @@ msgid ""
 "tool. [Join now](%%action.register%%) to share notices about yourself with "
 "friends, family, and colleagues! ([Read more](%%doc.help%%))"
 msgstr ""
+"Tämä on %%site.name%%, [mikroblogauspalvelu](http://fi.wikipedia.org/wiki/"
+"Blogi#Mikroblogi), joka perustuu vapaaseen ohjelmistoon [StatusNet](http://"
+"status.net/). [Liity nyt](%%action.register%%) jakaaksesi päivityksiä "
+"itsestäsi ystävillesi, perheellesi ja kollegoillesi! ([Lue lisää](%%doc.help%"
+"%))"
 
 #. TRANS: Message for not logged in users at a closed site trying to view the public feed of notices.
 #. TRANS: This message contains Markdown links. Please mind the formatting.
@@ -4380,9 +4378,9 @@ msgstr ""
 "blogging)palvelu "
 
 #. TRANS: Public RSS feed description. %s is the StatusNet site name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s updates from everyone."
-msgstr "%s päivitykset kaikilta!"
+msgstr "Sivuston %s kaikkien käyttäjien päivitykset."
 
 #. TRANS: Title for public tag cloud.
 msgid "Public tag cloud"
@@ -4390,7 +4388,7 @@ msgstr "Julkinen tagipilvi"
 
 #. TRANS: Instructions (more used like an explanation/header).
 #. TRANS: %s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "These are most popular recent tags on %s"
 msgstr "Nämä ovat suosituimmat viimeaikaiset tagit %s -palvelussa"
 
@@ -4418,6 +4416,8 @@ msgid ""
 "Why not [register an account](%%action.register%%) and be the first to post "
 "one!"
 msgstr ""
+"Miksi et [rekisteröisi käyttäjätunnusta](%%action.register%%) ja lähettäisi "
+"ensimmäistä viestiä!"
 
 #. TRANS: Client error displayed trying to recover password while already logged in.
 msgid "You are already logged in!"
@@ -4448,13 +4448,12 @@ msgid "Could not update user with confirmed email address."
 msgstr "Ei voitu päivittää käyttäjälle vahvistettua sähköpostiosoitetta."
 
 #. TRANS: Page notice for password recovery page.
-#, fuzzy
 msgid ""
 "If you have forgotten or lost your password, you can get a new one sent to "
 "the email address you have stored in your account."
 msgstr ""
-"Ohjeet salasanan palauttamiseksi on lähetetty sähköpostiisiosoitteeseen, "
-"joka on rekisteröity käyttäjätunnuksellesi."
+"Jos olet unohtanut tai hukannut salasanasi, saat uuden "
+"sähköpostiosoitteeseen, jonka olet rekisteröinyt käyttäjätunnuksellesi."
 
 #. TRANS: Page notice for password change page.
 msgid "You have been identified. Enter a new password below."
@@ -4478,7 +4477,6 @@ msgid "Recover"
 msgstr "Palauta"
 
 #. TRANS: Button text on password recovery page.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Recover"
 msgstr "Palauta"
@@ -4497,20 +4495,17 @@ msgid "Password recovery requested"
 msgstr "Salasanan palautuspyyntö lähetetty."
 
 #. TRANS: Title for password recovery page in password saved mode.
-#, fuzzy
 msgid "Password saved"
-msgstr "Salasana tallennettu."
+msgstr "Salasana tallennettu"
 
 #. TRANS: Title for field label for password reset form.
-#, fuzzy
 msgid "6 or more characters, and do not forget it!"
-msgstr "6 tai useampia merkkejä äläkä unohda mitä kirjoitit!"
+msgstr "6 merkkiä tai enemmän, älä unohda sitä!"
 
 #. TRANS: Button text for password reset form.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Reset"
-msgstr "Vaihda"
+msgstr "Palauta"
 
 #. TRANS: Form instructions for password recovery form.
 msgid "Enter a nickname or email address."
@@ -4529,9 +4524,8 @@ msgid "Unexpected password reset."
 msgstr "Odottamaton salasanan uudelleenasetus."
 
 #. TRANS: Reset password form validation error message.
-#, fuzzy
 msgid "Password must be 6 characters or more."
-msgstr "Salasanassa pitää olla 6 tai useampia merkkejä."
+msgstr "Salasanassa täytyy olla 6 merkkiä tai enemmän."
 
 #. TRANS: Reset password form validation error message.
 msgid "Password and confirmation do not match."
@@ -4548,15 +4542,14 @@ msgstr ""
 "Uusi salasana tallennettiin onnistuneesti. Olet nyt kirjautunut sisään."
 
 #. TRANS: Client exception thrown when no ID parameter was provided.
-#, fuzzy
 msgid "No id parameter."
-msgstr "Ei id parametria."
+msgstr "Ei id-parametria."
 
 #. TRANS: Client exception thrown when an invalid ID parameter was provided for a file.
 #. TRANS: %d is the provided ID for which the file is not present (number).
-#, fuzzy, php-format
+#, php-format
 msgid "No such file \"%d\"."
-msgstr "Tiedostoa ei ole."
+msgstr "Ei ole tiedostoa \"%d\"."
 
 #. TRANS: Client error displayed when trying to register to an invite-only site without an invitation.
 msgid "Sorry, only invited people can register."
@@ -4571,7 +4564,6 @@ msgid "Registration successful"
 msgstr "Rekisteröityminen onnistui"
 
 #. TRANS: Title for registration page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Register"
 msgstr "Rekisteröidy"
@@ -4581,9 +4573,8 @@ msgid "Registration not allowed."
 msgstr "Rekisteröityminen ei ole sallittu."
 
 #. TRANS: Form validation error displayed when trying to register without agreeing to the site license.
-#, fuzzy
 msgid "You cannot register if you do not agree to the license."
-msgstr "Et voi rekisteröityä, jos et hyväksy lisenssiehtoja."
+msgstr "Et voi rekisteröityä, jos et hyväksy lisenssiä."
 
 #. TRANS: Form validation error displayed when trying to register with an already registered e-mail address.
 msgid "Email address already exists."
@@ -4598,6 +4589,8 @@ msgid ""
 "With this form you can create a new account. You can then post notices and "
 "link up to friends and colleagues."
 msgstr ""
+"Tämän lomakkeen avulla voit luoda uuden tilin. Sen jälkeen voit lähettää "
+"viestejä ja ottaa yhteyttä ystäviin ja työtovereihin."
 
 #. TRANS: Field label on account registration page. In this field the password has to be entered a second time.
 msgctxt "PASSWORD"
@@ -4610,16 +4603,12 @@ msgid "Email"
 msgstr "Sähköposti"
 
 #. TRANS: Field title on account registration page.
-#, fuzzy
 msgid "Used only for updates, announcements, and password recovery."
-msgstr ""
-"Käytetään ainoastaan päivityksien lähettämiseen, ilmoitusasioihin ja "
-"salasanan uudelleen käyttöönottoon."
+msgstr "Käytetään vain päivityksiin, ilmoituksiin ja salasanan palauttamiseen."
 
 #. TRANS: Field title on account registration page.
-#, fuzzy
 msgid "Longer name, preferably your \"real\" name."
-msgstr "Pitempi nimi, mieluiten oikea nimesi"
+msgstr "Pidempi nimesi, mieluiten \"oikea\" nimesi."
 
 #. TRANS: Button text to register a user on account registration page.
 msgctxt "BUTTON"
@@ -4637,23 +4626,24 @@ msgstr ""
 #. TRANS: %1$s is the license owner.
 #, php-format
 msgid "My text and files are copyright by %1$s."
-msgstr ""
+msgstr "Tekstieni ja tiedostojeni tekijänoikeuksien haltija on %1$s."
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved with ownership left to contributors.
 msgid "My text and files remain under my own copyright."
-msgstr ""
+msgstr "Tekstini ja tiedostoni pysyvät oman tekijänoikeuteni alaisena."
 
 #. TRANS: Copyright checkbox label in registration dialog, for all rights reserved.
 msgid "All rights reserved."
 msgstr "Kaikki oikeudet pidätetään."
 
 #. TRANS: Copyright checkbox label in registration dialog, for Creative Commons-style licenses.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "My text and files are available under %s except this private data: password, "
 "email address, IM address, and phone number."
 msgstr ""
-"poislukien yksityinen tieto: salasana, sähköpostiosoite, IM-osoite, "
+"Tekstini ja tiedostoni ovat saatavilla %s alaisuudessa, paitsi tämä "
+"yksityinen tieto: salasana, sähköpostiosoite, pikaviestitunnus ja "
 "puhelinnumero."
 
 #. TRANS: Text displayed after successful account registration.

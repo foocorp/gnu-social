@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - ExtendedProfile\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:19:27+0000\n"
+"POT-Creation-Date: 2012-04-29 23:03+0000\n"
+"PO-Revision-Date: 2012-04-29 23:06:37+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:06+0000\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (87e6ff2); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-plugin-extendedprofile\n"
@@ -35,11 +35,11 @@ msgstr ""
 
 #. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
-msgstr "セッショントークンに問題がありました。もう一度やりなおしてください。"
+msgstr "セッション トークンに問題がありました。もう一度試してください。"
 
 #. TRANS: Message given submitting a form with an unknown action.
 msgid "Unexpected form submission."
-msgstr "予期せぬフォーム送信です。"
+msgstr "予期しないフォーム送信です。"
 
 #. TRANS: Success message after saving extended profile details.
 msgid "Details saved."
@@ -49,29 +49,29 @@ msgstr "詳細を保存しました"
 #. TRANS: %s is the field name.
 #, php-format
 msgid "You must supply a date for \"%s\"."
-msgstr "\"%s\" の日付を指定する必要があります"
+msgstr "\"%s\" の日付を指定する必要があります。"
 
 #. TRANS: Exception thrown on incorrect data input.
 #. TRANS: %1$s is a field name, %2$s is the incorrect input.
 #, php-format
 msgid "Invalid date entered for \"%1$s\": %2$s."
-msgstr "\"%1$s\" に無効な日付を入力: %2$s"
+msgstr "\"%1$s\" に正しくない日付を入力しました：%2$s。"
 
 #. TRANS: Exception thrown when entering an invalid URL.
 #. TRANS: %s is the invalid URL.
 #, php-format
 msgid "Invalid URL: %s."
-msgstr "無効な URL: %s"
+msgstr "正しくない URL です：%s。"
 
 #. TRANS: Server error displayed when a field could not be saved in the database.
 msgid "Could not save profile details."
-msgstr "プロファイルの詳細を保存できませんでした"
+msgstr "プロファイルの詳細を保存できませんでした。"
 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: %s is an invalid tag.
 #, php-format
 msgid "Invalid tag: \"%s\"."
-msgstr "無効なタグ: \"%s\""
+msgstr "正しくないタグです：\"%s\"。"
 
 #. TRANS: Server error thrown when user profile settings could not be saved.
 msgid "Could not save profile."
@@ -83,7 +83,7 @@ msgstr "タグを保存できませんでした。"
 
 #. TRANS: Link title for link on user profile.
 msgid "Edit extended profile settings"
-msgstr "拡張プロファイル設定を編集する"
+msgstr "拡張プロファイル設定を編集"
 
 #. TRANS: Link text for link on user profile.
 msgid "Edit"
@@ -91,7 +91,7 @@ msgstr "編集"
 
 #. TRANS: Plugin description.
 msgid "UI extensions for additional profile fields."
-msgstr "プロファイル項目を追加する UI 拡張機能"
+msgstr "プロファイル項目を追加する UI 拡張機能です。"
 
 #. TRANS: Link text on user profile page leading to extended profile page.
 msgid "More details..."

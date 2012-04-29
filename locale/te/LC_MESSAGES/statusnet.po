@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:20:32+0000\n"
+"POT-Creation-Date: 2012-04-29 23:03+0000\n"
+"PO-Revision-Date: 2012-04-29 23:05:57+0000\n"
 "Language-Team: Telugu <https://translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (87e6ff2); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
+"X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -1953,18 +1953,16 @@ msgctxt "MENU"
 msgid "Help"
 msgstr "సహాయం"
 
-#, fuzzy
 msgid "Getting started"
-msgstr "అమరికలు భద్రమయ్యాయి."
+msgstr "మొదలుపెట్టడం"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
 msgctxt "MENU"
 msgid "About"
 msgstr "గురించి"
 
-#, fuzzy
 msgid "About this site"
-msgstr "ఈ వాడుకరిని నిరోధించు"
+msgstr "ఈ సైటు గురించి"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
 msgctxt "MENU"
@@ -1980,9 +1978,8 @@ msgctxt "MENU"
 msgid "Contact"
 msgstr "సంప్రదింపులు"
 
-#, fuzzy
 msgid "Contact info"
-msgstr "సంప్రదింపులు"
+msgstr "సంప్రదింపు సమాచారం"
 
 #, fuzzy
 msgctxt "MENU"
@@ -6061,7 +6058,6 @@ msgid "Invalid default subscripton: \"%1$s\" is not a user."
 msgstr ""
 
 #. TRANS: Fieldset legend in user administration panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Profile"
 msgstr "ప్రొఫైలు"

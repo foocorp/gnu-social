@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Brunoperel
+# Author: Gomoko
 # Author: Iketsi
 # Author: Od1n
 # --
@@ -11,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SearchSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:21:05+0000\n"
+"POT-Creation-Date: 2012-04-29 23:03+0000\n"
+"PO-Revision-Date: 2012-04-29 23:10:09+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (87e6ff2); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-searchsub\n"
@@ -27,13 +28,13 @@ msgstr ""
 #. TRANS: %s is a user nickname.
 #, php-format
 msgid "%s's search subscriptions"
-msgstr ""
+msgstr "souscriptions aux recherches de %s"
 
 #. TRANS: Header for subscriptions overview for a user (not first page).
 #. TRANS: %1$s is a user nickname, %2$d is the page number.
 #, php-format
 msgid "%1$s's search subscriptions, page %2$d"
-msgstr ""
+msgstr "souscriptions aux recherches de %1$s, page %2$d"
 
 #. TRANS: Page notice for page with an overview of all search subscriptions
 #. TRANS: of the logged in user's own profile.
@@ -41,6 +42,8 @@ msgid ""
 "You have subscribed to receive all notices on this site matching the "
 "following searches:"
 msgstr ""
+"Vous vous êtes inscrit pour recevoir tous les avertissements de ce site "
+"correspondant aux recherches suivantes:"
 
 #. TRANS: Page notice for page with an overview of all subscriptions of a user other
 #. TRANS: than the logged in user. %s is the user nickname.
@@ -49,6 +52,8 @@ msgid ""
 "%s has subscribed to receive all notices on this site matching the following "
 "searches:"
 msgstr ""
+"%s s'est inscrit pour recevoir tous les avertissements de ce site "
+"correspondant aux recherches suivantes:"
 
 #. TRANS: Search subscription list text when the logged in user has no search subscriptions.
 msgid ""

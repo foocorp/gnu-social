@@ -1,6 +1,7 @@
 # Translation of StatusNet - Realtime to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Gomoko
 # Author: Peter17
 # Author: Verdy p
 # --
@@ -10,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Realtime\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:20:58+0000\n"
+"POT-Creation-Date: 2012-04-29 23:03+0000\n"
+"PO-Revision-Date: 2012-04-29 23:09:44+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-02 10:10:45+0000\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (87e6ff2); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-realtime\n"
@@ -24,15 +25,15 @@ msgstr ""
 
 #. TRANS: Client exception. Do not translate POST.
 msgid "You have to POST it."
-msgstr ""
+msgstr "Vous devez le PUBLIER."
 
 #. TRANS: Client exception thrown when the channel key argument is missing.
 msgid "No channel key argument."
-msgstr ""
+msgstr "Pas d'argument clé de canal."
 
 #. TRANS: Client exception thrown when referring to a non-existing channel.
 msgid "No such channel."
-msgstr ""
+msgstr "Canal inconnu."
 
 #. TRANS: Text label for realtime view "play" button, usually replaced by an icon.
 msgctxt "BUTTON"

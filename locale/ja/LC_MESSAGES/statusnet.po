@@ -17,17 +17,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:19:44+0000\n"
+"POT-Creation-Date: 2012-04-29 23:03+0000\n"
+"PO-Revision-Date: 2012-04-29 23:05:20+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (87e6ff2); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
+"X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -43,15 +43,15 @@ msgstr ""
 
 #. TRANS: Error message.
 msgid "An error occurred."
-msgstr "エラーが発生しました"
+msgstr "エラーが発生しました。"
 
 #. TRANS: Error message displayed when there is no StatusNet configuration file.
 #, php-format
 msgid ""
 "No configuration file found. Try running the installation program first."
 msgstr ""
-"設定ファイルが見つかりませんでした。最初のインストールプログラムを実行してみ"
-"てください。"
+"設定ファイルが見つかりませんでした。まずインストール プログラムを実行してみて"
+"ください。"
 
 #. TRANS: Error message displayed when trying to access a non-existing page.
 msgid "Unknown page"
@@ -88,7 +88,7 @@ msgstr "プライベート"
 
 #. TRANS: Checkbox instructions for admin setting "Invite only".
 msgid "Make registration invitation only."
-msgstr "招待者のみ登録する"
+msgstr "招待者のみ登録します。"
 
 #. TRANS: Checkbox label for configuring site as invite only.
 msgid "Invite only"
@@ -96,7 +96,7 @@ msgstr "招待のみ"
 
 #. TRANS: Checkbox instructions for admin setting "Closed" (no new registrations).
 msgid "Disable new registrations."
-msgstr "新規登録を無効にする"
+msgstr "新規登録を無効にします。"
 
 #. TRANS: Checkbox label for disabling new user registrations.
 msgid "Closed"
@@ -104,7 +104,7 @@ msgstr "クローズ"
 
 #. TRANS: Button title to save access settings in site admin panel.
 msgid "Save access settings."
-msgstr "アクセス設定を保存する。"
+msgstr "アクセス設定を保存します。"
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -139,7 +139,7 @@ msgstr "保存"
 #. TRANS: Client error displayed when the session token is not okay.
 #. TRANS: Client error displayed when the session token does not match or is not given.
 msgid "There was a problem with your session token. Try again, please."
-msgstr "あなたのセッショントークンに問題がありました。再度試してみてください。"
+msgstr "セッション トークンに問題がありました。もう一度試してください。"
 
 #. TRANS: Error message displayed when trying to perform an action that requires a logged in user.
 msgid "Not logged in."
@@ -152,7 +152,7 @@ msgstr "ログインしていません。"
 #. TRANS: Client error displayed trying to subscribe to a non-existing profile.
 #. TRANS: Client error displayed trying to perform an action related to a non-existing profile.
 msgid "No such profile."
-msgstr "そのようなプロファイルはありません"
+msgstr "そのようなプロファイルはありません。"
 
 #. TRANS: Client error displayed trying to reference a non-existing list.
 #. TRANS: Client error displayed when referring to a non-existing list.
@@ -316,7 +316,7 @@ msgstr ""
 #. TRANS: Less business/enterprise-oriented language for public sites.
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr "招待を送信する"
+msgstr "招待状を送信"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -340,14 +340,14 @@ msgstr "%2$s 上で %1$s さんと友人の更新があります！"
 #. TRANS: Client error displayed when trying to handle an unknown API method.
 #. TRANS: Client error displayed when coming across a non-supported API method.
 msgid "API method not found."
-msgstr "API メソッドが見つかりません"
+msgstr "API メソッドがありません。"
 
 #. TRANS: Client error message. POST is a HTTP command. It should not be translated.
 #. TRANS: Client error. POST is a HTTP command. It should not be translated.
 #. TRANS: Client error message. POST is a HTTP command. It should not be translated.
 #. TRANS: Client error. POST is a HTTP command. It should not be translated.
 msgid "This method requires a POST."
-msgstr "このメソッドには POST が必要です"
+msgstr "このメソッドには POST が必要です。"
 
 #. TRANS: Client error displayed when no valid device parameter is provided for a user's delivery device setting.
 msgid ""
@@ -365,16 +365,16 @@ msgstr ""
 #. TRANS: Server error thrown on database error removing a registered SMS phone number.
 #. TRANS: Server error displayed when "Other" settings in user profile could not be updated on the server.
 msgid "Could not update user."
-msgstr "ユーザーを更新できませんでした"
+msgstr "ユーザーを更新できませんでした。"
 
 #. TRANS: Error message displayed when referring to a user without a profile.
 msgid "User has no profile."
-msgstr "ユーザーはプロファイルをもっていません"
+msgstr "ユーザーにはプロファイルがありません。"
 
 #. TRANS: Server error displayed if a user profile could not be saved.
 #. TRANS: Server error thrown when user profile settings could not be saved.
 msgid "Could not save profile."
-msgstr "プロファイルを保存できませんでした"
+msgstr "プロファイルを保存できませんでした。"
 
 #. TRANS: Client error displayed when the number of bytes in a POST request exceeds a limit.
 #. TRANS: %s is the number of bytes of the CONTENT_LENGTH.
@@ -455,7 +455,7 @@ msgstr "%s さんからのダイレクトメッセージ"
 #. TRANS: Subtitle. %s is a user nickname.
 #, php-format
 msgid "All the direct messages sent from %s"
-msgstr "%s さんから送られた全てのダイレクトメッセージ"
+msgstr "%s さんが送信したすべてのダイレクトメッセージ"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -465,7 +465,7 @@ msgstr "%s さんへのダイレクトメッセージ"
 #. TRANS: Subtitle. %s is a user nickname.
 #, php-format
 msgid "All the direct messages sent to %s"
-msgstr "%s さんへ送った全てのダイレクトメッセージ"
+msgstr "%s さんに送信したすべてのダイレクトメッセージ"
 
 #. TRANS: Client error displayed when no message text was submitted (406).
 msgid "No message text!"
@@ -504,7 +504,7 @@ msgstr "その ID のステータスが見つかりません。"
 
 #. TRANS: Client error displayed when trying to mark a notice favourite that already is a favourite.
 msgid "This status is already a favorite."
-msgstr "このステータスはすでにお気に入りです。"
+msgstr "このステータスは既にお気に入りです。"
 
 #. TRANS: Client error displayed when marking a notice as favourite fails.
 #. TRANS: Server error displayed when trying to mark a notice as favorite fails in the database.
@@ -616,7 +616,7 @@ msgstr[0] ""
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Form validation error displayed when trying to register with a too long location.
 msgid "Location is too long (maximum 255 characters)."
-msgstr "場所が長すぎます (最大255文字まで)。"
+msgstr "場所が長すぎます (最大 255 文字まで)。"
 
 #. TRANS: Client error shown when providing too many aliases during group creation.
 #. TRANS: %d is the maximum number of allowed aliases.
@@ -668,7 +668,7 @@ msgstr "グループが見つかりません。"
 #. TRANS: Client error displayed when trying to join a group while already a member.
 #. TRANS: Error text shown a user tries to join a group they already are a member of.
 msgid "You are already a member of that group."
-msgstr "すでにこのグループのメンバーです。"
+msgstr "既にこのグループのメンバーです。"
 
 #. TRANS: Server error displayed when trying to join a group the user is blocked from joining.
 #. TRANS: Client error displayed when trying to join a group while being blocked form joining it.
@@ -818,7 +818,7 @@ msgstr "リクエストトークンが無効です。"
 
 #. TRANS: Client error given when an invalid request token was passed to the OAuth API.
 msgid "Request token already authorized."
-msgstr "リクエストトークン はすでに認可されています。"
+msgstr "リクエストトークンは既に認可されています。"
 
 #. TRANS: Form validation error given when an invalid username and/or password was passed to the OAuth API.
 msgid "Invalid nickname / password!"
@@ -839,15 +839,15 @@ msgstr "oauth_token_association 追加時のデータベースエラー。"
 #. TRANS: Client error displayed when unexpected data is posted in the password recovery form.
 #. TRANS: Message given submitting a form with an unknown action in SMS settings.
 msgid "Unexpected form submission."
-msgstr "予期せぬフォーム送信です。"
+msgstr "予期しないフォーム送信です。"
 
 #. TRANS: Title for a page where a user can confirm/deny account access by an external application.
 msgid "An application would like to connect to your account"
-msgstr "アプリケーションはあなたのアカウントに接続したいです"
+msgstr "アプリケーションがあなたのアカウントへの接続を希望しています"
 
 #. TRANS: Fieldset legend.
 msgid "Allow or deny access"
-msgstr "アクセスを許可または拒絶"
+msgstr "アクセスを許可または拒否"
 
 #. TRANS: User notification of external application requesting account access.
 #. TRANS: %3$s is the access type requested (read-write or read-only), %4$s is the StatusNet sitename.
@@ -1407,7 +1407,7 @@ msgstr "不明なプロファイル %s。"
 #. TRANS: %s is the profile the user already has a subscription on.
 #, php-format
 msgid "Already subscribed to %s."
-msgstr "%s はすでにフォローしています。"
+msgstr "既に %s をフォローしています。"
 
 #. TRANS: Client error displayed trying to get a non-existing attachment.
 msgid "No such attachment."
@@ -1540,7 +1540,7 @@ msgstr "アカウントをバックアップする。"
 
 #. TRANS: Client error displayed when blocking a user that has already been blocked.
 msgid "You already blocked that user."
-msgstr "そのユーザーはすでにブロック済みです。"
+msgstr "そのユーザーは既にブロック済みです。"
 
 #. TRANS: Title for block user page.
 #. TRANS: Legend for block user form.
@@ -1732,7 +1732,7 @@ msgstr "あなたのアカウントを削除することはできません。"
 
 #. TRANS: Confirmation text for user deletion. The user has to type this exactly the same, including punctuation.
 msgid "I am sure."
-msgstr ""
+msgstr "もちろんです。"
 
 #. TRANS: Notification for user about the text that must be input to be able to delete a user account.
 #. TRANS: %s is the text that needs to be input.
@@ -1989,7 +1989,7 @@ msgid "Tags"
 msgstr "タグ"
 
 msgid "Using tags"
-msgstr ""
+msgstr "タグの使用"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
@@ -2183,7 +2183,7 @@ msgstr "%%site.name%% からのメールを管理。"
 #. TRANS: Form legend for e-mail settings form.
 #. TRANS: Field label for e-mail address input in e-mail settings form.
 msgid "Email address"
-msgstr "電子メールアドレス"
+msgstr "メールアドレス"
 
 #. TRANS: Form note in e-mail settings form.
 msgid "Current confirmed email address."
@@ -2293,7 +2293,7 @@ msgstr "電子メール設定が保存されました。"
 
 #. TRANS: Message given saving e-mail address without having provided one.
 msgid "No email address."
-msgstr "電子メールアドレスがありません。"
+msgstr "メールアドレスがありません。"
 
 #. TRANS: Message given saving e-mail address that cannot be normalised.
 msgid "Cannot normalize that email address."
@@ -2307,7 +2307,7 @@ msgstr "有効なメールアドレスではありません。"
 
 #. TRANS: Message given saving e-mail address that is already set.
 msgid "That is already your email address."
-msgstr "これはすでにあなたのメールアドレスです。"
+msgstr "これは既にあなたのメールアドレスです。"
 
 #. TRANS: Message given saving e-mail address that is already set for another user.
 msgid "That email address already belongs to another user."
@@ -2377,11 +2377,11 @@ msgstr "新しい受信メールアドレスを追加しました。"
 
 #. TRANS: Client error displayed when trying to mark a notice as favorite that already is a favorite.
 msgid "This notice is already a favorite!"
-msgstr "このつぶやきはすでにお気に入りです！"
+msgstr "このつぶやきは既にお気に入りです！"
 
 #. TRANS: Page title for page on which favorite notices can be unfavourited.
 msgid "Disfavor favorite."
-msgstr "お気に入りをやめる"
+msgstr "お気に入りをやめます。"
 
 #. TRANS: Page title for first page of favorited notices.
 #. TRANS: Title for favourited notices section.
@@ -2505,7 +2505,7 @@ msgstr "ユーザーは既にこのロールを持っています。"
 #. TRANS: Client error displayed trying a change a subscription without providing a profile.
 #. TRANS: Client error displayed when trying to change user options without specifying a user to work on.
 msgid "No profile specified."
-msgstr "プロファイル説明がありません。"
+msgstr "プロファイルが指定されていません。"
 
 #. TRANS: Client error displayed trying to block a user from a group while not specifying a group to block a profile from.
 #. TRANS: Client error displayed when trying to unblock a user from a group without providing a group.
@@ -2519,7 +2519,7 @@ msgstr "管理者だけがグループメンバーをブロックできます。
 
 #. TRANS: Client error displayed trying to block a user from a group while user is already blocked from the given group.
 msgid "User is already blocked from group."
-msgstr "ユーザーはすでにグループからブロックされています。"
+msgstr "ユーザーは既にグループからブロックされています。"
 
 #. TRANS: Client error displayed trying to block a user from a group while user is not a member of given group.
 msgid "User is not a member of group."
@@ -2687,7 +2687,7 @@ msgstr "グループの検索"
 #. TRANS: Message on the "People search" page where a query has no results.
 #. TRANS: Output when there are no results for a search.
 msgid "No results."
-msgstr "結果なし。"
+msgstr "結果はありません。"
 
 #. TRANS: Additional text on page where groups can be searched if no results were found for a query for a logged in user.
 #. TRANS: This message contains Markdown links in the form [link text](link).
@@ -2886,7 +2886,7 @@ msgstr "新しいユーザーを招待"
 #. TRANS: Followed by a bullet list.
 msgid "You are already subscribed to this user:"
 msgid_plural "You are already subscribed to these users:"
-msgstr[0] ""
+msgstr[0] "この"
 
 #. TRANS: Used as list item for already subscribed users (%1$s is nickname, %2$s is e-mail address).
 #. TRANS: Used as list item for already registered people (%1$s is nickname, %2$s is e-mail address).
@@ -2901,7 +2901,7 @@ msgstr "%1$s (%2$s)"
 msgid "This person is already a user and you were automatically subscribed:"
 msgid_plural ""
 "These people are already users and you were automatically subscribed to them:"
-msgstr[0] ""
+msgstr[0] "この人"
 
 #. TRANS: Message displayed inviting users to use a StatusNet site. Plural form is
 #. TRANS: based on the number of invitations sent. Followed by a bullet list of
@@ -2934,7 +2934,7 @@ msgstr "%1$s があなたを %2$s へ招待しました"
 
 #. TRANS: Client error displayed when trying to join a group while not logged in.
 msgid "You must be logged in to join a group."
-msgstr "グループに入るためにはログインしなければなりません。"
+msgstr "グループに入るにはログインする必要があります。"
 
 #. TRANS: Title for join group page after joining.
 #, php-format
@@ -3002,7 +3002,7 @@ msgstr "プライベート"
 
 #. TRANS: License option in the license admin panel.
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "All Rights Reserved"
 
 #. TRANS: License option in the license admin panel.
 msgid "Creative Commons"
@@ -3125,7 +3125,7 @@ msgstr "管理者だけが別のユーザーを管理者にすることができ
 #. TRANS: %1$s is the user that is already admin, %2$s is the group user is already admin for.
 #, php-format
 msgid "%1$s is already an admin for group \"%2$s\"."
-msgstr "%1$s はすでにグループ \"%2$s\" の管理者です。"
+msgstr "%1$s は既にグループ \"%2$s\" の管理者です。"
 
 #. TRANS: Server error displayed when trying to make another user admin on the Make Admin page fails
 #. TRANS: because the group membership record could not be gotten.
@@ -3486,7 +3486,7 @@ msgstr ""
 #. TRANS: Title for page where to change password.
 msgctxt "TITLE"
 msgid "Change password"
-msgstr "パスワードの変更"
+msgstr "パスワードを変更"
 
 #. TRANS: Instructions for page where to change password.
 msgid "Change your password."
@@ -4164,7 +4164,7 @@ msgstr ""
 
 #. TRANS: Checkbox label in profile settings.
 msgid "Make updates visible only to my followers"
-msgstr "最新版を私のフォロワーへのみ表示する"
+msgstr "最新版を私のフォロワーのみに表示"
 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Plural form is used based on the maximum number of allowed
@@ -4179,7 +4179,7 @@ msgstr[0] ""
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Client error displayed trying to save site settings without a timezone.
 msgid "Timezone not selected."
-msgstr "タイムゾーンが選ばれていません。"
+msgstr "タイムゾーンが選択されていません。"
 
 #. TRANS: Validation error in form for profile settings.
 msgid "Language is too long (maximum 50 characters)."
@@ -4204,16 +4204,16 @@ msgstr ""
 
 #. TRANS: Server error thrown when user profile location preference settings could not be updated.
 msgid "Could not save location prefs."
-msgstr "位置情報を保存できません。"
+msgstr "位置情報を保存できませんでした。"
 
 #. TRANS: Server error thrown when user profile settings tags could not be saved.
 msgid "Could not save tags."
-msgstr "タグを保存できませんでした"
+msgstr "タグを保存できませんでした。"
 
 #. TRANS: Option in profile settings to restore the account of the currently logged in user from a backup.
 #. TRANS: Page title for page where a user account can be restored from backup.
 msgid "Restore account"
-msgstr "アカウントを復元する"
+msgstr "アカウントを復元"
 
 #. TRANS: Client error displayed when requesting a public timeline page beyond the page limit.
 #. TRANS: %s is the page limit.
@@ -4374,8 +4374,8 @@ msgid ""
 "If you have forgotten or lost your password, you can get a new one sent to "
 "the email address you have stored in your account."
 msgstr ""
-"あなたがパスワードを忘れるか紛失した場合、アカウント情報に格納した電子メール"
-"アドレスに新しいものを送ることができます。"
+"パスワードを忘れたまたは紛失した場合、アカウントに格納されたメールアドレスに"
+"新しいパスワードをお送りすることができます。"
 
 #. TRANS: Page notice for password change page.
 msgid "You have been identified. Enter a new password below."
@@ -4518,7 +4518,7 @@ msgstr "確認"
 #. TRANS: Field label on account registration page.
 msgctxt "LABEL"
 msgid "Email"
-msgstr "電子メール"
+msgstr "メール"
 
 #. TRANS: Field title on account registration page.
 msgid "Used only for updates, announcements, and password recovery."
@@ -4560,8 +4560,8 @@ msgid ""
 "My text and files are available under %s except this private data: password, "
 "email address, IM address, and phone number."
 msgstr ""
-"私のテキストとファイルは、次の個人情報を除いて %s の下で利用可能とする: パス"
-"ワード、電子メールメールアドレス、IMアドレス、電話番号。"
+"テキストとファイルは以下の個人情報以外は %s の下で利用できるようにする：パス"
+"ワード、メールメールアドレス、IMアドレス、電話番号。"
 
 #. TRANS: Text displayed after successful account registration.
 #. TRANS: %1$s is the registered nickname, %2$s is the profile URL.
@@ -4812,7 +4812,7 @@ msgstr "あなたはこのサイトのサンドボックスユーザーができ
 
 #. TRANS: Client error displayed trying to sandbox an already sandboxed user.
 msgid "User is already sandboxed."
-msgstr "ユーザーはすでにサンドボックスです。"
+msgstr "ユーザーは既にサンドボックスです。"
 
 #. TRANS: Client error displayed when trying to list a profile with an invalid list.
 #. TRANS: %s is the invalid list name.
@@ -5177,7 +5177,7 @@ msgstr "(なし)"
 #. TRANS: Link for more "People in list x by a user"
 #. TRANS: if there are more than the mini list's maximum.
 msgid "Show all"
-msgstr "すべてを表示"
+msgstr "すべて表示"
 
 #. TRANS: Header for tag subscribers.
 #. TRANS: Link description for link to list of users subscribed to a tag.
@@ -5374,11 +5374,11 @@ msgstr "各ページのフッターでクレジットリンクに使用する UR
 
 #. TRANS: Field label on site settings panel.
 msgid "Email"
-msgstr "電子メール"
+msgstr "メール"
 
 #. TRANS: Field title on site settings panel.
 msgid "Contact email address for your site."
-msgstr "あなたのサイトの連絡先の電子メールアドレス。"
+msgstr "あなたのサイトの連絡先メールアドレスです。"
 
 #. TRANS: Fieldset legend on site settings panel.
 msgctxt "LEGEND"
@@ -5543,11 +5543,11 @@ msgstr "キャリアが選択されていません。"
 
 #. TRANS: Message given saving SMS phone number that is already set.
 msgid "That is already your phone number."
-msgstr "これはすでにあなたの電話番号です。"
+msgstr "これは既にあなたの電話番号です。"
 
 #. TRANS: Message given saving SMS phone number that is already set for another user.
 msgid "That phone number already belongs to another user."
-msgstr "この電話番号はすでに他のユーザーに使われています。"
+msgstr "この電話番号は既に他のユーザーが使用しています。"
 
 #. TRANS: Message given saving valid SMS phone number that is to be confirmed.
 msgid ""
@@ -6027,7 +6027,7 @@ msgstr "無効なデフォルトフォローです: \"%1$s\"  はユーザーで
 #. TRANS: Fieldset legend in user administration panel.
 msgctxt "LEGEND"
 msgid "Profile"
-msgstr "プロファイル"
+msgstr "プロフィール"
 
 #. TRANS: Field label in user admin panel for setting the character limit for the bio field.
 msgid "Bio Limit"
@@ -6229,7 +6229,7 @@ msgstr[0] ""
 
 #. TRANS: Client exception thrown if a file upload does not have a valid name.
 msgid "Invalid filename."
-msgstr "無効なファイル名。"
+msgstr "無効なファイル名です。"
 
 #. TRANS: Exception thrown providing an invalid profile ID.
 #. TRANS: %s is the invalid profile ID.
@@ -6351,7 +6351,7 @@ msgstr "あなたが読むことができないつぶやきはリピートする
 
 #. TRANS: Client error displayed when trying to repeat an already repeated notice.
 msgid "You already repeated that notice."
-msgstr "すでにそのつぶやきはリピートしています。"
+msgstr "既にそのつぶやきをリピートしています。"
 
 #. TRANS: Client error displayed when trying to reply to a notice a the target has no access to.
 #. TRANS: %1$s is a user nickname, %2$d is a notice ID (number).
@@ -6376,7 +6376,7 @@ msgstr "グループ受信トレイを保存する際に問題が発生しまし
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
 #, php-format
 msgid "RT @%1$s %2$s"
-msgstr ""
+msgstr "RT @%1$s %2$s"
 
 #. TRANS: Full name of a profile or group (%1$s) followed by nickname (%2$s) in parentheses.
 #. TRANS: Full name of a profile or group followed by nickname in parens
@@ -6459,7 +6459,7 @@ msgstr "あなたはフォローが禁止されました。"
 
 #. TRANS: Exception thrown when trying to subscribe while already subscribed.
 msgid "Already subscribed!"
-msgstr "すでにフォローしています！"
+msgstr "既にフォローしています！"
 
 #. TRANS: Exception thrown when trying to subscribe to a user who has blocked the subscribing user.
 msgid "User has blocked you."
@@ -6601,7 +6601,7 @@ msgstr "管理"
 #. TRANS: Page title. %1$s is the title, %2$s is the site name.
 #, php-format
 msgid "%1$s - %2$s"
-msgstr ""
+msgstr "%1$s - %2$s"
 
 #. TRANS: Page title for a page without a title set.
 msgid "Untitled page"
@@ -6709,7 +6709,7 @@ msgstr "リモートユーザーのフォローを強制することはできま
 
 #. TRANS: Client exception thrown when trying to subscribe to an unknown profile.
 msgid "Unknown profile."
-msgstr "不明なプロファイル。"
+msgstr "不明なプロファイルです。"
 
 #. TRANS: Client exception thrown when trying to import an event not related to the importing user.
 msgid "This activity seems unrelated to our user."
@@ -6721,7 +6721,7 @@ msgstr "リモートプロファイルはグループではありません！"
 
 #. TRANS: Client exception thrown when trying to join a group the importing user is already a member of.
 msgid "User is already a member of this group."
-msgstr "ユーザーはすでにこのグループのメンバーです。"
+msgstr "ユーザーは既にこのグループのメンバーです。"
 
 #. TRANS: Client exception thrown when trying to import a notice by another user.
 #. TRANS: %1$s is the source URI of the notice, %2$s is the URI of the author.
@@ -6742,7 +6742,7 @@ msgstr "つぶやきの内容がありません %s。"
 #. TRANS: Exception thrown if a non-existing user is provided. %s is a user ID.
 #, php-format
 msgid "No such user \"%s\"."
-msgstr "\"%s\" ユーザーはいません。"
+msgstr "ユーザー \"%s\" はいません。"
 
 #. TRANS: Client exception thrown when post to collection fails with a 400 status.
 #. TRANS: %1$s is a URL, %2$s is the status, %s$s is the fail reason.
@@ -6894,7 +6894,7 @@ msgstr "不正なアクセストークン"
 
 #. TRANS: OAuth exception given when no user was found for a given token (no token was found).
 msgid "No user for that token."
-msgstr ""
+msgstr "そのトークンのユーザーはいません。"
 
 #. TRANS: Client error thrown when authentication fails becaus a user clicked "Cancel".
 #. TRANS: Client error thrown when authentication fails.
@@ -7266,7 +7266,7 @@ msgstr "このユーザーにメッセージを送ることはできません。
 
 #. TRANS: Error text shown sending a direct message fails with an unknown reason.
 msgid "Error sending direct message."
-msgstr "ダイレクトメッセージ送信エラー。"
+msgstr "ダイレクトメッセージの送信エラーです。"
 
 #. TRANS: Message given having repeated a notice from another user.
 #. TRANS: %s is the name of the user for which the notice was repeated.
@@ -7289,7 +7289,7 @@ msgstr "%s へ返信を送りました。"
 
 #. TRANS: Error text shown when a reply to a notice fails with an unknown reason.
 msgid "Error saving notice."
-msgstr "つぶやき保存エラー。"
+msgstr "つぶやきの保存エラーです。"
 
 #. TRANS: Error text shown when no username was provided when issuing a subscribe command.
 msgid "Specify the name of the user to subscribe to."
@@ -7579,7 +7579,7 @@ msgstr "つぶやき"
 
 #. TRANS: Page title for when a database error occurs.
 msgid "Database error"
-msgstr "データベースエラー"
+msgstr "データベース エラー"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
@@ -7660,7 +7660,7 @@ msgstr "フィードの著者がいません。"
 #. TRANS: Client exception thrown when an imported feed does not have an author that
 #. TRANS: can be associated with a user.
 msgid "Cannot import without a user."
-msgstr "ユーザー無しでインポートすることはできません。"
+msgstr "ユーザーなしでのインポートはできません。"
 
 #. TRANS: Header for feed links (h2).
 msgid "Feeds"
@@ -7682,7 +7682,7 @@ msgstr "限定リストへタグを選択してください。"
 #. TRANS: Description on form for granting a role.
 #, php-format
 msgid "Grant this user the \"%s\" role"
-msgstr "このユーザーに役割 \"%s\" を付与する"
+msgstr "このユーザーに役割 \"%s\" を付与"
 
 #. TRANS: Header for mini list of group members on a group page (h2).
 msgid "Members"
@@ -7690,7 +7690,7 @@ msgstr "メンバー"
 
 #. TRANS: Link to all group members from mini list of group members if group has more than n members.
 msgid "All members"
-msgstr "全てのメンバー"
+msgstr "すべてのメンバー"
 
 #. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
 msgid "Pending"
@@ -7796,16 +7796,16 @@ msgstr "活発なグループ"
 #. TRANS: Link description for seeing all groups.
 #. TRANS: Link description for seeing all lists.
 msgid "See all"
-msgstr "全てを見る"
+msgstr "すべてを見る"
 
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
-msgstr "所属する全てのグループを参照する。"
+msgstr "所属するすべてのグループを参照する。"
 
 #. TRANS: Menu item title in personal group navigation menu.
 #. TRANS: %s is a username.
 msgid "Back to top"
-msgstr ""
+msgstr "トップに戻る"
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -7890,11 +7890,11 @@ msgstr "トレンド"
 #. TRANS: Default button text for inviting more users to the StatusNet instance.
 msgctxt "BUTTON"
 msgid "Invite more colleagues"
-msgstr "多くの同僚を招待する"
+msgstr "もっと同僚を招待"
 
 #. TRANS: Form legend.
 msgid "Invite collegues"
-msgstr "同僚を招待する"
+msgstr "同僚を招待"
 
 #. TRANS: Field label for a list of e-mail addresses.
 msgid "Email addresses"
@@ -8205,7 +8205,7 @@ msgid ""
 "\n"
 "\t%s"
 msgstr ""
-"全ての会話は以下で読むことができます:\n"
+"すべての会話を以下で読むことができます:\n"
 "\n"
 "%s"
 
@@ -8620,7 +8620,7 @@ msgstr[0] ""
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
-msgstr "このユーザーを削除。"
+msgstr "このユーザーを削除する。"
 
 #. TRANS: Header in list edit form.
 msgid "Add or remove people"
@@ -8668,7 +8668,7 @@ msgstr "編集"
 #. TRANS: %s is a list.
 #, php-format
 msgid "Edit %s list by you."
-msgstr "%s リストを編集"
+msgstr "%s リストを編集する。"
 
 #. TRANS: Title for link to edit list settings.
 msgid "Edit list settings."
@@ -8768,11 +8768,11 @@ msgstr "フォローリスト"
 #. TRANS: Menu item in local navigation menu.
 msgctxt "MENU"
 msgid "Profile"
-msgstr "プロファイル"
+msgstr "プロフィール"
 
 #. TRANS: Menu item title in personal group navigation menu.
 msgid "Your profile"
-msgstr "あなたのプロファイル"
+msgstr "あなたのプロフィール"
 
 #. TRANS: Menu item in personal group navigation menu.
 msgctxt "MENU"
@@ -9077,7 +9077,7 @@ msgstr "パスワードの変更"
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
 msgid "Email"
-msgstr "電子メール"
+msgstr "メール"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Change email handling"
@@ -9086,7 +9086,7 @@ msgstr "メールの扱いを変更"
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "URL shorteners"
@@ -9139,7 +9139,7 @@ msgstr "このユーザーをサイレンスに"
 
 #. TRANS: Server error displayed when trying to create an anynymous OAuth consumer.
 msgid "Could not create anonymous consumer."
-msgstr "匿名利用者を作成することはできません。"
+msgstr "匿名ユーザーを作成することはできません。"
 
 #. TRANS: Server error displayed when trying to create an anynymous OAuth application.
 msgid "Could not create anonymous OAuth application."
@@ -9319,7 +9319,7 @@ msgstr "つぶやき"
 #, php-format
 msgid "Show reply"
 msgid_plural "Show all %d replies"
-msgstr[0] ""
+msgstr[0] "返信を表示"
 
 #. TRANS: Reference to the logged in user in favourite list.
 msgctxt "FAVELIST"
@@ -9365,7 +9365,7 @@ msgstr "そのつぶやきをリピートしました"
 #, php-format
 msgid "%%s and %d other repeated this."
 msgid_plural "%%s and %d others repeated this."
-msgstr[0] ""
+msgstr[0] "%%s と他の人"
 
 #. TRANS: List message for favoured notices.
 #. TRANS: %%s is a list of users liking a notice.
@@ -9373,7 +9373,7 @@ msgstr[0] ""
 #, php-format
 msgid "%%s repeated this."
 msgid_plural "%%s repeated this."
-msgstr[0] ""
+msgstr[0] "%%s をリピート。"
 
 #. TRANS: Form legend.
 #, php-format
@@ -9548,7 +9548,7 @@ msgstr "無効な XML。"
 
 #. TRANS: Exception.
 msgid "Invalid XML, missing XRD root."
-msgstr "無効なXMLです、XRD root が誤っています"
+msgstr "無効なXMLです。XRD root がありません。"
 
 #. TRANS: Commandline script output. %s is the filename that contains a backup for a user.
 #, php-format
