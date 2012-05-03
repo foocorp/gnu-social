@@ -12,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-29 23:03+0000\n"
-"PO-Revision-Date: 2012-04-29 23:04:45+0000\n"
+"POT-Creation-Date: 2012-05-03 22:10+0000\n"
+"PO-Revision-Date: 2012-05-03 22:11:31+0000\n"
 "Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
-"X-Generator: MediaWiki 1.20alpha (87e6ff2); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -2412,17 +2412,17 @@ msgstr "Gogokoa gogokoetatik atera."
 #. TRANS: Title for favourited notices section.
 #. TRANS: Menu item title in search group navigation panel.
 msgid "Popular notices"
-msgstr "Ohar arrakastatsuak"
+msgstr "Ohar nabarmenak"
 
 #. TRANS: Page title for all but first page of favorited notices.
 #. TRANS: %d is the page number being displayed.
 #, php-format
 msgid "Popular notices, page %d"
-msgstr "Ohar arrakastatsuak, %d. orria"
+msgstr "Ohar nabarmenak, %d. orria"
 
 #. TRANS: Description on page displaying favorited notices.
 msgid "The most popular notices on the site right now."
-msgstr "Ohar arrakastatsuenak eskuin aldean."
+msgstr "Eskuin aldeko ohar nabarmenenak orain."
 
 #. TRANS: Text displayed instead of a list when a site does not yet have any favourited notices.
 msgid "Favorite notices appear on this page but no one has favorited one yet."
@@ -2479,7 +2479,7 @@ msgstr "Bereizitako erabiltzaileak, %d. orria"
 #. TRANS: Description on page displaying featured users.
 #, php-format
 msgid "A selection of some great users on %s."
-msgstr "Egundoko erabiltzaileen hautapena %s(e)n."
+msgstr "Erabiltzaile nabarmenen hautapen bat %s(e)n."
 
 #. TRANS: Client error displayed when no notice ID was given trying do display a file.
 msgid "No notice ID."
@@ -3117,7 +3117,7 @@ msgstr "Erabiltzaile-izena edo posta-helbidea"
 #. TRANS: Checkbox label label on login page.
 #. TRANS: Checkbox label on account registration page.
 msgid "Remember me"
-msgstr "Ni gogoratu"
+msgstr "Saioa gogoratu"
 
 #. TRANS: Checkbox title on login page.
 #. TRANS: Checkbox title on account registration page.
@@ -4355,7 +4355,7 @@ msgstr "Etiketa-hodei publikoa"
 #. TRANS: %s is the StatusNet sitename.
 #, php-format
 msgid "These are most popular recent tags on %s"
-msgstr "Hauek dira etiketa berrietan arrakastatsuenak %s(e)n"
+msgstr "Hauek dira %s(e)ko etiketa berrietan nabarmenenak"
 
 #. TRANS: This message contains a Markdown URL. The link description is between
 #. TRANS: square brackets, and the link between parentheses. Do not separate "]("
@@ -7350,7 +7350,7 @@ msgid ""
 "%s is a remote profile; you can only send direct messages to users on the "
 "same server."
 msgstr ""
-"%s urruneko proil bat da: zure zerbitzari barruan soilik bidal ditzakezu "
+"%s urruneko profil bat da: zure zerbitzari barruan soilik bidal ditzakezu "
 "mezu zuzenak."
 
 #. TRANS: Message given if content is too long. %1$sd is used for plural.
@@ -8870,7 +8870,7 @@ msgstr "Etiketak"
 
 #. TRANS: Title for section contaning lists with the most subscribers.
 msgid "Popular lists"
-msgstr "Zerrenda arrakastasuak"
+msgstr "Zerrenda nabarmenak"
 
 #. TRANS: List summary. %1$d is the number of users in the list,
 #. TRANS: %2$d is the number of subscribers to the list.
@@ -8981,7 +8981,7 @@ msgid "Login to the site."
 msgstr "Saioa hasi gunean."
 
 msgid "This profile has been silenced by site moderators"
-msgstr ""
+msgstr "Profil hau moderatzaileek isilarazi dute"
 
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
@@ -9041,7 +9041,7 @@ msgstr "Bereizitakoa"
 #. TRANS: Menu item in search group navigation panel.
 msgctxt "MENU"
 msgid "Popular"
-msgstr "Arrakastatsua"
+msgstr "Nabarmenak"
 
 #. TRANS: Title for inbox tag cloud section.
 msgctxt "TITLE"
@@ -9453,7 +9453,7 @@ msgstr "Oharrak"
 msgid "Show reply"
 msgid_plural "Show all %d replies"
 msgstr[0] "Erakutsi erantzuna"
-msgstr[1] "Erakutsi %d erantzunok"
+msgstr[1] "Erakutsi %d erantzunak"
 
 #. TRANS: Reference to the logged in user in favourite list.
 msgctxt "FAVELIST"
@@ -9488,7 +9488,7 @@ msgstr[1] "%%s eta hau bezalako beste %d."
 msgid "%%s likes this."
 msgid_plural "%%s like this."
 msgstr[0] "%%s(e)k hau atsegin du."
-msgstr[1] "%%s(e)k hau atsegin dute."
+msgstr[1] "%%s(e)k hau atsegin dute/duzue."
 
 #. TRANS: List message for notice repeated by logged in user.
 msgctxt "REPEATLIST"
@@ -9501,8 +9501,8 @@ msgstr "Ohar hau errepikatu duzu."
 #, php-format
 msgid "%%s and %d other repeated this."
 msgid_plural "%%s and %d others repeated this."
-msgstr[0] "%%s eta %d gehiagok errepikatu dute hau."
-msgstr[1] "%%s eta %d gehiagok errepikatu dute hau."
+msgstr[0] "%%s eta %d gehiagok errepikatu dute/duzue hau."
+msgstr[1] "%%s eta %d gehiagok errepikatu dute/duzue hau."
 
 #. TRANS: List message for favoured notices.
 #. TRANS: %%s is a list of users liking a notice.

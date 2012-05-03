@@ -17,12 +17,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-29 23:03+0000\n"
-"PO-Revision-Date: 2012-04-29 23:05:20+0000\n"
+"POT-Creation-Date: 2012-05-03 22:10+0000\n"
+"PO-Revision-Date: 2012-05-03 22:11:52+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (87e6ff2); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -443,9 +443,10 @@ msgid "No conversation with ID %d."
 msgstr "ID %d の conversation はありません"
 
 #. TRANS: Title for conversion timeline.
+#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
-msgstr ""
+msgstr "Conversation"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -1115,8 +1116,9 @@ msgid "Updates tagged with %1$s on %2$s!"
 msgstr "%2$s 上で %1$s とタグ付けによる更新があります！"
 
 #. TRANS: Client error displayed trying to add a notice to another user's timeline.
+#, fuzzy
 msgid "Only the user can add to their own timeline."
-msgstr ""
+msgstr "Only the user can add to their own timeline."
 
 #. TRANS: Client error displayed when using another format than AtomPub.
 msgid "Only accept AtomPub for Atom feeds."
@@ -1304,8 +1306,9 @@ msgid "Cannot add someone else's subscription."
 msgstr "他のユーザーのフォローを追加することはできません。"
 
 #. TRANS: Client exception thrown when trying use an incorrect activity verb for the Atom pub method.
+#, fuzzy
 msgid "Can only handle favorite activities."
-msgstr ""
+msgstr "Can only handle favorite activities."
 
 #. TRANS: Client exception thrown when trying favorite an object that is not a notice.
 msgid "Can only fave notices."
@@ -1336,8 +1339,9 @@ msgid "Cannot add someone else's membership."
 msgstr "他のユーザーのメンバーシップを追加することはできません。"
 
 #. TRANS: Client error displayed when not using the join verb.
+#, fuzzy
 msgid "Can only handle join activities."
-msgstr ""
+msgstr "Can only handle join activities."
 
 #. TRANS: Client exception thrown when trying to subscribe to a non-existing group.
 msgid "Unknown group."
@@ -1385,9 +1389,9 @@ msgstr "他のユーザーのフォローを削除することはできません
 
 #. TRANS: Subtitle for Atom subscription feed.
 #. TRANS: %1$s is a user nickname, %s$s is the StatusNet sitename.
-#, php-format
+#, fuzzy, php-format
 msgid "People %1$s has subscribed to on %2$s"
-msgstr ""
+msgstr "People %1$s has subscribed to on %2$s"
 
 #. TRANS: Client error displayed when not using the follow verb.
 msgid "Can only handle Follow activities."
@@ -1479,7 +1483,7 @@ msgstr "アップロード"
 #. TRANS: Button on avatar upload crop form to confirm a selected crop as avatar.
 msgctxt "BUTTON"
 msgid "Crop"
-msgstr ""
+msgstr "切り取り"
 
 #. TRANS: Validation error on avatar upload form when no file was uploaded.
 msgid "No file uploaded."
@@ -2125,8 +2129,9 @@ msgid "Edit list %s"
 msgstr "リスト %s を編集"
 
 #. TRANS: Error message displayed when trying to perform an action that requires a tagging user or ID.
+#, fuzzy
 msgid "No tagger or ID."
-msgstr ""
+msgstr "No tagger or ID."
 
 #. TRANS: Client error displayed when referring to non-local user.
 msgid "Not a local user."
@@ -2254,7 +2259,7 @@ msgstr ""
 #. TRANS: Button label for adding an SMS e-mail address to send notices from.
 msgctxt "BUTTON"
 msgid "New"
-msgstr ""
+msgstr "新規"
 
 #. TRANS: Form legend for e-mail preferences form.
 msgid "Email preferences"
@@ -2886,7 +2891,7 @@ msgstr "新しいユーザーを招待"
 #. TRANS: Followed by a bullet list.
 msgid "You are already subscribed to this user:"
 msgid_plural "You are already subscribed to these users:"
-msgstr[0] "この"
+msgstr[0] "既にこのユーザーをフォローしています:"
 
 #. TRANS: Used as list item for already subscribed users (%1$s is nickname, %2$s is e-mail address).
 #. TRANS: Used as list item for already registered people (%1$s is nickname, %2$s is e-mail address).
@@ -2901,7 +2906,7 @@ msgstr "%1$s (%2$s)"
 msgid "This person is already a user and you were automatically subscribed:"
 msgid_plural ""
 "These people are already users and you were automatically subscribed to them:"
-msgstr[0] "この人"
+msgstr[0] "この人は既にユーザーです。自動的にフォローしました:"
 
 #. TRANS: Message displayed inviting users to use a StatusNet site. Plural form is
 #. TRANS: based on the number of invitations sent. Followed by a bullet list of
@@ -3712,9 +3717,10 @@ msgid "Directory where attachments are located."
 msgstr "添付ファイルが置かれているディレクトリ"
 
 #. TRANS: Fieldset legend in Paths admin panel.
+#, fuzzy
 msgctxt "LEGEND"
 msgid "SSL"
-msgstr ""
+msgstr "SSL"
 
 #. TRANS: Drop down option in Paths admin panel (option for "When to use SSL").
 #. TRANS: Option in dropdown for snapshot method in admin panel for snapshots.
@@ -5815,13 +5821,15 @@ msgid "Subscription feed for %s (Atom)"
 msgstr "%s のつぶやきのフィード (Atom)"
 
 #. TRANS: Checkbox label for enabling IM messages for a profile in a subscriptions list.
+#, fuzzy
 msgctxt "LABEL"
 msgid "IM"
-msgstr ""
+msgstr "IM"
 
 #. TRANS: Checkbox label for enabling SMS messages for a profile in a subscriptions list.
+#, fuzzy
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #. TRANS: Title for all but the first page of notices with tags.
 #. TRANS: %1$s is the tag, %2$d is the page number.
@@ -6404,12 +6412,14 @@ msgid "The tag you are trying to rename to already exists."
 msgstr "既に存在するタグの名前に変更しようとしています。"
 
 #. TRANS: Server exception saving new tag without having a tagger specified.
+#, fuzzy
 msgid "No tagger specified."
-msgstr ""
+msgstr "No tagger specified."
 
 #. TRANS: Server exception saving new tag without having a tag specified.
+#, fuzzy
 msgid "No tag specified."
-msgstr ""
+msgstr "No tag specified."
 
 #. TRANS: Server exception saving new tag.
 msgid "Could not create profile tag."
@@ -8407,8 +8417,9 @@ msgid "No mutual subscribers."
 msgstr "互いにフォローしていません。"
 
 #. TRANS: Dropdown label in direct notice form.
+#, fuzzy
 msgid "To"
-msgstr ""
+msgstr "To"
 
 #. TRANS: Button text for sending a direct notice.
 msgctxt "Send button for sending notice"
@@ -8421,13 +8432,15 @@ msgstr "メッセージ"
 
 #. TRANS: Followed by notice source (usually the client used to send the notice).
 #. TRANS: Followed by notice source.
+#, fuzzy
 msgid "from"
-msgstr ""
+msgstr "from"
 
 #. TRANS: A possible notice source (web interface).
+#, fuzzy
 msgctxt "SOURCE"
 msgid "web"
-msgstr ""
+msgstr "web"
 
 #. TRANS: A possible notice source (XMPP).
 msgctxt "SOURCE"
@@ -8522,20 +8535,24 @@ msgid ", "
 msgstr ", "
 
 #. TRANS: Used in coordinates as abbreviation of north.
+#, fuzzy
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #. TRANS: Used in coordinates as abbreviation of south.
+#, fuzzy
 msgid "S"
-msgstr ""
+msgstr "S"
 
 #. TRANS: Used in coordinates as abbreviation of east.
+#, fuzzy
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #. TRANS: Used in coordinates as abbreviation of west.
+#, fuzzy
 msgid "W"
-msgstr ""
+msgstr "W"
 
 #. TRANS: Coordinates message.
 #. TRANS: %1$s is lattitude degrees, %2$s is lattitude minutes,
@@ -8547,8 +8564,9 @@ msgid "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 msgstr ""
 
 #. TRANS: Followed by geo location.
+#, fuzzy
 msgid "at"
-msgstr ""
+msgstr "at"
 
 #. TRANS: Addition in notice list item if notice is part of a conversation.
 msgid "in context"
@@ -9093,18 +9111,20 @@ msgid "URL shorteners"
 msgstr "URL 短縮サービス"
 
 #. TRANS: Menu item in settings navigation panel.
+#, fuzzy
 msgctxt "MENU"
 msgid "IM"
-msgstr ""
+msgstr "IM"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Updates by instant messenger (IM)"
 msgstr "インスタントメッセンジャー(IM)での更新"
 
 #. TRANS: Menu item in settings navigation panel.
+#, fuzzy
 msgctxt "MENU"
 msgid "SMS"
-msgstr ""
+msgstr "SMS"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Updates by SMS"
@@ -9129,9 +9149,10 @@ msgid "UI tweaks for old-school users"
 msgstr ""
 
 #. TRANS: Title of form to silence a user.
+#, fuzzy
 msgctxt "TITLE"
 msgid "Silence"
-msgstr ""
+msgstr "Silence"
 
 #. TRANS: Description of form to silence a user.
 msgid "Silence this user"
@@ -9365,7 +9386,7 @@ msgstr "そのつぶやきをリピートしました"
 #, php-format
 msgid "%%s and %d other repeated this."
 msgid_plural "%%s and %d others repeated this."
-msgstr[0] "%%s と他の人"
+msgstr[0] "%%s と他の人がこれをリピートしました。"
 
 #. TRANS: List message for favoured notices.
 #. TRANS: %%s is a list of users liking a notice.

@@ -20,12 +20,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-29 23:03+0000\n"
-"PO-Revision-Date: 2012-04-29 23:05:46+0000\n"
+"POT-Creation-Date: 2012-05-03 22:10+0000\n"
+"PO-Revision-Date: 2012-05-03 22:12:07+0000\n"
 "Language-Team: Portuguese <https://translatewiki.net/wiki/Portal:pt>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (87e6ff2); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: pt\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -40,6 +40,10 @@ msgid ""
 "contact them at %2$s to make sure. Otherwise, wait a few minutes and try "
 "again."
 msgstr ""
+"A base de dados de %1$s não está a responder corretamente, por isso, este "
+"sítio não funcionará devidamente. Os administradores do sítio provavelmente "
+"já têm conhecimento do problema, mas poderá contactá-los em %2$s para se "
+"assegurar. Ou então, aguarde uns minutos e tente novamente."
 
 #. TRANS: Error message.
 msgid "An error occurred."
@@ -102,9 +106,8 @@ msgid "Closed"
 msgstr "Fechado"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
-msgstr "Gravar configurações de acesso"
+msgstr "Gravar configurações de acesso."
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -157,9 +160,8 @@ msgstr "Perfil não foi encontrado."
 #. TRANS: Client error displayed trying to reference a non-existing list.
 #. TRANS: Client error displayed when referring to a non-existing list.
 #. TRANS: Client error displayed trying to reference a non-existing list.
-#, fuzzy
 msgid "No such list."
-msgstr "Categoria não foi encontrada."
+msgstr "Lista não existe."
 
 #. TRANS: Client error displayed when an unknown error occurs when adding a user to a list.
 #. TRANS: %s is a username.
@@ -178,10 +180,9 @@ msgstr ""
 "responder correctamente. Por favor tente mais tarde."
 
 #. TRANS: Title after adding a user to a list.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Listed"
-msgstr "Licença"
+msgstr "Listado"
 
 #. TRANS: Server error when page not found (404).
 #. TRANS: Server error when page not found (404)
@@ -239,15 +240,14 @@ msgid "No such user."
 msgstr "Utilizador não foi encontrado."
 
 #. TRANS: Title of a user's own start page.
-#, fuzzy
 msgid "Home timeline"
-msgstr "Notas de %s"
+msgstr "Linha temporal da página principal"
 
 #. TRANS: Title of another user's start page.
 #. TRANS: %s is the other user's name.
-#, fuzzy, php-format
+#, php-format
 msgid "%s's home timeline"
-msgstr "Notas de %s"
+msgstr "Linha temporal da página principal de %s"
 
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
@@ -441,9 +441,8 @@ msgid "Unblock user failed."
 msgstr "Desbloqueio do utilizador falhou."
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "Conversação"
+msgstr "Nenhum ID de conversação."
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
 #, fuzzy, php-format
@@ -1244,9 +1243,8 @@ msgstr ""
 
 #. TRANS: Client error displayed trying to approve group membership without specifying a profile to approve.
 #. TRANS: Client error displayed trying to approve subscriptionswithout specifying a profile to approve.
-#, fuzzy
 msgid "Must specify a profile."
-msgstr "Perfil não existe."
+msgstr "É necessário especificar um perfil."
 
 #. TRANS: Client error displayed trying to approve group membership for a non-existing request.
 #. TRANS: %s is a nickname.
@@ -2015,9 +2013,8 @@ msgctxt "MENU"
 msgid "Contact"
 msgstr "Contacto"
 
-#, fuzzy
 msgid "Contact info"
-msgstr "Contacto"
+msgstr "Informação de contacto"
 
 #, fuzzy
 msgctxt "MENU"
@@ -2149,9 +2146,9 @@ msgstr "Opções gravadas."
 
 #. TRANS: Title for edit list page after deleting a tag.
 #. TRANS: %s is a list.
-#, fuzzy, php-format
+#, php-format
 msgid "Delete %s list"
-msgstr "Apagar este utilizador"
+msgstr "Apagar lista %s"
 
 #. TRANS: Title for edit list page.
 #. TRANS: %s is a list.

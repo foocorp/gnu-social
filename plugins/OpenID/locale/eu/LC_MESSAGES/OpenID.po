@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OpenID\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-29 23:03+0000\n"
-"PO-Revision-Date: 2012-04-29 23:08:58+0000\n"
+"POT-Creation-Date: 2012-05-03 22:11+0000\n"
+"PO-Revision-Date: 2012-05-03 22:12:34+0000\n"
 "Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-10-10 14:11:22+0000\n"
-"X-Generator: MediaWiki 1.20alpha (87e6ff2); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-plugin-openid\n"
@@ -560,10 +560,13 @@ msgid ""
 "The following sites are allowed to access your identity and log you in. You "
 "can remove a site from this list to deny it access to your OpenID."
 msgstr ""
+"Ondorengo guneek baimena dute zure nortasuna atzitu eta zuk saioa hasi ahal "
+"izateko. Guneak zerrendatik ezabatu ditzakezu zure OpenIDaren atzipena "
+"ukatzeko."
 
 #. TRANS: Form validation error if no OpenID providers can be added.
 msgid "Cannot add new providers."
-msgstr ""
+msgstr "Ezin izan da hornitzaile berririk gehitu."
 
 #. TRANS: Unexpected form validation error.
 msgid "Something weird happened."
@@ -571,33 +574,35 @@ msgstr "Zerbait arraroa gertatu da."
 
 #. TRANS: Form validation error when trying to remove a non-existing trustroot.
 msgid "No such OpenID trustroot."
-msgstr ""
+msgstr "Ez da OpenID konfidantza erro hori existitzen."
 
 #. TRANS: Success message after removing trustroots.
 msgid "Trustroots removed."
-msgstr ""
+msgstr "Ezabatutako erro fidagarriak."
 
 #. TRANS: Form validation error for a non-existing OpenID.
 msgid "No such OpenID."
-msgstr ""
+msgstr "Ez dago OpenID hori."
 
 #. TRANS: Form validation error if OpenID is connected to another user.
 msgid "That OpenID does not belong to you."
-msgstr ""
+msgstr "OpenID hori ez dagokizu zuri."
 
 #. TRANS: Success message after removing an OpenID.
 msgid "OpenID removed."
-msgstr ""
+msgstr "OpenID ezabatua."
 
 #. TRANS: OpenID plugin client error given trying to add an unauthorised OpenID to a user (403).
 #. TRANS: %s is a request identity.
 #, php-format
 msgid "You are not authorized to use the identity %s."
-msgstr ""
+msgstr "Ez zaude baimendua %s nortasuna erabiltzeko."
 
 #. TRANS: OpenID plugin client error given when not getting a response for a given OpenID provider (500).
 msgid "Just an OpenID provider. Nothing to see here, move along..."
 msgstr ""
+"OpenID hornitzaileentzat soilik. Ez dago ezer ikusteko hemen, jarritu "
+"aurrera..."
 
 #. TRANS: OpenID plugin message. Rememberme logins have to reauthenticate before changing any profile settings.
 #. TRANS: "OpenID" is the display text for a link with URL "(%%doc.openid%%)".
@@ -606,32 +611,35 @@ msgid ""
 "For security reasons, please re-login with your [OpenID](%%doc.openid%%) "
 "before changing your settings."
 msgstr ""
+"Segurtasun arrazoiengatik, saioa ber-hasi zure [OpenIDarekin](%%doc.openid%"
+"%) zure aukerak aldatu aurretik."
 
 #. TRANS: OpenID plugin message.
 #. TRANS: "OpenID" is the display text for a link with URL "(%%doc.openid%%)".
 #, php-format
 msgid "Login with an [OpenID](%%doc.openid%%) account."
-msgstr ""
+msgstr "Saioa hasi [OpenID](%%doc.openid%%) kontu batekin."
 
 #. TRANS: OpenID plugin message. Title.
 msgctxt "TITLE"
 msgid "OpenID Login"
-msgstr ""
+msgstr "OpenID Saio Hasera"
 
 #. TRANS: Field label.
 msgctxt "LABEL"
 msgid "OpenID provider"
-msgstr ""
+msgstr "OpenID hornitzailea"
 
 #. TRANS: OpenID plugin logon form checkbox label for setting to put the OpenID information in a cookie.
 msgid "Remember me"
-msgstr ""
+msgstr "Saioa gogoratu"
 
 #. TRANS: OpenID plugin logon form field title.
 msgid "Automatically login in the future; not for shared computers!"
 msgstr ""
+"Automatikoki hasi saioa hurrengoan; partekatutako orgenagailuetan ez erabili!"
 
 #. TRANS: OpenID plugin logon form button label to start logon with the data provided in the logon form.
 msgctxt "BUTTON"
 msgid "Login"
-msgstr ""
+msgstr "Saioa hasi"
