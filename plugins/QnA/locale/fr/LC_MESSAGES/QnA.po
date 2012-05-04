@@ -13,13 +13,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:20:56+0000\n"
+"POT-Creation-Date: 2012-05-03 22:11+0000\n"
+"PO-Revision-Date: 2012-05-03 22:12:47+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-02 10:10:59+0000\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
@@ -203,7 +203,7 @@ msgstr "Pas de question avec l'ID %s."
 #. TRANS: %s is the provided profile ID.
 #, php-format
 msgid "No profile with ID %s"
-msgstr ""
+msgstr "Aucun profil avec l'ID %s"
 
 #. TRANS: %s is the number of answer revisions.
 #, php-format
@@ -295,7 +295,7 @@ msgstr "Fermer"
 
 #. TRANS: Title for button text for closing a question.
 msgid "Close the question to no one can answer it anymore."
-msgstr ""
+msgstr "Clôturer la question pur que personne ne puisse plus y répondre."
 
 #. TRANS: Button text for marking an answer as "best".
 msgctxt "BUTTON"
@@ -303,6 +303,5 @@ msgid "Best"
 msgstr "Meilleure"
 
 #. TRANS: Title for button text marking an answer as "best".
-#, fuzzy
 msgid "Mark this answer as the best answer."
-msgstr "Marquer comme meilleure réponse"
+msgstr "Marquer cette réponse comme la meilleure."

@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:20:32+0000\n"
+"POT-Creation-Date: 2012-05-03 22:10+0000\n"
+"PO-Revision-Date: 2012-05-03 22:12:15+0000\n"
 "Language-Team: Telugu <https://translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
+"X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -997,8 +997,8 @@ msgstr ""
 #, php-format
 msgid "That's too long. Maximum notice size is %d character."
 msgid_plural "That's too long. Maximum notice size is %d characters."
-msgstr[0] "%d అక్షరం"
-msgstr[1] "%d అక్షరాలు"
+msgstr[0] "అది చాలా పొడవుంది. గరిష్ఠ నోటీసు పొడవు %d అక్షరం."
+msgstr[1] "అది చాలా పొడవుంది. గరిష్ఠ నోటీసు పొడవు %d అక్షరాలు."
 
 #. TRANS: Client error displayed when replying to a non-existing notice.
 #, fuzzy
@@ -1953,18 +1953,16 @@ msgctxt "MENU"
 msgid "Help"
 msgstr "సహాయం"
 
-#, fuzzy
 msgid "Getting started"
-msgstr "అమరికలు భద్రమయ్యాయి."
+msgstr "మొదలుపెట్టడం"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
 msgctxt "MENU"
 msgid "About"
 msgstr "గురించి"
 
-#, fuzzy
 msgid "About this site"
-msgstr "ఈ వాడుకరిని నిరోధించు"
+msgstr "ఈ సైటు గురించి"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
 msgctxt "MENU"
@@ -1980,9 +1978,8 @@ msgctxt "MENU"
 msgid "Contact"
 msgstr "సంప్రదింపులు"
 
-#, fuzzy
 msgid "Contact info"
-msgstr "సంప్రదింపులు"
+msgstr "సంప్రదింపు సమాచారం"
 
 #, fuzzy
 msgctxt "MENU"
@@ -2900,8 +2897,8 @@ msgstr "కొత్త వాడుకరులని ఆహ్వానిం�
 #. TRANS: Followed by a bullet list.
 msgid "You are already subscribed to this user:"
 msgid_plural "You are already subscribed to these users:"
-msgstr[0] "వాడుకరుకి"
-msgstr[1] "వాడుకరులకు"
+msgstr[0] "ఈ వాడుకరుకి మీరు ఇప్పటికే చందాచేరారు:"
+msgstr[1] "ఈ వాడుకరులకు మీరు ఇప్పటికే చందాచేరారు:"
 
 #. TRANS: Used as list item for already subscribed users (%1$s is nickname, %2$s is e-mail address).
 #. TRANS: Used as list item for already registered people (%1$s is nickname, %2$s is e-mail address).
@@ -2916,8 +2913,8 @@ msgstr "%1$s (%2$s)"
 msgid "This person is already a user and you were automatically subscribed:"
 msgid_plural ""
 "These people are already users and you were automatically subscribed to them:"
-msgstr[0] "వ్యక్తి ఇప్పటికే ఒక వాడుకరి"
-msgstr[1] "వ్యక్తులు ఇప్పటికే వాడుకరులు"
+msgstr[0] "ఈ వ్యక్తి ఇప్పటికే ఒక వాడుకరి మరియు మిమ్మల్ని వారికి చందాదార్లుగా చేర్చేసాం:"
+msgstr[1] "ఈ వ్యక్తులు ఇప్పటికే వాడుకరులు మరియు మిమ్మల్ని వారికి చందాదార్లుగా చేర్చేసాం:"
 
 #. TRANS: Message displayed inviting users to use a StatusNet site. Plural form is
 #. TRANS: based on the number of invitations sent. Followed by a bullet list of
@@ -4114,8 +4111,8 @@ msgstr "మీ హోమ్ పేజీ, బ్లాగు, లేదా వ�
 #, php-format
 msgid "Describe yourself and your interests in %d character."
 msgid_plural "Describe yourself and your interests in %d characters."
-msgstr[0] "%d అక్షరంలో"
-msgstr[1] "%d అక్షరాల్లో"
+msgstr[0] "మీ గురించి మరియు మీ ఆసక్తుల గురించి %d అక్షరంలో చెప్పండి."
+msgstr[1] "మీ గురించి మరియు మీ ఆసక్తుల గురించి %d అక్షరాల్లో చెప్పండి."
 
 #. TRANS: Tooltip for field label in form for profile settings.
 #. TRANS: Text area title on account registration page.
@@ -4206,8 +4203,8 @@ msgstr ""
 #, php-format
 msgid "Bio is too long (maximum %d character)."
 msgid_plural "Bio is too long (maximum %d characters)."
-msgstr[0] "(%d అక్షరం గరిష్ఠం)."
-msgstr[1] "(%d అక్షరాలు గరిష్ఠం)."
+msgstr[0] "స్వపరిచయం చాలా పెద్దగా ఉంది (%d అక్షరం గరిష్ఠం)."
+msgstr[1] "స్వపరిచయం చాలా పెద్దగా ఉంది (%d అక్షరాలు గరిష్ఠం)."
 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Client error displayed trying to save site settings without a timezone.
@@ -6061,7 +6058,6 @@ msgid "Invalid default subscripton: \"%1$s\" is not a user."
 msgstr ""
 
 #. TRANS: Fieldset legend in user administration panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "Profile"
 msgstr "ప్రొఫైలు"
@@ -7324,8 +7320,8 @@ msgstr ""
 #, php-format
 msgid "Message too long - maximum is %1$d character, you sent %2$d."
 msgid_plural "Message too long - maximum is %1$d characters, you sent %2$d."
-msgstr[0] "%1$d అక్షరం గరిష్ఠం, మీరు %2$d పంపించారు."
-msgstr[1] "%1$d అక్షరాలు గరిష్ఠం, మీరు %2$d పంపించారు."
+msgstr[0] "నోటీసు చాలా పొడవుగా ఉంది - %1$d అక్షరం గరిష్ఠం, మీరు %2$d పంపించారు."
+msgstr[1] "నోటీసు చాలా పొడవుగా ఉంది - %1$d అక్షరాలు గరిష్ఠం, మీరు %2$d పంపించారు."
 
 #. TRANS: Error text shown when trying to send a direct message to a user without a mutual subscription (each user must be subscribed to the other).
 msgid "You can't send a message to this user."
@@ -7346,8 +7342,8 @@ msgstr "%s యొక్క నోటీసుని పునరావృతి�
 #, php-format
 msgid "Notice too long - maximum is %1$d character, you sent %2$d."
 msgid_plural "Notice too long - maximum is %1$d characters, you sent %2$d."
-msgstr[0] "%1$d అక్షరం గరిష్ఠం, మీరు %2$d పంపించారు"
-msgstr[1] "%1$d అక్షరాలు గరిష్ఠం, మీరు %2$d పంపించారు"
+msgstr[0] "నోటీసు చాలా పొడవుగా ఉంది - %1$d అక్షరం గరిష్ఠం, మీరు %2$d పంపించారు"
+msgstr[1] "నోటీసు చాలా పొడవుగా ఉంది - %1$d అక్షరాలు గరిష్ఠం, మీరు %2$d పంపించారు"
 
 #. TRANS: Text shown having sent a reply to a notice successfully.
 #. TRANS: %s is the nickname of the user of the notice the reply was sent to.

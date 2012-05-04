@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Miwa ka
+# Author: Shirayuki
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - QnA\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:20:57+0000\n"
+"POT-Creation-Date: 2012-05-03 22:11+0000\n"
+"PO-Revision-Date: 2012-05-03 22:12:47+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-02 10:10:59+0000\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-plugin-qna\n"
@@ -289,7 +290,7 @@ msgstr "クローズ"
 
 #. TRANS: Title for button text for closing a question.
 msgid "Close the question to no one can answer it anymore."
-msgstr "もうそれに回答できないように質問をクローズする"
+msgstr "もう回答できないように質問をクローズする。"
 
 #. TRANS: Button text for marking an answer as "best".
 msgctxt "BUTTON"

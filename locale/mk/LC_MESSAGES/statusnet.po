@@ -10,17 +10,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:19:54+0000\n"
+"POT-Creation-Date: 2012-05-03 22:10+0000\n"
+"PO-Revision-Date: 2012-05-03 22:11:57+0000\n"
 "Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n == 1 || n%10 == 1) ? 0 : 1;\n"
-"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
+"X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -4182,11 +4182,11 @@ msgstr "Претпочитан јазик"
 
 #. TRANS: Dropdownlist label in form for profile settings.
 msgid "Timezone"
-msgstr "Часовна зона"
+msgstr "Часовен појас"
 
 #. TRANS: Tooltip for dropdown list label in form for profile settings.
 msgid "What timezone are you normally in?"
-msgstr "Во која часовна зона обично се наоѓате?"
+msgstr "Во кој часовен појас обично се наоѓате?"
 
 #. TRANS: Checkbox label in form for profile settings.
 msgid ""
@@ -4230,7 +4230,7 @@ msgstr[1] "Биографијата е предолга (највеќе до %d 
 #. TRANS: Validation error in form for profile settings.
 #. TRANS: Client error displayed trying to save site settings without a timezone.
 msgid "Timezone not selected."
-msgstr "Не е избрана часовна зона."
+msgstr "Не е избран часовен појас."
 
 #. TRANS: Validation error in form for profile settings.
 msgid "Language is too long (maximum 50 characters)."
@@ -5456,11 +5456,11 @@ msgstr "Локални"
 
 #. TRANS: Dropdown label on site settings panel.
 msgid "Default timezone"
-msgstr "Основна часовна зона"
+msgstr "Основен часовен појас"
 
 #. TRANS: Dropdown title on site settings panel.
 msgid "Default timezone for the site; usually UTC."
-msgstr "Матична часовна зона за мрежното место; обично UTC."
+msgstr "Матичен часовен појас за мрежното место; обично UTC."
 
 #. TRANS: Dropdown label on site settings panel.
 msgid "Default language"
@@ -8996,7 +8996,7 @@ msgid "Login to the site."
 msgstr "Најава на мрежното место."
 
 msgid "This profile has been silenced by site moderators"
-msgstr ""
+msgstr "Овој корисник е замолчен од модераторите"
 
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
@@ -9051,7 +9051,7 @@ msgstr "Скорешни ознаки"
 #. TRANS: Menu item in search group navigation panel.
 msgctxt "MENU"
 msgid "Featured"
-msgstr "Избрани"
+msgstr "Истакнати"
 
 #. TRANS: Menu item in search group navigation panel.
 msgctxt "MENU"

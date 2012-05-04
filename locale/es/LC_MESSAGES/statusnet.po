@@ -27,17 +27,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:19:04+0000\n"
+"POT-Creation-Date: 2012-05-03 22:10+0000\n"
+"PO-Revision-Date: 2012-05-03 22:11:29+0000\n"
 "Language-Team: Spanish <https://translatewiki.net/wiki/Portal:es>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: es\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
+"X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -7335,8 +7335,8 @@ msgstr "Error etiquetando %1$s: %2$s"
 #, php-format
 msgid "The following tag was removed from user %1$s: %2$s."
 msgid_plural "The following tags were removed from user %1$s: %2$s."
-msgstr[0] "Se eliminó la siguiente etiqueta de usuario  %1$s :  %2$s . "
-msgstr[1] "Se quitaron las siguientes etiquetas de usuario  %1$s :  %2$s ."
+msgstr[0] "Se eliminó la siguiente etiqueta de usuario %1$s : %2$s."
+msgstr[1] "Se quitaron las siguientes etiquetas de usuario %1$s : %2$s ."
 
 #. TRANS: Whois output.
 #. TRANS: %1$s nickname of the queried user, %2$s is their profile URL.
@@ -7864,8 +7864,8 @@ msgstr "Describir el grupo o tema."
 #, php-format
 msgid "Describe the group or topic in %d character or less."
 msgid_plural "Describe the group or topic in %d characters or less."
-msgstr[0] "Describir el grupo o el tema en  %d  caracteres o menos. "
-msgstr[1] "Describir el grupo o el tema en  %d  caracteres o menos."
+msgstr[0] "Describir el grupo o el tema en %d caracteres o menos."
+msgstr[1] "Describir el grupo o el tema en %d caracteres o menos."
 
 #. TRANS: Field title on group edit form.
 msgid ""
@@ -8634,8 +8634,8 @@ msgstr "El campo del nombre de usuario no puede estar vacío."
 #, php-format
 msgid "Nickname cannot be more than %d character long."
 msgid_plural "Nickname cannot be more than %d characters long."
-msgstr[0] "Apodo no puede ser más largo de %d caracteres. "
-msgstr[1] "Apodo no puede ser más largo de %d  caracteres."
+msgstr[0] "Apodo no puede ser más largo de %d caracteres."
+msgstr[1] "Apodo no puede ser más largo de %d caracteres."
 
 #. TRANS: Form legend for notice form.
 msgid "Send a notice"
@@ -8770,8 +8770,8 @@ msgstr "Describir la lista o tema."
 #, php-format
 msgid "Describe the list or topic in %d character."
 msgid_plural "Describe the list or topic in %d characters."
-msgstr[0] "Describir la lista o tema en  %d  caracteres. "
-msgstr[1] "Describir la lista o tema en  %d  caracteres."
+msgstr[0] "Describir la lista o tema en %d caracteres."
+msgstr[1] "Describir la lista o tema en %d caracteres."
 
 #. TRANS: Button title to delete a list.
 msgid "Delete this list."
@@ -9007,7 +9007,7 @@ msgid "Login to the site."
 msgstr "Iniciar sesión en el sitio"
 
 msgid "This profile has been silenced by site moderators"
-msgstr ""
+msgstr "Este perfil ha sido silenciado por los moderadores del sitio."
 
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
@@ -9435,10 +9435,10 @@ msgid "Uploaded theme is too large; must be less than %d byte uncompressed."
 msgid_plural ""
 "Uploaded theme is too large; must be less than %d bytes uncompressed."
 msgstr[0] ""
-"Tema cargado es demasiado grande; debe ser inferior a  %d  bytes sin "
-"compresión. "
+"Tema cargado es demasiado grande; debe ser inferior a %d bytes sin "
+"compresión."
 msgstr[1] ""
-"Tema cargado es demasiado grande; debe ser inferior a  %d  bytes sin "
+"Tema cargado es demasiado grande; debe ser inferior a %d bytes sin "
 "compresión."
 
 #. TRANS: Server exception thrown when an uploaded theme is incomplete.
@@ -9528,8 +9528,8 @@ msgstr "Se repite esto."
 #, php-format
 msgid "%%s and %d other repeated this."
 msgid_plural "%%s and %d others repeated this."
-msgstr[0] "%%s  y  %d repitió esto. "
-msgstr[1] "%%s  y  %d repitió esto."
+msgstr[0] "%%s y %d repitió esto."
+msgstr[1] "%%s y %d repitió esto."
 
 #. TRANS: List message for favoured notices.
 #. TRANS: %%s is a list of users liking a notice.
@@ -9537,8 +9537,8 @@ msgstr[1] "%%s  y  %d repitió esto."
 #, php-format
 msgid "%%s repeated this."
 msgid_plural "%%s repeated this."
-msgstr[0] "%%s  repitió esto. "
-msgstr[1] "%%s  repitió esto."
+msgstr[0] "%%s repitió esto."
+msgstr[1] "%%s repitió esto."
 
 #. TRANS: Form legend.
 #, php-format

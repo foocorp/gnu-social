@@ -35,17 +35,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-21 10:18+0000\n"
-"PO-Revision-Date: 2012-04-21 10:19:18+0000\n"
+"POT-Creation-Date: 2012-05-03 22:10+0000\n"
+"PO-Revision-Date: 2012-05-03 22:11:37+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (1f0a982); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-core\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-POT-Import-Date: 2012-03-11 21:26:16+0000\n"
+"X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
 
 #. TRANS: Database error message.
 #, php-format
@@ -505,8 +505,8 @@ msgstr "Message sans texte !"
 #, php-format
 msgid "That's too long. Maximum message size is %d character."
 msgid_plural "That's too long. Maximum message size is %d characters."
-msgstr[0] "C’est trop long ! La taille du message est limitée à %d caractère"
-msgstr[1] "C’est trop long ! La taille du message est limitée à %d caractères"
+msgstr[0] "C’est trop long ! La taille du message est limitée à %d caractère."
+msgstr[1] "C’est trop long ! La taille du message est limitée à %d caractères."
 
 #. TRANS: Client error displayed if a recipient user could not be found (403).
 msgid "Recipient user not found."
@@ -9093,7 +9093,7 @@ msgid "Login to the site."
 msgstr "S’identifier sur le site."
 
 msgid "This profile has been silenced by site moderators"
-msgstr ""
+msgstr "Ce profil a été réduit au silence par les modérateurs du site."
 
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
