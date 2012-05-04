@@ -34,7 +34,9 @@ class DiscoveryHints {
                 $hints['salmon'] = $link['href'];
                 break;
             case Discovery::UPDATESFROM:
-                $hints['feedurl'] = $link['href'];
+                if (empty($link['type']) || $link['type'] == 'application/atom+xml') {
+                    $hints['feedurl'] = $link['href'];
+                }
                 break;
             case Discovery::HCARD:
                 $hints['hcardurl'] = $link['href'];
