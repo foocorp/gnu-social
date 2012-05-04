@@ -279,10 +279,6 @@ class Discovery_LRDD_Host_Meta implements Discovery_LRDD
         $xrd = Discovery::fetchXrd($url);
 
         if ($xrd) {
-            if ($xrd->host != $domain) {
-                return false;
-            }
-
             return $xrd->links;
         }
     }
