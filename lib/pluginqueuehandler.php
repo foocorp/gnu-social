@@ -44,7 +44,12 @@ class PluginQueueHandler extends QueueHandler
 
     function handle($notice)
     {
-        Event::handle('HandleQueuedNotice', array(&$notice));
+        try {
+            Event::handle('HandleQueuedNotice', array(&$notice));
+        } catch (UserNoProfileException $unp) {
+            // We can't do anything about this, so just skip
+            return true;
+        }
         return true;
     }
 }
