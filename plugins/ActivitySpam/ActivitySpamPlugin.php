@@ -65,6 +65,10 @@ class ActivitySpamPlugin extends Plugin
 
         $this->hideSpam = common_config('activityspam', 'hidespam');
 
+        // Let DB_DataObject find Spam_score
+
+        common_config_append('db', 'class_location', ':'.dirname(__FILE__));
+
         return true;
     }
 
