@@ -67,7 +67,8 @@ class ActivitySpamPlugin extends Plugin
 
         // Let DB_DataObject find Spam_score
 
-        common_config_append('db', 'class_location', ':'.dirname(__FILE__));
+        common_config_set('db', 'class_location', 
+                          common_config('db', 'class_location') .':'.dirname(__FILE__));
 
         return true;
     }
