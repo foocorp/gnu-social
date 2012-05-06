@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - BitlyUrl\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 22:11+0000\n"
-"PO-Revision-Date: 2012-05-03 22:11:22+0000\n"
+"POT-Creation-Date: 2012-05-06 17:04+0000\n"
+"PO-Revision-Date: 2012-05-06 17:05:20+0000\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:48:51+0000\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (e8931e7); Translate 2012-04-11\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Title of administration panel.
@@ -80,7 +80,7 @@ msgstr "Url zerbitzu bat zehaztu beharko zenuke bil.ly URL laburketetarako."
 #. TRANS: Plugin description. %1$s is the URL shortening service base URL (for example "bit.ly").
 #, php-format
 msgid "Uses <a href=\"http://%1$s/\">%1$s</a> URL-shortener service."
-msgstr "<a href=\"http://%1$s/\">%1$s</a> URL-laburtze zerbitzua erabiltzen."
+msgstr "<a href=\"http://%1$s/\">%1$s</a> URL-laburtze zerbitzua erabiliz."
 
 #. TRANS: Menu item in administration menus for bit.ly URL shortening settings.
 msgid "bit.ly"

@@ -17,12 +17,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 22:10+0000\n"
-"PO-Revision-Date: 2012-05-03 22:11:52+0000\n"
+"POT-Creation-Date: 2012-05-06 17:04+0000\n"
+"PO-Revision-Date: 2012-05-06 17:05:53+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (e8931e7); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -7738,7 +7738,7 @@ msgstr "グループやトピックについて説明する。"
 #, php-format
 msgid "Describe the group or topic in %d character or less."
 msgid_plural "Describe the group or topic in %d characters or less."
-msgstr[0] ""
+msgstr[0] "グループやトピックの説明を %d 文字以内で記述"
 
 #. TRANS: Field title on group edit form.
 msgid ""
@@ -7759,6 +7759,8 @@ msgid_plural ""
 "Extra nicknames for the group, separated with commas or spaces. Maximum %d "
 "aliases allowed."
 msgstr[0] ""
+"グループのエクストラニックネーム、カンマまたはスペース区切り、最大 %d、エイリ"
+"アス可"
 
 #. TRANS: Checkbox field title on group edit form to mark a group private.
 msgid ""
@@ -7852,19 +7854,19 @@ msgstr "不明なファイルタイプ"
 #, php-format
 msgid "%dMB"
 msgid_plural "%dMB"
-msgstr[0] ""
+msgstr[0] "%d メガバイト"
 
 #. TRANS: Number of kilobytes. %d is the number.
 #, php-format
 msgid "%dkB"
 msgid_plural "%dkB"
-msgstr[0] ""
+msgstr[0] "%d キロバイト"
 
 #. TRANS: Number of bytes. %d is the number.
 #, php-format
 msgid "%dB"
 msgid_plural "%dB"
-msgstr[0] ""
+msgstr[0] "%d バイト"
 
 #. TRANS: Body text for confirmation code e-mail.
 #. TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename,

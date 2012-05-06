@@ -10,12 +10,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 22:10+0000\n"
-"PO-Revision-Date: 2012-05-03 22:12:15+0000\n"
+"POT-Creation-Date: 2012-05-06 17:04+0000\n"
+"PO-Revision-Date: 2012-05-06 17:06:29+0000\n"
 "Language-Team: Telugu <https://translatewiki.net/wiki/Portal:te>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (e8931e7); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: te\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -7342,8 +7342,8 @@ msgstr "%s యొక్క నోటీసుని పునరావృతి�
 #, php-format
 msgid "Notice too long - maximum is %1$d character, you sent %2$d."
 msgid_plural "Notice too long - maximum is %1$d characters, you sent %2$d."
-msgstr[0] "నోటీసు చాలా పొడవుగా ఉంది - %1$d అక్షరం గరిష్ఠం, మీరు %2$d పంపించారు"
-msgstr[1] "నోటీసు చాలా పొడవుగా ఉంది - %1$d అక్షరాలు గరిష్ఠం, మీరు %2$d పంపించారు"
+msgstr[0] "నోటీసు చాలా పొడవుగా ఉంది - %1$d అక్షరం గరిష్ఠం, మీరు %2$d పంపించారు."
+msgstr[1] "నోటీసు చాలా పొడవుగా ఉంది - %1$d అక్షరాలు గరిష్ఠం, మీరు %2$d పంపించారు."
 
 #. TRANS: Text shown having sent a reply to a notice successfully.
 #. TRANS: %s is the nickname of the user of the notice the reply was sent to.

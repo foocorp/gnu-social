@@ -12,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 22:10+0000\n"
-"PO-Revision-Date: 2012-05-03 22:11:31+0000\n"
+"POT-Creation-Date: 2012-05-06 17:04+0000\n"
+"PO-Revision-Date: 2012-05-06 17:05:27+0000\n"
 "Language-Team: Basque <https://translatewiki.net/wiki/Portal:eu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
-"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (e8931e7); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: eu\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -1675,7 +1675,7 @@ msgstr "Ez dago ID hori duen profilik."
 #. TRANS: Title after unsubscribing from a group.
 msgctxt "TITLE"
 msgid "Unsubscribed"
-msgstr "Ez harpidetua"
+msgstr "Harpidetu gabea"
 
 #. TRANS: Client error displayed when not providing a confirmation code in the contact address confirmation action.
 msgid "No confirmation code."
@@ -5990,7 +5990,7 @@ msgstr "Erabiltzailea ez da isilarazi."
 
 #. TRANS: Page title for page to unsubscribe.
 msgid "Unsubscribed"
-msgstr "Ez harpidetua"
+msgstr "Harpidetu gabea"
 
 #. TRANS: Page title for form that allows unsubscribing from a list.
 #. TRANS: %1$s is a nickname, %2$s is a list, %3$s is a tagger nickname.
@@ -6559,7 +6559,7 @@ msgstr "Lankideak blokeatu zaitu."
 
 #. TRANS: Exception thrown when trying to unsibscribe without a subscription.
 msgid "Not subscribed!"
-msgstr "Ez harpidetua!"
+msgstr "Harpidetu gabea!"
 
 #. TRANS: Exception thrown when trying to unsubscribe a user from themselves.
 msgid "Could not delete self-subscription."

@@ -9,18 +9,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 22:11+0000\n"
-"PO-Revision-Date: 2012-05-03 22:13:12+0000\n"
+"POT-Creation-Date: 2012-05-06 17:04+0000\n"
+"PO-Revision-Date: 2012-05-06 17:08:34+0000\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:51:38+0000\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (e8931e7); Translate 2012-04-11\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Title for page with Twitter integration settings.
 msgid "Twitter settings"
-msgstr ""
+msgstr "Twitter aukerak"
 
 #. TRANS: Instructions for page with Twitter integration settings.
 msgid ""
@@ -30,15 +30,15 @@ msgstr ""
 
 #. TRANS: Fieldset legend.
 msgid "Twitter account"
-msgstr ""
+msgstr "Twitter kontua"
 
 #. TRANS: Form note when a Twitter account has been connected.
 msgid "Connected Twitter account"
-msgstr ""
+msgstr "Kontektaturiko Twitter kontua"
 
 #. TRANS: Fieldset legend.
 msgid "Disconnect my account from Twitter"
-msgstr ""
+msgstr "Deskonektatu nere kontua Twitterretik"
 
 #. TRANS: Form guide. %s is a URL to the password settings.
 #. TRANS: This message contains a Markdown link in the form [description](link).
@@ -54,6 +54,8 @@ msgid ""
 "Keep your %1$s account but disconnect from Twitter. You can use your %1$s "
 "password to log in."
 msgstr ""
+"Mantendu zure %1$s kontua baina Twitterretik deskonektatu. Zure %1$s "
+"pasahitza erabiliko duzu saioa hasteko."
 
 #. TRANS: Button text for disconnecting a Twitter account.
 msgctxt "BUTTON"
@@ -350,7 +352,7 @@ msgstr ""
 #. TRANS: %s is the invalid line.
 #, php-format
 msgid "Invalid HTTP response line: %s."
-msgstr ""
+msgstr "HTTP erantzun lerro baliogabea: %s."
 
 #. TRANS: Exception thrown when an invalid response line part is encountered.
 #. TRANS: %1$s is the chunk, %2$s is the line.
@@ -362,29 +364,29 @@ msgstr ""
 #. TRANS: %1$s is the response code, %2$s is the line.
 #, php-format
 msgid "Bad HTTP response code %1$s: %2$s."
-msgstr ""
+msgstr "HTTP erantzun okerraren kodea %1$s: %2$s."
 
 #. TRANS: Menu item in login navigation.
 #. TRANS: Menu item in connection settings navigation.
 msgctxt "MENU"
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Title for menu item in login navigation.
 msgid "Login or register using Twitter."
-msgstr ""
+msgstr "Saioa hasi edo erregistratu Twitter erabiliz."
 
 #. TRANS: Title for menu item in connection settings navigation.
 msgid "Twitter integration options"
-msgstr ""
+msgstr "Twitter integrazio aukerak"
 
 #. TRANS: Menu item in administrative panel that leads to the Twitter bridge configuration.
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
 msgid "Twitter bridge configuration page."
-msgstr ""
+msgstr "Twitter bridge konfigurazio orria."
 
 #. TRANS: Plugin description.
 msgid ""
@@ -394,20 +396,20 @@ msgstr ""
 
 #. TRANS: Client error displayed when trying to log in using Twitter while already logged in to StatusNet.
 msgid "Already logged in."
-msgstr ""
+msgstr "Dagoeneko saioa hasita."
 
 #. TRANS: Title for login using Twitter page.
 msgctxt "TITLE"
 msgid "Twitter Login"
-msgstr ""
+msgstr "Twitter Saio Hasera"
 
 #. TRANS: Instructions for login using Twitter page.
 msgid "Login with your Twitter account"
-msgstr ""
+msgstr "Saioa hasi zure Twitter kontuarekin"
 
 #. TRANS: Alternative text for "sign in with Twitter" image.
 msgid "Sign in with Twitter"
-msgstr ""
+msgstr "Erregistratu Twitterrekin"
 
 #. TRANS: Mail subject after forwarding notices to Twitter has stopped working.
 msgid "Your Twitter bridge has been disabled"
@@ -435,4 +437,4 @@ msgstr ""
 #. TRANS: %1$s is the repeated user's name, %2$s is the repeated notice.
 #, php-format
 msgid "RT @%1$s %2$s"
-msgstr ""
+msgstr "RT @%1$s %2$s"
