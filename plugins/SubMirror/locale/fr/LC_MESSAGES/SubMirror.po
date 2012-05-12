@@ -1,6 +1,7 @@
 # Translation of StatusNet - SubMirror to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Gomoko
 # Author: IAlex
 # Author: Od1n
 # Author: Peter17
@@ -12,13 +13,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-06 17:04+0000\n"
-"PO-Revision-Date: 2012-05-06 17:08:26+0000\n"
+"POT-Creation-Date: 2012-05-12 18:44+0000\n"
+"PO-Revision-Date: 2012-05-12 18:47:19+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:33+0000\n"
-"X-Generator: MediaWiki 1.20alpha (e8931e7); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
@@ -67,11 +68,11 @@ msgstr "Données de formulaire erronées."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
 msgid "The mirror request failed, because no result was retrieved."
-msgstr ""
+msgstr "Échec de la requête miroir, car aucun résultat n'a été récupéré."
 
 #. TRANS: Exception thrown when a feed provider could not be recognised.
 msgid "Internal form error: Unrecognized feed provider."
-msgstr ""
+msgstr "Erreur interne du formulaire: Fournisseur d'alimentation non reconnu."
 
 #. TRANS: Exception thrown when a subscribing to a feed fails.
 msgid "Could not subscribe to feed."
@@ -139,12 +140,11 @@ msgid "Mirroring style"
 msgstr "Style de mise en miroir"
 
 #. TRANS: Feed mirror style (radio button option).
-#, fuzzy
 msgid ""
 "Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 msgstr ""
-"Répéter : référence le message de l’auteur d’origine (montré parfois comme « "
-"RT @blabla »)"
+"Répétition: référence du message de l’utilisateur d’origine (affiché parfois "
+"sous la forme \"RT @blah\")"
 
 #. TRANS: Feed mirror style (radio button option).
 msgid "Repost the content under my account"

@@ -4,6 +4,7 @@
 # Author: AVRS
 # Author: Brion
 # Author: Eliovir
+# Author: Happy5214
 # Author: Ianmcorvidae
 # Author: Kris10
 # Author: LyzTyphone
@@ -17,12 +18,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-06 17:04+0000\n"
-"PO-Revision-Date: 2012-05-06 17:05:23+0000\n"
+"POT-Creation-Date: 2012-05-12 18:43+0000\n"
+"PO-Revision-Date: 2012-05-12 18:44:29+0000\n"
 "Language-Team: Esperanto <https://translatewiki.net/wiki/Portal:eo>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (e8931e7); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: eo\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -2024,7 +2025,7 @@ msgid "FAQ"
 msgstr "Oftaj demandoj"
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "Oftaj demandoj"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...

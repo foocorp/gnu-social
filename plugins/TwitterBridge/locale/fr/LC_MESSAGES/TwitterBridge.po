@@ -1,6 +1,7 @@
 # Translation of StatusNet - TwitterBridge to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Gomoko
 # Author: Od1n
 # Author: Peter17
 # Author: Valeryan 24
@@ -12,13 +13,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-06 17:04+0000\n"
-"PO-Revision-Date: 2012-05-06 17:08:34+0000\n"
+"POT-Creation-Date: 2012-05-12 18:44+0000\n"
+"PO-Revision-Date: 2012-05-12 18:47:27+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:51:38+0000\n"
-"X-Generator: MediaWiki 1.20alpha (e8931e7); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -50,13 +51,13 @@ msgstr "Déconnecter mon compte de Twitter"
 
 #. TRANS: Form guide. %s is a URL to the password settings.
 #. TRANS: This message contains a Markdown link in the form [description](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "Disconnecting your Twitter account could make it impossible to log in! "
 "Please [set a password](%s) first."
 msgstr ""
-"La déconnexion de votre compte Twitter ne vous permettrait plus de vous "
-"connecter ! S’il vous plaît "
+"Vous déconnecter de votre compte Twitter pourrait vous empêcher de vous "
+"connecter! Veuillez d'abord [définir un mot de passe](%s)."
 
 #. TRANS: Form instructions. %1$s is the StatusNet sitename.
 #, php-format
@@ -118,7 +119,6 @@ msgid "No Twitter connection to remove."
 msgstr "Aucune connexion Twitter à retirer."
 
 #. TRANS: Server error displayed when trying to remove a connected Twitter account fails.
-#, fuzzy
 msgid "Could not remove Twitter user."
 msgstr "Impossible de supprimer l’utilisateur Twitter."
 
@@ -127,7 +127,6 @@ msgid "Twitter account disconnected."
 msgstr "Compte Twitter déconnecté."
 
 #. TRANS: Server error displayed when saving Twitter integration preferences fails.
-#, fuzzy
 msgid "Could not save Twitter preferences."
 msgstr "Impossible de sauvegarder les préférences Twitter."
 
@@ -148,23 +147,20 @@ msgid "Could not link your Twitter account."
 msgstr "Impossible de lier votre compte Twitter."
 
 #. TRANS: Server error displayed when linking to a Twitter account fails because of an incorrect oauth_token.
-#, fuzzy
 msgid "Could not link your Twitter account: oauth_token mismatch."
 msgstr ""
-"Impossible de lier votre compte Twitter : le jeton d’authentification ne "
-"correspond pas."
+"Impossible de lier votre compte Twitter: oauth_token ne correspond pas."
 
 #. TRANS: Page instruction. %s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This is the first time you have logged into %s so we must connect your "
 "Twitter account to a local account. You can either create a new account, or "
 "connect with your existing account, if you have one."
 msgstr ""
-"C’est la première fois que vous êtes connecté à %s via Twitter, il nous faut "
-"donc lier votre compte Twitter à un compte local. Vous pouvez soit créer un "
-"nouveau compte, soit vous connecter avec votre compte local existant si vous "
-"en avez un."
+"C’est la première fois que vous êtes connecté sous %s, vous devez donc lier "
+"votre compte Twitter à un compte local. Vous pouvez soit créer un nouveau "
+"compte, soit vous connecter avec votre compte existant, si vous en avez un."
 
 #. TRANS: Page title.
 msgid "Twitter Account Setup"
@@ -286,12 +282,10 @@ msgid "Twitter bridge settings"
 msgstr "Paramètres de la passerelle Twitter"
 
 #. TRANS: Client error displayed when a consumer key is invalid because it is too long.
-#, fuzzy
 msgid "Invalid consumer key. Maximum length is 255 characters."
 msgstr "Clé de client invalide. La longueur maximum est de 255 caractères."
 
 #. TRANS: Client error displayed when a consumer secret is invalid because it is too long.
-#, fuzzy
 msgid "Invalid consumer secret. Maximum length is 255 characters."
 msgstr ""
 "Code secret du client invalide. La longueur maximum est de 255 caractères."
@@ -305,23 +299,20 @@ msgid "Consumer key"
 msgstr "Clé du client"
 
 #. TRANS: Field title for Twitter assigned consumer key.
-#, fuzzy
 msgid "The consumer key assigned by Twitter."
-msgstr "Clé du client assignée par Twitter"
+msgstr "La clé du client assignée par Twitter."
 
 #. TRANS: Field label for Twitter assigned consumer secret.
 msgid "Consumer secret"
 msgstr "Code secret du client"
 
 #. TRANS: Field title for Twitter assigned consumer secret.
-#, fuzzy
 msgid "The consumer secret assigned by Twitter."
-msgstr "Code secret du client assigné par Twitter"
+msgstr "Le code secret du client assigné par Twitter."
 
 #. TRANS: Form guide displayed when two required fields have already been provided.
-#, fuzzy
 msgid "Note: A global consumer key and secret are set."
-msgstr "Note : une clé et un code secret de client global sont définis."
+msgstr "Note : Une clé globale et un code secret du client sont définis."
 
 #. TRANS: Field label for Twitter application name.
 msgid "Integration source"
@@ -340,10 +331,9 @@ msgid "Enable \"Sign-in with Twitter\""
 msgstr "Activer « S’inscrire avec Twitter »"
 
 #. TRANS: Checkbox title.
-#, fuzzy
 msgid "This allow users to login with their Twitter credentials."
 msgstr ""
-"Permet aux utilisateurs de se connecter avec leurs identifiants Twitter"
+"Cela permet aux utilisateurs de se connecter avec leurs identifiants Twitter."
 
 #. TRANS: Checkbox label for global setting.
 msgid "Enable Twitter import"
@@ -358,17 +348,16 @@ msgstr ""
 "Exige que les démons soient configurés manuellement."
 
 #. TRANS: Button title for saving the administrative Twitter bridge settings.
-#, fuzzy
 msgid "Save the Twitter bridge settings."
-msgstr "Paramètres de la passerelle Twitter"
+msgstr "Enregistrer les paramètres de la passerelle Twitter."
 
 #. TRANS: Server exception thrown when an invalid URL scheme is detected.
 msgid "Invalid URL scheme for HTTP stream reader."
-msgstr ""
+msgstr "Schéma d'URL non valide pour le lecteur de flux HTTP."
 
 #. TRANS: Exception thrown when input from an inexpected socket is encountered.
 msgid "Got input from unexpected socket!"
-msgstr ""
+msgstr "Entrée reçue d'une socket non attendue!"
 
 #. TRANS: Exception thrown when an invalid state is encountered in handleLine.
 #. TRANS: %s is the invalid state.

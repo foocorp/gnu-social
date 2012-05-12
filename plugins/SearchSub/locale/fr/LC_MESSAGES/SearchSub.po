@@ -12,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SearchSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-06 17:04+0000\n"
-"PO-Revision-Date: 2012-05-06 17:08:17+0000\n"
+"POT-Creation-Date: 2012-05-12 18:43+0000\n"
+"PO-Revision-Date: 2012-05-12 18:47:08+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:49:08+0000\n"
-"X-Generator: MediaWiki 1.20alpha (e8931e7); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-searchsub\n"
@@ -62,6 +62,10 @@ msgid ""
 "public messages on this site that match that search, even if you are not "
 "subscribed to the poster."
 msgstr ""
+"Vous n'êtes désormais abonné à aucune des recherches de texte. Vous pouvez "
+"appuyer sur le bouton \"S'abonner\" sur n'importe quel avis de recherche de "
+"texte pour recevoir automatiquement les messages publics sur ce site qui "
+"correspondent à cette recherche, même si vous n'êtes pas abonné au publieur."
 
 #. TRANS: Search subscription list text when looking at the subscriptions for a of a user other
 #. TRANS: than the logged in user that has no search subscriptions. %s is the user nickname.
@@ -69,7 +73,7 @@ msgstr ""
 #. TRANS: as an anonymous user. %s is the user nickname.
 #, php-format
 msgid "%s is not subscribed to any searches."
-msgstr ""
+msgstr "%s n'est abonné à aucune recherche."
 
 #. TRANS: Search subscription list item. %1$s is a URL to a notice search,
 #. TRANS: %2$s are the search criteria, %3$s is a datestring.
@@ -125,12 +129,11 @@ msgstr "Cesser la surveillance de cette recherche"
 #. TRANS: Button text for unsubscribing from a text search.
 msgctxt "BUTTON"
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Se désabonner"
 
 #. TRANS: Button title for unsubscribing from a text search.
-#, fuzzy
 msgid "Unsubscribe from this search."
-msgstr "Cesser la surveillance de cette recherche"
+msgstr "Se désabonner de cette recherche."
 
 #. TRANS: Page title when search unsubscription succeeded.
 msgid "Unsubscribed"
@@ -145,6 +148,7 @@ msgstr "Vous surveillez déjà la recherche \"%s\"."
 #, php-format
 msgid "Could not start a search subscription for query \"%s\"."
 msgstr ""
+"Impossible de démarrer l'abonnement à une recherche pour la requête \"%s\"."
 
 #. TRANS: Message given having added a search subscription by track command.
 #, php-format
@@ -170,17 +174,21 @@ msgstr "Configurer les surveillances de recherche"
 msgctxt "COMMANDHELP"
 msgid "Start following notices matching the given search query."
 msgstr ""
+"Commencer le suivi des notifications correspondant à la requête de recherche "
+"fournie."
 
 #. TRANS: Help message for IM/SMS command "untrack <word>"
 msgctxt "COMMANDHELP"
 msgid "Stop following notices matching the given search query."
 msgstr ""
+"Arrêter le suivi des notifications correspondant à la requête de recherche "
+"fournie."
 
 #. TRANS: Help message for IM/SMS command "track off"
 #. TRANS: Help message for IM/SMS command "untrack all"
 msgctxt "COMMANDHELP"
 msgid "Disable all tracked search subscriptions."
-msgstr ""
+msgstr "Désactiver tous les abonnements aux recherches suivies."
 
 #. TRANS: Help message for IM/SMS command "tracks"
 #. TRANS: Help message for IM/SMS command "tracking"
@@ -195,13 +203,13 @@ msgstr "Vous ne surveillez aucune recherche."
 #. TRANS: Separator for list of tracked searches.
 msgctxt "SEPARATOR"
 msgid "\", \""
-msgstr ""
+msgstr "\", \""
 
 #. TRANS: Message given having disabled all search subscriptions with 'track off'.
 #. TRANS: %s is a list of searches. Separator default is '", "'.
-#, fuzzy, php-format
+#, php-format
 msgid "You are tracking searches for: \"%s\"."
-msgstr "Vous effectuez la surveillance des recherches pour: %s"
+msgstr "Vous effectuez le suivi des recherches pour: \"%s\"."
 
 #. TRANS: Form legend.
 msgid "Subscribe to this search"

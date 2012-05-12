@@ -10,12 +10,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-06 17:04+0000\n"
-"PO-Revision-Date: 2012-05-06 17:06:00+0000\n"
+"POT-Creation-Date: 2012-05-12 18:43+0000\n"
+"PO-Revision-Date: 2012-05-12 18:45:17+0000\n"
 "Language-Team: Macedonian <https://translatewiki.net/wiki/Portal:mk>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (e8931e7); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: mk\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -4270,7 +4270,7 @@ msgstr "Врати сметка"
 #. TRANS: %s is the page limit.
 #, php-format
 msgid "Beyond the page limit (%s)."
-msgstr "Надминато е ограничувањето на страницата (%s)."
+msgstr "Пречекорено е ограничувањето на страницата (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
 msgid "Could not retrieve public timeline."
@@ -9012,7 +9012,7 @@ msgstr "Статистики"
 
 #. TRANS: Label for user statistics.
 msgid "User ID"
-msgstr "Кориснички ID"
+msgstr "Корисничка назнака"
 
 #. TRANS: Label for user statistics.
 msgid "Member since"
