@@ -144,7 +144,7 @@ class SortableGroupListItem extends SortableSubscriptionListItem
             $this->out->text(' ');
             $aAttrs = $this->homepageAttributes();
             $this->out->elementStart('a', $aAttrs);
-            $this->out->raw($this->highlight($this->profile->homeUrl()));
+            $this->out->raw($this->highlight($this->profile->homepage));
             $this->out->elementEnd('a');
         }
     }
