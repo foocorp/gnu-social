@@ -1,9 +1,11 @@
 # Translation of StatusNet - YammerImport to French (Français)
 # Exported from translatewiki.net
 #
+# Author: Gomoko
 # Author: Hashar
 # Author: Od1n
 # Author: Peter17
+# Author: Tititou36
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -11,13 +13,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - YammerImport\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-12 18:44+0000\n"
-"PO-Revision-Date: 2012-05-12 18:47:38+0000\n"
+"POT-Creation-Date: 2012-05-20 11:07+0000\n"
+"PO-Revision-Date: 2012-05-20 11:10:36+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:51:41+0000\n"
-"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (f112f3a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-yammerimport\n"
@@ -65,13 +67,13 @@ msgid "Yammer"
 msgstr "Yammer"
 
 #. TRANS: Menu item title for Yammer import.
-#, fuzzy
 msgid "Yammer import module."
-msgstr "Import Yammer"
+msgstr "Module d'import Yammer."
 
 #. TRANS: Exception thrown when a non-user item type is used, but expected.
 msgid "Wrong item type sent to Yammer user import processing."
 msgstr ""
+"Mauvais type d'élément envoyé au processus d'import d'utilisateur de Yammer."
 
 #. TRANS: Used as a prefix for the Yammer expertise field contents.
 msgid "Expertise:"
@@ -80,10 +82,12 @@ msgstr "Expertise :"
 #. TRANS: Exception thrown when a non-group item type is used, but expected.
 msgid "Wrong item type sent to Yammer group import processing."
 msgstr ""
+"Mauvais type d'élément envoyé au processus d'import de groupe de Yammer."
 
 #. TRANS: Exception thrown when a non-message item type is used, but expected.
 msgid "Wrong item type sent to Yammer message import processing."
 msgstr ""
+"Mauvais type d'élément envoyé au processus d'import de message de Yammer."
 
 #. TRANS: Server exception thrown when an avatar URL is invalid.
 #. TRANS: %s is the invalid avatar URL.
@@ -98,43 +102,42 @@ msgid "Unable to fetch avatar from %s."
 msgstr "Impossible de récupérer l’avatar depuis « %s »."
 
 #. TRANS: Button text for starting Yammer authentication.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Start authentication"
 msgstr "Démarrer l’identification"
 
 #. TRANS: Button title for starting Yammer authentication.
-#, fuzzy
 msgid "Request authorization to connect to a Yammer account."
 msgstr "Demander l’autorisation de se connecter à un compte Yammer"
 
 #. TRANS: Button text for starting changing a Yammer API key.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Change API key"
 msgstr "Changer la clé de l’API"
 
 #. TRANS: Server exception thrown if a Yammer authentication request is already present.
 msgid "Cannot request Yammer auth; already there!"
-msgstr ""
+msgstr "Impossible de demander une authentification Yammer; déjà présent!"
 
 #. TRANS: Server exception thrown when requesting a Yammer authentication URL while in an incorrect state.
 msgid "Cannot get Yammer auth URL when not in requesting-auth state!"
 msgstr ""
+"Impossible d'obtenir une URL d'authentification Yammer en n'étant pas dans "
+"un état demandant une authentification!"
 
 #. TRANS: Exeption thrown when an external Yammer system gives an error.
 #. TRANS: %1$s is an HTTP error code, %2$s is the error message body.
 #, php-format
 msgid "Yammer API returned HTTP code %1$s: %2$s"
-msgstr ""
+msgstr "L'API Yammer a renvoyé le code HTTP %1$s : %2$s"
 
 #. TRANS: Exeption thrown when an external Yammer system an invalid JSON response.
 msgid "Invalid JSON response from Yammer API."
-msgstr ""
+msgstr "Réponse JSON non valide en provenance de l'API Yammer."
 
 #. TRANS: Exeption thrown when a trust relationship has already been established.
 msgid "Requesting a token, but already set up with a token."
-msgstr ""
+msgstr "Jeton demandé, mais un jeton a déjà été accordé."
 
 #. TRANS: Field label for a Yammer import initialise step.
 msgid "Initialize"
@@ -262,7 +265,7 @@ msgid "Pause import"
 msgstr "Mettre l’import en pause"
 
 #. TRANS: Error message. %s are the error details.
-#, fuzzy, php-format
+#, php-format
 msgid "Encountered error \"%s\"."
 msgstr "L’erreur « %s » est survenue"
 
@@ -304,9 +307,8 @@ msgid "Continue"
 msgstr "Continuer"
 
 #. TRANS: Button title for saving  Yammer authorisation data and starting Yammer import.
-#, fuzzy
 msgid "Save the verification code and begin import."
-msgstr "Enregistrer le code et commencer l’import"
+msgstr "Enregistrer le code de vérification et commencer l’import"
 
 #. TRANS: Form legend for adding details to connect to a remote Yammer API.
 msgid "Yammer API registration"
@@ -349,6 +351,7 @@ msgid "Save"
 msgstr "Enregistrer"
 
 #. TRANS: Button title for saving a Yammer API registration.
-#, fuzzy
 msgid "Save the entered consumer key and consumer secret."
-msgstr "Enregistrer ces clés utilisateur"
+msgstr ""
+"Enregistrer les clés d'utilisateur entrées et le mot de passe de "
+"l'utilisateur."

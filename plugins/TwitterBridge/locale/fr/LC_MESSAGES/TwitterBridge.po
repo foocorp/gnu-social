@@ -4,6 +4,7 @@
 # Author: Gomoko
 # Author: Od1n
 # Author: Peter17
+# Author: Tititou36
 # Author: Valeryan 24
 # Author: Verdy p
 # --
@@ -13,13 +14,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TwitterBridge\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-12 18:44+0000\n"
-"PO-Revision-Date: 2012-05-12 18:47:27+0000\n"
+"POT-Creation-Date: 2012-05-20 11:07+0000\n"
+"PO-Revision-Date: 2012-05-20 11:10:26+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:51:38+0000\n"
-"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (f112f3a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-twitterbridge\n"
@@ -363,19 +364,19 @@ msgstr "Entrée reçue d'une socket non attendue!"
 #. TRANS: %s is the invalid state.
 #, php-format
 msgid "Invalid state in handleLine: %s."
-msgstr ""
+msgstr "État non valide dans handleLine: %s."
 
 #. TRANS: Exception thrown when an invalid response line is encountered.
 #. TRANS: %s is the invalid line.
 #, php-format
 msgid "Invalid HTTP response line: %s."
-msgstr ""
+msgstr "Ligne de réponse HTTP invalide: %s."
 
 #. TRANS: Exception thrown when an invalid response line part is encountered.
 #. TRANS: %1$s is the chunk, %2$s is the line.
 #, php-format
 msgid "Invalid HTTP response line chunk \"%1$s\": %2$s."
-msgstr ""
+msgstr "Partie de ligne de réponse HTTP invalide \"%1$s\": %2$s."
 
 #. TRANS: Exception thrown when an invalid response code is encountered.
 #. TRANS: %1$s is the response code, %2$s is the line.
@@ -390,7 +391,6 @@ msgid "Twitter"
 msgstr "Twitter"
 
 #. TRANS: Title for menu item in login navigation.
-#, fuzzy
 msgid "Login or register using Twitter."
 msgstr "Se connecter ou s’inscrire via Twitter"
 
@@ -403,9 +403,8 @@ msgid "Twitter"
 msgstr "Twitter"
 
 #. TRANS: Menu item title in administrative panel that leads to the Twitter bridge configuration.
-#, fuzzy
 msgid "Twitter bridge configuration page."
-msgstr "Configuration de la passerelle Twitter"
+msgstr "Page de configuration de la passerelle Twitter"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -420,7 +419,6 @@ msgid "Already logged in."
 msgstr "Déjà connecté."
 
 #. TRANS: Title for login using Twitter page.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Twitter Login"
 msgstr "Connexion Twitter"

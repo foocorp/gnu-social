@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Peter17
+# Author: Tititou36
 # --
 # This file is distributed under the same license as the StatusNet package.
 #
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - UserFlag\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-12 18:44+0000\n"
-"PO-Revision-Date: 2012-05-12 18:47:30+0000\n"
+"POT-Creation-Date: 2012-05-20 11:07+0000\n"
+"PO-Revision-Date: 2012-05-20 11:10:29+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:51:36+0000\n"
-"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (f112f3a); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-userflag\n"
@@ -87,7 +88,7 @@ msgstr "Marqué par %s"
 
 #. TRANS: Server exception given when flags could not be cleared.
 #. TRANS: %s is a profile nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Could not clear flags for profile \"%s\"."
 msgstr "Impossible de supprimer les marquages pour le profil « %s »."
 
@@ -101,6 +102,6 @@ msgstr "Effacé"
 
 #. TRANS: Server exception.
 #. TRANS: %d is a profile ID (number).
-#, fuzzy, php-format
+#, php-format
 msgid "Could not flag profile \"%d\" for review."
 msgstr "Impossible de marquer le profil « %d » pour vérification."

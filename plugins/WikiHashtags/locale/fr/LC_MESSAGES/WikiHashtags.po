@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 #
 # Author: Od1n
+# Author: Tititou36
 # Author: Verdy p
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -10,14 +11,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - WikiHashtags\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-18 15:54+0000\n"
-"PO-Revision-Date: 2011-06-18 15:58:00+0000\n"
+"POT-Creation-Date: 2012-05-20 11:07+0000\n"
+"PO-Revision-Date: 2012-05-20 11:10:31+0000\n"
 "Language-Team: French <http://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-POT-Import-Date: 2011-06-05 21:52:12+0000\n"
-"X-Generator: MediaWiki 1.19alpha (r90318); Translate extension (2011-06-02)\n"
-"X-Translation-Project: translatewiki.net at http://translatewiki.net\n"
+"X-POT-Import-Date: 2011-06-19 11:23:53+0000\n"
+"X-Generator: MediaWiki 1.20alpha (f112f3a); Translate 2012-04-11\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-plugin-wikihashtags\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
@@ -26,7 +27,7 @@ msgstr ""
 #. TRANS: %s is the hash tag page to be edited.
 #, php-format
 msgid "Edit the article for #%s on WikiHashtags"
-msgstr ""
+msgstr "Modifier l'article pour #%s sur WikiHashtags"
 
 #. TRANS: Link description for editing an article on WikiHashTags.
 msgid "Edit"
@@ -34,17 +35,17 @@ msgstr "Modifier"
 
 #. TRANS: Link title for viewing the GFDL.
 msgid "Shared under the terms of the GNU Free Documentation License"
-msgstr ""
+msgstr "Partagé selon les termes de la license GNU Free Documentation"
 
 #. TRANS: Link description for viewing the GFDL.
 msgid "GNU FDL"
-msgstr ""
+msgstr "GNU FDL"
 
 #. TRANS: Link description for editing an article on WikiHashTags.
 #. TRANS: %s is the hash tag page to be created.
 #, php-format
 msgid "Start the article for #%s on WikiHashtags"
-msgstr ""
+msgstr "Débuter l'article pour #%s sur WikiHashtags"
 
 #. TRANS: Plugin description.
 msgid ""
