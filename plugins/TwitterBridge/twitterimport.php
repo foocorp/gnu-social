@@ -369,7 +369,7 @@ class TwitterImport
 
         $ext = (isset($path_parts['extension']) ? '.'.$path_parts['extension'] : '');	// some lack extension
         $img_root = basename($path_parts['basename'], '_normal'.$ext);	// cut off extension
-        $mediatype = $this->getMediatype($ext);
+        $mediatype = $this->getMediatype(substr($ext, 1));
 
         foreach (array('mini', 'normal', 'bigger') as $size) {
             $url = $path_parts['dirname'] . '/' .
@@ -398,10 +398,10 @@ class TwitterImport
         $mediatype = null;
 
         switch (strtolower($ext)) {
-        case '.jpg':
+        case 'jpg':
             $mediatype = 'image/jpg';
             break;
-        case '.gif':
+        case 'gif':
             $mediatype = 'image/gif';
             break;
         default:
@@ -418,7 +418,7 @@ class TwitterImport
         $path_parts = pathinfo($user->profile_image_url);
         $ext = (isset($path_parts['extension']) ? '.'.$path_parts['extension'] : '');
         $img_root = basename($path_parts['basename'], '_normal'.$ext);
-        $mediatype = $this->getMediatype($ext);
+        $mediatype = $this->getMediatype(substr($ext, 1));
 
         foreach (array('mini', 'normal', 'bigger') as $size) {
             $url = $path_parts['dirname'] . '/' .
