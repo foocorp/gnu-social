@@ -339,10 +339,7 @@ class TwitterImport
     {
         global $config;
 
-        $path_parts = pathinfo($twitter_user->profile_image_url);
-
-        $newname = 'Twitter_' . $twitter_user->id . '_' .
-            $path_parts['basename'];
+        $newname = 'Twitter_' . $twitter_user->id . '_' . basename($twitter_user->profile_image_url);
 
         $oldname = $profile->getAvatar(48)->filename;
 
@@ -370,15 +367,15 @@ class TwitterImport
 
         $path_parts = pathinfo($twitter_user->profile_image_url);
 
-        $img_root = substr($path_parts['basename'], 0, -11);
-        $ext = $path_parts['extension'];
+        $ext = (isset($path_parts['extension']) ? '.'.$path_parts['extension'] : '');	// some lack extension
+        $img_root = basename($path_parts['basename'], '_normal'.$ext);	// cut off extension
         $mediatype = $this->getMediatype($ext);
 
         foreach (array('mini', 'normal', 'bigger') as $size) {
             $url = $path_parts['dirname'] . '/' .
-                $img_root . '_' . $size . ".$ext";
+                $img_root . '_' . $size . $ext;
             $filename = 'Twitter_' . $twitter_user->id . '_' .
-                $img_root . "_$size.$ext";
+                $img_root . '_' . $size . $ext;
 
             $this->updateAvatar($profile->id, $size, $mediatype, $filename);
             $this->fetchAvatar($url, $filename);
@@ -401,10 +398,10 @@ class TwitterImport
         $mediatype = null;
 
         switch (strtolower($ext)) {
-        case 'jpg':
+        case '.jpg':
             $mediatype = 'image/jpg';
             break;
-        case 'gif':
+        case '.gif':
             $mediatype = 'image/gif';
             break;
         default:
@@ -419,16 +416,15 @@ class TwitterImport
         global $config;
 
         $path_parts = pathinfo($user->profile_image_url);
-        $ext = $path_parts['extension'];
-        $end = strlen('_normal' . $ext);
-        $img_root = substr($path_parts['basename'], 0, -($end+1));
+        $ext = (isset($path_parts['extension']) ? '.'.$path_parts['extension'] : '');
+        $img_root = basename($path_parts['basename'], '_normal'.$ext);
         $mediatype = $this->getMediatype($ext);
 
         foreach (array('mini', 'normal', 'bigger') as $size) {
             $url = $path_parts['dirname'] . '/' .
-                $img_root . '_' . $size . ".$ext";
+                $img_root . '_' . $size . $ext;
             $filename = 'Twitter_' . $user->id . '_' .
-                $img_root . "_$size.$ext";
+                $img_root . '_' . $size . $ext;
 
             if ($this->fetchAvatar($url, $filename)) {
                 $this->newAvatar($id, $size, $mediatype, $filename);
