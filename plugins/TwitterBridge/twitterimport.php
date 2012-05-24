@@ -400,7 +400,7 @@ class TwitterImport
         switch (strtolower($ext)) {
         case 'jpeg':
         case 'jpg':
-            $mediatype = 'image/jpg';
+            $mediatype = 'image/jpeg';
             break;
         case 'gif':
             $mediatype = 'image/gif';
