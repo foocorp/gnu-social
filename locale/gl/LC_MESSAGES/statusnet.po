@@ -12,12 +12,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-20 11:07+0000\n"
-"PO-Revision-Date: 2012-05-20 11:08:27+0000\n"
+"POT-Creation-Date: 2012-05-26 21:11+0000\n"
+"PO-Revision-Date: 2012-05-26 21:12:46+0000\n"
 "Language-Team: Galician <https://translatewiki.net/wiki/Portal:gl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (f112f3a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (0154924); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: gl\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -2724,7 +2724,7 @@ msgstr "Busca de grupos"
 #. TRANS: Message on the "People search" page where a query has no results.
 #. TRANS: Output when there are no results for a search.
 msgid "No results."
-msgstr "Non houbo resultados."
+msgstr "Non hai resultados."
 
 #. TRANS: Additional text on page where groups can be searched if no results were found for a query for a logged in user.
 #. TRANS: This message contains Markdown links in the form [link text](link).
@@ -3548,7 +3548,7 @@ msgstr "Cambio de contrasinal"
 
 #. TRANS: Field label on page where to change password.
 msgid "Old password"
-msgstr "Contrasinal anterior"
+msgstr "Contrasinal antigo"
 
 #. TRANS: Field label on page where to change password.
 #. TRANS: Field label for password reset form.
@@ -8783,7 +8783,7 @@ msgstr "Engadir ou eliminar xente"
 #. TRANS: Header in list edit form.
 msgctxt "HEADER"
 msgid "Search"
-msgstr "Buscar"
+msgstr "Procura"
 
 #. TRANS: Menu item in list navigation panel.
 msgctxt "MENU"
@@ -9204,7 +9204,7 @@ msgstr "Máis..."
 #. TRANS: Header in settings navigation panel.
 msgctxt "HEADER"
 msgid "Settings"
-msgstr "Configuración"
+msgstr "Configuracións"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "Change your profile settings"

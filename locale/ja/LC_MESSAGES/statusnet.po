@@ -17,12 +17,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-20 11:07+0000\n"
-"PO-Revision-Date: 2012-05-20 11:08:39+0000\n"
+"POT-Creation-Date: 2012-05-26 21:11+0000\n"
+"PO-Revision-Date: 2012-05-26 21:12:59+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (f112f3a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (0154924); Translate 2012-04-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -9339,7 +9339,7 @@ msgstr "つぶやき"
 
 #. TRANS: Link to show replies for a notice.
 #. TRANS: %d is the number of replies to a notice and used for plural.
-#, fuzzy, php-format
+#, php-format
 msgid "Show reply"
 msgid_plural "Show all %d replies"
 msgstr[0] "返信を表示"
@@ -9385,10 +9385,10 @@ msgstr "そのつぶやきをリピートしました"
 #. TRANS: List message for when more than 4 people repeat something.
 #. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
 #. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
-#, fuzzy, php-format
+#, php-format
 msgid "%%s and %d other repeated this."
 msgid_plural "%%s and %d others repeated this."
-msgstr[0] "%%s と他の人がこれをリピートしました。"
+msgstr[0] "%%s と他の %d 人がこれをリピートしました。"
 
 #. TRANS: List message for favoured notices.
 #. TRANS: %%s is a list of users liking a notice.
