@@ -23,6 +23,7 @@
 # Author: Od1n
 # Author: Purodha
 # Author: Quedel
+# Author: Sebastian Wallroth
 # Author: The Evil IP address
 # Author: Tiin
 # Author: Umherirrender
@@ -35,12 +36,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-26 21:11+0000\n"
-"PO-Revision-Date: 2012-05-26 21:12:25+0000\n"
+"POT-Creation-Date: 2012-06-04 14:59+0000\n"
+"PO-Revision-Date: 2012-06-04 14:59:46+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (0154924); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (0d3db4f); Translate 2012-06-03\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -3511,7 +3512,7 @@ msgid "Settings saved."
 msgstr "Einstellungen gespeichert."
 
 msgid "Only stream mode (no conversations) in timelines"
-msgstr ""
+msgstr "Nur Stream-Modus (keine Konversationen) in Time-Lines"
 
 msgid "Show conversation page as hierarchical trees"
 msgstr "Konversationsseite als hierarchischen Baum anzeigen"
@@ -5909,11 +5910,10 @@ msgid ""
 "members in groups you're interested in and in our [featured users](%%action."
 "featured%%)."
 msgstr ""
-"Du hast momentan noch niemanden abonniert. Benutze die [Personensuche](%%"
-"action.peoplesearch%%) um nach Freunden zu suchen oder besuche die [Beliebte "
-"Benutzer](%%action.featured%%) Seite. Wenn du ein [Twitter-Benutzer](%%"
-"action.twittersettings%%) bist, kannst du auch automatisch deine Twitter-"
-"Freunde abonnieren."
+"Du folgst momentan niemandes Nachrichten, versuche Personen zu abonnieren, "
+"die Du kennst. Versuche es mit [Personensuche](%%action.peoplesearch%%), um "
+"nach Mitglieder in Gruppen zu suchen, die Dich interessieren und besuche "
+"unsere [Beliebte Benutzer](%%action.featured%%)-Seite."
 
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user other
 #. TRANS: than the logged in user that has no subscriptions. %s is the user nickname.
@@ -5976,7 +5976,7 @@ msgstr "Du kannst diesem Benutzer keine Nachricht schicken."
 #. TRANS: Title for list form when not on a profile page.
 #, fuzzy
 msgid "List a profile"
-msgstr "Benutzerprofil"
+msgstr "Profil anzeigen"
 
 #. TRANS: Title for list form when on a profile page.
 #. TRANS: %s is a profile nickname.
@@ -5997,7 +5997,7 @@ msgstr "Benutzerprofil"
 #. TRANS: Fieldset legend for list form.
 #, fuzzy
 msgid "List user"
-msgstr "Limit"
+msgstr "Benutzer anzeigen"
 
 #. TRANS: Field label on list form.
 msgctxt "LABEL"
@@ -6010,8 +6010,8 @@ msgid ""
 "Lists for this user (letters, numbers, -, ., and _), comma- or space- "
 "separated."
 msgstr ""
-"Tags über dich selbst (Buchstaben, Zahlen, -, ., und _) durch Kommas oder "
-"Leerzeichen getrennt"
+"Listen für diesen Benutzer (Buchstaben, Zahlen, -, ., und _) sind durch "
+"Kommas oder Leerzeichen getrennt"
 
 #. TRANS: Title for personal tag cloud section.
 msgctxt "TITLE"
@@ -6267,7 +6267,7 @@ msgstr ""
 "Dieses Programm wird in der Hoffnung vertrieben, dass es nützlich sein wird, "
 "aber OHNE IRGENDEINE GARANTIE, sogar ohne die implizite Garantie der "
 "MARKTREIFE oder der EIGNUNG FÜR EINEN BESTIMMTEN ZWECK. Lesen Sie die GNU "
-"Affero General Public License für weitere Details. "
+"Affero General Public License für weitere Details."
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
@@ -6343,11 +6343,13 @@ msgid_plural ""
 "No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
 "upload a smaller version."
 msgstr[0] ""
-"Keine Datei darf größer als ein Byte sein und die Datei die du verschicken "
-"wolltest war %2$d Bytes groß. Bitte eine kleinere Version hochladen."
+"Keine Datei darf größer als %1$d Byte sein und die Datei die du verschicken "
+"wolltest war %2$s Bytes groß. Versuche bitte eine kleinere Version "
+"hochzuladen."
 msgstr[1] ""
 "Keine Datei darf größer als %1$d Bytes sein und die Datei die du verschicken "
-"wolltest war %2$d Bytes groß. Bitte eine kleinere Version hochladen."
+"wolltest war %2$s Bytes groß. Versuche bitte eine kleinere Version "
+"hochzuladen."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -6573,9 +6575,8 @@ msgid "Could not set profile tag URI."
 msgstr "Tag URI konnte nicht gespeichert werden."
 
 #. TRANS: Server exception saving new tag.
-#, fuzzy
 msgid "Could not set profile tag mainpage."
-msgstr "Konnte Profil nicht speichern."
+msgstr "Profil Tag Mainpage konnte nicht festgelegt werden."
 
 #. TRANS: Client exception thrown trying to set more tags than allowed.
 #, php-format

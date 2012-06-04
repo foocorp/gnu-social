@@ -1,6 +1,7 @@
 # Translation of StatusNet - Activity to Arabic (العربية)
 # Exported from translatewiki.net
 #
+# Author: DRIHEM
 # Author: OsamaK
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Activity\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-26 21:12+0000\n"
-"PO-Revision-Date: 2012-05-26 21:12:12+0000\n"
+"POT-Creation-Date: 2012-06-04 14:59+0000\n"
+"PO-Revision-Date: 2012-06-04 14:59:32+0000\n"
 "Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-30 18:15:05+0000\n"
-"X-Generator: MediaWiki 1.20alpha (0154924); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (0d3db4f); Translate 2012-06-03\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-activity\n"
@@ -114,4 +115,4 @@ msgstr "%1$s (%2$s) غادر مجموعة %3$s (%4$s)."
 
 #. TRANS: Plugin description.
 msgid "Emits notices when social activities happen."
-msgstr ""
+msgstr "يرسل إشعارات عند حدوث أنشطة إجتماعية."

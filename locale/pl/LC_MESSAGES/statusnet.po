@@ -1,4 +1,4 @@
-# Translation of StatusNet - Core to Polish (Polski)
+# Translation of StatusNet - Core to Polish (polski)
 # Exported from translatewiki.net
 #
 # Author: Bartek50003
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-26 21:11+0000\n"
-"PO-Revision-Date: 2012-05-26 21:13:15+0000\n"
+"POT-Creation-Date: 2012-06-04 14:59+0000\n"
+"PO-Revision-Date: 2012-06-04 15:00:38+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <https://translatewiki.net/wiki/Portal:pl>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ( (n%10 >= 2 && n%10 <= 4 && "
 "(n%100 < 10 || n%100 >= 20)) ? 1 : 2 );\n"
-"X-Generator: MediaWiki 1.20alpha (0154924); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (0d3db4f); Translate 2012-06-03\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: pl\n"
 "X-Message-Group: #out-statusnet-core\n"

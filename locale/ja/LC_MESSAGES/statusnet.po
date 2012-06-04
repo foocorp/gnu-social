@@ -17,12 +17,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-26 21:11+0000\n"
-"PO-Revision-Date: 2012-05-26 21:12:59+0000\n"
+"POT-Creation-Date: 2012-06-04 14:59+0000\n"
+"PO-Revision-Date: 2012-06-04 15:00:21+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (0154924); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (0d3db4f); Translate 2012-06-03\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -1623,7 +1623,7 @@ msgstr "ブロックを解除"
 #. TRANS: Tooltip for button for unblocking a user from a group.
 #. TRANS: Description of the form to unblock a user.
 msgid "Unblock this user"
-msgstr "このユーザーをアンブロックする"
+msgstr "このユーザーのブロックを解除"
 
 #. TRANS: Title for mini-posting window loaded from bookmarklet.
 #. TRANS: %s is the StatusNet site name.
@@ -2177,7 +2177,7 @@ msgstr "リストを更新できませんでした。"
 
 #. TRANS: Title for e-mail settings.
 msgid "Email settings"
-msgstr "電子メールの設定"
+msgstr "メールの設定"
 
 #. TRANS: E-mail settings page instructions.
 #. TRANS: %%site.name%% is the name of the site.
@@ -2245,15 +2245,15 @@ msgstr "新しいつぶやき投稿にこのアドレスへメールする"
 #. TRANS: Instructions for incoming e-mail address input form, when an address has already been assigned.
 #. TRANS: Instructions for incoming SMS e-mail address input form.
 msgid "Make a new email address for posting to; cancels the old one."
-msgstr "投稿のための新しい電子メールアドレスを作ります; 古い方を取り消します。"
+msgstr "投稿のための新しいメールアドレスを作成します; 古い方を取り消します。"
 
 #. TRANS: Instructions for incoming e-mail address input form.
 msgid ""
 "To send notices via email, we need to create a unique email address for you "
 "on this server:"
 msgstr ""
-"電子メールでつぶやきを送信するには、このサーバに一意のメールアドレスを作成す"
-"る必要があります。"
+"メールでつぶやきを送信するには、このサーバに一意のメールアドレスを作成する必"
+"要があります。"
 
 #. TRANS: Button label for adding an e-mail address to send notices from.
 #. TRANS: Button label for adding an SMS e-mail address to send notices from.
@@ -2263,7 +2263,7 @@ msgstr "新規"
 
 #. TRANS: Form legend for e-mail preferences form.
 msgid "Email preferences"
-msgstr "電子メール設定"
+msgstr "メールの設定"
 
 #. TRANS: Checkbox label in e-mail preferences form.
 msgid "Send me notices of new subscriptions through email."
@@ -2294,7 +2294,7 @@ msgstr "私のメールアドレスのために MicroID を発行してくださ
 
 #. TRANS: Confirmation message for successful e-mail preferences save.
 msgid "Email preferences saved."
-msgstr "電子メール設定が保存されました。"
+msgstr "メールの設定を保存しました。"
 
 #. TRANS: Message given saving e-mail address without having provided one.
 msgid "No email address."
@@ -2302,7 +2302,7 @@ msgstr "メールアドレスがありません。"
 
 #. TRANS: Message given saving e-mail address that cannot be normalised.
 msgid "Cannot normalize that email address."
-msgstr "電子メールアドレスを正規化(normalize)できません。"
+msgstr "メールアドレスを正規化(normalize)できません。"
 
 #. TRANS: Message given saving e-mail address that not valid.
 #. TRANS: Form validation error displayed when trying to register without a valid e-mail address.
@@ -2329,9 +2329,9 @@ msgid ""
 "A confirmation code was sent to the email address you added. Check your "
 "inbox (and spam box!) for the code and instructions on how to use it."
 msgstr ""
-"承認コードを入力された電子メールアドレスに送信しました。受信ボックス（とスパ"
-"ムボックス）にコードとそれをどう使うのかという指示が届いていないか確認してく"
-"ださい。"
+"入力されたメールアドレスに承認コードを送信しました。受信ボックス（とスパム"
+"ボックス）にコードとそれをどう使うのかという指示が届いていないか確認してくだ"
+"さい。"
 
 #. TRANS: Message given canceling e-mail address confirmation that is not pending.
 #. TRANS: Message given canceling Instant Messaging address confirmation that is not pending.
@@ -2341,15 +2341,15 @@ msgstr "承認待ちのものはありません。"
 
 #. TRANS: Message given canceling e-mail address confirmation for the wrong e-mail address.
 msgid "That is the wrong email address."
-msgstr "電子メールアドレスが間違っています。"
+msgstr "メールアドレスが間違っています。"
 
 #. TRANS: Server error thrown on database error canceling e-mail address confirmation.
 msgid "Could not delete email confirmation."
-msgstr "電子メール承認を削除できません。"
+msgstr "メール承認を削除できません。"
 
 #. TRANS: Message given after successfully canceling e-mail address confirmation.
 msgid "Email confirmation cancelled."
-msgstr "電子メール承認がキャンセルされました。"
+msgstr "メール承認がキャンセルされました。"
 
 #. TRANS: Message given trying to remove an e-mail address that is not
 #. TRANS: registered for the active user.
@@ -2358,7 +2358,7 @@ msgstr "これはあなたのメールアドレスではありません。"
 
 #. TRANS: Message given after successfully removing a registered e-mail address.
 msgid "The email address was removed."
-msgstr "この電子メールアドレスは削除されました。"
+msgstr "メールアドレスを削除しました。"
 
 #. TRANS: Form validation error displayed when trying to remove an incoming e-mail address while no address has been set.
 msgid "No incoming email address."
@@ -2875,7 +2875,7 @@ msgstr "%s に他のユーザーを招待するには、ログインする必要
 #. TRANS: %s is an invalid e-mail address.
 #, php-format
 msgid "Invalid email address: %s."
-msgstr "無効な電子メールアドレス: %s。"
+msgstr "無効なメールアドレス: %s。"
 
 #. TRANS: Page title when invitations have been sent.
 msgid "Invitations sent"
@@ -3290,8 +3290,8 @@ msgid ""
 "This user doesn't allow nudges or hasn't confirmed or set their email "
 "address yet."
 msgstr ""
-"このユーザは、合図を許可していないか、確認されていない状態か、電子メールアド"
-"レスを設定をしていません。"
+"このユーザは、合図を許可していないか、確認されていない状態か、メールアドレス"
+"を設定していません。"
 
 #. TRANS: Page title after sending a nudge.
 msgid "Nudge sent"
@@ -5093,7 +5093,7 @@ msgstr "%2$s 上の %1$s からのメッセージ"
 
 #. TRANS: Client exception thrown when trying a view a notice the user has no access to.
 msgid "Not available."
-msgstr "使用できません。"
+msgstr "利用できません。"
 
 #. TRANS: Client error displayed trying to show a deleted notice.
 msgid "Notice deleted."
@@ -7991,7 +7991,7 @@ msgid ""
 msgstr ""
 "%1$s さん、こんにちは。\n"
 "\n"
-"だれかが %2$s でこの電子メールアドレスを入力しました。\n"
+"だれかが %2$s でこのメールアドレスを入力しました。\n"
 "\n"
 "もし登録を承認したいなら、以下のURLを使用してください:\n"
 "\n"
@@ -8041,7 +8041,7 @@ msgstr ""
 "%1$s.\n"
 "\n"
 "---- \n"
-"%2$s で電子メールアドレスや通知オプションを変更できます。"
+"%2$s でメールアドレスや通知オプションを変更できます。"
 
 #. TRANS: Profile info line in notification e-mail.
 #. TRANS: %s is a URL.

@@ -1,4 +1,4 @@
-# Translation of StatusNet - InfiniteScroll to Simplified Chinese (‪中文(简体)‬)
+# Translation of StatusNet - InfiniteScroll to Simplified Chinese (‪中文（简体）‬)
 # Exported from translatewiki.net
 #
 # Author: ZhengYiFeng
@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - InfiniteScroll\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-26 21:11+0000\n"
-"PO-Revision-Date: 2012-05-26 21:13:39+0000\n"
+"POT-Creation-Date: 2012-06-04 14:59+0000\n"
+"PO-Revision-Date: 2012-06-04 15:01:03+0000\n"
 "Language-Team: Simplified Chinese <https://translatewiki.net/wiki/Portal:zh-"
 "hans>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:21+0000\n"
-"X-Generator: MediaWiki 1.20alpha (0154924); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (0d3db4f); Translate 2012-06-03\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: zh-hans\n"
 "X-Message-Group: #out-statusnet-plugin-infinitescroll\n"

@@ -1,6 +1,7 @@
 # Translation of StatusNet - Directory to Arabic (العربية)
 # Exported from translatewiki.net
 #
+# Author: DRIHEM
 # Author: Mutarjem horr
 # Author: OsamaK
 # --
@@ -10,13 +11,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Directory\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-26 21:12+0000\n"
-"PO-Revision-Date: 2012-05-26 21:12:51+0000\n"
+"POT-Creation-Date: 2012-06-04 14:59+0000\n"
+"PO-Revision-Date: 2012-06-04 15:00:13+0000\n"
 "Language-Team: Arabic <https://translatewiki.net/wiki/Portal:ar>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-08-30 09:57:06+0000\n"
-"X-Generator: MediaWiki 1.20alpha (0154924); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (0d3db4f); Translate 2012-06-03\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ar\n"
 "X-Message-Group: #out-statusnet-plugin-directory\n"
@@ -113,7 +114,6 @@ msgid "Group directory - %1$s, page %2$d"
 msgstr "دليل المجموعات- %1$s، الصفحة %2$d"
 
 #. TRANS: Page instructions.
-#, fuzzy
 msgid ""
 "After you join a group you can send messages to all other members\n"
 "using the syntax \"!groupname\".\n"
@@ -121,11 +121,11 @@ msgid ""
 "Browse groups, or search for groups by their name, location or topic.\n"
 "Separate the terms by spaces; they must be three characters or more."
 msgstr ""
-"بعد انضمامك إلى مجموعة يمكن أن ترسل رسائل لجميع الأعضاء الآخرين باستخدام "
-"الأمر \"!المجموعة\".\n"
+"بعد إنضمامك إلى مجموعة يمكنك أن ترسل الرسائل إلى جميع الأعضاء بأستخدام الأمر "
+"\"!groupname\".\n"
 "\n"
-"تصفح المجموعات أو ابحث عن مجموعة الاسم أو الموقع أو الموضوع.\n"
-"افصل العبارات بمسافات ويجب أن تتكون من ثلاثة أحرف أو أكثر."
+"تصفح المجموعات أو إبحث عن المجموعات عن طريق إسمها، مكانها أو الموضوع.\n"
+"قم بفصل العبارات بمسافات، يجب أن تتكون من ثلاثة أحرف أو أكثر."
 
 #. TRANS: Link to create a new group on the group list page.
 msgid "Create a new group"
