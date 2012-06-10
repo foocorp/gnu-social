@@ -17,12 +17,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-04 14:59+0000\n"
-"PO-Revision-Date: 2012-06-04 15:00:21+0000\n"
+"POT-Creation-Date: 2012-06-10 23:40+0000\n"
+"PO-Revision-Date: 2012-06-10 23:41:08+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (0d3db4f); Translate 2012-06-03\n"
+"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -1680,7 +1680,7 @@ msgstr "不明なアドレスタイプ %s"
 #. TRANS: Client error for an already confirmed email/jabber/sms address.
 #. TRANS: Client error for an already confirmed IM address.
 msgid "That address has already been confirmed."
-msgstr "そのアドレスは既に承認されています。"
+msgstr "そのアドレスは既に確認されました。"
 
 #. TRANS: Server error displayed when updating IM preferences fails.
 #. TRANS: Server error thrown on database error removing a registered IM address.
@@ -5821,13 +5821,11 @@ msgid "Subscription feed for %s (Atom)"
 msgstr "%s のつぶやきのフィード (Atom)"
 
 #. TRANS: Checkbox label for enabling IM messages for a profile in a subscriptions list.
-#, fuzzy
 msgctxt "LABEL"
 msgid "IM"
 msgstr "IM"
 
 #. TRANS: Checkbox label for enabling SMS messages for a profile in a subscriptions list.
-#, fuzzy
 msgid "SMS"
 msgstr "SMS"
 
@@ -8419,9 +8417,8 @@ msgid "No mutual subscribers."
 msgstr "互いにフォローしていません。"
 
 #. TRANS: Dropdown label in direct notice form.
-#, fuzzy
 msgid "To"
-msgstr "To"
+msgstr "宛先"
 
 #. TRANS: Button text for sending a direct notice.
 msgctxt "Send button for sending notice"
@@ -8434,15 +8431,13 @@ msgstr "メッセージ"
 
 #. TRANS: Followed by notice source (usually the client used to send the notice).
 #. TRANS: Followed by notice source.
-#, fuzzy
 msgid "from"
-msgstr "from"
+msgstr "差出人"
 
 #. TRANS: A possible notice source (web interface).
-#, fuzzy
 msgctxt "SOURCE"
 msgid "web"
-msgstr "web"
+msgstr "ウェブ"
 
 #. TRANS: A possible notice source (XMPP).
 msgctxt "SOURCE"
@@ -8537,22 +8532,18 @@ msgid ", "
 msgstr ", "
 
 #. TRANS: Used in coordinates as abbreviation of north.
-#, fuzzy
 msgid "N"
 msgstr "N"
 
 #. TRANS: Used in coordinates as abbreviation of south.
-#, fuzzy
 msgid "S"
 msgstr "S"
 
 #. TRANS: Used in coordinates as abbreviation of east.
-#, fuzzy
 msgid "E"
 msgstr "E"
 
 #. TRANS: Used in coordinates as abbreviation of west.
-#, fuzzy
 msgid "W"
 msgstr "W"
 
@@ -8563,7 +8554,7 @@ msgstr "W"
 #. TRANS: %7$s is longitude seconds, %8$s is E (east) or W (west) depending on longitude,
 #, php-format
 msgid "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
-msgstr ""
+msgstr "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 
 #. TRANS: Followed by geo location.
 #, fuzzy
@@ -9113,7 +9104,6 @@ msgid "URL shorteners"
 msgstr "URL 短縮サービス"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "IM"
 msgstr "IM"
