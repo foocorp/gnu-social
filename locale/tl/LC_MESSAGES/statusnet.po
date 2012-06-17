@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-12 18:43+0000\n"
-"PO-Revision-Date: 2012-05-12 18:45:40+0000\n"
+"POT-Creation-Date: 2012-06-10 23:40+0000\n"
+"PO-Revision-Date: 2012-06-10 23:41:36+0000\n"
 "Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
-"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -99,9 +99,8 @@ msgid "Closed"
 msgstr "Nakasara na"
 
 #. TRANS: Button title to save access settings in site admin panel.
-#, fuzzy
 msgid "Save access settings."
-msgstr "Sagipin ang mga itinakdang mapupuntahan"
+msgstr "Sagipin ang mga katakdaan ng pagpunta."
 
 #. TRANS: Button text to save access settings in site admin panel.
 #. TRANS: Button label to save e-mail preferences.
@@ -248,9 +247,9 @@ msgstr "Guhit ng panahon ng tahanan ni %s"
 #. TRANS: %s is user nickname.
 #. TRANS: Feed title.
 #. TRANS: %s is tagger's nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Feed for friends of %s (Activity Streams JSON)"
-msgstr "Pakain para sa mga kaibigan ni %s (Atom)"
+msgstr "Pakain para sa mga kaibigan ni %s (Activity Streams JSON)"
 
 #. TRANS: %s is user nickname.
 #, php-format
@@ -314,10 +313,9 @@ msgstr ""
 
 #. TRANS: Button text for inviting more users to the StatusNet instance.
 #. TRANS: Less business/enterprise-oriented language for public sites.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Send invite"
-msgstr "Magpadala ng mga paanyaya."
+msgstr "Magpadala ng paanyaya"
 
 #. TRANS: Message is used as link title. %s is a user nickname.
 #. TRANS: Title of API timeline for a user and friends.
@@ -441,20 +439,18 @@ msgid "Unblock user failed."
 msgstr "Nabigo ang hindi paghadlang sa tagagamit."
 
 #. TRANS: Client exception thrown when no conversation ID is given.
-#, fuzzy
 msgid "No conversation ID."
-msgstr "Pag-uusap"
+msgstr "Walang ID ng usapan."
 
 #. TRANS: Client exception thrown when referring to a non-existing conversation ID (%d).
-#, fuzzy, php-format
+#, php-format
 msgid "No conversation with ID %d."
-msgstr "Pag-uusap"
+msgstr "Walang usapan na may ID na %d."
 
 #. TRANS: Title for conversion timeline.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
-msgstr "Pag-uusap"
+msgstr "Usapan"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -1768,15 +1764,13 @@ msgstr "Pag-uusap"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
-#, fuzzy
 msgid "Conversation feed (Activity Streams JSON)"
-msgstr "Pasubong pabatid para sa %s (Atom)"
+msgstr "Pakaing usapan para sa (Activity Streams JSON)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
-#, fuzzy
 msgid "Conversation feed (RSS 2.0)"
-msgstr "Pasubong pabatid para sa %s (RSS 2.0)"
+msgstr "Pakaing usapan para sa (RSS 2.0)"
 
 #. TRANS: Title for conversation page.
 #. TRANS: Title for page that shows a notice.
@@ -1843,9 +1837,8 @@ msgid "Enter \"%s\" to confirm that you want to delete your account."
 msgstr "Ipasok ang \"%s\" upang tiyakin na nais mong burahin ang akawnt mo."
 
 #. TRANS: Button title for user account deletion.
-#, fuzzy
 msgid "Permanently delete your account."
-msgstr "Permanenteng burahin ang akawnt mo"
+msgstr "Permanenteng burahin ang akawnt mo."
 
 #. TRANS: Client error displayed trying to delete an application while not logged in.
 msgid "You must be logged in to delete an application."
@@ -2015,25 +2008,23 @@ msgstr "Tahanan"
 
 msgctxt "MENU"
 msgid "Docs"
-msgstr ""
+msgstr "Mga kasulatan"
 
 #. TRANS: Secondary navigation menu item leading to help on StatusNet.
 msgctxt "MENU"
 msgid "Help"
 msgstr "Tulong"
 
-#, fuzzy
 msgid "Getting started"
-msgstr "Nasagip ang mga katakdaan."
+msgstr "Pagsisimula"
 
 #. TRANS: Secondary navigation menu item leading to text about StatusNet site.
 msgctxt "MENU"
 msgid "About"
 msgstr "Patungkol"
 
-#, fuzzy
 msgid "About this site"
-msgstr "Huwag hadlangan ang tagagamit na ito"
+msgstr "Patungkol sa sityong ito"
 
 #. TRANS: Secondary navigation menu item leading to Frequently Asked Questions.
 msgctxt "MENU"
@@ -2041,7 +2032,7 @@ msgid "FAQ"
 msgstr "Mga malilimit na itanong"
 
 msgid "Frequently asked questions"
-msgstr ""
+msgstr "Mga madalas itanong"
 
 #. TRANS: Secondary navigation menu item leading to e-mail contact information on the
 #. TRANS: StatusNet site, where to report bugs, ...
@@ -2049,17 +2040,15 @@ msgctxt "MENU"
 msgid "Contact"
 msgstr "Kaugnayan"
 
-#, fuzzy
 msgid "Contact info"
-msgstr "Kaugnayan"
+msgstr "Kabatiran sa kaugnayan"
 
-#, fuzzy
 msgctxt "MENU"
 msgid "Tags"
 msgstr "Mga tatak"
 
 msgid "Using tags"
-msgstr ""
+msgstr "Paggamit ng mga tatak"
 
 #. TRANS: Menu item in default local navigation panel.
 #. TRANS: Menu item in search group navigation panel.
@@ -2068,16 +2057,15 @@ msgctxt "MENU"
 msgid "Groups"
 msgstr "Mga pangkat"
 
-#, fuzzy
 msgid "Using groups"
-msgstr "Mga pangkat ng tagagamit"
+msgstr "Paggamit ng mga kapangkatan"
 
 msgctxt "MENU"
 msgid "API"
-msgstr ""
+msgstr "API"
 
 msgid "RESTful API"
-msgstr ""
+msgstr "MapagPAHINGAng API"
 
 #. TRANS: Title for "Edit application" form.
 #. TRANS: Form legend.
@@ -2830,14 +2818,14 @@ msgstr "Mga katakdaan ng IM"
 #. TRANS: Instant messaging settings page instructions.
 #. TRANS: [instant messages] is link text, "(%%doc.im%%)" is the link.
 #. TRANS: the order and formatting of link text and link should remain unchanged.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You can send and receive notices through [instant messaging](%%doc.im%%). "
 "Configure your addresses and settings below."
 msgstr ""
 "Makapagpapadala at makatatanggap ka ng mga pabatid sa pamamagitan ng "
-"biglaang pagmemensahe [biglang mga mensahe](%%doc.im%%). Iayos ang mga "
-"tirahan at mga katakdaan mo sa ibaba."
+"[biglaang pagmemensahe] (%%doc.im%%). Iayos ang mga tirahan at mga katakdaan "
+"mong nasa ibaba."
 
 #. TRANS: Message given in the IM settings if IM is not enabled on the site.
 msgid "IM is not available."
@@ -3537,13 +3525,12 @@ msgid "Not a supported data format."
 msgstr "Isang hindi tinatangkilik na anyo ng dato."
 
 #. TRANS: Page title for profile settings.
-#, fuzzy
 msgid "Old school UI settings"
-msgstr "Mga katakdaan ng IM"
+msgstr "Mga katakdaan ng UI sa dating kaparaanan"
 
 #. TRANS: Usage instructions for profile settings.
 msgid "If you like it \"the old way\", you can set that here."
-msgstr ""
+msgstr "Kung gusto mo \"ang dating paraan\", maitatakda mo iyan dito."
 
 #. TRANS: Confirmation shown when user profile settings are saved.
 #. TRANS: Message after successful saving of administrative settings.
@@ -3551,13 +3538,14 @@ msgid "Settings saved."
 msgstr "Nasagip ang mga katakdaan."
 
 msgid "Only stream mode (no conversations) in timelines"
-msgstr ""
+msgstr "Kalakarang pangdaloy lang (walang usapan) sa mga guhit ng panahon"
 
 msgid "Show conversation page as hierarchical trees"
-msgstr ""
+msgstr "Ipakita ang pahina ng usapan bilang mga puno na panghirarkiya"
 
 msgid "Show nicknames (not full names) in timelines"
 msgstr ""
+"Ipakita ang mga bansag (hindi buong mga pangalan) sa mga guhit ng panahon"
 
 #. TRANS: Button text to save a list.
 msgid "Save"
@@ -3877,9 +3865,8 @@ msgid "Server to direct SSL requests to."
 msgstr "Tagapaghain kung saan ituturo ang mga kahilingan ng SSL."
 
 #. TRANS: Button title text to store form data in the Paths admin panel.
-#, fuzzy
 msgid "Save path settings."
-msgstr "Sagipin ang mga katakdaan ng sityo"
+msgstr "Sagipin ang mga katakdaan ng landas."
 
 #. TRANS: Instructions for the "People search" page.
 #. TRANS: %%site.name%% is the name of the StatusNet site.
@@ -5099,26 +5086,23 @@ msgstr "Kabatiran sa aplikasyon"
 
 #. TRANS: Field label on application page.
 msgid "Consumer key"
-msgstr ""
+msgstr "Susi ng tagaubos"
 
 #. TRANS: Field label on application page.
 msgid "Consumer secret"
-msgstr ""
+msgstr "Lihim ng tagaubos"
 
 #. TRANS: Field label on application page.
-#, fuzzy
 msgid "Request token URL"
-msgstr "Hindi katanggap-tanggap na kahalip ng kahilingan."
+msgstr "URL ng kahalip ng kahilingan"
 
 #. TRANS: Field label on application page.
-#, fuzzy
 msgid "Access token URL"
-msgstr "Masamang kahalip ng pagpunta."
+msgstr "URL ng kahalip ng pagpapapunta"
 
 #. TRANS: Field label on application page.
-#, fuzzy
 msgid "Authorize URL"
-msgstr "Pinagmulang URL"
+msgstr "Payagan ang URL"
 
 #. TRANS: Note on the OAuth application page about signature support.
 msgid ""
@@ -5650,7 +5634,6 @@ msgstr ""
 "upang maipaskil ulit ang katulad na bagay."
 
 #. TRANS: Fieldset legend for form to change logo.
-#, fuzzy
 msgid "Logo"
 msgstr "Logo"
 

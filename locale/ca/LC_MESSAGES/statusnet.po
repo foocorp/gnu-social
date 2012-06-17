@@ -1,4 +1,4 @@
-# Translation of StatusNet - Core to Catalan (Català)
+# Translation of StatusNet - Core to Catalan (català)
 # Exported from translatewiki.net
 #
 # Author: Aleator
@@ -16,12 +16,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-12 18:43+0000\n"
-"PO-Revision-Date: 2012-05-12 18:44:15+0000\n"
+"POT-Creation-Date: 2012-06-10 23:40+0000\n"
+"PO-Revision-Date: 2012-06-10 23:40:31+0000\n"
 "Language-Team: Catalan <https://translatewiki.net/wiki/Portal:ca>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ca\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -9003,7 +9003,7 @@ msgid "Login to the site."
 msgstr "Inicia una sessió al lloc"
 
 msgid "This profile has been silenced by site moderators"
-msgstr ""
+msgstr "Aquest perfil ha estat silenciat pels moderadors del lloc"
 
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"

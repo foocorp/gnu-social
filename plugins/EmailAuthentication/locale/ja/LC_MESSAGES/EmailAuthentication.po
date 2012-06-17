@@ -1,6 +1,7 @@
 # Translation of StatusNet - EmailAuthentication to Japanese (日本語)
 # Exported from translatewiki.net
 #
+# Author: Shirayuki
 # Author: 青子守歌
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - EmailAuthentication\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-12 18:44+0000\n"
-"PO-Revision-Date: 2012-05-12 18:45:32+0000\n"
+"POT-Creation-Date: 2012-06-10 23:40+0000\n"
+"PO-Revision-Date: 2012-06-10 23:41:07+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:02+0000\n"
-"X-Generator: MediaWiki 1.20alpha (9a7f2d8); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-plugin-emailauthentication\n"
@@ -26,5 +27,5 @@ msgid ""
 "The Email Authentication plugin allows users to login using their email "
 "address."
 msgstr ""
-"電子メール認証プラグインは、ユーザーに、電子メールアドレスでログインすること"
-"を許可します。"
+"メール認証プラグインは、ユーザーがメールアドレスでログインすることを許可しま"
+"す。"
