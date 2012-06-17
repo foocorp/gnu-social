@@ -3,6 +3,7 @@
 #
 # Author: Alphakilo
 # Author: Marcel083
+# Author: PtM
 # Author: Tiin
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -11,13 +12,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OMB\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-10 23:40+0000\n"
-"PO-Revision-Date: 2012-06-10 23:42:00+0000\n"
+"POT-Creation-Date: 2012-06-17 23:23+0000\n"
+"PO-Revision-Date: 2012-06-17 23:25:11+0000\n"
 "Language-Team: German <https://translatewiki.net/wiki/Portal:de>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-02 10:11:37+0000\n"
-"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
+"X-Generator: MediaWiki 1.20alpha (8a147d2); Translate 2012-06-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: de\n"
 "X-Message-Group: #out-statusnet-plugin-omb\n"
@@ -45,15 +46,15 @@ msgstr "Sie können mit dieser Aktion kein OMB0.1 Profil abonnieren."
 
 #. TRANS: Client error displayed when trying to add an OMB 0.1 remote profile to a list.
 msgid "You cannot list an OMB 0.1 remote profile with this action."
-msgstr ""
+msgstr "Du kannst mit dieser Aktion kein OMB-0.1-Profil auflisten."
 
 #. TRANS: Client error displayed when trying to (un)list an OMB 0.1 remote profile.
 msgid "You cannot (un)list an OMB 0.1 remote profile with this action."
-msgstr ""
+msgstr "Du kannst mit dieser Aktion kein OMB-0.1-Profil (ab)listen."
 
 #. TRANS: Exception thrown when the OMB token for a subscription could not deleted on the server.
 msgid "Could not delete subscription OMB token."
-msgstr ""
+msgstr "Konnte Abonnement-OMB-Token nicht löschen."
 
 #. TRANS: Plugin description.
 msgid "A sample plugin to show basics of development for new hackers."

@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Blacklist\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-10 23:40+0000\n"
-"PO-Revision-Date: 2012-06-10 23:40:41+0000\n"
+"POT-Creation-Date: 2012-06-17 23:23+0000\n"
+"PO-Revision-Date: 2012-06-17 23:23:34+0000\n"
 "Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-03-01 18:55:46+0000\n"
-"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
+"X-Generator: MediaWiki 1.20alpha (8a147d2); Translate 2012-06-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-blacklist\n"
@@ -83,9 +83,10 @@ msgid "Users from \"%s\" are blocked."
 msgstr "Hinahadlangan ang mga tagagamit na mula sa \"%s\"."
 
 #. TRANS: Exception thrown trying to post a notice while having a blocked nickname. %s is the blocked nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Notices from nickname \"%s\" are disallowed."
-msgstr "Hindi pinapayagan ang mga pabatid mula sa palayaw na \"%s\"."
+msgstr ""
+"Hindi pinapahintulutan ang mga pabatid na nagmumula sa palayaw na \"%s\"."
 
 #. TRANS: Client exception thrown trying to subscribe to a person with a blocked nickname. %s is the blocked nickname.
 #, php-format

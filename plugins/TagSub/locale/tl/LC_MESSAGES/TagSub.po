@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - TagSub\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-10 23:40+0000\n"
-"PO-Revision-Date: 2012-06-10 23:42:39+0000\n"
+"POT-Creation-Date: 2012-06-17 23:23+0000\n"
+"PO-Revision-Date: 2012-06-17 23:26:00+0000\n"
 "Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:51:31+0000\n"
-"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
+"X-Generator: MediaWiki 1.20alpha (8a147d2); Translate 2012-06-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-tagsub\n"
@@ -31,9 +31,8 @@ msgid "Unsubscribe"
 msgstr "Pahintuin na ang pagtanggap ng sipi"
 
 #. TRANS: Submit button title to unsubscribe from a tag.
-#, fuzzy
 msgid "Unsubscribe from this tag."
-msgstr "Huwag nang magpasipi mula sa tatak na ito"
+msgstr "Huwag nang sumipi mula sa tatak na ito."
 
 #. TRANS: Plugin description.
 msgid "Plugin to allow following all messages with a given tag."
@@ -64,9 +63,8 @@ msgid "Subscribe"
 msgstr "Pumayag na tumanggap ng sipi"
 
 #. TRANS: Submit button title to subscribe to a tag.
-#, fuzzy
 msgid "Subscribe to this tag."
-msgstr "Magpasipi para sa tatak na ito"
+msgstr "Sumipi mula sa tatak na ito."
 
 #. TRANS: Page title when tag unsubscription succeeded.
 msgid "Unsubscribed"
@@ -142,12 +140,12 @@ msgstr ""
 #. TRANS: than the logged in user that has no tag subscriptions. %s is the user nickname.
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user that has none
 #. TRANS: as an anonymous user. %s is the user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "%s is not following any tags."
-msgstr "Si %s ay hindi nakikinig sa anumang mga tatak."
+msgstr "Hindi sinusundan ni %s ang anumang mga tatak."
 
 #. TRANS: %1$s is a URL to a tag, %2$s is a tag,
 #. TRANS: %3$s a date string.
-#, fuzzy, php-format
+#, php-format
 msgid "#<a href=\"%1$s\">%2$s</a> since %3$s"
-msgstr "#<a href=\"%s\">%s</a> magmula noong %s"
+msgstr "#<a href=\"%1$s\">%2$s</a> magmula pa noong %3$s"

@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Event\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-10 23:40+0000\n"
-"PO-Revision-Date: 2012-06-10 23:41:15+0000\n"
+"POT-Creation-Date: 2012-06-17 23:23+0000\n"
+"PO-Revision-Date: 2012-06-17 23:24:17+0000\n"
 "Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-01-02 10:11:52+0000\n"
-"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
+"X-Generator: MediaWiki 1.20alpha (8a147d2); Translate 2012-06-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-event\n"
@@ -76,7 +76,7 @@ msgstr "Hindi inaasahang pagpapasa ng pormularyo."
 
 #. TRANS: Client error displayed when using an action in a non-AJAX way.
 msgid "This action is AJAX only."
-msgstr ""
+msgstr "Ang galaw ay AJAX lang."
 
 #. TRANS: Client exception thrown when referring to a non-existing RSVP.
 #. TRANS: RSVP stands for "Please reply".
@@ -183,9 +183,9 @@ msgid "Start time"
 msgstr "Oras ng simula"
 
 #. TRANS: Field title on event form. %s is the abbreviated timezone
-#, fuzzy, php-format
+#, php-format
 msgid "Time the event starts (%s)."
-msgstr "Oras ng pagsisimula ng kaganapan."
+msgstr "Oras ng pagsisimula ng kaganapan (%s)."
 
 #. TRANS: Field label on event form.
 msgctxt "LABEL"

@@ -10,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-10 23:40+0000\n"
-"PO-Revision-Date: 2012-06-10 23:41:36+0000\n"
+"POT-Creation-Date: 2012-06-17 23:23+0000\n"
+"PO-Revision-Date: 2012-06-17 23:24:46+0000\n"
 "Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
-"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
+"X-Generator: MediaWiki 1.20alpha (8a147d2); Translate 2012-06-11\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -3996,7 +3996,7 @@ msgstr "Pumunta"
 #. TRANS: Message displayed for anonymous users on page that displays lists by a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "These are lists created by **%s**. Lists are how you sort similar people on %"
 "%%%site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
@@ -4004,13 +4004,13 @@ msgid ""
 "tool. You can easily keep track of what they are doing by subscribing to the "
 "list's timeline."
 msgstr ""
-"Ito ay mga talaang nilikha ni **%s**. Ang mga talaan ay kung paano mo "
-"pinagpapangkat-pangkat ang magkakahalintulad na mga tao sa %%site.name%%, "
-"isang palingkuran ng [maliitang pagboblog](http://en.wikipedia.org/wiki/"
-"Micro-blogging) na nakabatay sa kasangkapan ng Malayang Sopwer na [StatusNet]"
-"(http://status.net/). Kaya't maginhawa mong masusubaybayan ang kung ano ang "
-"kanilang ginagawa sa pamamagitan ng pagpapatanggap ng mga sipi sa guhit ng "
-"panahon ng tatak."
+"Ito ay mga talang nilikha ni **%s**. Ang mga tala ay kung paano mo "
+"pinagpapangkat-pangkat ang magkakahalintulad na mga tao sa %%%%site.name%%%"
+"%, isang palingkuran ng [maliitang pagboblog] (http://en.wikipedia.org/wiki/"
+"Micro-blogging) na nakabatay sa kasangkapan ng Malayang Sopwer na "
+"[StatusNet]  (http://status.net/). Maginhawa mong masusubaybayan ang kung "
+"ano ang kanilang ginagawa sa pamamagitan ng pagpapasipi ng guhit ng panahon "
+"ng tala."
 
 #. TRANS: Message displayed on page that displays lists by a user when there are none.
 #. TRANS: This message contains Markdown links in the form [description](links).
@@ -4033,7 +4033,7 @@ msgstr "Mga talaang may %1$s, pahina %2$d"
 #. TRANS: Message displayed for anonymous users on page that displays lists for a user.
 #. TRANS: This message contains Markdown links in the form [description](links).
 #. TRANS: %s is a tagger nickname.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "These are lists for **%s**. lists are how you sort similar people on %%%%"
 "site.name%%%%, a [micro-blogging](http://en.wikipedia.org/wiki/Micro-"
@@ -4041,13 +4041,12 @@ msgid ""
 "tool. You can easily keep track of what they are doing by subscribing to the "
 "list's timeline."
 msgstr ""
-"Ito ay mga talaan para sa **%s**. Ang mga talaan ay kung paano mo "
-"pinagpapangkat-pangkat ang magkakahalintulad na mga tao sa %%site.name%%, "
-"isang palingkuran ng [maliitang pagboblog](http://en.wikipedia.org/wiki/"
-"Micro-blogging) na nakabatay sa kasangkapan ng Malayang Sopwer na [StatusNet]"
-"(http://status.net/). Kaya't maginhawa mong masusubaybayan ang kung ano ang "
-"kanilang ginagawa sa pamamagitan ng pagpapatanggap ng mga sipi sa guhit ng "
-"panahon ng tatak."
+"Ito ay mga tala para sa **%s**. Ang mga tala ay kung paano mo pinagpapangkat-"
+"pangkat ang magkakahalintulad na mga tao sa %%%%site.name%%%%, isang "
+"palingkuran ng [maliitang pagboblog] (http://en.wikipedia.org/wiki/Micro-"
+"blogging) na nakabatay sa kasangkapan ng Malayang Sopwer na [StatusNet] "
+"(http://status.net/). Maginhawa mong masusubaybayan ang kung ano ang "
+"kanilang ginagawa sa pamamagitan ng pagpapasipi ng guhit ng panahon ng tala."
 
 #. TRANS: Message displayed on page that displays lists a user was added to when there are none.
 #. TRANS: This message contains Markdown links in the form [description](links).
@@ -4280,12 +4279,11 @@ msgid "What timezone are you normally in?"
 msgstr "Anong sona ng oras ka pangkaraniwang nakapaloob?"
 
 #. TRANS: Checkbox label in form for profile settings.
-#, fuzzy
 msgid ""
 "Automatically subscribe to whoever subscribes to me (best for non-humans)"
 msgstr ""
-"Kusang magpasipi sa kung sino ang nagpapasipi sa akin (pinakamahusay sa mga "
-"hindi tao)."
+"Kusang magpasipi ng kung sino ang nagpapasipi mula sa akin (pinakamahusay "
+"para sa mga hindi tao)"
 
 #. TRANS: Dropdown field label on profile settings, for what policies to apply when someone else tries to subscribe to your updates.
 msgid "Subscription policy"
@@ -4366,9 +4364,8 @@ msgid "Beyond the page limit (%s)."
 msgstr "Lampas sa haggahan ng pahina (%s)."
 
 #. TRANS: Server error displayed when a public timeline cannot be retrieved.
-#, fuzzy
 msgid "Could not retrieve public timeline."
-msgstr "Hindi makuhang muli ang pangmadlang batis."
+msgstr "Hindi mabawi ang pangmadlang guhit ng panahon."
 
 #. TRANS: Title for all public timeline pages but the first.
 #. TRANS: %d is the page number.
@@ -4382,24 +4379,20 @@ msgid "Public timeline"
 msgstr "Pangmadlang guhit ng panahon"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (Activity Streams JSON)"
-msgstr "Pasubo ng Pangmadlang Batis (Atom)"
+msgstr "Pakain ng Pangmadlang Guhit ng Panahon (Mga Batis ng Gawain ng JSON)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (RSS 1.0)"
-msgstr "Pasubo ng Pangmadlang Batis (RSS 1.0)"
+msgstr "Pakain ng Pangmadlang Guhit ng Panahon (RSS 1.0)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (RSS 2.0)"
-msgstr "Pasubo ng Pangmadlang Batis (RSS 2.0)"
+msgstr "Pakain ng Pangmadlang Guhit ng Panahon (RSS 2.0)"
 
 #. TRANS: Link description for public timeline feed.
-#, fuzzy
 msgid "Public Timeline Feed (Atom)"
-msgstr "Pasubo ng Pangmadlang Batis (Atom)"
+msgstr "Pakain ng Pangmadlang Guhit ng Panahon (Atom)"
 
 #. TRANS: Text displayed for public feed when there are no public notices.
 #, php-format
@@ -4831,9 +4824,9 @@ msgstr "Mga tugon kay %1$s, pahina %2$d"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Replies feed for %s (Activity Streams JSON)"
-msgstr "Pasubo ng mga tugon para sa %s (Atom)"
+msgstr "Pakain ng mga tugon para sa %s (Mga Batis ng Gawain ng JSON)"
 
 #. TRANS: Link for feed with replies for a user.
 #. TRANS: %s is a user nickname.
@@ -4961,13 +4954,12 @@ msgstr ""
 "mga kinalabasan."
 
 #. TRANS: Form instructions for feed restore.
-#, fuzzy
 msgid ""
 "You can upload a backed-up timeline in <a href=\"http://activitystrea.ms/"
 "\">Activity Streams</a> format."
 msgstr ""
-"Makapagkakarga ka ng isang pamalit na kopya ng batis na nasa anyong <a href="
-"\"http://activitystrea.ms/\">Mga Batis ng Gawain</a>."
+"Makapagkakarga kang paitaas ng isang may reserbang kopyang guhit ng panahon "
+"na nasa anyong <a href=\"http://activitystrea.ms/\">Mga Batis ng Gawain</a>."
 
 #. TRANS: Title for submit button to confirm upload of a user backup file for account restore.
 msgid "Upload the file"
@@ -5129,9 +5121,9 @@ msgid "Could not retrieve favorite notices."
 msgstr "Hindi makuhang muli ang kinagigiliwang mga pabatid."
 
 #. TRANS: Feed link text. %s is a username.
-#, fuzzy, php-format
+#, php-format
 msgid "Feed for favorites of %s (Activity Streams JSON)"
-msgstr "Pasubo para sa mga kinagigiliwan ni %s (Atom)"
+msgstr "Pakain para sa mga kinagigiliwan ni %s (Mga Batis ng Gawain ng JSON)"
 
 #. TRANS: Feed link text. %s is a username.
 #, php-format
@@ -5198,9 +5190,9 @@ msgid "%1$s group, page %2$d"
 msgstr "Pangkat na %1$s, pahina %2$d"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice feed for %s group (Activity Streams JSON)"
-msgstr "Pasubong pabatid para sa pangkat na %s (Atom)"
+msgstr "Pakaing pabatid para sa pangkat ng %s (Mga Batis ng Gawain ng JSON)"
 
 #. TRANS: Tooltip for feed link. %s is a group nickname.
 #, php-format
@@ -5245,18 +5237,18 @@ msgstr ""
 #. TRANS: Notice on group pages for anonymous users for StatusNet sites that accept no new registrations.
 #. TRANS: %s is the group name, %%%%site.name%%%% is the site name,
 #. TRANS: This message contains Markdown links. Ensure they are formatted correctly: [Description](link).
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** is a user group on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool. Its members share short messages about "
 "their life and interests."
 msgstr ""
-"Ang **%s** ay isang pangkat ng tagagamit sa %%%%site.name%%%%, isang "
-"palingkuran ng [maliitang pagboblog](http://en.wikipedia.org/wiki/Micro-"
-"blogging) na nakabatay sa kasangkapan ng Malayang Sopwer na [StatusNet]"
+"Ang **%s** ay isang pangkat ng tagagamit na nasa %%%%site.name%%%%, isang "
+"palingkuran ng [maliitang pagboblog] (http://en.wikipedia.org/wiki/Micro-"
+"blogging) na nakabatay sa kasangkapan ng Malayang Sopwer na [StatusNet] "
 "(http://status.net/). Ang mga kasapi nito ay nagbabahagi ng maiikling mga "
-"mensahe tungkol sa kanilang buhay at mga hilig. "
+"mensaheng patungkol sa kanilang buhay at mga kahiligan."
 
 #. TRANS: Client error displayed requesting a single message that does not exist.
 msgid "No such message."
@@ -5406,9 +5398,9 @@ msgstr "Pasubong pabatid para kay %1$s na tinatakan ng %2$s (RSS 1.0)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice feed for %s (Activity Streams JSON)"
-msgstr "Pasubong pabatid para sa %s (Atom)"
+msgstr "Pakaing pabatid para sa %s (Mga Batis ng Gawain ng JSON)"
 
 #. TRANS: Title for link to notice feed.
 #. TRANS: %s is a user nickname.
@@ -5478,16 +5470,16 @@ msgstr ""
 
 #. TRANS: Announcement for anonymous users showing a timeline if site registrations are closed or invite only.
 #. TRANS: This message contains a Markdown link. Keep "](" together.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "**%s** has an account on %%%%site.name%%%%, a [micro-blogging](http://en."
 "wikipedia.org/wiki/Micro-blogging) service based on the Free Software "
 "[StatusNet](http://status.net/) tool."
 msgstr ""
-"Si **%s** ay may isang akawnt sa %%%%site.name%%%%, isang palingkuran ng "
-"[maliitang pagboblog](http://en.wikipedia.org/wiki/Micro-blogging) na "
-"nakabatay sa kasangkapan ng Malayang Sopwer na [StatusNet](http://status."
-"net/). "
+"Si **%s** ay mayroong isang akawnt sa %%%%site.name%%%%, isang palingkuran "
+"ng [maliitang pagboblog] (http://en.wikipedia.org/wiki/Micro-blogging) na "
+"nakabatay sa kasangkapan ng Malayang Sopwer na [StatusNet] (http://status."
+"net/)."
 
 #. TRANS: Link to the author of a repeated notice. %s is a linked nickname.
 #, php-format
@@ -5603,12 +5595,11 @@ msgid "Default language"
 msgstr "Likas na nakatakdang wika"
 
 #. TRANS: Dropdown title on site settings panel.
-#, fuzzy
 msgid ""
 "The site language when autodetection from browser settings is not available."
 msgstr ""
-"Wika ng sityo kapag hindi makuha ang kusang pagpansin mula sa mga katakdaan "
-"ng pantingin-tingin"
+"Ang wika ng pook kapag hindi makukuha ang kusang pagpansin mula sa mga "
+"katakdaan ng pantingin-tingin."
 
 #. TRANS: Fieldset legend on site settings panel.
 msgctxt "LEGEND"
@@ -5646,9 +5637,8 @@ msgid "SSL logo"
 msgstr "Logo ng SSL"
 
 #. TRANS: Button title for saving site settings.
-#, fuzzy
 msgid "Save the site settings."
-msgstr "Sagipin ang mga katakdaan ng sityo"
+msgstr "Sagipin ang mga katakdaan ng pook."
 
 #. TRANS: Page title for site-wide notice tab in admin panel.
 msgid "Site Notice"
@@ -6010,19 +6000,18 @@ msgstr "Ito ang mga taong pinakikinigan ni %s ng mga pabatid."
 #. TRANS: This message contains Markdown URLs. The link description is between
 #. TRANS: square brackets, and the link between parentheses. Do not separate "]("
 #. TRANS: and do not change the URL part.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You're not listening to anyone's notices right now, try subscribing to "
 "people you know. Try [people search](%%action.peoplesearch%%), look for "
 "members in groups you're interested in and in our [featured users](%%action."
 "featured%%)."
 msgstr ""
-"Hindi ka nakikinig sa ngayon sa mga pabatid ninuman, subukang magpasipi mula "
+"Hindi ka nakikinig sa ngayon ng mga pabatid ninuman, subukang magpasipi mula "
 "sa kakilala mong mga tao. Subukan ang [paghahanap ng mga tao](%%action."
-"peoplesearch%%), tumingin ng mga kasapi sa loob ng pangkat na makatatawag sa "
-"iyo ng pansin at sa loob ng aming [tampok na mga tagagamit](%%action.featured"
-"%%). Kung isa kang [tagagamit ng Twitter](%%action.twittersettings%%), kusa "
-"kang makapagpapasipi mula sa mga taong sinusundan mo na doon."
+"peoplesearch%%), tumingin ng mga kasapi sa loob ng pangkat na nakakatawag sa "
+"pagpansin mo at sa loob ng aming [tampok na mga tagagamit] (%%action.featured"
+"%%)."
 
 #. TRANS: Subscription list text when looking at the subscriptions for a of a user other
 #. TRANS: than the logged in user that has no subscriptions. %s is the user nickname.
@@ -6054,9 +6043,9 @@ msgstr "Mga pabatid na tinatakan ng %1$s, pahina %2$d"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
-#, fuzzy, php-format
+#, php-format
 msgid "Notice feed for tag %s (Activity Streams JSON)"
-msgstr "Pasubong pabatid para sa tatak na %s (Atom)"
+msgstr "Pakaing pabatid para sa tatak na %s (Mga Batis ng Gawain ng JSON)"
 
 #. TRANS: Link label for feed on "notices with tag" page.
 #. TRANS: %s is the tag the feed is for.
@@ -6350,13 +6339,13 @@ msgstr "StatusNet %s"
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %1$s is the engine name (StatusNet) and %2$s is the StatusNet version.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "This site is powered by %1$s version %2$s, Copyright 2008-2011 StatusNet, "
 "Inc. and contributors."
 msgstr ""
-"Ang sityong ito ay binubuhay ng %1$s bersyong %2$s, Karapatang-Ari 2008-2010 "
-"StatusNet, Inc. at mga tagapag-ambag."
+"Ang pook na ito ay binubuhay ng %1$s na may bersiyong %2$s, Karapatang-Ari "
+"2008-2010 StatusNet, Inc. at mga tagapag-ambag."
 
 #. TRANS: Header for StatusNet contributors section on the version page.
 msgid "Contributors"
@@ -6367,7 +6356,6 @@ msgid "License"
 msgstr "Lisensiya"
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "StatusNet is free software: you can redistribute it and/or modify it under "
 "the terms of the GNU Affero General Public License as published by the Free "
@@ -6375,23 +6363,23 @@ msgid ""
 "any later version."
 msgstr ""
 "Isang malayang sopwer ang StatusNet: maaari mo itong  ipamahaging muli at/o "
-"baguhin sa ilalim ng mga patakaran ng Lisensyang Panlahatang-Madla ng Affero "
-"ng GNU ayon sa pagkakalathala ng Pundasyon ng Malayang Sopwer, maaaring ika-"
-"3 bersyon ng Lisensiya, o (ayon sa pagpili mo) anumang bersyon sa paglaon. "
+"baguhin ito sa ilalim ng mga patakaran ng Lisensiyang Panlahatang-Madla ng "
+"Affero ng GNU ayon sa pagkakalathala ng Pundasyon ng Malayang Sopwer, "
+"maaaring ika-3 bersiyon ng Lisensiya, o (ayon sa pagpili mo) anumang "
+"bersiyon pagdaka."
 
 #. TRANS: Content part of StatusNet version page.
-#, fuzzy
 msgid ""
 "This program is distributed in the hope that it will be useful, but WITHOUT "
 "ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or "
 "FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Affero General Public License "
 "for more details."
 msgstr ""
-"Ang palatuntunan ay ipinamamahagi na inaaasahang magiging magagamit ito, "
-"ngunit WALANG ANUMANG PANGAKO NG KATUPARAN; na wala ring pahiwatig na "
+"Ang palatuntunang ito ay ipinamamahagi na inaaasahang magiging magagamit "
+"ito, ngunit WALANG ANUMANG PANGAKO NG KATUPARAN; na wala ring pahiwatig na "
 "pangako ng katuparan ng KAKAYAHANG MAIKALAKAL o KAANGKUPAN PAR SA ISANG "
 "TIYAK NA LAYUNIN. Tingnan ang Pangkalahatang Pangmadlang Lisensiya ng Affero "
-"ng GNU para sa marami pang mga detalye. "
+"ng GNU para sa mas marami pang mga detalye."
 
 #. TRANS: Content part of StatusNet version page.
 #. TRANS: %s is a link to the AGPL license with link description "http://www.gnu.org/licenses/agpl.html".
@@ -6453,14 +6441,14 @@ msgstr "Iniisip ni Robin na may isang bagay na hindi talaga maaaring mangyari."
 #, php-format
 msgid "%1$d byte"
 msgid_plural "%1$d bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1$d byte"
+msgstr[1] "%1$d mga byte"
 
 #. TRANS: Message given if an upload is larger than the configured maximum.
 #. TRANS: %1$d (used for plural) is the byte limit for uploads,
 #. TRANS: %2$s is the proper form of "n bytes". This is the only ways to have
 #. TRANS: gettext support multiple plurals in the same message, unfortunately...
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "No file may be larger than %1$d byte and the file you sent was %2$s. Try to "
 "upload a smaller version."
@@ -6468,13 +6456,13 @@ msgid_plural ""
 "No file may be larger than %1$d bytes and the file you sent was %2$s. Try to "
 "upload a smaller version."
 msgstr[0] ""
-"Walang talaksan na maaaring maging mas malaki pa kaysa %1$d byte at ang "
-"talaksang nais mong ipadala ay %2$d mga byte. Subukang magkarga ng isang mas "
-"maliit na bersyon."
+"Walang talaksan ang maaaring maging mas malaki pa kaysa sa %1$d byte at ang "
+"talaksang ipinadala mo ay %2$s mga byte. Subukang magkargang paitaas ng "
+"isang mas maliit na bersiyon."
 msgstr[1] ""
-"Walang talaksan na maaaring maging mas malaki pa kaysa %1$d mga byte at ang "
-"talaksang nais mong ipadala ay %2$d mga byte. Subukang magkarga ng isang mas "
-"maliit na bersyon."
+"Walang talaksan ang maaaring maging mas malaki pa kaysa sa %1$d mga byte at "
+"ang talaksang ipinadala mo ay %2$s mga byte. Subukang magkargang paitaas ng "
+"isang mas maliit na bersiyon."
 
 #. TRANS: Message given if an upload would exceed user quota.
 #. TRANS: %d (number) is the user quota in bytes and is used for plural.
@@ -6549,9 +6537,9 @@ msgid "Could not create login token for %s"
 msgstr "Hindi malikha ang kahalip ng paglagdang papasok para kay %s"
 
 #. TRANS: Exception thrown when a program code class (%s) cannot be instantiated.
-#, fuzzy, php-format
+#, php-format
 msgid "Cannot instantiate class %s."
-msgstr "Hindi masagip ang bagong hudyat."
+msgstr "Hindi mabigyang-halimbawa ang klaseng %s."
 
 #. TRANS: Exception thrown when database name or Data Source Name could not be found.
 msgid "No database name or DSN found anywhere."
@@ -6712,14 +6700,14 @@ msgstr ""
 "sa umiiral na mga tatak.}}"
 
 #. TRANS: Client exception thrown when trying to add more people than allowed to a list.
-#, fuzzy, php-format
+#, php-format
 msgid ""
 "You already have %1$d or more people in list %2$s, which is the maximum "
 "allowed number. Try unlisting others first."
 msgstr ""
-"Naroroon na si %1$d o mahigit pang mga tao sa loob ng talaang %2$s, na "
-"siyang pinakamataas na pinahihintulutang bilang. Subukan munang tanggalin na "
-"sa talaan ang iba pa."
+"Mayroon ka nang %1$d o mahigit pang mga tao sa loob ng talang %2$s, na "
+"siyang pinakamataas na pinahihintulutang bilang. Subukang huwag na munang "
+"itala ang iba pa."
 
 #. TRANS: Exception thrown when inserting a list subscription in the database fails.
 msgid "Adding list subscription failed."
@@ -7285,14 +7273,12 @@ msgstr ""
 "makakabasa at makakasulat"
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgid "Cancel application changes."
-msgstr "Nakaugnay na mga aplikasyon"
+msgstr "Huwag ituloy ang mga pagbabago sa aplikasyon."
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgid "Save application changes."
-msgstr "Bagong aplikasyon"
+msgstr "Sagipin ang mga pagbabago sa aplikasyon."
 
 #. TRANS: Name for an anonymous application in application list.
 msgid "Unknown application"
@@ -7945,9 +7931,9 @@ msgid "Disfavor favorite"
 msgstr "Huwag kagiliwan ang kinagigiliwan"
 
 #. TRANS: Button title for removing the favourite status for a favourite notice.
-#, fuzzy
 msgid "Remove this notice from your list of favorite notices."
-msgstr "Hindi makuhang muli ang kinagigiliwang mga pabatid."
+msgstr ""
+"Alisin ang pabatid na ito mula sa iyong lista ng kinagigiliwang mga pabatid."
 
 #. TRANS: Form legend for adding the favourite status to a notice.
 msgid "Favor this notice"
@@ -7959,9 +7945,9 @@ msgid "Favor"
 msgstr "Kagiliwan"
 
 #. TRANS: Button title for adding the favourite status to a notice.
-#, fuzzy
 msgid "Add this notice to your list of favorite notices."
-msgstr "Hindi makuhang muli ang kinagigiliwang mga pabatid."
+msgstr ""
+"Idagdag ang pabatid na ito sa iyong tala ng kinagigiliwang mga pabatid."
 
 #. TRANS: Feed type name.
 msgid "RSS 1.0"
@@ -7981,7 +7967,7 @@ msgstr "FOAF"
 
 #. TRANS: Feed type name. See http://activitystrea.ms/
 msgid "Activity Streams"
-msgstr ""
+msgstr "Mga Daloy ng Gawain"
 
 #. TRANS: Client exception thrown when an imported feed does not have an author.
 msgid "No author in the feed."
@@ -8023,14 +8009,12 @@ msgid "All members"
 msgstr "Lahat ng mga kasapi"
 
 #. TRANS: Header for mini list of users with a pending membership request on a group page (h2).
-#, fuzzy
 msgid "Pending"
-msgstr "Nakabinbin ( %d )"
+msgstr "Nakabinbin"
 
 #. TRANS: Header for mini list of users that are blocked in a group page (h2).
-#, fuzzy
 msgid "Blocked"
-msgstr "Hinarang"
+msgstr "Hinadlangan"
 
 #. TRANS: Title for list of group administrators on a group page.
 msgctxt "TITLE"
@@ -8046,6 +8030,7 @@ msgstr "Hadlangan"
 msgctxt "TOOLTIP"
 msgid "Block this user so that they can no longer post messages to it."
 msgstr ""
+"Harangin ang tagagamit upang hindi na sila makapagpaskil ng mga mensahe roon."
 
 #. TRANS: Field title on group edit form.
 msgid "URL of the homepage or blog of the group or topic."
@@ -8136,18 +8121,17 @@ msgstr "Masisiglang mga pangkat"
 
 #. TRANS: Link description for seeing all groups.
 #. TRANS: Link description for seeing all lists.
-#, fuzzy
 msgid "See all"
-msgstr "Ipakitang lahat"
+msgstr "Tingnang lahat"
 
 #. TRANS: Link title for seeing all groups.
 msgid "See all groups you belong to."
-msgstr ""
+msgstr "Tingnan ang lahat ng mga pangkat na kinaaaniban mo."
 
 #. TRANS: Menu item title in personal group navigation menu.
 #. TRANS: %s is a username.
 msgid "Back to top"
-msgstr ""
+msgstr "Magbalik sa itaas"
 
 #. TRANS: Client exception 406
 msgid "This page is not available in a media type you accept"
@@ -8285,9 +8269,8 @@ msgid "Leave"
 msgstr "Lumisan"
 
 #. TRANS: Link title for seeing all lists.
-#, fuzzy
 msgid "See all lists you have created."
-msgstr "Ang ipinatala mong mga aplikasyon"
+msgstr "Tingnan ang lahat ng mga listahang nilikha mo."
 
 #. TRANS: Menu item for logging in to the StatusNet site.
 #. TRANS: Menu item in primary navigation panel.
@@ -8621,9 +8604,9 @@ msgstr ""
 
 #. TRANS: Subject of group join notification e-mail.
 #. TRANS: %1$s is the joining user's nickname, %2$s is the group name, and %3$s is the StatusNet sitename.
-#, fuzzy, php-format
+#, php-format
 msgid "%1$s has joined your group %2$s on %3$s"
-msgstr "Si %1$s ay sumali sa iyong pangkat na %2$s na nasa %3$s."
+msgstr "Sumali si %1$s sa pangkat mong %2$s na nasa %3$s."
 
 #. TRANS: Main body of group join notification e-mail.
 #. TRANS: %1$s is the subscriber's long name, %2$s is the group name, and %3$s is the StatusNet sitename,
@@ -8715,10 +8698,9 @@ msgid "Make Admin"
 msgstr "Gawing Tagapangasiwa"
 
 #. TRANS: Submit button title.
-#, fuzzy
 msgctxt "TOOLTIP"
 msgid "Make this user an admin."
-msgstr "Gawing isang tagapangasiwa ang tagagamit na ito"
+msgstr "Gawing isang tagapangasiwa ang tagagamit na ito."
 
 #. TRANS: Client exception thrown when a database error was thrown during a file upload operation.
 msgid "There was a database error while saving your file. Please try again."
@@ -8840,7 +8822,7 @@ msgstr ""
 
 #. TRANS: Link description to show more items in a list.
 msgid "More ▼"
-msgstr ""
+msgstr "Marami pa ▼"
 
 #. TRANS: Validation error in form for registration, profile and group settings, etc.
 msgid "Nickname cannot be empty."
@@ -8929,23 +8911,20 @@ msgstr "sa loob ng diwa"
 msgid "Repeated by"
 msgstr "Unulit ni"
 
-#, fuzzy
 msgid " "
-msgstr ", "
+msgstr ""
 
 #. TRANS: Link title in notice list item to reply to a notice.
-#, fuzzy
 msgid "Reply to this notice."
-msgstr "Tumugon sa pabatid na ito"
+msgstr "Tugunan ang pabatid na ito."
 
 #. TRANS: Link text in notice list item to reply to a notice.
 msgid "Reply"
 msgstr "Tumugon"
 
 #. TRANS: Link title in notice list item to delete a notice.
-#, fuzzy
 msgid "Delete this notice from the timeline."
-msgstr "Burahin ang pabatid na ito."
+msgstr "Burahin ang pabatid na ito mula sa guhit ng panahon."
 
 #. TRANS: Title for repeat form status in notice list when a notice has been repeated.
 msgid "Notice repeated."
@@ -9189,12 +9168,12 @@ msgid "Enable"
 msgstr "Paganahin"
 
 #. TRANS: Plugin description for a disabled plugin.
-#, fuzzy
 msgctxt "plugin-description"
 msgid ""
 "(The plugin description is unavailable when a plugin has been disabled.)"
 msgstr ""
-"(Hindi makukuha ang mga paglalarawan ng pampasak kapag hindi gumagana.)"
+"(Hindi makuha ang mga paglalarawan ng pampasak kapag hindi gumagana ang "
+"isang pampasak.)"
 
 #. TRANS: Menu item in primary navigation panel.
 msgctxt "MENU"
@@ -9228,7 +9207,7 @@ msgid "Login to the site."
 msgstr "Lumagdang papasok sa sityo."
 
 msgid "This profile has been silenced by site moderators"
-msgstr ""
+msgstr "Pinatahimik ng mga tagapamagitan ng pook ang balangkas na ito"
 
 #. TRANS: H2 text for user subscription statistics.
 msgid "Following"
@@ -9499,11 +9478,11 @@ msgstr "Pinapahintulutang nakaugnay na mga aplikasyon"
 #. TRANS: Menu item in settings navigation panel.
 msgctxt "MENU"
 msgid "Old school"
-msgstr ""
+msgstr "Lumang paraan"
 
 #. TRANS: Menu item title in settings navigation panel.
 msgid "UI tweaks for old-school users"
-msgstr ""
+msgstr "Mga pagpingol sa UI para sa mga tagagamit ng lumang paraan"
 
 #. TRANS: Title of form to silence a user.
 msgctxt "TITLE"
@@ -9750,28 +9729,27 @@ msgstr[0] "Gusto ito ng %%s."
 msgstr[1] "Gusto ito ng %%s."
 
 #. TRANS: List message for notice repeated by logged in user.
-#, fuzzy
 msgctxt "REPEATLIST"
 msgid "You repeated this."
-msgstr "Inulit mo ang pabatid na ito."
+msgstr "Naulit mo ito."
 
 #. TRANS: List message for when more than 4 people repeat something.
 #. TRANS: %%s is a list of users liking a notice, %d is the number over 4 that like the notice.
 #. TRANS: Plural is decided on the total number of users liking the notice (count of %%s + %d).
-#, fuzzy, php-format
+#, php-format
 msgid "%%s and %d other repeated this."
 msgid_plural "%%s and %d others repeated this."
-msgstr[0] "Gusto ito ng %%s at %d iba pa."
-msgstr[1] "Gusto ito ng %%s at %d iba pa."
+msgstr[0] "Inulit ito ng %%s at %d iba pa."
+msgstr[1] "Inulit ito ng %%s at %d mga iba pa."
 
 #. TRANS: List message for favoured notices.
 #. TRANS: %%s is a list of users liking a notice.
 #. TRANS: Plural is based on the number of of users that have favoured a notice.
-#, fuzzy, php-format
+#, php-format
 msgid "%%s repeated this."
 msgid_plural "%%s repeated this."
-msgstr[0] "Gusto ito ng %%s."
-msgstr[1] "Gusto ito ng %%s."
+msgstr[0] "Inulit ito ng %%s."
+msgstr[1] "Inulit ito ng %%s."
 
 #. TRANS: Form legend.
 #, php-format
@@ -9873,9 +9851,8 @@ msgid "Unsubscribe"
 msgstr "Pahintuin na ang pagtanggap ng sipi"
 
 #. TRANS: Button title on unsubscribe form.
-#, fuzzy
 msgid "Unsubscribe from this user."
-msgstr "Huwag nang magpasipi mula sa tagagamit na ito"
+msgstr "Huwag nang sumipi mula sa tagagamit na ito."
 
 #. TRANS: Exception text shown when no profile can be found for a user.
 #. TRANS: %1$s is a user nickname, $2$d is a user ID (number).
