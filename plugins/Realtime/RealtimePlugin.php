@@ -253,6 +253,7 @@ class RealtimePlugin extends Plugin
                 list($action, $arg1, $arg2) = $path;
 
                 $channels = Realtime_channel::getAllChannels($action, $arg1, $arg2);
+                $this->log(LOG_INFO, sprintf(_("%d candidate channels for notice %d"), $notice->id));
 
                 foreach ($channels as $channel) {
 
