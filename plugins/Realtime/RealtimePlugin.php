@@ -265,6 +265,13 @@ class RealtimePlugin extends Plugin
                         $profile = Profile::staticGet('id', $channel->user_id);
                     }
                     if ($notice->inScope($profile)) {
+                        $this->log(LOG_INFO, 
+                                   sprintf(_("Delivering notice %d to channel (%s, %s, %s) for user '%s'"),
+                                           $notice->id,
+                                           $channel->action,
+                                           $channel->arg1,
+                                           $channel->arg2,
+                                           ($profile) ? ($profile->nickname) : "<public>"));
                         $timeline = $this->_pathToChannel(array($channel->channel_key));
                         $this->_publish($timeline, $json);
                     }
