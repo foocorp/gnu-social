@@ -75,10 +75,17 @@ class DeliciousBookmarkImporter extends QueueHandler
                                        $data['description'],
                                        array('created' => $data['created'],
                                              'distribute' => false));
-        } catch (ClientException $e) {
+        } catch (ClientException $ce) {
             // Most likely a duplicate -- continue on with the rest!
-            common_log(LOG_ERR, "Error importing delicious bookmark to $data[url]: " . $e->getMessage());
+            common_log(LOG_ERR, "Error importing delicious bookmark to $data[url]: " . $ce->getMessage());
             return true;
+        } catch (Exception $ex) {
+            if (preg_match("/DB Error: already exists/", $ex->getMessage())) {
+                common_log(LOG_ERR, "Error importing delicious bookmark to $data[url]: " . $ce->getMessage());
+                return true;
+            } else {
+                throw $ex;
+            }
         }
 
         return true;
