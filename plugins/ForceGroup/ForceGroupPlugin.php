@@ -52,6 +52,24 @@ class ForceGroupPlugin extends Plugin
     function onStartNoticeDistribute($notice)
     {
         $profile = $notice->getProfile();
+
+        $isRemote = !(User::staticGet('id', $profile->id));
+        if ($isRemote) {
+            /*
+             * Notices from remote users on other sites
+             * will normally not end up here unless they're
+             * specifically directed here, e.g.: via explicit
+             * post to a remote (to them) group. But remote
+             * notices can also be `pulled in' as a result of
+             * local users subscribing to the remote user;
+             * from the remote user's perspective, this results
+             * in group-forcing appearing effectively random.
+             * So let's be consistent, and just never force
+             * incoming remote notices into a ForceGroup:
+             */
+            return true;
+        }
+
         foreach ($this->post as $nickname) {
             $group = User_group::getForNickname($nickname);
             if ($group && $profile->isMember($group)) {
