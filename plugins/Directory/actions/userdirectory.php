@@ -230,7 +230,7 @@ class UserdirectoryAction extends Action
         $args = array();
         if (isset($this->q)) {
             $args['q'] = $this->q;
-        } else {
+        } elseif (isset($this->filter) && $this->filter != 'all') {
             $args['filter'] = $this->filter;
         }
 
