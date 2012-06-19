@@ -45,10 +45,8 @@ class HostMetaAction extends Action
     {
         parent::handle();
 
-        $domain = common_config('site', 'server');
-
         $xrd = new XRD();
-        $xrd->host = $domain;
+        $xrd->host = strtolower($_SERVER['SERVER_NAME']);
 
         if(Event::handle('StartHostMetaLinks', array(&$xrd->links))) {
             $url = common_local_url('userxrd');
