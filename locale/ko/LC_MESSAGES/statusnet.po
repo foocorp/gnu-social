@@ -12,12 +12,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-17 23:23+0000\n"
-"PO-Revision-Date: 2012-06-17 23:24:20+0000\n"
+"POT-Creation-Date: 2012-06-24 18:22+0000\n"
+"PO-Revision-Date: 2012-06-24 18:24:02+0000\n"
 "Language-Team: Korean <https://translatewiki.net/wiki/Portal:ko>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (8a147d2); Translate 2012-06-11\n"
+"X-Generator: MediaWiki 1.20alpha (087f149); Translate 2012-06-21\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ko\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -8564,10 +8564,6 @@ msgstr "문맥"
 msgid "Repeated by"
 msgstr "반복한 사람"
 
-#, fuzzy
-msgid " "
-msgstr ", "
-
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
 msgid "Reply to this notice."
@@ -9562,3 +9558,7 @@ msgstr "XML이 잘못되었습니다. XRD 루트가 없습니다."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "'%s' 파일에서 백업을 가져옵니다."
+
+#, fuzzy
+#~ msgid " "
+#~ msgstr ", "

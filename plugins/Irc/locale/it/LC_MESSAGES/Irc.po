@@ -1,6 +1,7 @@
 # Translation of StatusNet - Irc to Italian (italiano)
 # Exported from translatewiki.net
 #
+# Author: GreenFox
 # Author: Ximo17
 # --
 # This file is distributed under the same license as the StatusNet package.
@@ -9,13 +10,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Irc\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-17 23:23+0000\n"
-"PO-Revision-Date: 2012-06-17 23:24:45+0000\n"
+"POT-Creation-Date: 2012-06-24 18:22+0000\n"
+"PO-Revision-Date: 2012-06-24 18:24:33+0000\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-05 21:50:23+0000\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
-"X-Generator: MediaWiki 1.20alpha (8a147d2); Translate 2012-06-11\n"
+"X-Generator: MediaWiki 1.20alpha (087f149); Translate 2012-06-21\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. TRANS: Service name for IRC.
@@ -33,6 +34,11 @@ msgid ""
 "user is not you, or if you did not request this confirmation, just ignore "
 "this message."
 msgstr ""
+"L'utente \"%1$s\" su %2$s ha detto che il tuo nome visualizzato %3$s gli "
+"appartiene. Se è vero, puoi confermare cliccando su questa URL: %4$s . (Se "
+"non riesci a cliccare, copia e incolla la URL nella barra degli indirizzi "
+"del tuo browser). Se quest'utente non sei tu, o se non hai richiesto tu "
+"questa conferma, ignora semplicemente questo messaggio."
 
 #. TRANS: Exception thrown when initialising the IRC plugin fails because of an incorrect configuration.
 msgid "You must specify a host."
@@ -76,3 +82,4 @@ msgstr "Impossibile eliminare la conferma."
 #. TRANS: Server exception thrown when an IRC waiting queue item could not be added to the database.
 msgid "Database error inserting IRC waiting queue item."
 msgstr ""
+"Errore nel database nell'inserimento dell'oggetto della coda d'attesa su IRC."

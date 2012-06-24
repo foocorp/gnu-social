@@ -18,12 +18,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-17 23:23+0000\n"
-"PO-Revision-Date: 2012-06-17 23:24:13+0000\n"
+"POT-Creation-Date: 2012-06-24 18:22+0000\n"
+"PO-Revision-Date: 2012-06-24 18:23:55+0000\n"
 "Language-Team: Italian <https://translatewiki.net/wiki/Portal:it>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (8a147d2); Translate 2012-06-11\n"
+"X-Generator: MediaWiki 1.20alpha (087f149); Translate 2012-06-21\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: it\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -547,11 +547,11 @@ msgstr "Impossibile seguire l'utente: %s è già nel tuo elenco."
 
 #. TRANS: Client error displayed when trying to unfollow a user that cannot be found.
 msgid "Could not unfollow user: User not found."
-msgstr "Impossibile non seguire l'utente: utente non trovato."
+msgstr "Impossibile smettere di seguire l'utente: utente non trovato."
 
 #. TRANS: Client error displayed when trying to unfollow self.
 msgid "You cannot unfollow yourself."
-msgstr "Non puoi non seguirti."
+msgstr "Non puoi smettere di seguirti."
 
 #. TRANS: Client error displayed when supplying invalid parameters to an API call checking if a friendship exists.
 msgid "Two valid IDs or nick names must be supplied."
@@ -8721,9 +8721,6 @@ msgstr "in una discussione"
 msgid "Repeated by"
 msgstr "Ripetuto da"
 
-msgid " "
-msgstr " "
-
 #. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice."
 msgstr "Rispondi a questa notizia."
@@ -9732,3 +9729,6 @@ msgstr "XML non valido, radice XRD mancante."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Ottenere il backup da file '%s'."
+
+#~ msgid " "
+#~ msgstr " "

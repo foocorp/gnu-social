@@ -14,13 +14,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-17 23:23+0000\n"
-"PO-Revision-Date: 2012-06-17 23:24:08+0000\n"
+"POT-Creation-Date: 2012-06-24 18:22+0000\n"
+"PO-Revision-Date: 2012-06-24 18:23:50+0000\n"
 "Language-Team: Hungarian <https://translatewiki.net/wiki/Portal:hu>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2012-04-22 22:02:21+0000\n"
-"X-Generator: MediaWiki 1.20alpha (8a147d2); Translate 2012-06-11\n"
+"X-Generator: MediaWiki 1.20alpha (087f149); Translate 2012-06-21\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: hu\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -8699,10 +8699,6 @@ msgstr "előzmény"
 msgid "Repeated by"
 msgstr "Megismételte:"
 
-#, fuzzy
-msgid " "
-msgstr ", "
-
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
 msgid "Reply to this notice."
@@ -9745,3 +9741,7 @@ msgstr "Érvénytelen XML, hiányzó XRD gyökér."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr ""
+
+#, fuzzy
+#~ msgid " "
+#~ msgstr ", "

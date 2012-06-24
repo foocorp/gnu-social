@@ -16,13 +16,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-17 23:23+0000\n"
-"PO-Revision-Date: 2012-06-17 23:23:39+0000\n"
+"POT-Creation-Date: 2012-06-24 18:22+0000\n"
+"PO-Revision-Date: 2012-06-24 18:23:24+0000\n"
 "Language-Team: British English <https://translatewiki.net/wiki/Portal:en-"
 "gb>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (8a147d2); Translate 2012-06-11\n"
+"X-Generator: MediaWiki 1.20alpha (087f149); Translate 2012-06-21\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: en-gb\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -8780,9 +8780,6 @@ msgstr "in context"
 #. TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
 msgid "Repeated by"
 msgstr "Repeated by"
-
-msgid " "
-msgstr ""
 
 #. TRANS: Link title in notice list item to reply to a notice.
 #, fuzzy
