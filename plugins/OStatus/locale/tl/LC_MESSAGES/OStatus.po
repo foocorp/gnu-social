@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - OStatus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-10 23:40+0000\n"
-"PO-Revision-Date: 2012-06-10 23:42:10+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:34+0000\n"
 "Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-12-03 13:49:04+0000\n"
-"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-ostatus\n"
@@ -31,9 +31,8 @@ msgid "Subscribe"
 msgstr "Pumayag na tumanggap ng sipi"
 
 #. TRANS: Fieldset legend.
-#, fuzzy
 msgid "List remote profile"
-msgstr "Tatakan ang malayong balangkas"
+msgstr "Ilista ang malayong balangkas"
 
 #. TRANS: Field label.
 msgctxt "LABEL"
@@ -204,9 +203,8 @@ msgid "%s has updated their profile page."
 msgstr "Si %s ay nagsapanahon ng kanilang pahina ng balangkas."
 
 #. TRANS: Link text for a user to list an OStatus user.
-#, fuzzy
 msgid "List"
-msgstr "Itala"
+msgstr "Ilista"
 
 #. TRANS: Plugin description.
 msgid ""
@@ -279,14 +277,13 @@ msgid "Invalid URL passed for %1$s: \"%2$s\""
 msgstr "Hindi katanggap-tanggap na URL ang ipinasa para sa %1$s: \"%2$s\""
 
 #. TRANS: Client error displayed when trying to list a local object as if it is remote.
-#, fuzzy
 msgid "You can use the local list functionality!"
-msgstr "Maaari mong gamitin ang katutubong pagpapasipi!"
+msgstr "Maaari mong gamitin ang katungkulan ng katutubong listahan!"
 
 #. TRANS: Header for listing a remote object. %s is a remote object's name.
-#, fuzzy, php-format
+#, php-format
 msgid "List %s"
-msgstr "Itala"
+msgstr "Ilista ang %s"
 
 #. TRANS: Button text to list a remote object.
 msgctxt "BUTTON"
@@ -298,9 +295,8 @@ msgid "User nickname"
 msgstr "Palayaw ng tagagamit"
 
 #. TRANS: Field title.
-#, fuzzy
 msgid "Nickname of the user you want to list."
-msgstr "Palayaw ng tagagamit na nais mong tatakan."
+msgstr "Palayaw ng tagagamit na nais mong ilista."
 
 #. TRANS: Field label.
 msgid "Profile Account"
@@ -508,34 +504,28 @@ msgid "Not a person object."
 msgstr "Hindi isang bagay ng tao."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "Unidentified profile being listed."
-msgstr "Tinatatakang balangkas na hindi nakikilala."
+msgstr "Inililistang balangkas na hindi pa nakikilala."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This user is not the one being listed."
-msgstr "Hindi ito ang tagagamit na tinatatakan."
+msgstr "Hindi ito ang tagagamit na inililista."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "The listing could not be saved."
-msgstr "Hindi masasagip ang tatak."
+msgstr "Hindi masasagip ang listahan."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "Unidentified profile being unlisted."
-msgstr "Ang hindi nakikilalang balangkas na hindi na tinatakan."
+msgstr "Inaalis sa lista na balangkas na hindi pa nakikilala."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This user is not the one being unlisted."
-msgstr "Hindi ito ang tagagamit na hindi na tinatatakan."
+msgstr "Hindi ito ang tagagamit na inaalis mula sa listahan."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "The listing could not be deleted."
-msgstr "Hindi mabubura ang tatak."
+msgstr "Hindi mabura ang listahan."
 
 #. TRANS: Client exception.
 msgid "Cannot favorite/unfavorite without an object."
@@ -805,16 +795,18 @@ msgstr "Pasubong RSS na walang libuyan."
 #. TRANS: Client exception thrown when trying to share multiple activities at once.
 msgid "Can only handle share activities with exactly one object."
 msgstr ""
+"Makapanghahawak lamang ng mga gawaing pinagsasaluhan na mayroong isang bagay "
+"lang talaga."
 
 #. TRANS: Client exception thrown when trying to share a non-activity object.
 msgid "Can only handle shared activities."
-msgstr ""
+msgstr "Makapanghahawak lamang ng mga gawaing pinagsasaluhan."
 
 #. TRANS: Client exception thrown when saving an activity share fails.
 #. TRANS: %s is a share ID.
 #, php-format
 msgid "Failed to save activity %s."
-msgstr ""
+msgstr "Nabigo sa pagsagip ng gawaing %s."
 
 #. TRANS: Client exception. %s is a source URI.
 #, php-format
@@ -969,17 +961,15 @@ msgstr ""
 "Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng paglisan."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand list events."
 msgstr ""
-"Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng pagtatatak."
+"Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng paglilista."
 
 #. TRANS: Client exception.
-#, fuzzy
 msgid "This target does not understand unlist events."
 msgstr ""
-"Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng hindi "
-"pagtatatak."
+"Ang pinupukol na ito ay hindi nakakaunawa ng mga kaganapan ng pagtatanggal "
+"mula sa listahan."
 
 #. TRANS: Exception.
 msgid "Received a salmon slap from unidentified actor."
