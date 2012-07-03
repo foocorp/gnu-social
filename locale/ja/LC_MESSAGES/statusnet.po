@@ -17,12 +17,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-10 23:40+0000\n"
-"PO-Revision-Date: 2012-06-10 23:41:08+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:15+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (d974795); Translate 2012-06-03\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -443,10 +443,9 @@ msgid "No conversation with ID %d."
 msgstr "ID %d の conversation はありません"
 
 #. TRANS: Title for conversion timeline.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
-msgstr "Conversation"
+msgstr "会話"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -1887,7 +1886,7 @@ msgstr "つぶやき削除"
 
 #. TRANS: Message for the delete notice form.
 msgid "Are you sure you want to delete this notice?"
-msgstr "本当にこのつぶやきを削除しますか？"
+msgstr "このつぶやきを本当に削除しますか？"
 
 #. TRANS: Submit button title for 'No' when deleting a notice.
 msgid "Do not delete this notice."
@@ -3717,7 +3716,6 @@ msgid "Directory where attachments are located."
 msgstr "添付ファイルが置かれているディレクトリ"
 
 #. TRANS: Fieldset legend in Paths admin panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "SSL"
 msgstr "SSL"
@@ -8569,9 +8567,6 @@ msgstr ""
 msgid "Repeated by"
 msgstr ""
 
-msgid " "
-msgstr ""
-
 #. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice."
 msgstr "このつぶやきに返信する。"
@@ -9113,7 +9108,6 @@ msgid "Updates by instant messenger (IM)"
 msgstr "インスタントメッセンジャー(IM)での更新"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "SMS"
 msgstr "SMS"
