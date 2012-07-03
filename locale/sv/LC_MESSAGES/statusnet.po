@@ -1,4 +1,4 @@
-# Translation of StatusNet - Core to Swedish (Svenska)
+# Translation of StatusNet - Core to Swedish (svenska)
 # Exported from translatewiki.net
 #
 # Author: Ainali
@@ -15,12 +15,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 22:10+0000\n"
-"PO-Revision-Date: 2012-05-03 22:12:13+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:37+0000\n"
 "Language-Team: Swedish <https://translatewiki.net/wiki/Portal:sv>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: sv\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -8658,9 +8658,6 @@ msgstr "i sammanhang"
 msgid "Repeated by"
 msgstr "Upprepad av"
 
-msgid " "
-msgstr " "
-
 #. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice."
 msgstr "Svara på denna notis."
@@ -9665,3 +9662,7 @@ msgstr "Ogiltig XML, saknar XRD-rot."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Hämtar säkerhetskopia från filen '%s'."
+
+#
+#~ msgid " "
+#~ msgstr " "

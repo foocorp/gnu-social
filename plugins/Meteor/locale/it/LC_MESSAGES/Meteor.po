@@ -1,0 +1,35 @@
+# Translation of StatusNet - Meteor to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: GreenFox
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Meteor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:11+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-12-03 13:48:54+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Exception. %1$s is the control server, %2$s is the control port.
+#, php-format
+msgid "Could not connect to %1$s on %2$s."
+msgstr "Impossibile connettersi a %1$s sulla porta %2$s."
+
+#. TRANS: Exception. %s is the Meteor message that could not be added.
+#, php-format
+msgid "Error adding meteor message \"%s\"."
+msgstr "Errore durante l'aggiunta di un messaggio meteor \"%s\"."
+
+#. TRANS: Plugin description.
+msgid "Plugin to do \"real time\" updates using Meteor."
+msgstr ""
+"Estensione per utilizzare degli aggiornamenti in tempo reale attraverso "
+"l'utilizzo di Meteor"

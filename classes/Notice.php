@@ -2454,7 +2454,11 @@ class Notice extends Managed_DataObject
 
             if ($scope & Notice::FOLLOWER_SCOPE) {
 
-                $author = $this->getProfile();
+                try {
+                    $author = $this->getProfile();
+                } catch (Exception $e) {
+                    return false;
+                }
         
                 if (!Subscription::exists($profile, $author)) {
                     return false;
@@ -2471,7 +2475,13 @@ class Notice extends Managed_DataObject
 
         if (common_config('notice', 'hidespam')) {
 
-            $author = $this->getProfile();
+            try {
+                $author = $this->getProfile();
+            } catch(Exception $e) {
+                // If we can't get an author, keep it hidden.
+                // XXX: technically not spam, but, whatever.
+                return true;
+            }
 
             if ($author->hasRole(Profile_role::SILENCED)) {
                 if (empty($profile) || (($profile->id !== $author->id) && (!$profile->hasRight(Right::REVIEWSPAM)))) {

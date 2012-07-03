@@ -1,0 +1,26 @@
+# Translation of StatusNet - ActivitySpam to German (Deutsch)
+# Exported from translatewiki.net
+#
+# Author: PtM
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ActivitySpam\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:30+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-06-18 00:06:35+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgctxt "MENU"
+msgid "Spam"
+msgstr "Spam"
+
+msgid "Test notices against the Activity Spam service."
+msgstr "Nachrichten am Activity-Spam-Service testen"

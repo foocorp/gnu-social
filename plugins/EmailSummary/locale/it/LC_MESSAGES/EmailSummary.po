@@ -1,0 +1,48 @@
+# Translation of StatusNet - EmailSummary to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: Ximo17
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - EmailSummary\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:27+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-07-01 11:18:46+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Subject for e-mail.
+#, php-format
+msgid "Your latest updates from %s"
+msgstr "I tuoi aggiornamenti più recenti su %s"
+
+#. TRANS: Text in e-mail summary.
+#. TRANS: %1$s is the StatusNet sitename, %2$s is the recipient's profile name.
+#, php-format
+msgid "Recent updates from %1$s for %2$s:"
+msgstr "Aggiornamenti recenti da  %1$s di %2$s:"
+
+#. TRANS: Link text for link to conversation view.
+msgid "in context"
+msgstr "in una discussione"
+
+#. TRANS: Link text for link to e-mail settings.
+#. TRANS: %1$s is a link to the e-mail settings, %2$s is the StatusNet sitename.
+#, php-format
+msgid "<a href=\"%1$s\">change your email settings for %2$s</a>"
+msgstr "<a href=\"%1$s\">modifica le tue impostazioni email per %2$s</a>"
+
+#. TRANS: Plugin description.
+msgid "Send an email summary of the inbox to users."
+msgstr "Invia un riepilogo di e-mail di posta in arrivo agli utenti."
+
+#. TRANS: Checkbox label in e-mail preferences form.
+msgid "Send me a periodic summary of updates from my network"
+msgstr "Mandami un riepilogo periodico degli aggiornamenti dalla mia rete"

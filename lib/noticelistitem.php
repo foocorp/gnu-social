@@ -272,7 +272,7 @@ class NoticeListItem extends Widget
         $groups = $this->getGroups();
 
         $user = common_current_user();
-        
+
         $streamNicknames = !empty($user) && $user->streamNicknames();
 
         foreach ($groups as $group) {
@@ -297,7 +297,7 @@ class NoticeListItem extends Widget
         $replies = $this->getReplyProfiles();
 
         $user = common_current_user();
-        
+
         $streamNicknames = !empty($user) && $user->streamNicknames();
 
         foreach ($replies as $reply) {
@@ -620,7 +620,7 @@ class NoticeListItem extends Widget
 
             // TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
             $this->out->raw(_('Repeated by'));
-            $this->out->raw(_(' '));
+            $this->out->raw(' ');
 
             $this->out->elementStart('a', $attrs);
             $this->out->element('span', 'fn nickname', $repeater->nickname);

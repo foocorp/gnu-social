@@ -1,0 +1,23 @@
+# Translation of StatusNet - Spotify to French (français)
+# Exported from translatewiki.net
+#
+# Author: Gomoko
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Spotify\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:06+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-19 11:23:27+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#. TRANS: Plugin description.
+msgid "Create pretty <a href=\"http://www.spotify.com\">Spotify</a> URLs."
+msgstr "Créer de jolies URLs <a href=\"http://www.spotify.com\">Spotify</a>."

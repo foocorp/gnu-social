@@ -1,0 +1,231 @@
+# Translation of StatusNet - ExtendedProfile to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: Ximo17
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - ExtendedProfile\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:31+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:50:06+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Title for extended profile settings.
+msgid "Extended profile settings"
+msgstr "Impostazioni del profilo esteso"
+
+#. TRANS: Usage instructions for profile settings.
+msgid ""
+"You can update your personal profile info here so people know more about you."
+msgstr ""
+"Qui puoi aggiornare le informazioni del tuo profilo personale, così gli "
+"altri potranno conoscere qualcosa in più su di te."
+
+#. TRANS: Client error displayed when the session token does not match or is not given.
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Si è verificato un problema con il tuo token di sessione. Prova di nuovo."
+
+#. TRANS: Message given submitting a form with an unknown action.
+msgid "Unexpected form submission."
+msgstr "Invio del modulo inaspettato."
+
+#. TRANS: Success message after saving extended profile details.
+msgid "Details saved."
+msgstr "Dettagli salvati."
+
+#. TRANS: Exception thrown when no date was entered in a required date field.
+#. TRANS: %s is the field name.
+#, php-format
+msgid "You must supply a date for \"%s\"."
+msgstr "È necessario fornire una data per \"%s\"."
+
+#. TRANS: Exception thrown on incorrect data input.
+#. TRANS: %1$s is a field name, %2$s is the incorrect input.
+#, php-format
+msgid "Invalid date entered for \"%1$s\": %2$s."
+msgstr "Immessa data non valida per \"%1$s\": %2$s."
+
+#. TRANS: Exception thrown when entering an invalid URL.
+#. TRANS: %s is the invalid URL.
+#, php-format
+msgid "Invalid URL: %s."
+msgstr "URL non valido: %s."
+
+#. TRANS: Server error displayed when a field could not be saved in the database.
+msgid "Could not save profile details."
+msgstr "Impossibile salvare i dettagli del profilo."
+
+#. TRANS: Validation error in form for profile settings.
+#. TRANS: %s is an invalid tag.
+#, php-format
+msgid "Invalid tag: \"%s\"."
+msgstr "Tag non valido: \"%s\"."
+
+#. TRANS: Server error thrown when user profile settings could not be saved.
+msgid "Could not save profile."
+msgstr "Impossibile salvare il profilo."
+
+#. TRANS: Server error thrown when user profile settings tags could not be saved.
+msgid "Could not save tags."
+msgstr "Impossibile salvare i tag."
+
+#. TRANS: Link title for link on user profile.
+msgid "Edit extended profile settings"
+msgstr "Modificare le impostazioni del profilo esteso"
+
+#. TRANS: Link text for link on user profile.
+msgid "Edit"
+msgstr "Modifica"
+
+#. TRANS: Plugin description.
+msgid "UI extensions for additional profile fields."
+msgstr "Estensioni dell'interfaccia utente per i campi aggiuntivi del profilo."
+
+#. TRANS: Link text on user profile page leading to extended profile page.
+msgid "More details..."
+msgstr "Maggiori dettagli..."
+
+#. TRANS: Title for extended profile entry deletion dialog.
+msgid "Confirmation Required"
+msgstr "Richiesta Conferma"
+
+#. TRANS: Confirmation text for extended profile entry deletion dialog.
+msgid "Really delete this entry?"
+msgstr "Vuoi davvero eliminare questa voce?"
+
+#. TRANS: Value between parentheses (phone number, website, or IM address).
+#, php-format
+msgid "(%s)"
+msgstr "(%s)"
+
+#. TRANS: Field label in experience area of extended profile.
+#. TRANS: Field label in experience edit area of extended profile (which company does one work for).
+msgid "Company"
+msgstr "Società"
+
+#. TRANS: Field label in extended profile (when did one start a position or education).
+msgid "Start"
+msgstr "Inizio"
+
+#. TRANS: Field label in extended profile (when did one end a position or education).
+msgid "End"
+msgstr "Fine"
+
+#. TRANS: Field value in experience area of extended profile (one still holds a position).
+msgid "(Current)"
+msgstr "(Attuale)"
+
+#. TRANS: Checkbox label in experience edit area of extended profile (one still works at a company).
+msgid "Current"
+msgstr "Attuale"
+
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
+#. TRANS: Field label for extended profile properties.
+msgid "Institution"
+msgstr "Istituzione"
+
+#. TRANS: Field label in extended profile for specifying an academic degree.
+msgid "Degree"
+msgstr "Titolo di studio"
+
+#. TRANS: Field label in education area of extended profile.
+#. TRANS: Field label in education edit area of extended profile.
+msgid "Description"
+msgstr "Descrizione"
+
+#. TRANS: Link description in extended profile page to add another profile element.
+msgid "Add another item"
+msgstr "Aggiungi un altro oggetto"
+
+#. TRANS: Field label for undefined field in extended profile.
+#, php-format
+msgid "TYPE: %s"
+msgstr "TIPO: %s"
+
+#. TRANS: Button text for saving extended profile properties.
+msgctxt "BUTTON"
+msgid "Save"
+msgstr "Salva"
+
+#. TRANS: .
+#. TRANS: Button title for saving extended profile properties.
+msgid "Save details"
+msgstr "Salvare i dettagli"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Phone"
+msgstr "Telefono"
+
+#. TRANS: Field label for extended profile properties (Instant Messaging).
+msgid "IM"
+msgstr "IM"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Website"
+msgstr "Sito web"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Employer"
+msgstr "Datore di lavoro"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Personal"
+msgstr "Personale"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Full name"
+msgstr "Nome e cognome"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Title"
+msgstr "Qualifica"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Manager"
+msgstr "Manager"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Location"
+msgstr "Luogo"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Bio"
+msgstr "Biografia"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Tags"
+msgstr "Tag"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Contact"
+msgstr "Contatto"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Birthday"
+msgstr "Compleanno"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Spouse's name"
+msgstr "Nome del coniuge"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Kids' names"
+msgstr "Nome dei figli"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Work experience"
+msgstr "Esperienza lavorativa"
+
+#. TRANS: Field label for extended profile properties.
+msgid "Education"
+msgstr "Istruzione"

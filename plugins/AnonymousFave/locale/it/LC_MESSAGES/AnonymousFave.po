@@ -1,0 +1,86 @@
+# Translation of StatusNet - AnonymousFave to Italian (italiano)
+# Exported from translatewiki.net
+#
+# Author: Ximo17
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - AnonymousFave\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:07:36+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2011-06-05 21:49:09+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#, php-format
+msgid "Could not update favorite tally for notice ID %d."
+msgstr "Impossibile aggiornare il totale dei preferiti per la notizia ID  %d ."
+
+#. TRANS: Server exception.
+#. TRANS: %d is the notice ID (number).
+#, php-format
+msgid "Could not create favorite tally for notice ID %d."
+msgstr "Impossibile creare il totale dei preferiti per la notizia ID  %d ."
+
+#. TRANS: Client error.
+msgid ""
+"Could not disfavor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+"Impossibile rimuovere la notizia dai preferiti! Assicurati che i cookies del "
+"tuo browser siano abilitati."
+
+#. TRANS: Client error.
+msgid "There was a problem with your session token. Try again, please."
+msgstr ""
+"Si è verificato un problema con il tuo token di sessione. Prova di nuovo."
+
+#. TRANS: Client error.
+msgid "This notice is not a favorite!"
+msgstr "Questo messaggio non è un preferito!"
+
+#. TRANS: Server error.
+msgid "Could not delete favorite."
+msgstr "Impossibile eliminare un preferito."
+
+#. TRANS: Title.
+msgid "Add to favorites"
+msgstr "Aggiungi ai preferiti"
+
+#. TRANS: Label for tally for number of times a notice was favored.
+msgid "Favored"
+msgstr "Preferito"
+
+#. TRANS: Server exception.
+msgid "Could not create anonymous user session."
+msgstr "Impossibile creare una sessione per utente anonimo."
+
+#. TRANS: Plugin description.
+msgid "Allow anonymous users to favorite notices."
+msgstr "Consentire agli utenti anonimi di aggiungere le notizie ai preferiti."
+
+#. TRANS: Client error.
+msgid ""
+"Could not favor notice! Please make sure your browser has cookies enabled."
+msgstr ""
+"Impossibile aggiungere la notizia ai preferiti! Assicurati che i cookies del "
+"tuo browser siano abilitati."
+
+#. TRANS: Client error.
+msgid "This notice is already a favorite!"
+msgstr "Questa notizia è già un preferito!"
+
+#. TRANS: Server error.
+msgid "Could not create favorite."
+msgstr "Impossibile creare un preferito."
+
+#. TRANS: Title.
+msgid "Disfavor favorite"
+msgstr "Rimuovi dai preferiti"

@@ -34,6 +34,7 @@ define('AVATAR_MINI_SIZE', 24);
 define('NOTICES_PER_PAGE', 20);
 define('PROFILES_PER_PAGE', 20);
 define('MESSAGES_PER_PAGE', 20);
+define('GROUPS_PER_PAGE', 20);
 
 define('FOREIGN_NOTICE_SEND', 1);
 define('FOREIGN_NOTICE_RECV', 2);

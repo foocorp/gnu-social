@@ -1,0 +1,61 @@
+# Translation of StatusNet - Realtime to Basque (euskara)
+# Exported from translatewiki.net
+#
+# Author: Artsuaga
+# --
+# This file is distributed under the same license as the StatusNet package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: StatusNet - Realtime\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:09:46+0000\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-POT-Import-Date: 2012-01-02 10:10:45+0000\n"
+"X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. TRANS: Client exception. Do not translate POST.
+msgid "You have to POST it."
+msgstr "POST bidez egin behar duzu."
+
+#. TRANS: Client exception thrown when the channel key argument is missing.
+msgid "No channel key argument."
+msgstr "Kanalerako gakoarentzako argudiorik ez."
+
+#. TRANS: Client exception thrown when referring to a non-existing channel.
+msgid "No such channel."
+msgstr "Kanal hori ez dago."
+
+#. TRANS: Text label for realtime view "play" button, usually replaced by an icon.
+msgctxt "BUTTON"
+msgid "Play"
+msgstr "Play"
+
+#. TRANS: Tooltip for realtime view "play" button.
+msgctxt "TOOLTIP"
+msgid "Play"
+msgstr ""
+
+#. TRANS: Text label for realtime view "pause" button
+msgctxt "BUTTON"
+msgid "Pause"
+msgstr "Pausatu"
+
+#. TRANS: Tooltip for realtime view "pause" button
+msgctxt "TOOLTIP"
+msgid "Pause"
+msgstr "Pausatu"
+
+#. TRANS: Text label for realtime view "popup" button, usually replaced by an icon.
+msgctxt "BUTTON"
+msgid "Pop up"
+msgstr "Pop up"
+
+#. TRANS: Tooltip for realtime view "popup" button.
+msgctxt "TOOLTIP"
+msgid "Pop up in a window"
+msgstr ""

@@ -17,12 +17,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 22:10+0000\n"
-"PO-Revision-Date: 2012-05-03 22:11:52+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:15+0000\n"
 "Language-Team: Japanese <https://translatewiki.net/wiki/Portal:ja>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: ja\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -443,10 +443,9 @@ msgid "No conversation with ID %d."
 msgstr "ID %d の conversation はありません"
 
 #. TRANS: Title for conversion timeline.
-#, fuzzy
 msgctxt "TITLE"
 msgid "Conversation"
-msgstr "Conversation"
+msgstr "会話"
 
 #. TRANS: Title. %s is a user nickname.
 #, php-format
@@ -1623,7 +1622,7 @@ msgstr "ブロックを解除"
 #. TRANS: Tooltip for button for unblocking a user from a group.
 #. TRANS: Description of the form to unblock a user.
 msgid "Unblock this user"
-msgstr "このユーザーをアンブロックする"
+msgstr "このユーザーのブロックを解除"
 
 #. TRANS: Title for mini-posting window loaded from bookmarklet.
 #. TRANS: %s is the StatusNet site name.
@@ -1680,7 +1679,7 @@ msgstr "不明なアドレスタイプ %s"
 #. TRANS: Client error for an already confirmed email/jabber/sms address.
 #. TRANS: Client error for an already confirmed IM address.
 msgid "That address has already been confirmed."
-msgstr "そのアドレスは既に承認されています。"
+msgstr "そのアドレスは既に確認されました。"
 
 #. TRANS: Server error displayed when updating IM preferences fails.
 #. TRANS: Server error thrown on database error removing a registered IM address.
@@ -1887,7 +1886,7 @@ msgstr "つぶやき削除"
 
 #. TRANS: Message for the delete notice form.
 msgid "Are you sure you want to delete this notice?"
-msgstr "本当にこのつぶやきを削除しますか？"
+msgstr "このつぶやきを本当に削除しますか？"
 
 #. TRANS: Submit button title for 'No' when deleting a notice.
 msgid "Do not delete this notice."
@@ -2177,7 +2176,7 @@ msgstr "リストを更新できませんでした。"
 
 #. TRANS: Title for e-mail settings.
 msgid "Email settings"
-msgstr "電子メールの設定"
+msgstr "メールの設定"
 
 #. TRANS: E-mail settings page instructions.
 #. TRANS: %%site.name%% is the name of the site.
@@ -2245,15 +2244,15 @@ msgstr "新しいつぶやき投稿にこのアドレスへメールする"
 #. TRANS: Instructions for incoming e-mail address input form, when an address has already been assigned.
 #. TRANS: Instructions for incoming SMS e-mail address input form.
 msgid "Make a new email address for posting to; cancels the old one."
-msgstr "投稿のための新しい電子メールアドレスを作ります; 古い方を取り消します。"
+msgstr "投稿のための新しいメールアドレスを作成します; 古い方を取り消します。"
 
 #. TRANS: Instructions for incoming e-mail address input form.
 msgid ""
 "To send notices via email, we need to create a unique email address for you "
 "on this server:"
 msgstr ""
-"電子メールでつぶやきを送信するには、このサーバに一意のメールアドレスを作成す"
-"る必要があります。"
+"メールでつぶやきを送信するには、このサーバに一意のメールアドレスを作成する必"
+"要があります。"
 
 #. TRANS: Button label for adding an e-mail address to send notices from.
 #. TRANS: Button label for adding an SMS e-mail address to send notices from.
@@ -2263,7 +2262,7 @@ msgstr "新規"
 
 #. TRANS: Form legend for e-mail preferences form.
 msgid "Email preferences"
-msgstr "電子メール設定"
+msgstr "メールの設定"
 
 #. TRANS: Checkbox label in e-mail preferences form.
 msgid "Send me notices of new subscriptions through email."
@@ -2294,7 +2293,7 @@ msgstr "私のメールアドレスのために MicroID を発行してくださ
 
 #. TRANS: Confirmation message for successful e-mail preferences save.
 msgid "Email preferences saved."
-msgstr "電子メール設定が保存されました。"
+msgstr "メールの設定を保存しました。"
 
 #. TRANS: Message given saving e-mail address without having provided one.
 msgid "No email address."
@@ -2302,7 +2301,7 @@ msgstr "メールアドレスがありません。"
 
 #. TRANS: Message given saving e-mail address that cannot be normalised.
 msgid "Cannot normalize that email address."
-msgstr "電子メールアドレスを正規化(normalize)できません。"
+msgstr "メールアドレスを正規化(normalize)できません。"
 
 #. TRANS: Message given saving e-mail address that not valid.
 #. TRANS: Form validation error displayed when trying to register without a valid e-mail address.
@@ -2329,9 +2328,9 @@ msgid ""
 "A confirmation code was sent to the email address you added. Check your "
 "inbox (and spam box!) for the code and instructions on how to use it."
 msgstr ""
-"承認コードを入力された電子メールアドレスに送信しました。受信ボックス（とスパ"
-"ムボックス）にコードとそれをどう使うのかという指示が届いていないか確認してく"
-"ださい。"
+"入力されたメールアドレスに承認コードを送信しました。受信ボックス（とスパム"
+"ボックス）にコードとそれをどう使うのかという指示が届いていないか確認してくだ"
+"さい。"
 
 #. TRANS: Message given canceling e-mail address confirmation that is not pending.
 #. TRANS: Message given canceling Instant Messaging address confirmation that is not pending.
@@ -2341,15 +2340,15 @@ msgstr "承認待ちのものはありません。"
 
 #. TRANS: Message given canceling e-mail address confirmation for the wrong e-mail address.
 msgid "That is the wrong email address."
-msgstr "電子メールアドレスが間違っています。"
+msgstr "メールアドレスが間違っています。"
 
 #. TRANS: Server error thrown on database error canceling e-mail address confirmation.
 msgid "Could not delete email confirmation."
-msgstr "電子メール承認を削除できません。"
+msgstr "メール承認を削除できません。"
 
 #. TRANS: Message given after successfully canceling e-mail address confirmation.
 msgid "Email confirmation cancelled."
-msgstr "電子メール承認がキャンセルされました。"
+msgstr "メール承認がキャンセルされました。"
 
 #. TRANS: Message given trying to remove an e-mail address that is not
 #. TRANS: registered for the active user.
@@ -2358,7 +2357,7 @@ msgstr "これはあなたのメールアドレスではありません。"
 
 #. TRANS: Message given after successfully removing a registered e-mail address.
 msgid "The email address was removed."
-msgstr "この電子メールアドレスは削除されました。"
+msgstr "メールアドレスを削除しました。"
 
 #. TRANS: Form validation error displayed when trying to remove an incoming e-mail address while no address has been set.
 msgid "No incoming email address."
@@ -2875,7 +2874,7 @@ msgstr "%s に他のユーザーを招待するには、ログインする必要
 #. TRANS: %s is an invalid e-mail address.
 #, php-format
 msgid "Invalid email address: %s."
-msgstr "無効な電子メールアドレス: %s。"
+msgstr "無効なメールアドレス: %s。"
 
 #. TRANS: Page title when invitations have been sent.
 msgid "Invitations sent"
@@ -3290,8 +3289,8 @@ msgid ""
 "This user doesn't allow nudges or hasn't confirmed or set their email "
 "address yet."
 msgstr ""
-"このユーザは、合図を許可していないか、確認されていない状態か、電子メールアド"
-"レスを設定をしていません。"
+"このユーザは、合図を許可していないか、確認されていない状態か、メールアドレス"
+"を設定していません。"
 
 #. TRANS: Page title after sending a nudge.
 msgid "Nudge sent"
@@ -3717,7 +3716,6 @@ msgid "Directory where attachments are located."
 msgstr "添付ファイルが置かれているディレクトリ"
 
 #. TRANS: Fieldset legend in Paths admin panel.
-#, fuzzy
 msgctxt "LEGEND"
 msgid "SSL"
 msgstr "SSL"
@@ -5093,7 +5091,7 @@ msgstr "%2$s 上の %1$s からのメッセージ"
 
 #. TRANS: Client exception thrown when trying a view a notice the user has no access to.
 msgid "Not available."
-msgstr "使用できません。"
+msgstr "利用できません。"
 
 #. TRANS: Client error displayed trying to show a deleted notice.
 msgid "Notice deleted."
@@ -5821,13 +5819,11 @@ msgid "Subscription feed for %s (Atom)"
 msgstr "%s のつぶやきのフィード (Atom)"
 
 #. TRANS: Checkbox label for enabling IM messages for a profile in a subscriptions list.
-#, fuzzy
 msgctxt "LABEL"
 msgid "IM"
 msgstr "IM"
 
 #. TRANS: Checkbox label for enabling SMS messages for a profile in a subscriptions list.
-#, fuzzy
 msgid "SMS"
 msgstr "SMS"
 
@@ -7738,7 +7734,7 @@ msgstr "グループやトピックについて説明する。"
 #, php-format
 msgid "Describe the group or topic in %d character or less."
 msgid_plural "Describe the group or topic in %d characters or less."
-msgstr[0] ""
+msgstr[0] "グループやトピックの説明を %d 文字以内で記述"
 
 #. TRANS: Field title on group edit form.
 msgid ""
@@ -7759,6 +7755,8 @@ msgid_plural ""
 "Extra nicknames for the group, separated with commas or spaces. Maximum %d "
 "aliases allowed."
 msgstr[0] ""
+"グループのエクストラニックネーム、カンマまたはスペース区切り、最大 %d、エイリ"
+"アス可"
 
 #. TRANS: Checkbox field title on group edit form to mark a group private.
 msgid ""
@@ -7852,19 +7850,19 @@ msgstr "不明なファイルタイプ"
 #, php-format
 msgid "%dMB"
 msgid_plural "%dMB"
-msgstr[0] ""
+msgstr[0] "%d メガバイト"
 
 #. TRANS: Number of kilobytes. %d is the number.
 #, php-format
 msgid "%dkB"
 msgid_plural "%dkB"
-msgstr[0] ""
+msgstr[0] "%d キロバイト"
 
 #. TRANS: Number of bytes. %d is the number.
 #, php-format
 msgid "%dB"
 msgid_plural "%dB"
-msgstr[0] ""
+msgstr[0] "%d バイト"
 
 #. TRANS: Body text for confirmation code e-mail.
 #. TRANS: %1$s is a user nickname, %2$s is the StatusNet sitename,
@@ -7989,7 +7987,7 @@ msgid ""
 msgstr ""
 "%1$s さん、こんにちは。\n"
 "\n"
-"だれかが %2$s でこの電子メールアドレスを入力しました。\n"
+"だれかが %2$s でこのメールアドレスを入力しました。\n"
 "\n"
 "もし登録を承認したいなら、以下のURLを使用してください:\n"
 "\n"
@@ -8039,7 +8037,7 @@ msgstr ""
 "%1$s.\n"
 "\n"
 "---- \n"
-"%2$s で電子メールアドレスや通知オプションを変更できます。"
+"%2$s でメールアドレスや通知オプションを変更できます。"
 
 #. TRANS: Profile info line in notification e-mail.
 #. TRANS: %s is a URL.
@@ -8417,9 +8415,8 @@ msgid "No mutual subscribers."
 msgstr "互いにフォローしていません。"
 
 #. TRANS: Dropdown label in direct notice form.
-#, fuzzy
 msgid "To"
-msgstr "To"
+msgstr "宛先"
 
 #. TRANS: Button text for sending a direct notice.
 msgctxt "Send button for sending notice"
@@ -8432,15 +8429,13 @@ msgstr "メッセージ"
 
 #. TRANS: Followed by notice source (usually the client used to send the notice).
 #. TRANS: Followed by notice source.
-#, fuzzy
 msgid "from"
-msgstr "from"
+msgstr "差出人"
 
 #. TRANS: A possible notice source (web interface).
-#, fuzzy
 msgctxt "SOURCE"
 msgid "web"
-msgstr "web"
+msgstr "ウェブ"
 
 #. TRANS: A possible notice source (XMPP).
 msgctxt "SOURCE"
@@ -8535,22 +8530,18 @@ msgid ", "
 msgstr ", "
 
 #. TRANS: Used in coordinates as abbreviation of north.
-#, fuzzy
 msgid "N"
 msgstr "N"
 
 #. TRANS: Used in coordinates as abbreviation of south.
-#, fuzzy
 msgid "S"
 msgstr "S"
 
 #. TRANS: Used in coordinates as abbreviation of east.
-#, fuzzy
 msgid "E"
 msgstr "E"
 
 #. TRANS: Used in coordinates as abbreviation of west.
-#, fuzzy
 msgid "W"
 msgstr "W"
 
@@ -8561,7 +8552,7 @@ msgstr "W"
 #. TRANS: %7$s is longitude seconds, %8$s is E (east) or W (west) depending on longitude,
 #, php-format
 msgid "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
-msgstr ""
+msgstr "%1$u°%2$u'%3$u\"%4$s %5$u°%6$u'%7$u\"%8$s"
 
 #. TRANS: Followed by geo location.
 #, fuzzy
@@ -8574,9 +8565,6 @@ msgstr ""
 
 #. TRANS: Addition in notice list item if notice was repeated. Followed by a span with a nickname.
 msgid "Repeated by"
-msgstr ""
-
-msgid " "
 msgstr ""
 
 #. TRANS: Link title in notice list item to reply to a notice.
@@ -9111,7 +9099,6 @@ msgid "URL shorteners"
 msgstr "URL 短縮サービス"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "IM"
 msgstr "IM"
@@ -9121,7 +9108,6 @@ msgid "Updates by instant messenger (IM)"
 msgstr "インスタントメッセンジャー(IM)での更新"
 
 #. TRANS: Menu item in settings navigation panel.
-#, fuzzy
 msgctxt "MENU"
 msgid "SMS"
 msgstr "SMS"
@@ -9386,7 +9372,7 @@ msgstr "そのつぶやきをリピートしました"
 #, php-format
 msgid "%%s and %d other repeated this."
 msgid_plural "%%s and %d others repeated this."
-msgstr[0] "%%s と他の人がこれをリピートしました。"
+msgstr[0] "%%s と他の %d 人がこれをリピートしました。"
 
 #. TRANS: List message for favoured notices.
 #. TRANS: %%s is a list of users liking a notice.

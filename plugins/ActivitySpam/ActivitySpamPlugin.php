@@ -65,6 +65,11 @@ class ActivitySpamPlugin extends Plugin
 
         $this->hideSpam = common_config('activityspam', 'hidespam');
 
+        // Let DB_DataObject find Spam_score
+
+        common_config_set('db', 'class_location', 
+                          common_config('db', 'class_location') .':'.dirname(__FILE__));
+
         return true;
     }
 
@@ -183,8 +188,9 @@ class ActivitySpamPlugin extends Plugin
                 $score = Spam_score::staticGet('notice_id', $notice->id);
 
                 if (empty($score)) {
-                    $this->debug("No score for notice " . $notice->id);
-                    // XXX: show a question-mark or something
+                    // If it's empty, we can train it.
+                    $form = new TrainSpamForm($out, $notice);
+                    $form->show();
                 } else if ($score->is_spam) {
                     $form = new TrainHamForm($out, $notice);
                     $form->show();

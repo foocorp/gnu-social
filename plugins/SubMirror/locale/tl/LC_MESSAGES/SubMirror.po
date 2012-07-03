@@ -9,13 +9,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - SubMirror\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 22:11+0000\n"
-"PO-Revision-Date: 2012-05-03 22:13:06+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:10:12+0000\n"
 "Language-Team: Tagalog <https://translatewiki.net/wiki/Portal:tl>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-POT-Import-Date: 2011-06-19 11:23:33+0000\n"
-"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: tl\n"
 "X-Message-Group: #out-statusnet-plugin-submirror\n"
@@ -62,11 +62,12 @@ msgstr "Datong may masamang anyo."
 
 #. TRANS: Client error thrown when a mirror request is made and no result is retrieved.
 msgid "The mirror request failed, because no result was retrieved."
-msgstr ""
+msgstr "Nabigo ang paghiling ng salamin, sapagkat walang nabawing resulta."
 
 #. TRANS: Exception thrown when a feed provider could not be recognised.
 msgid "Internal form error: Unrecognized feed provider."
 msgstr ""
+"Kamalian ng panloob na pormularyo: Hindi nakikilalang tagapagbigay ng pakain."
 
 #. TRANS: Exception thrown when a subscribing to a feed fails.
 msgid "Could not subscribe to feed."
@@ -134,28 +135,25 @@ msgid "Mirroring style"
 msgstr "Estilo ng pagsasalamin"
 
 #. TRANS: Feed mirror style (radio button option).
-#, fuzzy
 msgid ""
 "Repeat: reference the original user's post (sometimes shows as \"RT @blah\")"
 msgstr ""
-"Ulitin: sangguniin ang orihinal na pagpapaskil ng tagagamit (minsang "
-"ipinapakita bilang 'RT @blah')"
+"Ulitin: tukuyin ang orihinal na paskil ng tagagamit (minsang ipinapakita "
+"bilang \"RT @blah\")"
 
 #. TRANS: Feed mirror style (radio button option).
 msgid "Repost the content under my account"
 msgstr "Muling ipaskil ang nilalaman sa ilalim ng aking akawnt"
 
 #. TRANS: Button text to save feed mirror settings.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Save"
 msgstr "Sagipin"
 
 #. TRANS: Button text to stop mirroring a feed.
-#, fuzzy
 msgctxt "BUTTON"
 msgid "Stop mirroring"
-msgstr "Ihinto ang pagsasalamin"
+msgstr "Ihinto ang pagpapasalamin"
 
 #. TRANS: Name for possible feed provider.
 msgid "Twitter"

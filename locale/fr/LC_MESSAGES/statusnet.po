@@ -1,4 +1,4 @@
-# Translation of StatusNet - Core to French (Français)
+# Translation of StatusNet - Core to French (français)
 # Exported from translatewiki.net
 #
 # Author: Balzac 40
@@ -35,12 +35,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: StatusNet - Core\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-03 22:10+0000\n"
-"PO-Revision-Date: 2012-05-03 22:11:37+0000\n"
+"POT-Creation-Date: 2012-06-30 11:07+0000\n"
+"PO-Revision-Date: 2012-06-30 11:08:00+0000\n"
 "Language-Team: French <https://translatewiki.net/wiki/Portal:fr>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: MediaWiki 1.20alpha (05c726a); Translate 2012-04-11\n"
+"X-Generator: MediaWiki 1.20alpha (233fc08); Translate 2012-06-21\n"
 "X-Translation-Project: translatewiki.net <https://translatewiki.net>\n"
 "X-Language-Code: fr\n"
 "X-Message-Group: #out-statusnet-core\n"
@@ -8799,9 +8799,6 @@ msgstr "dans le contexte"
 msgid "Repeated by"
 msgstr "Repris par"
 
-msgid " "
-msgstr " "
-
 #. TRANS: Link title in notice list item to reply to a notice.
 msgid "Reply to this notice."
 msgstr "Répondre à cet avis."
@@ -9816,3 +9813,7 @@ msgstr "XML invalide, racine XRD manquante."
 #, php-format
 msgid "Getting backup from file '%s'."
 msgstr "Obtention de la sauvegarde depuis le fichier « %s »."
+
+#
+#~ msgid " "
+#~ msgstr " "
