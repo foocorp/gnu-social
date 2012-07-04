@@ -143,25 +143,28 @@ class User_group extends Managed_DataObject
     }
 
     function getMembers($offset=0, $limit=null) {
+        $ids = null;
         if (is_null($limit) || $offset + $limit > User_group::CACHE_WINDOW) {
-            return $this->realGetMembers($offset,
-                                         $limit);
+            $ids = $this->getMemberIDs($offset,
+                                       $limit);
         } else {
             $key = sprintf('group:members:%d', $this->id);
             $window = self::cacheGet($key);
             if ($window === false) {
-                $members = $this->realGetMembers(0,
-                                                 User_group::CACHE_WINDOW);
-                $window = $members->fetchAll();
+                $window = $this->getMemberIDs(0,
+                                              User_group::CACHE_WINDOW);
                 self::cacheSet($key, $window);
             }
-            return new ArrayWrapper(array_slice($window,
-                                                $offset,
-                                                $limit));
+
+            $ids = array_slice($window,
+                               $offset,
+                               $limit);
         }
+
+        return Profile::multiGet('id', $ids);
     }
 
-    function realGetMembers($offset=0, $limit=null)
+    function getMemberIDs($offset=0, $limit=null)
     {
         $gm = new Group_member();
 
@@ -184,9 +187,7 @@ class User_group extends Managed_DataObject
             }
         }
 
-        $members = Profile::multiGet('id', $ids);
-
-        return $members;
+        return $ids;
     }
 
     /**
