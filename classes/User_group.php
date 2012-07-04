@@ -148,7 +148,7 @@ class User_group extends Managed_DataObject
             $ids = $this->getMemberIDs($offset,
                                        $limit);
         } else {
-            $key = sprintf('group:members:%d', $this->id);
+            $key = sprintf('group:member_ids:%d', $this->id);
             $window = self::cacheGet($key);
             if ($window === false) {
                 $window = $this->getMemberIDs(0,
