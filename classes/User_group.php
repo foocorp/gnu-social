@@ -7,6 +7,7 @@ class User_group extends Managed_DataObject
 {
     const JOIN_POLICY_OPEN = 0;
     const JOIN_POLICY_MODERATE = 1;
+    const CACHE_WINDOW = 201;
 
     ###START_AUTOCODE
     /* the code below is auto generated do not remove the above tag */
@@ -141,27 +142,52 @@ class User_group extends Managed_DataObject
         return !in_array($nickname, $blacklist);
     }
 
-    function getMembers($offset=0, $limit=null)
-    {
-        $qry =
-          'SELECT profile.* ' .
-          'FROM profile JOIN group_member '.
-          'ON profile.id = group_member.profile_id ' .
-          'WHERE group_member.group_id = %d ' .
-          'ORDER BY group_member.created DESC ';
+    function getMembers($offset=0, $limit=null) {
+        $ids = null;
+        if (is_null($limit) || $offset + $limit > User_group::CACHE_WINDOW) {
+            $ids = $this->getMemberIDs($offset,
+                                       $limit);
+        } else {
+            $key = sprintf('group:member_ids:%d', $this->id);
+            $window = self::cacheGet($key);
+            if ($window === false) {
+                $window = $this->getMemberIDs(0,
+                                              User_group::CACHE_WINDOW);
+                self::cacheSet($key, $window);
+            }
 
-        if ($limit != null) {
-            if (common_config('db','type') == 'pgsql') {
-                $qry .= ' LIMIT ' . $limit . ' OFFSET ' . $offset;
-            } else {
-                $qry .= ' LIMIT ' . $offset . ', ' . $limit;
+            $ids = array_slice($window,
+                               $offset,
+                               $limit);
+        }
+
+        return Profile::multiGet('id', $ids);
+    }
+
+    function getMemberIDs($offset=0, $limit=null)
+    {
+        $gm = new Group_member();
+
+        $gm->selectAdd();
+        $gm->selectAdd('profile_id');
+
+        $gm->group_id = $this->id;
+
+        $gm->orderBy('created DESC');
+
+        if (!is_null($limit)) {
+            $gm->limit($offset, $limit);
+        }
+
+        $ids = array();
+
+        if ($gm->find()) {
+            while ($gm->fetch()) {
+                $ids[] = $gm->profile_id;
             }
         }
 
-        $members = new Profile();
-
-        $members->query(sprintf($qry, $this->id));
-        return $members;
+        return $ids;
     }
 
     /**
@@ -196,17 +222,24 @@ class User_group extends Managed_DataObject
 
     function getMemberCount()
     {
-        // XXX: WORM cache this
+        $key = sprintf("group:member_count:%d", $this->id);
 
-        $members = $this->getMembers();
-        $member_count = 0;
+        $cnt = self::cacheGet($key);
 
-        /** $member->count() doesn't work. */
-        while ($members->fetch()) {
-            $member_count++;
+        if (is_integer($cnt)) {
+            return (int) $cnt;
         }
 
-        return $member_count;
+        $mem = new Group_member();
+        $mem->group_id = $this->id;
+
+        // XXX: why 'distinct'?
+
+        $cnt = (int) $mem->count('distinct profile_id');
+
+        self::cacheSet($key, $cnt);
+
+        return $cnt;
     }
 
     function getBlockedCount()
