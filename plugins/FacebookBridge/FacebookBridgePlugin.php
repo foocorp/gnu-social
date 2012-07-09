@@ -590,7 +590,7 @@ ENDOFSCRIPT;
 
     function getFacebookUser($id) {
 
-        $key = Cache::key(sprintf("FacebookBridgePlugin:userdata:%d", $id));
+        $key = Cache::key(sprintf("FacebookBridgePlugin:userdata:%s", $id));
 
         $c = Cache::instance();
 
@@ -602,7 +602,7 @@ ENDOFSCRIPT;
         }
 
         $url = sprintf("https://graph.facebook.com/%s", $id);
-        $client = new HTTP_Client();
+        $client = new HTTPClient();
         $resp = $client->get($url);
 
         if (!$resp->isOK()) {
