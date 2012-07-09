@@ -580,7 +580,7 @@ ENDOFSCRIPT;
 
             if (!empty($fuser)) {
                 $links[] = array("href" => $fuser->link,
-                                 "text" => sprintf(_("@%s on Facebook"), $fuser->name),
+                                 "text" => sprintf(_("%s on Facebook"), $fuser->name),
                                  "image" => $this->path("images/f_logo.png"));
             }
         }
