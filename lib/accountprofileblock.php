@@ -94,6 +94,15 @@ class AccountProfileBlock extends ProfileBlock
         return $this->profile->bio;
     }
 
+    function otherProfiles()
+    {
+        $others = array();
+
+        Event::handle('OtherAccountProfiles', array($this->profile, &$others));
+        
+        return $others;
+    }
+
     function showTags()
     {
         $cur = common_current_user();

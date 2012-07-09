@@ -1450,3 +1450,9 @@ EndNoticeListPrefill: After pre-filling a list of notices with extra data
 - &$profiles: Profiles that were pre-filled 
 - $avatarSize: The avatar size for the list
 
+OtherAccountProfiles: Hook to add account profiles to a user account profile block
+- $profile: the Profile being shown
+- &$others: Modifiable array of profile info arrays. Each one has the following fields:
+            href: link to the profile
+            text: text for the profile
+            image: mini image for the profile

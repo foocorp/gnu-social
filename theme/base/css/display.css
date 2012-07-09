@@ -2549,6 +2549,11 @@ display:none;
     display:none;
 }
 
+.profile_block_otherprofile_list li {
+    display: inline;
+    list-style-type: none;
+}
+
 /*end of @media screen, projection, tv*/
 
 

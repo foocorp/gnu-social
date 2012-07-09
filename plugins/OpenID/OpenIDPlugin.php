@@ -814,4 +814,30 @@ class OpenIDPlugin extends Plugin
 
         return true;
     }
+
+    /**
+     * Add links in the user's profile block to their OpenID URLs.
+     *
+     * @param Profile $profile The profile being shown
+     * @param Array   &$links  Writeable array of arrays (href, text, image).
+     *
+     * @return boolean hook value (true)
+     */
+    
+    function onOtherAccountProfiles($profile, &$links)
+    {
+        $oid = new User_openid();
+
+        $oid->user_id = $profile->id;
+
+        if ($oid->find()) {
+            while ($oid->fetch()) {
+                $links[] = array('href' => $oid->display,
+                                 'text' => _('OpenID'),
+                                 'image' => $this->path("icons/openid-16x16.gif"));
+            }
+        }
+
+        return true;
+    }
 }

@@ -557,4 +557,32 @@ class TwitterBridgePlugin extends Plugin
         }
         return true;
     }
+
+    /**
+     * Add links in the user's profile block to their Twitter profile URL.
+     *
+     * @param Profile $profile The profile being shown
+     * @param Array   &$links  Writeable array of arrays (href, text, image).
+     *
+     * @return boolean hook value (true)
+     */
+
+    function onOtherAccountProfiles($profile, &$links)
+    {
+        $fuser = null;
+
+        $flink = Foreign_link::getByUserID($profile->id, TWITTER_SERVICE);
+
+        if (!empty($flink)) {
+            $fuser = $flink->getForeignUser();
+
+            if (!empty($fuser)) {
+                $links[] = array("href" => $fuser->uri,
+                                 "text" => sprintf(_("@%s on Twitter"), $fuser->nickname),
+                                 "image" => $this->path("icons/twitter-bird-white-on-blue.png"));
+            }
+        }
+
+        return true;
+    }
 }

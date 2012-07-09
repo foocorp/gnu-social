@@ -85,6 +85,11 @@ class GroupProfileBlock extends ProfileBlock
         return $this->group->description;
     }
 
+    function otherProfiles()
+    {
+        return array();
+    }
+
     function showActions()
     {
         $cur = common_current_user();
