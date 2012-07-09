@@ -362,10 +362,9 @@ class OpenIDPlugin extends Plugin
             require_once dirname(__FILE__) . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
         case 'User_openid':
-            require_once dirname(__FILE__) . '/User_openid.php';
-            return false;
+        case 'User_openid_prefs':
         case 'User_openid_trustroot':
-            require_once dirname(__FILE__) . '/User_openid_trustroot.php';
+            require_once dirname(__FILE__) . '/' . $cls . '.php';
             return false;
         case 'Auth_OpenID_TeamsExtension':
         case 'Auth_OpenID_TeamsRequest':
@@ -573,6 +572,8 @@ class OpenIDPlugin extends Plugin
                                    new ColumnDef('created', 'datetime',
                                                  null, false),
                                    new ColumnDef('modified', 'timestamp')));
+
+        $schema->ensureTable('user_openid_prefs', User_openid_prefs::schemaDef());
 
         /* These are used by JanRain OpenID library */
 
@@ -826,15 +827,20 @@ class OpenIDPlugin extends Plugin
     
     function onOtherAccountProfiles($profile, &$links)
     {
-        $oid = new User_openid();
+        $prefs = User_openid_prefs::staticGet('user_id', $profile->id);
 
-        $oid->user_id = $profile->id;
+        if (empty($prefs) || !$prefs->hide_profile_link) {
 
-        if ($oid->find()) {
-            while ($oid->fetch()) {
-                $links[] = array('href' => $oid->display,
-                                 'text' => _('OpenID'),
-                                 'image' => $this->path("icons/openid-16x16.gif"));
+            $oid = new User_openid();
+
+            $oid->user_id = $profile->id;
+
+            if ($oid->find()) {
+                while ($oid->fetch()) {
+                    $links[] = array('href' => $oid->display,
+                                     'text' => _('OpenID'),
+                                     'image' => $this->path("icons/openid-16x16.gif"));
+                }
             }
         }
 
