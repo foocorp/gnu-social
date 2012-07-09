@@ -156,6 +156,8 @@ abstract class ProfileBlock extends Widget
                 $this->out->elementEnd('a');
                 $this->out->elementEnd('li');
             }
+
+            $this->out->elementEnd('ul');
         }
     }
 
