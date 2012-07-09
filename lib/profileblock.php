@@ -149,7 +149,7 @@ abstract class ProfileBlock extends Widget
                                          array('href' => $otherProfile['href'],
                                                'rel' => 'me',
                                                'class' => 'profile_block_otherprofile',
-                                               'alt' => $otherProfile['text']));
+                                               'title' => $otherProfile['text']));
                 $this->out->element('img',
                                     array('src' => $otherProfile['image'],
                                           'class' => 'profile_block_otherprofile_icon'));
