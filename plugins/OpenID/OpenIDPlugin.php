@@ -20,7 +20,7 @@
  * @category  Plugin
  * @package   StatusNet
  * @author    Evan Prodromou <evan@status.net>
- * @author   Craig Andrews <candrews@integralblue.com>
+ * @author    Craig Andrews <candrews@integralblue.com>
  * @copyright 2009-2010 StatusNet, Inc.
  * @copyright 2009 Free Software Foundation, Inc http://www.fsf.org
  * @license   http://www.fsf.org/licensing/licenses/agpl-3.0.html GNU Affero General Public License version 3.0
