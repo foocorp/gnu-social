@@ -115,13 +115,7 @@ class QnashowquestionAction extends ShownoticeAction
         }
 
         if (count($answerIds) > 0) {
-            $notice = new Notice();
-            $notice->query(
-                sprintf(
-                    'SELECT notice.* FROM notice WHERE notice.id IN (%s)',
-                    implode(',', $answerIds)
-                )
-            );
+            $notice = Notice::multiGet('id', $answerIds);
 
             $nli = new NoticeList($notice, $this);
             $nli->show();

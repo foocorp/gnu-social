@@ -150,6 +150,8 @@ class OStatusGroupAction extends OStatusSubAction
             $this->showForm(_m('Remote group join failed!'));
             return;
         }
+
+        $this->success();
     }
 
     /**

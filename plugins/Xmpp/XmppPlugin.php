@@ -380,12 +380,12 @@ class XmppPlugin extends ImPlugin
 
         if ($pl['type'] != 'chat') {
             $this->log(LOG_WARNING, "Ignoring message of type ".$pl['type']." from $from: " . $pl['xml']->toString());
-            return;
+            return true;
         }
 
         if (mb_strlen($pl['body']) == 0) {
             $this->log(LOG_WARNING, "Ignoring message with empty body from $from: "  . $pl['xml']->toString());
-            return;
+            return true;
         }
 
         $this->handleIncoming($from, $pl['body']);
