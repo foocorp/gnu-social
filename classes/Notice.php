@@ -463,7 +463,7 @@ class Notice extends Managed_DataObject
                 // If the original is private to a group, and notice has no group specified,
                 // make it to the same group(s)
 
-                if (empty($groups) && ($reply->scope | Notice::GROUP_SCOPE)) {
+                if (empty($groups) && ($reply->scope & Notice::GROUP_SCOPE)) {
                     $groups = array();
                     $replyGroups = $reply->getGroups();
                     foreach ($replyGroups as $group) {
