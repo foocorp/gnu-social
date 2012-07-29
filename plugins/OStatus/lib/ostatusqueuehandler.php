@@ -60,40 +60,53 @@ class OStatusQueueHandler extends QueueHandler
             return true;
         }
 
-        $this->pushUser();
+        if ($notice->isLocal()) {
+            // Notices generated on remote sites will have already
+            // been pushed to user's subscribers by their origin sites.
+            $this->pushUser();
+        }
 
         foreach ($notice->getGroups() as $group) {
             $oprofile = Ostatus_profile::getKV('group_id', $group->id);
             if ($oprofile) {
-                $this->pingReply($oprofile);
+                // remote group
+                if ($notice->isLocal()) {
+                    $this->pingReply($oprofile);
+                }
             } else {
+                // local group
                 $this->pushGroup($group->id);
             }
         }
-        
-        foreach ($notice->getReplies() as $profile_id) {
-            $oprofile = Ostatus_profile::getKV('profile_id', $profile_id);
-            if ($oprofile) {
-                $this->pingReply($oprofile);
-            }
-        }
 
-        if (!empty($this->notice->reply_to)) {
-            $replyTo = Notice::getKV('id', $this->notice->reply_to);
-            if (!empty($replyTo)) {
-                foreach($replyTo->getReplies() as $profile_id) {
-                    $oprofile = Ostatus_profile::getKV('profile_id', $profile_id);
-                    if ($oprofile) {
-                        $this->pingReply($oprofile);
+        if ($notice->isLocal()) {
+            // Notices generated on other sites will have already
+            // pinged their reply-targets.
+
+            foreach ($notice->getReplies() as $profile_id) {
+                $oprofile = Ostatus_profile::getKV('profile_id', $profile_id);
+                if ($oprofile) {
+                    $this->pingReply($oprofile);
+                }
+            }
+
+            if (!empty($this->notice->reply_to)) {
+                $replyTo = Notice::getKV('id', $this->notice->reply_to);
+                if (!empty($replyTo)) {
+                    foreach($replyTo->getReplies() as $profile_id) {
+                        $oprofile = Ostatus_profile::getKV('profile_id', $profile_id);
+                        if ($oprofile) {
+                            $this->pingReply($oprofile);
+                        }
                     }
                 }
             }
-        }
 
-        foreach ($notice->getProfileTags() as $ptag) {
-            $oprofile = Ostatus_profile::getKV('peopletag_id', $ptag->id);
-            if (!$oprofile) {
-                $this->pushPeopletag($ptag);
+            foreach ($notice->getProfileTags() as $ptag) {
+                $oprofile = Ostatus_profile::getKV('peopletag_id', $ptag->id);
+                if (!$oprofile) {
+                    $this->pushPeopletag($ptag);
+                }
             }
         }
 
