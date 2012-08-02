@@ -311,7 +311,7 @@ class File_redirection extends Managed_DataObject
         $p = parse_url($out_url);
         if (empty($p['host']) || empty($p['scheme'])) {
             list($scheme) = explode(':', $in_url, 2);
-            switch ($scheme) {
+            switch (strtolower($scheme)) {
             case 'fax':
             case 'tel':
                 $out_url = str_replace('.-()', '', $out_url);
