@@ -125,6 +125,7 @@ class NewgroupAction extends Action
                 $nickname = Nickname::normalize($this->trimmed('newnickname'));
             } catch (NicknameException $e) {
                 $this->showForm($e->getMessage());
+                return;
             }
             $fullname    = $this->trimmed('fullname');
             $homepage    = $this->trimmed('homepage');
