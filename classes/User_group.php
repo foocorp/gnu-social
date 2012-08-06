@@ -409,7 +409,7 @@ class User_group extends Managed_DataObject
 
         // Are there any matching remote groups this profile's in?
         if ($profile) {
-            $group = $profile->getGroups();
+            $group = $profile->getGroups(0, null);
             while ($group->fetch()) {
                 if ($group->nickname == $nickname) {
                     // @fixme is this the best way?
