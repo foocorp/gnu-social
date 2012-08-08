@@ -1,0 +1,48 @@
+AuthCrypt allows for StatusNet to use crypt() hashing to store password credentials.
+
+Requirements
+============
+* PHP >= 5.3.2 with php5-mcrypt extension for certain SHA512 support
+* lib/authenticationplugin.php in your StatusNet install
+
+Installation
+============
+Add either of the following configurations to your config.php (see Example below for more options):
+
+    addPlugin('AuthCrypt');
+
+The recommended use is to overwrite old hash values when logging in (hostile mode) and be the authority on password checks when logging in. If you only wish to update entries on password change the default values are enough.
+
+    addPlugin('AuthCrypt', array(
+        'authoritative'=>true,
+        'hostile'=>true,
+    ));
+
+To disable updating to crypt() on password change, simply set the 'overwrite' setting to false:
+
+    addPlugin('AuthCrypt', array(
+        'overwrite'=>false,
+    ));
+
+Settings
+========
+Default values in parenthesis. Many settings are inherited from the AuthenticationPlugin class.
+
+authoritative (false): Set to true when all passwords are hashed with crypt()
+    (warning: this may disable all other password verification, also when changing passwords!)
+hash ('$6$'): Hash signature to use, defaults to SHA512. See all supported strings at http://php.net/crypt
+    (warning: set this to something crypt() understands, or you will default to the very weak 2-char DES scheme)
+hostile (false): Do we update the password hash entries on login?
+    (notice: will check password login against old-style hash and then update using crypt())
+overwrite (true): Do we overwrite old style password hashes with crypt() hashes on password change?
+    (notice: to make use of stronger security or migrate to crypt() hashes, this must be true)
+password_changeable (true): Enables or disables password changing.
+    (notice: if combined with authoritative, it disables changing passwords and removes option from menu.)
+autoregistration: This setting is ignored. Password can never be valid without existing User.
+provider_name: This setting defaults to 'crypt' but is never stored anywhere.
+
+Todo
+====
+This does not in any way get in touch with common_munge_password, which is 
+called upon User::register(...) and RecoverpasswordAction->resetPassword().
+Maybe there should be an event like StartMungePassword in the core?
