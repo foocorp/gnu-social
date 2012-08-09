@@ -124,19 +124,6 @@ class Daemon
 
     function changeUser()
     {
-        $username = common_config('daemon', 'user');
-
-        if ($username) {
-            $user_info = posix_getpwnam($username);
-            if (!$user_info) {
-                common_log(LOG_WARNING,
-                           'Ignoring unknown user for daemon: ' . $username);
-            } else {
-                common_log(LOG_INFO, "Setting user to " . $username);
-                posix_setuid($user_info['uid']);
-            }
-        }
-
         $groupname = common_config('daemon', 'group');
 
         if ($groupname) {
@@ -147,6 +134,19 @@ class Daemon
             } else {
                 common_log(LOG_INFO, "Setting group to " . $groupname);
                 posix_setgid($group_info['gid']);
+            }
+        }
+
+        $username = common_config('daemon', 'user');
+
+        if ($username) {
+            $user_info = posix_getpwnam($username);
+            if (!$user_info) {
+                common_log(LOG_WARNING,
+                           'Ignoring unknown user for daemon: ' . $username);
+            } else {
+                common_log(LOG_INFO, "Setting user to " . $username);
+                posix_setuid($user_info['uid']);
             }
         }
     }
