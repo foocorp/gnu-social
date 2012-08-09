@@ -17,17 +17,28 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# This program tries to stop the daemons for StatusNet that were
+# This program tries to stop the daemons for GNU social that were
 # previously started by startdaemons.sh
 
+SITENAME=
+SITE=
+ID="*"
+
+if [ $# -gt 0 ] ; then
+	SITENAME="$1"
+	SITE="-s$SITENAME"
+	ID=`echo $SITENAME | sed s/\\\\./_/g`
+fi
+
 SDIR=`dirname $0`
-DIR=`php $SDIR/getpiddir.php`
+DIR=`php $SDIR/getpiddir.php $SITE`
 
 for f in ombhandler smshandler pinghandler queuedaemon \
 	 twitterhandler facebookhandler imdaemon \
 	 twitterstatusfetcher synctwitterfriends pluginhandler rsscloudhandler; do
 
-	FILES="$DIR/$f.*.pid"
+	FILES="$DIR/$f.$ID.pid"
+
 	for ff in "$FILES" ; do
 
 	 	PID=`cat $ff 2>/dev/null`
@@ -52,4 +63,3 @@ for f in ombhandler smshandler pinghandler queuedaemon \
 		rm -f $ff
 	done
 done
-
