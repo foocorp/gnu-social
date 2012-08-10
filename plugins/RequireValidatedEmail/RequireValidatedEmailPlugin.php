@@ -240,18 +240,20 @@ class RequireValidatedEmailPlugin extends Plugin
     }
 
     /**
-     * Hide the notice form if the user isn't able to post.
+     * Show an error message about validating user email before posting
      *
+     * @param string $tag    Current tab tag value
      * @param Action $action action being shown
+     * @param Form   $form   object producing the form
      *
      * @return boolean hook value
      */
-    function onStartShowNoticeForm($action)
+    function onStartMakeEntryForm($tag, $action, &$form)
     {
         $user = common_current_user();
-        if (!empty($user)) { // it's a remote notice
+        if (!empty($user)) {
             if (!$this->validated($user)) {
-                return false;
+                $action->element('div', array('class'=>'error'), _('You must validate an email address before posting!'));
             }
         }
         return true;
