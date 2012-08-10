@@ -253,7 +253,7 @@ class RequireValidatedEmailPlugin extends Plugin
         $user = common_current_user();
         if (!empty($user)) {
             if (!$this->validated($user)) {
-                $action->element('div', array('class'=>'error'), _('You must validate an email address before posting!'));
+                $action->element('div', array('class'=>'error'), _m('You must validate an email address before posting!'));
             }
         }
         return true;
