@@ -105,7 +105,7 @@ class File_oembed extends Managed_DataObject
         $file_oembed->type = $data->type;
         if (!empty($data->provider_name)) $file_oembed->provider = $data->provider_name;
         if (!empty($data->provider)) $file_oembed->provider = $data->provider;
-        if (!empty($data->provide_url)) $file_oembed->provider_url = $data->provider_url;
+        if (!empty($data->provider_url)) $file_oembed->provider_url = $data->provider_url;
         if (!empty($data->width)) $file_oembed->width = intval($data->width);
         if (!empty($data->height)) $file_oembed->height = intval($data->height);
         if (!empty($data->html)) $file_oembed->html = $data->html;
