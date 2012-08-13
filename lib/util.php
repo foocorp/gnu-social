@@ -1040,7 +1040,9 @@ function common_linkify($url) {
  */
 function common_shorten_links($text, $always = false, User $user=null)
 {
-    $user = common_current_user();
+    if ($user === null) {
+        $user = common_current_user();
+    }
 
     $maxLength = User_urlshortener_prefs::maxNoticeLength($user);
 
