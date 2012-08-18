@@ -84,10 +84,6 @@ class SearchAction extends Action
         return null;
     }
 
-    function showNoticeForm() {
-        // remote post notice form
-    }
-
     function showContent() {
         $this->showTop();
         $this->showForm();
