@@ -442,11 +442,17 @@ class XmppPlugin extends ImPlugin
      */
     function onGetValidDaemons($daemons)
     {
-        array_push(
-            $daemons,
-            INSTALLDIR
-            . '/scripts/imdaemon.php'
-        );
+        if( isset($this->server) &&
+            isset($this->port)   &&
+            isset($this->user)   &&
+            isset($this->password) ){
+
+            array_push(
+                $daemons,
+                INSTALLDIR
+                . '/scripts/imdaemon.php'
+            );
+        }
 
         return true;
     }
