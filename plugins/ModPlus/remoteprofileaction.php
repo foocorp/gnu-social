@@ -96,8 +96,7 @@ class RemoteProfileAction extends ShowstreamAction
 
     function showSections()
     {
-        ProfileAction::showSections();
-        // skip tag cloud
+        // skip
     }
 
     function showStatistics()
