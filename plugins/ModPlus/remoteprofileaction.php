@@ -118,8 +118,7 @@ class RemoteProfileAction extends ShowstreamAction
 
     function showLocalNav()
     {
-        $nav = new PublicGroupNav($this);
-        $nav->show();
+        // skip
     }
 
     function showSections()
