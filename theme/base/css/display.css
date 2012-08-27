@@ -688,18 +688,22 @@ font-style:italic;
     display:none;
 }
 
+#remoteprofile .notice .entry-title, #remoteprofile .notice div.entry-content,
 #showstream .notice .entry-title, #showstream .notice div.entry-content {
     margin-left: 0;
 }
 
+#remoteprofile .notice .entry-title,
 #showstream .notice .entry-title {
     min-height: 1px;
 }
 
+#remoteprofile #content .notice .author,
 #showstream #content .notice .author {
     display: none;
 }
 
+#remoteprofile .notice,
 #showstream .notice {
     min-height: 1em; 
 }
