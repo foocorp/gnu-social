@@ -216,6 +216,10 @@ class oEmbedHelper
     {
         $params['url'] = $url;
         $params['format'] = 'json';
+        $key=common_config('oembed','apikey');
+        if(isset($key)) {
+            $params['key'] = common_config('oembed','apikey');
+        }
         $data = self::json($api, $params);
         return self::normalize($data);
     }
