@@ -300,9 +300,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
 
             if (isset($upload)) {
                 $status_shortened .= ' ' . $upload->shortUrl();
-//JBTEST
                 $status_shortened = $this->auth_user->shortenlinks($status_shortened);
-//JBTEST
 
                 if (Notice::contentTooLong($status_shortened)) {
                     $upload->delete();
