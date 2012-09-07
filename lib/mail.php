@@ -736,6 +736,11 @@ function mail_notify_attn($user, $notice)
         return;
     }
 
+    if ($user->hasBlocked($sender)) {
+        // If the author has blocked us, don't spam them with a notification.
+        return;
+    }
+
     $bestname = $sender->getBestName();
 
     common_switch_locale($user->language);
