@@ -285,7 +285,7 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             }
 
             /* Do call shortenlinks here & check notice length since notice is about to be saved & sent */
-            $status_shortened = $this->auth_user->shortenlinks($status_shortened);
+            $status_shortened = $this->auth_user->shortenlinks($this->status);
 
             if (Notice::contentTooLong($status_shortened)) {
                 if (isset($upload)) {
