@@ -632,7 +632,7 @@ class TwitterImport
 
     function makeUrlLink($object, $orig)
     {
-        return "<a href='{$object->url}' class='extlink'>{$orig}</a>";
+        return '<a href="'.htmlspecialchars($object->expanded_url).'" class="extlink">'.htmlspecialchars($object->display_url).'</a>';
     }
 
     function makeHashtagLink($object, $orig)
