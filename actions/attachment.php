@@ -136,6 +136,8 @@ class AttachmentAction extends Action
                                        null );
                 $this->element('meta', array('name'    => 'twitter:image',
                                              'content' => $this->attachment->url));
+                $this->element('meta', array('name'    => 'twitter:title',
+                                             'content' => $this->attachment->title));
 
                 $ns = new AttachmentNoticeSection($this);
                 $notices = $ns->getNotices();
