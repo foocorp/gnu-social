@@ -33,6 +33,9 @@ if (!defined('STATUSNET') && !defined('LACONICA')) {
 
 class InfiniteScrollPlugin extends Plugin
 {
+
+    public $on_next_only = false;
+
     function __construct()
     {
         parent::__construct();
