@@ -207,7 +207,7 @@ class AllAction extends ProfileAction
     {
         // Show invite button, as long as site isn't closed, and
         // we have a logged in user.
-        if (!common_config('site', 'closed') && common_logged_in()) {
+        if (common_config('invite', 'enabled') && !common_config('site', 'closed') && common_logged_in()) {
             if (!common_config('site', 'private')) {
                 $ibs = new InviteButtonSection(
                     $this,
