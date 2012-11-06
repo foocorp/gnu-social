@@ -64,6 +64,7 @@ class PollPlugin extends MicroAppPlugin
         $schema = Schema::get();
         $schema->ensureTable('poll', Poll::schemaDef());
         $schema->ensureTable('poll_response', Poll_response::schemaDef());
+        $schema->ensureTable('user_poll_prefs', User_poll_prefs::schemaDef());
         return true;
     }
 
@@ -96,10 +97,12 @@ class PollPlugin extends MicroAppPlugin
         case 'ShowpollAction':
         case 'NewpollAction':
         case 'RespondpollAction':
+        case 'PollsettingsAction':
             include_once $dir . '/' . strtolower(mb_substr($cls, 0, -6)) . '.php';
             return false;
         case 'Poll':
         case 'Poll_response':
+        case 'User_poll_prefs':
             include_once $dir.'/'.$cls.'.php';
             return false;
         case 'NewPollForm':
@@ -135,6 +138,9 @@ class PollPlugin extends MicroAppPlugin
         $m->connect('main/poll/:id/respond',
                     array('action' => 'respondpoll'),
                     array('id' => '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'));
+
+        $m->connect('settings/poll',
+                    array('action' => 'pollsettings'));
 
         return true;
     }
@@ -489,6 +495,45 @@ class PollPlugin extends MicroAppPlugin
             $child->object_type == self::POLL_RESPONSE_OBJECT) {
             return false;
         }
+        return true;
+    }
+
+    // Hide poll responses for @chuck
+
+    function onEndNoticeWhoGets($notice, &$ni) {
+        if ($notice->object_type == self::POLL_RESPONSE_OBJECT) {
+            foreach ($ni as $id => $source) {
+                $user = User::staticGet('id', $id);
+                if (!empty($user)) {
+                    $pollPrefs = User_poll_prefs::staticGet('user_id', $user->id);
+                    if (!empty($pollPrefs) && ($pollPrefs->hide_responses)) {
+                        unset($ni[$id]);
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Menu item for personal subscriptions/groups area
+     *
+     * @param Action $action action being executed
+     *
+     * @return boolean hook return
+     */
+
+    function onEndAccountSettingsNav($action)
+    {
+        $action_name = $action->trimmed('action');
+
+        $action->menuItem(common_local_url('pollsettings'),
+                          // TRANS: Poll plugin menu item on user settings page.
+                          _m('MENU', 'Polls'),
+                          // TRANS: Poll plugin tooltip for user settings menu item.
+                          _m('Configure poll behavior'),
+                          $action_name === 'pollsettings');
+
         return true;
     }
 }
