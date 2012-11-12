@@ -122,7 +122,7 @@ class ApiSearchJSONAction extends ApiPrivateAuthAction
 
         // TODO: Support search operators like from: and to:, boolean, etc.
 
-        if (preg_match('/^#([\pL\pN_\-\.]{1,64})/ue', $this->q)) {
+        if (preg_match('/^#([\pL\pN_\-\.]{1,64})$/ue', $q)) {
             $stream = new TagNoticeStream(substr($q, 1), $this->auth_profile);
         } else if ($this->isAnURL($q)) {
             $canon = File_redirection::_canonUrl($q);
