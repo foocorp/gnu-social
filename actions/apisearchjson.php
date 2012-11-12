@@ -89,6 +89,12 @@ class ApiSearchJSONAction extends ApiPrivateAuthAction
         $this->since_id = $this->trimmed('since_id');
         $this->geocode  = $this->trimmed('geocode');
 
+        if (!empty($this->auth_user)) {
+            $this->auth_profile = $this->auth_user->getProfile();
+        } else {
+            $this->auth_profile = null;
+        }
+
         return true;
     }
 
@@ -112,21 +118,13 @@ class ApiSearchJSONAction extends ApiPrivateAuthAction
      */
     function showResults()
     {
-        // TODO: Support search operators like from: and to:, boolean, etc.
-
-        $notice = new Notice();
-
-        // lcase it for comparison
         $q = strtolower($this->query);
 
-        $search_engine = $notice->getSearchEngine('notice');
-        $search_engine->set_sort_mode('chron');
-        $search_engine->limit(($this->page - 1) * $this->rpp, $this->rpp + 1, true);
-        if (false === $search_engine->query($q)) {
-            $cnt = 0;
-        } else {
-            $cnt = $notice->find();
-        }
+        // TODO: Support search operators like from: and to:, boolean, etc.
+
+        $stream = new SearchNoticeStream($q, $this->auth_profile);
+
+        $notice = $stream->getNotices(($this->page - 1) * $this->rpp, $this->rpp + 1);
 
         // TODO: max_id, lang, geocode
 
