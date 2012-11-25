@@ -1031,9 +1031,15 @@ class Notice extends Managed_DataObject
             }
 
             foreach ($ni as $id => $source) {
-                $user = User::staticGet('id', $id);
-                if (empty($user) || $user->hasBlocked($profile) ||
-                    ($originalProfile && $user->hasBlocked($originalProfile))) {
+                try {
+                    $user = User::staticGet('id', $id);
+                    if (empty($user) ||
+                        $user->hasBlocked($profile) ||
+                        ($originalProfile && $user->hasBlocked($originalProfile))) {
+                        unset($ni[$id]);
+                    }
+                } catch (UserNoProfileException $e) {
+                    // User doesn't have a profile; invalid; skip them.
                     unset($ni[$id]);
                 }
             }
