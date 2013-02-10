@@ -137,7 +137,7 @@ class TwitterStatusFetcher extends ParallelizingDaemon
         $conn = &$flink->getDatabaseConnection();
 
         $this->getTimeline($flink, 'home_timeline');
-        $this->getTimeline($flink, 'mentions');
+        $this->getTimeline($flink, 'mentions_timeline');
 
         $flink->last_friendsync = common_sql_now();
         $flink->update();
