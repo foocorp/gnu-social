@@ -66,11 +66,17 @@ function silencespammer($filter, $user, $minimum, $percent) {
 
     $profile = Profile::staticGet('id', $user->id);
 
+    if ($profile->isSilenced()) {
+	printfnq("Already silenced %s\n", $user->nickname);
+	return;
+    }
+    
     $cnt = $profile->noticeCount();
 
     if ($cnt < $minimum) {
         printfnq("Only %d notices posted (minimum %d); skipping\n", $cnt, $minimum);
-    }   
+	return;
+    }
 
     $ss = new Spam_score();
 
@@ -85,7 +91,7 @@ function silencespammer($filter, $user, $minimum, $percent) {
     $spam_percent = ($spam_count * 100 / $cnt);
 
     if ($spam_percent > $percent) {
-        printfnq("Silencing user %d (%0.2f%% spam)\n", $user->nickname, $spam_percent);
+        printfnq("Silencing user %s (%0.2f%% spam)\n", $user->nickname, $spam_percent);
         try {
             $profile->silence();
         } catch(Exception $e) {
