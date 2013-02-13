@@ -42,7 +42,7 @@ class FileNoticeStream extends ScopingNoticeStream
             $profile = Profile::current();
         }
         parent::__construct(new CachingNoticeStream(new RawFileNoticeStream($file),
-                                                    'file:notice-ids:'.$this->url),
+                                                    'file:notice-ids:'.$file->id),
                             $profile);
     }
 }
