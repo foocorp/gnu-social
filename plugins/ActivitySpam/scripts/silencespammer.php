@@ -88,10 +88,10 @@ function silencespammer($filter, $user, $minimum, $percent) {
         $spam_count = $ss->spam_count;
     }                 
 
-    $spam_percent = ($spam_count * 100 / $cnt);
+    $spam_percent = ($spam_count * 100.0 / $cnt);
 
     if ($spam_percent > $percent) {
-        printfnq("Silencing user %s (%0.2f%% spam)\n", $user->nickname, $spam_percent);
+        printfnq("Silencing user %s (%d/%d = %0.2f%% spam)\n", $user->nickname, $spam_count, $cnt, $spam_percent);
         try {
             $profile->silence();
         } catch(Exception $e) {
