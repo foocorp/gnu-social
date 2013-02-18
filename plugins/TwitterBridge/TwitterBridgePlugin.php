@@ -204,6 +204,7 @@ class TwitterBridgePlugin extends Plugin
             return false;
         case 'TwitterOAuthClient':
         case 'TwitterQueueHandler':
+        case 'TweetInQueueHandler':
         case 'TwitterImport':
         case 'JsonStreamReader':
         case 'TwitterStreamReader':

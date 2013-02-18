@@ -196,26 +196,18 @@ class TwitterStatusFetcher extends ParallelizingDaemon
                    ' - Retrieved ' . sizeof($timeline) . ' statuses from ' . $timelineUri . ' timeline' .
                    ' - for user ' . $flink->user_id);
 
-        /* @fixme make TwitterBridge use queueing system
-         *        to speed up timeline processing
-         *        as well as giving oportunity to use
-         *        usefull feature such as realtime
-         *        brodcast to clients
-         */
-        $importer = new TwitterImport();
-
-        // Reverse to preserve order
-
-        foreach (array_reverse($timeline) as $status) {
-            $notice = $importer->importStatus($status);
-
-            if (!empty($notice)) {
-                Inbox::insertNotice($flink->user_id, $notice->id);
-            }
-        }
-        /* @fixme ends here */
-
         if (!empty($timeline)) {
+            $qm = QueueManager::get();
+
+            // Reverse to preserve order
+            foreach (array_reverse($timeline) as $status) {
+                $data = array(
+                    'status' => $status,
+                    'for_user' => $flink->foreign_id,
+                );
+                $qm->enqueue($data, 'tweetin');
+            }
+
             $lastId = twitter_id($timeline[0]);
             Twitter_synch_status::setLastId($flink->foreign_id, $timelineUri, $lastId);
             common_debug("Set lastId value '$lastId' for foreign id '{$flink->foreign_id}' and timeline '" .
