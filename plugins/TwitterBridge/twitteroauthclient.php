@@ -190,19 +190,21 @@ class TwitterOAuthClient extends OAuthClient
     /**
      * Calls Twitter's /statuses/home_timeline API method
      *
-     * @param int $since_id show statuses after this id
-     * @param int $max_id   show statuses before this id
-     * @param int $cnt      number of statuses to show
-     * @param int $page     page number
+     * @param int    $since_id    show statuses after this id
+     * @param string $timelineUri timeline to poll statuses from
+     * @param int    $max_id      show statuses before this id
+     * @param int    $cnt         number of statuses to show
+     * @param int    $page        page number
      *
      * @return mixed an array of statuses
      */
-    function statusesHomeTimeline($since_id = null, $max_id = null,
-                                  $cnt = null, $page = null)
+    function statusesTimeline($since_id = null, $timelineUri = 'home_timeline',
+                              $max_id = null, $cnt = 200, $page = null)
     {
-        $url    = 'https://api.twitter.com/1/statuses/home_timeline.json';
+        $url    = 'https://api.twitter.com/1/statuses/'.$timelineUri.'.json';
 
-        $params = array('include_entities' => 'true');
+        $params = array('include_entities' => 'true',
+                        'include_rts'      => 'true');
 
         if (!empty($since_id)) {
             $params['since_id'] = $since_id;
