@@ -242,8 +242,9 @@ class OAuthClient
             'ssl_verify_host' => false
         ));
 
-        // Twitter is strict about accepting invalid "Expect" headers
-        $request->setHeader('Expect', '');
+        // Twitter was strict about accepting invalid "Expect" headers
+        // between 2008ish and October 2012. Caused "417 Expectation failed"
+        //$request->setHeader('Expect', '');
 
         if (isset($params)) {
             $request->setMethod(HTTP_Request2::METHOD_POST);
