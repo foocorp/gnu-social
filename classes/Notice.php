@@ -1493,7 +1493,7 @@ class Notice extends Managed_DataObject
      * @return Activity activity object representing this Notice.
      */
 
-    function asActivity($cur)
+    function asActivity($cur=null)
     {
         $act = self::cacheGet(Cache::codeKey('notice:as-activity:'.$this->id));
 
