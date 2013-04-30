@@ -62,7 +62,7 @@ class ProfileNoticeStream extends ScopingNoticeStream
                             $userProfile);
     }
 
-    function getNoticeIds($offset, $limit, $since_id, $max_id)
+    function getNoticeIds($offset, $limit, $sinceId = null, $maxId = null)
     {
         if ($this->impossibleStream()) {
             return array();
