@@ -67,6 +67,7 @@ class UserActivityStream extends AtomUserNoticeFeed
 
         // Assume that everything but notices is feasible
         // to pull at once and work with in memory...
+
         $subscriptions = $this->getSubscriptions();
         $subscribers   = $this->getSubscribers();
         $groups        = $this->getGroups();
@@ -81,7 +82,11 @@ class UserActivityStream extends AtomUserNoticeFeed
         // We'll keep these around for later, and interleave them into
         // the output stream with the user's notices.
         foreach ($objs as $obj) {
-            $this->activities[] = $obj->asActivity();
+            try {
+                $this->activities[] = $obj->asActivity();
+            } catch (Exception $e) {
+                // Continue
+            }
         }
     }
 
@@ -100,7 +105,12 @@ class UserActivityStream extends AtomUserNoticeFeed
                 // Grab the chunks of notices between other activities.
                 $notices = $this->getNoticesBetween($start, $end);
                 foreach ($notices as $noticeAct) {
-                    $noticeAct->asActivity()->outputTo($this, false, false);
+                    try {
+                        $nact = $noticeAct->asActivity();
+                        $nact->outputTo($this, false, false);
+                    } catch (Exception $e) {
+                        // Continue
+                    }
                 }
             }
 
@@ -114,7 +124,12 @@ class UserActivityStream extends AtomUserNoticeFeed
             // Grab anything after the last pre-sorted activity.
             $notices = $this->getNoticesBetween(0, $end);
             foreach ($notices as $noticeAct) {
-                $noticeAct->asActivity()->outputTo($this, false, false);
+                try {
+                    $nact = $noticeAct->asActivity();
+                    $nact->outputTo($this, false, false);
+                } catch (Exception $e) {
+                    // Continue
+                }
             }
         }
     }
