@@ -67,6 +67,7 @@ class UserActivityStream extends AtomUserNoticeFeed
 
         // Assume that everything but notices is feasible
         // to pull at once and work with in memory...
+
         $subscriptions = $this->getSubscriptions();
         $subscribers   = $this->getSubscribers();
         $groups        = $this->getGroups();
@@ -74,15 +75,24 @@ class UserActivityStream extends AtomUserNoticeFeed
 
         $objs = array_merge($subscriptions, $subscribers, $groups, $faves, $notices);
 
+        $subscriptions = null;
+        $subscribers   = null;
+        $groups        = null;
+        $faves         = null;
+
+        unset($subscriptions);
+        unset($subscribers);
+        unset($groups);
+        unset($faves);
+
         // Sort by create date
 
         usort($objs, 'UserActivityStream::compareObject');
 
         // We'll keep these around for later, and interleave them into
         // the output stream with the user's notices.
-        foreach ($objs as $obj) {
-            $this->activities[] = $obj->asActivity();
-        }
+
+        $this->objs = $objs;
     }
 
     /**
@@ -92,29 +102,66 @@ class UserActivityStream extends AtomUserNoticeFeed
     function renderEntries()
     {
         $end = time() + 1;
-        foreach ($this->activities as $act) {
+        $i = 0;
+        foreach ($this->objs as $obj) {
+            $i++;
+            try {
+                $act = $obj->asActivity();
+            } catch (Exception $e) {
+                common_log(LOG_ERR, $e->getMessage());
+                continue;
+            }
+
             $start = $act->time;
 
             if ($this->outputMode == self::OUTPUT_RAW && $start != $end) {
                 // In raw mode, we haven't pre-fetched notices.
                 // Grab the chunks of notices between other activities.
-                $notices = $this->getNoticesBetween($start, $end);
-                foreach ($notices as $noticeAct) {
-                    $noticeAct->asActivity()->outputTo($this, false, false);
+                try {
+                    $notices = $this->getNoticesBetween($start, $end);
+                    foreach ($notices as $noticeAct) {
+                        try {
+                            $nact = $noticeAct->asActivity();
+                            $nact->outputTo($this, false, false);
+                        } catch (Exception $e) {
+                            common_log(LOG_ERR, $e->getMessage());
+                            continue;
+                        }
+                        $nact = null;
+                        unset($nact);
+                    }
+                } catch (Exception $e) {
+                    common_log(LOG_ERR, $e->getMessage());
                 }
             }
 
+            $notices = null;
+            unset($notices);
+
             // Only show the author sub-element if it's different from default user
             $act->outputTo($this, false, ($act->actor->id != $this->user->uri));
+
+            $act = null;
+            unset($act);
 
             $end = $start;
         }
 
         if ($this->outputMode == self::OUTPUT_RAW) {
             // Grab anything after the last pre-sorted activity.
-            $notices = $this->getNoticesBetween(0, $end);
-            foreach ($notices as $noticeAct) {
-                $noticeAct->asActivity()->outputTo($this, false, false);
+            try {
+                $notices = $this->getNoticesBetween(0, $end);
+                foreach ($notices as $noticeAct) {
+                    try {
+                        $nact = $noticeAct->asActivity();
+                        $nact->outputTo($this, false, false);
+                    } catch (Exception $e) {
+                        common_log(LOG_ERR, $e->getMessage());
+                        continue;
+                    }
+                }
+            } catch (Exception $e) {
+                common_log(LOG_ERR, $e->getMessage());
             }
         }
     }
