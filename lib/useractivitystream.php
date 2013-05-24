@@ -99,12 +99,10 @@ class UserActivityStream extends AtomUserNoticeFeed
      * Interleave the pre-sorted subs/groups/faves with the user's
      * notices, all in reverse chron order.
      */
-    function renderEntries()
+    function renderEntries($format=Feed::ATOM, $handle=null)
     {
         $end = time() + 1;
-        $i = 0;
         foreach ($this->objs as $obj) {
-            $i++;
             try {
                 $act = $obj->asActivity();
             } catch (Exception $e) {
@@ -122,7 +120,11 @@ class UserActivityStream extends AtomUserNoticeFeed
                     foreach ($notices as $noticeAct) {
                         try {
                             $nact = $noticeAct->asActivity();
-                            $nact->outputTo($this, false, false);
+                            if ($format == Feed::ATOM) {
+                                $nact->outputTo($this, false, false);
+                            } else {
+                                fwrite($handle, json_encode($nact->asArray()));
+                            }
                         } catch (Exception $e) {
                             common_log(LOG_ERR, $e->getMessage());
                             continue;
@@ -138,8 +140,16 @@ class UserActivityStream extends AtomUserNoticeFeed
             $notices = null;
             unset($notices);
 
-            // Only show the author sub-element if it's different from default user
-            $act->outputTo($this, false, ($act->actor->id != $this->user->uri));
+            try {
+                if ($format == Feed::ATOM) {
+                    // Only show the author sub-element if it's different from default user
+                    $act->outputTo($this, false, ($act->actor->id != $this->user->uri));
+                } else {
+                    fwrite($handle, json_encode($act->asArray()));
+                }
+            } catch (Exception $e) {
+                common_log(LOG_ERR, $e->getMessage());
+            }
 
             $act = null;
             unset($act);
@@ -154,7 +164,11 @@ class UserActivityStream extends AtomUserNoticeFeed
                 foreach ($notices as $noticeAct) {
                     try {
                         $nact = $noticeAct->asActivity();
-                        $nact->outputTo($this, false, false);
+                        if ($format == Feed::ATOM) {
+                            $nact->outputTo($this, false, false);
+                        } else {
+                            fwrite($handle, json_encode($nact->asArray()));
+                        }
                     } catch (Exception $e) {
                         common_log(LOG_ERR, $e->getMessage());
                         continue;
@@ -283,5 +297,13 @@ class UserActivityStream extends AtomUserNoticeFeed
         }
 
         return $groups;
+    }
+
+    function writeJSON($handle)
+    {
+        require_once INSTALLDIR.'/lib/activitystreamjsondocument.php';
+        fwrite($handle, '{"items": [');
+        $this->renderEntries(Feed::JSON, $handle);
+        fwrite($handle, ']');
     }
 }
