@@ -101,6 +101,8 @@ class UserActivityStream extends AtomUserNoticeFeed
      */
     function renderEntries($format=Feed::ATOM, $handle=null)
     {
+        $haveOne = false;
+
         $end = time() + 1;
         foreach ($this->objs as $obj) {
             try {
@@ -123,7 +125,11 @@ class UserActivityStream extends AtomUserNoticeFeed
                             if ($format == Feed::ATOM) {
                                 $nact->outputTo($this, false, false);
                             } else {
+                                if ($haveOne) {
+                                    fwrite($handle, ",");
+                                }
                                 fwrite($handle, json_encode($nact->asArray()));
+                                $haveOne = true;
                             }
                         } catch (Exception $e) {
                             common_log(LOG_ERR, $e->getMessage());
@@ -145,7 +151,11 @@ class UserActivityStream extends AtomUserNoticeFeed
                     // Only show the author sub-element if it's different from default user
                     $act->outputTo($this, false, ($act->actor->id != $this->user->uri));
                 } else {
+                    if ($haveOne) {
+                        fwrite($handle, ",");
+                    }
                     fwrite($handle, json_encode($act->asArray()));
+                    $haveOne = true;
                 }
             } catch (Exception $e) {
                 common_log(LOG_ERR, $e->getMessage());
@@ -167,7 +177,11 @@ class UserActivityStream extends AtomUserNoticeFeed
                         if ($format == Feed::ATOM) {
                             $nact->outputTo($this, false, false);
                         } else {
+                            if ($haveOne) {
+                                fwrite($handle, ",");
+                            }
                             fwrite($handle, json_encode($nact->asArray()));
+                            $haveOne = true;
                         }
                     } catch (Exception $e) {
                         common_log(LOG_ERR, $e->getMessage());
