@@ -132,6 +132,25 @@ class UserActivityStream extends AtomUserNoticeFeed
                 }
             }
         }
+
+        // We always add the registration activity at the end, even if
+        // they have older activities (from restored backups) in their stream.
+
+        try {
+            $ract = $this->user->registrationActivity();
+            if ($format == Feed::ATOM) {
+                $ract->outputTo($this, false, false);
+            } else {
+                if ($haveOne) {
+                    fwrite($handle, ",");
+                }
+                fwrite($handle, json_encode($ract->asArray()));
+                $haveOne = true;
+            }
+        } catch (Exception $e) {
+            common_log(LOG_ERR, $e->getMessage());
+            continue;
+        }
     }
 
     function compareObject($a, $b)
