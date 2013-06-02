@@ -75,61 +75,121 @@ class UserActivityStream extends AtomUserNoticeFeed
 
         $objs = array_merge($subscriptions, $subscribers, $groups, $faves, $notices);
 
+        $subscriptions = null;
+        $subscribers   = null;
+        $groups        = null;
+        $faves         = null;
+
+        unset($subscriptions);
+        unset($subscribers);
+        unset($groups);
+        unset($faves);
+
         // Sort by create date
 
         usort($objs, 'UserActivityStream::compareObject');
 
         // We'll keep these around for later, and interleave them into
         // the output stream with the user's notices.
-        foreach ($objs as $obj) {
-            try {
-                $this->activities[] = $obj->asActivity();
-            } catch (Exception $e) {
-                // Continue
-            }
-        }
+
+        $this->objs = $objs;
     }
 
     /**
      * Interleave the pre-sorted subs/groups/faves with the user's
      * notices, all in reverse chron order.
      */
-    function renderEntries()
+    function renderEntries($format=Feed::ATOM, $handle=null)
     {
+        $haveOne = false;
+
         $end = time() + 1;
-        foreach ($this->activities as $act) {
+        foreach ($this->objs as $obj) {
+            try {
+                $act = $obj->asActivity();
+            } catch (Exception $e) {
+                common_log(LOG_ERR, $e->getMessage());
+                continue;
+            }
+
             $start = $act->time;
 
             if ($this->outputMode == self::OUTPUT_RAW && $start != $end) {
                 // In raw mode, we haven't pre-fetched notices.
                 // Grab the chunks of notices between other activities.
-                $notices = $this->getNoticesBetween($start, $end);
-                foreach ($notices as $noticeAct) {
-                    try {
-                        $nact = $noticeAct->asActivity();
-                        $nact->outputTo($this, false, false);
-                    } catch (Exception $e) {
-                        // Continue
+                try {
+                    $notices = $this->getNoticesBetween($start, $end);
+                    foreach ($notices as $noticeAct) {
+                        try {
+                            $nact = $noticeAct->asActivity();
+                            if ($format == Feed::ATOM) {
+                                $nact->outputTo($this, false, false);
+                            } else {
+                                if ($haveOne) {
+                                    fwrite($handle, ",");
+                                }
+                                fwrite($handle, json_encode($nact->asArray()));
+                                $haveOne = true;
+                            }
+                        } catch (Exception $e) {
+                            common_log(LOG_ERR, $e->getMessage());
+                            continue;
+                        }
+                        $nact = null;
+                        unset($nact);
                     }
+                } catch (Exception $e) {
+                    common_log(LOG_ERR, $e->getMessage());
                 }
             }
 
-            // Only show the author sub-element if it's different from default user
-            $act->outputTo($this, false, ($act->actor->id != $this->user->uri));
+            $notices = null;
+            unset($notices);
+
+            try {
+                if ($format == Feed::ATOM) {
+                    // Only show the author sub-element if it's different from default user
+                    $act->outputTo($this, false, ($act->actor->id != $this->user->uri));
+                } else {
+                    if ($haveOne) {
+                        fwrite($handle, ",");
+                    }
+                    fwrite($handle, json_encode($act->asArray()));
+                    $haveOne = true;
+                }
+            } catch (Exception $e) {
+                common_log(LOG_ERR, $e->getMessage());
+            }
+
+            $act = null;
+            unset($act);
 
             $end = $start;
         }
 
         if ($this->outputMode == self::OUTPUT_RAW) {
             // Grab anything after the last pre-sorted activity.
-            $notices = $this->getNoticesBetween(0, $end);
-            foreach ($notices as $noticeAct) {
-                try {
-                    $nact = $noticeAct->asActivity();
-                    $nact->outputTo($this, false, false);
-                } catch (Exception $e) {
-                    // Continue
+            try {
+                $notices = $this->getNoticesBetween(0, $end);
+                foreach ($notices as $noticeAct) {
+                    try {
+                        $nact = $noticeAct->asActivity();
+                        if ($format == Feed::ATOM) {
+                            $nact->outputTo($this, false, false);
+                        } else {
+                            if ($haveOne) {
+                                fwrite($handle, ",");
+                            }
+                            fwrite($handle, json_encode($nact->asArray()));
+                            $haveOne = true;
+                        }
+                    } catch (Exception $e) {
+                        common_log(LOG_ERR, $e->getMessage());
+                        continue;
+                    }
                 }
+            } catch (Exception $e) {
+                common_log(LOG_ERR, $e->getMessage());
             }
         }
     }
@@ -251,5 +311,13 @@ class UserActivityStream extends AtomUserNoticeFeed
         }
 
         return $groups;
+    }
+
+    function writeJSON($handle)
+    {
+        require_once INSTALLDIR.'/lib/activitystreamjsondocument.php';
+        fwrite($handle, '{"items": [');
+        $this->renderEntries(Feed::JSON, $handle);
+        fwrite($handle, ']}');
     }
 }
