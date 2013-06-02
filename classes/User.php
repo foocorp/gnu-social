@@ -1152,7 +1152,7 @@ class User extends Managed_DataObject
             $osp = Old_school_prefs::staticGet('user_id', $this->id);
             if (!empty($osp)) {
                 return $osp->stream_mode_only;
-            } 
+            }
         }
 
         return false;
@@ -1179,5 +1179,35 @@ class User extends Managed_DataObject
             }
         }
         return false;
+    }
+
+    function registrationActivity()
+    {
+        $profile = $this->getProfile();
+
+        $service = new ActivityObject();
+
+        $service->type = "service";
+        $service->displayName = common_config('site', 'name');
+        $service->url = common_root_url();
+
+        $act = new Activity();
+
+        $act->actor = ActivityObject::fromProfile($profile);
+        $act->verb = ActivityVerb::JOIN;
+        $act->objects[] = $service;
+
+        $act->id = TagURI::mint('user:register:%d',
+                                $this->id);
+
+        $act->time = strtotime($this->created);
+
+        $act->title = _("Register");
+
+        $act->content = sprintf(_('%1$s joined %2$s.'),
+                               $profile->getBestName(),
+                               $service->displayName);
+
+        return $act;
     }
 }
