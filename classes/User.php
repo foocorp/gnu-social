@@ -1190,11 +1190,13 @@ class User extends Managed_DataObject
         $service->type = "service";
         $service->displayName = common_config('site', 'name');
         $service->url = common_root_url();
+        $service->id  = $service->url;
 
         $act = new Activity();
 
         $act->actor = ActivityObject::fromProfile($profile);
         $act->verb = ActivityVerb::JOIN;
+
         $act->objects[] = $service;
 
         $act->id = TagURI::mint('user:register:%d',
