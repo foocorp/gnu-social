@@ -374,8 +374,27 @@ class Activity
         $activity['id'] = $this->id;
 
         // object
-        if ($this->verb == ActivityVerb::POST && count($this->objects) == 1) {
-            $activity['object'] = $this->objects[0]->asArray();
+
+        if (count($this->objects) > 1) {
+            common_log(LOG_WARNING, "Ignoring extra objects in JSON output for activity " . $this->id);
+        } else if (count($this->objects == 0)) {
+            common_log(LOG_ERR, "Can't save " . $this->id);
+        } else {
+            $object = $this->objects[0];
+
+            if ($object instanceof Activity) {
+                // Sharing a post activity is more like sharing the original object
+                if ($this->verb == 'share' && $object->verb == 'post') {
+                    // XXX: Here's one for the obfuscation record books
+                    $object = $object->object;
+                }
+            }
+
+            $activity['object'] = $object->asArray();
+
+            if ($object instanceof Activity) {
+                $activity['object']['objectType'] = 'activity';
+            }
 
             // Context stuff. For now I'm just sticking most of it
             // in a property called "context"
@@ -384,14 +403,6 @@ class Activity
 
                 if (!empty($this->context->location)) {
                     $loc = $this->context->location;
-
-                    // GeoJSON
-
-                    $activity['geopoint'] = array(
-                        'type'        => 'Point',
-                        'coordinates' => array($loc->lat, $loc->lon),
-                        'deprecated'  => true,
-                    );
 
                     $activity['location'] = array(
                         'objectType' => 'place',
@@ -452,23 +463,11 @@ class Activity
                     if ($enclosure->title) {
                         $attachments[]['displayName'] = $enclosure->title;
                     }
-               }
+                }
             }
 
             if (!empty($attachments)) {
                 $activity['object']['attachments'] = $attachments;
-            }
-
-        } else {
-            $activity['object'] = array();
-            foreach($this->objects as $object) {
-                $oa = $object->asArray();
-                if ($object instanceof Activity) {
-                    // throw in a type
-                    // XXX: hackety-hack
-                    $oa['objectType'] = 'activity';
-                }
-                $activity['object'][] = $oa;
             }
         }
 
