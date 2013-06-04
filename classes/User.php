@@ -1187,10 +1187,10 @@ class User extends Managed_DataObject
 
         $service = new ActivityObject();
 
-        $service->type = "service";
-        $service->displayName = common_config('site', 'name');
-        $service->url = common_root_url();
-        $service->id  = $service->url;
+        $service->type  = "service";
+        $service->title = common_config('site', 'name');
+        $service->link  = common_root_url();
+        $service->id    = $service->link;
 
         $act = new Activity();
 
