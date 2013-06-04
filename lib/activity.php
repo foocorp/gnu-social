@@ -589,7 +589,13 @@ class Activity
 
         } else {
             $xs->element('id', null, $this->id);
-            $xs->element('title', null, $this->title);
+
+            if ($this->title) {
+                $xs->element('title', null, $this->title);
+            } else {
+                // Require element
+                $xs->element('title', null, "");
+            }
 
             $xs->element('content', array('type' => 'html'), $this->content);
 
