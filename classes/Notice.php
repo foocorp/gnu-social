@@ -1508,7 +1508,6 @@ class Notice extends Managed_DataObject
             $act->time    = strtotime($this->created);
             $act->link    = $this->bestUrl();
             $act->content = common_xml_safe_str($this->rendered);
-            $act->title   = common_xml_safe_str($this->content);
 
             $profile = $this->getProfile();
 
