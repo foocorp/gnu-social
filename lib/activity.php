@@ -375,11 +375,12 @@ class Activity
 
         // object
 
-        if (count($this->objects) > 1) {
-            common_log(LOG_WARNING, "Ignoring extra objects in JSON output for activity " . $this->id);
-        } else if (count($this->objects == 0)) {
+        if (count($this->objects) == 0) {
             common_log(LOG_ERR, "Can't save " . $this->id);
         } else {
+            if (count($this->objects) > 1) {
+                common_log(LOG_WARNING, "Ignoring " . (count($this->objects) - 1) . " extra objects in JSON output for activity " . $this->id);
+            }
             $object = $this->objects[0];
 
             if ($object instanceof Activity) {
