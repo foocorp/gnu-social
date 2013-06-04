@@ -778,12 +778,29 @@ class ActivityObject
 
             if (!empty($this->geopoint)) {
 
-                list($lat, $long) = explode(' ', $this->geopoint);
+                list($lat, $lon) = explode(' ', $this->geopoint);
 
-                $object['geopoint'] = array(
-                    'type'        => 'Point',
-                    'coordinates' => array($lat, $long)
+                $object['location'] = array(
+                    'objectType' => 'place',
+                    'position' => sprintf("%+02.5F%+03.5F/", $lat, $lon),
+                    'lat' => $lat,
+                    'lon' => $lon
                 );
+
+                $loc = Location::fromLatLon($lat, $lon);
+
+                if ($loc) {
+                    $name = $loc->getName();
+
+                    if ($name) {
+                        $object['location']['displayName'] = $name;
+                    }
+                    $url = $loc->getURL();
+
+                    if ($url) {
+                        $object['location']['url'] = $url;
+                    }
+                }
             }
 
             if (!empty($this->poco)) {
