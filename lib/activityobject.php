@@ -69,6 +69,7 @@ class ActivityObject
     const COMMENT   = 'http://activitystrea.ms/schema/1.0/comment';
     // ^^^^^^^^^^ tea!
     const ACTIVITY = 'http://activitystrea.ms/schema/1.0/activity';
+    const SERVICE   = 'http://activitystrea.ms/schema/1.0/service';
 
     // Atom elements we snarf
 
