@@ -778,4 +778,13 @@ class ActivityObject
         }
         return array_filter($object);
     }
+
+    static function canonicalType($type) {
+        $ns = 'http://activitystrea.ms/schema/1.0/';
+        if (substr($type, 0, mb_strlen($ns)) == $ns) {
+            return substr($type, mb_strlen($ns));
+        } else {
+            return $type;
+        }
+    }
 }

@@ -397,37 +397,6 @@ class Activity
                 $activity['object']['objectType'] = 'activity';
             }
 
-            // Context stuff. For now I'm just sticking most of it
-            // in a property called "context"
-
-            if (!empty($this->context)) {
-
-                if (!empty($this->context->location)) {
-                    $loc = $this->context->location;
-
-                    $activity['location'] = array(
-                        'objectType' => 'place',
-                        'position' => sprintf("%+02.5F%+03.5F/", $loc->lat, $loc->lon),
-                        'lat' => $loc->lat,
-                        'lon' => $loc->lon
-                    );
-
-                    $name = $loc->getName();
-
-                    if ($name) {
-                        $activity['location']['displayName'] = $name;
-                    }
-                    
-                    $url = $loc->getURL();
-
-                    if ($url) {
-                        $activity['location']['url'] = $url;
-                    }
-                }
-
-                $activity['to']      = $this->context->getToArray();
-                $activity['context'] = $this->context->asArray();
-            }
 
             // Instead of adding enclosures as an extension to JSON
             // Activities, it seems like we should be using the
@@ -471,6 +440,51 @@ class Activity
                 $activity['object']['attachments'] = $attachments;
             }
         }
+        
+        // Context stuff.
+
+        if (!empty($this->context)) {
+
+            if (!empty($this->context->location)) {
+                $loc = $this->context->location;
+
+                $activity['location'] = array(
+                    'objectType' => 'place',
+                    'position' => sprintf("%+02.5F%+03.5F/", $loc->lat, $loc->lon),
+                    'lat' => $loc->lat,
+                    'lon' => $loc->lon
+                );
+
+                $name = $loc->getName();
+
+                if ($name) {
+                    $activity['location']['displayName'] = $name;
+                }
+                    
+                $url = $loc->getURL();
+
+                if ($url) {
+                    $activity['location']['url'] = $url;
+                }
+            }
+
+            $activity['to']      = $this->context->getToArray();
+
+            $ctxarr = $this->context->asArray();
+
+            if (array_key_exists('inReplyTo', $ctxarr)) {
+                $activity['object']['inReplyTo'] = $ctxarr['inReplyTo'];
+                unset($ctxarr['inReplyTo']);
+            }
+
+            if (!array_key_exists('status_net', $activity)) {
+                $activity['status_net'] = array();
+            }
+
+            foreach ($ctxarr as $key => $value) {
+                $activity['status_net'][$key] = $value;
+            }
+        }
 
         // published
         $activity['published'] = self::iso8601Date($this->time);
@@ -496,10 +510,8 @@ class Activity
         //             eceived a remote notice? Probably not.
 
         // verb
-        //
-        // We can probably use the whole schema URL here but probably the
-        // relative simple name is easier to parse
-        $activity['verb'] = substr($this->verb, strrpos($this->verb, '/') + 1);
+
+        $activity['verb'] = ActivityVerb::canonical($this->verb);
 
         // url
         $activity['url'] = $this->id;
@@ -527,7 +539,15 @@ class Activity
         foreach ($this->extra as $e) {
             list($objectName, $props, $txt) = $e;
             if (!empty($objectName)) {
-                $activity[$objectName] = $props;
+                $parts = explode(":", $objectName);
+                if (count($parts) == 2 && $parts[0] == "statusnet") {
+                    if (!array_key_exists('status_net', $activity)) {
+                        $activity['status_net'] = array();
+                    }
+                    $activity['status_net'][$parts[1]] = $props;
+                } else {
+                    $activity[$objectName] = $props;
+                }
             }
         }
 
