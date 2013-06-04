@@ -773,7 +773,6 @@ class ActivityObject
                     } else {
                         $object[$objectName] = $props;
                     }
-                    $object[$objectName] = $props;
                 }
             }
 
