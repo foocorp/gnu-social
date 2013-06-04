@@ -722,7 +722,11 @@ class ActivityObject
                     $avatarMediaLinks[] = $avatar->asArray();
                 }
 
-                $object['avatarLinks'] = $avatarMediaLinks; // extension
+                if (!array_key_exists('status_net', $object)) {
+                    $object['status_net'] = array();
+                }
+
+                $object['status_net']['avatarLinks'] = $avatarMediaLinks; // extension
 
                 // image
                 if (!empty($imgLink)) {
@@ -734,8 +738,8 @@ class ActivityObject
             //
             // We can probably use the whole schema URL here but probably the
             // relative simple name is easier to parse
-            // @fixme this breaks extension URIs
-            $object['objectType'] = substr($this->type, strrpos($this->type, '/') + 1);
+
+            $object['objectType'] = ActivityObject::canonicalType($this->type);
 
             // summary
             $object['summary'] = $this->summary;
@@ -756,9 +760,21 @@ class ActivityObject
             // @fixme these may collide with XML extensions
             // @fixme multiple tags of same name will overwrite each other
             // @fixme text content from XML extensions will be lost
+
             foreach ($this->extra as $e) {
                 list($objectName, $props, $txt) = $e;
-                $object[$objectName] = $props;
+                if (!empty($objectName)) {
+                    $parts = explode(":", $objectName);
+                    if (count($parts) == 2 && $parts[0] == "statusnet") {
+                        if (!array_key_exists('status_net', $object)) {
+                            $object['status_net'] = array();
+                        }
+                        $object['status_net'][$parts[1]] = $props;
+                    } else {
+                        $object[$objectName] = $props;
+                    }
+                    $object[$objectName] = $props;
+                }
             }
 
             if (!empty($this->geopoint)) {
@@ -772,8 +788,9 @@ class ActivityObject
             }
 
             if (!empty($this->poco)) {
-                $object['contact'] = array_filter($this->poco->asArray());
+                $object['portablecontacts_net'] = array_filter($this->poco->asArray());
             }
+
             Event::handle('EndActivityObjectOutputJson', array($this, &$object));
         }
         return array_filter($object);
