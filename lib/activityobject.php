@@ -867,7 +867,7 @@ class ActivityObject
                 }
             }
 
-            switch (ActivityObject::canonicalType($object->type)) {
+            switch (ActivityObject::canonicalType($this->type)) {
             case 'image':
                 if (!empty($this->largerImage)) {
                     $object['fullImage'] = array('url' => $this->largerImage);
