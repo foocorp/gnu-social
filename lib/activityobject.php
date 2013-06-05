@@ -433,7 +433,6 @@ class ActivityObject
             $object->type    = (empty($notice->object_type)) ? ActivityObject::NOTE : $notice->object_type;
 
             $object->id      = $notice->uri;
-            $object->title   = $notice->content;
             $object->content = $notice->rendered;
             $object->link    = $notice->bestUrl();
 
@@ -687,7 +686,10 @@ class ActivityObject
             // content (Add rendered version of the notice?)
 
             // displayName
-            $object['displayName'] = $this->title;
+
+            if ($this->title) {
+                $object['displayName'] = $this->title;
+            }
 
             // downstreamDuplicates
 
