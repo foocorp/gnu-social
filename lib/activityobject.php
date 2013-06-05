@@ -70,6 +70,7 @@ class ActivityObject
     // ^^^^^^^^^^ tea!
     const ACTIVITY = 'http://activitystrea.ms/schema/1.0/activity';
     const SERVICE   = 'http://activitystrea.ms/schema/1.0/service';
+    const IMAGE     = 'http://activitystrea.ms/schema/1.0/image';
 
     // Atom elements we snarf
 
@@ -110,6 +111,8 @@ class ActivityObject
     public $largerImage;
     public $description;
     public $extra = array();
+
+    public $stream;
 
     /**
      * Constructor
@@ -549,6 +552,46 @@ class ActivityObject
         return $object;
     }
 
+    static function fromFile(File $file)
+    {
+        $object = new ActivityObject();
+
+        if (Event::handle('StartActivityObjectFromFile', array($file, &$object))) {
+
+            $object->type = self::mimeTypeToObjectType($file->mimetype);
+            $object->id   = TagURI::mint(sprintf("file:%d", $file->id));
+            $object->link = common_local_url('attachment', array('id' => $file->id));
+
+            if ($file->title) {
+                $object->title = $file->title;
+            }
+
+            if ($file->date) {
+                $object->date = $file->date;
+            }
+
+            $thumbnail = $file->getThumbnail();
+
+            if (!empty($thumbnail)) {
+                $object->thumbnail = $thumbnail;
+            }
+
+            switch ($object->type) {
+            case ActivityObject::IMAGE:
+                $object->largerImage = $file->url;
+                break;
+            case ActivityObject::VIDEO:
+            case ActivityObject::AUDIO:
+                $object->stream = $file->url;
+                break;
+            }
+
+            Event::handle('EndActivityObjectFromFile', array($file, &$object));
+        }
+
+        return $object;
+    }
+
     function outputTo($xo, $tag='activity:object')
     {
         if (!empty($tag)) {
@@ -809,6 +852,34 @@ class ActivityObject
                 $object['portablecontacts_net'] = array_filter($this->poco->asArray());
             }
 
+            if (!empty($this->thumbnail)) {
+                if (is_string($this->thumbnail)) {
+                    $object['image'] = array('url' => $this->thumbnail);
+                } else {
+                    $object['image'] = array('url' => $this->thumbnail->url);
+                    if ($this->thumbnail->width) {
+                        $object['image']['width'] = $this->thumbnail->width;
+                    }
+                    if ($this->thumbnail->height) {
+                        $object['image']['height'] = $this->thumbnail->height;
+                    }
+                }
+            }
+
+            switch ($object->type) {
+            case self::IMAGE:
+                if (!empty($this->largerImage)) {
+                    $object['fullImage'] = array('url' => $this->largerImage);
+                }
+                break;
+            case self::AUDIO:
+            case self::VIDEO:
+                if (!empty($this->stream)) {
+                    $object['stream'] = array('url' => $this->stream);
+                }
+                break;
+            }
+
             Event::handle('EndActivityObjectOutputJson', array($this, &$object));
         }
         return array_filter($object);
@@ -821,5 +892,26 @@ class ActivityObject
         } else {
             return $type;
         }
+    }
+
+    static function mimeTypeToObjectType($mimeType) {
+        $ot = null;
+        $parts = explode('/', $mimeType);
+
+        switch ($parts[0]) {
+        case 'image':
+            $ot = self::IMAGE;
+            break;
+        case 'audio':
+            $ot = self::AUDIO;
+            break;
+        case 'video':
+            $ot = self::VIDEO;
+            break;
+        default:
+            $ot = self::FILE;
+        }
+
+        return $ot;
     }
 }
