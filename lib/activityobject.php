@@ -560,7 +560,7 @@ class ActivityObject
 
             $object->type = self::mimeTypeToObjectType($file->mimetype);
             $object->id   = TagURI::mint(sprintf("file:%d", $file->id));
-            $object->link = common_local_url('attachment', array('id' => $file->id));
+            $object->link = common_local_url('attachment', array('attachment' => $file->id));
 
             if ($file->title) {
                 $object->title = $file->title;
