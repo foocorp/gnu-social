@@ -1538,9 +1538,9 @@ class Notice extends Managed_DataObject
             $attachments = $this->attachments();
 
             foreach ($attachments as $attachment) {
-                $enclosure = $attachment->getEnclosure();
-                if ($enclosure) {
-                    $act->enclosures[] = $enclosure;
+                // Save local attachments
+                if (!empty($attachment->filename)) {
+                    $act->attachments[] = ActivityObject::fromFile($attachment);
                 }
             }
 

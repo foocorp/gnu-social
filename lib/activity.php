@@ -100,6 +100,7 @@ class Activity
     public $title;   // title of the activity
     public $categories = array(); // list of AtomCategory objects
     public $enclosures = array(); // list of enclosure URL references
+    public $attachments = array(); // list of attachments
 
     public $extra = array(); // extra elements as array(tag, attrs, content)
     public $source;  // ActivitySource object representing 'home feed'
@@ -397,47 +398,11 @@ class Activity
                 $activity['object']['objectType'] = 'activity';
             }
 
-
-            // Instead of adding enclosures as an extension to JSON
-            // Activities, it seems like we should be using the
-            // attachements property of ActivityObject
-
-            $attachments = array();
-
-            // XXX: OK, this is kinda cheating. We should probably figure out
-            // what kind of objects these are based on mime-type and then
-            // create specific object types. Right now this rely on
-            // duck-typing.  Also, we should include an embed code for
-            // video attachments.
-
-            foreach ($this->enclosures as $enclosure) {
-
-                if (is_string($enclosure)) {
-
-                    $attachments[]['id']  = $enclosure;
-
-                } else {
-
-                    $attachments[]['id']  = $enclosure->url;
-
-                    $mediaLink = new ActivityStreamsMediaLink(
-                        $enclosure->url,
-                        null,
-                        null,
-                        $enclosure->mimetype
-                        // XXX: Add 'size' as an extension to MediaLink?
-                    );
-
-                    $attachments[]['mediaLink'] = $mediaLink->asArray(); // extension
-
-                    if ($enclosure->title) {
-                        $attachments[]['displayName'] = $enclosure->title;
-                    }
+            foreach ($this->attachments as $attachment) {
+                if (empty($activity['object']['attachments'])) {
+                    $activity['object']['attachments'] = array();
                 }
-            }
-
-            if (!empty($attachments)) {
-                $activity['object']['attachments'] = $attachments;
+                $activity['object']['attachments'][] = $attachment->asArray();
             }
         }
         
