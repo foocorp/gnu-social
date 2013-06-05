@@ -896,6 +896,13 @@ class ActivityObject
 
     static function mimeTypeToObjectType($mimeType) {
         $ot = null;
+
+        // Default
+
+        if (empty($mimeType)) {
+            return self::FILE;
+        }
+
         $parts = explode('/', $mimeType);
 
         switch ($parts[0]) {
