@@ -576,12 +576,12 @@ class ActivityObject
                 $object->thumbnail = $thumbnail;
             }
 
-            switch ($object->type) {
-            case ActivityObject::IMAGE:
+            switch (ActivityObject::canonicalType($object->type)) {
+            case 'image':
                 $object->largerImage = $file->url;
                 break;
-            case ActivityObject::VIDEO:
-            case ActivityObject::AUDIO:
+            case 'video':
+            case 'audio':
                 $object->stream = $file->url;
                 break;
             }
@@ -798,8 +798,9 @@ class ActivityObject
 
             // TODO: upstreamDuplicates
 
-            // url (XXX: need to put the right thing here...)
-            $object['url'] = $this->id;
+            if ($this->link) {
+                $object['url'] = $this->link;
+            }
 
             /* Extensions */
             // @fixme these may collide with XML extensions
@@ -866,14 +867,14 @@ class ActivityObject
                 }
             }
 
-            switch ($object->type) {
-            case self::IMAGE:
+            switch (ActivityObject::canonicalType($object->type)) {
+            case 'image':
                 if (!empty($this->largerImage)) {
                     $object['fullImage'] = array('url' => $this->largerImage);
                 }
                 break;
-            case self::AUDIO:
-            case self::VIDEO:
+            case 'audio':
+            case 'video':
                 if (!empty($this->stream)) {
                     $object['stream'] = array('url' => $this->stream);
                 }
