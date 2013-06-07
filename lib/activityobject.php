@@ -72,6 +72,7 @@ class ActivityObject
     const SERVICE   = 'http://activitystrea.ms/schema/1.0/service';
     const IMAGE     = 'http://activitystrea.ms/schema/1.0/image';
     const COLLECTION = 'http://activitystrea.ms/schema/1.0/collection';
+    const APPLICATION = 'http://activitystrea.ms/schema/1.0/application';
 
     // Atom elements we snarf
 
@@ -597,6 +598,46 @@ class ActivityObject
         return $object;
     }
 
+    static function fromNoticeSource(Notice_source $source)
+    {
+        $object = new ActivityObject();
+
+        if (Event::handle('StartActivityObjectFromNoticeSource', array($source, &$object))) {
+            $object->type = ActivityObject::APPLICATION;
+
+            if (in_array($source->code, array('web', 'xmpp', 'mail', 'omb', 'system', 'api'))) {
+                // We use one ID for all well-known StatusNet sources
+                $object->id = "tag:status.net,2009:notice-source:".$source->code;
+            } else if ($source->url) {
+                // They registered with an URL
+                $object->id = $source->url;
+            } else {
+                // Locally-registered, no URL
+                $object->id = TagURI::mint("notice-source:".$source->code);
+            }
+
+            if ($source->url) {
+                $object->link = $source->url;
+            }
+
+            if ($source->name) {
+                $object->title = $source->name;
+            } else {
+                $object->title = $source->code;
+            }
+
+            if ($source->created) {
+                $object->date = $source->created;
+            }
+            
+            $object->extras[] = array('status_net', array('source_code' => $source->code));
+
+            Event::handle('EndActivityObjectFromNoticeSource', array($source, &$object));
+        }
+
+        return $object;
+    }
+
     function outputTo($xo, $tag='activity:object')
     {
         if (!empty($tag)) {
@@ -799,7 +840,7 @@ class ActivityObject
             // summary
             $object['summary'] = $this->summary;
 
-            // summary
+            // content
             $object['content'] = $this->content;
 
             // published (probably don't need. Might be useful for repeats.)
