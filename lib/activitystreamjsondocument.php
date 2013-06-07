@@ -201,9 +201,9 @@ class ActivityStreamsMediaLink extends ActivityStreamsLink
     {
         parent::__construct($url, $rel, $mediaType);
         $this->linkDict = array(
-            'width'      => $width,
-            'height'     => $height,
-            'duration'   => $duration
+            'width'      => intval($width),
+            'height'     => intval($height),
+            'duration'   => intval($duration)
         );
     }
 
