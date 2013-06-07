@@ -1571,6 +1571,7 @@ class Notice extends Managed_DataObject
                 $rprofile = Profile::staticGet('id', $id);
                 if (!empty($rprofile)) {
                     $ctx->attention[] = $rprofile->getUri();
+                    $ctx->attentionType[$rprofile->getUri()] = ActivityObject::PERSON;
                 }
             }
 
@@ -1578,6 +1579,19 @@ class Notice extends Managed_DataObject
 
             foreach ($groups as $group) {
                 $ctx->attention[] = $group->getUri();
+                $ctx->attentionType[$group->getUri()] = ActivityObject::GROUP;
+            }
+
+            switch ($this->scope) {
+            case Notice::PUBLIC_SCOPE:
+                $ctx->attention[] = "http://activityschema.org/collection/public";
+                $ctx->attentionType["http://activityschema.org/collection/public"] = ActivityObject::COLLECTION;
+                break;
+            case Notice::FOLLOWER_SCOPE:
+                $surl = common_local_url("subscribers", array('nickname' => $profile->nickname));
+                $ctx->attention[] = $surl;
+                $ctx->attentionType[$surl] = ActivityObject::COLLECTION;
+                break;
             }
 
             // XXX: deprecated; use ActivityVerb::SHARE instead
