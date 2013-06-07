@@ -601,11 +601,13 @@ class ActivityObject
     static function fromNoticeSource(Notice_source $source)
     {
         $object = new ActivityObject();
+        $wellKnown = array('web', 'xmpp', 'mail', 'omb', 'system', 'api', 'ostatus',
+                           'activity', 'feed', 'mirror', 'twitter', 'facebook');
 
         if (Event::handle('StartActivityObjectFromNoticeSource', array($source, &$object))) {
             $object->type = ActivityObject::APPLICATION;
 
-            if (in_array($source->code, array('web', 'xmpp', 'mail', 'omb', 'system', 'api'))) {
+            if (in_array($source->code, $wellKnown)) {
                 // We use one ID for all well-known StatusNet sources
                 $object->id = "tag:status.net,2009:notice-source:".$source->code;
             } else if ($source->url) {
