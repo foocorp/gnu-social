@@ -106,7 +106,7 @@ class Activity
     public $source;  // ActivitySource object representing 'home feed'
     public $selfLink; // <link rel='self' type='application/atom+xml'>
     public $editLink; // <link rel='edit' type='application/atom+xml'>
-
+    public $generator; // ActivityObject representing the generating application
     /**
      * Turns a regular old Atom <entry> into a magical activity
      *
@@ -366,8 +366,11 @@ class Activity
         // content
         $activity['content'] = $this->content;
 
-        // generator <-- We could use this when we know a notice is created
-        //               locally. Or if we know the upstream Generator.
+        // generator
+
+        if (!empty($this->generator)) {
+            $activity['generator'] = $this->generator->asArray();
+        }
 
         // icon <-- possibly a mini object representing verb?
 

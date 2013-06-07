@@ -1614,6 +1614,12 @@ class Notice extends Managed_DataObject
 
             $act->context = $ctx;
 
+            $source = $this->getSource();
+
+            if ($source) {
+                $act->generator = ActivityObject::fromNoticeSource($source);
+            }
+
             // Source
 
             $atom_feed = $profile->getAtomFeed();
