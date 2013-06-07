@@ -71,6 +71,7 @@ class ActivityObject
     const ACTIVITY = 'http://activitystrea.ms/schema/1.0/activity';
     const SERVICE   = 'http://activitystrea.ms/schema/1.0/service';
     const IMAGE     = 'http://activitystrea.ms/schema/1.0/image';
+    const COLLECTION = 'http://activitystrea.ms/schema/1.0/collection';
 
     // Atom elements we snarf
 
@@ -502,6 +503,10 @@ class ActivityObject
 
             $object->poco = PoCo::fromProfile($profile);
 
+            if ($profile->getUser()) {
+                $object->extra[] = array('followers', array('url' => common_local_url('subscribers', array('nickname' => $profile->nickname))));
+            }
+
             Event::handle('EndActivityObjectFromProfile', array($profile, &$object));
         }
 
@@ -737,7 +742,12 @@ class ActivityObject
             // downstreamDuplicates
 
             // id
-            $object['id'] = $this->id;
+
+            if ($this->id) {
+                $object['id'] = $this->id;
+            } else if ($this->link) {
+                $object['id'] = $this->link;
+            }
 
             if ($this->type == ActivityObject::PERSON
                 || $this->type == ActivityObject::GROUP) {
