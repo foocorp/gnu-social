@@ -1508,7 +1508,6 @@ class Notice extends Managed_DataObject
             $act->time    = strtotime($this->created);
             $act->link    = $this->bestUrl();
             $act->content = common_xml_safe_str($this->rendered);
-            $act->title   = common_xml_safe_str($this->content);
 
             $profile = $this->getProfile();
 
@@ -1545,9 +1544,9 @@ class Notice extends Managed_DataObject
             $attachments = $this->attachments();
 
             foreach ($attachments as $attachment) {
-                $enclosure = $attachment->getEnclosure();
-                if ($enclosure) {
-                    $act->enclosures[] = $enclosure;
+                // Save local attachments
+                if (!empty($attachment->filename)) {
+                    $act->attachments[] = ActivityObject::fromFile($attachment);
                 }
             }
 
@@ -1578,6 +1577,7 @@ class Notice extends Managed_DataObject
                 $rprofile = Profile::staticGet('id', $id);
                 if (!empty($rprofile)) {
                     $ctx->attention[] = $rprofile->getUri();
+                    $ctx->attentionType[$rprofile->getUri()] = ActivityObject::PERSON;
                 }
             }
 
@@ -1585,6 +1585,19 @@ class Notice extends Managed_DataObject
 
             foreach ($groups as $group) {
                 $ctx->attention[] = $group->getUri();
+                $ctx->attentionType[$group->getUri()] = ActivityObject::GROUP;
+            }
+
+            switch ($this->scope) {
+            case Notice::PUBLIC_SCOPE:
+                $ctx->attention[] = "http://activityschema.org/collection/public";
+                $ctx->attentionType["http://activityschema.org/collection/public"] = ActivityObject::COLLECTION;
+                break;
+            case Notice::FOLLOWER_SCOPE:
+                $surl = common_local_url("subscribers", array('nickname' => $profile->nickname));
+                $ctx->attention[] = $surl;
+                $ctx->attentionType[$surl] = ActivityObject::COLLECTION;
+                break;
             }
 
             // XXX: deprecated; use ActivityVerb::SHARE instead
@@ -1600,6 +1613,12 @@ class Notice extends Managed_DataObject
             }
 
             $act->context = $ctx;
+
+            $source = $this->getSource();
+
+            if ($source) {
+                $act->generator = ActivityObject::fromNoticeSource($source);
+            }
 
             // Source
 

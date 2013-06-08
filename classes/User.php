@@ -1187,14 +1187,16 @@ class User extends Managed_DataObject
 
         $service = new ActivityObject();
 
-        $service->type = "service";
-        $service->displayName = common_config('site', 'name');
-        $service->url = common_root_url();
+        $service->type  = ActivityObject::SERVICE;
+        $service->title = common_config('site', 'name');
+        $service->link  = common_root_url();
+        $service->id    = $service->link;
 
         $act = new Activity();
 
         $act->actor = ActivityObject::fromProfile($profile);
         $act->verb = ActivityVerb::JOIN;
+
         $act->objects[] = $service;
 
         $act->id = TagURI::mint('user:register:%d',
@@ -1205,9 +1207,8 @@ class User extends Managed_DataObject
         $act->title = _("Register");
 
         $act->content = sprintf(_('%1$s joined %2$s.'),
-                               $profile->getBestName(),
-                               $service->displayName);
-
+                                $profile->getBestName(),
+                                $service->title);
         return $act;
     }
 }
