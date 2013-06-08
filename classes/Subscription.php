@@ -67,7 +67,7 @@ class Subscription extends Managed_DataObject
                 'subscription_token_idx' => array('token'),
             ),
         );
-    }    
+    }
 
     /* Static get */
     function staticGet($k,$v=null)
@@ -261,6 +261,14 @@ class Subscription extends Managed_DataObject
     {
         $subscriber = Profile::staticGet('id', $this->subscriber);
         $subscribed = Profile::staticGet('id', $this->subscribed);
+
+        if (empty($subscriber)) {
+            throw new Exception(sprintf(_('No profile for the subscriber: %d'), $this->subscriber));
+        }
+
+        if (empty($subscribed)) {
+            throw new Exception(sprintf(_('No profile for the subscribed: %d'), $this->subscribed));
+        }
 
         $act = new Activity();
 
