@@ -482,7 +482,9 @@ class Activity
         $activity['verb'] = ActivityVerb::canonical($this->verb);
 
         // url
-        $activity['url'] = $this->id;
+        if ($this->link) {
+            $activity['url'] = $this->link;
+        }
 
         /* Purely extensions hereafter */
 
