@@ -72,8 +72,10 @@ class UserActivityStream extends AtomUserNoticeFeed
         $subscribers   = $this->getSubscribers();
         $groups        = $this->getGroups();
         $faves         = $this->getFaves();
+        $messagesFrom  = $this->getMessagesFrom();
+        $messagesTo    = $this->getMessagesTo();
 
-        $objs = array_merge($subscriptions, $subscribers, $groups, $faves, $notices);
+        $objs = array_merge($subscriptions, $subscribers, $groups, $faves, $notices, $messagesFrom, $messagesTo);
 
         $subscriptions = null;
         $subscribers   = null;
@@ -330,6 +332,20 @@ class UserActivityStream extends AtomUserNoticeFeed
         }
 
         return $groups;
+    }
+
+    function getMessagesTo()
+    {
+        $msgMap = Memcached_DataObject::listGet('Message', 'to_profile', array($this->user->id));
+
+        return $msgMap[$this->user->id];
+    }
+
+    function getMessagesFrom()
+    {
+        $msgMap = Memcached_DataObject::listGet('Message', 'from_profile', array($this->user->id));
+
+        return $msgMap[$this->user->id];
     }
 
     function writeJSON($handle)
