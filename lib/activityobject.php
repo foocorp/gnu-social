@@ -441,6 +441,8 @@ class ActivityObject
             $object->content = $notice->rendered;
             $object->link    = $notice->bestUrl();
 
+            $object->extra[] = array('status_net', array('notice_id' => $notice->id));
+
             Event::handle('EndActivityObjectFromNotice', array($notice, &$object));
         }
 
@@ -632,8 +634,33 @@ class ActivityObject
                 $object->date = $source->created;
             }
             
-            $object->extras[] = array('status_net', array('source_code' => $source->code));
+            $object->extra[] = array('status_net', array('source_code' => $source->code));
 
+            Event::handle('EndActivityObjectFromNoticeSource', array($source, &$object));
+        }
+
+        return $object;
+    }
+
+    static function fromMessage(Message $message)
+    {
+        $object = new ActivityObject();
+
+        if (Event::handle('StartActivityObjectFromMessage', array($message, &$object))) {
+
+            $object->type    = ActivityObject::NOTE;
+            $object->id      = ($message->uri) ? $message->uri : (($message->url) ? $message->url : TagURI::mint(sprintf("message:%d", $message->id)));
+            $object->content = $message->rendered;
+            $object->date    = $message->created;
+
+            if ($message->url) {
+                $object->link = $message->url;
+            } else {
+                $object->link = common_local_url('showmessage', array('message' => $message->id));
+            }
+
+            $object->extra[] = array('status_net', array('message_id' => $message->id));
+            
             Event::handle('EndActivityObjectFromNoticeSource', array($source, &$object));
         }
 
