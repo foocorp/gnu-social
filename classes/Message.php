@@ -139,4 +139,82 @@ class Message extends Managed_DataObject
 
         mail_notify_message($this, $from, $to);
     }
+
+    function getSource()
+    {
+        $ns = new Notice_source();
+        if (!empty($this->source)) {
+            switch ($this->source) {
+            case 'web':
+            case 'xmpp':
+            case 'mail':
+            case 'omb':
+            case 'system':
+            case 'api':
+                $ns->code = $this->source;
+                break;
+            default:
+                $ns = Notice_source::staticGet($this->source);
+                if (!$ns) {
+                    $ns = new Notice_source();
+                    $ns->code = $this->source;
+                    $app = Oauth_application::staticGet('name', $this->source);
+                    if ($app) {
+                        $ns->name = $app->name;
+                        $ns->url  = $app->source_url;
+                    }
+                }
+                break;
+            }
+        }
+        return $ns;
+    }
+
+    function asActivity()
+    {
+        $act = new Activity();
+
+        if (Event::handle('StartMessageAsActivity', array($this, &$act))) {
+
+            $act->id      = TagURI::mint(sprintf('activity:message:%d', $this->id));
+            $act->time    = strtotime($this->created);
+            $act->link    = $this->url;
+
+            $profile = Profile::staticGet('id', $this->from_profile);
+
+            if (empty($profile)) {
+                throw new Exception(sprintf("Sender profile not found: %d", $this->from_profile));
+            }
+            
+            $act->actor            = ActivityObject::fromProfile($profile);
+            $act->actor->extra[]   = $profile->profileInfo($cur);
+
+            $act->verb = ActivityVerb::POST;
+
+            $act->objects[] = ActivityObject::fromMessage($this);
+
+            $ctx = new ActivityContext();
+
+            $rprofile = Profile::staticGet('id', $this->to_profile);
+
+            if (empty($rprofile)) {
+                throw new Exception(sprintf("Receiver profile not found: %d", $this->to_profile));
+            }
+
+            $ctx->attention[] = $rprofile->getUri();
+            $ctx->attentionType[$rprofile->getUri()] = ActivityObject::PERSON;
+
+            $act->context = $ctx;
+
+            $source = $this->getSource();
+
+            if ($source) {
+                $act->generator = ActivityObject::fromNoticeSource($source);
+            }
+
+            Event::handle('EndMessageAsActivity', array($this, &$act));
+        }
+
+        return $act;
+    }
 }
