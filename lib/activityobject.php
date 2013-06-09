@@ -661,7 +661,7 @@ class ActivityObject
 
             $object->extra[] = array('status_net', array('message_id' => $message->id));
             
-            Event::handle('EndActivityObjectFromNoticeSource', array($source, &$object));
+            Event::handle('EndActivityObjectFromMessage', array($message, &$object));
         }
 
         return $object;
