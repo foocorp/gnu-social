@@ -187,7 +187,7 @@ class Message extends Managed_DataObject
             }
             
             $act->actor            = ActivityObject::fromProfile($profile);
-            $act->actor->extra[]   = $profile->profileInfo();
+            $act->actor->extra[]   = $profile->profileInfo(null);
 
             $act->verb = ActivityVerb::POST;
 
