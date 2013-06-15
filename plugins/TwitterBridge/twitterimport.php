@@ -172,8 +172,8 @@ class TwitterImport
 
         $notice->is_local   = Notice::GATEWAY;
 
-        $notice->content  = html_entity_decode($status->text, ENT_QUOTES, 'UTF-8');
-        $notice->rendered = $this->linkify($status);
+        $notice->content  = html_entity_decode($this->linkify($status, FALSE), ENT_QUOTES, 'UTF-8');
+        $notice->rendered = $this->linkify($status, TRUE);
 
         if (Event::handle('StartNoticeSave', array(&$notice))) {
 
@@ -540,7 +540,7 @@ class TwitterImport
     const HASHTAG = 2;
     const MENTION = 3;
 
-    function linkify($status)
+    function linkify($status, $html = FALSE)
     {
         $text = $status->text;
 
@@ -596,13 +596,21 @@ class TwitterImport
             $orig = $this->twitEscape(mb_substr($text, $start, $end - $start));
             switch($type) {
             case self::URL:
-                $linkText = $this->makeUrlLink($object, $orig);
+                $linkText = $this->makeUrlLink($object, $orig, $html);
                 break;
             case self::HASHTAG:
-                $linkText = $this->makeHashtagLink($object, $orig);
+                if ($html) {
+                    $linkText = $this->makeHashtagLink($object, $orig);
+                }else{
+                    $linkText = $orig;
+                }
                 break;
             case self::MENTION:
-                $linkText = $this->makeMentionLink($object, $orig);
+                if ($html) {
+                    $linkText = $this->makeMentionLink($object, $orig);
+                }else{
+                    $linkText = $orig;
+                }
                 break;
             default:
                 $linkText = $orig;
@@ -630,9 +638,13 @@ class TwitterImport
         return htmlspecialchars(html_entity_decode($str, ENT_COMPAT, 'UTF-8'));
     }
 
-    function makeUrlLink($object, $orig)
+    function makeUrlLink($object, $orig, $html)
     {
-        return "<a href='{$object->url}' class='extlink'>{$orig}</a>";
+        if ($html) {
+            return '<a href="'.htmlspecialchars($object->expanded_url).'" class="extlink">'.htmlspecialchars($object->display_url).'</a>';
+        }else{
+            return htmlspecialchars($object->expanded_url);
+        }
     }
 
     function makeHashtagLink($object, $orig)
