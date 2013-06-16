@@ -99,7 +99,6 @@ class PublicSite extends SiteProfileSettings
             ),
             'plugins' => array(
                 'default' => array(
-                    'Activity'                => null,
                     'Bookmark'                => null,
                     'ClientSideShorten'       => null,
                     'Directory'               => null,
@@ -145,7 +144,6 @@ class PrivateSite extends SiteProfileSettings
             ),
             'plugins' => array(
                 'default' => array(
-                    'Activity'                => null,
                     'Bookmark'                => null,
                     'ClientSideShorten'       => null,
                     'Directory'               => null,
@@ -208,7 +206,6 @@ class CommunitySite extends SiteProfileSettings
             ),
             'plugins' => array(
                 'default' => array(
-                    'Activity'                => null,
                     'Bookmark'                => null,
                     'ClientSideShorten'       => null,
                     'Directory'               => null,
@@ -253,7 +250,6 @@ class SingleuserSite extends SiteProfileSettings
             ),
             'plugins' => array(
                 'default' => array(
-                    'Activity'                => null,
                     'Bookmark'                => null,
                     'ClientSideShorten'       => null,
                     'Event'                   => null,
