@@ -114,6 +114,39 @@ function newNotice($i, $tagmax)
                 $options['scope'] |= Notice::ADDRESSEE_SCOPE;
             }
         }
+    } else {
+        $is_directed = rand(0, 4);
+
+        if ($is_directed == 0) {
+            $subs = $user->getSubscriptions(0, 100)->fetchAll();
+            if (count($subs) > 0) {
+                $seen = array();
+                $f = rand(0, 9);
+                if ($f <= 6) {
+                    $addrs = 1;
+                } else if ($f <= 8) {
+                    $addrs = 2;
+                } else {
+                    $addrs = 3;
+                }
+                for ($m = 0; $m < $addrs; $m++) {
+                    $x = rand(0, count($subs) - 1);
+                    if ($seen[$x]) {
+                        continue;
+                    }
+                    if ($subs[$x]->id == $user->id) {
+                        continue;
+                    }
+                    $seen[$x] = true;
+                    $rprofile = $subs[$x];
+                    $content = "@".$rprofile->nickname." ".$content;
+                }
+                $private_to_addressees = rand(0, 4);
+                if ($private_to_addressees == 0) {
+                    $options['scope'] |= Notice::ADDRESSEE_SCOPE;
+                }
+            }
+        }
     }
 
     $has_hash = rand(0, 2);
@@ -152,6 +185,28 @@ function newNotice($i, $tagmax)
     }
 
     $notice = Notice::saveNew($user->id, $content, 'createsim', $options);
+}
+
+function newMessage($i)
+{
+    global $userprefix;
+
+    $n = rand(0, $i - 1);
+    $user = User::staticGet('nickname', sprintf('%s%d', $userprefix, $n));
+
+    $content = testNoticeContent();
+
+    $friends = $user->mutuallySubscribedUsers()->fetchAll();
+
+    if (count($friends) == 0) {
+        return;
+    }
+
+    $j = rand(0, count($friends) - 1);
+    
+    $other = $friends[$j];
+
+    $message = Message::saveNew($user->id, $other->id, $content, 'createsim');
 }
 
 function newSub($i)
@@ -289,7 +344,7 @@ function testNoticeContent()
     return $text;
 }
 
-function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesavg, $tagmax)
+function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesavg, $messageavg, $tagmax)
 {
     global $config;
     $config['site']['dupelimit'] = -1;
@@ -317,7 +372,7 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesav
 
     // # registrations + # notices + # subs
 
-    $events = $usercount + $groupcount + ($usercount * ($noticeavg + $subsavg + $joinsavg + $favesavg));
+    $events = $usercount + $groupcount + ($usercount * ($noticeavg + $subsavg + $joinsavg + $favesavg + $messageavg));
 
     $events -= $preuser;
     $events -= $pregroup;
@@ -328,8 +383,9 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesav
     $st = $nt + ($usercount * $subsavg);
     $jt = $st + ($usercount * $joinsavg);
     $ft = $jt + ($usercount * $favesavg);
+    $mt = $ft + ($usercount * $messageavg);
 
-    printfv("$events events ($ut, $gt, $nt, $st, $jt, $ft)\n");
+    printfv("$events events ($ut, $gt, $nt, $st, $jt, $ft, $mt)\n");
 
     for ($i = 0; $i < $events; $i++)
     {
@@ -355,6 +411,9 @@ function main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesav
         } else if ($e > $jt && $e <= $ft) {
             printfv("$i Making a new fave\n");
             newFave($n);
+        } else if ($e > $ft && $e <= $mt) {
+            printfv("$i Making a new message\n");
+            newMessage($n);
         } else {
             printfv("No event for $i!");
         }
@@ -369,6 +428,7 @@ $noticeavg   = (have_option('n', 'notices')) ? get_option_value('n', 'notices') 
 $subsavg     = (have_option('b', 'subscriptions')) ? get_option_value('b', 'subscriptions') : max($usercount/20, 10);
 $joinsavg    = (have_option('j', 'joins')) ? get_option_value('j', 'joins') : 5;
 $favesavg    = (have_option('f', 'faves')) ? get_option_value('f', 'faves') : max($noticeavg/10, 5);
+$messageavg  = (have_option('m', 'messages')) ? get_option_value('m', 'messages') : max($noticeavg/10, 5);
 $tagmax      = (have_option('t', 'tags')) ? get_option_value('t', 'tags') : 10000;
 $userprefix  = (have_option('x', 'prefix')) ? get_option_value('x', 'prefix') : 'testuser';
 $groupprefix = (have_option('z', 'groupprefix')) ? get_option_value('z', 'groupprefix') : 'testgroup';
@@ -385,7 +445,7 @@ if (is_readable($wordsfile)) {
 }
 
 try {
-    main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesavg, $tagmax);
+    main($usercount, $groupcount, $noticeavg, $subsavg, $joinsavg, $favesavg, $messageavg, $tagmax);
 } catch (Exception $e) {
     printfv("Got an exception: ".$e->getMessage());
 }
