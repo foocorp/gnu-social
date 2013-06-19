@@ -440,7 +440,7 @@ class XmppPlugin extends ImPlugin
      *
      * @return boolean hook return
      */
-    function onGetValidDaemons($daemons)
+    function onGetValidDaemons(&$daemons)
     {
         if( isset($this->server) &&
             isset($this->port)   &&
