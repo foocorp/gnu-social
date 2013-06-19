@@ -120,7 +120,7 @@ class MsnPlugin extends ImPlugin {
      * @return boolean
      */
     public function onStartImDaemonIoManagers(&$classes) {
-        parent::onStartImDaemonIoManagers(&$classes);
+        parent::onStartImDaemonIoManagers($classes);
         $classes[] = new MsnManager($this); // handles sending/receiving
         return true;
     }

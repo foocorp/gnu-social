@@ -179,8 +179,7 @@ class ProfilecompletionAction extends Action
             else {
                 $cnt = $profile->find();
             }
-            // @todo FIXME: Call-time pass-by-reference has been deprecated.
-            Event::handle('EndProfileCompletionSearch', $this, &$profile, $search_engine);
+            Event::handle('EndProfileCompletionSearch', $this, $profile, $search_engine);
         }
 
         while ($profile->fetch()) {
