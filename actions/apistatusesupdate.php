@@ -231,32 +231,12 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             return;
         }
 
-        $status_shortened = $this->auth_user->shortenlinks($this->status);
-
-        if (Notice::contentTooLong($status_shortened)) {
-            // Note: Twitter truncates anything over 140, flags the status
-            // as "truncated."
-
-            $this->clientError(
-                sprintf(
-                    // TRANS: Client error displayed exceeding the maximum notice length.
-                    // TRANS: %d is the maximum length for a notice.
-                    _m('That\'s too long. Maximum notice size is %d character.',
-                      'That\'s too long. Maximum notice size is %d characters.',
-                      Notice::maxContent()),
-                    Notice::maxContent()
-                ),
-                406,
-                $this->format
-            );
-
-            return;
-        }
+        /* Do not call shortenlinks until the whole notice has been build */
 
         // Check for commands
 
         $inter = new CommandInterpreter();
-        $cmd = $inter->handle_command($this->auth_user, $status_shortened);
+        $cmd = $inter->handle_command($this->auth_user, $this->status);
 
         if ($cmd) {
             if ($this->supported($cmd)) {
@@ -299,22 +279,31 @@ class ApiStatusesUpdateAction extends ApiAuthAction
             }
 
             if (isset($upload)) {
-                $status_shortened .= ' ' . $upload->shortUrl();
+                $this->status .= ' ' . $upload->shortUrl();
 
-                if (Notice::contentTooLong($status_shortened)) {
-                    $upload->delete();
-                    // TRANS: Client error displayed exceeding the maximum notice length.
-                    // TRANS: %d is the maximum lenth for a notice.
-                    $msg = _m('Maximum notice size is %d character, including attachment URL.',
-                             'Maximum notice size is %d characters, including attachment URL.',
-                             Notice::maxContent());
-                    $this->clientError(
-                        sprintf($msg, Notice::maxContent()),
-                        400,
-                        $this->format
-                    );
-                }
+                /* Do not call shortenlinks until the whole notice has been build */
             }
+
+            /* Do call shortenlinks here & check notice length since notice is about to be saved & sent */
+            $status_shortened = $this->auth_user->shortenlinks($this->status);
+
+            if (Notice::contentTooLong($status_shortened)) {
+                if (isset($upload)) {
+                    $upload->delete();
+                }
+                // TRANS: Client error displayed exceeding the maximum notice length.
+                // TRANS: %d is the maximum lenth for a notice.
+                $msg = _m('Maximum notice size is %d character, including attachment URL.',
+                          'Maximum notice size is %d characters, including attachment URL.',
+                          Notice::maxContent());
+                /* Use HTTP 413 error code (Request Entity Too Large)
+                 * instead of basic 400 for better understanding
+                 */
+                $this->clientError(sprintf($msg, Notice::maxContent()),
+                                   413,
+                                   $this->format);
+            }
+
 
             $content = html_entity_decode($status_shortened, ENT_NOQUOTES, 'UTF-8');
 

@@ -433,6 +433,31 @@ class XmppPlugin extends ImPlugin
                                     );
     }
 
+    /**
+     * Add XMPP plugin daemon to the list of daemon to start
+     *
+     * @param array $daemons the list of daemons to run
+     *
+     * @return boolean hook return
+     */
+    function onGetValidDaemons($daemons)
+    {
+        if( isset($this->server) &&
+            isset($this->port)   &&
+            isset($this->user)   &&
+            isset($this->password) ){
+
+            array_push(
+                $daemons,
+                INSTALLDIR
+                . '/scripts/imdaemon.php'
+            );
+        }
+
+        return true;
+    }
+
+
     function onPluginVersion(&$versions)
     {
         $versions[] = array('name' => 'XMPP',
