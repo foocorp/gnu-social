@@ -391,7 +391,7 @@ class Activity
                 // Sharing a post activity is more like sharing the original object
                 if ($this->verb == 'share' && $object->verb == 'post') {
                     // XXX: Here's one for the obfuscation record books
-                    $object = $object->object;
+                    $object = $object->objects[0];
                 }
             }
 
