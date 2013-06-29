@@ -42,11 +42,12 @@ class UserActivityStream extends AtomUserNoticeFeed
      *                           Raw output mode will attempt to stream, keeping less
      *                           data in memory but will leave $this->activities incomplete.
      */
-    function __construct($user, $indent = true, $outputMode = UserActivityStream::OUTPUT_STRING)
+    function __construct($user, $indent = true, $outputMode = UserActivityStream::OUTPUT_STRING, $after = null)
     {
         parent::__construct($user, null, $indent);
 
         $this->outputMode = $outputMode;
+
         if ($this->outputMode == self::OUTPUT_STRING) {
             // String buffering? Grab all the notices now.
             $notices = $this->getNotices();
@@ -64,6 +65,8 @@ class UserActivityStream extends AtomUserNoticeFeed
         } else {
             throw new Exception('Invalid outputMode provided to ' . __METHOD__);
         }
+
+        $this->after = $after;
 
         // Assume that everything but notices is feasible
         // to pull at once and work with in memory...
@@ -123,7 +126,7 @@ class UserActivityStream extends AtomUserNoticeFeed
                     $notices = $this->getNoticesBetween($start, $end);
                     foreach ($notices as $noticeAct) {
                         try {
-                            $nact = $noticeAct->asActivity();
+                            $nact = $noticeAct->asActivity($this->user);
                             if ($format == Feed::ATOM) {
                                 $nact->outputTo($this, false, false);
                             } else {
@@ -172,10 +175,14 @@ class UserActivityStream extends AtomUserNoticeFeed
         if ($this->outputMode == self::OUTPUT_RAW) {
             // Grab anything after the last pre-sorted activity.
             try {
-                $notices = $this->getNoticesBetween(0, $end);
+                if (!empty($this->after)) {
+                    $notices = $this->getNoticesBetween($this->after, $end);
+                } else {
+                    $notices = $this->getNoticesBetween(0, $end);
+                }
                 foreach ($notices as $noticeAct) {
                     try {
-                        $nact = $noticeAct->asActivity();
+                        $nact = $noticeAct->asActivity($this->user);
                         if ($format == Feed::ATOM) {
                             $nact->outputTo($this, false, false);
                         } else {
@@ -195,23 +202,25 @@ class UserActivityStream extends AtomUserNoticeFeed
             }
         }
 
-        // We always add the registration activity at the end, even if
-        // they have older activities (from restored backups) in their stream.
+        if (empty($this->after) || strtotime($this->user->created) > $this->after) {
+            // We always add the registration activity at the end, even if
+            // they have older activities (from restored backups) in their stream.
 
-        try {
-            $ract = $this->user->registrationActivity();
-            if ($format == Feed::ATOM) {
-                $ract->outputTo($this, false, false);
-            } else {
-                if ($haveOne) {
-                    fwrite($handle, ",");
+            try {
+                $ract = $this->user->registrationActivity();
+                if ($format == Feed::ATOM) {
+                    $ract->outputTo($this, false, false);
+                } else {
+                    if ($haveOne) {
+                        fwrite($handle, ",");
+                    }
+                    fwrite($handle, json_encode($ract->asArray()));
+                    $haveOne = true;
                 }
-                fwrite($handle, json_encode($ract->asArray()));
-                $haveOne = true;
+            } catch (Exception $e) {
+                common_log(LOG_ERR, $e->getMessage());
+                continue;
             }
-        } catch (Exception $e) {
-            common_log(LOG_ERR, $e->getMessage());
-            continue;
         }
     }
 
@@ -230,6 +239,10 @@ class UserActivityStream extends AtomUserNoticeFeed
         $sub = new Subscription();
 
         $sub->subscriber = $this->user->id;
+
+        if (!empty($this->after)) {
+            $sub->whereAdd("created > '" . common_sql_date($this->after) . "'");
+        }
 
         if ($sub->find()) {
             while ($sub->fetch()) {
@@ -250,6 +263,10 @@ class UserActivityStream extends AtomUserNoticeFeed
 
         $sub->subscribed = $this->user->id;
 
+        if (!empty($this->after)) {
+            $sub->whereAdd("created > '" . common_sql_date($this->after) . "'");
+        }
+
         if ($sub->find()) {
             while ($sub->fetch()) {
                 if ($sub->subscriber != $this->user->id) {
@@ -268,6 +285,10 @@ class UserActivityStream extends AtomUserNoticeFeed
         $fave = new Fave();
 
         $fave->user_id = $this->user->id;
+
+        if (!empty($this->after)) {
+            $fave->whereAdd("modified > '" . common_sql_date($this->after) . "'");
+        }
 
         if ($fave->find()) {
             while ($fave->fetch()) {
@@ -292,6 +313,17 @@ class UserActivityStream extends AtomUserNoticeFeed
 
         $notice->profile_id = $this->user->id;
 
+        // Only stuff after $this->after
+
+        if (!empty($this->after)) {
+            if ($start) {
+                $start = max($start, $this->after);
+            }
+            if ($end) {
+                $end = max($end, $this->after);
+            }
+        }
+
         if ($start) {
             $tsstart = common_sql_date($start);
             $notice->whereAdd("created >= '$tsstart'");
@@ -314,7 +346,11 @@ class UserActivityStream extends AtomUserNoticeFeed
 
     function getNotices()
     {
-        return $this->getNoticesBetween();
+        if (!empty($this->after)) {
+            return $this->getNoticesBetween($this->after);
+        } else {
+            return $this->getNoticesBetween();
+        }
     }
 
     function getGroups()
@@ -324,6 +360,10 @@ class UserActivityStream extends AtomUserNoticeFeed
         $gm = new Group_member();
 
         $gm->profile_id = $this->user->id;
+
+        if (!empty($this->after)) {
+            $gm->whereAdd("created > '" . common_sql_date($this->after) . "'");
+        }
 
         if ($gm->find()) {
             while ($gm->fetch()) {
@@ -338,14 +378,31 @@ class UserActivityStream extends AtomUserNoticeFeed
     {
         $msgMap = Memcached_DataObject::listGet('Message', 'to_profile', array($this->user->id));
 
-        return $msgMap[$this->user->id];
+        $messages = $msgMap[$this->user->id];
+
+        if (!empty($this->after)) {
+            $messages = array_filter($messages, array($this, 'createdAfter'));
+        }
+
+        return $messages;
     }
 
     function getMessagesFrom()
     {
         $msgMap = Memcached_DataObject::listGet('Message', 'from_profile', array($this->user->id));
 
-        return $msgMap[$this->user->id];
+        $messages = $msgMap[$this->user->id];
+
+        if (!empty($this->after)) {
+            $messages = array_filter($messages, array($this, 'createdAfter'));
+        }
+
+        return $messages;
+    }
+
+    function createdAfter($item) {
+        $created = strtotime((empty($item->created)) ? $item->modified : $item->created);
+        return ($created >= $this->after);
     }
 
     function writeJSON($handle)
