@@ -161,7 +161,16 @@ class Group_member extends Managed_DataObject
     function asActivity()
     {
         $member = $this->getMember();
+
+        if (!$member) {
+            throw new Exception("No such member: " . $this->profile_id);
+        }
+
         $group  = $this->getGroup();
+
+        if (!$group) {
+            throw new Exception("No such group: " . $this->group_id);
+        }
 
         $act = new Activity();
 
