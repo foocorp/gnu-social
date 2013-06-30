@@ -389,7 +389,8 @@ class Activity
 
             if ($object instanceof Activity) {
                 // Sharing a post activity is more like sharing the original object
-                if ($this->verb == 'share' && $object->verb == 'post') {
+                if (ActivityVerb::canonical($this->verb) == ActivityVerb::canonical(ActivityVerb::SHARE) &&
+                    ActivityVerb::canonical($object->verb) == ActivityVerb::canonical(ActivityVerb::POST)) {
                     // XXX: Here's one for the obfuscation record books
                     $object = $object->objects[0];
                 }
