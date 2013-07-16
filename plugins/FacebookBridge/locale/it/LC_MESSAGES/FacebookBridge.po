@@ -344,7 +344,6 @@ msgstr ""
 "Cordiali saluti,\n"
 "\n"
 "%2$s\n"
-" "
 
 #. TRANS: E-mail subject. %s is the StatusNet sitename.
 #, php-format
