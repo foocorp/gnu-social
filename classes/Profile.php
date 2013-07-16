@@ -682,7 +682,7 @@ class Profile extends Managed_DataObject
         $profile = new Profile();
         $tagged = array();
 
-        $cnt = $profile->query(sprintf($qry, $this->id, $this->id, $tag));
+        $cnt = $profile->query(sprintf($qry, $this->id, $this->id, $profile->escape($tag)));
 
         while ($profile->fetch()) {
             $tagged[] = clone($profile);
