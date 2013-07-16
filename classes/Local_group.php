@@ -44,7 +44,7 @@ class Local_group extends Managed_DataObject
     function setNickname($nickname)
     {
         $this->decache();
-        $qry = 'UPDATE local_group set nickname = "'.$nickname.'" where group_id = ' . $this->group_id;
+        $qry = 'UPDATE local_group set nickname = "'.$this->escape($nickname).'" where group_id = ' . $this->group_id;
 
         $result = $this->query($qry);
 
