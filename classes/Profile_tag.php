@@ -284,8 +284,11 @@ class Profile_tag extends Managed_DataObject
                'tag = "%s", tagger = "%s" ' .
                'WHERE tag = "%s" ' .
                'AND tagger = "%s"';
-        $result = $tags->query(sprintf($qry, $new->tag, $new->tagger,
-                                             $orig->tag, $orig->tagger));
+        $result = $tags->query(sprintf($qry,
+                                       $tags->escape($new->tag),
+                                       $tags->escape($new->tagger),
+                                       $tags->escape($orig->tag),
+                                       $tags->escape($orig->tagger)));
 
         if (!$result) {
             common_log_db_error($tags, 'UPDATE', __FILE__);
