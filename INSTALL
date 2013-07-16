@@ -106,9 +106,9 @@ especially if you've previously installed PHP/MySQL packages.
 1. Unpack the tarball you downloaded on your Web server. Usually a
    command like this will work:
 
-       tar zxf statusnet-1.1.0-alpha1.tar.gz
+       tar zxf statusnet-1.1.1.tar.gz
 
-   ...which will make a statusnet-1.1.0-alpha1 subdirectory in your current
+   ...which will make a statusnet-1.1.1 subdirectory in your current
    directory. (If you don't have shell access on your Web server, you
    may have to unpack the tarball on your local computer and FTP the
    files to the server.)
@@ -116,7 +116,7 @@ especially if you've previously installed PHP/MySQL packages.
 2. Move the tarball to a directory of your choosing in your Web root
    directory. Usually something like this will work:
 
-       mv statusnet-1.1.0-alpha1 /var/www/statusnet
+       mv statusnet-1.1.1 /var/www/statusnet
 
    This will make your StatusNet instance available in the statusnet path of
    your server, like "http://example.net/statusnet". "microblog" or
