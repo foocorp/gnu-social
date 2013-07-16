@@ -310,8 +310,8 @@ class Profile_tag extends Managed_DataObject
         $profile->query('SELECT profile.* ' .
                         'FROM profile JOIN profile_tag ' .
                         'ON profile.id = profile_tag.tagged ' .
-                        'WHERE profile_tag.tagger = ' . $tagger . ' ' .
-                        'AND profile_tag.tag = "' . $tag . '" ');
+                        'WHERE profile_tag.tagger = ' . $profile->escape($tagger) . ' ' .
+                        'AND profile_tag.tag = "' . $profile->escape($tag) . '" ');
         $tagged = array();
         while ($profile->fetch()) {
             $tagged[] = clone($profile);
