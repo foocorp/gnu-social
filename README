@@ -2,8 +2,8 @@
 README
 ------
 
-StatusNet 1.1.0
-2 July 2012
+StatusNet 1.1.1
+16 July 2013
 
 This is the README file for StatusNet, the Open Source social
 networking platform. It includes general information about the
@@ -107,23 +107,19 @@ for additional terms.
 New this version
 ================
 
-This is a minor bug fix and feature release since 1.0.1, released 3
-October 2011. (Because the plugin interface has changed in an upwardly
-compatible way, we've incremented the minor version number. See
-http://semver.org/ for the semantic versioning scheme we follow.)
+This is a security fix and bug fix release since 1.1.0,
+released 2 July 2012. All 1.1.0 sites should upgrade to this version.
 
 It includes the following changes:
 
-- ActivitySpam plugin to check updates against spamicity.info
-- Options to hide users who've been silenced or have posted spammy updates.
-- OfflineBackup experimental plugin.
-- Fixes for TwitterBridge to correctly handle replies through the bridge.
-- Improvements in ActivityStreams JSON output to better match 1.0 spec.
-- Console scripts for managing groups.
-- Bug fix for conversation counts in conversation streams.
-- Rights for moderators to manage spam.
+- Fixes for SQL injection errors in profile lists.
+- Improved ActivityStreams JSON representation of activities and objects.
+- Upgrade to the Twitter 1.1 API.
+- More robust handling of errors in distribution.
+- Fix error in OStatus subscription for remote groups.
+- Fix error in XMPP distribution.
 
-A full changelog is available at http://status.net/wiki/StatusNet_1.1.0.
+A full changelog is available at http://status.net/wiki/StatusNet_1.1.1.
 
 Troubleshooting
 ===============

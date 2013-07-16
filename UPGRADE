@@ -24,7 +24,7 @@ instructions; read to the end first before trying them.
 5. Once all writing processes to your site are turned off, make a
    final backup of the Web directory and database.
 6. Move your StatusNet directory to a backup spot, like "statusnet.bak".
-7. Unpack your StatusNet 1.1.0-alpha1 tarball and move it to "statusnet" or
+7. Unpack your StatusNet 1.1.1 tarball and move it to "statusnet" or
    wherever your code used to be.
 8. Copy the config.php file and the contents of the avatar/, background/,
    file/, and local/ subdirectories from your old directory to your new
@@ -37,7 +37,7 @@ instructions; read to the end first before trying them.
     reversed. YOU CAN EASILY DESTROY YOUR SITE WITH THIS STEP. Don't
     do it without a known-good backup!
 
-    In your new StatusNet 1.1.0-alpha1 directory and AFTER YOU MAKE A
+    In your new StatusNet 1.1.1 directory and AFTER YOU MAKE A
     BACKUP run the upgrade.php script like this:
 
         php ./scripts/upgrade.php
