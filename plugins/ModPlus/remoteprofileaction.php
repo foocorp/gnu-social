@@ -31,6 +31,15 @@ class RemoteProfileAction extends ShowstreamAction
         $this->tag = $this->trimmed('tag');
         $this->page = ($this->arg('page')) ? ($this->arg('page')+0) : 1;
         common_set_returnto($this->selfUrl());
+
+        $p = Profile::current();
+        if (empty($this->tag)) {
+            $stream = new ProfileNoticeStream($this->profile, $p);
+        } else {
+            $stream = new TaggedProfileNoticeStream($this->profile, $this->tag, $p);
+        }
+        $this->notice = $stream->getNotices(($this->page-1)*NOTICES_PER_PAGE, NOTICES_PER_PAGE + 1);
+
         return true;
     }
 
@@ -71,6 +80,25 @@ class RemoteProfileAction extends ShowstreamAction
             // TRANS: Message on blocked remote profile page.
             $markdown = _m('Site moderators have silenced this profile, which prevents delivery of new messages to any users on this site.');
             $this->raw(common_markup_to_html($markdown));
+        }else{
+
+            $pnl = null;
+            if (Event::handle('ShowStreamNoticeList', array($this->notice, $this, &$pnl))) {
+                $pnl = new ProfileNoticeList($this->notice, $this);
+            }
+            $cnt = $pnl->show();
+            if (0 == $cnt) {
+                $this->showEmptyListMessage();
+            }
+
+            $args = array('id' => $this->profile->id);
+            if (!empty($this->tag))
+            {
+                $args['tag'] = $this->tag;
+            }
+            $this->pagination($this->page>1, $cnt>NOTICES_PER_PAGE, $this->page,
+                              'remoteprofile', $args);
+
         }
     }
 
@@ -90,14 +118,12 @@ class RemoteProfileAction extends ShowstreamAction
 
     function showLocalNav()
     {
-        $nav = new PublicGroupNav($this);
-        $nav->show();
+        // skip
     }
 
     function showSections()
     {
-        ProfileAction::showSections();
-        // skip tag cloud
+        // skip
     }
 
     function showStatistics()
