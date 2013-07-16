@@ -758,7 +758,7 @@ class User extends Managed_DataObject
 
         $profile = new Profile();
 
-        $profile->query(sprintf($qry, $this->id, $tag));
+        $profile->query(sprintf($qry, $this->id, $profile->escape($tag)));
 
         return $profile;
     }
