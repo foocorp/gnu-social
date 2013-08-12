@@ -31,6 +31,21 @@ abstract class Managed_DataObject extends Memcached_DataObject
     public static abstract function schemaDef();
 
     /**
+     * Get an instance by key
+     *
+     * @param string $k Key to use to lookup (usually 'id' for this class)
+     * @param mixed  $v Value to lookup
+     *
+     * @return get_called_class() object if found, or null for no hits
+     *
+     */
+    static function staticGet($k,$v=NULL)
+    {
+        return parent::staticGet(get_called_class(),$k,$v);
+    }
+
+
+    /**
      * get/set an associative array of table columns
      *
      * @access public
