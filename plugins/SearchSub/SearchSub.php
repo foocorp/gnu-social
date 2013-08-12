@@ -51,22 +51,6 @@ class SearchSub extends Managed_DataObject
     public $created;     // datetime
 
     /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup (usually 'user_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return SearchSub object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('SearchSub', $k, $v);
-    }
-
-    /**
      * Get an instance by compound key
      *
      * This is a utility method to get a single instance with a given set of

@@ -56,20 +56,6 @@ class ModLog extends Managed_DataObject
     public $created;      // datetime
 
     /**
-     * Get an instance by key
-     *
-     * @param string $k Key to use to lookup (usually 'user_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return TagSub object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Managed_DataObject::staticGet('ModLog', $k, $v);
-    }
-
-    /**
      * Get an instance by compound key
      *
      * @param array $kv array of key-value mappings

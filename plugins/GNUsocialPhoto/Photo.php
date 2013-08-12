@@ -45,11 +45,6 @@ class Photo extends Managed_DataObject
     public $title;             // varchar (255)
     public $description;       // text
     public $profile_id;        // int
-    
-    public function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('photo', $k, $v);
-    }
 
     public function getByNotice($notice)
     {

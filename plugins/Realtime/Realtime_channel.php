@@ -62,21 +62,6 @@ class Realtime_channel extends Managed_DataObject
     public $modified;      // modified date
 
     /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup (usually 'user_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return Realtime_channel object found, or null for no hits
-     */
-    function staticGet($k, $v=null)
-    {
-        return Managed_DataObject::staticGet('Realtime_channel', $k, $v);
-    }
-
-    /**
      * Get an instance by compound key
      *
      * @param array $kv array of key-value mappings

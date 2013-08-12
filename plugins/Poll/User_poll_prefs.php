@@ -51,22 +51,6 @@ class User_poll_prefs extends Managed_DataObject
     public $modified;         // datetime
 
     /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup (usually 'user_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return User_greeting_count object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('User_poll_prefs', $k, $v);
-    }
-
-    /**
      * The One True Thingy that must be defined and declared.
      */
     public static function schemaDef()

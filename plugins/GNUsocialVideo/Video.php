@@ -42,11 +42,6 @@ class Video extends Managed_DataObject
     public $uri;               // varchar (255)  // This is the corresponding notice's uri.
     public $url;               // varchar (255)
     public $profile_id;        // int
-    
-    public function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Video', $k, $v);
-    }
 
     public function getByNotice($notice)
     {

@@ -38,21 +38,6 @@ class Email_reminder extends Managed_DataObject
     public $modified; // timestamp
 
     /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup
-     * @param mixed  $v Value to lookup
-     *
-     * @return QnA_Answer object found, or null for no hits
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('email_reminder', $k, $v);
-    }
-
-    /**
      * Do we need to send a reminder?
      *
      * @param string $type      type of reminder

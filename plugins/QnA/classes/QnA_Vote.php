@@ -56,22 +56,6 @@ class QnA_Vote extends Managed_DataObject
     public $created;     // datetime
 
     /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup
-     * @param mixed  $v Value to lookup
-     *
-     * @return QnA_Vote object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('QnA_Vote', $k, $v);
-    }
-
-    /**
      * Get an instance by compound key
      *
      * This is a utility method to get a single instance with a given set of

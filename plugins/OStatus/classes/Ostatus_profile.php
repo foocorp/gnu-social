@@ -42,11 +42,6 @@ class Ostatus_profile extends Managed_DataObject
     public $created;
     public $modified;
 
-    public /*static*/ function staticGet($k, $v=null)
-    {
-        return parent::staticGet(__CLASS__, $k, $v);
-    }
-
     /**
      * Return table definition for Schema setup and DB_DataObject usage.
      *

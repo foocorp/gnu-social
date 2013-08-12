@@ -70,22 +70,6 @@ class Profile_detail extends Managed_DataObject
     public $modified;
 
     /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup
-     * @param mixed  $v Value to lookup
-     *
-     * @return User_greeting_count object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('Profile_detail', $k, $v);
-    }
-
-    /**
      * Get an instance by compound key
      *
      * This is a utility method to get a single instance with a given set of

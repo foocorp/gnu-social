@@ -53,20 +53,6 @@ class Spam_score extends Managed_DataObject
     public $score;       // float
     public $created;     // datetime
 
-    /**
-     * Get an instance by key
-     *
-     * @param string $k Key to use to lookup (usually 'notice_id' for this class)
-     * @param mixed  $v Value to lookup
-     *
-     * @return Spam_score object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Managed_DataObject::staticGet('Spam_score', $k, $v);
-    }
-
     function saveNew($notice, $result) {
 
         $score = new Spam_score();

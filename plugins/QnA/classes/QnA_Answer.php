@@ -56,22 +56,6 @@ class QnA_Answer extends Managed_DataObject
     public $created;     // datetime
 
     /**
-     * Get an instance by key
-     *
-     * This is a utility method to get a single instance with a given key value.
-     *
-     * @param string $k Key to use to lookup
-     * @param mixed  $v Value to lookup
-     *
-     * @return QnA_Answer object found, or null for no hits
-     *
-     */
-    function staticGet($k, $v=null)
-    {
-        return Memcached_DataObject::staticGet('QnA_Answer', $k, $v);
-    }
-
-    /**
      * Get an instance by compound key
      *
      * This is a utility method to get a single instance with a given set of

@@ -60,11 +60,6 @@ class Blog_entry extends Managed_DataObject
     public $modified; // datetime
 
     const TYPE = ActivityObject::ARTICLE;
-    
-    function staticGet($k, $v=null)
-    {
-        return Managed_DataObject::staticGet('Blog_entry', $k, $v);
-    }
 
     static function schemaDef()
     {
