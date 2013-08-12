@@ -440,6 +440,16 @@ abstract class Installer
                 ($this->db['type'] == 'pgsql' ? "\$config['db']['quote_identifiers'] = true;\n\n":'').
                 "\$config['db']['type'] = {$vals['db_type']};\n\n";
 
+        // Auto memcache support detection
+        $cfg .= '
+foreach(array("Memcache", "Memcached") as $plugin) :
+    if (class_exists($plugin)) {
+        addPlugin($plugin);
+        break;
+    }
+endforeach;
+';
+
         // Normalize line endings for Windows servers
         $cfg = str_replace("\n", PHP_EOL, $cfg);
 
