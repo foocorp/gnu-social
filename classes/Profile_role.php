@@ -37,9 +37,6 @@ class Profile_role extends Managed_DataObject
     public $role;                            // varchar(32)  primary_key not_null
     public $created;                         // datetime   not_null default_0000-00-00%2000%3A00%3A00
 
-    /* Static get */
-    function staticGet($k,$v=NULL) { return Memcached_DataObject::staticGet('Profile_role',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

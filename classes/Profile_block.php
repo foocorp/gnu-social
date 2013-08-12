@@ -35,10 +35,6 @@ class Profile_block extends Managed_DataObject
     public $blocked;                         // int(4)  primary_key not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /* Static get */
-    function staticGet($k,$v=null)
-    { return Memcached_DataObject::staticGet('Profile_block',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

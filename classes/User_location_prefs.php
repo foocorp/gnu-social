@@ -40,9 +40,6 @@ class User_location_prefs extends Managed_DataObject
     public $created;                         // datetime   not_null default_0000-00-00%2000%3A00%3A00
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
 
-    /* Static get */
-    function staticGet($k,$v=NULL) { return Memcached_DataObject::staticGet('User_location_prefs',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

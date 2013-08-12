@@ -16,10 +16,6 @@ class Oauth_token_association extends Managed_DataObject
     public $created;                         // datetime   not_null
     public $modified;                        // timestamp   not_null default_CURRENT_TIMESTAMP
 
-    /* Static get */
-    function staticGet($k, $v = NULL) {
-        return Memcached_DataObject::staticGet('oauth_token_association', $k, $v);
-    }
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

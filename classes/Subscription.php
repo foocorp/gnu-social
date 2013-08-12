@@ -69,10 +69,6 @@ class Subscription extends Managed_DataObject
         );
     }
 
-    /* Static get */
-    function staticGet($k,$v=null)
-    { return Memcached_DataObject::staticGet('Subscription',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

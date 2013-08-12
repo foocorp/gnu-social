@@ -30,11 +30,6 @@ class User_group extends Managed_DataObject
     public $join_policy;                     // tinyint
     public $force_scope;                     // tinyint
 
-    /* Static get */
-    function staticGet($k,$v=NULL) {
-        return Memcached_DataObject::staticGet('User_group',$k,$v);
-    }
-    
     function multiGet($keyCol, $keyVals, $skipNulls=true)
     {
         return parent::multiGet('User_group', $keyCol, $keyVals, $skipNulls);

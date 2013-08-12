@@ -13,10 +13,6 @@ class Schema_version extends Managed_DataObject
     public $checksum;                        // varchar(64)  not_null
     public $modified;                        // datetime()   not_null
 
-    /* Static get */
-    function staticGet($k,$v=null)
-    { return Memcached_DataObject::staticGet('Schema_version',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

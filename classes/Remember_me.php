@@ -14,12 +14,6 @@ class Remember_me extends Managed_DataObject
     public $user_id;                         // int(4)   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /* Static get */
-    function staticGet($k,$v=null)
-    {
-        return Memcached_DataObject::staticGet('Remember_me',$k,$v);
-    }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

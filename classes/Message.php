@@ -21,9 +21,6 @@ class Message extends Managed_DataObject
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
     public $source;                          // varchar(32)
 
-    /* Static get */
-    function staticGet($k,$v=NULL) { return Memcached_DataObject::staticGet('Message',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

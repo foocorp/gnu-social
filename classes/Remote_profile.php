@@ -37,10 +37,6 @@ class Remote_profile extends Managed_DataObject
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /* Static get */
-    function staticGet($k,$v=null)
-    { return Memcached_DataObject::staticGet('Remote_profile',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

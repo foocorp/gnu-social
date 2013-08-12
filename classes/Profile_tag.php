@@ -15,10 +15,6 @@ class Profile_tag extends Managed_DataObject
     public $tag;                             // varchar(64)  primary_key not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /* Static get */
-    function staticGet($k,$v=null)
-    { return Memcached_DataObject::staticGet('Profile_tag',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

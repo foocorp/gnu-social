@@ -47,9 +47,6 @@ class File_oembed extends Managed_DataObject
     public $url;                             // varchar(255)
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /* Static get */
-    function staticGet($k,$v=NULL) { return Memcached_DataObject::staticGet('File_oembed',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

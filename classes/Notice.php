@@ -76,12 +76,6 @@ class Notice extends Managed_DataObject
     public $object_type;                     // varchar(255)
     public $scope;                           // int(4)
 
-    /* Static get */
-    function staticGet($k,$v=NULL)
-    {
-        return Memcached_DataObject::staticGet('Notice',$k,$v);
-    }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

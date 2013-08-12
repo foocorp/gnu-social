@@ -34,9 +34,6 @@ class Group_block extends Managed_DataObject
     public $blocker;                         // int(4)   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /* Static get */
-    function staticGet($k,$v=NULL) { return Memcached_DataObject::staticGet('Group_block',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

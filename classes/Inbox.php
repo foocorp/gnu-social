@@ -41,9 +41,6 @@ class Inbox extends Managed_DataObject
     public $user_id;                         // int(4)  primary_key not_null
     public $notice_ids;                      // blob
 
-    /* Static get */
-    function staticGet($k,$v=NULL) { return Memcached_DataObject::staticGet('Inbox',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

@@ -37,9 +37,6 @@ class Config extends Managed_DataObject
     public $setting;                         // varchar(32)  primary_key not_null
     public $value;                           // varchar(255)
 
-    /* Static get */
-    function staticGet($k,$v=NULL) { return Memcached_DataObject::staticGet('Config',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

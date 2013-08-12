@@ -44,11 +44,6 @@ class Profile extends Managed_DataObject
     public $created;                         // datetime()   not_null
     public $modified;                        // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /* Static get */
-    function staticGet($k,$v=NULL) {
-        return Memcached_DataObject::staticGet('Profile',$k,$v);
-    }
-
     public static function schemaDef()
     {
         $def = array(

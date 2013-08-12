@@ -15,10 +15,6 @@ class Profile_tag_subscription extends Managed_DataObject
     public $created;                                // datetime   not_null default_0000-00-00%2000%3A00%3A00
     public $modified;                               // timestamp()   not_null default_CURRENT_TIMESTAMP
 
-    /* Static get */
-    function staticGet($k,$v=null)
-    { return Memcached_DataObject::staticGet('Profile_tag_subscription',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 

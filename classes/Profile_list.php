@@ -48,9 +48,6 @@ class Profile_list extends Managed_DataObject
     public $tagged_count;                    // smallint
     public $subscriber_count;                // smallint
 
-    /* Static get */
-    function staticGet($k,$v=NULL) { return Memcached_DataObject::staticGet('Profile_list',$k,$v); }
-
     /* the code above is auto generated do not remove the tag below */
     ###END_AUTOCODE
 
