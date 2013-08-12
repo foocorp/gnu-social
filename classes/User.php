@@ -874,13 +874,12 @@ class User extends Managed_DataObject
         } else if ($cfg == 'never') {
             return false;
         } else { // user
-            $share = true;
+            $share = common_config('location', 'sharedefault');
 
+            // Check if user has a personal setting for this
             $prefs = User_location_prefs::staticGet('user_id', $this->id);
 
-            if (empty($prefs)) {
-                $share = common_config('location', 'sharedefault');
-            } else {
+            if (!empty($prefs)) {
                 $share = $prefs->share_location;
                 $prefs->free();
             }
